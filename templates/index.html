@@ -1,0 +1,82 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Study Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/style.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Landing page -->
+    <section id="landing">
+      <h1 class="title">Study Quiz</h1>
+
+      <div class="card">
+        <div class="row">
+          <label for="moduleSelect" class="label">Module</label>
+          <select id="moduleSelect" class="select"></select>
+        </div>
+
+        <div class="row">
+          <div class="label">Question count</div>
+          <div class="btn-group">
+            <button class="btn ghost count" data-count="10">10</button>
+            <button class="btn ghost count" data-count="25">25</button>
+            <button class="btn ghost count" data-count="50">50</button>
+            <button class="btn ghost count" data-count="100">100</button>
+            <button class="btn ghost count" data-count="ALL">ALL</button>
+          </div>
+        </div>
+
+        <div class="row end">
+          <button id="startBtn" class="btn primary">Start Quiz</button>
+        </div>
+      </div>
+
+      <div class="subtle">
+        Tip: A–H select/deselect. Enter submits; Enter again = Next.
+      </div>
+    </section>
+
+    <!-- Quiz page -->
+    <section id="quiz" class="hidden">
+      <header class="quiz-header">
+        <div id="scoreLine">First-Try Correct: 0 / 0</div>
+        <div class="spacer"></div>
+        <button id="newQuizBtn" class="btn ghost small">New Quiz</button>
+      </header>
+
+      <div id="qCard" class="card">
+        <div id="qStem" class="stem">Question…</div>
+        <div id="qOptions" class="options"></div>
+
+        <div class="controls">
+          <button id="submitBtn" class="btn primary">Submit</button>
+          <button id="nextBtn" class="btn" disabled>Next</button>
+        </div>
+
+        <div id="result" class="result"></div>
+      </div>
+
+      <div class="secondary-controls">
+        <button id="resetBtn" class="btn danger outline">Reset Session</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Lightweight confirm for reset -->
+  <dialog id="confirmReset">
+    <p>Reset this quiz session?</p>
+    <div class="dialog-actions">
+      <button id="confirmResetYes" class="btn danger">Reset</button>
+      <button id="confirmResetNo" class="btn">Cancel</button>
+    </div>
+  </dialog>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
