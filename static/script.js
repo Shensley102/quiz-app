@@ -25,8 +25,10 @@
 
   // --- helpers --------------------------------------------------------
   function api(path, opts = {}) {
+    // IMPORTANT: include cookies so Flask session persists between calls
     return fetch(path, Object.assign({
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin"
     }, opts));
   }
   function setHidden(el, yes) { if (yes) el.classList.add("hidden"); else el.classList.remove("hidden"); }
@@ -166,8 +168,6 @@
       body: JSON.stringify({ qid: currentQ.qid, selected })
     }).then(r => r.json()).then(data => {
       answered = true;
-      // Update first-try score if backend says it changed (we re-pull on /next)
-      // Instead, we ask for a fresh /next and the server keeps the score internally.
       // Show result with rationale:
       const tag = data.ok ? `<span class="ok">Correct!</span>` :
         `<span class="bad">Incorrect.</span> <span class="muted">Correct: ${data.correct.join(", ")}</span>`;
@@ -177,8 +177,6 @@
       resultDiv.innerHTML = `${tag}${rationale}`;
       // Enable Next
       nextBtn.disabled = false;
-      // Also refresh header score by asking server for a dummy next peek if it was first try correct.
-      // Simpler: call /api/next only when Next is pressed; header will update then.
     }).catch(() => {
       submitBtn.disabled = false;
       alert("There was an error submitting your answer. Please try again.");
@@ -187,14 +185,7 @@
 
   nextBtn.addEventListener("click", () => {
     // Ask server for next; server already tracks first-try stats
-    // To refresh header, we need the latest score. Quick trick:
-    // Call /api/next, then ask /api/next again if we just peeked? Instead,
-    // update on each load by requesting /api/next and let server include
-    // first-try stats with the done payload only; so we’ll also poll a light endpoint,
-    // or we can recompute by asking /api/start return count and just leave numerator
-    // for done. Simpler UX: leave the header numerator frozen; it only updates at finish.
     loadNext();
-    // Header denominator stays fixed; numerator updates only at finish (clean & simple).
   });
 
   // --- Reset with confirm --------------------------------------------
