@@ -17,182 +17,194 @@
   const yesReset = document.getElementById("confirmResetYes");
   const noReset = document.getElementById("confirmResetNo");
 
-  let chosenCount = 10;         // user pick (10/25/50/100/ALL)
-  let currentQ = null;          // { qid, is_multi, options... }
-  let lettersToInputs = {};     // map letter -> input element
+  let chosenCount = 10; // question count
+  let currentQ = null;
+  let lettersToInputs = {};
+  let answered = false;
   let firstTryScore = { correct: 0, total: 0 };
-  let answered = false;         // did we submit this card
 
-  // --- helpers --------------------------------------------------------
+  // -------------------- API helper --------------------
   function api(path, opts = {}) {
-    // IMPORTANT: include cookies so Flask session persists between calls
     return fetch(path, Object.assign({
       headers: { "Content-Type": "application/json" },
-      credentials: "same-origin"
+      credentials: "same-origin", // critical for Flask session
     }, opts));
   }
-  function setHidden(el, yes) { if (yes) el.classList.add("hidden"); else el.classList.remove("hidden"); }
-  function updateScoreLine() {
-    scoreLine.textContent = `First-Try Correct: ${firstTryScore.correct} / ${firstTryScore.total}`;
+
+  // -------------------- UI helpers --------------------
+  function setHidden(el, yes) {
+    if (yes) el.classList.add("hidden");
+    else el.classList.remove("hidden");
   }
+
   function clearOptions() {
     qOptions.innerHTML = "";
     lettersToInputs = {};
   }
+
   function renderOptions(options, is_multi) {
     clearOptions();
     options.forEach((opt, idx) => {
-      const id = `opt_${idx}`;
-      const wrapper = document.createElement("label");
-      wrapper.className = "option";
+      const label = document.createElement("label");
+      label.className = "option";
 
       const input = document.createElement("input");
       input.type = is_multi ? "checkbox" : "radio";
       input.name = "qopts";
       input.value = opt.letter;
-      input.id = id;
+      input.id = `opt_${idx}`;
 
-      const dot = document.createElement("span");
-      dot.className = "dot";
+      const span = document.createElement("span");
+      span.className = "txt";
+      span.textContent = `${opt.letter}. ${opt.text}`;
 
-      const text = document.createElement("span");
-      text.className = "txt";
-      text.textContent = `${opt.letter}. ${opt.text}`;
-
-      wrapper.appendChild(input);
-      wrapper.appendChild(dot);
-      wrapper.appendChild(text);
-      qOptions.appendChild(wrapper);
+      label.appendChild(input);
+      label.appendChild(span);
+      qOptions.appendChild(label);
 
       lettersToInputs[opt.letter.toUpperCase()] = input;
     });
   }
+
   function getSelectedLetters() {
-    return Array.from(qOptions.querySelectorAll("input"))
-      .filter(i => i.checked)
-      .map(i => i.value.toUpperCase());
+    return Array.from(qOptions.querySelectorAll("input:checked")).map(i => i.value.toUpperCase());
   }
 
-  // --- Load modules into dropdown ------------------------------------
+  function updateScoreLine() {
+    scoreLine.textContent = `First-Try Correct: ${firstTryScore.correct} / ${firstTryScore.total}`;
+  }
+
+  function escapeHTML(s) {
+    return s.replace(/[&<>"']/g, c => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+    }[c]));
+  }
+
+  // -------------------- Load module list --------------------
   function loadModules() {
-    api("/api/modules").then(r => r.json()).then(items => {
-      moduleSelect.innerHTML = "";
-      items.forEach(it => {
-        const o = document.createElement("option");
-        o.value = it.id;
-        o.textContent = it.id;
-        moduleSelect.appendChild(o);
-      });
-      // If any module exists, select first
-      if (items.length) moduleSelect.value = items[0].id;
-    }).catch(() => {
-      alert("Could not load modules");
-    });
+    api("/api/modules")
+      .then(r => r.json())
+      .then(items => {
+        moduleSelect.innerHTML = "";
+        if (!Array.isArray(items) || !items.length) {
+          moduleSelect.innerHTML = `<option value="">No modules found</option>`;
+          return;
+        }
+        items.forEach(it => {
+          const o = document.createElement("option");
+          o.value = it.id;
+          o.textContent = it.id;
+          moduleSelect.appendChild(o);
+        });
+        moduleSelect.value = items[0].id;
+      })
+      .catch(() => alert("Could not load modules"));
   }
 
-  // --- Start quiz -----------------------------------------------------
-  countBtns.forEach(b => {
-    b.addEventListener("click", () => {
+  // -------------------- Setup count buttons --------------------
+  countBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
       countBtns.forEach(x => x.classList.remove("active"));
-      b.classList.add("active");
-      chosenCount = b.dataset.count === "ALL" ? 999999 : parseInt(b.dataset.count, 10);
+      btn.classList.add("active");
+      chosenCount = btn.dataset.count === "ALL" ? 999999 : parseInt(btn.dataset.count, 10);
     });
   });
-  // default pick 10
   countBtns[0].classList.add("active");
 
+  // -------------------- Start Quiz --------------------
   startBtn.addEventListener("click", () => {
     const mod = moduleSelect.value;
+    if (!mod) return alert("Select a module first");
+
     api("/api/start", {
       method: "POST",
-      body: JSON.stringify({ module: mod, count: chosenCount })
-    }).then(r => r.json()).then(data => {
-      if (!data.ok) { alert(data.error || "Could not start quiz"); return; }
-      // switch to quiz page
-      firstTryScore = { correct: 0, total: data.count || 0 };
-      updateScoreLine();
-      setHidden(landing, true);
-      setHidden(quiz, false);
-      loadNext();
-    }).catch(() => alert("Could not start quiz"));
+      body: JSON.stringify({ module: mod, count: chosenCount }),
+    })
+      .then(r => r.json())
+      .then(data => {
+        if (!data.ok) {
+          alert(data.error || "Could not start quiz");
+          return;
+        }
+        firstTryScore = { correct: 0, total: data.count || 0 };
+        updateScoreLine();
+        setHidden(landing, true);
+        setHidden(quiz, false);
+        loadNext();
+      })
+      .catch(() => alert("Could not start quiz"));
   });
 
-  newQuizBtn.addEventListener("click", () => {
-    // soft reset and go back to landing
-    api("/api/reset", { method: "POST" }).finally(() => {
-      setHidden(quiz, true);
-      setHidden(landing, false);
-      resultDiv.innerHTML = "";
-      qStem.textContent = "Question…";
-      clearOptions();
-    });
-  });
-
-  // --- Next & Submit --------------------------------------------------
+  // -------------------- Load Next Question --------------------
   function loadNext() {
     resultDiv.innerHTML = "";
-    nextBtn.disabled = true;
     submitBtn.disabled = false;
+    nextBtn.disabled = true;
     answered = false;
 
-    api("/api/next").then(r => r.json()).then(data => {
-      if (data.done) {
-        // Finished (all mastered). Show summary + New Quiz
-        qStem.textContent = "All questions mastered!";
-        clearOptions();
-        resultDiv.innerHTML = `
-          <div class="summary">
-            <div>First-Try Score: <b>${data.first_try_correct} / ${data.first_try_total}</b></div>
-            <div>Total cards served (with repeats): ${data.served}</div>
-          </div>
-        `;
-        submitBtn.disabled = true;
-        nextBtn.disabled = true;
-        return;
-      }
-      currentQ = data;
-      qStem.textContent = data.stem || "Question";
-      renderOptions(data.options || [], !!data.is_multi);
-    }).catch(() => alert("Could not load next question"));
+    api("/api/next")
+      .then(r => r.json())
+      .then(data => {
+        if (data.done) {
+          qStem.textContent = "All questions mastered!";
+          clearOptions();
+          resultDiv.innerHTML = `
+            <div class="summary">
+              <div>First-Try Score: <b>${data.first_try_correct || 0} / ${data.first_try_total || 0}</b></div>
+              <div>Total cards served (with repeats): ${data.served || 0}</div>
+            </div>`;
+          submitBtn.disabled = true;
+          nextBtn.disabled = true;
+          return;
+        }
+        currentQ = data;
+        qStem.textContent = data.stem || "Question";
+        renderOptions(data.options || [], !!data.is_multi);
+      })
+      .catch(() => alert("Could not load next question"));
   }
 
+  // -------------------- Submit Answer --------------------
   submitBtn.addEventListener("click", () => {
     if (!currentQ) return;
     const selected = getSelectedLetters();
-    if (!selected.length) { alert("Choose at least one answer."); return; }
+    if (!selected.length) return alert("Select at least one answer.");
 
     submitBtn.disabled = true;
 
     api("/api/answer", {
       method: "POST",
-      body: JSON.stringify({ qid: currentQ.qid, selected })
-    }).then(r => r.json()).then(data => {
-      answered = true;
-      // Show result with rationale:
-      const tag = data.ok ? `<span class="ok">Correct!</span>` :
-        `<span class="bad">Incorrect.</span> <span class="muted">Correct: ${data.correct.join(", ")}</span>`;
-      const rationale = (data.rationale && data.rationale.trim().length)
-        ? `<div class="rationale"><b>Rationale:</b> ${escapeHTML(data.rationale)}</div>`
-        : "";
-      resultDiv.innerHTML = `${tag}${rationale}`;
-      // Enable Next
-      nextBtn.disabled = false;
-    }).catch(() => {
-      submitBtn.disabled = false;
-      alert("There was an error submitting your answer. Please try again.");
-    });
+      body: JSON.stringify({ qid: currentQ.qid, selected }),
+    })
+      .then(r => r.json())
+      .then(data => {
+        answered = true;
+        const tag = data.ok
+          ? `<span class="ok">Correct!</span>`
+          : `<span class="bad">Incorrect.</span> <span class="muted">Correct: ${data.correct.join(", ")}</span>`;
+        const rationale = data.rationale
+          ? `<div class="rationale"><b>Rationale:</b> ${escapeHTML(data.rationale)}</div>`
+          : "";
+        resultDiv.innerHTML = `${tag}${rationale}`;
+        nextBtn.disabled = false;
+      })
+      .catch(() => {
+        submitBtn.disabled = false;
+        alert("Error submitting answer");
+      });
   });
 
   nextBtn.addEventListener("click", () => {
-    // Ask server for next; server already tracks first-try stats
+    if (!answered) return alert("Submit your answer first.");
     loadNext();
   });
 
-  // --- Reset with confirm --------------------------------------------
-  resetBtn.addEventListener("click", () => dlg.showModal());
-  yesReset.addEventListener("click", () => {
-    api("/api/reset", { method: "POST" }).finally(() => {
-      dlg.close();
+  // -------------------- New Quiz & Reset --------------------
+  newQuizBtn.addEventListener("click", () => {
+    api("/api/reset_session", {
+      method: "POST",
+      body: JSON.stringify({ confirm: true }),
+    }).finally(() => {
       setHidden(quiz, true);
       setHidden(landing, false);
       resultDiv.innerHTML = "";
@@ -200,51 +212,47 @@
       clearOptions();
     });
   });
+
+  resetBtn.addEventListener("click", () => dlg.showModal());
+
+  yesReset.addEventListener("click", () => {
+    dlg.close();
+    api("/api/reset_session", {
+      method: "POST",
+      body: JSON.stringify({ confirm: true }),
+    }).then(() => {
+      setHidden(quiz, true);
+      setHidden(landing, false);
+      resultDiv.innerHTML = "";
+      qStem.textContent = "Question…";
+      clearOptions();
+    });
+  });
+
   noReset.addEventListener("click", () => dlg.close());
 
-  // --- Keyboard controls ----------------------------------------------
-  document.addEventListener("keydown", (ev) => {
-    if (setForLanding()) return; // don't handle letters on landing
+  // -------------------- Keyboard Shortcuts --------------------
+  document.addEventListener("keydown", ev => {
+    if (quiz.classList.contains("hidden")) return;
 
     const key = ev.key.toUpperCase();
-    if (key >= "A" && key <= "H") {
+    if (key >= "A" && key <= "H" && lettersToInputs[key]) {
+      ev.preventDefault();
       const input = lettersToInputs[key];
-      if (input) {
-        ev.preventDefault();
-        // Toggle behavior for radio & checkbox
-        if (input.type === "radio") {
-          // Radio can be un-checked by pressing the same letter again
-          if (input.checked) {
-            input.checked = false;
-          } else {
-            // clear others then check
-            qOptions.querySelectorAll("input[type=radio]").forEach(r => r.checked = false);
-            input.checked = true;
-          }
-        } else {
-          input.checked = !input.checked; // checkbox toggle
+      if (input.type === "radio") {
+        if (input.checked) input.checked = false;
+        else {
+          qOptions.querySelectorAll("input[type=radio]").forEach(r => (r.checked = false));
+          input.checked = true;
         }
-      }
+      } else input.checked = !input.checked;
     } else if (ev.key === "Enter") {
       ev.preventDefault();
-      if (!answered) {
-        submitBtn.click();
-      } else {
-        nextBtn.click();
-      }
+      if (!answered) submitBtn.click();
+      else nextBtn.click();
     }
   });
 
-  function setForLanding() {
-    return !quiz || quiz.classList.contains("hidden");
-  }
-
-  function escapeHTML(s) {
-    return s.replace(/[&<>"']/g, (c) => (
-      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
-    ));
-  }
-
-  // boot
+  // -------------------- Initialize --------------------
   loadModules();
 })();
