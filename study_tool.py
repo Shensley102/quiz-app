@@ -55,8 +55,8 @@ def _coerce_questions(raw):
     for idx, q in enumerate(qlist):
         # Extract stem
         stem = q.get("stem") or q.get("question") or q.get("prompt") or q.get("text") or ""
-        # Some banks store stem in "Q: <text>\nAnswer: ..." We only want the text
-        # Extract options from a variety of keys
+
+        # Extract options (strings or dict)
         options = q.get("options") or q.get("answers") or q.get("choices") or []
         if isinstance(options, dict):  # sometimes keys are "A","B",...
             opts = []
@@ -81,10 +81,16 @@ def _coerce_questions(raw):
                 if is_correct:
                     correct_letters.add(letter)
 
-        # Some banks include correct letters as "key", "correct", etc
-        if not correct_letters:
-            # Look on the question object
-            raw_ans = q.get("correct") or q.get("answer") or q.get("key") or q.get("answers_key")
+        # Accept multiple common keys for the answer letters
+        raw_ans = (
+            q.get("correct_answers") or     # <-- add this (list of letters)
+            q.get("correct") or
+            q.get("answer") or
+            q.get("key") or
+            q.get("answers_key")
+        )
+
+        if not correct_letters and raw_ans is not None:
             if isinstance(raw_ans, list):
                 for i, v in enumerate(raw_ans):
                     if isinstance(v, (int, float)) and 0 <= int(v) < len(norm_opts):
@@ -112,7 +118,6 @@ def _coerce_questions(raw):
             "options": norm_opts,
             "correct": sorted(list(correct_letters)),
             "rationale": rationales,
-            # convenience flags
             "is_multi": len(correct_letters) > 1 or "(select all that apply" in stem.lower()
         })
     return norm
@@ -136,7 +141,6 @@ def index():
 @app.get("/api/modules")
 def api_modules():
     files = _discover_module_files()
-    # Return base names without ".json"
     items = [{"id": os.path.splitext(fn)[0], "file": fn} for fn in files]
     return jsonify(items)
 
@@ -157,26 +161,23 @@ def api_start():
     if not questions:
         return jsonify({"ok": False, "error": "No questions in module"}), 400
 
-    # sample 'count' unique questions for the initial round
     random.seed()
     sample = random.sample(questions, k=min(count, len(questions)))
 
-    # Normalize as lookup by id
     by_id = {q["id"]: q for q in questions}
 
-    # Build session state
     _reset_state()
     st = {
         "module": module_id,
-        "by_id": by_id,                 # full bank (for re-queue)
+        "by_id": by_id,
         "initial_qids": [q["id"] for q in sample],
-        "queue": [q["id"] for q in sample],     # main queue (initial)
-        "incorrect_queue": [],          # questions to revisit
-        "first_try_total": len(sample), # frozen denominator
+        "queue": [q["id"] for q in sample],
+        "incorrect_queue": [],
+        "first_try_total": len(sample),
         "first_try_correct": 0,
-        "first_try_attempted": {},      # qid -> True (attempted once)
-        "served": 0,                    # total times a card was served
-        "current": None                 # qid currently displayed
+        "first_try_attempted": {},
+        "served": 0,
+        "current": None
     }
     session["quiz_state"] = st
     session.modified = True
@@ -188,7 +189,6 @@ def api_next():
     if not st:
         return jsonify({"done": True, "error": "No active quiz"}), 200
 
-    # choose next card: initial queue first, then incorrect queue
     qid = None
     if st["queue"]:
         qid = st["queue"].pop(0)
@@ -196,7 +196,6 @@ def api_next():
         qid = st["incorrect_queue"].pop(0)
 
     if qid is None:
-        # completely done
         return jsonify({
             "done": True,
             "first_try_correct": st["first_try_correct"],
@@ -225,7 +224,7 @@ def api_answer():
 
     payload = request.get_json(force=True) or {}
     qid = payload.get("qid") or st["current"]
-    selected = payload.get("selected") or []   # letters
+    selected = payload.get("selected") or []
     selected = [str(x).upper() for x in selected]
 
     q = st["by_id"][qid]
@@ -233,15 +232,12 @@ def api_answer():
     selected_set = set(selected)
     ok = selected_set == correct_set
 
-    # First-try scoring logic (only for the initial set, and only the first time answered)
     if (qid in st["initial_qids"]) and (qid not in st["first_try_attempted"]):
         st["first_try_attempted"][qid] = True
         if ok:
             st["first_try_correct"] += 1
 
-    # mastery loop: re-queue wrong answers until correct
     if not ok:
-        # add to incorrect queue for another round
         st["incorrect_queue"].append(qid)
 
     session.modified = True
@@ -256,11 +252,9 @@ def api_reset():
     _reset_state()
     return jsonify({"ok": True})
 
-# Optional: allow downloading the JSON from root (handy for debugging)
 @app.get("/modules/<path:filename>")
 def get_module_file(filename):
     return send_from_directory(".", filename)
 
-# ---- Run locally ------------------------------------------------------
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000, debug=True)
