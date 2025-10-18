@@ -148,11 +148,8 @@ def api_start():
         "first_try_correct": 0,
         "served": 0,
         "current": None,
-        "attempted": set(),  # qids attempted first time
+        "attempted": [],  # list of qids attempted at least once
     }
-    # sets are not JSON serializable in flask cookie; convert to list
-    state["attempted"] = list(state["attempted"])
-
     session["quiz"] = state
     session.modified = True
 
@@ -236,6 +233,9 @@ def api_answer():
         "ok": ok,
         "correct": sorted(list(correct_set)),
         "rationale": q.get("rationale", ""),
+        # send current first-try stats so UI updates immediately
+        "first_try_correct": st.get("first_try_correct", 0),
+        "first_try_total": st.get("first_try_total", 0),
     })
 
 # Safer reset (optional hardening)
