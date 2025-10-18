@@ -164,7 +164,7 @@
       .catch(() => alert("Could not load next question"));
   }
 
-  // -------------------- Submit Answer --------------------
+  // -------------------- Submit Answer (updated) --------------------
   submitBtn.addEventListener("click", () => {
     if (!currentQ) return;
     const selected = getSelectedLetters();
@@ -179,6 +179,16 @@
       .then(r => r.json())
       .then(data => {
         answered = true;
+
+        // update first-try score from server if provided
+        if (typeof data.first_try_correct === "number") {
+          firstTryScore.correct = data.first_try_correct;
+          if (typeof data.first_try_total === "number") {
+            firstTryScore.total = data.first_try_total;
+          }
+          updateScoreLine();
+        }
+
         const tag = data.ok
           ? `<span class="ok">Correct!</span>`
           : `<span class="bad">Incorrect.</span> <span class="muted">Correct: ${data.correct.join(", ")}</span>`;
@@ -186,6 +196,7 @@
           ? `<div class="rationale"><b>Rationale:</b> ${escapeHTML(data.rationale)}</div>`
           : "";
         resultDiv.innerHTML = `${tag}${rationale}`;
+
         nextBtn.disabled = false;
       })
       .catch(() => {
