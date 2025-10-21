@@ -28,15 +28,43 @@
   let quizDone = false;
   let firstTryScore = { correct: 0, total: 0 };
 
-  // ---------- API helper (keeps Flask session cookie) ----------
-  function api(path, opts = {}) {
-    return fetch(path, Object.assign({
+  // ---------------- API helpers (with automatic route fallback) ----------------
+  function apiFetch(url, opts = {}) {
+    return fetch(url, Object.assign({
       headers: { "Content-Type": "application/json" },
-      credentials: "same-origin"
+      credentials: "same-origin" // keep Flask/Vercel session cookie
     }, opts));
   }
 
-  // ---------- UI helpers ----------
+  async function fetchJsonFirst(paths, opts) {
+    // Try each path until one returns a non-404 response
+    let lastError;
+    for (const p of paths) {
+      try {
+        const r = await apiFetch(p, opts);
+        if (r.status === 404) continue;
+        if (!r.ok) {
+          // Non-404 error: surface immediately
+          const txt = await r.text().catch(() => "");
+          throw new Error(`${r.status} ${r.statusText} ${txt}`.trim());
+        }
+        return await r.json();
+      } catch (e) {
+        lastError = e;
+      }
+    }
+    throw lastError || new Error("No endpoint responded");
+  }
+
+  const routes = {
+    modules: ["/api/modules", "/modules"],
+    start: ["/api/start", "/start"],
+    next: ["/api/next", "/next"],
+    answer: ["/api/answer", "/answer"],
+    reset: ["/api/reset_session", "/reset"]
+  };
+
+  // ---------------- UI helpers ----------------
   function setHidden(el, yes) {
     if (yes) el.classList.add("hidden"); else el.classList.remove("hidden");
   }
@@ -49,7 +77,6 @@
   function renderOptions(options, is_multi) {
     clearOptions();
     const type = is_multi ? "checkbox" : "radio";
-
     options.forEach((opt, idx) => {
       const label = document.createElement("label");
       label.className = "option";
@@ -97,10 +124,9 @@
     submitBtn.textContent = "Submit";
   }
 
-  // ---------- Load modules ----------
+  // ---------------- Load modules (works with /modules or /api/modules) ----------------
   function loadModules() {
-    api("/api/modules")
-      .then(r => r.json())
+    fetchJsonFirst(routes.modules)
       .then(items => {
         moduleSelect.innerHTML = "";
         if (!Array.isArray(items) || !items.length) {
@@ -109,16 +135,16 @@
         }
         items.forEach(it => {
           const o = document.createElement("option");
-          o.value = it.id;
-          o.textContent = it.id;
+          o.value = it.id || it.file || it; // tolerate different shapes
+          o.textContent = it.id || it.file || it;
           moduleSelect.appendChild(o);
         });
-        moduleSelect.value = items[0].id;
+        moduleSelect.value = (items[0].id || items[0].file || items[0]);
       })
       .catch(() => alert("Could not load modules"));
   }
 
-  // ---------- Count selector ----------
+  // ---------------- Count selector ----------------
   countBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       countBtns.forEach(x => x.classList.remove("active"));
@@ -126,22 +152,20 @@
       chosenCount = btn.dataset.count === "ALL" ? 999999 : parseInt(btn.dataset.count, 10);
     });
   });
-  // default active
   if (countBtns[0]) countBtns[0].classList.add("active");
 
-  // ---------- Start quiz ----------
+  // ---------------- Start quiz ----------------
   startBtn.addEventListener("click", () => {
     const mod = moduleSelect.value;
     if (!mod) return alert("Select a module first.");
 
-    api("/api/start", {
+    fetchJsonFirst(routes.start, {
       method: "POST",
       body: JSON.stringify({ module: mod, count: chosenCount })
     })
-      .then(r => r.json())
       .then(data => {
-        if (!data.ok) {
-          alert(data.error || "Could not start quiz");
+        if (!data || data.ok === false) {
+          alert((data && data.error) || "Could not start quiz");
           return;
         }
         firstTryScore = { correct: 0, total: data.count || 0 };
@@ -155,18 +179,16 @@
       .catch(() => alert("Could not start quiz"));
   });
 
-  // ---------- Next question ----------
+  // ---------------- Next question ----------------
   function loadNext() {
     resultDiv.innerHTML = "";
     submitBtn.disabled = false;
     nextBtn.disabled = true;
     answered = false;
 
-    api("/api/next")
-      .then(r => r.json())
+    fetchJsonFirst(routes.next)
       .then(data => {
         if (data.done) {
-          // summary screen – convert Submit into "Start New Quiz"
           quizDone = true;
           qStem.textContent = "All questions mastered!";
           clearOptions();
@@ -184,17 +206,17 @@
 
         currentQ = data;
         qStem.textContent = data.stem || "Question";
-        // IMPORTANT: only use server-provided is_multi (true only when stem has "select all that apply")
+        // The server sets is_multi to true only when the stem contains "select all that apply"
         renderOptions(data.options || [], !!data.is_multi);
       })
       .catch(() => alert("Could not load next question"));
   }
 
-  // ---------- Submit answer ----------
+  // ---------------- Submit answer ----------------
   submitBtn.addEventListener("click", () => {
     // If quiz is done, treat as "Start New Quiz"
     if (quizDone) {
-      api("/api/reset_session", {
+      fetchJsonFirst(routes.reset, {
         method: "POST",
         body: JSON.stringify({ confirm: true })
       }).finally(returnToLanding);
@@ -207,15 +229,13 @@
 
     submitBtn.disabled = true;
 
-    api("/api/answer", {
+    fetchJsonFirst(routes.answer, {
       method: "POST",
       body: JSON.stringify({ qid: currentQ.qid, selected })
     })
-      .then(r => r.json())
       .then(data => {
         answered = true;
 
-        // Keep first-try tally live
         if (typeof data.first_try_correct === "number") {
           firstTryScore.correct = data.first_try_correct;
           if (typeof data.first_try_total === "number") {
@@ -246,9 +266,9 @@
     loadNext();
   });
 
-  // ---------- New Quiz / Reset ----------
+  // ---------------- New Quiz / Reset ----------------
   newQuizBtn.addEventListener("click", () => {
-    api("/api/reset_session", {
+    fetchJsonFirst(routes.reset, {
       method: "POST",
       body: JSON.stringify({ confirm: true })
     }).finally(returnToLanding);
@@ -257,14 +277,14 @@
   resetBtn.addEventListener("click", () => dlg.showModal());
   yesReset.addEventListener("click", () => {
     dlg.close();
-    api("/api/reset_session", {
+    fetchJsonFirst(routes.reset, {
       method: "POST",
       body: JSON.stringify({ confirm: true })
     }).then(returnToLanding);
   });
   noReset.addEventListener("click", () => dlg.close());
 
-  // ---------- Keyboard shortcuts ----------
+  // ---------------- Keyboard shortcuts ----------------
   document.addEventListener("keydown", ev => {
     if (quiz.classList.contains("hidden")) return;
 
@@ -274,7 +294,6 @@
       const input = lettersToInputs[key];
       if (input.type === "radio") {
         if (input.checked) {
-          // allow de-selecting a radio with a second press (nice for keyboard users)
           input.checked = false;
         } else {
           qOptions.querySelectorAll("input[type=radio]").forEach(r => (r.checked = false));
@@ -295,6 +314,6 @@
     }
   });
 
-  // ---------- Init ----------
+  // ---------------- Init ----------------
   loadModules();
 })();
