@@ -21,6 +21,7 @@
   let currentQ = null;
   let lettersToInputs = {};
   let answered = false;
+  let quizDone = false;           // ⟵ NEW: track end-of-quiz state
   let firstTryScore = { correct: 0, total: 0 };
 
   // -------------------- API helper --------------------
@@ -80,7 +81,17 @@
     }[c]));
   }
 
-  // -------------------- Load module list --------------------
+  function returnToLanding() {
+    setHidden(quiz, true);
+    setHidden(landing, false);
+    resultDiv.innerHTML = "";
+    qStem.textContent = "Question…";
+    clearOptions();
+    quizDone = false;
+    submitBtn.textContent = "Submit"; // restore default label
+  }
+
+  // -------------------- Load module list (now shows counts) --------------------
   function loadModules() {
     api("/api/modules")
       .then(r => r.json())
@@ -93,7 +104,8 @@
         items.forEach(it => {
           const o = document.createElement("option");
           o.value = it.id;
-          o.textContent = it.id;
+          // show count if provided by API
+          o.textContent = it.count != null ? `${it.id} (${it.count})` : it.id;
           moduleSelect.appendChild(o);
         });
         moduleSelect.value = items[0].id;
@@ -128,6 +140,8 @@
         }
         firstTryScore = { correct: 0, total: data.count || 0 };
         updateScoreLine();
+        quizDone = false;
+        submitBtn.textContent = "Submit";
         setHidden(landing, true);
         setHidden(quiz, false);
         loadNext();
@@ -146,6 +160,8 @@
       .then(r => r.json())
       .then(data => {
         if (data.done) {
+          // Show summary and turn Submit into "Start New Quiz"
+          quizDone = true;
           qStem.textContent = "All questions mastered!";
           clearOptions();
           resultDiv.innerHTML = `
@@ -153,8 +169,10 @@
               <div>First-Try Score: <b>${data.first_try_correct || 0} / ${data.first_try_total || 0}</b></div>
               <div>Total cards served (with repeats): ${data.served || 0}</div>
             </div>`;
-          submitBtn.disabled = true;
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Start New Quiz";
           nextBtn.disabled = true;
+          currentQ = null;
           return;
         }
         currentQ = data;
@@ -164,8 +182,17 @@
       .catch(() => alert("Could not load next question"));
   }
 
-  // -------------------- Submit Answer (updated) --------------------
+  // -------------------- Submit Answer (updates score + supports end) --------------------
   submitBtn.addEventListener("click", () => {
+    // If quiz is done, treat Submit as "Start New Quiz"
+    if (quizDone) {
+      api("/api/reset_session", {
+        method: "POST",
+        body: JSON.stringify({ confirm: true }),
+      }).finally(returnToLanding);
+      return;
+    }
+
     if (!currentQ) return;
     const selected = getSelectedLetters();
     if (!selected.length) return alert("Select at least one answer.");
@@ -215,13 +242,7 @@
     api("/api/reset_session", {
       method: "POST",
       body: JSON.stringify({ confirm: true }),
-    }).finally(() => {
-      setHidden(quiz, true);
-      setHidden(landing, false);
-      resultDiv.innerHTML = "";
-      qStem.textContent = "Question…";
-      clearOptions();
-    });
+    }).finally(returnToLanding);
   });
 
   resetBtn.addEventListener("click", () => dlg.showModal());
@@ -231,13 +252,7 @@
     api("/api/reset_session", {
       method: "POST",
       body: JSON.stringify({ confirm: true }),
-    }).then(() => {
-      setHidden(quiz, true);
-      setHidden(landing, false);
-      resultDiv.innerHTML = "";
-      qStem.textContent = "Question…";
-      clearOptions();
-    });
+    }).then(returnToLanding);
   });
 
   noReset.addEventListener("click", () => dlg.close());
@@ -259,8 +274,13 @@
       } else input.checked = !input.checked;
     } else if (ev.key === "Enter") {
       ev.preventDefault();
-      if (!answered) submitBtn.click();
-      else nextBtn.click();
+      if (quizDone) {
+        submitBtn.click(); // Start New Quiz
+      } else if (!answered) {
+        submitBtn.click();
+      } else {
+        nextBtn.click();
+      }
     }
   });
 
