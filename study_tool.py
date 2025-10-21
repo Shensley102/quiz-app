@@ -118,7 +118,14 @@ def index():
 
 @app.get("/api/modules")
 def api_modules():
-    items = [{"id": os.path.splitext(fn)[0], "file": fn} for fn in _discover_module_files()]
+    items = []
+    for fn in _discover_module_files():
+        mod_id = os.path.splitext(fn)[0]
+        try:
+            count = len(_load_norm_module(mod_id))
+        except Exception:
+            count = None
+        items.append({"id": mod_id, "file": fn, "count": count})
     return jsonify(items)
 
 @app.post("/api/start")
