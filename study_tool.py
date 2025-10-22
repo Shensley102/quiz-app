@@ -1,7 +1,14 @@
-import os, json, random, re
+import os
+import json
+import random
+import re
+from typing import Dict, List, Any, Optional
+
 from flask import Flask, jsonify, request, render_template, session
 
-# ---- Flask ------------------------------------------------------------
+# ---------------------------------------------------------------------
+# Flask app
+# ---------------------------------------------------------------------
 app = Flask(
     __name__,
     static_url_path="/static",
@@ -10,12 +17,15 @@ app = Flask(
 )
 app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY", "dev-secret-change-me")
 
-# ---- Helpers ----------------------------------------------------------
+# ---------------------------------------------------------------------
+# Utilities
+# ---------------------------------------------------------------------
 LETTERs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+SELECT_ALL_LITERAL = "(Select all that apply.)"  # strict literal requirement
 
 
-def _discover_module_files():
-    """Return list of JSON files that look like modules."""
+def _discover_module_files() -> List[str]:
+    """Return JSON files that look like question banks."""
     files = []
     for fn in os.listdir("."):
         if fn.lower().endswith(".json") and fn.lower().startswith(("module", "mod", "bank")):
@@ -23,133 +33,190 @@ def _discover_module_files():
     return sorted(files)
 
 
-def _load_module(mod_name: str):
-    """Load module JSON by base name or file name (e.g., 'Module_1' or 'Module_1.json')."""
+def _load_module(mod_name: str) -> Any:
+    """
+    Load a module by base name or filename.
+    Accepts 'Module_1' or 'Module_1.json'.
+    """
     candidates = []
     for fn in _discover_module_files():
         base = os.path.splitext(fn)[0]
         if base == mod_name or fn == mod_name or base.lower() == mod_name.lower():
             candidates.append(fn)
     if not candidates:
-        raise FileNotFoundError("Module JSON not found")
+        raise FileNotFoundError(f"Module JSON not found for: {mod_name}")
     path = candidates[0]
     with open(path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    return data
+        return json.load(f)
 
 
-def _coerce_questions(raw):
+def _is_select_all(stem: str) -> bool:
     """
-    Coerce a variety of JSON shapes into a normalized list of questions:
+    Multi-select is TRUE only if the stem contains the EXACT substring:
+    '(Select all that apply.)' (case-sensitive, punctuation-sensitive).
+    """
+    if not stem:
+        return False
+    return SELECT_ALL_LITERAL in stem
 
-    {
-      id: str,
-      stem: str,
-      options: [{"letter":"A","text":"..."}, ...],
-      correct: ["A","C"],
-      rationale: "....",
-      is_multi: bool
-    }
+
+def _normalize_options(options: Any) -> List[Dict[str, str]]:
+    """
+    Normalize options to a list of {'letter': 'A', 'text': '...'}.
+    Accepts:
+      - list[str]
+      - list[dict] with various keys
+      - dict like {'A': '...', 'B': '...'}
+    """
+    norm: List[Dict[str, str]] = []
+    if isinstance(options, dict):
+        # Sort by key so A,B,C order is stable
+        items = sorted(options.items(), key=lambda kv: str(kv[0]))
+        for i, (_k, v) in enumerate(items):
+            letter = LETTERs[i]
+            norm.append({"letter": letter, "text": str(v)})
+        return norm
+
+    if not isinstance(options, list):
+        options = [options] if options else []
+
+    for i, opt in enumerate(options):
+        letter = LETTERs[i]
+        if isinstance(opt, str):
+            norm.append({"letter": letter, "text": opt})
+        elif isinstance(opt, dict):
+            text = str(
+                opt.get("text")
+                or opt.get("answer")
+                or opt.get("label")
+                or opt.get("value")
+                or ""
+            )
+            norm.append({"letter": letter, "text": text})
+        else:
+            norm.append({"letter": letter, "text": str(opt)})
+    return norm
+
+
+def _extract_correct_letters(q: Dict[str, Any], options: List[Dict[str, str]]) -> List[str]:
+    """
+    Pull the correct answers in LETTER form from a variety of shapes.
+    Supports:
+      - per-option flags like {'text': '...', 'correct': true}
+      - fields like 'correct', 'answer', 'key', 'answers_key', 'correct_answers'
+        that may be a string ('B' or 'B,D' or '1,3'), a number (index), or a list.
+    """
+    correct = set()
+
+    # 1) From option objects if correctness flags exist
+    raw_opts = q.get("options") or q.get("answers") or q.get("choices")
+    if isinstance(raw_opts, list):
+        for i, opt in enumerate(raw_opts):
+            if isinstance(opt, dict) and any(k in opt for k in ("correct", "is_correct", "right")):
+                is_ok = bool(opt.get("correct") or opt.get("is_correct") or opt.get("right"))
+                if is_ok and 0 <= i < len(options):
+                    correct.add(options[i]["letter"])
+
+    # 2) Fallback to question-level keys
+    if not correct:
+        raw_ans = (
+            q.get("correct_answers")
+            or q.get("correct")
+            or q.get("answer")
+            or q.get("key")
+            or q.get("answers_key")
+        )
+
+        def add_letter_from_index(idx: int):
+            if 0 <= idx < len(options):
+                correct.add(options[idx]["letter"])
+
+        if isinstance(raw_ans, list):
+            for v in raw_ans:
+                if isinstance(v, (int, float)):
+                    add_letter_from_index(int(v))
+                else:
+                    for m in re.findall(r"[A-H]", str(v)):
+                        correct.add(m)
+        elif isinstance(raw_ans, (int, float)):
+            add_letter_from_index(int(raw_ans))
+        elif isinstance(raw_ans, str):
+            parts = re.split(r"[\s,;]+", raw_ans.strip())
+            for part in parts:
+                if not part:
+                    continue
+                if part.isdigit():
+                    add_letter_from_index(int(part))
+                else:
+                    for m in re.findall(r"[A-H]", part):
+                        correct.add(m)
+
+    # 3) As a last resort, assume A
+    if not correct and options:
+        correct.add("A")
+
+    return sorted(correct)
+
+
+def _coerce_questions(raw: Any) -> List[Dict[str, Any]]:
+    """
+    Normalize the question bank to:
+      {
+        id: str,
+        stem: str,
+        options: [{letter, text}],
+        correct: ["B"] or ["A","D"],
+        rationale: str,
+        is_multi: bool    # ONLY True if stem contains the exact literal
+                          # '(Select all that apply.)'
+      }
     """
     if isinstance(raw, dict) and "questions" in raw:
         qlist = raw["questions"]
     elif isinstance(raw, list):
         qlist = raw
-    else:  # single question?
+    else:
         qlist = [raw]
 
-    norm = []
+    norm: List[Dict[str, Any]] = []
+
     for idx, q in enumerate(qlist):
-        # Stem / prompt text
+        # Stem / prompt
         stem = q.get("stem") or q.get("question") or q.get("prompt") or q.get("text") or ""
 
-        # Options (accept many shapes)
-        options = q.get("options") or q.get("answers") or q.get("choices") or []
-        if isinstance(options, dict):  # sometimes keys are "A", "B", ...
-            opts = []
-            for i, k in enumerate(sorted(options.keys())):
-                opts.append({"letter": LETTERs[i], "text": str(options[k]), "is_correct": False})
-            options = opts
+        # Options
+        options = _normalize_options(q.get("options") or q.get("answers") or q.get("choices") or [])
 
-        norm_opts = []
-        correct_letters = set()
+        # Correct (letters)
+        correct_letters = _extract_correct_letters(q, options)
 
-        if isinstance(options, list) and options:
-            for i, opt in enumerate(options):
-                # option can be simple string or dict
-                if isinstance(opt, str):
-                    text = opt
-                    is_correct = False
-                else:
-                    text = str(opt.get("text") or opt.get("answer") or opt.get("label") or "")
-                    is_correct = bool(opt.get("correct") or opt.get("is_correct") or opt.get("right"))
-                letter = LETTERs[i]
-                norm_opts.append({"letter": letter, "text": text})
-                if is_correct:
-                    correct_letters.add(letter)
-
-        # Some banks include correct letters on the question object. Check several keys.
-        if not correct_letters:
-            raw_ans = (
-                q.get("correct_answers")
-                or q.get("correct")
-                or q.get("answer")
-                or q.get("key")
-                or q.get("answers_key")
-            )
-            if isinstance(raw_ans, list):
-                for v in raw_ans:
-                    if isinstance(v, (int, float)) and 0 <= int(v) < len(norm_opts):
-                        correct_letters.add(norm_opts[int(v)]["letter"])
-                    else:
-                        m = re.findall(r"[A-H]", str(v), re.I)  # accept "A,B,D" etc.
-                        correct_letters.update([x.upper() for x in m])
-            elif isinstance(raw_ans, (int, float)) and 0 <= int(raw_ans) < len(norm_opts):
-                correct_letters.add(norm_opts[int(raw_ans)]["letter"])
-            elif isinstance(raw_ans, str):
-                parts = re.split(r"[\s,;]+", raw_ans.strip())
-                for part in parts:
-                    if not part:
-                        continue
-                    if part.isdigit():
-                        idx2 = int(part)
-                        if 0 <= idx2 < len(norm_opts):
-                            correct_letters.add(norm_opts[idx2]["letter"])
-                    else:
-                        m = re.findall(r"[A-H]", part, re.I)
-                        if m:
-                            correct_letters.update([x.upper() for x in m])
-
-        # If still empty, mark first as correct (avoids crashes on malformed rows)
-        if not correct_letters and norm_opts:
-            correct_letters.add("A")
-
+        # Rationale
         rationale = q.get("rationale") or q.get("explanation") or q.get("why") or ""
 
-        # Determine multi-select:
-        # 1) explicit wording in the stem, OR
-        # 2) a type field containing "multiple" or "multi"
-        qtype = (q.get("type") or "").lower()
-        is_multi = "select all that apply" in stem.lower() or "multi" in qtype or "multiple" in qtype
+        # STRICT multi-select rule
+        is_multi = _is_select_all(stem)
 
-        # Build final record; for single-select, keep only the first correct letter
-        sorted_letters = sorted(list(correct_letters))
-        correct_list = sorted_letters if is_multi else sorted_letters[:1]
+        # If the stem does NOT include the literal phrase but multiple answers are listed,
+        # force SINGLE-SELECT by keeping just the first letter alphabetically.
+        if not is_multi and len(correct_letters) > 1:
+            correct_letters = [sorted(correct_letters)[0]]
 
+        # Build record
         norm.append(
             {
                 "id": q.get("id") or q.get("question_id") or f"q{idx}",
                 "stem": stem,
-                "options": norm_opts,
-                "correct": correct_list,
+                "options": options,
+                "correct": correct_letters,
                 "rationale": rationale,
-                "is_multi": is_multi,  # client uses this to choose checkbox vs radio
+                "is_multi": is_multi,
             }
         )
+
     return norm
 
 
-def _get_state(create=False):
+def _get_state(create: bool = False) -> Optional[Dict[str, Any]]:
     s = session.get("quiz_state")
     if s is None and create:
         s = {}
@@ -157,18 +224,18 @@ def _get_state(create=False):
     return s
 
 
-def _reset_state():
+def _reset_state() -> None:
     session.pop("quiz_state", None)
 
 
-def _by_id_for(module_id: str):
-    """Reload the module and build an id->question mapping on demand."""
+def _by_id_for(module_id: str) -> Dict[str, Dict[str, Any]]:
+    """Reload module and build an id->question mapping on demand."""
     questions = _coerce_questions(_load_module(module_id))
     return {q["id"]: q for q in questions}
 
-
-# ---- Routes -----------------------------------------------------------
-
+# ---------------------------------------------------------------------
+# Routes
+# ---------------------------------------------------------------------
 @app.get("/")
 def index():
     return render_template("index.html")
@@ -178,7 +245,6 @@ def index():
 @app.get("/modules")
 def api_modules():
     files = _discover_module_files()
-    # Return base names without ".json"
     items = [{"id": os.path.splitext(fn)[0], "file": fn} for fn in files]
     return jsonify(items)
 
@@ -204,18 +270,18 @@ def api_start():
     random.seed()
     sample = random.sample(questions, k=min(count, len(questions)))
 
-    # IMPORTANT: keep the session tiny (cookie-backed). Store only IDs + counters.
+    # Keep session tiny (cookie-backed): store only IDs and counters.
     _reset_state()
     st = {
         "module": module_id,
         "initial_qids": [q["id"] for q in sample],
-        "queue": [q["id"] for q in sample],     # main queue (initial)
-        "incorrect_queue": [],                  # questions to revisit
-        "first_try_total": len(sample),         # denominator frozen for the run
+        "queue": [q["id"] for q in sample],
+        "incorrect_queue": [],
+        "first_try_total": len(sample),
         "first_try_correct": 0,
-        "first_try_attempted": {},              # qid -> True (attempted once)
-        "served": 0,                            # total cards served (with repeats)
-        "current": None,                        # qid currently displayed
+        "first_try_attempted": {},
+        "served": 0,
+        "current": None,
     }
     session["quiz_state"] = st
     session.modified = True
@@ -229,13 +295,11 @@ def api_next():
     if not st or not st.get("module"):
         return jsonify({"ok": False, "error": "No active quiz"}), 400
 
-    # If the main queue is empty, recycle incorrects
     if not st["queue"]:
         if st["incorrect_queue"]:
             st["queue"] = st["incorrect_queue"]
             st["incorrect_queue"] = []
         else:
-            # All done — send summary the client expects
             return jsonify(
                 {
                     "done": True,
@@ -291,7 +355,6 @@ def api_answer():
         if ok:
             st["first_try_correct"] = int(st.get("first_try_correct", 0)) + 1
 
-    # If incorrect, queue for another round
     if not ok:
         st["incorrect_queue"].append(qid)
 
@@ -314,7 +377,6 @@ def api_reset():
     return jsonify({"ok": True})
 
 
-# Optional: simple health check for uptime monitors
 @app.get("/healthz")
 def healthz():
     return jsonify({"ok": True})
