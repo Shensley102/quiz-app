@@ -1,24 +1,30 @@
 import os, json, random, re
-from flask import Flask, jsonify, request, render_template, session, send_from_directory
+from flask import Flask, jsonify, request, render_template, session
 
 # ---- Flask ------------------------------------------------------------
-app = Flask(__name__, static_url_path="/static", static_folder="static", template_folder="templates")
+app = Flask(
+    __name__,
+    static_url_path="/static",
+    static_folder="static",
+    template_folder="templates",
+)
 app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY", "dev-secret-change-me")
 
 # ---- Helpers ----------------------------------------------------------
 LETTERs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+
 def _discover_module_files():
-    """Return list of json file names that look like modules."""
+    """Return list of JSON files that look like modules."""
     files = []
     for fn in os.listdir("."):
         if fn.lower().endswith(".json") and fn.lower().startswith(("module", "mod", "bank")):
             files.append(fn)
     return sorted(files)
 
-def _load_module(mod_name):
-    """Load module JSON by base name or file name."""
-    # Accept "Module_1" or "Module_1.json"
+
+def _load_module(mod_name: str):
+    """Load module JSON by base name or file name (e.g., 'Module_1' or 'Module_1.json')."""
     candidates = []
     for fn in _discover_module_files():
         base = os.path.splitext(fn)[0]
@@ -31,32 +37,35 @@ def _load_module(mod_name):
         data = json.load(f)
     return data
 
+
 def _coerce_questions(raw):
     """
-    Coerce a variety of JSON shapes into a normalized list:
+    Coerce a variety of JSON shapes into a normalized list of questions:
+
     {
       id: str,
       stem: str,
       options: [{"letter":"A","text":"..."}, ...],
       correct: ["A","C"],
-      rationale: "..."
+      rationale: "....",
+      is_multi: bool
     }
     """
     if isinstance(raw, dict) and "questions" in raw:
         qlist = raw["questions"]
     elif isinstance(raw, list):
         qlist = raw
-    else:
-        # Single question?
+    else:  # single question?
         qlist = [raw]
 
     norm = []
     for idx, q in enumerate(qlist):
-        # Extract stem
+        # Stem / prompt text
         stem = q.get("stem") or q.get("question") or q.get("prompt") or q.get("text") or ""
-        # Extract options from a variety of keys
+
+        # Options (accept many shapes)
         options = q.get("options") or q.get("answers") or q.get("choices") or []
-        if isinstance(options, dict):  # sometimes keys are "A","B",...
+        if isinstance(options, dict):  # sometimes keys are "A", "B", ...
             opts = []
             for i, k in enumerate(sorted(options.keys())):
                 opts.append({"letter": LETTERs[i], "text": str(options[k]), "is_correct": False})
@@ -67,7 +76,7 @@ def _coerce_questions(raw):
 
         if isinstance(options, list) and options:
             for i, opt in enumerate(options):
-                # option can be string or dict
+                # option can be simple string or dict
                 if isinstance(opt, str):
                     text = opt
                     is_correct = False
@@ -79,31 +88,26 @@ def _coerce_questions(raw):
                 if is_correct:
                     correct_letters.add(letter)
 
-        # Some banks include correct letters on the question object. Check
-        # multiple possible keys in order of preference.  We handle
-        # `correct_answers` (common in this project) as well as
-        # `correct`, `answer`, `key`, and `answers_key`.
+        # Some banks include correct letters on the question object. Check several keys.
         if not correct_letters:
             raw_ans = (
-                q.get("correct_answers") or
-                q.get("correct") or
-                q.get("answer") or
-                q.get("key") or
-                q.get("answers_key")
+                q.get("correct_answers")
+                or q.get("correct")
+                or q.get("answer")
+                or q.get("key")
+                or q.get("answers_key")
             )
             if isinstance(raw_ans, list):
                 for v in raw_ans:
                     if isinstance(v, (int, float)) and 0 <= int(v) < len(norm_opts):
                         correct_letters.add(norm_opts[int(v)]["letter"])
                     else:
-                        # Accept letters within the string (e.g., "A,B,D")
-                        m = re.findall(r"[A-H]", str(v), re.I)
+                        m = re.findall(r"[A-H]", str(v), re.I)  # accept "A,B,D" etc.
                         correct_letters.update([x.upper() for x in m])
             elif isinstance(raw_ans, (int, float)) and 0 <= int(raw_ans) < len(norm_opts):
                 correct_letters.add(norm_opts[int(raw_ans)]["letter"])
             elif isinstance(raw_ans, str):
-                # Accept comma-separated letters or numbers
-                parts = re.split(r"[\\s,;]+", raw_ans.strip())
+                parts = re.split(r"[\s,;]+", raw_ans.strip())
                 for part in parts:
                     if not part:
                         continue
@@ -116,40 +120,34 @@ def _coerce_questions(raw):
                         if m:
                             correct_letters.update([x.upper() for x in m])
 
-        # If still empty, best effort: mark first as correct (avoids crashes on malformed rows)
+        # If still empty, mark first as correct (avoids crashes on malformed rows)
         if not correct_letters and norm_opts:
             correct_letters.add("A")
 
-        rationales = q.get("rationale") or q.get("explanation") or q.get("why") or ""
+        rationale = q.get("rationale") or q.get("explanation") or q.get("why") or ""
 
-        # Determine whether this question should be treated as multi-select.
-        # Only treat as multi-select if the stem explicitly contains the phrase
-        # "select all that apply" (case-insensitive).  Some source banks list
-        # multiple correct answers even for single-select items, so we cannot
-        # rely solely on the number of correct letters.
-        is_multi = "select all that apply" in stem.lower()
+        # Determine multi-select:
+        # 1) explicit wording in the stem, OR
+        # 2) a type field containing "multiple" or "multi"
+        qtype = (q.get("type") or "").lower()
+        is_multi = "select all that apply" in stem.lower() or "multi" in qtype or "multiple" in qtype
 
-        # Build the list of correct options.  For multi-select questions, keep
-        # all identified correct letters.  For single-select questions, pick
-        # only the first letter (alphabetically) from the computed set.  This
-        # prevents incorrectly marking multiple answers as correct when the
-        # underlying JSON includes an erroneous list of answers.
+        # Build final record; for single-select, keep only the first correct letter
         sorted_letters = sorted(list(correct_letters))
-        if is_multi:
-            correct_list = sorted_letters
-        else:
-            correct_list = sorted_letters[:1]
+        correct_list = sorted_letters if is_multi else sorted_letters[:1]
 
-        norm.append({
-            "id": q.get("id") or f"q{idx}",
-            "stem": stem,
-            "options": norm_opts,
-            "correct": correct_list,
-            "rationale": rationales,
-            # convenience flag used by the client to choose checkbox vs radio
-            "is_multi": is_multi
-        })
+        norm.append(
+            {
+                "id": q.get("id") or q.get("question_id") or f"q{idx}",
+                "stem": stem,
+                "options": norm_opts,
+                "correct": correct_list,
+                "rationale": rationale,
+                "is_multi": is_multi,  # client uses this to choose checkbox vs radio
+            }
+        )
     return norm
+
 
 def _get_state(create=False):
     s = session.get("quiz_state")
@@ -158,8 +156,16 @@ def _get_state(create=False):
         session["quiz_state"] = s
     return s
 
+
 def _reset_state():
     session.pop("quiz_state", None)
+
+
+def _by_id_for(module_id: str):
+    """Reload the module and build an id->question mapping on demand."""
+    questions = _coerce_questions(_load_module(module_id))
+    return {q["id"]: q for q in questions}
+
 
 # ---- Routes -----------------------------------------------------------
 
@@ -167,53 +173,148 @@ def _reset_state():
 def index():
     return render_template("index.html")
 
+
 @app.get("/api/modules")
+@app.get("/modules")
 def api_modules():
     files = _discover_module_files()
     # Return base names without ".json"
     items = [{"id": os.path.splitext(fn)[0], "file": fn} for fn in files]
     return jsonify(items)
 
+
 @app.post("/api/start")
+@app.post("/start")
 def api_start():
-    data = request.get_json(force=True)
-    module_id = (data or {}).get("module")
-    count = int((data or {}).get("count", 10))
+    data = request.get_json(force=True) or {}
+    module_id = data.get("module")
+    count = int(data.get("count", 10))
     if not module_id:
         return jsonify({"ok": False, "error": "No module"}), 400
 
     try:
-        mod_raw = _load_module(module_id)
+        questions = _coerce_questions(_load_module(module_id))
     except Exception as e:
         return jsonify({"ok": False, "error": f"Could not load module: {e}"}), 400
 
-    questions = _coerce_questions(mod_raw)
     if not questions:
         return jsonify({"ok": False, "error": "No questions in module"}), 400
 
-    # sample 'count' unique questions for the initial round
+    # Sample unique questions for the first round
     random.seed()
     sample = random.sample(questions, k=min(count, len(questions)))
 
-    # Normalize as lookup by id
-    by_id = {q["id"]: q for q in questions}
-
-    # Build session state
+    # IMPORTANT: keep the session tiny (cookie-backed). Store only IDs + counters.
     _reset_state()
     st = {
         "module": module_id,
-        "by_id": by_id,                 # full bank (for re-queue)
         "initial_qids": [q["id"] for q in sample],
         "queue": [q["id"] for q in sample],     # main queue (initial)
-        "incorrect_queue": [],          # questions to revisit
-        "first_try_total": len(sample), # frozen denominator
+        "incorrect_queue": [],                  # questions to revisit
+        "first_try_total": len(sample),         # denominator frozen for the run
         "first_try_correct": 0,
-        "first_try_attempted": {},      # qid -> True (attempted once)
-        "served": 0,                    # total times a card was served
-        "current": None                 # qid currently displayed
+        "first_try_attempted": {},              # qid -> True (attempted once)
+        "served": 0,                            # total cards served (with repeats)
+        "current": None,                        # qid currently displayed
     }
     session["quiz_state"] = st
     session.modified = True
     return jsonify({"ok": True, "count": st["first_try_total"]})
 
-# ... existing /api/next, /api/answer, etc. remain unchanged ...
+
+@app.get("/api/next")
+@app.get("/next")
+def api_next():
+    st = _get_state()
+    if not st or not st.get("module"):
+        return jsonify({"ok": False, "error": "No active quiz"}), 400
+
+    # If the main queue is empty, recycle incorrects
+    if not st["queue"]:
+        if st["incorrect_queue"]:
+            st["queue"] = st["incorrect_queue"]
+            st["incorrect_queue"] = []
+        else:
+            # All done — send summary the client expects
+            return jsonify(
+                {
+                    "done": True,
+                    "first_try_correct": st.get("first_try_correct", 0),
+                    "first_try_total": st.get("first_try_total", 0),
+                    "served": st.get("served", 0),
+                }
+            )
+
+    qid = st["queue"].pop(0)
+    st["current"] = qid
+    st["served"] = int(st.get("served", 0)) + 1
+    session.modified = True
+
+    by_id = _by_id_for(st["module"])
+    q = by_id.get(qid)
+    if not q:
+        return jsonify({"ok": False, "error": "Question not found"}), 500
+
+    return jsonify(
+        {
+            "qid": qid,
+            "stem": q["stem"],
+            "options": q["options"],
+            "is_multi": bool(q.get("is_multi")),
+        }
+    )
+
+
+@app.post("/api/answer")
+@app.post("/answer")
+def api_answer():
+    st = _get_state()
+    if not st or not st.get("module"):
+        return jsonify({"ok": False, "error": "No active quiz"}), 400
+
+    data = request.get_json(force=True) or {}
+    qid = data.get("qid")
+    selected = set((data.get("selected") or []))
+
+    by_id = _by_id_for(st["module"])
+    q = by_id.get(qid)
+    if not q:
+        return jsonify({"ok": False, "error": "Question not found"}), 400
+
+    correct = set(q["correct"])
+    ok = selected == correct
+
+    # First-try bookkeeping
+    first_try_attempted = st.setdefault("first_try_attempted", {})
+    if qid not in first_try_attempted:
+        first_try_attempted[qid] = True
+        if ok:
+            st["first_try_correct"] = int(st.get("first_try_correct", 0)) + 1
+
+    # If incorrect, queue for another round
+    if not ok:
+        st["incorrect_queue"].append(qid)
+
+    session.modified = True
+    return jsonify(
+        {
+            "ok": ok,
+            "correct": sorted(list(correct)),
+            "rationale": q.get("rationale") or "",
+            "first_try_correct": st.get("first_try_correct", 0),
+            "first_try_total": st.get("first_try_total", 0),
+        }
+    )
+
+
+@app.post("/api/reset_session")
+@app.post("/reset")
+def api_reset():
+    _reset_state()
+    return jsonify({"ok": True})
+
+
+# Optional: simple health check for uptime monitors
+@app.get("/healthz")
+def healthz():
+    return jsonify({"ok": True})
