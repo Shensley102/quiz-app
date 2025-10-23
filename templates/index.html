@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="right">
-      <button id="resetBtn" class="btn ghost" title="Reset session (hard reset)">Reset</button>
+      <button id="resetBtn" class="btn ghost" title="Reset session">Reset</button>
     </div>
   </header>
 
@@ -49,7 +49,9 @@
   <!-- Quiz UI -->
   <main id="quiz" class="panel hidden">
     <!-- We keep this line hidden during the quiz; only final summary shows graded stats -->
-    <div id="scoreLine" class="muted hidden">First-Try Correct: <span id="ftc">0</span> / <span id="ftt">0</span></div>
+    <div id="scoreLine" class="muted hidden">
+      First-Try Correct: <span id="ftc">0</span> / <span id="ftt">0</span>
+    </div>
 
     <div id="qStem" class="stem">Question…</div>
     <div id="qOptions" class="options"></div>
