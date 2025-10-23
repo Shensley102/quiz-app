@@ -193,4 +193,252 @@ def _coerce_questions(raw: Any) -> List[Dict[str, Any]]:
 
         norm.append(
             {
-                "id": q.get("id")
+                "id": q.get("id") or q.get("question_id") or f"q{idx}",
+                "stem": stem,
+                "options": options,
+                "correct": correct_letters,
+                "rationale": rationale,
+                "is_multi": is_multi,
+            }
+        )
+
+    return norm
+
+
+def _get_state(create: bool = False) -> Optional[Dict[str, Any]]:
+    s = session.get("quiz_state")
+    if s is None and create:
+        s = {}
+        session["quiz_state"] = s
+    return s
+
+
+def _reset_state() -> None:
+    session.pop("quiz_state", None)
+
+
+def _by_id_for(module_id: str) -> Dict[str, Dict[str, Any]]:
+    """Reload module and build an id->question mapping on demand."""
+    questions = _coerce_questions(_load_module(module_id))
+    return {q["id"]: q for q in questions}
+
+
+def _rotation_state(module_id: str, n_items: int) -> Dict[str, int]:
+    """
+    Maintain a tiny per-module rotation (seed + pointer) in the cookie-backed session.
+    This lets us hand out different questions on every new quiz without storing large lists.
+    """
+    rot = session.setdefault("rot", {})
+    rs = rot.get(module_id)
+    if not isinstance(rs, dict) or "seed" not in rs or "pos" not in rs:
+        rs = {"seed": secrets.randbits(64), "pos": 0}
+    # keep pointer within bounds if the bank size changed
+    rs["pos"] = int(rs.get("pos", 0)) % max(n_items, 1)
+    rot[module_id] = rs
+    session["rot"] = rot
+    session.modified = True
+    return rs
+
+
+def _next_block(qids: List[str], rs: Dict[str, int], count: int) -> List[str]:
+    """
+    Given the full list of qids, a rotation state, and a requested count,
+    return the next 'count' qids in the deterministic shuffled order
+    (wrapping around as needed), and advance the pointer.
+    """
+    n = len(qids)
+    if n == 0:
+        return []
+
+    # Deterministically shuffle using the per-module seed
+    order = list(qids)
+    rng = random.Random(rs["seed"])
+    rng.shuffle(order)
+
+    # Take a contiguous block starting at pos, wrapping around
+    start = rs["pos"]
+    block = [order[(start + i) % n] for i in range(min(count, n))]
+
+    # Advance pointer for next quiz
+    rs["pos"] = (start + len(block)) % n
+    session["rot"][request.json.get("module")] = rs  # update back
+    session.modified = True
+    return block
+
+
+# ---------------------------------------------------------------------
+# Routes
+# ---------------------------------------------------------------------
+@app.get("/")
+def index():
+    return render_template("index.html")
+
+
+@app.get("/api/modules")
+@app.get("/modules")
+def api_modules():
+    files = _discover_module_files()
+    items = [{"id": os.path.splitext(fn)[0], "file": fn} for fn in files]
+    return jsonify(items)
+
+
+@app.post("/api/start")
+@app.post("/start")
+def api_start():
+    data = request.get_json(force=True) or {}
+    module_id = data.get("module")
+    if not module_id:
+        return jsonify({"ok": False, "error": "No module"}), 400
+
+    try:
+        questions = _coerce_questions(_load_module(module_id))
+    except Exception as e:
+        return jsonify({"ok": False, "error": f"Could not load module: {e}"}), 400
+    if not questions:
+        return jsonify({"ok": False, "error": "No questions in module"}), 400
+
+    q_by_id = {q["id"]: q for q in questions}
+    all_qids = list(q_by_id.keys())
+    n = len(all_qids)
+
+    # Handle "full"/"all" or numeric counts (10/25/50/100/…)
+    raw_count = data.get("count", 10)
+    if isinstance(raw_count, str) and raw_count.lower() in {"full", "all", "max"}:
+        count = n
+    else:
+        try:
+            count = int(raw_count)
+        except Exception:
+            count = 10
+        if count <= 0:
+            count = 10
+        if count > n:
+            count = n
+
+    # --- NEW: rotation-based selection to avoid repeats across runs ---
+    rs = _rotation_state(module_id, n)
+    sample_ids = _next_block(all_qids, rs, count)
+    sample = [q_by_id[qid] for qid in sample_ids]
+
+    # Keep session tiny (cookie-backed): store only IDs + counters.
+    _reset_state()
+    st = {
+        "module": module_id,
+        "initial_qids": sample_ids,
+        "queue": list(sample_ids),            # main queue (initial round)
+        "incorrect_queue": [],                # questions to revisit
+        "first_try_total": len(sample_ids),   # denominator for first-try accuracy
+        "first_try_correct": 0,
+        "first_try_attempted": {},            # qid -> True when first answered
+        "served": 0,                          # times a card was served
+        "submissions": 0,                     # total answers submitted
+        "current": None,                      # qid currently displayed
+    }
+    session["quiz_state"] = st
+    session.modified = True
+    return jsonify({"ok": True, "count": st["first_try_total"]})
+
+
+@app.get("/api/next")
+@app.get("/next")
+def api_next():
+    st = _get_state()
+    if not st or not st.get("module"):
+        return jsonify({"ok": False, "error": "No active quiz"}), 400
+
+    if not st["queue"]:
+        if st["incorrect_queue"]:
+            st["queue"] = st["incorrect_queue"]
+            st["incorrect_queue"] = []
+        else:
+            first = int(st.get("first_try_correct", 0))
+            total = int(st.get("first_try_total", 0))
+            pct = int(round((100 * first / total), 0)) if total else 0
+            return jsonify(
+                {
+                    "done": True,
+                    "first_try_correct": first,
+                    "first_try_total": total,
+                    "first_try_pct": pct,
+                    "submissions": int(st.get("submissions", 0)),
+                }
+            )
+
+    qid = st["queue"].pop(0)
+    st["current"] = qid
+    st["served"] = int(st.get("served", 0)) + 1
+    session.modified = True
+
+    by_id = _by_id_for(st["module"])
+    q = by_id.get(qid)
+    if not q:
+        return jsonify({"ok": False, "error": "Question not found"}), 500
+
+    # include served so the UI can show a running counter
+    return jsonify(
+        {
+            "qid": qid,
+            "stem": q["stem"],
+            "options": q["options"],
+            "is_multi": bool(q.get("is_multi")),
+            "served": st["served"],
+        }
+    )
+
+
+@app.post("/api/answer")
+@app.post("/answer")
+def api_answer():
+    st = _get_state()
+    if not st or not st.get("module"):
+        return jsonify({"ok": False, "error": "No active quiz"}), 400
+
+    data = request.get_json(force=True) or {}
+    qid = data.get("qid")
+    selected = set((data.get("selected") or []))
+
+    by_id = _by_id_for(st["module"])
+    q = by_id.get(qid)
+    if not q:
+        return jsonify({"ok": False, "error": "Question not found"}), 400
+
+    # Count this submission
+    st["submissions"] = int(st.get("submissions", 0)) + 1
+
+    correct = set(q["correct"])
+    ok = selected == correct
+
+    # First-try bookkeeping
+    first_try_attempted = st.setdefault("first_try_attempted", {})
+    if qid not in first_try_attempted:
+        first_try_attempted[qid] = True
+        if ok:
+            st["first_try_correct"] = int(st.get("first_try_correct", 0)) + 1
+
+    # If incorrect, queue for another round
+    if not ok:
+        st["incorrect_queue"].append(qid)
+
+    session.modified = True
+    return jsonify(
+        {
+            "ok": ok,
+            "correct": sorted(list(correct)),
+            "rationale": q.get("rationale") or "",
+            # returned but hidden during quiz; only final summary shows stats
+            "first_try_correct": st.get("first_try_correct", 0),
+            "first_try_total": st.get("first_try_total", 0),
+        }
+    )
+
+
+@app.post("/api/reset_session")
+@app.post("/reset")
+def api_reset():
+    _reset_state()
+    return jsonify({"ok": True})
+
+
+@app.get("/healthz")
+def healthz():
+    return jsonify({"ok": True})
