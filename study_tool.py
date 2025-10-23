@@ -2,6 +2,7 @@ import os
 import json
 import re
 import random
+import hashlib
 from typing import Dict, List, Any, Optional
 
 from flask import Flask, jsonify, request, render_template, session
@@ -222,6 +223,12 @@ def _by_id_for(module_id: str) -> Dict[str, Dict[str, Any]]:
     return {q["id"]: q for q in questions}
 
 
+def _sample_signature(qids: List[str]) -> str:
+    """Stable small signature for a set of qids (order-insensitive)."""
+    joined = "|".join(sorted(qids))
+    return hashlib.sha1(joined.encode("utf-8")).hexdigest()
+
+
 # ---------------------------------------------------------------------
 # Routes
 # ---------------------------------------------------------------------
@@ -243,7 +250,8 @@ def api_modules():
 def api_start():
     """
     Start a quiz:
-      - choose a fresh random subset every time (no history kept)
+      - choose a fresh random subset every time
+      - avoid serving the *identical* set as the previous run (for the same module+length)
       - supports 'full'/'all' to take the whole bank
     """
     data = request.get_json(force=True) or {}
@@ -269,18 +277,38 @@ def api_start():
             count = 10
         count = max(1, min(count, len(questions)))
 
-    # Fresh random subset on every new quiz start (no prior-state logic)
+    # Fresh random subset on every new quiz start
     rng = random.SystemRandom()
-    sample = rng.sample(questions, k=count)
+
+    qids_all = [q["id"] for q in questions]
+    id_to_q = {q["id"]: q for q in questions}
+
+    # Try to avoid *identical* repeat of the last set for this module & length.
+    # We store only a tiny signature (hash) per module+count in the session cookie.
+    last_sigs = session.get("last_sigs", {})  # { module_id: { str(count): sig } }
+    prev_sig = last_sigs.get(module_id, {}).get(str(count))
+
+    attempts = 0
+    max_attempts = 6 if count < len(qids_all) else 1  # if count==n, identical set is unavoidable
+    sample_ids = []
+    while attempts < max_attempts:
+        sample_ids = rng.sample(qids_all, k=count)
+        sig = _sample_signature(sample_ids)
+        if sig != prev_sig:
+            break
+        attempts += 1
+    # Persist the new signature
+    last_sigs.setdefault(module_id, {})[str(count)] = _sample_signature(sample_ids)
+    session["last_sigs"] = last_sigs
 
     # Store only IDs + counters in the cookie-backed session
     _reset_state()
     st = {
         "module": module_id,
-        "initial_qids": [q["id"] for q in sample],
-        "queue": [q["id"] for q in sample],
+        "initial_qids": list(sample_ids),
+        "queue": list(sample_ids),
         "incorrect_queue": [],
-        "first_try_total": len(sample),
+        "first_try_total": len(sample_ids),
         "first_try_correct": 0,
         "first_try_attempted": {},
         "served": 0,
