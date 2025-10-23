@@ -111,7 +111,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q1",
+      "id": "Module_1_Q8",
       "stem": "A student nurse is studying clinical judgment theories and is working with Tanner's Model of Clinical Judgment. How can the student nurse best generalize this model?",
       "options": [
         "A reflective process where the nurse notices, interprets, responds, and reflects in action",
@@ -126,7 +126,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q2",
+      "id": "Module_1_Q9",
       "stem": "A nurse is caring for a patient in a long-term care facility who has not been sleeping well. She notes that the patient is new to the facility, has been refusing therapy, and is also not eating well. The nurse interprets this to mean that the patient has been having trouble adjusting. The nurse decides to meet with the patient's care team. The team decides to assess the patient's willingness to participate in group recreational activities. The patient agrees to participate. After 1 week, the nurse reevaluates the plan of care and notes that the patient has been sleeping much better. Which of the following terms best describes processes used in the nurse's plan? (Select all that apply.)",
       "options": [
         "Clinical judgment",
@@ -144,7 +144,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q3",
+      "id": "Module_1_Q10",
       "stem": "The nurse is implementing a plan of care for a patient newly diagnosed with type 2 diabetes mellitus. The plan includes educating the patient about diet choices. The patient states that they enjoy exercising and understand the need to diet; however, they can't see living without chocolate on a daily basis. Using the principles of responding in the Model of Clinical Judgment, how would the nurse proceed with the teaching?",
       "options": [
         "The nurse explains to the patient that chocolate has a high glycemic index. The nurse then focuses on foods that have low glycemic indexes and provides a list for the patient to choose from.",
@@ -159,7 +159,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q4",
+      "id": "Module_1_Q11",
       "stem": "A new graduate nurse is working with an experienced nurse to chart assessment findings. The new nurse notes that the physical therapist wrote on the chart that the patient is lazy and did not want to participate in assigned therapies this AM. The experienced nurse asks the new nurse what may be going on here. What is the best explanation for this statement?",
       "options": [
         "Data on the chart can sometimes be documented in a biased manner.",
@@ -174,7 +174,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q5",
+      "id": "Module_1_Q12",
       "stem": "A home care nurse receives a physician's order for a medication that the patient does not want to take because the patient has a history of side effects from this medication. The nurse carefully listens to the patient, considers it in light of the patient's condition, questions its appropriateness, and examines alternative treatments. What is the nurse's best action?",
       "options": [
         "Call the physician, explain the rationale, and suggest a different medication.",
@@ -189,7 +189,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q6",
+      "id": "Module_1_Q13",
       "stem": "A patient has been admitted for a skin graft following third-degree burns to the bilateral calves. The plan of care involves 3 days inpatient and 6 months of outpatient treatment, to include home care and dressing changes. When should the nurse initiate the educational plan?",
       "options": [
         "After the operation, the patient is awake",
@@ -204,7 +204,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q7",
+      "id": "Module_1_Q14",
       "stem": "A nurse has designed an individualized nursing care plan for a patient, but the patient is not meeting goals. Further assessment reveals that the patient is not following through on many items. Which action by the nurse would be best for determining the cause of the problem?",
       "options": [
         "Assess whether the actions were too hard for the patient.",
@@ -219,7 +219,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q8",
+      "id": "Module_1_Q15",
       "stem": "A new nurse appears to be second-guessing herself and is constantly calling on the other nurses to double-check their plan of care or rehearse what they will say to the doctor before she calls on the patient's behalf. This seems to be annoying some of the nurses' coworkers. What is the nurse manager's best response?",
       "options": [
         "Explain to coworkers that this is a characteristic of critical thinking and is important for the new nurse to improve reasoning skills.",
@@ -234,7 +234,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q9",
+      "id": "Module_1_Q16",
       "stem": "A nurse has committed a serious medication error and has reported the error to the hospital's adverse medication error hotline as well as to the unit manager. The manager is a firm believer in developing critical thinking skills. From this standpoint, what action by the manager would best nurture this ability in the nurse who made the error?",
       "options": [
         "Have the nurse present an in-service related to the cause of the error.",
@@ -249,7 +249,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q1",
+      "id": "Module_1_Q17",
       "stem": "As a nurse manager, you observe a staff nurse who, over the past few weeks, has become withdrawn and has had several absences due to minor ailments. Your best action would be to:",
       "options": [
         "Ask the nurse if she is okay during report.",
@@ -264,7 +264,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q2",
+      "id": "Module_1_Q18",
       "stem": "High levels of work-related stress affect all but which of the following? (Select all that apply.)",
       "options": [
         "Job satisfaction",
@@ -282,7 +282,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q3",
+      "id": "Module_1_Q19",
       "stem": "The nurse manager of a unit has lost many staff members, and the unit is now staffed with a large number of agency and traveling nurses. She knows that the agency and traveling nurses are all contracted to stay on the unit for the next 3 months. One way to improve morale and decrease stress in the unit would be to:",
       "options": [
         "Plan a social event and include the agency and traveling nurse staff members.",
@@ -297,7 +297,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q4",
+      "id": "Module_1_Q20",
       "stem": "As a nurse manager, the one activity you should not overlook is:",
       "options": [
         "Posting the yearly rotation schedule.",
@@ -312,7 +312,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q5",
+      "id": "Module_1_Q21",
       "stem": "A nurse manager has decided that she must institute some personal time-management steps to survive work and home life. Her first step should be to:",
       "options": [
         "Determine what takes up so much of her time and energy.",
@@ -327,7 +327,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q6",
+      "id": "Module_1_Q22",
       "stem": "A hospice nurse has been feeling very stressed at work because of both the physical strain and the emotional drain of working with clients with AIDS. She aims to walk 1 to 2 miles three times a week and regularly discusses her work-related feelings with her husband. One reasonable stress-management strategy would be to:",
       "options": [
         "Start taking yoga lessons.",
@@ -342,7 +342,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q7",
+      "id": "Module_1_Q23",
       "stem": "The nurse manager is implementing a shared governance model to help with communication and decision-making. Although staff members like the concept, change is difficult. Staff nurses feel:",
       "options": [
         "more empowered.",
@@ -357,7 +357,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q8",
+      "id": "Module_1_Q24",
       "stem": "The chief nursing officer listens to nurse managers verbalize their feelings of personal stress. One common source of a personal trigger  seems to be:",
       "options": [
         "The death of a loved one.",
@@ -372,7 +372,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q9",
+      "id": "Module_1_Q25",
       "stem": "The staff development educator presents a series of programs on stress management to the nurse managers. Research has indicated that an individual's ability to deal with stress is moderated by psychological hardiness. Psychological hardness is a composite of:",
       "options": [
         "commitment, control, and challenge.",
@@ -387,7 +387,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q10",
+      "id": "Module_1_Q26",
       "stem": "The chief nursing officer understands that a nurse manager can exhibit stress that is related to trying to keep up with the number of electronic messages that arrive, as well as trying to remain accessible to staff. What is a strategy that would assist the manager in managing the information overload effectively?",
       "options": [
         "Ignore messages unless they are labeled as important.",
@@ -403,7 +403,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q11",
+      "id": "Module_1_Q27",
       "stem": "In helping nurse managers to manage their time, the chief nursing officer suggests that they:   36",
       "options": [
         "maintain a perfectionistic attitude.",
@@ -418,7 +418,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q12",
+      "id": "Module_1_Q28",
       "stem": "Which of the following statements would best define stress? Stress is:",
       "options": [
         "the comfortable gap between how we like our life to be and how it actually is.",
@@ -433,7 +433,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q13",
+      "id": "Module_1_Q29",
       "stem": "In a job interview for a nursing position, Marley can be assured that which of the following will occur?",
       "options": [
         "Both eustress and distress",
@@ -449,7 +449,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q14",
+      "id": "Module_1_Q30",
       "stem": "Which one of the following statements has been proven to be true?",
       "options": [
         "Recent research has found that women do not have a unique physiologic response to stress.",
@@ -464,7 +464,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q15",
+      "id": "Module_1_Q31",
       "stem": "An example of role stress occurs when:",
       "options": [
         "The director of the ICU and the manager of the surgical unit wish to hire the same new employee.",
@@ -478,7 +478,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q16",
+      "id": "Module_1_Q32",
       "stem": "A staff nurse approaches the unit manager and indicates to her that, because of her father's death in the previous month, she is now finding it very difficult to do her work effectively. This would be considered a(n) stress.",
       "options": [
         "internal source",
@@ -493,7 +493,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q17",
+      "id": "Module_1_Q33",
       "stem": "Sources of occupational stress in nursing include all except which of the following?",
       "options": [
         "Authoritarian leadership",
@@ -508,7 +508,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q18",
+      "id": "Module_1_Q34",
       "stem": "Mr. T. Jones and Mr. R. Smith are both going to become residents in Sunny Haven Lodge. Mr. Jones views it as an opportunity to socialize and meet new friends. Mr. Smith views this as abandonment by his family and is worried that the care will be inadequate. Each senior perceives the situation differently. This is a good example of stress that is:",
       "options": [
         "Both a positive stressor and a negative stressor.",
@@ -523,7 +523,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q19",
+      "id": "Module_1_Q35",
       "stem": "Jeff, an RN in his 30s, has lost a parent, just purchased a new home, and has been laid off with 6 months' severance pay. At the same time, Jerry, an RN in his 50s, is financially secure and is asked to take early retirement with a buyout. How will the two men react to the emotional and physical influences and the sequence of stress?",
       "options": [
         "The younger man will feel more stress.",
@@ -538,7 +538,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q20",
+      "id": "Module_1_Q36",
       "stem": "Social stressors are considered a major factor in the stress nurses experience in the healthcare system. Which of the following is not considered to be a social stressor?",
       "options": [
         "High amounts of stress in the nursing home environment",
@@ -553,7 +553,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q21",
+      "id": "Module_1_Q37",
       "stem": "After several months of heavy patient loads in the Emergency Department and an inability to secure sufficient and experienced staff, the department is especially taxed by a train accident that brings in many seriously injured individuals. You observe that Rama ignores the requests of several of the injured, even when time is available to care for them, and is rude to two older adult patients. You are concerned that Rama is evidencing which state?",
       "options": [
         "Hardiness",
@@ -568,7 +568,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q22",
+      "id": "Module_1_Q38",
       "stem": "―Stress-buffering behaviors can be elicited to reduce stress. All of the following behavioral coping responses can be used by nurse managers to reduce and manage stress, except :",
       "options": [
         "distancing oneself from work.",
@@ -583,7 +583,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q23",
+      "id": "Module_1_Q39",
       "stem": "The education consultant at St. Joseph Hospital is giving a workshop on cognitive reframing. The consultant explains that cognitive reframing reduces stress by:",
       "options": [
         "aiding individuals in identifying positive stressors.",
@@ -598,7 +598,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q24",
+      "id": "Module_1_Q40",
       "stem": "Time management is essential for the nurse manager. Which of the following is not a good time-management technique?",
       "options": [
         "Decide what not to do.",
@@ -614,7 +614,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q25",
+      "id": "Module_1_Q41",
       "stem": "As a unit manager, you chair the unit meetings. For each meeting, you consider and establish the purpose of the meeting. Second, you prepare an agenda. Arrange the following steps in an order that would make the meetings productive and successful. 1. Distribute an agenda. 2. Distribute minutes. 3. Select team members. 4. Start on time. 5. Keep the meeting focused and directed toward accomplishing the set objectives. Select the correct order from the following options:",
       "options": [
         "1, 2, 4, 5, 3",
@@ -629,7 +629,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q1",
+      "id": "Module_1_Q42",
       "stem": "The chief nursing officer at a local hospital seeking Magnet® status creates staff development classes concerning translation of research into practice (TRIP). What best describes TRIP?",
       "options": [
         "Conducting an integrative review of the literature",
@@ -645,7 +645,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q2",
+      "id": "Module_1_Q43",
       "stem": "A nurse manager introduces prompted voiding into nursing practice on a unit, which is supported by clinical guidelines based on evidence-based practice. The nurses on the unit resist implementation, indicating that the bathroom facilities are too far away for efficient implementation of the guidelines and that resources are too few to accomplish the initial voiding observations. For the nurse manager in this situation, it is important to have further discussion with the staff regarding: (Select all that apply.)",
       "options": [
         "compatibility of this intervention with the values of staff on the unit.",
@@ -663,7 +663,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q3",
+      "id": "Module_1_Q44",
       "stem": "The chief nursing officer at a local hospital seeking Magnet® status creates staff development classes about incorporating evidence-based practice in nursing. What best describes evidence-based practice?",
       "options": [
         "Applying best research evidence to the care of patients",
@@ -678,7 +678,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q4",
+      "id": "Module_1_Q45",
       "stem": "As a nurse manager, you trial a new pain scale on your unit that is supported by numerous research studies. You compare the patient outcomes with the new scale against the existing scale. Feedback from staff suggests that the new scale is too difficult for patients who have limited language skills and who are already under duress to understand. The difficulty in implementing the new scale refers to testing:",
       "options": [
         "efficacy.",
@@ -693,7 +693,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q5",
+      "id": "Module_1_Q46",
       "stem": "The nurse manager wants to use evidence-based recommendations to prevent ventilator-associated pneumonia. What is the critical first step to effectively gather evidence for guiding practice?",
       "options": [
         "Develop the clinical question.",
@@ -709,7 +709,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q6",
+      "id": "Module_1_Q47",
       "stem": "A strategic goal for nursing in the facility, developed by the chief nursing officer, is to implement an evidence-based practice program. What is an appropriate strategy that can be used by a nurse manager who is beginning to implement an evidence-based practice program on the unit?",
       "options": [
         "Conducting a review of adverse events and incident reports",
@@ -724,7 +724,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q7",
+      "id": "Module_1_Q48",
       "stem": "The nurse manager of an ICU wants to implement the revised policy and procedure on central line catheter care. What would be the most effective method of getting the staff nurses to incorporate a new evidence-based practice into their care?",
       "options": [
         "Conducting an interactive educational workshop",
@@ -740,7 +740,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q8",
+      "id": "Module_1_Q49",
       "stem": "Before the implementation of the new policy and procedure on central line catheter care, the nurse manager uses an appraisal system to evaluate the evidence. What is important in using an appraisal system to evaluate the evidence gathered in preparation for the development of a new protocol?",
       "options": [
         "Limiting the search to randomized clinical trials",
@@ -755,7 +755,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q9",
+      "id": "Module_1_Q50",
       "stem": "To help staff nurses adjust to using research in practice, what strategy would the nurse manager use?",
       "options": [
         "Attendance at a regional research conference",
@@ -771,7 +771,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q10",
+      "id": "Module_1_Q51",
       "stem": "What is a strategy that can be used by a small community hospital with limited resources to develop an evidence-based nursing practice program?",
       "options": [
         "Hiring a nurse researcher",
@@ -786,7 +786,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q11",
+      "id": "Module_1_Q52",
       "stem": "Tara, the unit manager, is explaining to her colleague her recent project, which involves seeking the most effective approaches to incontinence care, with the intention of adopting evidence-supported approaches in her dementia care unit. Her colleague suggests that translation of research into practice is:",
       "options": [
         "less important than knowledge-generating research, which is required to advance the nursing profession.",
@@ -801,7 +801,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q12",
+      "id": "Module_1_Q53",
       "stem": "After searching the literature, Tara, the unit manager, develops a table that outlines the findings of studies on the management of incontinence. She then examines the studies in terms of risk and whether the findings fit within her practice context and for her population of moderately to severely cognitively impaired patients. Which phase of a research utilization model is this?",
       "options": [
         "Preparatory",
@@ -817,7 +817,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q13",
+      "id": "Module_1_Q54",
       "stem": "The clinical guidelines for management of incontinence were developed by the Registered Nurses Association of Ontario (RNAO):",
       "options": [
         "reflect practice that is fiscally directed and sound.",
@@ -832,7 +832,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q14",
+      "id": "Module_1_Q55",
       "stem": "Marie is a long-term staff nurse on the rehab floor. Her unit manager has been eager to adopt evidence-based recommendations related to family-centered care in the unit. Marie‘s response has been that she rarely has time to provide care to patients, let alone families, and that there is no good reason to do anything different than what she is already doing. An approach that may gain Marie‘s support for the idea is to:",
       "options": [
         "Invite Marie to review the studies for herself.",
@@ -847,7 +847,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q15",
+      "id": "Module_1_Q56",
       "stem": "You are excited by evidence supporting the use of workstations on wheels (WOWs) at the bedside to improve documentation and patient outcomes. You have disseminated the information through discussions and e-mails and are now ready to begin the process of considering implementation in the unit. To develop positive attitudes toward the use and implementation of the technology, you would discuss your ideas with Rogers‘ diffusion of innovations theory:",
       "options": [
         "Harvey, RN, is a technology guru who enthusiastically tries out all new software.",
@@ -862,7 +862,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q16",
+      "id": "Module_1_Q57",
       "stem": "The implementation of saline flushes for capped angiocatheters across all areas of practice in the facility is an example of:",
       "options": [
         "How the multilevel and interprofessional application of a procedure can slow the adoption of EBP.",
@@ -879,7 +879,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q17",
+      "id": "Module_1_Q58",
       "stem": "Which of the following would be most effective for the staff nurses in implementing the findings of a new clinical treatment for problems associated with bowel motility?",
       "options": [
         "Lecture by a nurse practitioner",
@@ -894,7 +894,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q18",
+      "id": "Module_1_Q59",
       "stem": "Which of the following is an effective approach in the appraisal of research studies?",
       "options": [
         "Accept only studies that use an RCT design.",
@@ -910,7 +910,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q19",
+      "id": "Module_1_Q60",
       "stem": "Within a multisite healthcare system, the most appropriate strategy for translation of research would be:",
       "options": [
         "widespread development of protocols using EBP at unit levels.",
@@ -925,7 +925,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q20",
+      "id": "Module_1_Q61",
       "stem": "At an organizational level, which of the following strategies would assist in ensuring that EBP is incorporated into nursing care?",
       "options": [
         "Formation of nursing-only implementation teams",
@@ -940,7 +940,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q21",
+      "id": "Module_1_Q62",
       "stem": "Which of the following is most accurate regarding evidence-based practice?",
       "options": [
         "Evidence-based practice replaces continuous quality improvement.",
@@ -957,7 +957,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q22",
+      "id": "Module_1_Q63",
       "stem": "Which of the following is a meta-analysis?",
       "options": [
         "Review of 35 studies on nurse work satisfaction to determine the significance of the aggregated research findings",
@@ -972,7 +972,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q23",
+      "id": "Module_1_Q64",
       "stem": "Once evidence related to the use of prompted voiding in patients with cognitive impairment has been appraised and integrated with practice, it is important to:",
       "options": [
         "Consider whether patients‘ families see this as necessary for the well-being of family members.",
@@ -987,7 +987,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q24",
+      "id": "Module_1_Q65",
       "stem": "As the unit manager, you are interested in determining whether patient autonomy is preserved through informed consent in surgical settings. You determine that participatory action research is the best method to address this question. Which of the following is consistent with a participatory action research design?",
       "options": [
         "You interview patients who have recently undergone surgery and transcribe the interviews to determine themes. Themes are validated with an expert in informed consent.",
@@ -1002,7 +1002,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q25",
+      "id": "Module_1_Q66",
       "stem": "Volunteers in a study are assigned randomly to groups. Some of the volunteers receive an herbal supplement that is reputed to control nausea, and some of the volunteers are assigned to a control group where a placebo is administered. This is an example of a(n):",
       "options": [
         "longitudinal study.",
@@ -1018,7 +1018,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q1",
+      "id": "Module_1_Q67",
       "stem": "A nurse belongs to several professional organizations, serving on a state-level committee of one group and on two task forces at work. The nurse is committed to a range of health issues and knows the state senator from the nurse‘s district, as well as the name of the representative in Washington, DC. This nurse exemplifies which level of political activism in nursing?",
       "options": [
         "Gladiator",
@@ -1033,7 +1033,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q2",
+      "id": "Module_1_Q68",
       "stem": "In a busy rehabilitation unit, the team manager decided that the best way to reward the staff was to give them a monetary bonus rather than time off. The staff was very concerned about the decision and went to the administration with a number of complaints. Critical thinking is a process that entails a number of steps. What steps did the manager omit? She should have: (Select all that apply.)",
       "options": [
         "identified what assumptions were underpinning the issues.",
@@ -1050,7 +1050,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q3",
+      "id": "Module_1_Q69",
       "stem": "A manager relies on his director (immediate supervisor) for advice about enrolling in graduate school to prepare for a career as a nurse executive. What kinds of power may the director exercise in the relationship with the manager in this advisory situation?",
       "options": [
         "Expert, coercive, and referent",
@@ -1065,7 +1065,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q4",
+      "id": "Module_1_Q70",
       "stem": "A nurse manager must implement a 2% budget cut on the nursing unit. What approach would the manager use to most effectively empower the staff of the unit?",
       "options": [
         "Discuss the guidelines for the budget cuts with the staff, making the decisions with those who participate.",
@@ -1081,7 +1081,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q5",
+      "id": "Module_1_Q71",
       "stem": "During the orientation of new nurse managers, the chief nursing officer stresses strategies that help nurse managers to achieve a powerful image. What behaviors best contribute to a powerful image for the nurse manager?",
       "options": [
         "Greeting patients, families, and colleagues with a handshake and a smile; listening carefully when problems arise",
@@ -1096,7 +1096,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q6",
+      "id": "Module_1_Q72",
       "stem": "Two nurses approach their manager about a conflict regarding the next month‘s schedule. The nurses are talking loudly and at the same time. The manager most effectively uses communication skills to resolve the conflict by:",
       "options": [
         "taking both nurses aside, separately and then together, and charging them with resolving the problem without her direct intervention.",
@@ -1111,7 +1111,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q7",
+      "id": "Module_1_Q73",
       "stem": "A nurse manager recognizes the need to expand her professional network as she begins a job search for a middle-management position. What action is least likely to expand her job-searching network?",
       "options": [
         "Reviewing her address book or card file for names and phone numbers of former colleagues who are now in middle-management positions",
@@ -1126,7 +1126,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q8",
+      "id": "Module_1_Q74",
       "stem": "The risk manager informs the nurse manager of an orthopedic unit that her unit has had an increase in incident reports related to patients falling during the 11-7 shift. The nurse manager knows that the best way to resolve the problem is to:",
       "options": [
         "Use creativity.",
@@ -1141,7 +1141,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q9",
+      "id": "Module_1_Q75",
       "stem": "The nurse manager of a rehab unit wants to purchase a new antiembolic stocking for use with patients. To make a high-quality decision, the nurse manager would:",
       "options": [
         "involve the rehab staff in the decision.",
@@ -1156,7 +1156,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q10",
+      "id": "Module_1_Q76",
       "stem": "To solve a problem, the nurse manager understands that the most important problem-solving step is:",
       "options": [
         "The implementation phase.",
@@ -1171,7 +1171,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q11",
+      "id": "Module_1_Q77",
       "stem": "A clinic nurse has observed another nurse deviating from agency policy in performing wound care. The best approach for the clinic nurse to take is to:",
       "options": [
         "Stay out of it.",
@@ -1186,7 +1186,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q12",
+      "id": "Module_1_Q78",
       "stem": "The risk manager wants to evaluate the reasons for an increased number of falls on the rehab unit. The risk manager devises a fishbone diagram. A fishbone diagram is a useful tool to:",
       "options": [
         "Identify the root causes of problems.",
@@ -1201,7 +1201,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q13",
+      "id": "Module_1_Q79",
       "stem": "An outpatient surgery manager is evaluating new infusion pumps for purchase to use in the operating room. The manager should:",
       "options": [
         "Select the least expensive brand.",
@@ -1216,7 +1216,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q14",
+      "id": "Module_1_Q80",
       "stem": "Select the statement that best defines the difference between problem solving and decision making:",
       "options": [
         "Decision-making skills require critical thinking; problem-solving skills do not.",
@@ -1231,7 +1231,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q15",
+      "id": "Module_1_Q81",
       "stem": "The maintenance department wishes to have the nursing lounge renovated, so the lounge will be more user-friendly.  The department asks the nursing staff to make a wish list of everything that they would like to see in the new lounge. This process is an example of which part of the decision-making process?",
       "options": [
         "Assessment/Data collection",
@@ -1247,7 +1247,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q16",
+      "id": "Module_1_Q82",
       "stem": "A good nursing decision maker is one who:",
       "options": [
         "uses various models to guide the process based on the circumstances of the situation.",
@@ -1262,7 +1262,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q17",
+      "id": "Module_1_Q83",
       "stem": "Decision-making is described by the nursing educator as the process one uses to:",
       "options": [
         "Solve a problem.",
@@ -1277,7 +1277,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q18",
+      "id": "Module_1_Q84",
       "stem": "One day, at coffee, your co-worker suggests that you and she sit with the unit members of the hospital research committee. She suggests that this would be an excellent way to get to know people who share her interest in research. Her actions are an example of:",
       "options": [
         "mentorship.",
@@ -1292,7 +1292,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q19",
+      "id": "Module_1_Q85",
       "stem": "Justin is a nurse manager in a rehabilitation unit in a small urban center. There is a high turnover rate among rehab assistants because of the heavy work assignments. Despite his need for staff, Justin decides to review each application thoroughly and interview candidates carefully because he recognizes that it is important to hire staff who can best provide high-quality care and who will fit well with the team. Which of the following decision-making solutions should Justin consider to have a more efficient department?",
       "options": [
         "Replace staff only with qualified applicants.",
@@ -1308,7 +1308,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q20",
+      "id": "Module_1_Q86",
       "stem": "When confronted with the controversy and the apparent poor morale of the evening staff, the unit manager decided the staff needed to take some time off. He scheduled holidays for the staff without consulting them. A couple of the staff nurses approached the manager and indicated that the problem was not scheduling, but rather the team leader and her patient assignments. What was the unit manager‘s first missed step in problem-solving?",
       "options": [
         "Not using a problem-solving model",
@@ -1323,7 +1323,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q21",
+      "id": "Module_1_Q87",
       "stem": "John Smith, one of three managers at BSG Labs, drafted a policy that would allow his department to do more testing in his lab. This policy included the times for regular collection as well as a new process for emergency laboratory testing. The policy and procedures were never followed. The reason was that:",
       "options": [
         "The policy was too lengthy and inundated readers with too much detail.",
@@ -1338,7 +1338,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q22",
+      "id": "Module_1_Q88",
       "stem": "High-quality decisions are most likely to be made in nursing situations when:",
       "options": [
         "Team leaders make the crucial decisions.",
@@ -1353,7 +1353,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q23",
+      "id": "Module_1_Q89",
       "stem": ". During a unit meeting, you notice that Vivian listens attentively when Mary is speaking and offers support and advice when Mary presents ideas to the group. You are surprised because Vivian has often confided that she does not like Mary. Vivian‘s behavior is best described as:",
       "options": [
         "insincere.",
@@ -1368,7 +1368,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q24",
+      "id": "Module_1_Q90",
       "stem": "What interaction is MOST consistent with the idea of networking?",
       "options": [
         "Meet with the same colleagues daily to have coffee and share concerns about the workplace and stories about colleagues.",
@@ -1383,7 +1383,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q25",
+      "id": "Module_1_Q91",
       "stem": "The institution where you are a nurse manager has resisted the adoption of a new document management software, citing cost as a concern. You meet with other nurse managers who are in favor of the software and prepare a proposal to take to the senior executive with the goal of persuading the executive to adopt the software. This is an example of:",
       "options": [
         "collaboration.",
@@ -1398,7 +1398,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q1",
+      "id": "Module_1_Q92",
       "stem": "The charge nurse on a rehabilitation unit recognizes that due to the COVID-19 pandemic, her unit has been left with a shortage of nurses. She understands that delegating responsibilities to competent delegates will be necessary. She is also aware that for positive outcomes, it is crucial to:",
       "options": [
         "Educate delegates on how to implement a delegated responsibility.",
@@ -1413,7 +1413,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q2",
+      "id": "Module_1_Q93",
       "stem": "An example of a nursing care activity that would not be delegated by an RN to a UNP is: (Select all that apply.)",
       "options": [
         "teaching self-catheterization to a patient with paraplegia who has limited English.",
@@ -1432,7 +1432,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q3",
+      "id": "Module_1_Q94",
       "stem": "You are a member of a team assigned to care for 15 general medical/surgical clients. You have all worked well together in the past in this same type of care. If you are assigned to coordinate this team‘s work, your best strategy, based on the Hersey model, would be to:",
       "options": [
         "Have a list of tasks to be accomplished and tell each member of the team what he or she must do.",
@@ -1447,7 +1447,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q4",
+      "id": "Module_1_Q95",
       "stem": "The charge nurse is making patient assignments for the next shift on the unit. There is one critical patient on the unit who is going to require more care than the other patients. Before delegating this patient to an assignment, what is the appropriate action by the charge nurse?",
       "options": [
         "Delegate the admission assessment to the LPN.",
@@ -1463,7 +1463,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q5",
+      "id": "Module_1_Q96",
       "stem": "A key advantage that a charge nurse has in terms of delegating is that:",
       "options": [
         "Clients receive less attention because too many staff make it difficult to coordinate care.",
@@ -1478,7 +1478,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q6",
+      "id": "Module_1_Q97",
       "stem": "The nurse on the 7-7 shift is assigning a specific component of care to an unlicensed nursing personnel (UNP) employee. The night nurse would remain:",
       "options": [
         "accountable.",
@@ -1493,7 +1493,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q7",
+      "id": "Module_1_Q98",
       "stem": "The night nurse understands that certain factors need to be considered before delegating tasks to others. These factors include the:",
       "options": [
         "complexity of the task and the age of the delegate.",
@@ -1508,7 +1508,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q8",
+      "id": "Module_1_Q99",
       "stem": "During a fire drill, the nurse manager becomes very assertive and directive in her communications with staff. This type of situational leadership depends on:",
       "options": [
         "supportive behavior by the leader and immature followers.",
@@ -1523,7 +1523,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q9",
+      "id": "Module_1_Q100",
       "stem": "The unit manager is working in a large metropolitan facility and is told that two UNPs are to be assigned to work with her. Delegation begins with:",
       "options": [
         "Acknowledging the arrival of the second UNP on the unit.",
@@ -1538,7 +1538,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q10",
+      "id": "Module_1_Q101",
       "stem": "During staff-development programs, staff nurses verbalize their frustration about their workloads and having to delegate so many tasks to others. One of the main reasons that delegation has emerged as an issue is because of:",
       "options": [
         "The amount of paperwork required to complete care.",
@@ -1553,7 +1553,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q11",
+      "id": "Module_1_Q102",
       "stem": "The day shift nurse asks an LPN/LVN to complete a task for a patient. The day shift nurse is engaging in what function?",
       "options": [
         "Delegating",
@@ -1569,7 +1569,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q12",
+      "id": "Module_1_Q103",
       "stem": "You are working in a home health service and have three unlicensed nursing personnel (UNPs) assigned to your team. You have worked with two of them for 2 years; the third is new. The two experienced UNPs have patients with complex illnesses for whom they provide basic care. The third member of the team has been assigned to patients with less complex illnesses. Your best approach to supervising their care is to:",
       "options": [
         "remain in the office and ask each UNP to check in with you upon arrival at their first patient care site.",
@@ -1584,7 +1584,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q13",
+      "id": "Module_1_Q104",
       "stem": "With delegation, responsibility and accountability remain with the:",
       "options": [
         "physician.",
@@ -1599,7 +1599,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q14",
+      "id": "Module_1_Q105",
       "stem": "Which of the following exemplifies accountability? Karen, the nurse manager on 5E:   119",
       "options": [
         "consistently submits her budgets on time.",
@@ -1614,7 +1614,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q15",
+      "id": "Module_1_Q106",
       "stem": "Which of the following indicates safe delegation?",
       "options": [
         "The nurse supervisor for a large urban acute care department asks the unit manager to accept two new acutely ill patients, which the manager does. The unit is short two staff, and the replacement is inexperienced.",
@@ -1630,7 +1630,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q16",
+      "id": "Module_1_Q107",
       "stem": "Which of the following would be most in line with Hersey's model and concepts?",
       "options": [
         "The team of caregivers on the day shift is familiar with their roles and with the patients. The nurse manager decides to work on the unit budget in her office.",
@@ -1645,7 +1645,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q17",
+      "id": "Module_1_Q108",
       "stem": "In delegating to a UNP in a home health setting, which of the following represents the most appropriate delegation communication?",
       "options": [
         "You will be taking care of Mrs. S., who needs assistance with her bath.",
@@ -1660,7 +1660,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q18",
+      "id": "Module_1_Q109",
       "stem": "An RN colleague, who is a long-standing and collaborative member of your team, is performing a complex dressing with new orders written for the first time for the assigned patient. Which of the following would be the most appropriate communication with her?",
       "options": [
         "How do you usually do this kind of dressing?",
@@ -1675,7 +1675,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q19",
+      "id": "Module_1_Q110",
       "stem": "Sally is an experienced nurse on the unit and is very experienced with ICP monitoring. She is assigned to David, a patient who has been admitted with a severe head injury. In communicating with Sally, what is an appropriate action by the charge nurse?",
       "options": [
         "Provide a detailed explanation of what she needs to do with ICP monitoring.",
@@ -1691,7 +1691,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q20",
+      "id": "Module_1_Q111",
       "stem": "You ask Evelyn, a new UNP, to check what is left in Mrs. N.‘s inhaler when Evelyn makes visits to Mrs. N., and also to check whether Mrs. N. is receiving any positive effect from the medication. Evelyn reports for 3 weeks that Mrs. N. is using the inhaler and that there is plenty of medication left in the device. The day of her last visit to Mrs. N., Mrs. N. was admitted to the hospital in severe respiratory distress. When she is admitted, she tells the physician that she has not been using the inhaler for 4 weeks. This incident is an example of:",
       "options": [
         "Incompetence of the UNP.",
@@ -1706,7 +1706,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q21",
+      "id": "Module_1_Q112",
       "stem": "You ask Evelyn, a new UNP, to check what is left in Mrs. N.‘s inhaler when Evelyn makes visits to Mrs. N., and also to check whether Mrs. N. is receiving any positive effect from the medication. Evelyn reports for 3 weeks that Mrs. N. is using the inhaler and that there is enough medication left in the device. The day of her last visit to Mrs. N., Mrs. N. was admitted to the hospital in severe respiratory distress. When she is admitted, she tells the physician that she has not been using the inhaler for 4 weeks. Before assigning Evelyn to Mrs. N.‘s care, the most appropriate action of the care coordinator would have been to:",
       "options": [
         "Determine Evelyn‘s educational background and preparation for this role.",
@@ -1722,7 +1722,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q22",
+      "id": "Module_1_Q113",
       "stem": "You ask Evelyn, a new UNP, to check what is left in Mrs. N.‘s inhaler when Evelyn makes visits to Mrs. N., and also to check whether Mrs. N. is receiving any positive effect from the medication. Evelyn reports for 3 weeks that Mrs. N. is using the inhaler and that there is enough medication left in the device. The day of her last visit to Mrs. N., Mrs. N. was admitted to the hospital in severe respiratory distress. When she is admitted, she tells the physician that she has not been using the inhaler for 4 weeks. Determination of Evelyn‘s educational preparation and certification is related to the concept of:",
       "options": [
         "accountability.",
@@ -1737,7 +1737,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q23",
+      "id": "Module_1_Q114",
       "stem": "Nurses can use four elements to determine the abilities of the UNP/AP to perform the task or activity when delegating. These four elements are:",
       "options": [
         "ability, attitude, acuity, and authority.",
@@ -1752,7 +1752,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q24",
+      "id": "Module_1_Q115",
       "stem": "County Hospital has position descriptions for all staff, including RN Team Leaders. Sarah, a team leader on the rehab unit, assesses the needs of the patients in her area, assesses the skills and backgrounds of each of the individuals on her team, and then assigns and delegates the appropriate care provider to each patient and task. Sarah provides Colleen, her RN colleague, with details regarding the patients to whom Colleen has been assigned on the day shift. This is an example of:",
       "options": [
         "accountability.",
@@ -1767,7 +1767,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q25",
+      "id": "Module_1_Q116",
       "stem": "Leslie, a UNP, transfers a patient while using an improper technique. The patient is injured, and as a result, a suit is launched in which both Sarah (the delegator) and Leslie (the delegatee) are named. Sarah is named in the suit because she:",
       "options": [
         "retains accountability for the care of the patient.",
@@ -1782,7 +1782,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q1",
+      "id": "Module_1_Q117",
       "stem": "The unit leader on an inpatient psychiatric unit of a large hospital has been in the position for 3 months. The unit leader is frustrated by how little time is available to work with clients and how few changes have been implemented in that time. The phase of role transition being experienced is the role of:",
       "options": [
         "acceptance.",
@@ -1797,7 +1797,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q2",
+      "id": "Module_1_Q118",
       "stem": "As a result of Amy‘s coaching, Sarah, a nursing graduate of 5 years, completes a ROLES assessment. This assessment is helpful in: (Select all that apply.)",
       "options": [
         "Identifying her clinical knowledge.",
@@ -1814,7 +1814,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q3",
+      "id": "Module_1_Q119",
       "stem": "An interviewee for a nurse manager position asks for a copy of the organizational chart. Organizational charts provide information about the role component of:",
       "options": [
         "expectations.",
@@ -1829,7 +1829,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q4",
+      "id": "Module_1_Q120",
       "stem": "During an employment interview for the manager's position in a home health agency, the applicant asks questions about the medical director and about the retention of staff. The nurse executive assures the applicant that the agency has few personnel problems and receives excellent support from the medical director. The applicant knows that the agency has a 50% turnover rate and has had three medical directors in the past year. The nurse executive is:",
       "options": [
         "unaware of the turnover rate and difficulties with the medical director.",
@@ -1844,7 +1844,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q5",
+      "id": "Module_1_Q121",
       "stem": "The new head nurse on telemetry has been in the position for 3 months. The head nurse and the administrator disagree on how much time the head nurse should allot to various aspects of the role. Staff members in the unit complain that the head nurse is unavailable for clinical concerns because of being off the unit while attending meetings. To facilitate the process of role transition, the head nurse should:",
       "options": [
         "Develop policies consistent with the head nurse‘s prior workplace.",
@@ -1859,7 +1859,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q6",
+      "id": "Module_1_Q122",
       "stem": "A nurse manager values a colleague who is a few years older and has more experience in nursing management. The colleague works in another hospital, but they meet for lunch once a month. In these meetings, they share their feelings about nursing management and their lives. The function of a mentor that is missing in the relationship is:",
       "options": [
         "sponsorship.",
@@ -1874,7 +1874,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q7",
+      "id": "Module_1_Q123",
       "stem": "The new nurse manager feels pulled between the expectations of staff, the demands of hospital administrators, and family obligations. According to the theory by Hardy (1978), unrelieved role stress and strain will lead to:",
       "options": [
         "frustration and anger.",
@@ -1889,7 +1889,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q8",
+      "id": "Module_1_Q124",
       "stem": "The nurse manager of a unit was demoted to a staff nurse 6 months ago. Because of being near retirement, the former nurse manager wanted to be employed at the hospital and was offered a position on the same unit. The former nurse manager often complains about how infrequently the current nurse manager is available on the unit and argues with physicians and co-workers. Clients have complained about the attitude of the nurse. The behavior of the former nurse manager can be best explained as being caused by:",
       "options": [
         "Overwork in the staff nurse position.",
@@ -1904,7 +1904,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q9",
+      "id": "Module_1_Q125",
       "stem": "A nurse is interviewing for a manager‘s position. Which of the following actions is considered a role preview?",
       "options": [
         "Formal commitment of the employment contract",
@@ -1919,7 +1919,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q10",
+      "id": "Module_1_Q126",
       "stem": "The chief nursing officer develops a mentoring program to help new staff members adjust to their new jobs. The main purpose of mentoring is:",
       "options": [
         "promoting staff retention.",
@@ -1934,7 +1934,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q11",
+      "id": "Module_1_Q127",
       "stem": "A nurse manager notices that Nathan, an RN who has been on the unit for approximately 3 years, has an interest in health technology and seems to be very enthused about working with software and hardware at home. She speaks with Nathan and asks him if he would lead the investigation of software applications on the unit. This is an example of:",
       "options": [
         "opportunity.",
@@ -1949,7 +1949,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q12",
+      "id": "Module_1_Q128",
       "stem": "Sarah is a nursing graduate of 5 years who is very confident in her clinical skills. She has taken some certificate courses in leadership and management and has considered beginning a graduate degree with this focus. She is excited about being able to use her knowledge and interest by being hired as a nurse manager. Before beginning her new position, Sarah spends time with her nurse executive to clarify the executive‘s expectations of her and of the unit that she has been hired to manage. Sarah‘s actions are important in avoiding the role:",
       "options": [
         "ambiguity.",
@@ -1964,7 +1964,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q13",
+      "id": "Module_1_Q129",
       "stem": "After beginning her new position as nurse manager, Sarah finds that she spends a great deal of time in direct patient care. Her staff begins to complain that they are never able to find her when they need her, and that some aspects of her responsibilities fall behind, such as scheduling. Sarah is most likely:",
       "options": [
         "lacking an understanding of the nurse management role.",
@@ -1979,7 +1979,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q14",
+      "id": "Module_1_Q130",
       "stem": "A strategy that may help to make the transition to a new management role and to respond to relationships and situations in the new position is:",
       "options": [
         "Avoiding discussion of personal beliefs with staff until ready to do so.",
@@ -1994,7 +1994,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q15",
+      "id": "Module_1_Q131",
       "stem": "A new nurse manager finds that she has begun to think negatively about the way nursing care is delivered on her nursing unit. She often wishes that she were back on her old unit and in her familiar staff nurse role. This behavior:",
       "options": [
         "is natural when assuming a new position.",
@@ -2009,7 +2009,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q16",
+      "id": "Module_1_Q132",
       "stem": "A staff member in a new management position finds a mentor who has been in the role of unit manager for 3 years and has a similar interest in clinical excellence. During their frequent meetings, the mentor provides assistance with learning aspects of the manager‘s role, including technical aspects, such as how to interpret budget printouts and to achieve budget outcomes. The success of the mentor's coaching depends on:",
       "options": [
         "clarity of the mentor‘s information.",
@@ -2024,7 +2024,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q17",
+      "id": "Module_1_Q133",
       "stem": "In addition to providing coaching, a nurse mentor may provide counseling to the mentee. For counseling to be successful, the mentor must:",
       "options": [
         "Provide a quiet environment away from the unit.",
@@ -2039,7 +2039,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q18",
+      "id": "Module_1_Q134",
       "stem": "A nurse manager can become a certified nurse executive with a minimum of:",
       "options": [
         "a graduate degree.",
@@ -2054,7 +2054,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q19",
+      "id": "Module_1_Q135",
       "stem": "A new nurse manager finds that she is now comfortable with the expectations of staff and her supervisor regarding her management role and responsibilities, and has been able to effect a strong commitment to quality clinical care on the unit. At this point, she has likely attained this role:",
       "options": [
         "development.",
@@ -2069,7 +2069,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q20",
+      "id": "Module_1_Q136",
       "stem": "As a new manager, you reflect on what professional development would be most valuable to assist you in taking on this role. Which of the following would you most likely identify?   211",
       "options": [
         "Opportunities to hone clinical skills that are used most often in the unit that you will manage",
@@ -2085,7 +2085,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q21",
+      "id": "Module_1_Q137",
       "stem": "John, a new nurse manager, complains to his colleague that he feels very uncomfortable with the conflict between what he thinks he should be doing as the manager and what his supervisor thinks he should be doing. According to Hardy‘s role theory, John is experiencing:",
       "options": [
         "stress.",
@@ -2100,7 +2100,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q22",
+      "id": "Module_1_Q138",
       "stem": "Seth is hired as the nurse manager for a surgical unit. After a year, the hospital reorganizes, and his position is lost. In leaving the unit, it is important for Seth to:",
       "options": [
         "engage in clarifying why the hospital did not state its expectations for the unit at the time of hiring.",
@@ -2115,7 +2115,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q23",
+      "id": "Module_1_Q139",
       "stem": "After several months in the role of manager of a dialysis unit, Maryanne finds herself still questioning the gap in expectations between her and her staff and management, and is also questioning whether she can reconcile her concerns about quality care with the strong cost-containment orientation of the facility. At this point, Maryanne is in which stage of role transition?",
       "options": [
         "Internalization",
@@ -2130,7 +2130,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q24",
+      "id": "Module_1_Q140",
       "stem": "In assisting new graduates to make the role transition to graduate nurse, Ted, the unit manager, initiates which of the following?",
       "options": [
         "Self-check list to assess competencies that have been strengthened",
@@ -2145,7 +2145,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q25",
+      "id": "Module_1_Q141",
       "stem": "Who of the following might be the most appropriate mentor for Becky, a new nurse manager on the cardiac unit who has 4 years of previous clinical experience?",
       "options": [
         "Sam, near retirement. He has 20 years of clinical nursing experience and recently assumed the role of head nurse in an interim capacity because of the incumbent‘s illness.",
@@ -2160,7 +2160,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q1",
+      "id": "Module_1_Q142",
       "stem": "The department manager makes a list of interview questions for a new position. Which of the following questions are inappropriate?",
       "options": [
         "What are your short-term and long-term goals?",
@@ -2176,7 +2176,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q2",
+      "id": "Module_1_Q143",
       "stem": "An example of a career is: (Select all that apply.)",
       "options": [
         "employment in short-term contract jobs in business, nursing, and whatever is available.",
@@ -2192,7 +2192,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q3",
+      "id": "Module_1_Q144",
       "stem": "A cover letter should be included with your resume when applying for a position. A cover letter is the key to:",
       "options": [
         "Getting your resume read and into the interview process",
@@ -2207,7 +2207,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q4",
+      "id": "Module_1_Q145",
       "stem": "A new graduate is seeking a position in nursing and wants to ―sell herself \" effectively. The best strategy is to:",
       "options": [
         "Create a résumé.",
@@ -2222,7 +2222,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q5",
+      "id": "Module_1_Q146",
       "stem": "According to the ANA, ―systematic professional learning experiences designed to augment nurses‘ knowledge, skill, and attitudes, thereby enriching the nurses‘ contributions to quality health care and their pursuit of professional career goals is known as:",
       "options": [
         "accreditation.",
@@ -2237,7 +2237,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q6",
+      "id": "Module_1_Q147",
       "stem": "Thomas has been a nurse in your ICU for 10 years. In facilitating Thomas‘ professional development, the nurse manager would focus on:",
       "options": [
         "certification for the ICU environment.",
@@ -2252,7 +2252,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q7",
+      "id": "Module_1_Q148",
       "stem": "A unit manager recently graduated as a clinical nurse specialist with a focus in gerontology. She applied to take a certification exam. Certification is designed to recognize:",
       "options": [
         "basic knowledge in a specified area.",
@@ -2267,7 +2267,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q8",
+      "id": "Module_1_Q149",
       "stem": "A nurse is applying for a new position. This position is one in which she will serve as a liaison between a hospital and a school of nursing. The nurse must update her résumé to include her teaching experience. The goal of creating a curriculum vitae is to:",
       "options": [
         "Have a listing of facts about your professional life.",
@@ -2282,7 +2282,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q9",
+      "id": "Module_1_Q150",
       "stem": "To develop a curriculum vitae, or résumé, a nurse must develop a personal data file. The goal of a personal data file is to:",
       "options": [
         "Create an opportunity to be interviewed.",
@@ -2297,7 +2297,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q10",
+      "id": "Module_1_Q151",
       "stem": "An experienced staff nurse applies for a distinct position of patient advocate at a new clinic. Based on the various tools available to her, which of the following should she bring to her interview to best present her skills?",
       "options": [
         "Résumé",
@@ -2312,7 +2312,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q11",
+      "id": "Module_1_Q152",
       "stem": "During performance appraisal interviews, Joanne‘s nurse manager notices Joanne‘s excitement when she talks about how she has helped patients on a rehab unit understand the complexities of their regimens. When Joanne‘s nurse manager asks her about her career path plans, Joanne says that she wants to become a nurse administrator. The best response to Joanne would be:",
       "options": [
         "Nursing administration is rewarding. What experiences would help you along this path?",
@@ -2327,7 +2327,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q12",
+      "id": "Module_1_Q153",
       "stem": "Knowing your professional strengths is important to:",
       "options": [
         "Find your fit in positions and a career path.",
@@ -2342,7 +2342,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q13",
+      "id": "Module_1_Q154",
       "stem": "You are offered an opportunity to take a temporary leave from your position as a nurse manager to lead a technology implementation project. Which of the following reasons for accepting the opportunity is most consistent with developing a solid career path?",
       "options": [
         "You are pressured to do so by your supervisor.",
@@ -2358,7 +2358,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q14",
+      "id": "Module_1_Q155",
       "stem": "On your curriculum vitae, which of the following is the recommended approach for listing employment and educational history information?",
       "options": [
         "1979 RN Diploma, 1985 BScN, 2002 MN",
@@ -2374,7 +2374,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q15",
+      "id": "Module_1_Q156",
       "stem": "Which of the following needs revision on a résumé or CV?",
       "options": [
         "John Jones 87 Highway Drive City, MI 79110 jjones@gmail.com",
@@ -2390,7 +2390,7 @@
       "type": "multi_select"
     },
     {
-      "id": "Module_1_Q16",
+      "id": "Module_1_Q157",
       "stem": "The primary difference between a résumé and a CV is that a résumé:",
       "options": [
         "reflects your skills, knowledge, and background in relation to a specific position.",
@@ -2405,7 +2405,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q17",
+      "id": "Module_1_Q158",
       "stem": "A functional résumé focuses on:",
       "options": [
         "experience and skills gained in positions.",
@@ -2420,7 +2420,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q18",
+      "id": "Module_1_Q159",
       "stem": "A cover letter and a résumé together should be no longer than ______ page.",
       "options": [
         "two",
@@ -2435,7 +2435,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q19",
+      "id": "Module_1_Q160",
       "stem": "During an interview for a manager‘s position, you find the supervisor and staff unfriendly. Responses to questions are met with vague responses. After the interview, you decide not to pursue the position. What follow-up, if any, is most appropriate?",
       "options": [
         "There is no need for you to do anything further. You likely will not be offered the position anyway.",
@@ -2450,7 +2450,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q20",
+      "id": "Module_1_Q161",
       "stem": "A well-written letter of resignation is critical to:",
       "options": [
         "First, announce your intent to resign.",
@@ -2465,7 +2465,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q21",
+      "id": "Module_1_Q162",
       "stem": "In preparing for a fair interview process as a hiring manager, you should:",
       "options": [
         "Put water out for the candidates.",
@@ -2480,7 +2480,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q22",
+      "id": "Module_1_Q163",
       "stem": "To enhance team leadership skills for your team leaders, you arrange opportunities for:",
       "options": [
         "certification.",
@@ -2495,7 +2495,7 @@
       "type": "single_select"
     },
     {
-      "id": "Module_1_Q23",
+      "id": "Module_1_Q164",
       "stem": "Professional associations:",
       "options": [
         "Set regulatory requirements and establish entry requirements for nursing.",
