@@ -20,7 +20,6 @@
   const runCounter = document.getElementById("runCounter");
   const runCounterNum = document.getElementById("runCounterNum");
 
-  // Backend routes (with non-/api fallback)
   const routes = {
     modules: ["/api/modules", "/modules"],
     start: ["/api/start", "/start"],
@@ -29,7 +28,6 @@
     reset: ["/api/reset_session", "/reset"],
   };
 
-  // ---- helpers ----
   function setHidden(el, yes) { el.classList.toggle("hidden", !!yes); }
   function clearOptions() { qOptions.innerHTML = ""; }
   function escapeHTML(s="") {
@@ -54,7 +52,6 @@
       qOptions.appendChild(label);
       lettersToInputs[letter.toUpperCase()] = input;
     });
-    // focus first option for quick keyboard workflow
     const first = qOptions.querySelector("input");
     if (first) first.focus();
   }
@@ -63,7 +60,6 @@
     return Array.from(qOptions.querySelectorAll("input:checked")).map(i => i.value.toUpperCase());
   }
 
-  // Hide live score during quiz; metrics display only at the end
   function updateScoreLine() { scoreLine.classList.add("hidden"); }
 
   function returnToLanding() {
@@ -76,7 +72,6 @@
     updateScoreLine();
   }
 
-  // ---- API helpers ----
   function apiFetch(url, opts = {}) {
     return fetch(url, Object.assign({ headers: { "Content-Type": "application/json" }, credentials: "same-origin" }, opts));
   }
@@ -96,16 +91,14 @@
     throw lastError || new Error("No endpoint responded");
   }
 
-  // ---- local state ----
-  let chosenCount = 10;
+  let chosenCount = "10"; // can be "10","25","50","100","full"
   let currentQ = null;
   let lettersToInputs = {};
   let answered = false;
   let quizDone = false;
   let firstTryScore = { correct: 0, total: 0 };
-  let runCount = 0; // running number independent of graded stats
+  let runCount = 0;
 
-  // ---- load modules ----
   async function loadModules() {
     try {
       const items = await fetchJsonFirst(routes.modules);
@@ -115,7 +108,6 @@
     }
   }
 
-  // ---- start quiz ----
   startBtn.addEventListener("click", () => {
     const mod = moduleSelect.value;
     if (!mod) return alert("Select a module first.");
@@ -134,14 +126,12 @@
       answered = false;
       runCount = 0;
 
-      // show quiz UI
       setHidden(landing, true);
       setHidden(scoreLine, true);
       setHidden(quiz, false);
       setHidden(runCounter, false);
       runCounterNum.textContent = "1";
 
-      // button states: Submit enabled, Next disabled
       submitBtn.disabled = false;
       nextBtn.disabled = true;
 
@@ -150,18 +140,16 @@
     .catch(() => alert("Could not start quiz."));
   });
 
-  // header buttons
   newQuizBtn.addEventListener("click", () => returnToLanding());
   resetBtn.addEventListener("click", async () => {
     try { await fetchJsonFirst(routes.reset, { method: "POST" }); } catch {}
     returnToLanding();
   });
 
-  // ---- load next ----
   async function loadNext() {
     resultDiv.innerHTML = "";
-    submitBtn.disabled = false;       // Submit is active when awaiting an answer
-    nextBtn.disabled = true;          // Next is disabled until feedback shown
+    submitBtn.disabled = false;
+    nextBtn.disabled = true;
     answered = false;
 
     fetchJsonFirst(routes.next)
@@ -179,26 +167,20 @@
               <div>Total answers submitted: ${data.submissions || 0}</div>
             </div>`;
 
-          // end state: let left button restart; keep right disabled
           submitBtn.textContent = "Start New Quiz";
           submitBtn.disabled = false;
           nextBtn.disabled = true;
           currentQ = null;
-
-          // Enter will call submit (which returns to landing)
           return;
         }
 
-        // normal question
         currentQ = data;
         qStem.textContent = data.stem || "Question";
         renderOptions(data);
 
-        // update running counter (prefer server 'served' if provided)
         runCount = Number.isFinite(data.served) ? data.served : (runCount + 1);
         runCounterNum.textContent = String(runCount);
 
-        // ensure left says "Submit" during an active quiz
         submitBtn.textContent = "Submit";
       })
       .catch(e => {
@@ -207,21 +189,12 @@
       });
   }
 
-  // ---- submit ----
   submitBtn.addEventListener("click", async () => {
-    if (quizDone) { // on final screen, left button restarts
-      returnToLanding();
-      return;
-    }
-    if (answered) { // safety: if already answered, ignore submit (Next handles advance)
-      return;
-    }
+    if (quizDone) { returnToLanding(); return; }
+    if (answered) return;
 
     const selected = getSelectedLetters();
-    if (!selected.length) {
-      alert("Choose an answer first.");
-      return;
-    }
+    if (!selected.length) { alert("Choose an answer first."); return; }
 
     try {
       const data = await fetchJsonFirst(routes.answer, {
@@ -232,19 +205,16 @@
       if (typeof data.first_try_correct === "number") {
         firstTryScore.correct = data.first_try_correct;
         if (typeof data.first_try_total === "number") firstTryScore.total = data.first_try_total;
-        updateScoreLine(); // still hidden until the end
+        updateScoreLine();
       }
 
       const tag = data.ok
         ? `<span class="ok">Correct!</span>`
         : `<span class="bad">Incorrect.</span> <span class="muted">Correct: ${data.correct.join(", ")}</span>`;
-
       const rationale = data.rationale ? `<div class="rationale"><b>Rationale:</b> ${escapeHTML(data.rationale)}</div>` : "";
       resultDiv.innerHTML = `<div>${tag}</div>${rationale}`;
 
       answered = true;
-
-      // after feedback: disable Submit, enable Next
       submitBtn.disabled = true;
       nextBtn.disabled = false;
       nextBtn.focus();
@@ -254,20 +224,16 @@
     }
   });
 
-  // ---- next ----
   nextBtn.addEventListener("click", () => {
     if (quizDone) return;
     loadNext();
   });
 
-  // ---- keyboard: Enter submits; after feedback, Enter = Next ----
   document.addEventListener("keydown", (ev) => {
     const key = ev.key;
     if (key === "Enter") {
       if (!landing.classList.contains("hidden")) {
-        ev.preventDefault();
-        startBtn.click();
-        return;
+        ev.preventDefault(); startBtn.click(); return;
       }
       if (!quiz.classList.contains("hidden")) {
         ev.preventDefault();
@@ -275,28 +241,22 @@
         else if (!nextBtn.disabled) nextBtn.click();
       }
     }
-
-    // Quick toggle A–H
     if (/^[a-h]$/i.test(key) && !quiz.classList.contains("hidden")) {
       const letter = key.toUpperCase();
       const input = (lettersToInputs && lettersToInputs[letter]) || null;
-      if (input) {
-        ev.preventDefault();
-        input.checked = !input.checked;
-      }
+      if (input) { ev.preventDefault(); input.checked = !input.checked; }
     }
   });
 
-  // ---- count buttons ----
+  // NEW: handle 10/25/50/100/Full
   countBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       countBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      const n = Number(btn.dataset.count || "10");
-      chosenCount = isNaN(n) ? 10 : n;
+      const val = (btn.dataset.count || "10").toLowerCase();
+      chosenCount = (val === "full") ? "full" : String(Number(val) || 10);
     });
   });
 
-  // init
   loadModules();
 })();
