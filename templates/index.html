@@ -21,7 +21,6 @@
     </div>
   </header>
 
-  <!-- Landing / setup -->
   <main id="landing" class="panel">
     <h1>Study Quiz</h1>
 
@@ -36,8 +35,10 @@
       <label>Length</label>
       <div class="counts">
         <button class="btn count active" data-count="10">10</button>
-        <button class="btn count" data-count="20">20</button>
-        <button class="btn count" data-count="30">30</button>
+        <button class="btn count" data-count="25">25</button>
+        <button class="btn count" data-count="50">50</button>
+        <button class="btn count" data-count="100">100</button>
+        <button class="btn count" data-count="full">Full</button>
       </div>
     </div>
 
@@ -46,9 +47,7 @@
     </div>
   </main>
 
-  <!-- Quiz UI -->
   <main id="quiz" class="panel hidden">
-    <!-- We keep this line hidden during the quiz; only final summary shows graded stats -->
     <div id="scoreLine" class="muted hidden">
       First-Try Correct: <span id="ftc">0</span> / <span id="ftt">0</span>
     </div>
@@ -57,7 +56,6 @@
     <div id="qOptions" class="options"></div>
 
     <div class="actions spaced">
-      <!-- Left = Submit. Right = Next. -->
       <button id="submitBtn" class="btn primary">Submit</button>
       <button id="nextBtn" class="btn" disabled>Next</button>
     </div>
