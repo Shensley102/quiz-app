@@ -1,4 +1,3 @@
-// static/script.js
 (() => {
   const landing = document.getElementById("landing");
   const quiz = document.getElementById("quiz");
@@ -16,7 +15,10 @@
   const nextBtn = document.getElementById("nextBtn");
 
   const resultDiv = document.getElementById("result");
-  const scoreLine = document.getElementById("scoreLine"); // we keep it, but hide during quiz
+  const scoreLine = document.getElementById("scoreLine");
+
+  const runCounter = document.getElementById("runCounter");
+  const runCounterNum = document.getElementById("runCounterNum");
 
   // Backend routes (with non-/api fallback)
   const routes = {
@@ -27,13 +29,11 @@
     reset: ["/api/reset_session", "/reset"],
   };
 
-  // ---- little helpers ----
-  function setHidden(el, yes) {
-    el.classList.toggle("hidden", !!yes);
-  }
-
-  function clearOptions() {
-    qOptions.innerHTML = "";
+  // ---- helpers ----
+  function setHidden(el, yes) { el.classList.toggle("hidden", !!yes); }
+  function clearOptions() { qOptions.innerHTML = ""; }
+  function escapeHTML(s="") {
+    return s.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
   }
 
   function renderOptions({ options = [], is_multi = false }) {
@@ -54,41 +54,32 @@
       qOptions.appendChild(label);
       lettersToInputs[letter.toUpperCase()] = input;
     });
+    // focus first option for quick keyboard workflow
+    const first = qOptions.querySelector("input");
+    if (first) first.focus();
   }
 
   function getSelectedLetters() {
-    return Array.from(qOptions.querySelectorAll("input:checked"))
-      .map(i => i.value.toUpperCase());
+    return Array.from(qOptions.querySelectorAll("input:checked")).map(i => i.value.toUpperCase());
   }
 
   // Hide live score during quiz; metrics display only at the end
-  function updateScoreLine() {
-    scoreLine.classList.add("hidden");
-  }
-
-  function escapeHTML(s) {
-    return s.replace(/[&<>"']/g, c => ({
-      "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
-    }[c]));
-  }
+  function updateScoreLine() { scoreLine.classList.add("hidden"); }
 
   function returnToLanding() {
     setHidden(quiz, true);
     setHidden(landing, false);
+    setHidden(runCounter, true);
     resultDiv.innerHTML = "";
     qStem.textContent = "Question…";
     clearOptions();
     updateScoreLine();
   }
 
-  // ---- API helpers (auto-fallback between /api/* and bare paths) ----
+  // ---- API helpers ----
   function apiFetch(url, opts = {}) {
-    return fetch(url, Object.assign(
-      { headers: { "Content-Type": "application/json" }, credentials: "same-origin" },
-      opts
-    ));
+    return fetch(url, Object.assign({ headers: { "Content-Type": "application/json" }, credentials: "same-origin" }, opts));
   }
-
   async function fetchJsonFirst(paths, opts = {}) {
     let lastError = null;
     for (const p of paths) {
@@ -100,34 +91,31 @@
           throw new Error(`${r.status} ${r.statusText} ${txt}`.trim());
         }
         return await r.json();
-      } catch (e) {
-        lastError = e;
-      }
+      } catch (e) { lastError = e; }
     }
     throw lastError || new Error("No endpoint responded");
   }
 
-  // ---- State ----
+  // ---- local state ----
   let chosenCount = 10;
   let currentQ = null;
   let lettersToInputs = {};
   let answered = false;
   let quizDone = false;
   let firstTryScore = { correct: 0, total: 0 };
+  let runCount = 0; // running number independent of graded stats
 
-  // ---- Load module list ----
+  // ---- load modules ----
   async function loadModules() {
     try {
       const items = await fetchJsonFirst(routes.modules);
-      moduleSelect.innerHTML = `<option value="">Choose a module…</option>` + items
-        .map(i => `<option value="${i.id}">${i.id}</option>`)
-        .join("");
-    } catch (e) {
+      moduleSelect.innerHTML = `<option value="">Choose a module…</option>` + items.map(i => `<option value="${i.id}">${i.id}</option>`).join("");
+    } catch {
       moduleSelect.innerHTML = `<option value="">(Could not load modules)</option>`;
     }
   }
 
-  // ---- Start a quiz ----
+  // ---- start quiz ----
   startBtn.addEventListener("click", () => {
     const mod = moduleSelect.value;
     if (!mod) return alert("Select a module first.");
@@ -136,45 +124,44 @@
       method: "POST",
       body: JSON.stringify({ module: mod, count: chosenCount })
     })
-      .then(data => {
-        if (!data || data.ok === false) {
-          alert((data && data.error) || "Could not start quiz");
-          return;
-        }
-        firstTryScore = { correct: 0, total: data.count || 0 };
-        quizDone = false;
-        answered = false;
-        submitBtn.textContent = "Submit";
-        setHidden(landing, true);
-        setHidden(scoreLine, true); // hide live score until end
-        setHidden(quiz, false);
-        loadNext();
-      })
-      .catch(() => alert("Could not start quiz."));
+    .then(data => {
+      if (!data || data.ok === false) {
+        alert((data && data.error) || "Could not start quiz");
+        return;
+      }
+      firstTryScore = { correct: 0, total: data.count || 0 };
+      quizDone = false;
+      answered = false;
+      runCount = 0;
+
+      // show quiz UI
+      setHidden(landing, true);
+      setHidden(scoreLine, true);
+      setHidden(quiz, false);
+      setHidden(runCounter, false);
+      runCounterNum.textContent = "1";
+
+      // button states: Submit enabled, Next disabled
+      submitBtn.disabled = false;
+      nextBtn.disabled = true;
+
+      loadNext();
+    })
+    .catch(() => alert("Could not start quiz."));
   });
 
-  // ---- New quiz (button in header) ----
-  newQuizBtn.addEventListener("click", () => {
+  // header buttons
+  newQuizBtn.addEventListener("click", () => returnToLanding());
+  resetBtn.addEventListener("click", async () => {
+    try { await fetchJsonFirst(routes.reset, { method: "POST" }); } catch {}
     returnToLanding();
   });
 
-  // ---- Reset (hard reset for cookie state) ----
-  if (resetBtn) {
-    resetBtn.addEventListener("click", async () => {
-      try {
-        await fetchJsonFirst(routes.reset, { method: "POST" });
-        returnToLanding();
-      } catch (e) {
-        // ignore
-      }
-    });
-  }
-
-  // ---- Next / loadNext ----
+  // ---- load next ----
   async function loadNext() {
     resultDiv.innerHTML = "";
-    submitBtn.disabled = false;
-    nextBtn.disabled = true;
+    submitBtn.disabled = false;       // Submit is active when awaiting an answer
+    nextBtn.disabled = true;          // Next is disabled until feedback shown
     answered = false;
 
     fetchJsonFirst(routes.next)
@@ -183,25 +170,36 @@
           quizDone = true;
           qStem.textContent = "All questions mastered!";
           clearOptions();
+          setHidden(runCounter, true);
 
-          // Show final summary only (no live scoreboard)
           const pct = (data.first_try_total ? Math.round((100 * (data.first_try_correct || 0)) / data.first_try_total) : 0);
           resultDiv.innerHTML = `
             <div class="summary">
               <div>First-Try Accuracy: <b>${pct}%</b> (${data.first_try_correct || 0} / ${data.first_try_total || 0})</div>
               <div>Total answers submitted: ${data.submissions || 0}</div>
             </div>`;
-          submitBtn.disabled = false;
+
+          // end state: let left button restart; keep right disabled
           submitBtn.textContent = "Start New Quiz";
+          submitBtn.disabled = false;
           nextBtn.disabled = true;
           currentQ = null;
+
+          // Enter will call submit (which returns to landing)
           return;
         }
 
+        // normal question
         currentQ = data;
         qStem.textContent = data.stem || "Question";
-        // Server sets is_multi true ONLY when the stem has the exact literal
         renderOptions(data);
+
+        // update running counter (prefer server 'served' if provided)
+        runCount = Number.isFinite(data.served) ? data.served : (runCount + 1);
+        runCounterNum.textContent = String(runCount);
+
+        // ensure left says "Submit" during an active quiz
+        submitBtn.textContent = "Submit";
       })
       .catch(e => {
         alert("Could not load next question");
@@ -209,14 +207,13 @@
       });
   }
 
-  // ---- Submit ----
+  // ---- submit ----
   submitBtn.addEventListener("click", async () => {
-    if (quizDone) {
+    if (quizDone) { // on final screen, left button restarts
       returnToLanding();
       return;
     }
-    if (answered) {
-      loadNext();
+    if (answered) { // safety: if already answered, ignore submit (Next handles advance)
       return;
     }
 
@@ -234,10 +231,8 @@
 
       if (typeof data.first_try_correct === "number") {
         firstTryScore.correct = data.first_try_correct;
-        if (typeof data.first_try_total === "number") {
-          firstTryScore.total = data.first_try_total;
-        }
-        updateScoreLine(); // remains hidden during quiz
+        if (typeof data.first_try_total === "number") firstTryScore.total = data.first_try_total;
+        updateScoreLine(); // still hidden until the end
       }
 
       const tag = data.ok
@@ -248,19 +243,40 @@
       resultDiv.innerHTML = `<div>${tag}</div>${rationale}`;
 
       answered = true;
-      submitBtn.textContent = "Next";
+
+      // after feedback: disable Submit, enable Next
+      submitBtn.disabled = true;
       nextBtn.disabled = false;
-      // do not load next automatically; user can review rationale first
+      nextBtn.focus();
     } catch (e) {
       alert("Could not submit answer");
       console.error(e);
     }
   });
 
-  // ---- Keyboard shortcuts ----
+  // ---- next ----
+  nextBtn.addEventListener("click", () => {
+    if (quizDone) return;
+    loadNext();
+  });
+
+  // ---- keyboard: Enter submits; after feedback, Enter = Next ----
   document.addEventListener("keydown", (ev) => {
     const key = ev.key;
-    // Toggle selection A–H
+    if (key === "Enter") {
+      if (!landing.classList.contains("hidden")) {
+        ev.preventDefault();
+        startBtn.click();
+        return;
+      }
+      if (!quiz.classList.contains("hidden")) {
+        ev.preventDefault();
+        if (!answered && !submitBtn.disabled) submitBtn.click();
+        else if (!nextBtn.disabled) nextBtn.click();
+      }
+    }
+
+    // Quick toggle A–H
     if (/^[a-h]$/i.test(key) && !quiz.classList.contains("hidden")) {
       const letter = key.toUpperCase();
       const input = (lettersToInputs && lettersToInputs[letter]) || null;
@@ -268,24 +284,10 @@
         ev.preventDefault();
         input.checked = !input.checked;
       }
-      return;
-    }
-
-    // Enter submits / next
-    if (key === "Enter" && !landing.classList.contains("hidden")) {
-      ev.preventDefault();
-      startBtn.click();
-      return;
-    }
-    if (key === "Enter" && !quiz.classList.contains("hidden")) {
-      ev.preventDefault();
-      if (quizDone) submitBtn.click();
-      else if (!answered) submitBtn.click();
-      else nextBtn.click();
     }
   });
 
-  // ---- Count chooser ----
+  // ---- count buttons ----
   countBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       countBtns.forEach(b => b.classList.remove("active"));
@@ -295,6 +297,6 @@
     });
   });
 
-  // ---- Init ----
+  // init
   loadModules();
 })();
