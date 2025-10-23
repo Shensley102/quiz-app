@@ -1,8 +1,7 @@
 import os
 import json
-import random
 import re
-import secrets
+import random
 from typing import Dict, List, Any, Optional
 
 from flask import Flask, jsonify, request, render_template, session
@@ -223,49 +222,6 @@ def _by_id_for(module_id: str) -> Dict[str, Dict[str, Any]]:
     return {q["id"]: q for q in questions}
 
 
-def _rotation_state(module_id: str, n_items: int) -> Dict[str, int]:
-    """
-    Maintain a tiny per-module rotation (seed + pointer) in the cookie-backed session.
-    This lets us hand out different questions on every new quiz without storing large lists.
-    """
-    rot = session.setdefault("rot", {})
-    rs = rot.get(module_id)
-    if not isinstance(rs, dict) or "seed" not in rs or "pos" not in rs:
-        rs = {"seed": secrets.randbits(64), "pos": 0}
-    # keep pointer within bounds if the bank size changed
-    rs["pos"] = int(rs.get("pos", 0)) % max(n_items, 1)
-    rot[module_id] = rs
-    session["rot"] = rot
-    session.modified = True
-    return rs
-
-
-def _next_block(qids: List[str], rs: Dict[str, int], count: int) -> List[str]:
-    """
-    Given the full list of qids, a rotation state, and a requested count,
-    return the next 'count' qids in the deterministic shuffled order
-    (wrapping around as needed), and advance the pointer.
-    """
-    n = len(qids)
-    if n == 0:
-        return []
-
-    # Deterministically shuffle using the per-module seed
-    order = list(qids)
-    rng = random.Random(rs["seed"])
-    rng.shuffle(order)
-
-    # Take a contiguous block starting at pos, wrapping around
-    start = rs["pos"]
-    block = [order[(start + i) % n] for i in range(min(count, n))]
-
-    # Advance pointer for next quiz
-    rs["pos"] = (start + len(block)) % n
-    session["rot"][request.json.get("module")] = rs  # update back
-    session.modified = True
-    return block
-
-
 # ---------------------------------------------------------------------
 # Routes
 # ---------------------------------------------------------------------
@@ -285,6 +241,11 @@ def api_modules():
 @app.post("/api/start")
 @app.post("/start")
 def api_start():
+    """
+    Start a quiz:
+      - choose a fresh random subset every time (no history kept)
+      - supports 'full'/'all' to take the whole bank
+    """
     data = request.get_json(force=True) or {}
     module_id = data.get("module")
     if not module_id:
@@ -297,42 +258,34 @@ def api_start():
     if not questions:
         return jsonify({"ok": False, "error": "No questions in module"}), 400
 
-    q_by_id = {q["id"]: q for q in questions}
-    all_qids = list(q_by_id.keys())
-    n = len(all_qids)
-
-    # Handle "full"/"all" or numeric counts (10/25/50/100/…)
+    # Resolve requested length (supports "full"/"all")
     raw_count = data.get("count", 10)
     if isinstance(raw_count, str) and raw_count.lower() in {"full", "all", "max"}:
-        count = n
+        count = len(questions)
     else:
         try:
             count = int(raw_count)
         except Exception:
             count = 10
-        if count <= 0:
-            count = 10
-        if count > n:
-            count = n
+        count = max(1, min(count, len(questions)))
 
-    # --- NEW: rotation-based selection to avoid repeats across runs ---
-    rs = _rotation_state(module_id, n)
-    sample_ids = _next_block(all_qids, rs, count)
-    sample = [q_by_id[qid] for qid in sample_ids]
+    # Fresh random subset on every new quiz start (no prior-state logic)
+    rng = random.SystemRandom()
+    sample = rng.sample(questions, k=count)
 
-    # Keep session tiny (cookie-backed): store only IDs + counters.
+    # Store only IDs + counters in the cookie-backed session
     _reset_state()
     st = {
         "module": module_id,
-        "initial_qids": sample_ids,
-        "queue": list(sample_ids),            # main queue (initial round)
-        "incorrect_queue": [],                # questions to revisit
-        "first_try_total": len(sample_ids),   # denominator for first-try accuracy
+        "initial_qids": [q["id"] for q in sample],
+        "queue": [q["id"] for q in sample],
+        "incorrect_queue": [],
+        "first_try_total": len(sample),
         "first_try_correct": 0,
-        "first_try_attempted": {},            # qid -> True when first answered
-        "served": 0,                          # times a card was served
-        "submissions": 0,                     # total answers submitted
-        "current": None,                      # qid currently displayed
+        "first_try_attempted": {},
+        "served": 0,
+        "submissions": 0,
+        "current": None,
     }
     session["quiz_state"] = st
     session.modified = True
