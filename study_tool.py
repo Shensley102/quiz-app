@@ -53,7 +53,7 @@ def _load_module(mod_name: str) -> Any:
 def _is_select_all(stem: str) -> bool:
     """
     Multi-select is TRUE only if the stem contains the EXACT substring:
-    '(Select all that apply.)' (case-sensitive).
+    '(Select all that apply.)' (case-sensitive, punctuation-sensitive).
     """
     if not stem:
         return False
@@ -62,8 +62,11 @@ def _is_select_all(stem: str) -> bool:
 
 def _normalize_options(options: Any) -> List[Dict[str, str]]:
     """
-    Normalize options to [{letter:'A', text:'...'}].
-    Accepts list[str], list[dict], or dict like {'A': '...', 'B': '...'}.
+    Normalize options to a list of {'letter': 'A', 'text': '...'}.
+    Accepts:
+      - list[str]
+      - list[dict] with various keys
+      - dict like {'A': '...', 'B': '...'}
     """
     norm: List[Dict[str, str]] = []
     if isinstance(options, dict):
@@ -96,10 +99,11 @@ def _normalize_options(options: Any) -> List[Dict[str, str]]:
 
 def _extract_correct_letters(q: Dict[str, Any], options: List[Dict[str, str]]) -> List[str]:
     """
-    Pull correct answers as letters from various shapes:
-      - per-option flags (correct/is_correct/right)
-      - 'correct'/'answer'/'key'/'answers_key'/'correct_answers' on the question
-        as str ('B' or 'B,D' or '1,3'), number (index), or list.
+    Pull the correct answers in LETTER form from a variety of shapes.
+    Supports:
+      - per-option flags like {'text': '...', 'correct': true}
+      - fields like 'correct', 'answer', 'key', 'answers_key', 'correct_answers'
+        that may be a string ('B' or 'B,D' or '1,3'), a number (index), or a list.
     """
     correct = set()
 
@@ -262,14 +266,14 @@ def api_start():
     st = {
         "module": module_id,
         "initial_qids": [q["id"] for q in sample],
-        "queue": [q["id"]for q in sample],   # main queue (initial round)
-        "incorrect_queue": [],               # questions to revisit
-        "first_try_total": len(sample),      # denominator for first-try accuracy
+        "queue": [q["id"] for q in sample],   # main queue (initial round)
+        "incorrect_queue": [],                # questions to revisit
+        "first_try_total": len(sample),       # denominator for first-try accuracy
         "first_try_correct": 0,
-        "first_try_attempted": {},           # qid -> True when first answered
-        "served": 0,                         # times a card was served (FYI)
-        "submissions": 0,                    # total answers submitted (what we show at end)
-        "current": None,                     # qid currently displayed
+        "first_try_attempted": {},            # qid -> True when first answered
+        "served": 0,                          # times a card was served
+        "submissions": 0,                     # total answers submitted
+        "current": None,                      # qid currently displayed
     }
     session["quiz_state"] = st
     session.modified = True
@@ -283,13 +287,11 @@ def api_next():
     if not st or not st.get("module"):
         return jsonify({"ok": False, "error": "No active quiz"}), 400
 
-    # If main queue is empty, recycle the incorrects (mastery loop)
     if not st["queue"]:
         if st["incorrect_queue"]:
             st["queue"] = st["incorrect_queue"]
             st["incorrect_queue"] = []
         else:
-            # Finished — return summary only
             first = int(st.get("first_try_correct", 0))
             total = int(st.get("first_try_total", 0))
             pct = int(round((100 * first / total), 0)) if total else 0
@@ -313,12 +315,14 @@ def api_next():
     if not q:
         return jsonify({"ok": False, "error": "Question not found"}), 500
 
+    # include served so the UI can show a running counter
     return jsonify(
         {
             "qid": qid,
             "stem": q["stem"],
             "options": q["options"],
             "is_multi": bool(q.get("is_multi")),
+            "served": st["served"],  # <-- running count for the current quiz session
         }
     )
 
@@ -362,7 +366,7 @@ def api_answer():
             "ok": ok,
             "correct": sorted(list(correct)),
             "rationale": q.get("rationale") or "",
-            # We still return these, but the UI hides them during the quiz.
+            # returned but hidden during quiz; only final summary shows stats
             "first_try_correct": st.get("first_try_correct", 0),
             "first_try_total": st.get("first_try_total", 0),
         }
