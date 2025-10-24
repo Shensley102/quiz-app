@@ -61,10 +61,7 @@ def _is_select_all(stem: str) -> bool:
 def _normalize_options(options: Any) -> List[Dict[str, str]]:
     """
     Normalize options to a list of {'letter': 'A', 'text': '...'}.
-    Accepts:
-      - list[str]
-      - list[dict] with various keys
-      - dict like {'A': '...', 'B': '...'}
+    Accepts list[str], list[dict], or dict{'A':'...'}.
     """
     norm: List[Dict[str, str]] = []
     if isinstance(options, dict):
@@ -97,11 +94,7 @@ def _normalize_options(options: Any) -> List[Dict[str, str]]:
 
 def _extract_correct_letters(q: Dict[str, Any], options: List[Dict[str, str]]) -> List[str]:
     """
-    Pull the correct answers in LETTER form from a variety of shapes.
-    Supports:
-      - per-option flags like {'text': '...', 'correct': true}
-      - fields like 'correct', 'answer', 'key', 'answers_key', 'correct_answers'
-        that may be a string ('B' or 'B,D' or '1,3'), a number (index), or a list.
+    Pull correct answers in LETTER form from various shapes.
     """
     correct = set()
 
@@ -148,7 +141,6 @@ def _extract_correct_letters(q: Dict[str, Any], options: List[Dict[str, str]]) -
                     for m in re.findall(r"[A-H]", part):
                         correct.add(m)
 
-    # As a last resort, assume A (prevents crashes on malformed rows)
     if not correct and options:
         correct.add("A")
 
@@ -157,15 +149,7 @@ def _extract_correct_letters(q: Dict[str, Any], options: List[Dict[str, str]]) -
 
 def _coerce_questions(raw: Any) -> List[Dict[str, Any]]:
     """
-    Normalize the bank to:
-      {
-        id: str,
-        stem: str,
-        options: [{letter, text}],
-        correct: ["B"] or ["A","D"],
-        rationale: str,
-        is_multi: bool   # ONLY True if stem has exact '(Select all that apply.)'
-      }
+    Normalize the bank to consistent objects.
     """
     if isinstance(raw, dict) and "questions" in raw:
         qlist = raw["questions"]
@@ -185,7 +169,7 @@ def _coerce_questions(raw: Any) -> List[Dict[str, Any]]:
         # STRICT multi-select rule
         is_multi = _is_select_all(stem)
 
-        # If not a select-all but multiple answers are listed, force single-select
+        # If not a select-all but multiple answers listed, force single-select
         if not is_multi and len(correct_letters) > 1:
             correct_letters = [sorted(correct_letters)[0]]
 
@@ -257,7 +241,6 @@ def api_start():
     if not questions:
         return jsonify({"ok": False, "error": "No questions in module"}), 400
 
-    # Resolve requested length (supports "full"/"all")
     raw_count = data.get("count", 10)
     if isinstance(raw_count, str) and raw_count.lower() in {"full", "all", "max"}:
         count = len(questions)
@@ -268,15 +251,13 @@ def api_start():
             count = 10
         count = max(1, min(count, len(questions)))
 
-    # Fresh random subset on every new quiz start
     rng = random.SystemRandom()
     sample = rng.sample(questions, k=count)
 
-    # Store only IDs + counters in the cookie-backed session
     _reset_state()
     st = {
         "module": module_id,
-        "initial_qids": [q["id"] for q in sample],
+        "initial_qids": [q["id"] for q in sample],   # order for final review
         "queue": [q["id"] for q in sample],
         "incorrect_queue": [],
         "first_try_total": len(sample),
@@ -285,12 +266,10 @@ def api_start():
         "served": 0,
         "submissions": 0,
         "current": None,
-        # NEW: track which unique items have been answered correctly at least once
-        "mastered": [],  # list of qids
+        "mastered": [],  # qids answered correctly at least once
     }
     session["quiz_state"] = st
     session.modified = True
-    # include initial remaining (everything still to master)
     remaining = st["first_try_total"] - len(st["mastered"])
     return jsonify({"ok": True, "count": st["first_try_total"], "remaining": remaining})
 
@@ -307,9 +286,27 @@ def api_next():
             st["queue"] = st["incorrect_queue"]
             st["incorrect_queue"] = []
         else:
+            # DONE: build end-of-quiz summary + full review payload
             first = int(st.get("first_try_correct", 0))
             total = int(st.get("first_try_total", 0))
             pct = int(round((100 * first / total), 0)) if total else 0
+
+            by_id = _by_id_for(st["module"])
+            review = []
+            for i, qid in enumerate(st.get("initial_qids", []), start=1):
+                q = by_id.get(qid)
+                if not q:
+                    continue
+                review.append({
+                    "index": i,
+                    "qid": qid,
+                    "stem": q["stem"],
+                    "options": q["options"],       # [{letter,text}]
+                    "correct": q["correct"],       # ["B"] or ["A","C"]
+                    "rationale": q.get("rationale") or "",
+                    "is_multi": bool(q.get("is_multi")),
+                })
+
             return jsonify(
                 {
                     "done": True,
@@ -318,6 +315,7 @@ def api_next():
                     "first_try_pct": pct,
                     "submissions": int(st.get("submissions", 0)),
                     "remaining": 0,
+                    "review": review,   # <<< full review content
                 }
             )
 
@@ -332,8 +330,6 @@ def api_next():
         return jsonify({"ok": False, "error": "Question not found"}), 500
 
     remaining = int(st.get("first_try_total", 0)) - len(st.get("mastered", []))
-
-    # include served + remaining so the UI can show both counters
     return jsonify(
         {
             "qid": qid,
@@ -362,25 +358,21 @@ def api_answer():
     if not q:
         return jsonify({"ok": False, "error": "Question not found"}), 400
 
-    # Count this submission
     st["submissions"] = int(st.get("submissions", 0)) + 1
 
     correct = set(q["correct"])
     ok = selected == correct
 
-    # First-try bookkeeping
     first_try_attempted = st.setdefault("first_try_attempted", {})
     if qid not in first_try_attempted:
         first_try_attempted[qid] = True
         if ok:
             st["first_try_correct"] = int(st.get("first_try_correct", 0)) + 1
 
-    # Mastery bookkeeping (NEW): mark as mastered the first time it's answered correctly
     mastered: List[str] = st.setdefault("mastered", [])
     if ok and qid not in mastered:
         mastered.append(qid)
 
-    # If incorrect, queue for another round
     if not ok:
         st["incorrect_queue"].append(qid)
 
@@ -393,7 +385,7 @@ def api_answer():
             "rationale": q.get("rationale") or "",
             "first_try_correct": st.get("first_try_correct", 0),
             "first_try_total": st.get("first_try_total", 0),
-            "remaining": remaining,  # NEW
+            "remaining": remaining,
         }
     )
 
