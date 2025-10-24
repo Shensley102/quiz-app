@@ -2,7 +2,6 @@ import os
 import json
 import re
 import random
-import hashlib
 from typing import Dict, List, Any, Optional
 
 from flask import Flask, jsonify, request, render_template, session
@@ -186,8 +185,7 @@ def _coerce_questions(raw: Any) -> List[Dict[str, Any]]:
         # STRICT multi-select rule
         is_multi = _is_select_all(stem)
 
-        # If the stem is NOT a select-all, but multiple answers are listed,
-        # force SINGLE-SELECT by keeping just the first letter alphabetically.
+        # If not a select-all but multiple answers are listed, force single-select
         if not is_multi and len(correct_letters) > 1:
             correct_letters = [sorted(correct_letters)[0]]
 
@@ -223,12 +221,6 @@ def _by_id_for(module_id: str) -> Dict[str, Dict[str, Any]]:
     return {q["id"]: q for q in questions}
 
 
-def _sample_signature(qids: List[str]) -> str:
-    """Stable small signature for a set of qids (order-insensitive)."""
-    joined = "|".join(sorted(qids))
-    return hashlib.sha1(joined.encode("utf-8")).hexdigest()
-
-
 # ---------------------------------------------------------------------
 # Routes
 # ---------------------------------------------------------------------
@@ -250,8 +242,7 @@ def api_modules():
 def api_start():
     """
     Start a quiz:
-      - choose a fresh random subset every time
-      - avoid serving the *identical* set as the previous run (for the same module+length)
+      - choose a fresh random subset every time (no history kept)
       - supports 'full'/'all' to take the whole bank
     """
     data = request.get_json(force=True) or {}
@@ -279,45 +270,29 @@ def api_start():
 
     # Fresh random subset on every new quiz start
     rng = random.SystemRandom()
-
-    qids_all = [q["id"] for q in questions]
-    id_to_q = {q["id"]: q for q in questions}
-
-    # Try to avoid *identical* repeat of the last set for this module & length.
-    # We store only a tiny signature (hash) per module+count in the session cookie.
-    last_sigs = session.get("last_sigs", {})  # { module_id: { str(count): sig } }
-    prev_sig = last_sigs.get(module_id, {}).get(str(count))
-
-    attempts = 0
-    max_attempts = 6 if count < len(qids_all) else 1  # if count==n, identical set is unavoidable
-    sample_ids = []
-    while attempts < max_attempts:
-        sample_ids = rng.sample(qids_all, k=count)
-        sig = _sample_signature(sample_ids)
-        if sig != prev_sig:
-            break
-        attempts += 1
-    # Persist the new signature
-    last_sigs.setdefault(module_id, {})[str(count)] = _sample_signature(sample_ids)
-    session["last_sigs"] = last_sigs
+    sample = rng.sample(questions, k=count)
 
     # Store only IDs + counters in the cookie-backed session
     _reset_state()
     st = {
         "module": module_id,
-        "initial_qids": list(sample_ids),
-        "queue": list(sample_ids),
+        "initial_qids": [q["id"] for q in sample],
+        "queue": [q["id"] for q in sample],
         "incorrect_queue": [],
-        "first_try_total": len(sample_ids),
+        "first_try_total": len(sample),
         "first_try_correct": 0,
         "first_try_attempted": {},
         "served": 0,
         "submissions": 0,
         "current": None,
+        # NEW: track which unique items have been answered correctly at least once
+        "mastered": [],  # list of qids
     }
     session["quiz_state"] = st
     session.modified = True
-    return jsonify({"ok": True, "count": st["first_try_total"]})
+    # include initial remaining (everything still to master)
+    remaining = st["first_try_total"] - len(st["mastered"])
+    return jsonify({"ok": True, "count": st["first_try_total"], "remaining": remaining})
 
 
 @app.get("/api/next")
@@ -342,6 +317,7 @@ def api_next():
                     "first_try_total": total,
                     "first_try_pct": pct,
                     "submissions": int(st.get("submissions", 0)),
+                    "remaining": 0,
                 }
             )
 
@@ -355,7 +331,9 @@ def api_next():
     if not q:
         return jsonify({"ok": False, "error": "Question not found"}), 500
 
-    # include served so the UI can show a running counter
+    remaining = int(st.get("first_try_total", 0)) - len(st.get("mastered", []))
+
+    # include served + remaining so the UI can show both counters
     return jsonify(
         {
             "qid": qid,
@@ -363,6 +341,7 @@ def api_next():
             "options": q["options"],
             "is_multi": bool(q.get("is_multi")),
             "served": st["served"],
+            "remaining": remaining,
         }
     )
 
@@ -396,19 +375,25 @@ def api_answer():
         if ok:
             st["first_try_correct"] = int(st.get("first_try_correct", 0)) + 1
 
+    # Mastery bookkeeping (NEW): mark as mastered the first time it's answered correctly
+    mastered: List[str] = st.setdefault("mastered", [])
+    if ok and qid not in mastered:
+        mastered.append(qid)
+
     # If incorrect, queue for another round
     if not ok:
         st["incorrect_queue"].append(qid)
 
     session.modified = True
+    remaining = int(st.get("first_try_total", 0)) - len(st.get("mastered", []))
     return jsonify(
         {
             "ok": ok,
             "correct": sorted(list(correct)),
             "rationale": q.get("rationale") or "",
-            # returned but hidden during quiz; only final summary shows stats
             "first_try_correct": st.get("first_try_correct", 0),
             "first_try_total": st.get("first_try_total", 0),
+            "remaining": remaining,  # NEW
         }
     )
 
