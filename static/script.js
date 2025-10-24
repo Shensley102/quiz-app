@@ -226,20 +226,17 @@
               <div>Total answers submitted: ${data.submissions || 0}</div>
             </div>`;
 
-          // Hide counters and render full review list
           setHidden(runCounter, true);
           setHidden(remainingCounter, true);
 
           renderReview(data.review || []);
           setHidden(review, false);
 
-          // Buttons state
           submitBtn.textContent = "Start New Quiz";
           submitBtn.disabled = false;
           nextBtn.disabled = true;
           currentQ = null;
 
-          // Scroll to the start of review
           review.scrollIntoView({ behavior: "smooth", block: "start" });
           return;
         }
@@ -285,9 +282,10 @@
 
       if (typeof data.remaining === "number") setRemaining(data.remaining);
 
+      const correctText = (data.correct || []).join(", ");
       const tag = data.ok
-        ? `<span class="ok">Correct!</span>`
-        : `<span class="bad">Incorrect.</span> <span class="muted">Correct: ${data.correct.join(", ")}</span>`;
+        ? `<span class="ok">Correct!</span> <span class="muted">Correct: ${correctText}</span>`
+        : `<span class="bad">Incorrect.</span> <span class="muted">Correct: ${correctText}</span>`;
       const rationale = data.rationale
         ? `<div class="rationale"><b>Rationale:</b> ${escapeHTML(data.rationale)}</div>`
         : "";
