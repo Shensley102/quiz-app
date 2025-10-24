@@ -21,9 +21,10 @@
   const runCounter = document.getElementById("runCounter");
   const runCounterNum = document.getElementById("runCounterNum");
 
-  // NEW: Remaining counter
   const remainingCounter = document.getElementById("remainingCounter");
   const remainingNum = document.getElementById("remainingNum");
+
+  const review = document.getElementById("review");
 
   const routes = {
     modules: ["/api/modules", "/modules"],
@@ -37,13 +38,16 @@
   function setHidden(el, yes) { el.classList.toggle("hidden", !!yes); }
   function clearOptions() { qOptions.innerHTML = ""; }
   function escapeHTML(s="") {
-    return s.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;","\">":"&quot;","'":"&#39;" }[c]));
+    return String(s).replace(/[&<>"']/g, c => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+    }[c]));
   }
   function headerHeight() { return header ? header.offsetHeight : 0; }
   function scrollToQuestion() {
     const y = qStem.getBoundingClientRect().top + window.scrollY - headerHeight() - 8;
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
   }
+  function setRemaining(n) { remainingNum.textContent = String(Math.max(0, Number(n || 0))); }
 
   function renderOptions({ options = [], is_multi = false }) {
     clearOptions();
@@ -65,15 +69,41 @@
     });
   }
 
-  function getSelectedLetters() {
-    return Array.from(qOptions.querySelectorAll("input:checked")).map(i => i.value.toUpperCase());
+  function renderReview(items = []) {
+    if (!Array.isArray(items) || !items.length) {
+      review.innerHTML = `<div class="summary">No review content.</div>`;
+      return;
+    }
+
+    const parts = [];
+    for (const item of items) {
+      const correctSet = new Set((item.correct || []).map(x => String(x).toUpperCase()));
+      const opts = (item.options || []).map(o => {
+        const isCorrect = correctSet.has(String(o.letter).toUpperCase());
+        return `
+          <div class="rev-opt ${isCorrect ? "correct" : ""}">
+            <span class="letter">${escapeHTML(o.letter)}.</span>
+            <span class="text">${escapeHTML(o.text || "")}</span>
+          </div>
+        `;
+      }).join("");
+
+      parts.push(`
+        <article class="rev-item">
+          <div class="rev-title">Question ${item.index}</div>
+          <div class="rev-stem">${escapeHTML(item.stem || "")}</div>
+          <div class="rev-options">${opts}</div>
+          ${item.rationale
+            ? `<div class="rev-rat"><b>Rationale:</b> ${escapeHTML(item.rationale)}</div>`
+            : ``}
+        </article>
+      `);
+    }
+
+    review.innerHTML = parts.join("");
   }
 
   function updateScoreLine() { scoreLine.classList.add("hidden"); }
-
-  function setRemaining(n) {
-    remainingNum.textContent = String(Math.max(0, Number(n || 0)));
-  }
 
   function returnToLanding() {
     setHidden(quiz, true);
@@ -83,6 +113,8 @@
     resultDiv.innerHTML = "";
     qStem.textContent = "Question…";
     clearOptions();
+    review.innerHTML = "";
+    setHidden(review, true);
     updateScoreLine();
     window.scrollTo({ top: 0, behavior: "auto" });
   }
@@ -151,6 +183,8 @@
       setHidden(quiz, false);
       setHidden(runCounter, false);
       setHidden(remainingCounter, false);
+      setHidden(review, true);
+      review.innerHTML = "";
 
       runCounterNum.textContent = "1";
       setRemaining(data.remaining != null ? data.remaining : firstTryScore.total);
@@ -181,11 +215,8 @@
       .then(data => {
         if (data.done) {
           quizDone = true;
-          qStem.textContent = "All questions mastered!";
-          qOptions.innerHTML = "";
-          setHidden(runCounter, true);
-          setHidden(remainingCounter, true);
 
+          // Final stats
           const pct = (data.first_try_total
             ? Math.round((100 * (data.first_try_correct || 0)) / data.first_try_total)
             : 0);
@@ -195,11 +226,21 @@
               <div>Total answers submitted: ${data.submissions || 0}</div>
             </div>`;
 
+          // Hide counters and render full review list
+          setHidden(runCounter, true);
+          setHidden(remainingCounter, true);
+
+          renderReview(data.review || []);
+          setHidden(review, false);
+
+          // Buttons state
           submitBtn.textContent = "Start New Quiz";
           submitBtn.disabled = false;
           nextBtn.disabled = true;
           currentQ = null;
-          window.scrollTo({ top: 0, behavior: "smooth" });
+
+          // Scroll to the start of review
+          review.scrollIntoView({ behavior: "smooth", block: "start" });
           return;
         }
 
@@ -210,11 +251,11 @@
         runCount = Number.isFinite(data.served) ? data.served : (runCount + 1);
         runCounterNum.textContent = String(runCount);
 
-        // NEW: update remaining from server
         if (typeof data.remaining === "number") setRemaining(data.remaining);
 
         submitBtn.textContent = "Submit";
-        scrollToQuestion();
+        const y = qStem.getBoundingClientRect().top + window.scrollY - headerHeight() - 8;
+        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
       })
       .catch(e => {
         alert("Could not load next question");
@@ -227,7 +268,7 @@
     if (quizDone) { returnToLanding(); return; }
     if (answered) return;
 
-    const selected = getSelectedLetters();
+    const selected = Array.from(qOptions.querySelectorAll("input:checked")).map(i => i.value.toUpperCase());
     if (!selected.length) { alert("Choose an answer first."); return; }
 
     try {
@@ -242,7 +283,6 @@
         updateScoreLine();
       }
 
-      // NEW: update remaining after each submission
       if (typeof data.remaining === "number") setRemaining(data.remaining);
 
       const tag = data.ok
@@ -303,6 +343,11 @@
   });
 
   window.addEventListener("orientationchange", () => {
-    setTimeout(scrollToQuestion, 350);
+    setTimeout(() => {
+      if (!quiz.classList.contains("hidden")) {
+        const y = qStem.getBoundingClientRect().top + window.scrollY - headerHeight() - 8;
+        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+      }
+    }, 350);
   });
 })();
