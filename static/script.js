@@ -1,4 +1,5 @@
 (() => {
+  const header = document.querySelector(".app-header");
   const landing = document.getElementById("landing");
   const quiz = document.getElementById("quiz");
 
@@ -28,10 +29,18 @@
     reset: ["/api/reset_session", "/reset"],
   };
 
+  // helpers
   function setHidden(el, yes) { el.classList.toggle("hidden", !!yes); }
   function clearOptions() { qOptions.innerHTML = ""; }
   function escapeHTML(s="") {
     return s.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
+  }
+  function headerHeight() {
+    return header ? header.offsetHeight : 0;
+  }
+  function scrollToQuestion() {
+    const y = qStem.getBoundingClientRect().top + window.scrollY - headerHeight() - 8;
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
   }
 
   function renderOptions({ options = [], is_multi = false }) {
@@ -52,8 +61,7 @@
       qOptions.appendChild(label);
       lettersToInputs[letter.toUpperCase()] = input;
     });
-    const first = qOptions.querySelector("input");
-    if (first) first.focus();
+    // On mobile, don't force focus (prevents unwanted scroll/zoom)
   }
 
   function getSelectedLetters() {
@@ -70,16 +78,17 @@
     qStem.textContent = "Question…";
     clearOptions();
     updateScoreLine();
+    window.scrollTo({ top: 0, behavior: "auto" });
   }
 
-  function apiFetch(url, opts = {}) {
-    return fetch(url, Object.assign({ headers: { "Content-Type": "application/json" }, credentials: "same-origin" }, opts));
-  }
   async function fetchJsonFirst(paths, opts = {}) {
     let lastError = null;
     for (const p of paths) {
       try {
-        const r = await apiFetch(p, opts);
+        const r = await fetch(p, Object.assign(
+          { headers: { "Content-Type": "application/json" }, credentials: "same-origin" },
+          opts
+        ));
         if (r.status === 404) continue;
         if (!r.ok) {
           const txt = await r.text().catch(() => "");
@@ -91,7 +100,8 @@
     throw lastError || new Error("No endpoint responded");
   }
 
-  let chosenCount = "10"; // can be "10","25","50","100","full"
+  // local state
+  let chosenCount = "10"; // "10","25","50","100","full"
   let currentQ = null;
   let lettersToInputs = {};
   let answered = false;
@@ -99,15 +109,19 @@
   let firstTryScore = { correct: 0, total: 0 };
   let runCount = 0;
 
-  async function loadModules() {
+  // load modules
+  (async function loadModules() {
     try {
       const items = await fetchJsonFirst(routes.modules);
-      moduleSelect.innerHTML = `<option value="">Choose a module…</option>` + items.map(i => `<option value="${i.id}">${i.id}</option>`).join("");
+      moduleSelect.innerHTML =
+        `<option value="">Choose a module…</option>` +
+        items.map(i => `<option value="${i.id}">${i.id}</option>`).join("");
     } catch {
       moduleSelect.innerHTML = `<option value="">(Could not load modules)</option>`;
     }
-  }
+  })();
 
+  // start quiz
   startBtn.addEventListener("click", () => {
     const mod = moduleSelect.value;
     if (!mod) return alert("Select a module first.");
@@ -140,12 +154,14 @@
     .catch(() => alert("Could not start quiz."));
   });
 
+  // header buttons
   newQuizBtn.addEventListener("click", () => returnToLanding());
   resetBtn.addEventListener("click", async () => {
     try { await fetchJsonFirst(routes.reset, { method: "POST" }); } catch {}
     returnToLanding();
   });
 
+  // next question
   async function loadNext() {
     resultDiv.innerHTML = "";
     submitBtn.disabled = false;
@@ -157,10 +173,12 @@
         if (data.done) {
           quizDone = true;
           qStem.textContent = "All questions mastered!";
-          clearOptions();
+          qOptions.innerHTML = "";
           setHidden(runCounter, true);
 
-          const pct = (data.first_try_total ? Math.round((100 * (data.first_try_correct || 0)) / data.first_try_total) : 0);
+          const pct = (data.first_try_total
+            ? Math.round((100 * (data.first_try_correct || 0)) / data.first_try_total)
+            : 0);
           resultDiv.innerHTML = `
             <div class="summary">
               <div>First-Try Accuracy: <b>${pct}%</b> (${data.first_try_correct || 0} / ${data.first_try_total || 0})</div>
@@ -171,6 +189,7 @@
           submitBtn.disabled = false;
           nextBtn.disabled = true;
           currentQ = null;
+          window.scrollTo({ top: 0, behavior: "smooth" });
           return;
         }
 
@@ -182,6 +201,9 @@
         runCounterNum.textContent = String(runCount);
 
         submitBtn.textContent = "Submit";
+
+        // ensure the new question is visible on mobile
+        scrollToQuestion();
       })
       .catch(e => {
         alert("Could not load next question");
@@ -189,6 +211,7 @@
       });
   }
 
+  // submit
   submitBtn.addEventListener("click", async () => {
     if (quizDone) { returnToLanding(); return; }
     if (answered) return;
@@ -211,24 +234,28 @@
       const tag = data.ok
         ? `<span class="ok">Correct!</span>`
         : `<span class="bad">Incorrect.</span> <span class="muted">Correct: ${data.correct.join(", ")}</span>`;
-      const rationale = data.rationale ? `<div class="rationale"><b>Rationale:</b> ${escapeHTML(data.rationale)}</div>` : "";
+      const rationale = data.rationale
+        ? `<div class="rationale"><b>Rationale:</b> ${escapeHTML(data.rationale)}</div>`
+        : "";
       resultDiv.innerHTML = `<div>${tag}</div>${rationale}`;
 
       answered = true;
       submitBtn.disabled = true;
       nextBtn.disabled = false;
-      nextBtn.focus();
+      nextBtn.focus({ preventScroll: true }); // don't bounce page
     } catch (e) {
       alert("Could not submit answer");
       console.error(e);
     }
   });
 
+  // next btn
   nextBtn.addEventListener("click", () => {
     if (quizDone) return;
     loadNext();
   });
 
+  // keyboard shortcuts (desktop-friendly; safe on mobile)
   document.addEventListener("keydown", (ev) => {
     const key = ev.key;
     if (key === "Enter") {
@@ -241,6 +268,7 @@
         else if (!nextBtn.disabled) nextBtn.click();
       }
     }
+
     if (/^[a-h]$/i.test(key) && !quiz.classList.contains("hidden")) {
       const letter = key.toUpperCase();
       const input = (lettersToInputs && lettersToInputs[letter]) || null;
@@ -248,15 +276,20 @@
     }
   });
 
-  // NEW: handle 10/25/50/100/Full
+  // length selectors
   countBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       countBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       const val = (btn.dataset.count || "10").toLowerCase();
+      btn.setAttribute("aria-pressed", "true");
+      countBtns.filter(b => b !== btn).forEach(b => b.removeAttribute("aria-pressed"));
       chosenCount = (val === "full") ? "full" : String(Number(val) || 10);
     });
   });
 
-  loadModules();
+  // handle iOS dynamic viewport changes smoothly
+  window.addEventListener("orientationchange", () => {
+    setTimeout(scrollToQuestion, 350);
+  });
 })();
