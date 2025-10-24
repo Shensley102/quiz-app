@@ -1301,8 +1301,7 @@
         "All listed are appropriate to consider."
       ],
       "correct": [
-        "A",
-        "D"
+        "A"
       ],
       "rationale": "Decision making involves a goal-oriented consideration of many options that are objectively weighed according to their possible risks, consequences, and positive outcomes. The options should be ranked in the order in which they are likely to result in the desired goals or objectives. The solution selected should be the one that is most feasible and satisfactory and has the fewest undesirable consequences. In this instance, all of the options listed might be considered and weighed.",
       "type": "multi_select"
