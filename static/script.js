@@ -21,6 +21,10 @@
   const runCounter = document.getElementById("runCounter");
   const runCounterNum = document.getElementById("runCounterNum");
 
+  // NEW: Remaining counter
+  const remainingCounter = document.getElementById("remainingCounter");
+  const remainingNum = document.getElementById("remainingNum");
+
   const routes = {
     modules: ["/api/modules", "/modules"],
     start: ["/api/start", "/start"],
@@ -33,11 +37,9 @@
   function setHidden(el, yes) { el.classList.toggle("hidden", !!yes); }
   function clearOptions() { qOptions.innerHTML = ""; }
   function escapeHTML(s="") {
-    return s.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
+    return s.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;","\">":"&quot;","'":"&#39;" }[c]));
   }
-  function headerHeight() {
-    return header ? header.offsetHeight : 0;
-  }
+  function headerHeight() { return header ? header.offsetHeight : 0; }
   function scrollToQuestion() {
     const y = qStem.getBoundingClientRect().top + window.scrollY - headerHeight() - 8;
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
@@ -61,7 +63,6 @@
       qOptions.appendChild(label);
       lettersToInputs[letter.toUpperCase()] = input;
     });
-    // On mobile, don't force focus (prevents unwanted scroll/zoom)
   }
 
   function getSelectedLetters() {
@@ -70,10 +71,15 @@
 
   function updateScoreLine() { scoreLine.classList.add("hidden"); }
 
+  function setRemaining(n) {
+    remainingNum.textContent = String(Math.max(0, Number(n || 0)));
+  }
+
   function returnToLanding() {
     setHidden(quiz, true);
     setHidden(landing, false);
     setHidden(runCounter, true);
+    setHidden(remainingCounter, true);
     resultDiv.innerHTML = "";
     qStem.textContent = "Question…";
     clearOptions();
@@ -144,7 +150,10 @@
       setHidden(scoreLine, true);
       setHidden(quiz, false);
       setHidden(runCounter, false);
+      setHidden(remainingCounter, false);
+
       runCounterNum.textContent = "1";
+      setRemaining(data.remaining != null ? data.remaining : firstTryScore.total);
 
       submitBtn.disabled = false;
       nextBtn.disabled = true;
@@ -175,6 +184,7 @@
           qStem.textContent = "All questions mastered!";
           qOptions.innerHTML = "";
           setHidden(runCounter, true);
+          setHidden(remainingCounter, true);
 
           const pct = (data.first_try_total
             ? Math.round((100 * (data.first_try_correct || 0)) / data.first_try_total)
@@ -200,9 +210,10 @@
         runCount = Number.isFinite(data.served) ? data.served : (runCount + 1);
         runCounterNum.textContent = String(runCount);
 
-        submitBtn.textContent = "Submit";
+        // NEW: update remaining from server
+        if (typeof data.remaining === "number") setRemaining(data.remaining);
 
-        // ensure the new question is visible on mobile
+        submitBtn.textContent = "Submit";
         scrollToQuestion();
       })
       .catch(e => {
@@ -231,6 +242,9 @@
         updateScoreLine();
       }
 
+      // NEW: update remaining after each submission
+      if (typeof data.remaining === "number") setRemaining(data.remaining);
+
       const tag = data.ok
         ? `<span class="ok">Correct!</span>`
         : `<span class="bad">Incorrect.</span> <span class="muted">Correct: ${data.correct.join(", ")}</span>`;
@@ -242,7 +256,7 @@
       answered = true;
       submitBtn.disabled = true;
       nextBtn.disabled = false;
-      nextBtn.focus({ preventScroll: true }); // don't bounce page
+      nextBtn.focus({ preventScroll: true });
     } catch (e) {
       alert("Could not submit answer");
       console.error(e);
@@ -255,7 +269,7 @@
     loadNext();
   });
 
-  // keyboard shortcuts (desktop-friendly; safe on mobile)
+  // keyboard shortcuts
   document.addEventListener("keydown", (ev) => {
     const key = ev.key;
     if (key === "Enter") {
@@ -288,7 +302,6 @@
     });
   });
 
-  // handle iOS dynamic viewport changes smoothly
   window.addEventListener("orientationchange", () => {
     setTimeout(scrollToQuestion, 350);
   });
