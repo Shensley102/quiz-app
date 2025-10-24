@@ -39,10 +39,10 @@
       "id": "Module_1_Q3",
       "stem": "A new registered nurse asks the registered nurse (RN) preceptor what could be done to become more professional. What is the preceptor's best response?",
       "options": [
-        "\Attend nursing educational meetings\",
-        "\Listen to other nurses\",
-        "\Read the agency newsletter.\",
-        "\Pass the licensing exam.\"
+        "Attend nursing educational meetings",
+        "Listen to other nurses",
+        "Read the agency newsletter.",
+        "Pass the licensing exam."
       ],
       "correct": [
         "A"
@@ -607,7 +607,6 @@
         "Break down your workload into smaller, manageable tasks."
       ],
       "correct": [
-        "B",
         "D"
       ],
       "rationale": "To manage time successfully, it is important to break down your workload into smaller, manageable tasks. Developing PERT and Gantt charts will aid in dealing with larger, complex projects. Both charts can be used to outline how an individual will approach a large project.",
@@ -638,7 +637,6 @@
         "Applying strategies that aid in the adoption of research in practice"
       ],
       "correct": [
-        "A",
         "D"
       ],
       "rationale": "The science of how research is adopted is known as translation science, the science of translating research into practice (TRIP). The primary aim of research utilization is to activate the change process to move research findings into practice to improve patient outcomes.",
@@ -702,8 +700,7 @@
         "Integrate available evidence with unit expertise."
       ],
       "correct": [
-        "A",
-        "D"
+        "A"
       ],
       "rationale": "Identifying the question may be the most challenging part of the process. Once the clinical question has been identified, writing it down will help in moving on to the next step of gathering evidence.",
       "type": "multi_select"
@@ -733,8 +730,7 @@
         "Providing staff with a short DVD on the topic"
       ],
       "correct": [
-        "A",
-        "C"
+        "A"
       ],
       "rationale": "Suggestions for effective strategies that promote behavioral change in health professionals include active involvement strategies such as face-to-face information sessions in small groups and one-to-one interactions. Other approaches have mixed or few results.",
       "type": "multi_select"
@@ -764,8 +760,7 @@
         "Issuing reports on the adverse consequences of outdated practices"
       ],
       "correct": [
-        "C",
-        "E"
+        "C"
       ],
       "rationale": "Journal clubs provide opportunities for engagement in reading research and considering how it might be applied to clinical practice problems, which is considered very effective in behavioral change.",
       "type": "multi_select"
@@ -810,8 +805,7 @@
         "Application"
       ],
       "correct": [
-        "C",
-        "E"
+        "C"
       ],
       "rationale": "The third phase, comparative evaluation and decision making, involves making a decision about the applicability of the studies by synthesizing cumulative findings; evaluating the degree and nature of other criteria, such as risk, feasibility, and readiness of the findings; and making a recommendation about using the findings of the studies.",
       "type": "multi_select"
@@ -871,9 +865,7 @@
         "How a safe, well-known practice outweighs the benefits of adopting a newer practice."
       ],
       "correct": [
-        "A",
-        "B",
-        "E"
+        "A"
       ],
       "rationale": "The translation of research into practice operates at four levels: The individual healthcare professional, healthcare groups or teams, organizations, and the larger healthcare system or environment. The adoption of saline flushes illustrates the challenges of communicating EBP to other disciplines and organizations and the involvement of different levels. This particular innovation needed endorsement by nurses, physicians, and pharmacists, as well as by administrators who needed evidence of lost savings to support adoption.",
       "type": "multi_select"
@@ -903,8 +895,7 @@
         "Evaluate the quality of the research against the standards for that type of research."
       ],
       "correct": [
-        "D",
-        "E"
+        "D"
       ],
       "rationale": "While randomized controlled trials (RCTs) are generally considered the gold standard for research, it is important to assess not only the method but also the quality of the study and its applicability to the question that is being asked. The quality of all studies should be appraised against the standards accepted for that type of research.",
       "type": "multi_select"
@@ -949,9 +940,7 @@
         "EBP is generally recognized across disciplines and by policymakers as state-of-the-art clinical practice."
       ],
       "correct": [
-        "B",
-        "D",
-        "E"
+        "D"
       ],
       "rationale": "EBP is recognized across nursing and other disciplines as reflective of state-of-the-art clinical practice, as it is based on best available evidence.",
       "type": "multi_select"
@@ -1011,8 +1000,7 @@
         "appraisal tool."
       ],
       "correct": [
-        "B",
-        "C"
+        "B"
       ],
       "rationale": "RCTs, or randomized controlled trials, always involve testing of a treatment through the random assignment of subjects in the study to an experimental or treatment group or to a control group that receives a placebo.",
       "type": "multi_select"
@@ -1424,8 +1412,7 @@
       "correct": [
         "A",
         "B",
-        "D",
-        "E"
+        "D"
       ],
       "rationale": "Functions such as assessment, diagnosis, planning, and evaluation cannot be delegated. In addition, stability, critical thinking, time, and safety are factors that are considered in assessing whether or not to delegate care to a UNP. Teaching self-catheterization to a patient with limited English requires critical thinking; basic care for a patient who is rapidly deteriorating exemplifies concern with stability; and assessment of patients through the Emergency department is related to the factor of time. An exception to safety and stability in which patients may be delegated to UNPs is when patients are placed on suicide precautions.",
       "type": "multi_select"
@@ -1455,7 +1442,6 @@
         "Create a task analysis of critical behaviors for the individual."
       ],
       "correct": [
-        "A",
         "C"
       ],
       "rationale": "To delegate effectively, the charge nurse must assess the abilities required in the situation and the abilities that staff have to anticipate the amount of direction, monitoring, explanation, and independence that can be assumed.",
@@ -1683,7 +1669,6 @@
         "Advise her that you are available if she needs you."
       ],
       "correct": [
-        "A",
         "D"
       ],
       "rationale": "The charge nurse and Sally have a well-established relationship, and Sally has the expertise to work effectively with David; therefore, the charge nurse would need to provide little guidance but would need to communicate that they are available if needed. Hersey refers to this leader behavior as delegating.",
