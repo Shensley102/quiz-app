@@ -13,8 +13,13 @@
       <button id="newQuizBtn" class="btn ghost">New Quiz</button>
     </div>
     <div class="center">
-      <div id="runCounter" class="run-counter hidden">
-        Question <span id="runCounterNum">1</span>
+      <div class="run-group">
+        <div id="runCounter" class="run-counter hidden">
+          Question <span id="runCounterNum">1</span>
+        </div>
+        <div id="remainingCounter" class="run-counter hidden">
+          Remaining <span id="remainingNum">0</span>
+        </div>
       </div>
     </div>
     <div class="right">
@@ -51,7 +56,6 @@
 
   <!-- Quiz UI -->
   <main id="quiz" class="panel hidden" aria-live="off">
-    <!-- Hidden during quiz; only the final summary shows graded stats -->
     <div id="scoreLine" class="muted hidden">
       First-Try Correct: <span id="ftc">0</span> / <span id="ftt">0</span>
     </div>
