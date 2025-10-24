@@ -6,6 +6,10 @@
   --blue: #2563eb;
   --blue-600: #1d4ed8;
   --border: #e5e7eb;
+
+  /* iOS safe-area */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 * { box-sizing: border-box; }
@@ -13,6 +17,7 @@ html, body {
   margin: 0; padding: 0;
   background: var(--bg); color: var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%; /* prevent iOS font auto-zoom */
 }
 
 .hidden { display: none !important; }
@@ -23,45 +28,69 @@ html, body {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 8px;
-  padding: 12px 16px;
+  padding: calc(10px + var(--safe-top)) 12px 10px 12px;
   background: var(--panel);
   border-bottom: 1px solid var(--border);
   position: sticky; top: 0; z-index: 10;
 }
 .app-header .left { justify-self: start; }
-.app-header .center { justify-self: center; }
+.app-header .center { justify-self: center; min-width: 0; }
 .app-header .right { justify-self: end; }
 
-.run-counter { font-weight: 600; }
+.run-counter { font-weight: 600; font-size: 15px; }
 
 .panel {
   max-width: 900px;
-  margin: 24px auto;
+  margin: 16px auto calc(16px + var(--safe-bottom));
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 20px;
+  padding: 16px;
   box-shadow: 0 1px 2px rgba(0,0,0,.04);
 }
 
-.row { margin: 16px 0; display: flex; align-items: center; gap: 12px; }
-.select { padding: 8px 10px; font-size: 16px; }
+.h1 {
+  font-size: 24px;
+  line-height: 1.15;
+  margin: 6px 0 10px;
+}
 
-.counts .btn { margin-right: 8px; }
-.counts .btn.active { outline: 2px solid var(--blue); }
+.label { font-size: 16px; }
+.select {
+  padding: 10px 12px;
+  font-size: 16px;
+  min-height: 44px; /* comfortable tap */
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.row { margin: 16px 0; display: grid; gap: 8px; }
+
+.counts { display: grid; grid-auto-flow: column; gap: 8px; }
+.counts .btn.active { outline: 2px solid var(--blue); outline-offset: 1px; }
 
 .actions { margin-top: 16px; display: flex; gap: 12px; }
-.actions.spaced { margin-top: 12px; }
+.actions.spaced {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Submit | Next */
+  gap: 12px;
+  align-items: stretch;
+  margin-top: 16px;
+}
 
 .btn {
   appearance: none;
   border: 1px solid var(--border);
   background: #fff;
   color: var(--text);
-  padding: 10px 16px;
+  padding: 12px 16px;
+  min-height: 48px;      /* 44px+ tap target */
   border-radius: 10px;
   font-size: 16px;
+  line-height: 1.2;
   cursor: pointer;
+  touch-action: manipulation; /* faster taps on mobile */
 }
 .btn:hover { background: #f3f4f6; }
 .btn:disabled { opacity: .45; cursor: not-allowed; }
@@ -77,26 +106,32 @@ html, body {
 }
 
 .stem {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 650;
-  line-height: 1.3;
-  margin-top: 8px;
+  line-height: 1.35;
+  margin-top: 6px;
   margin-bottom: 12px;
+  word-wrap: break-word;
 }
 
-.options { display: grid; gap: 12px; }
+.options { display: grid; gap: 10px; }
 .option {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 12px;
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 14px 12px;
+  padding: 12px;
   background: #fff;
+  min-height: 52px;    /* comfy tap zone */
 }
-.option input { transform: scale(1.2); }
-.option .letter { font-weight: 700; width: 22px; display: inline-block; }
-.option .text { flex: 1; }
+.option input {
+  width: 22px; height: 22px;
+  transform: scale(1.25);
+  accent-color: var(--blue);
+}
+.option .letter { font-weight: 700; width: 24px; display: inline-block; }
+.option .text { flex: 1; line-height: 1.35; }
 
-.result { margin-top: 14px; }
+.result { margin-top: 14px; font-size: 16px; }
 .ok { color: #065f46; font-weight: 700; }
 .bad { color: #991b1b; font-weight: 700; }
 .rationale {
@@ -107,3 +142,17 @@ html, body {
   border-radius: 8px;
 }
 .summary { padding: 12px; background: #fafafa; border: 1px solid var(--border); border-radius: 10px; }
+
+/* Narrow phones: stack buttons if needed, widen touch areas */
+@media (max-width: 420px) {
+  .panel { border-radius: 0; border-left: none; border-right: none; padding: 14px; }
+  .actions.spaced { grid-template-columns: 1fr; }
+  .btn { width: 100%; }
+  .stem { font-size: 19px; }
+}
+
+/* Compact header on very small screens */
+@media (max-width: 360px) {
+  .app-header { padding-left: 8px; padding-right: 8px; }
+  .run-counter { font-size: 14px; }
+}
