@@ -7,7 +7,6 @@
   --blue-600: #1d4ed8;
   --border: #e5e7eb;
 
-  /* iOS safe-area */
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -17,7 +16,7 @@ html, body {
   margin: 0; padding: 0;
   background: var(--bg); color: var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  -webkit-text-size-adjust: 100%; /* prevent iOS font auto-zoom */
+  -webkit-text-size-adjust: 100%;
 }
 
 .hidden { display: none !important; }
@@ -37,6 +36,7 @@ html, body {
 .app-header .center { justify-self: center; min-width: 0; }
 .app-header .right { justify-self: end; }
 
+.run-group { display: grid; gap: 2px; justify-items: center; }
 .run-counter { font-weight: 600; font-size: 15px; }
 
 .panel {
@@ -49,17 +49,13 @@ html, body {
   box-shadow: 0 1px 2px rgba(0,0,0,.04);
 }
 
-.h1 {
-  font-size: 24px;
-  line-height: 1.15;
-  margin: 6px 0 10px;
-}
+.h1 { font-size: 24px; line-height: 1.15; margin: 6px 0 10px; }
 
 .label { font-size: 16px; }
 .select {
   padding: 10px 12px;
   font-size: 16px;
-  min-height: 44px; /* comfortable tap */
+  min-height: 44px;
   border-radius: 10px;
   border: 1px solid var(--border);
   background: #fff;
@@ -73,7 +69,7 @@ html, body {
 .actions { margin-top: 16px; display: flex; gap: 12px; }
 .actions.spaced {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Submit | Next */
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
   align-items: stretch;
   margin-top: 16px;
@@ -85,12 +81,12 @@ html, body {
   background: #fff;
   color: var(--text);
   padding: 12px 16px;
-  min-height: 48px;      /* 44px+ tap target */
+  min-height: 48px;
   border-radius: 10px;
   font-size: 16px;
   line-height: 1.2;
   cursor: pointer;
-  touch-action: manipulation; /* faster taps on mobile */
+  touch-action: manipulation;
 }
 .btn:hover { background: #f3f4f6; }
 .btn:disabled { opacity: .45; cursor: not-allowed; }
@@ -100,10 +96,7 @@ html, body {
   color: #fff;
 }
 .btn.primary:hover { background: var(--blue-600); }
-.btn.ghost {
-  background: transparent;
-  border-color: var(--border);
-}
+.btn.ghost { background: transparent; border-color: var(--border); }
 
 .stem {
   font-size: 20px;
@@ -121,7 +114,7 @@ html, body {
   border-radius: 10px;
   padding: 12px;
   background: #fff;
-  min-height: 52px;    /* comfy tap zone */
+  min-height: 52px;
 }
 .option input {
   width: 22px; height: 22px;
@@ -135,23 +128,44 @@ html, body {
 .ok { color: #065f46; font-weight: 700; }
 .bad { color: #991b1b; font-weight: 700; }
 .rationale {
-  margin-top: 8px;
-  padding: 12px;
-  background: #fafafa;
-  border: 1px dashed var(--border);
-  border-radius: 8px;
+  margin-top: 8px; padding: 12px;
+  background: #fafafa; border: 1px dashed var(--border); border-radius: 8px;
 }
 .summary { padding: 12px; background: #fafafa; border: 1px solid var(--border); border-radius: 10px; }
 
-/* Narrow phones: stack buttons if needed, widen touch areas */
+/* REVIEW LIST */
+.review {
+  margin-top: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.rev-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+.rev-title { font-weight: 700; margin-bottom: 6px; }
+.rev-stem { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.rev-options { display: grid; gap: 8px; margin-bottom: 8px; }
+.rev-opt {
+  display: flex; gap: 8px; align-items: flex-start;
+  padding: 8px 10px; border: 1px dashed var(--border); border-radius: 8px;
+}
+.rev-opt.correct {
+  border-color: #10b981; background: #ecfdf5;
+}
+.rev-opt .letter { font-weight: 700; width: 24px; }
+.rev-rat { font-size: 14px; color: #111; background: #fafafa; border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
+
+/* Responsive */
 @media (max-width: 420px) {
   .panel { border-radius: 0; border-left: none; border-right: none; padding: 14px; }
   .actions.spaced { grid-template-columns: 1fr; }
   .btn { width: 100%; }
   .stem { font-size: 19px; }
 }
-
-/* Compact header on very small screens */
 @media (max-width: 360px) {
   .app-header { padding-left: 8px; padding-right: 8px; }
   .run-counter { font-size: 14px; }
