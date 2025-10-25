@@ -1,9 +1,11 @@
-{
-  "version": 2,
-  "builds": [
-    { "src": "study_tool.py", "use": "@vercel/python" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "study_tool.py" }
-  ]
-}
+repo/
+├─ study_tool.py
+├─ requirements.txt
+├─ vercel.json
+├─ Module_1.json           ← keep your existing content
+├─ Module_2.json           ← keep your existing content
+├─ templates/
+│  └─ index.html
+└─ static/
+   ├─ style.css
+   └─ script.js
