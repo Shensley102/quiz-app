@@ -37,7 +37,7 @@
   // helpers
   function setHidden(el, yes) { el.classList.toggle("hidden", !!yes); }
   function clearOptions() { qOptions.innerHTML = ""; }
-  function escapeHTML(s="") {
+  function escapeHTML(s = "") {
     return String(s).replace(/[&<>"']/g, c => ({
       "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
     }[c]));
@@ -48,6 +48,19 @@
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
   }
   function setRemaining(n) { remainingNum.textContent = String(Math.max(0, Number(n || 0))); }
+
+  // Build "A — full text; C — full text" from the current question
+  function formatCorrectAnswers(q, letters = []) {
+    const map = {};
+    (q.options || []).forEach(o => {
+      map[String(o.letter).toUpperCase()] = o.text || "";
+    });
+    return (letters || []).map(l => {
+      const key = String(l).toUpperCase();
+      const txt = map[key] || "";
+      return `${key} — ${escapeHTML(txt)}`;
+    }).join("; ");
+  }
 
   function renderOptions({ options = [], is_multi = false }) {
     clearOptions();
@@ -282,10 +295,12 @@
 
       if (typeof data.remaining === "number") setRemaining(data.remaining);
 
-      const correctText = (data.correct || []).join(", ");
+      // Parentheses style for reinforcement, with full wording
+      const correctDetails = formatCorrectAnswers(currentQ, data.correct || []);
       const tag = data.ok
-        ? `<span class="ok">Correct!</span> <span class="muted">Correct: ${correctText}</span>`
-        : `<span class="bad">Incorrect.</span> <span class="muted">Correct: ${correctText}</span>`;
+        ? `<span class="ok">Correct!</span> <span class="muted">(${correctDetails})</span>`
+        : `<span class="bad">Incorrect.</span> <span class="muted">(Correct: ${correctDetails})</span>`;
+
       const rationale = data.rationale
         ? `<div class="rationale"><b>Rationale:</b> ${escapeHTML(data.rationale)}</div>`
         : "";
