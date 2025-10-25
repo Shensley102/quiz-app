@@ -2,77 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#2563eb" />
-  <title>Nursing Quiz</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Study Quiz</title>
   <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
   <header class="app-header">
-    <div class="left">
-      <button id="newQuizBtn" class="btn ghost">New Quiz</button>
-    </div>
-    <div class="center">
-      <div class="run-group">
-        <div id="runCounter" class="run-counter hidden">
-          Question <span id="runCounterNum">1</span>
-        </div>
-        <div id="remainingCounter" class="run-counter hidden">
-          Remaining <span id="remainingNum">0</span>
-        </div>
-      </div>
-    </div>
-    <div class="right">
-      <button id="resetBtn" class="btn ghost" title="Reset session">Reset</button>
-    </div>
+    <h1>Study Quiz</h1>
   </header>
 
-  <!-- Landing / setup -->
-  <main id="landing" class="panel">
-    <h1 class="h1">Study Quiz</h1>
-
+  <!-- Landing / Setup -->
+  <main id="landing" class="card">
     <div class="row">
-      <label for="moduleSelect" class="label">Module</label>
-      <select id="moduleSelect" class="select" aria-label="Select module">
-        <option>Loading…</option>
+      <label for="moduleSelect" class="lbl">Module</label>
+      <select id="moduleSelect" class="select">
+        <!-- script.js discovers Module_1.json / Module_2.json and fills this -->
+        <option value="">Loading…</option>
       </select>
     </div>
 
     <div class="row">
-      <label class="label">Length</label>
+      <span class="lbl">Length</span>
       <div class="counts">
-        <button class="btn count active" data-count="10" aria-pressed="true">10</button>
-        <button class="btn count" data-count="25">25</button>
-        <button class="btn count" data-count="50">50</button>
-        <button class="btn count" data-count="100">100</button>
-        <button class="btn count" data-count="full">Full</button>
+        <button class="count active" data-count="10" aria-pressed="true">10</button>
+        <button class="count" data-count="25">25</button>
+        <button class="count" data-count="50">50</button>
+        <button class="count" data-count="100">100</button>
+        <button class="count" data-count="all">Full</button>
       </div>
     </div>
 
-    <div class="actions">
-      <button id="startBtn" class="btn primary">Start Quiz</button>
+    <div class="row">
+      <button id="startBtn" class="primary">Start Quiz</button>
+      <button id="newQuizBtn" class="ghost">Start New Quiz</button>
+      <button id="resetBtn" class="ghost">Reset</button>
     </div>
   </main>
 
   <!-- Quiz UI -->
-  <main id="quiz" class="panel hidden" aria-live="off">
-    <div id="scoreLine" class="muted hidden">
-      First-Try Correct: <span id="ftc">0</span> / <span id="ftt">0</span>
+  <section id="quiz" class="card hidden">
+    <div class="statusbar">
+      <div id="runCounter" class="badge hidden">Run <span id="runCounterNum">1</span></div>
+      <div id="remainingCounter" class="badge hidden">Remaining: <span id="remainingNum">0</span></div>
     </div>
 
-    <div id="qStem" class="stem">Question…</div>
+    <div id="scoreLine" class="muted hidden"></div>
+
+    <h2 id="qStem" class="stem">Question…</h2>
     <div id="qOptions" class="options"></div>
 
-    <div class="actions spaced">
-      <button id="submitBtn" class="btn primary">Submit</button>
-      <button id="nextBtn" class="btn" disabled>Next</button>
+    <div class="actions">
+      <button id="submitBtn" class="primary">Submit</button>
+      <button id="nextBtn" class="secondary" disabled>Next</button>
     </div>
 
-    <div id="result" class="result" aria-live="polite" aria-atomic="true"></div>
+    <div id="result" class="result"></div>
+  </section>
 
-    <!-- Final Review (shown after mastery) -->
-    <section id="review" class="review hidden" aria-label="Quiz Review"></section>
-  </main>
+  <!-- Review at the end -->
+  <section id="review" class="card hidden"></section>
 
   <script src="/static/script.js"></script>
 </body>
