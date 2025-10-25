@@ -88,6 +88,12 @@ select{
 .feedback{margin:10px 0 0;font-weight:700}
 .feedback.ok{color:var(--ok)}
 .feedback.bad{color:var(--bad)}
+
+/* NEW: answer lines */
+.answer{margin-top:6px}
+.answerLabel{font-weight:700;color:var(--ok);margin:6px 0 2px}
+.answerText{color:var(--ok);font-weight:700}
+
 .rationale{margin-top:8px;color:#1f2937;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px}
 
 .summaryStats{display:grid;gap:4px;margin:10px 0 20px;color:#1f2937;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px}
