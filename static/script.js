@@ -4,7 +4,10 @@
    - Mastery loop: missed items return until correct
    - Track total submissions; compute first-try % at end
    - Checkbox ONLY if the stem literally contains "(Select all that apply.)"
-   - Keyboard: Enter submits; Enter again advances
+   - Keyboard:
+       * Enter submits, then Enter again advances
+       * A–Z toggles matching option; for radios, pressing the same letter
+         again de-selects it
 ----------------------------------------------------------- */
 
 const el = (id) => document.getElementById(id);
@@ -26,8 +29,9 @@ const optionsForm = el('optionsForm');
 const submitBtn = el('submitBtn');
 const nextBtn = el('nextBtn');
 const feedback = el('feedback');
-const answerLine = el('answerLine');  // NEW
+const answerLine = el('answerLine');
 const rationale = el('rationale');
+const resetQuizBtn = el('resetQuizBtn'); // NEW
 
 const fta = el('fta');
 const totalSub = el('totalSub');
@@ -35,6 +39,7 @@ const restartBtn = el('restartBtn');
 const reviewList = el('reviewList');
 
 let state = null;
+let currentInputsByLetter = {}; // NEW: map letter -> input
 
 const EXACT_SATA = /\(Select all that apply\.\)/i;
 
@@ -57,17 +62,61 @@ restartBtn.addEventListener('click', () => {
   remainingCounter.textContent = '';
 });
 
-/* Keyboard: Enter to submit, then Enter to go next */
+// NEW: explicit reset button during a quiz
+resetQuizBtn.addEventListener('click', resetQuiz);
+
+function resetQuiz(){
+  state = null;
+  quiz.classList.add('hidden');
+  summary.classList.add('hidden');
+  launcher.classList.remove('hidden');
+  runCounter.textContent = '';
+  remainingCounter.textContent = '';
+  optionsForm.innerHTML = '';
+  feedback.textContent = '';
+  feedback.className = 'feedback';
+  answerLine.innerHTML = '';
+  rationale.textContent = '';
+  submitBtn.disabled = true;
+  nextBtn.disabled = true;
+  currentInputsByLetter = {};
+}
+
+/* Keyboard: Enter to submit / go next, letters to toggle selections */
 document.addEventListener('keydown', (e) => {
-  if (e.key !== 'Enter') return;
-  const canSubmit = !submitBtn.disabled && !quiz.classList.contains('hidden');
-  const canNext = !nextBtn.disabled && !quiz.classList.contains('hidden');
-  if (canSubmit) {
+  if (quiz.classList.contains('hidden')) return;
+
+  // Enter behavior
+  if (e.key === 'Enter') {
+    const canSubmit = !submitBtn.disabled;
+    const canNext = !nextBtn.disabled;
+    if (canSubmit) {
+      e.preventDefault();
+      handleSubmit();
+    } else if (canNext) {
+      e.preventDefault();
+      loadNext();
+    }
+    return;
+  }
+
+  // Letter toggle behavior
+  const letter = (e.key && e.key.length === 1) ? e.key.toUpperCase() : '';
+  if (letter && currentInputsByLetter[letter]) {
     e.preventDefault();
-    handleSubmit();
-  } else if (canNext) {
-    e.preventDefault();
-    loadNext();
+    const input = currentInputsByLetter[letter];
+
+    if (input.type === 'checkbox') {
+      input.checked = !input.checked;
+    } else { // radio with de-select on second press
+      if (input.checked) {
+        input.checked = false; // allow none selected
+      } else {
+        input.checked = true;
+        // don't need to manually uncheck others; browser handles radio group
+      }
+    }
+    updateSubmitEnabled();
   }
 });
 
@@ -104,7 +153,7 @@ async function startQuiz() {
     nextBtn.disabled = true;
     feedback.textContent = '';
     feedback.className = 'feedback';
-    answerLine.innerHTML = '';    // NEW
+    answerLine.innerHTML = '';
     rationale.textContent = '';
 
     loadNext();
@@ -191,6 +240,10 @@ function updateCounters() {
   remainingCounter.textContent = state ? `Remaining to master: ${state.queue.length}` : '';
 }
 
+function updateSubmitEnabled(){
+  submitBtn.disabled = optionsForm.querySelectorAll('input:checked').length === 0;
+}
+
 /* ----------------------- rendering ----------------------- */
 
 function renderQuestion(q) {
@@ -199,6 +252,8 @@ function renderQuestion(q) {
 
   questionText.textContent = q.question;
   optionsForm.innerHTML = '';
+  currentInputsByLetter = {}; // reset map for this question
+
   const letters = Object.keys(q.options);
 
   letters.forEach(letter => {
@@ -213,6 +268,9 @@ function renderQuestion(q) {
     input.value = letter;
     input.id = id;
 
+    // store in map for keyboard toggles
+    currentInputsByLetter[letter.toUpperCase()] = input;
+
     const text = document.createElement('div');
     text.innerHTML = `<span class="letter">${letter}.</span> ${escapeHTML(q.options[letter])}`;
 
@@ -220,16 +278,14 @@ function renderQuestion(q) {
     optionsForm.appendChild(label);
   });
 
-  optionsForm.addEventListener('change', () => {
-    submitBtn.disabled = optionsForm.querySelectorAll('input:checked').length === 0;
-  }, { once: true });
+  optionsForm.addEventListener('change', updateSubmitEnabled, { once: true });
 
   submitBtn.disabled = true;
   nextBtn.disabled = true;
 
   feedback.textContent = '';
   feedback.className = 'feedback';
-  answerLine.innerHTML = '';          // NEW: clear the area
+  answerLine.innerHTML = '';
   rationale.textContent = '';
 }
 
@@ -274,32 +330,22 @@ function handleSubmit(){
     if (q.attempts === 1) state.totalFirstTry += 1;
     q.mastered = true;
 
-    // status line
     feedback.textContent = 'Correct!';
     feedback.className = 'feedback ok';
-
-    // next line: answer wording only
     answerLine.innerHTML = `<div class="answerText">${escapeHTML(fullCorrectText)}</div>`;
-
     rationale.textContent = q.rationale || '';
   } else {
-    // status line
     feedback.textContent = 'Incorrect.';
     feedback.className = 'feedback bad';
-
-    // label then answer wording
     answerLine.innerHTML = `
       <div class="answerLabel">Correct Answer:</div>
       <div class="answerText">${escapeHTML(fullCorrectText)}</div>
     `;
-
     rationale.textContent = q.rationale || '';
-
-    // requeue
     state.queue.push(q);
   }
 
-  // Save for review
+  // record review
   if (isCorrect && !state.review.find(r => r.q.id === q.id)) {
     state.review.push({ q, correctLetters: [...correctSet], userLetters: [...pickedSet], wasCorrect: true });
   } else if (!isCorrect) {
