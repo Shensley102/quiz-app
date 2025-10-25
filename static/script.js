@@ -26,6 +26,7 @@ const optionsForm = el('optionsForm');
 const submitBtn = el('submitBtn');
 const nextBtn = el('nextBtn');
 const feedback = el('feedback');
+const answerLine = el('answerLine');  // NEW
 const rationale = el('rationale');
 
 const fta = el('fta');
@@ -35,7 +36,7 @@ const reviewList = el('reviewList');
 
 let state = null;
 
-const EXACT_SATA = /\(Select all that apply\.\)/i; // must contain this phrase (per your requirement)
+const EXACT_SATA = /\(Select all that apply\.\)/i;
 
 // get selected length
 let pickedLength = 10;
@@ -86,14 +87,13 @@ async function startQuiz() {
       pool: chosen.map(q => ({ ...q, attempts: 0, mastered: false })),
       queue: [],
       idx: -1,
-      shownCount: 0,          // running question number visible to learner
+      shownCount: 0,
       totalFirstTry: 0,
       totalRequested: chosen.length,
       totalSubmissions: 0,
-      review: []              // { q, correctLetters, userLetters, wasCorrect }
+      review: []
     };
 
-    // initial queue = all chosen
     state.queue = [...state.pool];
 
     launcher.classList.add('hidden');
@@ -103,12 +103,13 @@ async function startQuiz() {
     updateCounters();
     nextBtn.disabled = true;
     feedback.textContent = '';
+    feedback.className = 'feedback';
+    answerLine.innerHTML = '';    // NEW
     rationale.textContent = '';
 
     loadNext();
   } catch (err) {
     alert(err.message || 'Could not load questions.');
-    startBtn.disabled = false;
   } finally {
     startBtn.disabled = false;
   }
@@ -117,10 +118,6 @@ async function startQuiz() {
 /* ------------------------- helpers ------------------------- */
 
 function normalizeQuestions(raw) {
-  // Expect each item with at least:
-  // { id, question, options: {A:"",B:"",C:"",D:""...}, answer or answers or correct, rationale }
-  // Be tolerant of minor schema differences.
-
   const arr = Array.isArray(raw) ? raw : (raw.questions || raw.items || []);
   return arr.map((it, i) => {
     const id = it.id || `Q${i+1}`;
@@ -131,17 +128,14 @@ function normalizeQuestions(raw) {
 
     return { id, question: stem, options, correctLetters, rationale };
   }).filter(q => {
-    // Keep only questions that have at least one option and a valid answer
     return Object.keys(q.options).length && q.correctLetters.length;
   });
 }
 
 function normalizeOptions(opts) {
-  // Ensure a {A: "...", B: "..."} object with ordered letters
   const out = {};
   if (!opts) return out;
 
-  // If it's already keyed by letters
   for (const key of Object.keys(opts)) {
     const k = key.trim().toUpperCase();
     if (/^[A-Z]$/.test(k) && String(opts[key]).trim()) {
@@ -149,7 +143,6 @@ function normalizeOptions(opts) {
     }
   }
 
-  // If empty, maybe it's an array
   if (Object.keys(out).length === 0 && Array.isArray(opts)) {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     opts.forEach((txt, i) => {
@@ -170,7 +163,6 @@ function extractCorrectLetters(it) {
   if (Array.isArray(raw)) {
     return raw.map(String).map(s => s.trim().toUpperCase()).filter(isLetter);
   }
-  // string like "B", "B, D", "B and D"
   const s = String(raw).toUpperCase();
   const letters = s.match(/[A-Z]/g);
   return letters ? letters.filter(isLetter) : [];
@@ -228,7 +220,6 @@ function renderQuestion(q) {
     optionsForm.appendChild(label);
   });
 
-  // enable submit only when at least one choice selected
   optionsForm.addEventListener('change', () => {
     submitBtn.disabled = optionsForm.querySelectorAll('input:checked').length === 0;
   }, { once: true });
@@ -238,6 +229,7 @@ function renderQuestion(q) {
 
   feedback.textContent = '';
   feedback.className = 'feedback';
+  answerLine.innerHTML = '';          // NEW: clear the area
   rationale.textContent = '';
 }
 
@@ -246,13 +238,11 @@ function renderQuestion(q) {
 function loadNext() {
   if (!state) return;
 
-  // finished?
   if (state.queue.length === 0) {
     finishQuiz();
     return;
   }
 
-  // rotate next question
   const q = state.queue.shift();
   state.idx = state.pool.findIndex(p => p.id === q.id);
   state.shownCount += 1;
@@ -276,31 +266,43 @@ function handleSubmit(){
 
   const correctSet = new Set(q.correctLetters);
   const pickedSet = new Set(picked.map(s => s.toUpperCase()));
-
-  // Strict set equality for multi; single is the same comparison logic.
   const isCorrect = setsEqual(correctSet, pickedSet);
 
   const fullCorrectText = formatCorrectAnswers(q);
+
   if (isCorrect) {
     if (q.attempts === 1) state.totalFirstTry += 1;
     q.mastered = true;
-    feedback.textContent = `Correct! ${fullCorrectText}`;
+
+    // status line
+    feedback.textContent = 'Correct!';
     feedback.className = 'feedback ok';
+
+    // next line: answer wording only
+    answerLine.innerHTML = `<div class="answerText">${escapeHTML(fullCorrectText)}</div>`;
+
     rationale.textContent = q.rationale || '';
-    // don't requeue
   } else {
-    feedback.textContent = `Incorrect. Correct: ${fullCorrectText}`;
+    // status line
+    feedback.textContent = 'Incorrect.';
     feedback.className = 'feedback bad';
+
+    // label then answer wording
+    answerLine.innerHTML = `
+      <div class="answerLabel">Correct Answer:</div>
+      <div class="answerText">${escapeHTML(fullCorrectText)}</div>
+    `;
+
     rationale.textContent = q.rationale || '';
-    // requeue this question to end
+
+    // requeue
     state.queue.push(q);
   }
 
-  // Save for review (only once per question when mastered; or append last attempt)
+  // Save for review
   if (isCorrect && !state.review.find(r => r.q.id === q.id)) {
     state.review.push({ q, correctLetters: [...correctSet], userLetters: [...pickedSet], wasCorrect: true });
   } else if (!isCorrect) {
-    // update or insert last attempt for display (optional)
     const existing = state.review.find(r => r.q.id === q.id);
     if (existing) {
       existing.userLetters = [...pickedSet];
@@ -310,7 +312,6 @@ function handleSubmit(){
     }
   }
 
-  // After submit, disable controls until Next
   submitBtn.disabled = true;
   nextBtn.disabled = false;
 
@@ -343,7 +344,6 @@ function finishQuiz(){
   fta.textContent = `First-Try Accuracy: ${pct}% (${state.totalFirstTry} / ${state.totalRequested})`;
   totalSub.textContent = `Total answers submitted: ${state.totalSubmissions}`;
 
-  // Build review (always show all items with correct answers + rationale)
   reviewList.innerHTML = '';
   state.pool.forEach(q => {
     const div = document.createElement('div');
