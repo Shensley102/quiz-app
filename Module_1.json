@@ -396,11 +396,10 @@
         "Encourage face-to-face meetings rather than e-mail."
       ],
       "correct": [
-        "B",
-        "D"
+        "B"
       ],
       "rationale": "Reduction of stress related to information overload requires the development of information-receiving and information-sending skills. Information-sending skills include determining the most common sources of useful data, labeling files and folders to which e-mail messages can be directed, deleting e-mails, and focusing on the most important pieces. Information-sending skills include keeping e-mail messages short (and calling if the message needs to be long) and considering the most appropriate medium for messages (telephone, fax, face-to-face).",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q27",
@@ -442,11 +441,10 @@
         "Neither eustress nor distress"
       ],
       "correct": [
-        "A",
-        "B"
+        "A"
       ],
       "rationale": "Eustress is defined as stress that is pleasant in nature, and distress is defined as stress of an unpleasant nature. One can assume that every interview has both of these stresses.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q30",
@@ -610,7 +608,7 @@
         "D"
       ],
       "rationale": "To manage time successfully, it is important to break down your workload into smaller, manageable tasks. Developing PERT and Gantt charts will aid in dealing with larger, complex projects. Both charts can be used to outline how an individual will approach a large project.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q41",
@@ -640,7 +638,7 @@
         "D"
       ],
       "rationale": "The science of how research is adopted is known as translation science, the science of translating research into practice (TRIP). The primary aim of research utilization is to activate the change process to move research findings into practice to improve patient outcomes.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q43",
@@ -703,7 +701,7 @@
         "A"
       ],
       "rationale": "Identifying the question may be the most challenging part of the process. Once the clinical question has been identified, writing it down will help in moving on to the next step of gathering evidence.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q47",
@@ -733,7 +731,7 @@
         "A"
       ],
       "rationale": "Suggestions for effective strategies that promote behavioral change in health professionals include active involvement strategies such as face-to-face information sessions in small groups and one-to-one interactions. Other approaches have mixed or few results.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q49",
@@ -763,7 +761,7 @@
         "C"
       ],
       "rationale": "Journal clubs provide opportunities for engagement in reading research and considering how it might be applied to clinical practice problems, which is considered very effective in behavioral change.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q51",
@@ -808,7 +806,7 @@
         "C"
       ],
       "rationale": "The third phase, comparative evaluation and decision making, involves making a decision about the applicability of the studies by synthesizing cumulative findings; evaluating the degree and nature of other criteria, such as risk, feasibility, and readiness of the findings; and making a recommendation about using the findings of the studies.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q54",
@@ -868,7 +866,7 @@
         "A"
       ],
       "rationale": "The translation of research into practice operates at four levels: The individual healthcare professional, healthcare groups or teams, organizations, and the larger healthcare system or environment. The adoption of saline flushes illustrates the challenges of communicating EBP to other disciplines and organizations and the involvement of different levels. This particular innovation needed endorsement by nurses, physicians, and pharmacists, as well as by administrators who needed evidence of lost savings to support adoption.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q58",
@@ -898,7 +896,7 @@
         "D"
       ],
       "rationale": "While randomized controlled trials (RCTs) are generally considered the gold standard for research, it is important to assess not only the method but also the quality of the study and its applicability to the question that is being asked. The quality of all studies should be appraised against the standards accepted for that type of research.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q60",
@@ -943,7 +941,7 @@
         "D"
       ],
       "rationale": "EBP is recognized across nursing and other disciplines as reflective of state-of-the-art clinical practice, as it is based on best available evidence.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q63",
@@ -1003,7 +1001,7 @@
         "B"
       ],
       "rationale": "RCTs, or randomized controlled trials, always involve testing of a treatment through the random assignment of subjects in the study to an experimental or treatment group or to a control group that receives a placebo.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q67",
@@ -1062,11 +1060,10 @@
         "Hold a series of mandatory meetings on the budget cuts, asking staff for ideas on the cuts."
       ],
       "correct": [
-        "A",
-        "D"
+        "A"
       ],
       "rationale": "Empowerment is the process of exercising one‘s own power to facilitate the participation of others in decision-making and taking action so they are free to exercise power. It means releasing authority and enabling others to have accountability, for participation and decisions.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q71",
@@ -1228,11 +1225,10 @@
         "Generating hypotheses"
       ],
       "correct": [
-        "A",
-        "D"
+        "A"
       ],
       "rationale": "In this particular model (a model similar to the nursing model), data collection is the first step toward identifying important alternatives or determining if there is a problem or problems.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q82",
@@ -1292,7 +1288,7 @@
         "D"
       ],
       "rationale": "Decision making involves a goal-oriented consideration of many options that are objectively weighed according to their possible risks, consequences, and positive outcomes. The options should be ranked in the order in which they are likely to result in the desired goals or objectives. The solution selected should be the one that is most feasible and satisfactory and has the fewest undesirable consequences. In this instance, all of the options listed might be considered and weighed.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q86",
@@ -1445,7 +1441,7 @@
         "C"
       ],
       "rationale": "To delegate effectively, the charge nurse must assess the abilities required in the situation and the abilities that staff have to anticipate the amount of direction, monitoring, explanation, and independence that can be assumed.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q96",
@@ -1547,11 +1543,10 @@
         "Authorizing"
       ],
       "correct": [
-        "A",
-        "B"
+        "A"
       ],
       "rationale": "Delegation refers to the transfer of responsibility for work; the day shift nurse retains accountability for the outcomes of patient care, therefore, is using the assignment of the task rather than delegation.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q103",
@@ -1608,11 +1603,10 @@
         "The nurse supervisor asks the charge nurse on Unit B to cover Unit F, which is two floors up, because the charge nurse for Unit F is ill. The charge nurse for Unit B is an experienced manager but has no experience with the nursing care required on Unit F."
       ],
       "correct": [
-        "A",
         "B"
       ],
       "rationale": "When the span of control (number of individuals for whom a manager is responsible) is compromised by geographic factors such as lack of proximity, instability in patients‘ conditions, or lack of experience, the span of control that is being delegated may lead to unsafe care.   120",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q107",
@@ -1672,7 +1666,7 @@
         "D"
       ],
       "rationale": "The charge nurse and Sally have a well-established relationship, and Sally has the expertise to work effectively with David; therefore, the charge nurse would need to provide little guidance but would need to communicate that they are available if needed. Hersey refers to this leader behavior as delegating.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q111",
@@ -1699,11 +1693,10 @@
         "advise Evelyn that working the inhaler is not really complicated and that she should ask the patient how to check medication levels in the inhaler."
       ],
       "correct": [
-        "B",
-        "E"
+        "B"
       ],
       "rationale": "When delegating tasks, in addition to specifying the task to be completed, outcomes, priorities, time lines, deviations, report time frames, monitoring, and resources, asking the delegatee to give examples of each is helpful in ensuring that communication is clear and has been understood. Preparation of UNPs lacks consistency; therefore, the safest practice is to determine the knowledge and skill level of the UNP in relation to the skill and the patient before delegating.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q113",
@@ -2054,7 +2047,7 @@
     },
     {
       "id": "Module_1_Q136",
-      "stem": "As a new manager, you reflect on what professional development would be most valuable to assist you in taking on this role. Which of the following would you most likely identify?   211",
+      "stem": "As a new manager, you reflect on what professional development would be most valuable to assist you in taking on this role. Which of the following would you most likely identify?",
       "options": [
         "Opportunities to hone clinical skills that are used most often in the unit that you will manage",
         "A workshop on conflict management and communication skills",
@@ -2062,11 +2055,10 @@
         "Attendance at a workshop on survey tool development and statistical measurement"
       ],
       "correct": [
-        "A",
         "B"
       ],
       "rationale": "In a qualitative descriptive study that explored the professional development needs of nursing leaders, a number of recommendations were made based on what charge nurses indicated about their needs. The recommendations included education and orientation to the role, managing performance and development of staff, and communication skills. Additional education should be focused on unit finances and patient relations. Leadership support was found to be pivotal for charge nurses to feel successful or hinder their work.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q137",
@@ -2153,11 +2145,10 @@
         "Do you understand our philosophy and mission?"
       ],
       "correct": [
-        "B",
-        "D"
+        "B"
       ],
       "rationale": "Only questions related to the position and its description are legitimate. Employers should not ask unrelated questions, and applicants should decline to answer if asked inappropriate questions, for example, about disabilities.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q143",
@@ -2338,7 +2329,7 @@
         "D"
       ],
       "rationale": "Although giving in to organizational or supervisory pressure may bring an enhanced learning and organizational profile, what is to be gained needs to be assessed against your career goals, interests, and aspirations. Increasing and expanding your skill set within defined career interests is a valid reason to consider a chance opportunity.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q155",
@@ -2353,7 +2344,7 @@
         "C"
       ],
       "rationale": "Information that is included in the body of the curriculum vitae should always be in reverse chronological order so that the most recent and, presumably, most relevant job information appears first.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q156",
@@ -2368,7 +2359,7 @@
         "D"
       ],
       "rationale": "When including Web or e-mail addresses, it is important to use addresses that are not overly casual or that communicate personal information.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_1_Q157",
