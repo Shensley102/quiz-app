@@ -242,11 +242,10 @@
         "Hire a geriatric specialist to oversee and control the project."
       ],
       "correct": [
-        "B",
-        "E"
+        "B"
       ],
       "rationale": "Complexity theory suggests that systems interact and adapt and that decision-making occurs throughout the systems, as opposed to being held in a hierarchy. In complexity theory, every voice counts, and therefore, all levels of staff would be involved in decision-making.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q17",
@@ -305,11 +304,10 @@
         "Back the unit manager‘s actions and end the dispute."
       ],
       "correct": [
-        "B",
-        "E"
+        "B"
       ],
       "rationale": "Part of leadership is understanding conflict resolution and the ability to negotiate and manage for the resolution of issues and concerns. This situation has failed a second negotiation session; elevation to a manager with additional training to facilitate conflict resolution is important at this point.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q21",
@@ -321,11 +319,10 @@
         "Hiring the assistants and allowing the RNs to see what good additions they are"
       ],
       "correct": [
-        "A",
-        "E"
+        "A"
       ],
       "rationale": "Influencing others requires emotional intelligence in domains such as empathy, handling relationships, deepening self-awareness in self and others, motivating others, and managing emotions. Motivating others recognizes that values are powerful forces that influence acceptance of change. Leaving the RNs alone for a period of time before implementation does not provide an opportunity to explore different perspectives and values. Avoiding discussion until the team changes may not promote adoption of the change until there is an opportunity to explore perspectives and values related to the change. Hiring of the assistants demonstrates a lack of empathy for the perspectives of the RN staff.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q22",
@@ -337,11 +334,10 @@
         "Ask the director of nursing to increase job security for night staff by having them sign contracts that guarantee work."
       ],
       "correct": [
-        "A",
         "B"
       ],
       "rationale": "Hygiene factors such as salary, working conditions, and security are consistent with Herzberg‘s two-factor theory of motivation; meeting these needs avoids job dissatisfaction. Motivator factors such as recognition and satisfaction with work promote a satisfying and enriched work environment. Transformational leaders use motivator factors liberally to inspire work performance and increase job satisfaction.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q23",
@@ -368,11 +364,10 @@
         "An RN who is already familiar with the new approach of volunteers to take the lead in mentoring and teaching others how to implement it."
       ],
       "correct": [
-        "A",
         "D"
       ],
-      "rationale": "4 Followership occurs when there is acquiescence to a peer who is leading in a setting where a team has gathered to ensure the best clinical decision making, and actions are taken to achieve clinical or organizational outcomes. Followership promotes good clinical decisions and the use of clinical resources.",
-      "type": "multi_select"
+      "rationale": "Followership occurs when there is acquiescence to a peer who is leading in a setting where a team has gathered to ensure the best clinical decision making, and actions are taken to achieve clinical or organizational outcomes. Followership promotes good clinical decisions and the use of clinical resources.",
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q25",
@@ -414,11 +409,10 @@
         "Experience"
       ],
       "correct": [
-        "D",
-        "E"
+        "D"
       ],
       "rationale": "The nurse manager employs knowledge and experience to determine whether the patient is dying because the course of dying is not standardized and cannot be determined by clinical pathways.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q28",
@@ -490,11 +484,10 @@
         "Acquiescence"
       ],
       "correct": [
-        "B",
-        "D"
+        "B"
       ],
       "rationale": "Stepping outside oneself to envision the situation while assuming ownership is a component of emotional intelligence. This is an example of self-awareness to identify the resolve to self-conflict in this situation.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q33",
@@ -521,11 +514,10 @@
         "Emotional intelligence"
       ],
       "correct": [
-        "B",
-        "C"
+        "B"
       ],
       "rationale": "Complexity theory involves envisioning each member of the team involved in decision making, management, and leadership, with the leader not seen in a hierarchical relationship to other team members.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q35",
@@ -537,11 +529,10 @@
         "Bottom-up interactions"
       ],
       "correct": [
-        "C",
-        "D"
+        "C"
       ],
       "rationale": "According to complexity theory, social networks evolve around areas of common interest and are able to respond to problems in creative and novel ways.   8",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q36",
@@ -568,11 +559,10 @@
         "A management task"
       ],
       "correct": [
-        "A",
         "B"
       ],
       "rationale": "According to complexity theory, leadership tasks, which are similar to values, reflect the patient-centered philosophies and values-driven characteristics that define an organization and give it personality.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q38",
@@ -584,11 +574,10 @@
         "Calling a staff meeting at the onset of the dispute to allow the team and the RN and LPN to discuss the initial dispute"
       ],
       "correct": [
-        "A",
-        "E"
+        "A"
       ],
       "rationale": "The initial step in conflict resolution should have involved an expedient response to the issues and putting a focus on the issues involved in the dispute between the LPN and RN through negotiation involving the two parties, before the dispute involved others.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q39",
@@ -679,11 +668,10 @@
         "Paternalism and respect for others"
       ],
       "correct": [
-        "A",
         "C"
       ],
       "rationale": "Autonomy refers to the freedom to make a choice (e.g., refuse a procedure), and beneficence refers to doing good (performing a procedure that will benefit the patient).",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q45",
@@ -725,11 +713,10 @@
         "Based on the theory that the handbook creates an explicit contract"
       ],
       "correct": [
-        "B",
         "C"
       ],
       "rationale": "The handbook is an implied contract and frames the employment contract. This contract binds the employer to meeting the handbook statements.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q48",
@@ -876,11 +863,10 @@
         "Nonmaleficence"
       ],
       "correct": [
-        "A",
-        "B"
+        "A"
       ],
       "rationale": "Beneficence refers to doing what‘s good for the patient; in this situation, doing what‘s good means providing care to the patient with the best likelihood of recovery.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q58",
@@ -892,11 +878,10 @@
         "Nonmaleficence"
       ],
       "correct": [
-        "A",
         "B"
       ],
       "rationale": "Autonomy refers to the right to choose freely, which is inherent in informed consent.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q59",
@@ -1106,11 +1091,10 @@
         "Advise families that the administration of analgesia is based on the expert clinical judgment of nurses who are familiar with the care of patients in palliative care."
       ],
       "correct": [
-        "C",
-        "E"
+        "C"
       ],
       "rationale": "The cultural and religious backgrounds of nurses influence their perceptions of dignity-conserving care. For example, foreign-born Catholic nurses stated the dying experience should not be altered by analgesics to relieve suffering or by attempts to hasten death by forgoing curative therapy or by other means. Approaches to working with differences in the diverse cultural and religious backgrounds of patients, families, and nurses alike include taking time to have conversational chats with patients in end-of-life care and with colleagues who will facilitate learning about each other and provide care that fits with the patient‘s cultural beliefs about dying.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q73",
@@ -1122,11 +1106,10 @@
         "Genetic predisposition"
       ],
       "correct": [
-        "A",
-        "B"
+        "A"
       ],
       "rationale": "Culture is determined by behaviors and beliefs and develops slowly.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q74",
@@ -1348,11 +1331,10 @@
         "lack of caring about the hospital environment by the friends and family."
       ],
       "correct": [
-        "C",
-        "E"
+        "C"
       ],
       "rationale": "The Giger and Davidhizar Transcultural Model identifies six phenomena to assess the provision of care for patients who are from different cultures, including social organizations, which include how relationships are formed and expressed in different cultures.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q89",
@@ -1379,11 +1361,10 @@
         "Getting an advanced degree"
       ],
       "correct": [
-        "A",
-        "B"
+        "A"
       ],
       "rationale": "Being an effective follower is the first step in becoming an effective leader. A leader may take classes on leadership and classes on management, as well as secure and advanced degrees. The first step to effective leadership is effective followership.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q91",
@@ -1414,11 +1395,10 @@
         "Provide education to the staff of the unit."
       ],
       "correct": [
-        "C",
-        "E"
+        "C"
       ],
       "rationale": "50 Your primary role as a nurse manager is ensuring quality patient care. You must also focus on cost outcomes, assess your staff frequently, and provide education to the staff. However, as a leader in evaluating the larger picture of health care, quality care is a priority.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q93",
@@ -1475,11 +1455,10 @@
         "An informal leader"
       ],
       "correct": [
-        "A",
         "D"
       ],
       "rationale": "Formal leaders, positional leaders, and official leaders hold positions of leadership or titles. In this scenario, the nurse is the formal leader of the unit. The nurse is noted to be an informal leader, one who does not hold an actual leadership title, but leads from an informal position based on experience and behavior.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q97",
@@ -1536,11 +1515,10 @@
         "Intellectual ability"
       ],
       "correct": [
-        "C",
-        "E"
+        "C"
       ],
       "rationale": "Emotional intelligence is defined as understanding and managing our emotions with the added awareness of discerning the emotions of others. Many organizations will assess leaders for their level of emotional intelligence to assist the individuals in understanding their ability to relate to others.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q101",
@@ -1642,11 +1620,10 @@
         "Management of conflict"
       ],
       "correct": [
-        "A",
-        "E"
+        "A"
       ],
       "rationale": "The charge nurse is demonstrating emotional intelligence. Emotional intelligence requires an individual to relate to others based on emotions and social awareness of situations. The charge nurse displayed emotional intelligence by supporting the new nurse and offering to change the assignment the next day.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q108",
@@ -2021,11 +1998,10 @@
         "Administration"
       ],
       "correct": [
-        "A",
-        "C"
+        "A"
       ],
       "rationale": "The first phase in planning is conducting an assessment of the external and internal environments. Assessment of the internal environment should include all levels of staff and facilitate feedback on the effectiveness of strengths and weaknesses of systems and processes within the institution.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q133",
@@ -2228,17 +2204,16 @@
       "id": "Module_2_Q146",
       "stem": "The staff development educator developed strategies to help nurse managers actively listen. Guidelines for active listening include which of the following?",
       "options": [
-        "Speed up your internal processes so that you can process more data.   142",
+        "Speed up your internal processes so that you can process more data.",
         "Realize that the first words of the sender are the most important.",
         "Be prepared to make an effective judgment of the communication sender.",
         "Cultivate a desire to learn about the other person."
       ],
       "correct": [
-        "C",
         "D"
       ],
       "rationale": "Active listening means suspending judgment about what is about to be said and listening to all that is said (and not just the first or last words). It is motivated by a genuine desire to learn about the other person.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q147",
@@ -2250,11 +2225,10 @@
         "A set of barriers that may occur between the sender and receiver"
       ],
       "correct": [
-        "A",
         "D"
       ],
       "rationale": "Problems can occur at any point in communication and result in miscommunication. In this instance, it can be assumed that there was a sender, a receiver, a channel, and feedback. In this scenario, barriers such as distractions, inadequate knowledge, differences in perceptions, and emotions and personality may have resulted in misunderstanding between the manager and the staff nurse.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q148",
@@ -2416,11 +2390,10 @@
         "Committing to resolution"
       ],
       "correct": [
-        "C",
         "D"
       ],
       "rationale": "Caregivers must listen to the other person‘s perspective, listen to the message accurately, identify differences, and creatively seek resolutions.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q159",
@@ -2475,7 +2448,7 @@
         "Establish objectives and goals for each area and decide who is accountable for them.",
         "allow clients to organize the activities.",
         "engage in activities that motivate the team and communicate effectively with the responsible staff members.",
-        "analyze, appraise, and interpret the performance of responsible staff, and   229 communicate these findings to staff management. F. allow clients to establish objectives and goals."
+        "analyze, appraise, and interpret the performance of responsible staff, and communicate these findings to staff management. F. allow clients to establish objectives and goals."
       ],
       "correct": [
         "A",
@@ -2493,14 +2466,13 @@
         "A highly professional environment",
         "A nurturing and receptive environment",
         "An environment highlighted by lots of meetings, so staff members can have lots of input",
-        "A totally online environment, so staff members will not have to interface with uncaring colleagues   221"
+        "A totally online environment, so staff members will not have to interface with uncaring colleagues"
       ],
       "correct": [
-        "A",
         "B"
       ],
       "rationale": "A study of student nurses who represent this age group indicates that they want a leader who is receptive, approachable, a team player, and motivating.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q164",
@@ -2587,12 +2559,9 @@
         "Medical oncology unit staff"
       ],
       "correct": [
-        "C",
-        "D",
-        "E"
       ],
       "rationale": "Nurse managers have responsibility for both patient and staff safety. High-risk areas, such as the Emergency Department, require special attention.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q170",
@@ -2604,11 +2573,10 @@
         "EHRs will increase the effectiveness of care by enhancing coordination and improving patient outcomes."
       ],
       "correct": [
-        "D",
-        "E"
+        "D"
       ],
       "rationale": "As technology improves, informatics must be integrated with budget and personnel as a critical resource element. Basing practice on evidence-based care can assist in making solid decisions about resources and in leading and encouraging staff toward positive changes in patient outcomes. EHRs, for example, are expected to enhance coordination of care, improve health outcomes, and increase accuracy of diagnoses.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q171",
@@ -2665,11 +2633,10 @@
         "Challenge and striving for excellence"
       ],
       "correct": [
-        "C",
         "D"
       ],
       "rationale": "Clear and open communication, accountability, and clarity of roles, and participatory decision making are considered by the AONE to be important to a healthy environment. Challenge and excellence are not specifically identified by the AONE as important to healthy work environments.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q175",
@@ -2816,11 +2783,10 @@
         "Assumes responsibility for identifying a safety concern and concedes authority for the solution to you."
       ],
       "correct": [
-        "A",
         "D"
       ],
       "rationale": "Communication of a vision and risk-taking are leader traits, whereas coordination is associated with manager traits. Taking responsibility while conceding authority to the leader is characteristic of followers.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q185",
