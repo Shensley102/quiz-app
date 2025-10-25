@@ -288,11 +288,10 @@
         "Continue to listen as the parties repeat their thoughts and feelings about the conflict."
       ],
       "correct": [
-        "A",
         "C"
       ],
       "rationale": "For the resolution of conflict, one should address the interests and involvement of participants in the conflict by examining the real issues of all parties.",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Module_2_Q20",
@@ -646,7 +645,7 @@
       "stem": "With regard to nursing practice, nurse managers are held responsible for: (Select all that apply.)",
       "options": [
         "practicing within legal guidelines established under state law and nurse practice acts.",
-        "ensuring that nursing staff under their supervision are currently licensed to practice.   25",
+        "ensuring that nursing staff under their supervision are currently licensed to practice.",
         "Referring all errors in nursing judgment to state discipline boards.",
         "ensuring that physicians are properly licensed to provide care on patient care units."
       ],
