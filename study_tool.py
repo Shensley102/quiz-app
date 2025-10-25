@@ -1,402 +1,367 @@
-import os
-import json
-import re
-import random
-from typing import Dict, List, Any, Optional
+(() => {
+  const header = document.querySelector(".app-header");
+  const landing = document.getElementById("landing");
+  const quiz = document.getElementById("quiz");
 
-from flask import Flask, jsonify, request, render_template, session
+  const moduleSelect = document.getElementById("moduleSelect");
+  const countBtns = Array.from(document.querySelectorAll(".count"));
 
-# ---------------------------------------------------------------------
-# Flask app
-# ---------------------------------------------------------------------
-app = Flask(
-    __name__,
-    static_url_path="/static",
-    static_folder="static",
-    template_folder="templates",
-)
-app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY", "dev-secret-change-me")
+  const startBtn = document.getElementById("startBtn");
+  const newQuizBtn = document.getElementById("newQuizBtn");
+  const resetBtn = document.getElementById("resetBtn");
 
-# ---------------------------------------------------------------------
-# Utilities
-# ---------------------------------------------------------------------
-LETTERs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-SELECT_ALL_LITERAL = "(Select all that apply.)"  # strict literal requirement
+  const qStem = document.getElementById("qStem");
+  const qOptions = document.getElementById("qOptions");
+  const submitBtn = document.getElementById("submitBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
+  const resultDiv = document.getElementById("result");
+  const scoreLine = document.getElementById("scoreLine");
 
-def _discover_module_files() -> List[str]:
-    """Return JSON files that look like question banks."""
-    files = []
-    for fn in os.listdir("."):
-        if fn.lower().endswith(".json") and fn.lower().startswith(("module", "mod", "bank")):
-            files.append(fn)
-    return sorted(files)
+  const runCounter = document.getElementById("runCounter");
+  const runCounterNum = document.getElementById("runCounterNum");
 
+  const remainingCounter = document.getElementById("remainingCounter");
+  const remainingNum = document.getElementById("remainingNum");
 
-def _load_module(mod_name: str) -> Any:
-    """
-    Load a module by base name or filename.
-    Accepts 'Module_1' or 'Module_1.json'.
-    """
-    candidates = []
-    for fn in _discover_module_files():
-        base = os.path.splitext(fn)[0]
-        if base == mod_name or fn == mod_name or base.lower() == mod_name.lower():
-            candidates.append(fn)
-    if not candidates:
-        raise FileNotFoundError(f"Module JSON not found for: {mod_name}")
-    path = candidates[0]
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+  const review = document.getElementById("review");
 
+  const routes = {
+    modules: ["/api/modules", "/modules"],
+    start: ["/api/start", "/start"],
+    next: ["/api/next", "/next"],
+    answer: ["/api/answer", "/answer"],
+    reset: ["/api/reset_session", "/reset"],
+  };
 
-def _is_select_all(stem: str) -> bool:
-    """
-    Multi-select is TRUE only if the stem contains the EXACT substring:
-    '(Select all that apply.)' (case-sensitive, punctuation-sensitive).
-    """
-    return bool(stem and SELECT_ALL_LITERAL in stem)
+  // helpers
+  function setHidden(el, yes) { el.classList.toggle("hidden", !!yes); }
+  function clearOptions() { qOptions.innerHTML = ""; }
+  function escapeHTML(s = "") {
+    return String(s).replace(/[&<>"']/g, c => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+    }[c]));
+  }
+  function headerHeight() { return header ? header.offsetHeight : 0; }
+  function scrollToQuestion() {
+    const y = qStem.getBoundingClientRect().top + window.scrollY - headerHeight() - 8;
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+  }
+  function setRemaining(n) { remainingNum.textContent = String(Math.max(0, Number(n || 0))); }
 
+  // NEW: Build "Correct: A — full text; C — full text" string from current question
+  function formatCorrectAnswers(q, letters = []) {
+    const map = {};
+    (q.options || []).forEach(o => {
+      map[String(o.letter).toUpperCase()] = o.text || "";
+    });
+    return (letters || []).map(l => {
+      const key = String(l).toUpperCase();
+      const txt = map[key] || "";
+      return `${key} — ${escapeHTML(txt)}`;
+    }).join("; ");
+  }
 
-def _normalize_options(options: Any) -> List[Dict[str, str]]:
-    """
-    Normalize options to a list of {'letter': 'A', 'text': '...'}.
-    Accepts list[str], list[dict], or dict{'A':'...'}.
-    """
-    norm: List[Dict[str, str]] = []
-    if isinstance(options, dict):
-        items = sorted(options.items(), key=lambda kv: str(kv[0]))
-        for i, (_k, v) in enumerate(items):
-            letter = LETTERs[i]
-            norm.append({"letter": letter, "text": str(v)})
-        return norm
+  function renderOptions({ options = [], is_multi = false }) {
+    clearOptions();
+    const type = is_multi ? "checkbox" : "radio";
+    lettersToInputs = {};
+    options.forEach(({ letter, text }) => {
+      const id = `opt_${letter}`;
+      const label = document.createElement("label");
+      label.className = "option";
+      label.setAttribute("for", id);
+      label.innerHTML = `
+        <input type="${type}" id="${id}" name="choice" value="${letter}">
+        <span class="letter">${letter}.</span>
+        <span class="text">${escapeHTML(text || "")}</span>
+      `;
+      const input = label.querySelector("input");
+      qOptions.appendChild(label);
+      lettersToInputs[letter.toUpperCase()] = input;
+    });
+  }
 
-    if not isinstance(options, list):
-        options = [options] if options else []
-
-    for i, opt in enumerate(options):
-        letter = LETTERs[i]
-        if isinstance(opt, str):
-            norm.append({"letter": letter, "text": opt})
-        elif isinstance(opt, dict):
-            text = str(
-                opt.get("text")
-                or opt.get("answer")
-                or opt.get("label")
-                or opt.get("value")
-                or ""
-            )
-            norm.append({"letter": letter, "text": text})
-        else:
-            norm.append({"letter": letter, "text": str(opt)})
-    return norm
-
-
-def _extract_correct_letters(q: Dict[str, Any], options: List[Dict[str, str]]) -> List[str]:
-    """
-    Pull correct answers in LETTER form from various shapes.
-    """
-    correct = set()
-
-    # From option objects if correctness flags exist
-    raw_opts = q.get("options") or q.get("answers") or q.get("choices")
-    if isinstance(raw_opts, list):
-        for i, opt in enumerate(raw_opts):
-            if isinstance(opt, dict) and any(k in opt for k in ("correct", "is_correct", "right")):
-                is_ok = bool(opt.get("correct") or opt.get("is_correct") or opt.get("right"))
-                if is_ok and 0 <= i < len(options):
-                    correct.add(options[i]["letter"])
-
-    # Fallback to question-level keys
-    if not correct:
-        raw_ans = (
-            q.get("correct_answers")
-            or q.get("correct")
-            or q.get("answer")
-            or q.get("key")
-            or q.get("answers_key")
-        )
-
-        def add_letter_from_index(idx: int):
-            if 0 <= idx < len(options):
-                correct.add(options[idx]["letter"])
-
-        if isinstance(raw_ans, list):
-            for v in raw_ans:
-                if isinstance(v, (int, float)):
-                    add_letter_from_index(int(v))
-                else:
-                    for m in re.findall(r"[A-H]", str(v)):
-                        correct.add(m)
-        elif isinstance(raw_ans, (int, float)):
-            add_letter_from_index(int(raw_ans))
-        elif isinstance(raw_ans, str):
-            parts = re.split(r"[\s,;]+", raw_ans.strip())
-            for part in parts:
-                if not part:
-                    continue
-                if part.isdigit():
-                    add_letter_from_index(int(part))
-                else:
-                    for m in re.findall(r"[A-H]", part):
-                        correct.add(m)
-
-    if not correct and options:
-        correct.add("A")
-
-    return sorted(correct)
-
-
-def _coerce_questions(raw: Any) -> List[Dict[str, Any]]:
-    """
-    Normalize the bank to consistent objects.
-    """
-    if isinstance(raw, dict) and "questions" in raw:
-        qlist = raw["questions"]
-    elif isinstance(raw, list):
-        qlist = raw
-    else:
-        qlist = [raw]
-
-    norm: List[Dict[str, Any]] = []
-
-    for idx, q in enumerate(qlist):
-        stem = q.get("stem") or q.get("question") or q.get("prompt") or q.get("text") or ""
-        options = _normalize_options(q.get("options") or q.get("answers") or q.get("choices") or [])
-        correct_letters = _extract_correct_letters(q, options)
-        rationale = q.get("rationale") or q.get("explanation") or q.get("why") or ""
-
-        # STRICT multi-select rule
-        is_multi = _is_select_all(stem)
-
-        # If not a select-all but multiple answers listed, force single-select
-        if not is_multi and len(correct_letters) > 1:
-            correct_letters = [sorted(correct_letters)[0]]
-
-        norm.append(
-            {
-                "id": q.get("id") or q.get("question_id") or f"q{idx}",
-                "stem": stem,
-                "options": options,
-                "correct": correct_letters,
-                "rationale": rationale,
-                "is_multi": is_multi,
-            }
-        )
-
-    return norm
-
-
-def _get_state(create: bool = False) -> Optional[Dict[str, Any]]:
-    s = session.get("quiz_state")
-    if s is None and create:
-        s = {}
-        session["quiz_state"] = s
-    return s
-
-
-def _reset_state() -> None:
-    session.pop("quiz_state", None)
-
-
-def _by_id_for(module_id: str) -> Dict[str, Dict[str, Any]]:
-    """Reload module and build an id->question mapping on demand."""
-    questions = _coerce_questions(_load_module(module_id))
-    return {q["id"]: q for q in questions}
-
-
-# ---------------------------------------------------------------------
-# Routes
-# ---------------------------------------------------------------------
-@app.get("/")
-def index():
-    return render_template("index.html")
-
-
-@app.get("/api/modules")
-@app.get("/modules")
-def api_modules():
-    files = _discover_module_files()
-    items = [{"id": os.path.splitext(fn)[0], "file": fn} for fn in files]
-    return jsonify(items)
-
-
-@app.post("/api/start")
-@app.post("/start")
-def api_start():
-    """
-    Start a quiz:
-      - choose a fresh random subset every time (no history kept)
-      - supports 'full'/'all' to take the whole bank
-    """
-    data = request.get_json(force=True) or {}
-    module_id = data.get("module")
-    if not module_id:
-        return jsonify({"ok": False, "error": "No module"}), 400
-
-    try:
-        questions = _coerce_questions(_load_module(module_id))
-    except Exception as e:
-        return jsonify({"ok": False, "error": f"Could not load module: {e}"}), 400
-    if not questions:
-        return jsonify({"ok": False, "error": "No questions in module"}), 400
-
-    raw_count = data.get("count", 10)
-    if isinstance(raw_count, str) and raw_count.lower() in {"full", "all", "max"}:
-        count = len(questions)
-    else:
-        try:
-            count = int(raw_count)
-        except Exception:
-            count = 10
-        count = max(1, min(count, len(questions)))
-
-    rng = random.SystemRandom()
-    sample = rng.sample(questions, k=count)
-
-    _reset_state()
-    st = {
-        "module": module_id,
-        "initial_qids": [q["id"] for q in sample],   # order for final review
-        "queue": [q["id"] for q in sample],
-        "incorrect_queue": [],
-        "first_try_total": len(sample),
-        "first_try_correct": 0,
-        "first_try_attempted": {},
-        "served": 0,
-        "submissions": 0,
-        "current": None,
-        "mastered": [],  # qids answered correctly at least once
+  function renderReview(items = []) {
+    if (!Array.isArray(items) || !items.length) {
+      review.innerHTML = `<div class="summary">No review content.</div>`;
+      return;
     }
-    session["quiz_state"] = st
-    session.modified = True
-    remaining = st["first_try_total"] - len(st["mastered"])
-    return jsonify({"ok": True, "count": st["first_try_total"], "remaining": remaining})
 
+    const parts = [];
+    for (const item of items) {
+      const correctSet = new Set((item.correct || []).map(x => String(x).toUpperCase()));
+      const opts = (item.options || []).map(o => {
+        const isCorrect = correctSet.has(String(o.letter).toUpperCase());
+        return `
+          <div class="rev-opt ${isCorrect ? "correct" : ""}">
+            <span class="letter">${escapeHTML(o.letter)}.</span>
+            <span class="text">${escapeHTML(o.text || "")}</span>
+          </div>
+        `;
+      }).join("");
 
-@app.get("/api/next")
-@app.get("/next")
-def api_next():
-    st = _get_state()
-    if not st or not st.get("module"):
-        return jsonify({"ok": False, "error": "No active quiz"}), 400
+      parts.push(`
+        <article class="rev-item">
+          <div class="rev-title">Question ${item.index}</div>
+          <div class="rev-stem">${escapeHTML(item.stem || "")}</div>
+          <div class="rev-options">${opts}</div>
+          ${item.rationale
+            ? `<div class="rev-rat"><b>Rationale:</b> ${escapeHTML(item.rationale)}</div>`
+            : ``}
+        </article>
+      `);
+    }
 
-    if not st["queue"]:
-        if st["incorrect_queue"]:
-            st["queue"] = st["incorrect_queue"]
-            st["incorrect_queue"] = []
-        else:
-            # DONE: build end-of-quiz summary + full review payload
-            first = int(st.get("first_try_correct", 0))
-            total = int(st.get("first_try_total", 0))
-            pct = int(round((100 * first / total), 0)) if total else 0
+    review.innerHTML = parts.join("");
+  }
 
-            by_id = _by_id_for(st["module"])
-            review = []
-            for i, qid in enumerate(st.get("initial_qids", []), start=1):
-                q = by_id.get(qid)
-                if not q:
-                    continue
-                review.append({
-                    "index": i,
-                    "qid": qid,
-                    "stem": q["stem"],
-                    "options": q["options"],       # [{letter,text}]
-                    "correct": q["correct"],       # ["B"] or ["A","C"]
-                    "rationale": q.get("rationale") or "",
-                    "is_multi": bool(q.get("is_multi")),
-                })
+  function updateScoreLine() { scoreLine.classList.add("hidden"); }
 
-            return jsonify(
-                {
-                    "done": True,
-                    "first_try_correct": first,
-                    "first_try_total": total,
-                    "first_try_pct": pct,
-                    "submissions": int(st.get("submissions", 0)),
-                    "remaining": 0,
-                    "review": review,   # <<< full review content
-                }
-            )
+  function returnToLanding() {
+    setHidden(quiz, true);
+    setHidden(landing, false);
+    setHidden(runCounter, true);
+    setHidden(remainingCounter, true);
+    resultDiv.innerHTML = "";
+    qStem.textContent = "Question…";
+    clearOptions();
+    review.innerHTML = "";
+    setHidden(review, true);
+    updateScoreLine();
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
 
-    qid = st["queue"].pop(0)
-    st["current"] = qid
-    st["served"] = int(st.get("served", 0)) + 1
-    session.modified = True
-
-    by_id = _by_id_for(st["module"])
-    q = by_id.get(qid)
-    if not q:
-        return jsonify({"ok": False, "error": "Question not found"}), 500
-
-    remaining = int(st.get("first_try_total", 0)) - len(st.get("mastered", []))
-    return jsonify(
-        {
-            "qid": qid,
-            "stem": q["stem"],
-            "options": q["options"],
-            "is_multi": bool(q.get("is_multi")),
-            "served": st["served"],
-            "remaining": remaining,
+  async function fetchJsonFirst(paths, opts = {}) {
+    let lastError = null;
+    for (const p of paths) {
+      try {
+        const r = await fetch(p, Object.assign(
+          { headers: { "Content-Type": "application/json" }, credentials: "same-origin" },
+          opts
+        ));
+        if (r.status === 404) continue;
+        if (!r.ok) {
+          const txt = await r.text().catch(() => "");
+          throw new Error(`${r.status} ${r.statusText} ${txt}`.trim());
         }
-    )
+        return await r.json();
+      } catch (e) { lastError = e; }
+    }
+    throw lastError || new Error("No endpoint responded");
+  }
 
+  // local state
+  let chosenCount = "10"; // "10","25","50","100","full"
+  let currentQ = null;
+  let lettersToInputs = {};
+  let answered = false;
+  let quizDone = false;
+  let firstTryScore = { correct: 0, total: 0 };
+  let runCount = 0;
 
-@app.post("/api/answer")
-@app.post("/answer")
-def api_answer():
-    st = _get_state()
-    if not st or not st.get("module"):
-        return jsonify({"ok": False, "error": "No active quiz"}), 400
+  // load modules
+  (async function loadModules() {
+    try {
+      const items = await fetchJsonFirst(routes.modules);
+      moduleSelect.innerHTML =
+        `<option value="">Choose a module…</option>` +
+        items.map(i => `<option value="${i.id}">${i.id}</option>`).join("");
+    } catch {
+      moduleSelect.innerHTML = `<option value="">(Could not load modules)</option>`;
+    }
+  })();
 
-    data = request.get_json(force=True) or {}
-    qid = data.get("qid")
-    selected = set((data.get("selected") or []))
+  // start quiz
+  startBtn.addEventListener("click", () => {
+    const mod = moduleSelect.value;
+    if (!mod) return alert("Select a module first.");
 
-    by_id = _by_id_for(st["module"])
-    q = by_id.get(qid)
-    if not q:
-        return jsonify({"ok": False, "error": "Question not found"}), 400
+    fetchJsonFirst(routes.start, {
+      method: "POST",
+      body: JSON.stringify({ module: mod, count: chosenCount })
+    })
+    .then(data => {
+      if (!data || data.ok === false) {
+        alert((data && data.error) || "Could not start quiz");
+        return;
+      }
+      firstTryScore = { correct: 0, total: data.count || 0 };
+      quizDone = false;
+      answered = false;
+      runCount = 0;
 
-    st["submissions"] = int(st.get("submissions", 0)) + 1
+      setHidden(landing, true);
+      setHidden(scoreLine, true);
+      setHidden(quiz, false);
+      setHidden(runCounter, false);
+      setHidden(remainingCounter, false);
+      setHidden(review, true);
+      review.innerHTML = "";
 
-    correct = set(q["correct"])
-    ok = selected == correct
+      runCounterNum.textContent = "1";
+      setRemaining(data.remaining != null ? data.remaining : firstTryScore.total);
 
-    first_try_attempted = st.setdefault("first_try_attempted", {})
-    if qid not in first_try_attempted:
-        first_try_attempted[qid] = True
-        if ok:
-            st["first_try_correct"] = int(st.get("first_try_correct", 0)) + 1
+      submitBtn.disabled = false;
+      nextBtn.disabled = true;
 
-    mastered: List[str] = st.setdefault("mastered", [])
-    if ok and qid not in mastered:
-        mastered.append(qid)
+      loadNext();
+    })
+    .catch(() => alert("Could not start quiz."));
+  });
 
-    if not ok:
-        st["incorrect_queue"].append(qid)
+  // header buttons
+  newQuizBtn.addEventListener("click", () => returnToLanding());
+  resetBtn.addEventListener("click", async () => {
+    try { await fetchJsonFirst(routes.reset, { method: "POST" }); } catch {}
+    returnToLanding();
+  });
 
-    session.modified = True
-    remaining = int(st.get("first_try_total", 0)) - len(st.get("mastered", []))
-    return jsonify(
-        {
-            "ok": ok,
-            "correct": sorted(list(correct)),
-            "rationale": q.get("rationale") or "",
-            "first_try_correct": st.get("first_try_correct", 0),
-            "first_try_total": st.get("first_try_total", 0),
-            "remaining": remaining,
+  // next question
+  async function loadNext() {
+    resultDiv.innerHTML = "";
+    submitBtn.disabled = false;
+    nextBtn.disabled = true;
+    answered = false;
+
+    fetchJsonFirst(routes.next)
+      .then(data => {
+        if (data.done) {
+          quizDone = true;
+
+          // Final stats
+          const pct = (data.first_try_total
+            ? Math.round((100 * (data.first_try_correct || 0)) / data.first_try_total)
+            : 0);
+          resultDiv.innerHTML = `
+            <div class="summary">
+              <div>First-Try Accuracy: <b>${pct}%</b> (${data.first_try_correct || 0} / ${data.first_try_total || 0})</div>
+              <div>Total answers submitted: ${data.submissions || 0}</div>
+            </div>`;
+
+          setHidden(runCounter, true);
+          setHidden(remainingCounter, true);
+
+          renderReview(data.review || []);
+          setHidden(review, false);
+
+          submitBtn.textContent = "Start New Quiz";
+          submitBtn.disabled = false;
+          nextBtn.disabled = true;
+          currentQ = null;
+
+          review.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
         }
-    )
 
+        currentQ = data;
+        qStem.textContent = data.stem || "Question";
+        renderOptions(data);
 
-@app.post("/api/reset_session")
-@app.post("/reset")
-def api_reset():
-    _reset_state()
-    return jsonify({"ok": True})
+        runCount = Number.isFinite(data.served) ? data.served : (runCount + 1);
+        runCounterNum.textContent = String(runCount);
 
+        if (typeof data.remaining === "number") setRemaining(data.remaining);
 
-@app.get("/healthz")
-def healthz():
-    return jsonify({"ok": True})
+        submitBtn.textContent = "Submit";
+        const y = qStem.getBoundingClientRect().top + window.scrollY - headerHeight() - 8;
+        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+      })
+      .catch(e => {
+        alert("Could not load next question");
+        console.error(e);
+      });
+  }
+
+  // submit
+  submitBtn.addEventListener("click", async () => {
+    if (quizDone) { returnToLanding(); return; }
+    if (answered) return;
+
+    const selected = Array.from(qOptions.querySelectorAll("input:checked")).map(i => i.value.toUpperCase());
+    if (!selected.length) { alert("Choose an answer first."); return; }
+
+    try {
+      const data = await fetchJsonFirst(routes.answer, {
+        method: "POST",
+        body: JSON.stringify({ qid: currentQ.qid || currentQ.qID || currentQ.id, selected })
+      });
+
+      if (typeof data.first_try_correct === "number") {
+        firstTryScore.correct = data.first_try_correct;
+        if (typeof data.first_try_total === "number") firstTryScore.total = data.first_try_total;
+        updateScoreLine();
+      }
+
+      if (typeof data.remaining === "number") setRemaining(data.remaining);
+
+      // NEW: include letters + full wording of correct answers
+      const correctDetails = formatCorrectAnswers(currentQ, data.correct || []);
+      const tag = data.ok
+        ? `<span class="ok">Correct!</span> <span class="muted">Correct: ${correctDetails}</span>`
+        : `<span class="bad">Incorrect.</span> <span class="muted">Correct: ${correctDetails}</span>`;
+
+      const rationale = data.rationale
+        ? `<div class="rationale"><b>Rationale:</b> ${escapeHTML(data.rationale)}</div>`
+        : "";
+      resultDiv.innerHTML = `<div>${tag}</div>${rationale}`;
+
+      answered = true;
+      submitBtn.disabled = true;
+      nextBtn.disabled = false;
+      nextBtn.focus({ preventScroll: true });
+    } catch (e) {
+      alert("Could not submit answer");
+      console.error(e);
+    }
+  });
+
+  // next btn
+  nextBtn.addEventListener("click", () => {
+    if (quizDone) return;
+    loadNext();
+  });
+
+  // keyboard shortcuts
+  document.addEventListener("keydown", (ev) => {
+    const key = ev.key;
+    if (key === "Enter") {
+      if (!landing.classList.contains("hidden")) {
+        ev.preventDefault(); startBtn.click(); return;
+      }
+      if (!quiz.classList.contains("hidden")) {
+        ev.preventDefault();
+        if (!answered && !submitBtn.disabled) submitBtn.click();
+        else if (!nextBtn.disabled) nextBtn.click();
+      }
+    }
+
+    if (/^[a-h]$/i.test(key) && !quiz.classList.contains("hidden")) {
+      const letter = key.toUpperCase();
+      const input = (lettersToInputs && lettersToInputs[letter]) || null;
+      if (input) { ev.preventDefault(); input.checked = !input.checked; }
+    }
+  });
+
+  // length selectors
+  countBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      countBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const val = (btn.dataset.count || "10").toLowerCase();
+      btn.setAttribute("aria-pressed", "true");
+      countBtns.filter(b => b !== btn).forEach(b => b.removeAttribute("aria-pressed"));
+      chosenCount = (val === "full") ? "full" : String(Number(val) || 10);
+    });
+  });
+
+  window.addEventListener("orientationchange", () => {
+    setTimeout(() => {
+      if (!quiz.classList.contains("hidden")) {
+        const y = qStem.getBoundingClientRect().top + window.scrollY - headerHeight() - 8;
+        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+      }
+    }, 350);
+  });
+})();
+
