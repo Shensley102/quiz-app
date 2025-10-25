@@ -1,6 +1,6 @@
 /* -----------------------------------------------------------
    Quiz App (frontend only)
-   - Random subset each quiz (10/25/50/100/Full)
+   - Random subset each quiz (10/25/50/100/Full) using clean sampling
    - Mastery loop: missed items return until correct
    - Track total submissions; compute first-try % at end
    - Checkbox ONLY if the stem literally contains "(Select all that apply.)"
@@ -31,7 +31,7 @@ const nextBtn = el('nextBtn');
 const feedback = el('feedback');
 const answerLine = el('answerLine');
 const rationale = el('rationale');
-const resetQuizBtn = el('resetQuizBtn'); // NEW
+const resetQuizBtn = el('resetQuizBtn');
 
 const fta = el('fta');
 const totalSub = el('totalSub');
@@ -39,11 +39,11 @@ const restartBtn = el('restartBtn');
 const reviewList = el('reviewList');
 
 let state = null;
-let currentInputsByLetter = {}; // NEW: map letter -> input
+let currentInputsByLetter = {};
 
 const EXACT_SATA = /\(Select all that apply\.\)/i;
 
-// get selected length
+// length selection
 let pickedLength = 10;
 lengthBtns.addEventListener('click', (e) => {
   const btn = e.target.closest('[data-len]');
@@ -62,7 +62,7 @@ restartBtn.addEventListener('click', () => {
   remainingCounter.textContent = '';
 });
 
-// NEW: explicit reset button during a quiz
+// explicit reset during quiz
 resetQuizBtn.addEventListener('click', resetQuiz);
 
 function resetQuiz(){
@@ -82,11 +82,10 @@ function resetQuiz(){
   currentInputsByLetter = {};
 }
 
-/* Keyboard: Enter to submit / go next, letters to toggle selections */
+/* Keyboard controls */
 document.addEventListener('keydown', (e) => {
   if (quiz.classList.contains('hidden')) return;
 
-  // Enter behavior
   if (e.key === 'Enter') {
     const canSubmit = !submitBtn.disabled;
     const canNext = !nextBtn.disabled;
@@ -100,7 +99,6 @@ document.addEventListener('keydown', (e) => {
     return;
   }
 
-  // Letter toggle behavior
   const letter = (e.key && e.key.length === 1) ? e.key.toUpperCase() : '';
   if (letter && currentInputsByLetter[letter]) {
     e.preventDefault();
@@ -108,13 +106,9 @@ document.addEventListener('keydown', (e) => {
 
     if (input.type === 'checkbox') {
       input.checked = !input.checked;
-    } else { // radio with de-select on second press
-      if (input.checked) {
-        input.checked = false; // allow none selected
-      } else {
-        input.checked = true;
-        // don't need to manually uncheck others; browser handles radio group
-      }
+    } else {
+      // radio: press again to de-select
+      input.checked = input.checked ? false : true;
     }
     updateSubmitEnabled();
   }
@@ -130,7 +124,9 @@ async function startQuiz() {
     const data = await res.json();
 
     const all = normalizeQuestions(data);
-    const chosen = pickRandomSubset(all, pickedLength);
+
+    // NEW: clean random sampling per run
+    const chosen = sampleQuestions(all, pickedLength);
 
     state = {
       pool: chosen.map(q => ({ ...q, attempts: 0, mastered: false })),
@@ -219,29 +215,39 @@ function extractCorrectLetters(it) {
 
 function isLetter(x){ return /^[A-Z]$/.test(x); }
 
-function pickRandomSubset(arr, requested) {
-  const copy = [...arr];
-  shuffle(copy);
-  if (requested === 'full') return copy;
-  return copy.slice(0, Math.min(requested, copy.length));
+/* NEW: exact-size random sample (no memory across runs)
+   Uses partial Fisher–Yates with crypto randomness when available. */
+function randomInt(max){
+  if (max <= 0) return 0;
+  if (window.crypto && crypto.getRandomValues) {
+    const buf = new Uint32Array(1);
+    crypto.getRandomValues(buf);
+    return buf[0] % max;
+  }
+  return Math.floor(Math.random() * max);
 }
 
-function shuffle(a){
-  for (let i=a.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [a[i],a[j]]=[a[j],a[i]];
+function sampleQuestions(arr, requested){
+  const copy = arr.slice();
+  if (requested === 'full' || requested >= copy.length) return copy;
+
+  const k = Math.max(0, requested | 0);
+  // partial shuffle: place k random items into front k slots
+  for (let i = 0; i < k; i++) {
+    const j = i + randomInt(copy.length - i);
+    [copy[i], copy[j]] = [copy[j], copy[i]];
   }
+  return copy.slice(0, k);
 }
 
 function setHidden(node, yes){ node.classList.toggle('hidden', yes); }
+function updateSubmitEnabled(){
+  submitBtn.disabled = optionsForm.querySelectorAll('input:checked').length === 0;
+}
 
 function updateCounters() {
   runCounter.textContent = state ? `Question: ${state.shownCount}` : '';
   remainingCounter.textContent = state ? `Remaining to master: ${state.queue.length}` : '';
-}
-
-function updateSubmitEnabled(){
-  submitBtn.disabled = optionsForm.querySelectorAll('input:checked').length === 0;
 }
 
 /* ----------------------- rendering ----------------------- */
@@ -252,7 +258,7 @@ function renderQuestion(q) {
 
   questionText.textContent = q.question;
   optionsForm.innerHTML = '';
-  currentInputsByLetter = {}; // reset map for this question
+  currentInputsByLetter = {};
 
   const letters = Object.keys(q.options);
 
@@ -268,7 +274,6 @@ function renderQuestion(q) {
     input.value = letter;
     input.id = id;
 
-    // store in map for keyboard toggles
     currentInputsByLetter[letter.toUpperCase()] = input;
 
     const text = document.createElement('div');
@@ -345,7 +350,7 @@ function handleSubmit(){
     state.queue.push(q);
   }
 
-  // record review
+  // store for review
   if (isCorrect && !state.review.find(r => r.q.id === q.id)) {
     state.review.push({ q, correctLetters: [...correctSet], userLetters: [...pickedSet], wasCorrect: true });
   } else if (!isCorrect) {
