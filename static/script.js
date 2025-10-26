@@ -8,6 +8,7 @@
        * Enter submits, then Enter again advances
        * A–Z toggles matching option; for radios, pressing the same letter
          again de-selects it
+   - NEW: auto-discover Module_*.json via /modules
 ----------------------------------------------------------- */
 
 const el = (id) => document.getElementById(id);
@@ -114,18 +115,36 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+/* NEW: auto-discover modules from the backend */
+async function discoverModules(){
+  try {
+    const res = await fetch(`/modules?_=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('modules endpoint not available');
+    const data = await res.json();
+    const mods = (data.modules || []).filter(Boolean);
+    if (mods.length) {
+      moduleSel.innerHTML = mods.map(m => `<option value="${m}">${m}</option>`).join('');
+    }
+  } catch {
+    // Fallback: keep whatever options are already present in the HTML
+  }
+}
+discoverModules(); // run on load (script is defer'd)
+
 async function startQuiz() {
   startBtn.disabled = true;
 
   try {
-    const bankName = `${moduleSel.value}.json`;
+    const selected = moduleSel.value;
+    if (!selected) throw new Error('Select a module first.');
+    const bankName = `${selected}.json`;
     const res = await fetch(`/${bankName}?_=${Date.now()}`);
     if (!res.ok) throw new Error(`Failed to fetch ${bankName}`);
     const data = await res.json();
 
     const all = normalizeQuestions(data);
 
-    // NEW: clean random sampling per run
+    // clean random sampling per run
     const chosen = sampleQuestions(all, pickedLength);
 
     state = {
@@ -215,8 +234,7 @@ function extractCorrectLetters(it) {
 
 function isLetter(x){ return /^[A-Z]$/.test(x); }
 
-/* NEW: exact-size random sample (no memory across runs)
-   Uses partial Fisher–Yates with crypto randomness when available. */
+/* exact-size random sample (no memory across runs) */
 function randomInt(max){
   if (max <= 0) return 0;
   if (window.crypto && crypto.getRandomValues) {
@@ -232,7 +250,7 @@ function sampleQuestions(arr, requested){
   if (requested === 'full' || requested >= copy.length) return copy;
 
   const k = Math.max(0, requested | 0);
-  // partial shuffle: place k random items into front k slots
+  // partial Fisher–Yates
   for (let i = 0; i < k; i++) {
     const j = i + randomInt(copy.length - i);
     [copy[i], copy[j]] = [copy[j], copy[i]];
