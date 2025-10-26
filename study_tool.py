@@ -32,11 +32,21 @@ def favicon():
 def home():
     return render_template("index.html")
 
+# NEW: list available modules by scanning the repo root
+@app.get("/modules")
+def list_modules():
+    mods = []
+    for name in os.listdir(BASE_DIR):
+        if ALLOWED_JSON.fullmatch(name):
+            mods.append(Path(name).stem)  # e.g., "Module_3"
+    mods.sort()
+    return jsonify(modules=mods)
+
 @app.get("/<path:filename>")
 def serve_banks(filename: str):
     """
     Serve only the module JSON banks from the repo root.
-    Example: /Module_1.json, /Module_2.json
+    Example: /Module_1.json, /Module_2.json, /Module_3.json
     """
     name = os.path.basename(filename)
     if ALLOWED_JSON.fullmatch(name):
