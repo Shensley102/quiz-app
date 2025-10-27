@@ -651,8 +651,7 @@
       ],
       "correct": [
         "A",
-        "B",
-        "E"
+        "B"
       ],
       "rationale": "Nurses are responsible for knowing and practicing under state law and nurse practice acts. Managers are responsible for monitoring staff practice and ensuring that staff hold current, valid licensure.",
       "type": "multi_select"
