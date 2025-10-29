@@ -16,8 +16,8 @@ app = Flask(
 
 app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY", "dev-secret")
 
-# Only allow banks named like Module_1.json, Module_2.json, etc.
-ALLOWED_JSON = re.compile(r"^Module_[A-Za-z0-9_-]+\.json$")
+# Allow banks named like Module_*.json or Pharm_*.json (e.g., Pharm_Quiz_HESI.json)
+ALLOWED_JSON = re.compile(r"^(?:Module_[A-Za-z0-9_-]+|Pharm_[A-Za-z0-9_-]+)\.json$")
 
 @app.get("/healthz")
 def healthz():
@@ -32,21 +32,21 @@ def favicon():
 def home():
     return render_template("index.html")
 
-# NEW: list available modules by scanning the repo root
+# Lists available JSON banks by scanning the repo root
 @app.get("/modules")
 def list_modules():
     mods = []
     for name in os.listdir(BASE_DIR):
         if ALLOWED_JSON.fullmatch(name):
-            mods.append(Path(name).stem)  # e.g., "Module_3"
+            mods.append(Path(name).stem)  # e.g., "Module_3", "Pharm_Quiz_HESI"
     mods.sort()
     return jsonify(modules=mods)
 
+# Serve only approved JSON banks from the repo root
 @app.get("/<path:filename>")
 def serve_banks(filename: str):
     """
-    Serve only the module JSON banks from the repo root.
-    Example: /Module_1.json, /Module_2.json, /Module_3.json
+    Example: /Module_1.json, /Module_2.json, /Module_3.json, /Pharm_Quiz_HESI.json
     """
     name = os.path.basename(filename)
     if ALLOWED_JSON.fullmatch(name):
