@@ -1,136 +1,196 @@
+/* ----- Theme tokens ----- */
 :root{
-  --bg:#f6f7fb;
-  --card:#fff;
-  --ink:#0f172a;
-  --muted:#5b6478;
-  --brand:#2e5ae8;
-  --brand-ink:#fff;
-  --ok:#0c8f4c;
-  --err:#c62828;
-  --border:#e5e7ef;
-  --chip:#eef1fb;
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+
+  --primary: #2563eb;          /* Blue button */
+  --primary-hover: #1d4ed8;
+  --primary-contrast: #ffffff;
+
+  --danger: #ef4444;
+  --danger-contrast: #ffffff;
+
+  --border: #e5e7eb;
+  --chip-bg: #f1f5f9;
+  --chip-text: #0f172a;
+
+  --shadow: 0 10px 30px rgba(2,6,23,.08);
+  --radius: 16px;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
+/* ----- Base ----- */
+*{ box-sizing: border-box; }
+html, body { height: 100%; }
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--ink);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans","Helvetica Neue",Arial,sans-serif;
-  line-height:1.5;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
 
+/* ----- Layout ----- */
 .container{
-  max-width: 960px;
-  margin: 24px auto 56px;
-  padding: 0 16px;
+  max-width: 1100px;
+  margin: 56px auto;
+  padding: 0 20px;
 }
-
-h1{
-  margin: 0 0 16px;
-  font-size: 1.875rem; /* a bit larger but not heavy */
-  font-weight: 650;
-}
-
-h2{ margin: 0 0 8px; }
 
 .card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:18px;
-  box-shadow:0 2px 14px rgba(16,24,40,.04);
-  margin: 12px 0;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
 }
 
-.hidden{display:none}
+.setup-card{ margin-bottom: 24px; }
 
-.row{
-  display:flex;
-  gap:16px;
-  align-items:center;
-  margin:10px 0;
+/* ----- Titles / labels ----- */
+.title{
+  margin: 0 0 18px;
+  font-size: clamp(28px, 3.2vw, 42px);
+  letter-spacing: .3px;
 }
 
-.lbl{
-  width:100px;
-  color:var(--muted);
+.label{
+  display: inline-block;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 8px;
 }
 
+/* Rows */
+.row{ display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 12px; margin-bottom: 18px; }
+@media (max-width: 640px){
+  .row{ grid-template-columns: 1fr; }
+}
+
+/* ----- Controls ----- */
 .select{
-  flex:1;
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0 12px;
+  background: #fff;
   font: inherit;
-  padding:10px 12px;
-  border:1px solid var(--border);
-  border-radius:10px;
-  background:#fff;
+  color: var(--text);
 }
 
-.length-group{display:flex; gap:8px; flex-wrap:wrap}
+/* Chips for length */
+.chip-group{ display: flex; gap: 10px; flex-wrap: wrap; }
 .chip{
-  border:1px solid var(--border);
-  background:var(--chip);
-  padding:8px 14px;
-  border-radius:10px;
-  cursor:pointer;
-  transition:.15s ease;
-  font: inherit;
+  border: 1px solid var(--border);
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .08s ease, background .15s ease, border-color .15s ease;
 }
-.chip.active{background:var(--brand); color:#fff; border-color:var(--brand)}
+.chip:hover{ transform: translateY(-1px); }
+.chip.active{
+  border-color: var(--primary);
+  outline: 3px solid rgba(37, 99, 235, .15);
+}
 
+/* Buttons */
 .btn{
-  padding:12px 16px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:#fff;
-  cursor:pointer;
-  font:inherit;
-}
-.btn.primary{background:var(--brand); color:var(--brand-ink); border-color:var(--brand)}
-.btn:disabled{opacity:.45; cursor:not-allowed}
-.btn.danger{border-color:#f7c6c6; background:#ffecec; color:var(--err)}
-.btn.outline{background:transparent}
-
-.quiz-header{display:flex; justify-content:space-between; gap:12px; margin-bottom:8px}
-
-.muted{color:var(--muted)}
-
-.question-text{
-  /* larger and NOT bold for less eye strain */
-  font-size: 1.25rem;
-  font-weight: 400;
-  margin: 6px 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: background .15s ease, border-color .15s ease, transform .08s ease, opacity .15s;
 }
 
-.options{display:grid; gap:10px}
+.btn-wide{ width: 100%; }
+
+.btn-primary{
+  color: var(--primary-contrast);
+  background: var(--primary);
+}
+.btn-primary:hover{ background: var(--primary-hover); }
+.btn-primary:disabled{ opacity:.6; cursor:not-allowed; }
+
+.btn-ghost{
+  color: var(--text);
+  background: transparent;
+  border-color: var(--border);
+}
+.btn-ghost:disabled{ opacity:.6; cursor:not-allowed; }
+
+.btn-danger-outline{
+  color: var(--danger);
+  background: transparent;
+  border-color: var(--danger);
+}
+.btn-danger-outline:hover{
+  color: var(--danger-contrast);
+  background: var(--danger);
+}
+
+/* ----- Quiz header / meta ----- */
+.quiz-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+.quiz-title{ margin: 0; font-size: 22px; }
+.meta{ color: var(--muted); display:flex; gap:14px; font-weight:600; }
+
+/* Question text */
+.question{
+  margin: 18px 0 10px;
+  font-size: 19px;            /* slightly larger, not bold */
+  font-weight: 600;
+}
+
+/* Options list */
+.options{
+  display: grid;
+  gap: 10px;
+  margin: 10px 0 18px;
+}
 .option{
-  display:flex; align-items:flex-start; gap:12px;
-  padding:10px 12px;
-  border:1px solid var(--border);
-  border-radius:12px;
-  background:#fff;
-}
-.option input{margin-top:2px; transform:translateY(2px)}
-.option .letter{
-  min-width:24px; font-weight:600;
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
 }
 
-.actions{display:flex; gap:12px; margin-top:14px}
-
-.feedback{margin-top:14px}
-.feedback .ok{color:var(--ok); font-weight:700}
-.feedback .err{color:var(--err); font-weight:700}
-.answer-lines{margin:6px 0 0 0}
-.answer-line{margin:2px 0; font-weight:600}
+/* Feedback + rationale */
+#feedback{ margin: 6px 0 6px; font-weight: 700; }
+.feedback-correct{ color: #059669; }   /* green */
+.feedback-incorrect{ color: #dc2626; } /* red  */
 
 .rationale{
-  margin-top:10px;
-  padding:12px;
-  border-radius:10px;
-  background:#f7f9ff;
-  border:1px solid var(--border);
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--text);
 }
 
-.summary{margin:8px 0}
-#resetBtn{width:100%; margin-top:10px}
+/* Footer buttons area */
+.actions{ display:flex; gap:12px; margin-top: 6px; }
+.footer-actions{ margin-top: 14px; }
+
+/* Utility (for smooth show/hide if you use .hidden in JS) */
+.hidden{ display:none !important; }
