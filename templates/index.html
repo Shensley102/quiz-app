@@ -1,92 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Study Quiz</title>
-  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="wrap">
-    <header class="top">
-      <h1>Study Quiz</h1>
-      <div class="meta">
-        <span id="runCounter" aria-live="polite"></span>
-        <span id="remainingCounter" aria-live="polite"></span>
-      </div>
-    </header>
+  <main class="container">
+    <h1 id="appTitle">Study Quiz</h1>
 
-    <!-- Launcher -->
-    <section id="launcher" class="card">
+    <section class="card" id="setupCard" aria-labelledby="appTitle">
       <div class="row">
-        <label for="moduleSel">Module</label>
-        <select id="moduleSel">
-          <!-- Will be auto-populated from /modules; leave blank fallback optional -->
+        <label for="moduleSelect" class="lbl">Module</label>
+        <select id="moduleSelect" class="select">
           <option value="Module_1">Module_1</option>
           <option value="Module_2">Module_2</option>
+          <option value="Module_3">Module_3</option>
+          <option value="Pharm_Quiz_HESI">Pharm_Quiz_HESI</option>
         </select>
       </div>
 
       <div class="row">
-        <label>Length</label>
-        <div id="lengthBtns" class="seg">
-          <button data-len="10" class="seg-btn active">10</button>
-          <button data-len="25" class="seg-btn">25</button>
-          <button data-len="50" class="seg-btn">50</button>
-          <button data-len="100" class="seg-btn">100</button>
-          <button data-len="full" class="seg-btn">Full</button>
+        <span class="lbl">Length</span>
+        <div class="length-group" role="group" aria-label="Quiz length">
+          <button class="chip active" data-len="10">10</button>
+          <button class="chip" data-len="25">25</button>
+          <button class="chip" data-len="50">50</button>
+          <button class="chip" data-len="100">100</button>
+          <button class="chip" data-len="full">Full</button>
         </div>
       </div>
 
-      <div class="row">
-        <button id="startBtn" class="primary">Start Quiz</button>
-      </div>
+      <button id="startBtn" class="btn primary">Start Quiz</button>
     </section>
 
-    <!-- Quiz -->
-    <section id="quiz" class="card hidden" aria-live="polite">
-      <div id="qHead" class="qhead">
-        <div id="qNumber"></div>
+    <section class="card hidden" id="quizCard">
+      <div class="quiz-header">
+        <div id="progressText" class="muted"></div>
+        <div id="runningCounter" class="muted"></div>
       </div>
 
-      <h2 id="questionText" class="qtext"></h2>
+      <div id="questionText" class="question-text"></div>
 
       <form id="optionsForm" class="options" autocomplete="off"></form>
 
       <div class="actions">
-        <button id="submitBtn" class="primary" disabled>Submit</button>
-        <button id="nextBtn" class="ghost" disabled>Next</button>
+        <button id="submitBtn" class="btn primary">Submit</button>
+        <button id="nextBtn" class="btn" disabled>Next</button>
       </div>
 
       <div id="feedback" class="feedback" aria-live="polite"></div>
-      <div id="answerLine" class="answer"></div>
-      <div id="rationale" class="rationale"></div>
-
-      <div class="bottomRow">
-        <button id="resetQuizBtn" class="ghost danger" type="button">Reset Quiz</button>
-      </div>
+      <div id="rationale" class="rationale hidden"></div>
     </section>
 
-    <!-- Summary -->
-    <section id="summary" class="card hidden">
+    <section class="card hidden" id="doneCard">
       <h2>All questions mastered!</h2>
-
-      <div class="summaryStats">
-        <div id="fta"></div>
-        <div id="totalSub"></div>
+      <div class="summary">
+        <div id="firstTry" class="muted"></div>
+        <div id="totalAnswers" class="muted"></div>
       </div>
-
-      <div class="row">
-        <button id="restartBtn" class="primary">Start New Quiz</button>
+      <div class="actions">
+        <button id="restartBtn" class="btn primary">Start New Quiz</button>
+        <button id="nextDisabled" class="btn" disabled>Next</button>
       </div>
-
-      <details id="review" class="review">
-        <summary>Review all questions, answers & rationales</summary>
-        <div id="reviewList"></div>
-      </details>
     </section>
+
+    <button id="resetBtn" class="btn danger outline hidden">Reset Quiz</button>
   </main>
 
-  <script src="/static/script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
