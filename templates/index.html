@@ -1,74 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Study Quiz</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- IMPORTANT: keep this exact path -->
+  <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
   <main class="container">
-    <h1 id="appTitle">Study Quiz</h1>
+    <section id="setup-view" class="card setup-card">
+      <h1 class="title">Study Quiz</h1>
 
-    <section class="card" id="setupCard" aria-labelledby="appTitle">
       <div class="row">
-        <label for="moduleSelect" class="lbl">Module</label>
-        <select id="moduleSelect" class="select">
-          <option value="Module_1">Module_1</option>
-          <option value="Module_2">Module_2</option>
-          <option value="Module_3">Module_3</option>
-          <option value="Pharm_Quiz_HESI">Pharm_Quiz_HESI</option>
+        <label class="label" for="module-select">Module</label>
+        <select id="module-select" class="select">
+          <!-- JS fills these; keep element id the same -->
         </select>
       </div>
 
       <div class="row">
-        <span class="lbl">Length</span>
-        <div class="length-group" role="group" aria-label="Quiz length">
-          <button class="chip active" data-len="10">10</button>
-          <button class="chip" data-len="25">25</button>
-          <button class="chip" data-len="50">50</button>
-          <button class="chip" data-len="100">100</button>
-          <button class="chip" data-len="full">Full</button>
+        <span class="label">Length</span>
+        <div id="length-buttons" class="chip-group">
+          <!-- JS or your HTML can create these; examples: -->
+          <button type="button" class="chip" data-len="10">10</button>
+          <button type="button" class="chip" data-len="25">25</button>
+          <button type="button" class="chip" data-len="50">50</button>
+          <button type="button" class="chip" data-len="100">100</button>
+          <button type="button" class="chip" data-len="full">Full</button>
         </div>
       </div>
 
-      <button id="startBtn" class="btn primary">Start Quiz</button>
+      <button id="start-quiz" class="btn btn-primary btn-wide">Start Quiz</button>
     </section>
 
-    <section class="card hidden" id="quizCard">
-      <div class="quiz-header">
-        <div id="progressText" class="muted"></div>
-        <div id="runningCounter" class="muted"></div>
-      </div>
+    <!-- Your existing quiz markup lives here; ids/classes unchanged so JS still works -->
+    <section id="quiz-view" class="card quiz-card" hidden>
+      <!-- JS injects question/answers/rationale -->
+      <header class="quiz-header">
+        <h2 id="quiz-title" class="quiz-title"></h2>
+        <div class="meta">
+          <span id="progress-text"></span>
+          <span id="remaining-text"></span>
+        </div>
+      </header>
 
-      <div id="questionText" class="question-text"></div>
-
-      <form id="optionsForm" class="options" autocomplete="off"></form>
+      <div id="question-container"></div>
 
       <div class="actions">
-        <button id="submitBtn" class="btn primary">Submit</button>
-        <button id="nextBtn" class="btn" disabled>Next</button>
+        <button id="submit-btn" class="btn btn-primary">Submit</button>
+        <button id="next-btn" class="btn btn-ghost" disabled>Next</button>
       </div>
 
-      <div id="feedback" class="feedback" aria-live="polite"></div>
-      <div id="rationale" class="rationale hidden"></div>
-    </section>
-
-    <section class="card hidden" id="doneCard">
-      <h2>All questions mastered!</h2>
-      <div class="summary">
-        <div id="firstTry" class="muted"></div>
-        <div id="totalAnswers" class="muted"></div>
+      <div class="review">
+        <div id="feedback"></div>
+        <div id="rationale" class="rationale" hidden></div>
       </div>
-      <div class="actions">
-        <button id="restartBtn" class="btn primary">Start New Quiz</button>
-        <button id="nextDisabled" class="btn" disabled>Next</button>
+
+      <div class="footer-actions">
+        <button id="reset-quiz" class="btn btn-danger-outline btn-wide">Reset Quiz</button>
       </div>
     </section>
-
-    <button id="resetBtn" class="btn danger outline hidden">Reset Quiz</button>
   </main>
 
-  <script src="script.js"></script>
+  <script src="/static/script.js"></script>
 </body>
 </html>
