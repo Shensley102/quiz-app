@@ -95,7 +95,6 @@ select{
 
 .rationale{margin-top:8px;color:#1f2937;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px}
 
-/* NEW reset button row */
 .bottomRow{margin-top:16px;display:flex;justify-content:flex-end}
 .danger{border-color:#fecaca !important; color:#b91c1c}
 .danger:hover{border-color:#fca5a5 !important}
