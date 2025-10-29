@@ -2,13 +2,14 @@
    Quiz App (frontend only)
    - Random subset each quiz (10/25/50/100/Full) using clean sampling
    - Mastery loop: missed items return until correct
+   - Adaptive buffer: when newly-wrong count hits 15% of quiz size (ceil, min 1),
+     inject those wrong items to the FRONT immediately; reset the counter
    - Track total submissions; compute first-try % at end
    - Checkbox ONLY if the stem literally contains "(Select all that apply.)"
    - Keyboard:
        * Enter submits, then Enter again advances
        * A–Z toggles matching option; for radios, pressing the same letter
          again de-selects it
-   - NEW: auto-discover Module_*.json via /modules
 ----------------------------------------------------------- */
 
 const el = (id) => document.getElementById(id);
@@ -44,7 +45,26 @@ let currentInputsByLetter = {};
 
 const EXACT_SATA = /\(Select all that apply\.\)/i;
 
-// length selection
+/* ----------------- auto-discover modules from backend ----------------- */
+async function discoverModules(){
+  try {
+    const res = await fetch(`/modules?_=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('modules endpoint not available');
+    const data = await res.json();
+    const mods = (data.modules || []).filter(Boolean);
+    if (mods.length) {
+      moduleSel.innerHTML = mods.map(m => `<option value="${m}">${m}</option>`).join('');
+    }
+  } catch {
+    // Fallback: keep whatever is in HTML; optional HEAD probe for Pharm_Quiz_HESI
+    fetch('/Pharm_Quiz_HESI.json', { method: 'HEAD' })
+      .then(r => { if (r.ok) moduleSel.add(new Option('Pharm_Quiz_HESI', 'Pharm_Quiz_HESI')); })
+      .catch(() => {});
+  }
+}
+discoverModules();
+
+/* --------------------------- length selection -------------------------- */
 let pickedLength = 10;
 lengthBtns.addEventListener('click', (e) => {
   const btn = e.target.closest('[data-len]');
@@ -54,6 +74,7 @@ lengthBtns.addEventListener('click', (e) => {
   pickedLength = btn.dataset.len === 'full' ? 'full' : parseInt(btn.dataset.len, 10);
 });
 
+/* ----------------------------- quiz controls -------------------------- */
 startBtn.addEventListener('click', startQuiz);
 
 restartBtn.addEventListener('click', () => {
@@ -63,7 +84,6 @@ restartBtn.addEventListener('click', () => {
   remainingCounter.textContent = '';
 });
 
-// explicit reset during quiz
 resetQuizBtn.addEventListener('click', resetQuiz);
 
 function resetQuiz(){
@@ -83,10 +103,11 @@ function resetQuiz(){
   currentInputsByLetter = {};
 }
 
-/* Keyboard controls */
+/* ---------------------------- keyboard hooks -------------------------- */
 document.addEventListener('keydown', (e) => {
   if (quiz.classList.contains('hidden')) return;
 
+  // Enter behavior
   if (e.key === 'Enter') {
     const canSubmit = !submitBtn.disabled;
     const canNext = !nextBtn.disabled;
@@ -100,6 +121,7 @@ document.addEventListener('keydown', (e) => {
     return;
   }
 
+  // Letter toggle behavior (A–Z)
   const letter = (e.key && e.key.length === 1) ? e.key.toUpperCase() : '';
   if (letter && currentInputsByLetter[letter]) {
     e.preventDefault();
@@ -115,22 +137,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-/* NEW: auto-discover modules from the backend */
-async function discoverModules(){
-  try {
-    const res = await fetch(`/modules?_=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error('modules endpoint not available');
-    const data = await res.json();
-    const mods = (data.modules || []).filter(Boolean);
-    if (mods.length) {
-      moduleSel.innerHTML = mods.map(m => `<option value="${m}">${m}</option>`).join('');
-    }
-  } catch {
-    // Fallback: keep whatever options are already present in the HTML
-  }
-}
-discoverModules(); // run on load (script is defer'd)
-
+/* ------------------------------ start quiz ---------------------------- */
 async function startQuiz() {
   startBtn.disabled = true;
 
@@ -143,13 +150,11 @@ async function startQuiz() {
     const data = await res.json();
 
     const all = normalizeQuestions(data);
-
-    // clean random sampling per run
     const chosen = sampleQuestions(all, pickedLength);
 
     state = {
       pool: chosen.map(q => ({ ...q, attempts: 0, mastered: false })),
-      queue: [],
+      queue: [],                 // remaining new items
       idx: -1,
       shownCount: 0,
       totalFirstTry: 0,
@@ -158,7 +163,11 @@ async function startQuiz() {
       review: []
     };
 
+    // Initial queue = all chosen
     state.queue = [...state.pool];
+
+    // init adaptive buffer (15%)
+    initAdaptiveBufferForQuiz();
 
     launcher.classList.add('hidden');
     summary.classList.add('hidden');
@@ -179,8 +188,7 @@ async function startQuiz() {
   }
 }
 
-/* ------------------------- helpers ------------------------- */
-
+/* ------------------------- normalization helpers ---------------------- */
 function normalizeQuestions(raw) {
   const arr = Array.isArray(raw) ? raw : (raw.questions || raw.items || []);
   return arr.map((it, i) => {
@@ -234,7 +242,7 @@ function extractCorrectLetters(it) {
 
 function isLetter(x){ return /^[A-Z]$/.test(x); }
 
-/* exact-size random sample (no memory across runs) */
+/* ---------------------------- random sampling ------------------------- */
 function randomInt(max){
   if (max <= 0) return 0;
   if (window.crypto && crypto.getRandomValues) {
@@ -258,18 +266,133 @@ function sampleQuestions(arr, requested){
   return copy.slice(0, k);
 }
 
-function setHidden(node, yes){ node.classList.toggle('hidden', yes); }
-function updateSubmitEnabled(){
-  submitBtn.disabled = optionsForm.querySelectorAll('input:checked').length === 0;
+/* ----------------------- submit/grade + flow -------------------------- */
+submitBtn.addEventListener('click', handleSubmit);
+nextBtn.addEventListener('click', loadNext);
+
+function handleSubmit(){
+  const q = state?.pool[state?.idx];
+  if (!q) return;
+
+  const picked = [...optionsForm.querySelectorAll('input:checked')].map(i => i.value);
+  if (picked.length === 0) return;
+
+  state.totalSubmissions += 1;
+  q.attempts += 1;
+
+  const correctSet = new Set(q.correctLetters);
+  const pickedSet = new Set(picked.map(s => s.toUpperCase()));
+  const isCorrect = setsEqual(correctSet, pickedSet);
+
+  const fullCorrectText = formatCorrectAnswers(q);
+
+  if (isCorrect) {
+    if (q.attempts === 1) state.totalFirstTry += 1;
+    q.mastered = true;
+
+    feedback.textContent = 'Correct!';
+    feedback.className = 'feedback ok';
+    answerLine.innerHTML = `<div class="answerText">${escapeHTML(fullCorrectText)}</div>`;
+    rationale.textContent = q.rationale || '';
+
+    // if this was in the pre-injection buffer for some reason, drop it
+    removeFromWrongBufferById(q.id);
+  } else {
+    feedback.textContent = 'Incorrect.';
+    feedback.className = 'feedback bad';
+    answerLine.innerHTML = `
+      <div class="answerLabel">Correct Answer:</div>
+      <div class="answerText">${escapeHTML(fullCorrectText)}</div>
+    `;
+    rationale.textContent = q.rationale || '';
+
+    // ADAPTIVE: buffer wrongs instead of pushing to back
+    addToWrongBuffer(q);
+    wrongSinceInjection += 1;
+  }
+
+  // record for review
+  const correctLettersCopy = [...correctSet];
+  const pickedLettersCopy = [...pickedSet];
+  if (isCorrect && !state.review.find(r => r.q.id === q.id)) {
+    state.review.push({ q, correctLetters: correctLettersCopy, userLetters: pickedLettersCopy, wasCorrect: true });
+  } else if (!isCorrect) {
+    const existing = state.review.find(r => r.q.id === q.id);
+    if (existing) {
+      existing.userLetters = pickedLettersCopy;
+      existing.wasCorrect = false;
+    } else {
+      state.review.push({ q, correctLetters: correctLettersCopy, userLetters: pickedLettersCopy, wasCorrect: false });
+    }
+  }
+
+  submitBtn.disabled = true;
+  nextBtn.disabled = false;
+
+  updateCounters();
 }
 
-function updateCounters() {
-  runCounter.textContent = state ? `Question: ${state.shownCount}` : '';
-  remainingCounter.textContent = state ? `Remaining to master: ${state.queue.length}` : '';
+function loadNext() {
+  if (!state) return;
+
+  // If queue is empty but buffer has items OR threshold reached, inject buffer to FRONT
+  maybeInjectWrongBuffer();
+
+  if (state.queue.length === 0) {
+    // nothing left (buffer handled above)
+    finishQuiz();
+    return;
+  }
+
+  const q = state.queue.shift();
+  state.idx = state.pool.findIndex(p => p.id === q.id);
+  state.shownCount += 1;
+
+  updateCounters();
+  renderQuestion(q);
 }
 
-/* ----------------------- rendering ----------------------- */
+/* ------------------------- adaptive buffer (15%) ----------------------- */
+let totalTarget = 0;             // total questions selected for this quiz
+let reinjectThreshold = 1;       // ceil(15% of totalTarget), min 1
+let wrongBuffer = [];            // wrong since last injection
+let wrongBufferSet = new Set();  // track ids to avoid dupes
+let wrongSinceInjection = 0;
 
+function initAdaptiveBufferForQuiz() {
+  totalTarget = state.totalRequested;
+  reinjectThreshold = Math.max(1, Math.ceil(totalTarget * 0.15)); // 15%
+  wrongBuffer = [];
+  wrongBufferSet.clear();
+  wrongSinceInjection = 0;
+}
+
+function addToWrongBuffer(q) {
+  if (!wrongBufferSet.has(q.id)) {
+    wrongBuffer.push(q);
+    wrongBufferSet.add(q.id);
+  }
+}
+
+function removeFromWrongBufferById(id) {
+  if (wrongBufferSet.has(id)) {
+    wrongBuffer = wrongBuffer.filter(x => x.id !== id);
+    wrongBufferSet.delete(id);
+  }
+}
+
+function maybeInjectWrongBuffer() {
+  // Inject if threshold met OR queue drained while buffer has items
+  if ((wrongSinceInjection >= reinjectThreshold && wrongBuffer.length) ||
+      (state.queue.length === 0 && wrongBuffer.length)) {
+    state.queue = wrongBuffer.splice(0).concat(state.queue);
+    wrongBufferSet.clear();
+    wrongSinceInjection = 0;
+    updateCounters();
+  }
+}
+
+/* -------------------------- rendering helpers ------------------------- */
 function renderQuestion(q) {
   const isMulti = EXACT_SATA.test(q.question);
   const type = isMulti ? 'checkbox' : 'radio';
@@ -309,82 +432,19 @@ function renderQuestion(q) {
   feedback.textContent = '';
   feedback.className = 'feedback';
   answerLine.innerHTML = '';
-  rationale.textContent = '';
+  rationale.textContent = q.rationale || '';
 }
 
-/* ----------------------- flow ----------------------- */
-
-function loadNext() {
-  if (!state) return;
-
-  if (state.queue.length === 0) {
-    finishQuiz();
-    return;
-  }
-
-  const q = state.queue.shift();
-  state.idx = state.pool.findIndex(p => p.id === q.id);
-  state.shownCount += 1;
-
-  updateCounters();
-  renderQuestion(q);
+function updateSubmitEnabled(){
+  submitBtn.disabled = optionsForm.querySelectorAll('input:checked').length === 0;
 }
 
-submitBtn.addEventListener('click', handleSubmit);
-nextBtn.addEventListener('click', loadNext);
-
-function handleSubmit(){
-  const q = state.pool[state.idx];
-  if (!q) return;
-
-  const picked = [...optionsForm.querySelectorAll('input:checked')].map(i => i.value);
-  if (picked.length === 0) return;
-
-  state.totalSubmissions += 1;
-  q.attempts += 1;
-
-  const correctSet = new Set(q.correctLetters);
-  const pickedSet = new Set(picked.map(s => s.toUpperCase()));
-  const isCorrect = setsEqual(correctSet, pickedSet);
-
-  const fullCorrectText = formatCorrectAnswers(q);
-
-  if (isCorrect) {
-    if (q.attempts === 1) state.totalFirstTry += 1;
-    q.mastered = true;
-
-    feedback.textContent = 'Correct!';
-    feedback.className = 'feedback ok';
-    answerLine.innerHTML = `<div class="answerText">${escapeHTML(fullCorrectText)}</div>`;
-    rationale.textContent = q.rationale || '';
-  } else {
-    feedback.textContent = 'Incorrect.';
-    feedback.className = 'feedback bad';
-    answerLine.innerHTML = `
-      <div class="answerLabel">Correct Answer:</div>
-      <div class="answerText">${escapeHTML(fullCorrectText)}</div>
-    `;
-    rationale.textContent = q.rationale || '';
-    state.queue.push(q);
-  }
-
-  // store for review
-  if (isCorrect && !state.review.find(r => r.q.id === q.id)) {
-    state.review.push({ q, correctLetters: [...correctSet], userLetters: [...pickedSet], wasCorrect: true });
-  } else if (!isCorrect) {
-    const existing = state.review.find(r => r.q.id === q.id);
-    if (existing) {
-      existing.userLetters = [...pickedSet];
-      existing.wasCorrect = false;
-    } else {
-      state.review.push({ q, correctLetters: [...correctSet], userLetters: [...pickedSet], wasCorrect: false });
-    }
-  }
-
-  submitBtn.disabled = true;
-  nextBtn.disabled = false;
-
-  updateCounters();
+function updateCounters() {
+  // Running number shown to learner
+  runCounter.textContent = state ? `Question: ${state.shownCount}` : '';
+  // Remaining includes queue + buffer
+  const remaining = (state ? state.queue.length : 0) + wrongBuffer.length;
+  remainingCounter.textContent = `Remaining to master: ${remaining}`;
 }
 
 function setsEqual(a, b){
@@ -403,8 +463,7 @@ function formatCorrectAnswers(q){
   return joined || q.correctLetters.join(', ');
 }
 
-/* ----------------------- finish ----------------------- */
-
+/* ---------------------------- finish & review ------------------------- */
 function finishQuiz(){
   quiz.classList.add('hidden');
   summary.classList.remove('hidden');
@@ -438,8 +497,7 @@ function finishQuiz(){
   remainingCounter.textContent = '';
 }
 
-/* ----------------------- utils ----------------------- */
-
+/* ------------------------------- utils -------------------------------- */
 function escapeHTML(s = ''){
   return String(s)
     .replaceAll('&','&amp;')
