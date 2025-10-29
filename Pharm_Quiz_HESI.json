@@ -226,12 +226,10 @@
         "PC and bedtime"
       ],
       "correct": [
-        "A",
-        "Q",
-        "H"
+        "A"
       ],
       "rationale": "",
-      "type": "multi_select"
+      "type": "single_select"
     },
     {
       "id": "Pharm_HESI_Q16",
