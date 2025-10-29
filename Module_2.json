@@ -35,7 +35,7 @@
     },
     {
       "id": "Module_2_Q3",
-      "stem": "The nurse who is certified as a Critical Care Registered Nurse (CCRN) represents the unit on the organizational performance improvement team. This is an example of which type of leadership?",
+      "stem": "The nurse who is certified as a Critical Care Registered Nurse (CCRN) represents the unit on the organizational performance improvement team. This is an example of which type of leadership?",
       "options": [
         "Formal",
         "Unit",
@@ -605,7 +605,7 @@
       "correct": [
         "D"
       ],
-      "rationale": "Nonmaleficence refers to doing no harm.  For a nurse manager following this pr inciple, performance evaluation should emphasize an employee‘s good qualities and give positive direction for growth. Destroying the employee‘s self-esteem and self-worth would be considered doing harm under this principle.",
+      "rationale": "Nonmaleficence refers to doing no harm.  For a nurse manager following this principle, performance evaluation should emphasize an employee‘s good qualities and give positive direction for growth. Destroying the employee‘s self-esteem and self-worth would be considered doing harm under this principle.",
       "type": "single_select"
     },
     {
@@ -630,7 +630,7 @@
       "stem": "A staff nurse in the area that you manage has excelled in the delivery of patient education. You are considering implementing a new job description that would broaden her opportunity to teach patients and orient new staff members to the value of patient education. What ethical principle is being reinforced?",
       "options": [
         "Justice",
-        "Fidelity   18",
+        "Fidelity",
         "Paternalism",
         "Respect for others"
       ],
@@ -994,13 +994,13 @@
         "Respecting others",
         "Understanding the importance of language",
         "Encouragement of potential in all staff",
-        "Age bias F. Disrespect for others"
+        "Age bias."
+        "Disrespect for others"
       ],
       "correct": [
         "B",
         "C",
-        "D",
-        "E"
+        "D"
       ],
       "rationale": "Cultural competence involves knowledge of diverse cultural and ethnic groups, including knowledge of staff members and respect for others and their cultural differences.",
       "type": "multi_select"
@@ -1070,7 +1070,7 @@
       "options": [
         "How long have you been using acupuncture treatment?",
         "Do you think acupuncture relieves your pain satisfactorily?",
-        "What have you told yo ur heart specialist about your migraines and treatment?",
+        "What have you told your heart specialist about your migraines and treatment?",
         "Have you tried nonprescription pain medication or been given a prescription drug for your headaches?"
       ],
       "correct": [
@@ -1186,7 +1186,7 @@
     },
     {
       "id": "Module_2_Q79",
-      "stem": "Mary joins the 5W nursing unit. Mary is a new graduate who is anxious to fit in. She soon learns that some of her book learning is being criticized by her colleagues, so she adapts he r practice to what others in the unit are doing. She is demonstrating:",
+      "stem": "Mary joins the 5W nursing unit. Mary is a new graduate who is anxious to fit in. She soon learns that some of her book learning is being criticized by her colleagues, so she adapts her practice to what others in the unit are doing. She is demonstrating:",
       "options": [
         "cultural awareness.",
         "cultural sensitivity.",
@@ -1395,7 +1395,7 @@
       "correct": [
         "C"
       ],
-      "rationale": "50 Your primary role as a nurse manager is ensuring quality patient care. You must also focus on cost outcomes, assess your staff frequently, and provide education to the staff. However, as a leader in evaluating the larger picture of health care, quality care is a priority.",
+      "rationale": "Your primary role as a nurse manager is ensuring quality patient care. You must also focus on cost outcomes, assess your staff frequently, and provide education to the staff. However, as a leader in evaluating the larger picture of health care, quality care is a priority.",
       "type": "single_select"
     },
     {
@@ -1803,7 +1803,7 @@
       "correct": [
         "D"
       ],
-      "rationale": "Resistance and reluctance commonly occur when personal security is threatened and may involve loss of confidence in abilities or loss of job or financial security.   130",
+      "rationale": "Resistance and reluctance commonly occur when personal security is threatened and may involve loss of confidence in abilities or loss of job or financial security.",
       "type": "single_select"
     },
     {
@@ -1908,7 +1908,7 @@
       "correct": [
         "A"
       ],
-      "rationale": "The nurse manager should participate in strategic planning and quality initiatives with the governing body. Lack of knowledge is a common reason for nonparticipation in planning initiatives.   133",
+      "rationale": "The nurse manager should participate in strategic planning and quality initiatives with the governing body. Lack of knowledge is a common reason for nonparticipation in planning initiatives.",
       "type": "single_select"
     },
     {
@@ -2006,7 +2006,7 @@
       "stem": "In implementing the strategic plan for effective utilization of evidence to guide nursing practice at Pacific Hospital, the nursing unit managers take the next step, which is the implementation. Implementation most likely would involve:",
       "options": [
         "Revisiting the mission statement and objectives.",
-        "Reevaluating external and internal factors affecting evidence-based practice.",
+        "Re-evaluating external and internal factors affecting evidence-based practice.",
         "Preparing a budget to support implementation.",
         "Developing unit-based objectives related to the plan."
       ],
@@ -2073,8 +2073,7 @@
       "correct": [
         "A",
         "C",
-        "D",
-        "E"
+        "D"
       ],
       "rationale": "Leaders who inspire teams to accomplish extraordinary things or to display synergy model the way, inspire shared vision, challenge the status quo, and encourage the heart by celebration of success.",
       "type": "multi_select"
@@ -2264,7 +2263,7 @@
       "options": [
         "two very outspoken members tend to dominate discussions in meetings.",
         "This behavior is indicative of a high level of communication among her staff.",
-        "Staff members are very committed to the team and have strong opinions.   144",
+        "Staff members are very committed to the team and have strong opinions.",
         "Ongoing discussion outside of meetings is conducive to creativity."
       ],
       "correct": [
@@ -2514,7 +2513,7 @@
       "correct": [
         "D"
       ],
-      "rationale": "In organizational structures where decision making occurs at the POS, nurse managers are given some self-control, which includes preparing and implementing a budget that meets the long- and short-term needs of their unit without requiring hierarchical approval.   222",
+      "rationale": "In organizational structures where decision making occurs at the POS, nurse managers are given some self-control, which includes preparing and implementing a budget that meets the long- and short-term needs of their unit without requiring hierarchical approval.",
       "type": "single_select"
     },
     {
@@ -2563,12 +2562,12 @@
     },
     {
       "id": "Module_2_Q170",
-      "stem": "Electronic health records (EHRs) are being instituted at Pleasant Valley Hospital. Some of the staff on Unit 4 complain to the manager that acquiring the technological skills required is too time-consuming. They question its value in patient care. The manager responds that:",
+      "stem": "Electronic health records (EHR) are being instituted at Pleasant Valley Hospital. Some of the staff on Unit 4 complain to the manager that acquiring the technological skills required is too time-consuming. They question its value in patient care. The manager responds that:",
       "options": [
         "The use of technology is inevitable in our technologically oriented society.",
         "The hospital is no longer able to find the space to accommodate paper record-keeping.",
         "The initiative is being driven by decision makers higher up in the hierarchy, and there is no choice.",
-        "EHRs will increase the effectiveness of care by enhancing coordination and improving patient outcomes."
+        "EHR will increase the effectiveness of care by enhancing coordination and improving patient outcomes."
       ],
       "correct": [
         "D"
