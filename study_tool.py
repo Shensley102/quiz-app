@@ -16,8 +16,8 @@ app = Flask(
 
 app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY", "dev-secret")
 
-# Allow banks named like Module_*.json or Pharm_*.json (e.g., Pharm_Quiz_HESI.json)
-ALLOWED_JSON = re.compile(r"^(?:Module_[A-Za-z0-9_-]+|Pharm_[A-Za-z0-9_-]+)\.json$")
+# Allow Module_*.json and Pharm_*.json (case-insensitive, underscores/hyphens ok)
+ALLOWED_JSON = re.compile(r"^(?:Module_[\w-]+|Pharm_[\w-]+)\.json$", re.IGNORECASE)
 
 @app.get("/healthz")
 def healthz():
