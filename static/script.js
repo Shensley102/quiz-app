@@ -1,442 +1,508 @@
-/* ===========================
-   Study Quiz — Frontend only
-   =========================== */
+/* -----------------------------------------------------------
+   Quiz App (frontend only)
+   - Random subset each quiz (10/25/50/100/Full) using clean sampling
+   - Mastery loop: missed items return until correct
+   - Adaptive buffer: when newly-wrong count hits 15% of quiz size (ceil, min 1),
+     inject those wrong items to the FRONT immediately; reset the counter
+   - Track total submissions; compute first-try % at end
+   - Checkbox ONLY if the stem literally contains "(Select all that apply.)"
+   - Keyboard:
+       * Enter submits, then Enter again advances
+       * A–Z toggles matching option; for radios, pressing the same letter
+         again de-selects it
+----------------------------------------------------------- */
 
-const MODULES_FALLBACK = {
-  "Module_1": "Module_1.json",
-  "Module_2": "Module_2.json",
-  "Module_3": "Module_3.json",
-  "Pharm_Quiz_HESI": "Pharm_Quiz_HESI.json"
-};
+const el = (id) => document.getElementById(id);
+const launcher = el('launcher');
+const quiz = el('quiz');
+const summary = el('summary');
 
-const els = {
-  launcher: document.getElementById('launcher'),
-  moduleSelect: document.getElementById('moduleSelect'),
-  lengthBtns: Array.from(document.querySelectorAll('.len-btn')),
-  startBtn: document.getElementById('startBtn'),
+const moduleSel = el('moduleSel');
+const lengthBtns = el('lengthBtns');
+const startBtn = el('startBtn');
 
-  quiz: document.getElementById('quizArea'),
-  quizTitle: document.getElementById('quizTitle'),
-  progress: document.getElementById('progress'),
-  qText: document.getElementById('questionText'),
-  form: document.getElementById('optionsForm'),
-  submit: document.getElementById('submitBtn'),
-  next: document.getElementById('nextBtn'),
-  feedback: document.getElementById('feedback'),
-  rationale: document.getElementById('rationale'),
-  reset: document.getElementById('resetBtn'),
+const runCounter = el('runCounter');
+const remainingCounter = el('remainingCounter');
 
-  done: document.getElementById('done'),
-  firstTry: document.getElementById('firstTry'),
-  totalAnswers: document.getElementById('totalAnswers'),
-  newQuizBtn: document.getElementById('newQuizBtn'),
-};
+const qNumber = el('qNumber');
+const questionText = el('questionText');
+const optionsForm = el('optionsForm');
 
-let MODULE_MAP = {};
-let currentLength = 10;
+const submitBtn = el('submitBtn');
+const nextBtn = el('nextBtn');
+const feedback = el('feedback');
+const answerLine = el('answerLine');
+const rationale = el('rationale');
+const resetQuizBtn = el('resetQuizBtn');
 
-// state for a running quiz
+const fta = el('fta');
+const totalSub = el('totalSub');
+const restartBtn = el('restartBtn');
+const reviewList = el('reviewList');
+
 let state = null;
+let currentInputsByLetter = {};
 
-/* -----------------------------
-   Utilities
------------------------------- */
-const letters = i => String.fromCharCode(65 + i); // 0->A
-const shuffle = arr => {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-};
-const scrollIntoViewSoft = (node, block = 'start') => {
-  if (!node) return;
-  try { node.scrollIntoView({behavior: 'smooth', block}); }
-  catch { node.scrollIntoView(); }
-};
+const EXACT_SATA = /\(Select all that apply\.\)/i;
 
-async function loadJSON(path) {
-  const res = await fetch(path, {cache: 'no-store'});
-  if (!res.ok) throw new Error(`Fetch failed ${path} ${res.status}`);
-  return res.json();
-}
-
-async function loadModuleList() {
-  // Try /modules.json then /static/modules.json else fallback
+/* ----------------- auto-discover modules from backend ----------------- */
+async function discoverModules(){
   try {
-    MODULE_MAP = await loadJSON('/modules.json');
-  } catch {
-    try {
-      MODULE_MAP = await loadJSON('/static/modules.json');
-    } catch {
-      console.warn('[modules] Falling back to default map');
-      MODULE_MAP = MODULES_FALLBACK;
+    const res = await fetch(`/modules?_=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('modules endpoint not available');
+    const data = await res.json();
+    const mods = (data.modules || []).filter(Boolean);
+    if (mods.length) {
+      moduleSel.innerHTML = mods.map(m => `<option value="${m}">${m}</option>`).join('');
     }
+  } catch {
+    // Fallback: keep whatever is in HTML; optional HEAD probe for Pharm_Quiz_HESI
+    fetch('/Pharm_Quiz_HESI.json', { method: 'HEAD' })
+      .then(r => { if (r.ok) moduleSel.add(new Option('Pharm_Quiz_HESI', 'Pharm_Quiz_HESI')); })
+      .catch(() => {});
   }
-  // Populate select
-  els.moduleSelect.innerHTML = '';
-  Object.keys(MODULE_MAP).forEach(name => {
-    const opt = document.createElement('option');
-    opt.value = name;
-    opt.textContent = name;
-    els.moduleSelect.appendChild(opt);
-  });
 }
+discoverModules();
 
-function currentModuleName() {
-  return els.moduleSelect.value || Object.keys(MODULE_MAP)[0];
-}
-
-/* -----------------------------
-   Launcher wiring
------------------------------- */
-els.lengthBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    els.lengthBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentLength = btn.dataset.len === 'full' ? 'full' : parseInt(btn.dataset.len, 10);
-  });
+/* --------------------------- length selection -------------------------- */
+let pickedLength = 10;
+lengthBtns.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-len]');
+  if (!btn) return;
+  [...lengthBtns.querySelectorAll('.seg-btn')].forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  pickedLength = btn.dataset.len === 'full' ? 'full' : parseInt(btn.dataset.len, 10);
 });
 
-els.startBtn.addEventListener('click', async () => {
-  const mod = currentModuleName();
-  const path = MODULE_MAP[mod];
-  if (!path) {
-    alert('Module not found.');
+/* ----------------------------- quiz controls -------------------------- */
+startBtn.addEventListener('click', startQuiz);
+
+restartBtn.addEventListener('click', () => {
+  summary.classList.add('hidden');
+  launcher.classList.remove('hidden');
+  runCounter.textContent = '';
+  remainingCounter.textContent = '';
+});
+
+resetQuizBtn.addEventListener('click', resetQuiz);
+
+function resetQuiz(){
+  state = null;
+  quiz.classList.add('hidden');
+  summary.classList.add('hidden');
+  launcher.classList.remove('hidden');
+  runCounter.textContent = '';
+  remainingCounter.textContent = '';
+  optionsForm.innerHTML = '';
+  feedback.textContent = '';
+  feedback.className = 'feedback';
+  answerLine.innerHTML = '';
+  rationale.textContent = '';
+  submitBtn.disabled = true;
+  nextBtn.disabled = true;
+  currentInputsByLetter = {};
+}
+
+/* ---------------------------- keyboard hooks -------------------------- */
+document.addEventListener('keydown', (e) => {
+  if (quiz.classList.contains('hidden')) return;
+
+  // Enter behavior
+  if (e.key === 'Enter') {
+    const canSubmit = !submitBtn.disabled;
+    const canNext = !nextBtn.disabled;
+    if (canSubmit) {
+      e.preventDefault();
+      handleSubmit();
+    } else if (canNext) {
+      e.preventDefault();
+      loadNext();
+    }
     return;
   }
-  let bank;
-  try {
-    bank = await loadJSON(`/${path}`);
-  } catch {
-    try {
-      bank = await loadJSON(`/static/${path}`);
-    } catch (e) {
-      console.error(e);
-      alert('Unable to load module file.');
-      return;
+
+  // Letter toggle behavior (A–Z)
+  const letter = (e.key && e.key.length === 1) ? e.key.toUpperCase() : '';
+  if (letter && currentInputsByLetter[letter]) {
+    e.preventDefault();
+    const input = currentInputsByLetter[letter];
+
+    if (input.type === 'checkbox') {
+      input.checked = !input.checked;
+    } else {
+      // radio: press again to de-select
+      input.checked = input.checked ? false : true;
     }
+    updateSubmitEnabled();
   }
-  startQuiz(mod, normalizeBank(bank));
 });
 
-/* -----------------------------
-   Normalize incoming JSON
-   Expecting array of:
-   { id, stem, options: [..], correct: ["A","C"], rationale, type: "multi"|"multi_select" }
------------------------------- */
-function normalizeBank(raw) {
-  if (Array.isArray(raw)) return raw;
-  if (raw && Array.isArray(raw.questions)) return raw.questions;
-  return [];
+/* ------------------------------ start quiz ---------------------------- */
+async function startQuiz() {
+  startBtn.disabled = true;
+
+  try {
+    const selected = moduleSel.value;
+    if (!selected) throw new Error('Select a module first.');
+    const bankName = `${selected}.json`;
+    const res = await fetch(`/${bankName}?_=${Date.now()}`);
+    if (!res.ok) throw new Error(`Failed to fetch ${bankName}`);
+    const data = await res.json();
+
+    const all = normalizeQuestions(data);
+    const chosen = sampleQuestions(all, pickedLength);
+
+    state = {
+      pool: chosen.map(q => ({ ...q, attempts: 0, mastered: false })),
+      queue: [],                 // remaining new items
+      idx: -1,
+      shownCount: 0,
+      totalFirstTry: 0,
+      totalRequested: chosen.length,
+      totalSubmissions: 0,
+      review: []
+    };
+
+    // Initial queue = all chosen
+    state.queue = [...state.pool];
+
+    // init adaptive buffer (15%)
+    initAdaptiveBufferForQuiz();
+
+    launcher.classList.add('hidden');
+    summary.classList.add('hidden');
+    quiz.classList.remove('hidden');
+
+    updateCounters();
+    nextBtn.disabled = true;
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+    answerLine.innerHTML = '';
+    rationale.textContent = '';
+
+    loadNext();
+  } catch (err) {
+    alert(err.message || 'Could not load questions.');
+  } finally {
+    startBtn.disabled = false;
+  }
 }
 
-/* -----------------------------
-   Start Quiz
------------------------------- */
-function startQuiz(moduleName, questions) {
-  // length
-  const list = shuffle(questions);
-  const count = currentLength === 'full' ? list.length : Math.min(list.length, currentLength);
-  const chosen = list.slice(0, count);
+/* ------------------------- normalization helpers ---------------------- */
+function normalizeQuestions(raw) {
+  const arr = Array.isArray(raw) ? raw : (raw.questions || raw.items || []);
+  return arr.map((it, i) => {
+    const id = it.id || `Q${i+1}`;
+    const stem = it.question || it.prompt || it.stem || '';
+    const options = normalizeOptions(it.options || it.choices);
+    const correctLetters = extractCorrectLetters(it);
+    const rationale = it.rationale || it.explanation || it.reason || '';
 
-  const threshold = Math.max(1, Math.floor(count * 0.15)); // 15%
-
-  state = {
-    moduleName,
-    bank: chosen,
-    total: count,
-    queue: chosen.map((q, idx) => ({...q, _idx: idx})), // embed unique index
-    pos: 0,
-    wrongBucket: [],
-    threshold,
-
-    // mastery / scoring
-    seen: new Set(),               // tracks if a question has been seen at least once
-    firstTryCorrect: 0,            // numerator
-    totalSubmits: 0,               // denominator for "Total answers submitted"
-    firstTryMap: new Map(),        // q._idx -> {answered: boolean, gotRightOnFirst: boolean}
-  };
-
-  // UI swap
-  els.launcher.classList.add('hidden');
-  els.done.classList.add('hidden');
-  els.quiz.classList.remove('hidden');
-
-  els.quizTitle.textContent = moduleName.replaceAll('_',' ');
-  renderCurrent();
+    return { id, question: stem, options, correctLetters, rationale };
+  }).filter(q => {
+    return Object.keys(q.options).length && q.correctLetters.length;
+  });
 }
 
-/* -----------------------------
-   Render current question
------------------------------- */
-function renderCurrent() {
-  const remaining = state.queue.slice(state.pos);
-  if (remaining.length === 0) {
-    // finished
+function normalizeOptions(opts) {
+  const out = {};
+  if (!opts) return out;
+
+  for (const key of Object.keys(opts)) {
+    const k = key.trim().toUpperCase();
+    if (/^[A-Z]$/.test(k) && String(opts[key]).trim()) {
+      out[k] = String(opts[key]).trim();
+    }
+  }
+
+  if (Object.keys(out).length === 0 && Array.isArray(opts)) {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    opts.forEach((txt, i) => {
+      if (String(txt).trim()) out[letters[i]] = String(txt).trim();
+    });
+  }
+  return out;
+}
+
+function extractCorrectLetters(it) {
+  const candidateKeys = ['answer', 'answers', 'correct', 'correct_answers', 'Correct', 'Answer'];
+  let raw = null;
+  for (const k of candidateKeys) {
+    if (k in it) { raw = it[k]; break; }
+  }
+  if (raw == null) return [];
+
+  if (Array.isArray(raw)) {
+    return raw.map(String).map(s => s.trim().toUpperCase()).filter(isLetter);
+  }
+  const s = String(raw).toUpperCase();
+  const letters = s.match(/[A-Z]/g);
+  return letters ? letters.filter(isLetter) : [];
+}
+
+function isLetter(x){ return /^[A-Z]$/.test(x); }
+
+/* ---------------------------- random sampling ------------------------- */
+function randomInt(max){
+  if (max <= 0) return 0;
+  if (window.crypto && crypto.getRandomValues) {
+    const buf = new Uint32Array(1);
+    crypto.getRandomValues(buf);
+    return buf[0] % max;
+  }
+  return Math.floor(Math.random() * max);
+}
+
+function sampleQuestions(arr, requested){
+  const copy = arr.slice();
+  if (requested === 'full' || requested >= copy.length) return copy;
+
+  const k = Math.max(0, requested | 0);
+  // partial Fisher–Yates
+  for (let i = 0; i < k; i++) {
+    const j = i + randomInt(copy.length - i);
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy.slice(0, k);
+}
+
+/* ----------------------- submit/grade + flow -------------------------- */
+submitBtn.addEventListener('click', handleSubmit);
+nextBtn.addEventListener('click', loadNext);
+
+function handleSubmit(){
+  const q = state?.pool[state?.idx];
+  if (!q) return;
+
+  const picked = [...optionsForm.querySelectorAll('input:checked')].map(i => i.value);
+  if (picked.length === 0) return;
+
+  state.totalSubmissions += 1;
+  q.attempts += 1;
+
+  const correctSet = new Set(q.correctLetters);
+  const pickedSet = new Set(picked.map(s => s.toUpperCase()));
+  const isCorrect = setsEqual(correctSet, pickedSet);
+
+  const fullCorrectText = formatCorrectAnswers(q);
+
+  if (isCorrect) {
+    if (q.attempts === 1) state.totalFirstTry += 1;
+    q.mastered = true;
+
+    feedback.textContent = 'Correct!';
+    feedback.className = 'feedback ok';
+    answerLine.innerHTML = `<div class="answerText">${escapeHTML(fullCorrectText)}</div>`;
+    rationale.textContent = q.rationale || '';
+
+    // if this was in the pre-injection buffer for some reason, drop it
+    removeFromWrongBufferById(q.id);
+  } else {
+    feedback.textContent = 'Incorrect.';
+    feedback.className = 'feedback bad';
+    answerLine.innerHTML = `
+      <div class="answerLabel">Correct Answer:</div>
+      <div class="answerText">${escapeHTML(fullCorrectText)}</div>
+    `;
+    rationale.textContent = q.rationale || '';
+
+    // ADAPTIVE: buffer wrongs instead of pushing to back
+    addToWrongBuffer(q);
+    wrongSinceInjection += 1;
+  }
+
+  // record for review
+  const correctLettersCopy = [...correctSet];
+  const pickedLettersCopy = [...pickedSet];
+  if (isCorrect && !state.review.find(r => r.q.id === q.id)) {
+    state.review.push({ q, correctLetters: correctLettersCopy, userLetters: pickedLettersCopy, wasCorrect: true });
+  } else if (!isCorrect) {
+    const existing = state.review.find(r => r.q.id === q.id);
+    if (existing) {
+      existing.userLetters = pickedLettersCopy;
+      existing.wasCorrect = false;
+    } else {
+      state.review.push({ q, correctLetters: correctLettersCopy, userLetters: pickedLettersCopy, wasCorrect: false });
+    }
+  }
+
+  submitBtn.disabled = true;
+  nextBtn.disabled = false;
+
+  updateCounters();
+}
+
+function loadNext() {
+  if (!state) return;
+
+  // If queue is empty but buffer has items OR threshold reached, inject buffer to FRONT
+  maybeInjectWrongBuffer();
+
+  if (state.queue.length === 0) {
+    // nothing left (buffer handled above)
     finishQuiz();
     return;
   }
 
-  const q = remaining[0];
-  els.progress.textContent = `Question ${state.total - remaining.length + 1} of ${state.total}`;
+  const q = state.queue.shift();
+  state.idx = state.pool.findIndex(p => p.id === q.id);
+  state.shownCount += 1;
 
-  // question text
-  els.qText.textContent = q.stem || '';
+  updateCounters();
+  renderQuestion(q);
+}
 
-  // form options
-  els.form.innerHTML = '';
-  const isMulti = (q.type || '').toLowerCase().includes('multi_select') || (q.type || '').toLowerCase().includes('select');
-  const inputType = isMulti ? 'checkbox' : 'radio';
-  const name = `choice-${q._idx}`;
+/* ------------------------- adaptive buffer (15%) ----------------------- */
+let totalTarget = 0;             // total questions selected for this quiz
+let reinjectThreshold = 1;       // ceil(15% of totalTarget), min 1
+let wrongBuffer = [];            // wrong since last injection
+let wrongBufferSet = new Set();  // track ids to avoid dupes
+let wrongSinceInjection = 0;
 
-  (q.options || []).forEach((txt, i) => {
-    const id = `${name}-${i}`;
-    const line = document.createElement('div');
-    line.className = 'opt';
-    const input = document.createElement('input');
-    input.type = inputType;
-    input.name = name;
-    input.id = id;
-    input.value = letters(i);
+function initAdaptiveBufferForQuiz() {
+  totalTarget = state.totalRequested;
+  reinjectThreshold = Math.max(1, Math.ceil(totalTarget * 0.15)); // 15%
+  wrongBuffer = [];
+  wrongBufferSet.clear();
+  wrongSinceInjection = 0;
+}
+
+function addToWrongBuffer(q) {
+  if (!wrongBufferSet.has(q.id)) {
+    wrongBuffer.push(q);
+    wrongBufferSet.add(q.id);
+  }
+}
+
+function removeFromWrongBufferById(id) {
+  if (wrongBufferSet.has(id)) {
+    wrongBuffer = wrongBuffer.filter(x => x.id !== id);
+    wrongBufferSet.delete(id);
+  }
+}
+
+function maybeInjectWrongBuffer() {
+  // Inject if threshold met OR queue drained while buffer has items
+  if ((wrongSinceInjection >= reinjectThreshold && wrongBuffer.length) ||
+      (state.queue.length === 0 && wrongBuffer.length)) {
+    state.queue = wrongBuffer.splice(0).concat(state.queue);
+    wrongBufferSet.clear();
+    wrongSinceInjection = 0;
+    updateCounters();
+  }
+}
+
+/* -------------------------- rendering helpers ------------------------- */
+function renderQuestion(q) {
+  const isMulti = EXACT_SATA.test(q.question);
+  const type = isMulti ? 'checkbox' : 'radio';
+
+  questionText.textContent = q.question;
+  optionsForm.innerHTML = '';
+  currentInputsByLetter = {};
+
+  const letters = Object.keys(q.options);
+
+  letters.forEach(letter => {
+    const id = `opt-${letter}`;
     const label = document.createElement('label');
-    label.htmlFor = id;
-    label.innerHTML = `<strong>${letters(i)}.</strong>&nbsp; ${escapeHTML(txt)}`;
-    line.appendChild(input);
-    line.appendChild(label);
-    els.form.appendChild(line);
+    label.className = 'opt';
+    label.setAttribute('for', id);
+
+    const input = document.createElement('input');
+    input.type = type;
+    input.name = 'opts';
+    input.value = letter;
+    input.id = id;
+
+    currentInputsByLetter[letter.toUpperCase()] = input;
+
+    const text = document.createElement('div');
+    text.innerHTML = `<span class="letter">${letter}.</span> ${escapeHTML(q.options[letter])}`;
+
+    label.append(input, text);
+    optionsForm.appendChild(label);
   });
 
-  // reset controls/feedback
-  els.feedback.classList.add('hidden');
-  els.feedback.textContent = '';
-  els.feedback.classList.remove('ok','err');
-  els.rationale.classList.add('hidden');
-  els.rationale.textContent = '';
+  optionsForm.addEventListener('change', updateSubmitEnabled, { once: true });
 
-  els.submit.disabled = false;
-  els.next.disabled = true;
+  submitBtn.disabled = true;
+  nextBtn.disabled = true;
 
-  // focus first control
-  const first = els.form.querySelector('input');
-  if (first) first.focus({preventScroll:true});
-
-  // ensure top
-  scrollIntoViewSoft(document.querySelector('.card'), 'start');
+  feedback.textContent = '';
+  feedback.className = 'feedback';
+  answerLine.innerHTML = '';
+  rationale.textContent = q.rationale || '';
 }
 
-/* -----------------------------
-   Submit & Next handlers
------------------------------- */
-els.submit.addEventListener('click', ev => {
-  ev.preventDefault();
-  handleSubmit();
-});
-
-els.next.addEventListener('click', ev => {
-  ev.preventDefault();
-  advance();
-});
-
-els.reset.addEventListener('click', () => hardReset());
-
-els.newQuizBtn.addEventListener('click', () => {
-  // go back to launcher with current selections intact
-  els.done.classList.add('hidden');
-  els.launcher.classList.remove('hidden');
-});
-
-function getUserSelection() {
-  const inputs = Array.from(els.form.querySelectorAll('input'));
-  const chosen = inputs.filter(i => i.checked).map(i => i.value);
-  return chosen;
+function updateSubmitEnabled(){
+  submitBtn.disabled = optionsForm.querySelectorAll('input:checked').length === 0;
 }
 
-function setFeedback({correct, q, wasFirstAttempt}) {
-  // Build nice answer text(s)
-  const correctLetters = (q.correct || []);
-  const lines = correctLetters.map(letter => {
-    const idx = letter.charCodeAt(0) - 65;
-    const text = (q.options && q.options[idx]) ? q.options[idx] : '';
-    return `${letter} — ${text}`;
+function updateCounters() {
+  // Running number shown to learner
+  runCounter.textContent = state ? `Question: ${state.shownCount}` : '';
+  // Remaining includes queue + buffer
+  const remaining = (state ? state.queue.length : 0) + wrongBuffer.length;
+  remainingCounter.textContent = `Remaining to master: ${remaining}`;
+}
+
+function setsEqual(a, b){
+  if (a.size !== b.size) return false;
+  for (const v of a) if (!b.has(v)) return false;
+  return true;
+}
+
+function formatCorrectAnswers(q){
+  const map = {};
+  for (const [letter, txt] of Object.entries(q.options)) {
+    map[letter.toUpperCase()] = txt;
+  }
+  const letters = q.correctLetters.slice().sort();
+  const joined = letters.map(L => `${L} — ${map[L] ?? ''}`).join('; ');
+  return joined || q.correctLetters.join(', ');
+}
+
+/* ---------------------------- finish & review ------------------------- */
+function finishQuiz(){
+  quiz.classList.add('hidden');
+  summary.classList.remove('hidden');
+
+  const pct = Math.round((state.totalFirstTry / state.totalRequested) * 100);
+  fta.textContent = `First-Try Accuracy: ${pct}% (${state.totalFirstTry} / ${state.totalRequested})`;
+  totalSub.textContent = `Total answers submitted: ${state.totalSubmissions}`;
+
+  reviewList.innerHTML = '';
+  state.pool.forEach(q => {
+    const div = document.createElement('div');
+    div.className = 'reviewItem';
+
+    const qEl = document.createElement('div');
+    qEl.className = 'reviewQ';
+    qEl.textContent = q.question;
+
+    const aEl = document.createElement('div');
+    aEl.className = 'reviewA';
+    aEl.textContent = `Correct: ${formatCorrectAnswers(q)}`;
+
+    const rEl = document.createElement('div');
+    rEl.className = 'reviewR';
+    rEl.textContent = q.rationale || '';
+
+    div.append(qEl, aEl, rEl);
+    reviewList.appendChild(div);
   });
 
-  els.feedback.classList.remove('ok','err');
-  els.feedback.classList.remove('hidden');
-
-  if (correct) {
-    els.feedback.classList.add('ok');
-    // line 1
-    els.feedback.textContent = 'Correct!';
-    // line 2+: correct answer(s) under the correctness line
-    els.feedback.appendChild(document.createElement('br'));
-    els.feedback.appendChild(document.createTextNode(lines.join('\n')));
-  } else {
-    els.feedback.classList.add('err');
-    els.feedback.textContent = 'Incorrect.';
-    // then label & answers
-    els.feedback.appendChild(document.createElement('br'));
-    const label = document.createElement('div');
-    label.style.fontWeight = '700';
-    label.textContent = 'Correct Answer:';
-    els.feedback.appendChild(label);
-    els.feedback.appendChild(document.createTextNode(lines.join('\n')));
-  }
-
-  // SATA: one answer per line already handled via '\n' and CSS white-space
-  // Show rationale only after submit
-  if (q.rationale) {
-    els.rationale.textContent = q.rationale;
-    els.rationale.classList.remove('hidden');
-  }
-
-  // Scroll to feedback area
-  setTimeout(() => scrollIntoViewSoft(els.rationale, 'center'), 30);
-
-  // lock submit; enable next
-  els.submit.disabled = true;
-  els.next.disabled = false;
+  runCounter.textContent = '';
+  remainingCounter.textContent = '';
 }
 
-function handleSubmit() {
-  const remaining = state.queue.slice(state.pos);
-  if (remaining.length === 0) return;
-  const q = remaining[0];
-
-  const chosen = getUserSelection();
-  if (chosen.length === 0) {
-    alert('Please make a selection.');
-    return;
-  }
-
-  // score bookkeeping
-  state.totalSubmits += 1;
-
-  const sortedChosen = chosen.slice().sort().join('|');
-  const sortedCorrect = (q.correct || []).slice().sort().join('|');
-  const gotIt = (sortedChosen === sortedCorrect);
-
-  // first-try tracking
-  if (!state.firstTryMap.has(q._idx)) {
-    state.firstTryMap.set(q._idx, {answered:true, correct:gotIt});
-    if (gotIt) state.firstTryCorrect += 1;
-  }
-
-  // mastery queue logic
-  if (gotIt) {
-    // remove this question from queue
-    state.pos += 1;
-  } else {
-    // add to wrong bucket
-    state.wrongBucket.push(q);
-    // and also advance past it in queue (do NOT requeue at tail now)
-    state.pos += 1;
-
-    // When wrong bucket hits threshold, inject them immediately to the front
-    if (state.wrongBucket.length >= state.threshold) {
-      const front = state.queue.slice(0, state.pos);
-      const tail = state.queue.slice(state.pos);
-      state.queue = front.concat(state.wrongBucket).concat(tail);
-      state.wrongBucket = []; // reset bucket (as requested)
-      // do not change pos; the next render will pick from newly inserted wrongs
-    }
-  }
-
-  // feedback
-  setFeedback({correct: gotIt, q});
+/* ------------------------------- utils -------------------------------- */
+function escapeHTML(s = ''){
+  return String(s)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'",'&#39;');
 }
-
-function advance() {
-  renderCurrent();           // will detect if finished
-  // Scroll back to top of card for the next question
-  setTimeout(() => scrollIntoViewSoft(document.querySelector('.card'), 'start'), 20);
-}
-
-function finishQuiz() {
-  // If any residual wrongs remain, put them now (final loop)
-  if (state.wrongBucket.length > 0) {
-    const tailFront = state.queue.slice(0, state.pos);
-    const tailBack = state.queue.slice(state.pos);
-    state.queue = tailFront.concat(state.wrongBucket).concat(tailBack);
-    state.wrongBucket = [];
-    // rerender to continue mastering
-    renderCurrent();
-    return;
-  }
-
-  // done for real
-  els.quiz.classList.add('hidden');
-  els.done.classList.remove('hidden');
-
-  const firstTryPct = state.total ? Math.round((state.firstTryCorrect / state.total) * 100) : 0;
-  els.firstTry.textContent = `First-Try Accuracy: ${firstTryPct}% (${state.firstTryCorrect} / ${state.total})`;
-  els.totalAnswers.textContent = `Total answers submitted: ${state.totalSubmits}`;
-}
-
-function hardReset() {
-  // Return to launcher
-  state = null;
-  els.quiz.classList.add('hidden');
-  els.done.classList.add('hidden');
-  els.launcher.classList.remove('hidden');
-}
-
-/* -----------------------------
-   Keyboard helpers
-   - letters toggle answers (press again to de-select)
-   - Enter: Submit; after feedback, Enter triggers Next
------------------------------- */
-document.addEventListener('keydown', (ev) => {
-  if (els.quiz.classList.contains('hidden')) return;
-
-  const k = ev.key.toUpperCase();
-  const isLetter = /^[A-Z]$/.test(k);
-
-  if (isLetter) {
-    const inputs = Array.from(els.form.querySelectorAll('input'));
-    const target = inputs.find(i => i.value === k);
-    if (target) {
-      ev.preventDefault();
-
-      if (target.type === 'radio') {
-        // toggle behavior for radio: uncheck if already checked
-        if (target.checked) {
-          target.checked = false;
-        } else {
-          // uncheck others then check this
-          inputs.filter(i => i.type === 'radio').forEach(i => (i.checked = false));
-          target.checked = true;
-        }
-      } else {
-        // checkbox: toggle
-        target.checked = !target.checked;
-      }
-    }
-  }
-
-  if (ev.key === 'Enter') {
-    const submitDisabled = els.submit.disabled;
-    if (!submitDisabled) {
-      ev.preventDefault();
-      els.submit.click();
-    } else if (!els.next.disabled) {
-      ev.preventDefault();
-      els.next.click();
-    }
-  }
-});
-
-/* -----------------------------
-   Small helpers
------------------------------- */
-function escapeHTML(s=''){
-  return String(s).replace(/[&<>"']/g, c => ({
-    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-  }[c]));
-}
-
-/* -----------------------------
-   Boot
------------------------------- */
-loadModuleList();
