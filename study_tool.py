@@ -19,28 +19,28 @@ app = Flask(
 # Allow:
 #   - Module_*.json
 #   - Pharm_*.json
-#   - Learning_Questions_*.json
+#   - Learning_Questions_*.json   <-- newly added
 ALLOWED_JSON = re.compile(
     r"^(?:Module_[\w-]+|Pharm_[\w-]+|Learning_Questions_[\w-]+)\.json$",
     re.IGNORECASE,
 )
 
-
 @app.get("/healthz")
 def healthz():
     return "ok", 200
 
-
 @app.get("/")
 def index():
-    # Expects templates/index.html
+    # Expects templates/index.html (recommended).
     return render_template("index.html")
-
 
 @app.get("/modules")
 def list_modules():
     """
-    Return available banks as: { "modules": ["Module_1", ...] }
+    Returns a JSON object with available test banks (stem only, no .json),
+    filtered by the ALLOWED_JSON whitelist.
+    Example:
+      { "modules": ["Module_1", "Module_2", "Module_3", "Pharm_Quiz_HESI", "Learning_Questions_Module_1_2"] }
     """
     banks = []
     for p in BASE_DIR.glob("*.json"):
@@ -50,21 +50,21 @@ def list_modules():
     banks.sort(key=str.lower)
     return jsonify({"modules": banks})
 
-
-# Serve only root-level "<name>.json" files that pass the whitelist.
+# Important: only match root-level JSON names of the form "<name>.json"
+# This avoids shadowing /static/... because we do NOT accept slashes here.
 @app.route("/<string:filename>.json", methods=["GET", "HEAD"])
 def serve_bank(filename: str):
     """
     Serve whitelisted JSON banks from the repo root.
 
-    Examples:
+    Examples that will work:
       /Module_1.json
       /Module_2.json
       /Module_3.json
       /Pharm_Quiz_HESI.json
       /Learning_Questions_Module_1_2.json
     """
-    # Normalize and validate against the whitelist
+    # Build a safe basename and validate
     safe_name = os.path.basename(f"{filename}.json")
     if not ALLOWED_JSON.fullmatch(safe_name):
         abort(404)
@@ -73,9 +73,7 @@ def serve_bank(filename: str):
     if not (path.exists() and path.is_file()):
         abort(404)
 
-    # Explicit mimetype avoids odd content-type defaults on some hosts
     return send_from_directory(BASE_DIR, safe_name, mimetype="application/json")
-
 
 if __name__ == "__main__":
     # Local dev: python study_tool.py
