@@ -2335,10 +2335,10 @@
       "id": "Module_1_Q155",
       "stem": "On your curriculum vitae, which of the following is the recommended approach for listing employment and educational history information?",
       "options": [
-        "1979 RN Diploma\1985 BScN\2002 MN",
-        "2002 Mount Rush Health Center Staff Nurse\1997 Cedar Falls Clinic Staff Nurse\2007 Kilkarney Rehab Center Case Manager",
-        "2007 MN\2005 BScN",
-        "1997 Sturgeon County Hospital Head Nurse\2002 Sturgeon County Supervisor\2007 Sturgeon County Director"
+        "1979 RN Diploma 1985 BScN 2002 MN",
+        "2002 Mount Rush Health Center Staff Nurse 1997 Cedar Falls Clinic Staff Nurse 2007 Kilkarney Rehab Center Case Manager",
+        "2007 MN 2005 BScN",
+        "1997 Sturgeon County Hospital Head Nurse 2002 Sturgeon County Supervisor 2007 Sturgeon County Director"
       ],
       "correct": [
         "C"
