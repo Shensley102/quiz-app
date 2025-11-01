@@ -28,7 +28,7 @@ const quiz          = $('quiz');
 const questionText  = $('questionText');
 const optionsForm   = $('optionsForm');
 const submitBtn     = $('submitBtn');   // morphs from Submit ➜ Next
-const nextBtn       = $('nextBtn');     // hidden via CSS
+const nextBtn       = $('nextBtn');     // backup/alt button (hidden in CSS)
 const feedback      = $('feedback');
 const answerLine    = $('answerLine');
 const rationale     = $('rationale');
@@ -53,7 +53,7 @@ let currentInputsByLetter = {};
 let pickedLength = 10;
 let btnMode = 'submit';  // 'submit' | 'next'
 
-// Loosened: allow "(Select all that apply)" with or without trailing period
+// Allow "(Select all that apply)" with or without a period
 const EXACT_SATA = /\(select all that apply\)?/i;
 
 /* ---------- Module discovery ---------- */
@@ -188,7 +188,8 @@ function buildRunState(all, reqLength){
     totalRequested: queue.length,
     attempts: 0,
     masteredCount: 0,
-    isFullRun: reqLength === 'full'
+    isFullRun: reqLength === 'full',
+    review: []                    // ✅ initialize review to avoid errors on first submit
   };
 }
 
@@ -251,7 +252,8 @@ async function startQuiz(){
   const questions = await loadModule(mod);
   state = buildRunState(questions, pickedLength);
   initAdaptiveBufferForQuiz();
-  loadNext();
+
+  loadNext();  // ✅ alias to goNext()
 }
 function resetQuiz(){
   document.title = defaultDocTitle;
@@ -445,6 +447,9 @@ function goNext(){
   state.current = q;
   renderQuestion(q);
 }
+
+// ✅ Alias used by startQuiz (fixes "loadNext is not defined")
+function loadNext(){ goNext(); }
 
 /* ---------- Review rendering ---------- */
 function buildReviewItemHTML(r){
