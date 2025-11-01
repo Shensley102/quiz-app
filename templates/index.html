@@ -46,6 +46,7 @@
     <section id="quiz" class="card hidden" aria-live="polite">
       <h2 id="questionText" class="q"></h2>
 
+      <!-- role is set dynamically by JS (radiogroup for single, group for multi) -->
       <form id="optionsForm" class="opts" aria-describedby="answerLine">
         <!-- options injected here -->
       </form>
@@ -70,7 +71,6 @@
     <section id="summary" class="card hidden">
       <h2>Results</h2>
 
-      <!-- New: first-try stats -->
       <div id="firstTrySummary" class="summary-stats hidden">
         <div class="stat-row">
           <div class="stat-label">First-try correct:</div>
