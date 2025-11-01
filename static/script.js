@@ -9,6 +9,7 @@
    Plus: SATA line breaks, scroll-to-bottom after submit,
          dynamic title, 5%/15% reinforcement, keyboard shortcuts.
    Results page: "Your answer" REMOVED.
+   Fixed: stable A,B,C,D… order (no option shuffling).
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -189,7 +190,7 @@ function buildRunState(all, reqLength){
     attempts: 0,
     masteredCount: 0,
     isFullRun: reqLength === 'full',
-    review: []                    // ✅ initialize review to avoid errors on first submit
+    review: []                    // initialize review to avoid errors on first submit
   };
 }
 
@@ -253,7 +254,7 @@ async function startQuiz(){
   state = buildRunState(questions, pickedLength);
   initAdaptiveBufferForQuiz();
 
-  loadNext();  // ✅ alias to goNext()
+  loadNext();  // alias to goNext()
 }
 function resetQuiz(){
   document.title = defaultDocTitle;
@@ -279,13 +280,14 @@ async function loadModule(name){
   if (!res.ok) throw new Error(`Cannot load ${name}`);
   const data = await res.json();
   const questions = normalizeQuestions(data);
-  // Shuffle options for each question
+
+  // Keep letters in A..Z order (no shuffle)
   questions.forEach(q => {
-    const letters = Object.keys(q.options);
-    const shuffled = shuffleInPlace(letters.slice());
-    const out = {}; shuffled.forEach(L => out[L] = q.options[L]);
+    const letters = Object.keys(q.options).sort();
+    const out = {}; letters.forEach(L => out[L] = q.options[L]);
     q.options = out;
   });
+
   return questions;
 }
 
@@ -307,7 +309,7 @@ function renderQuestion(q){
   optionsForm.innerHTML = '';
   currentInputsByLetter = {};
 
-  for (const letter of Object.keys(q.options)) {
+  for (const letter of Object.keys(q.options).sort()) {
     const id = `opt-${letter}`;
     const label = document.createElement('label');
     label.className = 'opt';
@@ -448,7 +450,7 @@ function goNext(){
   renderQuestion(q);
 }
 
-// ✅ Alias used by startQuiz (fixes "loadNext is not defined")
+// Alias used by startQuiz
 function loadNext(){ goNext(); }
 
 /* ---------- Review rendering ---------- */
