@@ -258,12 +258,12 @@
     },
     {
       "id": "Module_4_Q18",
-      "stem": "Sarah is a second-year nursing student. The clinical instructor overhears Sarah telling a patient that she ―always‖ checks patients‘ bracelets before giving medication, and she is not sure how the nurses on the unit ―get away with‖ not making more errors than they do. The clinical instructor pulls Sarah aside and explores with her how her communication might affect the patient and what it reflects about her beliefs related to the team. What competency does this action outline?",
+      "stem": "Sarah is a second-year nursing student. The clinical instructor overhears Sarah telling a patient that she ―always checks patients‘ bracelets before giving medication, and she is not sure how the nurses on the unit ―get away with not making more errors than they do. The clinical instructor pulls Sarah aside and explores with her how her communication might affect the patient and what it reflects about her beliefs related to the team. What competency does this action outline?",
       "options": [
-        "QSEN",
-        "IHI",
-        "DNV/NIAHO",
-        "AHRQ"
+        "Quality and Safety Education for Nurses (QSEN)",
+        "Institute for Healthcare Improvement (IHI)",
+        "Det Norske Veritas (DNV) Healthcare / National Integrated Accreditation for Healthcare Organizations (DNV/NIAHO)",
+        "Agency for Healthcare Research and Quality (AHRQ)"
       ],
       "correct": [
         "A"
