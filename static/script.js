@@ -1,5 +1,5 @@
 /* -----------------------------------------------------------
-   Quiz App - Nursing Module Frontend
+   Nursing School Quiz App - Nursing Module Frontend
    - Pretty module titles:
        Pharm_Quiz_1..4                   -> Pharm Quiz 1..4
        Learning_Questions_Module_1_2     -> Learning Questions Module 1 and 2
@@ -24,7 +24,7 @@ const progressLabel = $('progressLabel');
 
 // Page title handling
 const pageTitle    = $('pageTitle');
-const defaultTitle = pageTitle?.textContent || 'Quiz App';
+const defaultTitle = pageTitle?.textContent || 'Nursing School Quiz App';
 const setHeaderTitle = (t) => { if (pageTitle) pageTitle.textContent = t; };
 
 // Launcher
@@ -217,8 +217,8 @@ function showResumeIfAny(){
   resumeBtn.onclick = () => {
     run = s.run;
     setHeaderTitle(run.displayName || run.bank || defaultTitle);
-    document.title = run.displayName ? `Quiz App — ${run.displayName}` :
-                   (run.bank ? `Quiz App — ${run.bank}` : 'Quiz App');
+    document.title = run.displayName ? `Nursing School Quiz App — ${run.displayName}` :
+                   (run.bank ? `Nursing School Quiz App — ${run.bank}` : 'Nursing School Quiz App');
 
     launcher.classList.add('hidden');
     summary.classList.add('hidden');
@@ -442,7 +442,7 @@ async function startQuiz(){
   const qty  = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
 
   setHeaderTitle(displayName);
-  document.title = `Quiz App — ${displayName}`;
+  document.title = `Nursing School Quiz App — ${displayName}`;
 
   startBtn.disabled = true;
 
@@ -451,7 +451,7 @@ async function startQuiz(){
     alert(`Could not load ${bank}.json`);
     startBtn.disabled = false;
     setHeaderTitle(defaultTitle);
-    document.title = 'Quiz App';
+    document.title = 'Nursing School Quiz App';
     return;
   }
   const raw = await res.json();
@@ -497,7 +497,7 @@ function endRun(){
   countersBox.classList.add('hidden');
 
   setHeaderTitle(run.displayName || run.bank || defaultTitle);
-  document.title = run.displayName || run.bank || 'Quiz App';
+  document.title = run.displayName || run.bank || 'Nursing School Quiz App';
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -570,7 +570,7 @@ submitBtn.addEventListener('click', () => {
     if (run.wrongSinceLast.length >= run.thresholdWrong) {
       const seen = new Set(); const uniqueBatch = [];
       for (const item of run.wrongSinceLast) {
-        if (!seen.has(item.id)) { seen.add(item.id); uniqueBatch.push(item); }
+        if (!seen.has(item.id)) { seen.add(item); uniqueBatch.push(item); }
       }
       run.wrongSinceLast = [];
       if (uniqueBatch.length) {
