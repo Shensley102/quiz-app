@@ -3,61 +3,69 @@ import re
 from pathlib import Path
 from flask import Flask, render_template, send_from_directory, abort, jsonify
 
-# --- Paths ---
+# ---------- Paths ----------
 BASE_DIR = Path(__file__).resolve().parent
-# Support either "templates" or "template" (your repo may use either)
-TEMPLATES_DIR = BASE_DIR / ("templates" if (BASE_DIR / "templates").exists() else "template")
-STATIC_DIR = BASE_DIR / "static"
 
-# --- Flask app ---
+# ---------- Flask ----------
 app = Flask(
     __name__,
     static_url_path="/static",
-    static_folder=str(STATIC_DIR),
-    template_folder=str(TEMPLATES_DIR),
+    static_folder=str(BASE_DIR / "static"),       # serve /static/*
+    template_folder=str(BASE_DIR / "templates"),  # render /templates/index.html
 )
 
-# Accept NEW naming and legacy names (so modules show during migration).
-# New:    Final-Semester-Study-Guide_*.json
-# Legacy: Module_*.json, Pharm_*.json, Learning_Questions_*.json
-ALLOWED_JSON = re.compile(
-    r"^(?:Final-Semester-Study-Guide_[\w-]+|Module_[\w-]+|Pharm_[\w-]+|Learning_Questions_[\w-]+)\.json$",
-    re.IGNORECASE,
-)
+# Allow only simple names and .json extension
+SAFE_JSON_RE = re.compile(r"^(?!\.)[A-Za-z0-9_\-\.]+\.json$")
 
-@app.get("/healthz")
-def healthz():
-    return "ok", 200
+def list_banks():
+    """
+    Return *.json files in repo root (base names only), excluding ONLY vercel.json.
+    """
+    items = []
+    for p in BASE_DIR.glob("*.json"):
+        name = p.name
+        if name.lower() == "vercel.json":
+            continue  # exclude only vercel.json
+        if SAFE_JSON_RE.fullmatch(name):
+            items.append(name[:-5])  # strip .json
+    items.sort(key=lambda n: (0 if n.lower().startswith("pharmacology_") else 1, n.lower()))
+    return items
 
-@app.get("/")
+# ---------- Routes ----------
+
+@app.route("/", methods=["GET"])
 def index():
     return render_template("index.html")
 
-@app.get("/modules")
-def list_modules():
-    """
-    Return available banks as: { "modules": ["<stem>", ...] }
-    """
-    banks = []
-    for p in BASE_DIR.glob("*.json"):
-        name = p.name
-        if ALLOWED_JSON.fullmatch(name):
-            banks.append(p.stem)
-    banks.sort(key=str.lower)
-    return jsonify({"modules": banks})
+@app.route("/healthz", methods=["GET"])
+def healthz():
+    return "ok", 200
 
-# Serve only root-level "<name>.json" files that pass the whitelist.
+@app.route("/modules", methods=["GET"])
+def modules():
+    return jsonify({"modules": list_banks()})
+
 @app.route("/<string:filename>.json", methods=["GET", "HEAD"])
 def serve_bank(filename: str):
+    """
+    Serve a JSON bank by basename from the repo root with strict name checks.
+    """
     safe_name = os.path.basename(f"{filename}.json")
-    if not ALLOWED_JSON.fullmatch(safe_name):
+    if not SAFE_JSON_RE.fullmatch(safe_name):
         abort(404)
-
     path = BASE_DIR / safe_name
-    if not (path.exists() and path.is_file()):
+    if not path.exists() or not path.is_file():
         abort(404)
-
     return send_from_directory(BASE_DIR, safe_name, mimetype="application/json")
 
+# Silences the automatic browser requests for a site icon (no file required)
+@app.route("/favicon.ico")
+@app.route("/favicon.png")
+def favicon():
+    # If you later add a real icon in /static, you can serve it instead:
+    # return send_from_directory(BASE_DIR / "static", "favicon.ico")
+    return ("", 204)
+
+# ---------- Dev entry ----------
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
