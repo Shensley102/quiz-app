@@ -8,62 +8,15 @@
         "maxLambdaSize": "15mb",
         "runtime": "python3.9"
       }
-    },
-    {
-      "src": "static/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "templates/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
     {
       "src": "/(.*)",
       "dest": "study_tool.py"
     }
   ],
   "env": {
-    "PYTHONUNBUFFERED": "1"
+    "PYTHONUNBUFFuniform": "1"
   }
 }
-```
-
----
-
-## 6. **requirements.txt** (root)
-```
-Flask==3.0.0
-werkzeug==3.0.1
-jinja2==3.1.4
-itsdangerous==2.2.0
-click==8.1.7
-gunicorn==21.2.0
-```
-
----
-
-## 7. **.gitattributes** (root)
-```
-* text=auto
-```
-
----
-
-## Complete Directory Structure
-```
-quiz-app/
-├── study_tool.py              (Flask backend)
-├── requirements.txt           (Python dependencies)
-├── vercel.json               (Vercel configuration)
-├── .gitattributes            (Git configuration)
-├── static/
-│   ├── script.js             (Frontend JavaScript)
-│   └── style.css             (Frontend CSS)
-└── templates/
-    └── index.html            (Main HTML - with Start Another Run button on right)
