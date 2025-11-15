@@ -1,9 +1,69 @@
 {
   "version": 2,
   "builds": [
-    { "src": "study_tool.py", "use": "@vercel/python" }
+    {
+      "src": "study_tool.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.9"
+      }
+    },
+    {
+      "src": "static/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "templates/**",
+      "use": "@vercel/static"
+    }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "study_tool.py" }
-  ]
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "study_tool.py"
+    }
+  ],
+  "env": {
+    "PYTHONUNBUFFERED": "1"
+  }
 }
+```
+
+---
+
+## 6. **requirements.txt** (root)
+```
+Flask==3.0.0
+werkzeug==3.0.1
+jinja2==3.1.4
+itsdangerous==2.2.0
+click==8.1.7
+gunicorn==21.2.0
+```
+
+---
+
+## 7. **.gitattributes** (root)
+```
+* text=auto
+```
+
+---
+
+## Directory Structure
+```
+quiz-app/
+├── study_tool.py
+├── requirements.txt
+├── vercel.json
+├── .gitattributes
+├── static/
+│   ├── script.js
+│   └── style.css
+└── templates/
+    └── index.html
