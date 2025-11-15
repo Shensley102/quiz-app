@@ -17,6 +17,6 @@
     }
   ],
   "env": {
-    "PYTHONUNBUFFuniform": "1"
+    "PYTHONUNBUFFERED": "1"
   }
 }
