@@ -55,15 +55,15 @@ gunicorn==21.2.0
 
 ---
 
-## Directory Structure
+## Complete Directory Structure
 ```
 quiz-app/
-├── study_tool.py
-├── requirements.txt
-├── vercel.json
-├── .gitattributes
+├── study_tool.py              (Flask backend)
+├── requirements.txt           (Python dependencies)
+├── vercel.json               (Vercel configuration)
+├── .gitattributes            (Git configuration)
 ├── static/
-│   ├── script.js
-│   └── style.css
+│   ├── script.js             (Frontend JavaScript)
+│   └── style.css             (Frontend CSS)
 └── templates/
-    └── index.html
+    └── index.html            (Main HTML - with Start Another Run button on right)
