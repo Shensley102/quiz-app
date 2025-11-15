@@ -1,13 +1,28 @@
 /* -----------------------------------------------------------
-   Nursing School Quiz App - Nursing Module Frontend
+   Final Semester Study Guide - Module Frontend
    - Pretty module titles:
        Pharm_Quiz_1..4                   -> Pharm Quiz 1..4
        Learning_Questions_Module_1_2     -> Learning Questions Module 1 and 2
        Learning_Questions_Module_3_4     -> Learning Questions Module 3 and 4
+       CCRN_Test_1_Combined_QA           -> CCRN Test 1
+       CCRN_Test_2_Combined_QA           -> CCRN Test 2
        ...also tolerates variants/typos (spaces, underscores, "Moduele", etc.)
    - Single action button: Submit (green) ➜ Next (blue)
    - Full-width hashed progress bar; reduced jitter (snap to quiz top)
    - Open Sans question font (normal weight, slightly smaller)
+   - Auto-detect "Select all that apply" and use checkboxes
+   - Mouse click and keyboard toggle selection/deselection
+   - Summary sorted by most-wrong questions first
+   - Quiz continues until all questions are correct
+   - Shows wrong count in review with color coding
+   - Supports CCRN test files
+   - Start Another Run button on same line as title
+   - Smart hover behavior for answer options
+   - Enter key works with both mouse and keyboard selections
+   - Full-width submit button for mobile
+   - Total questions answered counter
+   - Color-coded wrong attempts (green/yellow/orange/red)
+   - Question counter runs continuously beyond selected number
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -24,7 +39,7 @@ const progressLabel = $('progressLabel');
 
 // Page title handling
 const pageTitle    = $('pageTitle');
-const defaultTitle = pageTitle?.textContent || 'Nursing School Quiz App';
+const defaultTitle = pageTitle?.textContent || 'Final Semester Study Guide';
 const setHeaderTitle = (t) => { if (pageTitle) pageTitle.textContent = t; };
 
 // Launcher
@@ -100,6 +115,12 @@ function prettifyModuleName(name) {
     if (m) return `Learning Questions Module ${m[1]} and ${m[2]}`;
   }
 
+  // CCRN Test pattern (e.g., CCRN_Test_1_Combined_QA -> CCRN Test 1)
+  {
+    const m = /^CCRN[_\s]+Test[_\s]+(\d+)/i.exec(normalized.replace(/_/g, ' '));
+    if (m) return `CCRN Test ${m[1]}`;
+  }
+
   // Fallback: replace underscores with spaces
   return raw.replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
 }
@@ -156,6 +177,7 @@ let run = {
   uniqueSeen: new Set(),
   thresholdWrong: 0,
   wrongSinceLast: [],
+  totalQuestionsAnswered: 0,  // Track total questions presented (including repeats)
 };
 
 /* ---------- Persistence ---------- */
@@ -173,6 +195,7 @@ function serializeRun() {
     uniqueSeen: Array.from(run.uniqueSeen),
     thresholdWrong: run.thresholdWrong,
     wrongSinceLast: run.wrongSinceLast.map(q => q.id),
+    totalQuestionsAnswered: run.totalQuestionsAnswered,
     title: pageTitle?.textContent || defaultTitle,
   });
 }
@@ -201,6 +224,7 @@ function loadRunState() {
       uniqueSeen: new Set(Array.isArray(data.uniqueSeen)?data.uniqueSeen:[]),
       thresholdWrong: Math.max(1, parseInt(data.thresholdWrong||1,10)),
       wrongSinceLast: (data.wrongSinceLast||[]).map(idToQ).filter(Boolean),
+      totalQuestionsAnswered: Math.max(0, parseInt(data.totalQuestionsAnswered||0,10)),
     };
     return { run: restored, title: data.title || defaultTitle };
   } catch { return null; }
@@ -217,8 +241,8 @@ function showResumeIfAny(){
   resumeBtn.onclick = () => {
     run = s.run;
     setHeaderTitle(run.displayName || run.bank || defaultTitle);
-    document.title = run.displayName ? `Nursing School Quiz App — ${run.displayName}` :
-                   (run.bank ? `Nursing School Quiz App — ${run.bank}` : 'Nursing School Quiz App');
+    document.title = run.displayName ? `Final Semester Study Guide — ${run.displayName}` :
+                   (run.bank ? `Final Semester Study Guide — ${run.bank}` : 'Final Semester Study Guide');
 
     launcher.classList.add('hidden');
     summary.classList.add('hidden');
@@ -235,169 +259,223 @@ function showResumeIfAny(){
   };
 }
 
-/* ---------- Module loading ---------- */
-async function fetchModules(){
-  try {
-    const res = await fetch(`/modules?_=${Date.now()}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error('modules failed');
-    const data = await res.json();
-    const mods = Array.isArray(data.modules) ? data.modules : [];
-    return mods.filter(m => m.toLowerCase() !== 'vercel');
-  } catch {
-    // Fallback list if /modules fails during local dev
-    return ["Module_1","Module_2","Module_3","Module_4","Pharm_Quiz_HESI",
-            "Learning_Questions_Module_1_2","Learning_Questions_Module_3_4_",
-            "Pharmacology_1","Pharmacology_2","Pharmacology_3",
-            "Pharm_Quiz_1","Pharm_Quiz_2","Pharm_Quiz_3","Pharm_Quiz_4",
-            // tolerate typo’d names, too
-            "Learning_Question_Moduele_1_2","Learning_Question_Moduele_3_4"];
-  }
+/* ---------- Normalize & shuffle ---------- */
+function normalizeQuestions(data){
+  const arr = Array.isArray(data) ? data : (data?.questions || []);
+  return arr.map(q => {
+    // Handle options: convert array to object with letter keys, or use existing object
+    let optionsObj = {};
+    if (Array.isArray(q.options)) {
+      // Convert array to object: ["A text", "B text", ...] -> { "A": "A text", "B": "B text", ... }
+      q.options.forEach((text, idx) => {
+        optionsObj[String.fromCharCode(65 + idx)] = String(text || '');
+      });
+    } else if (q.options && typeof q.options === 'object') {
+      // Already an object, make a copy
+      optionsObj = { ...q.options };
+    }
+
+    // Check for correct answer in multiple possible field names
+    let correctLetters = [];
+    if (Array.isArray(q.correctLetters)) {
+      correctLetters = q.correctLetters.slice();
+    } else if (Array.isArray(q.correct)) {
+      // Check for "correct" field (used in your JSON files)
+      correctLetters = q.correct.slice();
+    } else if (q.correctAnswer) {
+      correctLetters = [q.correctAnswer];
+    }
+
+    // Detect "Select all that apply" in the stem and auto-set to multiple_select
+    const stemText = String(q.question || q.stem || '');
+    const isSelectAll = /select all that apply/i.test(stemText);
+
+    const newQ = {
+      id: String(q.id || Math.random()),
+      stem: stemText,
+      options: optionsObj,
+      correctLetters: correctLetters.length > 0 ? correctLetters : ['A'],
+      rationale: String(q.rationale || ''),
+      type: (isSelectAll || q.type === 'multiple_select') ? 'multiple_select' : 'single_select',
+    };
+    return newQ;
+  });
 }
-function ensureOption(sel, value, label){
-  if (![...sel.options].some(o => o.value === value)){
-    const opt = document.createElement('option');
-    opt.value = value;
-    opt.textContent = label ?? value;
-    sel.appendChild(opt);
-  }
-}
-async function initModules(){
-  try{
-    moduleSel.innerHTML = '';
-    const mods = await fetchModules();
-    for (const m of mods) ensureOption(moduleSel, m, prettifyModuleName(m));
-    if (mods.length) moduleSel.value = mods[0];
-  }catch(e){
-    console.error('Failed to init modules:', e);
-  }
+function shuffleQuestionOptions(q){
+  const letters = Object.keys(q.options).sort();
+  const shuffled = shuffleInPlace([...letters]);
+  const newOpts = {}; const oldToNew = {};
+  shuffled.forEach((oldLetter, idx) => {
+    const newLetter = String.fromCharCode(65 + idx);
+    oldToNew[oldLetter] = newLetter;
+    newOpts[newLetter] = q.options[oldLetter];
+  });
+  return {
+    ...q,
+    options: newOpts,
+    correctLetters: q.correctLetters.map(l => oldToNew[l] || l).sort(),
+  };
 }
 
-/* ---------- Parse/normalize ---------- */
-function normalizeQuestions(raw){
-  const questions = Array.isArray(raw?.questions) ? raw.questions : [];
-  const norm = [];
-  for (const q of questions){
-    const id   = String(q.id ?? (crypto.randomUUID?.() || Math.random().toString(36).slice(2)));
-    const stem = String(q.stem ?? '');
-    const type = String(q.type ?? 'single_select');
-    const opts = Array.isArray(q.options) ? q.options.map(String) : [];
-    const correctLetters = Array.isArray(q.correct) ? q.correct.map(String) : [];
-    const rationale = String(q.rationale ?? '');
-
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').slice(0, opts.length);
-    const options = {};
-    letters.forEach((L, i) => { options[L] = opts[i] ?? ''; });
-
-    norm.push({ id, stem, options, correctLetters, rationale, type });
-  }
-  return norm;
-}
-
-/* ---------- Deterministic per-question shuffle ---------- */
-function seededShuffle(arr, seed) {
-  const a = arr.slice();
-  let s = 0; for (let i = 0; i < seed.length; i++) s = (s * 31 + seed.charCodeAt(i)) >>> 0;
-  for (let i = a.length - 1; i > 0; i--) { s = (s * 1664525 + 1013904223) >>> 0; const j = s % (i + 1); [a[i], a[j]] = [a[j], a[i]]; }
-  return a;
-}
-function shuffleQuestionOptions(q) {
-  const pairs = Object.entries(q.options).map(([letter, text]) => ({ letter, text }));
-  const shuffled = seededShuffle(pairs, q.id);
-  const newOptions = {}; const oldToNew = {};
-  shuffled.forEach((item, idx) => { const L = String.fromCharCode(65 + idx); newOptions[L] = item.text; oldToNew[item.letter] = L; });
-  const newCorrectLetters = (q.correctLetters || []).map(oldL => oldToNew[oldL]).filter(Boolean).sort();
-  return { ...q, options: newOptions, correctLetters: newCorrectLetters };
-}
-
-/* ---------- Single-action button helpers ---------- */
-function setActionState(state){
-  if (state === 'submit') {
-    submitBtn.dataset.mode = 'submit';
-    submitBtn.textContent = 'Submit';
-    submitBtn.classList.remove('btn-blue');
-    submitBtn.disabled = true;
+/* ---------- Update hover classes based on selection state ---------- */
+function updateHoverClasses(){
+  const hasSelection = getUserLetters().length > 0;
+  const isMultiSelect = form.querySelector('input[type="checkbox"]') !== null;
+  
+  if (hasSelection && !isMultiSelect) {
+    form.classList.add('has-selection');
+    form.classList.remove('is-multi-select');
+  } else if (isMultiSelect) {
+    form.classList.add('is-multi-select');
+    form.classList.remove('has-selection');
   } else {
-    submitBtn.dataset.mode = 'next';
-    submitBtn.textContent = 'Next';
-    submitBtn.classList.add('btn-blue');
-    submitBtn.disabled = false;
-  }
-}
-function onSelectionChanged(){
-  if (submitBtn.dataset.mode === 'submit') {
-    const any = form.querySelector('input:checked');
-    submitBtn.disabled = !any;
+    form.classList.remove('has-selection');
+    form.classList.remove('is-multi-select');
   }
 }
 
-/* ---------- Rendering ---------- */
+/* ---------- Get color class for wrong count ---------- */
+function getColorClass(wrongCount, maxWrong) {
+  if (wrongCount === 0) return ''; // green (default)
+  if (wrongCount <= maxWrong * 0.33) return 'yellow';
+  if (wrongCount <= maxWrong * 0.66) return 'orange';
+  return 'red';
+}
+
+/* ---------- Populate modules (dropdown) ---------- */
+async function initModules(){
+  try {
+    const res = await fetch('/modules', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to load modules');
+    const json = await res.json();
+    const modules = Array.isArray(json.modules) ? json.modules : [];
+
+    moduleSel.innerHTML = '';
+    if (!modules.length) {
+      moduleSel.innerHTML = '<option value="">No modules available</option>';
+      return;
+    }
+
+    modules.forEach(mod => {
+      const opt = document.createElement('option');
+      opt.value = mod;
+      opt.textContent = prettifyModuleName(mod);
+      moduleSel.appendChild(opt);
+    });
+  } catch {
+    moduleSel.innerHTML = '<option value="">Error loading modules</option>';
+  }
+}
+
+/* ---------- Render Question ---------- */
 function renderQuestion(q){
   qText.textContent = q.stem;
-
   form.innerHTML = '';
+  feedback.textContent = '';
+  feedback.className = 'feedback';
   answerLine.textContent = '';
   rationaleBox.textContent = '';
   rationaleBox.classList.add('hidden');
 
-  feedback.textContent = '';
-  feedback.classList.remove('ok','bad');
+  const isMulti = (q.type === 'multiple_select');
+  const letters = Object.keys(q.options).sort();
 
-  const isMulti = q.type === 'multi_select';
-  form.setAttribute('role', isMulti ? 'group' : 'radiogroup');
+  letters.forEach(letter => {
+    const optDiv = document.createElement('div');
+    optDiv.className = 'opt';
 
-  Object.entries(q.options).forEach(([L, text]) => {
-    const wrap = document.createElement('div');
-    wrap.className = 'opt';
+    const inp = document.createElement('input');
+    inp.type = isMulti ? 'checkbox' : 'radio';
+    inp.name = 'answer';
+    inp.id = `opt-${letter}`;
+    inp.value = letter;
 
-    const input = document.createElement('input');
-    input.type = isMulti ? 'checkbox' : 'radio';
-    input.name = 'opt';
-    input.value = L;
-    input.id = `opt-${L}`;
+    const lbl = document.createElement('label');
+    lbl.setAttribute('for', `opt-${letter}`);
 
-    const lab = document.createElement('label');
-    lab.htmlFor = input.id;
-    lab.innerHTML = `<span class="k">${L}.</span> <span class="ans">${escapeHTML(text || '')}</span>`;
+    const keySpan = document.createElement('span');
+    keySpan.className = 'k';
+    keySpan.textContent = letter;
 
-    wrap.appendChild(input);
-    wrap.appendChild(lab);
-    form.appendChild(wrap);
+    const answerSpan = document.createElement('span');
+    answerSpan.className = 'ans';
+    answerSpan.textContent = q.options[letter];
+
+    lbl.appendChild(keySpan);
+    lbl.appendChild(answerSpan);
+
+    optDiv.appendChild(inp);
+    optDiv.appendChild(lbl);
+    form.appendChild(optDiv);
+
+    // Add click handler to toggle on mouse click (select and deselect)
+    optDiv.addEventListener('click', (e) => {
+      // Don't double-toggle if clicking the label
+      if (e.target === lbl || e.target === keySpan || e.target === answerSpan) {
+        e.preventDefault();
+        inp.checked = !inp.checked;
+        onSelectionChanged();
+      }
+    });
   });
 
   setActionState('submit');
+  updateHoverClasses();
 }
 
-/* ---------- Current info ---------- */
-function currentQuestion(){ return run.order[run.i] || null; }
+function currentQuestion() {
+  return run.order?.[run.i] || null;
+}
+
 function getUserLetters(){
-  const isMulti = currentQuestion().type === 'multi_select';
-  const inputs = [...form.querySelectorAll('input')];
-  const picked = inputs.filter(i => i.checked).map(i => i.value);
-  return isMulti ? picked.sort() : picked.slice(0, 1);
+  const checked = [...form.querySelectorAll('input:checked')];
+  return checked.map(inp => inp.value).sort();
 }
+
+function onSelectionChanged(){
+  const hasSelection = getUserLetters().length > 0;
+  submitBtn.disabled = !hasSelection;
+  updateHoverClasses();
+}
+
+function setActionState(mode){
+  submitBtn.dataset.mode = mode;
+
+  if (mode === 'submit') {
+    submitBtn.textContent = 'Submit';
+    submitBtn.classList.remove('btn-blue');
+    submitBtn.classList.add('primary');
+    submitBtn.disabled = getUserLetters().length === 0;
+  } else {
+    submitBtn.textContent = 'Next';
+    submitBtn.classList.remove('primary');
+    submitBtn.classList.add('btn-blue');
+    submitBtn.disabled = false;
+  }
+}
+
 function formatCorrectAnswers(q){
-  const letters = q.correctLetters || [];
-  const parts = letters.map(L => `${L}. ${escapeHTML(q.options[L] || '')}`);
-  return parts.join('<br>');
+  const lettersHTML = (q.correctLetters || []).map(l =>
+    `<strong>${escapeHTML(l)}</strong>. ${escapeHTML(q.options[l]||'')}`
+  ).join('<br>');
+  return lettersHTML;
 }
 
-/* ---------- Progress ---------- */
-function updateProgressBar(){
-  if (!progressBar) return;
-  const total = run.masterPool.length || 0;
-  const mastered = run.masterPool.filter(q => run.answered.get(q.id)?.correct).length;
-  const pct = total ? Math.round((mastered/total)*100) : 0;
-  progressFill.style.width = `${pct}%`;
-  progressBar.setAttribute('aria-valuenow', String(pct));
-  if (progressLabel) progressLabel.textContent = `${pct}% mastered`;
-}
-
-/* ---------- Flow ---------- */
+/* ---------- Counters / Progress Bar ---------- */
 function updateCounters(){
-  const uniqueTotal = run.uniqueSeen.size;
-  runCounter.textContent = `Question: ${uniqueTotal}`;
-  const remaining = run.masterPool.filter(q => !run.answered.get(q.id)?.correct).length;
+  const remaining = getNotMastered().length;
+  const total = run.masterPool.length;
+
+  runCounter.textContent = `Question: ${run.totalQuestionsAnswered}`;
   remainingCounter.textContent = `Remaining to master: ${remaining}`;
+
+  const masteredCount = total - remaining;
+  const percentage = total ? Math.floor((masteredCount / total) * 100) : 0;
+
+  progressFill.style.width = `${percentage}%`;
+  progressLabel.textContent = `${percentage}% mastered`;
+  progressBar.setAttribute('aria-valuenow', percentage);
+
   updateProgressBar();
   saveRunState();
 }
@@ -418,13 +496,22 @@ function nextIndex(){
     run.i = nextIdx;
     return { fromBuffer: false, q: run.order[run.i] };
   }
-  const notMastered = getNotMastered();
-  if (notMastered.length > 0) {
-    run.wrongSinceLast = [];
-    run.order.push(...notMastered);
-    run.i = nextIdx;
-    return { fromBuffer: true, q: run.order[run.i] };
+  
+  // Check if all questions in masterPool are answered correctly
+  const allCorrect = run.masterPool.every(q => run.answered.get(q.id)?.correct);
+  
+  if (!allCorrect) {
+    // Get all questions that are not yet correct
+    const notMastered = getNotMastered();
+    if (notMastered.length > 0) {
+      run.wrongSinceLast = [];
+      run.order.push(...notMastered);
+      run.i = nextIdx;
+      return { fromBuffer: true, q: run.order[run.i] };
+    }
   }
+  
+  // All questions are correct, end the quiz
   return { fromBuffer: false, q: null };
 }
 
@@ -442,7 +529,7 @@ async function startQuiz(){
   const qty  = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
 
   setHeaderTitle(displayName);
-  document.title = `Nursing School Quiz App — ${displayName}`;
+  document.title = `Final Semester Study Guide — ${displayName}`;
 
   startBtn.disabled = true;
 
@@ -451,7 +538,7 @@ async function startQuiz(){
     alert(`Could not load ${bank}.json`);
     startBtn.disabled = false;
     setHeaderTitle(defaultTitle);
-    document.title = 'Nursing School Quiz App';
+    document.title = 'Final Semester Study Guide';
     return;
   }
   const raw = await res.json();
@@ -470,6 +557,7 @@ async function startQuiz(){
     uniqueSeen: new Set(),
     thresholdWrong: 0,
     wrongSinceLast: [],
+    totalQuestionsAnswered: 1,
   };
 
   const total = run.masterPool.length;
@@ -497,7 +585,10 @@ function endRun(){
   countersBox.classList.add('hidden');
 
   setHeaderTitle(run.displayName || run.bank || defaultTitle);
-  document.title = run.displayName || run.bank || 'Nursing School Quiz App';
+  document.title = run.displayName || run.bank || 'Final Semester Study Guide';
+
+  // Show the restart button
+  restartBtn2.classList.remove('hidden');
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -507,26 +598,89 @@ function endRun(){
 
   if (totalUnique > 0){
     firstTrySummary.classList.remove('hidden');
-    firstTryPct.textContent = `${Math.round((ftCorrect / totalUnique) * 100)}%`;
-    firstTryCount.textContent = ftCorrect;
-    firstTryTotal.textContent = totalUnique;
+    const summaryHTML = `
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+        <div>
+          <strong>First-try mastery:</strong>
+          <span id="firstTryPct">0%</span>
+          (<span id="firstTryCount">0</span> / <span id="firstTryTotal">0</span>)
+        </div>
+        <div>
+          <strong>Total Questions Answered:</strong>
+          <span>${run.totalQuestionsAnswered}</span>
+        </div>
+      </div>
+    `;
+    firstTrySummary.innerHTML = summaryHTML;
+    firstTrySummary.querySelector('#firstTryPct').textContent = `${Math.round((ftCorrect / totalUnique) * 100)}%`;
+    firstTrySummary.querySelector('#firstTryCount').textContent = ftCorrect;
+    firstTrySummary.querySelector('#firstTryTotal').textContent = totalUnique;
   } else {
     firstTrySummary.classList.add('hidden');
   }
 
   reviewList.innerHTML = '';
+  
+  // Count how many times each question appears in run.order (indicates wrong attempts)
+  const questionWrongCount = {};
   run.order.forEach(q => {
+    questionWrongCount[q.id] = (questionWrongCount[q.id] || 0) + 1;
+  });
+  
+  // Find max wrong count for color calculation
+  const maxWrong = Math.max(...Object.values(questionWrongCount));
+  
+  // Sort questions: incorrect ones first (by number of wrong attempts), then correct ones
+  const sortedQuestions = [...run.order].sort((a, b) => {
+    const ansA = run.answered.get(a.id);
+    const ansB = run.answered.get(b.id);
+    
+    // If one is correct and one is incorrect, incorrect comes first
+    if (ansA?.correct !== ansB?.correct) {
+      return ansA?.correct ? 1 : -1;
+    }
+    
+    // Both incorrect or both correct: sort by number of wrong attempts (higher count first)
+    const countA = questionWrongCount[a.id] || 1;
+    const countB = questionWrongCount[b.id] || 1;
+    return countB - countA;
+  });
+  
+  // Track which questions we've already displayed
+  const displayedIds = new Set();
+  
+  sortedQuestions.forEach(q => {
+    // Only display each unique question once
+    if (displayedIds.has(q.id)) return;
+    displayedIds.add(q.id);
+    
     const row = document.createElement('div');
     const ans = run.answered.get(q.id);
     row.className = 'rev-item ' + (ans?.correct ? 'ok' : 'bad');
 
     const qEl = document.createElement('div'); qEl.className = 'rev-q'; qEl.textContent = q.stem;
+    
+    // Add wrong count line with color coding
+    const wrongCountEl = document.createElement('div'); 
+    wrongCountEl.className = 'rev-wrong-count';
+    const wrongCount = Math.max(0, questionWrongCount[q.id] - 1); // Subtract 1 because the correct attempt is also in the count
+    wrongCountEl.textContent = `Times marked wrong: ${wrongCount}`;
+    
+    // Add color class based on wrong count
+    const colorClass = getColorClass(wrongCount, maxWrong);
+    if (colorClass) {
+      wrongCountEl.classList.add(colorClass);
+    }
+    
     const caEl = document.createElement('div'); caEl.className = 'rev-ans';
     caEl.innerHTML = `<strong>Correct Answer:</strong><br>${formatCorrectAnswers(q)}`;
     const rEl = document.createElement('div'); rEl.className = 'rev-rationale';
     rEl.innerHTML = `<strong>Rationale:</strong> ${escapeHTML(q.rationale || '')}`;
 
-    row.appendChild(qEl); row.appendChild(caEl); row.appendChild(rEl);
+    row.appendChild(qEl); 
+    row.appendChild(wrongCountEl);
+    row.appendChild(caEl); 
+    row.appendChild(rEl);
     reviewList.appendChild(row);
   });
 
@@ -544,13 +698,16 @@ startBtn.addEventListener('click', startQuiz);
 form.addEventListener('change', onSelectionChanged);
 
 /* Single action button (Submit or Next) */
-submitBtn.addEventListener('click', () => {
+submitBtn.addEventListener('click', handleSubmitClick);
+
+function handleSubmitClick() {
   if (submitBtn.dataset.mode === 'next') {
     scrollToQuizTop();
     const next = nextIndex();
     const q = next.q;
     if (!q) return endRun();
     run.uniqueSeen.add(q.id);
+    run.totalQuestionsAnswered++;
     renderQuestion(q);
     updateCounters();
     return;
@@ -592,12 +749,12 @@ submitBtn.addEventListener('click', () => {
 
   scrollToBottomSmooth();
   updateCounters();
-});
+}
 
 /* Reset (visible only during quiz) */
 resetAll.addEventListener('click', () => { clearSavedState(); location.reload(); });
 
-/* Summary “Start Another Run” */
+/* Summary "Start Another Run" */
 restartBtn2.addEventListener('click', () => { location.reload(); });
 
 /* ---------- Keyboard shortcuts ---------- */
@@ -611,7 +768,7 @@ document.addEventListener('keydown', (e) => {
 
   if (key === 'Enter') {
     e.preventDefault();
-    if (!submitBtn.disabled || submitBtn.dataset.mode === 'next') {
+    if (!submitBtn.disabled) {
       submitBtn.click();
     }
     return;
@@ -625,6 +782,18 @@ document.addEventListener('keydown', (e) => {
     onSelectionChanged();
   }
 });
+
+/* ---------- Progress bar update ---------- */
+function updateProgressBar() {
+  const remaining = getNotMastered().length;
+  const total = run.masterPool.length;
+  const masteredCount = total - remaining;
+  const percentage = total ? Math.floor((masteredCount / total) * 100) : 0;
+
+  progressFill.style.width = `${percentage}%`;
+  progressLabel.textContent = `${percentage}% mastered`;
+  progressBar.setAttribute('aria-valuenow', percentage);
+}
 
 /* ---------- Init ---------- */
 initModules();
