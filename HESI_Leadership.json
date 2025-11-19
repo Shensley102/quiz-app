@@ -1511,7 +1511,12 @@
   {
     "id": "Leadership_Q101",
     "stem": "An adult woman who had gastric bypass surgery two weeks ago is admitted because she is exhibiting signs of anastomotic leakage. Her vital signs are temperature 100°F (37.8°C), blood pressure 98/50 mmHg, heart rate 135 beats/minute, and respiratory rate 24 breaths/minute. Which intervention is most important for the nurse to include in this client's plan of care? Monitor abdominal girth and assess for increasing distention every 4 hours Replace fluids intravenously based on intake and output Administer prophylactic antibiotics as prescribed to prevent sepsis Keep client NPO and prepare for potential surgical intervention",
-    "options": [],
+    "options": [
+      "Monitor abdominal girth and assess for increasing distention every 4 hours",
+      "Replace fluids intravenously based on intake and output",
+      "Administer prophylactic antibiotics as prescribed to prevent sepsis",
+      "Keep client NPO and prepare for potential surgical intervention"
+    ],
     "correct": [
       "B"
     ],
@@ -1521,7 +1526,12 @@
   {
     "id": "Leadership_Q102",
     "stem": "The unlicensed assistive personnel (UAP) reports to the nurse that a male client with fluid volume overload will not allow the UAP to obtain his daily weight. Which action should the nurse implement? Instruct UAP to weigh the client using a bed scale Direct UAP to delay weighing the client until later Document that the client refused daily weights Ask the client why he does not want to be weighed",
-    "options": [],
+    "options": [
+      "Instruct UAP to weigh the client using a bed scale",
+      "Direct UAP to delay weighing the client until later",
+      "Document that the client refused daily weights",
+      "Ask the client why he does not want to be weighed"
+    ],
     "correct": [
       "D"
     ],
@@ -1529,22 +1539,14 @@
     "type": "single_select"
   },
   {
-    "id": "Leadership_Q103",
-    "stem": "The unlicensed assistive personnel (UAP) reports four client situations to the nurse. Each client is one day postoperative. In which sequence should the nurse assess the clients? (Select all that apply.) An older client who had a bowel resection and colostomy has a temperature of 99.8°F (37.7°C) An adult who had a liver biopsy is anxious, awaiting removal of a saline lock for discharge An older adult who had a laparoscopic cholecystectomy reports pain of 8 using a 10-point scale An adult who had a splenectomy due to multiple traumas is now vomiting coffee grounds",
-    "options": [],
-    "correct": [
-      "D",
-      "C",
-      "A",
-      "B"
+    "id": "Additional_Q104",
+    "stem": "The nurse is reviewing the records of clients with diabetes in a long-term care facility. The nurse notes that the pre-prandial blood glucose values obtained during routine glucometer checks in the past 2 days are consistently 50 to 60 mg/dL higher than those recorded in the previous 2 weeks. What action should the nurse take first?",
+    "options": [
+      "Review the clients' medication administration records for insulin dosage changes",
+      "Assess the clients' dietary intake patterns over the past 2 days",
+      "Contact the healthcare provider about the elevated glucose trends",
+      "Evaluate calibration of glucometers in use per manufacturer guidelines"
     ],
-    "rationale": "Using priority-setting frameworks (ABCs, acute vs chronic, unstable vs stable), the splenectomy client with coffee ground emesis (D) must be assessed first, as this indicates active gastrointestinal bleeding that is life-threatening and requires immediate intervention to prevent hemorrhagic shock. The cholecystectomy client with severe pain of 8/10 (C) is the second priority because uncontrolled pain can lead to complications such as tachycardia, hypertension, and delayed mobility, though not immediately life-threatening. The bowel resection client with temperature 99.8°F (A) is the third priority, as this low-grade fever one day post-op likely indicates atelectasis or early infection, which requires assessment but is not immediately life-threatening and falls within the expected postoperative range. Finally, the liver biopsy client awaiting discharge (B) is stable with expected anxiety that can be addressed after more acute situations are managed.",
-    "type": "multi_select"
-  },
-  {
-    "id": "Leadership_Q104",
-    "stem": "The nurse is reviewing the records of clients with diabetes in a long-term care facility. The nurse notes that the pre-prandial blood glucose values obtained during routine glucometer checks in the past 2 days are consistently 50 to 60 mg/dL higher than those recorded in the previous 2 weeks. What action should the nurse take first? Review the clients' medication administration records for insulin dosage changes Assess the clients' dietary intake patterns over the past 2 days Contact the healthcare provider about the elevated glucose trends Evaluate calibration of glucometers in use per manufacturer guidelines",
-    "options": [],
     "correct": [
       "D"
     ],
@@ -1552,9 +1554,29 @@
     "type": "single_select"
   },
   {
-    "id": "Leadership_Q106",
-    "stem": "Two clients in the intensive care unit are assigned to an oncoming nurse at shift change. One client has pneumonia and is being mechanically ventilated, and the other had a thoracotomy yesterday and is currently complaining of incisional discomfort. Which action should the nurse take first? Assess the level of consciousness and vital signs for both clients Administer PRN pain medication to the client with incisional discomfort Review plan of care priorities and medications due for both clients Complete a head-to-toe physical assessment for the client with pneumonia",
-    "options": [],
+    "id": "Additional_Q105",
+    "stem": "A new female employee reports to the charge nurse that she has developed a rash on her hands and arms. What action is most important for the nurse to take?",
+    "options": [
+      "Document the employee's complaint in the incident report system",
+      "Ask the employee if she is allergic to latex",
+      "Refer the employee-to-employee health services for evaluation",
+      "Recommend the employee wash her hands with hypoallergenic soap"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Latex allergy is a serious occupational hazard for healthcare workers with repeated glove exposure. Symptoms can range from contact dermatitis (rash) to life-threatening anaphylaxis. Early identification is critical for employee safety and the prevention of progression to Type I hypersensitivity reactions. Healthcare environments contain numerous latex products beyond gloves (catheters, blood pressure cuffs, stethoscopes). If latex allergy is confirmed, immediate workplace modifications are needed, including latex-free gloves and avoiding latex-containing products. This assessment must occur first to determine if emergency precautions are needed. The question focuses on \"most important,\" which prioritizes immediate safety assessment over documentation or referral.",
+    "type": "single_select"
+  },
+  {
+    "id": "Additional_Q106",
+    "stem": "Two clients in the intensive care unit are assigned to an oncoming nurse at shift change. One client has pneumonia and is being mechanically ventilated, and the other had a thoracotomy yesterday and is currently complaining of incisional discomfort. Which action should the nurse take first?",
+    "options": [
+      "Assess the level of consciousness and vital signs for both clients",
+      "Administer PRN pain medication to the client with incisional discomfort",
+      "Review plan of care priorities and medications due for both clients",
+      "Complete a head-to-toe physical assessment for the client with pneumonia"
+    ],
     "correct": [
       "A"
     ],
@@ -1562,9 +1584,14 @@
     "type": "single_select"
   },
   {
-    "id": "Leadership_Q107",
-    "stem": "The nurse is caring for a group of clients on a surgical unit. Which action should the nurse implement first? Review laboratory results for a client scheduled for surgery later today Determine if the client scheduled for surgery is prepared to go to the operating room Administer routine morning medications to postoperative clients Complete discharge teaching for a client being released this afternoon",
-    "options": [],
+    "id": "Additional_Q107",
+    "stem": "The nurse is caring for a group of clients on a surgical unit. Which action should the nurse implement first?",
+    "options": [
+      "Review laboratory results for a client scheduled for surgery later today",
+      "Determine if the client scheduled for surgery is prepared to go to the operating room",
+      "Administer routine morning medications to postoperative clients",
+      "Complete discharge teaching for a client being released this afternoon"
+    ],
     "correct": [
       "B"
     ],
@@ -1572,13 +1599,19 @@
     "type": "single_select"
   },
   {
-    "id": "Leadership_Q108",
-    "stem": "An experienced, female practical nurse (PN) is hired to work on the surgical unit of a tertiary hospital. The first day she is working on the unit, the PN tells the charge nurse that she has excellent wound care skills. It is a busy day, and a postoperative client needs to have a sterile dressing change. Which action is best for the charge nurse to take? Watch the PN perform sterile wound care to validate her skill level Tell the PN that past experience does not indicate the ability to perform skills Ask the PN to change the sterile dressing while the nurse is busy Review the PN's skill checklist to assess for wound care competency",
-    "options": [],
+    "id": "Additional_Q108",
+    "stem": "An experienced, female practical nurse (PN) is hired to work on the surgical unit of a tertiary hospital. The first day she is working on the unit, the PN tells the charge nurse that she has excellent wound care skills. It is a busy day, and a postoperative client needs to have a sterile dressing change. Which action is best for the charge nurse to take?",
+    "options": [
+      "Watch the PN perform sterile wound care to validate her skill level",
+      "Tell the PN that past experience does not indicate the ability to perform skills",
+      "Ask the PN to change the sterile dressing while the nurse is busy",
+      "Review the PN's skill checklist to assess for wound care competency"
+    ],
     "correct": [
       "A"
     ],
     "rationale": "Direct observation of skill performance is the gold standard for validating clinical competency, especially during orientation. Even though the PN reports experience, the charge nurse has a legal and ethical responsibility to ensure patient safety by confirming the PN can perform sterile technique correctly in this specific facility. Different facilities may have varying procedures, equipment, and standards. Observing the PN allows the charge nurse to: verify sterile technique, assess wound assessment skills, evaluate documentation practices, provide immediate feedback, identify any gaps requiring additional training, and ensure the PN meets facility standards. This protects both the patient and the facility from potential complications due to improper technique. Competency validation is a standard expectation during orientation, regardless of previous experience.",
     "type": "single_select"
   }
+]
 ]
