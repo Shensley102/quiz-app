@@ -8,8 +8,17 @@
   <link rel="stylesheet" href="/static/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   
-  <!-- Vercel Analytics -->
-  <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
+  <!-- Vercel Analytics (inject script) -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  
+  <!-- Vercel Speed Insights -->
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
   <div class="container">
@@ -109,12 +118,3 @@
   <script src="/static/script.js"></script>
 </body>
 </html>
-```
-
----
-
-## What Changed
-
-✅ **Added as First Item:**
-```
-- Keyboard Shortcuts: Press letter keys (A, B, C, D, etc.) to select/deselect answers, or press Enter to submit your answer.
