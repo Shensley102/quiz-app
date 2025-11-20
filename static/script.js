@@ -1,13 +1,4 @@
 /* -----------------------------------------------------------
-   Vercel Web Analytics & Speed Insights Integration
------------------------------------------------------------ */
-import { inject as injectAnalytics } from '@vercel/analytics';
-import { injectSpeedInsights } from '@vercel/speed-insights';
-
-injectAnalytics();
-injectSpeedInsights();
-
-/* -----------------------------------------------------------
    Final Semester Study Guide - Module Frontend
    - Pretty module titles:
        Pharm_Quiz_1..4                   -> Pharm Quiz 1..4
@@ -32,6 +23,7 @@ injectSpeedInsights();
    - Total questions answered counter
    - Color-coded wrong attempts (green/yellow/orange/red)
    - Question counter runs continuously beyond selected number
+   - Vercel Analytics and Speed Insights enabled
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
