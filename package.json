@@ -1,0 +1,11 @@
+{
+  "name": "final-semester-study-guide",
+  "version": "1.0.0",
+  "dependencies": {
+    "@vercel/analytics": "^1.1.1",
+    "@vercel/speed-insights": "^1.0.12"
+  },
+  "scripts": {
+    "build": "echo 'No build needed'"
+  }
+}
