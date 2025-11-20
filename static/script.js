@@ -1,4 +1,13 @@
 /* -----------------------------------------------------------
+   Vercel Web Analytics & Speed Insights Integration
+----------------------------------------------------------- */
+import { inject as injectAnalytics } from '@vercel/analytics';
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
+injectAnalytics();
+injectSpeedInsights();
+
+/* -----------------------------------------------------------
    Final Semester Study Guide - Module Frontend
    - Pretty module titles:
        Pharm_Quiz_1..4                   -> Pharm Quiz 1..4
