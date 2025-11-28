@@ -6,7 +6,7 @@ from urllib.parse import unquote
 app = Flask(__name__, 
             static_folder='../static',
             static_url_path='/static',
-            template_folder='../template')
+            template_folder='../templates')  # Changed from '../template' to '../templates'
 
 # Add CORS headers to all responses
 @app.after_request
