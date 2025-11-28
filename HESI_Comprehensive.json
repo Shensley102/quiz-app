@@ -3204,12 +3204,14 @@
         "Sensitivity to rejection",
         "Feelings of inadequacy",
         "Neediness",
-        "Perfectionism G. Feeling extremely shy"
+        "Perfectionism",
+        "Feeling extremely shy"
       ],
       "correct": [
         "B",
         "C",
-        "D"
+        "D",
+        "G"
       ],
       "rationale": "Avoidant personality disorder is a psychiatric condition in which a person feels extremely shy, inadequate, and sensitive to rejection. Other characteristics of avoidant personality disorder include excessive anxiety in social situations and hypersensitivity to negative evaluation. Neediness is a characteristic of dependent personality disorder. Perfectionism and preoccupation with details are characteristics of obsessive-compulsive disorder.",
       "type": "multi_select"
