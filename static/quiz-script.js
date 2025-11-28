@@ -997,7 +997,14 @@ function updateProgressBar() {
   const masteredCount = total - remaining;
   const percentage = total ? Math.floor((masteredCount / total) * 100) : 0;
 
-  if (progressFill) progressFill.style.width = `${percentage}%`;
+  if (progressFill) {
+    progressFill.style.width = `${percentage}%`;
+    // Transition from blue (#2f61f3) to green (#4caf50) based on percentage
+    const r = Math.round(47 + (76 - 47) * (percentage / 100));
+    const g = Math.round(97 + (175 - 97) * (percentage / 100));
+    const b = Math.round(243 + (80 - 243) * (percentage / 100));
+    progressFill.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+  }
   if (progressLabel) progressLabel.textContent = `${percentage}% mastered`;
   if (progressBar) progressBar.setAttribute('aria-valuenow', percentage);
 }
