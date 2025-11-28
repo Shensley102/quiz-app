@@ -107,15 +107,14 @@
       <h2>Quiz Complete! 🎉</h2>
       <div id="firstTrySummary" class="first-try hidden"></div>
 
-      <h3>Review Your Answers:</h3>
-      <div id="reviewList" class="review-list"></div>
-
-      <div class="actions">
+      <!-- Action Buttons - Moved to top -->
+      <div class="actions" style="margin-bottom: 24px;">
         <button class="btn danger hidden" id="retryMissedBtn">Retry <span id="missedCount">0</span> Missed Questions</button>
         <button class="btn primary" id="restartBtnSummary">Start New Quiz</button>
       </div>
 
-      <div class="help">
+      <!-- Help Section - Moved to top -->
+      <div class="help" style="margin-top: 0; margin-bottom: 32px;">
         <h3>Need More Practice?</h3>
         <ul>
           <li>Review the rationales for questions you missed</li>
@@ -124,6 +123,9 @@
           <li>Explore other modules to expand your nursing expertise</li>
         </ul>
       </div>
+
+      <h3>Review Your Answers:</h3>
+      <div id="reviewList" class="review-list"></div>
     </div>
 
     <!-- Reset Button (hidden initially) -->
