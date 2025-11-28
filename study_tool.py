@@ -1,96 +1,176 @@
-from flask import Flask, render_template, jsonify, send_from_directory
-import os
+from flask import Flask, render_template, jsonify, request, send_from_directory
 import json
+import os
+import random
 
-app = Flask(__name__, static_folder='static', template_folder='templates')
+app = Flask(__name__, template_folder='template', static_folder='static')
 
-# Get the directory where this file is located
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODULES_DIR = BASE_DIR
-
-
-def get_available_modules():
-    """Scan for all .json files in the modules directory (excluding node_modules, venv, etc.)"""
-    modules = []
-    try:
-        for filename in os.listdir(MODULES_DIR):
-            if filename.endswith('.json') and filename not in ['vercel.json']:
-                # Remove .json extension for the module name
-                module_name = filename[:-5]
-                modules.append(module_name)
-        modules.sort()
-    except Exception as e:
-        print(f"Error scanning modules: {e}")
-    return modules
-
+# Define categories with their modules
+CATEGORIES = {
+    'Patient Care Management': {
+        'modules': [
+            'Module_1',
+            'Module_2',
+            'Module_3',
+            'Module_4',
+            'Learning_Questions_Module_1_2',
+            'Learning_Questions_Module_3_4'
+        ]
+    },
+    'HESI': {
+        'modules': [
+            'HESI_Delegating',
+            'HESI_Leadership',
+            'Hesi_Management',
+            'HESI_Comprehensive'
+        ]
+    },
+    'Nursing Certifications': {
+        'modules': [
+            'CCRN_Test_1_Combined_QA',
+            'CCRN_Test_2_Combined_QA',
+            'CCRN_Test_3_Combined_QA'
+        ]
+    },
+    'Pharmacology': {
+        'modules': [
+            'Pharm_Quiz_1',
+            'Pharm_Quiz_2',
+            'Pharm_Quiz_3',
+            'Pharm_Quiz_4'
+        ]
+    }
+}
 
 @app.route('/')
-def index():
-    """Serve the main HTML page"""
-    return render_template('index.html')
+def home():
+    """Render the home page"""
+    return render_template('home.html')
 
+@app.route('/category/<category_name>')
+def category(category_name):
+    """Render category page"""
+    return render_template('category.html')
 
-@app.route('/modules', methods=['GET'])
-def modules_list():
-    """Return list of available modules as JSON"""
+@app.route('/quiz')
+@app.route('/quiz/<module_name>')
+def quiz(module_name=None):
+    """Render quiz page"""
+    return render_template('quiz.html')
+
+@app.route('/api/categories')
+def get_categories():
+    """Return all categories and their modules"""
+    return jsonify(CATEGORIES)
+
+@app.route('/api/quiz/<module_name>')
+def get_quiz(module_name):
+    """Load and return quiz data for a specific module"""
     try:
-        modules = get_available_modules()
-        return jsonify({'modules': modules}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/<module_name>.json', methods=['GET'])
-def get_module(module_name):
-    """
-    Serve a specific module JSON file.
-    Prevents directory traversal by validating the module name.
-    """
-    try:
-        # Security: only allow alphanumeric, underscore, hyphen
-        if not all(c.isalnum() or c in '_-' for c in module_name):
-            return jsonify({'error': 'Invalid module name'}), 400
+        # Try to load the JSON file
+        json_path = f'{module_name}.json'
         
-        file_path = os.path.join(MODULES_DIR, f'{module_name}.json')
+        if not os.path.exists(json_path):
+            return jsonify({'error': f'Quiz file not found: {module_name}'}), 404
         
-        # Verify the file exists and is in the correct directory
-        if not os.path.exists(file_path):
-            return jsonify({'error': f'Module "{module_name}" not found'}), 404
+        with open(json_path, 'r', encoding='utf-8') as f:
+            quiz_data = json.load(f)
         
-        # Prevent directory traversal
-        real_path = os.path.realpath(file_path)
-        real_base = os.path.realpath(MODULES_DIR)
-        if not real_path.startswith(real_base):
-            return jsonify({'error': 'Invalid module path'}), 403
+        # Handle both list and dict formats
+        if isinstance(quiz_data, list):
+            questions = quiz_data
+        elif isinstance(quiz_data, dict) and 'questions' in quiz_data:
+            questions = quiz_data['questions']
+        else:
+            return jsonify({'error': 'Invalid quiz format'}), 400
         
-        with open(file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+        # Get count parameter (optional)
+        count = request.args.get('count', 'all')
         
-        return jsonify(data), 200
+        if count != 'all':
+            try:
+                count = int(count)
+                if count < len(questions):
+                    questions = random.sample(questions, count)
+            except (ValueError, TypeError):
+                pass
+        
+        return jsonify({
+            'module': module_name,
+            'questions': questions,
+            'total': len(questions)
+        })
     
-    except json.JSONDecodeError as e:
-        return jsonify({'error': f'Invalid JSON in module: {str(e)}'}), 500
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-
-@app.route('/static/<path:filename>', methods=['GET'])
-def serve_static(filename):
-    """Serve static files (CSS, JS)"""
-    return send_from_directory('static', filename)
-
-
-@app.errorhandler(404)
-def not_found(e):
-    """Handle 404 errors"""
-    return jsonify({'error': 'Not found'}), 404
-
-
-@app.errorhandler(500)
-def internal_error(e):
-    """Handle 500 errors"""
-    return jsonify({'error': 'Internal server error'}), 500
-
+@app.route('/api/quiz-by-category')
+def get_quiz_by_category():
+    """Load questions from all modules in a category"""
+    try:
+        category = request.args.get('category')
+        subcategory = request.args.get('subcategory')
+        count = request.args.get('count', 'all')
+        
+        if not category:
+            return jsonify({'error': 'Category parameter required'}), 400
+        
+        if category not in CATEGORIES:
+            return jsonify({'error': f'Category not found: {category}'}), 404
+        
+        # Determine which modules to load
+        modules_to_load = []
+        
+        if subcategory:
+            # Load modules from specific subcategory
+            if subcategory == 'CCRN':
+                modules_to_load = ['CCRN_Test_1_Combined_QA', 'CCRN_Test_2_Combined_QA', 'CCRN_Test_3_Combined_QA']
+            elif subcategory == 'Pharm Quizzes':
+                modules_to_load = ['Pharm_Quiz_1', 'Pharm_Quiz_2', 'Pharm_Quiz_3', 'Pharm_Quiz_4']
+            else:
+                return jsonify({'error': f'Subcategory not found: {subcategory}'}), 404
+        else:
+            # Load all modules from category
+            modules_to_load = CATEGORIES[category]['modules']
+        
+        # Collect all questions from modules
+        all_questions = []
+        for module_name in modules_to_load:
+            json_path = f'{module_name}.json'
+            if os.path.exists(json_path):
+                with open(json_path, 'r', encoding='utf-8') as f:
+                    quiz_data = json.load(f)
+                    
+                    if isinstance(quiz_data, list):
+                        questions = quiz_data
+                    elif isinstance(quiz_data, dict) and 'questions' in quiz_data:
+                        questions = quiz_data['questions']
+                    else:
+                        continue
+                    
+                    all_questions.extend(questions)
+        
+        if not all_questions:
+            return jsonify({'error': 'No questions found'}), 404
+        
+        # Apply count filter
+        if count != 'all':
+            try:
+                count = int(count)
+                if count < len(all_questions):
+                    all_questions = random.sample(all_questions, count)
+            except (ValueError, TypeError):
+                pass
+        
+        return jsonify({
+            'category': category,
+            'subcategory': subcategory,
+            'questions': all_questions,
+            'total': len(all_questions)
+        })
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    app.run(debug=True, host='0.0.0.0', port=5000)
