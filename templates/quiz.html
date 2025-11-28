@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quiz - Nurse Success Study Hub">
+  <title>Quiz - Nurse Success Study Hub</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Vercel Analytics -->
+  <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Title Bar -->
+    <div class="title-bar">
+      <div>
+        <a href="/" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 8px; display: inline-block;">← Back to Hub</a>
+        <h1 id="quizTitle">Loading Quiz...</h1>
+      </div>
+      <div class="category-header-right">
+        <span class="category-icon-large" id="categoryIcon"></span>
+        <div class="resume-container hidden" id="resumeContainer">
+          <span class="remaining-count" id="remainingCount"></span>
+          <button class="btn btn-blue" id="resumeBtn">Resume Practice Test</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Setup Card -->
+    <div class="card" id="setupCard">
+      <h2>Quiz Setup</h2>
+      
+      <div class="field" id="subcategoryField" style="display: none;">
+        <label for="subcategorySelect">Select Module Group:</label>
+        <select id="subcategorySelect">
+          <option value="">Choose a module group...</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Number of Questions:</label>
+        <div class="seg" id="questionCountButtons">
+          <button class="seg-btn" data-count="10">10 Questions</button>
+          <button class="seg-btn" data-count="25">25 Questions</button>
+          <button class="seg-btn" data-count="50">50 Questions</button>
+          <button class="seg-btn active" data-count="all">All Questions</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="startBtn">Start Quiz</button>
+      </div>
+    </div>
+
+    <!-- Quiz Card -->
+    <div class="card hidden" id="quizCard">
+      <div class="counters">
+        <div class="count-row">
+          <span>Question <span id="curr">1</span> of <span id="tot">0</span></span>
+          <span>Score: <span id="score">0</span>/<span id="answered">0</span></span>
+        </div>
+        <div class="pbar-wrap">
+          <div class="pbar">
+            <div class="pbar-fill" id="pbarFill"></div>
+            <div class="pbar-label" id="pbarLabel">0%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question" id="question"></div>
+      <div class="options" id="options"></div>
+      
+      <div class="feedback hidden" id="feedback"></div>
+      <div class="answer-line hidden" id="answerLine"></div>
+      <div class="rationale hidden" id="rationale"></div>
+
+      <div class="actions">
+        <button class="btn primary hidden" id="submitBtn">Submit Answer</button>
+        <button class="btn btn-blue hidden" id="nextBtn">Next Question</button>
+      </div>
+    </div>
+
+    <!-- Summary Card -->
+    <div class="card hidden" id="summaryCard">
+      <h2>Quiz Complete! 🎉</h2>
+      <div class="first-try">
+        <strong>First-Try Score:</strong> <span id="finalScore"></span>
+      </div>
+
+      <h3>Review Your Answers:</h3>
+      <div class="review-list" id="reviewList"></div>
+
+      <div class="actions">
+        <button class="btn danger" id="retryMissedBtn" style="display: none;">Retry Missed Questions</button>
+        <button class="btn primary" id="restartBtn">Start New Quiz</button>
+      </div>
+
+      <div class="help">
+        <h3>Need More Practice?</h3>
+        <ul>
+          <li>Review the rationales for questions you missed</li>
+          <li>Try the "Retry Missed Questions" feature to focus on weak areas</li>
+          <li>Take the quiz again to reinforce your knowledge</li>
+          <li>Explore other modules to expand your nursing expertise</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/quiz-script.js"></script>
+</body>
+</html>
+```
+
+---
+
+## **.gitattributes**
+```
+# Set default line ending behavior
+* text=auto
+
+# Ensure Unix-style line endings for specific files
+*.py text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.md text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+```
+
+---
+
+## **requirements.txt**
+```
+Flask==3.0.0
+werkzeug==3.0.1
+jinja2==3.1.4
+itsdangerous==2.2.0
+click==8.1.7
