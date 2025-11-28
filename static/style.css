@@ -137,12 +137,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn.primary {
-  background: #4caf50;
+  background: #5cb85c;
   color: #fff;
 }
 
 .btn.primary:hover:not(:disabled) {
-  background: #43a047;
+  background: #4cae4c;
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
