@@ -232,8 +232,13 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
 .actions {
   display: flex;
   gap: 12px;
-  justify-content: flex-end;
+  justify-content: stretch;
   margin-top: 20px;
+}
+
+.actions .btn {
+  flex: 1;
+  text-align: center;
 }
 
 /* ===== Quiz Specific Styles ===== */
@@ -345,6 +350,28 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
   transform: none;
   border-color: var(--border);
   background: #fff;
+}
+
+/* Correct answer highlight after submission */
+.opt.correct-answer label {
+  background: rgba(76, 175, 80, 0.2) !important;
+  border-color: #4caf50 !important;
+  opacity: 1 !important;
+}
+
+.opt.correct-answer label .k {
+  background: #4caf50 !important;
+}
+
+/* Wrong answer highlight after submission */
+.opt.wrong-answer label {
+  background: rgba(244, 67, 54, 0.15) !important;
+  border-color: #f44336 !important;
+  opacity: 1 !important;
+}
+
+.opt.wrong-answer label .k {
+  background: #f44336 !important;
 }
 
 .opt .k {
