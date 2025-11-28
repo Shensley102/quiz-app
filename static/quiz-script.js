@@ -457,6 +457,7 @@ function renderQuestion(q){
   letters.forEach(letter => {
     const optDiv = document.createElement('div');
     optDiv.className = 'opt';
+    optDiv.dataset.letter = letter;
 
     const inp = document.createElement('input');
     inp.type = isMulti ? 'checkbox' : 'radio';
@@ -534,6 +535,30 @@ function formatCorrectAnswers(q){
     `<strong>${escapeHTML(l)}</strong>. ${escapeHTML(q.options[l]||'')}`
   ).join('<br>');
   return lettersHTML;
+}
+
+/* ---------- Highlight correct/wrong answers ---------- */
+function highlightAnswers(q, userLetters) {
+  if (!form) return;
+  
+  const correctLetters = q.correctLetters || [];
+  
+  form.querySelectorAll('.opt').forEach(optDiv => {
+    const letter = optDiv.dataset.letter;
+    const isCorrect = correctLetters.includes(letter);
+    const wasSelected = userLetters.includes(letter);
+    
+    // Remove any existing highlight classes
+    optDiv.classList.remove('correct-answer', 'wrong-answer');
+    
+    if (isCorrect) {
+      // Always highlight correct answers in green
+      optDiv.classList.add('correct-answer');
+    } else if (wasSelected) {
+      // Highlight wrong selections in red
+      optDiv.classList.add('wrong-answer');
+    }
+  });
 }
 
 /* ---------- Counters / Progress Bar ---------- */
@@ -897,6 +922,9 @@ function handleSubmitClick() {
     feedback.classList.remove('ok','bad');
     feedback.classList.add(isCorrect ? 'ok' : 'bad');
   }
+
+  // Highlight correct and wrong answers in the options
+  highlightAnswers(q, userLetters);
 
   if (answerLine) {
     answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formatCorrectAnswers(q)}`;
