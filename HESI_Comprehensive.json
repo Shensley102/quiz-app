@@ -1669,21 +1669,6 @@
       "type": "single_select"
     },
     {
-      "id": "HESI_Comp_Q149",
-      "stem": "The nurse, auscultating the breath sounds of a client, hears these sounds. What are they?",
-      "options": [
-        "Rhonchi",
-        "Crackles",
-        "Wheezes",
-        "Vesicular"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "Wheezes are continuous squeaky, musical sounds, the result of air rushing through narrowed airways. They are associated with inflammation, bronchospasm, edema, secretions, or pulmonary vessel engorgement. Rhonchi are continuous low-pitched, coarse snoring sounds associated with thick, tenacious secretions; sputum production; or obstruction by a foreign body. Crackles are discontinuous popping sounds caused by air moving into previously deflated airways (they sound like air is being rolled between the fingers near the ear). Vesicular sounds are rustling sounds heard over the peripheral lung fields. They are a normal finding.",
-      "type": "single_select"
-    },
-    {
       "id": "HESI_Comp_Q150",
       "stem": "A registered nurse is planning client assignments for the day. There is a licensed practical nurse and an assistive personnel (AP) on the team. Which client is the most appropriate choice for the AP?",
       "options": [
