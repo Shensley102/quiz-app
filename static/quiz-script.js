@@ -541,24 +541,24 @@ function formatCorrectAnswers(q){
 }
 
 /* ---------- Highlight correct/wrong answers ---------- */
-function highlightAnswers(q, userLetters) {
+function highlightAnswers(q, userLetters, isCorrect) {
   if (!form) return;
   
   const correctLetters = q.correctLetters || [];
   
   form.querySelectorAll('.opt').forEach(optDiv => {
     const letter = optDiv.dataset.letter;
-    const isCorrect = correctLetters.includes(letter);
+    const isCorrectAnswer = correctLetters.includes(letter);
     const wasSelected = userLetters.includes(letter);
     
     // Remove any existing highlight classes
     optDiv.classList.remove('correct-answer', 'wrong-answer');
     
-    if (isCorrect) {
-      // Always highlight correct answers in green
+    if (isCorrect && wasSelected) {
+      // If user got it right, highlight their selection in green
       optDiv.classList.add('correct-answer');
-    } else if (wasSelected) {
-      // Highlight wrong selections in red
+    } else if (!isCorrect && wasSelected && !isCorrectAnswer) {
+      // If user got it wrong, only highlight their wrong selection in red
       optDiv.classList.add('wrong-answer');
     }
   });
@@ -927,7 +927,7 @@ function handleSubmitClick() {
   }
 
   // Highlight correct and wrong answers in the options
-  highlightAnswers(q, userLetters);
+  highlightAnswers(q, userLetters, isCorrect);
 
   // Always show the correct answer
   if (answerLine) {
