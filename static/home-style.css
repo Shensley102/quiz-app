@@ -2,13 +2,13 @@
 
 .hub-header {
   text-align: center;
-  margin-bottom: 30px;
-  padding: 20px 0;
+  margin-bottom: 25px;
+  padding: 15px 0;
 }
 
 .hub-header h1 {
-  margin: 0 0 12px 0;
-  font-size: clamp(32px, 5vw, 48px);
+  margin: 0 0 10px 0;
+  font-size: 42px;
   background: linear-gradient(135deg, #2f61f3 0%, #45B7D1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -18,7 +18,7 @@
 }
 
 .hub-header .tagline {
-  font-size: clamp(14px, 2vw, 18px);
+  font-size: 16px;
   color: var(--ink-soft);
   margin: 0;
   font-weight: 500;
@@ -54,14 +54,16 @@
   color: var(--ink-soft);
 }
 
-/* Categories Grid - Compact 4x1 Layout */
+/* Categories Grid - FORCE 4 COLUMNS */
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin: 30px auto;
-  max-width: 1200px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin: 25px auto;
+  max-width: 1100px;
+  width: 100%;
   padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .category-card {
@@ -70,16 +72,18 @@
   padding: 0;
   background: var(--card);
   border: 2px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 12px;
   box-shadow: var(--shadow-sm);
   text-decoration: none;
   color: inherit;
   cursor: pointer;
   transition: all 0.3s ease;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
-  max-height: 350px;
   width: 100%;
+  height: 0;
+  padding-bottom: 133.33%; /* 3:4 aspect ratio */
+  max-width: 250px;
+  margin: 0 auto;
 }
 
 .category-card::before {
@@ -107,6 +111,7 @@
 /* Image Cards */
 .category-card.image-card {
   padding: 0;
+  padding-bottom: 133.33%; /* Maintain aspect ratio */
 }
 
 .category-card.image-card img {
@@ -127,17 +132,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  font-size: 50px;
+  font-size: 45px;
 }
 
 .card-arrow {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--accent-color);
   opacity: 0;
   transition: all 0.3s ease;
   position: absolute;
-  bottom: 12px;
-  right: 12px;
+  bottom: 10px;
+  right: 10px;
   background: rgba(255, 255, 255, 0.95);
   padding: 8px 12px;
   border-radius: 8px;
@@ -164,54 +169,53 @@
 /* Responsive Breakpoints */
 @media (max-width: 1200px) {
   .categories-grid {
-    max-width: 1000px;
-    gap: 14px;
+    max-width: 950px;
   }
   
   .category-card {
-    max-height: 320px;
+    max-width: 220px;
   }
 }
 
 @media (max-width: 1024px) {
   .categories-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    max-width: 650px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 600px;
   }
   
   .category-card {
-    max-height: 400px;
+    max-width: 280px;
   }
 }
 
 @media (max-width: 768px) {
   .hub-header h1 {
-    font-size: 32px;
+    font-size: 36px;
   }
 
   .hub-header .tagline {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .categories-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
     padding: 0 16px;
   }
 
   .category-card {
-    max-height: 380px;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .categories-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 16px;
   }
 
   .category-card {
-    max-height: 400px;
+    max-width: 350px;
   }
 }
