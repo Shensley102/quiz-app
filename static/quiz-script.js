@@ -443,9 +443,12 @@ function renderQuestion(q){
   form.innerHTML = '';
   if (feedback) {
     feedback.textContent = '';
-    feedback.className = 'feedback';
+    feedback.className = 'feedback hidden';
   }
-  if (answerLine) answerLine.textContent = '';
+  if (answerLine) {
+    answerLine.innerHTML = '';
+    answerLine.classList.add('hidden');
+  }
   if (rationaleBox) {
     rationaleBox.textContent = '';
     rationaleBox.classList.add('hidden');
@@ -919,15 +922,17 @@ function handleSubmitClick() {
 
   if (feedback) {
     feedback.textContent = isCorrect ? 'Correct!' : 'Incorrect';
-    feedback.classList.remove('ok','bad');
+    feedback.classList.remove('ok','bad', 'hidden');
     feedback.classList.add(isCorrect ? 'ok' : 'bad');
   }
 
   // Highlight correct and wrong answers in the options
   highlightAnswers(q, userLetters);
 
+  // Always show the correct answer
   if (answerLine) {
     answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formatCorrectAnswers(q)}`;
+    answerLine.classList.remove('hidden');
   }
   
   if (rationaleBox) {
