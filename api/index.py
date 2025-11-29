@@ -37,7 +37,10 @@ STUDY_CATEGORIES = {
             'HESI_Delegating',
             'HESI_Leadership',
             'Hesi_Management',
-            'HESI_Comprehensive'
+            'HESI_Comprehensive',
+            'HESI_Comp_Quiz_1',
+            'HESI_Comp_Quiz_2',
+            'HESI_Comp_Quiz_3'
         ]
     },
     'Nursing Certifications': {
