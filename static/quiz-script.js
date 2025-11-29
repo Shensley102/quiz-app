@@ -417,15 +417,28 @@ function setupCategoryDisplay() {
     'Pharmacology': '💊'
   };
 
+  const categoryTitles = {
+    'HESI': 'HESI Exit Comprehensive Study Quizzes',
+    'Patient Care Management': 'Patient Care Management',
+    'Nursing Certifications': 'Nursing Certifications',
+    'Pharmacology': 'Pharmacology'
+  };
+
   if (category) {
     const icon = categoryIcons[category] || '📚';
+    const displayTitle = categoryTitles[category] || category;
     
     const headerRight = document.getElementById('categoryHeader');
     if (headerRight) {
       const categoryIcon = document.getElementById('categoryIcon');
       const categoryTitle = document.getElementById('categoryTitle');
       if (categoryIcon) categoryIcon.textContent = icon;
-      if (categoryTitle) categoryTitle.textContent = category;
+      if (categoryTitle) categoryTitle.textContent = displayTitle;
+    }
+    
+    const quizTitle = document.getElementById('quizTitle');
+    if (quizTitle) {
+      quizTitle.textContent = displayTitle;
     }
     
     const headerSummary = document.getElementById('categoryHeaderSummary');
@@ -433,7 +446,7 @@ function setupCategoryDisplay() {
       const categoryIconSummary = document.getElementById('categoryIconSummary');
       const summaryTitle = document.getElementById('summaryTitle');
       if (categoryIconSummary) categoryIconSummary.textContent = icon;
-      if (summaryTitle) summaryTitle.textContent = category;
+      if (summaryTitle) summaryTitle.textContent = displayTitle;
     }
   }
 }
