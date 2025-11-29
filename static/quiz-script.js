@@ -83,6 +83,9 @@ function prettifyModuleName(name) {
     'HESI_Leadership': 'HESI Leadership',
     'Hesi_Management': 'HESI Management',
     'HESI_Comprehensive': 'HESI Comprehensive',
+    'HESI_Comp_Quiz_1': 'HESI Comprehensive Quiz 1',
+    'HESI_Comp_Quiz_2': 'HESI Comprehensive Quiz 2',
+    'HESI_Comp_Quiz_3': 'HESI Comprehensive Quiz 3',
   };
   if (map[normalized]) return map[normalized];
 
