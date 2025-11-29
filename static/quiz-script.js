@@ -424,9 +424,17 @@ function setupCategoryDisplay() {
     'Pharmacology': 'Pharmacology'
   };
 
+  const categoryDescriptions = {
+    'HESI': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides',
+    'Patient Care Management': '',
+    'Nursing Certifications': '',
+    'Pharmacology': ''
+  };
+
   if (category) {
     const icon = categoryIcons[category] || '📚';
     const displayTitle = categoryTitles[category] || category;
+    const displayDescription = categoryDescriptions[category] || '';
     
     const headerRight = document.getElementById('categoryHeader');
     if (headerRight) {
@@ -440,13 +448,32 @@ function setupCategoryDisplay() {
     if (quizTitle) {
       quizTitle.textContent = displayTitle;
     }
+
+    const quizDescription = document.getElementById('quizDescription');
+    if (quizDescription) {
+      if (displayDescription) {
+        quizDescription.textContent = displayDescription;
+        quizDescription.style.display = 'block';
+      } else {
+        quizDescription.style.display = 'none';
+      }
+    }
     
     const headerSummary = document.getElementById('categoryHeaderSummary');
     if (headerSummary) {
       const categoryIconSummary = document.getElementById('categoryIconSummary');
       const summaryTitle = document.getElementById('summaryTitle');
+      const summaryDescription = document.getElementById('summaryDescription');
       if (categoryIconSummary) categoryIconSummary.textContent = icon;
       if (summaryTitle) summaryTitle.textContent = displayTitle;
+      if (summaryDescription) {
+        if (displayDescription) {
+          summaryDescription.textContent = displayDescription;
+          summaryDescription.style.display = 'block';
+        } else {
+          summaryDescription.style.display = 'none';
+        }
+      }
     }
   }
 }
