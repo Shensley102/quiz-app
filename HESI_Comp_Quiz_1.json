@@ -1,0 +1,2429 @@
+{
+  "module": "HESI_COMPREHENSIVE_QUIZ",
+  "title": "HESI Comprehensive Quiz 1",
+  "total_questions": 157,
+  "questions": [
+    {
+      "id": "Q52",
+      "stem": "Which action by the nurse is consistent with culturally competent care?",
+      "options": [
+        "Treating each client the same regardless of race or religion",
+        "Ensuring that all Native American clients have access to a shaman",
+        "Understanding one's own world view in addition to the client's",
+        "Including the family in the plan of care for older clients"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The nurse should understand his or her own values and views to prevent those values from being imparted to others, in addition to understanding the client's cultural views (C). Treating every client the same or assuming that all clients share the same values does not exhibit cultural competence or sensitivity (A, B, and D).",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q109",
+      "stem": "A nurse is preparing to care for a preschool-age child with sickle cell anemia who is experiencing vasoocclusive pain. Which method of assessing the degree of pain the child is experiencing is most appropriate?",
+      "options": [
+        "Asking the child to use a numeric rating scale of 0 to 100",
+        "Asking the child to point to the face on a spectrum ranging from smiling to very sad, that best describes the pain",
+        "Asking the child whether the patient-controlled analgesia (PCA) pump is relieving the pain",
+        "Asking the child to describe the intensity of the pain"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "A client of preschool age has the cognitive ability to recognize happy and sad faces and to correlate them with the level of pain he or she is experiencing. It may be too complicated for some preschoolers to come up with words to describe varying intensities of pain. Many preschool children are not yet able to count to 100 or to understand the value of numbers in relation to other numbers. A child of preschool age is too young to control a PCA pump.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q212",
+      "stem": "The nurse is giving discharge instructions to a client recently diagnosed with hypothyroidism. The client was also given a prescription for levothyroxine by the primary health care provider. What comment by the client indicates a need for further instruction?",
+      "options": [
+        "I'm looking forward to maybe losing some weight with this medication.",
+        "I'll remember to take the medication without food in the morning.",
+        "I'm glad constipation won't be such a problem anymore.",
+        "I know I have to notify the primary health care provider if I have any problems with a slow heart rate."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "There is a need for further instruction if the client says, I know I have to notify the primary health care provider if I have any problems with a slow heart rate. The primary health care provider must be notified if the client has any problems with tachycardia or fast heart rate, not slow heart rate. Excessive doses of levothyroxine sodium can produce signs/symptoms of hyperthyroidism. These include tachycardia, chest pain, tremors, nervousness, insomnia, hyperthermia, extreme heat intolerance, and sweating. The other comments are correct.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_007",
+      "stem": "A client with dyspnea is being admitted to the medical unit. To best prepare for the client's arrival, the nurse should ensure that the client's bed is in which position?",
+      "options": [
+        "Supine",
+        "Supine; feet elevated higher than head",
+        "Supine; head elevated higher than feet",
+        "Fowlers"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Fowler's position (45-90 degrees) facilitates lung expansion and reduces dyspnea by allowing gravity to assist with breathing.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_083",
+      "stem": "The nurse is providing education to a client who experiences recurrent levels of moderate anxiety to situations and perceived stress. In addition to information about prescribed medication and administration, which instruction should the nurse include in the teaching?",
+      "options": [
+        "Find outlets for more social interaction",
+        "Practice using muscle relaxation techniques",
+        "Center attention on positive upbeat music",
+        "Think about reasons the episodes occur"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Muscle relaxation techniques provide concrete coping mechanisms for managing anxiety symptoms.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q82",
+      "stem": "After assessing a 26-year-old client with type 1 diabetes mellitus, which data may indicate that the client is experiencing chronic complications of diabetes?",
+      "options": [
+        "Blood pressure, 159/98 mm Hg",
+        "Hemoglobin A1c (HbA1c), 6%",
+        "Creatinine level, 1.0 mg/dL",
+        "Chronic sciatica"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A blood pressure of 159/98 mm Hg is hypertensive and increases the client's risk for acute coronary syndrome and/or stroke (A). (B and C) are within defined parameters, and (D) is not a recognized chronic complication of diabetes.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q49",
+      "stem": "A nurse is conducting a preoperative psychosocial assessment of a client scheduled for a mastectomy. Which finding would cause the nurse to conclude that the client is at risk for poor sexual adjustment after the mastectomy?",
+      "options": [
+        "The client reports a satisfying intimate relationship with her spouse.",
+        "The client reports irregular menses relationship with her spouse.",
+        "The client reports that she and her spouse have never been able to conceive children.",
+        "The client reports a history of sexual abuse by her father."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "A history of sexual abuse places clients at risk for self-esteem issues and poor sexual adjustment following a mastectomy. The other options do not indicate risk factors for sexual adjustment problems.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q220",
+      "stem": "A child with growth hormone deficiency will be receiving somatropin. The nurse provides information to the mother about the medication. Which of the following laboratory values does the nurse tell the mother will require monitoring?",
+      "options": [
+        "Hemoglobin",
+        "Thyroid-stimulating hormone (TSH)",
+        "Creatinine",
+        "Blood urea nitrogen (BUN)"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "TSH is the laboratory value the nurse tells the mother to monitor. Somatropin is a growth hormone. One adverse reaction to somatropin is hypothyroidism. Thyroid function is assessed before treatment and periodically thereafter. Creatinine and BUN are used to evaluate renal function, and hemoglobin reflects hematologic activity.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q68",
+      "stem": "A client is admitted to the hospital with the diagnosis of hypokalemia. Which clinical manifestation is most significant?",
+      "options": [
+        "Heart palpitations",
+        "Leg cramps",
+        "Nausea",
+        "Tetany"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Hypokalemia can cause heart palpitations, which are indicative of a dysrhythmia that could progress to a medical emergency (A). (B and C) are also of concern but are not as life threatening. (D) is a symptom of hypocalcemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q90",
+      "stem": "The nurse plans to teach blood glucose self-monitoring to a client who is newly diagnosed with diabetes mellitus type 1, and the health care provider has given the client a schedule for testing. In addition to the prescribed schedule, the nurse should also instruct the client to check the blood glucose level in which circumstance?",
+      "options": [
+        "Any time the client awakens during the night",
+        "Whenever the client has feelings of dizziness",
+        "Right after meals if insulin is not administered 30 minutes before the meal",
+        "Only at scheduled times; additional testing harmful to fingertips"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Clients should be instructed to always check their blood glucose level whenever they feel faint or dizzy (B). There is great variability in recommendations for the frequency of blood glucose testing. When first diagnosed, clients are often advised to test before and after meals and at bedtime, and then after meals and at bedtime for a short period. Once they are stable, clients may be advised to test four times a day or as little as once each week, depending on the consistency of their diet and exercise and stability of their blood sugar level. (A, C, and D) provide inaccurate information.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q131",
+      "stem": "A nurse is preparing the room of a client in skeletal traction who will be admitted to the nursing unit. Which item for use by the client does the nurse identify as most important?",
+      "options": [
+        "Bedside commode",
+        "Television",
+        "Telephone",
+        "Trapeze bar"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The most important item for the client in skeletal traction to use is a trapeze bar. This bar is a triangular device that hangs from a securely fastened overhead bar that is attached to the bed frame. It allows the client to pull up with the upper extremities to raise the trunk off the bed. It is a useful device for helping increase independence, maintain upper-body strength, and reducing the shearing action that results when the client slides across or up and down in the bed. The client in traction would not be allowed to get out of bed to use a bedside commode; rather, a bedpan or fracture pan would be used. Although a telephone and a television are helpful for diversion and maintaining social contact, they are not the most important items.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q6",
+      "stem": "A nurse on the evening shift checks a primary health care provider's prescriptions and notes that the dose of a prescribed medication is higher than the normal dose. The nurse calls the primary health care provider's answering service and is told that the primary health care provider is off for the night and will be available in the morning. What should the nurse do next?",
+      "options": [
+        "Withhold the medication until the primary health care provider can be reached in the morning",
+        "Administer the medication but consult the primary health care provider when he becomes available",
+        "Ask the answering service to contact the on-call primary health care provider",
+        "Call the nursing supervisor"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The nurse has a duty to protect the client from harm. A nurse who believes that a primary health care provider's prescription may be in error is responsible for clarifying the prescription before carrying it out. Therefore the nurse would not administer the medication; instead, the nurse would withhold the medication until the dose can be clarified. The nurse would not wait until the next morning to obtain clarification. It is premature to call the nursing supervisor.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q167",
+      "stem": "An emergency department (ED) nurse is monitoring a client who sustained a severe inhalation burn injury during a fire in which the client was trapped in an enclosed space. The nurse auscultates the client's trachea and notes that the previously heard wheezing sounds have disappeared. What is the most appropriate action the nurse should take?",
+      "options": [
+        "Continue monitoring the client",
+        "Remove the oxygen mask and fit the client with a nasal cannula",
+        "Notify the emergency department (ED) primary health care provider",
+        "Document the client's improvement in the medical record"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The most appropriate action by the nurse would be to notify the ED primary health care provider immediately. A client with a severe inhalation injury may sustain such progressive obstruction that within a short time he/she cannot force air through the narrowed airways. As a result, the wheezing sounds disappear. This finding indicates impending airway obstruction and demands immediate intubation. A client with an inhalation burn injury is at risk for respiratory complications. Upper-airway edema and inhalation injury are most notable in the trachea and main stem bronchi. Auscultation of these areas reveals wheezes, which are a sign/symptom of obstruction. Continuing to monitor the client, documenting the client's improvement in the medical record, and removing the oxygen mask and fitting the client with a nasal cannula are all incorrect and would delay necessary interventions.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_113",
+      "stem": "A client with a lower respiratory tract infection receives a prescription for ciprofloxacin 500mg PO every 12 hours. When the client requests an afternoon snack, which dietary choice should the nurse provide?",
+      "options": [
+        "Cinnamon applesauce",
+        "Vanilla-flavored yogurt",
+        "Calcium-fortified juice",
+        "Low-fat chocolate milk"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Ciprofloxacin binds with calcium, reducing absorption. Applesauce doesn't contain calcium and won't interfere with absorption.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_135",
+      "stem": "The nurse observes a client prepare a meal in the kitchen of a rehabilitation facility prior to discharge. Which behaviors indicate the client understands how to maintain balance safely? (Select all that apply.)",
+      "options": [
+        "Brings a heavy can close to body before lifting",
+        "Leans forward to pull on a pan from a high shelf",
+        "Locks knees while preparing food on the counter",
+        "Bends from the waist to pick trash off the floor",
+        "Widens stance while working near the sink"
+      ],
+      "correct": [
+        "A",
+        "E"
+      ],
+      "rationale": "Bringing items close and widening stance improve balance. Leaning forward, locking knees, and bending waist impair balance and cause injury.",
+      "type": "multiple_select"
+    },
+    {
+      "id": "HESI_RN_021",
+      "stem": "The nurse assesses a client one hour after starting a transfusion of packed red blood cells and determines that there are no indications of a transfusion reaction. What instruction should the nurse provide the unlicensed assistive personnel (UAP) who is working with the nurse?",
+      "options": [
+        "Notify the nurse when the transfusion has finished, so further client assessment can be done",
+        "Continue to measure the client's vital signs every thirty minutes until the transfusion is complete",
+        "Monitor the client carefully for the next three hours and report the onset of a reaction immediately",
+        "Since a reaction did not occur, the priority is to maintain client comfort during the transfusion"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Continuous vital sign monitoring every 30 minutes is standard protocol for transfusion monitoring to detect delayed reactions.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_103",
+      "stem": "A client taking clopidogrel reports the onset of diarrhea. Which nursing action should the nurse implement first?",
+      "options": [
+        "Observe the appearance of the stool",
+        "Assess the elasticity of the client's skin",
+        "Review the client's laboratory values",
+        "Auscultate the client's bowel sounds"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Observing stool appearance helps distinguish between normal diarrhea and GI bleeding (dark/tarry stools), a potential clopidogrel side effect.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q243",
+      "stem": "An adult client with an ileostomy is admitted to the hospital with a diagnosis of isotonic dehydration. What findings does the nurse expect to note during the admission assessment? (Select all that apply.)",
+      "options": [
+        "Weak peripheral pulses",
+        "Skin tenting",
+        "Flat neck veins",
+        "A heart rate of 88 beats/min",
+        "Moist oral mucous membranes",
+        "A respiratory rate of 18 breaths/min"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "Isotonic dehydration decreases circulating blood volume (hypovolemia), leading to inadequate tissue perfusion. The nurse would expect to note tachycardia, tachypnea, and dry oral mucous membranes. The oral mucous membranes may be covered with a thick, sticky, pastelike coating and may exhibit fissures. The client may also experience weight loss, lethargy or headache, sunken eyes, poor skin turgor (e.g., tenting), flat neck and peripheral veins, and low blood pressure. Peripheral pulses are weak, difficult to find, and easily obstructed with light pressure.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Comp_Q151",
+      "stem": "A nurse is monitoring a client with bronchogenic carcinoma for signs/symptoms of superior vena cava syndrome. For which early sign of this oncological emergency does the nurse assess the client?",
+      "options": [
+        "Dyspnea",
+        "Hypotension",
+        "Stokes sign",
+        "Cyanosis"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "In superior vena cava syndrome, the superior vena cava is compressed or obstructed by tumor growth. Early signs/symptoms, which generally occur in the early morning, include edema of the face, especially around the eyes (periorbital edema), and complaints of tightness of a shirt or blouse collar (Stokes sign). As the compression worsens, the client experiences edema of the hands and arms, dyspnea, erythema of the upper body, and epistaxis (nosebleeds). Late (and life-threatening) signs/symptoms include hemorrhage, cyanosis, mental status changes resulting from lack of blood to the brain, decreased cardiac output, and hypotension (low blood pressure). Death may result if the compression is not relieved.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_111",
+      "stem": "Which laboratory finding for an adult client is most critical for the nurse to report to the healthcare provider?",
+      "options": [
+        "Serum sodium 142mEq/L",
+        "Serum potassium 3.9mEq/L",
+        "Serum glucose 62 mg/dL",
+        "Blood urea nitrogen 18 mg/dL"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Glucose of 62 mg/dL indicates hypoglycemia, which can cause seizures, loss of consciousness, and requires immediate intervention.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q58",
+      "stem": "Ferrous sulfate is prescribed for a client. What does the nurse tell the client is best to take the medication with?",
+      "options": [
+        "Tomato juice",
+        "Any meal",
+        "Milk",
+        "Water"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Ferrous sulfate is an iron product. Absorption of iron is best promoted when the supplement is taken with orange juice or tomato juice another food source of vitamin C or ascorbic acid. Calcium and phosphorus in milk decrease iron absorption. Water has no effect on the absorption of vitamin C. Telling the client to take the medication with any meal of the day does not guarantee that the iron will be taken with a food source of vitamin C or ascorbic acid. Additionally, it is best to take the iron supplement between meals with a drink high in ascorbic acid.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q150",
+      "stem": "A registered nurse is planning client assignments for the day. There is a licensed practical nurse and an assistive personnel (AP) on the team. Which client is the most appropriate choice for the AP?",
+      "options": [
+        "A client with heart failure who needs daily weights and monitoring of intake and output",
+        "A client with rheumatoid arthritis who needs assistance with feeding and ambulation",
+        "A client with hemophilia who needs assistance with shaving",
+        "A client with pneumonia who requires frequent oropharyngeal suctioning"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The most appropriate client for the AP is the client with rheumatoid arthritis who needs assistance with feeding and ambulation. When a nurse delegates aspects of a client's care to another staff member, the nurse assigning the task is responsible for ensuring that each task is appropriately assigned on the basis of the educational level and competency of the staff member. A client with hemophilia is at risk for bleeding and should be cared for by a licensed nurse. Suctioning, an invasive treatment, must be performed by a licensed nurse. Although a AP may weigh a client and monitor intake and output, this client has heart failure and should be monitored by a licensed nurse who will be able to listen to breath sounds and detect changes in the client's status. Feeding a client, turning and repositioning a client, assisting with hygiene measures, and ambulating a client are noninvasive interventions and that may be assigned to a AP.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q96",
+      "stem": "The nurse assesses a client who is taking indomethacin (Indocin) for arthritic pain. Which of the following is most important to report to the primary health care provider?",
+      "options": [
+        "Takes medication with milk",
+        "Blood pressure, 104/64 mm Hg",
+        "Elevated liver enzyme levels",
+        "Hemoglobin level, 13 g/dL"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Indomethacin is an antiinflammatory drug and can cause liver damage. Elevated liver enzyme levels indicate a complication with the drug (C). This medication should be taken with food or milk to reduce gastrointestinal (GI) side effects (A). (B and D) are normal findings.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q15",
+      "stem": "Lorazepam 1 mg by way of intravenous (IV) injection (IV push) is prescribed for a client for the management of anxiety. The nurse prepares the medication as prescribed. Over what period of time should the nurse administer this medication?",
+      "options": [
+        "10 seconds",
+        "30 minutes",
+        "15 seconds",
+        "3 minutes"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Lorazepam is a benzodiazepine. When administered by IV injection, each 2 mg or fraction thereof is administered over a period of 1 to 5 minutes. Ten seconds and 30 seconds are brief periods. Thirty minutes is a lengthy period.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_080",
+      "stem": "A client with hyperthyroidism is admitted to the postoperative unit after a subtotal thyroidectomy. Which of the client's serum laboratory values requires intervention by the nurse?",
+      "options": [
+        "T3-uptake at 50%",
+        "Glucose 150 mg/dL",
+        "Total calcium 5.0 mg/dL",
+        "Thyroxine 12 mcg/dL"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Calcium 5.0 mg/dL indicates hypocalcemia, likely from hypoparathyroidism post-thyroidectomy, requiring immediate intervention.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q36",
+      "stem": "A client with agoraphobia will undergo systematic desensitization through graduated exposure. In explaining the treatment to the client, what does the nurse tell the client this technique involves?",
+      "options": [
+        "Having the client perform a healthy coping behavior",
+        "Having the client perform a ritualistic or compulsive behavior",
+        "Providing a high degree of exposure of the client to the stimulus that the client finds undesirable",
+        "Gradually introducing the client to a phobic object or situation in a predetermined sequence of least to most frightening"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The technique of systematic desensitization involves gradually introducing the client to a phobic object or situation in a predetermined sequence of least to most frightening with the goal of defusing the phobia. Having the client perform a healthy coping behavior is the description of modeling. Performing ritualistic or compulsive behaviors is a behavior characteristic of clients with obsessive-compulsive disorder. Having the client perform a ritualistic or compulsive behavior may not be therapeutic; additionally, it is not associated with systematic desensitization. Providing a high degree of exposure to a stimulus that the client finds undesirable is the technique known as flooding.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q120",
+      "stem": "A nurse provides home care instructions to a client with coronary artery disease (CAD) who is being discharged from the hospital. Which statement by the client indicates a need for further instruction?",
+      "options": [
+        "I need to check my pulse before, during, and after exercise.",
+        "I need to avoid foods with saturated fats and foods high in cholesterol.",
+        "I need to carry my nitroglycerin with me at all times.",
+        "I need to participate in aerobic and weightlifting exercise three times a week."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "There is a need for further instruction if the client states, I need to participate in aerobic and weightlifting exercise three times a week. The client should avoid activities that involve straining, including weightlifting, push-ups and pull-ups, and straining during bowel movements. The client with CAD should participate in a simple exercise program on a regular basis. The client may begin a simple walking program by walking 400 feet (122 metres) twice a day at a rate of 1 mph (1.6 km/hr) the first week after discharge and increasing the distance and rate as tolerated, usually weekly, until he or she can walk 2 miles (3.2 km) at 3 to 4 mph (4.8 to 6.4 km/hr). The client should always carry nitroglycerin and must comply with dietary restrictions, including avoiding foods with saturated fats and foods high in cholesterol. The nurse instructs the client to take a pulse reading before, halfway through, and after exercise.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_073",
+      "stem": "After a spider bite on the lower extremity, a client is admitted for treatment of an infection that is spreading up the leg. Which admission assessment findings should the nurse report to the healthcare provider? (Select all that apply.)",
+      "options": [
+        "Location of the initial IV site",
+        "Red blood cell count (RBC)",
+        "Swollen lymph nodes in the groin",
+        "White blood cell count (WBC)",
+        "Core body temperature"
+      ],
+      "correct": [
+        "C",
+        "D",
+        "E"
+      ],
+      "rationale": "Lymphadenopathy, elevated WBC, and fever indicate spreading infection and systemic response requiring provider notification.",
+      "type": "multiple_select"
+    },
+    {
+      "id": "HESI_Comp_Q159",
+      "stem": "A client with diabetes mellitus calls the clinic nurse and reports that he/she has been vomiting during the night and now has diarrhea. Which question does the nurse make a priority of asking the client?",
+      "options": [
+        "Are you urinating frequently?",
+        "Have you tested your blood glucose?",
+        "Do you have a fever?",
+        "Did you eat any breakfast?"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The priority is learning whether the client has tested his/her blood glucose level and what the level is. During illness, the client should follow the sick-day rules for diabetics. The blood glucose level should be checked every 4 hours. Urine is tested for ketones if the blood glucose level is greater than 240 mg/dL (13.3 mmol/L). The client should take the prescribed insulin or oral antidiabetic medication and should drink 8 to 12 oz (135 to 350 mL) of sugar-free liquids every hour when awake. The client should notify the primary health care provider if he/she becomes ill. The remaining options are questions that may be asked, but they are not the priority.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q249",
+      "stem": "A client is admitted to the nursing unit with a diagnosis of avoidant personality disorder. What are some characteristics of this disorder? (Select all that apply.)",
+      "options": [
+        "Preoccupation with details",
+        "Hypersensitivity to negative evaluation",
+        "Sensitivity to rejection",
+        "Feelings of inadequacy",
+        "Neediness",
+        "Perfectionism G. Feeling extremely shy"
+      ],
+      "correct": [
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Avoidant personality disorder is a psychiatric condition in which a person feels extremely shy, inadequate, and sensitive to rejection. Other characteristics of avoidant personality disorder include excessive anxiety in social situations and hypersensitivity to negative evaluation. Neediness is a characteristic of dependent personality disorder. Perfectionism and preoccupation with details are characteristics of obsessive-compulsive disorder.",
+      "type": "multi_select"
+    },
+    {
+      "id": "Q32",
+      "stem": "A client is admitted with a diagnosis of leukemia. This condition is manifested by which of the following?",
+      "options": [
+        "Fever, elevated white blood count, elevated platelets",
+        "Fatigue, weight loss and anorexia, elevated red blood cells",
+        "Hyperplasia of the gums, elevated white blood count, weakness",
+        "Hypocellular bone marrow aspirate, fever, decreased hemoglobin level"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Hyperplastic gums, weakness, and elevated white blood count are classic signs of leukemia (C). (A, B, and D) state incorrect information for symptoms of leukemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q31",
+      "stem": "The nurse is caring for a client with chronic renal failure (CRF) who is receiving dialysis therapy. Which nursing intervention has the greatest priority when planning this client's care?",
+      "options": [
+        "Palpate for pitting edema.",
+        "Provide meticulous skin care.",
+        "Administer phosphate binders.",
+        "Monitor serum potassium levels."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Clients with CRF are at risk for electrolyte imbalances, and imbalances in potassium can be life threatening (D). One sign of fluid retention is pitting edema (A), but it is an expected symptom of renal failure and is not as high a priority as (D). (B and C) are common nursing interventions for CRF but not as high a priority as (D).",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q193",
+      "stem": "A nurse is performing an assessment of a client with M\u00e9ni\u00e8re disease. Which question does the nurse ask to elicit data about the manifestations of this disease?",
+      "options": [
+        "Have you had any loss of appetite?",
+        "Have you been having any diarrhea?",
+        "Do you have headaches?",
+        "Do you have episodes of dizziness?"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "M\u00e9ni\u00e8re disease or syndrome, also called idiopathic endolymphatic hydrops, occurs when the normal fluid and electrolyte balance of the inner ear is disrupted. The classic triad consists of episodic true vertigo (dizziness), sensorineural hearing loss, and tinnitus. Some clients experience vertigo associated with nausea, vomiting, and ataxia. Diarrhea, headaches, and loss of appetite are not associated with this disease.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_158",
+      "stem": "A client is diagnosed with Meniere's disease. Which problem should the nurse identify as most important in the plan of care?",
+      "options": [
+        "Risk for ineffective self-health management related to deficient knowledge",
+        "Ineffective coping related to personal vulnerability",
+        "Risk for injury related to vertigo",
+        "Anxiety related to disruption of lifestyle"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Vertigo in Meniere's disease causes severe balance problems creating fall risk and injury potential, the most immediate concern.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_078",
+      "stem": "The nurse is caring for a 24-month-old toddler who has sensory sensitivity, difficulty engaging in social interactions, and has not yet spoken two-word phrases. Which assessment should the nurse administer?",
+      "options": [
+        "The Modified Checklist for Autism in Toddlers (M-CHAT)",
+        "Psychology Systems Questionnaire (PHQ-2)",
+        "Behavioral Style Questionnaire (BSQ)",
+        "The Ages and Stages Questionnaire (ASQ)"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "M-CHAT is specifically designed for autism screening in toddlers aged 16-30 months with these presenting concerns.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q228",
+      "stem": "View video. The nurse is preparing to administer a tube feeding by way of a nasogastric tube. Which action does the nurse carry out as a priority before starting the flow of the solution?",
+      "options": [
+        "Checking urine output in the previous 24 hours",
+        "Flushing the tube with 30 mL of tap water",
+        "Checking for gastric residual volume and assessing tube placement",
+        "Scrubbing the port with povidone-iodine solution"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "View video. When a client has a nasogastric tube, a priority concern is the risk for aspiration. The nurse would not administer a feeding or flush the tube unless residual volume and tube placement had been checked. To check residual volume, the nurse would draw up 30 mL of air in a catheter-tipped syringe, attach it to the feeding tube, inject the air, and then pull back the plunger to aspirate all of the gastric contents. The gastric contents are checked for amount and appearance and then the pH is checked for acidity to ensure accurate placement. It is not necessary to scrub the port with povidone-iodine solution; administering a tube feeding is a clean, not sterile procedure. Although intake and output may be monitored, it is not necessary to check urine output for the previous 24 hours before starting a feeding.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q30",
+      "stem": "A client with bipolar disorder is seen in the mental health clinic for evaluation of a new medication regimen that includes risperidone (Risperdal). The nurse notes that the client has gained 30 lb in the past 3 months. Which assessment is most important for the nurse to obtain?",
+      "options": [
+        "Compliance with medication regimen",
+        "Current thyroid-stimulating hormone (TSH) level",
+        "Occurrence of mania or depression",
+        "A 24-hour diet and exercise recall"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Medication compliance (A) is most important for the treatment of psychotic disorders and, because Risperdal is associated with weight gain, it is probable that the client is complying with the treatment plan. The TSH level (B) indicates thyroid function, which regulates basal metabolic rate and influences weight. It is important to obtain information about occurrences of mania and depression (C) since the last visit, but if the client is compliant with the medication regimen, these symptoms are likely to have been controlled. Diet and exercise (D) should also be assessed, but weight gain is a likely indicator of medication compliance.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_038",
+      "stem": "The nurse is caring for a group of clients with the help of a practical nurse (PN). Which nursing actions should the nurse assign to the PN? (Select all that apply.)",
+      "options": [
+        "Administer a dose of insulin per sliding scale for a client with Type 2 DM",
+        "Start the second blood transfusion for a client 12 hours following a BKA",
+        "Initiate patient controlled analgesia (PCA) pumps for two clients immediately postoperatively",
+        "Perform daily surgical dressing change for a client who had an abdominal hysterectomy",
+        "Obtain postoperative vital signs for a client one day following unilateral knee arthroplasty"
+      ],
+      "correct": [
+        "A",
+        "D",
+        "E"
+      ],
+      "rationale": "PNs can administer insulin, perform routine dressing changes, and obtain vital signs. Initating PCA and starting transfusions require RN assessment and judgment.",
+      "type": "multiple_select"
+    },
+    {
+      "id": "HESI_Comp_Q104",
+      "stem": "The client who is scheduled to undergo chemotherapy asks the nurse, Is my hair going to fall out? What does the nurse tell the client?",
+      "options": [
+        "Vigorous hair-brushing is important while the client is undergoing chemotherapy to prevent hair loss",
+        "Her hair may fall out but will regrow after the chemotherapy is discontinued",
+        "She should not be worrying about her hair at this point",
+        "Her hair will definitely fall out"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Some chemotherapeutic agents cause hair loss, and the client should be informed of this possibility. The client should also be reassured that chemotherapy-related hair loss is temporary and that the hair will regrow after the chemotherapy is discontinued, perhaps in a different shade, color, or texture. Telling the client that her hair will definitely fall out is incorrect and telling her that she should not be worrying about her hair at this point ignores the client's concern. Hair dyes, permanents, and vigorous hair-brushing are avoided to minimize thinning.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_136",
+      "stem": "A client with rheumatoid arthritis (RA) starts a new prescription for etanercept subcutaneously once weekly. The nurse should emphasize the importance of reporting which problem to the healthcare provider?",
+      "options": [
+        "Joint stiffness",
+        "Persistent fever",
+        "Headache",
+        "Increased hunger and thirst"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Etanercept (TNF inhibitor) increases infection risk. Persistent fever indicates possible infection requiring immediate provider notification.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q175",
+      "stem": "A client is found to have iron-deficiency anemia, and ferrous sulfate is prescribed. What does the nurse tell the client is best to take the medication with?",
+      "options": [
+        "Milk",
+        "Scrambled eggs",
+        "Apple juice",
+        "Orange juice"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Ferrous sulfate is an iron preparation, and the client is instructed to take the medication with orange juice or another vitamin C-containing product to increase absorption of the iron. Milk and eggs inhibit the absorption of iron. Orange juice is higher in vitamin C than apple juice.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q47",
+      "stem": "A nurse is monitoring a pregnant client with suspected partial placenta previa who is experiencing vaginal bleeding. Which finding would the nurse expect to note on assessment of the client?",
+      "options": [
+        "Painful vaginal bleeding",
+        "Sustained tetanic contractions",
+        "Complaints of abdominal pain",
+        "Soft, relaxed, nontender uterus"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Partial placenta previa is incomplete coverage of the internal os by the placenta. One characteristic of placenta previa is painless vaginal bleeding. The abdominal assessment would reveal a soft, relaxed, nontender uterus with normal tone. Vaginal bleeding and uterine pain and tenderness accompany placental abruption, especially with a central abruption and blood trapped behind the placenta. In placental abruption, the abdomen feels hard and boardlike on palpation as the blood penetrates the myometrium, resulting in pain and uterine irritability. A sustained tetanic contraction may occur if the client is in labor and the uterine muscle cannot relax.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q233",
+      "stem": "A nurse is preparing to provide information to a client who has been found to have stable angina. What does the nurse plan to tell the client about this type of angina?",
+      "options": [
+        "Requires surgical treatment",
+        "Can be cured with medication",
+        "Will eventually need to be treated with a coronary artery bypass graft",
+        "Is often managed medically with medications such as calcium channel blockers and beta-blocking medications"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The nurse tells the client that stable angina is often managed by medical means, such as calcium channel blockers and beta-blocking medications. Stable angina is chest discomfort that occurs with moderate to prolonged exertion in a pattern that is familiar to the client. It is usually relieved by nitroglycerin and rest. Rarely does it require aggressive treatment such as surgery. The disease can be managed but not cured.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q41",
+      "stem": "A nurse is monitoring a client receiving terbutaline by intravenous infusion to stop preterm labor. The nurse notes that the client's heart rate is 120 beats/min and that the fetal heart rate is 170 beats/min. What is the most appropriate action the nurse should take?",
+      "options": [
+        "Document the findings",
+        "Contact the primary health care provider",
+        "Increase the rate of the infusion",
+        "Continue to monitor the client"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Although the nurse would document the findings, the most appropriate priority action in this scenario is to contact the primary health care provider. The nurse should monitor the client for adverse effects and notify the primary health care provider if the maternal heart rate is faster than 110 beats/min, respiration is faster than 24 breaths/min, systolic blood pressure is less than 90 mm Hg, the fetal heart rate is faster than 160 beats/min, or the client complains of chest pain or dyspnea. Terbutaline may be used to stop preterm labor. It stimulates beta-adrenergic receptors of the sympathetic nervous system, resulting in bronchodilation and inhibition of uterine muscle activity. Increasing the rate of infusion and continuing to monitor the client are inappropriate and delay necessary interventions.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q18",
+      "stem": "A client is receiving propylthiouracil (PTU) prior to thyroid surgery. Which diagnostic test results indicate that the medication is producing the desired effect?",
+      "options": [
+        "Increased hemoglobin and hematocrit levels",
+        "Increased serum calcium level",
+        "Decreased white blood cell (WBC) count",
+        "Decreased triiodothyronine (T3) and thyroxine (T4) levels"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Propylthiouracil (PTU) is an adjunct therapy used to control hyperthyroidism by inhibiting the production of thyroid hormones (D). It is often prescribed in preparation for thyroidectomy or radioactive iodine therapy. It does not affect (A). (B) must be monitored after surgery in case the parathyroid glands were removed, but preoperative PTU does not increase the serum calcium level. If the client has an infection preoperatively, antibiotics will be given and (C) monitored.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q63",
+      "stem": "The charge nurse is making assignments for the upcoming shift. Which client is most appropriate to assign to the licensed practical nurse (LPN)?",
+      "options": [
+        "A client with nausea who needs a nasogastric tube inserted",
+        "A client in hypertensive crisis who needs titration of IV nitroglycerin",
+        "A newly admitted client who needs to have a plan of care established",
+        "A client who is ready for discharge who needs discharge teaching"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This client has a need for a skill that is within the scope of practice for the LPN (A). Titration of an IV drip, establishing care plans, and discharge teaching are within the scope of practice of a registered nurse (RN) and are not delegated (B, C, and D).",
+      "type": "single_select"
+    },
+    {
+      "id": "Q67",
+      "stem": "A client is admitted to a mental health unit because of mild depression. When asked, he denies suicidal ideation, but the nurse reads in the psychosocial assessment that there were attempts to overdose on aspirin 5 years earlier. Which intervention is most important for the nurse to implement?",
+      "options": [
+        "Orient the client to activities on the unit.",
+        "Document suicide precautions on the shift report.",
+        "Assign the client to a semiprivate room.",
+        "Obtain a verbal no-suicide contract with the client."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "It is most important to prevent the risk of self-harm from social isolation, so the client should be assigned to a semiprivate room (C). (A) does not have the priority of (C). (B and D) can be implemented if the client admits suicidal ideation. However, based on the fact that this client is mildly depressed and that he attempted suicide 5 years ago using a method that is usually nonlethal (aspirin overdose), it is most important to prevent social isolation.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q85",
+      "stem": "The nurse in the emergency department is caring for a client with type 1 diabetes mellitus in diabetic ketoacidosis (DKA). Which action should the nurse take first?",
+      "options": [
+        "Administer regular insulin IV.",
+        "Start an IV infusion of normal saline.",
+        "Check serum electrolyte levels.",
+        "Give a potassium supplement."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The patient in DKA experiences severe dehydration and must be rehydrated before insulin is administered (B). The other actions will follow rehydration (A, C, and D).",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q40",
+      "stem": "A nurse caring for a client with preeclampsia prepares for the administration of an intravenous infusion of magnesium sulfate. Which substance does the nurse ensure is readily available?",
+      "options": [
+        "Calcium gluconate",
+        "Potassium chloride",
+        "Protamine sulfate",
+        "Vitamin K"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Calcium gluconate should be available at the bedside of a client receiving an intravenous infusion of magnesium sulfate to reverse magnesium toxicity and prevent respiratory arrest if the serum magnesium level becomes too high. Magnesium sulfate, which has anticonvulsant properties, is used for a client with preeclampsia to help prevent seizures (eclampsia). It also causes central nervous system depression, however, so toxicity is a concern. Vitamin K is the antidote for warfarin sodium (Coumadin). Protamine sulfate is the antidote for heparin. Potassium chloride is used to treat potassium deficiency.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q227",
+      "stem": "Alprazolam is prescribed for a client to treat an anxiety disorder. Which side effect does the nurse warn the client of?",
+      "options": [
+        "Lightheadedness",
+        "Urine retention",
+        "Increased salivation",
+        "Headache"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Alprazolam is a benzodiazepine that is used to manage anxiety disorders. Common side effects include muscle incoordination, lightheadedness, transient mild drowsiness, and slurred speech. The other options are not side effects of this medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q34",
+      "stem": "Which disaster management intervention by the nurse is an example of primary prevention?",
+      "options": [
+        "Emergency department triage",
+        "Follow-up care for psychological problems",
+        "Education of rescue workers in first aid",
+        "Treatment of clients who are injured"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Primary prevention is aimed at preventing disease or injury. Training rescue workers prior to a disaster is an example of minimizing or preventing injury (C). (A) is an example of secondary prevention. (B) is an example of tertiary prevention. (D) is an example of secondary prevention.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q8",
+      "stem": "NPO status is imposed 8 hours before the procedure on a client scheduled to undergo electroconvulsive therapy (ECT) at 1 p.m. On the morning of the procedure, the nurse checks the client's record and notes that the client routinely takes an oral antihypertensive medication each morning. What action should the nurse take?",
+      "options": [
+        "Withhold the antihypertensive and administer it at bedtime",
+        "Administer the antihypertensive with a small sip of water",
+        "Administer the medication by way of the intravenous (IV) route",
+        "Hold the antihypertensive and resume its administration on the day after the ECT"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The nurse should administer the antihypertensive with a small sip of water. General anesthesia is required for ECT, so NPO status is imposed for 6 to 8 hours before treatment to help prevent aspiration. Exceptions include clients who routinely receive cardiac medications, antihypertensive agents, or histamine (H2) blockers, which should be administered several hours before treatment with a small sip of water. Withholding the antihypertensive and administering it at bedtime and withholding the antihypertensive and resuming administration on the day after the ECT are incorrect actions, because antihypertensives must be administered on time; otherwise, the risk for rebound hypertension exists. The nurse would not administer a medication by way of a route that has not been prescribed.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q146",
+      "stem": "A nurse in a primary health care provider's office is reviewing the medical record of a child with a diagnosis of lactose intolerance. Which finding does the nurse expect to see documented in the child's record?",
+      "options": [
+        "Episodes of profuse watery diarrhea and vomiting",
+        "Episodes of foul-smelling ribbon-like stools",
+        "Fatty stools",
+        "Episodes of cramping abdominal pain and excessive flatus"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Manifestations of lactose intolerance include diarrhea that is frothy (but not fatty), abdominal distention, cramping abdominal pain, and excessive flatus. The presence of fatty stools may indicate a problem with bile flow. Foul-smelling ribbon-like stool is a clinical manifestation of Hirschsprung disease. Profuse watery diarrhea and vomiting is one clinical manifestation of celiac disease.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q232",
+      "stem": "A nurse reviews the results of a total serum calcium determination in a client with chronic kidney disease. The results indicate a level of 12.0 mg/dL (3 mmol/L). In light of this result, which finding does the nurse expect to note during assessment?",
+      "options": [
+        "Decreased urine output",
+        "Hyperactive deep tendon reflexes",
+        "Hyperactive bowel sounds",
+        "Bounding, full peripheral pulses"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The normal total serum calcium level ranges from 8.6-10.2 mg/dL (2.15-2.55 mmol/L). Hypercalcemia occurs when the total serum calcium level exceeds 10 mg/dL (2.5 mmol/L). Some of the key features of hypercalcemia are increased heart rate and blood pressure; bounding, full peripheral pulses; ineffective respiratory movement related to profound skeletal muscle weakness; disorientation; diminution or absence of deep tendon reflexes; increased urine output; and hypoactive bowel sounds.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_014",
+      "stem": "An adolescent who was diagnosed with diabetes mellitus Type 1 at the age of 9, is admitted to the hospital in diabetic ketoacidosis. Which occurrence is the most likely cause of the ketoacidosis?",
+      "options": [
+        "Ate an extra peanut butter sandwich before gym class",
+        "Incorrectly administered too much insulin",
+        "Had a cold and ear infection for the past two days",
+        "Skipped eating lunch"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Infection and illness increase insulin requirements and can precipitate diabetic ketoacidosis in Type 1 diabetes clients.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_023",
+      "stem": "A client presses the call bell and requests pain medication for a severe headache. To assess the quality of the client's pain, which approach should the nurse use?",
+      "options": [
+        "Ask the client to describe the pain",
+        "Observe body language and movement",
+        "Identify effective pain relief measures",
+        "Provide a numeric pain scale"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Asking the client to describe pain quality (sharp, dull, throbbing, etc.) provides essential information about pain characteristics and potential causes.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_093",
+      "stem": "A new nurse preparing to irrigate an intravenous catheter is attaching a 24-gauge needle. Which action should the charge nurse implement?",
+      "options": [
+        "Suggest the nurse use a 20-gauge needle",
+        "Instruct the nurse to remove the needle",
+        "Direct the nurse to change the IV tubing",
+        "Prompt the nurse to apply povidone to the site"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "24-gauge is too small for IV irrigation, increasing risk of hemolysis. 20-gauge or larger is appropriate.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q40",
+      "stem": "An adult female who presents at the mental clinic trembling and crying becomes distressed when the nurse attempts to conduct an assessment. She complains about the number of questions that are being asked, which she is convinced are going to cause her to have a heart attack. What action should the nurse take?",
+      "options": [
+        "Take the client's blood pressure and reassure her that questioning will not cause a heart attack.",
+        "Explain that treatment is based on information obtained in the assessment.",
+        "Encourage the client to relax so that she can provide the information requested.",
+        "Empower the client to share her story of why she is here at the mental health clinic."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The client is exhibiting signs of moderate anxiety, which include voice tremors, shakiness, somatic complaints, and selective inattention. (D) is the best method for addressing this client's level of anxiety by creating a shared understanding of the client's concerns. Although assessment of her blood pressure (A) might be a worthwhile intervention, reassuring her that questioning will not cause a heart attack (A) is argumentative. (B) suggests that treatment cannot be provided without the information, which is manipulative. Asking the client to relax (C) is likely to increase her anxiety.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q130",
+      "stem": "A nurse is teaching a client with left-side weakness how to walk with the use of a quad-cane. What does the nurse ensure?",
+      "options": [
+        "30-degree flexion of the client's elbow is maintained when the client is holding the cane",
+        "The client leans on the cane and places as much weight as possible on the cane when moving it forward",
+        "The client places the cane on the left side",
+        "The top of the cane is level with the client's waist"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The cane, which is placed on the unaffected side, should produce no more than 30 degrees of flexion of the elbow. A cane may be used if a client needs minimal support for an affected leg. A straight cane offers the least support. A hemi-cane or quad-cane provides a broader base for the cane and therefore more support. The top of the cane should be level with the greater trochanter of the femur.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_020",
+      "stem": "A client who is scheduled for a bronchoscopy in the morning is anxious and asking the nurse numerous questions about the procedure. In preparing the client for the procedure, which intervention has the highest priority?",
+      "options": [
+        "Allow client to gargle with warm salt water",
+        "Administer a sedative to alleviate anxiety",
+        "Instruct client to write down the questions",
+        "Deny client's request for a midnight snack"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Writing down questions allows the client to express concerns and prepares them for informed consent without unnecessary medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q187",
+      "stem": "A nurse assessing the wound of a client with a stage 3 pressure ulcer notes that the wound bed is pale. What does the nurse interpret this finding as a possible indication of?",
+      "options": [
+        "Necrotic tissue is present",
+        "The wound is healthy",
+        "The wound is improving",
+        "The client's hemoglobin level is low"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "A pale wound bed may reflect a low hemoglobin value. Healthy full-thickness wounds have a granular beefy-red appearance. The color of a wound provides information about vascular supply, infection, the presence of healthy or necrotic tissue, and nutritional status. Necrotic tissue is white, yellow, gray, or black. Pseudomonas infection can produce greenish drainage in a wound bed.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_079",
+      "stem": "Prior to surgery, written consent must be obtained. Which is the nurse's legal responsibility with regard to obtaining written consent?",
+      "options": [
+        "Explain the surgical procedure to the client and ask the client to sign the consent form",
+        "Ask the client or a family member to sign the surgical consent form",
+        "Determine that the surgical consent form has been signed and is included in the client's record",
+        "Validate the client's understanding of the surgical procedure to be conducted"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The nurse's legal responsibility is to ensure the consent form is properly signed and documented. The provider obtains informed consent.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q98",
+      "stem": "A primipara presents to the perinatal unit describing rupture of the membranes (ROM), which occurred 12 hours prior to coming to the hospital. An oxytocin (Pitocin) infusion is begun, and 8 hours later the client's contractions are irregular and mild. What vital sign should the nurse monitor with greater frequency than the typical unit protocol?",
+      "options": [
+        "Maternal temperature",
+        "Fetal blood pressure",
+        "Maternal respiratory rate",
+        "Fetal heart rate"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Maternal temperature (A) should be monitored frequently as a primary indicator of infection. This client's rupture of membranes (ROM) occurred at least 20 hours ago (12 hours before coming to the hospital, in addition to 8 hours since hospital admission). Delivery is not imminent, and there is an increased risk of the development of infection 24 hours after ROM. (B) cannot be established with standard bedside monitoring. (C) is not specifically related to ROM. (D) is always monitored during labor; this situation would not prompt the nurse to increase FHR monitoring.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_048",
+      "stem": "A young adult visits the clinic reporting symptoms associated with gastritis. Which information in the client's history is most important for the nurse to address in the teaching plan?",
+      "options": [
+        "Consumes 10 or more drinks of alcohol every weekend",
+        "Snacks on foods with very high salt content on a daily basis",
+        "Exercises vigorously every evening right before going to bed",
+        "Recently became a vegetarian and eats a lot of high fiber foods"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Heavy alcohol consumption is a major risk factor for acute and chronic gastritis and requires priority education for lifestyle modification.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q114",
+      "stem": "A client living in a long-term care facility shouts at the nurse, Get out of my room! I don't need your help! What is the most appropriate way for the nurse to document this occurrence in the client's record?",
+      "options": [
+        "Writing that the client is very agitated",
+        "Writing that the client is able to perform his/her own care",
+        "Writing down the client's words and placing them in quotation marks",
+        "Writing that the client yelled at the nurse"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Documenting the client's words verbatim and placing them in quotations ensures accurate data. An objective description is the result of direct observation and measurement. Documenting inferences without supporting factual data is not acceptable, because a client's statements may be misunderstood. The remaining options do not provide objective descriptions.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_045",
+      "stem": "Prior to obtaining a trapeze bar for a client with limited mobility, which client assessment is most important for the nurse to obtain?",
+      "options": [
+        "Upper body muscle strength",
+        "Balance and posture",
+        "Risk for disuse syndrome",
+        "Pressure sore risk"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The client must have adequate upper body strength to safely use a trapeze bar without risk of injury.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q142",
+      "stem": "A nurse is teaching a client with angina pectoris who is being discharged from the hospital about managing chest pain at home. Which statement by the client indicates a need for further teaching?",
+      "options": [
+        "If I get chest pain, I should put 3 nitroglycerin tablets under my tongue and then go to the emergency department if that doesn't work.",
+        "I need to check the expiration date on the nitroglycerin bottle.",
+        "I need to keep fresh nitroglycerin available in case I need it.",
+        "If I have any chest pain, I need to stop what I am doing and sit or lie down."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "There is a need for further teaching if the client states, If I get chest pain, I should put 3 nitroglycerin tablets under my tongue and then go to the emergency department if that doesn't work. The client is instructed to place 1 nitroglycerin tablet, not 3 tablets, under the tongue and allow it to dissolve. The client needs to obtain instructions from the primary health care provider about the preferred procedure for administering nitroglycerin. The remaining statements reflect accurate understanding of the nurse's teaching.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q195",
+      "stem": "A client has been scheduled for an electronystagmography (ENG), and the nurse provides instructions to the client about the test. Which statement by the client tells the nurse that the client understands the instructions?",
+      "options": [
+        "I won't be able to eat for 24 hours after the test.",
+        "I shouldn't drink coffee before the test.",
+        "I can eat a light breakfast on the morning of the test.",
+        "I'll need to receive sedation before the test."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The client understands the instructions for an ENG if the client states, I shouldn't drink coffee before the test. The client must fast for several hours (but not for 24 hours) before the test and should avoid caffeine-containing products for 24 to 48 hours before the test. An ENG is a test that is sensitive in detecting both central and peripheral disease of the vestibular system in the ear. It detects nystagmus (involuntary eye movements), which can be recorded. After electrodes are taped to the skin near the eyes, procedures are performed to stimulate nystagmus. No sedation is used for the ENG. Fluids are given to the client after the test but are introduced carefully to prevent nausea.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q16",
+      "stem": "The nurse prepares to administer acetaminophen oral suspension to a child who weighs 66 pounds. The prescription reads: Administer 15 mg/kg every 6 hours by mouth. The Tylenol is available 150 mg/5 ml. Which is the correct dosage?",
+      "options": [
+        "30ml",
+        "15ml",
+        "10ml",
+        "5ml"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "66 lb/(2.2 kg/lb) = 30 kg\n30 kg \u00d7 (15 mg/kg) = 450 mg\n(5 mL/150 mg) \u00d7 450 mg = 15 mL\nor\n(450 mg/150 mg) \u00d7 5 mL = 15 mL",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q207",
+      "stem": "A client with type 1 diabetes mellitus is instructed by the primary health care provider to obtain glucagon hydrochloride for emergency home use. The nurse provides information to the client's wife about the medication. Which statement by the client's wife indicates that she understands the information?",
+      "options": [
+        "I can give this medication instead of insulin if his insulin runs out.",
+        "I need to give this if he has signs of low blood sugar and goes into a coma.",
+        "I need to store this medication in the freezer.",
+        "I know that this is used to treat episodes of high blood sugar."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The statement by the client's wife that indicates she understands the information is, I need to give this medication if he has signs of low blood sugar and goes into a coma. Glucagon is used to treat hypoglycemia resulting from insulin overdose. If hypoglycemic coma develops, glucagon is administered promptly. The family of the client is instructed in how to administer the medication. In an unconscious client, arousal usually occurs within 20 minutes of injection. Once consciousness has been produced, oral carbohydrates should be given. Insulin should never be stored in the freezer. Glucagon is not used to treat hyperglycemia or used in place of insulin; also, the client should be instructed to have additional vials of insulin on hand at home so that he will not run out. Glucagon is stored at room temperature.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q21",
+      "stem": "Which vital sign in a pediatric client is most important to report to the primary health care provider?",
+      "options": [
+        "Newborn with a heart rate of 140 beats/min",
+        "Three-year-old with a respiratory rate of 28 breaths/min",
+        "Six-year-old with a heart rate of 130 beats/min",
+        "Twelve-year-old with a respiratory rate of 16 breaths/min"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The normal heart rate for a 6- to 10-year-old is 70 to 110 beats/min (C). The others are all within normal range for those ages (A, B, and D).",
+      "type": "single_select"
+    },
+    {
+      "id": "Q78",
+      "stem": "In caring for a pregnant woman with gestational diabetes, the nurse should be alert to which finding?",
+      "options": [
+        "A consistent fasting blood sugar level between 80 and 85 mg/dL",
+        "A 2-hour postprandial level greater than 120 mg/dL",
+        "Client reports taking a 30-minute walk after dinner",
+        "Client describes eating pattern of four to six meals daily"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Two-hour postprandial levels greater than 120 mg/dL may indicate the need for the initiation of insulin to maintain adequate blood glucose levels; consequently, a value greater than 120 mg/dL (B) should be assessed further. Fasting blood sugars between 80 and 85 mg/dL are normal (A). (C and D) are healthy behaviors for a women with gestational diabetes.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_019",
+      "stem": "A toddler presenting with a history of intermittent skin rashes, hives, abdominal pain, and vomiting that occurs after ingesting of milk products arrives to the clinic accompanied by the parents. Which type of testing should the nurse provide education to the toddler's family about?",
+      "options": [
+        "Serum immunoglobulin E (IgE)",
+        "Intradermal test",
+        "Atopy patch test",
+        "Placebo-controlled food challenge"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Serum IgE testing identifies specific food allergies and is appropriate for suspected milk allergy with systemic symptoms.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q179",
+      "stem": "A nurse is assessing a client with hepatitis for signs/symptoms of jaundice. Which area does the nurse check, knowing that it will provide the best data regarding the presence of jaundice?",
+      "options": [
+        "Palms",
+        "Mucous membranes",
+        "Soles",
+        "Lips"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Assessment of the skin, sclera, and mucous membranes provides the best data regarding the presence of jaundice. The color of the lips provides data regarding the presence of cyanosis. Although assessment of the skin provides adequate data regarding jaundice, the soles and palms are not the best areas of skin for assessment. Jaundice needs to be distinguished from yellow or green skin color resulting from carotenemia or quinacrine (drug used for treatment of giardiasis). The resultant yellow skin color is differentiated from jaundice by the absence of yellow color in mucous membranes and sclerae, the normal urine color, and the accentuation of yellow-brown carotenoid pigment in the palms, soles, and nasolabial folds.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q16",
+      "stem": "A nurse, conducting an assessment of a client being seen in the clinic for signs/symptoms of a sinus infection, asks the client about medications that he is taking. The client tells the nurse that he is taking nefazodone hydrochloride. On the basis of this information, the nurse determines that the client most likely has a history of what problem?",
+      "options": [
+        "Diabetes mellitus",
+        "Coronary artery disease",
+        "Depression",
+        "Hyperthyroidism"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The client is most likely suffering from depression. Nefazodone hydrochloride is an antidepressant used as maintenance therapy to prevent relapse of an acute depression. Diabetes mellitus, hypethyroidism, and coronary artery disease are not treated with this medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q6",
+      "stem": "When caring for a client in labor, which finding is most important to report to the primary health care provider?",
+      "options": [
+        "Maternal heart rate, 90 beats/min.",
+        "Fetal heart rate, 100 beats/min",
+        "Maternal blood pressure, 140/86 mm Hg",
+        "Maternal temperature, 100.0\u00b0 F"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "A fetal heart rate (FHR) of 100 beats/min may indicate fetal distress (B) because the average FHR at term is 140 beats/min and the normal range is 110 to beats/min 160. The others (A, C, and D) are normal findings for a woman in labor.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q203",
+      "stem": "A nurse prepares to administer digoxin to a client with heart failure. Which vital sign must be checked before the medication is administered?",
+      "options": [
+        "Apical pulse",
+        "Respirations",
+        "Temperature",
+        "Blood pressure"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The nurse would count the client's apical heart rate for 60 seconds before giving the medication. Digoxin is a cardiac glycoside used to treat heart failure and control the ventricular rate in clients with atrial fibrillation. If the heart rate is slower than 60 beats/min, the medication is withheld and the primary health care provider notified. Excessive slowing of the heart rate is one clinical sign of digoxin toxicity. Although the nurse might check other vital signs, the apical pulse is the most important in this context.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q252",
+      "stem": "A nurse is performing an assessment of a newborn with a diagnosis of esophageal atresia (EA) and tracheoesophageal fistula (TEF). Which findings does the nurse expect to note in the infant? (Select all that apply.)",
+      "options": [
+        "Hiccuping",
+        "Wheezing",
+        "Short periods of apnea",
+        "Drooling",
+        "Bowel sounds over the chest",
+        "Excessive oral secretions"
+      ],
+      "correct": [
+        "D",
+        "F"
+      ],
+      "rationale": "EA with or without TEF results in excessive oral secretions, drooling, and feeding intolerance. EA and TEF, the most life-threatening anomalies of the esophagus, often occur together, although they may occur singly. EA is a congenital anomaly in which the esophagus ends in a blind pouch or narrows into a thin cord, thereby failing to form a continuous passageway to the stomach. TEF is an abnormal connection between the esophagus and trachea. When fed, the infant may swallow but will then cough and gag and return the fluid through the nose and mouth. Bowel sounds over the chest is a clinical manifestation associated with congenital diaphragmatic hernia. Hiccuping and spitting up after a meal are clinical manifestations of gastroesophageal reflux. Coughing, wheezing, and short periods of apnea are clinical manifestations of hiatal hernia.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Comp_Q51",
+      "stem": "An adult client with chronic kidney disease who is oliguric and undergoing hemodialysis is under a fluid restriction. What percentage of the total amount of fluid can the client consume during the evening shift?",
+      "options": [
+        "10%",
+        "40%",
+        "50%",
+        "20%"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Typically, 50% of allotted fluids are consumed between 7 a.m. and 3 p.m. Another two-fifths (40%) is allowed during the evening shift, and the remaining 10% overnight.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q224",
+      "stem": "Calcium carbonate is prescribed for a client with mild hypocalcemia. What food does the nurse instruct the client to avoid consuming while taking this medication?",
+      "options": [
+        "Fish",
+        "Spinach",
+        "Watermelon",
+        "Milk"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The nurse instructs the client to avoid consuming spinach while taking calcium carbonate. Oral calcium salts are used to treat mild hypocalcemia and to supplement dietary calcium. The client is instructed to take oral calcium with a large glass of water with or after a meal to promote absorption. The client is also instructed to avoid taking calcium with foods that can suppress calcium absorption. Such foods include not only spinach, but Swiss chard, beets, bran, and whole-wheat cereals. The client does not need to avoid fish, milk, or watermelon.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q210",
+      "stem": "Vasopressin is prescribed to a client with diabetes insipidus. For which sign/symptom, indicative of an adverse effect of the medication, does the nurse monitor the client?",
+      "options": [
+        "Chest pain",
+        "Constipation",
+        "Loss of appetite",
+        "Decreased urine output"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Chest pain is a sign of an adverse effect of vasopressin, and if it occurs, the primary health care provider must be notified. Because of its powerful vasoconstrictive action, vasopressin can cause adverse cardiovascular effects. By constricting arteries of the heart, vasopressin can cause angina pectoris and even myocardial infarction, especially if the medication is administered to a client with existing coronary artery disease. Vasopressin may also cause gangrene by decreasing blood flow in the periphery. Decreased urine output is an expected effect. Neither constipation nor loss of appetite is associated with this medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q65",
+      "stem": "The charge nurse reviews the charting of a graduate nurse. Which indicates a need for further education on documentation?",
+      "options": [
+        "Uses descriptive words such as \"gurgling\" to describe breath sounds",
+        "Records temperature 30 minutes before and after giving acetaminophen",
+        "Charts some actions in advance of performing them",
+        "Includes the client's response to an intervention"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Charting actions prior to implementing them is an example of fraudulent charting and the graduate nurse should receive further education (C). (A, B, and D) are appropriate charting examples.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q241",
+      "stem": "A nurse provides instructions to a client who has been prescribed lithium carbonate for the treatment of bipolar disorder. Which of these statements by the client indicate a need for further instruction? (Select all that apply.)",
+      "options": [
+        "I should drink 2 to 3 quarts (1.9 to 2.8 litres) of liquid every day.",
+        "Diarrhea and muscle weakness are to be expected, and if these occur I don't need to be concerned.",
+        "It's fine to take any over-the-counter medication with the lithium.",
+        "I need to avoid salt in my diet.",
+        "I need to come back to the clinic to have my lithium blood level checked."
+      ],
+      "correct": [
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Lithium carbonate is a mood stabilizer used to treat manic-depressive illness. Equilibrium of sodium and potassium must be maintained at the intracellular membrane to maintain therapeutic effects. Lithium competes with sodium in the cell. Therefore the client should maintain a normal salt intake and drink 2 to 3 quarts (1.9 to 2.8 litres) of fluid each day. Many over-the-counter medications contain sodium and would therefore affect the lithium concentration, possibly pushing it out of the therapeutic range. For this reason, over-the-counter medications must be avoided. The blood level of lithium should be tested every 3 or 4 days during the initial phase of therapy and every 1 to 2 months during maintenance therapy. Vomiting, diarrhea, muscle weakness, tremors, drowsiness, and ataxia are signs/symptoms of toxicity; if any of these problems occur, the primary health care provider must be notified.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Comp_Q263",
+      "stem": "A nurse is preparing medication instructions for a client who will be taking a daily oral dose of digoxin 0.25 mg in the treatment of heart failure (HF). Which instructions should the nurse include on the list? (Select all that apply.)",
+      "options": [
+        "Avoid eating foods that contain potassium.",
+        "Notify the primary health care provider if you experience loss of appetite, muscle weakness, or visual disturbances.",
+        "Take your pulse before taking each dose.",
+        "Take the digoxin at the same time each day.",
+        "If you forget to take your daily dose, double the dose on the next day.",
+        "Take the digoxin with a chewable antacid to prevent nausea."
+      ],
+      "correct": [
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Loss of appetite, muscle weakness, and visual disturbances are signs/symptoms of digoxin toxicity, and the primary health care provider must be notified if any of these occur. Digoxin is a cardiac glycoside that increases the force of myocardial contraction. It is used to treat HF and to control the ventricular rate in clients with atrial fibrillation. The client is instructed to take the medication at the same time each day and to check the pulse rate before taking the medication. If the pulse rate is slower than 60 beats/min or faster than 100 beats/min, the primary health care provider is notified. The medication is not taken with an antacid, because the antacid will affect absorption of the medication. If the client forgets to take a dose, it needs to be taken as soon as remembered. The dose is never doubled. Hypokalemia predisposes a client to digoxin toxicity. A client is not instructed to avoid foods that contain potassium unless specifically instructed to do so by the primary health care provider.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_RN_001",
+      "stem": "The nurse is completing the admission assessment of a 3-year old who is admitted with bacterial meningitis and hydrocephalus. Which assessment finding is evidence that the child is experiencing increased intracranial pressure (ICP)?",
+      "options": [
+        "Tachycardia and tachypnea",
+        "Sluggish and unequal pupillary responses",
+        "Increased head circumference and bulging fontanels",
+        "Blood pressure fluctuations and syncope"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Sluggish and unequal pupillary responses indicate increased intracranial pressure. This is a classic sign of elevated ICP in pediatric patients with meningitis.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q36",
+      "stem": "The nurse is planning the care for a client who is admitted with syndrome of inappropriate antidiuretic hormone secretion (SIADH). Which intervention(s) should the nurse include in this client's plan of care? (Select all that apply.)",
+      "options": [
+        "Salt-free diet",
+        "Quiet environment",
+        "Deep tendon reflex assessments",
+        "Neurologic checks",
+        "Daily weights"
+      ],
+      "correct": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "rationale": "Correct responses are (B, C, D, and E). SAIDH results in water retention and dilutional hyponatremia, which causes neurologic changes when serum sodium levels are less than 115 mEq/L. The nurse should maintain a quiet environment (B) to prevent overstimulation and assess deep tendon reflexes (C) and perform neurologic checks (D) to monitor for neurologic deterioration. Daily weights (E) should be monitored to assess for fluid overload. (A) would contribute to dilutional hyponatremia.",
+      "type": "select_all_that_apply"
+    },
+    {
+      "id": "HESI_Comp_Q59",
+      "stem": "A client diagnosed with type 1 diabetes mellitus has just been told that she is 6 weeks pregnant. The nurse provides information to the client about dietary and insulin needs. What comment by the client suggests an understanding of the information?",
+      "options": [
+        "My insulin needs should decrease during the first trimester.",
+        "I know I will have to increase my insulin during this time period.",
+        "I will have to double up on the insulin dose during this time span.",
+        "Needs for insulin will not change during the first 3 months of pregnancy."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Insulin needs generally decrease during the first trimester of pregnancy because the secretion of placental hormones antagonistic to insulin remains low. An increase in insulin need, lack of change in insulin need, and doubling of insulin need are all incorrect.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q19",
+      "stem": "A client who has been undergoing long-term therapy with an antipsychotic medication is admitted to the inpatient mental health unit. Which finding does the nurse, knowing that long-term use of an antipsychotic medication can cause tardive dyskinesia, monitor in the client?",
+      "options": [
+        "Tongue protrusion",
+        "Hypertension",
+        "Fever",
+        "Diarrhea"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The clinical manifestations include abnormal movements (dyskinesia) and involuntary movements of the mouth, tongue (flycatcher tongue), and face. Tardive dyskinesia is a severe reaction associated with long-term use of antipsychotic medications. In its most severe form, tardive dyskinesia involves the fingers, arms, trunk, and respiratory muscles. When this occurs, the medication is discontinued. Fever, diarrhea, and hypertension are not characteristics of tardive dyskinesia.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q155",
+      "stem": "A nurse is monitoring a client who was brought to the emergency department in an unresponsive state and is now being treated for hyperglycemic nonketotic syndrome (HNS). Which finding indicates to the nurse that fluid replacement is inadequate?",
+      "options": [
+        "Level of consciousness remains unchanged",
+        "Blood pressure of 128/80 mm Hg",
+        "Potassium level of 3.6 mEq/L (3.6 mmol/L)",
+        "Increased urine output"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Lack of any improvement in the level of consciousness may indicate an inadequate rate of fluid replacement or a reduction in plasma osmolarity. The initial objective for fluid replacement in HNS is to increase circulating blood volume. Increased urine output indicates an improvement in the client's status. Potassium level of 3.6 mEq/L (3.6 mmol/L) and a blood pressure of 128/80 mm Hg are normal findings.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q3",
+      "stem": "Which vaccination should the nurse administer to a newborn?",
+      "options": [
+        "Hepatitis B",
+        "Human papilloma virus (HPV)",
+        "Varicella",
+        "Meningococcal vaccine"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The hepatitis B vaccination should be given to all newborns before hospital discharge (A). HPV is not recommended until adolescence (B). Varicella immunization begins at 12 months (C). Meningococcal vaccine is administered beginning at 2 years (D).",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q178",
+      "stem": "As a nurse prepares to administer medications to an assigned client, the client asks, Why don't you just leave me alone? What is the best response by the nurse?",
+      "options": [
+        "These medications will help you feel much better.",
+        "Why do you want to be left alone? I'm here to help you.",
+        "I can see that you're upset. Would you like to talk about it?",
+        "Don't yell at me."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The best response is, I can see that you're upset. Would you like to talk about it? The nurse addresses the client's feelings. The client may not want to talk about his/her feelings, but the nurse has provided the opportunity to the client and is maintaining an open channel of communication. Don't yell at me is confrontational and nonfacilitative and imposes control. These medications will help you feel much better avoids the client's feelings. Why do you want to be left alone? I'm here to help you is not a facilitative response and may place the client, who may not be able to express his or her feelings, on the defensive.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q66",
+      "stem": "A hospitalized pregnant client with sepsis is at risk for disseminated intravascular coagulopathy (DIC). Which laboratory finding indicates that DIC has developed?",
+      "options": [
+        "Positive result on d-dimer study",
+        "Increased platelet count",
+        "Shortened prothrombin time",
+        "Decreased fibrin-degradation products"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A positive d-dimer indicates presence of fibrin split products and supports DIC diagnosis. Platelets are decreased, prothrombin time is prolonged, and fibrin-degradation products are increased in DIC.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q226",
+      "stem": "A client with multiple sclerosis (MS) has been started on baclofen for muscle spasms. The client calls the primary health care provider's office 1 week after beginning the medication and tells the nurse that she/he feels extremely drowsy. What does the nurse most appropriately tell the client?",
+      "options": [
+        "That drowsiness usually diminishes with continued therapy",
+        "That she/he will need to be seen by the primary health care provider",
+        "That the medication will need to be discontinued",
+        "To stop the medication for 2 days and then resume it at the prescribed dosage"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Baclofen is a centrally acting skeletal muscle relaxant. Side effects of baclofen include drowsiness, dizziness, weakness, and nausea. The nurse most appropriately tells the client that drowsiness usually diminishes with continued therapy. However, the client is told to avoid activities that require alertness until the response to the medication has been established. Therefore it is not necessary to call the primary health care provider or discontinue or stop the medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q77",
+      "stem": "A client exhibits symptoms of alcohol intoxication. The blood alcohol level is 200 mg (0.2%). Which measurement tool is best for the nurse to use during the initial assessment of this client?",
+      "options": [
+        "CAGE questionnaire for alcoholism",
+        "Addiction Severity Index",
+        "Glasgow Coma Scale",
+        "DSM multiaxial evaluation"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Evaluation of level of consciousness, which is the purpose of the Glasgow Coma Scale (C), has the highest priority. (A) is useful in helping clients recognize their alcoholism. (B and D) are comprehensive assessments that should be completed after the acute phase is resolved.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_063",
+      "stem": "A client who recently received a prescription for ramelteon to treat sleep deprivation reports experiencing several side effects since taking the drug. Which side effect should the nurse report to the healthcare provider?",
+      "options": [
+        "A change in the sleep-wake cycle",
+        "Mild sedation",
+        "Dizziness reported after initial dose",
+        "Somnambulism"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Somnambulism (sleepwalking) is a serious side effect of ramelteon requiring provider notification and possible discontinuation.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q196",
+      "stem": "A nurse assigns an assistive personnel (AP) to care for a client who is hearing impaired and provides instructions to the AP about the effective methods for communicating with the client. Which statement by the AP indicates that further instruction is needed?",
+      "options": [
+        "I should raise the volume of my voice and stand on the client's affected side when I'm talking to him.",
+        "I should make sure that the room is well lit when I'm talking to the client.",
+        "I should speak slowly and clearly to the client.",
+        "I should stand directly in front of the client when I'm talking."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Further instruction is needed if the AP states, I should raise the volume of my voice and stand on the client's affected side when I'm talking to him. When communicating with a hearing-impaired client, the nurse should position herself or himself directly in front of the client so that the client may read the nurse's lips. The room should be well lit, and the nurse should get the client's attention before speaking. The nurse should move closer to the ear with better hearing and speak slowly and clearly. The nurse should speak in a normal tone of voice and keep his or her hands and other objects away from the mouth while talking to the client.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q29",
+      "stem": "A nurse, performing an assessment of a client who has been admitted to the hospital with suspected silicosis, is gathering both subjective and objective data. Which question by the nurse would elicit data specific to the cause of this disorder?",
+      "options": [
+        "Do you chew tobacco?",
+        "Have you ever worked in a mine?",
+        "Do you smoke cigarettes?",
+        "Are you frequently exposed to paint products?"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Silicosis is a chronic fibrotic disease of the lungs caused by the inhalation of free crystalline silica dust over a long period. Mining and quarrying are each associated with a high incidence of silicosis. Hazardous exposure to silica dust also occurs in foundry work, tunneling, sandblasting, pottery-making, stone masonry, and the manufacture of glass, tile, and bricks. The finely ground silica used in soaps, polishes, and filters also presents a risk. The assessment questions noted in the other options are unrelated to the cause of silicosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q139",
+      "stem": "The nurse is explaining the diagnosis of congenital diaphragmatic hernia (CDH) related to a left posterolateral defect (also called Bochdalek hernia) to a postpartum client. What body system does the nurse emphasize is the system most at risk for problems?",
+      "options": [
+        "Respiratory system",
+        "Genitourinary system",
+        "Gastrointestinal system",
+        "Musculoskeletal system"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "With a congenital diaphragmatic hernia, abdominal contents herniate through an opening in the diaphragm. If caused by a left posterolateral defect, the respiratory system is most at risk for problems. This serious defect requires prompt recognition (usually in utero) and aggressive treatment to reduce its high mortality. Intestines and other abdominal structures, such as the liver, can enter the thoracic cavity, compressing the lung. Lung hypoplasia may occur on the affected side and to a lesser degree on the contralateral side. Ventilation is further compromised by hypoplasia and compression of the lung, including the airways and blood vessels. In addition to the anatomic defect, pulmonary hypoplasia and pulmonary hypertension have also been recently recognized as components in the pathology of CDH.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_151",
+      "stem": "The nurse leading a care team on a medical surgical unit is assigning client care to a practical nurse (PN) and an unlicensed assistive personnel (UAP). Which task should the nurse delegate to the UAP?",
+      "options": [
+        "Evaluate a client's mobility progress toward the plan of care",
+        "Assess for side effects of administered pain medications",
+        "Turn and reposition a client with a total hip replacement",
+        "Monitor an intravenous infusion rate on an established schedule"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Turning and repositioning is within UAP scope. Evaluation, assessment, and monitoring are nursing functions.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q10",
+      "stem": "Which intervention should be included in the plan of care for a client admitted to the hospital with ulcerative colitis?",
+      "options": [
+        "Administer stool softeners.",
+        "Place the client on fluid restriction.",
+        "Provide a low-residue diet.",
+        "Add a milk product to each meal."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "A low-residue diet (C) will help decrease symptoms of diarrhea, which are clinical manifestations of ulcerative colitis. (A, B, and D) are contraindicated and could worsen the condition.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q97",
+      "stem": "Which statement by the U.S. Food and Drug Administration (FDA) is an example of a black box or black label warning for the drug clopidogrel (Plavix)?",
+      "options": [
+        "This drug could cause heart attack or stroke when taken by patients with certain genetic conditions.",
+        "Clopidogrel helps prevent platelets from sticking together and forming clots in the blood.",
+        "This drug can be taken in combination with aspirin to reduce the risk of acute coronary syndrome.",
+        "Clopidogrel can reduce the risk of a future heart attack when taken by patients with peripheral artery disease."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A black box warning is a notice required by the FDA on a prescription drug that warns of potentially dangerous side effects (A). (B, C, and D) are all desired effects of the drug.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_121",
+      "stem": "A client is admitted with a diagnosis of urolithiasis. Which finding is most important for the nurse to report to the healthcare provider?",
+      "options": [
+        "Volume of each voiding is more than 300mL",
+        "Serum potassium that is elevated",
+        "Relief of flank pain that radiated into the groin",
+        "Hematuria that is beginning to turn pink"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Increasing hematuria (darker color) indicates worsening kidney damage or ureteral trauma requiring immediate intervention.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_006",
+      "stem": "A teenager presents to the emergency department with palpitations after vaping at a party. The client is anxious, fearful, and hyperventilating. The nurse anticipates the client developing which acid base imbalance?",
+      "options": [
+        "Respiratory acidosis",
+        "Metabolic alkalosis",
+        "Metabolic acidosis",
+        "Respiratory alkalosis"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Hyperventilation causes excessive CO2 loss leading to respiratory alkalosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q56",
+      "stem": "A home care nurse visits a mother who delivered a healthy newborn 4 days ago. To determine whether the infant is receiving an adequate amount of milk, what does the nurse ask the mother?",
+      "options": [
+        "Pump the breasts and measure the milk, then bottle-feed the infant",
+        "Count the number of times the infant swallows during feeding",
+        "Count wet diapers to ensure the infant has at least 6-10 each day",
+        "Weigh the infant daily and check for 2 oz (60 mL) daily weight gain"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Counting wet/soiled diapers is the best indicator of adequate milk intake. Infants should have 6-10 wet diapers per day after day 2 and at least 4 stools daily.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q54",
+      "stem": "Chlorpromazine has been prescribed to a client with Huntington's disease for the relief of choreiform movements (repetitive and rapid, jerky, involuntary movements that appear well-coordinated). Of which common side effect does the nurse warn the client?",
+      "options": [
+        "Urinary frequency",
+        "Photophobia",
+        "Drowsiness",
+        "Headache"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Chlorpromazine is an antipsychotic, antiemetic, antianxiety, and antineuralgia adjunct. Common side effects of chlorpromazine include drowsiness, blurred vision, hypotension, defective color vision, impaired night vision, dizziness, decreased sweating, constipation, dry mouth, and nasal congestion. Headache, photophobia, and urinary frequency are not specific side effects of this medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q158",
+      "stem": "A nurse is providing information to a client with diabetes insipidus who will be taking desmopressin acetate by way of the nasal route. For which occurrence does the nurse tell the client to contact the primary health care provider?",
+      "options": [
+        "Headache and nausea",
+        "Abdominal cramps",
+        "Stuffy or runny nose",
+        "Decreased urine output"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "One adverse effect of desmopressin acetate is water intoxication. Early signs/symptoms of water intoxication include headache, nausea, shortness of breath, drowsiness, and listlessness. The primary health care provider is notified if these signs/symptoms occur. Desmopressin, a synthetic form of antidiuretic hormone, causes increased resorption of water and a resultant decrease in urine output (an expected outcome). Diabetes insipidus is a disorder of water metabolism caused by a deficiency of antidiuretic hormone (ADH). Abdominal cramping is a side effect, not an adverse effect, of the parenteral form of the medication. A runny or stuffy nose is a side effect, not an adverse effect, of the medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q234",
+      "stem": "While being seen by a primary health care provider, a client reports persistent fever, malaise, and night sweats. On physical examination, the primary health care provider palpates enlarged lymph nodes, and the client states that the nodes are painless. Hodgkin's lymphoma is suspected, and several diagnostic studies are performed. Which characteristic of this type of lymphoma does the nurse expect to note while reviewing the results of the diagnostic studies?",
+      "options": [
+        "Blast cells in the bone marrow",
+        "Epstein-Barr virus in the blood",
+        "Reed-Sternberg cells on biopsy of a lymph node",
+        "Increased blood urea nitrogen (BUN)"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Hodgkin's lymphoma is a neoplasm of lymphatic tissue. The presence of giant multinucleated cells (Reed-Sternberg cells) is the hallmark of this disease. The presence of blast cells in the bone marrow is indicative of leukemia. Viral infections have been associated with Hodgkin's lymphoma but do not confirm the presence of the disease. An increased BUN level is indicative of a renal system disorder.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_033",
+      "stem": "While assessing a client who is admitted with heart failure and pulmonary edema, the nurse identifies dependent peripheral edema, an irregular heart rate, and a persistent cough that produces pink blood-tinged sputum. After initiating continuous telemetry and positioning the client, which intervention should the nurse implement?",
+      "options": [
+        "Obtain sputum sample",
+        "Document degree of edema",
+        "Initiate hourly urine output measurement",
+        "Administer intravenous diuretics"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Pink frothy sputum indicates pulmonary edema. Obtaining a sputum sample helps determine if infection is also present.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q209",
+      "stem": "A client has a primary health care provider's appointment to get a prescription for sildenafil. The nurse obtains the health history from the client. Which finding indicates that the medication is contraindicated?",
+      "options": [
+        "The client has type 2 diabetes mellitus.",
+        "The client is taking glargine insulin.",
+        "The client takes isosorbide dinitrate.",
+        "The client has a history of renal calculi."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Sildenafil is used to treat male erectile dysfunction. It is contraindicated in the client who is using isosorbide dinitrate, a form of sodium nitroprusside or organic nitrates in any form, because both sildenafil and nitrates promote hypotension. When these medications are combined, life-threatening hypotension may result. Type 2 diabetes mellitus, a history of renal calculi, and the use of glargine insulin are not contraindications to the use of sildenafil.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q5",
+      "stem": "The nurse is caring for a client with an ischemic stroke who has a prescription for tissue plasminogen activator (t-PA) IV. Which action(s) should the nurse expect to implement? (Select all that apply.)",
+      "options": [
+        "Administer aspirin with tissue plasminogen activator (t-PA).",
+        "Complete the National Institute of Health Stroke Scale (NIHSS).",
+        "Assess the client for signs of bleeding during and after the infusion.",
+        "Start t-PA within 6 hours after the onset of stroke symptoms.",
+        "Initiate multidisciplinary consult for potential rehabilitation."
+      ],
+      "correct": [
+        "B",
+        "C",
+        "E"
+      ],
+      "rationale": "Neurologic assessment, including the NIHSS, is indicated for the client receiving t-PA. This includes close monitoring for bleeding during and after the infusion; if bleeding or other signs of neurologic impairment occur, the infusion should be stopped (B, C, and E). Aspirin is contraindicated with t-PA because it increases the risk for bleeding (A). The administration of t-PA within 6 hours of symptoms is concurrent with a diagnosis of a myocardial infarction and within 4.5 hours of symptoms is concurrent for a stroke (D).",
+      "type": "select_all_that_apply"
+    },
+    {
+      "id": "HESI_RN_015",
+      "stem": "A client with a prescription for 'do not resuscitate' (DNR) begins to manifest signs of impending death. After notifying the family of the client's status, what priority action should the nurse implement?",
+      "options": [
+        "The impending signs of death should be documented",
+        "The client's status should be conveyed to the chaplain",
+        "The client's need for pain medication should be determined",
+        "The nurse manager should be updated on the client's status"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Assessing and managing pain is the priority when a client is approaching death, as comfort care becomes the focus of treatment.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_155",
+      "stem": "What might the nurse suggest to a client with fibrocystic breasts in an attempt to help relieve her symptoms?",
+      "options": [
+        "Eliminate caffeine from your diet",
+        "Avoid vigorous physical exercise immediately after your menstrual periods",
+        "Eat a low-carbohydrate, high-protein diet",
+        "Increase high-calcium foods in your diet"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Increased dietary calcium has been shown to reduce symptoms of fibrocystic breast disease.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q18",
+      "stem": "Risperidone is prescribed for a client hospitalized in the mental health unit for the treatment of a psychotic disorder. Which finding in the client's medical record would prompt the nurse to contact the prescribing primary health care provider before administering the medication?",
+      "options": [
+        "The client has a history of cataracts.",
+        "The client takes a prescribed antihypertensive.",
+        "The client has a history of hypothyroidism.",
+        "The client is allergic to acetylsalicylic acid (aspirin)."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Risperidone is an antipsychotic medication. Contraindications to the use of risperidone include cardiac disorders, cerebrovascular disease, dehydration, hypovolemia, and therapy with antihypertensive agents. Risperidone is used with caution in clients with a history of seizures. History of cataracts, hypothyroidism, or allergy to aspirin does not affect the administration of this medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_143",
+      "stem": "In evaluating the effectiveness of a postoperative client's intermittent pneumatic compression devices, which assessment is most important for the nurse to complete?",
+      "options": [
+        "Monitor the amount of drainage from the client's incision",
+        "Observe both lower extremities for redness and swelling",
+        "Evaluate the client's ability to use an incentive spirometer",
+        "Palpate all peripheral pulse points for volume and strength"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "IPCs prevent DVT/PE. Observing for redness and swelling indicates whether compression is preventing thrombosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q216",
+      "stem": "A client is brought to the emergency department by ambulance, and diabetic ketoacidosis is suspected. Blood samples are taken, and the nurse obtains supplies that will be needed to treat the client. Which type of insulin does the nurse take from the medication supply room for intravenous (IV) administration?",
+      "options": [
+        "Lente (Humulin L)",
+        "NPH (Humulin N)",
+        "Regular (Humulin R)",
+        "NPH/regular 50%/50% (Humulin 50/50)"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Ketoacidosis, the most severe manifestation of insulin deficiency, is a life-threatening emergency. IV insulin is a primary component of treatment. Regular insulin, which has a rapid onset and short duration of action, is the only insulin that may be given IV. Because regular insulin forms a true solution, it is safe for IV use. NPH, Lente, NPH/regular 50%/50% are intermediate-acting insulins.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q14",
+      "stem": "The night nurse is caring for a client who just had a craniotomy. The nurse is monitoring the client's Jackson-Pratt drain that is being maintained on suction. The nurse notes that a total of 200 mL of red drainage has drained from the Jackson-Pratt (J-P) tube in the last 8 hours. What action should the nurse take?",
+      "options": [
+        "Continue to monitor the amount and color of the drainage.",
+        "Document the amount in the client's record.",
+        "Notify the primary health care provider immediately of the amount of drainage.",
+        "Discontinue the Jackson-Pratt drain from suction."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The nurse must immediately notify the primary health care provider of this excessive amount of drainage. The primary health care provider must also be immediately notified of any saturated head dressings. The normal amount of drainage from a Jackson-Pratt drain is 30 to 50 mL per shift. Discontinuing the suction from the J-P drain is not an option and is not done. Also, just documenting the amount in the client's record is not correct even though the nurse would document that the primary health care provider was notified of the total drain amount. Just continuing to monitor the amount of drainage is also not an option.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q1",
+      "stem": "In an effort to control costs and maximize revenues, the Rehabilitation Unit at Cross Hospital reduced the number of its managers and increased the number of units for which each manager was responsible. Within a year, the number of adverse events in the units had doubled. How does the increase in adverse events relate to decreased managers?",
+      "options": [
+        "The overload of staff nurse duties",
+        "Resistance to change by staff",
+        "A change in the reporting system for everyone",
+        "Fewer clinical leaders to facilitate best practice"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Eliminating barriers to the implementation of best practices is the role of managers and leaders. When there are insufficient resources for leadership to encourage a culture in which evidence-based practice is embraced, frontline nurses recognize this as a stumbling block for delivering quality care.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q246",
+      "stem": "A nurse, providing information to a client who has just been diagnosed with diabetes mellitus, gives the client a list of signs/symptoms of hypoglycemia. Which answers by the client, on being asked to list the signs/symptoms, tells the nurse that the client understands the information? (Select all that apply.)",
+      "options": [
+        "Increased urine output",
+        "Blurred vision",
+        "Weakness",
+        "Hunger",
+        "Increased thirst"
+      ],
+      "correct": [
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Signs/symptoms of hypoglycemia include weakness, double vision, blurred vision, hunger, tachycardia, and palpitations. The manifestations of diabetes mellitus (hyperglycemia) include polydipsia, polyuria, and polyphagia. Signs/symptoms of hypoglycemia include weakness, double vision, blurred vision, hunger, tachycardia, and palpitations.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Comp_Q222",
+      "stem": "A client being seen in the clinic complains of fatigue and weakness. Laboratory studies are performed because the primary health care provider suspects iron-deficiency anemia. After reviewing the laboratory results, which finding indicative of this type of anemia does the nurse expect to note?",
+      "options": [
+        "An increased hemoglobin level",
+        "An increased hematocrit level",
+        "An increased RBC count",
+        "Microcytic red blood cells (RBCs)"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The nurse expects to note a low RBC count and microcytic (small) RBCs. In iron-deficiency anemia, laboratory testing will reveal low hemoglobin and hematocrit levels. In iron-deficiency anemia, iron stores are depleted first, followed by hemoglobin stores.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q13",
+      "stem": "Which instruction(s) should the nurse include in the discharge teaching plan of a male client who has had a myocardial infarction and who has a new prescription for nitroglycerin (NTG)? (Select all that apply.)",
+      "options": [
+        "Keep the medication in your pocket so that it can be accessed quickly.",
+        "Call 911 if chest pain is not relieved after one nitroglycerin.",
+        "Store the medication in its original container and protect it from light.",
+        "Activate the emergency medical system after three doses of medication.",
+        "Do not use within 1 hour of taking sildenafil citrate (Viagra)."
+      ],
+      "correct": [
+        "B",
+        "C"
+      ],
+      "rationale": "Emergency action should be taken if chest pain is not relieved after one nitroglycerin tablet (B). The medication should be kept in the original container to protect from light (C). Keeping the medication in the shirt pocket provides an environment that is too warm (A). The newest guidelines recommend calling 911 after one nitroglycerin tablet if chest pain is not relieved (D). Nitroglycerin and other nitrates should never be taken with Viagra (E).",
+      "type": "select_all_that_apply"
+    },
+    {
+      "id": "HESI_RN_066",
+      "stem": "The nurse is developing an educational program for older clients who are being discharged with new antihypertensive medications. The nurse should ensure that the education materials include which characteristics? (Select all that apply.)",
+      "options": [
+        "Uses common words with few syllables",
+        "Printed using a 12-point type font",
+        "Uses pictures to help illustrate complex ideas",
+        "Contains a list with definitions of unfamiliar terms",
+        "Written at a twelfth-grade reading level"
+      ],
+      "correct": [
+        "A",
+        "C",
+        "D"
+      ],
+      "rationale": "Older adults benefit from simple language, visual aids, and definitions. 8-10 point font is too small; 5th-6th grade reading level is appropriate.",
+      "type": "multiple_select"
+    },
+    {
+      "id": "HESI_Comp_Q65",
+      "stem": "A client at 34 weeks\u2019 gestation was admitted after vaginal bleeding from total placenta previa. The client and husband are worried about the fetus. Which client concern should the nurse identify as the priority?",
+      "options": [
+        "Fluid volume overload",
+        "Anxiety",
+        "Premature grief",
+        "Fluid volume loss"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Anxiety is the priority concern. The scenario does not suggest fluid volume imbalance or premature grief.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q213",
+      "stem": "Iodine solution is prescribed to a client who is scheduled for subtotal thyroidectomy. The client calls the nurse at the clinic and complains of a burning sensation in the mouth and soreness of the gums and teeth. What does the nurse most appropriately tell the client?",
+      "options": [
+        "That these discomforts will resolve with continued therapy",
+        "To contact the primary health care provider",
+        "That these are expected side effects of the medication",
+        "To stop the medication for the next 24 hours and then continue as prescribed"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The client should most appropriately be instructed to notify the primary health care provider if the client experiences burning sensation in the mouth and soreness of the gums and teeth. Iodine can produce toxicity (iodism). The client should be instructed about the signs/symptoms of iodism, which includes a brassy taste and burning sensation in the mouth, soreness of the gums and teeth, frontal headache, coryza, salivation, and skin eruptions. The client's signs/symptoms are not expected side effects of the medication and will not resolve with continued therapy; in fact, continued therapy will worsen the client's condition. Stopping the medication for 24 hours and then continuing it as prescribed will also worsen the client's condition.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_156",
+      "stem": "When conducting diet teaching for a client who is on a postoperative full liquid diet, which foods should the nurse encourage the client to eat? (Select all that apply.)",
+      "options": [
+        "Cheese",
+        "Tea",
+        "Lentils",
+        "Whole grain breads",
+        "Potato soup"
+      ],
+      "correct": [
+        "B",
+        "C",
+        "E"
+      ],
+      "rationale": "Tea is a clear liquid; lentils and potato soup are appropriate full liquid choices. Cheese and whole grain breads are solid foods.",
+      "type": "multiple_select"
+    },
+    {
+      "id": "HESI_Comp_Q255",
+      "stem": "The nurse is caring for a newborn recently diagnosed with gastroschisis. What does the nurse know about this condition? (Select all that apply.)",
+      "options": [
+        "Surgery performed within several hours after birth",
+        "Exposed bowel directly wrapped in saline-soaked pads",
+        "Viscera are inside the abdominal cavity",
+        "Postoperatively most infants develop prolonged ileus",
+        "Care similar to that for omphalocele",
+        "Results from a defect in the abdominal wall"
+      ],
+      "correct": [
+        "A",
+        "D",
+        "E",
+        "F"
+      ],
+      "rationale": "The nurse knows that gastroschisis results from a defect in the abdominal wall in which the viscera is outside, not inside, the abdominal cavity and are also not covered by a sac. Care of the newborn is similar to that for newborns with omphalocele. The exposed bowel is covered loosely in saline-soaked pads, not directly wrapped around the bowel. Surgery needs to be performed within several hours after birth, and postoperatively most newborns develop prolonged ileus.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Comp_Q168",
+      "stem": "A nurse reviews arterial blood gas (ABG) values and notes a pH of 7.50 and a PCO2 of 30 mm Hg. What does the nurse interpret these values as indicative of?",
+      "options": [
+        "Respiratory acidosis",
+        "Metabolic alkalosis",
+        "Metabolic acidosis",
+        "Respiratory alkalosis"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The nurse interprets these values as indicative of respiratory alkalosis. The normal pH is 7.35 to 7.45. The normal PCO2 is 35 to 45 mm Hg. In respiratory alkalosis, the pH will be higher than normal and the PCO2 will be low.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q49",
+      "stem": "When assessing safety for the older adult, which of the following is of highest priority to the nurse?",
+      "options": [
+        "The client has a cataract in the right eye.",
+        "The client is not married and lives alone.",
+        "The client lives in a two-story building.",
+        "The client reports a history of repeated falls."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Risk assessment for falls is a critical element in caring for the older adult. (A, B, and C) are important components in assessing client risk, but a history of prior falls puts the older client at very high risk for falling again (D).",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q225",
+      "stem": "A child with a diagnosis of Wilms' tumor is being admitted to the pediatric unit. The nurse prepares the room for the child and places a sign at the child's bedside. What does this sign tell staff to avoid?",
+      "options": [
+        "Measuring blood pressure in the right arm",
+        "Palpating the abdomen",
+        "Turning the child to the right side",
+        "Taking temperatures rectally"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The nurse would place a sign at the child's bedside warning against palpation of the child's abdomen. Wilms' tumor, or nephroblastoma, is the most common renal tumor in children. Arising from the renal parenchyma of the kidney, this tumor grows very rapidly. It may be unilateral and localized or bilateral and sometimes involves metastasis to other organs. The tumor mass should not be palpated because of the risk that the protective capsule will rupture. Excessive manipulation can result in seeding of the tumor and the spread of cancerous cells. Taking temperatures rectally, turning the child to the right side, and measuring blood pressure in the right arm are interventions that do not need to be avoided.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_028",
+      "stem": "A client fell in the bathroom when left unattended by the unlicensed assistive personnel (UAP). Which information should the nurse include in the client's health record?",
+      "options": [
+        "The UAP left the client to assist another client",
+        "The last time client was assisted to the bathroom",
+        "The unit was understaffed when the client fell",
+        "The client fell sustaining a fracture to the left hip"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Objective findings (fracture) and incident details are essential for medical record documentation, not subjective judgments or staffing issues.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_128",
+      "stem": "A 7-year old is admitted to the hospital with persistent vomiting, and a nasogastric tube attached to low intermittent suction is applied. Which finding is most important for the nurse to report to the healthcare provider?",
+      "options": [
+        "Shift intake of 640mL IV fluids plus 30mL PO ice chips",
+        "Serum pH of 7.45",
+        "Gastric output of 100 mL in the last 8 hours",
+        "Serum potassium of 3.0 mg/dL"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Potassium of 3.0 indicates severe hypokalemia from gastric fluid losses, causing cardiac dysrhythmia risk requiring immediate replacement.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_095",
+      "stem": "An increased number of elderly persons are electing to undergo a new surgical procedure which cures glaucoma. Which effect is the nurse likely to note as a result of this increase in glaucoma surgeries?",
+      "options": [
+        "Decreased prevalence of glaucoma in the population",
+        "Increased incidence of glaucoma in the population",
+        "Decreased morbidity in the elderly population",
+        "Increased mortality in the elderly population"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Curing existing cases (those surgically treated) decreases the prevalence of glaucoma in the population.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q223",
+      "stem": "Alendronate is prescribed for a client with postmenopausal osteoporosis. The nurse provides information on the medication to the client. When does the nurse tell the client to take the alendronate?",
+      "options": [
+        "Every morning before breakfast, with a full glass of water",
+        "With orange juice, to enhance absorption at night",
+        "At bedtime",
+        "Every morning after breakfast, after which the client should lie down for 30 minutes"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Alendronate should be taken in the morning before breakfast with a full glass of water and on an empty stomach to maximize its bioavailability. It is a medication used to treat postmenopausal osteoporosis, glucocorticoid-induced osteoporosis, and Paget's disease of bone. Proper administration is necessary to maximize bioavailability and minimize the risk of esophagitis. No food, including orange juice or coffee, should be consumed for at least 30 minutes after alendronate is taken. To minimize the risk of esophagitis, the client should take the medication with a full glass of water and remain upright (seated or standing) for at least 30 minutes. Therefore taking the medication at bedtime, with orange juice to help with absorption, and every morning after breakfast, followed by a 30-minute period of lying down, are all incorrect.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q113",
+      "stem": "A nurse is providing information on the glycosylated hemoglobin assay and its purpose to a client with diabetes mellitus. What does the nurse tell the client about this blood test?",
+      "options": [
+        "Is a measure of the client's hematocrit level",
+        "Helps predict the risk for the development of chronic complications of diabetes mellitus",
+        "Provides a determination of short-term glycemic control in the client with diabetes mellitus",
+        "Is a measure of the client's hemoglobin level"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The nurse tells the client that the blood test is used to assess long-term glycemic control, as well as to predict the risk for the development of chronic complications. Glycosylated hemoglobin is the best indicator of the average blood glucose level. Because glucose attaches itself to the hemoglobin molecule, measurement of glycosylated hemoglobin indicates the average blood glucose level during the previous 120 days, the lifespan of the red blood cell.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q215",
+      "stem": "A nurse provides instructions to a client who will be taking levothyroxine for hypothyroidism. When does the nurse tell the client that it is best to take the medication?",
+      "options": [
+        "In the morning, before breakfast",
+        "With an antacid",
+        "With milk",
+        "At bedtime"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The nurse tells the client that the best way and time to take the medication is on an empty stomach and preferably in the morning, before breakfast. Levothyroxine, a synthetic preparation of thyroxine, a naturally occurring thyroid hormone, is used to treat clients who require hormone-replacement therapy.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q169",
+      "stem": "A nurse provides information to a client with chronic obstructive pulmonary disease (COPD) about methods of alleviating shortness of breath while the client is eating. Which statement by the client indicates a need for further instruction?",
+      "options": [
+        "I should use my bronchodilator 30 minutes before I eat.",
+        "I should eat three meals a day, and the biggest meal should be at suppertime.",
+        "I should rest before I eat.",
+        "Pursed-lip breathing will help relieve my shortness of breath."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "There is a need for further instruction if the client states, I should eat three meals a day, and the biggest meal should be at suppertime. The biggest meal of the day is planned for the time when the client is hungriest and most rested. Most clients are increasingly tired at the end of the day. Four to six small meals per day are preferable to three larger ones. Pursed-lip or abdominal breathing may alleviate dyspnea. Shortness of breath is the most common problem related to eating for a client with COPD. The client can ease dyspnea by resting before meals. A bronchodilator used 30 minutes before a meal may be helpful if the meal-related dyspnea is a result of bronchospasm or secretions.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q251",
+      "stem": "An emergency department nurse is assessing a client with acute closed-angle glaucoma. Which characteristic of the disorder does the nurse expect the client to exhibit? (Select all that apply.)",
+      "options": [
+        "Diminished central vision",
+        "Eye pain",
+        "Vomiting",
+        "Nausea",
+        "Increased light perception",
+        "Headache"
+      ],
+      "correct": [
+        "B",
+        "C",
+        "D",
+        "F"
+      ],
+      "rationale": "In acute closed-angle glaucoma, the onset of signs/symptoms is acute and the client complains of sudden excruciating pain around the eyes that radiates over the sensory distribution of the fifth cranial nerve. Headache or brow ache, nausea, vomiting, and abdominal discomfort may also occur. Other signs/symptoms of glaucoma include seeing colored halos around lights, sudden blurred vision with decreased light perception, and loss of peripheral vision.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_RN_112",
+      "stem": "When conducting diet teaching for a client who was diagnosed with a myocardial infarction, which snack foods should the nurse encourage the client to eat? (Select all that apply.)",
+      "options": [
+        "Fresh vegetables with mayonnaise dip",
+        "Fresh turkey slices and berries",
+        "Chicken bouillon soup and toast",
+        "Soda crackers and peanut butter",
+        "Raw unsalted almonds and apples"
+      ],
+      "correct": [
+        "B",
+        "C",
+        "E"
+      ],
+      "rationale": "Turkey is lean protein, berries are low sodium, bouillon is low fat, almonds are unsalted and healthy. Mayo and peanut butter are high fat.",
+      "type": "multiple_select"
+    },
+    {
+      "id": "HESI_Comp_Q23",
+      "stem": "The mother of an adolescent diagnosed with type 1 diabetes mellitus tells the nurse that her child is a member of the school soccer team and expresses concern about her child's participation in sports. What does the nurse tell the mother after providing information to the mother about diet, exercise, insulin, and blood glucose control?",
+      "options": [
+        "To administer additional insulin before a soccer game if the blood glucose level is 240 mg/dL (13.3 mmol/L) or higher and ketones are present.",
+        "To always administer less insulin on the days of soccer games",
+        "That the child should eat a carbohydrate snack about a half-hour before each soccer game",
+        "That it is best not to encourage the child to participate in sports activities"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The child with diabetes mellitus who is active in sports requires additional food intake in the form of a carbohydrate snack about a half-hour before the anticipated activity. Additional food will need to be consumed, often as frequently as every 45 minutes to 1 hour, during prolonged periods of activity. If the blood glucose level is increased (240 mg/dL [13.3 mmol/L] or more) and ketones are present before planned exercise, the activity should be postponed until the blood glucose has been controlled. Moderate to high ketone values should be reported to the primary health care provider. There is no reason for the child to avoid participating in sports.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q239",
+      "stem": "A nurse is reviewing the medical record of a client with a suspected systemic lupus erythematosus (SLE). Which manifestations of SLE would the nurse expect to find noted in the client's medical record? (Select all that apply.)",
+      "options": [
+        "Weight gain",
+        "Vasculitis",
+        "Increased energy",
+        "Fever",
+        "Abdominal pain"
+      ],
+      "correct": [
+        "B",
+        "D",
+        "E"
+      ],
+      "rationale": "Systemic lupus erythematosus is a chronic, progressive, inflammatory disorder of the connective tissue that can cause the failure of major organs and body systems. Manifestations include fever, fatigue, anorexia, weight loss, vasculitis, discoid lesions, and abdominal pain. Erythema, usually in a butterfly pattern (hence the nickname butterfly rash), appears over the cheeks and bridge of the nose. Other manifestations include nephritis, pericarditis, the Raynaud phenomenon (discoloration of fingers and/or toes after exposure to changes in temperature), pleural effusions, joint inflammation, and myositis.",
+      "type": "multi_select"
+    },
+    {
+      "id": "Q75",
+      "stem": "A couple expresses concern and fear prior to having an amniocentesis to determine fetal lung maturity. To assist them in coping with this situation, which intervention is best for the nurse to implement?",
+      "options": [
+        "Explain that harm to the fetus is highly unlikely.",
+        "Answer all their questions regarding the procedure.",
+        "Encourage them to verbalize their feelings.",
+        "Show them a video about the procedure."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The nurse should allay their concerns by providing information about the procedure and answering questions (B). This action assists the couple in coping with the situation. (A) may offer false reassurance. (C) alone does not resolve the couple's fears. Although (D) may be helpful, it is a passive activity, and the nurse's availability to answer questions is likely to be most helpful in calming their fears.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q93",
+      "stem": "When caring for a client hospitalized with Guillain-Barr\u00e9 syndrome, which information is most important for the nurse to report to the primary health care provider?",
+      "options": [
+        "Ascending numbness from the feet to the knees",
+        "Decrease in cognitive status of the client",
+        "Blurred vision and sensation changes",
+        "Persistent unilateral headache"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "A decline in cognitive status in a client is indicative of symptoms of hypoxia and a possible need to assist the client with mechanical ventilation. A primary health care provider will need to be contacted immediately (B). (A, C, and D) are findings associated with Guillain-Barr\u00e9 syndrome that should also be reported, but are not as critical as the client's hypoxic status.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q115",
+      "stem": "A nurse in the cardiac care unit (CCU) is told that a client with a diagnosis of myocardial infarction (MI) will be admitted from the emergency department (ED). Which item does the nurse give priority to placing at the client's bedside?",
+      "options": [
+        "Suctioning equipment",
+        "Oxygen cannula and flowmeter",
+        "Bedside commode",
+        "Electrocardiography machine"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The oxygen cannula and flowmeter are the priority. The client will require oxygen therapy after myocardial infarction to improve oxygen supply to the myocardium and ease the pain resulting from ischemia. Suctioning equipment is not the priority item but may be needed if a complication occurs. An electrocardiogram machine and bedside commode may be necessary but are not the priority items.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q238",
+      "stem": "A nurse is gathering subjective and objective data from a client with suspected rheumatoid arthritis (RA). Which early manifestations of RA would the nurse expect to note? (Select all that apply.)",
+      "options": [
+        "Fatigue",
+        "Weight loss",
+        "Anemia",
+        "Low-grade fever",
+        "Joint deformities"
+      ],
+      "correct": [
+        "A",
+        "D"
+      ],
+      "rationale": "Early manifestations of RA include fatigue, low-grade fever, weakness, anorexia, and paresthesias. Rheumatoid arthritis is a chronic, progressive, systemic and inflammatory autoimmune disease process that affects the synovial joints, resulting in their destruction. Anemia, weight loss, and joint deformities are some of the late manifestations.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_RN_129",
+      "stem": "A male client approaches the nurse with an angry expression on his face and raises his voice, saying 'My roommate is the most selfish, self-centered, angry person I have ever met and if he loses his temper one more time with me, I am going to punch him out!' The nurse recognizes that the client is using which defense mechanism?",
+      "options": [
+        "Splitting",
+        "Projection",
+        "Rationalization",
+        "Denial"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Projection is attributing one's own unacceptable traits to others. The client is projecting his own anger onto his roommate.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q21",
+      "stem": "The nurse is caring for a client who just returned to the surgical unit after having a suprapubic prostatectomy. What type of medication does the nurse expect to be ordered?",
+      "options": [
+        "Antidyskinetics",
+        "Phenothiazines",
+        "Antispasmodics",
+        "Benzodiazepines"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Antispasmodics are prescribed for bladder spasms related to a suprapubic prostatectomy. This surgery involves removal of the prostate gland by an abdominal incision with a bladder incision. Phenothiazines are a class of antipsychotic medications. Antidyskinetics have an anticholinergic action and are used to treat Parkinson's disease and some of the acute movement disorders that may be caused by antipsychotic agents. Benzodiazepines are central nervous system (CNS) depressants and can cause sedation and psychomotor slowing. They can also intensify depression caused by other drugs. Benzodiazepines have some potential for abuse and should be used with caution in clients known to abuse alcohol or other psychoactive medications.",
+      "type": "single_select"
+    },
+    {
+      "id": "Q95",
+      "stem": "A client who is first day postoperative after a mastectomy becomes increasingly restless and agitated. Vital signs are temperature, 100\u00b0 F; pulse, 98 beats/min; respirations, 24/breaths/min; and blood pressure, 120/80 mm Hg. Which intervention should the nurse implement first?",
+      "options": [
+        "Administer a PRN dose of a prescribed analgesic.",
+        "Assess the incision for any drainage or redness",
+        "Instruct the UAP to take vital signs hourly.",
+        "Assist the client to a more comfortable position."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The nurse's priority is to observe for possible hemorrhage (B). The client is at high risk for hypovolemic shock and is exhibiting early symptoms of shock. Remember, in early shock the blood pressure may be stable or increase slightly as a compensatory mechanism. If there is no obvious indication of bleeding, the client should then be assessed for the need of an analgesic (A, C, and D) should be implemented.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_039",
+      "stem": "The nurse is teaching a group of women about osteoporosis and exercise. The nurse should emphasize the need for which type of regular activity?",
+      "options": [
+        "Core strengthening",
+        "Aerobic exercise",
+        "Weight-bearing exercise",
+        "Muscle stretching and toning"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Weight-bearing exercise is most effective for maintaining bone density and preventing osteoporosis by stimulating osteoblast activity.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_060",
+      "stem": "The nurse is caring for a client who has chronic obstructive pulmonary disease (COPD) and chest pain related to a recent fall. What nursing intervention requires the greatest caution when caring for a client with COPD?",
+      "options": [
+        "Monitoring telemetry and cardiac rhythm",
+        "Assisting client to cough and deep breath",
+        "Administering narcotics for pain relief",
+        "Increasing the client's fluid intake"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Narcotics depress respiratory drive, which is dangerous in COPD clients who depend on hypoxia to stimulate breathing.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_119",
+      "stem": "A male client tells the nurse that he is concerned that he may have a stomach ulcer, because he is experiencing heartburn and a dull gnawing pain that is relieved when he eats. Which is the best response by the nurse?",
+      "options": [
+        "Instruct the client that these mild symptoms can generally be controlled with changes in his diet",
+        "Advise the client that he needs to seek immediate medical evaluation and treatment of these symptoms",
+        "Encourage the client to obtain a complete physical exam, since these symptoms are consistent with an ulcer",
+        "Assure the client that his symptoms may only reflect reflux, since ulcer pain is not relieved with food"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The symptoms described are consistent with peptic ulcer disease but could also be reflux. Professional evaluation is needed for diagnosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q9",
+      "stem": "A client who recently underwent coronary artery bypass graft surgery comes to the primary health care provider's office for a follow-up visit. On assessment, the client tells the nurse that he is feeling depressed. Which response by the nurse is therapeutic?",
+      "options": [
+        "Tell me more about what you're feeling.",
+        "It will take time, but I promise you, you will get over this depression.",
+        "That's a normal response after this type of surgery.",
+        "Every client who has this surgery feels the same way for about a month."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The therapeutic response by the nurse is, Tell me more about what you're feeling. When a client expresses feelings of depression, it is extremely important for the nurse to further explore these feelings with the client. In stating, This is a normal response after this type of surgery the nurse provides false reassurance and avoids addressing the client's feelings. It will take time, but I promise you, you will get over the depression is also a false reassurance, and it does not encourage the expression of feelings. Every client who has this surgery feels the same way for about a month is a generalization that avoids the client's feelings.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q122",
+      "stem": "A client who has undergone knee-replacement surgery will be self-administering enoxaparin sodium at home. The nurse teaches the client about the medication. What does the nurse tell the client?",
+      "options": [
+        "Discard the medication if the solution appears pale yellow",
+        "Store the medication in the refrigerator",
+        "Lie down to administer the subcutaneous injection",
+        "Inject the medication in the upper outer aspect of the arm"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The client is instructed to lie down to administer the injection and to introduce the entire length of the needle (\u00bd inch [1.25 cm]) into a skin fold held between the thumb and forefinger. Enoxaparin sodium is an anticoagulant that is administered by way of subcutaneous injection. It is injected into the abdominal wall. The solution, which appears clear and colorless to pale yellow, is stored at room temperature.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_082",
+      "stem": "While the nurse is assessing an older client's fall risk, the client reports living at home alone and never falling. Which action should the nurse take?",
+      "options": [
+        "Inform the client that falls occur more often in the hospital than at home",
+        "Record a minimal risk for falls, documenting the client's statement",
+        "Continue to obtain client data needed to complete the fall risk survey",
+        "Place the client on a high fall risk protocol because of advanced age"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Fall risk assessment requires comprehensive data collection, not relying on client self-report alone or age alone.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q132",
+      "stem": "A nurse taking the vital signs of a client immediately after she has delivered a newborn notes that the client's heart rate is 110 beats/min. What should the nurse do first?",
+      "options": [
+        "Document the findings",
+        "Recheck the heart rate in 1 hour",
+        "Offer the client oral fluids",
+        "Check the uterus and amount of lochia discharge"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "If tachycardia is noted, the nurse should first assess the location and firmness of the uterus and amount of lochia. Additional assessments including blood pressure, estimated blood loss at delivery, and hemoglobin and hematocrit determinations should be carried out. After delivery, the normal heart rate ranges from 60 to 90 beats/min. Tachycardia may indicate excitement, fatigue, dehydration, hypovolemia, pain, or infection. Although the nurse would document the findings, it is most appropriate for the nurse to assess the client to determine the cause of the tachycardia. Oral fluids are important if the client is dehydrated, but further assessment of the problem is required and dehydration would first need to be confirmed. Rechecking the heart rate in 1 hour will delay necessary interventions.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Comp_Q237",
+      "stem": "A nurse is providing information about home care to a client with acute gout. Which measures does the nurse tell the client to take? (Select all that apply.)",
+      "options": [
+        "Performing range-of-motion exercise to the affected joint three times a day",
+        "Drinking 2 to 3 L of fluid each day",
+        "Applying heat packs to the affected joint",
+        "Resting and immobilizing the affected area",
+        "Consuming foods high in purines"
+      ],
+      "correct": [
+        "B",
+        "D"
+      ],
+      "rationale": "Gout is a systemic disease in which urate crystals are deposited in the joints and other tissues, resulting in inflammation. In acute gout, rest and immobilization are recommended until the acute attack and inflammation have subsided. Local application of cold may help relieve the pain. The application of heat is avoided because it may worsen the inflammatory process. Dietary instructions include reducing or eliminating alcohol intake and avoiding excessive intake of foods containing purines (e.g., sweetbreads, yeast, heart, herring, herring roe, sardines). The client is encouraged to drink 2 to 3 L of fluid per day to help eliminate uric acid and to prevent the formation of renal calculi.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_RN_047",
+      "stem": "The nurse is managing the care of a client with Cushing's syndrome. Which interventions should the nurse delegate to the unlicensed assistive personnel (UAP)? (Select all that apply.)",
+      "options": [
+        "Report any client complaint of pain or discomfort",
+        "Evaluate the client for sleep disturbances",
+        "Assess the client for weakness and fatigue",
+        "Weigh the client and report any weight gain",
+        "Note and report the client's food and liquid intake during meals and snacks"
+      ],
+      "correct": [
+        "A",
+        "D",
+        "E"
+      ],
+      "rationale": "UAPs can report objective findings like pain, weight changes, and intake. Assessment and evaluation require RN judgment.",
+      "type": "multiple_select"
+    },
+    {
+      "id": "HESI_RN_137",
+      "stem": "A client with multiple burn injuries is being treated in the burn trauma unit just hours after the injuries occurred. The healthcare provider instructs the nurse to avoid auto contamination when performing dressing changes. Which intervention is most important for the nurse to implement?",
+      "options": [
+        "Dress each wound separately",
+        "Assign equipment to this one client",
+        "Utilize reverse isolation protocol",
+        "Use gown, mask, and gloves with dressing changes"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "PPE prevents transfer of microorganisms from nurse to open burn wounds, preventing autocontamination.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_RN_086",
+      "stem": "An S3 heart sound is auscultated in a client in her third trimester of pregnancy. What intervention should the nurse take?",
+      "options": [
+        "Prepare the client for an echocardiogram",
+        "Document in the client's record",
+        "Notify the healthcare provider",
+        "Limit the client's fluids"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "S3 is a normal finding in third trimester pregnancy due to increased blood volume. Documentation is appropriate without further intervention.",
+      "type": "single_select"
+    }
+  ]
+}
