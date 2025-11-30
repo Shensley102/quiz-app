@@ -86,6 +86,7 @@ function prettifyModuleName(name) {
     'HESI_Comp_Quiz_1': 'HESI Comprehensive Quiz 1',
     'HESI_Comp_Quiz_2': 'HESI Comprehensive Quiz 2',
     'HESI_Comp_Quiz_3': 'HESI Comprehensive Quiz 3',
+    'HESI_Maternity': 'HESI Maternity',
   };
   if (map[normalized]) return map[normalized];
 
@@ -671,7 +672,7 @@ async function startQuiz(){
 
   const bank = moduleSel.value;
   const displayName = prettifyModuleName(bank);
-  const qty  = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
+  const qty  = (lenBtn.data set.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
   const isFullBank = (qty === 'full');
 
   setHeaderTitle(displayName);
