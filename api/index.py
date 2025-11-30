@@ -2,11 +2,12 @@ from flask import Flask, render_template, jsonify, request
 import os
 import json
 from urllib.parse import unquote
+from pathlib import Path
 
 app = Flask(__name__, 
             static_folder='../static',
             static_url_path='/static',
-            template_folder='../templates')  # Changed from '../template' to '../templates'
+            template_folder='../templates')
 
 # Add CORS headers to all responses
 @app.after_request
@@ -16,81 +17,125 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     return response
 
-# Study categories and their modules
-STUDY_CATEGORIES = {
+# Category metadata (display info only - modules are discovered from files)
+CATEGORY_METADATA = {
     'Patient Care Management': {
         'display_name': 'Patient Care Management',
         'icon': '👥',
-        'modules': [
-            'Module_1',
-            'Module_2',
-            'Module_3',
-            'Module_4',
-            'Learning_Questions_Module_1_2',
-            'Learning_Questions_Module_3_4'
-        ]
+        'description': 'Enhance your patient care and clinical management skills'
     },
     'HESI': {
         'display_name': 'HESI',
         'icon': '📋',
-        'modules': [
-            'HESI_Delegating',
-            'HESI_Leadership',
-            'Hesi_Management',
-            'HESI_Comp_Quiz_1',
-            'HESI_Comp_Quiz_2',
-            'HESI_Comp_Quiz_3',
-            'HESI_Maternity'
-        ]
+        'description': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides'
     },
     'Nursing Certifications': {
         'display_name': 'Nursing Certifications',
         'icon': '🏆',
-        'modules': [
-            'CCRN_Test_1_Combined_QA',
-            'CCRN_Test_2_Combined_QA',
-            'CCRN_Test_3_Combined_QA'
-        ]
+        'description': 'Master content for nursing certification exams'
     },
     'Pharmacology': {
         'display_name': 'Pharmacology',
         'icon': '💊',
-        'modules': [
-            'Pharm_Quiz_1',
-            'Pharm_Quiz_2',
-            'Pharm_Quiz_3',
-            'Pharm_Quiz_4'
-        ]
+        'description': 'Strengthen your pharmacology knowledge and drug understanding'
     }
 }
 
+def get_base_dir():
+    """Get the base directory of the project"""
+    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def discover_modules():
+    """
+    Scan the modules directory structure and discover all modules.
+    Expected structure:
+    /modules/
+      /Patient_Care_Management/
+        Module_1.json
+        Module_2.json
+      /HESI/
+        HESI_Delegating.json
+      etc.
+    
+    Returns a dict: {category_name: [module_names]}
+    """
+    modules_by_category = {}
+    base_dir = get_base_dir()
+    modules_dir = os.path.join(base_dir, 'modules')
+    
+    # Return empty dict if modules directory doesn't exist
+    if not os.path.exists(modules_dir):
+        return modules_by_category
+    
+    # Scan each category subdirectory
+    for category_folder in os.listdir(modules_dir):
+        category_path = os.path.join(modules_dir, category_folder)
+        
+        # Skip if not a directory
+        if not os.path.isdir(category_path):
+            continue
+        
+        # Convert folder name to category name (replace underscores with spaces)
+        category_name = category_folder.replace('_', ' ')
+        
+        # Scan for JSON files in this category
+        json_files = []
+        for filename in os.listdir(category_path):
+            if filename.endswith('.json'):
+                # Remove .json extension to get module name
+                module_name = filename[:-5]
+                json_files.append(module_name)
+        
+        # Only add category if it has modules
+        if json_files:
+            modules_by_category[category_name] = sorted(json_files)
+    
+    return modules_by_category
+
+def get_study_categories():
+    """
+    Get study categories with metadata and discovered modules.
+    Combines CATEGORY_METADATA with discovered modules.
+    """
+    discovered = discover_modules()
+    categories = {}
+    
+    for category_name, metadata in CATEGORY_METADATA.items():
+        categories[category_name] = {
+            'display_name': metadata['display_name'],
+            'icon': metadata['icon'],
+            'description': metadata.get('description', ''),
+            'modules': discovered.get(category_name, [])
+        }
+    
+    return categories
 
 def get_available_modules():
     """Return all modules from all categories"""
+    discovered = discover_modules()
     all_modules = []
-    for category_data in STUDY_CATEGORIES.values():
-        all_modules.extend(category_data.get('modules', []))
+    for modules in discovered.values():
+        all_modules.extend(modules)
     return sorted(list(set(all_modules)))
-
 
 def find_category(category_name):
     """Find category by exact match (case-insensitive)"""
-    if category_name in STUDY_CATEGORIES:
+    categories = get_study_categories()
+    
+    if category_name in categories:
         return category_name
     
-    for key in STUDY_CATEGORIES.keys():
+    for key in categories.keys():
         if key.lower() == category_name.lower():
             return key
     
     return None
-
 
 # Routes
 @app.route('/')
 def home():
     """HOME PAGE"""
     return render_template('home.html')
-
 
 @app.route('/category/<path:category>')
 def category_page(category):
@@ -101,27 +146,34 @@ def category_page(category):
     if not actual_category:
         return jsonify({'error': 'Category not found'}), 404
     
-    category_data = STUDY_CATEGORIES[actual_category]
+    categories = get_study_categories()
+    category_data = categories[actual_category]
     return render_template('category.html', category=actual_category, category_data=category_data)
-
 
 @app.route('/quiz')
 def quiz_page_no_module():
     """QUIZ PAGE - no specific module"""
     return render_template('quiz.html')
 
-
 @app.route('/quiz/<module_name>')
 def quiz_page(module_name):
     """QUIZ PAGE - specific module"""
     return render_template('quiz.html')
 
-
 @app.route('/api/categories')
 def get_categories():
-    """API endpoint returning all categories"""
-    return jsonify(STUDY_CATEGORIES), 200
-
+    """API endpoint returning all categories with metadata and discovered modules"""
+    categories = get_study_categories()
+    # Return only the data needed by frontend, excluding empty categories
+    result = {}
+    for name, data in categories.items():
+        if data['modules']:  # Only include categories with modules
+            result[name] = {
+                'display_name': data['display_name'],
+                'icon': data['icon'],
+                'modules': data['modules']
+            }
+    return jsonify(result), 200
 
 @app.route('/api/category/<path:category>/modules')
 def get_category_modules(category):
@@ -132,10 +184,11 @@ def get_category_modules(category):
     if not actual_category:
         return jsonify({'error': 'Category not found'}), 404
     
-    category_data = STUDY_CATEGORIES[actual_category]
+    categories = get_study_categories()
+    category_data = categories[actual_category]
     modules = category_data.get('modules', [])
+    
     return jsonify({'modules': modules, 'category': actual_category}), 200
-
 
 @app.route('/modules', methods=['GET'])
 def modules_list():
@@ -146,32 +199,43 @@ def modules_list():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-
 @app.route('/<module_name>.json', methods=['GET'])
 def get_module(module_name):
-    """Serve a specific module JSON file"""
+    """
+    Serve a specific module JSON file.
+    Searches for the module in all category subdirectories.
+    """
     try:
         # Security check
         if not all(c.isalnum() or c in '_-' for c in module_name):
             return jsonify({'error': 'Invalid module name'}), 400
         
-        # Get the base directory (go up from api folder)
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        file_path = os.path.join(base_dir, f'{module_name}.json')
+        base_dir = get_base_dir()
+        modules_dir = os.path.join(base_dir, 'modules')
         
-        if not os.path.exists(file_path):
-            return jsonify({'error': f'Module "{module_name}" not found'}), 404
+        # Search for the module file in all category subdirectories
+        if os.path.exists(modules_dir):
+            for category_folder in os.listdir(modules_dir):
+                file_path = os.path.join(modules_dir, category_folder, f'{module_name}.json')
+                
+                if os.path.exists(file_path):
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                    return jsonify(data), 200
         
-        with open(file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+        # Also check if module exists in root directory (for backwards compatibility)
+        root_file_path = os.path.join(base_dir, f'{module_name}.json')
+        if os.path.exists(root_file_path):
+            with open(root_file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            return jsonify(data), 200
         
-        return jsonify(data), 200
+        return jsonify({'error': f'Module "{module_name}" not found'}), 404
     
     except json.JSONDecodeError as e:
         return jsonify({'error': f'Invalid JSON: {str(e)}'}), 500
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
 
 # Vercel serverless function handler
 app.debug = False
