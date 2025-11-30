@@ -74,7 +74,7 @@
   text-decoration: none;
   overflow: hidden;
   transition: all 0.3s ease;
-  aspect-ratio: 2.5 / 5.2;
+  aspect-ratio: 3 / 5;
   width: 100%;
 }
 
@@ -143,6 +143,11 @@
 .category-card:hover .card-arrow {
   opacity: 1;
   transform: translateX(4px);
+}
+
+/* Pharmacology card - taller and skinnier */
+.categories-grid .category-card:nth-child(3) {
+  aspect-ratio: 2.5 / 5.2;
 }
 
 /* Hub Footer */
