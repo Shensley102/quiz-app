@@ -1,0 +1,1572 @@
+{
+  "module": "HESI_Maternity",
+  "questions": [
+    {
+      "id": "HESI_Maternity_Q2",
+      "stem": "The nurse is caring for a client with preeclampsia who is receiving a magnesium sulfate infusion to prevent eclampsia. Which finding indicates to the nurse that the medication is effective?",
+      "options": [
+        "Magnesium level is 10 mg/dL (4.11 mmol/L)",
+        "Clonus is present",
+        "Deep tendon reflexes are absent",
+        "The client experiences diuresis within 24 to 48 hours"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Magnesium sulfate is effective in preventing seizures (eclampsia) if diuresis occurs within 24 to 48 hours of the start of the infusion. As part of the therapeutic response, renal perfusion is increased and the client is free of visual disturbances, headache, epigastric pain, clonus (the rapid rhythmic jerking motion of the foot that occurs when the client's lower leg is supported and the foot is sharply dorsiflexed), and seizure activity. Hyperreflexia indicates cerebral irritability. Clonus is normally not present. The reflexes range from 1+ to 2+ but should not be absent.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q3",
+      "stem": "A client with preeclampsia who is receiving magnesium sulfate in an intravenous infusion exhibits signs of magnesium toxicity. The nurse immediately prepares for the administration of:",
+      "options": [
+        "Protamine sulfate",
+        "Naloxone hydrochloride",
+        "Vitamin K",
+        "Calcium gluconate"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Calcium gluconate is the antidote to magnesium sulfate because it antagonizes the effects of magnesium at the neuromuscular junction. It should be readily available whenever magnesium is administered. Vitamin K is the antidote in cases of hemorrhage induced by the administration of oral anticoagulants such as warfarin sodium (Coumadin). Protamine sulfate is the antidote in cases of hemorrhage induced by the administration of heparin. Naloxone hydrochloride is administered to treat opioid-induced respiratory depression.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q4",
+      "stem": "The maternity nurse is caring for a pregnant client with no history of preeclampsia who is receiving a magnesium sulfate infusion. Why is this client receiving this infusion?",
+      "options": [
+        "To contract the uterus",
+        "To reverse extreme muscle weakness",
+        "To halt preterm labor contractions",
+        "To treat hypotension"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Magnesium sulfate is a central nervous system depressant and releases smooth muscle, including the uterus. It is used to halt preterm labor contractions and also for preclamptic clients to prevent seizures. Adverse effects include flushing, depressed respirations, depressed deep tendon reflexes, hypotension, extreme muscle weakness, hyporeflexia, pulmonary edema, and elevated serum magnesium levels.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q5",
+      "stem": "The nurse instructs a pregnant client about foods that are high in folic acid. Which item does the nurse tell the client is the best source of folic acid?",
+      "options": [
+        "Chicken",
+        "Steak",
+        "Lima beans",
+        "Milk"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The best sources of folic acid are liver, kidney, pinto, lima, and black beans; and fresh dark green leafy vegetables. Orange juice, peanuts, peanut butter, beans, and peas. Milk is high in calcium. Chicken and steak are high in protein.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q6",
+      "stem": "The nurse is providing instructions to a mother of an infant with seborrheic dermatitis (cradle cap) about treatment of the condition. What does the nurse tell the mother to do?",
+      "options": [
+        "Apply oil to the affected area on the infant's scalp",
+        "Avoid the use of shampoo on the infant's scalp",
+        "Shampoo the infant's scalp, avoiding the anterior fontanel area",
+        "Wash the infant's scalp daily, using only tepid water"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Treatment includes the application of oil (e.g., mineral oil) to the area to help soften the scales followed by gentle removal of the scale lesions with a soft brush. Head lice and dandruff should not be apparent. Seborrheic dermatitis, a chronic inflammation of the scalp or other areas of the skin, is characterized by yellow, scaly, oily lesions. It sometimes results when parents do not wash over the anterior fontanel carefully for fear that they will hurt the infant. The nurse should teach the mother how to shampoo the scalp and explain that she will not damage the fontantel with normal gentle shampooing. The scalp should be washed which could cause irritation.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q41",
+      "stem": "A nurse provides instructions regarding postpartum exercises to a client who has delivered a newborn vaginally. What does the nurse tell the client?",
+      "options": [
+        "Performing such exercises in the postpartum period may result in stress urinary incontinence",
+        "Alternating contraction and relaxation of the muscles of the perineal area should be practiced",
+        "Abdominal exercises will be started while the client is in the hospital as a means of evaluating tolerance",
+        "Exercises should be delayed for 1 month to allow healing"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Postpartum exercises may be started soon after birth, although the woman should be encouraged and expected to begin with simple exercises and gradually progress in more strenuous ones. Abdominal exercises are postponed until approximately 4 weeks after a cesarean birth. Kegel exercises (alternated contraction and relaxation of the muscles of the perineal area) are extremely important in strengthening the muscle tone of the perineal area after birth. Kegel exercises help restore the muscle tone that is often lost as pelvic tissues are stretched and torn during pregnancy and birth. Women who maintain muscle strength may benefit years later, experiencing decreased urinary continence.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q42",
+      "stem": "A nurse is monitoring a newborn who has been admitted to the nursery. The nurse notes that the anterior fontanel measures 4 cm across and bulges when the infant is at rest. Based on this observation, what is the most appropriate nursing action?",
+      "options": [
+        "Notifying the primary health care provider",
+        "Documenting the finding",
+        "Reassessing the fontanel in 30 minutes",
+        "Assessing the infant's blood pressure"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The most appropriate nursing action is to notify the primary health care provider. The anterior fontanel, which is diamond shaped, is located on the top of the head. It should be flat and soft. It measures 1 to 4 cm, varying as a result of molding and individual differences. It normally closes by 12 to 18 months of age. Although the anterior fontanel may bulge slightly when the infant cries, bulging at rest may indicate increased intracranial pressure. If this is suggested, the primary health care provider should be notified. The other options would delay necessary treatment.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q45",
+      "stem": "A client in the third trimester of pregnancy is complaining of urinary frequency, and the nurse instructs the client in measures to alleviate the discomfort. Which statement by the client indicates an understanding of these self-care measures?",
+      "options": [
+        "I need to avoid emptying my bladder so frequently.",
+        "I need to drink at least 2000 mL of fluid a day.",
+        "I should cut back on my fluid intake in the evening.",
+        "I should avoid drinking large amounts of fluids during the day."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Urinary frequency is present in the first trimester and late in the third trimester because of the pressure exerted on the bladder by the enlarging uterus. Self-care measures for urinary frequency include frequent emptying of the bladder every 2 hours and drinking at least 2000 mL of fluid a day. Restricting fluid intake at any time is incorrect; it could lead to urinary stasis and fluid-volume deficit.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q47",
+      "stem": "A woman in labor suddenly experiences chest pain and dyspnea, and the nurse suspects the presence of amniotic fluid embolism (AFE). What should the nurse immediately do?",
+      "options": [
+        "Notify the family",
+        "Attach a cardiac monitor to the woman",
+        "Prepare the client for intubation",
+        "Administer oxygen to the woman"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Supportive interventions are instituted immediately to maintain cardiac and respiratory function, and oxygen is a necessary supportive therapy. If the woman is intubated, then positive end expiratory pressure (PEEP) may be prescribed. The family should be notified; however, the nurse would first administer the oxygen, then prepare for intubation if needed, but this is not the immediate action. A cardiac monitor may be attached, but this is not the immediate action needed.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q49",
+      "stem": "A pregnant client is positive for HIV. The client asks the nurse whether her newborn will contract the virus. What is the most appropriate response?",
+      "options": [
+        "Yes, the newborn will also have the virus.",
+        "HIV can only be transmitted through sexual contact.",
+        "The newborn does have a risk of contracting the infection.",
+        "The newborn will have signs/symptoms of HIV at birth if the virus has been transmitted."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "An infant born to an HIV-positive mother is at risk for contracting the infection. The modes of transmission are sexual, parenteral, and perinatal. Characteristically the newborn is asymptomatic at birth, but signs/symptoms in an infected child usually become obvious during the first year of life.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q50",
+      "stem": "The delivery room nurse performing an initial assessment on a newborn notes that the ears are low set. Based on this finding, which nursing action is appropriate initially?",
+      "options": [
+        "Covering the ears with gauze pads and taping the pads to the head",
+        "Documenting the finding",
+        "Notifying the primary health care provider",
+        "Taping the ears so they lie flat against the head"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The nursing action that is initially appropriate is to notify the primary health care provider. Low or oddly placed ears are associated with a variety of congenital defects, including Down syndrome, and should be reported immediately. Taping the ears and covering them with gauze are unacceptable because they would be noted. The finding should be documented. The notification of the primary health care provider is the initial action.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q51",
+      "stem": "The nurse is reviewing the medical record of a pregnant client with sickle cell anemia. To which information related by the client would the nurse give the highest priority?",
+      "options": [
+        "Occasional slight dizziness when standing up",
+        "Concern about her inability to care for her baby",
+        "Poor appetite",
+        "Drinking less than 4 glasses of fluid daily"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Dehydration will precipitate sickling of the red blood cells in the person with sickle cell disease. Sickling can lead to life-threatening consequences, such as an interruption of blood flow to the respiratory system and placenta, for the pregnant woman and fetus. Therefore, the client admitting a low fluid intake is the highest priority. Although the client's concerns of poor appetite and occasional dizziness on standing require attention, they are not the priority in this situation. The client's concerns about being able to care for her baby may be a priority after delivery, depending on the specific client situation at the time.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q62",
+      "stem": "A client in the first trimester of pregnancy arrives at the clinic and reports that she has been experiencing vaginal bleeding. Threatened abortion is suspected, and the nurse provides instructions to the client regarding care. Which statement by the client indicates the need for further instruction?",
+      "options": [
+        "I need to stay in bed for the rest of my pregnancy.",
+        "I need to avoid having sex until the bleeding has stopped.",
+        "I need to watch for stuff that looks like tissue coming from my vagina.",
+        "I need to count the number of perineal pads that I use each day and make a note of the amount and color of blood on each pad."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Strict bed rest throughout the remainder of the pregnancy is not required. The woman is advised to curtail sexual activities until bleeding has ceased and for 2 weeks after the last evidence of bleeding, as recommended by the primary health care provider or nurse-midwife. The woman is instructed to count the perineal pads she uses each day and to note the quantity and color of blood on each pad. The woman should also watch for the evidence of the passage of tissue.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q64",
+      "stem": "The nurse is performing an assessment of a female client with suspected mittelschmerz. Which question does the nurse ask the client to elicit data specific to this disorder?",
+      "options": [
+        "Do you have pain at the beginning of your period?",
+        "Do you have sharp pain on the right or left side of your pelvis?",
+        "Do you have pain every time you have intercourse?",
+        "Do you have continuous heavy vaginal bleeding?"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Mittelschmerz (\"middle pain\") refers to pelvic pain that occurs midway between menstrual periods or at the time of ovulation. The pain is due to growth of the dominant follicle within the ovary or to rupture of a follicle and bleeding into the peritoneal space. The pain, which is fairly sharp, is felt on the right or left side of the pelvis. It generally lasts a few hours to 2 days, and slight (not profuse) vaginal bleeding may accompany the discomfort. The pain is not associated with intercourse.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q70",
+      "stem": "The nurse answers a call light in the room of a woman who was just admitted in early latent labor. The woman is lying flat on her back on the bed. The husband reports excitedly, \"I think my wife is going into shock or something! She was just lying there, and then she turned so pale, and her hands are so clammy. She said she was dizzy and sick to her stomach.\" The nurse notes on the noninvasive blood pressure monitor that the woman's pulse is 58 beats/min and her blood pressure is 90/50 mm Hg. What does the nurse interpret these findings as indications of?",
+      "options": [
+        "Altered tissue perfusion related to hypotensive syndrome (vena cava syndrome)",
+        "Anxiety related to the onset of labor",
+        "Progression from latent to active first-stage labor",
+        "Hyperventilation related to excitement at her first labor experience"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "In a pregnant woman, the supine position adds gravity pressure to the inferior vena cava, which is already displaced and partially compressed by the full-term gravid uterus. The increased compression decreases cardiac output, leading to beginning tissue hypoxia, which brings on the signs/symptoms described in the question. The signs/symptoms identified in the question are not indicative of progression to active first-stage labor. There is no information in the question to indicate that the client is experiencing hyperventilation or anxiety.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q74",
+      "stem": "A neonate is irritable, cries incessantly, and has a temperature of 99.4\u00b0 F (37.4\u00b0C). The neonate is also tachypneic, diaphoretic, feeding poorly, and hyperactive in response to environmental stimuli. What does the nurse determine that these signs/symptoms are consistent with?",
+      "options": [
+        "Sepsis",
+        "Neonatal abstinence syndrome",
+        "Intraventricular hemorrhage",
+        "Hypercalcemia"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Neonatal abstinence syndrome is the term given to the group of signs/symptoms associated with drug withdrawal in the neonate. Drug withdrawal causes a hyperactive response in the infant because of the increased central nervous system (CNS) stimulation. This hyperactive response and the signs/symptoms of drug withdrawal seem to be most apparent around 1 week of age. Sepsis, hypercalcemia, and intraventricular hemorrhage cause signs/symptoms of CNS depression.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q79",
+      "stem": "The clinic nurse is performing an assessment of an HIV-positive pregnant woman during the 32nd week of gestation. Which finding requires further follow-up?",
+      "options": [
+        "Weight gain of 22 lb (10 kg)",
+        "Increased shortness of breath and bilateral crackles in the lungs",
+        "Active fetal movement",
+        "Slight lower extremity edema"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "HIV infection in a pregnant woman may result in both maternal and fetal complications. Fetal compromise may occur as a result of premature rupture of the membranes, preterm birth, or low birth weight. Potential maternal effects include increased risk for opportunistic infections. Individuals in the later stages of HIV infection are susceptible to other invasive conditions, such as tuberculosis and a wide variety of bacterial infections. The assessment finding in the correct option is indicative of an opportunistic infection and requires follow-up.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q52",
+      "stem": "The nurse is caring for a client receiving an intravenous infusion of oxytocin to stimulate labor. Which finding would prompt the nurse to stop the infusion?",
+      "options": [
+        "Nonreassuring fetal heart rate pattern",
+        "Contractions every 3 minutes",
+        "Soft uterine tone palpated between contractions",
+        "The presence of three contractions every 10 minutes"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The goal of labor augmentation is to achieve three good-quality contractions (of appropriate intensity and duration) in a 10-minute period. The uterus should return to resting tone between contractions, and there should be no evidence of fetal distress. If a nonreassuring fetal heart rate pattern is detected, the oxytocin infusion is stopped. A nonreassuring fetal heart rate pattern is associated with fetal hypoxia.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q53",
+      "stem": "The nurse is assessing a woman in labor and notes the presence of accelerations on the fetal monitor tracing. Which action should the nurse perform in response to this observation?",
+      "options": [
+        "Documenting the finding",
+        "Calling the primary health care provider",
+        "Taking the mother's vital signs",
+        "Repositioning the mother"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Accelerations are transient increases in the fetal heart rate, normally caused by fetal movement or accompanying contractions. Accelerations are a sign of fetal well-being and adequate oxygen reserve. No intervention besides documentation is necessary in this situation.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q54",
+      "stem": "The nurse assessing a pregnant woman in labor notes the presence of early decelerations on the fetal monitor tracing. Which situation would the nurse suspect based on this observation?",
+      "options": [
+        "Umbilical cord compression",
+        "Adequate pacemaker activity of the fetal heart",
+        "Pressure on the fetal head during a contraction",
+        "Uteroplacental insufficiency during a contraction"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Early decelerations, which result from pressure on the fetal head during a contraction, are not associated with fetal compromise and require no intervention. Variable decelerations suggest umbilical cord compression. Late decelerations are an ominous pattern in labor because they suggest uteroplacental insufficiency during a contraction. \"Short-term variability\" refers to the difference between successive heartbeats, indicating that the natural pacemaker activity of the fetal heart is working properly.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q55",
+      "stem": "The nurse caring for a client in the active stage of labor assesses the fetal status and notes a late deceleration on the monitor strip. Based on this finding, which nursing action is the priority?",
+      "options": [
+        "Documenting the finding",
+        "Preparing for immediate birth",
+        "Increasing the rate of the oxytocin infusion",
+        "Administering oxygen by way of face mask"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Late decelerations are a result of uteroplacental insufficiency stemming from decreased blood flow and oxygen transfer to the fetus during uterine contractions. This causes hypoxemia; therefore oxygen is necessary. Although the finding needs to be documented, documentation is not the priority action in this situation. The oxytocin infusion should be discontinued when a late deceleration is noted. The oxytocin would cause further hypoxemia, leading to decreased uteroplacental insufficiency. Although the finding needs to be documented, documentation is not the priority action in this situation.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q56",
+      "stem": "Placental abruption is suspected in a client who is experiencing vaginal bleeding. On assessment, which finding would the nurse expect to note?",
+      "options": [
+        "Uterine contractions every 3 to 5 minutes",
+        "Lack of uterine irritability or tetanic contractions",
+        "Abdomen soft to palpation",
+        "Uterine tender to palpation"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Vaginal bleeding in a pregnant client is most often caused by placenta previa or a placental abruption. Uterine tenderness accompanies placental abruption, especially with a central abruption and trapped blood behind the placenta. The abdomen will feel hard and board-like on palpation as the blood penetrates the myometrium, causing uterine irritability and maternal tenderness. A normal uterine contraction pattern is unusual in the presence of a placental abruption. A sustained tetanic contraction may occur if the client is in labor and the uterine muscle cannot relax.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q57",
+      "stem": "The postpartum nurse instructs a new mother in how to bathe her newborn son. Which statement by the mother indicates a need for further instruction?",
+      "options": [
+        "I should bathe him after a feeding.",
+        "I should check the temperature of the water before using it to bathe him.",
+        "I need to keep him covered as much as possible while I'm giving him a bath.",
+        "I need to sponge-bathe him until the cord falls off."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "It is not advisable to bathe a newborn infant after a feeding, because handling the infant may cause regurgitation. Controlling heat loss during the bath is to help conserve the infant's energy and prevent cold stress is a priority, and the baby should be covered as much as possible during bathing. The baby should be given sponge baths until the cord falls off. Additionally, the mother should check the temperature of the water before using it to bathe the infant as a means of preventing burns.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q58",
+      "stem": "The nurse is monitoring a pregnant client with sepsis for signs/symptoms of disseminated intravascular coagulopathy (DIC). Which laboratory finding causes the nurse to suspect DIC?",
+      "options": [
+        "Increased fibrinogen level",
+        "Increased platelet count",
+        "Increased fibrin degradation products",
+        "Shortened prothrombin time"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "DIC is a state of diffuse clotting in which clotting factors are consumed, leading to widespread bleeding. Petechiae, oozing from injection sites, and hematuria are indicative of DIC. Platelets are decreased because they are consumed by the process; coagulation studies show a prolonged clot formation (and therefore prolonged times); and fibrin plugs may clog the microvasculature diffusely rather than in an isolated area. Fibrinogen and platelets are decreased, prothrombin and activated partial thromboplastin times are prolonged, and fibrin degradation products are increased.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q61",
+      "stem": "A hepatitis B screen is performed on a pregnant client, and the results indicate the presence of antigens in the maternal blood. What does the nurse tell the client?",
+      "options": [
+        "Liver function tests will be prescribed",
+        "She must be retested in 1 week",
+        "A repeat hepatitis screen will be performed during the pregnancy",
+        "The infant should receive both the vaccine and hepatitis immune globulin soon after birth"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "A hepatitis B screen is performed to detect the presence of antigens in maternal blood. If antigens are present, the infant should receive hepatitis immune globulin and a vaccine soon after birth. Repeating the screen and prescribing liver function tests are incorrect measures and are unnecessary.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q63",
+      "stem": "The nurse is told that a newborn with myelomeningocele will be admitted to the newborn nursery. In which position does the nurse plan to place the infant?",
+      "options": [
+        "Prone",
+        "On the back, in semi-Fowler",
+        "Supine",
+        "On the back, in Trendelenburg"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A myelomeningocele is a neural tube defect caused by failure of the posterior neural tube to close. The infant should be positioned in a side-lying or prone position to prevent pressure on the sac until surgical repair can be performed. The meninges are exposed through the surface of the skin in a herniated sac that may either healed or leaking. One major preoperative intervention is protection of the sac from injury to prevent its rupture and resultant risk of central nervous system infection. Supine positioning would increase pressure on the sac, thereby increasing the risk for sac rupture.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q65",
+      "stem": "The nurse is conducting a home visit with a mother and her 1-week-old infant, who is at risk for acquired neonatal congenital syphilis. Which finding specific to this disease does the nurse look for while assessing the infant?",
+      "options": [
+        "A copper-colored rash",
+        "Vigorous feeding",
+        "Hypothermia",
+        "Diarrhea"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Signs/symptoms of congenital neonatal syphilis \u2014 including poor feeding, slight hyperthermia, and \"snuffles\" (copious clear serosanguinous mucous discharge from the nose) \u2014 may be nonspecific at first. By the end of the first week, however, a copper-colored maculopapular dermal rash is characteristically observed on the palms and soles, in the diaper area, and around the mouth and anus. Diarrhea is not specifically associated with this condition.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q66",
+      "stem": "The nurse provides instruction regarding prenatal care to a client with a history of heart disease. What does the nurse tell the client?",
+      "options": [
+        "It is necessary to avoid contact with all individuals to help prevent infection",
+        "It is best to lie supine for sleep",
+        "Physical activity should be limited",
+        "The amount of weight gained is not important"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Physical activity should be limited so that demand does not exceed the functional capacity of the heart. It is not necessary to avoid contact with all individuals as a means of preventing infection, but contact with individuals with active infections should be avoided. The client should lie on the left side to promote blood return. The client should avoid excessive weight gain. Weight gain can increase demands on the heart. The client should lie on the left side to promote blood return.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q68",
+      "stem": "A clinic nurse is developing a plan of care for a pregnant client with AIDS. Which problem does the nurse identify as the priority to be addressed in the plan of care?",
+      "options": [
+        "Intake of fewer than 6 glasses of fluid daily",
+        "History of IV drug use",
+        "Inverted nipples",
+        "Poor hygiene"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "AIDS is a breakdown in immune function caused by a retrovirus known as human immunodeficiency virus, or HIV. The infected person confronts opportunistic infections or malignancies that ultimately are fatal. For this reason, the prevention of infection is a priority of nursing care. Although poor hygiene may affect the client's risk for infection, addressing and helping the client cease her use of IV drugs, which is an immediate contributor to the risk for infections, is priority. Inverted nipples and intake of less than 6 glasses of fluid daily are not specifically related to this syndrome.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q69",
+      "stem": "A woman with severe preeclampsia delivers a healthy newborn infant and continues to receive magnesium sulfate therapy in the postpartum period. Twenty-four hours after delivery, the client begins passing more than 100 mL of urine every hour. What does the nurse recognize this volume of urine output as an indication of?",
+      "options": [
+        "Hyperkalemia",
+        "Diminished edema and vasoconstriction in the brain and kidneys",
+        "High-output renal failure",
+        "Imminent seizures"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "In this client, diuresis is a positive sign, indicating that edema and vasoconstriction in the brain and kidneys have decreased. Diuresis also reflects increased tissue perfusion in the kidneys. Clients with severe preeclampsia are considered out of danger once diuresis have taken place. Diuresis is not an indication of impending seizures. Although renal failure is a complication of severe preeclampsia, it is not the high-output type of failure. Potassium is lost through the urine; therefore hyperkalemia is not associated with diuresis.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q71",
+      "stem": "The nurse is monitoring a fetal heart rate (FHR). How does the nurse document a reassuring FHR pattern in the record as noted as?",
+      "options": [
+        "Variability of 6 to 25 beats/min",
+        "No change in FHR as a result of fetal activity",
+        "Late decelerations",
+        "An average baseline rate ranging between 80 and 100 beats/min"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Variability of 6 to 25 beats/min is a reassuring pattern. The FHR should accelerate with fetal activity. The baseline range for the FHR is 110 to 160 beats/min. Late decelerations are a result of decreased uteroplacental perfusion that causes a decrease in fetal oxygenation. Late decelerations are an ominous sign.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q72",
+      "stem": "A pregnant woman at 38 weeks' gestation arrives at the emergency department, reporting bright-red vaginal bleeding but denying pain. On the basis of this information, what does the nurse determine that the client may be experiencing?",
+      "options": [
+        "Placenta previa",
+        "Passage of the mucus plug",
+        "Abruptio placentae",
+        "Rupture of the amniotic sac"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The primary signs/symptom of placenta previa is painless vaginal bleeding in the second or third trimester of pregnancy. Findings of abruptio placentae include dark-red vaginal bleeding and abdominal pain as a result of placental abruption and pain characterized by findings such as watery vaginal drainage. Passage of the mucus plug is manifested as pink or as blood-tinged mucus.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q73",
+      "stem": "The nurse is caring for a client experiencing a partial placental abruption. The client is uncooperative, refusing any interventions until her husband arrives at the hospital. What does the nurse analyze the client's behavior as most likely the result of?",
+      "options": [
+        "Anxiety and the need for support",
+        "An undiagnosed psychiatric disorder",
+        "Emotional immaturity",
+        "A stubborn personality"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Any of the situations identified in the options could contribute to the client's behavior, but the most likely reason is anxiety. Anxiety is the only emotion that supports the information identified in the question. The client may be anxious about the unknown effects of complications and want the presence of family with her during the crisis. There is no information in the question to support the other options.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q75",
+      "stem": "Rh\u2082(D) immune globulin is prescribed for a client after delivery. Before administering the medication, the nurse reviews the client's history. Which finding is a contraindication to administration of the medication?",
+      "options": [
+        "A previous hypersensitivity reaction to immune globulin",
+        "Known or suspected entry of Rh-positive fetal blood cells to the circulation of an Rh-negative woman",
+        "Amniocentesis in an Rh-negative woman carrying an Rh-positive fetus",
+        "Delivery of an Rh-positive infant by an Rh-negative woman"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "One contraindication to the administration of Rh\u2082(D) immune globulin is previous hypersensitivity to immune globulin. Rh\u2082(D) immune globulin is indicated when an Rh-negative client is exposed to Rh-positive blood type, including during amniocentesis. The options that are all indications for administering RhoGam.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q76",
+      "stem": "The nurse is caring for a client experiencing hypotonic labor contractions. The client is discouraged by the lack of progress with labor but refuses an amniotomy or oxytocin stimulation. What does the nurse determine that the client's behavior may be a result of?",
+      "options": [
+        "The high level of pain caused by these contractions",
+        "The normal lack of control clients feel during the transition phase of labor",
+        "Inability to rest between the frequent contractions",
+        "Concern about her own and the baby's well-being"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Clients have concerns when labor does not proceed as expected and often are worried about the effects of treatments and invasive procedures on themselves and on the fetus. Hypotonic contractions generally occur during the active phase of labor, after a normal labor has begun. These contractions are typically of poor intensity and infrequent; they are not painful but cause a very slow progression of labor. Therefore, the high level of pain, inability to rest between contractions, and normal lack of control felt during the transition phase of labor are all incorrect. The information provided in the question best supports the conclusion stated in the correct option.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q77",
+      "stem": "After an unplanned cesarean section, the nurse finds the client in emotional distress, tearfully expressing bewilderment, sadness, and feelings of failure and regret because she could not deliver vaginally. Which conclusion should the nurse make?",
+      "options": [
+        "The client is experiencing an inability to manage the stressors of surgery.",
+        "The client is experiencing anger.",
+        "The client is experiencing extreme discomfort.",
+        "The client is experiencing low self-esteem."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Situational low self-esteem represents temporary negative feelings about self in response to an event. This is a normal response to cesarean section. Anger is commonly a response to a lack of information or the ability to perform psychomotor skills in connection with a condition or treatment. When a person is unable to manage stressors adequately, the emotional condition is usually one of hopelessness and helplessness. Extreme discomfort is usually evidenced by writhing, moaning, screaming, or facial withdrawal. The condition described in the question is not one of extreme discomfort. The information provided in the question best supports the conclusion stated in the correct option.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_2_Q78",
+      "stem": "A pregnant woman reports that she has just finished taking the prescribed antibiotics to treat her urinary tract infection but expresses concern that her baby will be born with an infection. Which response should the nurse make to help ease these fears?",
+      "options": [
+        "Now that you have taken the medication as prescribed, we'll keep monitoring you closely and repeat the urine culture before you leave today.",
+        "Your developing baby cannot acquire an infection from you during pregnancy.",
+        "Urinary infections during pregnancy are common. Your baby will be fine.",
+        "You shouldn't worry about this, because you had early prenatal care and are taking your prenatal vitamins."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Symptomatic bacteriuria has been associated with an increased risk of neonatal sepsis after delivery. Appropriate antenatal care of a client with a urinary tract infection includes antibiotic treatment and follow-up with repeat urine cultures. The correct option is the only therapeutic response and is the most accurate and informative one.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q80",
+      "stem": "The nurse notes that the laboratory report of a pregnant client with suspected HIV infection indicates leukopenia, thrombocytopenia, anemia, and an increased erythrocyte sedimentation rate. Which laboratory test that would further confirm the presence of HIV does the nurse anticipate that the primary health care provider will prescribe?",
+      "options": [
+        "Glomerular filtration rate",
+        "Angiotensin level",
+        "Platelet count",
+        "T-lymphocyte determination"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "HIV has a strong affinity for surface marker proteins on lymphocytes. This affinity of HIV for T-lymphocytes leads to significant cell destruction. Angiotensin is produced in the kidney and plays a role in blood pressure control. Glomerular filtration rate is an indicator of kidney function. The platelet count is important and may be used as an indicator of the effects of HIV, but low platelet count (thrombocytopenia) is not used as a diagnostic test in the selection of the injection.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q81",
+      "stem": "The nurse is reviewing the records of the clients admitted to the maternity unit during the past 24 hours. Which clients does the nurse recognize as being at risk for the development of disseminated intravascular coagulation (DIC)? (Select all that apply.)",
+      "options": [
+        "A client with diabetes mellitus who delivered a 10-lb (4.5 kg) baby",
+        "A client with septicemia",
+        "A client with mild preeclampsia",
+        "A client who had a cesarean section because of abruptio placentae",
+        "A client who delivered 12 hours ago and has lost 475 mL of blood"
+      ],
+      "correct": [
+        "B",
+        "D"
+      ],
+      "rationale": "DIC is a pathologic form of clotting that is diffuse and consumes large amounts of clotting factors, including platelets, fibrinogen, prothrombin, and factor V and VIII. In the obstetric population, DIC occurs as a result of septicemia, abruptio placentae, amniotic fluid embolism, dead fetus syndrome (in which the fetus has died but is retained in utero for at least 6 weeks), severe preeclampsia, cardiomyopathy, and or hemorrhage. A loss of 475 mL is not considered hemorrhage. A mild case of preeclampsia is not a risk factor for DIC. It is not unusual for a client with diabetes mellitus to have a large baby, and this condition is not associated with DIC.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q82",
+      "stem": "The nurse is caring for a post-partum client with suspected endometritis. What manifestations of this condition would the nurse expect to note? (Select all that apply.)",
+      "options": [
+        "Foul-smelling lochia",
+        "Tender uterus",
+        "Backache",
+        "Decreased pulse",
+        "Elevated red blood cell count",
+        "Nausea and vomiting"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "Manifestations of endometritis include: backache, tender uterus and foul-smelling lochia. Endometritis is a bacterial infection that invades the uterus at the placental site. It occurs most frequently after childbirth or abortion and is associated with the use of an intrauterine device. The infection rises and invades the entire endometrium and parametrium. Additional manifestations include: chills and fever, increased not decreased pulse, decreased appetite, headache, prolonged, severe afterpains, ileus, and elevated white blood cell (WBC) count with left shift of immature cells, not elevated red blood cell count.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q83",
+      "stem": "The maternity nurse is assessing a client who has progressed to Stage 2 of labor. What findings does the nurse expect to assess? (Select all that apply.)",
+      "options": [
+        "Increase in bloody show",
+        "Cervical dilation is 50% complete",
+        "Progress of labor measured by descent of fetal head through birth canal or change in fetal station",
+        "Uterine contractions occur every 5 to 10 minutes, lasting 60 to 75 seconds, and of strong intensity",
+        "Mother feels urge to bear down"
+      ],
+      "correct": [
+        "A",
+        "C",
+        "E"
+      ],
+      "rationale": "Stage 2 of labor includes: increase in bloody show, mother feels urge to bear down, and progression of labor measured by descent of fetal head (birth and change in fetal station). Uterine contractions are of strong intensity and occur every 2 to 3 minutes, not every 5 to 10 minutes lasting 60 to 75 seconds, and of 100 to 150 seconds.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q84",
+      "stem": "The clinic nurse is examining a 16 week pregnant client for suspected abortion. What manifestations does the nurse expect to note? (Select all that apply.)",
+      "options": [
+        "Nausea and vomiting",
+        "Slowly progressing and intermittent vaginal bleeding",
+        "Low uterine cramping or contractions",
+        "Slight fever are findings in the client with suspected abortion",
+        "Blood clots or tissue through the vagina"
+      ],
+      "correct": [
+        "C",
+        "E"
+      ],
+      "rationale": "Abortion is described as a pregnancy that ends before 20 weeks' gestation, spontaneously or electively. Low uterine cramping or contractions, blood clots or tissue through the vagina and spontaneous vaginal bleeding, not slowly progressing and intermittent vaginal bleeding can indicate suspected abortion. Slight fever and nausea/vomiting are not specific suspected abortion findings.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q85",
+      "stem": "The nurse is assisting a primary health care provider in performing a physical examination on a client who has just been told that she is pregnant. The nurse knows that what data indicate a positive sign of pregnancy? (Select all that apply.)",
+      "options": [
+        "Feeling sick a week after ovulation",
+        "Fetal heart rate detected by nonelectronic device (fetoscope) at 20 weeks of gestation",
+        "Fetal heart rate detected by electronic device (Doppler transducer) at 6 to 10 weeks",
+        "Active fetal movements palpable by the examiner",
+        "An outline of the fetus by radiography or ultrasonography"
+      ],
+      "correct": [
+        "B",
+        "D",
+        "E"
+      ],
+      "rationale": "Positive signs of pregnancy include active fetal movements palpable by the examiner, an outline of the fetus by radiography or ultrasonography, and fetal heart rate detected by nonelectronic device (fetoscope) at 20 weeks of gestation. Fetal heart rate is detected by electronic device (Doppler transducer) at 10 to 12 weeks, not 6 to 10 weeks. Also, no menses in two months is not a positive sign of pregnancy. Feeling sick a week after ovulation is not a positive sign of pregnancy.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q86",
+      "stem": "The nurse is educating a newly pregnant client who states that this is her first pregnancy. What does the nurse tell the client about amniotic fluid? (Select all that apply.)",
+      "options": [
+        "Contains fetal bilirubin and is a measure of fetal liver function",
+        "Consists of 500 to 900 mL by end of pregnancy",
+        "Maintains the body temperature of the fetus",
+        "Fetus modifies or changes the amniotic fluid through the processes of swallowing, urinating, and movement through the respiratory tract",
+        "Surrounds, cushions, and protects the fetus and allows for fetal movement"
+      ],
+      "correct": [
+        "C",
+        "D",
+        "E"
+      ],
+      "rationale": "Amniotic fluid maintains the body temperature of the fetus, surrounds, cushions, and protects the fetus and allows for fetal movements. The fetus modifies or changes the amniotic fluid through the processes of swallowing, urinating, and movement through the respiratory tract. The amniotic fluid consists of 800 to 1200 mL by the end of pregnancy and not just 500 to 900 mL of fluid. In addition, amniotic fluid and not fetal bilirubin to measure liver function.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q87",
+      "stem": "The nurse educator is lecturing to a group of students about the probable signs of pregnancy. What signs does the nurse describe to the students? (Select all that apply.)",
+      "options": [
+        "Braden High contractions",
+        "Positive pregnancy test for the presence of hCG",
+        "Hegar's sign",
+        "Uterine enlargement",
+        "Chadwick's sign"
+      ],
+      "correct": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "rationale": "Probable signs of pregnancy include: Hegar's sign (compressibility and softening of the lower uterine segment that occurs at about week 4), Chadwick's sign (softening and bluish discoloration of the mucous membranes of the cervix, vagina, and vulva that occurs at about week 4), Goodell's, not Chadwick's sign (softening of the cervix at the beginning of the second month), uterine enlargement, Braxton Hicks, not Braden High contractions, and a positive pregnancy test for the presence of human chorionic gonadotropin. Ballotement (rebounding of the fetus against the examiner's fingers on palpation) is also included in this group.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q88",
+      "stem": "The nurse is caring for a client in labor who has sickle cell anemia. What are some situations that can precipitate sickling? (Select all that apply.)",
+      "options": [
+        "Hyperglycemia",
+        "Any condition that increases or alters the need and transport of oxygen",
+        "Fever",
+        "Dehydration",
+        "Anorexia",
+        "Emotional or physical stress"
+      ],
+      "correct": [
+        "B",
+        "C",
+        "D",
+        "F"
+      ],
+      "rationale": "Situations that precipitate sickling include fever, dehydration, and emotional or physical stress; any condition that increases the need for oxygen or alters the transport of oxygen can result in sickle cell crisis (acute exacerbation). Anorexia, hyponatremia, or hyperglycemia and are not related to situations that precipitate sickling.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q89",
+      "stem": "A pregnant client is seen in the clinic for the first time. This is the client's first pregnancy, and the client tells the nurse that she has diabetes mellitus. The nurse provides instruction to the client regarding health care during pregnancy. Which statements by the client indicate the need for further instruction? (Select all that apply.)",
+      "options": [
+        "I need to report signs/symptoms of infection to my primary health care provider.",
+        "I'll come back for a prenatal visit every month during my first trimester.",
+        "I need to limit my exercise while I'm pregnant.",
+        "I need to follow the prescribed diabetic diet.",
+        "My insulin requirements may change while I'm pregnant."
+      ],
+      "correct": [
+        "B",
+        "C"
+      ],
+      "rationale": "Exercise is necessary for the pregnant diabetic client to help maintain control of her diabetes. Concepts related to the timing of exercise, control of food intake, and insulin around the time of exercise should be reviewed with the client. The prenatal visit schedule for clients with a history of diabetes mellitus is more frequent than the normal prenatal course. In the first and second trimesters, prenatal visits should be scheduled every 1 to 2 weeks. The remaining statements are correct. Important information for the pregnant client with diabetes mellitus.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q90",
+      "stem": "The nurse is reviewing the criteria for early discharge of a newborn infant. Which, if noted in the infant, would indicate that the criteria for early discharge have been met? (Select all that apply.)",
+      "options": [
+        "The infant has completed one successful feeding.",
+        "The infant has passed 1 stool.",
+        "The infant has shown no evidence of jaundice in the first 6 hours of life.",
+        "The infant has urinated.",
+        "Vital signs are documented as normal."
+      ],
+      "correct": [
+        "B",
+        "D",
+        "E"
+      ],
+      "rationale": "Criteria for early discharge in the newborn infant include no evidence of significant jaundice in the first 24 hours of life, the infant should be required and at least one stool, completed at least two successful feedings, and have normal vital signs for at least 12 hours.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q91",
+      "stem": "A multigravida woman with a history of multiple cesarean births is admitted to the maternity unit in labor. The client is experiencing excessively strong contractions, and the nurse monitors the client closely for uterine rupture. Which assessment findings are indicative of complete uterine rupture? (Select all that apply.)",
+      "options": [
+        "Increased uterine contractions",
+        "Maternal complaint of sudden sharp abdominal pain",
+        "Fetal bradycardia",
+        "Excessive vaginal bleeding",
+        "Maternal tachypnea"
+      ],
+      "correct": [
+        "B",
+        "C",
+        "E"
+      ],
+      "rationale": "In a complete uterine rupture, the woman may complain of sudden sharp, shooting abdominal pain and may state that she felt the \"giving way way\" if she is in labor, but contractions will cease and the pain is relieved. In a complete uterine rupture, bleeding will be concealed; therefore the client will exhibit signs/symptoms of hypovolemic shock resulting from hemorrhage (hypotension, tachypnea, and pallor, and cool, clammy skin). The fetus is the most common indicator of uterine rupture. Such changes in the fetal heart rate as late or variable decelerations, a decrease in baseline variability, or an increase or decrease in rate are commonly exhibited during a rupture. With separation, the fetal parts may be palpated through the abdomen.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q92",
+      "stem": "A nurse working in a prenatal clinic is reviewing the records of several clients scheduled for prenatal visits today. Which client does the nurse identify as being at risk for abruptio placentae? (Select all that apply.)",
+      "options": [
+        "A client who exercises regularly",
+        "A primipara",
+        "A hypertensive client",
+        "A pack-a-day smoker",
+        "A 36- year-old"
+      ],
+      "correct": [
+        "C",
+        "D"
+      ],
+      "rationale": "The cause of abruptio placentae is unknown, but several risk factors have been identified. Maternal use of cocaine, which causes vasoconstriction or the endometrial arteries, is a leading cause. Other risk factors include hypertension, cigarette smoking, abdominal trauma, and a history of previous premature separation of the placenta.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q93",
+      "stem": "The maternity nurse educator is lecturing to student nurses about respiratory physiological maternal changes. What maternal respiratory changes does the instructor state happen during pregnancy? (Select all that apply.)",
+      "options": [
+        "The diaphragm is lowered",
+        "Obstructive sleep apnea may develop",
+        "Oxygen consumption increases by approximately 15% to 20%",
+        "Dry coughs",
+        "Shortness of breath may be experienced"
+      ],
+      "correct": [
+        "C",
+        "E"
+      ],
+      "rationale": "Maternal respiratory changes include shortness of breath, oxygen consumption increase to approximately 15% to 20%, and elevated not lowered diaphragm. Also, there is also not any new development of sleep apnea or an increase in respiratory infections or dry coughs.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q94",
+      "stem": "A nurse is assessing a newborn infant with a diagnosis of gastroschisis. What are some problems associated with this condition? (Select all that apply.)",
+      "options": [
+        "Surgery performed within several hours after birth.",
+        "Thin membrane covers the exposed bowel.",
+        "Herniation of intestine is lateral to umbilical ring.",
+        "Postoperatively, parenteral nutrition is not needed.",
+        "Postoperatively, most infants are asymptomatic."
+      ],
+      "correct": [
+        "A",
+        "C",
+        "E"
+      ],
+      "rationale": "Gastroschisis occurs when the herniation of the intestine is lateral to the umbilical ring. Care is similar to that for omphalocele; surgery is performed within several hours after birth because no membrane not a thin membrane is covering the sac. Postoperatively, care is similar to that for an omphalocele. Postoperatively, most infants develop prolonged ileus and are not asymptomatic. They require mechanical ventilation, and need parenteral nutrition.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q95",
+      "stem": "The nurse is about to perform an assessment of a pregnant woman in the Labor Room. What does the nurse know about false labor? (Select all that apply.)",
+      "options": [
+        "Progressive effacement",
+        "No lightening of fetus",
+        "Contractions resemble menstrual cramps",
+        "Contractions relieved after walking",
+        "Contractions felt in abdomen and groin",
+        "Indenitable uterus"
+      ],
+      "correct": [
+        "B",
+        "D",
+        "E",
+        "F"
+      ],
+      "rationale": "False labor also known as prodromal labor includes contractions that are irregular with no progression and do not produce dilation, effacement, or descent. In addition, the uterus is not indenitable and false labor contractions are more annoying than painful. They are also relieved after walking. In true labor, lightening or dropping, also known as engagement occurs when the fetus descends into the pelvis about 2 weeks before birth. Contractions in true labor are throughout the abdomen and back, then radiate to the entire abdomen and often resemble menstrual cramps during early labor.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q96",
+      "stem": "The nurse is assisting the primary health care provider with performing internal fetal monitoring. What are some manifestations of internal fetal monitoring? (Select all that apply.)",
+      "options": [
+        "Is invasive",
+        "A second primary health care provider does not have to be present",
+        "A unit of blood must be given at the same time.",
+        "An electrode is attached to the skull of the fetus",
+        "The client cannot be dilated",
+        "Requires rupturing of the membranes"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "F"
+      ],
+      "rationale": "Internal fetal monitoring is invasive and requires rupturing of the membranes and attaching an electrode to the presenting part of the fetus. Internal fetal monitoring. A second primary health care provider does not have to be present.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q97",
+      "stem": "The nurse is admitting a newly pregnant client to the clinic. The client asks the nurse about gonorrhea. What are some appropriate responses by the nurse? (Select all that apply.)",
+      "options": [
+        "I will obtain a blood sample during this initial prenatal exam to screen for gonorrhea.",
+        "If you are at high risk for this infection, then another test should be repeated during your third trimester.",
+        "If infection is present, your partner must be treated, too.",
+        "Urinary frequency may occur.",
+        "You will have a slight fever.",
+        "Transmission of this organism is by sexual intercourse."
+      ],
+      "correct": [
+        "B",
+        "C",
+        "D",
+        "F"
+      ],
+      "rationale": "Gonorrhea is an infection caused by Neisseria gonorrhoeae, which causes inflammation of the mucous membranes of the genital and urinary tracts. Transmission of the organism is by sexual intercourse, so if the test is positive, another vaginal culture not blood sample is obtained during the third trimester. The client is usually asymptomatic, but urinary frequency, vaginal discharge and lower abdominal pain may occur. There is no fever.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q98",
+      "stem": "The nurse is assisting the primary health care provider to perform a Fern test on a pregnant client. What are some manifestations of this test? (Select all that apply.)",
+      "options": [
+        "A microscopic slide test",
+        "Client positioned in side-lying position",
+        "Determines presence of amniotic fluid leakage",
+        "Fernikle pattern produced by effects of salts of amniotic fluid showing presence of amniotic fluid",
+        "Tell client not to cough during test",
+        "Sterile technique not needed"
+      ],
+      "correct": [
+        "A",
+        "C",
+        "D"
+      ],
+      "rationale": "The Fern test is a microscopic slide test to determine presence of amniotic fluid leakage. The fernikle pattern is produced by the effects of salts of the amniotic fluid indicating the presence of amniotic fluid. Sterile technique must be used and is not specimen is obtained from the external os of the cervix and vaginal pool. It is then examined on a slide under a microscope. The client is positioned in the dorsal lithotomy position, and not in a side-lying position. The client is instructed not to cough during the test if the membranes are ruptured.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_3_Q99",
+      "stem": "The nurse is changing the diaper of a 1-day-old full-term female newborn. What assessment criteria of the labia does the nurse determine are normal? (Select all that apply.)",
+      "options": [
+        "Presence of yellow mucous vaginal discharge",
+        "Small amounts of urine expelled from the vagina",
+        "Pseudomenstruation, caused by withdrawal of the maternal hormone estrogen, is possible (blood-tinged mucus)",
+        "Hymen tag may be visible",
+        "Labia may be edematous",
+        "Labia lighter than the surrounding skin"
+      ],
+      "correct": [
+        "C",
+        "D",
+        "E"
+      ],
+      "rationale": "Assessment of a the labia of a full-term female includes the labia may be edematous and the clitoris may also be enlarged. The hymen tag may be visible and also pseudomenstruation, caused by withdrawal of the maternal hormone estrogen, is possible (blood-tinged mucus). The labia is darker not lighter than the surrounding skin and there should be no presence of yellow mucous vaginal discharge. The labia is darker not lighter than the surrounding skin and there should be no presence of yellow mucous vaginal discharge. Urine should be expelled and no discharge from the vagina.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q100",
+      "stem": "The nurse is assessing a newly delivered large for gestational age neonate. The nurse is aware of what manifestations of this neonate category? (Select all that apply.)",
+      "options": [
+        "Provide stimulation, such as touch and cuddling",
+        "Respiratory distress occurs",
+        "Delay feedings for a day",
+        "Increased risk for infection",
+        "Newborn plotted at or above the 80th percentile on the intrauterine growth curve",
+        "Hyperglycemia is present"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "D"
+      ],
+      "rationale": "A neonate described as large for gestational age, needs to be specifically assessed for respiratory distress and infection. These neonates also need stimulation such as touch and cuddling. They need to be monitored for hypoglycemia not hyperglycemia and early feedings should be initiated as soon as possible. The newborns are plotted at or above the 90th percentile not the 80th on the intrauterine growth curve.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q1",
+      "stem": "The home care nurse is instructing a client with hyperemesis gravidarum about measures to ease the nausea and vomiting. What does the nurse tell the client to do?",
+      "options": [
+        "Eat carbohydrates such as cereals, rice, and pasta",
+        "Lie down for at least 20 minutes after meals",
+        "Eat foods high in calories and fat",
+        "Consume primarily soups and liquids at mealtimes"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Low-fat foods and easily digested carbohydrates such as fruit, breads, cereals, rice, and pasta provide important nutrients and help prevent a low blood glucose level, which can cause nausea. Soups and other liquids should be taken between meals to prevent stomach and triggering nausea. Sitting upright after meals reduces gastric reflux. Additionally, food portions should be small and foods with strong odors should be eliminated from the diet, because food smells often incite nausea.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q8",
+      "stem": "A client who delivered a healthy newborn 11 days ago calls the clinic and tells the nurse that she is experiencing a white vaginal discharge. What does the nurse tell the client?",
+      "options": [
+        "That this is an indication of an infection",
+        "That this is a normal postpartum occurrence",
+        "To come to the clinic for a checkup",
+        "To perform a vaginal douche"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "For the first 3 days following childbirth, lochia consists almost entirely of blood, with small particles of decidua and mucus, and is called lochia rubra because of its red color. The amount of blood decreases by about the fourth day, at which time the lochia changes from red to pink or brown-tinged; this stage is called lochia serosa. By about the 11th day, the erythrocyte components of lochia has decreased and the discharge becomes white or cream-colored. This final stage is known as lochia alba. Lochia alba contains leukocytes, decidual cells, epithelial cells, fat, cervical mucus, and bacteria. It is present in most women until the third week after childbirth but may persist for as long as 6 weeks. Lochia alba is a normal finding during the postpartum period and no intervention is required, so the other options are incorrect.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q10",
+      "stem": "The nurse is monitoring a client who delivered a healthy newborn 12 hours ago. The nurse takes the client's temperature and notes that it is 38\u00b0C (100.4\u00b0F). What is the most appropriate nursing action?",
+      "options": [
+        "Tell the client that antibiotics will be prescribed",
+        "Encourage the intake of oral fluids",
+        "Contact the primary health care provider",
+        "Recheck the temperature in 1 hour"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Because the client delivered her baby just 12 hours ago, the most appropriate nursing action is to encourage the intake of oral fluids. A temperature of 38\u00b0C (100.4\u00b0F) is common during the 24 hours after childbirth. It may be the result of dehydration or normal postpartum leukocytosis. If the increased temperature persists for longer than 24 hours or exceeds 38\u00b0C, infection is a possibility, and the fever is reported to the primary health care provider or nurse midwife.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q13",
+      "stem": "A stillborn infant was delivered a few hours ago. After the birth, the family remains together, holding and touching the baby. Which statement by the nurse is appropriate?",
+      "options": [
+        "I know how you feel.",
+        "This must be hard for you.",
+        "Now you have an angel in heaven.",
+        "You're young. You can have other children."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Therapeutic communication helps the mother, father, and other family members express their feelings and emotions. \"This must be hard for you\" is a caring and empathetic response, focused on feelings and encouraging communication. The other options are nontherapeutic and may devalue the family members' feelings.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q14",
+      "stem": "The nurse is providing nutritional counseling to pregnant client with a history of cardiac disease. What does the nurse advise the client to eat?",
+      "options": [
+        "Apple and whole-grain toast",
+        "Low-fat cheese omelet",
+        "Water and pretzels",
+        "Nachos and fried chicken"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The nurse advises the client to eat apples and whole-grain toast. The pregnant woman needs a well-balanced diet high in iron and protein and adequate in calories for weight gain. Iron supplements may be taken during pregnancy to tend to cause constipation. Constipation causes the client to strain during defecation, inadvertently performing the Valsalva maneuver, which causes blood to rush to the heart and overload the circulatory system. The pregnant woman should limit sodium, which should increase her intake of fluids and fiber. An unlimited intake of sodium (pretzels, cheese, nachos) could cause overload of the circulating blood volume and contribute to the cardiac condition.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q15",
+      "stem": "The delivery room nurse is preparing a client for a cesarean delivery. The client is placed on the delivery room table. How does the nurse position the client?",
+      "options": [
+        "Supine with a wedge under the right hip",
+        "Prone",
+        "In a semi-Fowler position",
+        "In the Trendelenburg position"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The pregnant client is positioned so that the uterus is displaced laterally to prevent compression of the inferior vena cava, which causes decreased placental perfusion. This is accomplished by placing a wedge under the hip. Positioning for abdominal surgery necessitates a supine position. The Trendelenburg position places pressure from the pregnant uterus on the diaphragm and lungs, and overventilation. A semi-Fowler or prone position is not practical for this type of abdominal surgery.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q24",
+      "stem": "The nurse, performing an assessment of a pregnant client is preparing to take the client's blood pressure. How does the nurse position the client?",
+      "options": [
+        "Lying down with the arm in a horizontal position at heart level",
+        "In a sitting position with the arm in a horizontal position at heart level",
+        "Supine, on the left side",
+        "Supine, on the right side"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Because position affects blood pressure in the pregnant woman, the method for obtaining blood pressure should be standardized as much as possible. Blood pressure should be obtained with the client in the sitting position and the arm supported in a horizontal position at heart level. Supine on the right or left side and lying down with the arm in a horizontal position at heart level are both incorrect positions because they could cause physiological stress that would affect the blood pressure.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q28",
+      "stem": "The nurse is teaching a pregnant client about measures to strengthen the pelvic floor. What does the nurse instruct the client to do?",
+      "options": [
+        "Drink at least 2 quarts of fluid per day",
+        "Perform Kegel exercises in 10 repetitions, three times per day",
+        "Perform pelvic tilt exercises in 10 repetitions, three times per day",
+        "Walk half a mile 3 times a week"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Kegel exercises strengthen the pelvic floor (pubococcygeal muscle). The increased tone of this muscle is beneficial during pregnancy and afterward. Walking is a general healthy measure but does not specifically strengthen the pelvic floor. Fluid intake is an indicator of hydration, which is important for normal physiological function. Pelvic tilt exercises ease backache.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q29",
+      "stem": "The nurse is teaching a new mother how to perform umbilical cord care and how to recognize the signs/symptoms of a cord infection. Which finding does the nurse tell the mother is an indicator of infection?",
+      "options": [
+        "Edema at the base of the cord",
+        "A brownish-black cord with some moistness at the base",
+        "A brownish-black cord with pinkness around the base",
+        "A darkened, drying cord"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Signs/symptoms of a cord infection include purulent drainage or redness or edema at the base of the cord. If signs/symptoms of cord infection occur, the mother should be instructed to notify the primary healthcare provider, because antibiotics are necessary. The cord begins to dry shortly after birth. It turns a brownish-black within 2 to 3 days and falls off within 10 to 14 days.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q30",
+      "stem": "A nurse is performing assessments every 30 minutes on a client who is receiving magnesium sulfate for preeclampsia. Which finding would prompt the nurse to contact the primary health care provider?",
+      "options": [
+        "Respirations of 10 breaths/min",
+        "Urine output of 20 mL",
+        "Deep tendon reflexes of 2+",
+        "Fetal heart tone of 116 beats/min"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Magnesium sulfate depresses the respiratory rate. If the rate is 12 breaths/min or slower, continuation of the medication must be reassessed. Acceptable urine output is 30 mL/hr or more. Urine output of 20 mL in 30 minutes is adequate. Deep tendon reflexes of 2+ are normal. The fetal heart tone is normal.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q32",
+      "stem": "During a prenatal visit, the nurse notes that an adolescent pregnant client with diabetes mellitus has lost 10 lb (4.5 kg) during the first 15 weeks of gestation. The nurse discusses the weight loss with the client, and the client states, \"I don't eat regular meals.\" What is the nurse's most appropriate response?",
+      "options": [
+        "Let's make a list of what you're eating",
+        "It's all right to gain weight during pregnancy.",
+        "I'll have the doctor review your diet history.",
+        "Weight loss could hurt your baby."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "It is important for the nurse to obtain additional information from the client. The nurse's most appropriate response is using the therapeutic communication tool of validation and clarification to obtain more information about the client's diet. The other options will block communication. The statement regarding harm to the baby devalues the client and shows disapproval. Informing the primary health care provider is avoiding the issue, and the statement that it is all right to gain weight during pregnancy blocks communication.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q33",
+      "stem": "The nurse provides information about the treatment for hypoglycemia to a client with gestational diabetes who will be taking insulin. What does the nurse tell the client what to immediately do if signs/symptoms of hypoglycemia occur?",
+      "options": [
+        "Check her blood glucose level",
+        "Lie down",
+        "Drink 8 oz (240 ml) of diet soda",
+        "Contact the primary health care provider"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "If signs/symptoms of hypoglycemia occur, the client should immediately check the blood glucose level. The results will determine the required treatment. If the blood glucose is less than 60 mg/dL (3.3 mmol/L), the client should immediately eat or drink something that contains 10 to 15 g of simple carbohydrate. Examples include a half cup (4 oz [120 ml]) of unsweetened fruit juice, a half cup (4 oz [120 ml]) of regular (not diet) soda, 5 or 6 LifeSavers candies, 1 tablespoon of honey or corn (Karo) syrup; 1 cup (8 oz [240 ml]) of milk; or 2 or 3 glucose tablets. The blood glucose is tested again 15 minutes after intake of the carbohydrate, and the primary health care provider is notified if it is still below 60 mg/dL (3.3 mmol/L), because further intervention is necessary. Lying down will not increase the blood glucose level and will delay necessary intervention.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q35",
+      "stem": "Immediately after the delivery of a newborn infant, the nurse prepares to deliver the placenta. What does the nurse initially do?",
+      "options": [
+        "Apply strong traction on the cord when signs of separation occur",
+        "Instruct the mother to push when signs of separation have occurred",
+        "Pull on the placenta as it enters the vaginal canal",
+        "Pull on the umbilical cord as the mother bears down"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "To assist in the delivery of the placenta, the nurse instructs the mother to push when signs of separation have occurred. If possible, the placenta should be expelled by means of maternal effort during a uterine contraction. Alternate compression and elevation of the fundus plus minimal controlled traction on the umbilical cord may be used to facilitate delivery of the placenta and amniotic membranes.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q43",
+      "stem": "The nurse is assessing a newborn with a diagnosis of congenital diaphragmatic hernia (CDH). Which assessment finding would the nurse specifically expect to note in the newborn?",
+      "options": [
+        "Excessive oral secretions",
+        "Bowel sounds heard over the chest",
+        "Hiccupping and spitting up after a meal",
+        "Coughing, wheezing, and short periods of apnea"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Clinical manifestations associated with CDH include diminished or an absence of breath sounds on the affected side, bowel sounds heard over the chest, cardiac sounds heard on the right side of the chest, and respiratory distress, including dyspnea, cyanosis, nasal flaring, tachypnea, retractions, and a scaphoid abdomen, that develops soon after birth. The presence of excessive oral secretions is a clinical manifestation of esophageal atresia and tracheoesophageal fistula. Hiccups and spitting up after meals are clinical manifestations of gastroesophageal reflux. A hiatal hernia may present with coughing, wheezing, and short periods of apnea.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q44",
+      "stem": "A woman is being seen in the prenatal clinic and complains of morning sickness that continues throughout the day. What does the nurse tell the client to do to overcome this discomfort?",
+      "options": [
+        "Eat fatty or spicy foods only at the noontime meal",
+        "Eat dry crackers every 2 hours to prevent an empty stomach",
+        "Eliminate the morning meal",
+        "Drink fluids with meals"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Morning sickness, which is common during the first trimester of pregnancy, is associated with an increased level of human chorionic gonadotropin (hCG) and changes in carbohydrate metabolism. Morning sickness most often occurs when the pregnant woman arises from bed, although a few women experience it throughout the day. Self-care measures include eating dry crackers or toast before getting out of bed, eating dry crackers every 2 hours to prevent an empty stomach, eating small frequent meals, avoiding fatty or spicy foods, consuming fluids separately from meals, and eating slowly from a lying or sitting position to help prevent orthostatic hypotension. The client should not eliminate meals.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q46",
+      "stem": "A nurse assessing a pregnant client's deep tendon reflexes notes a reflex of 2+. What should the nurse do?",
+      "options": [
+        "Document the finding",
+        "Ask another nurse to check the reflexes to verify the finding",
+        "Reassess the reflexes in 15 minutes",
+        "Report the finding to the primary health care provider immediately"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The normal deep tendon reflex response is an extension and upward thrusting of the foot. A 1+ indicates a diminished response; 2+ indicates increased response, brisker than average; and 4 + indicates a very brisk, hyperactive response. The nurse would document the finding. The actions set forth in the remaining options are unnecessary. If the reflexes were found to be notified, because these findings suggest preeclampsia.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q48",
+      "stem": "After a vaginal delivery, a woman suddenly begins to complain of severe pelvic pain and extreme fullness in the vagina, and the nurse suspects uterine inversion. What does the nurse immediately prepare to do?",
+      "options": [
+        "Assist in repositioning the uterus through the vagina into a normal position",
+        "Administer oxytocin (Pitocin)",
+        "Perform fundal massage",
+        "Insert a Foley catheter"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The nurse would immediately prepare to assist the primary health care provider to try to replace the uterus, by way of the vagina, in a normal position. Uterine inversion occurs when the uterus turns completely or partially inside out, usually during the third stage of labor. If this is not possible, laparotomy with replacement is performed. A hysterectomy may be required. Two intravenous lines are established to allow rapid fluid and blood replacement. Alcoholic medication or general anesthesia usually is needed to relax the uterus enough to replace it. To help ensure that the inverted fundus is not trapped in the cervix, oxytocin is not given until the uterus has been repositioned. Fundal massage should be avoided if possible, but, if it is prescribed, it should be conducted very carefully. A Foley catheter may be inserted to keep the bladder empty so that the uterus can contract properly and allow the uterus to contract properly and allow the uterus to contract properly and allow the uterus can contract properly and allow the immediate action.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q59",
+      "stem": "The nurse caring for a hospitalized client with a diagnosis of abruptio placentae develops a nursing care plan incorporating interventions to be implemented in the event of shock. If signs/symptoms of shock develop, to promote tissue oxygenation, what would the nurse immediately do?",
+      "options": [
+        "Monitor maternal vital signs",
+        "Turn the client on her side",
+        "Provide emotional support to reduce anxiety",
+        "Limit maternal activity"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "With a client in shock, the goal is to increase perfusion to the placenta. The immediate nursing action would be to turn the client on her side. This would increase blood flow to the placenta by relieving pressure from the gravid uterus on the abdominal organs on the gravid uterus. The remaining actions are also interventions that would be implemented, but only after this immediate action had been taken. Additionally, oxygen at 8 to 10 L/min by way of face mask would be administered.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_4_Q60",
+      "stem": "A 1-hour oral glucose tolerance test is performed on a pregnant client, with a result of 155 mg/dL (8.6 mmol/L). What does the nurse tell the client?",
+      "options": [
+        "Her glucose level is within normal limits",
+        "Additional tests will likely be performed to confirm gestational diabetes",
+        "A daily oral hypoglycemic agent will be prescribed",
+        "Daily NPH insulin will be needed"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "A maternal 1-hour blood glucose test may be prescribed as a screen for gestational diabetes. If it is increased to 140 mg/dL (7.8 mmol/L) or greater, a 3-hour glucose-tolerance test may be recommended to confirm the presence of gestational diabetes. Oral hypoglycemics and insulin would not be prescribed solely on the basis of an increased maternal 1-hour glucose level. Additionally, oral hypoglycemic agents are contraindicated during pregnancy. A result of less than 140 mg/dL (7.8 mmol/L) usually does not need further glucose testing and continued routine prenatal care.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q7",
+      "stem": "The nurse is monitoring a client who was given an epidural opioid for a cesarean birth. The nurse notes that the client's oxygen saturation on pulse oximetry (SpO2) is 92%. What should the nurse do first?",
+      "options": [
+        "Administers 100% oxygen by way of face mask",
+        "Documents the findings",
+        "Instructs the client to take several deep breaths",
+        "Contacts the primary health care provider"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "If the client has been given an epidural opioid, the nurse should monitor the client's respiratory status closely. If the SpO2 falls below 95%, the nurse instructs the client to take several deep breaths to increase the level. Although the finding would be documented, it is required. Although this finding would be documented, documentation is not the priority action in this situation. It is not necessary to contact the primary health care provider. If the deep breaths fail to increase the oxygen saturation level, the primary health care provider is notified and may prescribe oxygen.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q9",
+      "stem": "A rubella antibody screen is performed on a pregnant client, and the results indicate that the client is not immune to rubella. What does the nurse tell the client to do?",
+      "options": [
+        "A rubella vaccine must be administered immediately",
+        "She does not need to be concerned about being exposed to rubella",
+        "She will not contract rubella if she is exposed to the disease",
+        "A rubella vaccine must be administered after childbirth"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "A prenatal rubella antibody screen is performed in every pregnant woman to determine whether she is immune to rubella, which can cause serious fetal anomalies. If she is not immune, rubella vaccine is offered after childbirth to keep her from contracting rubella during subsequent pregnancies. The vaccine is a live virus, and defects may occur in the fetus. If the vaccine were administered during pregnancy or if the mother were to become pregnant soon after it was administered. Administering a rubella vaccine immediately places the fetus at risk. Telling the client that she does not need to be concerned about being exposed to rubella is incorrect, because the possibility of exposure, which could be harmful to the fetus, does exist.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q11",
+      "stem": "The nurse is assessing the uterine fundus of a client who has just delivered a baby and notes that the fundus is boggy. The nurse massages the fundus, and then presses to expel clots from the uterus. To prevent uterine inversion during this procedure, what should the nurse do?",
+      "options": [
+        "Ask the client to take slow, deep breaths during fundal assessment",
+        "Have the client void before the uterine assessment",
+        "Tell the woman to bear down during fundal massage",
+        "Simultaneously provide pressure over the lower uterine segment"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "After massaging a boggy fundus until it is firm, the nurse presses the fundus to expel clots from the uterus. The nurse must also keep one hand pressed firmly just above the symphysis pubis (over the lower uterine segment) the entire time. Removing the clots allows the uterus to contract properly. Providing pressure over the lower uterine segment prevents uterine inversion. Having the client void before uterine assessment will not prevent uterine inversion. Telling the woman to bear down while the nurse performs fundal massage and asking the client to take slow, deep breaths during fundal assessment will not prevent uterine inversion.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q12",
+      "stem": "A nonstress test is performed, and the primary health care provider documents \"accelerations lasting less than 15 seconds throughout fetal movement.\" How does the nurse interpret these findings?",
+      "options": [
+        "Inconclusive",
+        "Normal",
+        "Reactive",
+        "Nonreactive"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "A reactive nonstress test is a normal, or negative, result and indicates a healthy fetus. The result requires two or more fetal heart rate accelerations of at least 15 beats/min lasting at least 15 seconds from the beginning of the acceleration to the end, in any association with fetal movement, during a 20-minute period. A nonreactive test is an abnormal test, showing no accelerations or accelerations of less than 15 beats/min or lasting less than 15 seconds during a 40-minute observation. An inconclusive test is interpreted because of the poor quality of the fetal heart rate recording.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q16",
+      "stem": "The nurse is preparing to perform the Leopold maneuvers on a pregnant client. What should the nurse do first?",
+      "options": [
+        "Count the fetal heart rate for 1 minute",
+        "Locate the fetal heart tone",
+        "Ask the client to empty her bladder",
+        "Position the woman supine"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "In preparation for the Leopold maneuvers, the nurse first asks the woman to empty her bladder, which will contribute to the woman's comfort during the examination. Next the nurse positions the client supine with a wedge placed under the hip to displace the uterus. Often the Leopold maneuvers are performed as a preliminary to auscultating the fetal heart tones. Counting the fetal heart rate is not associated with Leopold maneuvers.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q17",
+      "stem": "The nurse provides instructions to a breastfeeding mother who is experiencing breast engorgement about measures for treating the problem. What does the nurse tell the mother to do?",
+      "options": [
+        "Take a cool shower just before breastfeeding",
+        "Apply heat packs to the breasts for 15 to 20 minutes between feedings to reduce swelling",
+        "Gently massage the breasts during breastfeeding to help empty the breasts",
+        "Avoid breastfeeding during the night time hours to ensure adequate rest"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Gently massaging the breasts during breast feeding will help empty the breasts. The mother should not avoid breastfeeding during the night; instead, she should breastfeed every 2 hours or pump the breasts. The nurse instructs the woman to apply heat packs to the breasts between feedings to reduce swelling. It may be helpful for the mother to stand in a warm shower just before feeding to foster relaxation and letdown.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q19",
+      "stem": "The nurse is monitoring a client in labor for signs/symptoms of intrauterine infection. Which sign/symptom, indicative of infection, would prompt the nurse to contact the primary health care provider?",
+      "options": [
+        "Clear amniotic fluid",
+        "Strong-smelling amniotic fluid",
+        "Maternal fatigue",
+        "A fetal heart rate of 140 beats/min"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Signs/symptoms associated with intrauterine infection includes fetal tachycardia (rising baseline or faster than 160 beats/min, a maternal fever (38\u00b0C or 100.4\u00b0F), foul or strong-smelling amniotic fluid, or cloudy or opulent fluid. Clear amniotic fluid is normal. Maternal fatigue normally occurs during labor.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q20",
+      "stem": "The nurse in the labor room is preparing to care for a client with hypertonic uterine dysfunction. The nurse is told that the client is experiencing uncoordinated contractions that are erratic in their frequency, duration, and intensity. What is the priority nursing intervention in the care of this client?",
+      "options": [
+        "Preparing the client for amniotomy",
+        "Providing pain relief",
+        "Monitoring the oxytocin infusion closely",
+        "Encouraging the client to ambulate every 30 minutes"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Management of hypertonic uterine dysfunction depends on the cause. Relief of pain is the primary intervention in promoting a normal labor pattern. Therapeutic management of hypertonic uterine dysfunction includes oxytocin augmentation and amniotomy to stimulate labor progression. The client with hypertonic uterine dysfunction would be encouraged to rest, not to ambulate every 30 minutes.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q21",
+      "stem": "The nurse is preparing to care for a client experiencing dystocia. To which intervention does the nurse give priority?",
+      "options": [
+        "Informing the client's partner of the progress of the labor",
+        "Monitoring fetal status",
+        "Changing the client's position",
+        "Providing comfort measures"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The priority intervention is monitoring fetal status. Once this is done, the nurse provides maternal comfort measures, including positioning the client, because this may decrease anxiety and hasten the progression of labor. Keeping the client's partner informed of the progress of the labor is also an important aspect of client care during labor but is not an immediate priority.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q22",
+      "stem": "A postpartum client asks a nurse when she may safely resume sexual activity. What does the nurse tell the client when she may resume sexual activity?",
+      "options": [
+        "When her normal menstrual period has resumed",
+        "After the 6-week primary health care provider checkup",
+        "At any time",
+        "In 2 to 4 weeks"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Usually a woman may engage safely in sexual intercourse during the second to fourth week after childbirth as long as she experiences no discomfort during intercourse. The other options are incorrect. Engaging in intercourse too early in the postpartum course could result in further injury to perineal tissues during childbirth. It is usually about 3 weeks for an episiotomy to heal; therefore, it is unnecessary to wait 6 weeks. Menstruation may not resume in a postpartum woman for 12 weeks to 6 months after childbirth.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q23",
+      "stem": "A pregnant woman reports to the clinic complaining of loss of appetite, weight loss, and fatigue, and tuberculosis is suspected. A sputum culture reveals Mycobacterium tuberculosis. The nurse, providing instructions to the mother regarding therapeutic management of the disease, tells the mother to do what?",
+      "options": [
+        "The infant will require medication therapy immediately after birth",
+        "Maternal medication will not be started until the baby is born",
+        "The mother may need to take isoniazid, pyrazinamide, and rifampin for a total of 9 months",
+        "The infant must be isolated from the mother after birth"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "More than one medication may be used to prevent the growth of resistant organisms in the pregnant woman with tuberculosis. Treatment may be continued for a prolonged period. The preferred treatment for the pregnant woman is isoniazid plus rifampin for a total of 9 months. Ethambutol is added initially if drug resistance is suspected. Pyridoxine is often administered with isoniazid to prevent fetal neurotoxicity. The infant will receive isoniazid for 3 months following birth and skin testing of the infant should be repeated at 3 months, and isoniazid may be stopped if the result remains negative. If the result is positive, the infant should receive isoniazid for an additional 6 months. The infant does not need to be isolated from the mother while in the hospital.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q25",
+      "stem": "The nurse is teaching a pregnant client about the expectations and complications of pregnancy and is describing Braxton Hicks contractions. What does the nurse tell the client about these contractions?",
+      "options": [
+        "Must be reported to the primary health care provider",
+        "Necessitate bed rest for the remainder of the pregnancy",
+        "Are a common occurrence of pregnancy",
+        "Indicate that labor has started"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Braxton Hicks contractions are irregular, painless contractions that occur throughout pregnancy, although many expectant mothers do not notice them until the third trimester. Because Braxton Hicks contractions are a normal finding experienced by many pregnant women during pregnancy, they represent inaccurate assumptions and an unnecessary intervention.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q26",
+      "stem": "A nurse performing an assessment of a pregnant client prepares to auscultate the fetal heart sounds, using a Doppler ultrasound stethoscope. By which week of gestation are fetal heart sounds audible with the use of this device?",
+      "options": [
+        "4 weeks",
+        "6 weeks",
+        "12 weeks",
+        "8 weeks"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Fetal heart sounds can be heard with the use of a Doppler ultrasound stethoscope by 12 weeks of gestation and can be heard with a fetoscope by 18 to 20 weeks of gestation. The gestational times of 4, 6, and 8 weeks are too early. Fetal heart sounds cannot be heard with a Doppler ultrasound stethoscope this early in pregnancy.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q27",
+      "stem": "After the delivery of a newborn, the nurse performs an initial assessment and determines that the Apgar score is 8. The nurse interprets this score as indicating what about the infant?",
+      "options": [
+        "Is having difficulty adjusting to extrauterine life",
+        "Requires some resuscitative intervention",
+        "Requires vigorous resuscitation",
+        "Is adjusting well to extrauterine life"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "One of the earliest indicators of successful adaptation of the newborn infant is the Apgar score. Scoring ranges from 0 to 10. A score of 7 to 10 indicates that the infant should have no difficulty adjusting to extrauterine life. A score of 4 to 6 indicates moderate difficulty that may require some resuscitative intervention. A score of 0 to 3 indicates severe distress and the need for vigorous resuscitation.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q31",
+      "stem": "The nurse is monitoring a client in the third trimester of pregnancy who has a diagnosis of severe preeclampsia. Which finding would prompt the nurse to contact the primary health care provider?",
+      "options": [
+        "Periods of fetal movement followed by quiet periods",
+        "Enlargement of the breasts",
+        "Diaphoresis and tachycardia",
+        "Complaint of feeling hot"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Tachycardia and diaphoresis indicate impending shock as a result of blood loss. Disseminated intravascular coagulation (DIC) complication of preeclampsia. Physical examination reveals unusual bleeding, spontaneous bleeding from the woman's gums or nose, or the presence of petechiae around a blood pressure cuff placed on the woman's arm. Excessive bleeding may occur from a site of slight trauma such as a venipuncture site, an intramuscular or subcutaneous injection site, a nick sustained during shaving of the perineum or abdomen, or injury inflicted during insertion of a urinary catheter. Breast enlargement, fetal movement with rest periods, and complaints of feeling hot are all normal occurrences in the last trimester of pregnancy.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q34",
+      "stem": "A client admitted to the maternity unit 12 hours ago has been experiencing strong contractions every 3 minutes but has remained at station 0. The fetal heart rate on admission was 140 beats/min and regular. The fetal heart rate is slowing, and a persistent nonreassuring fetal heart rate pattern is present. What is the nurse's most appropriate nursing action in this situation?",
+      "options": [
+        "Preparing to induce labor",
+        "Turning the client on her left side",
+        "Preparing the client for a cesarean delivery",
+        "Continuing to monitor the fetal heart rate pattern"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Dystocia, failure of labor to progress, and a persistent nonreassuring fetal heart rate pattern are indications of the need for cesarean delivery. The most appropriate nursing action is to prepare the client for a cesarean delivery. Induction of labor is not indicated in this case because the client has been in labor for 12 hours without progress and signs of fetal distress are present. Placing the client on her left side will increase oxygen to the uterus by relieving pressure on the aorta and the inferior vena cava. However, this intervention would be implemented with any client in labor, not specifically with a client experiencing dystocia. Monitoring the fetal heart rate pattern is also appropriate for any client in labor and is not the appropriate nursing action in this situation.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q36",
+      "stem": "A client is admitted to the hospital for an emergency cesarean delivery. Contractions are occurring every 15 minutes, the client has a temperature of 100\u00b0F (37.8\u00b0C), and the client reports that she ate 2 hours ago. The client also states that \"everything happened so fast\" and that she has had no preparation for the cesarean delivery. Which action should the nurse take first?",
+      "options": [
+        "Beginning teaching about the cesarean delivery",
+        "Reporting the time of last food intake to the primary health care provider",
+        "Continuing to time the contractions",
+        "Giving acetaminophen to lower the client's temperature"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The nurse should first report the time of last food intake to the primary health care provider. General anesthesia may be used for an emergency cesarean delivery. Gastric contents are very acidic and can produce chemical pneumonitis if aspirated. Continued monitoring and timing instruction are correct nursing actions but are of lesser priority than reporting the time of last food intake. Giving acetaminophen is incorrect because it requires a primary health care provider's prescription.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q37",
+      "stem": "A nurse assists a pregnant client who is in the second trimester into lithotomy position on the examining table in the obstetrician's office. The client suddenly becomes dizzy, lightheaded, nauseated, and pale. What should the nurse immediately do?",
+      "options": [
+        "Position the client on her side",
+        "Place a cool washcloth on the client's forehead",
+        "Call the primary health care provider to see the client",
+        "Check the client's blood pressure, pulse, and respirations"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Supine hypotension may occur during the second and third trimesters when a woman is placed in the lithotomy position, in which the weight of the abdominal contents may compress the veins and aorta, causing a drop in blood pressure and a feeling of faintness. These signs/symptoms include pallor, dizziness, breathlessness, tachycardia, nausea, clammy (damp, cool) skin, and sweating. The nurse would immediately position the woman on her side. Placing a cool washcloth on the client's forehead or checking the client's vital signs will not eliminate this problem. The primary health care provider must be contacted if the signs/symptoms do not subside, but this would not be the immediate action.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q39",
+      "stem": "A nurse caring for a postpartum client who had a low-lying placenta. What does the nurse assess the client most closely for?",
+      "options": [
+        "Seizures",
+        "A vaginal hematoma",
+        "Hemorrhage",
+        "Infection"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The lower uterine segment does not contain the same intertwining musculature as the fundus of the uterus, making this site more prone to bleeding. In this situation, the nurse must assess the client most closely for hemorrhage. The client with a low-lying placenta is not at greater risk for seizures, a vaginal hematoma, or infection.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_5_Q40",
+      "stem": "A nurse caring for a client in labor performs an assessment. The client is having consistent contractions less than 2 minutes apart. The fetal heart rate (FHR) is 170 beats/min, and fetal monitoring indicates a pattern of decreased variability. In light of these findings, what is the most appropriate nursing action?",
+      "options": [
+        "Continue to monitor the client",
+        "Reassure the client and her partner that labor is progressing normally",
+        "Contact the primary health care provider",
+        "Document the findings"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The most appropriate nursing action is to notify the primary health care provider. Signs of potential complications of labor include contractions consistently lasting 90 seconds or longer, contractions occurring 2 minutes or less apart, fetal tachycardia, tachycardia, persistently decreased variability, or an increase or decrease in rate are commonly exhibited. The normal FHR is 110 to 160 beats/min. Therefore, because the findings are abnormal, the primary health care provider must be contacted. Continuing to monitor the client delays necessary intervention. Reassuring the client that labor is progressing normally is incorrect. The nurse would document the data, actions taken, and the client's response, but, of the options presented, contacting the primary health care provider is the most appropriate.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q101",
+      "stem": "A nurse is preparing to administer oxytocin (Pitocin) to a postpartum client to promote uterine contraction. Which assessment finding would contraindicate the administration of this medication?",
+      "options": [
+        "Blood pressure of 128/82 mm Hg",
+        "Presence of a firm, contracted uterus",
+        "Fetal heart rate of 145 beats/min",
+        "Vaginal bleeding of 300 mL in 1 hour"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Oxytocin is used to promote uterine contractions and control postpartum hemorrhage. However, if the uterus is already firm and well-contracted, administration of oxytocin is contraindicated because it could lead to uterine tetany and increased risk of placental abruption or uterine rupture. The presence of a firm, contracted uterus indicates that the uterus is already responding appropriately to the normal physiologic mechanisms controlling bleeding. A blood pressure of 128/82 mm Hg is within normal range. A fetal heart rate of 145 beats/min is normal. Vaginal bleeding of 300 mL in 1 hour is within normal limits for the postpartum period and may indicate the need for oxytocin, not contraindicate it.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q102",
+      "stem": "A pregnant client at 32 weeks' gestation reports sudden onset of severe abdominal pain and vaginal bleeding. The fetal heart rate is 110 beats/min, and the client's blood pressure is 95/55 mm Hg. What should the nurse immediately do?",
+      "options": [
+        "Perform a vaginal examination to assess cervical dilation",
+        "Notify the primary health care provider and prepare for emergency delivery",
+        "Place the client in Trendelenburg position and administer oxygen",
+        "Insert a urinary catheter to monitor urine output"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The client is presenting with classic signs of placental abruption: sudden severe abdominal pain, vaginal bleeding, signs of shock (low blood pressure), and a decreasing fetal heart rate. This is an obstetric emergency requiring immediate notification of the primary health care provider and preparation for emergency cesarean delivery. Performing a vaginal examination is contraindicated in placental abruption because it could cause further separation and massive hemorrhage. While oxygen and monitoring are supportive measures, they are not the priority action. The primary health care provider must be notified immediately so that emergency delivery can be arranged. Inserting a urinary catheter is a supportive measure but not the immediate priority in this life-threatening situation.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_Maternity_Q103",
+      "stem": "A postpartum client who is breastfeeding is experiencing engorgement, tension, and discomfort in both breasts. The client's temperature is 37.5\u00b0C (99.5\u00b0F), and the breasts are firm but not red or hot to the touch. What is the most appropriate nursing intervention?",
+      "options": [
+        "Advise the client to stop breastfeeding until engorgement resolves",
+        "Apply cold compresses to the breasts between feedings to reduce swelling and discomfort",
+        "Recommend that the client take antibiotics to prevent infection",
+        "Suggest that the client express breast milk by hand to soften the breasts before feeding"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Engorgement is a normal response to the initiation of milk production and is characterized by firm, swollen, and tender breasts. The presence of a slightly elevated temperature (not indicative of infection), the lack of redness or heat, and the client's ability to breastfeed indicate simple engorgement rather than mastitis. Expressing breast milk by hand before feeding will soften the breasts and areola, making it easier for the infant to latch and feeding to proceed more comfortably. Cold compresses may help reduce swelling but will not facilitate emptying. Breastfeeding should continue as frequent breastfeeding actually helps relieve engorgement. Antibiotics are not indicated in uncomplicated engorgement as there is no infection present. The slightly elevated temperature is a normal response to milk production, not a sign of infection.",
+      "type": "single_select"
+    }
+  ]
+}
