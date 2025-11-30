@@ -8,12 +8,20 @@
     {
       "src": "static/**",
       "use": "@vercel/static"
+    },
+    {
+      "src": "modules/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/static/(.*)",
       "dest": "/static/$1"
+    },
+    {
+      "src": "/modules/(.*)",
+      "dest": "/modules/$1"
     },
     {
       "src": "/(.*)",
