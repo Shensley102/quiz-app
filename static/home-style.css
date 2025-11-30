@@ -110,7 +110,7 @@
 .category-card.image-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 
@@ -143,11 +143,6 @@
 .category-card:hover .card-arrow {
   opacity: 1;
   transform: translateX(4px);
-}
-
-/* Pharmacology card - taller and skinnier */
-.categories-grid .category-card:nth-child(3) {
-  aspect-ratio: 2.5 / 5.2;
 }
 
 /* Hub Footer */
