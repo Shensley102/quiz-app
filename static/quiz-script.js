@@ -672,7 +672,7 @@ async function startQuiz(){
 
   const bank = moduleSel.value;
   const displayName = prettifyModuleName(bank);
-  const qty  = (lenBtn.data set.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
+  const qty  = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
   const isFullBank = (qty === 'full');
 
   setHeaderTitle(displayName);
