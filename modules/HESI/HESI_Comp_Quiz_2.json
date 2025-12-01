@@ -1304,21 +1304,6 @@
       "type": "single_select"
     },
     {
-      "id": "Q23",
-      "stem": "Which of the following cardiac rhythms is represented in the image?",
-      "options": [
-        "Normal sinus rhythm",
-        "Sinus tachycardia",
-        "Ventricular fibrillation",
-        "Atrial fibrillation"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "Ventricular fibrillation (C) is a life-threatening arrhythmia characterized by irregular undulations of varying amplitudes. (A, B, and D) are not represented in the image.",
-      "type": "single_select"
-    },
-    {
       "id": "HESI_RN_075",
       "stem": "The nurse is wearing personal protective equipment (PPE) while caring for a client. When exiting the room, which PPE should be removed first?",
       "options": [
