@@ -251,6 +251,12 @@ function showResumeIfAny(){
       document.title = run.displayName ? `${run.displayName} - Nurse Success Study Hub` :
                      (run.bank ? `${run.bank} - Nurse Success Study Hub` : 'Quiz - Nurse Success Study Hub');
 
+      // Update the quiz title in the header banner
+      const quizTitle = $('quizTitle');
+      if (quizTitle) {
+        quizTitle.textContent = run.displayName || run.bank || defaultTitle;
+      }
+
       if (launcher) launcher.classList.add('hidden');
       if (summary) summary.classList.add('hidden');
       if (quiz) quiz.classList.remove('hidden');
@@ -447,7 +453,8 @@ function setupCategoryDisplay() {
     
     const quizTitle = document.getElementById('quizTitle');
     if (quizTitle) {
-      quizTitle.textContent = displayTitle;
+      // Don't set here - let it be set when quiz actually starts
+      // quizTitle.textContent = displayTitle;
     }
 
     const quizDescription = document.getElementById('quizDescription');
@@ -677,6 +684,12 @@ async function startQuiz(){
 
   setHeaderTitle(displayName);
   document.title = `${displayName} - Nurse Success Study Hub`;
+  
+  // Update the quiz title in the header banner
+  const quizTitle = $('quizTitle');
+  if (quizTitle) {
+    quizTitle.textContent = displayName;
+  }
 
   startBtn.disabled = true;
 
@@ -745,6 +758,12 @@ async function startRetryQuiz(missedQuestions) {
   const displayName = `${run.displayName} - Retry Missed Questions`;
   setHeaderTitle(displayName);
   document.title = `${displayName} - Nurse Success Study Hub`;
+  
+  // Update the quiz title in the header banner
+  const quizTitle = $('quizTitle');
+  if (quizTitle) {
+    quizTitle.textContent = displayName;
+  }
 
   // Shuffle the missed questions and their options
   const shuffledQuestions = missedQuestions.map((q) => shuffleQuestionOptions(q));
