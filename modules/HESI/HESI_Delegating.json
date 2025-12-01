@@ -1122,11 +1122,16 @@
       "A client requiring complete assistance with personal care",
       "A client with newly diagnosed type 1 diabetes mellitus",
       "A client with gastrointestinal bleeding and a hemoglobin of 7.3 mg/dL (7.3 g/L)",
-      "A client who has undergone amputation of the right leg amputation and a dressing change F. A client who was admitted during the night after an acute asthma attack"
+      "A client who has undergone amputation of the right leg amputation and a dressing change",
+      "A client who was admitted during the night after an acute asthma attack"
     ],
-    "correct": [],
-    "rationale": "",
-    "type": "single_select"
+    "correct": [
+      "C",
+      "D",
+      "F"
+    ],
+    "rationale": "When delegating nursing assignments, the nurse must consider the skills and educational level of the nursing staff. The client with newly diagnosed type 1 diabetes mellitus will require significant education, which should be provided by the RN. The client with gastrointestinal bleeding and a low hemoglobin level will likely require a blood transfusion, which must be performed by the RN. The client who was admitted to the hospital during the night after an acute asthma attack would most appropriately be assigned to the RN, because frequent respiratory assessments will be required. The UAP can most appropriately assist with personal care. The LPN can perform dressing changes and administer enemas.",
+    "type": "multi_select"
   },
   {
     "id": "Delegating_Q90",
