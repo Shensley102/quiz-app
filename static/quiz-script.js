@@ -454,7 +454,7 @@ function setupCategoryDisplay() {
     if (headerRight) {
       const categoryIcon = document.getElementById('categoryIcon');
       const categoryTitle = document.getElementById('categoryTitle');
-      if (categoryIcon) categoryIcon.textContent = icon;
+      if (categoryIcon) categoryIcon.style.display = 'none';
       if (categoryTitle) categoryTitle.textContent = displayTitle;
     }
     
@@ -479,7 +479,7 @@ function setupCategoryDisplay() {
       const categoryIconSummary = document.getElementById('categoryIconSummary');
       const summaryTitle = document.getElementById('summaryTitle');
       const summaryDescription = document.getElementById('summaryDescription');
-      if (categoryIconSummary) categoryIconSummary.textContent = icon;
+      if (categoryIconSummary) categoryIconSummary.style.display = 'none';
       if (summaryTitle) summaryTitle.textContent = displayTitle;
       if (summaryDescription) {
         if (displayDescription) {
