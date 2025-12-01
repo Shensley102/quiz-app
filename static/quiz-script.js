@@ -431,6 +431,13 @@ function setupCategoryDisplay() {
     'Pharmacology': 'Pharmacology'
   };
 
+  const moduleSelectionTitles = {
+    'HESI': 'HESI Study Material',
+    'Patient Care Management': 'Patient Care Management Study Material',
+    'Nursing Certifications': 'Nursing Certifications Study Material',
+    'Pharmacology': 'Pharmacology Study Material'
+  };
+
   const categoryDescriptions = {
     'HESI': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides',
     'Patient Care Management': '',
@@ -453,8 +460,8 @@ function setupCategoryDisplay() {
     
     const quizTitle = document.getElementById('quizTitle');
     if (quizTitle) {
-      // Set title to category name on module selection page
-      quizTitle.textContent = category;
+      // Set title to module selection page title
+      quizTitle.textContent = moduleSelectionTitles[category] || category;
     }
 
     const quizDescription = document.getElementById('quizDescription');
