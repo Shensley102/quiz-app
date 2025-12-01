@@ -453,8 +453,8 @@ function setupCategoryDisplay() {
     
     const quizTitle = document.getElementById('quizTitle');
     if (quizTitle) {
-      // Don't set here - let it be set when quiz actually starts
-      // quizTitle.textContent = displayTitle;
+      // Set title to category name on module selection page
+      quizTitle.textContent = category;
     }
 
     const quizDescription = document.getElementById('quizDescription');
