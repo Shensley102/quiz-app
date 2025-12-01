@@ -488,21 +488,6 @@
       "type": "single_select"
     },
     {
-      "id": "HESI_RN_102",
-      "stem": "The nurse is auscultating a client's lung sounds. Which description should the nurse use to document this sound?",
-      "options": [
-        "Stridor",
-        "Low pitched or coarse crackles",
-        "High pitched or fine crackles",
-        "High pitched wheeze"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "High-pitched fine crackles indicate pulmonary edema or interstitial process and indicate fine crackles on documentation.",
-      "type": "single_select"
-    },
-    {
       "id": "HESI_RN_114",
       "stem": "When admitting a client with a diagnosis of transient ischemic attack (TIA), which intervention is most important for the nurse to include in this client's plan of care?",
       "options": [
