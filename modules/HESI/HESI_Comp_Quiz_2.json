@@ -1232,9 +1232,9 @@
         "Determine if the mother has recently experienced a fall"
       ],
       "correct": [
-        "A",
         "B",
-        "D"
+        "D",
+        "E"
       ],
       "rationale": "Acute confusion suggests infection (check temp), UTI (dysuria), or malnutrition. Protein helps cognitive function. Allergies may be unrelated to acute onset.",
       "type": "multiple_select"
