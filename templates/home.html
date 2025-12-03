@@ -46,21 +46,24 @@
       'Patient Care Management': '#FF6B6B',
       'HESI': '#4ECDC4',
       'Nursing Certifications': '#45B7D1',
-      'Pharmacology': '#96CEB4'
+      'Pharmacology': '#96CEB4',
+      'Lab Values': '#8B5CF6'
     };
 
     const categoryIcons = {
       'Patient Care Management': '👥',
       'HESI': '📋',
       'Nursing Certifications': '🏆',
-      'Pharmacology': '💊'
+      'Pharmacology': '💊',
+      'Lab Values': '🧪'
     };
 
     const categoryImages = {
       'Patient Care Management': 'https://raw.githubusercontent.com/Shensley102/Final-Semester-Study-Guide/refs/heads/main/images/Nursing_Leadership_Image.png',
       'HESI': 'https://raw.githubusercontent.com/Shensley102/Final-Semester-Study-Guide/refs/heads/main/images/Nursing_Hesi_Exam_Prep_Image.png',
       'Nursing Certifications': 'https://raw.githubusercontent.com/Shensley102/Final-Semester-Study-Guide/refs/heads/main/images/Nursing_Advanced_Certifications.png',
-      'Pharmacology': 'https://raw.githubusercontent.com/Shensley102/Final-Semester-Study-Guide/refs/heads/main/images/Nursing_Pharmacology_Image.png'
+      'Pharmacology': 'https://raw.githubusercontent.com/Shensley102/Final-Semester-Study-Guide/refs/heads/main/images/Nursing_Pharmacology_Image.png',
+      'Lab Values': 'https://raw.githubusercontent.com/Shensley102/Final-Semester-Study-Guide/refs/heads/main/images/Nursing_Lab_Values.png'
     };
 
     // Categories that skip the middle category page and go straight to quiz
@@ -74,10 +77,11 @@
         const categories = await res.json();
         const container = document.getElementById('categoriesContainer');
         
-        // Define the order for 4x1 grid: left to right
+        // Define the order: 3 on top row, 2 on bottom row
         const orderedCategories = [
           'Patient Care Management',
           'HESI',
+          'Lab Values',
           'Pharmacology',
           'Nursing Certifications'
         ];
@@ -100,7 +104,7 @@
           
           // All cards now use image format
           return `
-            <a href="${href}" class="category-card image-card" style="--accent-color: ${color}">
+            <a href="${href}" class="category-card image-card" style="--accent-color: ${color}" data-category="${key}">
               <img src="${imageUrl}" 
                    alt="${key}"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -125,8 +129,9 @@
       const cards = document.querySelectorAll('.category-card');
       
       cards.forEach(card => {
+        const category = card.dataset.category?.toLowerCase() || '';
         const alt = card.querySelector('img')?.alt.toLowerCase() || '';
-        const matchesSearch = alt.includes(searchTerm);
+        const matchesSearch = category.includes(searchTerm) || alt.includes(searchTerm);
         card.style.display = matchesSearch ? '' : 'none';
       });
     });
