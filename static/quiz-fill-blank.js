@@ -321,10 +321,12 @@ document.addEventListener('DOMContentLoaded', function() {
       input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
           e.preventDefault();
+          // If there's a next input field that's not disabled, move to it
           const nextInput = document.getElementById(`answer-${i + 1}`);
           if (nextInput && !nextInput.disabled) {
             nextInput.focus();
           } else if (submitBtn && !submitBtn.disabled) {
+            // Otherwise click submit (this handles both submit and next)
             submitBtn.click();
           }
         }
@@ -822,6 +824,21 @@ document.addEventListener('DOMContentLoaded', function() {
       startRetryQuiz(lastQuizMissedQuestions);
     });
   }
+
+  /* ---------- Global keyboard shortcut for Enter ---------- */
+  document.addEventListener('keydown', (e) => {
+    // Only handle Enter key
+    if (e.key !== 'Enter') return;
+    
+    // Don't interfere if quiz is not visible
+    if (!quiz || quiz.classList.contains('hidden')) return;
+    
+    // If submit button is in "next" mode and not disabled, click it
+    if (submitBtn && submitBtn.dataset.mode === 'next' && !submitBtn.disabled) {
+      e.preventDefault();
+      submitBtn.click();
+    }
+  });
 
   /* ---------- Progress bar update ---------- */
   function updateProgressBar() {
