@@ -94,6 +94,68 @@
       opacity: 1;
     }
     
+    /* Different input type styling */
+    .answer-input.numeric-input {
+      border-left: 4px solid #2196F3;
+    }
+    
+    .answer-input.numeric-input:focus {
+      border-color: #2196F3;
+      border-left: 4px solid #2196F3;
+    }
+    
+    .answer-input.direction-input {
+      border-left: 4px solid #9C27B0;
+    }
+    
+    .answer-input.direction-input:focus {
+      border-color: #9C27B0;
+      border-left: 4px solid #9C27B0;
+    }
+    
+    .answer-input.word-input {
+      border-left: 4px solid #FF9800;
+    }
+    
+    .answer-input.word-input:focus {
+      border-color: #FF9800;
+      border-left: 4px solid #FF9800;
+    }
+    
+    /* Input type legend */
+    .input-type-legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+    }
+    
+    .legend-color.numeric {
+      background: #2196F3;
+    }
+    
+    .legend-color.direction {
+      background: #9C27B0;
+    }
+    
+    .legend-color.word {
+      background: #FF9800;
+    }
+    
     /* Hard mode badge */
     .hard-badge {
       display: inline-block;
@@ -192,7 +254,21 @@
         <!-- Input fields will be generated here -->
       </div>
       
-      <p class="hint-text">💡 Tip: For ranges, enter only the number (e.g., "135" not "135 mEq/L")</p>
+      <!-- Input Type Legend -->
+      <div class="input-type-legend">
+        <div class="legend-item">
+          <span class="legend-color numeric"></span>
+          <span>Number (e.g., 135)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color direction"></span>
+          <span>Direction (high/low)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color word"></span>
+          <span>Word (e.g., negative)</span>
+        </div>
+      </div>
       
       <div id="feedback" class="feedback hidden"></div>
       <div id="answerLine" class="answer-line hidden"></div>
