@@ -1,15 +1,10 @@
 /* -----------------------------------------------------------
-   Nurse Success Study Hub - Quiz Application
-   - Complete quiz functionality with module selection
-   - Category-specific module filtering
-   - Keyboard shortcuts support
+   Nurse Success Study Hub - Fill-in-the-Blank Quiz
+   - Text input answer format
+   - Case-insensitive exact matching
+   - Support for single and double blank answers
+   - Individual blank feedback (correct/incorrect per field)
    - Progress tracking and mastery system
-   - Detailed performance review
-   - LocalStorage persistence for resuming quizzes
-   - Resume only works with Full Module Question Bank
-   - Shows remaining questions count on resume button
-   - Subcategory filtering for grouped modules
-   - Retry missed questions feature
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -31,15 +26,13 @@ const setHeaderTitle = (t) => { if (pageTitle) pageTitle.textContent = t; };
 
 // Launcher
 const launcher   = $('launcher');
-const moduleSel  = $('moduleSel');
 const lengthBtns = $('lengthBtns');
 const startBtn   = $('startBtn');
-const resumeBtn  = $('resumeBtn');
 
 // Quiz UI
 const quiz         = $('quiz');
 const qText        = $('questionText');
-const form         = $('optionsForm');
+const inputArea    = $('inputArea');
 const submitBtn    = $('submitBtn');
 const feedback     = $('feedback');
 const answerLine   = $('answerLine');
@@ -53,60 +46,6 @@ const restartBtn2      = $('restartBtnSummary');
 const resetAll         = $('resetAll');
 const retryMissedBtn   = $('retryMissedBtn');
 
-/* ---------- Pretty names for modules ---------- */
-function prettifyModuleName(name) {
-  const raw = String(name || '');
-
-  const normalized = raw
-    .replace(/moduele/gi, 'module')
-    .replace(/question(?!s)/gi, 'Questions')
-    .replace(/__/g, '_')
-    .trim();
-
-  const map = {
-    'Pharm_Quiz_1': 'Pharm Quiz 1',
-    'Pharm_Quiz_2': 'Pharm Quiz 2',
-    'Pharm_Quiz_3': 'Pharm Quiz 3',
-    'Pharm_Quiz_4': 'Pharm Quiz 4',
-    'Learning_Questions_Module_1_2': 'Learning Questions Module 1 and 2',
-    'Learning_Questions_Module_1_2_': 'Learning Questions Module 1 and 2',
-    'Learning_Questions_Module_3_4': 'Learning Questions Module 3 and 4',
-    'Learning_Questions_Module_3_4_': 'Learning Questions Module 3 and 4',
-    'Module_1': 'Module 1',
-    'Module_2': 'Module 2',
-    'Module_3': 'Module 3',
-    'Module_4': 'Module 4',
-    'CCRN_Test_1_Combined_QA': 'CCRN Test 1',
-    'CCRN_Test_2_Combined_QA': 'CCRN Test 2',
-    'CCRN_Test_3_Combined_QA': 'CCRN Test 3',
-    'HESI_Delegating': 'HESI Delegating',
-    'HESI_Leadership': 'HESI Leadership',
-    'Hesi_Management': 'HESI Management',
-    'HESI_Comprehensive': 'HESI Comprehensive',
-    'HESI_Comp_Quiz_1': 'HESI Comprehensive Quiz 1',
-    'HESI_Comp_Quiz_2': 'HESI Comprehensive Quiz 2',
-    'HESI_Comp_Quiz_3': 'HESI Comprehensive Quiz 3',
-    'HESI_Maternity': 'HESI Maternity',
-  };
-  if (map[normalized]) return map[normalized];
-
-  const m = /^(?:Pharm[_\s]+Quiz[_\s]+)(\d+)$/i.exec(normalized.replace(/_/g, ' '));
-  if (m) return `Pharm Quiz ${m[1]}`;
-
-  {
-    const cleaned = normalized.replace(/_/g, ' ');
-    const m = /^Learning\s+Questions?\s+Module\s+(\d+)\s+(\d+)$/i.exec(cleaned);
-    if (m) return `Learning Questions Module ${m[1]} and ${m[2]}`;
-  }
-
-  {
-    const m = /^CCRN[_\s]+Test[_\s]+(\d+)/i.exec(normalized.replace(/_/g, ' '));
-    if (m) return `CCRN Test ${m[1]}`;
-  }
-
-  return raw.replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
-}
-
 /* ---------- Utilities ---------- */
 function escapeHTML(s=''){
   return String(s)
@@ -116,20 +55,28 @@ function escapeHTML(s=''){
     .replaceAll('"','&quot;')
     .replaceAll("'",'&#39;');
 }
+
 const randomInt = (n) => Math.floor(Math.random() * n);
+
 function shuffleInPlace(arr){
   for (let i = arr.length - 1; i > 0; i--) {
-    const j = randomInt(i + 1); [arr[i], arr[j]] = [arr[j], arr[i]];
+    const j = randomInt(i + 1); 
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
 }
+
 function sampleQuestions(all, req){
   const a = all.slice();
   if (req === 'full' || req >= a.length) return shuffleInPlace(a);
   const k = Math.max(0, req|0);
-  for (let i = 0; i < k; i++) { const j = i + randomInt(a.length - i); [a[i], a[j]] = [a[j], a[i]]; }
+  for (let i = 0; i < k; i++) { 
+    const j = i + randomInt(a.length - i); 
+    [a[i], a[j]] = [a[j], a[i]]; 
+  }
   return a.slice(0, k);
 }
+
 function scrollToBottomSmooth() {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
@@ -137,13 +84,72 @@ function scrollToBottomSmooth() {
     });
   });
 }
+
 function scrollToQuizTop() {
   if (!quiz) return;
   quiz.scrollIntoView({ behavior: 'auto', block: 'start' });
 }
-function isTextEditingTarget(el){
-  return el &&
-    (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' || el.isContentEditable);
+
+/* ---------- Answer Validation ---------- */
+function normalizeAnswer(str) {
+  // Lowercase, trim whitespace, normalize common variations
+  return String(str || '')
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, ' ')
+    .replace(/−/g, '-')  // Normalize different minus signs
+    .replace(/–/g, '-')
+    .replace(/—/g, '-');
+}
+
+function checkAnswer(userInput, correctAnswer) {
+  const userNorm = normalizeAnswer(userInput);
+  const correctNorm = normalizeAnswer(correctAnswer);
+  
+  // Direct match
+  if (userNorm === correctNorm) return true;
+  
+  // Handle numeric comparisons (e.g., "135" matches "135.0" or "135")
+  const userNum = parseFloat(userNorm);
+  const correctNum = parseFloat(correctNorm);
+  if (!isNaN(userNum) && !isNaN(correctNum) && userNum === correctNum) {
+    return true;
+  }
+  
+  // Handle alternative formats for common answers
+  const alternatives = {
+    'negative': ['neg', 'none', '0', 'absent'],
+    'positive': ['pos', '+'],
+    'vitamin k': ['vit k', 'vitamin-k'],
+    'calcium gluconate': ['calcium', 'ca gluconate'],
+    'protamine sulfate': ['protamine'],
+    'hypocalcemia': ['low calcium', 'low ca'],
+    'hyperkalemia': ['high potassium', 'high k'],
+    'hypokalemia': ['low potassium', 'low k'],
+    'metabolic': ['met'],
+    'respiratory': ['resp'],
+    'primary': ['1st', 'first'],
+    'low': ['decreased', 'dec', '↓'],
+    'high': ['elevated', 'increased', 'inc', '↑'],
+    'hco3': ['bicarbonate', 'bicarb', 'hco3-'],
+  };
+  
+  // Check if user input matches any alternatives for the correct answer
+  for (const [key, alts] of Object.entries(alternatives)) {
+    if (correctNorm === key || correctNorm.includes(key)) {
+      if (alts.some(alt => userNorm === alt || userNorm.includes(alt))) {
+        return true;
+      }
+    }
+    // Also check reverse - if user typed the key and answer is an alt
+    if (userNorm === key) {
+      if (alts.some(alt => correctNorm === alt || correctNorm.includes(alt))) {
+        return true;
+      }
+    }
+  }
+  
+  return false;
 }
 
 /* ---------- State ---------- */
@@ -163,184 +169,29 @@ let run = {
   isRetry: false,
 };
 
-// Store missed questions from last completed quiz
 let lastQuizMissedQuestions = [];
 
-/* ---------- Persistence ---------- */
-const STORAGE_KEY = 'quizRunState_v1';
-
-function serializeRun() {
-  if (!run || !run.order?.length) return null;
-  return JSON.stringify({
-    bank: run.bank,
-    displayName: run.displayName,
-    order: run.order.map(q => ({ id:q.id, stem:q.stem, options:q.options, correctLetters:q.correctLetters, rationale:q.rationale, type:q.type })),
-    masterPool: run.masterPool.map(q => q.id),
-    i: run.i,
-    answered: Array.from(run.answered.entries()),
-    uniqueSeen: Array.from(run.uniqueSeen),
-    thresholdWrong: run.thresholdWrong,
-    wrongSinceLast: run.wrongSinceLast.map(q => q.id),
-    totalQuestionsAnswered: run.totalQuestionsAnswered,
-    isFullBank: run.isFullBank,
-    isRetry: run.isRetry,
-    title: pageTitle?.textContent || defaultTitle,
-  });
-}
-function saveRunState() { try { const s = serializeRun(); if (s) localStorage.setItem(STORAGE_KEY, s); } catch {} }
-function loadRunState() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    const data = JSON.parse(raw);
-
-    const qById = new Map();
-    const restoredOrder = (data.order || []).map(q => {
-      const qq = { id:String(q.id), stem:String(q.stem||''), options:q.options||{}, correctLetters:(q.correctLetters||[]), rationale:String(q.rationale||''), type:String(q.type||'single_select') };
-      qById.set(qq.id, qq);
-      return qq;
-    });
-    const idToQ = (id) => qById.get(id) || null;
-
-    const restored = {
-      bank: String(data.bank||''),
-      displayName: String(data.displayName || prettifyModuleName(data.bank || '')),
-      order: restoredOrder,
-      masterPool: (data.masterPool||[]).map(idToQ).filter(Boolean),
-      i: Math.max(0, parseInt(data.i||0,10)),
-      answered: new Map(Array.isArray(data.answered)?data.answered:[]),
-      uniqueSeen: new Set(Array.isArray(data.uniqueSeen)?data.uniqueSeen:[]),
-      thresholdWrong: Math.max(1, parseInt(data.thresholdWrong||1,10)),
-      wrongSinceLast: (data.wrongSinceLast||[]).map(idToQ).filter(Boolean),
-      totalQuestionsAnswered: Math.max(0, parseInt(data.totalQuestionsAnswered||0,10)),
-      isFullBank: Boolean(data.isFullBank),
-      isRetry: Boolean(data.isRetry),
-    };
-    return { run: restored, title: data.title || defaultTitle };
-  } catch { return null; }
-}
-function clearSavedState(){ try { localStorage.removeItem(STORAGE_KEY); } catch {} }
-
-function getNotMasteredFromRun(runData) {
-  return runData.masterPool.filter(q => !runData.answered.get(q.id)?.correct).length;
-}
-
-function showResumeIfAny(){
-  const s = loadRunState();
-  const resumeContainer = document.getElementById('resumeContainer');
-  
-  if (!resumeContainer) return;
-  
-  if (!s || !s.run?.order?.length || !s.run?.isFullBank || s.run?.isRetry) {
-    resumeContainer.classList.add('hidden');
-    return;
-  }
-  
-  resumeContainer.classList.remove('hidden');
-  
-  const remainingQuestions = getNotMasteredFromRun(s.run);
-  const remainingCountEl = document.getElementById('remainingQuestionsCount');
-  if (remainingCountEl) {
-    remainingCountEl.textContent = `${remainingQuestions} questions remaining`;
-  }
-  
-  if (resumeBtn) {
-    resumeBtn.onclick = () => {
-      run = s.run;
-      setHeaderTitle(run.displayName || run.bank || defaultTitle);
-      document.title = run.displayName ? `${run.displayName} - Nurse Success Study Hub` :
-                     (run.bank ? `${run.bank} - Nurse Success Study Hub` : 'Quiz - Nurse Success Study Hub');
-
-      // Update the quiz title in the header banner
-      const quizTitle = $('quizTitle');
-      if (quizTitle) {
-        quizTitle.textContent = run.displayName || run.bank || defaultTitle;
-      }
-
-      if (launcher) launcher.classList.add('hidden');
-      if (summary) summary.classList.add('hidden');
-      if (quiz) quiz.classList.remove('hidden');
-      if (countersBox) countersBox.classList.remove('hidden');
-      if (resetAll) resetAll.classList.remove('hidden');
-
-      const q = currentQuestion();
-      if (q) {
-        run.uniqueSeen.add(q.id);
-        renderQuestion(q);
-        updateCounters();
-      }
-    };
-  }
-}
-
-/* ---------- Normalize & shuffle ---------- */
+/* ---------- Normalize Questions ---------- */
 function normalizeQuestions(data){
   const arr = Array.isArray(data) ? data : (data?.questions || []);
-  return arr.map(q => {
-    let optionsObj = {};
-    if (Array.isArray(q.options)) {
-      q.options.forEach((text, idx) => {
-        optionsObj[String.fromCharCode(65 + idx)] = String(text || '');
-      });
-    } else if (q.options && typeof q.options === 'object') {
-      optionsObj = { ...q.options };
+  return arr.map((q, idx) => {
+    // Ensure answer is always an array
+    let answers = [];
+    if (Array.isArray(q.answer)) {
+      answers = q.answer.map(a => String(a || ''));
+    } else if (q.answer) {
+      answers = [String(q.answer)];
     }
-
-    let correctLetters = [];
-    if (Array.isArray(q.correctLetters)) {
-      correctLetters = q.correctLetters.slice();
-    } else if (Array.isArray(q.correct)) {
-      correctLetters = q.correct.slice();
-    } else if (q.correctAnswer) {
-      correctLetters = [q.correctAnswer];
-    }
-
-    const stemText = String(q.question || q.stem || '');
-    const isSelectAll = /select all that apply/i.test(stemText);
-
-    const newQ = {
-      id: String(q.id || Math.random()),
-      stem: stemText,
-      options: optionsObj,
-      correctLetters: correctLetters.length > 0 ? correctLetters : ['A'],
+    
+    return {
+      id: String(q.id || idx),
+      stem: String(q.question || q.stem || ''),
+      answer: answers,
+      display_answer: String(q.display_answer || answers.join(' - ')),
       rationale: String(q.rationale || ''),
-      type: (isSelectAll || q.type === 'multiple_select') ? 'multiple_select' : 'single_select',
+      blankCount: answers.length
     };
-    return newQ;
   });
-}
-function shuffleQuestionOptions(q){
-  const letters = Object.keys(q.options).sort();
-  const shuffled = shuffleInPlace([...letters]);
-  const newOpts = {}; const oldToNew = {};
-  shuffled.forEach((oldLetter, idx) => {
-    const newLetter = String.fromCharCode(65 + idx);
-    oldToNew[oldLetter] = newLetter;
-    newOpts[newLetter] = q.options[oldLetter];
-  });
-  return {
-    ...q,
-    options: newOpts,
-    correctLetters: q.correctLetters.map(l => oldToNew[l] || l).sort(),
-  };
-}
-
-/* ---------- Update hover classes ---------- */
-function updateHoverClasses(){
-  if (!form) return;
-  const hasSelection = getUserLetters().length > 0;
-  const isMultiSelect = form.querySelector('input[type="checkbox"]') !== null;
-  
-  if (hasSelection && !isMultiSelect) {
-    form.classList.add('has-selection');
-    form.classList.remove('is-multi-select');
-  } else if (isMultiSelect) {
-    form.classList.add('is-multi-select');
-    form.classList.remove('has-selection');
-  } else {
-    form.classList.remove('has-selection');
-    form.classList.remove('is-multi-select');
-  }
 }
 
 /* ---------- Get color class for wrong count ---------- */
@@ -351,154 +202,13 @@ function getColorClass(wrongCount, maxWrong) {
   return 'red';
 }
 
-/* ---------- Populate modules (Category-specific) ---------- */
-async function initModules(){
-  if (!moduleSel) return;
-  
-  try {
-    const urlParams = new URLSearchParams(window.location.search);
-    const category = urlParams.get('category');
-    const subcategory = urlParams.get('subcategory');
-    
-    let endpoint = '/modules';
-    
-    if (category) {
-      endpoint = `/api/category/${encodeURIComponent(category)}/modules`;
-      const categoryContext = document.getElementById('categoryContext');
-      if (categoryContext) {
-        categoryContext.textContent = category;
-      }
-    }
-    
-    const res = await fetch(endpoint, { cache: 'no-store' });
-    if (!res.ok) throw new Error('Failed to load modules');
-    const json = await res.json();
-    let modules = Array.isArray(json.modules) ? json.modules : [];
-
-    // Filter modules by subcategory if provided
-    if (subcategory) {
-      const moduleGroupings = {
-        'Nursing Certifications': {
-          'CCRN': ['CCRN_Test_1_Combined_QA', 'CCRN_Test_2_Combined_QA', 'CCRN_Test_3_Combined_QA']
-        },
-        'Pharmacology': {
-          'Pharm Quizzes': ['Pharm_Quiz_1', 'Pharm_Quiz_2', 'Pharm_Quiz_3', 'Pharm_Quiz_4']
-        }
-      };
-      
-      if (moduleGroupings[category] && moduleGroupings[category][subcategory]) {
-        const allowedModules = moduleGroupings[category][subcategory];
-        modules = modules.filter(m => allowedModules.includes(m));
-      }
-    }
-
-    moduleSel.innerHTML = '';
-    if (!modules.length) {
-      moduleSel.innerHTML = '<option value="">No modules available</option>';
-      return;
-    }
-
-    modules.forEach(mod => {
-      const opt = document.createElement('option');
-      opt.value = mod;
-      opt.textContent = prettifyModuleName(mod);
-      moduleSel.appendChild(opt);
-    });
-  } catch (err) {
-    console.error('Error loading modules:', err);
-    if (moduleSel) {
-      moduleSel.innerHTML = '<option value="">Error loading modules</option>';
-    }
-  }
-}
-
-/* ---------- Category Display Setup ---------- */
-function setupCategoryDisplay() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const category = urlParams.get('category');
-  
-  const categoryIcons = {
-    'Patient Care Management': '👥',
-    'HESI': '📋',
-    'Nursing Certifications': '🏆',
-    'Pharmacology': '💊'
-  };
-
-  const categoryTitles = {
-    'HESI': 'HESI Exit Comprehensive Study Quizzes',
-    'Patient Care Management': 'Patient Care Management',
-    'Nursing Certifications': 'Nursing Certifications',
-    'Pharmacology': 'Pharmacology'
-  };
-
-  const moduleSelectionTitles = {
-    'HESI': 'HESI Study Material',
-    'Patient Care Management': 'Patient Care Management Study Material',
-    'Nursing Certifications': 'Nursing Certifications Study Material',
-    'Pharmacology': 'Pharmacology Study Material'
-  };
-
-  const categoryDescriptions = {
-    'HESI': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides',
-    'Patient Care Management': '',
-    'Nursing Certifications': '',
-    'Pharmacology': ''
-  };
-
-  if (category) {
-    const icon = categoryIcons[category] || '📚';
-    const displayTitle = categoryTitles[category] || category;
-    const displayDescription = categoryDescriptions[category] || '';
-    
-    const headerRight = document.getElementById('categoryHeader');
-    if (headerRight) {
-      const categoryIcon = document.getElementById('categoryIcon');
-      const categoryTitle = document.getElementById('categoryTitle');
-      if (categoryIcon) categoryIcon.style.display = 'none';
-      if (categoryTitle) categoryTitle.textContent = displayTitle;
-    }
-    
-    const quizTitle = document.getElementById('quizTitle');
-    if (quizTitle) {
-      // Set title to module selection page title
-      quizTitle.textContent = moduleSelectionTitles[category] || category;
-    }
-
-    const quizDescription = document.getElementById('quizDescription');
-    if (quizDescription) {
-      if (displayDescription) {
-        quizDescription.textContent = displayDescription;
-        quizDescription.style.display = 'block';
-      } else {
-        quizDescription.style.display = 'none';
-      }
-    }
-    
-    const headerSummary = document.getElementById('categoryHeaderSummary');
-    if (headerSummary) {
-      const categoryIconSummary = document.getElementById('categoryIconSummary');
-      const summaryTitle = document.getElementById('summaryTitle');
-      const summaryDescription = document.getElementById('summaryDescription');
-      if (categoryIconSummary) categoryIconSummary.style.display = 'none';
-      if (summaryTitle) summaryTitle.textContent = displayTitle;
-      if (summaryDescription) {
-        if (displayDescription) {
-          summaryDescription.textContent = displayDescription;
-          summaryDescription.style.display = 'block';
-        } else {
-          summaryDescription.style.display = 'none';
-        }
-      }
-    }
-  }
-}
-
 /* ---------- Render Question ---------- */
 function renderQuestion(q){
-  if (!qText || !form) return;
+  if (!qText || !inputArea) return;
   
   qText.textContent = q.stem;
-  form.innerHTML = '';
+  inputArea.innerHTML = '';
+  
   if (feedback) {
     feedback.textContent = '';
     feedback.className = 'feedback hidden';
@@ -512,66 +222,87 @@ function renderQuestion(q){
     rationaleBox.classList.add('hidden');
   }
 
-  const isMulti = (q.type === 'multiple_select');
-  const letters = Object.keys(q.options).sort();
-
-  letters.forEach(letter => {
-    const optDiv = document.createElement('div');
-    optDiv.className = 'opt';
-    optDiv.dataset.letter = letter;
-
-    const inp = document.createElement('input');
-    inp.type = isMulti ? 'checkbox' : 'radio';
-    inp.name = 'answer';
-    inp.id = `opt-${letter}`;
-    inp.value = letter;
-
-    const lbl = document.createElement('label');
-    lbl.setAttribute('for', `opt-${letter}`);
-
-    const keySpan = document.createElement('span');
-    keySpan.className = 'k';
-    keySpan.textContent = letter;
-
-    const answerSpan = document.createElement('span');
-    answerSpan.className = 'ans';
-    answerSpan.textContent = q.options[letter];
-
-    lbl.appendChild(keySpan);
-    lbl.appendChild(answerSpan);
-
-    optDiv.appendChild(inp);
-    optDiv.appendChild(lbl);
-    form.appendChild(optDiv);
-
-    optDiv.addEventListener('click', (e) => {
-      if (e.target === lbl || e.target === keySpan || e.target === answerSpan) {
+  // Create input fields based on number of blanks
+  const inputContainer = document.createElement('div');
+  inputContainer.className = 'input-container';
+  
+  for (let i = 0; i < q.blankCount; i++) {
+    const inputWrapper = document.createElement('div');
+    inputWrapper.className = 'input-wrapper';
+    
+    if (q.blankCount > 1) {
+      const label = document.createElement('label');
+      label.textContent = i === 0 ? 'First value:' : 'Second value:';
+      label.setAttribute('for', `answer-${i}`);
+      inputWrapper.appendChild(label);
+    }
+    
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = `answer-${i}`;
+    input.className = 'answer-input';
+    input.placeholder = q.blankCount > 1 ? `Enter value ${i + 1}...` : 'Type your answer...';
+    input.autocomplete = 'off';
+    input.spellcheck = false;
+    
+    // Auto-focus first input
+    if (i === 0) {
+      setTimeout(() => input.focus(), 100);
+    }
+    
+    // Handle Enter key
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
         e.preventDefault();
-        inp.checked = !inp.checked;
-        onSelectionChanged();
+        // If there's a next input, focus it; otherwise submit
+        const nextInput = document.getElementById(`answer-${i + 1}`);
+        if (nextInput && !nextInput.disabled) {
+          nextInput.focus();
+        } else if (submitBtn && !submitBtn.disabled) {
+          submitBtn.click();
+        }
       }
     });
-  });
-
+    
+    input.addEventListener('input', onInputChanged);
+    
+    inputWrapper.appendChild(input);
+    
+    // Add status indicator
+    const status = document.createElement('span');
+    status.className = 'input-status';
+    status.id = `status-${i}`;
+    inputWrapper.appendChild(status);
+    
+    inputContainer.appendChild(inputWrapper);
+  }
+  
+  inputArea.appendChild(inputContainer);
+  
   setActionState('submit');
-  updateHoverClasses();
 }
 
 function currentQuestion() {
   return run.order?.[run.i] || null;
 }
 
-function getUserLetters(){
-  if (!form) return [];
-  const checked = [...form.querySelectorAll('input:checked')];
-  return checked.map(inp => inp.value).sort();
+function getUserAnswers(){
+  const answers = [];
+  const q = currentQuestion();
+  if (!q) return answers;
+  
+  for (let i = 0; i < q.blankCount; i++) {
+    const input = document.getElementById(`answer-${i}`);
+    answers.push(input ? input.value : '');
+  }
+  return answers;
 }
 
-function onSelectionChanged(){
+function onInputChanged(){
   if (!submitBtn) return;
-  const hasSelection = getUserLetters().length > 0;
-  submitBtn.disabled = !hasSelection;
-  updateHoverClasses();
+  const answers = getUserAnswers();
+  const hasInput = answers.some(a => a.trim().length > 0);
+  submitBtn.disabled = !hasInput;
 }
 
 function setActionState(mode){
@@ -582,44 +313,13 @@ function setActionState(mode){
     submitBtn.textContent = 'Submit';
     submitBtn.classList.remove('btn-blue');
     submitBtn.classList.add('primary');
-    submitBtn.disabled = getUserLetters().length === 0;
+    submitBtn.disabled = getUserAnswers().every(a => a.trim().length === 0);
   } else {
     submitBtn.textContent = 'Next';
     submitBtn.classList.remove('primary');
     submitBtn.classList.add('btn-blue');
     submitBtn.disabled = false;
   }
-}
-
-function formatCorrectAnswers(q){
-  const lettersHTML = (q.correctLetters || []).map(l =>
-    `<strong>${escapeHTML(l)}</strong>. ${escapeHTML(q.options[l]||'')}`
-  ).join('<br>');
-  return lettersHTML;
-}
-
-/* ---------- Highlight correct/wrong answers ---------- */
-function highlightAnswers(q, userLetters, isCorrect) {
-  if (!form) return;
-  
-  const correctLetters = q.correctLetters || [];
-  
-  form.querySelectorAll('.opt').forEach(optDiv => {
-    const letter = optDiv.dataset.letter;
-    const isCorrectAnswer = correctLetters.includes(letter);
-    const wasSelected = userLetters.includes(letter);
-    
-    // Remove any existing highlight classes
-    optDiv.classList.remove('correct-answer', 'wrong-answer');
-    
-    if (isCorrect && wasSelected) {
-      // If user got it right, highlight their selection in green
-      optDiv.classList.add('correct-answer');
-    } else if (!isCorrect && wasSelected && !isCorrectAnswer) {
-      // If user got it wrong, only highlight their wrong selection in red
-      optDiv.classList.add('wrong-answer');
-    }
-  });
 }
 
 /* ---------- Counters / Progress Bar ---------- */
@@ -638,19 +338,22 @@ function updateCounters(){
   if (progressBar) progressBar.setAttribute('aria-valuenow', percentage);
 
   updateProgressBar();
-  saveRunState();
 }
-function recordAnswer(q, userLetters, isCorrect){
+
+function recordAnswer(q, userAnswers, isCorrect, blankResults){
   const firstTime = !run.answered.has(q.id);
-  const entry = run.answered.get(q.id) || { firstTryCorrect: null, correct: false, userLetters: [] };
+  const entry = run.answered.get(q.id) || { firstTryCorrect: null, correct: false, userAnswers: [], blankResults: [] };
   if (firstTime) entry.firstTryCorrect = !!isCorrect;
   entry.correct = !!isCorrect;
-  entry.userLetters = userLetters.slice();
+  entry.userAnswers = userAnswers.slice();
+  entry.blankResults = blankResults.slice();
   run.answered.set(q.id, entry);
 }
+
 function getNotMastered(){
   return run.masterPool.filter(q => !run.answered.get(q.id)?.correct);
 }
+
 function nextIndex(){
   const nextIdx = (run.i ?? 0) + 1;
   if (nextIdx < run.order.length) {
@@ -675,7 +378,7 @@ function nextIndex(){
 
 /* ---------- Start / End ---------- */
 async function startQuiz(){
-  if (!lengthBtns || !moduleSel || !startBtn) return;
+  if (!lengthBtns || !startBtn) return;
   
   const lenBtn = lengthBtns.querySelector('.seg-btn.active');
   if (!lenBtn) {
@@ -684,15 +387,17 @@ async function startQuiz(){
     return;
   }
 
-  const bank = moduleSel.value;
-  const displayName = prettifyModuleName(bank);
-  const qty  = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
+  // Get module from URL
+  const pathParts = window.location.pathname.split('/');
+  const moduleName = pathParts[pathParts.length - 1] || 'NCLEX_Lab_Values_Fill_In_The_Blank';
+  
+  const displayName = 'Lab Values - Fill in the Blank';
+  const qty = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
   const isFullBank = (qty === 'full');
 
   setHeaderTitle(displayName);
   document.title = `${displayName} - Nurse Success Study Hub`;
   
-  // Update the quiz title in the header banner
   const quizTitle = $('quizTitle');
   if (quizTitle) {
     quizTitle.textContent = displayName;
@@ -700,28 +405,25 @@ async function startQuiz(){
 
   startBtn.disabled = true;
 
-  const jsonUrl = `/${bank}.json`;
+  const jsonUrl = `/${moduleName}.json`;
   
   try {
     const res = await fetch(jsonUrl, { cache: 'no-store' });
     if (!res.ok) {
-      alert(`Could not load ${bank}.json`);
+      alert(`Could not load quiz data`);
       startBtn.disabled = false;
-      setHeaderTitle(defaultTitle);
-      document.title = 'Quiz - Nurse Success Study Hub';
       return;
     }
     const raw = await res.json();
     allQuestions = normalizeQuestions(raw);
 
     const sampled = sampleQuestions(allQuestions, qty);
-    const shuffledQuestions = sampled.map((q) => shuffleQuestionOptions(q));
 
     run = {
-      bank,
+      bank: moduleName,
       displayName,
-      order: [...shuffledQuestions],
-      masterPool: [...shuffledQuestions],
+      order: [...sampled],
+      masterPool: [...sampled],
       i: 0,
       answered: new Map(),
       uniqueSeen: new Set(),
@@ -762,24 +464,20 @@ async function startRetryQuiz(missedQuestions) {
     return;
   }
 
-  const displayName = `${run.displayName} - Retry Missed Questions`;
+  const displayName = `Lab Values Fill-in-Blank - Retry Missed`;
   setHeaderTitle(displayName);
   document.title = `${displayName} - Nurse Success Study Hub`;
   
-  // Update the quiz title in the header banner
   const quizTitle = $('quizTitle');
   if (quizTitle) {
     quizTitle.textContent = displayName;
   }
 
-  // Shuffle the missed questions and their options
-  const shuffledQuestions = missedQuestions.map((q) => shuffleQuestionOptions(q));
-
   run = {
     bank: run.bank,
     displayName: displayName,
-    order: [...shuffledQuestions],
-    masterPool: [...shuffledQuestions],
+    order: [...missedQuestions],
+    masterPool: [...missedQuestions],
     i: 0,
     answered: new Map(),
     uniqueSeen: new Set(),
@@ -822,13 +520,13 @@ function endRun(){
   const ftCorrect = uniq.filter(x => x.firstTryCorrect).length;
   const totalUnique = uniq.length;
 
-  // Collect missed questions (where firstTryCorrect is false)
+  // Collect missed questions
   lastQuizMissedQuestions = run.masterPool.filter(q => {
     const ans = run.answered.get(q.id);
     return ans && ans.firstTryCorrect === false;
   });
 
-  // Show or hide retry button based on whether there are missed questions
+  // Show or hide retry button
   if (retryMissedBtn) {
     if (lastQuizMissedQuestions.length > 0 && !run.isRetry) {
       retryMissedBtn.classList.remove('hidden');
@@ -902,7 +600,9 @@ function endRun(){
       const ans = run.answered.get(q.id);
       row.className = 'rev-item ' + (ans?.correct ? 'ok' : 'bad');
 
-      const qEl = document.createElement('div'); qEl.className = 'rev-q'; qEl.textContent = q.stem;
+      const qEl = document.createElement('div'); 
+      qEl.className = 'rev-q'; 
+      qEl.textContent = q.stem;
       
       const wrongCountEl = document.createElement('div'); 
       wrongCountEl.className = 'rev-wrong-count';
@@ -914,9 +614,12 @@ function endRun(){
         wrongCountEl.classList.add(colorClass);
       }
       
-      const caEl = document.createElement('div'); caEl.className = 'rev-ans';
-      caEl.innerHTML = `<strong>Correct Answer:</strong><br>${formatCorrectAnswers(q)}`;
-      const rEl = document.createElement('div'); rEl.className = 'rev-rationale';
+      const caEl = document.createElement('div'); 
+      caEl.className = 'rev-ans';
+      caEl.innerHTML = `<strong>Correct Answer:</strong> ${escapeHTML(q.display_answer)}`;
+      
+      const rEl = document.createElement('div'); 
+      rEl.className = 'rev-rationale';
       rEl.innerHTML = `<strong>Rationale:</strong> ${escapeHTML(q.rationale || '')}`;
 
       row.appendChild(qEl); 
@@ -926,14 +629,13 @@ function endRun(){
       reviewList.appendChild(row);
     });
   }
-
-  clearSavedState();
 }
 
 /* ---------- Event wiring ---------- */
 if (lengthBtns) {
   lengthBtns.addEventListener('click', (e) => {
-    const btn = e.target.closest('.seg-btn'); if (!btn) return;
+    const btn = e.target.closest('.seg-btn'); 
+    if (!btn) return;
     lengthBtns.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     lengthBtns.querySelectorAll('.seg-btn').forEach(b => b.setAttribute('aria-pressed', b.classList.contains('active')?'true':'false'));
@@ -942,10 +644,6 @@ if (lengthBtns) {
 
 if (startBtn) {
   startBtn.addEventListener('click', startQuiz);
-}
-
-if (form) {
-  form.addEventListener('change', onSelectionChanged);
 }
 
 if (submitBtn) {
@@ -970,18 +668,28 @@ function handleSubmitClick() {
   const q = currentQuestion();
   if (!q) return;
 
-  const userLetters = getUserLetters();
-  const correctLetters = (q.correctLetters || []).slice().sort();
-  const isCorrect = JSON.stringify(userLetters) === JSON.stringify(correctLetters);
+  const userAnswers = getUserAnswers();
+  const correctAnswers = q.answer;
+  
+  // Check each blank individually
+  const blankResults = userAnswers.map((userAns, idx) => {
+    return checkAnswer(userAns, correctAnswers[idx] || '');
+  });
+  
+  const isCorrect = blankResults.every(r => r === true);
 
-  recordAnswer(q, userLetters, isCorrect);
+  recordAnswer(q, userAnswers, isCorrect, blankResults);
 
   if (!isCorrect) {
     run.wrongSinceLast.push(q);
     if (run.wrongSinceLast.length >= run.thresholdWrong) {
-      const seen = new Set(); const uniqueBatch = [];
+      const seen = new Set(); 
+      const uniqueBatch = [];
       for (const item of run.wrongSinceLast) {
-        if (!seen.has(item.id)) { seen.add(item); uniqueBatch.push(item); }
+        if (!seen.has(item.id)) { 
+          seen.add(item.id); 
+          uniqueBatch.push(item); 
+        }
       }
       run.wrongSinceLast = [];
       if (uniqueBatch.length) {
@@ -990,18 +698,33 @@ function handleSubmitClick() {
     }
   }
 
+  // Show feedback
   if (feedback) {
     feedback.textContent = isCorrect ? 'Correct!' : 'Incorrect';
     feedback.classList.remove('ok','bad', 'hidden');
     feedback.classList.add(isCorrect ? 'ok' : 'bad');
   }
 
-  // Highlight correct and wrong answers in the options
-  highlightAnswers(q, userLetters, isCorrect);
+  // Update individual input statuses
+  blankResults.forEach((result, idx) => {
+    const input = document.getElementById(`answer-${idx}`);
+    const status = document.getElementById(`status-${idx}`);
+    
+    if (input) {
+      input.disabled = true;
+      input.classList.remove('correct', 'incorrect');
+      input.classList.add(result ? 'correct' : 'incorrect');
+    }
+    
+    if (status) {
+      status.textContent = result ? '✓' : '✗';
+      status.className = 'input-status ' + (result ? 'correct' : 'incorrect');
+    }
+  });
 
-  // Always show the correct answer
+  // Show correct answer
   if (answerLine) {
-    answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formatCorrectAnswers(q)}`;
+    answerLine.innerHTML = `<strong>Correct Answer:</strong> ${escapeHTML(q.display_answer)}`;
     answerLine.classList.remove('hidden');
   }
   
@@ -1010,18 +733,13 @@ function handleSubmitClick() {
     rationaleBox.classList.remove('hidden');
   }
 
-  if (form) {
-    form.querySelectorAll('input').forEach(i => i.disabled = true);
-  }
-  
   setActionState('next');
-
   scrollToBottomSmooth();
   updateCounters();
 }
 
 if (resetAll) {
-  resetAll.addEventListener('click', () => { clearSavedState(); location.reload(); });
+  resetAll.addEventListener('click', () => { location.reload(); });
 }
 
 if (restartBtn2) {
@@ -1034,32 +752,6 @@ if (retryMissedBtn) {
   });
 }
 
-/* ---------- Keyboard shortcuts ---------- */
-document.addEventListener('keydown', (e) => {
-  if (!quiz || quiz.classList.contains('hidden')) return;
-  if (isTextEditingTarget(e.target)) return;
-  if (e.altKey || e.ctrlKey || e.metaKey) return;
-
-  const key = e.key || '';
-  const upper = key.toUpperCase();
-
-  if (key === 'Enter') {
-    e.preventDefault();
-    if (submitBtn && !submitBtn.disabled) {
-      submitBtn.click();
-    }
-    return;
-  }
-
-  if (/^[A-Z]$/.test(upper) && submitBtn && submitBtn.dataset.mode === 'submit') {
-    const input = document.getElementById(`opt-${upper}`);
-    if (!input || input.disabled) return;
-    e.preventDefault();
-    input.checked = !input.checked;
-    onSelectionChanged();
-  }
-});
-
 /* ---------- Progress bar update ---------- */
 function updateProgressBar() {
   const remaining = getNotMastered().length;
@@ -1069,7 +761,7 @@ function updateProgressBar() {
 
   if (progressFill) {
     progressFill.style.width = `${percentage}%`;
-    // Transition from blue (#2f61f3) to green (#4caf50) based on percentage
+    // Transition from blue to green
     const r = Math.round(47 + (76 - 47) * (percentage / 100));
     const g = Math.round(97 + (175 - 97) * (percentage / 100));
     const b = Math.round(243 + (80 - 243) * (percentage / 100));
@@ -1080,6 +772,11 @@ function updateProgressBar() {
 }
 
 /* ---------- Init ---------- */
-setupCategoryDisplay();
-initModules();
-showResumeIfAny();
+// Auto-start if module is in URL
+const urlPath = window.location.pathname;
+if (urlPath.includes('NCLEX_Lab_Values_Fill_In_The_Blank')) {
+  const quizTitle = $('quizTitle');
+  if (quizTitle) {
+    quizTitle.textContent = 'Lab Values - Fill in the Blank';
+  }
+}
