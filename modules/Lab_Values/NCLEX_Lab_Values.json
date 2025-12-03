@@ -1,0 +1,1205 @@
+{
+  "title": "NCLEX Laboratory Values",
+  "questions": [
+    {
+      "id": 1,
+      "question": "A nurse is reviewing laboratory results for a client. Which serum sodium level would the nurse recognize as within normal limits?",
+      "options": {
+        "A": "125 mEq/L",
+        "B": "132 mEq/L",
+        "C": "140 mEq/L",
+        "D": "150 mEq/L"
+      },
+      "answer": "C",
+      "rationale": "Normal serum sodium is 135-145 mEq/L. Option C (140 mEq/L) falls within this range. Option A (125 mEq/L) indicates hyponatremia. Option B (132 mEq/L) is slightly low. Option D (150 mEq/L) indicates hypernatremia."
+    },
+    {
+      "id": 2,
+      "question": "A client with SIADH has a serum sodium of 122 mEq/L and is experiencing confusion and seizures. Which intervention should the nurse anticipate?",
+      "options": {
+        "A": "Administering normal saline rapidly",
+        "B": "Administering hypertonic saline slowly",
+        "C": "Encouraging increased oral fluid intake",
+        "D": "Administering a potassium-sparing diuretic"
+      },
+      "answer": "B",
+      "rationale": "Severe hyponatremia with neurological symptoms (confusion, seizures) requires slow administration of hypertonic saline (3% NaCl). Rapid correction can cause osmotic demyelination syndrome. Normal saline is for mild cases. Increasing fluids would worsen hyponatremia. Potassium-sparing diuretics do not address sodium deficit."
+    },
+    {
+      "id": 3,
+      "question": "A client with hypernatremia secondary to dehydration is receiving treatment. Which assessment finding indicates the intervention is effective?",
+      "options": {
+        "A": "Serum sodium 152 mEq/L",
+        "B": "Increased confusion and lethargy",
+        "C": "Serum sodium 142 mEq/L",
+        "D": "Decreased urine output"
+      },
+      "answer": "C",
+      "rationale": "A serum sodium of 142 mEq/L is within normal range (135-145 mEq/L), indicating successful treatment of hypernatremia. A sodium of 152 mEq/L remains elevated. Increased confusion suggests worsening condition. Decreased urine output may indicate inadequate hydration."
+    },
+    {
+      "id": 4,
+      "question": "A nurse is assessing a client with a serum potassium level of 6.2 mEq/L. Which ECG change should the nurse expect?",
+      "options": {
+        "A": "Flattened T waves",
+        "B": "Prominent U waves",
+        "C": "Peaked T waves",
+        "D": "Prolonged PR interval only"
+      },
+      "answer": "C",
+      "rationale": "Hyperkalemia (K+ >5.0 mEq/L) characteristically causes peaked (tall, tented) T waves on ECG. Flattened T waves and prominent U waves are associated with hypokalemia. While prolonged PR interval can occur with hyperkalemia, peaked T waves are the hallmark early sign."
+    },
+    {
+      "id": 5,
+      "question": "A client receiving IV potassium replacement asks why the infusion is running so slowly. Which response by the nurse is most appropriate?",
+      "options": {
+        "A": "Rapid infusion can cause muscle cramping",
+        "B": "Rapid infusion can cause cardiac arrest",
+        "C": "The medication is thick and flows slowly",
+        "D": "This prevents irritation to the vein only"
+      },
+      "answer": "B",
+      "rationale": "IV potassium must never be given as a bolus because rapid infusion can cause fatal cardiac arrhythmias and cardiac arrest. The heart is extremely sensitive to potassium levels. While vein irritation is a concern, the primary reason for slow infusion is cardiac safety."
+    },
+    {
+      "id": 6,
+      "question": "Which serum potassium level requires immediate intervention?",
+      "options": {
+        "A": "3.8 mEq/L",
+        "B": "4.2 mEq/L",
+        "C": "5.0 mEq/L",
+        "D": "2.5 mEq/L"
+      },
+      "answer": "D",
+      "rationale": "Normal potassium is 3.5-5.0 mEq/L. A level of 2.5 mEq/L indicates severe hypokalemia, which can cause life-threatening arrhythmias and respiratory muscle weakness. Options A, B, and C are all within or at the limit of normal range."
+    },
+    {
+      "id": 7,
+      "question": "A nurse is caring for a client with hyperkalemia. Which medication would the nurse anticipate administering to protect the myocardium?",
+      "options": {
+        "A": "Sodium polystyrene sulfonate (Kayexalate)",
+        "B": "Regular insulin with dextrose",
+        "C": "Calcium gluconate IV",
+        "D": "Furosemide (Lasix)"
+      },
+      "answer": "C",
+      "rationale": "IV calcium gluconate is given to stabilize the cardiac membrane and protect the heart from arrhythmias in hyperkalemia. It does not lower potassium but provides immediate cardioprotection. Kayexalate removes potassium from the body. Insulin/glucose shifts potassium into cells. Furosemide promotes potassium excretion."
+    },
+    {
+      "id": 8,
+      "question": "A client presents with muscle cramps, weakness, and an ECG showing U waves. The nurse should anticipate which laboratory finding?",
+      "options": {
+        "A": "Potassium 5.8 mEq/L",
+        "B": "Potassium 2.9 mEq/L",
+        "C": "Sodium 148 mEq/L",
+        "D": "Calcium 11.2 mg/dL"
+      },
+      "answer": "B",
+      "rationale": "U waves on ECG, along with muscle cramps and weakness, are classic signs of hypokalemia. A potassium of 2.9 mEq/L (below normal 3.5-5.0 mEq/L) correlates with these findings. Hyperkalemia causes peaked T waves. The symptoms described are not typical of sodium or calcium imbalances."
+    },
+    {
+      "id": 9,
+      "question": "A nurse is assessing a postoperative parathyroidectomy client. Which finding indicates hypocalcemia?",
+      "options": {
+        "A": "Constipation and bone pain",
+        "B": "Positive Chvostek's sign",
+        "C": "Decreased deep tendon reflexes",
+        "D": "Shortened QT interval on ECG"
+      },
+      "answer": "B",
+      "rationale": "Chvostek's sign (facial twitching when tapping the facial nerve) is a classic indicator of hypocalcemia, which can occur after parathyroidectomy due to removal of or damage to parathyroid glands. Constipation and bone pain occur with hypercalcemia. Decreased reflexes occur with hypermagnesemia. Shortened QT occurs with hypercalcemia."
+    },
+    {
+      "id": 10,
+      "question": "A client's serum calcium level is 7.2 mg/dL. Which intervention should the nurse implement first?",
+      "options": {
+        "A": "Encourage ambulation",
+        "B": "Institute seizure precautions",
+        "C": "Restrict dietary calcium",
+        "D": "Administer loop diuretics"
+      },
+      "answer": "B",
+      "rationale": "Normal calcium is 8.5-10.5 mg/dL. A level of 7.2 mg/dL indicates hypocalcemia, which can cause tetany and seizures. Seizure precautions are the priority safety intervention. Ambulation is encouraged for hypercalcemia. Restricting calcium and loop diuretics are interventions for hypercalcemia."
+    },
+    {
+      "id": 11,
+      "question": "A client with hypercalcemia is experiencing confusion and constipation. Which intervention should the nurse anticipate?",
+      "options": {
+        "A": "Administering IV calcium gluconate",
+        "B": "Administering IV normal saline and furosemide",
+        "C": "Restricting fluid intake",
+        "D": "Administering potassium supplements"
+      },
+      "answer": "B",
+      "rationale": "Hypercalcemia treatment includes IV normal saline for hydration followed by loop diuretics (furosemide) to promote calcium excretion. The mnemonic for hypercalcemia symptoms is 'stones, bones, groans, thrones, and psychiatric overtones.' Calcium gluconate would worsen hypercalcemia. Fluid restriction is contraindicated."
+    },
+    {
+      "id": 12,
+      "question": "The normal range for serum calcium is:",
+      "options": {
+        "A": "3.5-5.0 mEq/L",
+        "B": "8.5-10.5 mg/dL",
+        "C": "135-145 mEq/L",
+        "D": "1.3-2.1 mEq/L"
+      },
+      "answer": "B",
+      "rationale": "Normal serum calcium is 8.5-10.5 mg/dL. Option A (3.5-5.0 mEq/L) is the normal range for potassium. Option C (135-145 mEq/L) is normal sodium. Option D (1.3-2.1 mEq/L) is normal magnesium."
+    },
+    {
+      "id": 13,
+      "question": "A client receiving magnesium sulfate for preeclampsia develops absent deep tendon reflexes and respiratory rate of 10 breaths/min. Which medication should the nurse have readily available?",
+      "options": {
+        "A": "Potassium chloride",
+        "B": "Sodium bicarbonate",
+        "C": "Calcium gluconate",
+        "D": "Protamine sulfate"
+      },
+      "answer": "C",
+      "rationale": "Absent DTRs and respiratory depression are signs of magnesium toxicity (hypermagnesemia). Calcium gluconate is the antidote that antagonizes the effects of excess magnesium. Potassium chloride treats hypokalemia. Sodium bicarbonate treats acidosis. Protamine sulfate reverses heparin."
+    },
+    {
+      "id": 14,
+      "question": "A client with chronic alcoholism is admitted with tremors and an irregular heart rhythm. Which electrolyte imbalance should the nurse suspect?",
+      "options": {
+        "A": "Hypernatremia",
+        "B": "Hypomagnesemia",
+        "C": "Hyperkalemia",
+        "D": "Hypercalcemia"
+      },
+      "answer": "B",
+      "rationale": "Chronic alcoholism is a major risk factor for hypomagnesemia due to poor nutrition and malabsorption. Symptoms include neuromuscular irritability (tremors), cardiac arrhythmias, and often coexisting hypokalemia and hypocalcemia. Normal magnesium is 1.3-2.1 mEq/L."
+    },
+    {
+      "id": 15,
+      "question": "The normal serum magnesium level is:",
+      "options": {
+        "A": "0.7-1.4 mg/dL",
+        "B": "95-105 mEq/L",
+        "C": "1.3-2.1 mEq/L",
+        "D": "7-20 mg/dL"
+      },
+      "answer": "C",
+      "rationale": "Normal serum magnesium is 1.3-2.1 mEq/L. Option A represents creatinine range. Option B is chloride range. Option D is BUN range."
+    },
+    {
+      "id": 16,
+      "question": "A client has a serum chloride level of 88 mEq/L. Which condition is most likely associated with this finding?",
+      "options": {
+        "A": "Dehydration",
+        "B": "Prolonged vomiting",
+        "C": "Excessive normal saline infusion",
+        "D": "Metabolic acidosis"
+      },
+      "answer": "B",
+      "rationale": "Normal chloride is 95-105 mEq/L. A level of 88 mEq/L indicates hypochloremia, commonly caused by loss of gastric contents through vomiting or NG suction (metabolic alkalosis). Dehydration and excessive NS infusion cause hyperchloremia. Metabolic acidosis typically causes hyperchloremia."
+    },
+    {
+      "id": 17,
+      "question": "A client receiving large amounts of normal saline develops weakness and confusion. Which laboratory value should the nurse check first?",
+      "options": {
+        "A": "Potassium",
+        "B": "Chloride",
+        "C": "Calcium",
+        "D": "Magnesium"
+      },
+      "answer": "B",
+      "rationale": "Excessive normal saline (0.9% NaCl) administration can cause hyperchloremic metabolic acidosis. Symptoms include weakness, confusion, and increased thirst. The nurse should monitor chloride levels (normal 95-105 mEq/L) when giving large volumes of NS."
+    },
+    {
+      "id": 18,
+      "question": "A client's BUN is 45 mg/dL and creatinine is 3.2 mg/dL. These findings are most indicative of:",
+      "options": {
+        "A": "Liver failure",
+        "B": "Renal impairment",
+        "C": "Dehydration only",
+        "D": "Malnutrition"
+      },
+      "answer": "B",
+      "rationale": "Normal BUN is 7-20 mg/dL and creatinine is 0.7-1.4 mg/dL. Elevated levels of both indicate renal impairment. Dehydration typically elevates BUN more than creatinine. Liver failure and malnutrition typically cause low BUN. Creatinine is a more specific marker of kidney function."
+    },
+    {
+      "id": 19,
+      "question": "A client's BUN is elevated but creatinine is normal. Which condition should the nurse suspect?",
+      "options": {
+        "A": "Acute kidney injury",
+        "B": "Chronic kidney disease",
+        "C": "Prerenal azotemia (dehydration)",
+        "D": "Rhabdomyolysis"
+      },
+      "answer": "C",
+      "rationale": "When BUN is elevated but creatinine remains normal, prerenal causes such as dehydration, GI bleeding, or high protein diet are likely. This creates a high BUN:creatinine ratio (>20:1). In renal failure, both values would be elevated. Normal BUN is 7-20 mg/dL."
+    },
+    {
+      "id": 20,
+      "question": "The normal BUN (Blood Urea Nitrogen) range is:",
+      "options": {
+        "A": "7-20 mg/dL",
+        "B": "0.7-1.4 mg/dL",
+        "C": "70-100 mg/dL",
+        "D": "10-40 U/L"
+      },
+      "answer": "A",
+      "rationale": "Normal BUN is 7-20 mg/dL. Option B is the normal creatinine range. Option C is fasting blood glucose range. Option D is AST range."
+    },
+    {
+      "id": 21,
+      "question": "A nurse is reviewing labs for a client with suspected renal failure. Which creatinine level indicates impaired kidney function?",
+      "options": {
+        "A": "0.8 mg/dL",
+        "B": "1.2 mg/dL",
+        "C": "3.5 mg/dL",
+        "D": "1.0 mg/dL"
+      },
+      "answer": "C",
+      "rationale": "Normal creatinine is approximately 0.7-1.4 mg/dL. A creatinine of 3.5 mg/dL is significantly elevated and indicates impaired kidney function. Options A, B, and D are all within normal limits."
+    },
+    {
+      "id": 22,
+      "question": "A client with chronic kidney disease has a creatinine of 5.2 mg/dL. Which intervention should the nurse anticipate?",
+      "options": {
+        "A": "Increasing protein intake",
+        "B": "Administering nephrotoxic antibiotics",
+        "C": "Preparing for possible dialysis",
+        "D": "Encouraging high-sodium diet"
+      },
+      "answer": "C",
+      "rationale": "A creatinine of 5.2 mg/dL (normal 0.7-1.4 mg/dL) indicates severe renal impairment. Dialysis may be necessary to remove waste products. Nephrotoxic drugs should be avoided. Protein restriction (not increase) and sodium restriction are typically recommended in CKD."
+    },
+    {
+      "id": 23,
+      "question": "A client's laboratory results show AST 250 U/L and ALT 300 U/L. Which condition do these findings suggest?",
+      "options": {
+        "A": "Renal failure",
+        "B": "Liver injury",
+        "C": "Anemia",
+        "D": "Pancreatitis"
+      },
+      "answer": "B",
+      "rationale": "Normal AST is 10-40 U/L (male) and ALT is 10-55 U/L (male). Markedly elevated levels indicate hepatocellular injury such as hepatitis, cirrhosis, or drug-induced liver damage. ALT is more specific to the liver than AST."
+    },
+    {
+      "id": 24,
+      "question": "A nurse is caring for a client with suspected hepatitis. Which liver enzyme is more specific to liver damage?",
+      "options": {
+        "A": "AST (SGOT)",
+        "B": "ALT (SGPT)",
+        "C": "BUN",
+        "D": "Creatinine"
+      },
+      "answer": "B",
+      "rationale": "ALT (SGPT) is more specific to the liver because it is found primarily in hepatocytes. AST is also found in cardiac and skeletal muscle, making it less liver-specific. BUN and creatinine are markers of kidney function, not liver function."
+    },
+    {
+      "id": 25,
+      "question": "A newborn has a total bilirubin of 18 mg/dL at 48 hours of age. Which intervention should the nurse anticipate?",
+      "options": {
+        "A": "Increased oral feeding only",
+        "B": "Phototherapy",
+        "C": "Immediate surgery",
+        "D": "No intervention needed"
+      },
+      "answer": "B",
+      "rationale": "Normal total bilirubin is 0.3-1.0 mg/dL in adults. In newborns, elevated bilirubin (hyperbilirubinemia) is treated with phototherapy to convert unconjugated bilirubin to a water-soluble form for excretion. Levels above 15-20 mg/dL in term infants typically warrant phototherapy to prevent kernicterus."
+    },
+    {
+      "id": 26,
+      "question": "A client with cirrhosis has yellow discoloration of the skin and sclera. Which laboratory value should the nurse review?",
+      "options": {
+        "A": "Hemoglobin",
+        "B": "Bilirubin",
+        "C": "Creatinine",
+        "D": "Potassium"
+      },
+      "answer": "B",
+      "rationale": "Jaundice (yellow skin and sclera) is caused by elevated bilirubin (hyperbilirubinemia). Normal total bilirubin is 0.3-1.0 mg/dL. Liver dysfunction impairs bilirubin conjugation and excretion, leading to jaundice."
+    },
+    {
+      "id": 27,
+      "question": "A client's WBC count is 18,000/mm³. Which condition should the nurse suspect?",
+      "options": {
+        "A": "Aplastic anemia",
+        "B": "Infection or inflammation",
+        "C": "Chemotherapy effect",
+        "D": "Vitamin B12 deficiency"
+      },
+      "answer": "B",
+      "rationale": "Normal WBC is 5,000-10,000/mm³. An elevated WBC (leukocytosis) of 18,000/mm³ commonly indicates infection, inflammation, or stress response. Aplastic anemia, chemotherapy, and B12 deficiency typically cause leukopenia (low WBC)."
+    },
+    {
+      "id": 28,
+      "question": "A client receiving chemotherapy has a WBC count of 1,500/mm³. Which nursing intervention is priority?",
+      "options": {
+        "A": "Administering aspirin for pain",
+        "B": "Implementing neutropenic precautions",
+        "C": "Encouraging fresh fruit intake",
+        "D": "Placing fresh flowers in the room"
+      },
+      "answer": "B",
+      "rationale": "A WBC of 1,500/mm³ (normal 5,000-10,000/mm³) indicates severe leukopenia/neutropenia. Neutropenic precautions include private room, hand hygiene, mask for visitors, avoiding fresh fruits/vegetables and flowers (harbor bacteria/fungi), and monitoring for infection."
+    },
+    {
+      "id": 29,
+      "question": "The normal white blood cell count range is:",
+      "options": {
+        "A": "150,000-400,000/mm³",
+        "B": "5,000-10,000/mm³",
+        "C": "12-15 g/dL",
+        "D": "35-47%"
+      },
+      "answer": "B",
+      "rationale": "Normal WBC count is 5,000-10,000/mm³. Option A is the platelet range. Option C is female hemoglobin range. Option D is female hematocrit range."
+    },
+    {
+      "id": 30,
+      "question": "A male client's hemoglobin is 9.5 g/dL. Which symptoms should the nurse assess for?",
+      "options": {
+        "A": "Flushed skin and hypertension",
+        "B": "Pallor, fatigue, and dyspnea",
+        "C": "Excessive bleeding",
+        "D": "Jaundice and pruritus"
+      },
+      "answer": "B",
+      "rationale": "Normal male hemoglobin is 14-17 g/dL. A level of 9.5 g/dL indicates anemia. Classic anemia symptoms include pallor, fatigue, dyspnea on exertion, and tachycardia due to reduced oxygen-carrying capacity."
+    },
+    {
+      "id": 31,
+      "question": "A client with polycythemia vera has a hemoglobin of 20 g/dL. Which intervention should the nurse anticipate?",
+      "options": {
+        "A": "Blood transfusion",
+        "B": "Therapeutic phlebotomy",
+        "C": "Iron supplementation",
+        "D": "Increased fluid restriction"
+      },
+      "answer": "B",
+      "rationale": "Normal male hemoglobin is 14-17 g/dL. Polycythemia vera causes elevated RBCs and hemoglobin, increasing blood viscosity and clot risk. Therapeutic phlebotomy removes excess blood. Blood transfusion and iron would worsen the condition. Hydration, not restriction, is encouraged."
+    },
+    {
+      "id": 32,
+      "question": "The normal hemoglobin range for an adult female is:",
+      "options": {
+        "A": "14-17 g/dL",
+        "B": "12-15 g/dL",
+        "C": "42-52%",
+        "D": "35-47%"
+      },
+      "answer": "B",
+      "rationale": "Normal female hemoglobin is 12-15 g/dL. Option A (14-17 g/dL) is the male hemoglobin range. Options C and D are hematocrit ranges for males and females, respectively."
+    },
+    {
+      "id": 33,
+      "question": "A client's hematocrit is 58%. Which condition should the nurse suspect?",
+      "options": {
+        "A": "Severe anemia",
+        "B": "Acute blood loss",
+        "C": "Dehydration or polycythemia",
+        "D": "Fluid overload"
+      },
+      "answer": "C",
+      "rationale": "Normal hematocrit is 42-52% (male) or 35-47% (female). An elevated hematocrit of 58% can indicate dehydration (hemoconcentration) or polycythemia (increased RBC production). Anemia, blood loss, and fluid overload cause decreased hematocrit."
+    },
+    {
+      "id": 34,
+      "question": "A client admitted with dehydration has a hematocrit of 56%. After IV fluid administration, the repeat hematocrit is 45%. This indicates:",
+      "options": {
+        "A": "Worsening dehydration",
+        "B": "Internal bleeding",
+        "C": "Successful rehydration",
+        "D": "Need for blood transfusion"
+      },
+      "answer": "C",
+      "rationale": "The decrease in hematocrit from 56% to 45% (normal range) after IV fluids indicates successful rehydration. Dehydration causes hemoconcentration (falsely elevated Hct). Rehydration normalizes the concentration."
+    },
+    {
+      "id": 35,
+      "question": "A client has a platelet count of 45,000/mm³. Which precaution should the nurse implement?",
+      "options": {
+        "A": "Fall precautions only",
+        "B": "Bleeding precautions",
+        "C": "Neutropenic precautions",
+        "D": "Contact isolation"
+      },
+      "answer": "B",
+      "rationale": "Normal platelets are 150,000-400,000/mm³. A count of 45,000/mm³ (thrombocytopenia) increases bleeding risk. Bleeding precautions include soft toothbrush, electric razor, avoiding IM injections, and monitoring for petechiae, bruising, and bleeding."
+    },
+    {
+      "id": 36,
+      "question": "A client with thrombocytopenia has a platelet count of 8,000/mm³. Which intervention should the nurse anticipate?",
+      "options": {
+        "A": "Administering aspirin",
+        "B": "Platelet transfusion",
+        "C": "Encouraging ambulation",
+        "D": "Increasing activity level"
+      },
+      "answer": "B",
+      "rationale": "A platelet count of 8,000/mm³ (critically low) puts the client at high risk for spontaneous bleeding, including intracranial hemorrhage. Platelet transfusion is indicated when counts are <10,000-20,000/mm³ or with active bleeding. Aspirin is contraindicated as it impairs platelet function."
+    },
+    {
+      "id": 37,
+      "question": "The normal platelet count range is:",
+      "options": {
+        "A": "5,000-10,000/mm³",
+        "B": "150,000-400,000/mm³",
+        "C": "42-52%",
+        "D": "14-17 g/dL"
+      },
+      "answer": "B",
+      "rationale": "Normal platelet count is 150,000-400,000/mm³. Option A is WBC range. Option C is male hematocrit range. Option D is male hemoglobin range."
+    },
+    {
+      "id": 38,
+      "question": "A client on warfarin has an INR of 5.2 and reports bloody stools. Which intervention should the nurse anticipate?",
+      "options": {
+        "A": "Increasing warfarin dose",
+        "B": "Administering vitamin K",
+        "C": "Administering additional warfarin",
+        "D": "No intervention needed"
+      },
+      "answer": "B",
+      "rationale": "Therapeutic INR for warfarin is typically 2-3. An INR of 5.2 with bleeding (bloody stools) indicates warfarin toxicity requiring reversal. Vitamin K is the antidote. For severe bleeding, fresh frozen plasma or prothrombin complex concentrate may also be given."
+    },
+    {
+      "id": 39,
+      "question": "A nurse is monitoring a client on warfarin therapy. The target therapeutic INR range is typically:",
+      "options": {
+        "A": "0.8-1.2",
+        "B": "2.0-3.0",
+        "C": "4.0-5.0",
+        "D": "30-40 seconds"
+      },
+      "answer": "B",
+      "rationale": "The therapeutic INR range for most clients on warfarin is 2.0-3.0 (higher for mechanical heart valves). Normal INR without anticoagulation is 0.8-1.2. Option D (30-40 seconds) is the normal aPTT range."
+    },
+    {
+      "id": 40,
+      "question": "The normal PT (prothrombin time) range is:",
+      "options": {
+        "A": "30-40 seconds",
+        "B": "11-13 seconds",
+        "C": "60-70 seconds",
+        "D": "1.5-2.5 times control"
+      },
+      "answer": "B",
+      "rationale": "Normal PT is approximately 11-13 seconds. PT monitors the extrinsic coagulation pathway and is used to monitor warfarin therapy. Option A (30-40 seconds) is normal aPTT."
+    },
+    {
+      "id": 41,
+      "question": "A client receiving heparin has an aPTT of 120 seconds. Which action should the nurse take first?",
+      "options": {
+        "A": "Increase heparin infusion rate",
+        "B": "Stop the heparin infusion",
+        "C": "Continue current rate",
+        "D": "Administer vitamin K"
+      },
+      "answer": "B",
+      "rationale": "Normal aPTT is 30-40 seconds. Therapeutic aPTT for heparin is 1.5-2.5 times normal (45-70 seconds). An aPTT of 120 seconds indicates excessive anticoagulation with high bleeding risk. The heparin should be stopped. Protamine sulfate (not vitamin K) reverses heparin."
+    },
+    {
+      "id": 42,
+      "question": "Which test is used to monitor heparin therapy?",
+      "options": {
+        "A": "PT/INR",
+        "B": "aPTT",
+        "C": "Platelet count",
+        "D": "Hemoglobin"
+      },
+      "answer": "B",
+      "rationale": "aPTT (activated partial thromboplastin time) monitors unfractionated heparin therapy. Normal aPTT is 30-40 seconds; therapeutic goal is 1.5-2.5 times normal. PT/INR monitors warfarin therapy."
+    },
+    {
+      "id": 43,
+      "question": "The normal aPTT range is:",
+      "options": {
+        "A": "11-13 seconds",
+        "B": "30-40 seconds",
+        "C": "60-80 seconds",
+        "D": "0.8-1.2"
+      },
+      "answer": "B",
+      "rationale": "Normal aPTT is 30-40 seconds. Option A (11-13 seconds) is normal PT. Option D (0.8-1.2) is normal INR."
+    },
+    {
+      "id": 44,
+      "question": "A client's total cholesterol is 280 mg/dL. Which lifestyle modification should the nurse recommend?",
+      "options": {
+        "A": "Increase saturated fat intake",
+        "B": "Diet low in saturated fats and increased exercise",
+        "C": "Decrease fiber intake",
+        "D": "Avoid all physical activity"
+      },
+      "answer": "B",
+      "rationale": "Desirable total cholesterol is <200 mg/dL. A level of 280 mg/dL is high and increases cardiovascular risk. Lifestyle modifications include diet low in saturated/trans fats, increased fiber, regular exercise, and weight management."
+    },
+    {
+      "id": 45,
+      "question": "A client asks why HDL cholesterol is called 'good' cholesterol. Which response by the nurse is correct?",
+      "options": {
+        "A": "HDL deposits cholesterol in artery walls",
+        "B": "HDL transports cholesterol away from arteries to the liver",
+        "C": "HDL increases plaque formation",
+        "D": "HDL has no effect on heart disease"
+      },
+      "answer": "B",
+      "rationale": "HDL (high-density lipoprotein) is 'good' cholesterol because it transports cholesterol from peripheral tissues back to the liver for excretion, reducing atherosclerosis risk. Higher HDL levels (>45 mg/dL men, >55 mg/dL women) are protective."
+    },
+    {
+      "id": 46,
+      "question": "A client's LDL cholesterol is 180 mg/dL. The nurse recognizes this level as:",
+      "options": {
+        "A": "Optimal",
+        "B": "Near optimal",
+        "C": "High",
+        "D": "Very low risk"
+      },
+      "answer": "C",
+      "rationale": "Optimal LDL is <100 mg/dL; near optimal is 100-129 mg/dL. An LDL of 180 mg/dL is considered high and significantly increases risk for atherosclerosis and coronary artery disease."
+    },
+    {
+      "id": 47,
+      "question": "A client's fasting triglyceride level is 450 mg/dL. Which complication is this client at risk for?",
+      "options": {
+        "A": "Hypoglycemia",
+        "B": "Pancreatitis",
+        "C": "Hypothyroidism",
+        "D": "Anemia"
+      },
+      "answer": "B",
+      "rationale": "Normal triglycerides are <150 mg/dL. Severely elevated triglycerides (>500 mg/dL) significantly increase the risk of acute pancreatitis. Moderately elevated levels increase cardiovascular disease risk."
+    },
+    {
+      "id": 48,
+      "question": "A client's fasting blood glucose is 156 mg/dL. This result indicates:",
+      "options": {
+        "A": "Normal glucose level",
+        "B": "Hypoglycemia",
+        "C": "Possible diabetes mellitus",
+        "D": "Prediabetes only"
+      },
+      "answer": "C",
+      "rationale": "Normal fasting glucose is 70-100 mg/dL. Prediabetes is 100-125 mg/dL. A fasting glucose ≥126 mg/dL on two separate tests indicates diabetes mellitus. A level of 156 mg/dL suggests diabetes."
+    },
+    {
+      "id": 49,
+      "question": "A client with diabetes has a blood glucose of 52 mg/dL and is diaphoretic and confused. Which intervention is priority?",
+      "options": {
+        "A": "Administer regular insulin",
+        "B": "Give oral juice if conscious or IV D50W",
+        "C": "Check hemoglobin A1c",
+        "D": "Restrict carbohydrate intake"
+      },
+      "answer": "B",
+      "rationale": "A blood glucose of 52 mg/dL (<70 mg/dL) with symptoms (diaphoresis, confusion) indicates hypoglycemia requiring immediate glucose replacement. If conscious, give 15g fast-acting carbs (juice). If unconscious, give IV D50W or glucagon IM. Insulin would worsen hypoglycemia."
+    },
+    {
+      "id": 50,
+      "question": "The normal fasting blood glucose range is:",
+      "options": {
+        "A": "70-100 mg/dL",
+        "B": "100-126 mg/dL",
+        "C": "126-200 mg/dL",
+        "D": "Less than 5.7%"
+      },
+      "answer": "A",
+      "rationale": "Normal fasting blood glucose is 70-100 mg/dL. Values 100-125 mg/dL indicate prediabetes. ≥126 mg/dL indicates diabetes. Option D (<5.7%) is the normal hemoglobin A1c."
+    },
+    {
+      "id": 51,
+      "question": "A client's hemoglobin A1c is 9.2%. The nurse should interpret this as:",
+      "options": {
+        "A": "Well-controlled diabetes",
+        "B": "Poor glycemic control over past 2-3 months",
+        "C": "Normal for a diabetic client",
+        "D": "Indicating acute hyperglycemia only"
+      },
+      "answer": "B",
+      "rationale": "Normal A1c is <5.7%; diabetic goal is typically <7%. An A1c of 9.2% indicates poor glycemic control over the preceding 2-3 months, increasing risk for diabetes complications. A1c reflects average blood glucose, not acute changes."
+    },
+    {
+      "id": 52,
+      "question": "A hemoglobin A1c of 6.2% indicates:",
+      "options": {
+        "A": "Normal glucose metabolism",
+        "B": "Prediabetes",
+        "C": "Diabetes mellitus",
+        "D": "Hypoglycemia"
+      },
+      "answer": "B",
+      "rationale": "Normal A1c is <5.7%. An A1c of 5.7-6.4% indicates prediabetes. ≥6.5% on two tests indicates diabetes. A level of 6.2% falls in the prediabetes range."
+    },
+    {
+      "id": 53,
+      "question": "A client's TSH level is 12.5 μIU/mL. Which condition does this indicate?",
+      "options": {
+        "A": "Hyperthyroidism",
+        "B": "Hypothyroidism",
+        "C": "Normal thyroid function",
+        "D": "Thyroid cancer"
+      },
+      "answer": "B",
+      "rationale": "Normal TSH is approximately 0.2-5.4 μIU/mL. Elevated TSH (12.5 μIU/mL) indicates the pituitary is producing more TSH to stimulate an underactive thyroid gland (primary hypothyroidism). In hyperthyroidism, TSH would be low."
+    },
+    {
+      "id": 54,
+      "question": "A client has a TSH of 0.1 μIU/mL with elevated T3 and T4. Which symptoms should the nurse expect?",
+      "options": {
+        "A": "Cold intolerance and weight gain",
+        "B": "Bradycardia and fatigue",
+        "C": "Heat intolerance, weight loss, and tachycardia",
+        "D": "Constipation and dry skin"
+      },
+      "answer": "C",
+      "rationale": "Low TSH with elevated T3/T4 indicates hyperthyroidism. Symptoms include heat intolerance, weight loss, tachycardia, tremors, anxiety, and diaphoresis. Cold intolerance, bradycardia, constipation, and dry skin are hypothyroid symptoms."
+    },
+    {
+      "id": 55,
+      "question": "The normal TSH range is:",
+      "options": {
+        "A": "70-100 mg/dL",
+        "B": "0.2-5.4 μIU/mL",
+        "C": "80-230 ng/dL",
+        "D": "5-12 μg/dL"
+      },
+      "answer": "B",
+      "rationale": "Normal TSH is approximately 0.2-5.4 μIU/mL. Option A is fasting glucose range. Option C is T3 range. Option D is T4 range."
+    },
+    {
+      "id": 56,
+      "question": "A client taking levothyroxine for hypothyroidism asks when labs will be rechecked. The nurse's best response is:",
+      "options": {
+        "A": "TSH levels are checked daily",
+        "B": "TSH is typically rechecked in 6-8 weeks",
+        "C": "Lab work is not necessary once on medication",
+        "D": "TSH is checked only if symptoms worsen"
+      },
+      "answer": "B",
+      "rationale": "TSH levels take 6-8 weeks to stabilize after starting or adjusting levothyroxine. Labs are rechecked at this interval to assess if dosing is appropriate. Ongoing monitoring continues periodically once stable."
+    },
+    {
+      "id": 57,
+      "question": "A client's ABG results show: pH 7.28, PaCO₂ 58 mmHg, HCO₃⁻ 24 mEq/L. This indicates:",
+      "options": {
+        "A": "Respiratory alkalosis",
+        "B": "Metabolic acidosis",
+        "C": "Respiratory acidosis",
+        "D": "Metabolic alkalosis"
+      },
+      "answer": "C",
+      "rationale": "pH <7.35 indicates acidosis. PaCO₂ is elevated (>45 mmHg) and HCO₃⁻ is normal. Elevated CO₂ with low pH indicates respiratory acidosis (e.g., COPD, opioid overdose, hypoventilation)."
+    },
+    {
+      "id": 58,
+      "question": "A client's ABG shows: pH 7.50, PaCO₂ 28 mmHg, HCO₃⁻ 24 mEq/L. Which condition should the nurse suspect?",
+      "options": {
+        "A": "Respiratory acidosis",
+        "B": "Respiratory alkalosis",
+        "C": "Metabolic acidosis",
+        "D": "Metabolic alkalosis"
+      },
+      "answer": "B",
+      "rationale": "pH >7.45 indicates alkalosis. PaCO₂ is low (<35 mmHg) and HCO₃⁻ is normal. Low CO₂ with elevated pH indicates respiratory alkalosis, commonly caused by hyperventilation (anxiety, pain, fever)."
+    },
+    {
+      "id": 59,
+      "question": "The normal arterial blood pH range is:",
+      "options": {
+        "A": "7.25-7.35",
+        "B": "7.35-7.45",
+        "C": "7.45-7.55",
+        "D": "7.50-7.60"
+      },
+      "answer": "B",
+      "rationale": "Normal arterial pH is 7.35-7.45. Below 7.35 is acidemia; above 7.45 is alkalemia. Life is threatened when pH falls below 6.8 or rises above 7.8."
+    },
+    {
+      "id": 60,
+      "question": "A client with diabetic ketoacidosis has ABG results: pH 7.25, PaCO₂ 30 mmHg, HCO₃⁻ 14 mEq/L. This indicates:",
+      "options": {
+        "A": "Respiratory acidosis",
+        "B": "Metabolic acidosis with respiratory compensation",
+        "C": "Respiratory alkalosis",
+        "D": "Metabolic alkalosis"
+      },
+      "answer": "B",
+      "rationale": "pH <7.35 (acidosis), low HCO₃⁻ (<22 mEq/L) indicates metabolic acidosis. The low PaCO₂ shows the lungs are compensating by hyperventilating (blowing off CO₂). DKA causes metabolic acidosis from ketone accumulation."
+    },
+    {
+      "id": 61,
+      "question": "The normal PaCO₂ range is:",
+      "options": {
+        "A": "22-26 mEq/L",
+        "B": "35-45 mmHg",
+        "C": "80-100 mmHg",
+        "D": "95% or greater"
+      },
+      "answer": "B",
+      "rationale": "Normal PaCO₂ is 35-45 mmHg. Option A is HCO₃⁻ range. Option C is PaO₂ range. Option D is O₂ saturation."
+    },
+    {
+      "id": 62,
+      "question": "The normal bicarbonate (HCO₃⁻) range is:",
+      "options": {
+        "A": "35-45 mmHg",
+        "B": "22-26 mEq/L",
+        "C": "80-100 mmHg",
+        "D": "7.35-7.45"
+      },
+      "answer": "B",
+      "rationale": "Normal HCO₃⁻ (bicarbonate) is 22-26 mEq/L. It represents the metabolic component of acid-base balance. Option A is PaCO₂. Option C is PaO₂. Option D is pH range."
+    },
+    {
+      "id": 63,
+      "question": "A client with COPD has ABG: pH 7.36, PaCO₂ 60 mmHg, HCO₃⁻ 32 mEq/L. This indicates:",
+      "options": {
+        "A": "Uncompensated respiratory acidosis",
+        "B": "Compensated respiratory acidosis",
+        "C": "Uncompensated metabolic alkalosis",
+        "D": "Fully compensated metabolic acidosis"
+      },
+      "answer": "B",
+      "rationale": "The pH is within normal limits (7.35-7.45), but PaCO₂ is elevated (respiratory acidosis) and HCO₃⁻ is elevated (metabolic compensation). The kidneys have retained bicarbonate to compensate for chronic CO₂ retention in COPD."
+    },
+    {
+      "id": 64,
+      "question": "A client experiencing anxiety-induced hyperventilation has which expected ABG finding?",
+      "options": {
+        "A": "pH 7.30, PaCO₂ 50 mmHg",
+        "B": "pH 7.48, PaCO₂ 30 mmHg",
+        "C": "pH 7.32, HCO₃⁻ 18 mEq/L",
+        "D": "pH 7.50, HCO₃⁻ 30 mEq/L"
+      },
+      "answer": "B",
+      "rationale": "Hyperventilation causes excessive CO₂ exhalation, leading to respiratory alkalosis (pH >7.45, PaCO₃ <35 mmHg). Option A shows respiratory acidosis. Option C shows metabolic acidosis. Option D shows metabolic alkalosis."
+    },
+    {
+      "id": 65,
+      "question": "The normal PaO₂ range is:",
+      "options": {
+        "A": "35-45 mmHg",
+        "B": "22-26 mEq/L",
+        "C": "80-100 mmHg",
+        "D": "7.35-7.45"
+      },
+      "answer": "C",
+      "rationale": "Normal PaO₂ is 80-100 mmHg. This measures the partial pressure of oxygen dissolved in arterial blood. Option A is PaCO₂. Option B is HCO₃⁻. Option D is pH."
+    },
+    {
+      "id": 66,
+      "question": "A client's oxygen saturation (SaO₂) should be maintained at:",
+      "options": {
+        "A": "80-85%",
+        "B": "85-90%",
+        "C": "≥95%",
+        "D": "100% always"
+      },
+      "answer": "C",
+      "rationale": "Normal oxygen saturation is ≥95%. Saturations below 90% indicate hypoxemia requiring intervention. Note: In some conditions like COPD, slightly lower targets (88-92%) may be acceptable."
+    },
+    {
+      "id": 67,
+      "question": "A client has a urine specific gravity of 1.035. This finding suggests:",
+      "options": {
+        "A": "Overhydration",
+        "B": "Diabetes insipidus",
+        "C": "Dehydration",
+        "D": "Normal hydration status"
+      },
+      "answer": "C",
+      "rationale": "Normal urine specific gravity is 1.003-1.030. A value of 1.035 (high) indicates concentrated urine, suggesting dehydration or SIADH. Low specific gravity suggests dilute urine (overhydration or diabetes insipidus)."
+    },
+    {
+      "id": 68,
+      "question": "A client with diabetes insipidus would have which urine specific gravity finding?",
+      "options": {
+        "A": "1.030",
+        "B": "1.025",
+        "C": "1.002",
+        "D": "1.020"
+      },
+      "answer": "C",
+      "rationale": "Diabetes insipidus causes inability to concentrate urine due to lack of or response to ADH. This results in very dilute urine with low specific gravity (<1.005). Normal is 1.003-1.030."
+    },
+    {
+      "id": 69,
+      "question": "A urinalysis shows protein 2+. Which condition should the nurse suspect?",
+      "options": {
+        "A": "Normal finding",
+        "B": "Urinary tract infection",
+        "C": "Kidney damage",
+        "D": "Dehydration"
+      },
+      "answer": "C",
+      "rationale": "Protein is normally negative in urine. Proteinuria indicates glomerular damage (nephrotic syndrome, glomerulonephritis) or could be transient from exercise. Persistent proteinuria requires evaluation for kidney disease."
+    },
+    {
+      "id": 70,
+      "question": "Glucose in the urine indicates:",
+      "options": {
+        "A": "Normal renal function",
+        "B": "Blood glucose exceeding renal threshold",
+        "C": "Urinary tract infection",
+        "D": "Dehydration"
+      },
+      "answer": "B",
+      "rationale": "Glucose is normally absent in urine. Glucosuria occurs when blood glucose exceeds the renal threshold (approximately 180 mg/dL), spilling glucose into urine. This commonly indicates uncontrolled diabetes mellitus."
+    },
+    {
+      "id": 71,
+      "question": "A client with type 1 diabetes has ketones in the urine. This finding suggests:",
+      "options": {
+        "A": "Adequate insulin coverage",
+        "B": "Diabetic ketoacidosis (DKA)",
+        "C": "Hypoglycemia",
+        "D": "Normal finding in diabetes"
+      },
+      "answer": "B",
+      "rationale": "Ketones are normally absent in urine. Ketonuria in a diabetic client indicates fat breakdown for energy due to insufficient insulin, signaling DKA or impending DKA. This requires immediate intervention with insulin and fluids."
+    },
+    {
+      "id": 72,
+      "question": "A urinalysis shows positive leukocyte esterase and nitrites. The nurse should suspect:",
+      "options": {
+        "A": "Kidney stones",
+        "B": "Urinary tract infection",
+        "C": "Diabetes mellitus",
+        "D": "Dehydration"
+      },
+      "answer": "B",
+      "rationale": "Leukocyte esterase indicates WBCs in urine (pyuria). Nitrites indicate bacteria that convert nitrates to nitrites (gram-negative organisms). Together, these findings strongly suggest urinary tract infection."
+    },
+    {
+      "id": 73,
+      "question": "Blood found in a urinalysis (hematuria) may indicate:",
+      "options": {
+        "A": "Normal finding",
+        "B": "UTI, kidney stones, or trauma",
+        "C": "Diabetes mellitus",
+        "D": "Liver disease"
+      },
+      "answer": "B",
+      "rationale": "Normal urine has no or rare RBCs (0-3/hpf). Hematuria can indicate urinary tract infection, kidney stones, trauma, glomerulonephritis, or malignancy. Further evaluation is needed to determine the cause."
+    },
+    {
+      "id": 74,
+      "question": "A client's urine pH is 8.5. This alkaline urine may be caused by:",
+      "options": {
+        "A": "High-protein diet",
+        "B": "Urinary tract infection or prolonged vomiting",
+        "C": "Diabetic ketoacidosis",
+        "D": "Starvation ketosis"
+      },
+      "answer": "B",
+      "rationale": "Normal urine pH is 4.6-8.0. Alkaline urine (>8.0) can result from UTI (urea-splitting bacteria), prolonged vomiting (metabolic alkalosis), or vegetarian diet. Acidic urine occurs with high-protein diet, DKA, or starvation."
+    },
+    {
+      "id": 75,
+      "question": "A client presents to the ED with chest pain. Which cardiac marker rises earliest after myocardial infarction?",
+      "options": {
+        "A": "BNP",
+        "B": "CK-MB",
+        "C": "Troponin",
+        "D": "Myoglobin"
+      },
+      "answer": "C",
+      "rationale": "Troponin begins to rise 3-6 hours after MI and is highly specific for myocardial injury. CK-MB rises in 4-6 hours. While myoglobin rises earliest (1-3 hours), it is not cardiac-specific. BNP indicates heart failure, not acute MI."
+    },
+    {
+      "id": 76,
+      "question": "A client's troponin I level is 2.5 ng/mL. This result indicates:",
+      "options": {
+        "A": "Normal cardiac function",
+        "B": "Myocardial injury",
+        "C": "Heart failure",
+        "D": "Pulmonary embolism only"
+      },
+      "answer": "B",
+      "rationale": "Normal troponin I is <0.12 ng/mL. An elevated troponin of 2.5 ng/mL indicates myocardial injury, most commonly from MI or myocarditis. Troponin is highly specific for cardiac muscle damage."
+    },
+    {
+      "id": 77,
+      "question": "The normal troponin I level is:",
+      "options": {
+        "A": "<100 pg/mL",
+        "B": "<0.12 ng/mL",
+        "C": "<200 mg/dL",
+        "D": "30-40 seconds"
+      },
+      "answer": "B",
+      "rationale": "Normal troponin I is <0.12 ng/mL. Elevated levels indicate myocardial injury. Option A (<100 pg/mL) is normal BNP. Options C and D are unrelated values."
+    },
+    {
+      "id": 78,
+      "question": "CK-MB is elevated in which condition?",
+      "options": {
+        "A": "Liver failure",
+        "B": "Myocardial infarction",
+        "C": "Kidney disease",
+        "D": "Anemia"
+      },
+      "answer": "B",
+      "rationale": "CK-MB (creatine kinase-MB isoenzyme) is found primarily in cardiac muscle. Elevated CK-MB indicates myocardial injury from MI or myocarditis. It rises 4-6 hours after MI and returns to normal in 48-72 hours."
+    },
+    {
+      "id": 79,
+      "question": "A client's CK-MB peaks at which time after MI onset?",
+      "options": {
+        "A": "1-2 hours",
+        "B": "24 hours",
+        "C": "5-7 days",
+        "D": "2 weeks"
+      },
+      "answer": "B",
+      "rationale": "CK-MB rises 4-6 hours after MI, peaks at approximately 24 hours, and returns to normal within 48-72 hours. This timeline helps differentiate acute from older MIs."
+    },
+    {
+      "id": 80,
+      "question": "A client with heart failure has a BNP of 850 pg/mL. This indicates:",
+      "options": {
+        "A": "Normal cardiac function",
+        "B": "Mild heart failure",
+        "C": "Severe heart failure",
+        "D": "Myocardial infarction"
+      },
+      "answer": "C",
+      "rationale": "Normal BNP is <100 pg/mL. BNP is released when ventricles are stretched (volume overload). A level of 850 pg/mL indicates significant heart failure. Higher BNP levels correlate with worse heart failure severity."
+    },
+    {
+      "id": 81,
+      "question": "The normal BNP level is:",
+      "options": {
+        "A": "<0.12 ng/mL",
+        "B": "<100 pg/mL",
+        "C": "<200 mg/dL",
+        "D": "7-20 mg/dL"
+      },
+      "answer": "B",
+      "rationale": "Normal BNP (B-type natriuretic peptide) is <100 pg/mL. Elevated levels indicate heart failure or ventricular dysfunction. Option A is troponin range. Option D is BUN range."
+    },
+    {
+      "id": 82,
+      "question": "A client with a BNP of 450 pg/mL would benefit most from which intervention?",
+      "options": {
+        "A": "Blood transfusion",
+        "B": "Diuretics and ACE inhibitors",
+        "C": "Increased sodium intake",
+        "D": "Increased fluid intake"
+      },
+      "answer": "B",
+      "rationale": "Elevated BNP (>100 pg/mL) indicates heart failure. Treatment includes diuretics to reduce preload/fluid volume and ACE inhibitors to reduce afterload. Sodium and fluid restriction (not increase) is recommended."
+    },
+    {
+      "id": 83,
+      "question": "A client receiving a loop diuretic should be monitored for which electrolyte imbalance?",
+      "options": {
+        "A": "Hyperkalemia",
+        "B": "Hypokalemia",
+        "C": "Hypernatremia",
+        "D": "Hypercalcemia"
+      },
+      "answer": "B",
+      "rationale": "Loop diuretics (furosemide) cause potassium and sodium excretion, leading to hypokalemia. Potassium levels should be monitored, and replacement may be needed. Loop diuretics also cause calcium excretion (hypocalcemia risk)."
+    },
+    {
+      "id": 84,
+      "question": "Which foods should a nurse recommend to a client with hypokalemia?",
+      "options": {
+        "A": "White bread and pasta",
+        "B": "Bananas, oranges, and potatoes",
+        "C": "Cheese and milk",
+        "D": "Red meat and liver"
+      },
+      "answer": "B",
+      "rationale": "Potassium-rich foods include bananas, oranges, potatoes, tomatoes, avocados, and leafy greens. These help replace potassium in clients with hypokalemia (K+ <3.5 mEq/L)."
+    },
+    {
+      "id": 85,
+      "question": "A client taking spironolactone should avoid which foods?",
+      "options": {
+        "A": "Citrus fruits",
+        "B": "Foods high in potassium",
+        "C": "Dairy products",
+        "D": "High-fiber foods"
+      },
+      "answer": "B",
+      "rationale": "Spironolactone is a potassium-sparing diuretic that can cause hyperkalemia. Clients should avoid excessive potassium-rich foods (bananas, oranges, potatoes, salt substitutes) to prevent dangerous hyperkalemia."
+    },
+    {
+      "id": 86,
+      "question": "A client with metabolic alkalosis from prolonged NG suction would have which electrolyte finding?",
+      "options": {
+        "A": "Hyperkalemia and hyperchloremia",
+        "B": "Hypokalemia and hypochloremia",
+        "C": "Hypernatremia and hypercalcemia",
+        "D": "Hyponatremia and hypermagnesemia"
+      },
+      "answer": "B",
+      "rationale": "NG suction removes gastric acid (HCl), causing metabolic alkalosis with loss of chloride (hypochloremia) and hydrogen ions. The kidneys compensate by excreting potassium, causing hypokalemia."
+    },
+    {
+      "id": 87,
+      "question": "A client's ABG shows: pH 7.48, PaCO₂ 44 mmHg, HCO₃⁻ 32 mEq/L. This indicates:",
+      "options": {
+        "A": "Respiratory acidosis",
+        "B": "Respiratory alkalosis",
+        "C": "Metabolic acidosis",
+        "D": "Metabolic alkalosis"
+      },
+      "answer": "D",
+      "rationale": "pH >7.45 indicates alkalosis. PaCO₂ is normal (35-45 mmHg), and HCO₃⁻ is elevated (>26 mEq/L). Elevated bicarbonate with high pH indicates metabolic alkalosis (from vomiting, NG suction, or diuretic use)."
+    },
+    {
+      "id": 88,
+      "question": "A client in DKA has which expected laboratory findings?",
+      "options": {
+        "A": "Low glucose, high pH, negative ketones",
+        "B": "High glucose, low pH, positive ketones",
+        "C": "Normal glucose, high pH, negative ketones",
+        "D": "Low glucose, low pH, positive ketones"
+      },
+      "answer": "B",
+      "rationale": "DKA is characterized by hyperglycemia (often >300 mg/dL), metabolic acidosis (pH <7.35), and ketosis (positive serum/urine ketones). It results from insulin deficiency causing fat breakdown and ketone production."
+    },
+    {
+      "id": 89,
+      "question": "Which intervention is priority for a client with DKA?",
+      "options": {
+        "A": "Oral glucose replacement",
+        "B": "IV insulin and fluid resuscitation",
+        "C": "Sodium bicarbonate bolus",
+        "D": "Potassium restriction"
+      },
+      "answer": "B",
+      "rationale": "DKA treatment priorities include IV regular insulin to lower glucose and stop ketone production, aggressive IV fluid resuscitation for dehydration, and electrolyte replacement (especially potassium as insulin shifts K+ into cells)."
+    },
+    {
+      "id": 90,
+      "question": "A client with liver cirrhosis has a prolonged PT/INR. The nurse understands this is due to:",
+      "options": {
+        "A": "Increased vitamin K absorption",
+        "B": "Decreased clotting factor production",
+        "C": "Increased platelet production",
+        "D": "Enhanced coagulation cascade"
+      },
+      "answer": "B",
+      "rationale": "The liver produces most clotting factors. In cirrhosis, impaired liver function decreases clotting factor synthesis, prolonging PT/INR and increasing bleeding risk. Vitamin K may be given but won't help if liver cannot produce factors."
+    },
+    {
+      "id": 91,
+      "question": "A client taking warfarin should maintain consistent intake of which vitamin?",
+      "options": {
+        "A": "Vitamin C",
+        "B": "Vitamin D",
+        "C": "Vitamin K",
+        "D": "Vitamin B12"
+      },
+      "answer": "C",
+      "rationale": "Warfarin works by inhibiting vitamin K-dependent clotting factors. Consistent vitamin K intake maintains stable INR. Variable intake (e.g., suddenly eating large amounts of green leafy vegetables) can alter anticoagulation effect."
+    },
+    {
+      "id": 92,
+      "question": "A client receiving heparin develops heparin-induced thrombocytopenia (HIT). Which finding indicates this complication?",
+      "options": {
+        "A": "Platelet count increase to 500,000/mm³",
+        "B": "Platelet count drop >50% from baseline",
+        "C": "Elevated hemoglobin",
+        "D": "Decreased INR"
+      },
+      "answer": "B",
+      "rationale": "HIT causes a significant platelet drop (usually >50% from baseline or <100,000/mm³) typically 5-10 days after starting heparin. Paradoxically, HIT increases clotting risk despite low platelets. Heparin must be stopped immediately."
+    },
+    {
+      "id": 93,
+      "question": "A client's serum osmolality is 310 mOsm/kg. This finding suggests:",
+      "options": {
+        "A": "Normal hydration",
+        "B": "Overhydration",
+        "C": "Dehydration",
+        "D": "SIADH"
+      },
+      "answer": "C",
+      "rationale": "Normal serum osmolality is 275-295 mOsm/kg. Elevated osmolality (310 mOsm/kg) indicates dehydration or hypernatremia (concentrated blood). Low osmolality indicates overhydration or SIADH."
+    },
+    {
+      "id": 94,
+      "question": "A client with SIADH would have which laboratory finding?",
+      "options": {
+        "A": "Serum sodium 155 mEq/L",
+        "B": "Serum sodium 125 mEq/L",
+        "C": "Urine specific gravity 1.002",
+        "D": "Serum osmolality 320 mOsm/kg"
+      },
+      "answer": "B",
+      "rationale": "SIADH causes excessive ADH secretion, leading to water retention, dilutional hyponatremia, and concentrated urine. Serum sodium drops (often <130 mEq/L), serum osmolality decreases, and urine specific gravity increases."
+    },
+    {
+      "id": 95,
+      "question": "A nurse is caring for a client with acute pancreatitis. Which laboratory values would be elevated?",
+      "options": {
+        "A": "Hemoglobin and hematocrit",
+        "B": "Amylase and lipase",
+        "C": "BUN and creatinine",
+        "D": "TSH and T4"
+      },
+      "answer": "B",
+      "rationale": "Amylase and lipase are pancreatic enzymes that elevate with pancreatic injury. Lipase is more specific and remains elevated longer. These are the primary diagnostic markers for acute pancreatitis."
+    },
+    {
+      "id": 96,
+      "question": "A client admitted for chest pain has troponin levels drawn every 6 hours. The purpose of serial troponins is:",
+      "options": {
+        "A": "Monitor kidney function",
+        "B": "Detect myocardial damage over time",
+        "C": "Assess hydration status",
+        "D": "Monitor liver function"
+      },
+      "answer": "B",
+      "rationale": "Serial troponins are drawn because levels rise gradually after MI (peak 12-24 hours). A single negative troponin doesn't rule out MI if drawn too early. Serial testing detects the rise pattern that confirms myocardial injury."
+    },
+    {
+      "id": 97,
+      "question": "A nurse is reviewing a client's complete blood count. Which value indicates the body's oxygen-carrying capacity?",
+      "options": {
+        "A": "WBC count",
+        "B": "Platelet count",
+        "C": "Hemoglobin",
+        "D": "INR"
+      },
+      "answer": "C",
+      "rationale": "Hemoglobin is the protein in red blood cells that carries oxygen. Low hemoglobin (anemia) means reduced oxygen-carrying capacity, causing fatigue, pallor, and dyspnea. WBCs fight infection; platelets aid clotting."
+    },
+    {
+      "id": 98,
+      "question": "A client's arterial blood gas shows PaO₂ of 55 mmHg. This indicates:",
+      "options": {
+        "A": "Normal oxygenation",
+        "B": "Hypoxemia requiring intervention",
+        "C": "Hyperoxia",
+        "D": "Respiratory alkalosis"
+      },
+      "answer": "B",
+      "rationale": "Normal PaO₂ is 80-100 mmHg. A PaO₃ of 55 mmHg indicates significant hypoxemia requiring oxygen therapy. Values below 60 mmHg are critical and indicate respiratory failure."
+    },
+    {
+      "id": 99,
+      "question": "A client's laboratory results show: Na 128 mEq/L, K 5.8 mEq/L, glucose 42 mg/dL. Which condition should the nurse suspect?",
+      "options": {
+        "A": "Diabetes insipidus",
+        "B": "Cushing syndrome",
+        "C": "Addisonian crisis",
+        "D": "Hyperthyroidism"
+      },
+      "answer": "C",
+      "rationale": "Addisonian crisis (acute adrenal insufficiency) causes hyponatremia, hyperkalemia, and hypoglycemia due to lack of cortisol and aldosterone. This is a medical emergency requiring immediate IV corticosteroids and fluids."
+    },
+    {
+      "id": 100,
+      "question": "A client receiving total parenteral nutrition (TPN) should have which laboratory value monitored most frequently?",
+      "options": {
+        "A": "Troponin",
+        "B": "Blood glucose",
+        "C": "TSH",
+        "D": "Bilirubin"
+      },
+      "answer": "B",
+      "rationale": "TPN contains high concentrations of dextrose, which can cause hyperglycemia. Blood glucose should be monitored every 4-6 hours initially, then daily once stable. Electrolytes, liver function, and renal function are also monitored but glucose is priority initially."
+    }
+  ]
+}
