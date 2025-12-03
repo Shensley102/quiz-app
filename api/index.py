@@ -38,6 +38,11 @@ CATEGORY_METADATA = {
         'display_name': 'Pharmacology',
         'icon': '💊',
         'description': 'Strengthen your pharmacology knowledge and drug understanding'
+    },
+    'Lab Values': {
+        'display_name': 'Lab Values',
+        'icon': '🧪',
+        'description': 'Master critical laboratory values for NCLEX and HESI exams'
     }
 }
 
@@ -55,6 +60,9 @@ def discover_modules():
         Module_2.json
       /HESI/
         HESI_Delegating.json
+      /Lab_Values/
+        NCLEX_Lab_Values.json
+        NCLEX_Lab_Values_Fill_In_The_Blank.json
       etc.
     
     Returns a dict: {category_name: [module_names]}
@@ -148,6 +156,11 @@ def category_page(category):
     
     categories = get_study_categories()
     category_data = categories[actual_category]
+    
+    # Use special template for Lab Values category
+    if actual_category == 'Lab Values':
+        return render_template('lab-values.html', category=actual_category, category_data=category_data)
+    
     return render_template('category.html', category=actual_category, category_data=category_data)
 
 @app.route('/quiz')
@@ -158,6 +171,9 @@ def quiz_page_no_module():
 @app.route('/quiz/<module_name>')
 def quiz_page(module_name):
     """QUIZ PAGE - specific module"""
+    # Check if this is a fill-in-the-blank quiz
+    if 'Fill_In_The_Blank' in module_name:
+        return render_template('quiz-fill-blank.html')
     return render_template('quiz.html')
 
 @app.route('/api/categories')
