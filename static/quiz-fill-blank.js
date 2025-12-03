@@ -58,6 +58,17 @@ function escapeHTML(s=''){
 
 const randomInt = (n) => Math.floor(Math.random() * n);
 
+/* ---------- Get module from URL path ---------- */
+function getModuleFromPath() {
+  const path = window.location.pathname;
+  // Match /quiz/MODULE_NAME pattern
+  const match = path.match(/\/quiz\/([^\/]+)$/);
+  if (match) {
+    return decodeURIComponent(match[1]);
+  }
+  return null;
+}
+
 function shuffleInPlace(arr){
   for (let i = arr.length - 1; i > 0; i--) {
     const j = randomInt(i + 1); 
@@ -387,9 +398,8 @@ async function startQuiz(){
     return;
   }
 
-  // Get module from URL
-  const pathParts = window.location.pathname.split('/');
-  const moduleName = pathParts[pathParts.length - 1] || 'NCLEX_Lab_Values_Fill_In_The_Blank';
+  // Get module from URL path
+  const moduleName = getModuleFromPath() || 'NCLEX_Lab_Values_Fill_In_The_Blank';
   
   const displayName = 'Lab Values - Fill in the Blank';
   const qty = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
@@ -772,9 +782,9 @@ function updateProgressBar() {
 }
 
 /* ---------- Init ---------- */
-// Auto-start if module is in URL
-const urlPath = window.location.pathname;
-if (urlPath.includes('NCLEX_Lab_Values_Fill_In_The_Blank')) {
+// Auto-detect module from URL and set title
+const moduleFromPath = getModuleFromPath();
+if (moduleFromPath) {
   const quizTitle = $('quizTitle');
   if (quizTitle) {
     quizTitle.textContent = 'Lab Values - Fill in the Blank';
