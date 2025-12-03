@@ -17,21 +17,21 @@
     <div class="title-bar">
       <div>
         <a href="/" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 4px; display: inline-block; font-size: 14px;">← Nurse Success Study Hub</a>
-        <h1 id="quizTitle">Select a Quiz Module</h1>
+        <h1 id="quizTitle">Select a Module</h1>
+        <p id="quizDescription" style="color: var(--ink-soft); margin: 8px 0 0 0; font-size: 14px; display: none;"></p>
       </div>
-      <div class="category-header-right">
-        <div class="resume-container hidden" id="resumeContainer">
-          <span class="remaining-count" id="remainingQuestionsCount"></span>
-          <button class="btn btn-blue" id="resumeBtn">Resume Practice Test</button>
-        </div>
+      <div id="resumeContainer" class="resume-container hidden">
+        <span id="remainingQuestionsCount" class="remaining-count"></span>
+        <button class="btn btn-blue" id="resumeBtn">Resume Quiz</button>
       </div>
     </div>
 
     <!-- Setup Card -->
     <div class="card" id="launcher">
-      <h2>Select a Study Module:</h2>
+      <h2>Quiz Setup</h2>
       
       <div class="field">
+        <label for="moduleSel">Select Module:</label>
         <select id="moduleSel">
           <option value="">Loading modules...</option>
         </select>
@@ -43,7 +43,6 @@
           <button class="seg-btn active" data-len="10">10 Questions</button>
           <button class="seg-btn" data-len="25">25 Questions</button>
           <button class="seg-btn" data-len="50">50 Questions</button>
-          <button class="seg-btn" data-len="100">100 Questions</button>
           <button class="seg-btn" data-len="full">Full Module Question Bank</button>
         </div>
       </div>
@@ -53,17 +52,14 @@
       </div>
 
       <!-- How This Quiz Works -->
-      <div style="margin-top: 32px; padding: 24px; background: rgba(69, 183, 209, 0.05); border-radius: 8px; border-left: 4px solid var(--success);">
-        <h3 style="color: var(--ink); margin-bottom: 16px; font-size: 20px;">How This Quiz Works</h3>
-        <ul style="margin: 0; padding-left: 24px;">
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Keyboard Shortcuts:</strong> Press letter keys (A, B, C, D, etc.) to select/deselect answers, or press Enter to submit your answer.</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Master Each Question:</strong> The quiz continues until you answer every question correctly on first try or after additional attempts.</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Repeat Incorrect Answers:</strong> Questions you answer incorrectly will appear again later in the quiz for you to master.</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Track Your Progress:</strong> The progress bar shows what percentage of questions you've mastered (answered correctly).</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>First-Try Accuracy:</strong> At the end, you'll see your first-try mastery percentage and total questions answered.</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Review Your Performance:</strong> After completing the quiz, you'll see a detailed review of all questions with your answers and rationales.</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Color-Coded Results:</strong> Questions are marked by difficulty (green = mastered, yellow/orange/red = more attempts needed).</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Retry Missed Questions:</strong> After completing a quiz, you can retry only the questions you missed on first attempt for focused review.</li>
+      <div class="help">
+        <h3>How This Quiz Works</h3>
+        <ul>
+          <li><strong>Select All That Apply (SATA):</strong> Some questions allow multiple correct answers. Select all options you believe are correct.</li>
+          <li><strong>Single Answer:</strong> Questions without "Select all that apply" have only one correct answer.</li>
+          <li><strong>Mastery System:</strong> If you answer incorrectly, the question will reappear. The quiz ends when all questions are answered correctly.</li>
+          <li><strong>Keyboard Shortcuts:</strong> Press A-D to select answers, Enter to submit.</li>
+          <li><strong>Resume Feature:</strong> If you select "Full Module Question Bank", your progress is saved and you can resume later.</li>
         </ul>
       </div>
     </div>
@@ -86,7 +82,6 @@
 
       <div id="questionText" class="question"></div>
       <form id="optionsForm" class="options"></form>
-      
       <div id="feedback" class="feedback hidden"></div>
       <div id="answerLine" class="answer-line hidden"></div>
       <div id="rationale" class="rationale hidden"></div>
@@ -98,27 +93,23 @@
 
     <!-- Summary Card -->
     <div class="card hidden" id="summary">
-      <div id="categoryHeaderSummary" style="margin-bottom: 20px;">
-        <h2 id="summaryTitle" style="margin: 0;">Patient Care Management</h2>
-      </div>
-      
       <h2>Quiz Complete! 🎉</h2>
       <div id="firstTrySummary" class="first-try hidden"></div>
 
-      <!-- Action Buttons - Moved to top -->
+      <!-- Action Buttons -->
       <div class="actions" style="margin-bottom: 24px;">
         <button class="btn danger hidden" id="retryMissedBtn">Retry <span id="missedCount">0</span> Missed Questions</button>
         <button class="btn primary" id="restartBtnSummary">Start New Quiz</button>
       </div>
 
-      <!-- Help Section - Moved to top -->
+      <!-- Help Section -->
       <div class="help" style="margin-top: 0; margin-bottom: 32px;">
         <h3>Need More Practice?</h3>
         <ul>
           <li>Review the rationales for questions you missed</li>
           <li>Try the "Retry Missed Questions" feature to focus on weak areas</li>
-          <li>Take the quiz again to reinforce your knowledge</li>
-          <li>Explore other modules to expand your nursing expertise</li>
+          <li>Consider a shorter quiz length for more frequent practice sessions</li>
+          <li>Use the keyboard shortcuts (A-D, Enter) for faster navigation</li>
         </ul>
       </div>
 
