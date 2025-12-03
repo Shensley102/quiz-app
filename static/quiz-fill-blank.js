@@ -242,24 +242,77 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputContainer = document.createElement('div');
     inputContainer.className = 'input-container';
     
+    // Determine answer type for each blank
+    const answerTypes = q.answer.map(ans => {
+      const normalized = String(ans).toLowerCase().trim();
+      // Check if it's a number (including decimals)
+      if (/^[\d.]+$/.test(normalized)) {
+        return 'numeric';
+      }
+      // Check if it's a direction word (high/low/elevated/decreased)
+      if (['high', 'low', 'elevated', 'decreased', 'increased'].includes(normalized)) {
+        return 'direction';
+      }
+      // Otherwise it's a word answer
+      return 'word';
+    });
+    
     for (let i = 0; i < q.blankCount; i++) {
       const inputWrapper = document.createElement('div');
       inputWrapper.className = 'input-wrapper';
       
+      // Create label with answer type hint
+      const label = document.createElement('label');
+      const ansType = answerTypes[i];
+      let labelText = '';
+      let placeholder = '';
+      
       if (q.blankCount > 1) {
-        const label = document.createElement('label');
-        label.textContent = i === 0 ? 'First value:' : 'Second value:';
-        label.setAttribute('for', `answer-${i}`);
-        inputWrapper.appendChild(label);
+        const position = i === 0 ? 'First' : 'Second';
+        if (ansType === 'numeric') {
+          labelText = `${position} value (number):`;
+          placeholder = 'Enter number (e.g., 135)';
+        } else if (ansType === 'direction') {
+          labelText = `${position} value (high/low):`;
+          placeholder = 'high or low';
+        } else {
+          labelText = `${position} value (word):`;
+          placeholder = 'Enter word answer';
+        }
+      } else {
+        if (ansType === 'numeric') {
+          labelText = 'Value (number):';
+          placeholder = 'Enter number (e.g., 135)';
+        } else if (ansType === 'direction') {
+          labelText = 'Value (high/low):';
+          placeholder = 'high or low';
+        } else {
+          labelText = 'Answer (word):';
+          placeholder = 'Enter word answer';
+        }
       }
+      
+      label.textContent = labelText;
+      label.setAttribute('for', `answer-${i}`);
+      inputWrapper.appendChild(label);
       
       const input = document.createElement('input');
       input.type = 'text';
       input.id = `answer-${i}`;
       input.className = 'answer-input';
-      input.placeholder = q.blankCount > 1 ? `Enter value ${i + 1}...` : 'Type your answer...';
+      input.placeholder = placeholder;
       input.autocomplete = 'off';
       input.spellcheck = false;
+      
+      // Add visual styling based on answer type
+      if (ansType === 'numeric') {
+        input.classList.add('numeric-input');
+        input.inputMode = 'decimal';
+      } else if (ansType === 'direction') {
+        input.classList.add('direction-input');
+      } else {
+        input.classList.add('word-input');
+      }
       
       if (i === 0) {
         setTimeout(() => input.focus(), 100);
