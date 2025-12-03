@@ -188,6 +188,17 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   let lastQuizMissedQuestions = [];
+  
+  // Flag to prevent Enter from immediately advancing after submit
+  let justSubmitted = false;
+  
+  function markJustSubmitted() {
+    justSubmitted = true;
+    // Reset the flag after a short delay to allow next Enter press
+    setTimeout(() => {
+      justSubmitted = false;
+    }, 100);
+  }
 
   /* ---------- Normalize Questions ---------- */
   function normalizeQuestions(data){
@@ -326,7 +337,11 @@ document.addEventListener('DOMContentLoaded', function() {
           if (nextInput && !nextInput.disabled) {
             nextInput.focus();
           } else if (submitBtn && !submitBtn.disabled) {
-            // Otherwise click submit (this handles both submit and next)
+            // Mark that we're submitting via Enter to prevent double-action
+            if (submitBtn.dataset.mode === 'submit') {
+              markJustSubmitted();
+            }
+            // Click submit (this handles both submit and next)
             submitBtn.click();
           }
         }
@@ -807,6 +822,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     setActionState('next');
+    markJustSubmitted(); // Prevent Enter from immediately advancing
     scrollToBottomSmooth();
     updateCounters();
   }
@@ -832,6 +848,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Don't interfere if quiz is not visible
     if (!quiz || quiz.classList.contains('hidden')) return;
+    
+    // If we just submitted, ignore this Enter press (it's from the submit action)
+    if (justSubmitted) {
+      e.preventDefault();
+      justSubmitted = false;
+      return;
+    }
     
     // If submit button is in "next" mode and not disabled, click it
     if (submitBtn && submitBtn.dataset.mode === 'next' && !submitBtn.disabled) {
