@@ -1,0 +1,706 @@
+{
+  "title": "Laboratory Values Fill-in-the-Blank (Hard)",
+  "instructions": "Fill in the blank with the correct normal laboratory value range. Include units where indicated.",
+  "questions": [
+    {
+      "id": 1,
+      "question": "The normal serum sodium (Na⁺) range is _____ to _____ mEq/L.",
+      "answer": ["135", "145"],
+      "display_answer": "135-145 mEq/L",
+      "rationale": "Normal serum sodium is 135-145 mEq/L. Values below 135 indicate hyponatremia; values above 145 indicate hypernatremia."
+    },
+    {
+      "id": 2,
+      "question": "The normal serum potassium (K⁺) range is _____ to _____ mEq/L.",
+      "answer": ["3.5", "5.0"],
+      "display_answer": "3.5-5.0 mEq/L",
+      "rationale": "Normal serum potassium is 3.5-5.0 mEq/L. Potassium is critical for cardiac and neuromuscular function. Both hypo- and hyperkalemia can cause life-threatening arrhythmias."
+    },
+    {
+      "id": 3,
+      "question": "The normal serum calcium (Ca²⁺) range is _____ to _____ mg/dL.",
+      "answer": ["8.5", "10.5"],
+      "display_answer": "8.5-10.5 mg/dL",
+      "rationale": "Normal total serum calcium is 8.5-10.5 mg/dL. Calcium is essential for bone health, muscle contraction, nerve function, and blood clotting."
+    },
+    {
+      "id": 4,
+      "question": "The normal serum magnesium (Mg²⁺) range is _____ to _____ mEq/L.",
+      "answer": ["1.3", "2.1"],
+      "display_answer": "1.3-2.1 mEq/L",
+      "rationale": "Normal serum magnesium is 1.3-2.1 mEq/L. Magnesium is important for neuromuscular function and often correlates with potassium and calcium levels."
+    },
+    {
+      "id": 5,
+      "question": "The normal serum chloride (Cl⁻) range is _____ to _____ mEq/L.",
+      "answer": ["95", "105"],
+      "display_answer": "95-105 mEq/L",
+      "rationale": "Normal serum chloride is 95-105 mEq/L. Chloride often parallels sodium levels and plays a key role in acid-base balance."
+    },
+    {
+      "id": 6,
+      "question": "The normal BUN (Blood Urea Nitrogen) range is _____ to _____ mg/dL.",
+      "answer": ["7", "20"],
+      "display_answer": "7-20 mg/dL",
+      "rationale": "Normal BUN is 7-20 mg/dL. Elevated BUN can indicate dehydration, renal failure, GI bleeding, or high protein intake."
+    },
+    {
+      "id": 7,
+      "question": "The normal serum creatinine range is approximately _____ to _____ mg/dL.",
+      "answer": ["0.7", "1.4"],
+      "display_answer": "0.7-1.4 mg/dL",
+      "rationale": "Normal creatinine is approximately 0.7-1.4 mg/dL (slightly lower in females). Creatinine is a more specific indicator of kidney function than BUN."
+    },
+    {
+      "id": 8,
+      "question": "The normal AST (SGOT) range for males is _____ to _____ U/L.",
+      "answer": ["10", "40"],
+      "display_answer": "10-40 U/L",
+      "rationale": "Normal male AST is 10-40 U/L (female 9-25 U/L). AST is elevated in liver injury, MI, and muscle damage."
+    },
+    {
+      "id": 9,
+      "question": "The normal ALT (SGPT) range for males is _____ to _____ U/L.",
+      "answer": ["10", "55"],
+      "display_answer": "10-55 U/L",
+      "rationale": "Normal male ALT is 10-55 U/L (female 7-30 U/L). ALT is more specific to the liver than AST."
+    },
+    {
+      "id": 10,
+      "question": "The normal total bilirubin range is _____ to _____ mg/dL.",
+      "answer": ["0.3", "1.0"],
+      "display_answer": "0.3-1.0 mg/dL",
+      "rationale": "Normal total bilirubin is 0.3-1.0 mg/dL. Elevated bilirubin causes jaundice and may indicate liver dysfunction, hemolysis, or biliary obstruction."
+    },
+    {
+      "id": 11,
+      "question": "The normal white blood cell (WBC) count is _____ to _____ per mm³.",
+      "answer": ["5000", "10000"],
+      "display_answer": "5,000-10,000/mm³",
+      "rationale": "Normal WBC count is 5,000-10,000/mm³. Elevated WBC (leukocytosis) suggests infection or inflammation. Low WBC (leukopenia) increases infection risk."
+    },
+    {
+      "id": 12,
+      "question": "The normal hemoglobin range for males is _____ to _____ g/dL.",
+      "answer": ["14", "17"],
+      "display_answer": "14-17 g/dL",
+      "rationale": "Normal male hemoglobin is 14-17 g/dL. Hemoglobin carries oxygen; low levels indicate anemia."
+    },
+    {
+      "id": 13,
+      "question": "The normal hemoglobin range for females is _____ to _____ g/dL.",
+      "answer": ["12", "15"],
+      "display_answer": "12-15 g/dL",
+      "rationale": "Normal female hemoglobin is 12-15 g/dL. Females have lower normal ranges due to menstrual blood loss."
+    },
+    {
+      "id": 14,
+      "question": "The normal hematocrit range for males is _____ to _____% .",
+      "answer": ["42", "52"],
+      "display_answer": "42-52%",
+      "rationale": "Normal male hematocrit is 42-52%. Hematocrit measures the percentage of blood volume occupied by red blood cells."
+    },
+    {
+      "id": 15,
+      "question": "The normal hematocrit range for females is _____ to _____% .",
+      "answer": ["35", "47"],
+      "display_answer": "35-47%",
+      "rationale": "Normal female hematocrit is 35-47%. Elevated Hct can indicate dehydration or polycythemia; low Hct indicates anemia or fluid overload."
+    },
+    {
+      "id": 16,
+      "question": "The normal platelet count is _____ to _____ per mm³.",
+      "answer": ["150000", "400000"],
+      "display_answer": "150,000-400,000/mm³",
+      "rationale": "Normal platelet count is 150,000-400,000/mm³. Platelets are essential for clotting. Low counts increase bleeding risk."
+    },
+    {
+      "id": 17,
+      "question": "The normal PT (prothrombin time) is approximately _____ to _____ seconds.",
+      "answer": ["11", "13"],
+      "display_answer": "11-13 seconds",
+      "rationale": "Normal PT is approximately 11-13 seconds. PT monitors the extrinsic pathway and warfarin therapy."
+    },
+    {
+      "id": 18,
+      "question": "The normal INR for a client NOT on anticoagulants is _____ to _____.",
+      "answer": ["0.8", "1.2"],
+      "display_answer": "0.8-1.2",
+      "rationale": "Normal INR without anticoagulation is 0.8-1.2. Therapeutic INR for warfarin is typically 2.0-3.0."
+    },
+    {
+      "id": 19,
+      "question": "The therapeutic INR range for most clients on warfarin is _____ to _____.",
+      "answer": ["2.0", "3.0"],
+      "display_answer": "2.0-3.0",
+      "rationale": "Therapeutic INR for warfarin is 2.0-3.0 for most indications (higher 2.5-3.5 for mechanical heart valves)."
+    },
+    {
+      "id": 20,
+      "question": "The normal aPTT (activated partial thromboplastin time) is _____ to _____ seconds.",
+      "answer": ["30", "40"],
+      "display_answer": "30-40 seconds",
+      "rationale": "Normal aPTT is 30-40 seconds. aPTT monitors heparin therapy; therapeutic range is 1.5-2.5 times normal."
+    },
+    {
+      "id": 21,
+      "question": "Desirable total cholesterol is less than _____ mg/dL.",
+      "answer": ["200"],
+      "display_answer": "<200 mg/dL",
+      "rationale": "Desirable total cholesterol is <200 mg/dL. Levels 200-239 are borderline high; ≥240 is high."
+    },
+    {
+      "id": 22,
+      "question": "Optimal LDL cholesterol is less than _____ mg/dL.",
+      "answer": ["100"],
+      "display_answer": "<100 mg/dL",
+      "rationale": "Optimal LDL is <100 mg/dL. LDL is 'bad' cholesterol that deposits in artery walls. Near optimal is 100-129 mg/dL."
+    },
+    {
+      "id": 23,
+      "question": "HDL cholesterol for men should be greater than _____ mg/dL.",
+      "answer": ["45"],
+      "display_answer": ">45 mg/dL",
+      "rationale": "HDL for men should be >45 mg/dL (>55 mg/dL for women). HDL is 'good' cholesterol that removes cholesterol from arteries."
+    },
+    {
+      "id": 24,
+      "question": "Normal triglyceride level is less than _____ mg/dL.",
+      "answer": ["150"],
+      "display_answer": "<150 mg/dL",
+      "rationale": "Normal triglycerides are <150 mg/dL. Levels >500 mg/dL significantly increase pancreatitis risk."
+    },
+    {
+      "id": 25,
+      "question": "The normal fasting blood glucose range is _____ to _____ mg/dL.",
+      "answer": ["70", "100"],
+      "display_answer": "70-100 mg/dL",
+      "rationale": "Normal fasting glucose is 70-100 mg/dL. Prediabetes is 100-125 mg/dL; diabetes is ≥126 mg/dL on two tests."
+    },
+    {
+      "id": 26,
+      "question": "Hypoglycemia is defined as blood glucose less than _____ mg/dL.",
+      "answer": ["70"],
+      "display_answer": "<70 mg/dL",
+      "rationale": "Hypoglycemia is blood glucose <70 mg/dL. Symptoms include diaphoresis, tremors, confusion, and seizures."
+    },
+    {
+      "id": 27,
+      "question": "A normal hemoglobin A1c is less than _____% .",
+      "answer": ["5.7"],
+      "display_answer": "<5.7%",
+      "rationale": "Normal HbA1c is <5.7%. Prediabetes is 5.7-6.4%; diabetes is ≥6.5% on two tests."
+    },
+    {
+      "id": 28,
+      "question": "An A1c of _____% or higher on two tests indicates diabetes mellitus.",
+      "answer": ["6.5"],
+      "display_answer": "≥6.5%",
+      "rationale": "A1c ≥6.5% on two separate tests indicates diabetes mellitus. A1c reflects average glucose over 2-3 months."
+    },
+    {
+      "id": 29,
+      "question": "The normal TSH range is approximately _____ to _____ μIU/mL.",
+      "answer": ["0.2", "5.4"],
+      "display_answer": "0.2-5.4 μIU/mL",
+      "rationale": "Normal TSH is approximately 0.2-5.4 μIU/mL. Elevated TSH indicates hypothyroidism; low TSH indicates hyperthyroidism."
+    },
+    {
+      "id": 30,
+      "question": "The normal total T3 range is approximately _____ to _____ ng/dL.",
+      "answer": ["80", "230"],
+      "display_answer": "80-230 ng/dL",
+      "rationale": "Normal total T3 is approximately 80-230 ng/dL. T3 is elevated in hyperthyroidism and decreased in hypothyroidism."
+    },
+    {
+      "id": 31,
+      "question": "The normal total T4 range is approximately _____ to _____ μg/dL.",
+      "answer": ["5", "12"],
+      "display_answer": "5-12 μg/dL",
+      "rationale": "Normal total T4 is approximately 5-12 μg/dL. T4 is elevated in hyperthyroidism and decreased in hypothyroidism."
+    },
+    {
+      "id": 32,
+      "question": "The normal arterial blood pH range is _____ to _____.",
+      "answer": ["7.35", "7.45"],
+      "display_answer": "7.35-7.45",
+      "rationale": "Normal arterial pH is 7.35-7.45. Below 7.35 is acidemia; above 7.45 is alkalemia."
+    },
+    {
+      "id": 33,
+      "question": "The normal PaCO₂ range is _____ to _____ mmHg.",
+      "answer": ["35", "45"],
+      "display_answer": "35-45 mmHg",
+      "rationale": "Normal PaCO₂ is 35-45 mmHg. PaCO₂ reflects respiratory function. Elevated = respiratory acidosis; decreased = respiratory alkalosis."
+    },
+    {
+      "id": 34,
+      "question": "The normal bicarbonate (HCO₃⁻) range is _____ to _____ mEq/L.",
+      "answer": ["22", "26"],
+      "display_answer": "22-26 mEq/L",
+      "rationale": "Normal HCO₃⁻ is 22-26 mEq/L. Bicarbonate represents the metabolic component of acid-base balance."
+    },
+    {
+      "id": 35,
+      "question": "The normal PaO₂ range is _____ to _____ mmHg.",
+      "answer": ["80", "100"],
+      "display_answer": "80-100 mmHg",
+      "rationale": "Normal PaO₂ is 80-100 mmHg. Values <60 mmHg indicate respiratory failure and require immediate intervention."
+    },
+    {
+      "id": 36,
+      "question": "Normal oxygen saturation (SaO₂) should be _____% or greater.",
+      "answer": ["95"],
+      "display_answer": "≥95%",
+      "rationale": "Normal oxygen saturation is ≥95%. Below 90% indicates hypoxemia. In COPD, 88-92% may be acceptable."
+    },
+    {
+      "id": 37,
+      "question": "A pH less than _____ indicates acidemia.",
+      "answer": ["7.35"],
+      "display_answer": "<7.35",
+      "rationale": "pH <7.35 indicates acidemia. The body is in an acidic state, which can be respiratory or metabolic in origin."
+    },
+    {
+      "id": 38,
+      "question": "A pH greater than _____ indicates alkalemia.",
+      "answer": ["7.45"],
+      "display_answer": ">7.45",
+      "rationale": "pH >7.45 indicates alkalemia. The body is in an alkaline state, which can be respiratory or metabolic in origin."
+    },
+    {
+      "id": 39,
+      "question": "The normal urine specific gravity range is _____ to _____.",
+      "answer": ["1.003", "1.030"],
+      "display_answer": "1.003-1.030",
+      "rationale": "Normal urine specific gravity is 1.003-1.030. High values indicate concentrated urine (dehydration); low values indicate dilute urine."
+    },
+    {
+      "id": 40,
+      "question": "Normal urine pH ranges from _____ to _____.",
+      "answer": ["4.6", "8.0"],
+      "display_answer": "4.6-8.0",
+      "rationale": "Normal urine pH is 4.6-8.0, varying with diet. Alkaline urine may indicate UTI; acidic urine occurs with high-protein diet or acidosis."
+    },
+    {
+      "id": 41,
+      "question": "Protein in urine should normally be _____.",
+      "answer": ["negative"],
+      "display_answer": "Negative",
+      "rationale": "Protein should be negative in urine. Proteinuria indicates kidney damage such as glomerulonephritis or nephrotic syndrome."
+    },
+    {
+      "id": 42,
+      "question": "Glucose in urine should normally be _____.",
+      "answer": ["negative"],
+      "display_answer": "Negative",
+      "rationale": "Glucose should be negative in urine. Glucosuria indicates blood glucose exceeding the renal threshold (~180 mg/dL), typically from diabetes."
+    },
+    {
+      "id": 43,
+      "question": "Ketones in urine should normally be _____.",
+      "answer": ["negative"],
+      "display_answer": "Negative",
+      "rationale": "Ketones should be negative in urine. Ketonuria indicates fat breakdown for energy, seen in DKA, starvation, or very low-carb diets."
+    },
+    {
+      "id": 44,
+      "question": "Leukocyte esterase and nitrites in urine should normally be _____.",
+      "answer": ["negative"],
+      "display_answer": "Negative",
+      "rationale": "Leukocyte esterase and nitrites should be negative. Positive results strongly suggest urinary tract infection."
+    },
+    {
+      "id": 45,
+      "question": "Normal RBC count in urine is _____ to _____ per high-power field.",
+      "answer": ["0", "3"],
+      "display_answer": "0-3/hpf",
+      "rationale": "Normal urine has 0-3 RBCs per high-power field. Hematuria can indicate infection, stones, trauma, or malignancy."
+    },
+    {
+      "id": 46,
+      "question": "Normal Troponin I level is less than _____ ng/mL.",
+      "answer": ["0.12"],
+      "display_answer": "<0.12 ng/mL",
+      "rationale": "Normal Troponin I is <0.12 ng/mL. Elevated troponin is highly specific for myocardial injury and indicates MI or myocarditis."
+    },
+    {
+      "id": 47,
+      "question": "Normal Troponin T level is less than _____ ng/mL.",
+      "answer": ["0.01"],
+      "display_answer": "<0.01 ng/mL",
+      "rationale": "Normal Troponin T is <0.01 ng/mL. Like Troponin I, elevated Troponin T indicates cardiac muscle damage."
+    },
+    {
+      "id": 48,
+      "question": "Troponin levels begin to rise _____ to _____ hours after myocardial infarction.",
+      "answer": ["3", "6"],
+      "display_answer": "3-6 hours",
+      "rationale": "Troponin rises 3-6 hours after MI onset and remains elevated for approximately 1 week, making it useful for diagnosis of recent MI."
+    },
+    {
+      "id": 49,
+      "question": "CK-MB peaks at approximately _____ hours after MI onset.",
+      "answer": ["24"],
+      "display_answer": "24 hours",
+      "rationale": "CK-MB rises 4-6 hours after MI, peaks at ~24 hours, and returns to normal within 48-72 hours."
+    },
+    {
+      "id": 50,
+      "question": "CK-MB returns to normal within _____ to _____ hours after MI.",
+      "answer": ["48", "72"],
+      "display_answer": "48-72 hours",
+      "rationale": "CK-MB normalizes within 48-72 hours, which helps differentiate acute MI from older cardiac injury."
+    },
+    {
+      "id": 51,
+      "question": "Normal BNP (B-type natriuretic peptide) is less than _____ pg/mL.",
+      "answer": ["100"],
+      "display_answer": "<100 pg/mL",
+      "rationale": "Normal BNP is <100 pg/mL. Elevated BNP indicates heart failure; higher levels correlate with worse severity."
+    },
+    {
+      "id": 52,
+      "question": "For heparin therapy, the target aPTT is _____ to _____ times normal.",
+      "answer": ["1.5", "2.5"],
+      "display_answer": "1.5-2.5 times normal",
+      "rationale": "Therapeutic aPTT for heparin is 1.5-2.5 times normal (approximately 45-70 seconds). Values above this range increase bleeding risk."
+    },
+    {
+      "id": 53,
+      "question": "The antidote for heparin overdose is _____.",
+      "answer": ["protamine sulfate"],
+      "display_answer": "Protamine sulfate",
+      "rationale": "Protamine sulfate reverses the anticoagulant effect of heparin by binding to it and forming an inactive complex."
+    },
+    {
+      "id": 54,
+      "question": "The antidote for warfarin overdose is _____.",
+      "answer": ["vitamin K"],
+      "display_answer": "Vitamin K",
+      "rationale": "Vitamin K reverses warfarin effect by restoring vitamin K-dependent clotting factor production. FFP provides immediate reversal if actively bleeding."
+    },
+    {
+      "id": 55,
+      "question": "The antidote for magnesium toxicity is _____.",
+      "answer": ["calcium gluconate"],
+      "display_answer": "Calcium gluconate",
+      "rationale": "Calcium gluconate antagonizes the effects of excess magnesium and protects cardiac and neuromuscular function in hypermagnesemia."
+    },
+    {
+      "id": 56,
+      "question": "In hyperkalemia, _____ is given IV to stabilize the myocardium.",
+      "answer": ["calcium gluconate"],
+      "display_answer": "Calcium gluconate",
+      "rationale": "Calcium gluconate stabilizes the cardiac membrane in hyperkalemia, providing immediate cardioprotection while other treatments lower potassium."
+    },
+    {
+      "id": 57,
+      "question": "A positive Chvostek's sign and Trousseau's sign indicate _____.",
+      "answer": ["hypocalcemia"],
+      "display_answer": "Hypocalcemia",
+      "rationale": "Chvostek's (facial twitching) and Trousseau's (carpal spasm) signs indicate neuromuscular irritability from hypocalcemia (Ca <8.5 mg/dL)."
+    },
+    {
+      "id": 58,
+      "question": "Peaked T waves on ECG are associated with _____.",
+      "answer": ["hyperkalemia"],
+      "display_answer": "Hyperkalemia",
+      "rationale": "Peaked (tall, tented) T waves are the classic early ECG change in hyperkalemia (K+ >5.0 mEq/L). Other changes include widened QRS and heart block."
+    },
+    {
+      "id": 59,
+      "question": "U waves on ECG are associated with _____.",
+      "answer": ["hypokalemia"],
+      "display_answer": "Hypokalemia",
+      "rationale": "Prominent U waves are characteristic of hypokalemia (K+ <3.5 mEq/L). Other ECG changes include flattened T waves and ST depression."
+    },
+    {
+      "id": 60,
+      "question": "A prolonged QT interval is associated with _____ and _____.",
+      "answer": ["hypocalcemia", "hypomagnesemia"],
+      "display_answer": "Hypocalcemia and Hypomagnesemia",
+      "rationale": "Both hypocalcemia and hypomagnesemia can cause prolonged QT interval, increasing risk for torsades de pointes and other arrhythmias."
+    },
+    {
+      "id": 61,
+      "question": "A shortened QT interval is associated with _____.",
+      "answer": ["hypercalcemia"],
+      "display_answer": "Hypercalcemia",
+      "rationale": "Hypercalcemia (Ca >10.5 mg/dL) causes shortened QT interval on ECG. Remember: 'high calcium = short QT.'"
+    },
+    {
+      "id": 62,
+      "question": "The mnemonic for hypercalcemia symptoms is: stones, bones, _____, thrones, and psychiatric overtones.",
+      "answer": ["groans"],
+      "display_answer": "Groans",
+      "rationale": "Stones (kidney), Bones (pain), Groans (abdominal pain/constipation), Thrones (polyuria), and Psychiatric overtones (confusion). This helps remember hypercalcemia symptoms."
+    },
+    {
+      "id": 63,
+      "question": "Blood glucose exceeds the renal threshold and spills into urine at approximately _____ mg/dL.",
+      "answer": ["180"],
+      "display_answer": "~180 mg/dL",
+      "rationale": "The renal threshold for glucose is approximately 180 mg/dL. Above this level, glucose appears in urine (glucosuria)."
+    },
+    {
+      "id": 64,
+      "question": "A fasting blood glucose of _____ to _____ mg/dL indicates prediabetes.",
+      "answer": ["100", "125"],
+      "display_answer": "100-125 mg/dL",
+      "rationale": "Fasting glucose 100-125 mg/dL indicates prediabetes (impaired fasting glucose). Normal is 70-100; ≥126 indicates diabetes."
+    },
+    {
+      "id": 65,
+      "question": "A fasting blood glucose of _____ mg/dL or higher on two tests indicates diabetes.",
+      "answer": ["126"],
+      "display_answer": "≥126 mg/dL",
+      "rationale": "Fasting glucose ≥126 mg/dL on two separate occasions confirms diabetes mellitus diagnosis."
+    },
+    {
+      "id": 66,
+      "question": "An A1c between _____% and _____% indicates prediabetes.",
+      "answer": ["5.7", "6.4"],
+      "display_answer": "5.7-6.4%",
+      "rationale": "A1c 5.7-6.4% indicates prediabetes. Normal is <5.7%; diabetes is ≥6.5%."
+    },
+    {
+      "id": 67,
+      "question": "The target A1c goal for most diabetic patients is less than _____% .",
+      "answer": ["7"],
+      "display_answer": "<7%",
+      "rationale": "The American Diabetes Association recommends A1c <7% for most adults with diabetes to reduce complication risk."
+    },
+    {
+      "id": 68,
+      "question": "Elevated TSH with low T3/T4 indicates _____ hypothyroidism.",
+      "answer": ["primary"],
+      "display_answer": "Primary",
+      "rationale": "Primary hypothyroidism means the thyroid gland itself is failing. The pituitary releases more TSH trying to stimulate the underactive thyroid."
+    },
+    {
+      "id": 69,
+      "question": "Low TSH with elevated T3/T4 indicates _____ hyperthyroidism.",
+      "answer": ["primary"],
+      "display_answer": "Primary",
+      "rationale": "Primary hyperthyroidism means the thyroid is overproducing hormones. The pituitary decreases TSH in response to high T3/T4."
+    },
+    {
+      "id": 70,
+      "question": "In respiratory acidosis, pH is _____ and PaCO₂ is _____.",
+      "answer": ["low", "high"],
+      "display_answer": "pH low, PaCO₂ high",
+      "rationale": "Respiratory acidosis: pH <7.35 (acidosis) with elevated PaCO₂ (>45 mmHg) from hypoventilation (COPD, opioids, sedation)."
+    },
+    {
+      "id": 71,
+      "question": "In respiratory alkalosis, pH is _____ and PaCO₂ is _____.",
+      "answer": ["high", "low"],
+      "display_answer": "pH high, PaCO₂ low",
+      "rationale": "Respiratory alkalosis: pH >7.45 (alkalosis) with low PaCO₂ (<35 mmHg) from hyperventilation (anxiety, pain, fever)."
+    },
+    {
+      "id": 72,
+      "question": "In metabolic acidosis, pH is _____ and HCO₃⁻ is _____.",
+      "answer": ["low", "low"],
+      "display_answer": "pH low, HCO₃⁻ low",
+      "rationale": "Metabolic acidosis: pH <7.35 (acidosis) with low HCO₃⁻ (<22 mEq/L) from DKA, lactic acidosis, renal failure, or diarrhea."
+    },
+    {
+      "id": 73,
+      "question": "In metabolic alkalosis, pH is _____ and HCO₃⁻ is _____.",
+      "answer": ["high", "high"],
+      "display_answer": "pH high, HCO₃⁻ high",
+      "rationale": "Metabolic alkalosis: pH >7.45 (alkalosis) with elevated HCO₃⁻ (>26 mEq/L) from vomiting, NG suction, or diuretics."
+    },
+    {
+      "id": 74,
+      "question": "Kussmaul respirations (deep, rapid breathing) are the body's attempt to compensate for _____ acidosis.",
+      "answer": ["metabolic"],
+      "display_answer": "Metabolic",
+      "rationale": "Kussmaul respirations blow off CO₂ to compensate for metabolic acidosis (such as DKA). This respiratory compensation raises pH toward normal."
+    },
+    {
+      "id": 75,
+      "question": "The normal BUN to creatinine ratio is approximately _____ to _____:1.",
+      "answer": ["10", "20"],
+      "display_answer": "10-20:1",
+      "rationale": "Normal BUN:Creatinine ratio is 10-20:1. Ratio >20:1 suggests prerenal causes (dehydration, GI bleed). Ratio <10:1 suggests intrinsic renal disease."
+    },
+    {
+      "id": 76,
+      "question": "Platelet transfusion is typically indicated when count falls below _____ to _____ /mm³.",
+      "answer": ["10000", "20000"],
+      "display_answer": "10,000-20,000/mm³",
+      "rationale": "Platelet transfusion is generally indicated when count <10,000-20,000/mm³ or with active bleeding. Spontaneous bleeding risk increases significantly below 20,000."
+    },
+    {
+      "id": 77,
+      "question": "Neutropenic precautions are implemented when the absolute neutrophil count (ANC) falls below _____/mm³.",
+      "answer": ["1500"],
+      "display_answer": "<1,500/mm³",
+      "rationale": "Neutropenia is ANC <1,500/mm³. Severe neutropenia (<500/mm³) significantly increases infection risk. Private room, hand hygiene, no fresh fruits/flowers."
+    },
+    {
+      "id": 78,
+      "question": "Blood transfusion is typically considered when hemoglobin falls below _____ to _____ g/dL in symptomatic patients.",
+      "answer": ["7", "8"],
+      "display_answer": "7-8 g/dL",
+      "rationale": "Transfusion thresholds vary, but symptomatic anemia with Hgb <7-8 g/dL often warrants transfusion. Active bleeding may require higher thresholds."
+    },
+    {
+      "id": 79,
+      "question": "SIADH causes dilutional _____ (low sodium in the blood).",
+      "answer": ["hyponatremia"],
+      "display_answer": "Hyponatremia",
+      "rationale": "SIADH causes excess ADH secretion, leading to water retention and dilutional hyponatremia. Serum sodium <135 mEq/L with concentrated urine."
+    },
+    {
+      "id": 80,
+      "question": "Diabetes insipidus causes _____ (high sodium in the blood) and dilute urine.",
+      "answer": ["hypernatremia"],
+      "display_answer": "Hypernatremia",
+      "rationale": "Diabetes insipidus (lack of or response to ADH) causes excessive water loss, leading to hypernatremia (Na >145 mEq/L) and very dilute urine (low specific gravity)."
+    },
+    {
+      "id": 81,
+      "question": "In DKA, the three hallmark findings are hyperglycemia, metabolic acidosis, and _____.",
+      "answer": ["ketosis"],
+      "display_answer": "Ketosis",
+      "rationale": "DKA triad: hyperglycemia (often >300 mg/dL), metabolic acidosis (pH <7.35), and ketosis (positive ketones). Results from insulin deficiency."
+    },
+    {
+      "id": 82,
+      "question": "In DKA treatment, _____ must be monitored closely because it shifts into cells with insulin.",
+      "answer": ["potassium"],
+      "display_answer": "Potassium",
+      "rationale": "Insulin drives potassium into cells. DKA patients may have normal/high serum K+ despite total body depletion. K+ drops rapidly with insulin; replacement is critical."
+    },
+    {
+      "id": 83,
+      "question": "Addisonian crisis causes hyponatremia, hyperkalemia, and _____.",
+      "answer": ["hypoglycemia"],
+      "display_answer": "Hypoglycemia",
+      "rationale": "Addisonian crisis (acute adrenal insufficiency) causes hyponatremia, hyperkalemia, and hypoglycemia due to lack of cortisol and aldosterone."
+    },
+    {
+      "id": 84,
+      "question": "Cushing syndrome causes hypernatremia, hypokalemia, and _____.",
+      "answer": ["hyperglycemia"],
+      "display_answer": "Hyperglycemia",
+      "rationale": "Cushing syndrome (excess cortisol) causes hypernatremia, hypokalemia, hyperglycemia, and fluid retention—opposite of Addison's."
+    },
+    {
+      "id": 85,
+      "question": "Loop diuretics cause loss of potassium, sodium, and _____.",
+      "answer": ["calcium"],
+      "display_answer": "Calcium",
+      "rationale": "Loop diuretics (furosemide) cause excretion of K+, Na+, and Ca2+. Monitor electrolytes closely. Thiazides cause calcium retention."
+    },
+    {
+      "id": 86,
+      "question": "Thiazide diuretics cause calcium _____ (retention/excretion).",
+      "answer": ["retention"],
+      "display_answer": "Retention",
+      "rationale": "Thiazides cause calcium retention (can worsen hypercalcemia). Loop diuretics cause calcium excretion and are used to treat hypercalcemia."
+    },
+    {
+      "id": 87,
+      "question": "The first sign of digoxin toxicity related to potassium is often _____.",
+      "answer": ["arrhythmias"],
+      "display_answer": "Arrhythmias (or visual changes/GI symptoms)",
+      "rationale": "Hypokalemia increases digoxin toxicity risk. Early signs include GI symptoms (nausea, vomiting), visual changes (yellow-green halos), and arrhythmias."
+    },
+    {
+      "id": 88,
+      "question": "Normal serum osmolality is _____ to _____ mOsm/kg.",
+      "answer": ["275", "295"],
+      "display_answer": "275-295 mOsm/kg",
+      "rationale": "Normal serum osmolality is 275-295 mOsm/kg. Elevated values indicate dehydration or hypernatremia; low values indicate overhydration or SIADH."
+    },
+    {
+      "id": 89,
+      "question": "Lipase is more _____ (sensitive/specific) for pancreatitis than amylase.",
+      "answer": ["specific"],
+      "display_answer": "Specific",
+      "rationale": "Lipase is more specific for pancreatitis and remains elevated longer than amylase. Both are pancreatic enzymes elevated in acute pancreatitis."
+    },
+    {
+      "id": 90,
+      "question": "The liver produces clotting factors II, VII, IX, and X, which are _____ K dependent.",
+      "answer": ["vitamin"],
+      "display_answer": "Vitamin",
+      "rationale": "Vitamin K-dependent clotting factors (II, VII, IX, X) are produced in the liver. Warfarin inhibits vitamin K, and liver disease impairs their production."
+    },
+    {
+      "id": 91,
+      "question": "For every 1 unit of packed RBCs transfused, hemoglobin should increase by approximately _____ g/dL.",
+      "answer": ["1"],
+      "display_answer": "1 g/dL",
+      "rationale": "One unit of PRBCs typically raises hemoglobin by ~1 g/dL and hematocrit by ~3%. Post-transfusion labs confirm effectiveness."
+    },
+    {
+      "id": 92,
+      "question": "Hematocrit is approximately _____ times the hemoglobin value.",
+      "answer": ["3"],
+      "display_answer": "3 times",
+      "rationale": "Quick calculation: Hct ≈ 3 × Hgb. Example: Hgb 12 g/dL = Hct ~36%. This helps quickly assess if values are consistent."
+    },
+    {
+      "id": 93,
+      "question": "Serum creatinine is a better indicator of kidney function than BUN because it is not affected by _____ intake.",
+      "answer": ["protein"],
+      "display_answer": "Protein",
+      "rationale": "BUN is affected by protein intake, GI bleeding, and hydration status. Creatinine is a byproduct of muscle metabolism and more specific for GFR."
+    },
+    {
+      "id": 94,
+      "question": "Potassium should never be given IV _____.",
+      "answer": ["push"],
+      "display_answer": "Push (bolus)",
+      "rationale": "IV potassium must never be pushed/bolused—it causes fatal cardiac arrest. Maximum infusion rate is typically 10-20 mEq/hour via peripheral line."
+    },
+    {
+      "id": 95,
+      "question": "Before administering IV potassium, the nurse must verify adequate _____ output.",
+      "answer": ["urine"],
+      "display_answer": "Urine",
+      "rationale": "Potassium is excreted by kidneys. Giving K+ to an anuric/oliguric patient risks fatal hyperkalemia. Ensure urine output ≥30 mL/hr before administering."
+    },
+    {
+      "id": 96,
+      "question": "Fresh frozen plasma is used to rapidly reverse _____ (warfarin/heparin).",
+      "answer": ["warfarin"],
+      "display_answer": "Warfarin",
+      "rationale": "FFP contains all clotting factors and rapidly reverses warfarin when immediate reversal is needed (active bleeding). Protamine reverses heparin."
+    },
+    {
+      "id": 97,
+      "question": "A client with a WBC of 25,000/mm³ with mostly immature neutrophils (bands) is said to have a 'left _____.'",
+      "answer": ["shift"],
+      "display_answer": "Shift",
+      "rationale": "Left shift means increased immature WBCs (bands) released during severe infection. The bone marrow releases immature cells to fight infection."
+    },
+    {
+      "id": 98,
+      "question": "Normal serum albumin is _____ to _____ g/dL.",
+      "answer": ["3.5", "5.0"],
+      "display_answer": "3.5-5.0 g/dL",
+      "rationale": "Normal albumin is 3.5-5.0 g/dL. Low albumin affects total calcium levels (must correct for low albumin) and causes edema due to decreased oncotic pressure."
+    },
+    {
+      "id": 99,
+      "question": "To correct calcium for low albumin, add _____ mg/dL calcium for every 1 g/dL albumin below 4.",
+      "answer": ["0.8"],
+      "display_answer": "0.8 mg/dL",
+      "rationale": "Corrected Ca = Measured Ca + 0.8 × (4 - albumin). Low albumin causes falsely low total calcium because calcium binds to albumin."
+    },
+    {
+      "id": 100,
+      "question": "The anion gap formula is: Na⁺ - (Cl⁻ + _____). Normal is 8-12 mEq/L.",
+      "answer": ["HCO3"],
+      "display_answer": "HCO₃⁻ (bicarbonate)",
+      "rationale": "Anion gap = Na - (Cl + HCO₃). Normal 8-12 mEq/L. Elevated anion gap indicates metabolic acidosis from DKA, lactic acidosis, uremia, or toxins (MUDPILES)."
+    }
+  ]
+}
