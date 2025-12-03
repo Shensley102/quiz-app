@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const moduleName = getModuleFromPath() || 'NCLEX_Lab_Values_Fill_In_The_Blank';
     console.log('Module from path:', moduleName);
     
-    const displayName = 'Lab Values - Fill in the Blank';
+    const displayName = 'NCLEX Lab Values';
     const qty = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
     const isFullBank = (qty === 'full');
 
@@ -555,7 +555,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    const displayName = `Lab Values Fill-in-Blank - Retry Missed`;
+    const displayName = `NCLEX Lab Values - Retry Missed`;
     setHeaderTitle(displayName);
     document.title = `${displayName} - Nurse Success Study Hub`;
     
@@ -888,7 +888,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (moduleFromPath) {
     const quizTitle = $('quizTitle');
     if (quizTitle) {
-      quizTitle.textContent = 'Lab Values - Fill in the Blank';
+      quizTitle.textContent = 'NCLEX Lab Values';
     }
   }
   
