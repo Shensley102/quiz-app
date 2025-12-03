@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lab Values Study - Nurse Success Study Hub">
+  <title>Lab Values - Nurse Success Study Hub</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/category-style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Vercel Analytics -->
+  <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
+  
+  <style>
+    .quiz-types-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+
+    .quiz-type-card {
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+      background: var(--card);
+      border: 3px solid var(--border);
+      border-radius: 16px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-type-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--accent-color, var(--primary));
+      transition: height 0.3s ease;
+    }
+
+    .quiz-type-card:hover {
+      border-color: var(--accent-color, var(--primary));
+      box-shadow: var(--shadow-md);
+      transform: translateY(-6px);
+    }
+
+    .quiz-type-card:hover::before {
+      height: 8px;
+    }
+
+    .quiz-type-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .quiz-type-card h3 {
+      margin: 0 0 12px 0;
+      font-size: 24px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .quiz-type-card p {
+      margin: 0 0 16px 0;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .quiz-type-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      background: rgba(47, 97, 243, 0.1);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .quiz-type-badge.hard {
+      background: rgba(244, 67, 54, 0.1);
+      color: var(--danger);
+    }
+
+    .quiz-type-action {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: auto;
+    }
+
+    .quiz-type-card:hover .quiz-type-action {
+      gap: 12px;
+    }
+
+    .info-section {
+      margin-top: 40px;
+      padding: 24px;
+      background: rgba(139, 92, 246, 0.05);
+      border-radius: 12px;
+      border-left: 4px solid #8B5CF6;
+    }
+
+    .info-section h3 {
+      color: var(--ink);
+      margin: 0 0 16px 0;
+      font-size: 20px;
+    }
+
+    .info-section ul {
+      margin: 0;
+      padding-left: 24px;
+    }
+
+    .info-section li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .lab-values-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .lab-value-item {
+      padding: 8px 12px;
+      background: rgba(139, 92, 246, 0.08);
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header with Back Button -->
+    <div class="category-header">
+      <a href="/" class="back-btn">← Back to Hub</a>
+      <h1>🧪 Laboratory Values</h1>
+      <p class="category-description">Master critical laboratory values for NCLEX and HESI exams with two different study modes</p>
+    </div>
+
+    <!-- Quiz Types Grid -->
+    <main class="quiz-types-grid">
+      <!-- Multiple Choice Card -->
+      <a href="/quiz/NCLEX_Lab_Values?category=Lab%20Values" class="quiz-type-card" style="--accent-color: #4ECDC4;">
+        <div class="quiz-type-icon">📝</div>
+        <span class="quiz-type-badge">Standard</span>
+        <h3>Multiple Choice Quiz</h3>
+        <p>Test your knowledge with 100 NCLEX-style multiple choice questions. Each question includes detailed rationales to reinforce your understanding of normal values, abnormal findings, and nursing interventions.</p>
+        <div class="quiz-type-action">
+          Start Quiz <span>→</span>
+        </div>
+      </a>
+
+      <!-- Fill in the Blank Card -->
+      <a href="/quiz/NCLEX_Lab_Values_Fill_In_The_Blank?category=Lab%20Values" class="quiz-type-card" style="--accent-color: #f44336;">
+        <div class="quiz-type-icon">✏️</div>
+        <span class="quiz-type-badge hard">Hard Mode</span>
+        <h3>Fill-in-the-Blank Quiz</h3>
+        <p>Challenge yourself by typing exact lab values from memory. This harder format tests true recall of normal ranges, critical values, and clinical correlations without multiple choice hints.</p>
+        <div class="quiz-type-action">
+          Start Quiz <span>→</span>
+        </div>
+      </a>
+    </main>
+
+    <!-- Info Section -->
+    <div class="info-section">
+      <h3>📊 Lab Values Covered</h3>
+      <p style="color: var(--ink-soft); margin-bottom: 16px;">Both quizzes comprehensively cover the following laboratory values essential for NCLEX and HESI success:</p>
+      
+      <div class="lab-values-list">
+        <div class="lab-value-item">Sodium (Na⁺)</div>
+        <div class="lab-value-item">Potassium (K⁺)</div>
+        <div class="lab-value-item">Calcium (Ca²⁺)</div>
+        <div class="lab-value-item">Magnesium (Mg²⁺)</div>
+        <div class="lab-value-item">Chloride (Cl⁻)</div>
+        <div class="lab-value-item">BUN</div>
+        <div class="lab-value-item">Creatinine</div>
+        <div class="lab-value-item">AST / ALT</div>
+        <div class="lab-value-item">Bilirubin</div>
+        <div class="lab-value-item">WBC Count</div>
+        <div class="lab-value-item">Hemoglobin / Hematocrit</div>
+        <div class="lab-value-item">Platelets</div>
+        <div class="lab-value-item">PT / INR / aPTT</div>
+        <div class="lab-value-item">Cholesterol / Lipids</div>
+        <div class="lab-value-item">Blood Glucose</div>
+        <div class="lab-value-item">Hemoglobin A1c</div>
+        <div class="lab-value-item">TSH / T3 / T4</div>
+        <div class="lab-value-item">ABGs (pH, PaCO₂, HCO₃⁻)</div>
+        <div class="lab-value-item">Urinalysis Values</div>
+        <div class="lab-value-item">Troponin / CK-MB / BNP</div>
+      </div>
+    </div>
+
+    <!-- Study Tips -->
+    <div class="info-section" style="margin-top: 24px; border-left-color: #4ECDC4;">
+      <h3>💡 Study Tips</h3>
+      <ul>
+        <li><strong>Start with Multiple Choice:</strong> Build familiarity with values and clinical correlations first</li>
+        <li><strong>Progress to Fill-in-the-Blank:</strong> Once comfortable, challenge yourself with exact recall</li>
+        <li><strong>Focus on Patterns:</strong> Group related values (electrolytes, cardiac markers, ABGs)</li>
+        <li><strong>Learn the "Why":</strong> Understanding rationales helps retention more than memorization</li>
+        <li><strong>Use Mnemonics:</strong> "Stones, bones, groans, thrones" for hypercalcemia symptoms</li>
+      </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer class="hub-footer">
+      <p>&copy; 2025 Nurse Success Study Hub. Study smarter, succeed faster.</p>
+    </footer>
+  </div>
+</body>
+</html>
