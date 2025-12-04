@@ -12,6 +12,7 @@
    - Retry missed questions feature
    - Auto-start functionality for direct quiz links
    - Server-side preloaded quiz data support
+   - Setup page with length selection before quiz starts
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -635,7 +636,7 @@ async function startQuiz(){
 
   const bank = moduleSel.value;
   const displayName = prettifyModuleName(bank);
-  const qty  = (lenBtn.data-len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
+  const qty  = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
   const isFullBank = (qty === 'full');
 
   setHeaderTitle(displayName);
@@ -649,19 +650,27 @@ async function startQuiz(){
 
   startBtn.disabled = true;
 
-  const jsonUrl = `/${bank}.json`;
-  
   try {
-    const res = await fetch(jsonUrl, { cache: 'no-store' });
-    if (!res.ok) {
-      alert(`Could not load ${bank}.json`);
-      startBtn.disabled = false;
-      setHeaderTitle(defaultTitle);
-      document.title = 'Quiz - Nurse Success Study Hub';
-      return;
+    let rawData;
+    
+    // Check if we have preloaded data
+    if (window.storedPreloadedData && window.storedPreloadedData.moduleName === bank) {
+      rawData = window.storedPreloadedData.questions;
+    } else {
+      // Fetch from JSON file
+      const jsonUrl = `/${bank}.json`;
+      const res = await fetch(jsonUrl, { cache: 'no-store' });
+      if (!res.ok) {
+        alert(`Could not load ${bank}.json`);
+        startBtn.disabled = false;
+        setHeaderTitle(defaultTitle);
+        document.title = 'Quiz - Nurse Success Study Hub';
+        return;
+      }
+      rawData = await res.json();
     }
-    const raw = await res.json();
-    allQuestions = normalizeQuestions(raw);
+
+    allQuestions = normalizeQuestions(rawData);
 
     const sampled = sampleQuestions(allQuestions, qty);
     const shuffledQuestions = sampled.map((q) => shuffleQuestionOptions(q));
@@ -1054,51 +1063,37 @@ async function initModulesWithPreselect() {
   const hasPreloadedData = window.preloadedQuizData && window.preloadedModuleName;
   
   if (hasPreloadedData) {
-    // We have direct quiz data, skip the module selector
+    // We have direct quiz data, but show the setup page first
     const displayName = prettifyModuleName(window.preloadedModuleName);
-    setHeaderTitle(displayName);
-    document.title = `${displayName} - Nurse Success Study Hub`;
     
     const quizTitle = $('quizTitle');
     if (quizTitle) {
       quizTitle.textContent = displayName;
     }
 
-    // Hide the launcher and show the quiz
-    if (launcher) launcher.classList.add('hidden');
+    // Show the launcher (setup page) with preloaded data
+    if (launcher) launcher.classList.remove('hidden');
     if (summary) summary.classList.add('hidden');
-    if (quiz) quiz.classList.remove('hidden');
-    if (countersBox) countersBox.classList.remove('hidden');
-    if (resetAll) resetAll.classList.remove('hidden');
+    if (quiz) quiz.classList.add('hidden');
+    if (countersBox) countersBox.classList.add('hidden');
+    if (resetAll) resetAll.classList.add('hidden');
 
-    // Process the preloaded quiz data
-    allQuestions = normalizeQuestions(window.preloadedQuizData);
-    
-    const sampled = sampleQuestions(allQuestions, 'full'); // Default to full
-    const shuffledQuestions = sampled.map((q) => shuffleQuestionOptions(q));
+    // Set module dropdown to show the preloaded module
+    if (moduleSel) {
+      moduleSel.innerHTML = '';
+      const opt = document.createElement('option');
+      opt.value = window.preloadedModuleName;
+      opt.textContent = displayName;
+      opt.selected = true;
+      moduleSel.appendChild(opt);
+      moduleSel.disabled = true; // Disable so user can't change it
+    }
 
-    run = {
-      bank: window.preloadedModuleName,
-      displayName: displayName,
-      order: [...shuffledQuestions],
-      masterPool: [...shuffledQuestions],
-      i: 0,
-      answered: new Map(),
-      uniqueSeen: new Set(),
-      thresholdWrong: 0,
-      wrongSinceLast: [],
-      totalQuestionsAnswered: 1,
-      isFullBank: true,
-      isRetry: false,
+    // Store preloaded data for when user clicks Start Quiz
+    window.storedPreloadedData = {
+      questions: window.preloadedQuizData,
+      moduleName: window.preloadedModuleName
     };
-
-    const total = run.masterPool.length;
-    run.thresholdWrong = Math.max(1, Math.ceil(total * 0.05));
-
-    const q0 = run.order[0];
-    run.uniqueSeen.add(q0.id);
-    renderQuestion(q0);
-    updateCounters();
 
     return; // Exit early, don't load module selector
   }
