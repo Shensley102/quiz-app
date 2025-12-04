@@ -568,6 +568,22 @@ function endRun() {
   clearSavedState();
 }
 
+/* ---------- Keyboard shortcuts ---------- */
+document.addEventListener('keydown', (e) => {
+  if (!quizCard || quizCard.classList.contains('hidden')) return;
+  if (e.altKey || e.ctrlKey || e.metaKey) return;
+
+  const key = e.key || '';
+
+  if (key === 'Enter') {
+    e.preventDefault();
+    if (submitBtn && !submitBtn.disabled) {
+      submitBtn.click();
+    }
+    return;
+  }
+});
+
 /* ---------- Event listeners ---------- */
 if (lengthBtns) {
   lengthBtns.addEventListener('click', (e) => {
