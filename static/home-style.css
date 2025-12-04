@@ -54,14 +54,30 @@
   color: var(--ink-soft);
 }
 
-/* Categories Grid - 3 on top, 2 centered on bottom */
+/* Categories Grid - 6 columns for precise centering */
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 14px;
   margin: 25px auto 40px;
   max-width: 810px;
   padding: 0 20px;
+}
+
+/* Top 3 cards - each spans 2 columns */
+.categories-grid .category-card:nth-child(1),
+.categories-grid .category-card:nth-child(2),
+.categories-grid .category-card:nth-child(3) {
+  grid-column: span 2;
+}
+
+/* Bottom 2 cards - centered with empty space on both sides */
+.categories-grid .category-card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.categories-grid .category-card:nth-child(5) {
+  grid-column: 4 / span 2;
 }
 
 .category-card {
@@ -98,15 +114,6 @@
 
 .category-card:hover::before {
   height: 6px;
-}
-
-/* Center the bottom row cards (4th and 5th items) */
-.categories-grid .category-card:nth-child(4) {
-  grid-column: 2;
-}
-
-.categories-grid .category-card:nth-child(5) {
-  grid-column: 3;
 }
 
 /* Image Cards */
@@ -167,7 +174,7 @@
 /* Responsive - Tablet */
 @media (max-width: 1100px) {
   .categories-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 14px;
   }
 }
@@ -180,6 +187,9 @@
     gap: 14px;
   }
   
+  .categories-grid .category-card:nth-child(1),
+  .categories-grid .category-card:nth-child(2),
+  .categories-grid .category-card:nth-child(3),
   .categories-grid .category-card:nth-child(4),
   .categories-grid .category-card:nth-child(5) {
     grid-column: auto;
@@ -200,6 +210,9 @@
     gap: 14px;
   }
   
+  .categories-grid .category-card:nth-child(1),
+  .categories-grid .category-card:nth-child(2),
+  .categories-grid .category-card:nth-child(3),
   .categories-grid .category-card:nth-child(4),
   .categories-grid .category-card:nth-child(5) {
     grid-column: auto;
@@ -216,6 +229,9 @@
     font-size: 28px;
   }
   
+  .categories-grid .category-card:nth-child(1),
+  .categories-grid .category-card:nth-child(2),
+  .categories-grid .category-card:nth-child(3),
   .categories-grid .category-card:nth-child(4),
   .categories-grid .category-card:nth-child(5) {
     grid-column: auto;
