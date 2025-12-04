@@ -10,6 +10,7 @@
    - Shows remaining questions count on resume button
    - Subcategory filtering for grouped modules
    - Retry missed questions feature
+   - Auto-start functionality for direct quiz links
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -1026,6 +1027,12 @@ function updateProgressBar() {
   if (progressBar) progressBar.setAttribute('aria-valuenow', percentage);
 }
 
+/* ---------- Auto-start from query parameter ---------- */
+function checkAutoStart() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('autostart') === 'true';
+}
+
 /* ---------- Auto-start from URL ---------- */
 function getModuleFromPath() {
   const path = window.location.pathname;
@@ -1039,6 +1046,7 @@ function getModuleFromPath() {
 
 async function initModulesWithPreselect() {
   const moduleFromPath = getModuleFromPath();
+  const autostart = checkAutoStart();
   
   if (!moduleSel) return;
   
@@ -1120,6 +1128,24 @@ async function initModulesWithPreselect() {
       if (quizTitle) {
         quizTitle.textContent = displayName;
       }
+    }
+
+    // Auto-start if parameter is set
+    if (autostart && moduleFromPath) {
+      // Set the length button to full
+      const lengthBtns = document.querySelectorAll('#lengthBtns .seg-btn');
+      lengthBtns.forEach(btn => btn.classList.remove('active'));
+      lengthBtns.forEach(btn => {
+        if (btn.dataset.len === 'full') {
+          btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
+        }
+      });
+      
+      // Start the quiz
+      setTimeout(() => {
+        startQuiz();
+      }, 100);
     }
     
   } catch (err) {
