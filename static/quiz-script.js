@@ -11,6 +11,7 @@
    - Subcategory filtering for grouped modules
    - Retry missed questions feature
    - Auto-start functionality for direct quiz links
+   - Server-side preloaded quiz data support
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -634,7 +635,7 @@ async function startQuiz(){
 
   const bank = moduleSel.value;
   const displayName = prettifyModuleName(bank);
-  const qty  = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
+  const qty  = (lenBtn.data-len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
   const isFullBank = (qty === 'full');
 
   setHeaderTitle(displayName);
@@ -1033,7 +1034,7 @@ function checkAutoStart() {
   return urlParams.get('autostart') === 'true';
 }
 
-/* ---------- Auto-start from URL ---------- */
+/* ---------- Get module from URL path ---------- */
 function getModuleFromPath() {
   const path = window.location.pathname;
   // Match /quiz/MODULE_NAME pattern
@@ -1044,10 +1045,65 @@ function getModuleFromPath() {
   return null;
 }
 
+/* ---------- Initialize modules with preselect and preloaded data ---------- */
 async function initModulesWithPreselect() {
   const moduleFromPath = getModuleFromPath();
   const autostart = checkAutoStart();
   
+  // Check if we have preloaded data from the server
+  const hasPreloadedData = window.preloadedQuizData && window.preloadedModuleName;
+  
+  if (hasPreloadedData) {
+    // We have direct quiz data, skip the module selector
+    const displayName = prettifyModuleName(window.preloadedModuleName);
+    setHeaderTitle(displayName);
+    document.title = `${displayName} - Nurse Success Study Hub`;
+    
+    const quizTitle = $('quizTitle');
+    if (quizTitle) {
+      quizTitle.textContent = displayName;
+    }
+
+    // Hide the launcher and show the quiz
+    if (launcher) launcher.classList.add('hidden');
+    if (summary) summary.classList.add('hidden');
+    if (quiz) quiz.classList.remove('hidden');
+    if (countersBox) countersBox.classList.remove('hidden');
+    if (resetAll) resetAll.classList.remove('hidden');
+
+    // Process the preloaded quiz data
+    allQuestions = normalizeQuestions(window.preloadedQuizData);
+    
+    const sampled = sampleQuestions(allQuestions, 'full'); // Default to full
+    const shuffledQuestions = sampled.map((q) => shuffleQuestionOptions(q));
+
+    run = {
+      bank: window.preloadedModuleName,
+      displayName: displayName,
+      order: [...shuffledQuestions],
+      masterPool: [...shuffledQuestions],
+      i: 0,
+      answered: new Map(),
+      uniqueSeen: new Set(),
+      thresholdWrong: 0,
+      wrongSinceLast: [],
+      totalQuestionsAnswered: 1,
+      isFullBank: true,
+      isRetry: false,
+    };
+
+    const total = run.masterPool.length;
+    run.thresholdWrong = Math.max(1, Math.ceil(total * 0.05));
+
+    const q0 = run.order[0];
+    run.uniqueSeen.add(q0.id);
+    renderQuestion(q0);
+    updateCounters();
+
+    return; // Exit early, don't load module selector
+  }
+
+  // Normal flow - load module selector
   if (!moduleSel) return;
   
   try {
