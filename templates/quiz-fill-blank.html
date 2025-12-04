@@ -13,7 +13,7 @@
   
   <style>
     /* Fill-in-the-blank specific styles */
-    .input-container {
+    .fill-blank-inputs {
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -27,15 +27,15 @@
       position: relative;
     }
     
-    .input-wrapper label {
+    .input-label {
       font-weight: 600;
       color: var(--ink);
       font-size: 14px;
     }
     
-    .answer-input {
+    .fill-blank-input {
       width: 100%;
-      padding: 14px 50px 14px 16px;
+      padding: 14px 16px;
       font-size: 18px;
       border: 3px solid var(--border);
       border-radius: 10px;
@@ -44,116 +44,40 @@
       transition: all 0.2s ease;
     }
     
-    .answer-input:focus {
+    .fill-blank-input:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(47, 97, 243, 0.15);
     }
     
-    .answer-input::placeholder {
+    .fill-blank-input::placeholder {
       color: #aaa;
     }
     
-    .answer-input.correct {
+    .fill-blank-input.correct {
       border-color: #4caf50 !important;
       background: rgba(76, 175, 80, 0.08);
     }
     
-    .answer-input.incorrect {
+    .fill-blank-input.incorrect {
       border-color: #f44336 !important;
       background: rgba(244, 67, 54, 0.08);
     }
     
-    .answer-input:disabled {
+    .fill-blank-input:disabled {
       background: #f9f9f9;
       cursor: not-allowed;
     }
     
-    .input-status {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 24px;
-      font-weight: bold;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .input-wrapper label + .answer-input + .input-status {
-      top: calc(50% + 12px);
-    }
-    
-    .input-status.correct {
-      color: #4caf50;
-      opacity: 1;
-    }
-    
-    .input-status.incorrect {
-      color: #f44336;
-      opacity: 1;
-    }
-    
-    /* Different input type styling */
-    .answer-input.numeric-input {
-      border-left: 4px solid #2196F3;
-    }
-    
-    .answer-input.numeric-input:focus {
-      border-color: #2196F3;
-      border-left: 4px solid #2196F3;
-    }
-    
-    .answer-input.direction-input {
-      border-left: 4px solid #9C27B0;
-    }
-    
-    .answer-input.direction-input:focus {
-      border-color: #9C27B0;
-      border-left: 4px solid #9C27B0;
-    }
-    
-    .answer-input.word-input {
-      border-left: 4px solid #FF9800;
-    }
-    
-    .answer-input.word-input:focus {
-      border-color: #FF9800;
-      border-left: 4px solid #FF9800;
-    }
-    
-    /* Input type legend */
-    .input-type-legend {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-      font-size: 13px;
-      color: var(--ink-soft);
-    }
-    
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    
-    .legend-color {
-      width: 16px;
-      height: 16px;
-      border-radius: 3px;
-    }
-    
-    .legend-color.numeric {
-      background: #2196F3;
-    }
-    
-    .legend-color.direction {
-      background: #9C27B0;
-    }
-    
-    .legend-color.word {
-      background: #FF9800;
+    /* Question styling enhancements for fill-in-blank */
+    .question {
+      font-size: 20px;
+      line-height: 1.5;
+      padding: 20px;
+      background: rgba(139, 92, 246, 0.05);
+      border-radius: 10px;
+      border-left: 4px solid #8B5CF6;
+      margin-bottom: 24px;
     }
     
     /* Hard mode badge */
@@ -168,25 +92,6 @@
       margin-left: 12px;
       vertical-align: middle;
     }
-    
-    /* Question styling enhancements for fill-in-blank */
-    .question {
-      font-size: 20px;
-      line-height: 1.5;
-      padding: 20px;
-      background: rgba(139, 92, 246, 0.05);
-      border-radius: 10px;
-      border-left: 4px solid #8B5CF6;
-      margin-bottom: 24px;
-    }
-    
-    /* Hint text */
-    .hint-text {
-      font-size: 13px;
-      color: var(--ink-soft);
-      margin-top: 8px;
-      font-style: italic;
-    }
   </style>
 </head>
 <body>
@@ -197,10 +102,14 @@
         <a href="/" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 4px; display: inline-block; font-size: 14px;">← Nurse Success Study Hub</a>
         <h1 id="quizTitle">Lab Values - Fill in the Blank <span class="hard-badge">HARD MODE</span></h1>
       </div>
+      <div id="resumeContainer" class="resume-container hidden">
+        <span id="remainingQuestionsCount" class="remaining-count"></span>
+        <button class="btn btn-blue" id="resumeBtn">Resume Quiz</button>
+      </div>
     </div>
 
     <!-- Setup Card -->
-    <div class="card" id="launcher">
+    <div class="card" id="setup">
       <h2>Fill-in-the-Blank Quiz</h2>
       <p style="color: var(--ink-soft); margin-bottom: 24px;">Test your recall of exact laboratory values. Type your answers - no multiple choice hints!</p>
       
@@ -250,24 +159,8 @@
 
       <div id="questionText" class="question"></div>
       
-      <div id="inputArea">
+      <div id="answerInputs" class="fill-blank-inputs">
         <!-- Input fields will be generated here -->
-      </div>
-      
-      <!-- Input Type Legend -->
-      <div class="input-type-legend">
-        <div class="legend-item">
-          <span class="legend-color numeric"></span>
-          <span>Number (e.g., 135)</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color direction"></span>
-          <span>Direction (high/low)</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color word"></span>
-          <span>Word (e.g., negative)</span>
-        </div>
       </div>
       
       <div id="feedback" class="feedback hidden"></div>
@@ -287,7 +180,7 @@
       <!-- Action Buttons -->
       <div class="actions" style="margin-bottom: 24px;">
         <button class="btn danger hidden" id="retryMissedBtn">Retry <span id="missedCount">0</span> Missed Questions</button>
-        <button class="btn primary" id="restartBtnSummary">Start New Quiz</button>
+        <button class="btn primary" id="restartBtn">Start New Quiz</button>
       </div>
 
       <!-- Help Section -->
@@ -309,15 +202,17 @@
     <button class="btn danger hidden" id="resetAll" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">Reset Quiz</button>
   </div>
 
-  <!-- Debug: inline script to check if JS runs at all -->
   <script>
-    console.log('Inline script running');
-    window.onerror = function(msg, url, line, col, error) {
-      console.error('JS Error:', msg, 'at', url, 'line', line);
-      alert('JavaScript Error: ' + msg);
-      return false;
-    };
+    // Check if quiz data was passed from the server
+    window.preloadedQuizData = null;
+    window.preloadedModuleName = null;
+    
+    {% if quiz_data %}
+      window.preloadedQuizData = {{ quiz_data | tojson }};
+      window.preloadedModuleName = "{{ module_name }}";
+    {% endif %}
   </script>
+
   <script src="/static/quiz-fill-blank.js"></script>
 </body>
 </html>
