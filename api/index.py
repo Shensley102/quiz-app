@@ -11,6 +11,40 @@ app = Flask(__name__, template_folder='../templates', static_folder='../static')
 BASE_DIR = Path(__file__).parent.parent
 MODULES_DIR = BASE_DIR / 'modules'
 
+# Category metadata
+CATEGORY_METADATA = {
+    'HESI': {
+        'display_name': 'HESI',
+        'icon': '📋',
+        'image': '/images/Nursing_Hesi_Exam_Prep_Image.png',
+        'description': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides'
+    },
+    'Lab_Values': {
+        'display_name': 'Laboratory Values',
+        'icon': '🧪',
+        'image': '/images/Nursing_Lab_Values.png',
+        'description': 'Master critical laboratory values for NCLEX and HESI exams'
+    },
+    'Patient_Care_Management': {
+        'display_name': 'Patient Care Management',
+        'icon': '👥',
+        'image': '/images/Nursing_Leadership_Image.png',
+        'description': 'Patient care management and nursing leadership'
+    },
+    'Pharmacology': {
+        'display_name': 'Pharmacology',
+        'icon': '💊',
+        'image': '/images/Nursing_Pharmacology_Image.png',
+        'description': 'Comprehensive pharmacology study materials'
+    },
+    'Nursing_Certifications': {
+        'display_name': 'Nursing Certifications',
+        'icon': '🏆',
+        'image': '/images/Nursing_Advanced_Certifications.png',
+        'description': 'CCRN, CFRN, TCEN, and other certification prep'
+    }
+}
+
 
 def get_categories():
     """Get all module categories (folder names)"""
@@ -181,11 +215,26 @@ def quiz_fill_blank(category, module):
 
 @app.route('/api/categories')
 def api_categories():
-    """API endpoint to get all categories"""
+    """API endpoint to get all categories with metadata"""
     try:
-        categories = get_categories()
-        return jsonify({'categories': categories})
+        categories_list = get_categories()
+        result = {}
+        
+        for category in categories_list:
+            modules = get_modules_in_category(category)
+            metadata = CATEGORY_METADATA.get(category, {})
+            
+            result[category] = {
+                'display_name': metadata.get('display_name', category.replace('_', ' ')),
+                'icon': metadata.get('icon', '📚'),
+                'image': metadata.get('image', None),
+                'description': metadata.get('description', ''),
+                'modules': modules
+            }
+        
+        return jsonify(result)
     except Exception as e:
+        print(f"Error in api_categories: {e}")
         return jsonify({'error': str(e)}), 500
 
 
