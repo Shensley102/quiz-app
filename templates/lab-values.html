@@ -1,413 +1,220 @@
-<!-- templates/lab-values.html -->
+# api/index.py
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laboratory Values - Nurse Success Study Hub</title>
-  <link rel="stylesheet" href="/style.css">
-  <style>
-    body {
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }
+import os
+import json
+from flask import Flask, render_template, request, jsonify, redirect, url_for
+from pathlib import Path
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 30px;
-      color: #2f61f3;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      transition: color 0.2s;
-    }
+# Get the base directory
+BASE_DIR = Path(__file__).parent.parent
+MODULES_DIR = BASE_DIR / 'modules'
 
-    .back-link:hover {
-      color: #1e3a8a;
-    }
 
-    .header {
-      margin-bottom: 50px;
-    }
+def get_categories():
+    """Get all module categories (folder names)"""
+    if not MODULES_DIR.exists():
+        return []
+    try:
+        return sorted([d.name for d in MODULES_DIR.iterdir() 
+                      if d.is_dir() and not d.name.startswith('.')])
+    except Exception as e:
+        print(f"Error reading categories: {e}")
+        return []
 
-    .header h1 {
-      font-size: 48px;
-      color: #1a202c;
-      margin: 0 0 12px 0;
-      font-weight: 800;
-    }
 
-    .header .subtitle {
-      font-size: 18px;
-      color: #718096;
-      margin: 0;
-    }
+def get_modules_in_category(category):
+    """Get all modules (JSON files) in a specific category"""
+    category_path = MODULES_DIR / category
+    if not category_path.exists():
+        return []
+    
+    try:
+        modules = []
+        for file in sorted(category_path.glob('*.json')):
+            modules.append(file.stem)
+        return modules
+    except Exception as e:
+        print(f"Error reading modules: {e}")
+        return []
 
-    .quiz-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-      gap: 32px;
-      margin-bottom: 60px;
-    }
 
-    .quiz-card {
-      background: white;
-      border-radius: 16px;
-      padding: 40px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      border: 3px solid transparent;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .quiz-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: var(--color);
-    }
-
-    .quiz-card.multiple-choice {
-      --color: #45B7D1;
-    }
-
-    .quiz-card.fill-blank {
-      --color: #FF6B6B;
-    }
-
-    .quiz-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      border-color: var(--color);
-    }
-
-    .quiz-card-icon {
-      font-size: 48px;
-      margin-bottom: 16px;
-    }
-
-    .quiz-card-badge {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .quiz-card.multiple-choice .quiz-card-badge {
-      background: rgba(69, 183, 209, 0.15);
-      color: #45B7D1;
-    }
-
-    .quiz-card.fill-blank .quiz-card-badge {
-      background: rgba(255, 107, 107, 0.15);
-      color: #FF6B6B;
-    }
-
-    .quiz-card h2 {
-      font-size: 28px;
-      color: #1a202c;
-      margin: 0 0 12px 0;
-      font-weight: 700;
-    }
-
-    .quiz-card p {
-      color: #718096;
-      font-size: 15px;
-      line-height: 1.6;
-      margin: 0 0 24px 0;
-    }
-
-    .quiz-card-stats {
-      display: flex;
-      gap: 24px;
-      margin: 24px 0;
-      padding: 20px 0;
-      border-top: 1px solid #e2e8f0;
-      border-bottom: 1px solid #e2e8f0;
-      font-size: 14px;
-    }
-
-    .stat {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .stat-label {
-      color: #718096;
-      font-size: 12px;
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    .stat-value {
-      color: #1a202c;
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    .start-button {
-      display: inline-block;
-      width: 100%;
-      padding: 14px 24px;
-      background: var(--color);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 16px;
-      text-align: center;
-      transition: all 0.2s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .start-button:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-    }
-
-    .info-section {
-      background: white;
-      border-radius: 16px;
-      padding: 40px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      border-left: 6px solid #8b5cf6;
-    }
-
-    .info-section h3 {
-      font-size: 24px;
-      color: #1a202c;
-      margin: 0 0 24px 0;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .info-section h3::before {
-      content: '📊';
-      font-size: 28px;
-    }
-
-    .lab-values-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .lab-value-item {
-      background: #f8fafc;
-      padding: 16px;
-      border-radius: 8px;
-      border: 1px solid #e2e8f0;
-      font-size: 14px;
-      font-weight: 500;
-      color: #2d3748;
-      transition: all 0.2s;
-    }
-
-    .lab-value-item:hover {
-      background: #edf2f7;
-      border-color: #cbd5e0;
-    }
-
-    .tips-section {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 16px;
-      padding: 40px;
-      color: white;
-      margin-top: 40px;
-    }
-
-    .tips-section h3 {
-      font-size: 24px;
-      margin: 0 0 24px 0;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .tips-section h3::before {
-      content: '💡';
-      font-size: 28px;
-    }
-
-    .tips-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .tip {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 16px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .tip strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 15px;
-    }
-
-    @media (max-width: 768px) {
-      .header h1 {
-        font-size: 36px;
-      }
-
-      .quiz-options {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .quiz-card {
-        padding: 24px;
-      }
-
-      .quiz-card h2 {
-        font-size: 24px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <a href="/" class="back-link">← Nurse Success Study Hub</a>
-
-    <div class="header">
-      <h1>🧪 Laboratory Values</h1>
-      <p class="subtitle">Master critical laboratory values for NCLEX and HESI exams with two different study modes</p>
-    </div>
-
-    <!-- Quiz Options -->
-    <div class="quiz-options">
-      <!-- Multiple Choice -->
-      <div class="quiz-card multiple-choice">
-        <div class="quiz-card-icon">📋</div>
-        <span class="quiz-card-badge">Standard</span>
-        <h2>Multiple Choice</h2>
-        <p>Test your knowledge with 100 NCLEX-style multiple choice questions. Each question includes detailed rationales to reinforce your understanding of normal values, abnormal findings, and nursing interventions.</p>
+def get_quiz_info(category, module):
+    """Get quiz information including type (standard or fill-in-the-blank)"""
+    module_path = MODULES_DIR / category / f'{module}.json'
+    
+    if not module_path.exists():
+        return None
+    
+    try:
+        with open(module_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
         
-        <div class="quiz-card-stats">
-          <div class="stat">
-            <div class="stat-label">Questions</div>
-            <div class="stat-value">100</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Type</div>
-            <div class="stat-value">MCQ</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Duration</div>
-            <div class="stat-value">~30 min</div>
-          </div>
-        </div>
-
-        <a href="/quiz/Lab_Values/NCLEX_Lab_Values" class="start-button">Start Quiz →</a>
-      </div>
-
-      <!-- Fill in the Blank -->
-      <div class="quiz-card fill-blank">
-        <div class="quiz-card-icon">✏️</div>
-        <span class="quiz-card-badge">Hard Mode</span>
-        <h2>Fill In The Blank</h2>
-        <p>Challenge yourself by typing exact lab values from memory. This harder format tests true recall of normal ranges, critical values, and clinical correlations without multiple choice hints.</p>
+        is_fill_blank = 'Fill_In_The_Blank' in module
         
-        <div class="quiz-card-stats">
-          <div class="stat">
-            <div class="stat-label">Questions</div>
-            <div class="stat-value">100</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Type</div>
-            <div class="stat-value">Fill-in</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Duration</div>
-            <div class="stat-value">~40 min</div>
-          </div>
-        </div>
+        return {
+            'name': module,
+            'type': 'fill-in-the-blank' if is_fill_blank else 'multiple-choice',
+            'count': len(data.get('questions', [])),
+            'description': data.get('description', '')
+        }
+    except Exception as e:
+        print(f"Error reading {module_path}: {e}")
+        return None
 
-        <a href="/quiz-fill-blank/Lab_Values/NCLEX_Lab_Values" class="start-button">Start Quiz →</a>
-      </div>
-    </div>
 
-    <!-- Lab Values Covered -->
-    <div class="info-section">
-      <h3>Lab Values Covered</h3>
-      <p style="color: #718096; margin-bottom: 24px;">Both quizzes comprehensively cover the following laboratory values essential for NCLEX and HESI success:</p>
-      <div class="lab-values-grid">
-        <div class="lab-value-item">Sodium (Na⁺)</div>
-        <div class="lab-value-item">Potassium (K⁺)</div>
-        <div class="lab-value-item">Calcium (Ca²⁺)</div>
-        <div class="lab-value-item">Magnesium (Mg²⁺)</div>
-        <div class="lab-value-item">Chloride (Cl⁻)</div>
-        <div class="lab-value-item">BUN</div>
-        <div class="lab-value-item">Creatinine</div>
-        <div class="lab-value-item">AST / ALT</div>
-        <div class="lab-value-item">Bilirubin</div>
-        <div class="lab-value-item">WBC Count</div>
-        <div class="lab-value-item">Hemoglobin / Hematocrit</div>
-        <div class="lab-value-item">Platelets</div>
-        <div class="lab-value-item">Glucose</div>
-        <div class="lab-value-item">pH (Blood Gas)</div>
-        <div class="lab-value-item">PCO₂ / PO₂</div>
-        <div class="lab-value-item">HCO₃⁻</div>
-      </div>
-    </div>
+def get_category_quizzes(category):
+    """Get all quizzes for a category, grouped by type"""
+    modules = get_modules_in_category(category)
+    quizzes = {
+        'multiple-choice': [],
+        'fill-in-the-blank': []
+    }
+    
+    for module in modules:
+        info = get_quiz_info(category, module)
+        if info:
+            quizzes[info['type']].append(info)
+    
+    return quizzes
 
-    <!-- Study Tips -->
-    <div class="tips-section">
-      <h3>Study Tips for Success</h3>
-      <div class="tips-list">
-        <div class="tip">
-          <strong>🎯 Start with Multiple Choice</strong>
-          Begin with multiple choice questions to learn normal values and critical ranges with the support of answer options.
-        </div>
-        <div class="tip">
-          <strong>📝 Progress to Fill-in-the-Blank</strong>
-          After mastering multiple choice, challenge yourself with fill-in-the-blank to test true recall without hints.
-        </div>
-        <div class="tip">
-          <strong>🔄 Use Mastery System</strong>
-          Incorrect answers repeat until you get them right, ensuring you truly master each value.
-        </div>
-        <div class="tip">
-          <strong>⏱️ Time Your Practice</strong>
-          Practice under timed conditions to simulate the real NCLEX/HESI exam environment.
-        </div>
-        <div class="tip">
-          <strong>📊 Focus on Abnormal Values</strong>
-          Pay special attention to how lab abnormalities relate to clinical symptoms and nursing interventions.
-        </div>
-        <div class="tip">
-          <strong>✅ Review Rationales</strong>
-          Always read the detailed rationales to understand WHY these values matter in clinical practice.
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+
+# ==================== ROUTES ====================
+
+@app.route('/')
+def home():
+    """Home page with all categories"""
+    try:
+        categories = get_categories()
+        return render_template('home.html', categories=categories)
+    except Exception as e:
+        print(f"Error in home route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/category/<category>')
+def category(category):
+    """Category landing page - shows available quizzes"""
+    try:
+        categories = get_categories()
+        
+        if category not in categories:
+            return redirect(url_for('home'))
+        
+        quizzes = get_category_quizzes(category)
+        
+        # Check if this is Lab Values with multiple quiz types
+        has_mc = len(quizzes.get('multiple-choice', [])) > 0
+        has_fb = len(quizzes.get('fill-in-the-blank', [])) > 0
+        
+        # Use special template for Lab Values
+        if category == 'Lab_Values' and has_mc and has_fb:
+            return render_template('lab-values.html', quizzes=quizzes)
+        
+        # Use generic category template for others
+        return render_template('category.html', category=category, quizzes=quizzes)
+    except Exception as e:
+        print(f"Error in category route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/quiz/<category>/<module>')
+def quiz(category, module):
+    """Quiz page for multiple choice"""
+    try:
+        categories = get_categories()
+        
+        if category not in categories:
+            return redirect(url_for('home'))
+        
+        # Don't serve fill-in-the-blank through this route
+        if 'Fill_In_The_Blank' in module:
+            return redirect(url_for('quiz_fill_blank', category=category, module=module))
+        
+        module_path = MODULES_DIR / category / f'{module}.json'
+        
+        if not module_path.exists():
+            return redirect(url_for('category', category=category))
+        
+        with open(module_path, 'r', encoding='utf-8') as f:
+            quiz_data = json.load(f)
+        
+        return render_template('quiz.html',
+                             quiz_data=quiz_data,
+                             module_name=module,
+                             category=category)
+    except Exception as e:
+        print(f"Error in quiz route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/quiz-fill-blank/<category>/<module>')
+def quiz_fill_blank(category, module):
+    """Quiz page for fill-in-the-blank"""
+    try:
+        categories = get_categories()
+        
+        if category not in categories:
+            return redirect(url_for('home'))
+        
+        # Add Fill_In_The_Blank suffix if not present
+        if 'Fill_In_The_Blank' not in module:
+            module = f'{module}_Fill_In_The_Blank'
+        
+        module_path = MODULES_DIR / category / f'{module}.json'
+        
+        if not module_path.exists():
+            return redirect(url_for('category', category=category))
+        
+        with open(module_path, 'r', encoding='utf-8') as f:
+            quiz_data = json.load(f)
+        
+        return render_template('quiz-fill-blank.html',
+                             quiz_data=quiz_data,
+                             module_name=module,
+                             category=category)
+    except Exception as e:
+        print(f"Error in quiz_fill_blank route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/categories')
+def api_categories():
+    """API endpoint to get all categories"""
+    try:
+        categories = get_categories()
+        return jsonify({'categories': categories})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/category/<category>/quizzes')
+def api_category_quizzes(category):
+    """API endpoint to get quizzes for a category"""
+    try:
+        categories = get_categories()
+        
+        if category not in categories:
+            return jsonify({'error': 'Category not found'}), 404
+        
+        quizzes = get_category_quizzes(category)
+        return jsonify(quizzes)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/modules')
+def modules():
+    """Get all available modules (backward compatibility)"""
+    try:
+        all_modules = []
+        for category in get_categories():
+            modules_list = get_modules_in_category(category)
+            # Filter out Fill_In_The_Blank from regular quiz selector
+            regular_modules = [m for m in modules_list if 'Fill_In_The_Blank' not in m]
+            all_modules.extend(regular_modules)
+        
+        return jsonify({'modules': sorted(all_modules)})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
