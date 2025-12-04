@@ -221,6 +221,7 @@ function renderQuestion(q) {
     input.id = `answer-${idx}`;
     input.placeholder = 'Type your answer';
     input.autocomplete = 'off';
+    if (idx === 0) input.autofocus = true;
 
     input.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
