@@ -54,7 +54,7 @@
   color: var(--ink-soft);
 }
 
-/* Categories Grid - Shrunk by 35% total (10% additional shrink) */
+/* Categories Grid - 3 on top, 2 centered on bottom */
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -62,18 +62,6 @@
   margin: 25px auto 40px;
   max-width: 810px;
   padding: 0 20px;
-}
-
-/* Bottom row cards - centered */
-.categories-grid .category-card:nth-child(4),
-.categories-grid .category-card:nth-child(5) {
-  /* These will naturally flow to the second row */
-}
-
-/* Center the bottom row with 2 cards */
-.categories-grid::after {
-  content: '';
-  grid-column: span 1;
 }
 
 .category-card {
@@ -110,6 +98,15 @@
 
 .category-card:hover::before {
   height: 6px;
+}
+
+/* Center the bottom row cards (4th and 5th items) */
+.categories-grid .category-card:nth-child(4) {
+  grid-column: 2;
+}
+
+.categories-grid .category-card:nth-child(5) {
+  grid-column: 3;
 }
 
 /* Image Cards */
@@ -183,9 +180,9 @@
     gap: 14px;
   }
   
-  /* Reset the centering pseudo-element */
-  .categories-grid::after {
-    display: none;
+  .categories-grid .category-card:nth-child(4),
+  .categories-grid .category-card:nth-child(5) {
+    grid-column: auto;
   }
 }
 
@@ -202,6 +199,11 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
+  
+  .categories-grid .category-card:nth-child(4),
+  .categories-grid .category-card:nth-child(5) {
+    grid-column: auto;
+  }
 }
 
 @media (max-width: 480px) {
@@ -212,5 +214,10 @@
 
   .hub-header h1 {
     font-size: 28px;
+  }
+  
+  .categories-grid .category-card:nth-child(4),
+  .categories-grid .category-card:nth-child(5) {
+    grid-column: auto;
   }
 }
