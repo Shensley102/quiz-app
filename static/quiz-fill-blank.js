@@ -1,896 +1,665 @@
 /* -----------------------------------------------------------
-   Nurse Success Study Hub - Fill-in-the-Blank Quiz
-   - Text input answer format
-   - Case-insensitive exact matching
-   - Support for single and double blank answers
-   - Individual blank feedback (correct/incorrect per field)
-   - Progress tracking and mastery system
+   Fill-in-the-Blank Quiz - Lab Values
+   - Text input validation
+   - Exact answer matching with flexible spacing
+   - Case-insensitive comparison
+   - Two-part answer support (ranges)
+   - Color-coded input feedback
+   - Progress tracking
+   - LocalStorage persistence
 ----------------------------------------------------------- */
 
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Fill-in-blank quiz JS loaded');
+const $ = (id) => document.getElementById(id);
 
-  const $ = (id) => document.getElementById(id);
+// DOM elements
+const startBtn = $('startBtn');
+const setupCard = $('setup');
+const quizCard = $('quiz');
+const summaryCard = $('summary');
+const lengthBtns = $('lengthBtns');
 
-  // Top info
-  const runCounter       = $('runCounter');
-  const remainingCounter = $('remainingCounter');
-  const countersBox      = $('countersBox');
+const questionText = $('questionText');
+const answerInputs = $('answerInputs');
+const submitBtn = $('submitBtn');
+const feedback = $('feedback');
+const answerLine = $('answerLine');
+const rationale = $('rationale');
 
-  // Progress bar
-  const progressBar   = $('progressBar');
-  const progressFill  = $('progressFill');
-  const progressLabel = $('progressLabel');
+const runCounter = $('runCounter');
+const remainingCounter = $('remainingCounter');
+const progressFill = $('progressFill');
+const progressLabel = $('progressLabel');
 
-  // Page title handling
-  const pageTitle    = $('pageTitle');
-  const defaultTitle = pageTitle?.textContent || 'Quiz - Nurse Success Study Hub';
-  const setHeaderTitle = (t) => { if (pageTitle) pageTitle.textContent = t; };
+const restartBtn = $('restartBtn');
+const resetAllBtn = $('resetAll');
+const retryMissedBtn = $('retryMissedBtn');
+const firstTrySummary = $('firstTrySummary');
+const reviewList = $('reviewList');
 
-  // Launcher
-  const launcher   = $('launcher');
-  const lengthBtns = $('lengthBtns');
-  const startBtn   = $('startBtn');
+/* ---------- State ---------- */
+let allQuestions = [];
+let run = {
+  order: [],
+  masterPool: [],
+  i: 0,
+  answered: new Map(),
+  uniqueSeen: new Set(),
+  wrongSinceLast: [],
+  totalQuestionsAnswered: 0,
+  isFullBank: false,
+  isRetry: false,
+};
 
-  // Quiz UI
-  const quiz         = $('quiz');
-  const qText        = $('questionText');
-  const inputArea    = $('inputArea');
-  const submitBtn    = $('submitBtn');
-  const feedback     = $('feedback');
-  const answerLine   = $('answerLine');
-  const rationaleBox = $('rationale');
+let lastQuizMissedQuestions = [];
 
-  // Summary
-  const summary          = $('summary');
-  const firstTrySummary  = $('firstTrySummary');
-  const reviewList       = $('reviewList');
-  const restartBtn2      = $('restartBtnSummary');
-  const resetAll         = $('resetAll');
-  const retryMissedBtn   = $('retryMissedBtn');
+/* ---------- Persistence ---------- */
+const STORAGE_KEY = 'fillBlankRunState_v1';
 
-  console.log('DOM elements found:', {
-    launcher: !!launcher,
-    lengthBtns: !!lengthBtns,
-    startBtn: !!startBtn,
-    quiz: !!quiz
+function serializeRun() {
+  if (!run || !run.order?.length) return null;
+  return JSON.stringify({
+    order: run.order.map(q => ({ id: q.id, question: q.question, answer: q.answer, display_answer: q.display_answer, rationale: q.rationale })),
+    masterPool: run.masterPool.map(q => q.id),
+    i: run.i,
+    answered: Array.from(run.answered.entries()),
+    uniqueSeen: Array.from(run.uniqueSeen),
+    wrongSinceLast: run.wrongSinceLast.map(q => q.id),
+    totalQuestionsAnswered: run.totalQuestionsAnswered,
+    isFullBank: run.isFullBank,
+    isRetry: run.isRetry,
   });
+}
 
-  /* ---------- Utilities ---------- */
-  function escapeHTML(s=''){
-    return String(s)
-      .replaceAll('&','&amp;')
-      .replaceAll('<','&lt;')
-      .replaceAll('>','&gt;')
-      .replaceAll('"','&quot;')
-      .replaceAll("'",'&#39;');
-  }
+function saveRunState() {
+  try {
+    const s = serializeRun();
+    if (s) localStorage.setItem(STORAGE_KEY, s);
+  } catch {}
+}
 
-  const randomInt = (n) => Math.floor(Math.random() * n);
+function loadRunState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
 
-  /* ---------- Get module from URL path ---------- */
-  function getModuleFromPath() {
-    const path = window.location.pathname;
-    // Match /quiz/MODULE_NAME pattern
-    const match = path.match(/\/quiz\/([^\/]+)$/);
-    if (match) {
-      return decodeURIComponent(match[1]);
-    }
+    const qById = new Map();
+    const restoredOrder = (data.order || []).map(q => {
+      const qq = { id: q.id, question: q.question, answer: q.answer, display_answer: q.display_answer, rationale: q.rationale };
+      qById.set(qq.id, qq);
+      return qq;
+    });
+    const idToQ = (id) => qById.get(id) || null;
+
+    const restored = {
+      order: restoredOrder,
+      masterPool: (data.masterPool || []).map(idToQ).filter(Boolean),
+      i: Math.max(0, parseInt(data.i || 0, 10)),
+      answered: new Map(Array.isArray(data.answered) ? data.answered : []),
+      uniqueSeen: new Set(Array.isArray(data.uniqueSeen) ? data.uniqueSeen : []),
+      wrongSinceLast: (data.wrongSinceLast || []).map(idToQ).filter(Boolean),
+      totalQuestionsAnswered: Math.max(0, parseInt(data.totalQuestionsAnswered || 0, 10)),
+      isFullBank: Boolean(data.isFullBank),
+      isRetry: Boolean(data.isRetry),
+    };
+    return restored;
+  } catch {
     return null;
   }
+}
 
-  function shuffleInPlace(arr){
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = randomInt(i + 1); 
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
+function clearSavedState() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {}
+}
+
+/* ---------- Utilities ---------- */
+const randomInt = (n) => Math.floor(Math.random() * n);
+
+function shuffleInPlace(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = randomInt(i + 1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
+  return arr;
+}
 
-  function sampleQuestions(all, req){
-    const a = all.slice();
-    if (req === 'full' || req >= a.length) return shuffleInPlace(a);
-    const k = Math.max(0, req|0);
-    for (let i = 0; i < k; i++) { 
-      const j = i + randomInt(a.length - i); 
-      [a[i], a[j]] = [a[j], a[i]]; 
-    }
-    return a.slice(0, k);
+function sampleQuestions(all, req) {
+  const a = all.slice();
+  if (req === 'full' || req >= a.length) return shuffleInPlace(a);
+  const k = Math.max(0, req | 0);
+  for (let i = 0; i < k; i++) {
+    const j = i + randomInt(a.length - i);
+    [a[i], a[j]] = [a[j], a[i]];
   }
+  return a.slice(0, k);
+}
 
-  function scrollToBottomSmooth() {
+function escapeHTML(s = '') {
+  return String(s)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function scrollToBottomSmooth() {
+  requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
-      });
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
     });
+  });
+}
+
+function scrollToQuizTop() {
+  if (!quizCard) return;
+  quizCard.scrollIntoView({ behavior: 'auto', block: 'start' });
+}
+
+/* ---------- Answer validation ---------- */
+function normalizeAnswer(text) {
+  return String(text || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .replace(/[^\w\s.-]/g, '');
+}
+
+function isAnswerCorrect(userAnswers, correctAnswers) {
+  if (!Array.isArray(userAnswers) || !Array.isArray(correctAnswers)) return false;
+
+  if (userAnswers.length !== correctAnswers.length) return false;
+
+  const normalized = userAnswers.map(normalizeAnswer).sort();
+  const expectedNormalized = correctAnswers.map(normalizeAnswer).sort();
+
+  return normalized.every((ans, idx) => {
+    const expected = expectedNormalized[idx];
+    return ans === expected || ans.includes(expected) || expected.includes(ans);
+  });
+}
+
+/* ---------- Render question ---------- */
+function renderQuestion(q) {
+  if (!questionText || !answerInputs) return;
+
+  questionText.textContent = q.question;
+  answerInputs.innerHTML = '';
+
+  if (feedback) {
+    feedback.textContent = '';
+    feedback.className = 'feedback hidden';
+  }
+  if (answerLine) {
+    answerLine.innerHTML = '';
+    answerLine.classList.add('hidden');
+  }
+  if (rationale) {
+    rationale.textContent = '';
+    rationale.classList.add('hidden');
   }
 
-  function scrollToQuizTop() {
-    if (!quiz) return;
-    quiz.scrollIntoView({ behavior: 'auto', block: 'start' });
-  }
+  const answers = Array.isArray(q.answer) ? q.answer : [q.answer];
+  const inputCount = answers.length;
 
-  /* ---------- Answer Validation ---------- */
-  function normalizeAnswer(str) {
-    return String(str || '')
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, ' ')
-      .replace(/−/g, '-')
-      .replace(/–/g, '-')
-      .replace(/—/g, '-');
-  }
+  const inputsContainer = document.createElement('div');
+  inputsContainer.className = 'fill-blank-inputs';
 
-  function checkAnswer(userInput, correctAnswer) {
-    const userNorm = normalizeAnswer(userInput);
-    const correctNorm = normalizeAnswer(correctAnswer);
-    
-    // Direct match
-    if (userNorm === correctNorm) return true;
-    
-    // Handle numeric comparisons
-    const userNum = parseFloat(userNorm);
-    const correctNum = parseFloat(correctNorm);
-    if (!isNaN(userNum) && !isNaN(correctNum) && userNum === correctNum) {
-      return true;
-    }
-    
-    // Handle alternative formats
-    const alternatives = {
-      'negative': ['neg', 'none', '0', 'absent'],
-      'positive': ['pos', '+'],
-      'vitamin k': ['vit k', 'vitamin-k'],
-      'calcium gluconate': ['calcium', 'ca gluconate'],
-      'protamine sulfate': ['protamine'],
-      'hypocalcemia': ['low calcium', 'low ca'],
-      'hyperkalemia': ['high potassium', 'high k'],
-      'hypokalemia': ['low potassium', 'low k'],
-      'metabolic': ['met'],
-      'respiratory': ['resp'],
-      'primary': ['1st', 'first'],
-      'low': ['decreased', 'dec', '↓'],
-      'high': ['elevated', 'increased', 'inc', '↑'],
-      'hco3': ['bicarbonate', 'bicarb', 'hco3-'],
-    };
-    
-    for (const [key, alts] of Object.entries(alternatives)) {
-      if (correctNorm === key || correctNorm.includes(key)) {
-        if (alts.some(alt => userNorm === alt || userNorm.includes(alt))) {
-          return true;
+  answers.forEach((_, idx) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'input-wrapper';
+
+    const label = document.createElement('label');
+    label.textContent = inputCount > 1 ? `Blank ${idx + 1}:` : 'Answer:';
+    label.className = 'input-label';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'fill-blank-input';
+    input.id = `answer-${idx}`;
+    input.placeholder = 'Type your answer';
+    input.autocomplete = 'off';
+
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (submitBtn && !submitBtn.disabled) {
+          submitBtn.click();
         }
       }
-      if (userNorm === key) {
-        if (alts.some(alt => correctNorm === alt || correctNorm.includes(alt))) {
-          return true;
-        }
-      }
-    }
-    
-    return false;
-  }
-
-  /* ---------- State ---------- */
-  let allQuestions = [];
-  let run = {
-    bank: '',
-    displayName: '',
-    order: [],
-    masterPool: [],
-    i: 0,
-    answered: new Map(),
-    uniqueSeen: new Set(),
-    thresholdWrong: 0,
-    wrongSinceLast: [],
-    totalQuestionsAnswered: 0,
-    isFullBank: false,
-    isRetry: false,
-  };
-
-  let lastQuizMissedQuestions = [];
-  
-  // Flag to prevent Enter from immediately advancing after submit
-  let justSubmitted = false;
-  
-  function markJustSubmitted() {
-    justSubmitted = true;
-    // Reset the flag after a short delay to allow next Enter press
-    setTimeout(() => {
-      justSubmitted = false;
-    }, 100);
-  }
-
-  /* ---------- Normalize Questions ---------- */
-  function normalizeQuestions(data){
-    const arr = Array.isArray(data) ? data : (data?.questions || []);
-    return arr.map((q, idx) => {
-      let answers = [];
-      if (Array.isArray(q.answer)) {
-        answers = q.answer.map(a => String(a || ''));
-      } else if (q.answer) {
-        answers = [String(q.answer)];
-      }
-      
-      return {
-        id: String(q.id || idx),
-        stem: String(q.question || q.stem || ''),
-        answer: answers,
-        display_answer: String(q.display_answer || answers.join(' - ')),
-        rationale: String(q.rationale || ''),
-        blankCount: answers.length
-      };
     });
+
+    wrapper.appendChild(label);
+    wrapper.appendChild(input);
+    inputsContainer.appendChild(wrapper);
+  });
+
+  answerInputs.appendChild(inputsContainer);
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submit Answer';
+    submitBtn.dataset.mode = 'submit';
+  }
+}
+
+function getUserAnswers() {
+  const inputs = answerInputs?.querySelectorAll('.fill-blank-input') || [];
+  return Array.from(inputs).map(inp => inp.value.trim()).filter(v => v.length > 0);
+}
+
+function getAllAnswerInputs() {
+  return answerInputs?.querySelectorAll('.fill-blank-input') || [];
+}
+
+function onInputChanged() {
+  if (!submitBtn) return;
+  const inputs = getAllAnswerInputs();
+  const allFilled = Array.from(inputs).every(inp => inp.value.trim().length > 0);
+  submitBtn.disabled = !allFilled;
+}
+
+/* ---------- Get current question ---------- */
+function currentQuestion() {
+  return run.order?.[run.i] || null;
+}
+
+/* ---------- Get not mastered ---------- */
+function getNotMastered() {
+  return run.masterPool.filter(q => !run.answered.get(q.id)?.correct);
+}
+
+/* ---------- Next index ---------- */
+function nextIndex() {
+  const nextIdx = (run.i ?? 0) + 1;
+  if (nextIdx < run.order.length) {
+    run.i = nextIdx;
+    return { fromBuffer: false, q: run.order[run.i] };
   }
 
-  /* ---------- Get color class for wrong count ---------- */
-  function getColorClass(wrongCount, maxWrong) {
-    if (wrongCount === 0) return '';
-    if (wrongCount <= maxWrong * 0.33) return 'yellow';
-    if (wrongCount <= maxWrong * 0.66) return 'orange';
-    return 'red';
-  }
+  const allCorrect = run.masterPool.every(q => run.answered.get(q.id)?.correct);
 
-  /* ---------- Render Question ---------- */
-  function renderQuestion(q){
-    if (!qText || !inputArea) return;
-    
-    qText.textContent = q.stem;
-    inputArea.innerHTML = '';
-    
-    if (feedback) {
-      feedback.textContent = '';
-      feedback.className = 'feedback hidden';
-    }
-    if (answerLine) {
-      answerLine.innerHTML = '';
-      answerLine.classList.add('hidden');
-    }
-    if (rationaleBox) {
-      rationaleBox.textContent = '';
-      rationaleBox.classList.add('hidden');
-    }
-
-    const inputContainer = document.createElement('div');
-    inputContainer.className = 'input-container';
-    
-    // Determine answer type for each blank
-    const answerTypes = q.answer.map(ans => {
-      const normalized = String(ans).toLowerCase().trim();
-      // Check if it's a number (including decimals)
-      if (/^[\d.]+$/.test(normalized)) {
-        return 'numeric';
-      }
-      // Check if it's a direction word (high/low/elevated/decreased)
-      if (['high', 'low', 'elevated', 'decreased', 'increased'].includes(normalized)) {
-        return 'direction';
-      }
-      // Otherwise it's a word answer
-      return 'word';
-    });
-    
-    for (let i = 0; i < q.blankCount; i++) {
-      const inputWrapper = document.createElement('div');
-      inputWrapper.className = 'input-wrapper';
-      
-      // Create label with answer type hint
-      const label = document.createElement('label');
-      const ansType = answerTypes[i];
-      let labelText = '';
-      let placeholder = '';
-      
-      if (q.blankCount > 1) {
-        const position = i === 0 ? 'First' : 'Second';
-        if (ansType === 'numeric') {
-          labelText = `${position} value (number):`;
-          placeholder = 'Enter number (e.g., 135)';
-        } else if (ansType === 'direction') {
-          labelText = `${position} value (high/low):`;
-          placeholder = 'high or low';
-        } else {
-          labelText = `${position} value (word):`;
-          placeholder = 'Enter word answer';
-        }
-      } else {
-        if (ansType === 'numeric') {
-          labelText = 'Value (number):';
-          placeholder = 'Enter number (e.g., 135)';
-        } else if (ansType === 'direction') {
-          labelText = 'Value (high/low):';
-          placeholder = 'high or low';
-        } else {
-          labelText = 'Answer (word):';
-          placeholder = 'Enter word answer';
-        }
-      }
-      
-      label.textContent = labelText;
-      label.setAttribute('for', `answer-${i}`);
-      inputWrapper.appendChild(label);
-      
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.id = `answer-${i}`;
-      input.className = 'answer-input';
-      input.placeholder = placeholder;
-      input.autocomplete = 'off';
-      input.spellcheck = false;
-      
-      // Add visual styling based on answer type
-      if (ansType === 'numeric') {
-        input.classList.add('numeric-input');
-        input.inputMode = 'decimal';
-      } else if (ansType === 'direction') {
-        input.classList.add('direction-input');
-      } else {
-        input.classList.add('word-input');
-      }
-      
-      if (i === 0) {
-        setTimeout(() => input.focus(), 100);
-      }
-      
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          // If there's a next input field that's not disabled, move to it
-          const nextInput = document.getElementById(`answer-${i + 1}`);
-          if (nextInput && !nextInput.disabled) {
-            nextInput.focus();
-          } else if (submitBtn && !submitBtn.disabled) {
-            // Mark that we're submitting via Enter to prevent double-action
-            if (submitBtn.dataset.mode === 'submit') {
-              markJustSubmitted();
-            }
-            // Click submit (this handles both submit and next)
-            submitBtn.click();
-          }
-        }
-      });
-      
-      input.addEventListener('input', onInputChanged);
-      
-      inputWrapper.appendChild(input);
-      
-      const status = document.createElement('span');
-      status.className = 'input-status';
-      status.id = `status-${i}`;
-      inputWrapper.appendChild(status);
-      
-      inputContainer.appendChild(inputWrapper);
-    }
-    
-    inputArea.appendChild(inputContainer);
-    
-    setActionState('submit');
-  }
-
-  function currentQuestion() {
-    return run.order?.[run.i] || null;
-  }
-
-  function getUserAnswers(){
-    const answers = [];
-    const q = currentQuestion();
-    if (!q) return answers;
-    
-    for (let i = 0; i < q.blankCount; i++) {
-      const input = document.getElementById(`answer-${i}`);
-      answers.push(input ? input.value : '');
-    }
-    return answers;
-  }
-
-  function onInputChanged(){
-    if (!submitBtn) return;
-    const answers = getUserAnswers();
-    const hasInput = answers.some(a => a.trim().length > 0);
-    submitBtn.disabled = !hasInput;
-  }
-
-  function setActionState(mode){
-    if (!submitBtn) return;
-    submitBtn.dataset.mode = mode;
-
-    if (mode === 'submit') {
-      submitBtn.textContent = 'Submit';
-      submitBtn.classList.remove('btn-blue');
-      submitBtn.classList.add('primary');
-      submitBtn.disabled = getUserAnswers().every(a => a.trim().length === 0);
-    } else {
-      submitBtn.textContent = 'Next';
-      submitBtn.classList.remove('primary');
-      submitBtn.classList.add('btn-blue');
-      submitBtn.disabled = false;
-    }
-  }
-
-  /* ---------- Counters / Progress Bar ---------- */
-  function updateCounters(){
-    const remaining = getNotMastered().length;
-    const total = run.masterPool.length;
-
-    if (runCounter) runCounter.textContent = `Question: ${run.totalQuestionsAnswered}`;
-    if (remainingCounter) remainingCounter.textContent = `Remaining to master: ${remaining}`;
-
-    const masteredCount = total - remaining;
-    const percentage = total ? Math.floor((masteredCount / total) * 100) : 0;
-
-    if (progressFill) progressFill.style.width = `${percentage}%`;
-    if (progressLabel) progressLabel.textContent = `${percentage}% mastered`;
-    if (progressBar) progressBar.setAttribute('aria-valuenow', percentage);
-
-    updateProgressBar();
-  }
-
-  function recordAnswer(q, userAnswers, isCorrect, blankResults){
-    const firstTime = !run.answered.has(q.id);
-    const entry = run.answered.get(q.id) || { firstTryCorrect: null, correct: false, userAnswers: [], blankResults: [] };
-    if (firstTime) entry.firstTryCorrect = !!isCorrect;
-    entry.correct = !!isCorrect;
-    entry.userAnswers = userAnswers.slice();
-    entry.blankResults = blankResults.slice();
-    run.answered.set(q.id, entry);
-  }
-
-  function getNotMastered(){
-    return run.masterPool.filter(q => !run.answered.get(q.id)?.correct);
-  }
-
-  function nextIndex(){
-    const nextIdx = (run.i ?? 0) + 1;
-    if (nextIdx < run.order.length) {
+  if (!allCorrect) {
+    const notMastered = getNotMastered();
+    if (notMastered.length > 0) {
+      run.wrongSinceLast = [];
+      run.order.push(...notMastered);
       run.i = nextIdx;
-      return { fromBuffer: false, q: run.order[run.i] };
+      return { fromBuffer: true, q: run.order[run.i] };
     }
-    
-    const allCorrect = run.masterPool.every(q => run.answered.get(q.id)?.correct);
-    
-    if (!allCorrect) {
-      const notMastered = getNotMastered();
-      if (notMastered.length > 0) {
-        run.wrongSinceLast = [];
-        run.order.push(...notMastered);
-        run.i = nextIdx;
-        return { fromBuffer: true, q: run.order[run.i] };
-      }
-    }
-    
-    return { fromBuffer: false, q: null };
   }
 
-  /* ---------- Start / End ---------- */
-  async function startQuiz(){
-    console.log('startQuiz called');
-    
-    if (!lengthBtns || !startBtn) {
-      console.error('Missing lengthBtns or startBtn');
-      return;
-    }
-    
-    const lenBtn = lengthBtns.querySelector('.seg-btn.active');
-    if (!lenBtn) {
-      alert('Pick Length Of Quiz Before Starting');
-      lengthBtns.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
+  return { fromBuffer: false, q: null };
+}
 
-    const moduleName = getModuleFromPath() || 'NCLEX_Lab_Values_Fill_In_The_Blank';
-    console.log('Module from path:', moduleName);
-    
-    const displayName = 'NCLEX Lab Values';
-    const qty = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
-    const isFullBank = (qty === 'full');
+/* ---------- Update counters ---------- */
+function updateCounters() {
+  const remaining = getNotMastered().length;
+  const total = run.masterPool.length;
 
-    setHeaderTitle(displayName);
-    document.title = `${displayName} - Nurse Success Study Hub`;
-    
-    const quizTitle = $('quizTitle');
-    if (quizTitle) {
-      quizTitle.textContent = displayName;
-    }
+  if (runCounter) runCounter.textContent = `Question: ${run.totalQuestionsAnswered}`;
+  if (remainingCounter) remainingCounter.textContent = `Remaining to master: ${remaining}`;
 
-    startBtn.disabled = true;
+  const masteredCount = total - remaining;
+  const percentage = total ? Math.floor((masteredCount / total) * 100) : 0;
 
-    const jsonUrl = `/${moduleName}.json`;
-    console.log('Fetching:', jsonUrl);
-    
-    try {
+  if (progressFill) progressFill.style.width = `${percentage}%`;
+  if (progressLabel) progressLabel.textContent = `${percentage}% mastered`;
+
+  const r = Math.round(47 + (76 - 47) * (percentage / 100));
+  const g = Math.round(97 + (175 - 97) * (percentage / 100));
+  const b = Math.round(243 + (80 - 243) * (percentage / 100));
+  if (progressFill) progressFill.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+  saveRunState();
+}
+
+/* ---------- Record answer ---------- */
+function recordAnswer(q, userAnswers, isCorrect) {
+  const firstTime = !run.answered.has(q.id);
+  const entry = run.answered.get(q.id) || { firstTryCorrect: null, correct: false, userAnswers: [] };
+  if (firstTime) entry.firstTryCorrect = !!isCorrect;
+  entry.correct = !!isCorrect;
+  entry.userAnswers = userAnswers.slice();
+  run.answered.set(q.id, entry);
+}
+
+/* ---------- Start quiz ---------- */
+async function startQuiz() {
+  if (!lengthBtns || !startBtn) return;
+
+  const lenBtn = lengthBtns.querySelector('.seg-btn.active');
+  if (!lenBtn) {
+    alert('Pick Length Of Quiz Before Starting');
+    lengthBtns.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const qty = lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10);
+  const isFullBank = qty === 'full';
+
+  startBtn.disabled = true;
+
+  try {
+    let rawData;
+
+    if (window.storedPreloadedData && window.storedPreloadedData.moduleName === 'NCLEX_Lab_Values_Fill_In_The_Blank') {
+      rawData = window.storedPreloadedData.questions;
+    } else {
+      const moduleName = 'NCLEX_Lab_Values_Fill_In_The_Blank';
+      const jsonUrl = `/modules/Lab_Values/${moduleName}.json`;
+
       const res = await fetch(jsonUrl, { cache: 'no-store' });
-      console.log('Fetch response:', res.status, res.ok);
-      
       if (!res.ok) {
         alert(`Could not load quiz data (${res.status})`);
         startBtn.disabled = false;
         return;
       }
-      const raw = await res.json();
-      console.log('Loaded questions:', raw.length || raw?.questions?.length || 'unknown');
-      
-      allQuestions = normalizeQuestions(raw);
-
-      const sampled = sampleQuestions(allQuestions, qty);
-
-      run = {
-        bank: moduleName,
-        displayName,
-        order: [...sampled],
-        masterPool: [...sampled],
-        i: 0,
-        answered: new Map(),
-        uniqueSeen: new Set(),
-        thresholdWrong: 0,
-        wrongSinceLast: [],
-        totalQuestionsAnswered: 1,
-        isFullBank: isFullBank,
-        isRetry: false,
-      };
-
-      const total = run.masterPool.length;
-      const frac = (qty === 'full' || (typeof qty === 'number' && qty >= 100)) ? 0.05 : 0.15;
-      run.thresholdWrong = Math.max(1, Math.ceil(total * frac));
-
-      if (launcher) launcher.classList.add('hidden');
-      if (summary) summary.classList.add('hidden');
-      if (quiz) quiz.classList.remove('hidden');
-
-      if (countersBox) countersBox.classList.remove('hidden');
-      if (resetAll) resetAll.classList.remove('hidden');
-
-      const q0 = run.order[0];
-      run.uniqueSeen.add(q0.id);
-      renderQuestion(q0);
-      updateCounters();
-
-      startBtn.disabled = false;
-    } catch (err) {
-      console.error('Error starting quiz:', err);
-      alert('Error loading quiz. Please try again.');
-      if (startBtn) startBtn.disabled = false;
-    }
-  }
-
-  async function startRetryQuiz(missedQuestions) {
-    if (!missedQuestions || missedQuestions.length === 0) {
-      alert('No missed questions to retry');
-      return;
+      rawData = await res.json();
     }
 
-    const displayName = `NCLEX Lab Values - Retry Missed`;
-    setHeaderTitle(displayName);
-    document.title = `${displayName} - Nurse Success Study Hub`;
-    
-    const quizTitle = $('quizTitle');
-    if (quizTitle) {
-      quizTitle.textContent = displayName;
-    }
+    allQuestions = Array.isArray(rawData) ? rawData : (rawData.questions || []);
+
+    const sampled = sampleQuestions(allQuestions, qty);
 
     run = {
-      bank: run.bank,
-      displayName: displayName,
-      order: [...missedQuestions],
-      masterPool: [...missedQuestions],
+      order: [...sampled],
+      masterPool: [...sampled],
       i: 0,
       answered: new Map(),
       uniqueSeen: new Set(),
-      thresholdWrong: 0,
+      wrongSinceLast: [],
+      totalQuestionsAnswered: 1,
+      isFullBank: isFullBank,
+      isRetry: false,
+    };
+
+    if (setupCard) setupCard.classList.add('hidden');
+    if (summaryCard) summaryCard.classList.add('hidden');
+    if (quizCard) quizCard.classList.remove('hidden');
+
+    const q0 = run.order[0];
+    run.uniqueSeen.add(q0.id);
+    renderQuestion(q0);
+    updateCounters();
+
+    startBtn.disabled = false;
+  } catch (err) {
+    console.error('Error starting quiz:', err);
+    alert('Error loading quiz. Please try again.');
+    if (startBtn) startBtn.disabled = false;
+  }
+}
+
+/* ---------- Handle submit ---------- */
+function handleSubmit() {
+  if (!submitBtn) return;
+
+  if (submitBtn.dataset.mode === 'next') {
+    scrollToQuizTop();
+    const next = nextIndex();
+    const q = next.q;
+    if (!q) return endRun();
+    run.uniqueSeen.add(q.id);
+    run.totalQuestionsAnswered++;
+    renderQuestion(q);
+    updateCounters();
+    return;
+  }
+
+  const q = currentQuestion();
+  if (!q) return;
+
+  const userAnswers = getUserAnswers();
+  const correctAnswers = Array.isArray(q.answer) ? q.answer : [q.answer];
+  const isCorrect = isAnswerCorrect(userAnswers, correctAnswers);
+
+  recordAnswer(q, userAnswers, isCorrect);
+
+  if (!isCorrect) {
+    run.wrongSinceLast.push(q);
+  }
+
+  if (feedback) {
+    feedback.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
+    feedback.classList.remove('hidden');
+    feedback.classList.add(isCorrect ? 'ok' : 'bad');
+  }
+
+  if (answerLine) {
+    answerLine.innerHTML = `<strong>Correct Answer:</strong> ${escapeHTML(q.display_answer || String(q.answer))}`;
+    answerLine.classList.remove('hidden');
+  }
+
+  if (rationale) {
+    rationale.textContent = q.rationale || '';
+    rationale.classList.remove('hidden');
+  }
+
+  const inputs = getAllAnswerInputs();
+  inputs.forEach(inp => inp.disabled = true);
+
+  if (submitBtn) {
+    submitBtn.textContent = 'Next';
+    submitBtn.dataset.mode = 'next';
+    submitBtn.disabled = false;
+  }
+
+  scrollToBottomSmooth();
+  updateCounters();
+}
+
+/* ---------- End run ---------- */
+function endRun() {
+  if (quizCard) quizCard.classList.add('hidden');
+  if (summaryCard) summaryCard.classList.remove('hidden');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const uniq = [...run.answered.values()];
+  const ftCorrect = uniq.filter(x => x.firstTryCorrect).length;
+  const totalUnique = uniq.length;
+
+  lastQuizMissedQuestions = run.masterPool.filter(q => {
+    const ans = run.answered.get(q.id);
+    return ans && ans.firstTryCorrect === false;
+  });
+
+  if (retryMissedBtn) {
+    if (lastQuizMissedQuestions.length > 0 && !run.isRetry) {
+      retryMissedBtn.classList.remove('hidden');
+      const missedCount = document.getElementById('missedCount');
+      if (missedCount) {
+        missedCount.textContent = lastQuizMissedQuestions.length;
+      }
+    } else {
+      retryMissedBtn.classList.add('hidden');
+    }
+  }
+
+  if (firstTrySummary) {
+    if (totalUnique > 0) {
+      firstTrySummary.classList.remove('hidden');
+      const summaryHTML = `
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+          <div>
+            <strong>First-try mastery:</strong>
+            <span id="firstTryPct">0%</span>
+            (<span id="firstTryCount">0</span> / <span id="firstTryTotal">0</span>)
+          </div>
+          <div>
+            <strong>Total Questions Answered:</strong>
+            <span>${run.totalQuestionsAnswered}</span>
+          </div>
+        </div>
+      `;
+      firstTrySummary.innerHTML = summaryHTML;
+      const firstTryPct = document.getElementById('firstTryPct');
+      const firstTryCount = document.getElementById('firstTryCount');
+      const firstTryTotal = document.getElementById('firstTryTotal');
+      if (firstTryPct) firstTryPct.textContent = `${Math.round((ftCorrect / totalUnique) * 100)}%`;
+      if (firstTryCount) firstTryCount.textContent = ftCorrect;
+      if (firstTryTotal) firstTryTotal.textContent = totalUnique;
+    } else {
+      firstTrySummary.classList.add('hidden');
+    }
+  }
+
+  if (reviewList) {
+    reviewList.innerHTML = '';
+
+    const questionWrongCount = {};
+    run.order.forEach(q => {
+      questionWrongCount[q.id] = (questionWrongCount[q.id] || 0) + 1;
+    });
+
+    const maxWrong = Math.max(...Object.values(questionWrongCount), 1);
+
+    const sortedQuestions = [...run.order].sort((a, b) => {
+      const ansA = run.answered.get(a.id);
+      const ansB = run.answered.get(b.id);
+
+      if (ansA?.correct !== ansB?.correct) {
+        return ansA?.correct ? 1 : -1;
+      }
+
+      const countA = questionWrongCount[a.id] || 1;
+      const countB = questionWrongCount[b.id] || 1;
+      return countB - countA;
+    });
+
+    const displayedIds = new Set();
+
+    sortedQuestions.forEach(q => {
+      if (displayedIds.has(q.id)) return;
+      displayedIds.add(q.id);
+
+      const row = document.createElement('div');
+      const ans = run.answered.get(q.id);
+      row.className = 'rev-item ' + (ans?.correct ? 'ok' : 'bad');
+
+      const qEl = document.createElement('div');
+      qEl.className = 'rev-q';
+      qEl.textContent = q.question;
+
+      const wrongCountEl = document.createElement('div');
+      wrongCountEl.className = 'rev-wrong-count';
+      const wrongCount = Math.max(0, questionWrongCount[q.id] - 1);
+      wrongCountEl.textContent = `Times marked wrong: ${wrongCount}`;
+
+      const caEl = document.createElement('div');
+      caEl.className = 'rev-ans';
+      caEl.innerHTML = `<strong>Correct Answer:</strong> ${escapeHTML(q.display_answer || String(q.answer))}`;
+
+      const rEl = document.createElement('div');
+      rEl.className = 'rev-rationale';
+      rEl.innerHTML = `<strong>Rationale:</strong> ${escapeHTML(q.rationale || '')}`;
+
+      row.appendChild(qEl);
+      row.appendChild(wrongCountEl);
+      row.appendChild(caEl);
+      row.appendChild(rEl);
+      reviewList.appendChild(row);
+    });
+  }
+
+  clearSavedState();
+}
+
+/* ---------- Event listeners ---------- */
+if (lengthBtns) {
+  lengthBtns.addEventListener('click', (e) => {
+    const btn = e.target.closest('.seg-btn');
+    if (!btn) return;
+    lengthBtns.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+}
+
+if (startBtn) {
+  startBtn.addEventListener('click', startQuiz);
+}
+
+if (answerInputs) {
+  answerInputs.addEventListener('input', onInputChanged);
+}
+
+if (submitBtn) {
+  submitBtn.addEventListener('click', handleSubmit);
+}
+
+if (restartBtn) {
+  restartBtn.addEventListener('click', () => {
+    location.reload();
+  });
+}
+
+if (resetAllBtn) {
+  resetAllBtn.addEventListener('click', () => {
+    clearSavedState();
+    location.reload();
+  });
+}
+
+if (retryMissedBtn) {
+  retryMissedBtn.addEventListener('click', () => {
+    if (!lastQuizMissedQuestions.length) return;
+
+    const shuffled = shuffleInPlace([...lastQuizMissedQuestions]);
+
+    run = {
+      order: [...shuffled],
+      masterPool: [...shuffled],
+      i: 0,
+      answered: new Map(),
+      uniqueSeen: new Set(),
       wrongSinceLast: [],
       totalQuestionsAnswered: 1,
       isFullBank: false,
       isRetry: true,
     };
 
-    const total = run.masterPool.length;
-    run.thresholdWrong = Math.max(1, Math.ceil(total * 0.15));
-
-    if (launcher) launcher.classList.add('hidden');
-    if (summary) summary.classList.add('hidden');
-    if (quiz) quiz.classList.remove('hidden');
-
-    if (countersBox) countersBox.classList.remove('hidden');
-    if (resetAll) resetAll.classList.remove('hidden');
+    if (setupCard) setupCard.classList.add('hidden');
+    if (summaryCard) summaryCard.classList.add('hidden');
+    if (quizCard) quizCard.classList.remove('hidden');
 
     const q0 = run.order[0];
     run.uniqueSeen.add(q0.id);
     renderQuestion(q0);
     updateCounters();
-  }
-
-  function endRun(){
-    if (quiz) quiz.classList.add('hidden');
-    if (summary) summary.classList.remove('hidden');
-    if (countersBox) countersBox.classList.add('hidden');
-
-    setHeaderTitle(run.displayName || run.bank || defaultTitle);
-    document.title = run.displayName || run.bank || 'Quiz - Nurse Success Study Hub';
-
-    if (restartBtn2) restartBtn2.classList.remove('hidden');
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    const uniq = [...run.answered.values()];
-    const ftCorrect = uniq.filter(x => x.firstTryCorrect).length;
-    const totalUnique = uniq.length;
-
-    lastQuizMissedQuestions = run.masterPool.filter(q => {
-      const ans = run.answered.get(q.id);
-      return ans && ans.firstTryCorrect === false;
-    });
-
-    if (retryMissedBtn) {
-      if (lastQuizMissedQuestions.length > 0 && !run.isRetry) {
-        retryMissedBtn.classList.remove('hidden');
-        const missedCount = document.getElementById('missedCount');
-        if (missedCount) {
-          missedCount.textContent = lastQuizMissedQuestions.length;
-        }
-      } else {
-        retryMissedBtn.classList.add('hidden');
-      }
-    }
-
-    if (firstTrySummary) {
-      if (totalUnique > 0){
-        firstTrySummary.classList.remove('hidden');
-        const summaryHTML = `
-          <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
-            <div>
-              <strong>First-try mastery:</strong>
-              <span id="firstTryPct">0%</span>
-              (<span id="firstTryCount">0</span> / <span id="firstTryTotal">0</span>)
-            </div>
-            <div>
-              <strong>Total Questions Answered:</strong>
-              <span>${run.totalQuestionsAnswered}</span>
-            </div>
-          </div>
-        `;
-        firstTrySummary.innerHTML = summaryHTML;
-        const firstTryPct = document.getElementById('firstTryPct');
-        const firstTryCount = document.getElementById('firstTryCount');
-        const firstTryTotal = document.getElementById('firstTryTotal');
-        if (firstTryPct) firstTryPct.textContent = `${Math.round((ftCorrect / totalUnique) * 100)}%`;
-        if (firstTryCount) firstTryCount.textContent = ftCorrect;
-        if (firstTryTotal) firstTryTotal.textContent = totalUnique;
-      } else {
-        firstTrySummary.classList.add('hidden');
-      }
-    }
-
-    if (reviewList) {
-      reviewList.innerHTML = '';
-      
-      const questionWrongCount = {};
-      run.order.forEach(q => {
-        questionWrongCount[q.id] = (questionWrongCount[q.id] || 0) + 1;
-      });
-      
-      const maxWrong = Math.max(...Object.values(questionWrongCount));
-      
-      const sortedQuestions = [...run.order].sort((a, b) => {
-        const ansA = run.answered.get(a.id);
-        const ansB = run.answered.get(b.id);
-        
-        if (ansA?.correct !== ansB?.correct) {
-          return ansA?.correct ? 1 : -1;
-        }
-        
-        const countA = questionWrongCount[a.id] || 1;
-        const countB = questionWrongCount[b.id] || 1;
-        return countB - countA;
-      });
-      
-      const displayedIds = new Set();
-      
-      sortedQuestions.forEach(q => {
-        if (displayedIds.has(q.id)) return;
-        displayedIds.add(q.id);
-        
-        const row = document.createElement('div');
-        const ans = run.answered.get(q.id);
-        row.className = 'rev-item ' + (ans?.correct ? 'ok' : 'bad');
-
-        const qEl = document.createElement('div'); 
-        qEl.className = 'rev-q'; 
-        qEl.textContent = q.stem;
-        
-        const wrongCountEl = document.createElement('div'); 
-        wrongCountEl.className = 'rev-wrong-count';
-        const wrongCount = Math.max(0, questionWrongCount[q.id] - 1);
-        wrongCountEl.textContent = `Times marked wrong: ${wrongCount}`;
-        
-        const colorClass = getColorClass(wrongCount, maxWrong);
-        if (colorClass) {
-          wrongCountEl.classList.add(colorClass);
-        }
-        
-        const caEl = document.createElement('div'); 
-        caEl.className = 'rev-ans';
-        caEl.innerHTML = `<strong>Correct Answer:</strong> ${escapeHTML(q.display_answer)}`;
-        
-        const rEl = document.createElement('div'); 
-        rEl.className = 'rev-rationale';
-        rEl.innerHTML = `<strong>Rationale:</strong> ${escapeHTML(q.rationale || '')}`;
-
-        row.appendChild(qEl); 
-        row.appendChild(wrongCountEl);
-        row.appendChild(caEl); 
-        row.appendChild(rEl);
-        reviewList.appendChild(row);
-      });
-    }
-  }
-
-  /* ---------- Event wiring ---------- */
-  if (lengthBtns) {
-    lengthBtns.addEventListener('click', (e) => {
-      const btn = e.target.closest('.seg-btn'); 
-      if (!btn) return;
-      lengthBtns.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      lengthBtns.querySelectorAll('.seg-btn').forEach(b => b.setAttribute('aria-pressed', b.classList.contains('active')?'true':'false'));
-    });
-  }
-
-  if (startBtn) {
-    console.log('Adding click listener to startBtn');
-    startBtn.addEventListener('click', startQuiz);
-  } else {
-    console.error('startBtn not found!');
-  }
-
-  if (submitBtn) {
-    submitBtn.addEventListener('click', handleSubmitClick);
-  }
-
-  function handleSubmitClick() {
-    if (!submitBtn) return;
-    
-    if (submitBtn.dataset.mode === 'next') {
-      scrollToQuizTop();
-      const next = nextIndex();
-      const q = next.q;
-      if (!q) return endRun();
-      run.uniqueSeen.add(q.id);
-      run.totalQuestionsAnswered++;
-      renderQuestion(q);
-      updateCounters();
-      return;
-    }
-
-    const q = currentQuestion();
-    if (!q) return;
-
-    const userAnswers = getUserAnswers();
-    const correctAnswers = q.answer;
-    
-    const blankResults = userAnswers.map((userAns, idx) => {
-      return checkAnswer(userAns, correctAnswers[idx] || '');
-    });
-    
-    const isCorrect = blankResults.every(r => r === true);
-
-    recordAnswer(q, userAnswers, isCorrect, blankResults);
-
-    if (!isCorrect) {
-      run.wrongSinceLast.push(q);
-      if (run.wrongSinceLast.length >= run.thresholdWrong) {
-        const seen = new Set(); 
-        const uniqueBatch = [];
-        for (const item of run.wrongSinceLast) {
-          if (!seen.has(item.id)) { 
-            seen.add(item.id); 
-            uniqueBatch.push(item); 
-          }
-        }
-        run.wrongSinceLast = [];
-        if (uniqueBatch.length) {
-          run.order.splice(run.i + 1, 0, ...uniqueBatch);
-        }
-      }
-    }
-
-    if (feedback) {
-      feedback.textContent = isCorrect ? 'Correct!' : 'Incorrect';
-      feedback.classList.remove('ok','bad', 'hidden');
-      feedback.classList.add(isCorrect ? 'ok' : 'bad');
-    }
-
-    blankResults.forEach((result, idx) => {
-      const input = document.getElementById(`answer-${idx}`);
-      const status = document.getElementById(`status-${idx}`);
-      
-      if (input) {
-        input.disabled = true;
-        input.classList.remove('correct', 'incorrect');
-        input.classList.add(result ? 'correct' : 'incorrect');
-      }
-      
-      if (status) {
-        status.textContent = result ? '✓' : '✗';
-        status.className = 'input-status ' + (result ? 'correct' : 'incorrect');
-      }
-    });
-
-    if (answerLine) {
-      answerLine.innerHTML = `<strong>Correct Answer:</strong> ${escapeHTML(q.display_answer)}`;
-      answerLine.classList.remove('hidden');
-    }
-    
-    if (rationaleBox) {
-      rationaleBox.textContent = q.rationale || '';
-      rationaleBox.classList.remove('hidden');
-    }
-
-    setActionState('next');
-    markJustSubmitted(); // Prevent Enter from immediately advancing
-    scrollToBottomSmooth();
-    updateCounters();
-  }
-
-  if (resetAll) {
-    resetAll.addEventListener('click', () => { location.reload(); });
-  }
-
-  if (restartBtn2) {
-    restartBtn2.addEventListener('click', () => { location.reload(); });
-  }
-
-  if (retryMissedBtn) {
-    retryMissedBtn.addEventListener('click', () => {
-      startRetryQuiz(lastQuizMissedQuestions);
-    });
-  }
-
-  /* ---------- Global keyboard shortcut for Enter ---------- */
-  document.addEventListener('keydown', (e) => {
-    // Only handle Enter key
-    if (e.key !== 'Enter') return;
-    
-    // Don't interfere if quiz is not visible
-    if (!quiz || quiz.classList.contains('hidden')) return;
-    
-    // If we just submitted, ignore this Enter press (it's from the submit action)
-    if (justSubmitted) {
-      e.preventDefault();
-      justSubmitted = false;
-      return;
-    }
-    
-    // If submit button is in "next" mode and not disabled, click it
-    if (submitBtn && submitBtn.dataset.mode === 'next' && !submitBtn.disabled) {
-      e.preventDefault();
-      submitBtn.click();
-    }
   });
+}
 
-  /* ---------- Progress bar update ---------- */
-  function updateProgressBar() {
-    const remaining = getNotMastered().length;
-    const total = run.masterPool.length;
-    const masteredCount = total - remaining;
-    const percentage = total ? Math.floor((masteredCount / total) * 100) : 0;
+/* ---------- Init ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = loadRunState();
+  if (saved && saved.order?.length && saved.isFullBank && !saved.isRetry) {
+    run = saved;
+    const resumeContainer = document.getElementById('resumeContainer');
+    if (resumeContainer) {
+      resumeContainer.classList.remove('hidden');
+      const remainingQuestions = getNotMastered().length;
+      const remainingCountEl = document.getElementById('remainingQuestionsCount');
+      if (remainingCountEl) {
+        remainingCountEl.textContent = `${remainingQuestions} questions remaining`;
+      }
+      const resumeBtn = document.getElementById('resumeBtn');
+      if (resumeBtn) {
+        resumeBtn.onclick = () => {
+          if (setupCard) setupCard.classList.add('hidden');
+          if (summaryCard) summaryCard.classList.add('hidden');
+          if (quizCard) quizCard.classList.remove('hidden');
 
-    if (progressFill) {
-      progressFill.style.width = `${percentage}%`;
-      const r = Math.round(47 + (76 - 47) * (percentage / 100));
-      const g = Math.round(97 + (175 - 97) * (percentage / 100));
-      const b = Math.round(243 + (80 - 243) * (percentage / 100));
-      progressFill.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+          const q = currentQuestion();
+          if (q) {
+            run.uniqueSeen.add(q.id);
+            renderQuestion(q);
+            updateCounters();
+          }
+        };
+      }
     }
-    if (progressLabel) progressLabel.textContent = `${percentage}% mastered`;
-    if (progressBar) progressBar.setAttribute('aria-valuenow', percentage);
   }
-
-  /* ---------- Init ---------- */
-  const moduleFromPath = getModuleFromPath();
-  console.log('Module from path on init:', moduleFromPath);
-  
-  if (moduleFromPath) {
-    const quizTitle = $('quizTitle');
-    if (quizTitle) {
-      quizTitle.textContent = 'NCLEX Lab Values';
-    }
-  }
-  
-  console.log('Fill-in-blank quiz initialization complete');
 });
