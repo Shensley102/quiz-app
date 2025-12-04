@@ -10,6 +10,53 @@
   
   <!-- Vercel Analytics -->
   <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
+
+  <style>
+    .launcher-title-wrapper {
+      margin-bottom: 24px;
+    }
+
+    .launcher-title {
+      margin: 0 0 8px 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .launcher-description {
+      color: var(--ink-soft);
+      font-size: 16px;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .launcher-badge {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-standard {
+      background-color: rgba(69, 183, 209, 0.15);
+      color: #45B7D1;
+    }
+
+    .module-selector-group {
+      display: none;
+    }
+
+    .module-selector-group.show {
+      display: block;
+    }
+
+    .module-selector-group.hidden-for-preloaded {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -28,13 +75,24 @@
 
     <!-- Setup Card -->
     <div class="card" id="launcher">
-      <h2>Quiz Setup</h2>
+      <!-- Custom Header for Preloaded Data -->
+      <div class="launcher-title-wrapper" id="preloadedTitleWrapper" style="display: none;">
+        <span class="launcher-badge badge-standard" id="preloadedBadge">STANDARD</span>
+        <h2 class="launcher-title" id="preloadedTitle">Multiple Choice Lab Value Questions</h2>
+        <p class="launcher-description" id="preloadedDescription">Test your knowledge with 100 NCLEX-style multiple choice questions. Each question includes detailed rationales to reinforce your understanding of normal values, abnormal findings, and nursing interventions.</p>
+      </div>
+
+      <!-- Default Quiz Setup Title -->
+      <h2 id="defaultTitle" style="display: none; margin: 0 0 20px 0;">Quiz Setup</h2>
       
-      <div class="field">
-        <label for="moduleSel">Select Module:</label>
-        <select id="moduleSel">
-          <option value="">Loading modules...</option>
-        </select>
+      <!-- Module Selector (hidden for preloaded data) -->
+      <div class="module-selector-group" id="moduleSelectorGroup">
+        <div class="field">
+          <label for="moduleSel">Select Module:</label>
+          <select id="moduleSel">
+            <option value="">Loading modules...</option>
+          </select>
+        </div>
       </div>
 
       <div class="field">
