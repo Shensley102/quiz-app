@@ -67,6 +67,8 @@
       border: 3px solid transparent;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .quiz-card::before {
@@ -131,6 +133,7 @@
       font-size: 15px;
       line-height: 1.6;
       margin: 0 0 24px 0;
+      flex-grow: 1;
     }
 
     .quiz-card-stats {
@@ -163,10 +166,15 @@
       font-size: 18px;
     }
 
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
     .start-button {
-      display: inline-block;
-      width: 100%;
-      padding: 14px 24px;
+      display: block;
+      padding: 14px 48px;
       background: var(--color);
       color: white;
       text-decoration: none;
@@ -177,11 +185,13 @@
       transition: all 0.2s;
       border: none;
       cursor: pointer;
+      min-width: 200px;
     }
 
     .start-button:hover {
       opacity: 0.9;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .info-section {
@@ -289,6 +299,11 @@
       .quiz-card h2 {
         font-size: 24px;
       }
+
+      .start-button {
+        min-width: auto;
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -325,7 +340,9 @@
           </div>
         </div>
 
-        <a href="/quiz/Lab_Values/NCLEX_Lab_Values" class="start-button">Start Quiz →</a>
+        <div class="button-container">
+          <a href="/quiz/Lab_Values/NCLEX_Lab_Values" class="start-button">Start Quiz →</a>
+        </div>
       </div>
 
       <!-- Fill in the Blank -->
@@ -350,7 +367,9 @@
           </div>
         </div>
 
-        <a href="/quiz-fill-blank/Lab_Values/NCLEX_Lab_Values" class="start-button">Start Quiz →</a>
+        <div class="button-container">
+          <a href="/quiz-fill-blank/Lab_Values/NCLEX_Lab_Values" class="start-button">Start Quiz →</a>
+        </div>
       </div>
     </div>
 
