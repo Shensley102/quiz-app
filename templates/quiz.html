@@ -121,6 +121,19 @@
     <button class="btn danger hidden" id="resetAll" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">Reset Quiz</button>
   </div>
 
+  <script>
+    // Check if quiz data was passed from the server
+    window.preloadedQuizData = null;
+    window.preloadedModuleName = null;
+    window.preloadedCategory = null;
+    
+    {% if quiz_data %}
+      window.preloadedQuizData = {{ quiz_data | tojson }};
+      window.preloadedModuleName = "{{ module_name }}";
+      window.preloadedCategory = "{{ category }}";
+    {% endif %}
+  </script>
+
   <script src="/static/quiz-script.js"></script>
 </body>
 </html>
