@@ -1,264 +1,195 @@
-from flask import Flask, render_template, jsonify, request
+# api/index.py
+
 import os
 import json
-from urllib.parse import unquote
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from pathlib import Path
 
-app = Flask(__name__, 
-            static_folder='../static',
-            static_url_path='/static',
-            template_folder='../templates')
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
-# Add CORS headers to all responses
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    return response
+# Get the base directory
+BASE_DIR = Path(__file__).parent.parent
+MODULES_DIR = BASE_DIR / 'modules'
 
-# Category metadata (display info only - modules are discovered from files)
-CATEGORY_METADATA = {
-    'Patient Care Management': {
-        'display_name': 'Patient Care Management',
-        'icon': '👥',
-        'description': 'Enhance your patient care and clinical management skills',
-        'image': '/images/Nursing_Leadership_Image.png'
-    },
-    'HESI': {
-        'display_name': 'HESI',
-        'icon': '📋',
-        'description': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides',
-        'image': '/images/Nursing_Hesi_Exam_Prep_Image.png'
-    },
-    'Nursing Certifications': {
-        'display_name': 'Nursing Certifications',
-        'icon': '🏆',
-        'description': 'Master content for nursing certification exams',
-        'image': '/images/Nursing_Advanced_Certifications.png'
-    },
-    'Pharmacology': {
-        'display_name': 'Pharmacology',
-        'icon': '💊',
-        'description': 'Strengthen your pharmacology knowledge and drug understanding',
-        'image': '/images/Nursing_Pharmacology_Image.png'
-    },
-    'Lab Values': {
-        'display_name': 'Lab Values',
-        'icon': '🧪',
-        'description': 'Master critical laboratory values for NCLEX and HESI exams',
-        'image': '/images/Nursing_Lab_Values.png'
-    }
-}
+def get_categories():
+    """Get all module categories (folder names)"""
+    if not MODULES_DIR.exists():
+        return []
+    return sorted([d.name for d in MODULES_DIR.iterdir() if d.is_dir() and not d.name.startswith('.')])
 
-def get_base_dir():
-    """Get the base directory of the project"""
-    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-def discover_modules():
-    """
-    Scan the modules directory structure and discover all modules.
-    Expected structure:
-    /modules/
-      /Patient_Care_Management/
-        Module_1.json
-        Module_2.json
-      /HESI/
-        HESI_Delegating.json
-      /Lab_Values/
-        NCLEX_Lab_Values.json
-        NCLEX_Lab_Values_Fill_In_The_Blank.json
-      etc.
+def get_modules_in_category(category):
+    """Get all modules (JSON files) in a specific category"""
+    category_path = MODULES_DIR / category
+    if not category_path.exists():
+        return []
     
-    Returns a dict: {category_name: [module_names]}
-    """
-    modules_by_category = {}
-    base_dir = get_base_dir()
-    modules_dir = os.path.join(base_dir, 'modules')
+    modules = []
+    for file in sorted(category_path.glob('*.json')):
+        modules.append(file.stem)
     
-    # Return empty dict if modules directory doesn't exist
-    if not os.path.exists(modules_dir):
-        return modules_by_category
+    return modules
+
+def get_quiz_info(category, module):
+    """Get quiz information including type (standard or fill-in-the-blank)"""
+    module_path = MODULES_DIR / category / f'{module}.json'
     
-    # Scan each category subdirectory
-    for category_folder in os.listdir(modules_dir):
-        category_path = os.path.join(modules_dir, category_folder)
+    if not module_path.exists():
+        return None
+    
+    try:
+        with open(module_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
         
-        # Skip if not a directory
-        if not os.path.isdir(category_path):
-            continue
+        # Determine quiz type based on filename
+        is_fill_blank = 'Fill_In_The_Blank' in module
         
-        # Convert folder name to category name (replace underscores with spaces)
-        category_name = category_folder.replace('_', ' ')
-        
-        # Scan for JSON files in this category
-        json_files = []
-        for filename in os.listdir(category_path):
-            if filename.endswith('.json'):
-                # Remove .json extension to get module name
-                module_name = filename[:-5]
-                json_files.append(module_name)
-        
-        # Only add category if it has modules
-        if json_files:
-            modules_by_category[category_name] = sorted(json_files)
-    
-    return modules_by_category
-
-def get_study_categories():
-    """
-    Get study categories with metadata and discovered modules.
-    Combines CATEGORY_METADATA with discovered modules.
-    """
-    discovered = discover_modules()
-    categories = {}
-    
-    for category_name, metadata in CATEGORY_METADATA.items():
-        categories[category_name] = {
-            'display_name': metadata['display_name'],
-            'icon': metadata['icon'],
-            'description': metadata.get('description', ''),
-            'image': metadata.get('image'),
-            'modules': discovered.get(category_name, [])
+        return {
+            'name': module,
+            'type': 'fill-in-the-blank' if is_fill_blank else 'multiple-choice',
+            'count': len(data.get('questions', [])),
+            'description': data.get('description', '')
         }
-    
-    return categories
+    except Exception as e:
+        print(f"Error reading {module_path}: {e}")
+        return None
 
-def get_available_modules():
-    """Return all modules from all categories"""
-    discovered = discover_modules()
-    all_modules = []
-    for modules in discovered.values():
-        all_modules.extend(modules)
-    return sorted(list(set(all_modules)))
+def get_category_quizzes(category):
+    """Get all quizzes for a category, grouped by type"""
+    modules = get_modules_in_category(category)
+    quizzes = {
+        'multiple-choice': [],
+        'fill-in-the-blank': []
+    }
+    
+    for module in modules:
+        info = get_quiz_info(category, module)
+        if info:
+            quizzes[info['type']].append(info)
+    
+    return quizzes
 
-def find_category(category_name):
-    """Find category by exact match (case-insensitive)"""
-    categories = get_study_categories()
-    
-    if category_name in categories:
-        return category_name
-    
-    for key in categories.keys():
-        if key.lower() == category_name.lower():
-            return key
-    
-    return None
+# ==================== Routes ====================
 
-# Routes
 @app.route('/')
 def home():
-    """HOME PAGE"""
-    return render_template('home.html')
+    """Home page with all categories"""
+    categories = get_categories()
+    return render_template('home.html', categories=categories)
 
-@app.route('/category/<path:category>')
-def category_page(category):
-    """CATEGORY PAGE"""
-    decoded_category = unquote(category)
-    actual_category = find_category(decoded_category)
+@app.route('/category/<category>')
+def category(category):
+    """Category landing page - shows available quizzes"""
+    categories = get_categories()
     
-    if not actual_category:
-        return jsonify({'error': 'Category not found'}), 404
+    if category not in categories:
+        return redirect(url_for('home'))
     
-    categories = get_study_categories()
-    category_data = categories[actual_category]
+    quizzes = get_category_quizzes(category)
     
-    # Use special template for Lab Values category
-    if actual_category == 'Lab Values':
-        return render_template('lab-values.html', category=actual_category, category_data=category_data)
+    # Check if this is a multi-quiz category (like Lab Values)
+    has_multiple_types = len([q for q in quizzes['multiple-choice']]) > 0 and len([q for q in quizzes['fill-in-the-blank']]) > 0
     
-    return render_template('category.html', category=actual_category, category_data=category_data)
+    # For Lab_Values specifically, render the special landing page
+    if category == 'Lab_Values' and has_multiple_types:
+        return render_template('lab-values.html', 
+                             quizzes=quizzes,
+                             category_name='Laboratory Values')
+    
+    # For other categories, render generic category page
+    return render_template('category.html',
+                         category=category,
+                         quizzes=quizzes)
 
-@app.route('/quiz')
-def quiz_page_no_module():
-    """QUIZ PAGE - no specific module"""
-    return render_template('quiz.html')
+@app.route('/quiz/<category>/<module>')
+def quiz(category, module):
+    """Quiz page for multiple choice"""
+    categories = get_categories()
+    
+    if category not in categories:
+        return redirect(url_for('home'))
+    
+    module_path = MODULES_DIR / category / f'{module}.json'
+    
+    if not module_path.exists():
+        return redirect(url_for('category', category=category))
+    
+    # Don't serve fill-in-the-blank through this route
+    if 'Fill_In_The_Blank' in module:
+        return redirect(url_for('quiz_fill_blank', category=category, module=module))
+    
+    try:
+        with open(module_path, 'r', encoding='utf-8') as f:
+            quiz_data = json.load(f)
+        
+        return render_template('quiz.html',
+                             quiz_data=quiz_data,
+                             module_name=module,
+                             category=category)
+    except Exception as e:
+        print(f"Error loading quiz: {e}")
+        return redirect(url_for('category', category=category))
 
-@app.route('/quiz/<module_name>')
-def quiz_page(module_name):
-    """QUIZ PAGE - specific module"""
-    # Check if this is a fill-in-the-blank quiz
-    if 'Fill_In_The_Blank' in module_name:
-        return render_template('quiz-fill-blank.html')
-    return render_template('quiz.html')
+@app.route('/quiz-fill-blank/<category>/<module>')
+def quiz_fill_blank(category, module):
+    """Quiz page for fill-in-the-blank"""
+    categories = get_categories()
+    
+    if category not in categories:
+        return redirect(url_for('home'))
+    
+    # Add Fill_In_The_Blank if not already in name
+    if 'Fill_In_The_Blank' not in module:
+        module = f'{module}_Fill_In_The_Blank'
+    
+    module_path = MODULES_DIR / category / f'{module}.json'
+    
+    if not module_path.exists():
+        return redirect(url_for('category', category=category))
+    
+    try:
+        with open(module_path, 'r', encoding='utf-8') as f:
+            quiz_data = json.load(f)
+        
+        return render_template('quiz-fill-blank.html',
+                             quiz_data=quiz_data,
+                             module_name=module,
+                             category=category)
+    except Exception as e:
+        print(f"Error loading fill-blank quiz: {e}")
+        return redirect(url_for('category', category=category))
 
 @app.route('/api/categories')
-def get_categories():
-    """API endpoint returning all categories with metadata and discovered modules"""
-    categories = get_study_categories()
-    # Return only the data needed by frontend, excluding empty categories
-    result = {}
-    for name, data in categories.items():
-        if data['modules']:  # Only include categories with modules
-            result[name] = {
-                'display_name': data['display_name'],
-                'icon': data['icon'],
-                'image': data['image'],
-                'modules': data['modules']
-            }
-    return jsonify(result), 200
+def api_categories():
+    """API endpoint to get all categories"""
+    categories = get_categories()
+    return jsonify({'categories': categories})
 
-@app.route('/api/category/<path:category>/modules')
-def get_category_modules(category):
-    """Return modules for a specific category"""
-    decoded_category = unquote(category)
-    actual_category = find_category(decoded_category)
+@app.route('/api/category/<category>/quizzes')
+def api_category_quizzes(category):
+    """API endpoint to get quizzes for a category"""
+    categories = get_categories()
     
-    if not actual_category:
+    if category not in categories:
         return jsonify({'error': 'Category not found'}), 404
     
-    categories = get_study_categories()
-    category_data = categories[actual_category]
-    modules = category_data.get('modules', [])
+    quizzes = get_category_quizzes(category)
+    return jsonify(quizzes)
+
+@app.route('/modules')
+def modules():
+    """Get all available modules (for backward compatibility)"""
+    all_modules = []
+    for category in get_categories():
+        modules_list = get_modules_in_category(category)
+        # Filter out Fill_In_The_Blank from regular quiz selector
+        regular_modules = [m for m in modules_list if 'Fill_In_The_Blank' not in m]
+        all_modules.extend(regular_modules)
     
-    return jsonify({'modules': modules, 'category': actual_category}), 200
+    return jsonify({'modules': sorted(all_modules)})
 
-@app.route('/modules', methods=['GET'])
-def modules_list():
-    """Return list of available modules"""
-    try:
-        modules = get_available_modules()
-        return jsonify({'modules': modules}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+def handler(request):
+    """Vercel serverless handler"""
+    return app(request)
 
-@app.route('/<module_name>.json', methods=['GET'])
-def get_module(module_name):
-    """
-    Serve a specific module JSON file.
-    Searches for the module in all category subdirectories.
-    """
-    try:
-        # Security check
-        if not all(c.isalnum() or c in '_-' for c in module_name):
-            return jsonify({'error': 'Invalid module name'}), 400
-        
-        base_dir = get_base_dir()
-        modules_dir = os.path.join(base_dir, 'modules')
-        
-        # Search for the module file in all category subdirectories
-        if os.path.exists(modules_dir):
-            for category_folder in os.listdir(modules_dir):
-                file_path = os.path.join(modules_dir, category_folder, f'{module_name}.json')
-                
-                if os.path.exists(file_path):
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        data = json.load(f)
-                    return jsonify(data), 200
-        
-        # Also check if module exists in root directory (for backwards compatibility)
-        root_file_path = os.path.join(base_dir, f'{module_name}.json')
-        if os.path.exists(root_file_path):
-            with open(root_file_path, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-            return jsonify(data), 200
-        
-        return jsonify({'error': f'Module "{module_name}" not found'}), 404
-    
-    except json.JSONDecodeError as e:
-        return jsonify({'error': f'Invalid JSON: {str(e)}'}), 500
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-# Vercel serverless function handler
-app.debug = False
+if __name__ == '__main__':
+    app.run(debug=True)
