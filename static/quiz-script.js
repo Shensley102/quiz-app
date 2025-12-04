@@ -12,7 +12,8 @@
    - Retry missed questions feature
    - Auto-start functionality for direct quiz links
    - Server-side preloaded quiz data support
-   - Setup page with length selection before quiz starts
+   - Custom header display for preloaded data
+   - Module selector hidden for preloaded quizzes
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -256,7 +257,6 @@ function showResumeIfAny(){
       document.title = run.displayName ? `${run.displayName} - Nurse Success Study Hub` :
                      (run.bank ? `${run.bank} - Nurse Success Study Hub` : 'Quiz - Nurse Success Study Hub');
 
-      // Update the quiz title in the header banner
       const quizTitle = $('quizTitle');
       if (quizTitle) {
         quizTitle.textContent = run.displayName || run.bank || defaultTitle;
@@ -410,7 +410,6 @@ function setupCategoryDisplay() {
     
     const quizTitle = document.getElementById('quizTitle');
     if (quizTitle) {
-      // Set title to module selection page title
       quizTitle.textContent = moduleSelectionTitles[category] || category;
     }
 
@@ -559,14 +558,11 @@ function highlightAnswers(q, userLetters, isCorrect) {
     const isCorrectAnswer = correctLetters.includes(letter);
     const wasSelected = userLetters.includes(letter);
     
-    // Remove any existing highlight classes
     optDiv.classList.remove('correct-answer', 'wrong-answer');
     
     if (isCorrect && wasSelected) {
-      // If user got it right, highlight their selection in green
       optDiv.classList.add('correct-answer');
     } else if (!isCorrect && wasSelected && !isCorrectAnswer) {
-      // If user got it wrong, only highlight their wrong selection in red
       optDiv.classList.add('wrong-answer');
     }
   });
@@ -642,7 +638,6 @@ async function startQuiz(){
   setHeaderTitle(displayName);
   document.title = `${displayName} - Nurse Success Study Hub`;
   
-  // Update the quiz title in the header banner
   const quizTitle = $('quizTitle');
   if (quizTitle) {
     quizTitle.textContent = displayName;
@@ -653,11 +648,9 @@ async function startQuiz(){
   try {
     let rawData;
     
-    // Check if we have preloaded data
     if (window.storedPreloadedData && window.storedPreloadedData.moduleName === bank) {
       rawData = window.storedPreloadedData.questions;
     } else {
-      // Fetch from JSON file
       const jsonUrl = `/${bank}.json`;
       const res = await fetch(jsonUrl, { cache: 'no-store' });
       if (!res.ok) {
@@ -724,13 +717,11 @@ async function startRetryQuiz(missedQuestions) {
   setHeaderTitle(displayName);
   document.title = `${displayName} - Nurse Success Study Hub`;
   
-  // Update the quiz title in the header banner
   const quizTitle = $('quizTitle');
   if (quizTitle) {
     quizTitle.textContent = displayName;
   }
 
-  // Shuffle the missed questions and their options
   const shuffledQuestions = missedQuestions.map((q) => shuffleQuestionOptions(q));
 
   run = {
@@ -780,13 +771,11 @@ function endRun(){
   const ftCorrect = uniq.filter(x => x.firstTryCorrect).length;
   const totalUnique = uniq.length;
 
-  // Collect missed questions (where firstTryCorrect is false)
   lastQuizMissedQuestions = run.masterPool.filter(q => {
     const ans = run.answered.get(q.id);
     return ans && ans.firstTryCorrect === false;
   });
 
-  // Show or hide retry button based on whether there are missed questions
   if (retryMissedBtn) {
     if (lastQuizMissedQuestions.length > 0 && !run.isRetry) {
       retryMissedBtn.classList.remove('hidden');
@@ -954,10 +943,8 @@ function handleSubmitClick() {
     feedback.classList.add(isCorrect ? 'ok' : 'bad');
   }
 
-  // Highlight correct and wrong answers in the options
   highlightAnswers(q, userLetters, isCorrect);
 
-  // Always show the correct answer
   if (answerLine) {
     answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formatCorrectAnswers(q)}`;
     answerLine.classList.remove('hidden');
@@ -1027,7 +1014,6 @@ function updateProgressBar() {
 
   if (progressFill) {
     progressFill.style.width = `${percentage}%`;
-    // Transition from blue (#2f61f3) to green (#4caf50) based on percentage
     const r = Math.round(47 + (76 - 47) * (percentage / 100));
     const g = Math.round(97 + (175 - 97) * (percentage / 100));
     const b = Math.round(243 + (80 - 243) * (percentage / 100));
@@ -1046,7 +1032,6 @@ function checkAutoStart() {
 /* ---------- Get module from URL path ---------- */
 function getModuleFromPath() {
   const path = window.location.pathname;
-  // Match /quiz/MODULE_NAME pattern
   const match = path.match(/\/quiz\/([^\/]+)$/);
   if (match) {
     return decodeURIComponent(match[1]);
@@ -1059,11 +1044,9 @@ async function initModulesWithPreselect() {
   const moduleFromPath = getModuleFromPath();
   const autostart = checkAutoStart();
   
-  // Check if we have preloaded data from the server
   const hasPreloadedData = window.preloadedQuizData && window.preloadedModuleName;
   
   if (hasPreloadedData) {
-    // We have direct quiz data, but show the setup page first
     const displayName = prettifyModuleName(window.preloadedModuleName);
     
     const quizTitle = $('quizTitle');
@@ -1071,14 +1054,27 @@ async function initModulesWithPreselect() {
       quizTitle.textContent = displayName;
     }
 
-    // Show the launcher (setup page) with preloaded data
     if (launcher) launcher.classList.remove('hidden');
     if (summary) summary.classList.add('hidden');
     if (quiz) quiz.classList.add('hidden');
     if (countersBox) countersBox.classList.add('hidden');
     if (resetAll) resetAll.classList.add('hidden');
 
-    // Set module dropdown to show the preloaded module
+    const moduleSelectorGroup = document.getElementById('moduleSelectorGroup');
+    if (moduleSelectorGroup) {
+      moduleSelectorGroup.classList.add('hidden-for-preloaded');
+    }
+
+    const preloadedTitleWrapper = document.getElementById('preloadedTitleWrapper');
+    if (preloadedTitleWrapper) {
+      preloadedTitleWrapper.style.display = 'block';
+    }
+
+    const defaultTitle = document.getElementById('defaultTitle');
+    if (defaultTitle) {
+      defaultTitle.style.display = 'none';
+    }
+
     if (moduleSel) {
       moduleSel.innerHTML = '';
       const opt = document.createElement('option');
@@ -1086,20 +1082,33 @@ async function initModulesWithPreselect() {
       opt.textContent = displayName;
       opt.selected = true;
       moduleSel.appendChild(opt);
-      moduleSel.disabled = true; // Disable so user can't change it
+      moduleSel.disabled = true;
     }
 
-    // Store preloaded data for when user clicks Start Quiz
     window.storedPreloadedData = {
       questions: window.preloadedQuizData,
       moduleName: window.preloadedModuleName
     };
 
-    return; // Exit early, don't load module selector
+    return;
   }
 
-  // Normal flow - load module selector
   if (!moduleSel) return;
+  
+  const preloadedTitleWrapper = document.getElementById('preloadedTitleWrapper');
+  if (preloadedTitleWrapper) {
+    preloadedTitleWrapper.style.display = 'none';
+  }
+
+  const defaultTitle = document.getElementById('defaultTitle');
+  if (defaultTitle) {
+    defaultTitle.style.display = 'block';
+  }
+
+  const moduleSelectorGroup = document.getElementById('moduleSelectorGroup');
+  if (moduleSelectorGroup) {
+    moduleSelectorGroup.classList.remove('hidden-for-preloaded');
+  }
   
   try {
     const urlParams = new URLSearchParams(window.location.search);
@@ -1109,7 +1118,6 @@ async function initModulesWithPreselect() {
     let modules = [];
     
     if (category) {
-      // Fetch modules for this category
       const endpoint = `/api/category/${encodeURIComponent(category)}/modules`;
       const res = await fetch(endpoint, { cache: 'no-store' });
       if (res.ok) {
@@ -1117,7 +1125,6 @@ async function initModulesWithPreselect() {
         modules = Array.isArray(json.modules) ? json.modules : [];
       }
     } else {
-      // Fetch all modules
       const res = await fetch('/modules', { cache: 'no-store' });
       if (res.ok) {
         const json = await res.json();
@@ -1125,7 +1132,6 @@ async function initModulesWithPreselect() {
       }
     }
     
-    // Filter modules by subcategory if provided
     if (subcategory && category) {
       const moduleGroupings = {
         'Nursing Certifications': {
@@ -1142,7 +1148,6 @@ async function initModulesWithPreselect() {
       }
     }
     
-    // Filter out fill-in-the-blank modules from regular quiz selector
     modules = modules.filter(m => !m.includes('Fill_In_The_Blank'));
 
     moduleSel.innerHTML = '';
@@ -1156,14 +1161,12 @@ async function initModulesWithPreselect() {
       const opt = document.createElement('option');
       opt.value = mod;
       opt.textContent = prettifyModuleName(mod);
-      // Pre-select if this module matches the URL path
       if (moduleFromPath && mod === moduleFromPath) {
         opt.selected = true;
       }
       moduleSel.appendChild(opt);
     });
     
-    // If we have a module from URL but it's not in the list, add it
     if (moduleFromPath && !modules.includes(moduleFromPath)) {
       const opt = document.createElement('option');
       opt.value = moduleFromPath;
@@ -1172,7 +1175,6 @@ async function initModulesWithPreselect() {
       moduleSel.insertBefore(opt, moduleSel.firstChild);
     }
     
-    // Update title if module is pre-selected
     if (moduleFromPath) {
       const displayName = prettifyModuleName(moduleFromPath);
       const quizTitle = $('quizTitle');
@@ -1181,9 +1183,7 @@ async function initModulesWithPreselect() {
       }
     }
 
-    // Auto-start if parameter is set
     if (autostart && moduleFromPath) {
-      // Set the length button to full
       const lengthBtns = document.querySelectorAll('#lengthBtns .seg-btn');
       lengthBtns.forEach(btn => btn.classList.remove('active'));
       lengthBtns.forEach(btn => {
@@ -1193,7 +1193,6 @@ async function initModulesWithPreselect() {
         }
       });
       
-      // Start the quiz
       setTimeout(() => {
         startQuiz();
       }, 100);
