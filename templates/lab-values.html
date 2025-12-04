@@ -1,323 +1,413 @@
+<!-- templates/lab-values.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fill-in-the-Blank Quiz - Nurse Success Study Hub">
-  <title id="pageTitle">Fill-in-the-Blank Quiz - Nurse Success Study Hub</title>
-  <link rel="stylesheet" href="/static/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Vercel Analytics -->
-  <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
-  
+  <title>Laboratory Values - Nurse Success Study Hub</title>
+  <link rel="stylesheet" href="/style.css">
   <style>
-    /* Fill-in-the-blank specific styles */
-    .input-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 20px;
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
-    
-    .input-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      position: relative;
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
     }
-    
-    .input-wrapper label {
-      font-weight: 600;
-      color: var(--ink);
-      font-size: 14px;
-    }
-    
-    .answer-input {
-      width: 100%;
-      padding: 14px 50px 14px 16px;
-      font-size: 18px;
-      border: 3px solid var(--border);
-      border-radius: 10px;
-      font-family: inherit;
-      background: #fff;
-      transition: all 0.2s ease;
-    }
-    
-    .answer-input:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(47, 97, 243, 0.15);
-    }
-    
-    .answer-input::placeholder {
-      color: #aaa;
-    }
-    
-    .answer-input.correct {
-      border-color: #4caf50 !important;
-      background: rgba(76, 175, 80, 0.08);
-    }
-    
-    .answer-input.incorrect {
-      border-color: #f44336 !important;
-      background: rgba(244, 67, 54, 0.08);
-    }
-    
-    .answer-input:disabled {
-      background: #f9f9f9;
-      cursor: not-allowed;
-    }
-    
-    .input-status {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 24px;
-      font-weight: bold;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .input-wrapper label + .answer-input + .input-status {
-      top: calc(50% + 12px);
-    }
-    
-    .input-status.correct {
-      color: #4caf50;
-      opacity: 1;
-    }
-    
-    .input-status.incorrect {
-      color: #f44336;
-      opacity: 1;
-    }
-    
-    /* Different input type styling */
-    .answer-input.numeric-input {
-      border-left: 4px solid #2196F3;
-    }
-    
-    .answer-input.numeric-input:focus {
-      border-color: #2196F3;
-      border-left: 4px solid #2196F3;
-    }
-    
-    .answer-input.direction-input {
-      border-left: 4px solid #9C27B0;
-    }
-    
-    .answer-input.direction-input:focus {
-      border-color: #9C27B0;
-      border-left: 4px solid #9C27B0;
-    }
-    
-    .answer-input.word-input {
-      border-left: 4px solid #FF9800;
-    }
-    
-    .answer-input.word-input:focus {
-      border-color: #FF9800;
-      border-left: 4px solid #FF9800;
-    }
-    
-    /* Input type legend */
-    .input-type-legend {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-      font-size: 13px;
-      color: var(--ink-soft);
-    }
-    
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    
-    .legend-color {
-      width: 16px;
-      height: 16px;
-      border-radius: 3px;
-    }
-    
-    .legend-color.numeric {
-      background: #2196F3;
-    }
-    
-    .legend-color.direction {
-      background: #9C27B0;
-    }
-    
-    .legend-color.word {
-      background: #FF9800;
-    }
-    
-    /* Hard mode badge */
-    .hard-badge {
+
+    .back-link {
       display: inline-block;
-      padding: 4px 10px;
-      background: rgba(244, 67, 54, 0.1);
-      color: var(--danger);
+      margin-bottom: 30px;
+      color: #2f61f3;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: #1e3a8a;
+    }
+
+    .header {
+      margin-bottom: 50px;
+    }
+
+    .header h1 {
+      font-size: 48px;
+      color: #1a202c;
+      margin: 0 0 12px 0;
+      font-weight: 800;
+    }
+
+    .header .subtitle {
+      font-size: 18px;
+      color: #718096;
+      margin: 0;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .quiz-card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 3px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--color);
+    }
+
+    .quiz-card.multiple-choice {
+      --color: #45B7D1;
+    }
+
+    .quiz-card.fill-blank {
+      --color: #FF6B6B;
+    }
+
+    .quiz-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-color: var(--color);
+    }
+
+    .quiz-card-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .quiz-card-badge {
+      display: inline-block;
+      padding: 6px 14px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 700;
-      margin-left: 12px;
-      vertical-align: middle;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    
-    /* Question styling enhancements for fill-in-blank */
-    .question {
-      font-size: 20px;
-      line-height: 1.5;
-      padding: 20px;
-      background: rgba(139, 92, 246, 0.05);
-      border-radius: 10px;
-      border-left: 4px solid #8B5CF6;
-      margin-bottom: 24px;
+
+    .quiz-card.multiple-choice .quiz-card-badge {
+      background: rgba(69, 183, 209, 0.15);
+      color: #45B7D1;
     }
-    
-    /* Hint text */
-    .hint-text {
-      font-size: 13px;
-      color: var(--ink-soft);
-      margin-top: 8px;
-      font-style: italic;
+
+    .quiz-card.fill-blank .quiz-card-badge {
+      background: rgba(255, 107, 107, 0.15);
+      color: #FF6B6B;
+    }
+
+    .quiz-card h2 {
+      font-size: 28px;
+      color: #1a202c;
+      margin: 0 0 12px 0;
+      font-weight: 700;
+    }
+
+    .quiz-card p {
+      color: #718096;
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0 0 24px 0;
+    }
+
+    .quiz-card-stats {
+      display: flex;
+      gap: 24px;
+      margin: 24px 0;
+      padding: 20px 0;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 14px;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-label {
+      color: #718096;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+      color: #1a202c;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .start-button {
+      display: inline-block;
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--color);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      text-align: center;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .start-button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .info-section {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border-left: 6px solid #8b5cf6;
+    }
+
+    .info-section h3 {
+      font-size: 24px;
+      color: #1a202c;
+      margin: 0 0 24px 0;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .info-section h3::before {
+      content: '📊';
+      font-size: 28px;
+    }
+
+    .lab-values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .lab-value-item {
+      background: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      font-size: 14px;
+      font-weight: 500;
+      color: #2d3748;
+      transition: all 0.2s;
+    }
+
+    .lab-value-item:hover {
+      background: #edf2f7;
+      border-color: #cbd5e0;
+    }
+
+    .tips-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 16px;
+      padding: 40px;
+      color: white;
+      margin-top: 40px;
+    }
+
+    .tips-section h3 {
+      font-size: 24px;
+      margin: 0 0 24px 0;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tips-section h3::before {
+      content: '💡';
+      font-size: 28px;
+    }
+
+    .tips-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .tip {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .tip strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 36px;
+      }
+
+      .quiz-options {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .quiz-card {
+        padding: 24px;
+      }
+
+      .quiz-card h2 {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Title Bar -->
-    <div class="title-bar">
-      <div>
-        <a href="/" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 4px; display: inline-block; font-size: 14px;">← Nurse Success Study Hub</a>
-        <h1 id="quizTitle">NCLEX Lab Values <span class="hard-badge">HARD MODE</span></h1>
-      </div>
+    <a href="/" class="back-link">← Nurse Success Study Hub</a>
+
+    <div class="header">
+      <h1>🧪 Laboratory Values</h1>
+      <p class="subtitle">Master critical laboratory values for NCLEX and HESI exams with two different study modes</p>
     </div>
 
-    <!-- Setup Card -->
-    <div class="card" id="launcher">
-      <h2>Fill In The Blank</h2>
-      <p style="color: var(--ink-soft); margin-bottom: 24px;">Test your recall of exact laboratory values. Type your answers - no multiple choice hints!</p>
-      
-      <div class="field">
-        <label>How many questions?</label>
-        <div class="seg" id="lengthBtns">
-          <button class="seg-btn active" data-len="10">10 Questions</button>
-          <button class="seg-btn" data-len="25">25 Questions</button>
-          <button class="seg-btn" data-len="50">50 Questions</button>
-          <button class="seg-btn" data-len="full">All 100 Questions</button>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button class="btn primary" id="startBtn">Start Quiz</button>
-      </div>
-
-      <!-- How This Quiz Works -->
-      <div style="margin-top: 32px; padding: 24px; background: rgba(139, 92, 246, 0.05); border-radius: 8px; border-left: 4px solid #8B5CF6;">
-        <h3 style="color: var(--ink); margin-bottom: 16px; font-size: 20px;">How Fill-in-the-Blank Works</h3>
-        <ul style="margin: 0; padding-left: 24px;">
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Type Your Answers:</strong> Enter the exact value or term in the text field(s).</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Case Insensitive:</strong> "negative" and "Negative" are both accepted.</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Two-Part Questions:</strong> Some questions have two blanks (e.g., ranges). Both must be correct.</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Individual Feedback:</strong> Each blank shows ✓ or ✗ so you know exactly what you got right or wrong.</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Press Enter:</strong> Use Enter to move to the next field or submit your answer.</li>
-          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Mastery System:</strong> Incorrect answers will repeat until you get them right.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Quiz Card -->
-    <div class="card hidden" id="quiz">
-      <!-- Counters -->
-      <div id="countersBox" class="hidden">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
-          <span id="runCounter" style="font-weight: 600; font-size: 14px;">Question: 1</span>
-          <span id="remainingCounter" style="font-weight: 600; font-size: 14px;">Remaining to master: 0</span>
-        </div>
-        <div style="position: relative; margin-bottom: 16px;">
-          <div id="progressBar" class="pbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-            <div id="progressFill" class="pbar-fill"></div>
-            <div id="progressLabel" class="pbar-label">0% mastered</div>
+    <!-- Quiz Options -->
+    <div class="quiz-options">
+      <!-- Multiple Choice -->
+      <div class="quiz-card multiple-choice">
+        <div class="quiz-card-icon">📋</div>
+        <span class="quiz-card-badge">Standard</span>
+        <h2>Multiple Choice</h2>
+        <p>Test your knowledge with 100 NCLEX-style multiple choice questions. Each question includes detailed rationales to reinforce your understanding of normal values, abnormal findings, and nursing interventions.</p>
+        
+        <div class="quiz-card-stats">
+          <div class="stat">
+            <div class="stat-label">Questions</div>
+            <div class="stat-value">100</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Type</div>
+            <div class="stat-value">MCQ</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Duration</div>
+            <div class="stat-value">~30 min</div>
           </div>
         </div>
+
+        <a href="/quiz/Lab_Values/NCLEX_Lab_Values" class="start-button">Start Quiz →</a>
       </div>
 
-      <div id="questionText" class="question"></div>
-      
-      <div id="inputArea">
-        <!-- Input fields will be generated here -->
-      </div>
-      
-      <!-- Input Type Legend -->
-      <div class="input-type-legend">
-        <div class="legend-item">
-          <span class="legend-color numeric"></span>
-          <span>Number (e.g., 135)</span>
+      <!-- Fill in the Blank -->
+      <div class="quiz-card fill-blank">
+        <div class="quiz-card-icon">✏️</div>
+        <span class="quiz-card-badge">Hard Mode</span>
+        <h2>Fill In The Blank</h2>
+        <p>Challenge yourself by typing exact lab values from memory. This harder format tests true recall of normal ranges, critical values, and clinical correlations without multiple choice hints.</p>
+        
+        <div class="quiz-card-stats">
+          <div class="stat">
+            <div class="stat-label">Questions</div>
+            <div class="stat-value">100</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Type</div>
+            <div class="stat-value">Fill-in</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Duration</div>
+            <div class="stat-value">~40 min</div>
+          </div>
         </div>
-        <div class="legend-item">
-          <span class="legend-color direction"></span>
-          <span>Direction (high/low)</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color word"></span>
-          <span>Word (e.g., negative)</span>
-        </div>
-      </div>
-      
-      <div id="feedback" class="feedback hidden"></div>
-      <div id="answerLine" class="answer-line hidden"></div>
-      <div id="rationale" class="rationale hidden"></div>
 
-      <div class="actions">
-        <button class="btn primary" id="submitBtn">Submit Answer</button>
+        <a href="/quiz-fill-blank/Lab_Values/NCLEX_Lab_Values" class="start-button">Start Quiz →</a>
       </div>
     </div>
 
-    <!-- Summary Card -->
-    <div class="card hidden" id="summary">
-      <h2>Quiz Complete! 🎉</h2>
-      <div id="firstTrySummary" class="first-try hidden"></div>
-
-      <!-- Action Buttons -->
-      <div class="actions" style="margin-bottom: 24px;">
-        <button class="btn danger hidden" id="retryMissedBtn">Retry <span id="missedCount">0</span> Missed Questions</button>
-        <button class="btn primary" id="restartBtnSummary">Start New Quiz</button>
+    <!-- Lab Values Covered -->
+    <div class="info-section">
+      <h3>Lab Values Covered</h3>
+      <p style="color: #718096; margin-bottom: 24px;">Both quizzes comprehensively cover the following laboratory values essential for NCLEX and HESI success:</p>
+      <div class="lab-values-grid">
+        <div class="lab-value-item">Sodium (Na⁺)</div>
+        <div class="lab-value-item">Potassium (K⁺)</div>
+        <div class="lab-value-item">Calcium (Ca²⁺)</div>
+        <div class="lab-value-item">Magnesium (Mg²⁺)</div>
+        <div class="lab-value-item">Chloride (Cl⁻)</div>
+        <div class="lab-value-item">BUN</div>
+        <div class="lab-value-item">Creatinine</div>
+        <div class="lab-value-item">AST / ALT</div>
+        <div class="lab-value-item">Bilirubin</div>
+        <div class="lab-value-item">WBC Count</div>
+        <div class="lab-value-item">Hemoglobin / Hematocrit</div>
+        <div class="lab-value-item">Platelets</div>
+        <div class="lab-value-item">Glucose</div>
+        <div class="lab-value-item">pH (Blood Gas)</div>
+        <div class="lab-value-item">PCO₂ / PO₂</div>
+        <div class="lab-value-item">HCO₃⁻</div>
       </div>
-
-      <!-- Help Section -->
-      <div class="help" style="margin-top: 0; margin-bottom: 32px;">
-        <h3>Need More Practice?</h3>
-        <ul>
-          <li>Review the rationales for questions you missed</li>
-          <li>Try the "Retry Missed Questions" feature to focus on weak areas</li>
-          <li>Consider taking the Multiple Choice quiz first to build familiarity</li>
-          <li>Use flashcards or mnemonics for difficult values</li>
-        </ul>
-      </div>
-
-      <h3>Review Your Answers:</h3>
-      <div id="reviewList" class="review-list"></div>
     </div>
 
-    <!-- Reset Button (hidden initially) -->
-    <button class="btn danger hidden" id="resetAll" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">Reset Quiz</button>
+    <!-- Study Tips -->
+    <div class="tips-section">
+      <h3>Study Tips for Success</h3>
+      <div class="tips-list">
+        <div class="tip">
+          <strong>🎯 Start with Multiple Choice</strong>
+          Begin with multiple choice questions to learn normal values and critical ranges with the support of answer options.
+        </div>
+        <div class="tip">
+          <strong>📝 Progress to Fill-in-the-Blank</strong>
+          After mastering multiple choice, challenge yourself with fill-in-the-blank to test true recall without hints.
+        </div>
+        <div class="tip">
+          <strong>🔄 Use Mastery System</strong>
+          Incorrect answers repeat until you get them right, ensuring you truly master each value.
+        </div>
+        <div class="tip">
+          <strong>⏱️ Time Your Practice</strong>
+          Practice under timed conditions to simulate the real NCLEX/HESI exam environment.
+        </div>
+        <div class="tip">
+          <strong>📊 Focus on Abnormal Values</strong>
+          Pay special attention to how lab abnormalities relate to clinical symptoms and nursing interventions.
+        </div>
+        <div class="tip">
+          <strong>✅ Review Rationales</strong>
+          Always read the detailed rationales to understand WHY these values matter in clinical practice.
+        </div>
+      </div>
+    </div>
   </div>
-
-  <!-- Debug: inline script to check if JS runs at all -->
-  <script>
-    console.log('Inline script running');
-    window.onerror = function(msg, url, line, col, error) {
-      console.error('JS Error:', msg, 'at', url, 'line', line);
-      alert('JavaScript Error: ' + msg);
-      return false;
-    };
-  </script>
-  <script src="/static/quiz-fill-blank.js"></script>
 </body>
 </html>
