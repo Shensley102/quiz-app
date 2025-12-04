@@ -221,7 +221,6 @@ function renderQuestion(q) {
     input.id = `answer-${idx}`;
     input.placeholder = 'Type your answer';
     input.autocomplete = 'off';
-    if (idx === 0) input.autofocus = true;
 
     input.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
@@ -244,6 +243,10 @@ function renderQuestion(q) {
     submitBtn.textContent = 'Submit Answer';
     submitBtn.dataset.mode = 'submit';
   }
+
+  // Focus first input for immediate typing
+  const firstInput = answerInputs.querySelector('.fill-blank-input');
+  if (firstInput) firstInput.focus();
 }
 
 function getUserAnswers() {
