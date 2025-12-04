@@ -22,27 +22,32 @@ CATEGORY_METADATA = {
     'Patient Care Management': {
         'display_name': 'Patient Care Management',
         'icon': '👥',
-        'description': 'Enhance your patient care and clinical management skills'
+        'description': 'Enhance your patient care and clinical management skills',
+        'image': None
     },
     'HESI': {
         'display_name': 'HESI',
         'icon': '📋',
-        'description': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides'
+        'description': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides',
+        'image': None
     },
     'Nursing Certifications': {
         'display_name': 'Nursing Certifications',
         'icon': '🏆',
-        'description': 'Master content for nursing certification exams'
+        'description': 'Master content for nursing certification exams',
+        'image': None
     },
     'Pharmacology': {
         'display_name': 'Pharmacology',
         'icon': '💊',
-        'description': 'Strengthen your pharmacology knowledge and drug understanding'
+        'description': 'Strengthen your pharmacology knowledge and drug understanding',
+        'image': None
     },
     'Lab Values': {
         'display_name': 'Lab Values',
         'icon': '🧪',
-        'description': 'Master critical laboratory values for NCLEX and HESI exams'
+        'description': 'Master critical laboratory values for NCLEX and HESI exams',
+        'image': '/images/Nursing_Lab_Values.png'
     }
 }
 
@@ -113,6 +118,7 @@ def get_study_categories():
             'display_name': metadata['display_name'],
             'icon': metadata['icon'],
             'description': metadata.get('description', ''),
+            'image': metadata.get('image'),
             'modules': discovered.get(category_name, [])
         }
     
@@ -187,6 +193,7 @@ def get_categories():
             result[name] = {
                 'display_name': data['display_name'],
                 'icon': data['icon'],
+                'image': data['image'],
                 'modules': data['modules']
             }
     return jsonify(result), 200
