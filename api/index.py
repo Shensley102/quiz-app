@@ -23,25 +23,25 @@ CATEGORY_METADATA = {
         'display_name': 'Patient Care Management',
         'icon': '👥',
         'description': 'Enhance your patient care and clinical management skills',
-        'image': None
+        'image': '/images/Nursing_Leadership_Image.png'
     },
     'HESI': {
         'display_name': 'HESI',
         'icon': '📋',
         'description': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides',
-        'image': None
+        'image': '/images/Nursing_Hesi_Exam_Prep_Image.png'
     },
     'Nursing Certifications': {
         'display_name': 'Nursing Certifications',
         'icon': '🏆',
         'description': 'Master content for nursing certification exams',
-        'image': None
+        'image': '/images/Nursing_Advanced_Certifications.png'
     },
     'Pharmacology': {
         'display_name': 'Pharmacology',
         'icon': '💊',
         'description': 'Strengthen your pharmacology knowledge and drug understanding',
-        'image': None
+        'image': '/images/Nursing_Pharmacology_Image.png'
     },
     'Lab Values': {
         'display_name': 'Lab Values',
