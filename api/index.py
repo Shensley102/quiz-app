@@ -213,6 +213,26 @@ def quiz_fill_blank(category, module):
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/quiz-fishbone-mcq')
+def quiz_fishbone_mcq():
+    """Fishbone MCQ quiz page"""
+    try:
+        return render_template('quiz-fishbone-mcq.html')
+    except Exception as e:
+        print(f"Error in quiz_fishbone_mcq route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/quiz-fishbone-fill')
+def quiz_fishbone_fill():
+    """Fishbone fill-in-the-blank quiz page"""
+    try:
+        return render_template('quiz-fishbone-fill.html')
+    except Exception as e:
+        print(f"Error in quiz_fishbone_fill route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/api/categories')
 def api_categories():
     """API endpoint to get all categories with metadata"""
