@@ -296,9 +296,9 @@ function handleRestart() {
   quizContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// Go home
+// Go to Lab Values page
 function handleHome() {
-  window.location.href = '/';
+  window.location.href = '/category/Lab_Values';
 }
 
 // Event listeners
