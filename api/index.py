@@ -217,10 +217,23 @@ def quiz(category, module):
         with open(module_path, 'r', encoding='utf-8') as f:
             quiz_data = json.load(f)
         
+        # Determine back link based on category and module
+        metadata = CATEGORY_METADATA.get(category, {})
+        
+        # Special handling for CCRN tests - go back to CCRN page
+        if 'CCRN' in module and category == 'Nursing_Certifications':
+            back_url = '/category/Nursing_Certifications/CCRN'
+            back_label = 'CCRN Practice Tests'
+        else:
+            back_url = f'/category/{category}'
+            back_label = metadata.get('display_name', category.replace('_', ' '))
+        
         return render_template('quiz.html',
                              quiz_data=quiz_data,
                              module_name=module,
-                             category=category)
+                             category=category,
+                             back_url=back_url,
+                             back_label=back_label)
     except Exception as e:
         print(f"Error in quiz route: {e}")
         return jsonify({'error': str(e)}), 500
@@ -251,10 +264,17 @@ def quiz_fill_blank(category, module):
         with open(module_path, 'r', encoding='utf-8') as f:
             quiz_data = json.load(f)
         
+        # Determine back link based on category
+        metadata = CATEGORY_METADATA.get(category, {})
+        back_url = f'/category/{category}'
+        back_label = metadata.get('display_name', category.replace('_', ' '))
+        
         return render_template('quiz-fill-blank.html',
                              quiz_data=quiz_data,
                              module_name=module,
-                             category=category)
+                             category=category,
+                             back_url=back_url,
+                             back_label=back_label)
     except Exception as e:
         print(f"Error in quiz_fill_blank route: {e}")
         return jsonify({'error': str(e)}), 500
