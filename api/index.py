@@ -4,6 +4,7 @@ import os
 import json
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 from pathlib import Path
+from urllib.parse import unquote
 
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
@@ -131,9 +132,13 @@ def home():
 def category(category):
     """Category landing page - shows available quizzes"""
     try:
+        # Decode URL-encoded category names (e.g., "Patient_Care_Management" or spaces)
+        category = unquote(category)
+        
         categories = get_categories()
         
         if category not in categories:
+            print(f"Category '{category}' not found. Available: {categories}")
             return redirect(url_for('home'))
         
         quizzes = get_category_quizzes(category)
@@ -148,6 +153,8 @@ def category(category):
             'modules': quizzes.get('multiple-choice', []) + quizzes.get('fill-in-the-blank', [])
         }
         
+        print(f"Category: {category}, Modules: {len(category_data['modules'])}")
+        
         # Check if this is Lab Values with multiple quiz types
         has_mc = len(quizzes.get('multiple-choice', [])) > 0
         has_fb = len(quizzes.get('fill-in-the-blank', [])) > 0
@@ -160,6 +167,8 @@ def category(category):
         return render_template('category.html', category=category, category_data=category_data, quizzes=quizzes)
     except Exception as e:
         print(f"Error in category route: {e}")
+        import traceback
+        traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
 
@@ -167,6 +176,10 @@ def category(category):
 def quiz(category, module):
     """Quiz page for multiple choice"""
     try:
+        # Decode URL-encoded names
+        category = unquote(category)
+        module = unquote(module)
+        
         categories = get_categories()
         
         if category not in categories:
@@ -197,6 +210,10 @@ def quiz(category, module):
 def quiz_fill_blank(category, module):
     """Quiz page for fill-in-the-blank"""
     try:
+        # Decode URL-encoded names
+        category = unquote(category)
+        module = unquote(module)
+        
         categories = get_categories()
         
         if category not in categories:
@@ -272,6 +289,9 @@ def api_categories():
 def api_category_quizzes(category):
     """API endpoint to get quizzes for a category"""
     try:
+        # Decode URL-encoded category
+        category = unquote(category)
+        
         categories = get_categories()
         
         if category not in categories:
