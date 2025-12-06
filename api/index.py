@@ -138,6 +138,16 @@ def category(category):
         
         quizzes = get_category_quizzes(category)
         
+        # Get category metadata
+        metadata = CATEGORY_METADATA.get(category, {})
+        category_data = {
+            'display_name': metadata.get('display_name', category.replace('_', ' ')),
+            'icon': metadata.get('icon', '📚'),
+            'image': metadata.get('image', None),
+            'description': metadata.get('description', ''),
+            'modules': quizzes.get('multiple-choice', []) + quizzes.get('fill-in-the-blank', [])
+        }
+        
         # Check if this is Lab Values with multiple quiz types
         has_mc = len(quizzes.get('multiple-choice', [])) > 0
         has_fb = len(quizzes.get('fill-in-the-blank', [])) > 0
@@ -147,7 +157,7 @@ def category(category):
             return render_template('lab-values.html', quizzes=quizzes)
         
         # Use generic category template for others
-        return render_template('category.html', category=category, quizzes=quizzes)
+        return render_template('category.html', category=category, category_data=category_data, quizzes=quizzes)
     except Exception as e:
         print(f"Error in category route: {e}")
         return jsonify({'error': str(e)}), 500
