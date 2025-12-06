@@ -179,6 +179,16 @@ def category(category):
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/category/Nursing_Certifications/CCRN')
+def ccrn_page():
+    """CCRN certification tests sub-page"""
+    try:
+        return render_template('ccrn.html')
+    except Exception as e:
+        print(f"Error in ccrn_page route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/quiz/<category>/<module>')
 def quiz(category, module):
     """Quiz page for multiple choice"""
