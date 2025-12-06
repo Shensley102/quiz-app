@@ -137,7 +137,10 @@ def category(category):
         
         categories = get_categories()
         
-        if category not in categories:
+        # Check if category exists in filesystem OR in metadata (for hardcoded categories)
+        category_exists = category in categories or category in CATEGORY_METADATA
+        
+        if not category_exists:
             print(f"Category '{category}' not found. Available: {categories}")
             return redirect(url_for('home'))
         
@@ -163,6 +166,10 @@ def category(category):
         if category == 'Lab_Values' and has_mc and has_fb:
             return render_template('lab-values.html', quizzes=quizzes)
         
+        # Use special template for Nursing Certifications
+        if category == 'Nursing_Certifications':
+            return render_template('nursing-certifications.html', quizzes=quizzes)
+        
         # Use generic category template for others
         return render_template('category.html', category=category, category_data=category_data, quizzes=quizzes)
     except Exception as e:
@@ -182,7 +189,10 @@ def quiz(category, module):
         
         categories = get_categories()
         
-        if category not in categories:
+        # Allow categories that exist in metadata even if directory doesn't exist yet
+        category_exists = category in categories or category in CATEGORY_METADATA
+        
+        if not category_exists:
             return redirect(url_for('home'))
         
         # Don't serve fill-in-the-blank through this route
