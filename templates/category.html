@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{{ category }} - Nurse Success Study Hub">
-  <title>{{ category }} - Nurse Success Study Hub</title>
+  <meta name="description" content="{{ category_data.display_name }} - Nurse Success Study Hub">
+  <title>{{ category_data.display_name }} - Nurse Success Study Hub</title>
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/category-style.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,9 +26,10 @@
     <!-- Modules Grid -->
     <main class="modules-grid" id="modulesContainer">
       {% for module in category_data.modules %}
-      <a href="/quiz/{{ module }}?category={{ category|urlencode }}" class="module-card">
+      <a href="/quiz/{{ category|urlencode }}/{{ module.name }}" class="module-card">
         <div class="module-content">
-          <h3>{{ module.replace('_', ' ') }}</h3>
+          <h3>{{ module.name.replace('_', ' ') }}</h3>
+          <p style="color: var(--ink-soft); font-size: 14px; margin: 8px 0 0 0;">{{ module.count }} questions</p>
           <p class="module-action">Start Quiz →</p>
         </div>
       </a>
@@ -42,7 +43,7 @@
   </div>
 
   <script>
-    // Pretty module names
+    // Pretty module names (optional - for additional formatting)
     const prettyNames = {
       'CCRN_Test_1_Combined_QA': 'CCRN Test 1',
       'CCRN_Test_2_Combined_QA': 'CCRN Test 2',
