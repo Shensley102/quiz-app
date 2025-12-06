@@ -68,7 +68,7 @@
     <!-- Title Bar -->
     <div class="title-bar">
       <div>
-        <a href="/" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 4px; display: inline-block; font-size: 14px;">← Nurse Success Study Hub</a>
+        <a href="{{ back_url if back_url else '/' }}" id="backLink" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 4px; display: inline-block; font-size: 14px;">← {{ back_label if back_label else 'Nurse Success Study Hub' }}</a>
         <h1 id="quizTitle">Select a Module</h1>
         <p id="quizDescription" style="color: var(--ink-soft); margin: 8px 0 0 0; font-size: 14px; display: none;"></p>
       </div>
@@ -189,11 +189,18 @@
     window.preloadedQuizData = null;
     window.preloadedModuleName = null;
     window.preloadedCategory = null;
+    window.backUrl = null;
+    window.backLabel = null;
     
     {% if quiz_data %}
       window.preloadedQuizData = {{ quiz_data | tojson }};
       window.preloadedModuleName = "{{ module_name }}";
       window.preloadedCategory = "{{ category }}";
+    {% endif %}
+    
+    {% if back_url %}
+      window.backUrl = "{{ back_url }}";
+      window.backLabel = "{{ back_label }}";
     {% endif %}
   </script>
 
