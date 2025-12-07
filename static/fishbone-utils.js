@@ -81,7 +81,7 @@ function getCorrectLabRanges(categoryKey) {
   return category.labs.map(lab => lab.units);
 }
 
-// Generate SVG Fishbone Diagram - COMPACT HORIZONTAL LAYOUT
+// Generate SVG Fishbone Diagram - DIAMOND PATTERN LAYOUT
 function generateFishboneSVG(categoryKey, highlightMode = false) {
   const category = LAB_DATA[categoryKey];
   if (!category) return '';
@@ -89,69 +89,69 @@ function generateFishboneSVG(categoryKey, highlightMode = false) {
   const labs = category.labs;
   const labCount = labs.length;
 
-  // SVG dimensions - more compact horizontal layout
-  const width = 1000;
-  const height = 300;
-  const spineStartX = 150;
-  const spineEndX = 950;
-  const spineMidY = height / 2;
-
-  // Branch configuration
-  const branchLength = 100;
-  const branchAngle = 35;
+  // SVG dimensions
+  const width = 900;
+  const height = 350;
+  const centerX = width / 2;
+  const centerY = height / 2;
 
   let svg = `<svg width="100%" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; margin: 20px 0;">`;
 
-  // Spine line (main horizontal line)
-  svg += `<line x1="${spineStartX}" y1="${spineMidY}" x2="${spineEndX}" y2="${spineMidY}" stroke="#2f61f3" stroke-width="5" stroke-linecap="round" />`;
+  // Central spine line (horizontal) - SOLID
+  const spineLeftX = 150;
+  const spineRightX = width - 150;
+  svg += `<line x1="${spineLeftX}" y1="${centerY}" x2="${spineRightX}" y2="${centerY}" stroke="#2f61f3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />`;
 
-  // Head/destination circle and label
-  svg += `<circle cx="${spineEndX}" cy="${spineMidY}" r="15" fill="#2f61f3" />`;
-  svg += `<text x="${spineEndX - 22}" y="${spineMidY + 6}" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">${category.shortName}</text>`;
+  // Center circle
+  svg += `<circle cx="${centerX}" cy="${centerY}" r="12" fill="#2f61f3" />`;
 
-  // Distribute branches evenly along the spine
-  const branchCount = labs.length;
-  const spineLength = spineEndX - spineStartX;
-  const spacingX = spineLength / (branchCount + 1);
+  // Branch configuration - create 4 directions based on lab count
+  const branchLength = 120;
+  const directions = [
+    { angle: -45, label: 'top-left' },     // WBC - up left
+    { angle: 45, label: 'top-right' },     // Hgb - up right
+    { angle: -135, label: 'bottom-left' }, // Hct - down left
+    { angle: 135, label: 'bottom-right' }  // Platelets - down right
+  ];
 
-  // Generate branches
+  // Generate branches for each lab
   labs.forEach((lab, idx) => {
-    // Position along spine
-    const spineConnectX = spineStartX + (idx + 1) * spacingX;
-    const spineConnectY = spineMidY;
-
-    // Alternate branches above and below
-    const isAbove = idx % 2 === 0;
+    if (idx >= directions.length) return; // Only 4 labs per diagram
+    
+    const dir = directions[idx];
+    const angleRad = (dir.angle * Math.PI) / 180;
     
     // Calculate branch endpoint
-    const angleRad = (branchAngle * Math.PI) / 180;
-    const branchEndX = spineConnectX - branchLength * Math.cos(angleRad);
-    const branchVertical = branchLength * Math.sin(angleRad);
-    const branchEndY = isAbove ? spineConnectY - branchVertical : spineConnectY + branchVertical;
+    const branchEndX = centerX + branchLength * Math.cos(angleRad);
+    const branchEndY = centerY + branchLength * Math.sin(angleRad);
+    
+    // Connection point on center
+    const connectionX = centerX + 12 * Math.cos(angleRad);
+    const connectionY = centerY + 12 * Math.sin(angleRad);
 
-    // Connection point on spine (small circle)
-    svg += `<circle cx="${spineConnectX}" cy="${spineConnectY}" r="2.5" fill="#2f61f3" />`;
-
-    // Branch line
-    svg += `<line x1="${spineConnectX}" y1="${spineConnectY}" x2="${branchEndX}" y2="${branchEndY}" stroke="#45B7D1" stroke-width="3" stroke-linecap="round" />`;
+    // Branch line - SOLID, no dashes
+    svg += `<line x1="${connectionX}" y1="${connectionY}" x2="${branchEndX}" y2="${branchEndY}" stroke="#45B7D1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />`;
 
     // Circle at branch end
     svg += `<circle cx="${branchEndX}" cy="${branchEndY}" r="9" fill="#45B7D1" />`;
 
-    // Lab name text - positioned at branch endpoint
-    const textOffset = isAbove ? -40 : 40;
-    const textX = branchEndX - 20;
-    const textY = branchEndY + textOffset;
+    // Lab name text - positioned beyond the circle
+    const labelDistance = 45;
+    const labelX = branchEndX + labelDistance * Math.cos(angleRad);
+    const labelY = branchEndY + labelDistance * Math.sin(angleRad);
     
     // Split display text into lines
     const lines = lab.display.split('\n');
-    svg += `<text x="${textX}" y="${textY}" font-size="11" font-weight="700" text-anchor="middle" fill="#1a1a1a">`;
+    svg += `<text x="${labelX}" y="${labelY}" font-size="11" font-weight="700" text-anchor="middle" fill="#1a1a1a">`;
     lines.forEach((line, i) => {
-      const lineY = textY + (i * 14);
-      svg += `<tspan x="${textX}" y="${lineY}">${escapeXML(line)}</tspan>`;
+      const lineY = labelY + (i * 14) - (lines.length - 1) * 7;
+      svg += `<tspan x="${labelX}" y="${lineY}">${escapeXML(line)}</tspan>`;
     });
     svg += `</text>`;
   });
+
+  // Label for category (top right of the diagram)
+  svg += `<text x="${spineRightX - 20}" y="${centerY - 20}" font-size="14" font-weight="700" fill="#2f61f3" text-anchor="end">${category.shortName}</text>`;
 
   svg += `</svg>`;
   return svg;
