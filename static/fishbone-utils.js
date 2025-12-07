@@ -81,7 +81,7 @@ function getCorrectLabRanges(categoryKey) {
   return category.labs.map(lab => lab.units);
 }
 
-// Generate SVG Fishbone Diagram
+// Generate SVG Fishbone Diagram - CLEAN VERSION
 function generateFishboneSVG(categoryKey, highlightMode = false) {
   const category = LAB_DATA[categoryKey];
   if (!category) return '';
@@ -89,50 +89,69 @@ function generateFishboneSVG(categoryKey, highlightMode = false) {
   const labs = category.labs;
   const labCount = labs.length;
 
-  // SVG dimensions
-  const width = 900;
-  const height = 600;
-  const spineX = 150;
-  const spineEndX = width - 80;
+  // SVG dimensions - optimized for clean rendering
+  const width = 1000;
+  const height = 500;
+  const spineX = 180;
+  const spineEndX = width - 100;
   const spineMidY = height / 2;
 
-  // Calculate branch positioning
-  const branchSpacing = (height - 80) / Math.max(labCount - 1, 1);
-  const branchLength = 120;
-  const branchAngle = 25;
+  // Calculate branch positioning with better spacing
+  const usableHeight = height - 100;
+  const branchLength = 140;
+  const branchAngle = 30;
 
-  let svg = `<svg width="100%" height="600" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; margin: 20px 0;">`;
+  let svg = `<svg width="100%" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; margin: 30px 0;">`;
 
-  // Spine line
-  svg += `<line x1="${spineX}" y1="${spineMidY}" x2="${spineEndX}" y2="${spineMidY}" stroke="#2f61f3" stroke-width="4" stroke-linecap="round" />`;
+  // Spine line (main horizontal line)
+  svg += `<line x1="${spineX}" y1="${spineMidY}" x2="${spineEndX}" y2="${spineMidY}" stroke="#2f61f3" stroke-width="5" stroke-linecap="round" />`;
 
-  // Head/destination circle
-  svg += `<circle cx="${spineEndX}" cy="${spineMidY}" r="12" fill="#2f61f3" />`;
-  svg += `<text x="${spineEndX + 20}" y="${spineMidY + 6}" font-size="16" font-weight="700" fill="#2f61f3">${category.shortName}</text>`;
+  // Head/destination circle and label
+  svg += `<circle cx="${spineEndX}" cy="${spineMidY}" r="14" fill="#2f61f3" />`;
+  svg += `<text x="${spineEndX + 28}" y="${spineMidY + 5}" font-size="18" font-weight="700" fill="#2f61f3">${category.shortName}</text>`;
 
   // Generate branches
   labs.forEach((lab, idx) => {
-    // Alternate above/below spine
+    // Distribute branches above and below spine evenly
     const isAbove = idx % 2 === 0;
-    const branchStartY = spineMidY + (idx - Math.floor(labCount / 2)) * branchSpacing;
+    const positionInHalf = Math.floor(idx / 2);
+    const totalInHalf = Math.ceil(labCount / 2);
+    
+    let branchStartY;
+    if (isAbove) {
+      branchStartY = spineMidY - (positionInHalf + 1) * (usableHeight / (totalInHalf + 1));
+    } else {
+      branchStartY = spineMidY + (positionInHalf + 1) * (usableHeight / (totalInHalf + 1));
+    }
+
+    // Calculate branch endpoint
     const angleRad = (branchAngle * Math.PI) / 180;
     const branchEndX = spineX + branchLength * Math.cos(angleRad);
-    const branchAngleSin = branchLength * Math.sin(angleRad);
-    const branchEndY = isAbove ? branchStartY - branchAngleSin : branchStartY + branchAngleSin;
+    const branchVertical = branchLength * Math.sin(angleRad);
+    const branchEndY = isAbove ? branchStartY - branchVertical : branchStartY + branchVertical;
+
+    // Connection point on spine
+    svg += `<circle cx="${spineX}" cy="${branchStartY}" r="2" fill="#2f61f3" />`;
 
     // Branch line
-    svg += `<line x1="${spineX}" y1="${spineMidY}" x2="${branchEndX}" y2="${branchEndY}" stroke="#45B7D1" stroke-width="3" stroke-linecap="round" />`;
+    svg += `<line x1="${spineX}" y1="${branchStartY}" x2="${branchEndX}" y2="${branchEndY}" stroke="#45B7D1" stroke-width="3" stroke-linecap="round" />`;
 
     // Circle at branch end
-    svg += `<circle cx="${branchEndX}" cy="${branchEndY}" r="8" fill="#45B7D1" />`;
+    svg += `<circle cx="${branchEndX}" cy="${branchEndY}" r="9" fill="#45B7D1" />`;
 
-    // Lab name text (positioned above/below branch)
-    const textX = branchEndX - 60;
-    const textY = isAbove ? branchEndY - 12 : branchEndY + 20;
-    const textAnchor = 'middle';
-    svg += `<text x="${textX}" y="${textY}" font-size="13" font-weight="700" text-anchor="${textAnchor}" fill="#1a1a1a" data-lab-index="${idx}" class="fishbone-label">
-      ${lab.display.split('\n').map((line, i) => `<tspan x="${textX}" dy="${i === 0 ? '0' : '1.2em'}">${escapeXML(line)}</tspan>`).join('')}
-    </text>`;
+    // Lab name text - positioned clearly above or below
+    const textX = branchEndX - 75;
+    const textOffset = isAbove ? -28 : 32;
+    const textY = branchEndY + textOffset;
+    
+    // Split display text into lines
+    const lines = lab.display.split('\n');
+    svg += `<text x="${textX}" y="${textY}" font-size="12" font-weight="700" text-anchor="middle" fill="#1a1a1a">`;
+    lines.forEach((line, i) => {
+      const lineY = textY + (i * 16);
+      svg += `<tspan x="${textX}" y="${lineY}">${escapeXML(line)}</tspan>`;
+    });
+    svg += `</text>`;
   });
 
   svg += `</svg>`;
