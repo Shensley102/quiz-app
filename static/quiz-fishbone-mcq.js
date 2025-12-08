@@ -46,7 +46,7 @@ function displayQuestion() {
 
   const correctLabNames = getCorrectLabNames(categoryKey);
   // Dynamically generate position labels based on number of labs
-  const positionLabels = correctLabNames.map((_, idx) => `Position ${idx + 1}`);
+  const positionLabels = correctLabNames.map((_, idx) => `Place ${idx + 1}`);
   
   correctLabNames.forEach((labName, idx) => {
     
@@ -118,7 +118,7 @@ function getSelectedAnswers() {
 // Handle submit
 function handleSubmit() {
   if (!isAnswerComplete()) {
-    showError('Please select an option for each position before submitting.');
+    showError('Please select an option for each place before submitting.');
     return;
   }
 
@@ -174,13 +174,13 @@ function showResultsBreakdown(breakdown, correctLabNames, selectedValues) {
   resultsBreakdown.classList.add('show');
 
   // Dynamically generate position labels based on number of labs
-  const positionLabels = correctLabNames.map((_, idx) => `Position ${idx + 1}`);
+  const positionLabels = correctLabNames.map((_, idx) => `Place ${idx + 1}`);
   let html = '';
   
   correctLabNames.forEach((correct, idx) => {
     const userSelected = selectedValues[idx];
     const isMatch = userSelected === correct;
-    const position = positionLabels[idx] || `Position ${idx + 1}`;
+    const position = positionLabels[idx] || `Place ${idx + 1}`;
 
     html += `
       <div class="results-item ${isMatch ? 'correct' : 'incorrect'}">
