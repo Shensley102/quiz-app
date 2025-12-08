@@ -1,6 +1,6 @@
 /* ============================================================
    Fishbone MCQ Quiz - Multiple Choice Mode
-   - Dropdown selection for lab names
+   - Dropdown selection for lab names positioned around diagram
    - Answer validation
    - Progress tracking
    ============================================================ */
@@ -36,40 +36,103 @@ function displayQuestion() {
   clearFeedback();
   hideResultsBreakdown();
 
-  // Render fishbone image
+  // Render fishbone image with positioned dropdowns
   const imagePath = `/static/images/fishbone-${categoryKey.toLowerCase()}.png`;
-  $('fishboneDisplay').innerHTML = `<img src="${imagePath}" alt="${categoryKey} fishbone diagram" style="max-width: 100%; height: auto; max-height: 300px;">`;
-
-  // Generate dropdowns
-  const inputsContainer = $('inputsContainer');
-  inputsContainer.innerHTML = '';
-
   const correctLabNames = getCorrectLabNames(categoryKey);
-  // Dynamically generate position labels based on number of labs
   const positionLabels = correctLabNames.map((_, idx) => `Place ${idx + 1}`);
   
+  // Build the fishbone container with image and positioned dropdowns
+  let fishboneHTML = `<div style="position: relative; display: inline-block; width: 100%; padding: 40px 20px;">
+    <img src="${imagePath}" alt="${categoryKey} fishbone diagram" style="width: 100%; max-width: 100%; height: auto;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">`;
+  
+  // Position dropdowns based on place number and total count
+  const totalPlaces = correctLabNames.length;
   correctLabNames.forEach((labName, idx) => {
+    let topPercent, leftPercent;
     
-    const wrapper = document.createElement('div');
-    wrapper.className = 'input-group';
-
-    const position = positionLabels[idx];
-    const label = document.createElement('label');
-    label.className = 'input-label';
-    label.textContent = `${position}:`;
-
-    const dropdown = document.createElement('select');
-    dropdown.id = `branch-${idx}`;
-    dropdown.className = 'fishbone-dropdown';
-    dropdown.dataset.branch = idx;
-
-    // Add Select option
-    const selectOption = document.createElement('option');
-    selectOption.value = 'Select';
-    selectOption.textContent = 'Select';
-    dropdown.appendChild(selectOption);
-
-    // Add lab options
+    // Calculate positions based on total places
+    if (totalPlaces <= 4) {
+      // Standard 4-place positioning
+      const positions = [
+        { top: 15, left: 5 },    // Place 1 - top left
+        { top: 50, left: 5 },    // Place 2 - middle left
+        { top: 85, left: 5 },    // Place 3 - bottom left
+        { top: 50, left: 85 }    // Place 4 - right
+      ];
+      const pos = positions[idx] || { top: 50, left: 50 };
+      topPercent = pos.top;
+      leftPercent = pos.left;
+    } else if (totalPlaces === 5) {
+      // 5-place positioning
+      const positions = [
+        { top: 10, left: 10 },   // Place 1
+        { top: 30, left: 10 },   // Place 2
+        { top: 70, left: 10 },   // Place 3
+        { top: 50, left: 85 },   // Place 4
+        { top: 85, left: 50 }    // Place 5
+      ];
+      const pos = positions[idx] || { top: 50, left: 50 };
+      topPercent = pos.top;
+      leftPercent = pos.left;
+    } else if (totalPlaces === 6) {
+      // 6-place positioning
+      const positions = [
+        { top: 5, left: 10 },    // Place 1
+        { top: 25, left: 10 },   // Place 2
+        { top: 70, left: 10 },   // Place 3
+        { top: 50, left: 90 },   // Place 4
+        { top: 25, left: 50 },   // Place 5
+        { top: 70, left: 50 }    // Place 6
+      ];
+      const pos = positions[idx] || { top: 50, left: 50 };
+      topPercent = pos.top;
+      leftPercent = pos.left;
+    } else if (totalPlaces === 7) {
+      // 7-place positioning (Electrolytes)
+      const positions = [
+        { top: 5, left: 10 },    // Place 1
+        { top: 25, left: 28 },   // Place 2
+        { top: 5, left: 45 },    // Place 3
+        { top: 50, left: 85 },   // Place 4
+        { top: 35, left: 28 },   // Place 5
+        { top: 35, left: 45 },   // Place 6
+        { top: 70, left: 28 }    // Place 7
+      ];
+      const pos = positions[idx] || { top: 50, left: 50 };
+      topPercent = pos.top;
+      leftPercent = pos.left;
+    } else {
+      // 8-place positioning
+      const positions = [
+        { top: 5, left: 10 },    // Place 1
+        { top: 25, left: 10 },   // Place 2
+        { top: 70, left: 10 },   // Place 3
+        { top: 50, left: 85 },   // Place 4
+        { top: 5, left: 50 },    // Place 5
+        { top: 25, left: 50 },   // Place 6
+        { top: 70, left: 50 },   // Place 7
+        { top: 85, left: 65 }    // Place 8
+      ];
+      const pos = positions[idx] || { top: 50, left: 50 };
+      topPercent = pos.top;
+      leftPercent = pos.left;
+    }
+    
+    fishboneHTML += `<div style="position: absolute; top: ${topPercent}%; left: ${leftPercent}%; transform: translate(-50%, -50%); pointer-events: all; width: 140px;">
+      <label style="font-weight: 700; font-size: 12px; color: #1a1a1a; display: block; margin-bottom: 4px;">Place ${idx + 1}</label>
+      <select id="branch-${idx}" class="fishbone-dropdown" data-branch="${idx}" style="width: 100%; padding: 8px 6px; font-size: 13px; border: 2px solid #e0e0e0; border-radius: 6px; cursor: pointer;">
+        <option value="Select">Select</option>
+      </select>
+    </div>`;
+  });
+  
+  fishboneHTML += `</div></div>`;
+  $('fishboneDisplay').innerHTML = fishboneHTML;
+  
+  // Now populate the dropdowns
+  const dropdowns = document.querySelectorAll('.fishbone-dropdown');
+  dropdowns.forEach((dropdown, idx) => {
     category.labs.forEach(lab => {
       const option = document.createElement('option');
       option.value = lab.name;
@@ -81,10 +144,6 @@ function displayQuestion() {
     if (quizAnswers[currentQuestionIndex]) {
       dropdown.value = quizAnswers[currentQuestionIndex][idx] || 'Select';
     }
-
-    wrapper.appendChild(label);
-    wrapper.appendChild(dropdown);
-    inputsContainer.appendChild(wrapper);
 
     // Add change listener
     dropdown.addEventListener('change', () => {
