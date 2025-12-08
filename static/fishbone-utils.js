@@ -1,6 +1,6 @@
 /* ============================================================
    Fishbone Diagram Quiz Utilities
-   Shared functions for lab data, image loading, and validation
+   Shared functions for lab data, SVG generation, and validation
    ============================================================ */
 
 // Lab Values Database - All 5 Categories
@@ -8,7 +8,6 @@ const LAB_DATA = {
   CBC: {
     displayName: 'Complete Blood Count (CBC)',
     shortName: 'CBC',
-    image: '/static/images/fishbone-cbc.png',
     labs: [
       { name: 'WBC', units: '5,000-10,000/mm³', display: 'WBC\n5,000-10,000/mm³' },
       { name: 'Hgb (Male)', units: '14-17 g/dL', display: 'Hgb (Male)\n14-17 g/dL' },
@@ -19,7 +18,6 @@ const LAB_DATA = {
   BMP: {
     displayName: 'Basic Metabolic Panel (BMP)',
     shortName: 'BMP',
-    image: '/static/images/fishbone-bmp.png',
     labs: [
       { name: 'Na⁺', units: '135-145 mEq/L', display: 'Na⁺\n135-145 mEq/L' },
       { name: 'K⁺', units: '3.5-5.0 mEq/L', display: 'K⁺\n3.5-5.0 mEq/L' },
@@ -34,7 +32,6 @@ const LAB_DATA = {
   Liver: {
     displayName: 'Liver Panel',
     shortName: 'Liver',
-    image: '/static/images/fishbone-liver.png',
     labs: [
       { name: 'AST', units: '10-40 U/L', display: 'AST\n10-40 U/L' },
       { name: 'ALT', units: '10-55 U/L', display: 'ALT\n10-55 U/L' },
@@ -45,7 +42,6 @@ const LAB_DATA = {
   Coagulation: {
     displayName: 'Coagulation Panel',
     shortName: 'Coagulation',
-    image: '/static/images/fishbone-coagulation.png',
     labs: [
       { name: 'PT', units: '11-13 seconds', display: 'PT\n11-13 seconds' },
       { name: 'INR', units: '0.8-1.2', display: 'INR\n0.8-1.2' },
@@ -56,7 +52,6 @@ const LAB_DATA = {
   ABG: {
     displayName: 'Arterial Blood Gas (ABG)',
     shortName: 'ABG',
-    image: '/static/images/fishbone-abg.png',
     labs: [
       { name: 'pH', units: '7.35-7.45', display: 'pH\n7.35-7.45' },
       { name: 'PaCO₂', units: '35-45 mmHg', display: 'PaCO₂\n35-45 mmHg' },
@@ -86,15 +81,80 @@ function getCorrectLabRanges(categoryKey) {
   return category.labs.map(lab => lab.units);
 }
 
-// Generate Fishbone Display - IMAGE MODE
+// Generate SVG Fishbone Diagram - DIAMOND PATTERN LAYOUT
 function generateFishboneSVG(categoryKey, highlightMode = false) {
   const category = LAB_DATA[categoryKey];
-  if (!category || !category.image) return '';
+  if (!category) return '';
 
-  // Return image HTML instead of SVG
-  return `<div style="text-align: center; margin: 20px 0;">
-    <img src="${category.image}" alt="${category.displayName}" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-  </div>`;
+  const labs = category.labs;
+  const labCount = labs.length;
+
+  // SVG dimensions
+  const width = 900;
+  const height = 350;
+  const centerX = width / 2;
+  const centerY = height / 2;
+
+  let svg = `<svg width="100%" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; margin: 20px 0;">`;
+
+  // Central spine line (horizontal) - SOLID
+  const spineLeftX = 150;
+  const spineRightX = width - 150;
+  svg += `<line x1="${spineLeftX}" y1="${centerY}" x2="${spineRightX}" y2="${centerY}" stroke="#2f61f3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />`;
+
+  // Center circle
+  svg += `<circle cx="${centerX}" cy="${centerY}" r="12" fill="#2f61f3" />`;
+
+  // Branch configuration - create 4 directions based on lab count
+  const branchLength = 120;
+  const directions = [
+    { angle: -45, label: 'top-left' },     // WBC - up left
+    { angle: 45, label: 'top-right' },     // Hgb - up right
+    { angle: -135, label: 'bottom-left' }, // Hct - down left
+    { angle: 135, label: 'bottom-right' }  // Platelets - down right
+  ];
+
+  // Generate branches for each lab
+  labs.forEach((lab, idx) => {
+    if (idx >= directions.length) return; // Only 4 labs per diagram
+    
+    const dir = directions[idx];
+    const angleRad = (dir.angle * Math.PI) / 180;
+    
+    // Calculate branch endpoint
+    const branchEndX = centerX + branchLength * Math.cos(angleRad);
+    const branchEndY = centerY + branchLength * Math.sin(angleRad);
+    
+    // Connection point on center
+    const connectionX = centerX + 12 * Math.cos(angleRad);
+    const connectionY = centerY + 12 * Math.sin(angleRad);
+
+    // Branch line - SOLID, no dashes
+    svg += `<line x1="${connectionX}" y1="${connectionY}" x2="${branchEndX}" y2="${branchEndY}" stroke="#45B7D1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />`;
+
+    // Circle at branch end
+    svg += `<circle cx="${branchEndX}" cy="${branchEndY}" r="9" fill="#45B7D1" />`;
+
+    // Lab name text - positioned beyond the circle
+    const labelDistance = 45;
+    const labelX = branchEndX + labelDistance * Math.cos(angleRad);
+    const labelY = branchEndY + labelDistance * Math.sin(angleRad);
+    
+    // Split display text into lines
+    const lines = lab.display.split('\n');
+    svg += `<text x="${labelX}" y="${labelY}" font-size="11" font-weight="700" text-anchor="middle" fill="#1a1a1a">`;
+    lines.forEach((line, i) => {
+      const lineY = labelY + (i * 14) - (lines.length - 1) * 7;
+      svg += `<tspan x="${labelX}" y="${lineY}">${escapeXML(line)}</tspan>`;
+    });
+    svg += `</text>`;
+  });
+
+  // Label for category (top right of the diagram)
+  svg += `<text x="${spineRightX - 20}" y="${centerY - 20}" font-size="14" font-weight="700" fill="#2f61f3" text-anchor="end">${category.shortName}</text>`;
+
+  svg += `</svg>`;
+  return svg;
 }
 
 // Escape XML special characters
