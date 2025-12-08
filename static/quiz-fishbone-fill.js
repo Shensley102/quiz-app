@@ -1,6 +1,6 @@
 /* ============================================================
    Fishbone Fill-in-the-Blank Quiz - Text Input Mode
-   - Text inputs positioned around diagram for lab value ranges
+   - Text input for lab value ranges
    - Flexible answer validation
    - Detailed feedback breakdown
    ============================================================ */
@@ -45,74 +45,72 @@ function displayQuestion() {
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">`;
   
   // Position inputs based on place number and total count
-  const totalPlaces = category.labs.length;
-  const labs = category.labs;
-  
+  const totalPlaces = labs.length;
   labs.forEach((lab, idx) => {
     let topPercent, leftPercent;
     
-    // Calculate positions based on total places
+    // Calculate positions based on total places - ON the fishbone branches
     if (totalPlaces <= 4) {
-      // Standard 4-place positioning
+      // Standard 4-place positioning - ON branches
       const positions = [
-        { top: 15, left: 5 },    // Place 1 - top left
-        { top: 50, left: 5 },    // Place 2 - middle left
-        { top: 85, left: 5 },    // Place 3 - bottom left
-        { top: 50, left: 85 }    // Place 4 - right
+        { top: 25, left: 25 },   // Place 1 - top left branch
+        { top: 25, left: 75 },   // Place 2 - top right branch
+        { top: 75, left: 75 },   // Place 3 - bottom right branch
+        { top: 50, left: 50 }    // Place 4 - center
       ];
       const pos = positions[idx] || { top: 50, left: 50 };
       topPercent = pos.top;
       leftPercent = pos.left;
     } else if (totalPlaces === 5) {
-      // 5-place positioning
+      // 5-place positioning - ON branches
       const positions = [
-        { top: 10, left: 10 },   // Place 1
-        { top: 30, left: 10 },   // Place 2
-        { top: 70, left: 10 },   // Place 3
-        { top: 50, left: 85 },   // Place 4
-        { top: 85, left: 50 }    // Place 5
+        { top: 20, left: 20 },   // Place 1 - top left
+        { top: 20, left: 80 },   // Place 2 - top right
+        { top: 80, left: 80 },   // Place 3 - bottom right
+        { top: 80, left: 50 },   // Place 4 - bottom center
+        { top: 50, left: 50 }    // Place 5 - center
       ];
       const pos = positions[idx] || { top: 50, left: 50 };
       topPercent = pos.top;
       leftPercent = pos.left;
     } else if (totalPlaces === 6) {
-      // 6-place positioning
+      // 6-place positioning - ON branches
       const positions = [
-        { top: 5, left: 10 },    // Place 1
-        { top: 25, left: 10 },   // Place 2
-        { top: 70, left: 10 },   // Place 3
-        { top: 50, left: 90 },   // Place 4
-        { top: 25, left: 50 },   // Place 5
-        { top: 70, left: 50 }    // Place 6
+        { top: 15, left: 20 },   // Place 1 - top left
+        { top: 15, left: 80 },   // Place 2 - top right
+        { top: 85, left: 80 },   // Place 3 - bottom right
+        { top: 50, left: 85 },   // Place 4 - right center
+        { top: 30, left: 50 },   // Place 5 - top center
+        { top: 70, left: 50 }    // Place 6 - bottom center
       ];
       const pos = positions[idx] || { top: 50, left: 50 };
       topPercent = pos.top;
       leftPercent = pos.left;
     } else if (totalPlaces === 7) {
-      // 7-place positioning (Electrolytes)
+      // 7-place positioning (Electrolytes) - ON branches
       const positions = [
-        { top: 5, left: 10 },    // Place 1
-        { top: 25, left: 28 },   // Place 2
-        { top: 5, left: 45 },    // Place 3
-        { top: 50, left: 85 },   // Place 4
-        { top: 35, left: 28 },   // Place 5
-        { top: 35, left: 45 },   // Place 6
-        { top: 70, left: 28 }    // Place 7
+        { top: 20, left: 20 },   // Place 1 - top left
+        { top: 40, left: 35 },   // Place 2 - middle left
+        { top: 20, left: 80 },   // Place 3 - top right
+        { top: 50, left: 85 },   // Place 4 - right center
+        { top: 40, left: 65 },   // Place 5 - middle right
+        { top: 60, left: 50 },   // Place 6 - bottom center
+        { top: 80, left: 35 }    // Place 7 - bottom left
       ];
       const pos = positions[idx] || { top: 50, left: 50 };
       topPercent = pos.top;
       leftPercent = pos.left;
     } else {
-      // 8-place positioning
+      // 8-place positioning - ON branches
       const positions = [
-        { top: 5, left: 10 },    // Place 1
-        { top: 25, left: 10 },   // Place 2
-        { top: 70, left: 10 },   // Place 3
-        { top: 50, left: 85 },   // Place 4
-        { top: 5, left: 50 },    // Place 5
-        { top: 25, left: 50 },   // Place 6
-        { top: 70, left: 50 },   // Place 7
-        { top: 85, left: 65 }    // Place 8
+        { top: 15, left: 20 },   // Place 1 - top left
+        { top: 35, left: 20 },   // Place 2 - middle left
+        { top: 80, left: 20 },   // Place 3 - bottom left
+        { top: 50, left: 85 },   // Place 4 - right center
+        { top: 15, left: 80 },   // Place 5 - top right
+        { top: 35, left: 80 },   // Place 6 - middle right
+        { top: 75, left: 80 },   // Place 7 - bottom right
+        { top: 90, left: 50 }    // Place 8 - bottom center
       ];
       const pos = positions[idx] || { top: 50, left: 50 };
       topPercent = pos.top;
@@ -259,7 +257,7 @@ function showResultsBreakdown(breakdown) {
   breakdown.details.forEach((detail, idx) => {
     const statusClass = detail.correct ? 'correct' : 'incorrect';
     const statusIcon = detail.correct ? '✓' : '✗';
-    const position = positionLabels[idx] || `Place ${idx + 1}`;
+    const position = positionLabels[idx] || `Position ${idx + 1}`;
 
     html += `
       <div class="results-item ${statusClass}">
