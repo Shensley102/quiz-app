@@ -144,6 +144,11 @@
       margin: 0 auto;
     }
 
+    .fishbone-container img {
+      display: block;
+      margin: 0 auto;
+    }
+
     .inputs-section {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -233,17 +238,32 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      padding: 12px;
+      background: white;
+      border-radius: 6px;
       font-size: 14px;
-      line-height: 1.6;
+      border-left: 4px solid #ccc;
     }
 
     .results-item.correct {
-      color: var(--green);
+      border-left-color: var(--green);
+      background: rgba(76, 175, 80, 0.05);
     }
 
     .results-item.incorrect {
-      color: var(--danger);
+      border-left-color: var(--danger);
+      background: rgba(244, 67, 54, 0.05);
+    }
+
+    .results-label {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .results-content {
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     .actions {
@@ -338,6 +358,10 @@
       display: block;
     }
 
+    .hidden {
+      display: none !important;
+    }
+
     @media (max-width: 768px) {
       .card {
         padding: 20px;
@@ -372,6 +396,10 @@
       .score-message {
         font-size: 20px;
       }
+
+      .results-item {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -380,7 +408,7 @@
     <div class="header">
       <a href="/category/Lab_Values" class="back-link">← Laboratory Values</a>
       <h1>🧪 Fishbone Lab Values</h1>
-      <p class="subtitle">MCQ Mode - Select the correct lab names for each category</p>
+      <p class="subtitle">MCQ Mode - Select the correct lab names for each place</p>
     </div>
 
     <div class="progress-section">
@@ -395,10 +423,10 @@
     <div class="card">
       <div class="content-section" id="quizContent">
         <div class="instructions">
-          <strong>Instructions:</strong> Use the dropdown menus to select the correct lab names for each branch of the fishbone diagram. All dropdowns must be filled before submitting.
+          <strong>Instructions:</strong> Use the dropdown menus to select the correct lab names for each place on the fishbone diagram. <strong>Place 1 starts at the top left</strong> and continues <strong>clockwise</strong> around the spine, ending at the <strong>bottom left</strong>. All dropdowns must be filled before submitting.
         </div>
 
-        <div id="fishboneDisplay"></div>
+        <div class="fishbone-container" id="fishboneDisplay"></div>
 
         <div class="inputs-section" id="inputsContainer"></div>
 
