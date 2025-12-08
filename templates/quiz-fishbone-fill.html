@@ -283,6 +283,9 @@
             }
         }
     </style>
+
+    <!-- Fishbone Utilities Script -->
+    <script src="/static/fishbone-utils.js"></script>
 </head>
 <body>
     <div class="container">
@@ -487,10 +490,12 @@
         window.addEventListener('load', () => {
             loadQuestion();
             document.getElementById('answerInput').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && document.getElementById('submitBtn').style.display !== 'none') {
-                    submitAnswer();
-                } else if (e.key === 'Enter' && document.getElementById('nextBtn').style.display !== 'none') {
-                    nextQuestion();
+                if (e.key === 'Enter') {
+                    if (document.getElementById('submitBtn').style.display !== 'none') {
+                        submitAnswer();
+                    } else if (document.getElementById('nextBtn').style.display !== 'none') {
+                        nextQuestion();
+                    }
                 }
             });
         });
