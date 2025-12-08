@@ -1,6 +1,6 @@
 /* ============================================================
    Fishbone MCQ Quiz - Multiple Choice Mode
-   - Dropdown selection for lab names
+   - Dropdown selection for lab names positioned on diagram
    - Answer validation
    - Progress tracking
    ============================================================ */
@@ -36,17 +36,16 @@ function displayQuestion() {
   clearFeedback();
   hideResultsBreakdown();
 
-  // Render fishbone image with positioned dropdowns
+  // Render fishbone image as background with positioned dropdowns
   const imagePath = `/static/images/fishbone-${categoryKey.toLowerCase()}.png`;
   const correctLabNames = getCorrectLabNames(categoryKey);
   const positionLabels = correctLabNames.map((_, idx) => `Place ${idx + 1}`);
   
-  // Build the fishbone container with image and positioned dropdowns
-  let fishboneHTML = `<div style="position: relative; display: inline-block; width: 100%; padding: 40px 20px;">
-    <img src="${imagePath}" alt="${categoryKey} fishbone diagram" style="width: 100%; max-width: 100%; height: auto;">
+  // Build the fishbone container with background image and positioned dropdowns
+  let fishboneHTML = `<div style="position: relative; width: 100%; padding-bottom: 50%; background-image: url('${imagePath}'); background-size: contain; background-repeat: no-repeat; background-position: center;">
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">`;
   
-  // Position dropdowns based on place number and total count
+  // Position dropdowns based on place number and total count - ON the fishbone branches
   const totalPlaces = correctLabNames.length;
   correctLabNames.forEach((labName, idx) => {
     let topPercent, leftPercent;
@@ -177,7 +176,7 @@ function getSelectedAnswers() {
 // Handle submit
 function handleSubmit() {
   if (!isAnswerComplete()) {
-    showError('Please select an option for each position before submitting.');
+    showError('Please select an option for each place before submitting.');
     return;
   }
 
@@ -239,7 +238,7 @@ function showResultsBreakdown(breakdown, correctLabNames, selectedValues) {
   correctLabNames.forEach((correct, idx) => {
     const userSelected = selectedValues[idx];
     const isMatch = userSelected === correct;
-    const position = positionLabels[idx] || `Position ${idx + 1}`;
+    const position = positionLabels[idx] || `Place ${idx + 1}`;
 
     html += `
       <div class="results-item ${isMatch ? 'correct' : 'incorrect'}">
