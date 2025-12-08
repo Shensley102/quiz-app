@@ -1,6 +1,6 @@
 /* ============================================================
    Fishbone Fill-in-the-Blank Quiz - Text Input Mode
-   - Text input for lab value ranges
+   - Text inputs positioned on diagram for lab value ranges
    - Flexible answer validation
    - Detailed feedback breakdown
    ============================================================ */
@@ -36,16 +36,17 @@ function displayQuestion() {
   clearFeedback();
   hideResultsBreakdown();
 
-  // Render fishbone image with positioned inputs
+  // Render fishbone image as background with positioned inputs
   const imagePath = `/static/images/fishbone-${categoryKey.toLowerCase()}.png`;
   
-  // Build the fishbone container with image and positioned inputs
-  let fishboneHTML = `<div style="position: relative; display: inline-block; width: 100%; padding: 40px 20px;">
-    <img src="${imagePath}" alt="${categoryKey} fishbone diagram" style="width: 100%; max-width: 100%; height: auto;">
+  // Build the fishbone container with background image and positioned inputs
+  let fishboneHTML = `<div style="position: relative; width: 100%; padding-bottom: 50%; background-image: url('${imagePath}'); background-size: contain; background-repeat: no-repeat; background-position: center;">
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">`;
   
-  // Position inputs based on place number and total count
-  const totalPlaces = labs.length;
+  // Position inputs based on place number and total count - ON the fishbone branches
+  const totalPlaces = category.labs.length;
+  const labs = category.labs;
+  
   labs.forEach((lab, idx) => {
     let topPercent, leftPercent;
     
@@ -257,7 +258,7 @@ function showResultsBreakdown(breakdown) {
   breakdown.details.forEach((detail, idx) => {
     const statusClass = detail.correct ? 'correct' : 'incorrect';
     const statusIcon = detail.correct ? '✓' : '✗';
-    const position = positionLabels[idx] || `Position ${idx + 1}`;
+    const position = positionLabels[idx] || `Place ${idx + 1}`;
 
     html += `
       <div class="results-item ${statusClass}">
