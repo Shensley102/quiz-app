@@ -3,13 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCRN Practice Tests - Nurse Success Study Hub</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='category-style.css') }}">
+    <title>CCRN Exam Prep - Nurse Success Study Hub</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/normalize.css">
+    <link rel="stylesheet" href="/static/style.css">
+    
+    <!-- ============================================================
+         PWA META TAGS
+         ============================================================ -->
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/static/manifest.json">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#2f61f3">
+    
+    <!-- PWA Specific -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nurse Study">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+    
+    <!-- Service Worker Registration -->
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/static/service-worker.js')
+          .then((registration) => {
+            console.log('Service Worker registered:', registration);
+          })
+          .catch((error) => {
+            console.warn('Service Worker registration failed:', error);
+          });
+      });
+    }
+    </script>
+    
+    <!-- ============================================================
+         END PWA META TAGS
+         ============================================================ -->
+    
     <style>
+        .ccrn-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            margin-bottom: 40px;
+        }
+
         .back-link {
-            display: inline-block;
-            color: #0066cc;
+            display: inline-flex;
+            align-items: center;
+            color: #2f61f3;
             text-decoration: none;
             margin-bottom: 20px;
             font-weight: 500;
@@ -19,315 +71,396 @@
             text-decoration: underline;
         }
 
-        .page-header {
-            margin-bottom: 15px;
+        .back-link::before {
+            content: '← ';
+            margin-right: 5px;
         }
 
-        .page-header-top {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 8px;
-        }
-
-        .page-header h1 {
-            margin: 0;
-            font-size: 2.5em;
+        .page-title {
+            font-size: 32px;
+            font-weight: bold;
             color: #333;
+            margin-bottom: 10px;
         }
 
-        .page-header p {
-            margin: 5px 0 0 0;
+        .page-subtitle {
+            font-size: 16px;
             color: #666;
-            font-size: 1.1em;
         }
 
-        .header-icon {
-            font-size: 2.5em;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .section-header h2 {
-            margin: 0;
-            font-size: 1.6em;
-            color: #333;
-        }
-
-        .section-header p {
-            margin: 5px 0 0 0;
-            color: #666;
-            font-size: 0.95em;
-            line-height: 1.5;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.7em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-
-        .status-badge.available {
-            background-color: rgba(76, 175, 80, 0.15);
-            color: #4caf50;
-        }
-
-        .tests-grid {
+        .exam-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             margin-bottom: 40px;
         }
 
-        .test-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .test-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            border-color: rgba(229, 57, 53, 0.3);
-        }
-
-        .test-card-header {
-            background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
-            padding: 16px 20px;
+        .stat-box {
+            background: linear-gradient(135deg, #2f61f3 0%, #1e45c3 100%);
             color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
         }
 
-        .test-card-header-content {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
 
-        .test-card-header .test-icon {
-            font-size: 1.2em;
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
         }
 
-        .test-card-header .badge {
-            font-size: 0.7em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .quiz-section {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
         }
 
-        .test-card-body {
-            padding: 24px;
-        }
-
-        .test-card-body h3 {
-            margin: 0 0 12px 0;
-            font-size: 1.4em;
+        .quiz-section h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
             color: #333;
+            border-bottom: 2px solid #2f61f3;
+            padding-bottom: 10px;
         }
 
-        .test-card-body p {
-            margin: 0 0 20px 0;
+        .quiz-description {
             color: #666;
-            font-size: 0.9em;
+            margin-bottom: 20px;
             line-height: 1.6;
         }
 
-        .test-stats {
-            display: flex;
-            justify-content: space-around;
-            padding: 16px 0;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
             margin-bottom: 20px;
         }
 
-        .test-stat {
+        .quiz-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
             text-align: center;
+            transition: all 0.2s;
         }
 
-        .test-stat-number {
-            font-size: 1.4em;
-            font-weight: 700;
+        .quiz-card:hover {
+            border-color: #2f61f3;
+            background-color: #f0f4ff;
+        }
+
+        .quiz-card-title {
+            font-weight: 600;
             color: #333;
-            display: block;
+            margin-bottom: 10px;
         }
 
-        .test-stat-label {
-            font-size: 0.65em;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 4px;
+        .quiz-card-count {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2f61f3;
+            margin-bottom: 10px;
         }
 
-        .test-btn {
-            display: block;
-            width: 100%;
-            padding: 14px 20px;
-            border: 2px solid #e53935;
-            background-color: white;
-            color: #e53935;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            text-align: center;
-            transition: all 0.3s ease;
-            font-size: 0.95em;
-        }
-
-        .test-btn:hover {
-            background-color: #e53935;
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #2f61f3;
             color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            width: 100%;
         }
 
-        .info-box {
-            margin-top: 40px;
+        .btn:hover {
+            background-color: #1e45c3;
+        }
+
+        .btn-secondary {
+            background-color: #ddd;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #bbb;
+        }
+
+        .info-section {
+            background: #f9f9f9;
+            border-radius: 8px;
             padding: 25px;
-            background: linear-gradient(135deg, #ffebee 0%, #fce4ec 100%);
-            border-radius: 12px;
-            border-left: 4px solid #e53935;
+            margin-bottom: 30px;
         }
 
-        .info-box h3 {
-            color: #c62828;
-            margin: 0 0 12px 0;
-            font-size: 1.15em;
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #2f61f3;
+            padding-bottom: 10px;
         }
 
-        .info-box p {
+        .content-area {
+            margin-bottom: 30px;
+        }
+
+        .content-area h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .content-area h4:first-child {
+            margin-top: 0;
+        }
+
+        .content-list {
+            list-style-position: inside;
             color: #555;
-            margin: 0;
-            line-height: 1.7;
-            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        .content-list li {
+            margin-bottom: 10px;
+        }
+
+        .content-list strong {
+            color: #333;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .topic-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #2f61f3;
+        }
+
+        .topic-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .topic-percentage {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .highlight {
+            background: #fff3e0;
+            padding: 15px;
+            border-left: 4px solid #ff9800;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .highlight strong {
+            color: #e65100;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="/category/Nursing_Certifications" class="back-link">← Nursing Certifications</a>
-        
-        <div class="page-header">
-            <div class="page-header-top">
-                <span class="header-icon">🏆</span>
-                <h1>Nursing Certifications</h1>
-            </div>
-            <p>Prepare for advanced nursing certification exams</p>
-        </div>
+        <header>
+            <h1>CCRN Exam Preparation</h1>
+            <p>Critical Care Registered Nurse Certification</p>
+        </header>
 
-        <div class="section-header">
-            <span style="font-size: 1.8em;">🏅</span>
-            <div>
-                <h2>CCRN - Critical Care Registered Nurse <span class="status-badge available">Available</span></h2>
-                <p>Comprehensive practice tests for the Adult CCRN certification exam. Each test covers critical care nursing concepts including hemodynamic monitoring, mechanical ventilation, cardiac emergencies, and more.</p>
-            </div>
-        </div>
+        <main class="ccrn-container">
+            <a href="/nursing-certifications" class="back-link">Back to Certifications</a>
 
-        <div class="tests-grid">
-            <!-- CCRN Test 1 -->
-            <div class="test-card">
-                <div class="test-card-header">
-                    <div class="test-card-header-content">
-                        <span class="test-icon">📋</span>
-                        <span class="badge">PRACTICE TEST</span>
-                    </div>
+            <div class="page-header">
+                <h2 class="page-title">CCRN Certification Study Hub</h2>
+                <p class="page-subtitle">
+                    Comprehensive preparation for the Critical Care Registered Nurse (CCRN) certification exam. 
+                    Master hemodynamics, acute nursing care, and critical systems management.
+                </p>
+            </div>
+
+            <div class="exam-stats">
+                <div class="stat-box">
+                    <div class="stat-number">195</div>
+                    <div class="stat-label">Exam Questions</div>
                 </div>
-                <div class="test-card-body">
-                    <h3>CCRN Test 1</h3>
-                    <p>First practice exam covering core critical care concepts including cardiovascular, respiratory, and neurological emergencies.</p>
-                    <div class="test-stats">
-                        <div class="test-stat">
-                            <span class="test-stat-number">150</span>
-                            <span class="test-stat-label">Questions</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">MCQ</span>
-                            <span class="test-stat-label">Type</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">~45 min</span>
-                            <span class="test-stat-label">Duration</span>
-                        </div>
-                    </div>
-                    <a href="/quiz/Nursing_Certifications/CCRN_Test_1_Combined_QA" class="test-btn">Start Test →</a>
+                <div class="stat-box">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Hours</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label">Pass Score</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">$295</div>
+                    <div class="stat-label">Exam Cost</div>
                 </div>
             </div>
 
-            <!-- CCRN Test 2 -->
-            <div class="test-card">
-                <div class="test-card-header">
-                    <div class="test-card-header-content">
-                        <span class="test-icon">📋</span>
-                        <span class="badge">PRACTICE TEST</span>
+            <div class="highlight">
+                <strong>📌 Requirements:</strong> Current RN license + minimum 1-2 years of critical care experience 
+                (varies by organization). Check AACN requirements for your specific situation.
+            </div>
+
+            <div class="quiz-section">
+                <h3>📚 Study Resources</h3>
+                <p class="quiz-description">
+                    Choose your study format. Start with content review quizzes, then move to practice exams 
+                    to simulate the real testing experience.
+                </p>
+                
+                <div class="quiz-grid">
+                    <div class="quiz-card">
+                        <div class="quiz-card-title">Content Review</div>
+                        <div class="quiz-card-count">12</div>
+                        <a href="/quiz/ccrn-content" class="btn">Start Review</a>
                     </div>
-                </div>
-                <div class="test-card-body">
-                    <h3>CCRN Test 2</h3>
-                    <p>Second practice exam with additional critical care scenarios focusing on multisystem organ failure and complex patient management.</p>
-                    <div class="test-stats">
-                        <div class="test-stat">
-                            <span class="test-stat-number">150</span>
-                            <span class="test-stat-label">Questions</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">MCQ</span>
-                            <span class="test-stat-label">Type</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">~45 min</span>
-                            <span class="test-stat-label">Duration</span>
-                        </div>
+                    <div class="quiz-card">
+                        <div class="quiz-card-title">Practice Exams</div>
+                        <div class="quiz-card-count">5</div>
+                        <a href="/quiz/ccrn-practice" class="btn">Take Exam</a>
                     </div>
-                    <a href="/quiz/Nursing_Certifications/CCRN_Test_2_Combined_QA" class="test-btn">Start Test →</a>
+                    <div class="quiz-card">
+                        <div class="quiz-card-title">Lab Values</div>
+                        <div class="quiz-card-count">40+</div>
+                        <a href="/lab-values" class="btn">Review Values</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- CCRN Test 3 -->
-            <div class="test-card">
-                <div class="test-card-header">
-                    <div class="test-card-header-content">
-                        <span class="test-icon">📋</span>
-                        <span class="badge">PRACTICE TEST</span>
-                    </div>
+            <div class="info-section">
+                <h3 class="section-title">🎯 Core Content Areas</h3>
+                
+                <div class="content-area">
+                    <h4>Hemodynamics & Cardiology (25%)</h4>
+                    <ul class="content-list">
+                        <li><strong>Cardiovascular physiology:</strong> Normal/abnormal heart sounds, coronary circulation, cardiac output</li>
+                        <li><strong>Hemodynamic monitoring:</strong> CVP, PA catheters, SVR, PVR, MAP calculations</li>
+                        <li><strong>Acute coronary syndromes:</strong> STEMI, NSTEMI, unstable angina management</li>
+                        <li><strong>Cardiogenic shock:</strong> Pathophysiology, pharmacological support, mechanical circulatory support</li>
+                        <li><strong>Dysrhythmias:</strong> Recognition, treatment, ACLS protocols</li>
+                    </ul>
                 </div>
-                <div class="test-card-body">
-                    <h3>CCRN Test 3</h3>
-                    <p>Third practice exam covering advanced topics including pharmacology, procedures, and professional caring practices.</p>
-                    <div class="test-stats">
-                        <div class="test-stat">
-                            <span class="test-stat-number">150</span>
-                            <span class="test-stat-label">Questions</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">MCQ</span>
-                            <span class="test-stat-label">Type</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">~45 min</span>
-                            <span class="test-stat-label">Duration</span>
-                        </div>
-                    </div>
-                    <a href="/quiz/Nursing_Certifications/CCRN_Test_3_Combined_QA" class="test-btn">Start Test →</a>
+
+                <div class="content-area">
+                    <h4>Pulmonary Systems (20%)</h4>
+                    <ul class="content-list">
+                        <li><strong>Respiratory physiology:</strong> Ventilation, perfusion, gas exchange, acid-base balance</li>
+                        <li><strong>ARDS:</strong> Pathophysiology, lung protective ventilation, management strategies</li>
+                        <li><strong>Mechanical ventilation:</strong> Modes, settings, weaning protocols, complications</li>
+                        <li><strong>Oxygenation assessment:</strong> ABG interpretation, SaO2, PaO2/FiO2 ratio</li>
+                        <li><strong>Pulmonary embolism:</strong> Risk factors, diagnosis, treatment, prevention</li>
+                    </ul>
+                </div>
+
+                <div class="content-area">
+                    <h4>Renal/Metabolic Systems (15%)</h4>
+                    <ul class="content-list">
+                        <li><strong>Acute kidney injury:</strong> Pathophysiology, staging, management, fluid balance</li>
+                        <li><strong>Electrolyte imbalances:</strong> Sodium, potassium, calcium, magnesium abnormalities</li>
+                        <li><strong>Acid-base disorders:</strong> Metabolic/respiratory acidosis and alkalosis</li>
+                        <li><strong>Renal replacement therapy:</strong> Dialysis, CRRT, indications and complications</li>
+                        <li><strong>Diabetes and glycemic control:</strong> DKA, HHS, insulin therapy in critical care</li>
+                    </ul>
+                </div>
+
+                <div class="content-area">
+                    <h4>Neurological Systems (15%)</h4>
+                    <ul class="content-list">
+                        <li><strong>Acute stroke:</strong> Ischemic vs. hemorrhagic, thrombolytics, NIH Stroke Scale</li>
+                        <li><strong>Traumatic brain injury:</strong> Pathophysiology, ICP management, Glasgow Coma Scale</li>
+                        <li><strong>Seizures:</strong> Status epilepticus, antiepileptic drugs, management</li>
+                        <li><strong>Neuro assessment:</strong> GCS, pupil assessment, neuro checks</li>
+                        <li><strong>Meningitis and encephalitis:</strong> Recognition, treatment, antibiotic selection</li>
+                    </ul>
+                </div>
+
+                <div class="content-area">
+                    <h4>Endocrine/Infectious/Trauma (10%)</h4>
+                    <ul class="content-list">
+                        <li><strong>Sepsis/septic shock:</strong> SIRS criteria, qSOFA scoring, antibiotic selection</li>
+                        <li><strong>Hepatic failure:</strong> Acute liver failure, encephalopathy, management</li>
+                        <li><strong>Adrenal crisis:</strong> Recognition and treatment</li>
+                        <li><strong>Trauma management:</strong> Primary/secondary survey, hemorrhage control</li>
+                        <li><strong>Burn care:</strong> Fluid resuscitation, escharotomy, infection prevention</li>
+                    </ul>
+                </div>
+
+                <div class="content-area">
+                    <h4>Professional Caring and Ethical Practice (10%)</h4>
+                    <ul class="content-list">
+                        <li><strong>Ethical decision-making:</strong> Autonomy, beneficence, justice, confidentiality</li>
+                        <li><strong>End-of-life care:</strong> Goals of care, DNR orders, palliative care</li>
+                        <li><strong>Patient/family centered care:</strong> Communication, emotional support</li>
+                        <li><strong>Advocacy:</strong> Patient rights, error reporting, cultural competence</li>
+                    </ul>
                 </div>
             </div>
-        </div>
 
-        <div class="info-box">
-            <h3>📚 About the CCRN Exam</h3>
-            <p>The CCRN (Critical Care Registered Nurse) certification validates your expertise in caring for acutely and critically ill adult patients. The actual exam consists of 150 questions covering clinical judgment across cardiovascular, pulmonary, endocrine, hematology, neurology, multisystem, and behavioral/psychosocial domains. These practice tests mirror the format and difficulty level of the real exam.</p>
-        </div>
+            <div class="info-section">
+                <h3 class="section-title">✅ Study Strategy & Tips</h3>
+                <ul class="content-list">
+                    <li><strong>Start early:</strong> Begin studying 2-3 months before your exam date</li>
+                    <li><strong>Master physiology:</strong> Understanding the "why" is critical - don't just memorize facts</li>
+                    <li><strong>Use multiple resources:</strong> Combine textbooks, online courses, practice questions, and clinical experience</li>
+                    <li><strong>Practice hemodynamic calculations:</strong> Be comfortable with SVR, PVR, CI, MAP, and shunt calculations</li>
+                    <li><strong>Study lab values:</strong> Know critical values and their clinical significance</li>
+                    <li><strong>Learn by systems:</strong> Group content by body system for better organization</li>
+                    <li><strong>Take full-length practice exams:</strong> Use them to identify weak areas and adjust your study plan</li>
+                    <li><strong>Time management:</strong> Practice pacing - aim for 55 seconds per question</li>
+                    <li><strong>Review missed questions:</strong> Understand why you missed them, not just the correct answer</li>
+                    <li><strong>Join study groups:</strong> Collaborate with colleagues preparing for CCRN</li>
+                </ul>
+            </div>
+
+            <div class="info-section">
+                <h3 class="section-title">📅 Recommended Study Plan</h3>
+                <ul class="content-list">
+                    <li><strong>Month 1:</strong> Review comprehensive content notes, focus on high-weight topics (hemodynamics, pulmonary)</li>
+                    <li><strong>Month 2:</strong> Take practice quizzes by content area, identify weak areas, increase practice question volume</li>
+                    <li><strong>Month 3:</strong> Take full-length practice exams, focus final review on missed questions, build confidence</li>
+                    <li><strong>Final week:</strong> Light review, relax, get good sleep, focus on test-taking strategies and anxiety management</li>
+                </ul>
+            </div>
+
+            <div class="quiz-section">
+                <h3>Ready to Start?</h3>
+                <p class="quiz-description">
+                    Begin your CCRN journey today. Start with content review quizzes to build your foundation, 
+                    then progress to full-length practice exams to assess your readiness.
+                </p>
+                <a href="/quiz/ccrn-content" class="btn">Begin Content Review</a>
+                <a href="/lab-values" class="btn btn-secondary">Review Critical Lab Values</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Nurse Success Study Hub</p>
+        </footer>
     </div>
 </body>
 </html>
