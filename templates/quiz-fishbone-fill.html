@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fishbone Diagram - Fill-in-the-Blank Lab Values Quiz">
-  <title>Lab Values Fishbone - Fill-in-the-Blank Quiz</title>
+  <meta name="description" content="Fishbone Diagram - MCQ Lab Values Quiz">
+  <title>Lab Values Fishbone - MCQ Quiz</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -27,7 +27,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
       color: var(--ink);
       line-height: 1.6;
@@ -79,19 +79,6 @@
       margin: 0;
     }
 
-    .badge {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-left: 12px;
-      letter-spacing: 0.5px;
-    }
-
     .progress-section {
       background: white;
       border-radius: var(--radius);
@@ -125,7 +112,7 @@
 
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, #ff6b6b, #ffa500);
+      background: linear-gradient(90deg, var(--primary), var(--success));
       width: 0%;
       transition: width 0.3s ease;
     }
@@ -135,8 +122,8 @@
     }
 
     .instructions {
-      background: rgba(255, 107, 107, 0.05);
-      border-left: 4px solid var(--danger);
+      background: rgba(69, 183, 209, 0.05);
+      border-left: 4px solid var(--success);
       padding: 16px;
       border-radius: 6px;
       margin-bottom: 20px;
@@ -181,39 +168,25 @@
       color: var(--ink);
     }
 
-    .fishbone-input {
+    .fishbone-dropdown {
       padding: 12px 14px;
       font-size: 15px;
       border: 2px solid var(--border);
       border-radius: 8px;
       background: white;
+      cursor: pointer;
       font-family: inherit;
       transition: all 0.2s ease;
     }
 
-    .fishbone-input:hover {
-      border-color: #ff6b6b;
+    .fishbone-dropdown:hover {
+      border-color: var(--success);
     }
 
-    .fishbone-input:focus {
+    .fishbone-dropdown:focus {
       outline: none;
-      border-color: #ff6b6b;
-      box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
-    }
-
-    .fishbone-input.correct {
-      border-color: var(--green) !important;
-      background: rgba(76, 175, 80, 0.08);
-    }
-
-    .fishbone-input.incorrect {
-      border-color: var(--danger) !important;
-      background: rgba(244, 67, 54, 0.08);
-    }
-
-    .fishbone-input:disabled {
-      background: #f9f9f9;
-      cursor: not-allowed;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(47, 97, 243, 0.1);
     }
 
     .feedback-section {
@@ -243,8 +216,8 @@
     }
 
     .results-breakdown {
-      background: rgba(255, 107, 107, 0.05);
-      border-left: 4px solid #ff6b6b;
+      background: rgba(47, 97, 243, 0.05);
+      border-left: 4px solid var(--primary);
       padding: 16px;
       border-radius: 6px;
       margin: 16px 0;
@@ -319,23 +292,23 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #ff6b6b, #ffa500);
+      background: linear-gradient(135deg, var(--green), #45B7D1);
       color: white;
     }
 
     .btn-primary:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(255, 107, 107, 0.3);
+      box-shadow: 0 8px 16px rgba(76, 175, 80, 0.3);
     }
 
     .btn-secondary {
       background: white;
-      color: #ff6b6b;
-      border: 2px solid #ff6b6b;
+      color: var(--primary);
+      border: 2px solid var(--primary);
     }
 
     .btn-secondary:hover:not(:disabled) {
-      background: #ff6b6b;
+      background: var(--primary);
       color: white;
       transform: translateY(-2px);
     }
@@ -353,7 +326,7 @@
     .score-display {
       font-size: 64px;
       font-weight: 800;
-      color: #ff6b6b;
+      color: var(--primary);
       margin: 20px 0;
     }
 
@@ -434,8 +407,8 @@
   <div class="container">
     <div class="header">
       <a href="/category/Lab_Values" class="back-link">← Laboratory Values</a>
-      <h1>🧪 Fishbone Lab Values <span class="badge">Hard Mode</span></h1>
-      <p class="subtitle">Fill-in-the-Blank - Type the exact normal value ranges</p>
+      <h1>🧪 Fishbone Lab Values</h1>
+      <p class="subtitle">MCQ Mode - Select the correct lab names for each place</p>
     </div>
 
     <div class="progress-section">
@@ -450,7 +423,7 @@
     <div class="card">
       <div class="content-section" id="quizContent">
         <div class="instructions">
-          <strong>Instructions:</strong> The lab names are already labeled on each position. Type the correct normal range or value for each lab (e.g., "135-145" for Na⁺). Positions are: <strong>Left</strong> (leftmost branch), <strong>Top</strong> (top branch), <strong>Right</strong> (rightmost branch), and <strong>Bottom</strong> (bottom branch). All fields must be filled before submitting.
+          <strong>Instructions:</strong> Use the dropdown menus to select the correct lab names for each position of the fishbone diagram. <strong>Positions are numbered 1, 2, 3, and 4 starting from the top-left branch and proceeding clockwise</strong> around the diagram. All dropdowns must be filled before submitting.
         </div>
 
         <div class="fishbone-container" id="fishboneDisplay"></div>
@@ -464,7 +437,7 @@
         </div>
 
         <div class="results-breakdown" id="resultsBreakdown">
-          <h4>Detailed Breakdown:</h4>
+          <h4>Results Breakdown:</h4>
           <div id="breakdownContent"></div>
         </div>
 
@@ -487,6 +460,6 @@
   </div>
 
   <script src="/static/fishbone-utils.js"></script>
-  <script src="/static/quiz-fishbone-fill.js"></script>
+  <script src="/static/quiz-fishbone-mcq.js"></script>
 </body>
 </html>
