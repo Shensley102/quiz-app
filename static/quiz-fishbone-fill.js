@@ -46,7 +46,7 @@ function displayQuestion() {
 
   const labs = category.labs;
   // Dynamically generate position labels based on number of labs
-  const positionLabels = labs.map((_, idx) => `Position ${idx + 1}`);
+  const positionLabels = labs.map((_, idx) => `Place ${idx + 1}`);
   
   labs.forEach((lab, idx) => {
     
@@ -199,12 +199,12 @@ function showResultsBreakdown(breakdown) {
   resultsBreakdown.classList.add('show');
 
   // Dynamically generate position labels based on number of details
-  const positionLabels = breakdown.details.map((_, idx) => `Position ${idx + 1}`);
+  const positionLabels = breakdown.details.map((_, idx) => `Place ${idx + 1}`);
   let html = '';
   breakdown.details.forEach((detail, idx) => {
     const statusClass = detail.correct ? 'correct' : 'incorrect';
     const statusIcon = detail.correct ? '✓' : '✗';
-    const position = positionLabels[idx] || `Position ${idx + 1}`;
+    const position = positionLabels[idx] || `Place ${idx + 1}`;
 
     html += `
       <div class="results-item ${statusClass}">
