@@ -36,9 +36,9 @@ function displayQuestion() {
   clearFeedback();
   hideResultsBreakdown();
 
-  // Render fishbone
-  const svgHTML = generateFishboneSVG(categoryKey);
-  $('fishboneDisplay').innerHTML = svgHTML;
+  // Render fishbone image
+  const imagePath = `/static/images/fishbone-${categoryKey.toLowerCase()}.png`;
+  $('fishboneDisplay').innerHTML = `<img src="${imagePath}" alt="${categoryKey} fishbone diagram" style="max-width: 100%; height: auto; max-height: 300px;">`;
 
   // Generate input fields with lab names labeled
   const inputsContainer = $('inputsContainer');
