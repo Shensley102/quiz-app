@@ -45,10 +45,10 @@ function displayQuestion() {
   inputsContainer.innerHTML = '';
 
   const labs = category.labs;
-  const positionLabels = ['Left', 'Top', 'Right', 'Bottom'];
+  // Dynamically generate position labels based on number of labs
+  const positionLabels = labs.map((_, idx) => `Position ${idx + 1}`);
   
   labs.forEach((lab, idx) => {
-    if (idx >= positionLabels.length) return; // Only 4 positions max
     
     const wrapper = document.createElement('div');
     wrapper.className = 'input-group';
@@ -198,7 +198,8 @@ function showResultsBreakdown(breakdown) {
 
   resultsBreakdown.classList.add('show');
 
-  const positionLabels = ['Left', 'Top', 'Right', 'Bottom'];
+  // Dynamically generate position labels based on number of details
+  const positionLabels = breakdown.details.map((_, idx) => `Position ${idx + 1}`);
   let html = '';
   breakdown.details.forEach((detail, idx) => {
     const statusClass = detail.correct ? 'correct' : 'incorrect';
