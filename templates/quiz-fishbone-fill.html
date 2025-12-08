@@ -157,6 +157,11 @@
       margin: 0 auto;
     }
 
+    .fishbone-container img {
+      display: block;
+      margin: 0 auto;
+    }
+
     .inputs-section {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -445,10 +450,10 @@
     <div class="card">
       <div class="content-section" id="quizContent">
         <div class="instructions">
-          <strong>Instructions:</strong> The lab names are already labeled on each branch. Type the correct normal range or value for each lab (e.g., "135-145" for Na⁺). All fields must be filled before submitting.
+          <strong>Instructions:</strong> The lab names are already labeled on each place. Type the correct normal range or value for each lab (e.g., "135-145" for Na⁺). <strong>Place 1 starts at the top left</strong> and continues <strong>clockwise</strong> around the spine, ending at the <strong>bottom left</strong>. All fields must be filled before submitting.
         </div>
 
-        <div id="fishboneDisplay"></div>
+        <div class="fishbone-container" id="fishboneDisplay"></div>
 
         <div class="inputs-section" id="inputsContainer"></div>
 
