@@ -45,14 +45,18 @@ function displayQuestion() {
   inputsContainer.innerHTML = '';
 
   const labs = category.labs;
+  const positionLabels = ['Left', 'Top', 'Right', 'Bottom'];
   
   labs.forEach((lab, idx) => {
+    if (idx >= positionLabels.length) return; // Only 4 positions max
+    
     const wrapper = document.createElement('div');
     wrapper.className = 'input-group';
 
+    const position = positionLabels[idx];
     const label = document.createElement('label');
     label.className = 'input-label';
-    label.textContent = `Place ${idx + 1} - ${lab.name}:`;
+    label.textContent = `${position} - ${lab.name}:`;
 
     const input = document.createElement('input');
     input.type = 'text';
@@ -194,15 +198,17 @@ function showResultsBreakdown(breakdown) {
 
   resultsBreakdown.classList.add('show');
 
+  const positionLabels = ['Left', 'Top', 'Right', 'Bottom'];
   let html = '';
   breakdown.details.forEach((detail, idx) => {
     const statusClass = detail.correct ? 'correct' : 'incorrect';
     const statusIcon = detail.correct ? '✓' : '✗';
+    const position = positionLabels[idx] || `Position ${idx + 1}`;
 
     html += `
       <div class="results-item ${statusClass}">
         <div>
-          <div class="results-label">${statusIcon} Place ${idx + 1}</div>
+          <div class="results-label">${statusIcon} ${position}</div>
         </div>
         <div class="results-content">
           <div><strong>You entered:</strong> "${escapeXML(detail.userAnswer)}"</div>
