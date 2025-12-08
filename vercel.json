@@ -1,39 +1,54 @@
 {
-  "version": 2,
-  "builds": [
+  "buildCommand": "pip install -r requirements.txt",
+  "devCommand": "python -m flask run --debug",
+  "env": {
+    "FLASK_APP": "api/index.py",
+    "FLASK_ENV": "production"
+  },
+  "headers": [
     {
-      "src": "api/index.py",
-      "use": "@vercel/python"
+      "source": "/static/service-worker.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
     },
     {
-      "src": "static/**",
-      "use": "@vercel/static"
+      "source": "/static/manifest.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
     },
     {
-      "src": "modules/**",
-      "use": "@vercel/static"
+      "source": "/static/icons/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
-      "src": "images/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/modules/(.*)",
-      "dest": "/modules/$1"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "/images/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/api/index.py"
+      "source": "/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
+      ]
     }
   ]
 }
