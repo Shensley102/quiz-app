@@ -45,14 +45,18 @@ function displayQuestion() {
   inputsContainer.innerHTML = '';
 
   const correctLabNames = getCorrectLabNames(categoryKey);
+  const positionLabels = ['Left', 'Top', 'Right', 'Bottom'];
   
   correctLabNames.forEach((labName, idx) => {
+    if (idx >= positionLabels.length) return; // Only 4 positions max
+    
     const wrapper = document.createElement('div');
     wrapper.className = 'input-group';
 
+    const position = positionLabels[idx];
     const label = document.createElement('label');
     label.className = 'input-label';
-    label.textContent = `Place ${idx + 1}:`;
+    label.textContent = `${position}:`;
 
     const dropdown = document.createElement('select');
     dropdown.id = `branch-${idx}`;
@@ -114,7 +118,7 @@ function getSelectedAnswers() {
 // Handle submit
 function handleSubmit() {
   if (!isAnswerComplete()) {
-    showError('Please select an option for each place before submitting.');
+    showError('Please select an option for each position before submitting.');
     return;
   }
 
@@ -169,15 +173,17 @@ function showResultsBreakdown(breakdown, correctLabNames, selectedValues) {
 
   resultsBreakdown.classList.add('show');
 
+  const positionLabels = ['Left', 'Top', 'Right', 'Bottom'];
   let html = '';
   
   correctLabNames.forEach((correct, idx) => {
     const userSelected = selectedValues[idx];
     const isMatch = userSelected === correct;
+    const position = positionLabels[idx] || `Position ${idx + 1}`;
 
     html += `
       <div class="results-item ${isMatch ? 'correct' : 'incorrect'}">
-        <div><strong>Place ${idx + 1}:</strong></div>
+        <div><strong>${position}:</strong></div>
         <div>
           <div>Your answer: <strong>${escapeXML(userSelected)}</strong></div>
           <div>Correct answer: <strong>${escapeXML(correct)}</strong></div>
