@@ -1,114 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nurse Success Study Hub - HESI and NCLEX Exam Prep">
-  <title>Nurse Success Study Hub - HESI & NCLEX Exam Prep</title>
-  <link rel="stylesheet" href="/static/style.css">
-  <link rel="stylesheet" href="/static/home-style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Vercel Analytics -->
-  <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurse Success Study Hub</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/normalize.css">
+    <link rel="stylesheet" href="/static/style.css">
+    
+    <!-- ============================================================
+         PWA META TAGS
+         ============================================================ -->
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/static/manifest.json">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#2f61f3">
+    
+    <!-- PWA Specific -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nurse Study">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+    
+    <!-- Service Worker Registration -->
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/static/service-worker.js')
+          .then((registration) => {
+            console.log('Service Worker registered:', registration);
+          })
+          .catch((error) => {
+            console.warn('Service Worker registration failed:', error);
+          });
+      });
+    }
+    </script>
+    
+    <!-- ============================================================
+         END PWA META TAGS
+         ============================================================ -->
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <div class="hub-header">
-      <h1>Nurse Success Study Hub</h1>
-      <p class="tagline">Master HESI & NCLEX Exams with Comprehensive Study Materials</p>
+    <div class="container">
+        <header>
+            <h1>Nurse Success Study Hub</h1>
+            <p>Master HESI & NCLEX Exams</p>
+        </header>
+
+        <main>
+            <section class="modules">
+                <h2>Choose Your Study Module</h2>
+                
+                {% if modules %}
+                    <div class="module-grid">
+                        {% for module in modules %}
+                            <div class="module-card">
+                                <h3>{{ module.id.replace('-', ' ').title() }}</h3>
+                                <p>Study materials for {{ module.id }}</p>
+                                <a href="/category/{{ module.id }}" class="btn btn-primary">
+                                    Start Studying
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="no-modules">No study modules available yet.</p>
+                {% endif %}
+            </section>
+
+            <section class="featured">
+                <h2>Popular Topics</h2>
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <h3>Lab Values</h3>
+                        <p>Learn critical laboratory values for nursing exams</p>
+                        <a href="/lab-values" class="btn btn-secondary">Review Lab Values</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Nursing Certifications</h3>
+                        <p>Explore certification exam prep materials</p>
+                        <a href="/nursing-certifications" class="btn btn-secondary">View Certifications</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info">
+                <h2>How to Use This App</h2>
+                <ul>
+                    <li>Select a study module from above</li>
+                    <li>Complete quiz questions and get instant feedback</li>
+                    <li>Review missed questions to improve</li>
+                    <li>Works offline on iPhone, iPad, Android, and computers</li>
+                    <li><strong>Install as an app:</strong> Share → Add to Home Screen (iOS) or Use Install Prompt (Android/Desktop)</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Nurse Success Study Hub. Study smarter, pass stronger.</p>
+        </footer>
     </div>
 
-    <!-- Search Bar -->
-    <div class="search-container">
-      <input 
-        type="text" 
-        class="search-bar" 
-        id="searchBar" 
-        placeholder="Search categories or modules..."
-        style="display: none;"
-      >
-    </div>
+    <script>
+    // Check if app was installed from home screen
+    window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('App can be installed');
+        e.preventDefault();
+    });
 
-    <!-- Categories Grid -->
-    <main class="categories-grid" id="categoriesGrid">
-      <!-- Categories will be populated here by JavaScript -->
-    </main>
-
-    <!-- Footer -->
-    <footer class="hub-footer">
-      <p>&copy; 2025 Nurse Success Study Hub. Study smarter, succeed faster.</p>
-    </footer>
-  </div>
-
-  <script>
-    // Load and display categories
-    async function loadCategories() {
-      try {
-        const res = await fetch('/api/categories', { cache: 'no-store' });
-        if (!res.ok) throw new Error('Failed to load categories');
-        
-        const categories = await res.json();
-        const grid = document.getElementById('categoriesGrid');
-        
-        if (!grid) return;
-        
-        grid.innerHTML = '';
-        
-        // Define display order
-        const categoryOrder = ['HESI', 'Lab Values', 'Patient Care Management', 'Pharmacology', 'Nursing Certifications'];
-        const sortedCategories = Object.entries(categories).sort((a, b) => {
-          const indexA = categoryOrder.indexOf(a[0]);
-          const indexB = categoryOrder.indexOf(b[0]);
-          return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
+    // Monitor service worker updates
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then((registration) => {
+            registration.addEventListener('updatefound', () => {
+                console.log('New service worker version available');
+            });
         });
-        
-        sortedCategories.forEach(([categoryName, categoryData]) => {
-          const card = document.createElement('a');
-          card.href = `/category/${encodeURIComponent(categoryName)}`;
-          card.className = 'category-card';
-          
-          // If there's an image, add image-card class
-          if (categoryData.image) {
-            card.classList.add('image-card');
-          }
-          
-          // Build card HTML
-          let cardHTML = '';
-          
-          if (categoryData.image) {
-            // Image card
-            cardHTML = `
-              <img src="${categoryData.image}" alt="${categoryName}" style="width: 100%; height: 100%; object-fit: contain; object-position: center;">
-              <div class="fallback-icon">${categoryData.icon}</div>
-            `;
-          } else {
-            // Text card with icon
-            cardHTML = `
-              <div style="text-align: center; padding: 20px;">
-                <div style="font-size: 48px; margin-bottom: 16px;">${categoryData.icon}</div>
-                <h3 style="margin: 0 0 8px 0; font-size: 20px; color: var(--ink); font-weight: 700;">${categoryData.display_name}</h3>
-                <p style="margin: 0; font-size: 13px; color: var(--ink-soft); line-height: 1.4;">${categoryData.modules.length} modules</p>
-              </div>
-            `;
-          }
-          
-          card.innerHTML = cardHTML + '<div class="card-arrow">→</div>';
-          grid.appendChild(card);
-        });
-        
-      } catch (error) {
-        console.error('Error loading categories:', error);
-        const grid = document.getElementById('categoriesGrid');
-        if (grid) {
-          grid.innerHTML = '<p style="color: var(--ink-soft); text-align: center; grid-column: 1/-1;">Error loading categories. Please refresh the page.</p>';
-        }
-      }
     }
-    
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', loadCategories);
-  </script>
+    </script>
 </body>
 </html>
