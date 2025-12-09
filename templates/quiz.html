@@ -1,454 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - Nurse Success Study Hub</title>
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="/static/style.css">
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/static/manifest.json">
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#2f61f3">
-    
-    <!-- PWA Specific -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Nurse Study">
-    
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
-    
-    <!-- Service Worker Registration -->
-    <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/static/service-worker.js')
-          .then((registration) => {
-            console.log('Service Worker registered:', registration);
-          })
-          .catch((error) => {
-            console.warn('Service Worker registration failed:', error);
-          });
-      });
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quiz - Nurse Success Study Hub">
+  <title id="pageTitle">Quiz - Nurse Success Study Hub</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Vercel Analytics -->
+  <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
+
+  <style>
+    .launcher-title-wrapper {
+      margin-bottom: 24px;
     }
-    </script>
-    
-    <style>
-        .quiz-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
 
-        .quiz-header {
-            margin-bottom: 30px;
-            border-bottom: 2px solid #2f61f3;
-            padding-bottom: 15px;
-        }
+    .launcher-title {
+      margin: 0 0 8px 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
 
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background-color: #e0e0e0;
-            border-radius: 4px;
-            margin: 15px 0;
-            overflow: hidden;
-        }
+    .launcher-description {
+      color: var(--ink-soft);
+      font-size: 16px;
+      margin: 0;
+      line-height: 1.6;
+    }
 
-        .progress-fill {
-            height: 100%;
-            background-color: #2f61f3;
-            transition: width 0.3s ease;
-        }
+    .launcher-badge {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-        .question-card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+    .badge-standard {
+      background-color: rgba(69, 183, 209, 0.15);
+      color: #45B7D1;
+    }
 
-        .question-text {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 20px;
-            color: #333;
-        }
+    .badge-ccrn {
+      background-color: rgba(229, 57, 53, 0.15);
+      color: #e53935;
+    }
 
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+    .module-selector-group {
+      display: none;
+    }
 
-        .option {
-            padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: white;
-        }
+    .module-selector-group.show {
+      display: block;
+    }
 
-        .option:hover {
-            border-color: #2f61f3;
-            background-color: #f0f4ff;
-        }
-
-        .option input[type="radio"] {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .option.selected {
-            border-color: #2f61f3;
-            background-color: #e8ecff;
-        }
-
-        .option.correct {
-            border-color: #4caf50;
-            background-color: #e8f5e9;
-        }
-
-        .option.incorrect {
-            border-color: #f44336;
-            background-color: #ffebee;
-        }
-
-        .feedback {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 6px;
-            display: none;
-        }
-
-        .feedback.show {
-            display: block;
-        }
-
-        .feedback.correct {
-            background-color: #e8f5e9;
-            border-left: 4px solid #4caf50;
-            color: #2e7d32;
-        }
-
-        .feedback.incorrect {
-            background-color: #ffebee;
-            border-left: 4px solid #f44336;
-            color: #c62828;
-        }
-
-        .explanation {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(0,0,0,0.1);
-            font-style: italic;
-            color: #555;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            justify-content: space-between;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-primary {
-            background-color: #2f61f3;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #1e45c3;
-        }
-
-        .btn-secondary {
-            background-color: #ddd;
-            color: #333;
-        }
-
-        .btn-secondary:hover {
-            background-color: #bbb;
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .quiz-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 6px;
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2f61f3;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        .results-container {
-            display: none;
-            text-align: center;
-        }
-
-        .results-container.show {
-            display: block;
-        }
-
-        .results-score {
-            font-size: 48px;
-            font-weight: bold;
-            color: #2f61f3;
-            margin: 20px 0;
-        }
-
-        .results-message {
-            font-size: 20px;
-            margin-bottom: 30px;
-            color: #555;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            color: #2f61f3;
-            text-decoration: none;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .back-link::before {
-            content: '← ';
-            margin-right: 5px;
-        }
-    </style>
+    .module-selector-group.hidden-for-preloaded {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>{{ quiz_name.replace('_', ' ').replace('/', ' - ').title() }}</h1>
-            <p>Nursing Exam Quiz</p>
-        </header>
-
-        <main class="quiz-container">
-            <a href="/" class="back-link">Back to Home</a>
-
-            <div class="quiz-header">
-                <h2>Quiz Mode</h2>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressBar"></div>
-                </div>
-                <p id="questionCounter">Question 1 of {{ questions|length }}</p>
-            </div>
-
-            <div class="quiz-stats">
-                <div class="stat-card">
-                    <div class="stat-value" id="correctCount">0</div>
-                    <div class="stat-label">Correct</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="incorrectCount">0</div>
-                    <div class="stat-label">Incorrect</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="skippedCount">{{ questions|length }}</div>
-                    <div class="stat-label">Remaining</div>
-                </div>
-            </div>
-
-            <div id="quizContent">
-                <div class="question-card" id="questionCard">
-                    <div class="question-text" id="questionText"></div>
-                    <div class="options" id="optionsContainer"></div>
-                    <div class="feedback" id="feedback"></div>
-                </div>
-
-                <div class="button-group">
-                    <button class="btn btn-secondary" id="backBtn" onclick="previousQuestion()" style="display: none;">Back</button>
-                    <button class="btn btn-primary" id="submitBtn" onclick="submitAnswer()">Submit Answer</button>
-                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display: none;">Next Question</button>
-                </div>
-            </div>
-
-            <div class="results-container" id="resultsContainer">
-                <h2>Quiz Complete!</h2>
-                <div class="results-score" id="finalScore"></div>
-                <div class="results-message" id="resultMessage"></div>
-                <a href="/" class="btn btn-primary">Return Home</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2025 Nurse Success Study Hub</p>
-        </footer>
+  <div class="container">
+    <!-- Title Bar -->
+    <div class="title-bar">
+      <div>
+        <a href="{{ back_url if back_url else '/' }}" id="backLink" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 4px; display: inline-block; font-size: 14px;">← {{ back_label if back_label else 'Nurse Success Study Hub' }}</a>
+        <h1 id="quizTitle">Select a Module</h1>
+        <p id="quizDescription" style="color: var(--ink-soft); margin: 8px 0 0 0; font-size: 14px; display: none;"></p>
+      </div>
+      <div id="resumeContainer" class="resume-container hidden">
+        <span id="remainingQuestionsCount" class="remaining-count"></span>
+        <button class="btn btn-blue" id="resumeBtn">Resume Quiz</button>
+      </div>
     </div>
 
-    <script>
-        const questions = {{ questions|tojson }};
-        let currentQuestion = 0;
-        let correctAnswers = 0;
-        let answered = {};
+    <!-- Setup Card -->
+    <div class="card" id="launcher">
+      <!-- Custom Header for Preloaded Data -->
+      <div class="launcher-title-wrapper" id="preloadedTitleWrapper" style="display: none;">
+        <span class="launcher-badge badge-standard" id="preloadedBadge">STANDARD</span>
+        <h2 class="launcher-title" id="preloadedTitle"></h2>
+        <p class="launcher-description" id="preloadedDescription"></p>
+      </div>
 
-        function loadQuestion() {
-            const q = questions[currentQuestion];
-            document.getElementById('questionText').textContent = q.question || q.stem;
-            document.getElementById('questionCounter').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
-            
-            const progressPercent = ((currentQuestion + 1) / questions.length) * 100;
-            document.getElementById('progressBar').style.width = progressPercent + '%';
+      <!-- Default Quiz Setup Title -->
+      <h2 id="defaultTitle" style="display: none; margin: 0 0 20px 0;">Quiz Setup</h2>
+      
+      <!-- Module Selector (hidden for preloaded data) -->
+      <div class="module-selector-group" id="moduleSelectorGroup">
+        <div class="field">
+          <label for="moduleSel">Select Module:</label>
+          <select id="moduleSel">
+            <option value="">Loading modules...</option>
+          </select>
+        </div>
+      </div>
 
-            const optionsContainer = document.getElementById('optionsContainer');
-            optionsContainer.innerHTML = '';
+      <div class="field">
+        <label>How many questions?</label>
+        <div class="seg" id="lengthBtns">
+          <button class="seg-btn active" data-len="10">10 Questions</button>
+          <button class="seg-btn" data-len="25">25 Questions</button>
+          <button class="seg-btn" data-len="50">50 Questions</button>
+          <button class="seg-btn" data-len="full">Full Module Question Bank</button>
+        </div>
+      </div>
 
-            const options = q.options || [];
-            options.forEach((option, index) => {
-                const label = document.createElement('label');
-                label.className = 'option';
-                label.innerHTML = `
-                    <input type="radio" name="answer" value="${index}" ${answered[currentQuestion] === index ? 'checked' : ''}>
-                    ${option}
-                `;
-                label.onclick = () => {
-                    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-                    label.classList.add('selected');
-                };
-                optionsContainer.appendChild(label);
-            });
+      <div class="actions">
+        <button class="btn primary" id="startBtn">Start Quiz</button>
+      </div>
 
-            document.getElementById('feedback').innerHTML = '';
-            document.getElementById('feedback').className = 'feedback';
-            document.getElementById('submitBtn').style.display = 'inline-block';
-            document.getElementById('nextBtn').style.display = 'none';
+      <!-- How This Quiz Works -->
+      <div class="help">
+        <h3>How This Quiz Works</h3>
+        <ul>
+          <li><strong>Select All That Apply (SATA):</strong> Some questions allow multiple correct answers. Select all options you believe are correct.</li>
+          <li><strong>Single Answer:</strong> Questions without "Select all that apply" have only one correct answer.</li>
+          <li><strong>Mastery System:</strong> If you answer incorrectly, the question will reappear. The quiz ends when all questions are answered correctly.</li>
+          <li><strong>Keyboard Shortcuts:</strong> Press A-D to select answers, Enter to submit.</li>
+          <li><strong>Resume Feature:</strong> If you select "Full Module Question Bank", your progress is saved and you can resume later.</li>
+        </ul>
+      </div>
+    </div>
 
-            updateNavigation();
-        }
+    <!-- Quiz Card -->
+    <div class="card hidden" id="quiz">
+      <!-- Counters -->
+      <div id="countersBox" class="hidden">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+          <span id="runCounter" style="font-weight: 600; font-size: 14px;">Question: 1</span>
+          <span id="remainingCounter" style="font-weight: 600; font-size: 14px;">Remaining to master: 0</span>
+        </div>
+        <div style="position: relative; margin-bottom: 16px;">
+          <div id="progressBar" class="pbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div id="progressFill" class="pbar-fill"></div>
+            <div id="progressLabel" class="pbar-label">0% mastered</div>
+          </div>
+        </div>
+      </div>
 
-        function submitAnswer() {
-            const selected = document.querySelector('input[name="answer"]:checked');
-            if (!selected) {
-                alert('Please select an answer');
-                return;
-            }
+      <div id="questionText" class="question"></div>
+      <form id="optionsForm" class="options"></form>
+      <div id="feedback" class="feedback hidden"></div>
+      <div id="answerLine" class="answer-line hidden"></div>
+      <div id="rationale" class="rationale hidden"></div>
 
-            const selectedIndex = parseInt(selected.value);
-            const q = questions[currentQuestion];
-            const correctIndex = q.correct !== undefined ? q.correct : (q.correctLetters ? q.correctLetters[0].charCodeAt(0) - 65 : 0);
-            const isCorrect = selectedIndex === correctIndex;
+      <div class="actions">
+        <button class="btn primary" id="submitBtn">Submit Answer</button>
+      </div>
+    </div>
 
-            answered[currentQuestion] = selectedIndex;
+    <!-- Summary Card -->
+    <div class="card hidden" id="summary">
+      <h2>Quiz Complete! 🎉</h2>
+      <div id="firstTrySummary" class="first-try hidden"></div>
 
-            if (isCorrect) {
-                correctAnswers++;
-            }
+      <!-- Action Buttons -->
+      <div class="actions" style="margin-bottom: 24px;">
+        <button class="btn danger hidden" id="retryMissedBtn">Retry <span id="missedCount">0</span> Missed Questions</button>
+        <button class="btn primary" id="restartBtnSummary">Start New Quiz</button>
+      </div>
 
-            showFeedback(isCorrect, q.rationale || q.explanation || '');
-            updateStats();
-            
-            document.getElementById('submitBtn').style.display = 'none';
-            document.getElementById('nextBtn').style.display = 'inline-block';
+      <!-- Help Section -->
+      <div class="help" style="margin-top: 0; margin-bottom: 32px;">
+        <h3>Need More Practice?</h3>
+        <ul>
+          <li>Review the rationales for questions you missed</li>
+          <li>Try the "Retry Missed Questions" feature to focus on weak areas</li>
+          <li>Consider a shorter quiz length for more frequent practice sessions</li>
+          <li>Use the keyboard shortcuts (A-D, Enter) for faster navigation</li>
+        </ul>
+      </div>
 
-            const options = document.querySelectorAll('.option');
-            options[correctIndex].classList.add('correct');
-            if (!isCorrect) {
-                options[selectedIndex].classList.add('incorrect');
-            }
-        }
+      <h3>Review Your Answers:</h3>
+      <div id="reviewList" class="review-list"></div>
+    </div>
 
-        function showFeedback(isCorrect, explanation) {
-            const feedback = document.getElementById('feedback');
-            feedback.className = `feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
-            feedback.innerHTML = `
-                <strong>${isCorrect ? '✓ Correct!' : '✗ Incorrect'}</strong>
-                <div class="explanation">${explanation}</div>
-            `;
-        }
+    <!-- Reset Button (hidden initially) -->
+    <button class="btn danger hidden" id="resetAll" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">Reset Quiz</button>
+  </div>
 
-        function nextQuestion() {
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                loadQuestion();
-            } else {
-                showResults();
-            }
-        }
+  <script>
+    // Check if quiz data was passed from the server
+    window.preloadedQuizData = null;
+    window.preloadedModuleName = null;
+    window.preloadedCategory = null;
+    window.backUrl = null;
+    window.backLabel = null;
+    
+    {% if quiz_data %}
+      window.preloadedQuizData = {{ quiz_data | tojson }};
+      window.preloadedModuleName = "{{ module_name }}";
+      window.preloadedCategory = "{{ category }}";
+    {% endif %}
+    
+    {% if back_url %}
+      window.backUrl = "{{ back_url }}";
+      window.backLabel = "{{ back_label }}";
+    {% endif %}
+  </script>
 
-        function previousQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                loadQuestion();
-            }
-        }
-
-        function updateStats() {
-            const answeredCount = Object.keys(answered).length;
-            document.getElementById('correctCount').textContent = correctAnswers;
-            document.getElementById('incorrectCount').textContent = answeredCount - correctAnswers;
-            document.getElementById('skippedCount').textContent = questions.length - answeredCount;
-        }
-
-        function updateNavigation() {
-            document.getElementById('backBtn').style.display = currentQuestion > 0 ? 'inline-block' : 'none';
-        }
-
-        function showResults() {
-            document.getElementById('quizContent').style.display = 'none';
-            document.getElementById('resultsContainer').classList.add('show');
-
-            const percentage = Math.round((correctAnswers / questions.length) * 100);
-            document.getElementById('finalScore').textContent = `${percentage}%`;
-            
-            let message = '';
-            if (percentage >= 80) {
-                message = 'Excellent! You\'re well prepared! 🎉';
-            } else if (percentage >= 70) {
-                message = 'Good job! Review the material and try again.';
-            } else if (percentage >= 60) {
-                message = 'Keep studying! You\'re getting there.';
-            } else {
-                message = 'Review the material and take the quiz again.';
-            }
-            document.getElementById('resultMessage').textContent = message;
-        }
-
-        window.addEventListener('load', loadQuestion);
-    </script>
-
-    <script src="/_vercel/speed-insights/script.js"></script>
+  <script src="/static/quiz-script.js"></script>
 </body>
 </html>
