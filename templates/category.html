@@ -6,12 +6,7 @@
     <title>Category - Nurse Success Study Hub</title>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="/static/normalize.css">
     <link rel="stylesheet" href="/static/style.css">
-    
-    <!-- ============================================================
-         PWA META TAGS
-         ============================================================ -->
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
@@ -42,10 +37,6 @@
       });
     }
     </script>
-    
-    <!-- ============================================================
-         END PWA META TAGS
-         ============================================================ -->
     
     <style>
         .category-container {
@@ -241,7 +232,7 @@
             <a href="/" class="back-link">Back to Home</a>
 
             <div class="category-header">
-                <h2 class="category-title">{{ category.replace('-', ' ').title() }}</h2>
+                <h2 class="category-title">{{ category.replace('_', ' ').title() }}</h2>
                 <p class="category-description">
                     Explore different quiz formats to find the study method that works best for you. 
                     Each format offers unique benefits for learning and retention.
@@ -312,7 +303,6 @@
         </footer>
     </div>
 
-    <!-- Vercel Speed Insights -->
     <script src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
