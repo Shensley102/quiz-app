@@ -392,11 +392,6 @@
                 optionsContainer.appendChild(label);
             });
 
-            document.getElementById('submitBtn').style.display = 'inline-block';
-            document.getElementById('nextBtn').style.display = 'none';
-            document.getElementById('feedback').innerHTML = '';
-            document.getElementById('feedback').className = 'feedback';
-
             updateNavigation();
         }
 
@@ -443,6 +438,10 @@
         function nextQuestion() {
             if (currentQuestion < questions.length - 1) {
                 currentQuestion++;
+                document.getElementById('submitBtn').style.display = 'inline-block';
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('feedback').innerHTML = '';
+                document.getElementById('feedback').className = 'feedback';
                 loadQuestion();
             } else {
                 showResults();
@@ -452,6 +451,10 @@
         function previousQuestion() {
             if (currentQuestion > 0) {
                 currentQuestion--;
+                document.getElementById('submitBtn').style.display = 'inline-block';
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('feedback').innerHTML = '';
+                document.getElementById('feedback').className = 'feedback';
                 loadQuestion();
             }
         }
@@ -490,5 +493,8 @@
         // Load first question on page load
         window.addEventListener('load', loadQuestion);
     </script>
+
+    <!-- Vercel Speed Insights -->
+    <script src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
