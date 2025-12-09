@@ -2,18 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="Nurse Success Study Hub - HESI and NCLEX Exam Prep">
   <title>Nurse Success Study Hub - HESI & NCLEX Exam Prep</title>
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/home-style.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#2f61f3">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Nurse Study">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/static/icons/icon-144.png">
+  <link rel="apple-touch-icon" sizes="128x128" href="/static/icons/icon-128.png">
+  
   <!-- Vercel Analytics -->
   <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
 </head>
 <body>
   <div class="container">
+    <!-- Offline indicator -->
+    <div id="offlineIndicator" class="offline-indicator hidden">
+      <span>📴 You're offline - Using cached content</span>
+    </div>
+
     <!-- Header -->
     <div class="hub-header">
       <h1>Nurse Success Study Hub</h1>
@@ -39,10 +56,49 @@
     <!-- Footer -->
     <footer class="hub-footer">
       <p>&copy; 2025 Nurse Success Study Hub. Study smarter, succeed faster.</p>
+      <p id="pwaStatus" class="pwa-status"></p>
     </footer>
   </div>
 
   <script>
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/static/service-worker.js')
+          .then((registration) => {
+            console.log('Service Worker registered:', registration.scope);
+            
+            // Check for updates
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  // New content available
+                  console.log('New content available, refresh to update');
+                }
+              });
+            });
+          })
+          .catch((error) => {
+            console.warn('Service Worker registration failed:', error);
+          });
+      });
+    }
+
+    // Offline/Online detection
+    function updateOnlineStatus() {
+      const indicator = document.getElementById('offlineIndicator');
+      if (!navigator.onLine) {
+        indicator.classList.remove('hidden');
+      } else {
+        indicator.classList.add('hidden');
+      }
+    }
+
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
+
     // Load and display categories
     async function loadCategories() {
       try {
@@ -57,7 +113,7 @@
         grid.innerHTML = '';
         
         // Define display order
-        const categoryOrder = ['HESI', 'Lab Values', 'Patient Care Management', 'Pharmacology', 'Nursing Certifications'];
+        const categoryOrder = ['HESI', 'Lab_Values', 'Patient_Care_Management', 'Pharmacology', 'Nursing_Certifications'];
         const sortedCategories = Object.entries(categories).sort((a, b) => {
           const indexA = categoryOrder.indexOf(a[0]);
           const indexB = categoryOrder.indexOf(b[0]);
