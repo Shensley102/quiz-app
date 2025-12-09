@@ -6,12 +6,7 @@
     <title>Lab Values - Nurse Success Study Hub</title>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="/static/normalize.css">
     <link rel="stylesheet" href="/static/style.css">
-    
-    <!-- ============================================================
-         PWA META TAGS
-         ============================================================ -->
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
@@ -42,10 +37,6 @@
       });
     }
     </script>
-    
-    <!-- ============================================================
-         END PWA META TAGS
-         ============================================================ -->
     
     <style>
         .lab-values-container {
@@ -259,7 +250,7 @@
                     <div class="option-description">
                         Multiple choice questions with detailed explanations. Learn the "why" behind each lab value.
                     </div>
-                    <a href="/quiz-fishbone-mcq/lab-values" class="btn">Take Quiz</a>
+                    <a href="/quiz/Lab_Values/NCLEX_Lab_Values" class="btn">Take Quiz</a>
                 </div>
 
                 <div class="option-card">
@@ -268,39 +259,18 @@
                     <div class="option-description">
                         Type in normal ranges and critical values. Perfect for memorization and recall practice.
                     </div>
-                    <a href="/quiz-fishbone-fill/lab-values" class="btn">Take Quiz</a>
+                    <a href="/quiz-fill-blank/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank" class="btn">Take Quiz</a>
                 </div>
 
                 <div class="option-card">
-                    <div class="option-icon">🎯</div>
-                    <div class="option-title">Reference Guide</div>
+                    <div class="option-icon">🐟</div>
+                    <div class="option-title">Fishbone MCQ</div>
                     <div class="option-description">
-                        Quick lookup table of critical lab values, normal ranges, and clinical significance.
+                        Interactive fishbone diagrams with multiple choice questions for visual learners.
                     </div>
-                    <a href="#reference" class="btn">View Guide</a>
+                    <a href="/quiz-fishbone-mcq/Lab_Values/NCLEX_Lab_Values" class="btn">Take Quiz</a>
                 </div>
             </div>
-
-            {% if data.lab_values %}
-            <div class="reference-section" id="reference">
-                <h3 class="section-title">📋 Lab Values Reference</h3>
-                
-                <div class="lab-value-grid">
-                    {% for lab in data.lab_values %}
-                    <div class="lab-value-item">
-                        <div class="lab-value-name">{{ lab.name }}</div>
-                        <div class="lab-value-range">
-                            <strong>Normal:</strong> {{ lab.normal_range }}
-                        </div>
-                        <div class="lab-value-range">
-                            <strong>Critical:</strong> {{ lab.critical_value }}
-                        </div>
-                        <div class="lab-value-unit">{{ lab.unit }}</div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
 
             <div class="reference-section">
                 <h3 class="section-title">📚 Study Tips for Lab Values</h3>
@@ -352,7 +322,6 @@
         </footer>
     </div>
 
-    <!-- Vercel Speed Insights -->
     <script src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
