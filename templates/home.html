@@ -9,10 +9,6 @@
     <link rel="stylesheet" href="/static/normalize.css">
     <link rel="stylesheet" href="/static/style.css">
     
-    <!-- ============================================================
-         PWA META TAGS
-         ============================================================ -->
-    
     <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
     
@@ -43,9 +39,87 @@
     }
     </script>
     
-    <!-- ============================================================
-         END PWA META TAGS
-         ============================================================ -->
+    <style>
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .category-card {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .category-card:hover {
+            border-color: #2f61f3;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(47, 97, 243, 0.15);
+        }
+        
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .category-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .category-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .category-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #2f61f3;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        
+        .category-btn:hover {
+            background: #1e45c3;
+        }
+        
+        .info-section {
+            background: rgba(47, 97, 243, 0.05);
+            border-left: 4px solid #2f61f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .info-section h2 {
+            color: #2f61f3;
+            margin-bottom: 15px;
+        }
+        
+        .info-section ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .info-section li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -55,51 +129,65 @@
         </header>
 
         <main>
-            <section class="modules">
-                <h2>Choose Your Study Module</h2>
+            <section>
+                <h2>Choose Your Study Category</h2>
                 
-                {% if modules %}
-                    <div class="module-grid">
-                        {% for module in modules %}
-                            <div class="module-card">
-                                <h3>{{ module.id.replace('-', ' ').title() }}</h3>
-                                <p>Study materials for {{ module.id }}</p>
-                                <a href="/category/{{ module.id }}" class="btn btn-primary">
-                                    Start Studying
-                                </a>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    <p class="no-modules">No study modules available yet.</p>
-                {% endif %}
-            </section>
-
-            <section class="featured">
-                <h2>Popular Topics</h2>
-                <div class="feature-cards">
-                    <div class="feature-card">
-                        <h3>Lab Values</h3>
-                        <p>Learn critical laboratory values for nursing exams</p>
-                        <a href="/lab-values" class="btn btn-secondary">Review Lab Values</a>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <div class="category-icon">📋</div>
+                        <div class="category-title">HESI Exam Prep</div>
+                        <div class="category-description">
+                            Comprehensive HESI Exit Exam preparation including Adult Health, Maternity, Leadership, and more.
+                        </div>
+                        <a href="/category/HESI" class="category-btn">Start Studying</a>
                     </div>
                     
-                    <div class="feature-card">
-                        <h3>Nursing Certifications</h3>
-                        <p>Explore certification exam prep materials</p>
-                        <a href="/nursing-certifications" class="btn btn-secondary">View Certifications</a>
+                    <div class="category-card">
+                        <div class="category-icon">🧪</div>
+                        <div class="category-title">Lab Values</div>
+                        <div class="category-description">
+                            Master critical laboratory values with interactive quizzes and fishbone diagrams.
+                        </div>
+                        <a href="/lab-values" class="category-btn">Start Studying</a>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-icon">💊</div>
+                        <div class="category-title">Pharmacology</div>
+                        <div class="category-description">
+                            Drug classifications, nursing implications, and medication safety questions.
+                        </div>
+                        <a href="/category/Pharmacology" class="category-btn">Start Studying</a>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-icon">👥</div>
+                        <div class="category-title">Patient Care Management</div>
+                        <div class="category-description">
+                            Leadership, delegation, prioritization, and patient care coordination.
+                        </div>
+                        <a href="/category/Patient_Care_Management" class="category-btn">Start Studying</a>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-icon">🏆</div>
+                        <div class="category-title">Nursing Certifications</div>
+                        <div class="category-description">
+                            CCRN and other specialty certification exam preparation materials.
+                        </div>
+                        <a href="/nursing-certifications" class="category-btn">Start Studying</a>
                     </div>
                 </div>
             </section>
 
-            <section class="info">
+            <section class="info-section">
                 <h2>How to Use This App</h2>
                 <ul>
-                    <li>Select a study module from above</li>
+                    <li>Select a study category from above</li>
                     <li>Complete quiz questions and get instant feedback</li>
                     <li>Review missed questions to improve</li>
                     <li>Works offline on iPhone, iPad, Android, and computers</li>
-                    <li><strong>Install as an app:</strong> Share → Add to Home Screen (iOS) or Use Install Prompt (Android/Desktop)</li>
+                    <li><strong>Install as an app:</strong> Share → Add to Home Screen (iOS) or use Install Prompt (Android/Desktop)</li>
                 </ul>
             </section>
         </main>
@@ -115,21 +203,9 @@
         console.log('App can be installed');
         e.preventDefault();
     });
-
-    // Monitor service worker updates
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.ready.then((registration) => {
-            registration.addEventListener('updatefound', () => {
-                console.log('New service worker version available');
-            });
-        });
-    }
     </script>
 
-    <!-- ============================================================
-         Vercel Speed Insights - Performance Monitoring
-         This script tracks Core Web Vitals and other performance metrics
-         ============================================================ -->
+    <!-- Vercel Speed Insights -->
     <script src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
