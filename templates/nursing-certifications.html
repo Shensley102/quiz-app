@@ -6,12 +6,7 @@
     <title>Nursing Certifications - Nurse Success Study Hub</title>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="/static/normalize.css">
     <link rel="stylesheet" href="/static/style.css">
-    
-    <!-- ============================================================
-         PWA META TAGS
-         ============================================================ -->
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
@@ -42,10 +37,6 @@
       });
     }
     </script>
-    
-    <!-- ============================================================
-         END PWA META TAGS
-         ============================================================ -->
     
     <style>
         .certifications-container {
@@ -181,16 +172,6 @@
             background-color: #1e45c3;
         }
 
-        .btn-secondary {
-            background-color: #f0f0f0;
-            color: #333;
-            margin-top: 10px;
-        }
-
-        .btn-secondary:hover {
-            background-color: #ddd;
-        }
-
         .difficulty-badge {
             display: inline-block;
             padding: 4px 10px;
@@ -198,16 +179,6 @@
             font-size: 12px;
             font-weight: 600;
             margin-top: 5px;
-        }
-
-        .difficulty-beginner {
-            background-color: #c8e6c9;
-            color: #2e7d32;
-        }
-
-        .difficulty-intermediate {
-            background-color: #fff9c4;
-            color: #f57f17;
         }
 
         .difficulty-advanced {
@@ -271,7 +242,7 @@
             <div class="page-header">
                 <h2 class="page-title">Nursing Specialty Certifications</h2>
                 <p class="page-subtitle">
-                    Advance your nursing career with specialty certifications. Prepare for CCRN, CNRN, CPON, and more 
+                    Advance your nursing career with specialty certifications. Prepare for CCRN and other 
                     comprehensive exams with our targeted study materials.
                 </p>
             </div>
@@ -285,16 +256,12 @@
                 <div class="certification-card">
                     <div class="cert-header">
                         <div class="cert-icon">🏥</div>
-                        <div class="cert-name">CCRN</div>
+                        <div class="cert-name">CCRN Test 1</div>
                         <div class="cert-acronym">Critical Care Registered Nurse</div>
                     </div>
                     <div class="cert-body">
                         <div class="cert-description">
                             Validate your expertise in caring for acutely and critically ill patients. Essential for ICU and critical care nurses.
-                        </div>
-                        <div class="cert-detail">
-                            <div class="cert-label">Prerequisites</div>
-                            <div class="cert-value">RN License + 1-2 years critical care experience</div>
                         </div>
                         <div class="cert-detail">
                             <div class="cert-label">Topics</div>
@@ -303,132 +270,49 @@
                         <div class="cert-detail">
                             <span class="difficulty-badge difficulty-advanced">Advanced</span>
                         </div>
-                        <a href="/ccrn" class="btn">View CCRN Resources</a>
-                    </div>
-                </div>
-
-                <div class="certification-card">
-                    <div class="cert-header">
-                        <div class="cert-icon">🧠</div>
-                        <div class="cert-name">CNRN</div>
-                        <div class="cert-acronym">Certified Neuroscience Nurse</div>
-                    </div>
-                    <div class="cert-body">
-                        <div class="cert-description">
-                            Specialize in neurological nursing. Perfect for nurses working in neuro ICU, stroke units, and neurology departments.
-                        </div>
-                        <div class="cert-detail">
-                            <div class="cert-label">Prerequisites</div>
-                            <div class="cert-value">RN License + 2 years neuroscience experience</div>
-                        </div>
-                        <div class="cert-detail">
-                            <div class="cert-label">Key Focus</div>
-                            <div class="cert-value">Stroke, neuro assessment, ICP management</div>
-                        </div>
-                        <div class="cert-detail">
-                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
-                        </div>
-                        <a href="/quiz/cnrn" class="btn">Coming Soon</a>
-                    </div>
-                </div>
-
-                <div class="certification-card">
-                    <div class="cert-header">
-                        <div class="cert-icon">👨‍⚕️</div>
-                        <div class="cert-name">CPON</div>
-                        <div class="cert-acronym">Certified Pediatric Oncology Nurse</div>
-                    </div>
-                    <div class="cert-body">
-                        <div class="cert-description">
-                            Develop expertise in caring for pediatric oncology patients. Specialized knowledge for pediatric cancer care nurses.
-                        </div>
-                        <div class="cert-detail">
-                            <div class="cert-label">Prerequisites</div>
-                            <div class="cert-value">RN License + 2 years pediatric oncology experience</div>
-                        </div>
-                        <div class="cert-detail">
-                            <div class="cert-label">Focus Areas</div>
-                            <div class="cert-value">Chemotherapy, symptom management, family support</div>
-                        </div>
-                        <div class="cert-detail">
-                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
-                        </div>
-                        <a href="/quiz/cpon" class="btn">Coming Soon</a>
-                    </div>
-                </div>
-
-                <div class="certification-card">
-                    <div class="cert-header">
-                        <div class="cert-icon">💊</div>
-                        <div class="cert-name">CSPI</div>
-                        <div class="cert-acronym">Certified Specialist in Poison Information</div>
-                    </div>
-                    <div class="cert-body">
-                        <div class="cert-description">
-                            Become a specialist in poison information and toxicology. For nurses in poison control centers and emergency departments.
-                        </div>
-                        <div class="cert-detail">
-                            <div class="cert-label">Prerequisites</div>
-                            <div class="cert-value">Healthcare credentials + relevant experience</div>
-                        </div>
-                        <div class="cert-detail">
-                            <div class="cert-label">Key Knowledge</div>
-                            <div class="cert-value">Toxicology, antidotes, poison management</div>
-                        </div>
-                        <div class="cert-detail">
-                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
-                        </div>
-                        <a href="/quiz/cspi" class="btn">Coming Soon</a>
-                    </div>
-                </div>
-
-                <div class="certification-card">
-                    <div class="cert-header">
-                        <div class="cert-icon">🚑</div>
-                        <div class="cert-name">CEN</div>
-                        <div class="cert-acronym">Certified Emergency Nurse</div>
-                    </div>
-                    <div class="cert-body">
-                        <div class="cert-description">
-                            Demonstrate expertise in emergency nursing. Ideal for nurses working in ED and emergency care settings.
-                        </div>
-                        <div class="cert-detail">
-                            <div class="cert-label">Prerequisites</div>
-                            <div class="cert-value">RN License + 3+ months emergency experience</div>
-                        </div>
-                        <div class="cert-detail">
-                            <div class="cert-label">Core Topics</div>
-                            <div class="cert-value">Triage, trauma, resuscitation, crisis management</div>
-                        </div>
-                        <div class="cert-detail">
-                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
-                        </div>
-                        <a href="/quiz/cen" class="btn">Coming Soon</a>
+                        <a href="/quiz/Nursing_Certifications/CCRN_Test_1_Combined_QA" class="btn">Start Quiz</a>
                     </div>
                 </div>
 
                 <div class="certification-card">
                     <div class="cert-header">
                         <div class="cert-icon">🏥</div>
-                        <div class="cert-name">CWOCN</div>
-                        <div class="cert-acronym">Certified Wound, Ostomy, Continence Nurse</div>
+                        <div class="cert-name">CCRN Test 2</div>
+                        <div class="cert-acronym">Critical Care Registered Nurse</div>
                     </div>
                     <div class="cert-body">
                         <div class="cert-description">
-                            Specialize in wound, ostomy, and continence care. Essential certification for specialty nursing roles.
+                            Continue your CCRN preparation with additional practice questions covering advanced critical care topics.
                         </div>
                         <div class="cert-detail">
-                            <div class="cert-label">Prerequisites</div>
-                            <div class="cert-value">RN License + 2 years specialty experience</div>
+                            <div class="cert-label">Topics</div>
+                            <div class="cert-value">Advanced hemodynamics, complex patient scenarios</div>
                         </div>
                         <div class="cert-detail">
-                            <div class="cert-label">Practice Areas</div>
-                            <div class="cert-value">Wound care, ostomy management, continence care</div>
+                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                        </div>
+                        <a href="/quiz/Nursing_Certifications/CCRN_Test_2_Combined_QA" class="btn">Start Quiz</a>
+                    </div>
+                </div>
+
+                <div class="certification-card">
+                    <div class="cert-header">
+                        <div class="cert-icon">🏥</div>
+                        <div class="cert-name">CCRN Test 3</div>
+                        <div class="cert-acronym">Critical Care Registered Nurse</div>
+                    </div>
+                    <div class="cert-body">
+                        <div class="cert-description">
+                            Complete your CCRN exam preparation with this comprehensive practice test covering all major content areas.
                         </div>
                         <div class="cert-detail">
-                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            <div class="cert-label">Topics</div>
+                            <div class="cert-value">Comprehensive critical care review</div>
                         </div>
-                        <a href="/quiz/cwocn" class="btn">Coming Soon</a>
+                        <div class="cert-detail">
+                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                        </div>
+                        <a href="/quiz/Nursing_Certifications/CCRN_Test_3_Combined_QA" class="btn">Start Quiz</a>
                     </div>
                 </div>
             </div>
@@ -446,19 +330,6 @@
                     <li><strong>Review regularly:</strong> Space out your studying across several months for better retention</li>
                 </ul>
             </div>
-
-            <div class="info-section">
-                <h3 class="section-title">🎯 Benefits of Nursing Certifications</h3>
-                <ul class="info-list">
-                    <li><strong>Professional Recognition:</strong> Demonstrate expertise and commitment to your specialty</li>
-                    <li><strong>Career Advancement:</strong> Open doors to leadership positions and specialty roles</li>
-                    <li><strong>Increased Earning Potential:</strong> Many employers offer certification bonuses and higher salaries</li>
-                    <li><strong>Enhanced Credentials:</strong> Add valuable credentials to your resume and professional profile</li>
-                    <li><strong>Continuing Education:</strong> Most certifications require ongoing CE hours, keeping you current in your field</li>
-                    <li><strong>Job Security:</strong> Certified nurses are highly valued by healthcare employers</li>
-                    <li><strong>Clinical Confidence:</strong> Rigorous exam preparation builds deep knowledge and confidence in patient care</li>
-                </ul>
-            </div>
         </main>
 
         <footer>
@@ -466,7 +337,6 @@
         </footer>
     </div>
 
-    <!-- Vercel Speed Insights -->
     <script src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
