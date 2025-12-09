@@ -2,11 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CCRN Practice Tests - Nurse Success Study Hub</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='category-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='catagory-style.css') }}">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#e53935">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nurse Study">
+    <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+    
     <style>
+        /* Offline indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 10000;
+        }
+
+        .offline-indicator.hidden {
+            display: none;
+        }
+
         .back-link {
             display: inline-block;
             color: #0066cc;
@@ -213,9 +242,22 @@
             line-height: 1.7;
             font-size: 0.95em;
         }
+        
+        /* Safe area insets for iOS PWA */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            body {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Offline indicator -->
+    <div id="offlineIndicator" class="offline-indicator hidden">
+        <span>📴 You're offline - Using cached content</span>
+    </div>
+
     <div class="container">
         <a href="/category/Nursing_Certifications" class="back-link">← Nursing Certifications</a>
         
@@ -326,8 +368,30 @@
 
         <div class="info-box">
             <h3>📚 About the CCRN Exam</h3>
-            <p>The CCRN (Critical Care Registered Nurse) certification validates your expertise in caring for acutely and critically ill adult patients. The actual exam consists of 150 questions covering clinical judgment across cardiovascular, pulmonary, endocrine, hematology, neurology, multisystem, and behavioral/psychosocial domains. These practice tests mirror the format and difficulty level of the real exam.</p>
+            <p>The CCRN (Critical Care Registered Nurse) certification validates your expertise in caring for acutely and critically ill adult patients. The actual exam consists of 150 questions covering clinical judgment across cardiovascular, pulmonary, endocrine, hematology, neurology, multisystem, and behavioral/psychosocial domains. These practice tests mirror the format and difficulty level of the real exam. This app works offline so you can study anywhere!</p>
         </div>
     </div>
+
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/static/service-worker.js')
+                .then((registration) => console.log('SW registered:', registration.scope))
+                .catch((error) => console.warn('SW registration failed:', error));
+        }
+
+        // Offline/Online detection
+        function updateOnlineStatus() {
+            const indicator = document.getElementById('offlineIndicator');
+            if (!navigator.onLine) {
+                indicator.classList.remove('hidden');
+            } else {
+                indicator.classList.add('hidden');
+            }
+        }
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+    </script>
 </body>
 </html>
