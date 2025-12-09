@@ -2,14 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>{{ category_data.display_name }} - Nurse Success Study Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#667eea">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Nurse Study">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+  
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     :root {
       --primary: #2f61f3;
       --success: #45B7D1;
@@ -21,7 +28,6 @@
       --border: #e0e0e0;
       --radius: 12px;
     }
-
     body {
       margin: 0;
       padding: 0;
@@ -31,30 +37,26 @@
       color: var(--ink);
       line-height: 1.6;
     }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .header {
+    .offline-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #ff9800, #f57c00);
       color: white;
-      margin-bottom: 40px;
-      animation: slideDown 0.6s ease;
+      padding: 12px 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      z-index: 10000;
     }
-
+    .offline-indicator.hidden { display: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .header { color: white; margin-bottom: 40px; animation: slideDown 0.6s ease; }
     @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
     .back-btn {
       color: rgba(255, 255, 255, 0.9);
       text-decoration: none;
@@ -66,46 +68,18 @@
       gap: 6px;
       transition: opacity 0.2s;
     }
-
-    .back-btn:hover {
-      opacity: 1;
-    }
-
-    .category-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    .category-icon {
-      font-size: 60px;
-      line-height: 1;
-    }
-
-    .category-title {
-      flex: 1;
-    }
-
-    .category-title h1 {
-      margin: 0 0 8px 0;
-      font-size: 42px;
-      font-weight: 800;
-    }
-
-    .category-description {
-      font-size: 18px;
-      opacity: 0.95;
-      margin: 0;
-    }
-
+    .back-btn:hover { opacity: 1; }
+    .category-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px; }
+    .category-icon { font-size: 60px; line-height: 1; }
+    .category-title { flex: 1; }
+    .category-title h1 { margin: 0 0 8px 0; font-size: 42px; font-weight: 800; }
+    .category-description { font-size: 18px; opacity: 0.95; margin: 0; }
     .modules-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
       margin-bottom: 40px;
     }
-
     .module-card {
       background: white;
       border-radius: var(--radius);
@@ -118,12 +92,7 @@
       color: inherit;
       height: 100%;
     }
-
-    .module-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    }
-
+    .module-card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); }
     .module-card-header {
       background: linear-gradient(135deg, var(--primary), var(--success));
       color: white;
@@ -132,20 +101,8 @@
       flex-direction: column;
       gap: 12px;
     }
-
-    .module-card-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin: 0;
-      line-height: 1.3;
-    }
-
-    .module-card-count {
-      font-size: 13px;
-      opacity: 0.9;
-      margin: 0;
-    }
-
+    .module-card-title { font-size: 18px; font-weight: 700; margin: 0; line-height: 1.3; }
+    .module-card-count { font-size: 13px; opacity: 0.9; margin: 0; }
     .module-card-body {
       padding: 20px 24px;
       flex: 1;
@@ -153,14 +110,7 @@
       flex-direction: column;
       justify-content: space-between;
     }
-
-    .module-card-description {
-      font-size: 14px;
-      color: var(--ink-soft);
-      line-height: 1.5;
-      margin: 0 0 16px 0;
-    }
-
+    .module-card-description { font-size: 14px; color: var(--ink-soft); line-height: 1.5; margin: 0 0 16px 0; }
     .module-card-link {
       display: inline-flex;
       align-items: center;
@@ -171,49 +121,27 @@
       text-decoration: none;
       transition: gap 0.2s;
     }
-
-    .module-card-link:hover {
-      gap: 12px;
-    }
-
-    .footer {
-      text-align: center;
-      color: white;
-      padding: 40px 20px;
-      opacity: 0.8;
-      font-size: 14px;
-    }
-
+    .module-card-link:hover { gap: 12px; }
+    .footer { text-align: center; color: white; padding: 40px 20px; opacity: 0.8; font-size: 14px; }
     @media (max-width: 768px) {
-      .category-header {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .category-icon {
-        font-size: 48px;
-      }
-
-      .category-title h1 {
-        font-size: 32px;
-      }
-
-      .category-description {
-        font-size: 16px;
-      }
-
-      .modules-grid {
-        grid-template-columns: 1fr;
-      }
+      .category-header { flex-direction: column; gap: 12px; }
+      .category-icon { font-size: 48px; }
+      .category-title h1 { font-size: 32px; }
+      .category-description { font-size: 16px; }
+      .modules-grid { grid-template-columns: 1fr; }
+    }
+    @supports (padding-top: env(safe-area-inset-top)) {
+      body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
     }
   </style>
 </head>
 <body>
+  <div id="offlineIndicator" class="offline-indicator hidden">
+    <span>📴 You're offline - Using cached content</span>
+  </div>
   <div class="container">
-    <!-- Header -->
     <div class="header">
       <a href="/" class="back-btn">← Back to Hub</a>
-      
       <div class="category-header">
         <div class="category-icon">{{ category_data.icon }}</div>
         <div class="category-title">
@@ -222,8 +150,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Modules Grid -->
     <div class="modules-grid" id="modulesContainer">
       {% if category_data.modules %}
         {% for module in category_data.modules %}
@@ -236,9 +162,7 @@
             {% if module.description %}
             <p class="module-card-description">{{ module.description }}</p>
             {% endif %}
-            <div class="module-card-link">
-              Start Quiz →
-            </div>
+            <div class="module-card-link">Start Quiz →</div>
           </div>
         </a>
         {% endfor %}
@@ -248,11 +172,22 @@
       </div>
       {% endif %}
     </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-      &copy; 2025 Nurse Success Study Hub. Study smarter, succeed faster.
-    </footer>
+    <footer class="footer">&copy; 2025 Nurse Success Study Hub. Study smarter, succeed faster.</footer>
   </div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service-worker.js')
+        .then((registration) => console.log('SW registered:', registration.scope))
+        .catch((error) => console.warn('SW registration failed:', error));
+    }
+    function updateOnlineStatus() {
+      const indicator = document.getElementById('offlineIndicator');
+      if (!navigator.onLine) { indicator.classList.remove('hidden'); }
+      else { indicator.classList.add('hidden'); }
+    }
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
+  </script>
 </body>
 </html>
