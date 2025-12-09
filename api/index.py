@@ -10,15 +10,29 @@ app = Flask(__name__, static_folder='../static', template_folder='../templates')
 # ============================================================
 
 def load_json_file(filename):
-    """Load and parse JSON module files"""
+    """Load and parse JSON module files - handles nested directories"""
     try:
+        # First try direct path (flat structure)
         json_path = Path(__file__).parent.parent / 'modules' / f'{filename}.json'
-        if not json_path.exists():
-            return None
+        if json_path.exists():
+            with open(json_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                return data
         
-        with open(json_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            return data
+        # Then try nested structure (e.g., HESI/HESI_Comp_Quiz_1)
+        # Convert forward slashes to proper path separators
+        parts = filename.split('/')
+        json_path = Path(__file__).parent.parent / 'modules'
+        for part in parts:
+            json_path = json_path / part
+        json_path = json_path.with_suffix('.json')
+        
+        if json_path.exists():
+            with open(json_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                return data
+        
+        return None
     except FileNotFoundError:
         return None
     except json.JSONDecodeError:
@@ -28,19 +42,23 @@ def load_json_file(filename):
         return None
 
 def get_all_modules():
-    """Get list of all available modules"""
+    """Get list of all available modules from nested directories"""
     modules_dir = Path(__file__).parent.parent / 'modules'
     if not modules_dir.exists():
         return []
     
     modules = []
     try:
-        for file in modules_dir.glob('*.json'):
-            if file.name != 'config.json':
-                module_name = file.stem
+        # Search for .json files in all subdirectories recursively
+        for json_file in modules_dir.rglob('*.json'):
+            if json_file.name != 'config.json':
+                # Get the relative path from modules directory
+                relative_path = json_file.relative_to(modules_dir)
+                # Create module ID from path (e.g., HESI/HESI_Comp_Quiz_1 or Lab_Values/NCLEX_Lab_Values)
+                module_name = str(relative_path.with_suffix('')).replace('\\', '/')
                 modules.append({
                     'id': module_name,
-                    'filename': file.name
+                    'filename': json_file.name
                 })
     except Exception as e:
         print(f"Error getting modules: {str(e)}")
@@ -167,6 +185,7 @@ def api_quiz(quiz_name):
 def api_category_modules(category):
     """Get modules for a specific category"""
     modules = get_all_modules()
+    # Filter modules that start with the category name
     category_modules = [m['id'] for m in modules if m['id'].startswith(category)]
     return jsonify({'category': category, 'modules': category_modules})
 
