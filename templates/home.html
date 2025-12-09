@@ -6,7 +6,6 @@
     <title>Nurse Success Study Hub</title>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="/static/normalize.css">
     <link rel="stylesheet" href="/static/style.css">
     
     <!-- PWA Manifest -->
@@ -198,14 +197,12 @@
     </div>
 
     <script>
-    // Check if app was installed from home screen
     window.addEventListener('beforeinstallprompt', (e) => {
         console.log('App can be installed');
         e.preventDefault();
     });
     </script>
 
-    <!-- Vercel Speed Insights -->
     <script src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
