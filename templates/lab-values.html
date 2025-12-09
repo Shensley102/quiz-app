@@ -3,56 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab Values - Nurse Success Study Hub</title>
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="/static/style.css">
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/static/manifest.json">
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#2f61f3">
-    
-    <!-- PWA Specific -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Nurse Study">
-    
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
-    
-    <!-- Service Worker Registration -->
-    <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/static/service-worker.js')
-          .then((registration) => {
-            console.log('Service Worker registered:', registration);
-          })
-          .catch((error) => {
-            console.warn('Service Worker registration failed:', error);
-          });
-      });
-    }
-    </script>
-    
+    <title>Laboratory Values - Nurse Success Study Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='category-style.css') }}">
     <style>
-        .lab-values-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .lab-header {
-            margin-bottom: 40px;
-        }
-
         .back-link {
-            display: inline-flex;
-            align-items: center;
-            color: #2f61f3;
+            display: inline-block;
+            color: #0066cc;
             text-decoration: none;
             margin-bottom: 20px;
             font-weight: 500;
@@ -62,266 +19,395 @@
             text-decoration: underline;
         }
 
-        .back-link::before {
-            content: '← ';
-            margin-right: 5px;
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        .page-title {
-            font-size: 32px;
-            font-weight: bold;
+        .page-header h1 {
+            margin: 0;
+            font-size: 2.5em;
             color: #333;
-            margin-bottom: 10px;
         }
 
-        .page-subtitle {
-            font-size: 16px;
+        .page-header p {
+            margin: 5px 0 0 0;
             color: #666;
+            font-size: 1.1em;
         }
 
-        .quiz-options {
+        .header-icon {
+            font-size: 2.5em;
+        }
+
+        .quiz-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
             margin-bottom: 40px;
         }
 
-        .option-card {
+        .quiz-card {
             background: white;
-            border: 2px solid #ddd;
             border-radius: 8px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .option-card:hover {
-            border-color: #2f61f3;
-            box-shadow: 0 4px 12px rgba(47, 97, 243, 0.15);
-            transform: translateY(-2px);
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .option-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .option-title {
-            font-size: 20px;
+        .quiz-card-header {
+            padding: 20px;
+            color: white;
+            font-size: 0.85em;
             font-weight: 600;
-            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .quiz-card-header.standard {
+            background: linear-gradient(135deg, #00a8e8 0%, #0099d8 100%);
+        }
+
+        .quiz-card-header.hard {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        }
+
+        .quiz-card-header.quick-mcq {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+        }
+
+        .quiz-card-header.quick-fill {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .quiz-card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quiz-card-content h2 {
+            margin: 0 0 12px 0;
+            font-size: 1.6em;
             color: #333;
         }
 
-        .option-description {
-            font-size: 14px;
+        .quiz-card-content p {
+            margin: 0 0 20px 0;
             color: #666;
-            margin-bottom: 20px;
+            font-size: 0.95em;
             line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .quiz-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.75em;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 5px;
+        }
+
+        .quiz-card-footer {
+            padding: 25px;
+            border-top: 1px solid #eee;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 25px;
-            background-color: #2f61f3;
-            color: white;
+            width: 100%;
+            padding: 12px 24px;
+            border: 2px solid #0066cc;
+            background-color: white;
+            color: #0066cc;
             text-decoration: none;
             border-radius: 6px;
-            transition: all 0.2s;
-            border: none;
+            font-weight: 600;
+            text-align: center;
             cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 1em;
         }
 
         .btn:hover {
-            background-color: #1e45c3;
-            transform: translateY(-1px);
+            background-color: #0066cc;
+            color: white;
         }
 
-        .btn-secondary {
-            background-color: #ddd;
-            color: #333;
-            margin-top: 10px;
+        .btn-hard {
+            border-color: #ff6b6b;
+            color: #ff6b6b;
         }
 
-        .btn-secondary:hover {
-            background-color: #bbb;
+        .btn-hard:hover {
+            background-color: #ff6b6b;
+            color: white;
         }
 
-        .reference-section {
-            background: #f9f9f9;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 30px;
+        .btn-purple {
+            border-color: #7c3aed;
+            color: #7c3aed;
         }
 
-        .section-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #333;
-            border-bottom: 2px solid #2f61f3;
-            padding-bottom: 10px;
+        .btn-purple:hover {
+            background-color: #7c3aed;
+            color: white;
         }
 
-        .lab-value-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
+        .btn-orange {
+            border-color: #f59e0b;
+            color: #f59e0b;
         }
 
-        .lab-value-item {
-            background: white;
-            padding: 15px;
-            border-radius: 6px;
-            border-left: 4px solid #2f61f3;
+        .btn-orange:hover {
+            background-color: #f59e0b;
+            color: white;
         }
 
-        .lab-value-name {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
+        @media (max-width: 768px) {
+            .quiz-container {
+                grid-template-columns: 1fr;
+            }
 
-        .lab-value-range {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
-        }
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-        .lab-value-unit {
-            font-size: 12px;
-            color: #999;
-            font-style: italic;
-        }
-
-        .info-box {
-            background: #e8f5e9;
-            border-left: 4px solid #4caf50;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-        }
-
-        .info-box strong {
-            color: #2e7d32;
-        }
-
-        .tips-list {
-            list-style-position: inside;
-            color: #555;
-            line-height: 1.8;
-        }
-
-        .tips-list li {
-            margin-bottom: 8px;
+            .page-header h1 {
+                font-size: 1.8em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Laboratory Values</h1>
-            <p>Master Critical Lab Values for Nursing Exams</p>
-        </header>
+        <a href="/" class="back-link">← Nurse Success Study Hub</a>
 
-        <main class="lab-values-container">
-            <a href="/" class="back-link">Back to Home</a>
+        <div class="page-header">
+            <div class="header-icon">🧪</div>
+            <div>
+                <h1>Laboratory Values</h1>
+                <p>Master normal and abnormal lab values for NCLEX success</p>
+            </div>
+        </div>
 
-            <div class="lab-header">
-                <h2 class="page-title">Lab Values Mastery</h2>
-                <p class="page-subtitle">
-                    Understanding normal laboratory values is crucial for clinical nursing practice and exam success. 
-                    Master critical values, their normal ranges, and clinical significance.
+        <!-- COMPREHENSIVE QUIZZES SECTION -->
+        <h2 style="color: #333; margin-top: 30px; margin-bottom: 20px; font-size: 1.4em;">Comprehensive Quizzes</h2>
+        <p style="color: #666; margin-bottom: 25px;">Deep study with detailed rationales - 100+ questions covering all lab value categories</p>
+
+        <!-- STUDY TIPS SECTION -->
+        <div style="margin-top: 30px; margin-bottom: 30px; padding: 25px; background: #f0f9ff; border-radius: 8px; border-left: 4px solid #0099d8;">
+            <h3 style="color: #0066cc; margin-top: 0;">📚 Study Tips for Lab Values</h3>
+            <ul style="color: #333; line-height: 1.8;">
+                <li><strong>Start with comprehensive quizzes</strong> to build deep understanding with detailed rationales</li>
+                <li><strong>Use fishbone drills for quick review</strong> to reinforce lab value organization and relationships</li>
+                <li><strong>Mix MCQ and fill-in modes</strong> - MCQ helps with recognition, fill-in builds recall</li>
+                <li><strong>Focus on abnormal values</strong> - understand what causes increases/decreases and nursing interventions</li>
+                <li><strong>Group by category</strong> - Understanding why labs are grouped (CBC, BMP, etc.) helps memory</li>
+                <li><strong>Practice regularly</strong> - even 5 minutes daily with fishbone drills improves long-term retention</li>
+            </ul>
+        </div>
+
+        <!-- LAB VALUES COVERED TABLE -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #333; margin-top: 0; margin-bottom: 15px; font-size: 1.1em;">📋 Lab Values Covered</h3>
+            <p style="color: #666; margin-bottom: 20px;">Both quizzes comprehensively cover the following laboratory values essential for NCLEX and HESI success:</p>
+            
+            <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tbody>
+                        <tr style="background: #f8f9fa; border-bottom: 2px solid #e5e7eb;">
+                            <td style="padding: 15px; color: #333; font-weight: 600; border-right: 1px solid #e5e7eb;">Sodium (Na⁺)</td>
+                            <td style="padding: 15px; color: #333; font-weight: 600; border-right: 1px solid #e5e7eb;">Potassium (K⁺)</td>
+                            <td style="padding: 15px; color: #333; font-weight: 600; border-right: 1px solid #e5e7eb;">Calcium (Ca²⁺)</td>
+                            <td style="padding: 15px; color: #333; font-weight: 600; border-right: 1px solid #e5e7eb;">Magnesium (Mg²⁺)</td>
+                            <td style="padding: 15px; color: #333; font-weight: 600; border-right: 1px solid #e5e7eb;">Chloride (Cl⁻)</td>
+                            <td style="padding: 15px; color: #333; font-weight: 600;">BUN</td>
+                        </tr>
+                        <tr style="background: white; border-bottom: 2px solid #e5e7eb;">
+                            <td style="padding: 15px; color: #666; border-right: 1px solid #e5e7eb;">Creatinine</td>
+                            <td style="padding: 15px; color: #666; border-right: 1px solid #e5e7eb;">Glucose</td>
+                            <td style="padding: 15px; color: #666; border-right: 1px solid #e5e7eb;">Hemoglobin (Hgb)</td>
+                            <td style="padding: 15px; color: #666; border-right: 1px solid #e5e7eb;">Hematocrit (Hct)</td>
+                            <td style="padding: 15px; color: #666; border-right: 1px solid #e5e7eb;">WBC Count</td>
+                            <td style="padding: 15px; color: #666;">Platelets</td>
+                        </tr>
+                        <tr style="background: #f8f9fa; border-bottom: 2px solid #e5e7eb;">
+                            <td style="padding: 15px; color: #333; font-weight: 600; border-right: 1px solid #e5e7eb;">AST / ALT</td>
+                            <td style="padding: 15px; color: #333; font-weight: 600; border-right: 1px solid #e5e7eb;">ALP</td>
+                            <td style="padding: 15px; color: #333; font-weight: 600; border-right: 1px solid #e5e7eb;">Total Bilirubin</td>
+                            <td style="padding: 15px; color: #333; font-weight: 600; border-right: 1px solid #e5e7eb;">PT / INR</td>
+                            <td style="padding: 15px; color: #333; font-weight: 600; border-right: 1px solid #e5e7eb;">aPTT / PTT</td>
+                            <td style="padding: 15px; color: #333; font-weight: 600;">pH</td>
+                        </tr>
+                        <tr style="background: white; border-bottom: 2px solid #e5e7eb;">
+                            <td style="padding: 15px; color: #666; border-right: 1px solid #e5e7eb;">PaCO₂</td>
+                            <td style="padding: 15px; color: #666; border-right: 1px solid #e5e7eb;">HCO₃⁻</td>
+                            <td style="padding: 15px; color: #666; border-right: 1px solid #e5e7eb;">PaO₂</td>
+                            <td style="padding: 15px; color: #666; border-right: 1px solid #e5e7eb;">O₂ Saturation</td>
+                            <td style="padding: 15px; color: #666; border-right: 1px solid #e5e7eb;">CO₂</td>
+                            <td style="padding: 15px; color: #666;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 15px; padding: 12px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 4px;">
+                <p style="margin: 0; color: #92400e; font-size: 0.85em;">
+                    <strong>💡 Tip:</strong> The fishbone MCQ and Hard Mode quizzes focus on 25 core lab values. The comprehensive quizzes cover all values above with detailed clinical context.
                 </p>
             </div>
+        </div>
 
-            <div class="info-box">
-                <strong>💡 Tip:</strong> Start with the MCQ format to learn concepts, then use the fill-in-the-blank quizzes 
-                to test your recall and memorization skills.
-            </div>
-
-            <div class="quiz-options">
-                <div class="option-card">
-                    <div class="option-icon">📊</div>
-                    <div class="option-title">MCQ Quiz</div>
-                    <div class="option-description">
-                        Multiple choice questions with detailed explanations. Learn the "why" behind each lab value.
-                    </div>
-                    <a href="/quiz/Lab_Values/NCLEX_Lab_Values" class="btn">Take Quiz</a>
+        <div class="quiz-container">
+            <!-- Multiple Choice Card -->
+            <div class="quiz-card">
+                <div class="quiz-card-header standard">
+                    📋 STANDARD
                 </div>
-
-                <div class="option-card">
-                    <div class="option-icon">✏️</div>
-                    <div class="option-title">Fill in Values</div>
-                    <div class="option-description">
-                        Type in normal ranges and critical values. Perfect for memorization and recall practice.
+                <div class="quiz-card-content">
+                    <h2>Multiple Choice</h2>
+                    <p>Test your knowledge with 100 NCLEX-style multiple choice questions. Each question includes detailed rationales to reinforce your understanding of normal values, abnormal findings, and nursing interventions.</p>
+                    <div class="quiz-stats">
+                        <div class="stat">
+                            <span class="stat-number">100</span>
+                            <span class="stat-label">Questions</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">MCQ</span>
+                            <span class="stat-label">Type</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">~30 min</span>
+                            <span class="stat-label">Duration</span>
+                        </div>
                     </div>
-                    <a href="/quiz-fill-blank/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank" class="btn">Take Quiz</a>
                 </div>
-
-                <div class="option-card">
-                    <div class="option-icon">🐟</div>
-                    <div class="option-title">Fishbone MCQ</div>
-                    <div class="option-description">
-                        Interactive fishbone diagrams with multiple choice questions for visual learners.
-                    </div>
-                    <a href="/quiz-fishbone-mcq/Lab_Values/NCLEX_Lab_Values" class="btn">Take Quiz</a>
+                <div class="quiz-card-footer">
+                    <a href="/quiz/Lab_Values/NCLEX_Lab_Values" class="btn">Start Quiz →</a>
                 </div>
             </div>
 
-            <div class="reference-section">
-                <h3 class="section-title">📚 Study Tips for Lab Values</h3>
-                <ul class="tips-list">
-                    <li><strong>Understand the "why":</strong> Know why values change and what conditions cause abnormalities</li>
-                    <li><strong>Memory aids:</strong> Use mnemonics to remember critical values and normal ranges</li>
-                    <li><strong>Group by system:</strong> Study values by body system (cardiac, renal, metabolic, etc.)</li>
-                    <li><strong>Clinical context:</strong> Connect lab values to patient conditions and nursing interventions</li>
-                    <li><strong>Trends matter:</strong> Understand rising vs. falling trends and their clinical implications</li>
-                    <li><strong>Practice calculations:</strong> Be familiar with units and simple conversions</li>
-                    <li><strong>Critical values:</strong> Memorize critical lab values that require immediate action</li>
-                    <li><strong>Spaced repetition:</strong> Review regularly to maintain retention</li>
-                </ul>
-            </div>
-
-            <div class="reference-section">
-                <h3 class="section-title">🔍 Common Lab Value Categories</h3>
-                <div class="lab-value-grid">
-                    <div class="lab-value-item">
-                        <div class="lab-value-name">Electrolytes</div>
-                        <div class="lab-value-range">Sodium, Potassium, Calcium, Magnesium, Chloride</div>
-                    </div>
-                    <div class="lab-value-item">
-                        <div class="lab-value-name">Glucose & Metabolic</div>
-                        <div class="lab-value-range">Glucose, BUN, Creatinine, Albumin, Protein</div>
-                    </div>
-                    <div class="lab-value-item">
-                        <div class="lab-value-name">Liver Function</div>
-                        <div class="lab-value-range">AST, ALT, Bilirubin, Alkaline Phosphatase</div>
-                    </div>
-                    <div class="lab-value-item">
-                        <div class="lab-value-name">Cardiac Markers</div>
-                        <div class="lab-value-range">Troponin, CK-MB, Myoglobin, BNP</div>
-                    </div>
-                    <div class="lab-value-item">
-                        <div class="lab-value-name">Blood Counts</div>
-                        <div class="lab-value-range">RBC, WBC, Hemoglobin, Hematocrit, Platelets</div>
-                    </div>
-                    <div class="lab-value-item">
-                        <div class="lab-value-name">Coagulation</div>
-                        <div class="lab-value-range">PT, PTT, INR, Fibrinogen</div>
+            <!-- Fill in the Blank Card -->
+            <div class="quiz-card">
+                <div class="quiz-card-header hard">
+                    ✏️ HARD MODE
+                </div>
+                <div class="quiz-card-content">
+                    <h2>Fill in the Blank</h2>
+                    <p>Challenge yourself with 100 fill-in-the-blank questions that test your exact recall of laboratory values. Type your answers with no multiple choice hints!</p>
+                    <div class="quiz-stats">
+                        <div class="stat">
+                            <span class="stat-number">100</span>
+                            <span class="stat-label">Questions</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">Fill-in</span>
+                            <span class="stat-label">Type</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">~40 min</span>
+                            <span class="stat-label">Duration</span>
+                        </div>
                     </div>
                 </div>
+                <div class="quiz-card-footer">
+                    <a href="/quiz-fill-blank/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank" class="btn btn-hard">Start Quiz →</a>
+                </div>
             </div>
-        </main>
+        </div>
 
-        <footer>
-            <p>&copy; 2025 Nurse Success Study Hub</p>
-        </footer>
+        <!-- QUICK DRILLS SECTION - FISHBONE QUIZZES -->
+        <div class="quiz-container" style="margin-top: 40px;">
+            <!-- Fishbone MCQ Card -->
+            <div class="quiz-card">
+                <div class="quiz-card-header quick-mcq">
+                    🎯 INTERACTIVE
+                </div>
+                <div class="quiz-card-content">
+                    <h2>Fishbone Diagram Drills</h2>
+                    <p><strong>Learn lab value relationships</strong> through interactive fishbone diagrams. Master how lab values are grouped by category (CBC, BMP, Liver Panel, Coagulation, ABG). Select the correct lab name for each branch and understand the visual organization of lab values.</p>
+                    <div class="quiz-stats">
+                        <div class="stat">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Questions</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">MCQ</span>
+                            <span class="stat-label">Type</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">~5 min</span>
+                            <span class="stat-label">Duration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="quiz-card-footer">
+                    <a href="/quiz-fishbone-mcq" class="btn btn-purple">Start Quiz →</a>
+                </div>
+            </div>
+
+            <!-- Fishbone Fill-in Card -->
+            <div class="quiz-card">
+                <div class="quiz-card-header quick-fill">
+                    💪 CHALLENGE
+                </div>
+                <div class="quiz-card-content">
+                    <h2>Fishbone Diagram Drills</h2>
+                    <p><strong>Expert-level drill!</strong> Type the exact lab value ranges for each lab shown in the fishbone diagram. No multiple choice hints - test your complete knowledge of normal ranges organized by category. Perfect for quick review and reinforcing lab value organization.</p>
+                    <div class="quiz-stats">
+                        <div class="stat">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Questions</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">Fill-in</span>
+                            <span class="stat-label">Type</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">~8 min</span>
+                            <span class="stat-label">Duration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="quiz-card-footer">
+                    <a href="/quiz-fishbone-fill" class="btn btn-orange">Start Quiz →</a>
+                </div>
+            </div>
+        </div>
+
+
     </div>
-
-    <script src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
