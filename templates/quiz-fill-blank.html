@@ -6,12 +6,7 @@
     <title>Fill in the Blank Quiz - Nurse Success Study Hub</title>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="/static/normalize.css">
     <link rel="stylesheet" href="/static/style.css">
-    
-    <!-- ============================================================
-         PWA META TAGS
-         ============================================================ -->
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
@@ -42,10 +37,6 @@
       });
     }
     </script>
-    
-    <!-- ============================================================
-         END PWA META TAGS
-         ============================================================ -->
     
     <style>
         .quiz-container {
@@ -90,12 +81,6 @@
             margin-bottom: 20px;
             color: #333;
             line-height: 1.6;
-        }
-
-        .blank {
-            background-color: #fff9e6;
-            border-bottom: 2px solid #2f61f3;
-            padding: 2px 4px;
         }
 
         .answer-input {
@@ -250,16 +235,36 @@
             margin-bottom: 30px;
             color: #555;
         }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #2f61f3;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .back-link::before {
+            content: '← ';
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>{{ quiz_name.replace('-', ' ').title() }}</h1>
+            <h1>{{ quiz_name.replace('_', ' ').replace('/', ' - ').title() }}</h1>
             <p>Fill in the Blank Quiz</p>
         </header>
 
         <main class="quiz-container">
+            <a href="/" class="back-link">Back to Home</a>
+
             <div class="quiz-header">
                 <h2>Complete the Statements</h2>
                 <div class="progress-bar">
@@ -301,8 +306,7 @@
                 <h2>Quiz Complete!</h2>
                 <div class="results-score" id="finalScore"></div>
                 <div class="results-message" id="resultMessage"></div>
-                <a href="/category/{{ quiz_name.split('-')[0] }}" class="btn btn-primary">Back to Category</a>
-                <a href="/" class="btn btn-secondary">Return Home</a>
+                <a href="/" class="btn btn-primary">Return Home</a>
             </div>
         </main>
 
@@ -366,7 +370,7 @@
                 input.classList.add('incorrect');
             }
 
-            showFeedback(isCorrect, q.answer, q.explanation);
+            showFeedback(isCorrect, q.answer, q.explanation || q.rationale || '');
             updateStats();
             
             document.getElementById('submitBtn').style.display = 'none';
@@ -434,7 +438,6 @@
             document.getElementById('resultMessage').textContent = message;
         }
 
-        // Load first question and allow Enter key submission
         window.addEventListener('load', () => {
             loadQuestion();
             document.getElementById('answerInput').addEventListener('keypress', (e) => {
@@ -449,7 +452,6 @@
         });
     </script>
 
-    <!-- Vercel Speed Insights -->
     <script src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
