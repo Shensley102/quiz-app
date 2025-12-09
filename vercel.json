@@ -1,10 +1,25 @@
 {
-  "buildCommand": "pip install -r requirements.txt",
+  "buildCommand": "echo 'Flask build complete'",
   "devCommand": "python -m flask run --debug",
   "env": {
     "FLASK_APP": "api/index.py",
     "FLASK_ENV": "production"
   },
+  "functions": {
+    "api/index.py": {
+      "runtime": "python3.12"
+    }
+  },
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.py"
+    }
+  ],
   "headers": [
     {
       "source": "/manifest.json",
