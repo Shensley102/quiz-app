@@ -49,37 +49,11 @@ def get_all_modules():
     return sorted(modules, key=lambda x: x['id'])
 
 # ============================================================
-# PWA Routes
+# PWA Routes - Manifest now served as static file
 # ============================================================
 
-@app.route('/static/manifest.json')
-def manifest():
-    """Serve manifest.json with proper headers"""
-    manifest_data = {
-        "name": "Nurse Success Study Hub",
-        "short_name": "Nurse Study",
-        "description": "Master HESI & NCLEX Exams with Comprehensive Study Materials - Works Offline",
-        "start_url": "/",
-        "display": "standalone",
-        "background_color": "#e8e8e8",
-        "theme_color": "#2f61f3",
-        "orientation": "any",
-        "scope": "/",
-        "icons": [
-            {"src": "/static/icons/icon-72.png", "sizes": "72x72", "type": "image/png", "purpose": "any"},
-            {"src": "/static/icons/icon-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any"},
-            {"src": "/static/icons/icon-128.png", "sizes": "128x128", "type": "image/png", "purpose": "any"},
-            {"src": "/static/icons/icon-144.png", "sizes": "144x144", "type": "image/png", "purpose": "any"},
-            {"src": "/static/icons/icon-152.png", "sizes": "152x152", "type": "image/png", "purpose": "any"},
-            {"src": "/static/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-            {"src": "/static/icons/icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any"},
-            {"src": "/static/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
-        ],
-        "categories": ["education", "medical"],
-        "lang": "en-US",
-        "dir": "ltr"
-    }
-    return jsonify(manifest_data)
+# Note: /static/manifest.json is now served as a static file by Flask
+# This allows proper caching and service worker compatibility
 
 # ============================================================
 # Main Routes
