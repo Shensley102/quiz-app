@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fishbone Fill in the Blank - Nurse Success Study Hub</title>
+    <title>Fishbone Fill Quiz - Nurse Success Study Hub</title>
     
     <!-- CSS -->
     <link rel="stylesheet" href="/static/normalize.css">
@@ -291,12 +291,12 @@
     <div class="container">
         <header>
             <h1>Lab Values - Fishbone Analysis</h1>
-            <p>Fill in the Blank with Fishbone Diagram</p>
+            <p>Complete the Statements with Fishbone Diagram</p>
         </header>
 
         <main class="quiz-container">
             <div class="quiz-header">
-                <h2>Complete the Analysis</h2>
+                <h2>Analyze and Complete</h2>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressBar"></div>
                 </div>
@@ -477,9 +477,9 @@
             if (percentage >= 80) {
                 message = 'Excellent fishbone analysis! 🎉';
             } else if (percentage >= 70) {
-                message = 'Good work! Keep practicing the analysis method.';
+                message = 'Good work! Review and practice more.';
             } else if (percentage >= 60) {
-                message = 'Getting better! Review the fishbone structure.';
+                message = 'Getting better! Keep practicing.';
             } else {
                 message = 'Review the material and try again.';
             }
@@ -500,5 +500,8 @@
             });
         });
     </script>
+
+    <!-- Vercel Speed Insights -->
+    <script src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
