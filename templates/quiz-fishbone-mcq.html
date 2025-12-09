@@ -6,12 +6,7 @@
     <title>Fishbone MCQ Quiz - Nurse Success Study Hub</title>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="/static/normalize.css">
     <link rel="stylesheet" href="/static/style.css">
-    
-    <!-- ============================================================
-         PWA META TAGS
-         ============================================================ -->
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
@@ -42,10 +37,6 @@
       });
     }
     </script>
-    
-    <!-- ============================================================
-         END PWA META TAGS
-         ============================================================ -->
     
     <style>
         .quiz-container {
@@ -274,6 +265,24 @@
             color: #555;
         }
 
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #2f61f3;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .back-link::before {
+            content: '← ';
+            margin-right: 5px;
+        }
+
         @media (max-width: 768px) {
             .fishbone-container {
                 flex-direction: column;
@@ -282,7 +291,6 @@
         }
     </style>
 
-    <!-- Fishbone Utilities Script -->
     <script src="/static/fishbone-utils.js"></script>
 </head>
 <body>
@@ -293,12 +301,14 @@
         </header>
 
         <main class="quiz-container">
+            <a href="/lab-values" class="back-link">Back to Lab Values</a>
+
             <div class="quiz-header">
                 <h2>Analyze the Fishbone Diagram</h2>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressBar"></div>
                 </div>
-                <p id="questionCounter">Question 1 of {{ data.questions|length }}</p>
+                <p id="questionCounter">Question 1 of {{ data.questions|length if data.questions else 0 }}</p>
             </div>
 
             <div class="quiz-stats">
@@ -311,7 +321,7 @@
                     <div class="stat-label">Incorrect</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" id="skippedCount">{{ data.questions|length }}</div>
+                    <div class="stat-value" id="skippedCount">{{ data.questions|length if data.questions else 0 }}</div>
                     <div class="stat-label">Remaining</div>
                 </div>
             </div>
@@ -320,7 +330,7 @@
                 <div class="fishbone-container">
                     <div class="fishbone-diagram">
                         <h3>Fishbone Diagram</h3>
-                        <img class="fishbone-image" id="fishboneImage" src="" alt="Fishbone diagram">
+                        <img class="fishbone-image" id="fishboneImage" src="/static/images/fishbone-cbc.png" alt="Fishbone diagram">
                     </div>
 
                     <div class="question-section">
@@ -355,17 +365,21 @@
 
     <script>
         const quizData = {{ data|tojson }};
-        const questions = quizData.questions;
+        const questions = quizData.questions || [];
         let currentQuestion = 0;
         let correctAnswers = 0;
         let answered = {};
 
         function loadQuestion() {
+            if (questions.length === 0) {
+                document.getElementById('questionText').textContent = 'No questions available.';
+                return;
+            }
+
             const q = questions[currentQuestion];
             document.getElementById('questionText').textContent = q.question;
             document.getElementById('questionCounter').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
             
-            // Load fishbone image if available
             if (q.fishbone_image) {
                 document.getElementById('fishboneImage').src = q.fishbone_image;
             } else if (quizData.default_fishbone_image) {
@@ -392,6 +406,11 @@
                 optionsContainer.appendChild(label);
             });
 
+            document.getElementById('feedback').innerHTML = '';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('nextBtn').style.display = 'none';
+
             updateNavigation();
         }
 
@@ -412,7 +431,7 @@
                 correctAnswers++;
             }
 
-            showFeedback(isCorrect, q.options[selectedIndex], q.explanation);
+            showFeedback(isCorrect, q.options[selectedIndex], q.explanation || '');
             updateStats();
             
             document.getElementById('submitBtn').style.display = 'none';
@@ -438,10 +457,6 @@
         function nextQuestion() {
             if (currentQuestion < questions.length - 1) {
                 currentQuestion++;
-                document.getElementById('submitBtn').style.display = 'inline-block';
-                document.getElementById('nextBtn').style.display = 'none';
-                document.getElementById('feedback').innerHTML = '';
-                document.getElementById('feedback').className = 'feedback';
                 loadQuestion();
             } else {
                 showResults();
@@ -451,10 +466,10 @@
         function previousQuestion() {
             if (currentQuestion > 0) {
                 currentQuestion--;
-                document.getElementById('submitBtn').style.display = 'inline-block';
-                document.getElementById('nextBtn').style.display = 'none';
                 document.getElementById('feedback').innerHTML = '';
                 document.getElementById('feedback').className = 'feedback';
+                document.getElementById('submitBtn').style.display = 'inline-block';
+                document.getElementById('nextBtn').style.display = 'none';
                 loadQuestion();
             }
         }
@@ -490,11 +505,9 @@
             document.getElementById('resultMessage').textContent = message;
         }
 
-        // Load first question on page load
         window.addEventListener('load', loadQuestion);
     </script>
 
-    <!-- Vercel Speed Insights -->
     <script src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
