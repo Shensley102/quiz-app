@@ -2,16 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="Fill-in-the-Blank Quiz - Nurse Success Study Hub">
   <title id="pageTitle">Fill-in-the-Blank Quiz - Nurse Success Study Hub</title>
   <link rel="stylesheet" href="/static/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#2f61f3">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Nurse Study">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+  
   <!-- Vercel Analytics -->
   <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
   
   <style>
+    /* Offline indicator */
+    .offline-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #ff9800, #f57c00);
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      z-index: 10000;
+    }
+
+    .offline-indicator.hidden {
+      display: none;
+    }
+
     /* Fill-in-the-blank specific styles */
     .fill-blank-inputs {
       display: flex;
@@ -92,9 +120,22 @@
       margin-left: 12px;
       vertical-align: middle;
     }
+    
+    /* Safe area insets for iOS PWA */
+    @supports (padding-top: env(safe-area-inset-top)) {
+      body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Offline indicator -->
+  <div id="offlineIndicator" class="offline-indicator hidden">
+    <span>📴 You're offline - Using cached content</span>
+  </div>
+
   <div class="container">
     <!-- Title Bar -->
     <div class="title-bar">
@@ -137,6 +178,7 @@
           <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Individual Feedback:</strong> Each blank shows ✓ or ✗ so you know exactly what you got right or wrong.</li>
           <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Press Enter:</strong> Use Enter to move to the next field or submit your answer.</li>
           <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Mastery System:</strong> Incorrect answers will repeat until you get them right.</li>
+          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Offline Mode:</strong> This app works offline! Your progress is saved locally.</li>
         </ul>
       </div>
     </div>
@@ -203,6 +245,26 @@
   </div>
 
   <script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service-worker.js')
+        .then((registration) => console.log('SW registered:', registration.scope))
+        .catch((error) => console.warn('SW registration failed:', error));
+    }
+
+    // Offline/Online detection
+    function updateOnlineStatus() {
+      const indicator = document.getElementById('offlineIndicator');
+      if (!navigator.onLine) {
+        indicator.classList.remove('hidden');
+      } else {
+        indicator.classList.add('hidden');
+      }
+    }
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus();
+
     // Check if quiz data was passed from the server
     window.preloadedQuizData = null;
     window.preloadedModuleName = null;
