@@ -3,6 +3,7 @@
 .category-header {
   margin-bottom: 40px;
   padding: 20px 0;
+  margin-top: 50px; /* Space for offline indicator */
 }
 
 .category-header .back-btn {
@@ -97,6 +98,7 @@
 @media (max-width: 768px) {
   .category-header {
     margin-bottom: 30px;
+    margin-top: 50px;
   }
 
   .category-header h1 {
