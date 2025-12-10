@@ -254,6 +254,7 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
   max-width: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 50px; /* Space for offline indicator */
 }
 
 .category-header-right {
@@ -646,6 +647,7 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
     flex-direction: column;
     align-items: flex-start;
     max-width: 100%;
+    margin-top: 50px;
   }
 
   .category-header-right {
