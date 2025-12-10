@@ -14,20 +14,10 @@
   font-size: 14px;
   z-index: 10000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  animation: slideDown 0.3s ease;
 }
 
 .offline-indicator.hidden {
   display: none;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
 }
 
 /* PWA Status */
@@ -43,6 +33,7 @@
   text-align: center;
   padding: 60px 20px 40px;
   animation: fadeIn 0.6s ease;
+  margin-top: 50px; /* Space for offline indicator */
 }
 
 @keyframes fadeIn {
@@ -215,6 +206,7 @@
 @media (max-width: 768px) {
   .hub-header {
     padding: 40px 16px 30px;
+    margin-top: 50px;
   }
 
   .hub-header h1 {
