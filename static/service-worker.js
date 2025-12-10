@@ -1,10 +1,14 @@
 /* ============================================================
    Nurse Success Study Hub - Service Worker
    Enables offline functionality for iPad PWA
+   
+   VERSION MANAGEMENT:
+   - Bump CACHE_VERSION when you update quiz JSON files or core assets
+   - This will trigger the update notification for users
    ============================================================ */
 
-const CACHE_NAME = 'nurse-study-hub-v1';
-const CACHE_VERSION = 'v1.0.0';
+const CACHE_VERSION = 'v1.0.1';
+const CACHE_NAME = `nurse-study-hub-${CACHE_VERSION}`;
 
 // Core assets that must be cached for the app to work offline
 const CORE_ASSETS = [
@@ -17,14 +21,18 @@ const CORE_ASSETS = [
   '/static/quiz-fishbone-mcq.js',
   '/static/quiz-fishbone-fill.js',
   '/static/fishbone-utils.js',
+  '/static/js/pwa-utils.js',
   '/static/manifest.json',
   
   // Icons
   '/static/icons/icon-72.png',
   '/static/icons/icon-96.png',
+  '/static/icons/icon-120.png',
   '/static/icons/icon-128.png',
   '/static/icons/icon-144.png',
   '/static/icons/icon-152.png',
+  '/static/icons/icon-167.png',
+  '/static/icons/icon-180.png',
   '/static/icons/icon-192.png',
   '/static/icons/icon-384.png',
   '/static/icons/icon-512.png',
@@ -41,13 +49,11 @@ const CORE_ASSETS = [
   '/images/Nursing_Hesi_Exam_Prep_Image.png',
   '/images/Nursing_Lab_Values.png',
   '/images/Nursing_Leadership_Image.png',
-  '/images/Nursing_Pharmacology_Image.png',
-  
-  // Google Fonts (external)
-  'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap'
+  '/images/Nursing_Pharmacology_Image.png'
 ];
 
 // Quiz data JSON files - essential for offline quiz functionality
+// UPDATE THIS LIST when you add new quiz JSON files
 const QUIZ_DATA_FILES = [
   // HESI
   '/modules/HESI/HESI_Adult_Health.json',
@@ -99,7 +105,7 @@ const HTML_PAGES = [
 
 // Install event - cache all essential assets
 self.addEventListener('install', (event) => {
-  console.log('[ServiceWorker] Install');
+  console.log('[ServiceWorker] Install - Version:', CACHE_VERSION);
   
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -133,21 +139,24 @@ self.addEventListener('install', (event) => {
       })
       .then(() => {
         console.log('[ServiceWorker] All assets cached');
-        return self.skipWaiting();
+        // Don't skip waiting - let the update banner handle this
       })
   );
 });
 
-// Activate event - clean up old caches
+// Activate event - clean up old caches and notify clients
 self.addEventListener('activate', (event) => {
-  console.log('[ServiceWorker] Activate');
+  console.log('[ServiceWorker] Activate - Version:', CACHE_VERSION);
   
   event.waitUntil(
     caches.keys()
       .then((cacheNames) => {
         return Promise.all(
           cacheNames
-            .filter((cacheName) => cacheName !== CACHE_NAME)
+            .filter((cacheName) => {
+              // Delete any cache that starts with our prefix but isn't current
+              return cacheName.startsWith('nurse-study-hub-') && cacheName !== CACHE_NAME;
+            })
             .map((cacheName) => {
               console.log('[ServiceWorker] Deleting old cache:', cacheName);
               return caches.delete(cacheName);
@@ -176,8 +185,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   
-  // Skip Vercel analytics
-  if (url.hostname.includes('vercel-analytics') || url.hostname.includes('vercel-insights')) {
+  // Skip Vercel analytics and external resources we don't control
+  if (url.hostname.includes('vercel-analytics') || 
+      url.hostname.includes('vercel-insights') ||
+      url.hostname.includes('fonts.googleapis.com') ||
+      url.hostname.includes('fonts.gstatic.com')) {
     return;
   }
   
@@ -187,9 +199,9 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   
-  // Handle quiz JSON files with cache-first strategy
-  if (url.pathname.endsWith('.json')) {
-    event.respondWith(cacheFirstStrategy(request));
+  // Handle quiz JSON files with stale-while-revalidate
+  if (url.pathname.endsWith('.json') && url.pathname.includes('/modules/')) {
+    event.respondWith(staleWhileRevalidate(request));
     return;
   }
   
@@ -216,9 +228,6 @@ async function cacheFirstStrategy(request) {
   const cachedResponse = await caches.match(request);
   
   if (cachedResponse) {
-    // Return cached response immediately
-    // Also fetch from network to update cache in background
-    fetchAndCache(request);
     return cachedResponse;
   }
   
@@ -247,7 +256,7 @@ async function networkFirstStrategy(request) {
       return cachedResponse;
     }
     
-    // If it's a navigation request and we have no cached page, return offline page
+    // If it's a navigation request and we have no cached page, return cached home
     if (request.mode === 'navigate') {
       const offlinePage = await caches.match('/');
       if (offlinePage) {
@@ -264,6 +273,23 @@ async function networkFirstStrategy(request) {
       })
     });
   }
+}
+
+// Stale-while-revalidate: Return cache immediately, update in background
+async function staleWhileRevalidate(request) {
+  const cache = await caches.open(CACHE_NAME);
+  const cachedResponse = await cache.match(request);
+  
+  // Fetch from network in background
+  const fetchPromise = fetch(request).then((networkResponse) => {
+    if (networkResponse.ok) {
+      cache.put(request, networkResponse.clone());
+    }
+    return networkResponse;
+  }).catch(() => null);
+  
+  // Return cached response immediately if available, otherwise wait for network
+  return cachedResponse || fetchPromise;
 }
 
 // Fetch and cache helper
@@ -285,16 +311,19 @@ async function fetchAndCache(request) {
 
 // Listen for messages from the main thread
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
+  const { type } = event.data || {};
+  
+  if (type === 'SKIP_WAITING') {
+    console.log('[ServiceWorker] Skip waiting requested');
     self.skipWaiting();
   }
   
-  if (event.data && event.data.type === 'GET_VERSION') {
+  if (type === 'GET_VERSION') {
     event.ports[0].postMessage({ version: CACHE_VERSION });
   }
   
   // Force update all cached content
-  if (event.data && event.data.type === 'UPDATE_CACHE') {
+  if (type === 'UPDATE_CACHE') {
     event.waitUntil(
       caches.open(CACHE_NAME).then((cache) => {
         return Promise.all([
@@ -305,15 +334,26 @@ self.addEventListener('message', (event) => {
       })
     );
   }
+  
+  // Check if update is available
+  if (type === 'CHECK_UPDATE') {
+    event.ports[0].postMessage({ 
+      version: CACHE_VERSION,
+      updateAvailable: false // Will be true when a new SW is waiting
+    });
+  }
 });
 
-// Background sync for quiz progress (if supported)
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'sync-quiz-progress') {
-    console.log('[ServiceWorker] Syncing quiz progress');
-    // Quiz progress is stored in localStorage, which persists
-    // This is a placeholder for future cloud sync functionality
-  }
+// Notify all clients when a new version is ready
+self.addEventListener('install', () => {
+  self.clients.matchAll().then(clients => {
+    clients.forEach(client => {
+      client.postMessage({
+        type: 'UPDATE_AVAILABLE',
+        version: CACHE_VERSION
+      });
+    });
+  });
 });
 
 console.log('[ServiceWorker] Service Worker loaded - Version:', CACHE_VERSION);
