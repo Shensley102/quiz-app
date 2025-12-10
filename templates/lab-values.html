@@ -2,11 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Laboratory Values - Nurse Success Study Hub</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='category-style.css') }}">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/static/manifest.json">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#2f61f3">
+    
+    <!-- PWA Specific -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nurse Study">
+    
+    <!-- Apple Touch Icons - All Sizes -->
+    <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
+    
     <style>
+        /* Offline indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 10000;
+        }
+
+        .offline-indicator.hidden {
+            display: none;
+        }
+
         .back-link {
             display: inline-block;
             color: #0066cc;
@@ -208,9 +247,24 @@
                 font-size: 1.8em;
             }
         }
+        
+        /* Safe area insets for iOS PWA */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            body {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Offline indicator -->
+    <div id="offlineIndicator" class="offline-indicator hidden">
+        <span>📴 You're offline - Using cached content</span>
+    </div>
+
     <div class="container">
         <a href="/" class="back-link">← Nurse Success Study Hub</a>
 
@@ -409,5 +463,8 @@
 
 
     </div>
+
+    <!-- PWA Utilities -->
+    <script src="/static/js/pwa-utils.js"></script>
 </body>
 </html>
