@@ -2,18 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>{{ category_data.display_name }} - Nurse Success Study Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   
-  <!-- PWA Meta Tags -->
+  <!-- PWA Manifest -->
   <link rel="manifest" href="/static/manifest.json">
+  
+  <!-- Theme Color -->
   <meta name="theme-color" content="#667eea">
+  
+  <!-- PWA Specific -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Nurse Study">
-  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+  
+  <!-- Apple Touch Icons - All Sizes -->
+  <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
   
   <style>
     * { box-sizing: border-box; }
@@ -131,7 +141,12 @@
       .modules-grid { grid-template-columns: 1fr; }
     }
     @supports (padding-top: env(safe-area-inset-top)) {
-      body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+      body { 
+        padding-top: env(safe-area-inset-top); 
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
     }
   </style>
 </head>
@@ -174,20 +189,8 @@
     </div>
     <footer class="footer">&copy; 2025 Nurse Success Study Hub. Study smarter, succeed faster.</footer>
   </div>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/static/service-worker.js')
-        .then((registration) => console.log('SW registered:', registration.scope))
-        .catch((error) => console.warn('SW registration failed:', error));
-    }
-    function updateOnlineStatus() {
-      const indicator = document.getElementById('offlineIndicator');
-      if (!navigator.onLine) { indicator.classList.remove('hidden'); }
-      else { indicator.classList.add('hidden'); }
-    }
-    window.addEventListener('online', updateOnlineStatus);
-    window.addEventListener('offline', updateOnlineStatus);
-    updateOnlineStatus();
-  </script>
+  
+  <!-- PWA Utilities -->
+  <script src="/static/js/pwa-utils.js"></script>
 </body>
 </html>
