@@ -241,6 +241,9 @@ def quiz(category, module):
         with open(module_path, 'r', encoding='utf-8') as f:
             quiz_data = json.load(f)
         
+        # Check for autostart parameter (for Pharmacology categorical quizzes)
+        autostart = request.args.get('autostart', 'false').lower() == 'true'
+        
         # Determine back link based on category and module
         metadata = CATEGORY_METADATA.get(category, {})
         
@@ -265,7 +268,8 @@ def quiz(category, module):
                              module_name=module,
                              category=category,
                              back_url=back_url,
-                             back_label=back_label)
+                             back_label=back_label,
+                             autostart=autostart)
     except Exception as e:
         print(f"Error in quiz route: {e}")
         return jsonify({'error': str(e)}), 500
