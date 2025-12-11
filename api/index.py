@@ -170,6 +170,10 @@ def category(category):
         if category == 'Nursing_Certifications':
             return render_template('nursing-certifications.html', quizzes=quizzes)
         
+        # Use special template for Pharmacology
+        if category == 'Pharmacology':
+            return render_template('pharmacology.html', quizzes=quizzes)
+        
         # Use generic category template for others
         return render_template('category.html', category=category, category_data=category_data, quizzes=quizzes)
     except Exception as e:
@@ -186,6 +190,26 @@ def ccrn_page():
         return render_template('ccrn.html')
     except Exception as e:
         print(f"Error in ccrn_page route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/category/Pharmacology/Comprehensive')
+def pharmacology_comprehensive():
+    """Comprehensive Pharmacology Quizzes page"""
+    try:
+        return render_template('pharmacology-comprehensive.html')
+    except Exception as e:
+        print(f"Error in pharmacology_comprehensive route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/category/Pharmacology/Categories')
+def pharmacology_categories():
+    """Pharmacology by Category page"""
+    try:
+        return render_template('pharmacology-categories.html')
+    except Exception as e:
+        print(f"Error in pharmacology_categories route: {e}")
         return jsonify({'error': str(e)}), 500
 
 
@@ -224,6 +248,14 @@ def quiz(category, module):
         if 'CCRN' in module and category == 'Nursing_Certifications':
             back_url = '/category/Nursing_Certifications/CCRN'
             back_label = 'CCRN Practice Tests'
+        # Special handling for Pharm Quizzes - go back to Comprehensive page
+        elif module.startswith('Pharm_Quiz_') and category == 'Pharmacology':
+            back_url = '/category/Pharmacology/Comprehensive'
+            back_label = 'Comprehensive Pharmacology Quizzes'
+        # Special handling for categorical pharm quizzes - go back to Categories page
+        elif category == 'Pharmacology' and module not in ['Pharm_Quiz_1', 'Pharm_Quiz_2', 'Pharm_Quiz_3', 'Pharm_Quiz_4']:
+            back_url = '/category/Pharmacology/Categories'
+            back_label = 'Pharmacology by Category'
         else:
             back_url = f'/category/{category}'
             back_label = metadata.get('display_name', category.replace('_', ' '))
