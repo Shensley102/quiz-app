@@ -253,6 +253,7 @@
     window.preloadedCategory = null;
     window.backUrl = null;
     window.backLabel = null;
+    window.autostart = {{ autostart|default(false)|tojson }};
     
     {% if quiz_data %}
       window.preloadedQuizData = {{ quiz_data | tojson }};
@@ -267,5 +268,33 @@
   </script>
 
   <script src="/static/quiz-script.js"></script>
+  
+  <!-- Autostart handler -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if autostart is enabled
+      if (window.autostart === true && window.preloadedModuleName) {
+        // Wait for modules to initialize
+        setTimeout(function() {
+          const lengthBtns = document.getElementById('lengthBtns');
+          if (lengthBtns) {
+            // Select "Full" option
+            lengthBtns.querySelectorAll('.seg-btn').forEach(btn => {
+              btn.classList.remove('active');
+              if (btn.dataset.len === 'full') {
+                btn.classList.add('active');
+              }
+            });
+            
+            // Auto-click start button
+            const startBtn = document.getElementById('startBtn');
+            if (startBtn) {
+              startBtn.click();
+            }
+          }
+        }, 100);
+      }
+    });
+  </script>
 </body>
 </html>
