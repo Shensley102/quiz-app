@@ -1,0 +1,347 @@
+{
+  "module": "Anti_Infectives_Pharm",
+  "category": "Anti-Infective Medications",
+  "description": "Antibiotics (Penicillins, Cephalosporins, Fluoroquinolones, Aminoglycosides, Macrolides, Tetracyclines), Antivirals, Antifungals, Antimycobacterials",
+  "generated_at_utc": "2025-12-10T00:00:00.000000Z",
+  "total_questions": 50,
+  "questions": [
+    {
+      "id": "HESI_002",
+      "stem": "Client prescribed ciprofloxacin (Cipro) for UTI. What is most important to teach?",
+      "options": [
+        "Take with antacids to reduce GI upset",
+        "Limit fluid intake to prevent kidney damage",
+        "Avoid dairy products and antacids around dose time",
+        "Expect orange-colored urine"
+      ],
+      "correct": ["C"],
+      "rationale": "Fluoroquinolones bind to calcium, magnesium, and aluminum, reducing absorption. Take cipro 2 hours before or 6 hours after dairy, antacids, or supplements containing these minerals.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_008",
+      "stem": "A client on vancomycin IV reports sudden flushing, pruritus, and hypotension. What is the priority action?",
+      "options": [
+        "Slow the vancomycin infusion rate immediately",
+        "Stop the infusion and notify the provider",
+        "Administer diphenhydramine (Benadryl) STAT",
+        "Check vital signs every 5 minutes"
+      ],
+      "correct": ["B"],
+      "rationale": "These symptoms indicate Red Man syndrome from rapid vancomycin infusion. Stop the infusion immediately and notify the provider. The infusion must be given slowly over at least 60 minutes to prevent histamine release.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_012",
+      "stem": "Before administering gentamicin (Garamycin), which lab value is most important to check?",
+      "options": [
+        "Serum creatinine",
+        "Hemoglobin and hematocrit",
+        "Platelet count",
+        "Serum glucose"
+      ],
+      "correct": ["A"],
+      "rationale": "Aminoglycosides are nephrotoxic and ototoxic. Monitor renal function (BUN, creatinine) and assess for hearing loss. Ensure adequate hydration and monitor peak/trough levels.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_016",
+      "stem": "Client on tetracycline for acne. Which instruction is most important?",
+      "options": [
+        "Take on an empty stomach with water only",
+        "Apply sunscreen and avoid prolonged sun exposure",
+        "Report yellowing of skin or eyes immediately",
+        "Rinse mouth after each dose"
+      ],
+      "correct": ["B"],
+      "rationale": "Tetracyclines cause photosensitivity, increasing risk of severe sunburn. Patients should use sunscreen and avoid tanning beds. Also avoid during pregnancy (tooth discoloration in fetus) and in children <8 years old.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_019",
+      "stem": "A client with pneumonia is prescribed azithromycin (Z-Pak). What is the correct administration schedule?",
+      "options": [
+        "500 mg on day 1, then 250 mg daily for days 2-5",
+        "500 mg twice daily for 7 days",
+        "250 mg four times daily for 10 days",
+        "1000 mg as a single dose"
+      ],
+      "correct": ["A"],
+      "rationale": "The typical Z-Pak regimen is 500 mg on day 1 followed by 250 mg daily on days 2-5 for a 5-day course. Macrolides have a long half-life allowing once-daily dosing.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_024",
+      "stem": "Client on metronidazole (Flagyl) for C. difficile. Which instruction is critical?",
+      "options": [
+        "Take with food to enhance absorption",
+        "Avoid all alcohol during and for 72 hours after therapy",
+        "Expect green-colored stools",
+        "Take a probiotic supplement simultaneously"
+      ],
+      "correct": ["B"],
+      "rationale": "Metronidazole causes a disulfiram-like reaction with alcohol (severe nausea, vomiting, flushing, tachycardia). Avoid all alcohol, including mouthwash containing alcohol, during treatment and for 72 hours after completion.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_027",
+      "stem": "Before administering the first dose of penicillin, what is the nurse's priority assessment?",
+      "options": [
+        "Blood pressure and heart rate",
+        "Allergy history, especially to penicillin or cephalosporins",
+        "Renal function tests",
+        "White blood cell count"
+      ],
+      "correct": ["B"],
+      "rationale": "Always assess for allergies before administering antibiotics, particularly penicillins which have high allergic potential. Cross-reactivity exists between penicillins and cephalosporins (~10% of penicillin-allergic patients).",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_033",
+      "stem": "A client on isoniazid (INH) for tuberculosis. Which supplement should be prescribed?",
+      "options": [
+        "Vitamin B6 (pyridoxine)",
+        "Vitamin K",
+        "Folic acid",
+        "Vitamin D"
+      ],
+      "correct": ["A"],
+      "rationale": "INH depletes vitamin B6, which can cause peripheral neuropathy. Pyridoxine supplementation (10-50 mg daily) prevents this adverse effect. Also monitor liver function as INH is hepatotoxic.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_039",
+      "stem": "Client prescribed rifampin for tuberculosis. Which instruction should the nurse provide?",
+      "options": [
+        "Report orange-colored urine, tears, and sweat",
+        "Expect permanent discoloration of skin",
+        "Body fluids may turn orange-red; this is harmless",
+        "Take with antacids to prevent GI upset"
+      ],
+      "correct": ["C"],
+      "rationale": "Rifampin causes harmless orange-red discoloration of body fluids (urine, tears, sweat, saliva). Warn patients to avoid wearing contact lenses (staining) and that this is expected and harmless.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_042",
+      "stem": "A client on amphotericin B for systemic fungal infection. Which finding indicates nephrotoxicity?",
+      "options": [
+        "Elevated creatinine and decreased urine output",
+        "Hypokalemia and hypomagnesemia",
+        "Fever and chills during infusion",
+        "Nausea and vomiting"
+      ],
+      "correct": ["A"],
+      "rationale": "Amphotericin B is highly nephrotoxic. Monitor BUN, creatinine, I&O, and electrolytes (causes K+ and Mg2+ wasting). Adequate hydration and slow infusion are essential. Fever/chills are expected infusion reactions.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q19",
+      "stem": "The nurse is caring for a patient who is receiving vancomycin (Vancocin). The nurse notes that the patient is experiencing flushing, rash, pruritus, and urticaria. The patient's heart rate is 120 beats per minute, and the blood pressure is 92/57 mm Hg. The nurse will contact the provider and perform which action?",
+      "options": [
+        "Request an order for epinephrine.",
+        "Slow the infusion rate of the vancomycin.",
+        "Obtain an order to administer IV diphenhydramine.",
+        "Suspect Stevens-Johnson syndrome and discontinue the vancomycin."
+      ],
+      "correct": ["B"],
+      "rationale": "When vancomycin is infused too rapidly, 'red man syndrome' may occur. The rate should be  10 mg/min to decrease this effect. Because the patient's heart rate and blood pressure are affected, the infusion should be slowed. If symptoms persist, the provider may order diphenhydramine. Epinephrine is not indicated unless the patient experiences anaphylaxis. Stevens-Johnson syndrome is characterized by fever, malaise, and rash.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q20",
+      "stem": "The nurse assumes care of a patient who is currently receiving a dose of intravenous vancomycin (Vancocin) infusing at 20 mg/min. The nurse notes that the patient is flushed and has a blood pressure of 90/50 mm Hg. The nurse will perform which action?",
+      "options": [
+        "Contact the provider to report signs of ototoxicity.",
+        "Request an order for another antibiotic.",
+        "Stop the infusion and obtain an order for an antihistamine.",
+        "Slow the infusion to 15 mg/min and observe the patient closely."
+      ],
+      "correct": ["C"],
+      "rationale": "Patients who experience flushing and hypotension during intravenous infusion of vancomycin are experiencing 'red man syndrome,' which is caused by rapid infusion. The correct management is to stop the infusion and treat the symptoms with an antihistamine. The rate may then be slowed, but the patient should be treated first. Red man syndrome is not a hypersensitivity reaction and does not mean the vancomycin should be discontinued. Ototoxicity is characterized by tinnitus and hearing loss.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q5",
+      "stem": "A patient is admitted to the unit and the nurse notes on the medication administration record that the patient is receiving cefixime (Suprax). Based on this finding, the nurse interprets that the patient has which disorder?",
+      "options": [
+        "Meningitis",
+        "Endocarditis",
+        "Respiratory infection",
+        "Skin infection"
+      ],
+      "correct": ["C"],
+      "rationale": "Cefixime is a third-generation cephalosporin. This generation of cephalosporins is useful in treating infections of the lower respiratory tract, urinary tract, skin structures, bones, and joints. Meningitis and endocarditis are treated with parenteral medications. First- and second-generation cephalosporins are used to treat skin infections.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q9",
+      "stem": "A patient is receiving tobramycin sulfate three times daily. The nurse caring for this patient assesses the patient and reviews the drug reference manual prior to administering the third dose and notes that the patient is experiencing which symptom that indicates an adverse effect of this drug?",
+      "options": [
+        "Hyperglycemia",
+        "Gastrointestinal upset",
+        "Tinnitus",
+        "Dysuria"
+      ],
+      "correct": ["C"],
+      "rationale": "Aminoglycosides are widely used antibiotics that can cause nephrotoxicity and ototoxicity. Patients who develop hearing loss often notice ringing in the ears or a full sensation in the ears. These symptoms should be reported to the provider. This patient should not receive the next dose until a serum level is determined. Aminoglycosides do not cause gastrointestinal upset, dysuria, or hyperglycemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q17",
+      "stem": "A patient asks the nurse why oral amphotericin B is not used to treat an infection. The nurse will explain that oral amphotericin B is not absorbed from the GI tract and is used only to",
+      "options": [
+        "treat infections of the bladder.",
+        "treat hepatic infections.",
+        "improve renal perfusion.",
+        "treat infections in the GI tract."
+      ],
+      "correct": ["D"],
+      "rationale": "Amphotericin B is not absorbed from the GI tract, so it is used to treat fungal infections of the GI tract. IV formulations are used to treat systemic infections.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q19",
+      "stem": "A patient on gentamicin (Garamycin) IV for a serious infection should be monitored for which serious adverse effects?",
+      "options": [
+        "Liver failure and jaundice",
+        "Nephrotoxicity and ototoxicity",
+        "Bone marrow suppression",
+        "Photosensitivity reactions"
+      ],
+      "correct": ["B"],
+      "rationale": "Aminoglycosides like gentamicin are known for causing nephrotoxicity (kidney damage) and ototoxicity (hearing loss, tinnitus, vertigo). Patients require monitoring of renal function (BUN, creatinine, urine output), peak and trough drug levels, and assessment for hearing changes. Adequate hydration is essential. These drugs are not associated with significant liver toxicity, bone marrow suppression, or photosensitivity.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q20",
+      "stem": "A patient prescribed ciprofloxacin (Cipro) for a urinary tract infection asks if they can take it with their morning calcium supplement. What is the nurse's best response?",
+      "options": [
+        "\"Yes, taking them together will enhance absorption.\"",
+        "\"No, calcium can significantly decrease ciprofloxacin absorption. Take them at least 2-6 hours apart.\"",
+        "\"It doesn't matter when you take them.\"",
+        "\"You should stop taking calcium while on ciprofloxacin.\""
+      ],
+      "correct": ["B"],
+      "rationale": "Fluoroquinolones like ciprofloxacin chelate (bind) with divalent and trivalent cations including calcium, magnesium, aluminum, iron, and zinc, significantly reducing antibiotic absorption and effectiveness. Patients should avoid dairy products, antacids, multivitamins, and supplements containing these minerals for 2 hours before or 6 hours after taking fluoroquinolones.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q21",
+      "stem": "A patient on metronidazole (Flagyl) for a Clostridium difficile infection needs urgent teaching about which interaction?",
+      "options": [
+        "Avoid sunlight exposure",
+        "Do not consume any alcohol",
+        "Take with dairy products",
+        "Expect red-orange urine"
+      ],
+      "correct": ["B"],
+      "rationale": "Metronidazole causes a disulfiram-like reaction when combined with alcohol, resulting in severe nausea, vomiting, abdominal cramping, flushing, and headache. Patients must avoid all alcohol (including alcohol-containing medications and mouthwash) during treatment and for at least 72 hours after the last dose. Red-orange urine is associated with rifampin, not metronidazole.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q22",
+      "stem": "A patient starting isoniazid (INH) for tuberculosis should receive which supplement to prevent peripheral neuropathy?",
+      "options": [
+        "Vitamin B12",
+        "Vitamin B6 (pyridoxine)",
+        "Folic acid",
+        "Vitamin K"
+      ],
+      "correct": ["B"],
+      "rationale": "Isoniazid interferes with vitamin B6 (pyridoxine) metabolism, which can lead to peripheral neuropathy. Prophylactic pyridoxine supplementation (10-50 mg daily) is recommended, especially for patients at higher risk (diabetics, alcoholics, malnourished, pregnant women, HIV patients). INH also requires monitoring of liver function due to hepatotoxicity risk.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q23",
+      "stem": "A patient on rifampin (Rifadin) for tuberculosis reports orange-colored tears and urine. What is the nurse's best response?",
+      "options": [
+        "\"This indicates liver damage; I'll notify your doctor immediately.\"",
+        "\"This is a harmless and expected side effect of rifampin.\"",
+        "\"You are dehydrated; increase your fluid intake.\"",
+        "\"Stop taking the medication and come to the clinic today.\""
+      ],
+      "correct": ["B"],
+      "rationale": "Rifampin causes a harmless orange-red discoloration of body fluids including urine, tears, sweat, saliva, and feces. This is an expected effect and not harmful. Patients should be warned about this to prevent alarm. Soft contact lenses may become permanently stained. Rifampin also induces many drug-metabolizing enzymes, reducing effectiveness of oral contraceptives and many other medications.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q24",
+      "stem": "Before administering the first dose of ceftriaxone (Rocephin) to a patient, which assessment is most critical?",
+      "options": [
+        "Assess for penicillin allergy",
+        "Check liver function tests",
+        "Obtain baseline blood glucose",
+        "Verify the patient has eaten recently"
+      ],
+      "correct": ["A"],
+      "rationale": "There is approximately 5-10% cross-sensitivity between penicillins and cephalosporins. Patients with a history of severe penicillin allergy (anaphylaxis, Stevens-Johnson syndrome) should generally avoid cephalosporins. Always assess allergy history before administering any antibiotic. If the patient has had only minor reactions to penicillin (rash), cephalosporins may still be used cautiously.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q25",
+      "stem": "A patient on tetracycline for an infection develops severe diarrhea. The nurse suspects which complication?",
+      "options": [
+        "Normal side effect requiring no intervention",
+        "Clostridium difficile infection",
+        "Lactose intolerance",
+        "Viral gastroenteritis"
+      ],
+      "correct": ["B"],
+      "rationale": "Broad-spectrum antibiotics like tetracyclines can disrupt normal gut flora, allowing Clostridium difficile overgrowth. C. diff causes severe, potentially life-threatening colitis with watery diarrhea, abdominal pain, and fever. Any patient on antibiotics who develops severe diarrhea should be evaluated for C. diff infection. Mild diarrhea is common with antibiotics, but severe diarrhea warrants immediate assessment.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q26",
+      "stem": "A patient prescribed doxycycline for Lyme disease should be taught to avoid which activity?",
+      "options": [
+        "Drinking orange juice",
+        "Swimming and sun tanning",
+        "Taking the medication with food",
+        "Exercising vigorously"
+      ],
+      "correct": ["B"],
+      "rationale": "Tetracyclines, including doxycycline, cause significant photosensitivity, increasing risk of severe sunburn even with brief sun exposure. Patients should avoid direct sunlight, wear protective clothing, use sunscreen (SPF 30+), and avoid tanning beds during treatment. Other tetracycline precautions include avoiding during pregnancy and in children <8 years (permanent tooth discoloration), avoiding dairy products (decreased absorption), and staying upright after dosing to prevent esophageal ulceration.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q27",
+      "stem": "Which instruction is most important for a patient starting azithromycin (Zithromax)?",
+      "options": [
+        "\"Take on an empty stomach for best absorption.\"",
+        "\"Complete the entire course even if you feel better.\"",
+        "\"Avoid all dairy products during treatment.\"",
+        "\"Take with antacids to prevent stomach upset.\""
+      ],
+      "correct": ["B"],
+      "rationale": "The most critical teaching for any antibiotic is to complete the entire prescribed course, even if symptoms improve. Stopping antibiotics early can lead to: (1) incomplete eradication of infection, (2) symptom relapse, and (3) development of antibiotic-resistant bacteria. Azithromycin (a macrolide) can be taken with or without food. Unlike fluoroquinolones, macrolides don't require avoiding dairy or antacids.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q28",
+      "stem": "A patient receiving amphotericin B IV for a systemic fungal infection should be monitored for which electrolyte imbalances?",
+      "options": [
+        "Hyperkalemia and hypermagnesemia",
+        "Hypokalemia and hypomagnesemia",
+        "Hypernatremia and hypercalcemia",
+        "Hyponatremia and hypocalcemia"
+      ],
+      "correct": ["B"],
+      "rationale": "Amphotericin B is highly nephrotoxic and causes renal wasting of potassium and magnesium, leading to hypokalemia and hypomagnesemia. These must be monitored closely and replaced as needed. The drug also requires monitoring of renal function (BUN, creatinine), hydration status, and liver function. Despite its toxicity, amphotericin B remains an important antifungal for serious systemic infections. Newer lipid formulations are less toxic.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q29",
+      "stem": "A patient with AIDS is prescribed acyclovir (Zovirax) for herpes simplex infection. Which instruction is most important?",
+      "options": [
+        "\"Take this medication until the lesions completely heal.\"",
+        "\"Maintain adequate hydration to prevent kidney stones.\"",
+        "\"Avoid sexual contact even when lesions are not present.\"",
+        "\"Apply topical acyclovir directly to lesions four times daily.\""
+      ],
+      "correct": ["B"],
+      "rationale": "Acyclovir can crystallize in renal tubules, especially with IV administration or in dehydrated patients, potentially causing acute renal failure. Adequate hydration (2-3 L/day) is essential during therapy. Other important points: acyclovir does not cure herpes (suppresses outbreaks but virus remains dormant), can be transmitted even without visible lesions, and treatment should be started at first sign of outbreak for maximum benefit.",
+      "type": "single_select"
+    }
+  ]
+}

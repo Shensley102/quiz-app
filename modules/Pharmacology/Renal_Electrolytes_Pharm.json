@@ -1,0 +1,204 @@
+{
+  "module": "Renal_Electrolytes_Pharm",
+  "category": "Renal & Electrolyte Medications",
+  "description": "Loop diuretics, Thiazide diuretics, Potassium-sparing diuretics, Electrolyte replacements (K+, Mg2+, Ca2+), Fluid balance management",
+  "generated_at_utc": "2025-12-10T00:00:00.000000Z",
+  "total_questions": 25,
+  "questions": [
+    {
+      "id": "HESI_011",
+      "stem": "A client on furosemide (Lasix) reports muscle weakness and irregular heartbeat. Which lab value requires immediate notification?",
+      "options": [
+        "Sodium 138 mEq/L",
+        "Potassium 2.8 mEq/L",
+        "Chloride 100 mEq/L",
+        "Calcium 9.5 mg/dL"
+      ],
+      "correct": ["B"],
+      "rationale": "Loop diuretics cause potassium loss. Hypokalemia (K+ <3.5) causes muscle weakness, dysrhythmias, and can be life-threatening. Notify provider immediately. Monitor K+, Mg2+, and Ca2+ regularly. Consider K+ supplementation or K+-sparing diuretic.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_045",
+      "stem": "Before administering IV potassium chloride, which assessment is most important?",
+      "options": [
+        "Blood pressure",
+        "Urine output",
+        "Level of consciousness",
+        "Respiratory rate"
+      ],
+      "correct": ["B"],
+      "rationale": "NEVER give IV potassium if urine output is inadequate (<30 mL/hr) or in renal failure. Potassium is excreted by kidneys; impaired excretion can cause life-threatening hyperkalemia and cardiac arrest. Always dilute IV K+ and infuse slowly.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_046",
+      "stem": "A client on hydrochlorothiazide (HCTZ) for hypertension. Which food should the nurse recommend?",
+      "options": [
+        "Canned soups",
+        "Bananas and oranges",
+        "White bread and pasta",
+        "Processed meats"
+      ],
+      "correct": ["B"],
+      "rationale": "Thiazide diuretics cause potassium loss. Encourage potassium-rich foods: bananas, oranges, potatoes, tomatoes, spinach, avocados, beans. Monitor for hypokalemia, hypercalcemia, hyperglycemia, and hyperuricemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_048",
+      "stem": "A client taking spironolactone (Aldactone). Which lab finding indicates an adverse effect?",
+      "options": [
+        "Potassium 5.8 mEq/L",
+        "Sodium 140 mEq/L",
+        "Chloride 98 mEq/L",
+        "Calcium 9.0 mg/dL"
+      ],
+      "correct": ["A"],
+      "rationale": "Spironolactone is potassium-sparing; hyperkalemia (K+ >5.0) is a major risk. Avoid K+ supplements, salt substitutes (contain K+), and ACE inhibitors/ARBs (also increase K+). Monitor K+ levels regularly.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_050",
+      "stem": "Teaching for a client receiving IV magnesium sulfate. Which sign indicates toxicity?",
+      "options": [
+        "Muscle twitching and tremors",
+        "Decreased deep tendon reflexes",
+        "Tachycardia",
+        "Hypertension"
+      ],
+      "correct": ["B"],
+      "rationale": "Magnesium toxicity causes: loss of deep tendon reflexes (first sign), respiratory depression, cardiac arrest. Monitor reflexes, respiratory rate (>12/min), urine output. Keep calcium gluconate at bedside as antidote. Therapeutic Mg2+ level: 1.5-2.5 mEq/L.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q16",
+      "stem": "The nurse is preparing to administer IV furosemide to a patient who has heart failure. The nurse notes that the patient's potassium level is 3.2 mEq/L. The nurse will",
+      "options": [
+        "administer the furosemide and monitor the patient closely.",
+        "hold the furosemide and notify the provider.",
+        "request an order for oral potassium.",
+        "administer the furosemide after giving oral potassium."
+      ],
+      "correct": ["B"],
+      "rationale": "Furosemide is a loop diuretic that causes potassium loss. A potassium level of 3.2 mEq/L is below normal (normal: 3.5-5.0 mEq/L). The nurse should hold the medication and notify the provider to prevent further hypokalemia, which can cause dysrhythmias.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q17",
+      "stem": "A patient who takes hydrochlorothiazide (HCTZ) is being taught about dietary modifications. The nurse will recommend that the patient increase intake of",
+      "options": [
+        "calcium-rich foods.",
+        "foods high in sodium.",
+        "potassium-rich foods.",
+        "foods high in cholesterol."
+      ],
+      "correct": ["C"],
+      "rationale": "Thiazide diuretics cause potassium loss, so patients should increase intake of potassium-rich foods such as bananas, oranges, and potatoes. Patients should also be taught to limit sodium intake. Thiazides can cause hypercalcemia (increased calcium retention), so calcium-rich foods should not be emphasized.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q18",
+      "stem": "The nurse is caring for a patient who is receiving spironolactone (Aldactone). The nurse notes that the patient's potassium level is 5.8 mEq/L. The nurse will",
+      "options": [
+        "continue to monitor the patient.",
+        "notify the provider and request an order to discontinue the spironolactone.",
+        "request an order for sodium polystyrene sulfonate (Kayexalate).",
+        "request an order to increase the spironolactone dose."
+      ],
+      "correct": ["B"],
+      "rationale": "Spironolactone is a potassium-sparing diuretic. A potassium level of 5.8 mEq/L is elevated (normal: 3.5-5.0 mEq/L) and indicates hyperkalemia, which can cause life-threatening dysrhythmias. The medication should be discontinued. Kayexalate may be ordered to lower potassium, but discontinuing the causative agent is the priority.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q19",
+      "stem": "A patient is receiving IV potassium chloride. The nurse will monitor the patient for which adverse effect?",
+      "options": [
+        "Hypotension",
+        "Cardiac dysrhythmias",
+        "Muscle weakness",
+        "Increased urine output"
+      ],
+      "correct": ["B"],
+      "rationale": "IV potassium must be administered carefully because it can cause cardiac dysrhythmias, especially if given too rapidly or if the patient has hyperkalemia. The infusion rate should not exceed 10 mEq/hour, and the patient should be on cardiac monitoring if higher doses are given.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q20",
+      "stem": "Before administering IV potassium to a patient, the nurse will verify that the patient has",
+      "options": [
+        "a normal blood pressure.",
+        "adequate urine output.",
+        "a normal respiratory rate.",
+        "been NPO for 8 hours."
+      ],
+      "correct": ["B"],
+      "rationale": "Potassium is excreted by the kidneys. Patients must have adequate urine output (at least 30 mL/hour) to receive IV potassium. Giving potassium to a patient with impaired kidney function can result in life-threatening hyperkalemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q66",
+      "stem": "A patient on furosemide (Lasix) reports muscle cramps and weakness. Which laboratory value should the nurse check first?",
+      "options": [
+        "Serum sodium",
+        "Serum potassium",
+        "Blood glucose",
+        "Serum creatinine"
+      ],
+      "correct": ["B"],
+      "rationale": "Furosemide is a loop diuretic that causes significant potassium loss. Hypokalemia (K+ <3.5 mEq/L) presents with muscle weakness, cramps, fatigue, constipation, and cardiac dysrhythmias. The nurse should check potassium level and notify the provider if low. Loop diuretics also cause hyponatremia, hypomagnesemia, and hypocalcemia. Patients may need potassium supplementation or addition of a potassium-sparing diuretic.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q67",
+      "stem": "Before administering IV potassium chloride 20 mEq, which assessment is most critical?",
+      "options": [
+        "Blood pressure",
+        "Urine output over the past 8 hours",
+        "Heart rate",
+        "Temperature"
+      ],
+      "correct": ["B"],
+      "rationale": "Potassium is excreted by the kidneys, so adequate renal function (urine output ≥30 mL/hr) must be verified before IV potassium administration. Giving potassium when output is inadequate or in renal failure can cause life-threatening hyperkalemia and cardiac arrest. Additional safety rules for IV potassium: (1) NEVER give as IV push/bolus, (2) Always dilute, (3) Maximum concentration 40 mEq/L peripheral IV or 80 mEq/L central line, (4) Maximum rate 10 mEq/hr (20 mEq/hr with monitoring), (5) Use infusion pump.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q68",
+      "stem": "A patient taking spironolactone (Aldactone) and lisinopril (an ACE inhibitor) has a potassium level of 5.9 mEq/L. What is the nurse's best action?",
+      "options": [
+        "Continue both medications and recheck in 1 week",
+        "Hold both medications and notify the provider immediately",
+        "Give only the spironolactone and hold the lisinopril",
+        "Encourage the patient to eat more bananas"
+      ],
+      "correct": ["B"],
+      "rationale": "This patient is at high risk for hyperkalemia because spironolactone (potassium-sparing diuretic) and ACE inhibitors both increase potassium levels. A K+ of 5.9 mEq/L (normal 3.5-5.0) is dangerously high and can cause fatal dysrhythmias. Both medications should be held and the provider notified immediately. The patient needs: (1) ECG to assess for hyperkalemia changes (tall peaked T waves, widened QRS, loss of P wave), (2) Treatment if symptomatic (calcium gluconate for cardiac protection, insulin + glucose, sodium bicarbonate, or dialysis). Never encourage potassium-rich foods when K+ is elevated.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q69",
+      "stem": "A patient on hydrochlorothiazide (HCTZ) for hypertension should be taught to increase intake of which foods?",
+      "options": [
+        "Dairy products high in calcium",
+        "Foods rich in potassium like bananas and spinach",
+        "High-sodium foods like canned soups",
+        "Processed meats and cheese"
+      ],
+      "correct": ["B"],
+      "rationale": "Thiazide diuretics cause hypokalemia by increasing urinary potassium excretion. Patients should increase dietary potassium through foods like bananas, oranges, potatoes, tomatoes, spinach, avocados, and beans. They should also limit sodium (not increase it). Interestingly, thiazides cause calcium retention (unlike loop diuretics which cause calcium loss), so patients don't need extra calcium. Other thiazide effects to monitor: hyperglycemia, hyperuricemia (gout), hyperlipidemia, hyponatremia, hypomagnesemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q70",
+      "stem": "A patient receiving IV magnesium sulfate for preeclampsia becomes lethargic with absent deep tendon reflexes and a respiratory rate of 8/min. What is the nurse's immediate action?",
+      "options": [
+        "Continue the infusion and reassess in 15 minutes",
+        "Stop the magnesium infusion and administer calcium gluconate",
+        "Decrease the infusion rate by half",
+        "Encourage the patient to take deep breaths"
+      ],
+      "correct": ["B"],
+      "rationale": "This patient has magnesium toxicity (hypermagnesemia). Signs occur in this progression: (1) Loss of deep tendon reflexes (first sign, occurs at 7-10 mEq/L), (2) Respiratory depression (10-12 mEq/L), (3) Cardiac arrest (>15 mEq/L). The nurse must: (1) STOP the magnesium immediately, (2) Administer calcium gluconate (1 g IV over 3 minutes) as the antidote, (3) Notify provider STAT, (4) Support respirations as needed. Therapeutic magnesium level is 4-6 mEq/L for preeclampsia (1.5-2.5 mEq/L normal). Always monitor: reflexes, respiratory rate (must be >12/min), urine output (must be >30 mL/hr), and keep calcium gluconate at bedside.",
+      "type": "single_select"
+    }
+  ]
+}

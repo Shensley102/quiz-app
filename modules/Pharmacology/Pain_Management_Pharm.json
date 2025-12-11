@@ -1,0 +1,321 @@
+{
+  "module": "Pain_Management_Pharm",
+  "category": "Pain Management & Analgesics",
+  "description": "Opioid agonists, Opioid antagonists (Naloxone), NSAIDs, Acetaminophen, Adjuvant analgesics, Pain assessment and WHO pain ladder",
+  "generated_at_utc": "2025-12-10T00:00:00.000000Z",
+  "total_questions": 45,
+  "questions": [
+    {
+      "id": "HESI_003",
+      "stem": "A post-operative client reports pain level 8/10. Morphine sulfate 4 mg IV is ordered. Which assessment is the priority before administering?",
+      "options": [
+        "Level of consciousness and pupil size",
+        "Respiratory rate and oxygen saturation",
+        "Blood pressure and heart rate",
+        "Last bowel movement"
+      ],
+      "correct": ["B"],
+      "rationale": "Opioids depress the respiratory center. Always assess respiratory rate (hold if <12/min) and oxygen saturation before administering opioids. Also assess pain level, sedation level, and have naloxone available.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_005",
+      "stem": "A client on patient-controlled analgesia (PCA) with morphine has a respiratory rate of 8/min and is difficult to arouse. What is the priority action?",
+      "options": [
+        "Stop the PCA and notify the provider",
+        "Administer naloxone (Narcan) as ordered",
+        "Increase the oxygen flow rate",
+        "Encourage deep breathing exercises"
+      ],
+      "correct": ["B"],
+      "rationale": "Respiratory rate <10/min with decreased level of consciousness indicates opioid overdose. Administer naloxone immediately to reverse respiratory depression, then stop PCA and notify provider.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_009",
+      "stem": "Discharge teaching for a client prescribed oxycodone/acetaminophen (Percocet). Which statement requires follow-up?",
+      "options": [
+        "\"I'll take extra-strength Tylenol if my pain isn't controlled.\"",
+        "\"I'll increase my fiber and fluid intake.\"",
+        "\"I shouldn't drive while taking this medication.\"",
+        "\"I'll take the medication with food if it upsets my stomach.\""
+      ],
+      "correct": ["A"],
+      "rationale": "Percocet contains acetaminophen; taking additional Tylenol can cause hepatotoxicity. Maximum acetaminophen dose is 4000 mg/day (3000 mg/day for chronic use). Always check for acetaminophen in combination products.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_014",
+      "stem": "A client prescribed ibuprofen (Motrin) for arthritis. Which finding requires immediate provider notification?",
+      "options": [
+        "Reports taking the medication with milk",
+        "Complains of mild stomach upset",
+        "Has dark, tarry stools",
+        "Takes the medication twice daily"
+      ],
+      "correct": ["C"],
+      "rationale": "Dark, tarry stools (melena) indicate GI bleeding, a serious adverse effect of NSAIDs. NSAIDs inhibit prostaglandins that protect the gastric mucosa. Stop the medication and notify the provider immediately.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_020",
+      "stem": "Which patient is at highest risk for acetaminophen toxicity?",
+      "options": [
+        "A patient who drinks 2-3 glasses of wine daily",
+        "A patient with diabetes",
+        "A patient with asthma",
+        "A patient taking antacids"
+      ],
+      "correct": ["A"],
+      "rationale": "Chronic alcohol use increases risk of acetaminophen-induced hepatotoxicity. Alcohol induces enzymes that convert acetaminophen to toxic metabolites and depletes glutathione stores needed to detoxify them. Maximum dose is lower in patients with liver disease or alcohol use.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_023",
+      "stem": "A client on long-term opioid therapy for chronic pain. Which intervention is priority?",
+      "options": [
+        "Implement a bowel regimen with stool softener and laxative",
+        "Monitor for signs of addiction",
+        "Rotate injection sites",
+        "Check blood glucose levels"
+      ],
+      "correct": ["A"],
+      "rationale": "Opioid-induced constipation is almost universal and does not develop tolerance. Prophylactic bowel regimen (stimulant laxative + stool softener) should be started with opioid therapy. Assess bowel function regularly.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_025",
+      "stem": "A client with renal insufficiency is prescribed pain medication. Which is the safest choice?",
+      "options": [
+        "Ibuprofen (Motrin)",
+        "Morphine sulfate",
+        "Acetaminophen (Tylenol)",
+        "Ketorolac (Toradol)"
+      ],
+      "correct": ["C"],
+      "rationale": "Acetaminophen is metabolized by the liver, not kidneys, making it safer in renal disease. NSAIDs (ibuprofen, ketorolac) can worsen renal function and should be avoided. Morphine metabolites accumulate in renal failure; use cautiously with dose adjustment.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_028",
+      "stem": "A client on fentanyl transdermal patch (Duragesic) for cancer pain. Which instruction is most important?",
+      "options": [
+        "Change the patch every 24 hours",
+        "Apply the patch to the same site each time",
+        "Avoid exposing the patch to heat sources",
+        "Cut the patch in half if pain improves"
+      ],
+      "correct": ["C"],
+      "rationale": "Heat increases fentanyl absorption from the patch, potentially causing overdose. Avoid heating pads, electric blankets, hot tubs, saunas, and direct sunlight on the patch. Change q72h, rotate sites, never cut patches.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_032",
+      "stem": "Before administering ketorolac (Toradol) IV, which assessment finding requires withholding the dose?",
+      "options": [
+        "Pain level 7/10",
+        "Blood pressure 110/70 mmHg",
+        "History of peptic ulcer disease",
+        "Temperature 98.6°F"
+      ],
+      "correct": ["C"],
+      "rationale": "Ketorolac is contraindicated in patients with active or history of peptic ulcer disease or GI bleeding due to high risk of serious GI complications. It's also contraindicated in advanced renal disease and during labor/delivery.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_034",
+      "stem": "A client prescribed tramadol (Ultram) for moderate pain. Which medication combination increases seizure risk?",
+      "options": [
+        "Acetaminophen (Tylenol)",
+        "Sertraline (Zoloft) - SSRI",
+        "Lisinopril (Zestril) - ACE inhibitor",
+        "Metformin (Glucophage)"
+      ],
+      "correct": ["B"],
+      "rationale": "Tramadol lowers seizure threshold, especially when combined with SSRIs, SNRIs, TCAs, or other serotonergic drugs. This combination also increases risk of serotonin syndrome. Use cautiously in patients with seizure history.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q1",
+      "stem": "The nurse is caring for a postoperative patient who is receiving morphine sulfate. Which assessment finding indicates that the patient is experiencing an adverse effect of morphine?",
+      "options": [
+        "Increased blood pressure",
+        "Respiratory rate of 8 breaths per minute",
+        "Increased bowel sounds",
+        "Elevated temperature"
+      ],
+      "correct": ["B"],
+      "rationale": "Morphine sulfate can cause respiratory depression. A respiratory rate less than 12 breaths per minute indicates respiratory depression and requires immediate intervention. Morphine causes decreased blood pressure, decreased bowel sounds (constipation), and does not cause fever.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q2",
+      "stem": "A patient is receiving morphine via patient-controlled analgesia (PCA). The nurse notes that the patient is difficult to arouse and has a respiratory rate of 6 breaths per minute. Which medication will the nurse anticipate administering?",
+      "options": [
+        "Atropine",
+        "Epinephrine",
+        "Naloxone (Narcan)",
+        "Flumazenil (Romazicon)"
+      ],
+      "correct": ["C"],
+      "rationale": "Naloxone is an opioid antagonist that reverses the effects of opioid medications, including respiratory depression. Atropine is used for bradycardia. Epinephrine is used for anaphylaxis. Flumazenil reverses benzodiazepines.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q3",
+      "stem": "A patient who has been taking opioids for chronic pain asks why a stool softener has been ordered. What will the nurse tell the patient?",
+      "options": [
+        "\"Opioids can cause severe diarrhea, and this will help.\"",
+        "\"This is a preventive measure because opioids often cause constipation.\"",
+        "\"You will need to take this only when you are constipated.\"",
+        "\"The provider ordered this in error; I will contact them.\""
+      ],
+      "correct": ["B"],
+      "rationale": "Opioids decrease gastrointestinal motility, leading to constipation. A bowel regimen should be initiated prophylactically, not after constipation develops. Opioids do not cause diarrhea.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q4",
+      "stem": "The nurse is preparing to administer a dose of oxycodone/acetaminophen (Percocet) to a patient who is postoperative. The nurse notes that the patient's respiratory rate is 10 breaths per minute. What will the nurse do?",
+      "options": [
+        "Administer half the dose of Percocet.",
+        "Administer the dose and monitor the patient's vital signs.",
+        "Hold the dose and notify the provider.",
+        "Encourage the patient to take deep breaths and then give the medication."
+      ],
+      "correct": ["C"],
+      "rationale": "Opioids should be held if the respiratory rate is less than 12 breaths per minute. The nurse should not administer any portion of the dose or encourage deep breaths as a way to give the medication. The provider should be notified.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q5",
+      "stem": "A patient reports taking ibuprofen (Motrin) for menstrual cramps but states that it does not work. What will the nurse tell this patient?",
+      "options": [
+        "\"Ibuprofen is not effective for menstrual cramps.\"",
+        "\"You should take the ibuprofen with food to enhance absorption.\"",
+        "\"You need to take ibuprofen 1-2 days before your period starts for maximum benefit.\"",
+        "\"You should take a larger dose to increase effectiveness.\""
+      ],
+      "correct": ["C"],
+      "rationale": "NSAIDs work by inhibiting prostaglandin synthesis. For maximum effectiveness in managing menstrual cramps, they should be started 1-2 days before menstruation begins. Taking with food decreases GI upset but does not enhance absorption. The dose should not be increased without provider order.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q6",
+      "stem": "A patient with arthritis asks the nurse why acetaminophen is recommended instead of aspirin. What is the nurse's best response?",
+      "options": [
+        "\"Acetaminophen is more effective for pain relief than aspirin.\"",
+        "\"Acetaminophen does not cause gastrointestinal upset like aspirin.\"",
+        "\"Aspirin causes more drowsiness than acetaminophen.\"",
+        "\"Aspirin is not as safe as acetaminophen for long-term use.\""
+      ],
+      "correct": ["B"],
+      "rationale": "Acetaminophen does not have the gastrointestinal side effects associated with aspirin and other NSAIDs. However, it also lacks anti-inflammatory properties. Aspirin does not cause drowsiness. Neither drug is necessarily safer for long-term use; both have potential toxicities (liver for acetaminophen, GI bleeding for aspirin).",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q7",
+      "stem": "The nurse is caring for a patient who is taking acetaminophen (Tylenol) and asks how much can be taken daily. What is the maximum recommended daily dose for an adult?",
+      "options": [
+        "2000 mg per day",
+        "3000 mg per day",
+        "4000 mg per day",
+        "6000 mg per day"
+      ],
+      "correct": ["C"],
+      "rationale": "The maximum recommended dose of acetaminophen is 4000 mg per day (some sources recommend 3000 mg for chronic use). Exceeding this dose can cause hepatotoxicity. Patients should be educated to check all medications for acetaminophen content to avoid accidental overdose.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q8",
+      "stem": "A patient who is taking high-dose aspirin for arthritis develops tinnitus. What will the nurse do?",
+      "options": [
+        "Tell the patient to continue taking the aspirin until the next provider visit.",
+        "Notify the provider about this adverse effect.",
+        "Reassure the patient that this is a temporary side effect.",
+        "Request an order for a hearing test."
+      ],
+      "correct": ["B"],
+      "rationale": "Tinnitus is a sign of aspirin toxicity (salicylism) and should be reported immediately. The dose may need to be reduced. Other signs of salicylism include dizziness, headache, and hearing loss.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q50",
+      "stem": "A patient on morphine PCA for postoperative pain becomes increasingly sedated with pinpoint pupils and a respiratory rate of 6/min. What is the nurse's immediate action?",
+      "options": [
+        "Increase oxygen via nasal cannula and reassess in 15 minutes",
+        "Stop the PCA pump and stimulate the patient to breathe",
+        "Administer naloxone (Narcan) per standing orders and call for help",
+        "Document findings and continue to monitor every 5 minutes"
+      ],
+      "correct": ["C"],
+      "rationale": "The patient is experiencing opioid overdose with respiratory depression (rate <10/min) and decreased level of consciousness. Naloxone must be administered immediately to reverse the opioid effects. The nurse should also stop the PCA, call for help, and be prepared for possible respiratory support. After naloxone, the patient may experience acute withdrawal symptoms and pain.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q51",
+      "stem": "A patient asks why they need to take a stool softener while taking opioids for pain. What is the nurse's best explanation?",
+      "options": [
+        "\"Opioids cause diarrhea, and this will help bulk your stools.\"",
+        "\"This prevents the nausea that often occurs with opioid use.\"",
+        "\"Opioids slow down your intestines and almost always cause constipation.\"",
+        "\"This is only needed if you become constipated.\""
+      ],
+      "correct": ["C"],
+      "rationale": "Opioid-induced constipation is predictable and occurs in nearly all patients due to decreased GI motility. Unlike other opioid side effects (nausea, sedation), tolerance to constipation does not develop. A prophylactic bowel regimen should be started when opioid therapy begins, not after constipation develops. The regimen typically includes a stimulant laxative (senna) plus a stool softener (docusate).",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q52",
+      "stem": "A patient with chronic pain is being converted from IV morphine to oral morphine. The nurse understands that oral morphine doses will be:",
+      "options": [
+        "The same as IV doses",
+        "Half the IV doses",
+        "Two to three times higher than IV doses",
+        "Ten times higher than IV doses"
+      ],
+      "correct": ["C"],
+      "rationale": "Due to first-pass metabolism in the liver, oral morphine has much lower bioavailability than IV morphine. When converting from IV to PO morphine, the oral dose typically needs to be 2-3 times higher to achieve equivalent pain relief. This is called the equianalgesic dose. For example, morphine 10 mg IV ≈ morphine 30 mg PO.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q53",
+      "stem": "A patient prescribed a fentanyl transdermal patch (Duragesic) for cancer pain. Which instruction is critical for patient safety?",
+      "options": [
+        "\"Change the patch every 24 hours at the same time.\"",
+        "\"Apply the patch to a hairless area and rotate sites.\"",
+        "\"Avoid heat sources like heating pads over the patch area.\"",
+        "\"Cut the patch in half if your pain improves.\""
+      ],
+      "correct": ["C"],
+      "rationale": "Heat dramatically increases fentanyl absorption from the patch, potentially causing overdose and death. Patients must avoid heating pads, hot tubs, fever, and even direct sunlight on the patch site. Fentanyl patches are changed every 72 hours (not 24), applied to intact skin with site rotation, and should never be cut (releases all medication at once). Used patches should be folded and flushed or returned to pharmacy for proper disposal.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q54",
+      "stem": "A patient taking long-term NSAIDs for arthritis should be taught to report which symptom immediately?",
+      "options": [
+        "Mild indigestion after meals",
+        "Dark, tarry stools or coffee-ground vomitus",
+        "Occasional headache",
+        "Dry mouth"
+      ],
+      "correct": ["B"],
+      "rationale": "Dark, tarry stools (melena) or coffee-ground vomitus indicate gastrointestinal bleeding, a potentially life-threatening complication of NSAID use. NSAIDs inhibit prostaglandins that protect the gastric mucosa. Risk factors include age >60, history of PUD, high doses, concurrent use of anticoagulants or corticosteroids, and H. pylori infection. PPIs can reduce GI bleeding risk. Patients with history of PUD should generally avoid NSAIDs.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q57",
+      "stem": "Which medication combination places a patient at highest risk for acetaminophen toxicity?",
+      "options": [
+        "Tylenol 1000 mg QID + ibuprofen 400 mg TID",
+        "Percocet (oxycodone/acetaminophen 5/325) 2 tabs QID + Tylenol PM at bedtime",
+        "Tylenol 500 mg PRN + amoxicillin 500 mg TID",
+        "Tylenol 650 mg Q4-6h + omeprazole 20 mg daily"
+      ],
+      "correct": ["B"],
+      "rationale": "This combination provides: Percocet (325 mg × 2 tabs × 4 times = 2600 mg) + Tylenol PM (500-650 mg) = >3100 mg/day, approaching the 4000 mg maximum. If the patient takes additional OTC medications, they could easily exceed safe limits. Many combination products contain \"hidden\" acetaminophen (Percocet, Vicodin, Nyquil, Theraflu). Patients should be taught to read labels and avoid taking multiple acetaminophen-containing products. Chronic alcohol use, liver disease, and malnutrition increase toxicity risk.",
+      "type": "single_select"
+    }
+  ]
+}

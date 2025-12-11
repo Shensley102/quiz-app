@@ -1,0 +1,152 @@
+{
+  "module": "Musculoskeletal_Pharm",
+  "category": "Musculoskeletal Medications",
+  "description": "DMARDs, Bisphosphonates, Gout medications (Allopurinol, Colchicine), Muscle relaxants, Corticosteroids for inflammation",
+  "generated_at_utc": "2025-12-10T00:00:00.000000Z",
+  "total_questions": 20,
+  "questions": [
+    {
+      "id": "HESI_053",
+      "stem": "A client prescribed alendronate (Fosamax) for osteoporosis. Which instruction is most important?",
+      "options": [
+        "Take with food to enhance absorption",
+        "Take first thing in the morning with a full glass of water and remain upright for 30 minutes",
+        "Take at bedtime to minimize side effects",
+        "Crush the tablet if difficult to swallow"
+      ],
+      "correct": ["B"],
+      "rationale": "Bisphosphonates must be taken on empty stomach (30-60 min before food) with 8 oz plain water, and patient must remain upright ×30 min to prevent esophageal irritation/ulceration. Never crush or chew (increases GI irritation).",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_056",
+      "stem": "A client on allopurinol (Zyloprim) for gout. Which instruction should the nurse provide?",
+      "options": [
+        "Take during an acute gout attack for immediate relief",
+        "Increase fluid intake to 3 liters per day",
+        "Avoid all seafood and red meat",
+        "Take on an empty stomach for best absorption"
+      ],
+      "correct": ["B"],
+      "rationale": "Allopurinol reduces uric acid production but doesn't treat acute gout. Adequate hydration (3 L/day) prevents kidney stones from uric acid crystallization. May initially worsen gout attacks; use colchicine or NSAIDs prophylactically for first few months.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_059",
+      "stem": "A client prescribed methotrexate for rheumatoid arthritis. Which supplement should be co-prescribed?",
+      "options": [
+        "Vitamin B12",
+        "Folic acid",
+        "Vitamin D",
+        "Iron"
+      ],
+      "correct": ["B"],
+      "rationale": "Methotrexate is a folate antagonist. Folic acid supplementation (1-5 mg daily) reduces side effects (mouth sores, GI upset, liver toxicity) without reducing efficacy. Monitor CBC, liver function, and kidney function regularly.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_062",
+      "stem": "Before administering methotrexate, which lab value requires notification to the provider?",
+      "options": [
+        "WBC 3,000/mm³",
+        "Hemoglobin 12.5 g/dL",
+        "Platelet count 200,000/mm³",
+        "Serum creatinine 0.9 mg/dL"
+      ],
+      "correct": ["A"],
+      "rationale": "Methotrexate causes myelosuppression (bone marrow suppression). WBC <3,500 increases infection risk; hold the medication and notify the provider. Monitor CBC, liver enzymes, and renal function. Also watch for mucositis, pulmonary toxicity.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q21",
+      "stem": "A patient who is taking alendronate (Fosamax) reports difficulty swallowing and chest pain. The nurse will",
+      "options": [
+        "tell the patient to drink more water with the medication.",
+        "tell the patient to take the medication with food.",
+        "notify the provider about these symptoms.",
+        "reassure the patient that these are common side effects."
+      ],
+      "correct": ["C"],
+      "rationale": "Difficulty swallowing and chest pain may indicate esophageal irritation or ulceration, which can occur with bisphosphonates. The provider should be notified. Patients should be instructed to take the medication with a full glass of water and remain upright for 30 minutes after taking it.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q22",
+      "stem": "The nurse is teaching a patient about taking methotrexate for rheumatoid arthritis. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I will take folic acid supplements as prescribed.\"",
+        "\"I will take this medication with antacids to prevent stomach upset.\"",
+        "\"I will need to have monthly eye examinations.\"",
+        "\"I can stop taking this medication once my symptoms improve.\""
+      ],
+      "correct": ["A"],
+      "rationale": "Folic acid supplementation is recommended for patients taking methotrexate to reduce side effects such as mouth sores and gastrointestinal upset. Patients should not take antacids with methotrexate. Eye examinations are not specifically required for methotrexate. Patients should not stop the medication without consulting their provider.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q23",
+      "stem": "A patient who is taking allopurinol for chronic gout asks the nurse why the medication is continued even when symptoms are absent. What will the nurse tell the patient?",
+      "options": [
+        "\"Allopurinol prevents the formation of uric acid.\"",
+        "\"This medication reduces inflammation during acute gout attacks.\"",
+        "\"Allopurinol increases excretion of uric acid by the kidneys.\"",
+        "\"The medication is used to prevent kidney stones.\""
+      ],
+      "correct": ["A"],
+      "rationale": "Allopurinol inhibits the enzyme that produces uric acid, thus preventing its formation and reducing the risk of gout attacks. It is not used for acute attacks and does not increase uric acid excretion (that is the mechanism of probenecid). While it can help prevent kidney stones, its primary purpose is to lower uric acid levels.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q71",
+      "stem": "A patient taking alendronate (Fosamax) for osteoporosis reports heartburn and difficulty swallowing. What is the nurse's priority action?",
+      "options": [
+        "Advise taking the medication with milk to coat the esophagus",
+        "Instruct the patient to take an antacid before the medication",
+        "Notify the provider as this may indicate esophageal damage",
+        "Reassure that these are mild side effects that will resolve"
+      ],
+      "correct": ["C"],
+      "rationale": "Bisphosphonates can cause severe esophageal irritation, erosion, and ulceration. Difficulty swallowing (dysphagia) and heartburn are warning signs of esophageal damage and require immediate provider notification. The medication should be discontinued until evaluated. To prevent esophageal problems: (1) Take with 8 oz plain water (not juice, coffee, or milk), (2) Take on empty stomach first thing AM, (3) Remain upright (sitting/standing) for 30 minutes after dose, (4) Do not lie down or eat for 30 minutes, (5) Do not take at bedtime. Other serious bisphosphonate adverse effects include osteonecrosis of the jaw and atypical femur fractures with long-term use.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q72",
+      "stem": "A patient newly prescribed allopurinol (Zyloprim) for chronic gout asks why they also need to take colchicine. What is the nurse's best explanation?",
+      "options": [
+        "\"Colchicine treats the acute pain that allopurinol doesn't address.\"",
+        "\"Allopurinol can initially trigger gout attacks, so colchicine prevents this.\"",
+        "\"These medications work better when taken together long-term.\"",
+        "\"Colchicine helps your kidneys eliminate the extra uric acid.\""
+      ],
+      "correct": ["B"],
+      "rationale": "When starting allopurinol, uric acid levels fluctuate and mobilize uric acid crystals from tissues, paradoxically increasing gout attack frequency in the first few months. Prophylactic colchicine (or NSAIDs) is given during this period to prevent these flares. After 3-6 months, when uric acid levels stabilize, the prophylactic medication can usually be discontinued. Important allopurinol teaching: (1) Continue during acute attacks (don't start during an attack, but don't stop if already taking), (2) Takes weeks-months to lower uric acid, (3) Increase fluids to 3L/day to prevent kidney stones, (4) May require dose adjustment in renal impairment.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q73",
+      "stem": "Before administering methotrexate to a patient with rheumatoid arthritis, which laboratory results require the nurse to hold the dose?",
+      "options": [
+        "Hemoglobin 12 g/dL, platelets 250,000/mm³",
+        "WBC 2,800/mm³, AST 150 U/L",
+        "Potassium 4.0 mEq/L, sodium 138 mEq/L",
+        "BUN 18 mg/dL, creatinine 1.0 mg/dL"
+      ],
+      "correct": ["B"],
+      "rationale": "Methotrexate causes myelosuppression and hepatotoxicity. WBC <3,500/mm³ indicates bone marrow suppression (increased infection risk), and elevated AST suggests liver damage. Both findings warrant holding the medication and notifying the provider. Methotrexate requires close monitoring: (1) CBC and liver function tests before starting and regularly during therapy, (2) Chest X-ray baseline (pulmonary toxicity risk), (3) Folic acid supplementation to reduce toxicity. Other important points: (1) Taken weekly (not daily) for RA—wrong frequency is a common error, (2) Highly teratogenic—strict contraception required, (3) Avoid alcohol (hepatotoxicity), (4) Avoid NSAIDs when possible (increases methotrexate toxicity).",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q74",
+      "stem": "A patient on long-term prednisone therapy for rheumatoid arthritis should be monitored for which adverse effects?",
+      "options": [
+        "Hypotension and bradycardia",
+        "Hyperglycemia and osteoporosis",
+        "Hypothyroidism and weight loss",
+        "Hypoglycemia and hypertension"
+      ],
+      "correct": ["B"],
+      "rationale": "Long-term corticosteroid use causes numerous adverse effects including: (1) Hyperglycemia/diabetes (not hypoglycemia), (2) Osteoporosis and increased fracture risk, (3) Hypertension (not hypotension), (4) Weight gain and central obesity (not weight loss), (5) Immunosuppression and increased infection risk, (6) Cataracts and glaucoma, (7) Mood changes, (8) Adrenal suppression. Patients need: calcium/vitamin D supplementation, bone density monitoring, blood glucose monitoring, gradual taper (never stop abruptly), stress dose during illness/surgery, gastric protection with PPIs.",
+      "type": "single_select"
+    }
+  ]
+}

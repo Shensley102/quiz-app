@@ -1,0 +1,113 @@
+{
+  "module": "Immunologic_Biologics_Pharm",
+  "category": "Immunologic & Biologic Medications",
+  "description": "Monoclonal antibodies (-mab), Immunosuppressants, Vaccines, Immunoglobulins, Biologic therapies for autoimmune diseases",
+  "generated_at_utc": "2025-12-10T00:00:00.000000Z",
+  "total_questions": 15,
+  "questions": [
+    {
+      "id": "HESI_063",
+      "stem": "Before administering infliximab (Remicade) IV, which assessment is most important?",
+      "options": [
+        "Blood pressure and heart rate",
+        "Signs of current infection",
+        "Serum glucose level",
+        "Urine output"
+      ],
+      "correct": ["B"],
+      "rationale": "Biologics like infliximab suppress the immune system, increasing infection risk. Screen for active infection, TB, and hepatitis B before and during therapy. Do not administer if infection is present. Monitor for signs of infection throughout treatment.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_067",
+      "stem": "A client prescribed adalimumab (Humira) for rheumatoid arthritis. Which statement requires further teaching?",
+      "options": [
+        "\"I'll report any signs of infection immediately.\"",
+        "\"I understand I'm at higher risk for infections.\"",
+        "\"I can receive live vaccines while on this medication.\"",
+        "\"I'll need TB testing before starting this drug.\""
+      ],
+      "correct": ["C"],
+      "rationale": "Biologic agents cause immunosuppression; live vaccines are CONTRAINDICATED (can cause serious infections). Screen for TB and hepatitis B before starting. Hold if active infection develops. Common side effects: injection site reactions, increased infection risk.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q24",
+      "stem": "A patient who is receiving infliximab (Remicade) for Crohn disease develops fever, hypotension, and dyspnea during the infusion. The nurse will",
+      "options": [
+        "slow the infusion rate and notify the provider.",
+        "continue the infusion and monitor the patient closely.",
+        "stop the infusion and notify the provider immediately.",
+        "request an order for epinephrine."
+      ],
+      "correct": ["C"],
+      "rationale": "These symptoms indicate a severe infusion reaction or anaphylaxis. The infusion should be stopped immediately, and the provider should be notified. Epinephrine may be needed if anaphylaxis is confirmed, but stopping the infusion is the first priority.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q25",
+      "stem": "The nurse is teaching a patient about taking cyclosporine after a kidney transplant. Which statement by the patient indicates understanding?",
+      "options": [
+        "\"I will avoid drinking grapefruit juice.\"",
+        "\"I will take this medication on an empty stomach.\"",
+        "\"I can stop taking this medication once my kidney function normalizes.\"",
+        "\"I will take over-the-counter NSAIDs for any pain.\""
+      ],
+      "correct": ["A"],
+      "rationale": "Grapefruit juice inhibits the metabolism of cyclosporine, leading to increased drug levels and toxicity. Patients should avoid it. Cyclosporine can be taken with food. It must be taken lifelong to prevent organ rejection. NSAIDs should be used cautiously due to nephrotoxicity risk.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q75",
+      "stem": "A patient receiving infliximab (Remicade) infusion develops fever, chills, chest pain, and hypotension 30 minutes into the infusion. What is the nurse's immediate action?",
+      "options": [
+        "Slow the infusion rate and continue monitoring",
+        "Stop the infusion immediately and notify the provider",
+        "Administer acetaminophen and continue the infusion",
+        "Increase the IV fluid rate to raise blood pressure"
+      ],
+      "correct": ["B"],
+      "rationale": "These symptoms indicate a severe infusion reaction or possible anaphylaxis to the biologic agent. The nurse must: (1) STOP the infusion immediately, (2) Maintain IV access with normal saline, (3) Notify provider STAT, (4) Assess airway/breathing/circulation, (5) Be prepared to administer emergency medications (epinephrine, antihistamines, corticosteroids), (6) Monitor vital signs continuously. Infusion reactions are more common with first few doses. To minimize reactions: premedicate with acetaminophen and antihistamines, infuse slowly, monitor closely during and after infusion.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q76",
+      "stem": "Before starting a patient on adalimumab (Humira) for rheumatoid arthritis, which test must be completed?",
+      "options": [
+        "Chest X-ray and TB skin test",
+        "Liver biopsy",
+        "Colonoscopy",
+        "Stress echocardiogram"
+      ],
+      "correct": ["A"],
+      "rationale": "TNF inhibitors (like adalimumab, infliximab, etanercept) significantly increase risk of reactivating latent tuberculosis and serious fungal infections. All patients must be screened for TB (QuantiFERON or PPD skin test) and have a chest X-ray before starting therapy. If latent TB is present, it must be treated before starting the biologic. Other screening: hepatitis B (can reactivate), HIV if risk factors. Patients should also receive all non-live vaccines before starting (pneumococcal, influenza). CONTRAINDICATIONS: active infections, live vaccines, severe heart failure.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q77",
+      "stem": "A patient on cyclosporine (Sandimmune) after kidney transplant should avoid which over-the-counter product?",
+      "options": [
+        "Acetaminophen",
+        "St. John's Wort",
+        "Vitamin C",
+        "Calcium supplements"
+      ],
+      "correct": ["B"],
+      "rationale": "St. John's Wort is a potent inducer of CYP3A4 enzyme, which metabolizes cyclosporine, leading to decreased cyclosporine levels and increased risk of organ rejection. Many medications interact with cyclosporine through CYP3A4: (1) Avoid: St. John's Wort, grapefruit juice (increases levels), NSAIDs (nephrotoxicity), (2) Monitor: many antibiotics, antifungals, calcium channel blockers. Cyclosporine requires: therapeutic drug monitoring (narrow therapeutic index), monitoring for nephrotoxicity (BUN/Cr), hypertension, hyperkalemia, and gingival hyperplasia.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q78",
+      "stem": "Which patient education is most important for someone receiving rituximab (Rituxan) for non-Hodgkin lymphoma?",
+      "options": [
+        "\"Report any signs of infection immediately, even mild symptoms.\"",
+        "\"You can continue all your regular activities without restrictions.\"",
+        "\"This medication has very few side effects.\"",
+        "\"You'll only need one treatment and then you're done.\""
+      ],
+      "correct": ["A"],
+      "rationale": "Rituximab is a monoclonal antibody that depletes B cells, causing profound immunosuppression that can last 6-12 months after treatment. Patients are at very high risk for serious and opportunistic infections (bacterial, viral, fungal). They must: (1) Report ANY sign of infection immediately (fever, cough, sore throat), (2) Avoid crowds and sick people, (3) Practice meticulous hygiene, (4) Not receive live vaccines. Rituximab can cause: infusion reactions (premedicate), tumor lysis syndrome (in high tumor burden), progressive multifocal leukoencephalopathy (PML, a rare fatal brain infection), and hepatitis B reactivation. Multiple treatments are typically required.",
+      "type": "single_select"
+    }
+  ]
+}

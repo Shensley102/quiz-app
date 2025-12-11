@@ -1,0 +1,256 @@
+{
+  "module": "Hematologic_Oncology_Pharm",
+  "category": "Hematologic & Oncology Medications",
+  "description": "Anticoagulants (Heparin, Warfarin, DOACs), Antiplatelets, Thrombolytics, Chemotherapy basics, Colony-stimulating factors, Anemia medications",
+  "generated_at_utc": "2025-12-10T00:00:00.000000Z",
+  "total_questions": 30,
+  "questions": [
+    {
+      "id": "HESI_029",
+      "stem": "A client on heparin therapy has an aPTT of 95 seconds (control 30 seconds). What is the priority action?",
+      "options": [
+        "Continue the current heparin dose",
+        "Increase the heparin infusion rate",
+        "Hold the heparin and notify the provider",
+        "Administer protamine sulfate"
+      ],
+      "correct": ["C"],
+      "rationale": "Therapeutic aPTT for heparin is 1.5-2.5 times control (45-75 seconds). An aPTT of 95 seconds indicates supratherapeutic levels with bleeding risk. Hold the infusion and notify the provider. Protamine sulfate is the antidote for severe bleeding.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_035",
+      "stem": "A client receiving alteplase (tPA) for acute ischemic stroke. Which finding requires immediate intervention?",
+      "options": [
+        "Blood pressure 180/100 mmHg",
+        "Complaint of mild headache",
+        "Temperature 99.2°F",
+        "Heart rate 88/min"
+      ],
+      "correct": ["A"],
+      "rationale": "During tPA therapy for stroke, maintain systolic BP <185 mmHg and diastolic <110 mmHg to prevent hemorrhagic transformation. Elevated BP is the most important risk factor for intracranial hemorrhage. Headache could indicate bleeding but needs further assessment.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_037",
+      "stem": "Before administering enoxaparin (Lovenox) subcutaneously, which action is correct?",
+      "options": [
+        "Aspirate before injecting to check for blood return",
+        "Massage the site after injection",
+        "Inject into the abdomen at least 2 inches from umbilicus",
+        "Expel the air bubble from the syringe"
+      ],
+      "correct": ["C"],
+      "rationale": "Enoxaparin should be injected SC into the abdomen (≥2 inches from umbilicus) or thigh. DO NOT aspirate, massage, or expel the air bubble (helps prevent bruising). Rotate sites and do not inject into bruised areas.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_038",
+      "stem": "A client on darbepoetin alfa (Aranesp) for anemia of chronic kidney disease. Which lab value indicates effectiveness?",
+      "options": [
+        "Hemoglobin increases from 9.5 to 11.0 g/dL",
+        "White blood cell count increases",
+        "Platelet count normalizes",
+        "Serum iron levels increase"
+      ],
+      "correct": ["A"],
+      "rationale": "Erythropoietin-stimulating agents (ESAs) like darbepoetin increase RBC production. Goal hemoglobin is typically 10-12 g/dL. Monitor for hypertension and thrombotic events. ESAs do not affect WBC, platelets, or iron levels.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_041",
+      "stem": "A client receiving chemotherapy develops fever, chills, and cough. WBC is 1,200/mm³. What is the priority action?",
+      "options": [
+        "Place the client in protective isolation",
+        "Encourage increased fluid intake",
+        "Obtain blood cultures and notify provider immediately",
+        "Administer acetaminophen for fever"
+      ],
+      "correct": ["C"],
+      "rationale": "Neutropenic fever (ANC <500 with temp >100.4°F or >101°F once) is a medical emergency in chemotherapy patients. Obtain cultures immediately and start broad-spectrum antibiotics quickly (ideally within 1 hour). Also implement neutropenic precautions.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_043",
+      "stem": "Teaching for a client on filgrastim (Neupogen) after chemotherapy. Which statement is correct?",
+      "options": [
+        "\"This medication prevents nausea from chemotherapy.\"",
+        "\"This stimulates white blood cell production to prevent infection.\"",
+        "\"This medication treats anemia by increasing red blood cells.\"",
+        "\"This prevents blood clots after chemotherapy.\""
+      ],
+      "correct": ["B"],
+      "rationale": "Filgrastim is a granulocyte colony-stimulating factor (G-CSF) that stimulates neutrophil production, reducing infection risk after myelosuppressive chemotherapy. Common side effect is bone pain. Not for nausea, anemia, or clotting.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q11",
+      "stem": "A patient who is taking heparin has an activated partial thromboplastin time (aPTT) that is 2 times the normal value. The nurse will notify the provider and",
+      "options": [
+        "request an order for protamine sulfate.",
+        "anticipate that the heparin dose will be decreased.",
+        "request an order for vitamin K.",
+        "anticipate that the heparin dose will be increased."
+      ],
+      "correct": ["B"],
+      "rationale": "The therapeutic range for aPTT is 1.5 to 2.5 times the normal value. A value that is 2 times normal is within therapeutic range but on the higher end, so the dose may be decreased. Protamine sulfate is used for severe bleeding. Vitamin K is the antidote for warfarin.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q12",
+      "stem": "The nurse is caring for a patient who takes warfarin. The patient reports eating large amounts of leafy green vegetables. The nurse will anticipate that the provider will order",
+      "options": [
+        "a decreased dose of warfarin.",
+        "an increased dose of warfarin.",
+        "more frequent PT/INR testing.",
+        "discontinuation of the warfarin."
+      ],
+      "correct": ["B"],
+      "rationale": "Leafy green vegetables contain vitamin K, which antagonizes the effects of warfarin. Patients who increase their intake of these foods may need an increased dose of warfarin. It is generally recommended that patients maintain consistent vitamin K intake rather than avoiding it completely.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q13",
+      "stem": "The nurse is preparing to administer enoxaparin sodium (Lovenox) to a patient. The nurse should perform which action?",
+      "options": [
+        "Massage the injection site after administration.",
+        "Pull back on the plunger to aspirate for blood return.",
+        "Expel the air bubble from the syringe before injecting.",
+        "Administer the medication into the abdomen."
+      ],
+      "correct": ["D"],
+      "rationale": "Enoxaparin is administered subcutaneously into the abdomen. The nurse should not aspirate or massage the site. The air bubble should not be expelled, as this can result in loss of medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q14",
+      "stem": "A patient is receiving alteplase (tPA) for an acute myocardial infarction. The nurse notes that the patient has a blood pressure of 200/110 mm Hg. The nurse will",
+      "options": [
+        "continue the alteplase infusion and monitor the patient.",
+        "notify the provider and expect to discontinue the alteplase.",
+        "request an order for an antihypertensive medication.",
+        "slow the rate of the alteplase infusion."
+      ],
+      "correct": ["B"],
+      "rationale": "Severe hypertension (systolic >185 mm Hg or diastolic >110 mm Hg) is a contraindication for thrombolytic therapy because it increases the risk of intracranial hemorrhage. The provider should be notified, and the alteplase should be discontinued.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q15",
+      "stem": "The nurse is caring for a patient who is receiving darbepoetin alfa (Aranesp). The nurse will notify the provider and request an order to withhold the next dose if the patient has",
+      "options": [
+        "a hemoglobin level that is greater than 12 g/dL.",
+        "a serum iron level that is low.",
+        "a reticulocyte count that is elevated.",
+        "a blood pressure of 140/90 mm Hg."
+      ],
+      "correct": ["A"],
+      "rationale": "Erythropoiesis-stimulating agents should be held if the hemoglobin level exceeds 11-12 g/dL to reduce the risk of cardiovascular events. A low iron level would be treated with iron supplements. An elevated reticulocyte count indicates the medication is working. The blood pressure is not significantly elevated.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q58",
+      "stem": "A patient receiving heparin IV has an aPTT of 95 seconds (control 30 seconds). The nurse understands this indicates:",
+      "options": [
+        "Therapeutic anticoagulation",
+        "Subtherapeutic anticoagulation requiring dose increase",
+        "Supratherapeutic anticoagulation with bleeding risk",
+        "No anticoagulation effect"
+      ],
+      "correct": ["C"],
+      "rationale": "Therapeutic aPTT for heparin therapy is 1.5-2.5 times the control value (45-75 seconds in this case). An aPTT of 95 seconds (>3 times control) indicates excessive anticoagulation with significant bleeding risk. The nurse should hold the heparin infusion and notify the provider. Protamine sulfate (1 mg per 100 units of heparin) is the antidote for severe bleeding.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q59",
+      "stem": "Before administering subcutaneous enoxaparin (Lovenox), which nursing action is correct?",
+      "options": [
+        "Aspirate to check for blood return before injecting",
+        "Massage the injection site to enhance absorption",
+        "Do not expel the air bubble from the prefilled syringe",
+        "Inject into the deltoid muscle for best absorption"
+      ],
+      "correct": ["C"],
+      "rationale": "When administering enoxaparin (or any LMWH): (1) Do NOT expel the air bubble (helps prevent medication loss and bruising), (2) Do NOT aspirate (can cause tissue damage and bruising), (3) Do NOT massage (increases bruising), (4) Inject SC into abdomen (at least 2 inches from umbilicus) or outer thigh, (5) Rotate sites and avoid bruised areas. These techniques minimize bruising and ensure proper dosing.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q60",
+      "stem": "A patient on apixaban (Eliquis) for atrial fibrillation is scheduled for a dental extraction. What instruction should the nurse provide?",
+      "options": [
+        "\"Stop the medication 1 day before the procedure.\"",
+        "\"Your dentist will decide if you need to hold the medication.\"",
+        "\"Continue taking the medication as prescribed.\"",
+        "\"Switch to aspirin 3 days before the procedure.\""
+      ],
+      "correct": ["B"],
+      "rationale": "For patients on DOACs (direct oral anticoagulants) like apixaban, rivaroxaban, dabigatran, decisions about perioperative management depend on: (1) bleeding risk of the procedure, (2) patient's kidney function, (3) stroke risk. For low-bleeding-risk procedures (like dental extraction), the medication may be continued. For high-bleeding-risk procedures, it's typically held 24-48 hours (or longer if renal impairment). The prescribing provider and dentist/surgeon should coordinate this decision.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q61",
+      "stem": "A patient receiving chemotherapy develops a fever of 101.5°F with a WBC count of 800/mm³ (ANC 200/mm³). What is the nurse's priority action?",
+      "options": [
+        "Administer acetaminophen and recheck temperature in 2 hours",
+        "Encourage oral fluids and monitor for dehydration",
+        "Notify the provider immediately and obtain blood cultures",
+        "Place the patient in reverse isolation only"
+      ],
+      "correct": ["C"],
+      "rationale": "Neutropenic fever (ANC <500 or <1000 if expected to decline, with fever >100.4°F or single temp >101°F) is a medical emergency. This patient is severely neutropenic (ANC 200) and febrile—at high risk for sepsis. Priority actions: (1) Notify provider immediately, (2) Obtain blood cultures (and other cultures as indicated) STAT, (3) Administer broad-spectrum antibiotics within 1 hour of presentation, (4) Implement neutropenic precautions. Time is critical; delays in antibiotic administration increase mortality.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q62",
+      "stem": "A patient on filgrastim (Neupogen) after chemotherapy reports severe bone pain. What is the nurse's best response?",
+      "options": [
+        "\"This indicates the medication is working and stimulating your bone marrow.\"",
+        "\"Bone pain is unusual; I need to notify your doctor immediately.\"",
+        "\"This means you are allergic to the medication.\"",
+        "\"You should stop taking the medication until the pain resolves.\""
+      ],
+      "correct": ["A"],
+      "rationale": "Bone pain is a very common side effect of G-CSF medications (filgrastim, pegfilgrastim) and actually indicates the drug is working—stimulating rapid proliferation of neutrophils in the bone marrow. The pain is typically managed with acetaminophen or NSAIDs (avoid aspirin if thrombocytopenic). It usually resolves after the G-CSF is discontinued. The medication should not be stopped without provider order. Bone pain is not an allergic reaction.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q63",
+      "stem": "A patient on epoetin alfa (Epogen) for anemia of chronic kidney disease has a hemoglobin that increased from 9.0 to 12.5 g/dL. What should the nurse anticipate?",
+      "options": [
+        "Continuing the current dose to maintain this level",
+        "Increasing the dose to reach a higher target",
+        "Holding the medication due to excessive rise in hemoglobin",
+        "Adding iron supplementation"
+      ],
+      "correct": ["C"],
+      "rationale": "ESAs (erythropoiesis-stimulating agents) like epoetin alfa should maintain hemoglobin at 10-11 g/dL (not to exceed 12 g/dL) to reduce risk of cardiovascular events, stroke, and death. Hemoglobin >12 g/dL is associated with increased adverse events. The medication should be held until Hgb decreases, then restarted at a lower dose. Higher target hemoglobin is NOT better and increases harm. Iron supplementation is important for ESA effectiveness but doesn't address the high Hgb.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q64",
+      "stem": "A patient receiving alteplase (tPA) for acute ischemic stroke develops a severe headache and becomes confused. What is the nurse's priority action?",
+      "options": [
+        "Continue the infusion and administer pain medication",
+        "Slow the tPA infusion rate and notify the provider",
+        "Stop the tPA immediately and notify the provider STAT",
+        "Complete the tPA infusion and then reassess"
+      ],
+      "correct": ["C"],
+      "rationale": "New or worsening headache and altered mental status during tPA therapy strongly suggest intracranial hemorrhage, the most feared complication of thrombolytic therapy. The nurse must: (1) STOP the tPA immediately, (2) Notify provider STAT, (3) Prepare for emergent CT scan, (4) Be ready to administer reversal agents if ordered. For tPA reversal: cryoprecipitate (contains fibrinogen) or aminocaproic acid. Time is critical in hemorrhagic stroke.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q65",
+      "stem": "Which laboratory value indicates that warfarin (Coumadin) therapy is at therapeutic goal for a patient with atrial fibrillation?",
+      "options": [
+        "aPTT 60 seconds (control 30 seconds)",
+        "INR 2.5",
+        "Platelet count 150,000/mm³",
+        "PT 12 seconds"
+      ],
+      "correct": ["B"],
+      "rationale": "Warfarin is monitored with PT/INR (not aPTT, which monitors heparin). Therapeutic INR for most indications (atrial fibrillation, DVT, PE) is 2.0-3.0. For mechanical heart valves, the target may be 2.5-3.5. An INR of 2.5 is therapeutic. PT in seconds varies by lab and is less reliable than INR. Platelets and aPTT are not used to monitor warfarin.",
+      "type": "single_select"
+    }
+  ]
+}

@@ -1,0 +1,834 @@
+{
+  "module": "Cardiovascular_Pharm",
+  "category": "Cardiovascular Medications",
+  "description": "ACE inhibitors, ARBs, Beta blockers, Calcium channel blockers, Diuretics, Anticoagulants, Antiarrhythmics, Cardiac glycosides, Nitrates, Antiplatelets, Lipid-lowering agents",
+  "generated_at_utc": "2025-12-10T00:00:00.000000Z",
+  "total_questions": 65,
+  "questions": [
+    {
+      "id": "HESI_001",
+      "stem": "Following the administration of sublingual nitroglycerin to a client experiencing an acute anginal attack, which assessment finding indicates that the desired effect has been achieved?",
+      "options": [
+        "Client states chest pain is relieved",
+        "Client's pulse decreases from 120 to 90/min",
+        "Client's systolic blood pressure decreases from 180 to 90",
+        "Client's SaO2 increases from 92% to 96%"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Nitroglycerin reduces myocardial oxygen demand and ischemia, so relief of chest pain is the primary indicator of effectiveness.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_004",
+      "stem": "A client with acute MI is admitted. Which medication decreases both preload and afterload?",
+      "options": [
+        "Nitroglycerin",
+        "Propranolol",
+        "Morphine sulfate",
+        "Captopril"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Nitrates cause venous (↓preload) and arterial (↓afterload) dilation, reducing cardiac workload in acute ischemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_006",
+      "stem": "Which change indicates the desired effect of an angiotensin II receptor blocker (ARB)?",
+      "options": [
+        "Dependent edema reduced from +3 to +1",
+        "Serum HDL increased from 35 to 55 mg/dL",
+        "Pulse rate reduced from 150 to 90/min",
+        "Blood pressure reduced from 160/90 to 130/80"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "ARBs treat hypertension; the primary desired outcome is reduced blood pressure.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_010",
+      "stem": "A client on dopamine infusion has urine output of 20 mL/hr for two hours. Which intervention is appropriate?",
+      "options": [
+        "Stop the dopamine infusion",
+        "Reduce normal saline to KVO",
+        "Replace the urinary catheter",
+        "Notify the healthcare provider"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Urine output <30 mL/hr suggests inadequate renal perfusion; notify the HCP to adjust therapy. Do not stop vasopressors without orders.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_013",
+      "stem": "Which nursing diagnosis is important for a client receiving irbesartan (Avapro)?",
+      "options": [
+        "Fluid volume deficit",
+        "Risk for infection",
+        "Risk for injury",
+        "Disturbed sleep pattern"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "ARBs can cause hypotension and dizziness, increasing fall risk; prioritize Risk for injury.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_015",
+      "stem": "Procainamide (Pronestyl) is ordered in 4 divided doses over 24 hours. What schedule is best?",
+      "options": [
+        "q6h",
+        "QID (with meals and HS)",
+        "Before meals and HS",
+        "After meals and HS"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Even 6-hour intervals maintain stable serum levels; meal-based schedules create uneven gaps and fluctuations.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_017",
+      "stem": "A client discharged on warfarin after a PE should have which diagnostic test monitored regularly?",
+      "options": [
+        "Lung perfusion scans",
+        "Prothrombin time/INR",
+        "aPTT",
+        "Serum warfarin level"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Warfarin therapy is monitored with PT/INR (goal INR typically 2–3). aPTT monitors heparin therapy.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_022",
+      "stem": "Before administering digoxin for CHF, which is the priority assessment?",
+      "options": [
+        "Respiratory rate and depth",
+        "Serum potassium level",
+        "Blood pressure",
+        "Serum glucose"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Hypokalemia predisposes to digoxin toxicity and arrhythmias; verify potassium level before dosing.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_026",
+      "stem": "Client on clonidine (Catapres) 0.1 mg/24 hr patch. Which finding shows desired effect?",
+      "options": [
+        "Denies angina",
+        "Edema decreases from +3 to +1",
+        "Denies nausea/vomiting",
+        "BP decreases from 180/120 to 140/70"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Clonidine is an antihypertensive; reduction in blood pressure indicates effectiveness.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_049",
+      "stem": "Client with CHF is discharged on captopril (Capoten). Which problem should be reported?",
+      "options": [
+        "Weight loss",
+        "Dizziness",
+        "Muscle cramps",
+        "Dry mucous membranes"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "ACE inhibitors cause vasodilation; hypotension with dizziness can indicate excessive effect and fall risk—report to provider.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_051",
+      "stem": "Isosorbide dinitrate (Isordil) discharge teaching should include which instruction?",
+      "options": [
+        "Stop the medication if dizziness occurs",
+        "Rise slowly from sitting or lying",
+        "Take with food only",
+        "Increase potassium‑rich foods"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Nitrates can cause orthostatic hypotension; advise slow position changes to prevent syncope and falls.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_054",
+      "stem": "Imdur (isosorbide mononitrate) dose increased from 40 to 60 mg daily; client reports headache before next dose. What should the nurse do?",
+      "options": [
+        "Hold the next Imdur and give acetaminophen",
+        "Give 40 mg and call the provider",
+        "Give 60 mg as ordered and a PRN acetaminophen",
+        "Hold Imdur and acetaminophen until provider notified"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Headache is an expected nitrate effect from vasodilation; treat with acetaminophen and continue therapy to maintain antianginal coverage.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_057",
+      "stem": "Client with HF prescribed spironolactone (Aldactone). Which diet teaching is most important?",
+      "options": [
+        "Do not add salt to foods",
+        "Avoid high‑potassium foods",
+        "Restrict fluids to 1000 mL/day",
+        "Increase milk intake"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Spironolactone is potassium‑sparing; avoid potassium‑rich foods and salt substitutes to prevent hyperkalemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_061",
+      "stem": "Before giving adenosine (Adenocard) for SVT, which action is most important?",
+      "options": [
+        "Assess pupillary response",
+        "Inform about possible flushing",
+        "Apply continuous cardiac monitoring",
+        "Ask family to leave the room"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Adenosine can cause brief asystole and new arrhythmias; continuous ECG monitoring is mandatory during administration.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_064",
+      "stem": "Serious adverse effects of beta‑blockers (e.g., propranolol) include which symptoms?",
+      "options": [
+        "Headache, hypertension, blurred vision",
+        "Wheezing, hypotension, AV block",
+        "Vomiting, dilated pupils, papilledema",
+        "Tinnitus, muscle weakness, tachypnea"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Non‑selective beta‑blockade can cause bronchospasm (wheezing), as well as bradycardia, AV block, and hypotension—report immediately.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_065",
+      "stem": "Preparing the 0900 dose of losartan (Cozaar) for HF/HTN. K+ is 5.9 mEq/L. First action?",
+      "options": [
+        "Withhold the losartan dose",
+        "Check apical pulse",
+        "Notify the healthcare provider",
+        "Repeat the serum potassium level"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Hyperkalemia is a known risk with ARBs; hold the dose to prevent worsening K+ and potential dysrhythmias, then notify the provider.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_066",
+      "stem": "Client receiving digoxin for onset SVT. Which lab finding places the client at greatest risk?",
+      "options": [
+        "Hypokalemia",
+        "Hyponatremia",
+        "Hypercalcemia",
+        "Low uric acid levels"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Low potassium markedly increases the risk of digoxin toxicity and refractory dysrhythmias; correct K+ before/while treating SVT.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q12",
+      "stem": "The nurse is teaching a patient about sublingual nitroglycerin administration. What information will the nurse include when teaching this patient?",
+      "options": [
+        "Call 911 if pain does not improve after three doses.",
+        "Take the first tablet while sitting or lying down.",
+        "A second dose of nitroglycerin should be given regardless of symptom resolution.",
+        "Swallow the tablet with small sips of water."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Because nitroglycerin can cause hypotension, patients should be cautioned to take it while sitting or lying down. If pain is not better or has worsened 5 minutes after the first dose, patients should call 911. A second dose should be administered only if symptoms are not resolved after taking the first dose. The tablets must dissolve under the tongue and should not be swallowed.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q15",
+      "stem": "A patient asks the nurse why nitroglycerin is given sublingually. The nurse will explain that nitroglycerin is administered by this route for which reason?",
+      "options": [
+        "To prevent hepatotoxicity",
+        "To minimize gastrointestinal upset",
+        "To avoid hypotension",
+        "To increase the rate of absorption"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Nitroglycerin is given sublingually to avoid first-pass metabolism by the liver, which would occur if the drug is swallowed, and to increase the rate of absorption. It does not prevent hypotension. Gastrointestinal upset and hepatotoxicity usually do not occur.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q13",
+      "stem": "The nurse is teaching a patient who has recently begun taking transdermal nitroglycerin reports having headaches. The nurse will counsel the patient to perform which action?",
+      "options": [
+        "Reapply the patch three times daily.",
+        "Call 911 when this occurs.",
+        "Take acetaminophen as needed.",
+        "Notify the provider."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Headaches are one of the most common side effects of nitroglycerin, but they may become less frequent; acetaminophen is generally recommended for pain. If the headaches do not resolve after continued use, it would be appropriate to discuss alternatives with the provider. The headaches are not an emergency, and the patient does not need to call 911. The patch is applied once daily.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q11",
+      "stem": "The nurse is teaching a patient about using sublingual nitroglycerin at home. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I may put the tablet in food if I don't like the taste.\"",
+        "\"I may take a sip of water after placing the tablet in my mouth.\"",
+        "\"I will place the tablet under my tongue and let it absorb.\"",
+        "\"I will place the tablet between my cheek and gum.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Drugs given sublingually should be placed under the tongue. No foods or fluids should be given, since the tablet must remain under the tongue until it is fully absorbed. Medications ordered to be given \"buccally\" should be placed between the cheek and gum.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q3",
+      "stem": "A patient who has angina has been given 0.4 mg of nitroglycerin SL. The patient reports continued chest pain 5 min later. The nurse assesses a heart rate of 84 beats per minute and a blood pressure of 88/68 mm Hg. The nurse will take which action?",
+      "options": [
+        "Administer 0.3 mg of nitroglycerin SL.",
+        "Give nitroglycerin by translingual spray.",
+        "Administer 0.4 mg of nitroglycerin SL.",
+        "Notify the provider of the patient's vital signs."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Nitroglycerin should be held if the patient has a systolic blood pressure less than 90 mm Hg. The nurse should notify the provider.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q10",
+      "stem": "A patient who has stable angina pectoris is given sublingual nitroglycerin to use as needed. In addition to pharmacotherapy, the nurse will give the patient which instruction?",
+      "options": [
+        "Avoid extremes in weather.",
+        "Drink red wine daily.",
+        "Begin a rigorous exercise program.",
+        "Call 911 at the first sign of pain."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Avoiding extreme weather conditions is important to help prevent anginal attacks. Patients should be instructed to avoid strenuous exercise; avoid alcohol, which can enhance the hypotensive effects of nitrates; and use nitroglycerin at the first sign of pain. If pain does not resolve after use of a single dose of sublingual nitroglycerin, the patient should call 911.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q30",
+      "stem": "A patient with chronic stable angina uses sublingual nitroglycerin (Nitrostat) for chest pain. Which statement by the patient indicates correct understanding of how to use this medication?",
+      "options": [
+        "\"If I get a headache after taking nitroglycerin, I should go to the ER immediately.\"",
+        "\"I should swallow the tablet with water for fastest absorption.\"",
+        "\"I will sit or lie down before taking a nitroglycerin tablet for chest pain.\"",
+        "\"I can take up to five nitroglycerin tablets, 5 minutes apart, if chest pain persists.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The patient should sit or lie down when taking nitroglycerin due to risk of dizziness or hypotension from the vasodilation. For ongoing chest pain, the recommendation is up to 3 sublingual tablets, 5 minutes apart, and call emergency services if pain persists after one tablet (per guidelines). Headache is a common side effect of nitroglycerin (due to vasodilation) and can be treated with analgesics; it's not usually an emergency. Sublingual nitro should not be swallowed; it must dissolve under the tongue for quick absorption.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q31",
+      "stem": "A patient with frequent angina is prescribed a nitroglycerin transdermal patch (Nitro-Dur). Which instruction should the nurse include in patient teaching?",
+      "options": [
+        "\"If you have chest pain, apply a second patch next to the first one.\"",
+        "\"Apply one patch in the morning and remove it at bedtime.\"",
+        "\"It's okay to briefly remove the patch if you experience a headache.\"",
+        "\"Change the patch location once a week to avoid skin irritation.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Transdermal nitroglycerin patches are typically worn for ~12-14 hours and removed for ~10-12 hours at night to prevent tolerance (a nitrate-free interval). The patient should not apply multiple patches simultaneously for pain (use sublingual nitro for acute pain). If headaches occur, they can use analgesics; removing the patch defeats the purpose of continuous prophylaxis (except during the scheduled nitrate-free interval). The patch site should be rotated daily with each new patch (not weekly) to prevent skin irritation.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q9",
+      "stem": "A patient who has recently had a myocardial infarction (MI) will begin taking clopidogrel to prevent a second MI. Which medication will the nurse expect the provider to order as adjunctive therapy for this patient?",
+      "options": [
+        "Warfarin",
+        "Ticagrelor",
+        "Aspirin",
+        "Enoxaparin sodium"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Aspirin is often used with clopidogrel to inhibit platelet aggregation (dual antiplatelet therapy) to increase the effectiveness of this drug. Enoxaparin is used to prevent venous thrombosis. Ticagrelor is similar to clopidogrel and is not used along with clopidogrel. Warfarin is used to prevent thrombosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q10",
+      "stem": "A patient is taking clopidogrel. When teaching this patient about dietary restrictions while taking this medication, the nurse will instruct the patient to avoid excessive consumption of which food?",
+      "options": [
+        "Green, leafy vegetables",
+        "Garlic",
+        "Grapefruit",
+        "Red meats"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients taking this drug may experience increased bleeding when taken with garlic. There is no restriction for grapefruit as there is with many other medications. Green, leafy vegetables should be restricted in patients taking warfarin. Red meats are not contraindicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q16",
+      "stem": "The nurse is performing a medication history on a patient who reports taking clopidogrel to prevent a second MI. The nurse reviews the patient's laboratory test results and notes increased BUN and creatinine. Which action will the nurse take?",
+      "options": [
+        "Request an order to add hydrochlorothiazide.",
+        "Contact the provider to discuss changing to fosinopril.",
+        "Administer the captopril and monitor vital signs.",
+        "Obtain an order for intravenous fluids to improve urine output."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients who have renal insufficiency will not require a decrease in dose with fosinopril, as they would with other ACE inhibitors. Lisinopril is given; it should be given at a dose appropriate for the patient's current kidney function. Increased IV fluids are not indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q55",
+      "stem": "A patient on clopidogrel (Plavix) should be instructed to avoid which over-the-counter medication due to additive bleeding risk?",
+      "options": [
+        "Calcium carbonate (antacid)",
+        "Guaifenesin (cough syrup)",
+        "Naproxen (NSAID)",
+        "Loratadine (antihistamine)"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "NSAIDs (like naproxen, ibuprofen) can potentiate bleeding risk when taken with antiplatelet agents like clopidogrel, because NSAIDs also affect platelet function and can cause GI irritation/bleeding. Patients on clopidogrel are usually advised to avoid NSAIDs unless absolutely necessary. Guaifenesin, loratadine, and antacids do not have significant bleeding interactions with clopidogrel.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q56",
+      "stem": "A patient on clopidogrel (Plavix) should be instructed to avoid which over-the-counter medication due to additive bleeding risk?",
+      "options": [
+        "Calcium carbonate (antacid)",
+        "Guaifenesin (cough syrup)",
+        "Naproxen (NSAID)",
+        "Loratadine (antihistamine)"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "NSAIDs (like naproxen, ibuprofen) can potentiate bleeding risk when taken with antiplatelet agents like clopidogrel, because NSAIDs also affect platelet function and can cause GI irritation/bleeding. Patients on clopidogrel are usually advised to avoid NSAIDs unless absolutely necessary. Guaifenesin, loratadine, and antacids do not have significant bleeding interactions with clopidogrel.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q7",
+      "stem": "The nurse is teaching a patient who will begin taking warfarin for atrial fibrillation. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I will take cimetidine to prevent gastric irritation and bleeding.\"",
+        "\"I should take a nonsteroidal anti-inflammatory drug (NSAID) instead of acetaminophen for pain or fever.\"",
+        "\"I will tell my dentist that I am taking this medication.\"",
+        "\"I should eat plenty of green, leafy vegetables while taking this drug.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients taking warfarin should tell their dentists that they are taking the medication because of the increased risk for bleeding. Patients should avoid foods high in vitamin K, which can decrease the effects of warfarin. Patients should not take NSAIDs or cimetidine because they can displace warfarin from protein-binding sites.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q6",
+      "stem": "A patient who takes warfarin has an international normalized ratio (INR) of 5.5. The nurse will anticipate giving which of the following?",
+      "options": [
+        "Fresh frozen plasma",
+        "Oral vitamin K",
+        "Intravenous iron",
+        "Protamine sulfate"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Vitamin K antagonizes the effects of warfarin, an oral anticoagulant. Patients with an INR of 5.5 should be given a low dose of oral vitamin K. Too much vitamin K may reduce the effectiveness of warfarin for up to 2 weeks. Fresh frozen plasma and intravenous iron are given for anemia caused by blood loss. Protamine sulfate is given for heparin overdose.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q8",
+      "stem": "The nurse is assessing a patient who takes warfarin. The nurse notes a heart rate of 92 beats per minute and a blood pressure of 88/78 mm Hg. To evaluate the reason for these vital signs, the nurse will assess which of the following?",
+      "options": [
+        "Lung sounds and respiratory effort",
+        "Urine output and level of consciousness",
+        "Skin turgor and oral mucous membranes",
+        "Gums, nose, and skin"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "An increased heart rate followed by a decreased systolic pressure can indicate a fluid volume deficit caused by internal or external bleeding. The nurse should examine the patient's mouth, nose, and skin for signs of bleeding. These vital signs do not indicate a pulmonary problem. Skin turgor and mucous membranes, as well as urine output and level of consciousness, may be assessed to determine the level of fluid deficit, but finding the source of blood loss is more important. Signs of gastrointestinal bleeding should also be assessed.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q5",
+      "stem": "The nurse is caring for a patient who is receiving warfarin and notes bruising and petechiae on the patient's extremities. The nurse will request an order for which laboratory test?",
+      "options": [
+        "Vitamin K level",
+        "Platelet level",
+        "International normalized ratio (INR)",
+        "PTT and aPTT"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The INR is the test used most frequently to report prothrombin time results in patients taking warfarin. Warfarin is not an antiplatelet drug, so platelet levels are not indicated. PTT and aPTT are used to monitor heparin therapy. Vitamin K is an antidote for warfarin; levels are not routinely checked.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q48",
+      "stem": "Which food selection indicates a patient on warfarin (Coumadin) needs further dietary teaching?",
+      "options": [
+        "Lean chicken, rice, and carrots for dinner",
+        "A consistent intake of green vegetables each day",
+        "Whole grain cereal with milk in the morning",
+        "Large kale salad and spinach smoothie daily"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Kale and spinach are high in vitamin K. Eating them in large amounts, especially if this is a change from the patient's normal diet, can antagonize warfarin's effect and lower the INR. Patients on warfarin don't have to avoid vitamin K completely, but they must keep their intake consistent. Option b (consistent intake) is correct behavior. Chicken, rice, carrots, or cereal with milk are low in vitamin K and fine. The large daily kale/spinach increase is a red flag for warfarin therapy.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q47",
+      "stem": "A patient on warfarin (Coumadin) therapy has an INR of 4.6. They deny bleeding symptoms. What action should the nurse anticipate?",
+      "options": [
+        "Administering vitamin K because the INR is critically high",
+        "Holding the next dose of warfarin and notifying the provider for potential dose adjustment",
+        "Increasing the warfarin dose to reach the target INR",
+        "Advising the patient to eat more salads to bring down the INR"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "An INR of 4.6 is above the typical therapeutic range (usually 2.0–3.0 for most indications). Without bleeding, the usual step is to hold or reduce the dose and let the INR come down, per provider's order. Vitamin K is the antidote for warfarin and is given for very high INRs or if bleeding occurs; 4.6 in an asymptomatic patient might not require immediate vitamin K, just dose adjustment. Increasing the dose is wrong as INR is already high. Eating vitamin K-rich foods (like salads) can lower INR, but patients are generally taught to keep intake consistent; one doesn't \"chase\" a high INR with diet acutely – medication adjustment is the primary approach.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q6",
+      "stem": "The nurse is caring for an 80-year-old patient who is taking warfarin (Coumadin). Which action does the nurse understand is important when caring for this patient?",
+      "options": [
+        "Maintaining strict intake and output measures",
+        "Encouraging the patient to rise slowly from a sitting position",
+        "Monitoring blood pressure frequently",
+        "Initiating a fall-risk protocol"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Patients who take anticoagulants have an increased risk of hemorrhage. Older patients have an increased risk of falls that can lead to bleeding complications. Initiating a fall-risk protocol is important. Warfarin does not affect blood pressure and would not cause orthostatic hypotension. Warfarin does not alter urine output.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q49",
+      "stem": "A patient on warfarin (Coumadin) therapy for DVT prophylaxis is preparing for discharge. Which statement by the patient indicates a need for additional teaching?",
+      "options": [
+        "\"I have an appointment to check my INR level in a few days.\"",
+        "\"I'll take ibuprofen for headaches instead of aspirin while on warfarin.\"",
+        "\"I will use a soft toothbrush and electric razor to minimize bleeding.\"",
+        "\"I'll immediately report any brown or red urine or black stools to my doctor.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Ibuprofen (and other NSAIDs) can increase bleeding risk and cause GI ulcers, and should be used cautiously or avoided in patients on warfarin. Acetaminophen is usually recommended for pain relief instead. The other statements are correct: soft toothbrush/electric razor to avoid cuts, reporting signs of bleeding, and regular INR monitoring are all appropriate for warfarin management. Option d shows a dangerous misconception; aspirin is also risky, but NSAIDs are not a safe alternative either.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q1",
+      "stem": "A patient who has atrial fibrillation is taking digoxin. The nurse expects which medication to be given concurrently to treat this condition?",
+      "options": [
+        "Milrinone",
+        "Digoxin-immune Fab",
+        "Warfarin",
+        "Hydrochlorothiazide"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Digoxin is given for atrial fibrillation to restore a normal heart rhythm. To prevent thromboembolism, warfarin is given concurrently. Hydrochlorothiazide is a diuretic medication. Milrinone is an inotropic agent used in decompensated heart failure. Digoxin-immune Fab is an antidote for digitalis toxicity.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q2",
+      "stem": "A patient is diagnosed with heart failure (HF), and the prescriber has ordered digoxin. The patient asks what lifestyle changes will help in the management of this condition. The nurse will recommend which changes?",
+      "options": [
+        "Having no more than one alcoholic beverage per day",
+        "Consuming 3 teaspoons or less of salt every day",
+        "Changing from cigarette smoking to pipe smoking",
+        "Vigorous aerobic exercise and weight lifting 2 or 3 times weekly"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Alcohol should either be completely avoided or restricted to no more than one per day. Mild exercise, such as walking, is recommended. All methods of smoking can deprive the heart of oxygen. Salt should be limited to no more than one teaspoon per day.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q4",
+      "stem": "The nurse is preparing to administer doses of hydrochlorothiazide and digoxin to a patient who has heart failure. The patient reports having blurred vision. The nurse notes a heart rate of 60 beats per minute and a blood pressure of 140/78 mm Hg. Which action will the nurse take?",
+      "options": [
+        "Hold the hydrochlorothiazide and notify the provider.",
+        "Hold the digoxin and notify the provider.",
+        "Administer the medications and request an order for serum electrolytes.",
+        "Give both medications and evaluate serum blood glucose frequently."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "When thiazide diuretics are taken with digoxin, patients are at risk of digoxin toxicity because thiazides can cause hypokalemia. The patient has bradycardia and blurred vision, which are both signs of digoxin toxicity. The nurse should hold the digoxin and notify the provider. Serum electrolytes may be ordered, but the digoxin should not be given.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q4",
+      "stem": "The nurse is preparing to administer digoxin to a patient who has HF. The patient reports nausea, vomiting, and visual halos around objects. The nurse notes a respiratory rate of 18 breaths per minute, a heart rate of 58 beats per minute, and a blood pressure of 120/78 mm Hg. What will the nurse do next?",
+      "options": [
+        "Hold the dose and notify the provider of possible digoxin toxicity.",
+        "Request an order for an antiemetic and an analgesic medication.",
+        "Reassure the patient that these are common, self-limiting side effects.",
+        "Administer the next dose as ordered, since these are mild side effects."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Nausea, vomiting, and headache are common signs of digoxin toxicity, as is a heart rate less than 60 beats per minute. Patients will also sometimes present with visual illusions, such as colored halos around objects. The nurse should hold the dose and notify the provider.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q8",
+      "stem": "The nurse administers a dose of digoxin to a patient who has HF and returns to the room later to reassess the patient. Which finding indicates that the medication is effective?",
+      "options": [
+        "Decreased dyspnea",
+        "Increased heart rate",
+        "Increased blood pressure",
+        "Decreased urine output"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The patient should show improvement in breathing and oxygenation. Urine output should increase. Blood pressure and heart rate will decrease.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q5",
+      "stem": "The nurse is caring for a patient who is taking digoxin to treat HF. The patient's ECG shows a ventricular dysrhythmia. The nurse will notify the provider and will anticipate an order for which medication to treat a digoxin-induced ventricular dysrhythmia.",
+      "options": [
+        "Furosemide",
+        "Digoxin immune Fab",
+        "Potassium",
+        "Phenytoin"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The antidysrhythmic phenytoin and lidocaine are effective in treating digoxin-induced ventricular dysrhythmias. Digoxin immune Fab is used to treat severe digitalis toxicity, characterized by bradycardia, nausea, and vomiting. Unless a potassium deficit is present, giving potassium could worsen the dysrhythmia.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q16",
+      "stem": "A patient on digoxin (Lanoxin) reports nausea, abdominal pain, and \"yellow halos\" around lights. The serum digoxin level is 2.5 ng/mL. What is the nurse's priority action?",
+      "options": [
+        "Administer the ordered digoxin immune Fab (Digibind).",
+        "Encourage the patient to increase potassium intake.",
+        "Have the patient drink a glass of milk to bind the medication.",
+        "No action is needed; this level is therapeutic."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A digoxin level of 2.5 ng/mL is above the therapeutic range (0.5–2.0 ng/mL)and, coupled with classic toxicity symptoms (GI distress and visual changes), indicates digoxin toxicity. The priority is to administer the antidote (digoxin immune Fab) if ordered and hold further digoxin. Increasing potassium may help if K is low (hypokalemia predisposes to toxicity), but the immediate action is to treat the toxicity. Milk will not counteract digoxin. The nurse should recognize this level as toxic, not therapeutic.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q17",
+      "stem": "A patient on digoxin (Lanoxin) and furosemide (Lasix) for heart failure. This morning the patient's potassium is 2.9 mEq/L. What is the most appropriate nursing intervention?",
+      "options": [
+        "Administer both medications as scheduled.",
+        "Give the digoxin but reduce the dose of furosemide.",
+        "Hold the digoxin and notify the provider of the low potassium level.",
+        "Offer a potassium-rich snack to the patient and reassess in 4 hours."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Hypokalemia (K <3.5) greatly increases the risk of digoxin toxicity. The nurse should hold digoxin and notify the provider, as electrolyte abnormalities must be corrected. Furosemide, a potassium-wasting diuretic, likely contributed to this low K; the provider may need to adjust therapy or add potassium supplementation. Simply offering a snack or adjusting doses independently is not sufficient or within nursing scope without an order.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q18",
+      "stem": "The nurse is providing discharge teaching for a patient starting digoxin (Lanoxin) at home. Which patient statement indicates correct understanding?",
+      "options": [
+        "\"I can stop taking my potassium supplement because digoxin will keep my potassium normal.\"",
+        "\"I should take this medication with an antacid to prevent stomach upset.\"",
+        "\"I will check my pulse daily and not take the digoxin if it is below 60.\"",
+        "\"If I miss a dose, I will double the next dose to catch up.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients on digoxin should check their pulse daily and hold the dose if the pulse is below 60 bpm, contacting their provider. They should avoid taking antacids at the same time as digoxin (can interfere with absorption). Missed doses should not be doubled. Maintaining adequate potassium (through diet or supplements as prescribed) is important; digoxin does not regulate potassium, and low K can precipitate toxicity.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q15",
+      "stem": "The nurse is caring for a newly admitted patient who will receive digoxin to treat a cardiac dysrhythmia. The patient takes hydrochlorothiazide (HydroDIURIL) and reports regular use of over-the-counter laxatives. Before administering the first dose of digoxin, the nurse will review the patient's electrolytes with careful attention to the levels of which electrolytes?",
+      "options": [
+        "Potassium and magnesium",
+        "Sodium and calcium",
+        "Calcium and magnesium",
+        "Potassium and chloride"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Hypomagnesemia, like hypokalemia, enhances the action of digitalis and causes digitalis toxicity. Laxatives and diuretics can deplete both of these electrolytes.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q18",
+      "stem": "The nurse is preparing to administer digoxin to a patient who is newly admitted to the intensive care unit. The nurse reviews the patient's admission electrolytes and notes a serum potassium level of 2.9 mEq/L. Which action by the nurse is correct?",
+      "options": [
+        "Hold the digoxin dose and notify the provider of the patient's lab values.",
+        "Request an order for oral potassium supplements.",
+        "Administer the digoxin and monitor the patient's electrocardiogram closely.",
+        "Request an order for an intravenous bolus of potassium."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Hypokalemia increases the risk for digoxin toxicity, so the nurse should hold the dose and notify the provider. Potassium should never be given as an IV bolus. Oral supplements are not used when hypokalemia is severe.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q18",
+      "stem": "The nurse is preparing to administer digoxin to a patient who has a serum digoxin level of 2.5ng/mL. The patient takes 0.25 mg of digoxin per day. What action will the nurse take?",
+      "options": [
+        "Suggest that the patient may need an increased digoxin dose.",
+        "Administer the next dose as ordered.",
+        "Request an order to decrease the digoxin dose.",
+        "Do not administer the digoxin and notify the provider of toxic digoxin levels."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The therapeutic range of digoxin is between 0.8 and 2 ng/mL. This patient's level is high, indicating toxic blood levels. The nurse should not give the next dose or request a change in dose.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q7",
+      "stem": "The nurse performs a medication history and learns that the patient takes a loop diuretic and digoxin. The nurse will question the patient to ensure that the patient is also taking which medication?",
+      "options": [
+        "Nitroglycerin",
+        "Potassium",
+        "Cortisone",
+        "Lidocaine"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "If a patient is taking digoxin and a potassium-wasting diuretic such as a loop diuretic, the patient should also take a potassium supplement to prevent hypokalemia that could result in digoxin toxicity. It is not necessary to take cortisone, lidocaine, or nitroglycerin unless the patient has symptoms that warrant these drugs.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q26",
+      "stem": "The nurse is preparing to administer furosemide to a patient who takes digoxin. The nurse will plan to monitor the patient for",
+      "options": [
+        "furosemide toxicity.",
+        "decreased furosemide effects.",
+        "decreased digoxin effects.",
+        "digoxin toxicity."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Increased loss of potassium through the kidneys can result in hypokalemia, which can enhance the action of digoxin and can lead to toxicity.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q15",
+      "stem": "A patient is being treated for heart failure with digoxin (Lanoxin). Prior to administering the dose, the nurse finds the patient's apical pulse to be 54 beats/min. What is the appropriate nursing action?",
+      "options": [
+        "Administer atropine with the digoxin to maintain heart rate.",
+        "Hold the dose and notify the physician.",
+        "Administer the dose and then recheck the heart rate in 30 minutes.",
+        "Give half the dose now and half in an hour."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "An apical pulse below 60 bpm is a standard threshold to withhold digoxin in adults. The nurse should hold the dose and notify the provider. Administering the dose could worsen bradycardia or precipitate arrhythmia. There is no protocol to split the dose or to give atropine prophylactically with digoxin.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q9",
+      "stem": "A patient who has HF receives digoxin and an angiotensin-converting enzyme (ACE) inhibitor. The patient will begin taking spironolactone. The patient asks why the new drug is necessary. The nurse will tell the patient that spironolactone will be given for which reason?",
+      "options": [
+        "To increase cardiac contractility",
+        "To provide cardioprotective effects",
+        "To enhance potassium excretion",
+        "To minimize fluid losses"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Spironolactone is a potassium-sparing diuretic that blocks the production of aldosterone, causing improved heart rate variability and decreased myocardial fibrosis. It is given in congestive HF for its cardioprotective effects. Spironolactone does not directly alter cardiac contractility but may slightly decrease contractility if fluid volume is decreased. It is a mild diuretic, but is not given in this instance to minimize fluid losses.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm_Q6",
+      "stem": "A patient who takes digoxin to treat HF will begin taking a vasodilator. The patient asks the nurse why this new drug has been ordered. The nurse will explain that the vasodilator is used to",
+      "options": [
+        "increase cardiac output.",
+        "decrease ventricular stretching.",
+        "promote peripheral fluid loss.",
+        "improve renal perfusion."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Vasodilators are given to decrease venous blood return to the heart, resulting in decreased cardiac filling and decreased ventricular stretching, in turn reducing preload, contractility, and oxygen demand of the heart.",
+      "type": "single_select"
+    }
+  ]
+}

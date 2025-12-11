@@ -1,0 +1,459 @@
+{
+  "module": "Respiratory_Pharm",
+  "category": "Respiratory Medications",
+  "description": "Beta-2 agonists (short and long-acting), Anticholinergics, Inhaled corticosteroids, Leukotriene modifiers, Methylxanthines, Antihistamines, Decongestants, Mucolytics",
+  "generated_at_utc": "2025-12-10T00:00:00.000000Z",
+  "total_questions": 38,
+  "questions": [
+    {
+      "id": "HESI_089",
+      "stem": "A client with asthma is prescribed albuterol (Proventil) and beclomethasone (Qvar). Which instruction is correct?",
+      "options": [
+        "Use beclomethasone first, then albuterol",
+        "Use albuterol first, wait 5 minutes, then use beclomethasone",
+        "Use both inhalers at the same time",
+        "Alternate between the two inhalers throughout the day"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Bronchodilator (albuterol) should be used FIRST to open airways, wait 5 minutes, then use inhaled corticosteroid (beclomethasone) for better penetration. Rinse mouth after steroid to prevent oral candidiasis.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_091",
+      "stem": "Which adverse effect should the nurse monitor for in a client taking albuterol?",
+      "options": [
+        "Bradycardia",
+        "Tachycardia",
+        "Hypotension",
+        "Drowsiness"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Beta-2 agonists like albuterol can cause tachycardia, palpitations, tremors, and nervousness due to sympathomimetic effects. Monitor heart rate, especially in patients with cardiac conditions.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_093",
+      "stem": "A client using an inhaled corticosteroid should be taught to:",
+      "options": [
+        "Use it only during acute asthma attacks",
+        "Rinse mouth after each use",
+        "Increase the dose if symptoms worsen",
+        "Take on an empty stomach"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Rinsing mouth after inhaled corticosteroid use prevents oral candidiasis (thrush). These are controller medications taken regularly, not rescue inhalers. Never adjust dose without provider guidance.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_095",
+      "stem": "Which medication should be used for immediate relief during an acute asthma attack?",
+      "options": [
+        "Fluticasone (Flovent)",
+        "Salmeterol (Serevent)",
+        "Albuterol (ProAir)",
+        "Montelukast (Singulair)"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Short-acting beta-2 agonists (SABAs) like albuterol provide rapid bronchodilation for acute symptoms. Fluticasone is a controller steroid, salmeterol is long-acting (not for acute use), and montelukast is a preventive leukotriene modifier.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_097",
+      "stem": "A client taking theophylline has a serum level of 25 mcg/mL. Which symptom indicates toxicity?",
+      "options": [
+        "Bradycardia and hypotension",
+        "Nausea, vomiting, and seizures",
+        "Constipation and urinary retention",
+        "Hypothermia and lethargy"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Therapeutic theophylline level is 5-15 mcg/mL. Level of 25 indicates toxicity, causing nausea, vomiting, tachycardia, arrhythmias, tremors, and seizures. Narrow therapeutic index requires close monitoring.",
+      "type": "single_select"
+    },
+    {
+      "id": "HESI_099",
+      "stem": "Which instruction is most important for a client prescribed montelukast (Singulair)?",
+      "options": [
+        "Take this medication only during asthma attacks",
+        "Take daily as prescribed, even when symptom-free",
+        "Use a spacer device with this medication",
+        "Rinse mouth after taking"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Leukotriene modifiers like montelukast are preventive controller medications taken daily, not rescue medications. They reduce inflammation and prevent symptoms but don't provide immediate relief. Oral tablets, not inhaled.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q170",
+      "stem": "A patient using an albuterol (ProAir) inhaler asks how often they can use it. What is the nurse's best response?",
+      "options": [
+        "\"Use it every hour as needed for symptoms.\"",
+        "\"Use 2 puffs every 4-6 hours as needed, but if you need it more frequently, contact your provider.\"",
+        "\"Use it only once per day to prevent tolerance.\"",
+        "\"Use it as often as you want; there's no limit.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Albuterol (SABA) is typically used 2 puffs every 4-6 hours as needed for symptom relief. If a patient needs it more frequently (e.g., daily or multiple times per day), this indicates poor asthma control and the need for a controller medication or treatment adjustment. Overuse can lead to tolerance and increased cardiac side effects.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q171",
+      "stem": "Which statement by a patient using a metered-dose inhaler (MDI) indicates correct technique?",
+      "options": [
+        "\"I inhale quickly and forcefully through the mouthpiece.\"",
+        "\"I shake the inhaler, exhale completely, press the canister while slowly inhaling, then hold my breath for 10 seconds.\"",
+        "\"I take multiple puffs in rapid succession without pausing.\"",
+        "\"I breathe normally through my nose while pressing the canister.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Correct MDI technique: 1) Shake inhaler, 2) Exhale completely, 3) Place mouthpiece in mouth, 4) Start slow, deep inhalation and press canister, 5) Continue inhaling slowly and deeply, 6) Hold breath for 10 seconds, 7) Wait 1 minute between puffs if multiple doses prescribed. Using a spacer improves drug delivery.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q172",
+      "stem": "A patient with COPD is prescribed both albuterol and ipratropium (Atrovent). In which order should these be administered?",
+      "options": [
+        "Order doesn't matter",
+        "Albuterol first, then ipratropium",
+        "Ipratropium first, then albuterol",
+        "They should never be used together"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "When using both a beta-2 agonist (albuterol) and anticholinergic (ipratropium), use the bronchodilator (albuterol) first to open airways, then the anticholinergic. Note: Combivent combines both in one inhaler. Both are bronchodilators but work via different mechanisms.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q173",
+      "stem": "Which adverse effect is most concerning with long-term use of inhaled corticosteroids?",
+      "options": [
+        "Oral candidiasis (thrush)",
+        "Tachycardia",
+        "Hypoglycemia",
+        "Urinary retention"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Inhaled corticosteroids can cause oral candidiasis (thrush) due to local immunosuppression in the mouth and throat. Prevent by rinsing mouth with water and spitting after each use, and using a spacer. Other concerns with long-term use include dysphonia (hoarseness) and, rarely, systemic effects at high doses (osteoporosis, growth suppression in children).",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q174",
+      "stem": "A patient asks why they need to use fluticasone (Flovent) daily when they feel fine. The nurse's best response is:",
+      "options": [
+        "\"You can stop it when you feel well to save money.\"",
+        "\"It's a controller medication that reduces airway inflammation and prevents symptoms.\"",
+        "\"It provides immediate relief if you have an asthma attack.\"",
+        "\"Daily use builds up immunity against asthma triggers.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Inhaled corticosteroids are controller/maintenance medications that reduce chronic airway inflammation and prevent symptoms. They don't provide immediate relief during attacks. Must be used daily as prescribed, even when asymptomatic, to maintain control. It takes days to weeks for full effect. Albuterol is the rescue medication for acute symptoms.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q175",
+      "stem": "Which instruction is most important for a patient using salmeterol (Serevent)?",
+      "options": [
+        "\"Use this medication for quick relief during asthma attacks.\"",
+        "\"This is a long-acting medication used twice daily for prevention, not for acute symptoms.\"",
+        "\"You can use this medication as often as needed throughout the day.\"",
+        "\"Mix this medication with your albuterol in the same nebulizer.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Salmeterol is a long-acting beta-2 agonist (LABA) used for maintenance/prevention, typically twice daily. It should NEVER be used for acute bronchospasm or as a rescue inhaler due to slow onset (10-20 min). It carries a black box warning and must be used with an inhaled corticosteroid. Albuterol is for acute relief.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q176",
+      "stem": "Long-acting beta-2 agonists (LABAs) like salmeterol carry which black box warning?",
+      "options": [
+        "Increased risk of asthma-related death when used alone",
+        "Severe liver failure",
+        "Kidney damage",
+        "Bone marrow suppression"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "LABAs carry a black box warning for increased risk of asthma-related death when used without inhaled corticosteroids. They must ALWAYS be used in combination with an inhaled corticosteroid (often combined in one inhaler like Advair or Symbicort). Never use as monotherapy for asthma.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q177",
+      "stem": "A patient taking montelukast (Singulair) reports depression and suicidal thoughts. What is the nurse's priority action?",
+      "options": [
+        "Reassure the patient these are normal medication side effects",
+        "Advise continuing the medication and add an antidepressant",
+        "Hold the medication and notify the provider immediately",
+        "Increase the montelukast dose"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Montelukast has a black box warning for neuropsychiatric events including depression, suicidal thoughts, and behavior changes. These symptoms require immediate discontinuation and provider notification. Benefits must be weighed against risks, especially when other treatment options are available.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q178",
+      "stem": "Which laboratory value is most important to monitor in a patient taking theophylline?",
+      "options": [
+        "Serum potassium",
+        "Serum theophylline level",
+        "Liver enzymes",
+        "White blood cell count"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Theophylline has a narrow therapeutic index (5-15 mcg/mL). Levels must be monitored regularly because toxicity can occur with small dose increases. Toxic levels cause nausea, vomiting, tachycardia, arrhythmias, tremors, and seizures. Many drug interactions affect theophylline levels.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q179",
+      "stem": "Which substance should a patient taking theophylline avoid or limit?",
+      "options": [
+        "Water",
+        "Caffeine",
+        "Vitamin C",
+        "Dairy products"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Caffeine is a methylxanthine like theophylline. Combined use can cause additive effects and increase side effects (nervousness, insomnia, tachycardia, tremors). Patients should limit coffee, tea, cola, chocolate, and energy drinks. Smoking decreases theophylline levels; smoking cessation requires dose adjustment.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q180",
+      "stem": "A patient with seasonal allergies asks about over-the-counter antihistamines. Which statement is correct?",
+      "options": [
+        "\"First-generation antihistamines like diphenhydramine cause less drowsiness.\"",
+        "\"Second-generation antihistamines like loratadine are less sedating and preferred for daytime use.\"",
+        "\"All antihistamines work exactly the same way.\"",
+        "\"Antihistamines should only be used during acute allergic reactions.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Second-generation antihistamines (loratadine, cetirizine, fexofenadine) are less sedating because they don't cross the blood-brain barrier as readily. They're preferred for daytime use. First-generation (diphenhydramine, chlorpheniramine) cause significant drowsiness and anticholinergic effects. Antihistamines can be taken daily for allergies.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q181",
+      "stem": "Which medication should be avoided in older adults due to anticholinergic effects and fall risk?",
+      "options": [
+        "Loratadine (Claritin)",
+        "Diphenhydramine (Benadryl)",
+        "Montelukast (Singulair)",
+        "Guaifenesin (Mucinex)"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "First-generation antihistamines like diphenhydramine are on the Beers List of potentially inappropriate medications for older adults due to high anticholinergic effects (confusion, urinary retention, constipation, blurred vision) and sedation increasing fall risk. Recommend second-generation antihistamines instead.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q182",
+      "stem": "A patient using a nasal decongestant spray reports that it's becoming less effective. What information should the nurse provide?",
+      "options": [
+        "\"Increase the frequency of use for better effect.\"",
+        "\"Nasal sprays should not be used for more than 3-5 days to avoid rebound congestion.\"",
+        "\"Switch to a higher strength formulation.\"",
+        "\"This means you're allergic to the medication.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Nasal decongestants (oxymetazoline, phenylephrine) cause rebound congestion (rhinitis medicamentosa) if used longer than 3-5 days. Patients develop tolerance and worsening congestion when medication wears off, leading to overuse. For chronic congestion, recommend oral decongestants or nasal corticosteroid sprays.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q183",
+      "stem": "Which patient should NOT take pseudoephedrine, an oral decongestant?",
+      "options": [
+        "A patient with seasonal allergies",
+        "A patient with uncontrolled hypertension",
+        "A patient with asthma",
+        "A patient taking a leukotriene modifier"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Oral decongestants like pseudoephedrine are sympathomimetics that can increase blood pressure and heart rate. They're contraindicated in patients with uncontrolled hypertension, coronary artery disease, or taking MAOIs. They can also cause insomnia, nervousness, and urinary retention in men with BPH.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q184",
+      "stem": "A patient taking guaifenesin (Mucinex), an expectorant, should be instructed to:",
+      "options": [
+        "Limit fluid intake to concentrate the medication",
+        "Increase fluid intake to help thin secretions",
+        "Take on an empty stomach only",
+        "Expect urine to turn bright orange"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Expectorants work by thinning mucus to make it easier to cough up. Adequate hydration (8-10 glasses of water daily) enhances effectiveness. Guaifenesin is generally safe with minimal side effects. It doesn't suppress cough (unlike dextromethorphan) but helps clear secretions productively.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q185",
+      "stem": "Which assessment finding suggests a patient is overusing their albuterol inhaler?",
+      "options": [
+        "Using it once per month",
+        "Using it 2-3 times per week for symptoms",
+        "Using it multiple times daily for several weeks",
+        "Using it before exercise"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Needing a rescue inhaler (albuterol) more than twice weekly for symptom relief indicates poor asthma control and the need for a controller medication (inhaled corticosteroid). Daily or multiple daily use suggests inadequate treatment. Using before exercise is appropriate for exercise-induced bronchospasm.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q186",
+      "stem": "A patient with asthma is prescribed a combination inhaler containing fluticasone and salmeterol (Advair). Which statement indicates understanding?",
+      "options": [
+        "\"I'll use this inhaler when I have sudden breathing difficulty.\"",
+        "\"I'll use this inhaler twice daily even when I feel fine, and use albuterol for sudden symptoms.\"",
+        "\"I only need to use this once weekly.\"",
+        "\"I can stop my other asthma medications now.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Combination inhalers (fluticasone/salmeterol) contain an inhaled corticosteroid + LABA for maintenance therapy, used regularly (usually twice daily) even when asymptomatic. They're not rescue medications. Albuterol should still be available for acute symptoms. Never adjust or stop medications without provider guidance.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q187",
+      "stem": "Which instruction is important for a patient using a dry powder inhaler (DPI)?",
+      "options": [
+        "Inhale slowly and gently through the device",
+        "Inhale quickly and forcefully to activate the powder",
+        "Shake the device before each use",
+        "Prime the device with several test puffs daily"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Dry powder inhalers (DPIs) require quick, forceful inhalation to disperse the powder from the device into the lungs. This differs from MDIs which require slow, steady inhalation. DPIs are breath-activated and don't require shaking or priming. Keep dry; moisture can clump the powder.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q188",
+      "stem": "A patient taking acetylcysteine (Mucomyst) reports a bad smell and taste. What is the nurse's best response?",
+      "options": [
+        "\"This indicates the medication has gone bad; get a new bottle.\"",
+        "\"The sulfur-like smell is normal for this medication.\"",
+        "\"Stop taking it immediately; you're having an allergic reaction.\"",
+        "\"This means you're taking too high a dose.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Acetylcysteine has a characteristic sulfur-like smell (like rotten eggs) and unpleasant taste. This is normal, not an indication of spoilage or allergy. Can mix with juice or soda to mask taste. Used as a mucolytic to thin thick respiratory secretions and as an antidote for acetaminophen overdose.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q189",
+      "stem": "Which medication is the antidote for acetaminophen overdose?",
+      "options": [
+        "Naloxone",
+        "Flumazenil",
+        "Acetylcysteine",
+        "Vitamin K"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Acetylcysteine (Mucomyst) is the specific antidote for acetaminophen overdose. It must be given within 8-24 hours for maximum effectiveness to prevent potentially fatal hepatotoxicity. Naloxone reverses opioids, flumazenil reverses benzodiazepines, vitamin K reverses warfarin.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q190",
+      "stem": "A patient with COPD taking tiotropium (Spiriva) should be monitored for which adverse effect?",
+      "options": [
+        "Bradycardia",
+        "Diarrhea",
+        "Urinary retention",
+        "Hypotension"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Tiotropium is a long-acting anticholinergic bronchodilator. Anticholinergic effects include dry mouth, urinary retention, constipation, and blurred vision. Use cautiously in patients with glaucoma or BPH. It provides 24-hour bronchodilation for COPD and is taken once daily.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q191",
+      "stem": "Which patient education is essential for someone starting omalizumab (Xolair) for severe allergic asthma?",
+      "options": [
+        "\"This is an oral medication taken daily at home.\"",
+        "\"This is an injectable medication given every 2-4 weeks at a healthcare facility, with monitoring after injection.\"",
+        "\"Use this inhaler during asthma attacks for quick relief.\"",
+        "\"This medication cures asthma permanently.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Omalizumab is a monoclonal antibody (biologic) for severe allergic asthma. Given subcutaneously every 2-4 weeks in healthcare settings. Patients must be monitored for 2 hours after first injections and 30 minutes after subsequent doses due to anaphylaxis risk. Very expensive. Doesn't cure asthma; reduces exacerbations. Other biologics: mepolizumab, dupilumab.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q192",
+      "stem": "A patient using a nebulizer treatment asks how it differs from an inhaler. The nurse explains:",
+      "options": [
+        "\"Nebulizers are only for children; adults use inhalers.\"",
+        "\"Nebulizers deliver medication as a fine mist over several minutes, helpful for those who can't coordinate inhaler technique.\"",
+        "\"Nebulizers are much less effective than inhalers.\"",
+        "\"Inhalers can only be used once daily, but nebulizers can be used hourly.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Nebulizers convert liquid medication to a fine mist delivered via face mask or mouthpiece over 5-15 minutes. They're useful for young children, older adults, or anyone who can't coordinate MDI technique, and for delivering higher doses during acute exacerbations. Inhalers are more portable and convenient when technique allows.",
+      "type": "single_select"
+    },
+    {
+      "id": "Pharm2_Q193",
+      "stem": "Which instruction is correct for a patient using a spacer with their MDI?",
+      "options": [
+        "\"Spacers decrease medication effectiveness.\"",
+        "\"Spacers improve drug delivery to lungs and reduce mouth/throat deposition.\"",
+        "\"Spacers are only for children.\"",
+        "\"Never use a spacer with corticosteroid inhalers.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Spacers (holding chambers) improve drug delivery by allowing more medication to reach the lungs and less to deposit in the mouth/throat. This improves effectiveness and reduces local side effects (especially thrush with inhaled steroids). Particularly beneficial for children, older adults, and those with poor coordination. Should be washed weekly.",
+      "type": "single_select"
+    }
+  ]
+}
