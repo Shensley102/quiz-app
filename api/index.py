@@ -256,7 +256,7 @@ def quiz(category, module):
             back_url = '/category/Pharmacology/Comprehensive'
             back_label = 'Comprehensive Pharmacology Quizzes'
         # Special handling for categorical pharm quizzes - go back to Categories page
-        elif category == 'Pharmacology' and module not in ['Pharm_Quiz_1', 'Pharm_Quiz_2', 'Pharm_Quiz_3', 'Pharm_Quiz_4']:
+        elif category == 'Pharmacology' and module.endswith('_Pharm'):
             back_url = '/category/Pharmacology/Categories'
             back_label = 'Pharmacology by Category'
         else:
