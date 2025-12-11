@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Comprehensive Pharmacology Quizzes - Nurse Success Study Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='catagory-style.css') }}">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/static/manifest.json">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#9c27b0">
+    
+    <!-- PWA Specific -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nurse Study">
+    
+    <!-- Apple Touch Icons - All Sizes -->
+    <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
+    
+    <style>
+        /* Offline indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 10000;
+        }
+
+        .offline-indicator.hidden {
+            display: none;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #0066cc;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .page-header {
+            margin-bottom: 15px;
+        }
+
+        .page-header-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 8px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        .page-header p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .header-icon {
+            font-size: 2.5em;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 1.6em;
+            color: #333;
+        }
+
+        .section-header p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .tests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .test-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .test-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border-color: rgba(156, 39, 176, 0.3);
+        }
+
+        .test-card-header {
+            background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+            padding: 16px 20px;
+            color: white;
+        }
+
+        .test-card-header-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .test-card-header .test-icon {
+            font-size: 1.2em;
+        }
+
+        .test-card-header .badge {
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .test-card-body {
+            padding: 24px;
+        }
+
+        .test-card-body h3 {
+            margin: 0 0 12px 0;
+            font-size: 1.4em;
+            color: #333;
+        }
+
+        .test-card-body p {
+            margin: 0 0 20px 0;
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .test-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 16px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .test-stat {
+            text-align: center;
+        }
+
+        .test-stat-number {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #333;
+            display: block;
+        }
+
+        .test-stat-label {
+            font-size: 0.65em;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .test-btn {
+            display: block;
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #9c27b0;
+            background-color: white;
+            color: #9c27b0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .test-btn:hover {
+            background-color: #9c27b0;
+            color: white;
+        }
+
+        .info-box {
+            margin-top: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-radius: 12px;
+            border-left: 4px solid #9c27b0;
+        }
+
+        .info-box h3 {
+            color: #7b1fa2;
+            margin: 0 0 12px 0;
+            font-size: 1.15em;
+        }
+
+        .info-box p {
+            color: #555;
+            margin: 0;
+            line-height: 1.7;
+            font-size: 0.95em;
+        }
+        
+        /* Safe area insets for iOS PWA */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            body {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Offline indicator -->
+    <div id="offlineIndicator" class="offline-indicator hidden">
+        <span>📴 You're offline - Using cached content</span>
+    </div>
+
+    <div class="container">
+        <a href="/category/Pharmacology" class="back-link">← Pharmacology</a>
+        
+        <div class="page-header">
+            <div class="page-header-top">
+                <span class="header-icon">📚</span>
+                <h1>Comprehensive Pharmacology Quizzes</h1>
+            </div>
+            <p>Mixed-topic pharmacology questions covering all drug classifications</p>
+        </div>
+
+        <div class="section-header">
+            <span style="font-size: 1.8em;">💊</span>
+            <div>
+                <h2>Comprehensive Practice Tests</h2>
+                <p>Each quiz contains mixed questions from all pharmacology categories, simulating the integrated approach of the NCLEX exam. Perfect for final review and comprehensive assessment.</p>
+            </div>
+        </div>
+
+        <div class="tests-grid">
+            <!-- Pharm Quiz 1 -->
+            <div class="test-card">
+                <div class="test-card-header">
+                    <div class="test-card-header-content">
+                        <span class="test-icon">💊</span>
+                        <span class="badge">COMPREHENSIVE</span>
+                    </div>
+                </div>
+                <div class="test-card-body">
+                    <h3>Pharm Quiz 1</h3>
+                    <p>Comprehensive pharmacology practice covering cardiovascular drugs, CNS medications, anti-infectives, and more with detailed rationales.</p>
+                    <div class="test-stats">
+                        <div class="test-stat">
+                            <span class="test-stat-number">112</span>
+                            <span class="test-stat-label">Questions</span>
+                        </div>
+                        <div class="test-stat">
+                            <span class="test-stat-number">MCQ</span>
+                            <span class="test-stat-label">Type</span>
+                        </div>
+                        <div class="test-stat">
+                            <span class="test-stat-number">~45 min</span>
+                            <span class="test-stat-label">Duration</span>
+                        </div>
+                    </div>
+                    <a href="/quiz/Pharmacology/Pharm_Quiz_1" class="test-btn">Start Quiz →</a>
+                </div>
+            </div>
+
+            <!-- Pharm Quiz 2 -->
+            <div class="test-card">
+                <div class="test-card-header">
+                    <div class="test-card-header-content">
+                        <span class="test-icon">💊</span>
+                        <span class="badge">COMPREHENSIVE</span>
+                    </div>
+                </div>
+                <div class="test-card-body">
+                    <h3>Pharm Quiz 2</h3>
+                    <p>Additional comprehensive practice focusing on endocrine medications, respiratory drugs, pain management, and therapeutic monitoring.</p>
+                    <div class="test-stats">
+                        <div class="test-stat">
+                            <span class="test-stat-number">112</span>
+                            <span class="test-stat-label">Questions</span>
+                        </div>
+                        <div class="test-stat">
+                            <span class="test-stat-number">MCQ</span>
+                            <span class="test-stat-label">Type</span>
+                        </div>
+                        <div class="test-stat">
+                            <span class="test-stat-number">~45 min</span>
+                            <span class="test-stat-label">Duration</span>
+                        </div>
+                    </div>
+                    <a href="/quiz/Pharmacology/Pharm_Quiz_2" class="test-btn">Start Quiz →</a>
+                </div>
+            </div>
+
+            <!-- Pharm Quiz 3 -->
+            <div class="test-card">
+                <div class="test-card-header">
+                    <div class="test-card-header-content">
+                        <span class="test-icon">💊</span>
+                        <span class="badge">COMPREHENSIVE</span>
+                    </div>
+                </div>
+                <div class="test-card-body">
+                    <h3>Pharm Quiz 3</h3>
+                    <p>Advanced comprehensive quiz covering hematologic agents, GI medications, immunologic drugs, and high-alert medication safety.</p>
+                    <div class="test-stats">
+                        <div class="test-stat">
+                            <span class="test-stat-number">112</span>
+                            <span class="test-stat-label">Questions</span>
+                        </div>
+                        <div class="test-stat">
+                            <span class="test-stat-number">MCQ</span>
+                            <span class="test-stat-label">Type</span>
+                        </div>
+                        <div class="test-stat">
+                            <span class="test-stat-number">~45 min</span>
+                            <span class="test-stat-label">Duration</span>
+                        </div>
+                    </div>
+                    <a href="/quiz/Pharmacology/Pharm_Quiz_3" class="test-btn">Start Quiz →</a>
+                </div>
+            </div>
+
+            <!-- Pharm Quiz 4 -->
+            <div class="test-card">
+                <div class="test-card-header">
+                    <div class="test-card-header-content">
+                        <span class="test-icon">💊</span>
+                        <span class="badge">COMPREHENSIVE</span>
+                    </div>
+                </div>
+                <div class="test-card-body">
+                    <h3>Pharm Quiz 4</h3>
+                    <p>Final comprehensive review integrating all pharmacology categories with emphasis on drug interactions and patient education.</p>
+                    <div class="test-stats">
+                        <div class="test-stat">
+                            <span class="test-stat-number">112</span>
+                            <span class="test-stat-label">Questions</span>
+                        </div>
+                        <div class="test-stat">
+                            <span class="test-stat-number">MCQ</span>
+                            <span class="test-stat-label">Type</span>
+                        </div>
+                        <div class="test-stat">
+                            <span class="test-stat-number">~45 min</span>
+                            <span class="test-stat-label">Duration</span>
+                        </div>
+                    </div>
+                    <a href="/quiz/Pharmacology/Pharm_Quiz_4" class="test-btn">Start Quiz →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>📚 About Comprehensive Pharmacology Quizzes</h3>
+            <p>These comprehensive quizzes simulate the integrated nature of NCLEX pharmacology questions by mixing drug categories within each quiz. Use these after studying individual drug classes to assess your overall pharmacology knowledge and readiness for exam-style questions. This app works offline, so you can study anywhere!</p>
+        </div>
+    </div>
+
+    <!-- PWA Utilities -->
+    <script src="/static/js/pwa-utils.js"></script>
+</body>
+</html>
