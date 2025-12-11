@@ -7,7 +7,7 @@
    - This will trigger the update notification for users
    ============================================================ */
 
-const CACHE_VERSION = 'v1.0.1';
+const CACHE_VERSION = 'v1.0.2';
 const CACHE_NAME = `nurse-study-hub-${CACHE_VERSION}`;
 
 // Core assets that must be cached for the app to work offline
@@ -83,11 +83,25 @@ const QUIZ_DATA_FILES = [
   '/modules/Patient_Care_Management/Module_3.json',
   '/modules/Patient_Care_Management/Module_4.json',
   
-  // Pharmacology
+  // Pharmacology - Comprehensive (4 quizzes)
   '/modules/Pharmacology/Pharm_Quiz_1.json',
   '/modules/Pharmacology/Pharm_Quiz_2.json',
   '/modules/Pharmacology/Pharm_Quiz_3.json',
-  '/modules/Pharmacology/Pharm_Quiz_4.json'
+  '/modules/Pharmacology/Pharm_Quiz_4.json',
+  
+  // Pharmacology - By Category (12 quizzes)
+  '/modules/Pharmacology/Cardiovascular_Pharm.json',
+  '/modules/Pharmacology/CNS_Psychiatric_Pharm.json',
+  '/modules/Pharmacology/Anti_Infectives_Pharm.json',
+  '/modules/Pharmacology/Endocrine_Metabolic_Pharm.json',
+  '/modules/Pharmacology/Respiratory_Pharm.json',
+  '/modules/Pharmacology/Gastrointestinal_Pharm.json',
+  '/modules/Pharmacology/Pain_Management_Pharm.json',
+  '/modules/Pharmacology/Hematologic_Oncology_Pharm.json',
+  '/modules/Pharmacology/Renal_Electrolytes_Pharm.json',
+  '/modules/Pharmacology/Musculoskeletal_Pharm.json',
+  '/modules/Pharmacology/Immunologic_Biologics_Pharm.json',
+  '/modules/Pharmacology/High_Alert_Medications_Pharm.json'
 ];
 
 // HTML pages to cache
@@ -97,6 +111,8 @@ const HTML_PAGES = [
   '/category/Lab_Values',
   '/category/Patient_Care_Management',
   '/category/Pharmacology',
+  '/category/Pharmacology/Comprehensive',
+  '/category/Pharmacology/Categories',
   '/category/Nursing_Certifications',
   '/category/Nursing_Certifications/CCRN',
   '/quiz-fishbone-mcq',
