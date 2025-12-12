@@ -89,6 +89,8 @@ function displayQuote(containerId = 'quote-container') {
 
 /**
  * Register Service Worker with proper scope
+ * NOTE: vercel.json routes /service-worker.js to /static/service-worker.js
+ * with Service-Worker-Allowed: "/" header for root scope
  * @returns {Promise} Registration promise
  */
 function registerServiceWorker() {
@@ -97,9 +99,10 @@ function registerServiceWorker() {
     return Promise.resolve(null);
   }
   
+  // Register from root path (vercel.json handles the routing)
   return navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
     .then((registration) => {
-      console.log('[PWA] Service Worker registered:', registration.scope);
+      console.log('[PWA] Service Worker registered with scope:', registration.scope);
       
       // Check for updates
       registration.addEventListener('updatefound', () => {
@@ -232,6 +235,10 @@ function setupServiceWorkerListener() {
       if (!sessionStorage.getItem('update-dismissed')) {
         showUpdateBanner(true);
       }
+    }
+    
+    if (type === 'CACHE_UPDATED') {
+      console.log('[PWA] Cache updated');
     }
   });
   
