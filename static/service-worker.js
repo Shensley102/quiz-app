@@ -3,10 +3,17 @@
    
    CACHE VERSION: Bump this when updating content
    TO ADD NEW QUIZ JSON: Add path to QUIZ_DATA_FILES array
+   
+   VERSION HISTORY:
+   v1.0.6 - Fixed CSS filename (category-style.css), added automatic cache updates
+   v1.0.5 - Added pharmacology routes and categories
    ============================================================ */
 
-const CACHE_VERSION = 'v1.0.5';
+const CACHE_VERSION = 'v1.0.6';
 const CACHE_NAME = `nurse-success-${CACHE_VERSION}`;
+
+// How often to check for updates (in milliseconds)
+const UPDATE_CHECK_INTERVAL = 30 * 60 * 1000; // 30 minutes
 
 // Core files that MUST be cached for app to work offline
 const CORE_ASSETS = [
@@ -14,7 +21,7 @@ const CORE_ASSETS = [
   '/static/manifest.json',
   '/static/style.css',
   '/static/home-style.css',
-  '/static/catagory-style.css',
+  '/static/category-style.css',
   '/static/js/pwa-utils.js',
   '/static/quiz-script.js',
   '/static/quiz-fill-blank.js',
@@ -133,21 +140,21 @@ self.addEventListener('install', (event) => {
         
         // Try to cache HTML pages (don't fail install if these fail)
         const htmlPromises = HTML_PAGES.map(url => 
-          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err))
+          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err.message))
         );
         await Promise.allSettled(htmlPromises);
         console.log('[Service Worker] HTML pages cached');
         
         // Try to cache quiz data (don't fail install if these fail)
         const quizPromises = QUIZ_DATA_FILES.map(url =>
-          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err))
+          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err.message))
         );
         await Promise.allSettled(quizPromises);
         console.log('[Service Worker] Quiz data cached');
         
         // Try to cache images (don't fail install if these fail)
         const imagePromises = IMAGE_FILES.map(url =>
-          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err))
+          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err.message))
         );
         await Promise.allSettled(imagePromises);
         
@@ -188,7 +195,7 @@ self.addEventListener('activate', (event) => {
         return self.clients.matchAll().then(clients => {
           clients.forEach(client => {
             client.postMessage({
-              type: 'UPDATE_AVAILABLE',
+              type: 'SW_ACTIVATED',
               version: CACHE_VERSION
             });
           });
@@ -209,6 +216,17 @@ self.addEventListener('fetch', (event) => {
 
   // Skip Chrome extensions and other non-http(s) requests
   if (!url.protocol.startsWith('http')) {
+    return;
+  }
+
+  // Skip external resources (like Vercel Analytics) - let them fail silently when offline
+  if (!url.hostname.includes(self.location.hostname) && !url.hostname.includes('localhost')) {
+    event.respondWith(
+      fetch(request).catch(() => {
+        // Return empty response for external resources when offline
+        return new Response('', { status: 499, statusText: 'Network Unavailable' });
+      })
+    );
     return;
   }
 
@@ -243,7 +261,19 @@ self.addEventListener('fetch', (event) => {
         // STRATEGY 2: Cache First for static assets
         // Return cache immediately for speed, update in background
         if (url.pathname.startsWith('/static/') || url.pathname.startsWith('/images/')) {
-          return cachedResponse || fetch(request)
+          if (cachedResponse) {
+            // Fetch fresh version in background (stale-while-revalidate)
+            fetch(request).then((networkResponse) => {
+              if (networkResponse && networkResponse.status === 200) {
+                caches.open(CACHE_NAME).then((cache) => {
+                  cache.put(request, networkResponse);
+                });
+              }
+            }).catch(() => { /* Ignore background update failures */ });
+            return cachedResponse;
+          }
+          
+          return fetch(request)
             .then((networkResponse) => {
               if (networkResponse && networkResponse.status === 200) {
                 const responseToCache = networkResponse.clone();
@@ -303,6 +333,16 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
   
+  if (event.data && event.data.type === 'FORCE_UPDATE') {
+    console.log('[Service Worker] Force update requested');
+    event.waitUntil(updateCache());
+  }
+  
+  if (event.data && event.data.type === 'CHECK_UPDATE') {
+    console.log('[Service Worker] Checking for updates');
+    event.waitUntil(checkForUpdates(event.source));
+  }
+  
   if (event.data && event.data.type === 'CACHE_URLS') {
     console.log('[Service Worker] Caching additional URLs');
     event.waitUntil(
@@ -324,27 +364,74 @@ self.addEventListener('sync', (event) => {
   }
 });
 
+// Periodic background sync (if supported)
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'update-cache') {
+    console.log('[Service Worker] Periodic sync: updating cache');
+    event.waitUntil(updateCache());
+  }
+});
+
+// Check for updates by fetching the service worker file
+async function checkForUpdates(client) {
+  try {
+    const response = await fetch('/service-worker.js', { cache: 'no-store' });
+    if (response.ok) {
+      const text = await response.text();
+      const versionMatch = text.match(/CACHE_VERSION\s*=\s*['"]([^'"]+)['"]/);
+      if (versionMatch && versionMatch[1] !== CACHE_VERSION) {
+        console.log('[Service Worker] New version available:', versionMatch[1]);
+        if (client) {
+          client.postMessage({
+            type: 'UPDATE_AVAILABLE',
+            currentVersion: CACHE_VERSION,
+            newVersion: versionMatch[1]
+          });
+        }
+        return true;
+      }
+    }
+  } catch (error) {
+    console.warn('[Service Worker] Update check failed:', error.message);
+  }
+  return false;
+}
+
 // Function to update all cached content
 async function updateCache() {
+  console.log('[Service Worker] Starting cache update');
   const cache = await caches.open(CACHE_NAME);
   const allUrls = [...CORE_ASSETS, ...HTML_PAGES, ...QUIZ_DATA_FILES, ...IMAGE_FILES];
   
+  let updated = 0;
+  let failed = 0;
+  
   for (const url of allUrls) {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, { cache: 'no-store' });
       if (response && response.status === 200) {
         await cache.put(url, response);
+        updated++;
       }
     } catch (error) {
       console.warn('[Service Worker] Failed to update:', url, error.message);
+      failed++;
     }
   }
+  
+  console.log(`[Service Worker] Cache update complete. Updated: ${updated}, Failed: ${failed}`);
   
   // Notify clients that cache was updated
   const clients = await self.clients.matchAll();
   clients.forEach(client => {
-    client.postMessage({ type: 'CACHE_UPDATED', version: CACHE_VERSION });
+    client.postMessage({ 
+      type: 'CACHE_UPDATED', 
+      version: CACHE_VERSION,
+      stats: { updated, failed, total: allUrls.length }
+    });
   });
+  
+  return { updated, failed };
 }
 
 console.log('[Service Worker] Script loaded - version', CACHE_VERSION);
