@@ -5,7 +5,7 @@
    TO ADD NEW QUIZ JSON: Add path to QUIZ_DATA_FILES array
    ============================================================ */
 
-const CACHE_VERSION = 'v1.0.4';
+const CACHE_VERSION = 'v1.0.5';
 const CACHE_NAME = `nurse-success-${CACHE_VERSION}`;
 
 // Core files that MUST be cached for app to work offline
@@ -36,7 +36,9 @@ const CORE_ASSETS = [
 ];
 
 // HTML pages to cache for offline navigation
+// IMPORTANT: These are the Flask routes, not template files
 const HTML_PAGES = [
+  '/',
   '/category/HESI',
   '/category/Lab_Values',
   '/category/Patient_Care_Management',
@@ -52,13 +54,14 @@ const HTML_PAGES = [
 // Quiz JSON data files - ADD NEW QUIZ FILES HERE
 const QUIZ_DATA_FILES = [
   // HESI
+  '/modules/HESI/HESI_Adult_Health.json',
+  '/modules/HESI/HESI_Clinical_Judgment.json',
   '/modules/HESI/HESI_Comp_Quiz_1.json',
   '/modules/HESI/HESI_Comp_Quiz_2.json',
   '/modules/HESI/HESI_Comp_Quiz_3.json',
   '/modules/HESI/HESI_Delegating.json',
   '/modules/HESI/HESI_Leadership.json',
-  '/modules/HESI/Hesi_Management.json',
-  '/modules/HESI/HESI_Comprehensive.json',
+  '/modules/HESI/HESI_Management.json',
   '/modules/HESI/HESI_Maternity.json',
   
   // Lab Values
@@ -71,8 +74,7 @@ const QUIZ_DATA_FILES = [
   '/modules/Patient_Care_Management/Module_3.json',
   '/modules/Patient_Care_Management/Module_4.json',
   '/modules/Patient_Care_Management/Learning_Questions_Module_1_2.json',
-  '/modules/Patient_Care_Management/Learning_Questions_Module_3_4.json',
-  '/modules/Patient_Care_Management/Leadership.json',
+  '/modules/Patient_Care_Management/Learning_Questions_Module_3_4_.json',
   
   // Pharmacology - Comprehensive
   '/modules/Pharmacology/Pharm_Quiz_1.json',
@@ -112,7 +114,8 @@ const IMAGE_FILES = [
   '/static/images/fishbone-bmp.png',
   '/static/images/fishbone-liver.png',
   '/static/images/fishbone-coagulation.png',
-  '/static/images/fishbone-abg.png'
+  '/static/images/fishbone-abg.png',
+  '/static/images/fishbone-elements.png'
 ];
 
 // Install event - cache core assets
@@ -133,12 +136,14 @@ self.addEventListener('install', (event) => {
           cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err))
         );
         await Promise.allSettled(htmlPromises);
+        console.log('[Service Worker] HTML pages cached');
         
         // Try to cache quiz data (don't fail install if these fail)
         const quizPromises = QUIZ_DATA_FILES.map(url =>
           cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err))
         );
         await Promise.allSettled(quizPromises);
+        console.log('[Service Worker] Quiz data cached');
         
         // Try to cache images (don't fail install if these fail)
         const imagePromises = IMAGE_FILES.map(url =>
@@ -227,7 +232,11 @@ self.addEventListener('fetch', (event) => {
             })
             .catch(() => {
               // Network failed, return cached version or home page
-              return cachedResponse || caches.match('/');
+              if (cachedResponse) {
+                return cachedResponse;
+              }
+              // If no cached response for this specific page, try to return the home page
+              return caches.match('/');
             });
         }
         
