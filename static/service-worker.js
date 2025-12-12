@@ -1,26 +1,31 @@
 // Service Worker for Nurse Success Study Hub PWA
-const CACHE_VERSION = 'v1.0.2';
+const CACHE_VERSION = 'v1.0.3';
 const CACHE_NAME = `nurse-success-${CACHE_VERSION}`;
 
 // Core files that should always be cached
 const CORE_ASSETS = [
   '/',
   '/static/manifest.json',
-  '/static/css/styles.css',
+  '/static/style.css',
+  '/static/home-style.css',
+  '/static/catagory-style.css',
   '/static/js/pwa-utils.js',
-  '/static/js/quiz.js',
-  '/static/js/quiz-fill-blank.js',
-  '/static/icons/icon-72x72.png',
-  '/static/icons/icon-96x96.png',
-  '/static/icons/icon-128x128.png',
-  '/static/icons/icon-144x144.png',
-  '/static/icons/icon-152x152.png',
-  '/static/icons/icon-192x192.png',
-  '/static/icons/icon-384x384.png',
-  '/static/icons/icon-512x512.png',
-  '/static/icons/icon-120x120.png',
-  '/static/icons/icon-167x167.png',
-  '/static/icons/icon-180x180.png',
+  '/static/quiz-script.js',
+  '/static/quiz-fill-blank.js',
+  '/static/fishbone-utils.js',
+  '/static/quiz-fishbone-mcq.js',
+  '/static/quiz-fishbone-fill.js',
+  '/static/icons/icon-72.png',
+  '/static/icons/icon-96.png',
+  '/static/icons/icon-128.png',
+  '/static/icons/icon-144.png',
+  '/static/icons/icon-152.png',
+  '/static/icons/icon-192.png',
+  '/static/icons/icon-384.png',
+  '/static/icons/icon-512.png',
+  '/static/icons/icon-120.png',
+  '/static/icons/icon-167.png',
+  '/static/icons/icon-180.png',
 ];
 
 // HTML pages to cache for offline access
@@ -83,7 +88,7 @@ const QUIZ_DATA_FILES = [
 
 // Install event - cache core assets
 self.addEventListener('install', (event) => {
-  console.log('[Service Worker] Installing...');
+  console.log('[Service Worker] Installing version', CACHE_VERSION);
   
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -103,7 +108,7 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  console.log('[Service Worker] Activating...');
+  console.log('[Service Worker] Activating version', CACHE_VERSION);
   
   event.waitUntil(
     caches.keys()
@@ -164,7 +169,7 @@ self.addEventListener('fetch', (event) => {
         }
         
         // For static assets - cache first, fall back to network
-        if (url.pathname.startsWith('/static/')) {
+        if (url.pathname.startsWith('/static/') || url.pathname.startsWith('/images/')) {
           return cachedResponse || fetch(request)
             .then((networkResponse) => {
               if (networkResponse && networkResponse.status === 200) {
@@ -178,7 +183,7 @@ self.addEventListener('fetch', (event) => {
         }
         
         // For quiz data (JSON files) - stale-while-revalidate
-        if (url.pathname.endsWith('.json') || QUIZ_DATA_FILES.includes(url.pathname)) {
+        if (url.pathname.endsWith('.json') || url.pathname.startsWith('/modules/') || QUIZ_DATA_FILES.includes(url.pathname)) {
           // Return cached version immediately
           if (cachedResponse) {
             // But also fetch new version in background
@@ -254,4 +259,4 @@ async function updateCache() {
   }
 }
 
-console.log('[Service Worker] Script loaded');
+console.log('[Service Worker] Script loaded - version', CACHE_VERSION);
