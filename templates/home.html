@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="description" content="Nurse Success Study Hub - HESI and NCLEX Exam Prep">
   <title>Nurse Success Study Hub - HESI & NCLEX Exam Prep</title>
   <link rel="stylesheet" href="/static/style.css">
@@ -16,10 +16,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Nurse Study">
-  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+  
+  <!-- Apple Touch Icons - All Sizes -->
+  <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/static/icons/icon-144.png">
-  <link rel="apple-touch-icon" sizes="128x128" href="/static/icons/icon-128.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
   
   <!-- Vercel Analytics -->
   <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
@@ -35,6 +38,9 @@
     <div class="hub-header">
       <h1>Nurse Success Study Hub</h1>
       <p class="tagline">Master HESI & NCLEX Exams with Comprehensive Study Materials</p>
+      
+      <!-- Quote Container - displays random motivational quote -->
+      <div id="quote-container" class="quote-container"></div>
     </div>
 
     <!-- Search Bar -->
@@ -60,45 +66,10 @@
     </footer>
   </div>
 
+  <!-- PWA Utilities - handles SW registration, quotes, and updates -->
+  <script src="/static/js/pwa-utils.js"></script>
+
   <script>
-    // Register Service Worker for PWA
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/static/service-worker.js')
-          .then((registration) => {
-            console.log('Service Worker registered:', registration.scope);
-            
-            // Check for updates
-            registration.addEventListener('updatefound', () => {
-              const newWorker = registration.installing;
-              newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  // New content available
-                  console.log('New content available, refresh to update');
-                }
-              });
-            });
-          })
-          .catch((error) => {
-            console.warn('Service Worker registration failed:', error);
-          });
-      });
-    }
-
-    // Offline/Online detection
-    function updateOnlineStatus() {
-      const indicator = document.getElementById('offlineIndicator');
-      if (!navigator.onLine) {
-        indicator.classList.remove('hidden');
-      } else {
-        indicator.classList.add('hidden');
-      }
-    }
-
-    window.addEventListener('online', updateOnlineStatus);
-    window.addEventListener('offline', updateOnlineStatus);
-    updateOnlineStatus();
-
     // Load and display categories
     async function loadCategories() {
       try {
