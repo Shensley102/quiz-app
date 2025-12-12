@@ -1,429 +1,367 @@
-/* ===== Home Page Styles ===== */
+/* ============================================================
+   PWA Utilities for Nurse Success Study Hub
+   
+   Features:
+   - Service Worker registration and updates
+   - Automatic cache refresh on startup
+   - Periodic update checks
+   - Offline detection
+   - Update notifications
+   - Motivational quotes for home page
+   ============================================================ */
 
-/* PWA Offline Indicator */
-.offline-indicator {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(135deg, #ff9800, #f57c00);
-  color: white;
-  padding: 12px 20px;
-  text-align: center;
-  font-weight: 600;
-  font-size: 14px;
-  z-index: 10000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
+(function() {
+  'use strict';
 
-.offline-indicator.hidden {
-  display: none;
-}
+  // Configuration
+  const CONFIG = {
+    UPDATE_CHECK_INTERVAL: 30 * 60 * 1000, // 30 minutes
+    CACHE_REFRESH_ON_START: true,
+    SHOW_UPDATE_BANNER: true,
+    DEBUG: false
+  };
 
-/* PWA Update Banner */
-.update-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(135deg, #2f61f3, #45B7D1);
-  color: white;
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  z-index: 10001;
-  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.2);
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-
-.update-banner.show {
-  transform: translateY(0);
-}
-
-.update-banner.hidden {
-  transform: translateY(100%);
-}
-
-.update-banner .update-icon {
-  font-size: 20px;
-}
-
-.update-banner .update-message {
-  font-weight: 600;
-  font-size: 14px;
-  flex: 1;
-}
-
-.update-banner .update-btn {
-  background: white;
-  color: #2f61f3;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.update-banner .update-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.update-banner .update-dismiss {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 4px 8px;
-  opacity: 0.8;
-  transition: opacity 0.2s;
-}
-
-.update-banner .update-dismiss:hover {
-  opacity: 1;
-}
-
-/* PWA Status */
-.pwa-status {
-  font-size: 12px;
-  color: var(--ink-soft);
-  margin-top: 8px;
-  opacity: 0.7;
-}
-
-/* ===== Quote Container Styles ===== */
-.quote-container {
-  margin-top: 24px;
-  animation: fadeInQuote 0.8s ease;
-}
-
-@keyframes fadeInQuote {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.quote-wrapper {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  padding: 24px 28px;
-  max-width: 700px;
-  margin: 0 auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  position: relative;
-}
-
-.quote-icon {
-  font-size: 32px;
-  margin-bottom: 12px;
-}
-
-.quote-text {
-  font-size: 18px;
-  font-style: italic;
-  color: var(--ink);
-  line-height: 1.6;
-  margin: 0 0 12px 0;
-  quotes: none;
-}
-
-.quote-author {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--primary);
-  font-style: normal;
-}
-
-/* Hub Header */
-.hub-header {
-  text-align: center;
-  padding: 60px 20px 40px;
-  animation: fadeIn 0.6s ease;
-  margin-top: 50px; /* Space for offline indicator */
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hub-header h1 {
-  margin: 0 0 16px 0;
-  font-size: clamp(32px, 5vw, 48px);
-  color: var(--ink);
-  font-weight: 800;
-  letter-spacing: -1px;
-}
-
-.hub-header .tagline {
-  margin: 0;
-  font-size: clamp(16px, 2.5vw, 20px);
-  color: var(--ink-soft);
-  font-weight: 500;
-}
-
-/* Search Container */
-.search-container {
-  max-width: 600px;
-  margin: 0 auto 40px;
-  padding: 0 20px;
-}
-
-.search-bar {
-  width: 100%;
-  padding: 16px 24px;
-  font-size: 16px;
-  border: 2px solid var(--border);
-  border-radius: 50px;
-  background: var(--card);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
-}
-
-.search-bar:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(47, 97, 243, 0.1);
-}
-
-/* Categories Grid */
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-  padding: 0 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Category Card */
-.category-card {
-  position: relative;
-  background: var(--card);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  border: 2px solid transparent;
-}
-
-.category-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--success);
-}
-
-.category-card.image-card {
-  background: var(--card);
-  padding: 20px;
-}
-
-.category-card img {
-  max-width: 100%;
-  max-height: 160px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-.category-card:hover img {
-  transform: scale(1.05);
-}
-
-.category-card .fallback-icon {
-  display: none;
-  font-size: 64px;
-  text-align: center;
-}
-
-.category-card .card-arrow {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  width: 36px;
-  height: 36px;
-  background: var(--primary);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: bold;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
-}
-
-.category-card:hover .card-arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Hub Footer */
-.hub-footer {
-  text-align: center;
-  padding: 60px 20px 40px;
-  color: var(--ink-soft);
-  font-size: 14px;
-}
-
-.hub-footer p {
-  margin: 0 0 8px 0;
-}
-
-/* Install PWA Button */
-.install-pwa-btn {
-  display: none;
-  margin: 20px auto;
-  padding: 12px 24px;
-  background: linear-gradient(135deg, var(--primary), var(--success));
-  color: white;
-  border: none;
-  border-radius: 30px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(47, 97, 243, 0.3);
-}
-
-.install-pwa-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(47, 97, 243, 0.4);
-}
-
-.install-pwa-btn.show {
-  display: inline-block;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .hub-header {
-    padding: 40px 16px 30px;
-    margin-top: 50px;
+  // Debug logging
+  function log(...args) {
+    if (CONFIG.DEBUG) {
+      console.log('[PWA Utils]', ...args);
+    }
   }
 
-  .hub-header h1 {
-    font-size: 28px;
+  // ============================================================
+  // SERVICE WORKER MANAGEMENT
+  // ============================================================
+
+  let swRegistration = null;
+  let updateCheckInterval = null;
+
+  // Register service worker
+  async function registerServiceWorker() {
+    if (!('serviceWorker' in navigator)) {
+      log('Service workers not supported');
+      return null;
+    }
+
+    try {
+      // Register service worker from root scope
+      swRegistration = await navigator.serviceWorker.register('/service-worker.js', {
+        scope: '/'
+      });
+
+      log('Service Worker registered:', swRegistration.scope);
+
+      // Check for updates on registration
+      swRegistration.addEventListener('updatefound', () => {
+        log('Service Worker update found');
+        const newWorker = swRegistration.installing;
+        
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            // New service worker available
+            log('New Service Worker installed, showing update banner');
+            showUpdateBanner();
+          }
+        });
+      });
+
+      // Listen for messages from service worker
+      navigator.serviceWorker.addEventListener('message', handleSWMessage);
+
+      // Start periodic update checks
+      startPeriodicUpdateChecks();
+
+      // Refresh cache on startup if configured
+      if (CONFIG.CACHE_REFRESH_ON_START) {
+        setTimeout(() => {
+          refreshCacheOnStartup();
+        }, 2000); // Delay to let page load first
+      }
+
+      return swRegistration;
+    } catch (error) {
+      console.error('Service Worker registration failed:', error);
+      return null;
+    }
   }
 
-  .hub-header .tagline {
-    font-size: 15px;
+  // Handle messages from service worker
+  function handleSWMessage(event) {
+    const { data } = event;
+    log('Message from SW:', data);
+
+    switch (data.type) {
+      case 'SW_ACTIVATED':
+        log('Service Worker activated, version:', data.version);
+        updatePWAStatus(`PWA v${data.version} active`);
+        // Refresh cache after new activation
+        setTimeout(refreshCacheOnStartup, 1000);
+        break;
+
+      case 'UPDATE_AVAILABLE':
+        log('Update available:', data.newVersion);
+        showUpdateBanner(data.newVersion);
+        break;
+
+      case 'CACHE_UPDATED':
+        log('Cache updated:', data.stats);
+        hideRefreshingIndicator();
+        if (data.stats && data.stats.updated > 0) {
+          updatePWAStatus(`Cache updated: ${data.stats.updated} files`);
+        }
+        break;
+
+      default:
+        log('Unknown message type:', data.type);
+    }
   }
 
-  .categories-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 0 16px;
+  // Refresh cache on startup
+  async function refreshCacheOnStartup() {
+    if (!navigator.serviceWorker.controller) {
+      log('No active service worker, skipping cache refresh');
+      return;
+    }
+
+    log('Requesting cache refresh on startup');
+    showRefreshingIndicator();
+
+    try {
+      navigator.serviceWorker.controller.postMessage({
+        type: 'FORCE_UPDATE'
+      });
+    } catch (error) {
+      log('Cache refresh request failed:', error);
+      hideRefreshingIndicator();
+    }
   }
 
-  .category-card {
-    min-height: 160px;
+  // Start periodic update checks
+  function startPeriodicUpdateChecks() {
+    if (updateCheckInterval) {
+      clearInterval(updateCheckInterval);
+    }
+
+    updateCheckInterval = setInterval(() => {
+      checkForUpdates();
+    }, CONFIG.UPDATE_CHECK_INTERVAL);
+
+    log('Periodic update checks started');
   }
 
-  .category-card .card-arrow {
-    opacity: 1;
-    transform: translateX(0);
+  // Check for service worker updates
+  async function checkForUpdates() {
+    if (!swRegistration) return;
+
+    try {
+      log('Checking for updates...');
+      await swRegistration.update();
+      
+      // Also ask service worker to check
+      if (navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({
+          type: 'CHECK_UPDATE'
+        });
+      }
+    } catch (error) {
+      log('Update check failed:', error);
+    }
   }
 
-  .quote-wrapper {
-    padding: 20px;
-    margin: 0 10px;
+  // Force update the service worker
+  function forceUpdate() {
+    if (!swRegistration || !swRegistration.waiting) {
+      // No waiting worker, just reload
+      window.location.reload();
+      return;
+    }
+
+    log('Forcing service worker update');
+    swRegistration.waiting.postMessage({ type: 'SKIP_WAITING' });
+    
+    // Reload after a short delay
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   }
 
-  .quote-text {
-    font-size: 16px;
+  // ============================================================
+  // UI ELEMENTS
+  // ============================================================
+
+  // Show update banner
+  function showUpdateBanner(newVersion) {
+    if (!CONFIG.SHOW_UPDATE_BANNER) return;
+
+    // Remove existing banner if any
+    const existingBanner = document.querySelector('.update-banner');
+    if (existingBanner) {
+      existingBanner.remove();
+    }
+
+    const banner = document.createElement('div');
+    banner.className = 'update-banner';
+    banner.innerHTML = `
+      <span class="update-icon">🔄</span>
+      <span class="update-message">A new version${newVersion ? ' (' + newVersion + ')' : ''} is available!</span>
+      <button class="update-btn" onclick="window.PWAUtils.forceUpdate()">Update Now</button>
+      <button class="update-dismiss" onclick="this.parentElement.classList.add('hidden')">×</button>
+    `;
+
+    document.body.appendChild(banner);
+
+    // Show with animation
+    requestAnimationFrame(() => {
+      banner.classList.add('show');
+    });
   }
 
-  .quote-author {
-    font-size: 13px;
+  // Show refreshing indicator
+  function showRefreshingIndicator() {
+    const status = document.getElementById('pwaStatus');
+    if (status) {
+      status.textContent = 'Updating cache...';
+      status.style.opacity = '1';
+    }
   }
 
-  .update-banner {
-    flex-wrap: wrap;
-    padding: 12px 16px;
-    gap: 8px;
+  // Hide refreshing indicator
+  function hideRefreshingIndicator() {
+    const status = document.getElementById('pwaStatus');
+    if (status) {
+      setTimeout(() => {
+        status.style.opacity = '0.7';
+      }, 2000);
+    }
   }
 
-  .update-banner .update-message {
-    flex-basis: 100%;
-    text-align: center;
-    order: 1;
+  // Update PWA status text
+  function updatePWAStatus(text) {
+    const status = document.getElementById('pwaStatus');
+    if (status) {
+      status.textContent = text;
+    }
   }
 
-  .update-banner .update-icon {
-    order: 0;
+  // ============================================================
+  // OFFLINE DETECTION
+  // ============================================================
+
+  function setupOfflineDetection() {
+    const offlineIndicator = document.getElementById('offlineIndicator');
+    
+    function updateOnlineStatus() {
+      if (navigator.onLine) {
+        if (offlineIndicator) {
+          offlineIndicator.classList.add('hidden');
+        }
+        log('Online');
+        
+        // Refresh cache when coming back online
+        if (CONFIG.CACHE_REFRESH_ON_START && navigator.serviceWorker.controller) {
+          setTimeout(refreshCacheOnStartup, 1000);
+        }
+      } else {
+        if (offlineIndicator) {
+          offlineIndicator.classList.remove('hidden');
+        }
+        log('Offline');
+      }
+    }
+
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+
+    // Initial check
+    updateOnlineStatus();
   }
 
-  .update-banner .update-btn {
-    order: 2;
+  // ============================================================
+  // MOTIVATIONAL QUOTES (for home page)
+  // ============================================================
+
+  const NURSING_QUOTES = [
+    { text: "Nurses dispense comfort, compassion, and caring without even a prescription.", author: "Val Saintsbury" },
+    { text: "To do what nobody else will do, in a way that nobody else can, in spite of all we go through; that is to be a nurse.", author: "Rawsi Williams" },
+    { text: "Nursing is not for everyone. It takes a very strong, intelligent, and compassionate person to take on the ills of the world with passion and purpose.", author: "Donna Wilk Cardillo" },
+    { text: "The trained nurse has become one of the great blessings of humanity.", author: "William Osler" },
+    { text: "When you're a nurse, you know that every day you will touch a life or a life will touch yours.", author: "Unknown" },
+    { text: "Nursing is an art, and if it is to be made an art, it requires as exclusive a devotion, as hard a preparation, as any painter's or sculptor's work.", author: "Florence Nightingale" },
+    { text: "Save one life, you're a hero. Save a hundred lives, you're a nurse.", author: "Unknown" },
+    { text: "Caring is the essence of nursing.", author: "Jean Watson" },
+    { text: "Every nurse was drawn to nursing because of a desire to care, to serve, or to help.", author: "Christina Feist-Heilmeier" },
+    { text: "A nurse is not what you do. It is what you are.", author: "Unknown" },
+    { text: "Nurses are the heart of healthcare.", author: "Donna Wilk Cardillo" },
+    { text: "Be the nurse you would want as a patient.", author: "Unknown" },
+    { text: "The character of a nurse is as important as the knowledge they possess.", author: "Carolyn Jarvis" },
+    { text: "Hardships often prepare ordinary people for an extraordinary destiny.", author: "C.S. Lewis" },
+    { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" }
+  ];
+
+  function displayRandomQuote() {
+    const container = document.getElementById('quote-container');
+    if (!container) return;
+
+    const quote = NURSING_QUOTES[Math.floor(Math.random() * NURSING_QUOTES.length)];
+    
+    container.innerHTML = `
+      <div class="quote-wrapper">
+        <div class="quote-icon">💬</div>
+        <p class="quote-text">"${quote.text}"</p>
+        <span class="quote-author">— ${quote.author}</span>
+      </div>
+    `;
   }
 
-  .update-banner .update-dismiss {
-    order: 3;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-  }
-}
+  // ============================================================
+  // INITIALIZATION
+  // ============================================================
 
-@media (max-width: 480px) {
-  .hub-header h1 {
-    font-size: 24px;
-  }
+  function init() {
+    log('Initializing PWA Utils');
 
-  .category-card {
-    min-height: 140px;
-  }
+    // Register service worker
+    registerServiceWorker();
 
-  .quote-icon {
-    font-size: 24px;
-  }
+    // Setup offline detection
+    setupOfflineDetection();
 
-  .quote-text {
-    font-size: 15px;
-  }
-}
+    // Display quote on home page
+    if (document.getElementById('quote-container')) {
+      displayRandomQuote();
+    }
 
-/* Safe area insets for iOS PWA */
-@supports (padding-top: env(safe-area-inset-top)) {
-  body {
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-  }
-  
-  .offline-indicator {
-    padding-top: calc(12px + env(safe-area-inset-top));
+    // Handle visibility changes - check for updates when page becomes visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        log('Page visible, checking for updates');
+        checkForUpdates();
+      }
+    });
+
+    // Handle page show (including back/forward navigation)
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        log('Page restored from cache, refreshing');
+        checkForUpdates();
+      }
+    });
+
+    log('PWA Utils initialized');
   }
 
-  .update-banner {
-    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  // Export public API
+  window.PWAUtils = {
+    forceUpdate,
+    checkForUpdates,
+    refreshCache: refreshCacheOnStartup,
+    getRegistration: () => swRegistration
+  };
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
-}
+
+})();
