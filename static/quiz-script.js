@@ -14,6 +14,7 @@
    - Server-side preloaded quiz data support
    - Custom header display for preloaded data
    - Module selector hidden for preloaded quizzes
+   - FIXED: Correct JSON path construction for offline mode
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -57,6 +58,36 @@ const restartBtn2      = $('restartBtnSummary');
 const resetAll         = $('resetAll');
 const retryMissedBtn   = $('retryMissedBtn');
 
+/* ---------- Extract category from URL path ---------- */
+function getCategoryFromPath() {
+  const path = window.location.pathname;
+  // Match /quiz/{category}/{module} or /quiz-fill-blank/{category}/{module}
+  const match = path.match(/\/(?:quiz|quiz-fill-blank)\/([^\/]+)\/([^\/]+)/);
+  if (match) {
+    return decodeURIComponent(match[1]);
+  }
+  return null;
+}
+
+/* ---------- Extract module from URL path ---------- */
+function getModuleFromPath() {
+  const path = window.location.pathname;
+  const match = path.match(/\/(?:quiz|quiz-fill-blank)\/([^\/]+)\/([^\/]+)/);
+  if (match) {
+    return decodeURIComponent(match[2]);
+  }
+  return null;
+}
+
+/* ---------- Build correct JSON URL for module ---------- */
+function buildModuleJsonUrl(category, moduleName) {
+  if (!category || !moduleName) {
+    console.error('[Quiz] Missing category or module name for JSON URL');
+    return null;
+  }
+  return `/modules/${encodeURIComponent(category)}/${encodeURIComponent(moduleName)}.json`;
+}
+
 /* ---------- Pretty names for modules ---------- */
 function prettifyModuleName(name) {
   const raw = String(name || '');
@@ -86,8 +117,23 @@ function prettifyModuleName(name) {
     'HESI_Comp_Quiz_2': 'HESI Comprehensive Quiz 2',
     'HESI_Comp_Quiz_3': 'HESI Comprehensive Quiz 3',
     'HESI_Maternity': 'HESI Maternity',
+    'HESI_Adult_Health': 'HESI Adult Health',
+    'HESI_Clinical_Judgment': 'HESI Clinical Judgment',
     'NCLEX_Lab_Values': 'NCLEX Lab Values - Multiple Choice',
     'NCLEX_Lab_Values_Fill_In_The_Blank': 'NCLEX Lab Values - Fill in the Blank',
+    // Pharmacology Categories
+    'Cardiovascular_Pharm': 'Cardiovascular Drugs',
+    'CNS_Psychiatric_Pharm': 'CNS & Psychiatric Drugs',
+    'Anti_Infectives_Pharm': 'Anti-Infectives',
+    'Endocrine_Metabolic_Pharm': 'Endocrine & Metabolic Drugs',
+    'Respiratory_Pharm': 'Respiratory Drugs',
+    'Gastrointestinal_Pharm': 'Gastrointestinal Drugs',
+    'Pain_Management_Pharm': 'Pain Management',
+    'Hematologic_Oncology_Pharm': 'Hematologic & Oncology Drugs',
+    'Renal_Electrolytes_Pharm': 'Renal & Electrolyte Drugs',
+    'Musculoskeletal_Pharm': 'Musculoskeletal Drugs',
+    'Immunologic_Biologics_Pharm': 'Immunologic & Biologics',
+    'High_Alert_Medications_Pharm': 'High-Alert Medications',
   };
   if (map[normalized]) return map[normalized];
 
@@ -170,8 +216,9 @@ function isTextEditingTarget(el){
 
 /* ---------- State ---------- */
 let allQuestions = [];
+let currentCategory = null; // Track current category for JSON URL construction
 let run = {
-  bank: '', displayName: '', order: [], masterPool: [], i: 0,
+  bank: '', displayName: '', category: '', order: [], masterPool: [], i: 0,
   answered: new Map(), uniqueSeen: new Set(), thresholdWrong: 0,
   wrongSinceLast: [], totalQuestionsAnswered: 0, isFullBank: false, isRetry: false,
 };
@@ -182,7 +229,7 @@ const STORAGE_KEY = 'quizRunState_v1';
 function serializeRun() {
   if (!run || !run.order?.length) return null;
   return JSON.stringify({
-    bank: run.bank, displayName: run.displayName,
+    bank: run.bank, displayName: run.displayName, category: run.category,
     order: run.order.map(q => ({ id:q.id, stem:q.stem, options:q.options, correctLetters:q.correctLetters, rationale:q.rationale, type:q.type })),
     masterPool: run.masterPool.map(q => q.id), i: run.i,
     answered: Array.from(run.answered.entries()), uniqueSeen: Array.from(run.uniqueSeen),
@@ -206,6 +253,7 @@ function loadRunState() {
     const idToQ = (id) => qById.get(id) || null;
     const restored = {
       bank: String(data.bank||''), displayName: String(data.displayName || prettifyModuleName(data.bank || '')),
+      category: String(data.category || ''),
       order: restoredOrder, masterPool: (data.masterPool||[]).map(idToQ).filter(Boolean),
       i: Math.max(0, parseInt(data.i||0,10)), answered: new Map(Array.isArray(data.answered)?data.answered:[]),
       uniqueSeen: new Set(Array.isArray(data.uniqueSeen)?data.uniqueSeen:[]),
@@ -235,6 +283,7 @@ function showResumeIfAny(){
   if (resumeBtn) {
     resumeBtn.onclick = () => {
       run = s.run;
+      currentCategory = run.category; // Restore category
       setHeaderTitle(run.displayName || run.bank || defaultTitle);
       document.title = run.displayName ? run.displayName + ' - Nurse Success Study Hub' : (run.bank ? run.bank + ' - Nurse Success Study Hub' : 'Quiz - Nurse Success Study Hub');
       const quizTitle = $('quizTitle');
@@ -462,20 +511,47 @@ async function startQuiz(){
   const displayName = prettifyModuleName(bank);
   const qty = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
   const isFullBank = (qty === 'full');
+  
+  // Determine category - check multiple sources
+  const category = window.preloadedCategory || getCategoryFromPath() || currentCategory;
+  
+  if (!category) {
+    console.error('[Quiz] Could not determine category for module:', bank);
+    alert('Error: Could not determine quiz category. Please try navigating from the category page.');
+    return;
+  }
+  
+  currentCategory = category; // Store for later use
+  
   setHeaderTitle(displayName);
   document.title = displayName + ' - Nurse Success Study Hub';
   const quizTitle = $('quizTitle');
   if (quizTitle) quizTitle.textContent = displayName;
   startBtn.disabled = true;
+  
   try {
     let rawData;
+    
+    // Check for preloaded data first
     if (window.storedPreloadedData && window.storedPreloadedData.moduleName === bank) {
+      console.log('[Quiz] Using preloaded data for:', bank);
       rawData = window.storedPreloadedData.questions;
     } else {
-      const jsonUrl = '/' + bank + '.json';
+      // Build correct JSON URL path: /modules/{category}/{module}.json
+      const jsonUrl = buildModuleJsonUrl(category, bank);
+      
+      if (!jsonUrl) {
+        alert('Error: Could not build quiz URL');
+        startBtn.disabled = false;
+        return;
+      }
+      
+      console.log('[Quiz] Fetching from:', jsonUrl);
+      
       const res = await fetch(jsonUrl, { cache: 'no-store' });
       if (!res.ok) {
-        alert('Could not load ' + bank + '.json');
+        console.error('[Quiz] Fetch failed:', res.status, res.statusText);
+        alert('Could not load quiz. Status: ' + res.status + '. Make sure you are online or the quiz is cached for offline use.');
         startBtn.disabled = false;
         setHeaderTitle(defaultTitle);
         document.title = 'Quiz - Nurse Success Study Hub';
@@ -483,22 +559,27 @@ async function startQuiz(){
       }
       rawData = await res.json();
     }
+    
     allQuestions = normalizeQuestions(rawData);
     const sampled = sampleQuestions(allQuestions, qty);
     const shuffledQuestions = sampled.map((q) => shuffleQuestionOptions(q));
+    
     run = {
-      bank, displayName, order: [...shuffledQuestions], masterPool: [...shuffledQuestions],
+      bank, displayName, category, order: [...shuffledQuestions], masterPool: [...shuffledQuestions],
       i: 0, answered: new Map(), uniqueSeen: new Set(), thresholdWrong: 0,
       wrongSinceLast: [], totalQuestionsAnswered: 1, isFullBank: isFullBank, isRetry: false,
     };
+    
     const total = run.masterPool.length;
     const frac = (qty === 'full' || (typeof qty === 'number' && qty >= 100)) ? 0.05 : 0.15;
     run.thresholdWrong = Math.max(1, Math.ceil(total * frac));
+    
     if (launcher) launcher.classList.add('hidden');
     if (summary) summary.classList.add('hidden');
     if (quiz) quiz.classList.remove('hidden');
     if (countersBox) countersBox.classList.remove('hidden');
     if (resetAll) resetAll.classList.remove('hidden');
+    
     const q0 = run.order[0];
     run.uniqueSeen.add(q0.id);
     renderQuestion(q0);
@@ -506,7 +587,7 @@ async function startQuiz(){
     startBtn.disabled = false;
   } catch (err) {
     console.error('Error starting quiz:', err);
-    alert('Error loading quiz. Please try again.');
+    alert('Error loading quiz. Please check your connection and try again.');
     if (startBtn) startBtn.disabled = false;
   }
 }
@@ -514,13 +595,14 @@ async function startQuiz(){
 async function startRetryQuiz(missedQuestions) {
   if (!missedQuestions || missedQuestions.length === 0) { alert('No missed questions to retry'); return; }
   const displayName = run.displayName + ' - Retry Missed Questions';
+  const category = run.category || currentCategory;
   setHeaderTitle(displayName);
   document.title = displayName + ' - Nurse Success Study Hub';
   const quizTitle = $('quizTitle');
   if (quizTitle) quizTitle.textContent = displayName;
   const shuffledQuestions = missedQuestions.map((q) => shuffleQuestionOptions(q));
   run = {
-    bank: run.bank, displayName: displayName, order: [...shuffledQuestions], masterPool: [...shuffledQuestions],
+    bank: run.bank, displayName: displayName, category: category, order: [...shuffledQuestions], masterPool: [...shuffledQuestions],
     i: 0, answered: new Map(), uniqueSeen: new Set(), thresholdWrong: 0,
     wrongSinceLast: [], totalQuestionsAnswered: 1, isFullBank: false, isRetry: true,
   };
@@ -720,25 +802,24 @@ function checkAutoStart() {
   return urlParams.get('autostart') === 'true';
 }
 
-function getModuleFromPath() {
-  const path = window.location.pathname;
-  const match = path.match(/\/quiz\/([^\/]+)$/);
-  if (match) return decodeURIComponent(match[1]);
-  return null;
-}
-
 /* ---------- Initialize modules with preselect and preloaded data ---------- */
 async function initModulesWithPreselect() {
   const moduleFromPath = getModuleFromPath();
+  const categoryFromPath = getCategoryFromPath();
   const autostart = checkAutoStart();
   const hasPreloadedData = window.preloadedQuizData && window.preloadedModuleName;
   
+  // Set current category from path or preloaded data
+  currentCategory = window.preloadedCategory || categoryFromPath;
+  
   if (hasPreloadedData) {
     const displayName = prettifyModuleName(window.preloadedModuleName);
-    const category = window.preloadedCategory || '';
+    const category = window.preloadedCategory || categoryFromPath || '';
     const description = getModuleDescription(window.preloadedModuleName, category);
     const badgeClass = getBadgeClass(window.preloadedModuleName, category);
     const badgeText = getBadgeText(window.preloadedModuleName, category);
+    
+    currentCategory = category; // Store category
     
     const quizTitle = $('quizTitle');
     if (quizTitle) quizTitle.textContent = displayName;
@@ -794,9 +875,14 @@ async function initModulesWithPreselect() {
   
   try {
     const urlParams = new URLSearchParams(window.location.search);
-    const category = urlParams.get('category');
+    const category = urlParams.get('category') || categoryFromPath;
     const subcategory = urlParams.get('subcategory');
     let modules = [];
+    
+    // Store the category for later use
+    if (category) {
+      currentCategory = category;
+    }
     
     if (category) {
       const endpoint = '/api/category/' + encodeURIComponent(category) + '/modules';
