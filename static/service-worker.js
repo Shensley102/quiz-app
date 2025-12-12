@@ -1,8 +1,14 @@
-// Service Worker for Nurse Success Study Hub PWA
-const CACHE_VERSION = 'v1.0.3';
+/* ============================================================
+   Service Worker for Nurse Success Study Hub PWA
+   
+   CACHE VERSION: Bump this when updating content
+   TO ADD NEW QUIZ JSON: Add path to QUIZ_DATA_FILES array
+   ============================================================ */
+
+const CACHE_VERSION = 'v1.0.4';
 const CACHE_NAME = `nurse-success-${CACHE_VERSION}`;
 
-// Core files that should always be cached
+// Core files that MUST be cached for app to work offline
 const CORE_ASSETS = [
   '/',
   '/static/manifest.json',
@@ -15,20 +21,21 @@ const CORE_ASSETS = [
   '/static/fishbone-utils.js',
   '/static/quiz-fishbone-mcq.js',
   '/static/quiz-fishbone-fill.js',
+  // Icons - all sizes
   '/static/icons/icon-72.png',
   '/static/icons/icon-96.png',
+  '/static/icons/icon-120.png',
   '/static/icons/icon-128.png',
   '/static/icons/icon-144.png',
   '/static/icons/icon-152.png',
-  '/static/icons/icon-192.png',
-  '/static/icons/icon-384.png',
-  '/static/icons/icon-512.png',
-  '/static/icons/icon-120.png',
   '/static/icons/icon-167.png',
   '/static/icons/icon-180.png',
+  '/static/icons/icon-192.png',
+  '/static/icons/icon-384.png',
+  '/static/icons/icon-512.png'
 ];
 
-// HTML pages to cache for offline access
+// HTML pages to cache for offline navigation
 const HTML_PAGES = [
   '/category/HESI',
   '/category/Lab_Values',
@@ -39,25 +46,32 @@ const HTML_PAGES = [
   '/category/Nursing_Certifications',
   '/category/Nursing_Certifications/CCRN',
   '/quiz-fishbone-mcq',
-  '/quiz-fishbone-fill',
+  '/quiz-fishbone-fill'
 ];
 
-// Quiz data files (JSON) - these will be cached on first access
+// Quiz JSON data files - ADD NEW QUIZ FILES HERE
 const QUIZ_DATA_FILES = [
   // HESI
-  '/modules/HESI/Comprehensive_Quiz_1.json',
-  '/modules/HESI/Comprehensive_Quiz_2.json',
-  '/modules/HESI/Comprehensive_Quiz_3.json',
-  '/modules/HESI/Leadership_Management.json',
-  '/modules/HESI/Maternity.json',
-  '/modules/HESI/Adult_Health.json',
-  '/modules/HESI/Clinical_Judgment_Test.json',
+  '/modules/HESI/HESI_Comp_Quiz_1.json',
+  '/modules/HESI/HESI_Comp_Quiz_2.json',
+  '/modules/HESI/HESI_Comp_Quiz_3.json',
+  '/modules/HESI/HESI_Delegating.json',
+  '/modules/HESI/HESI_Leadership.json',
+  '/modules/HESI/Hesi_Management.json',
+  '/modules/HESI/HESI_Comprehensive.json',
+  '/modules/HESI/HESI_Maternity.json',
   
   // Lab Values
-  '/modules/Lab_Values/Lab_Values_Multiple_Choice.json',
-  '/modules/Lab_Values/Lab_Values_Fill_In_The_Blank.json',
+  '/modules/Lab_Values/NCLEX_Lab_Values.json',
+  '/modules/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank.json',
   
   // Patient Care Management
+  '/modules/Patient_Care_Management/Module_1.json',
+  '/modules/Patient_Care_Management/Module_2.json',
+  '/modules/Patient_Care_Management/Module_3.json',
+  '/modules/Patient_Care_Management/Module_4.json',
+  '/modules/Patient_Care_Management/Learning_Questions_Module_1_2.json',
+  '/modules/Patient_Care_Management/Learning_Questions_Module_3_4.json',
   '/modules/Patient_Care_Management/Leadership.json',
   
   // Pharmacology - Comprehensive
@@ -80,10 +94,25 @@ const QUIZ_DATA_FILES = [
   '/modules/Pharmacology/Immunologic_Biologics_Pharm.json',
   '/modules/Pharmacology/High_Alert_Medications_Pharm.json',
   
-  // Nursing Certifications
-  '/modules/Nursing_Certifications/CCRN_Test_1.json',
-  '/modules/Nursing_Certifications/CCRN_Test_2.json',
-  '/modules/Nursing_Certifications/CCRN_Test_3.json',
+  // Nursing Certifications - CCRN
+  '/modules/Nursing_Certifications/CCRN_Test_1_Combined_QA.json',
+  '/modules/Nursing_Certifications/CCRN_Test_2_Combined_QA.json',
+  '/modules/Nursing_Certifications/CCRN_Test_3_Combined_QA.json'
+];
+
+// Category images
+const IMAGE_FILES = [
+  '/images/Nursing_Hesi_Exam_Prep_Image.png',
+  '/images/Nursing_Lab_Values.png',
+  '/images/Nursing_Leadership_Image.png',
+  '/images/Nursing_Pharmacology_Image.png',
+  '/images/Nursing_Advanced_Certifications.png',
+  // Fishbone diagram images
+  '/static/images/fishbone-cbc.png',
+  '/static/images/fishbone-bmp.png',
+  '/static/images/fishbone-liver.png',
+  '/static/images/fishbone-coagulation.png',
+  '/static/images/fishbone-abg.png'
 ];
 
 // Install event - cache core assets
@@ -92,13 +121,36 @@ self.addEventListener('install', (event) => {
   
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => {
+      .then(async (cache) => {
         console.log('[Service Worker] Caching core assets');
-        return cache.addAll(CORE_ASSETS);
+        
+        // Cache core assets (fail fast if these fail)
+        await cache.addAll(CORE_ASSETS);
+        console.log('[Service Worker] Core assets cached');
+        
+        // Try to cache HTML pages (don't fail install if these fail)
+        const htmlPromises = HTML_PAGES.map(url => 
+          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err))
+        );
+        await Promise.allSettled(htmlPromises);
+        
+        // Try to cache quiz data (don't fail install if these fail)
+        const quizPromises = QUIZ_DATA_FILES.map(url =>
+          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err))
+        );
+        await Promise.allSettled(quizPromises);
+        
+        // Try to cache images (don't fail install if these fail)
+        const imagePromises = IMAGE_FILES.map(url =>
+          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err))
+        );
+        await Promise.allSettled(imagePromises);
+        
+        console.log('[Service Worker] All assets processed');
       })
       .then(() => {
-        console.log('[Service Worker] Core assets cached');
-        return self.skipWaiting(); // Activate immediately
+        console.log('[Service Worker] Skip waiting');
+        return self.skipWaiting();
       })
       .catch((error) => {
         console.error('[Service Worker] Install failed:', error);
@@ -106,7 +158,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Activate event - clean up old caches
+// Activate event - clean up old caches and notify clients
 self.addEventListener('activate', (event) => {
   console.log('[Service Worker] Activating version', CACHE_VERSION);
   
@@ -124,12 +176,23 @@ self.addEventListener('activate', (event) => {
       })
       .then(() => {
         console.log('[Service Worker] Claiming clients');
-        return self.clients.claim(); // Take control immediately
+        return self.clients.claim();
+      })
+      .then(() => {
+        // Notify all clients that a new version is available
+        return self.clients.matchAll().then(clients => {
+          clients.forEach(client => {
+            client.postMessage({
+              type: 'UPDATE_AVAILABLE',
+              version: CACHE_VERSION
+            });
+          });
+        });
       })
   );
 });
 
-// Fetch event - serve from cache with network fallback
+// Fetch event - serve from cache with appropriate strategies
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
@@ -147,13 +210,13 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(request)
       .then((cachedResponse) => {
-        // Strategy depends on resource type
         
-        // For HTML pages and API calls - network first, fall back to cache
+        // STRATEGY 1: Network First for HTML pages and API calls
+        // Try network first for fresh content, fall back to cache
         if (request.mode === 'navigate' || url.pathname.startsWith('/api/') || HTML_PAGES.includes(url.pathname)) {
           return fetch(request)
             .then((networkResponse) => {
-              // Cache the new version
+              // Cache the fresh response
               if (networkResponse && networkResponse.status === 200) {
                 const responseToCache = networkResponse.clone();
                 caches.open(CACHE_NAME).then((cache) => {
@@ -163,12 +226,13 @@ self.addEventListener('fetch', (event) => {
               return networkResponse;
             })
             .catch(() => {
-              // Network failed, return cached version
+              // Network failed, return cached version or home page
               return cachedResponse || caches.match('/');
             });
         }
         
-        // For static assets - cache first, fall back to network
+        // STRATEGY 2: Cache First for static assets
+        // Return cache immediately for speed, update in background
         if (url.pathname.startsWith('/static/') || url.pathname.startsWith('/images/')) {
           return cachedResponse || fetch(request)
             .then((networkResponse) => {
@@ -182,11 +246,12 @@ self.addEventListener('fetch', (event) => {
             });
         }
         
-        // For quiz data (JSON files) - stale-while-revalidate
-        if (url.pathname.endsWith('.json') || url.pathname.startsWith('/modules/') || QUIZ_DATA_FILES.includes(url.pathname)) {
-          // Return cached version immediately
+        // STRATEGY 3: Stale While Revalidate for quiz JSON
+        // Return cache immediately, fetch fresh in background
+        if (url.pathname.endsWith('.json') || url.pathname.startsWith('/modules/')) {
+          // Return cached version immediately if available
           if (cachedResponse) {
-            // But also fetch new version in background
+            // Fetch fresh version in background
             fetch(request).then((networkResponse) => {
               if (networkResponse && networkResponse.status === 200) {
                 caches.open(CACHE_NAME).then((cache) => {
@@ -194,12 +259,12 @@ self.addEventListener('fetch', (event) => {
                 });
               }
             }).catch(() => {
-              // Ignore network errors for background updates
+              // Ignore background update failures
             });
             return cachedResponse;
           }
           
-          // No cache, fetch from network
+          // No cache, must fetch from network
           return fetch(request)
             .then((networkResponse) => {
               if (networkResponse && networkResponse.status === 200) {
@@ -225,38 +290,52 @@ self.addEventListener('fetch', (event) => {
 // Handle messages from clients
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
+    console.log('[Service Worker] Skip waiting requested');
     self.skipWaiting();
   }
   
   if (event.data && event.data.type === 'CACHE_URLS') {
+    console.log('[Service Worker] Caching additional URLs');
     event.waitUntil(
       caches.open(CACHE_NAME)
         .then((cache) => cache.addAll(event.data.urls))
     );
   }
+  
+  if (event.data && event.data.type === 'GET_VERSION') {
+    event.ports[0].postMessage({ version: CACHE_VERSION });
+  }
 });
 
-// Periodic background sync (if supported)
+// Background sync for cache updates (if supported)
 self.addEventListener('sync', (event) => {
   if (event.tag === 'update-cache') {
+    console.log('[Service Worker] Background sync: updating cache');
     event.waitUntil(updateCache());
   }
 });
 
+// Function to update all cached content
 async function updateCache() {
   const cache = await caches.open(CACHE_NAME);
-  const requests = [...CORE_ASSETS, ...HTML_PAGES, ...QUIZ_DATA_FILES];
+  const allUrls = [...CORE_ASSETS, ...HTML_PAGES, ...QUIZ_DATA_FILES, ...IMAGE_FILES];
   
-  for (const request of requests) {
+  for (const url of allUrls) {
     try {
-      const response = await fetch(request);
+      const response = await fetch(url);
       if (response && response.status === 200) {
-        await cache.put(request, response);
+        await cache.put(url, response);
       }
     } catch (error) {
-      console.error(`[Service Worker] Failed to update cache for ${request}:`, error);
+      console.warn('[Service Worker] Failed to update:', url, error.message);
     }
   }
+  
+  // Notify clients that cache was updated
+  const clients = await self.clients.matchAll();
+  clients.forEach(client => {
+    client.postMessage({ type: 'CACHE_UPDATED', version: CACHE_VERSION });
+  });
 }
 
 console.log('[Service Worker] Script loaded - version', CACHE_VERSION);
