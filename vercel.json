@@ -21,7 +21,7 @@
   "routes": [
     {
       "src": "/service-worker.js",
-      "dest": "/static/service-worker.js",
+      "dest": "/static/js/service-worker.js",
       "headers": {
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Service-Worker-Allowed": "/"
