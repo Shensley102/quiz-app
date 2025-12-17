@@ -5,11 +5,12 @@
    TO ADD NEW QUIZ JSON: Add path to QUIZ_DATA_FILES array
    
    VERSION HISTORY:
+   v1.0.7 - Comprehensive auto-caching implementation
    v1.0.6 - Fixed CSS filename (category-style.css), added automatic cache updates
    v1.0.5 - Added pharmacology routes and categories
    ============================================================ */
 
-const CACHE_VERSION = 'v1.0.6';
+const CACHE_VERSION = 'v1.0.7';
 const CACHE_NAME = `nurse-success-${CACHE_VERSION}`;
 
 // How often to check for updates (in milliseconds)
@@ -43,7 +44,6 @@ const CORE_ASSETS = [
 ];
 
 // HTML pages to cache for offline navigation
-// IMPORTANT: These are the Flask routes, not template files
 const HTML_PAGES = [
   '/',
   '/category/HESI',
@@ -58,7 +58,7 @@ const HTML_PAGES = [
   '/quiz-fishbone-fill'
 ];
 
-// Quiz JSON data files - ADD NEW QUIZ FILES HERE
+// Quiz JSON data files - comprehensive list
 const QUIZ_DATA_FILES = [
   // HESI
   '/modules/HESI/HESI_Adult_Health.json',
@@ -125,40 +125,50 @@ const IMAGE_FILES = [
   '/static/images/fishbone-elements.png'
 ];
 
-// Install event - cache core assets
+// Install event - IMMEDIATELY cache ALL assets
 self.addEventListener('install', (event) => {
   console.log('[Service Worker] Installing version', CACHE_VERSION);
   
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(async (cache) => {
-        console.log('[Service Worker] Caching core assets');
+        console.log('[Service Worker] Pre-caching ALL assets');
         
-        // Cache core assets (fail fast if these fail)
-        await cache.addAll(CORE_ASSETS);
-        console.log('[Service Worker] Core assets cached');
+        // Combine all asset lists
+        const allAssets = [
+          ...CORE_ASSETS,
+          ...HTML_PAGES,
+          ...QUIZ_DATA_FILES,
+          ...IMAGE_FILES
+        ];
         
-        // Try to cache HTML pages (don't fail install if these fail)
-        const htmlPromises = HTML_PAGES.map(url => 
-          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err.message))
+        // Remove duplicates
+        const uniqueAssets = [...new Set(allAssets)];
+        
+        console.log(`[Service Worker] Total assets to cache: ${uniqueAssets.length}`);
+        
+        // Cache all assets with error handling for each
+        const cachePromises = uniqueAssets.map(url => 
+          cache.add(url)
+            .then(() => {
+              console.log(`[Service Worker] Cached: ${url}`);
+              return true;
+            })
+            .catch(err => {
+              console.warn(`[Service Worker] Failed to cache ${url}:`, err.message);
+              return false;
+            })
         );
-        await Promise.allSettled(htmlPromises);
-        console.log('[Service Worker] HTML pages cached');
         
-        // Try to cache quiz data (don't fail install if these fail)
-        const quizPromises = QUIZ_DATA_FILES.map(url =>
-          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err.message))
-        );
-        await Promise.allSettled(quizPromises);
-        console.log('[Service Worker] Quiz data cached');
+        const results = await Promise.allSettled(cachePromises);
+        const successCount = results.filter(r => r.status === 'fulfilled' && r.value).length;
+        const failCount = results.length - successCount;
         
-        // Try to cache images (don't fail install if these fail)
-        const imagePromises = IMAGE_FILES.map(url =>
-          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err.message))
-        );
-        await Promise.allSettled(imagePromises);
+        console.log(`[Service Worker] Cache complete: ${successCount} succeeded, ${failCount} failed`);
         
-        console.log('[Service Worker] All assets processed');
+        if (successCount < CORE_ASSETS.length) {
+          console.warn('[Service Worker] Some core assets failed to cache!');
+        }
       })
       .then(() => {
         console.log('[Service Worker] Skip waiting');
@@ -166,6 +176,7 @@ self.addEventListener('install', (event) => {
       })
       .catch((error) => {
         console.error('[Service Worker] Install failed:', error);
+        throw error;
       })
   );
 });
@@ -204,7 +215,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch event - serve from cache with appropriate strategies
+// Fetch event - serve from cache with stale-while-revalidate strategy
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
@@ -223,7 +234,6 @@ self.addEventListener('fetch', (event) => {
   if (!url.hostname.includes(self.location.hostname) && !url.hostname.includes('localhost')) {
     event.respondWith(
       fetch(request).catch(() => {
-        // Return empty response for external resources when offline
         return new Response('', { status: 499, statusText: 'Network Unavailable' });
       })
     );
@@ -234,94 +244,55 @@ self.addEventListener('fetch', (event) => {
     caches.match(request)
       .then((cachedResponse) => {
         
-        // STRATEGY 1: Network First for HTML pages and API calls
-        // Try network first for fresh content, fall back to cache
-        if (request.mode === 'navigate' || url.pathname.startsWith('/api/') || HTML_PAGES.includes(url.pathname)) {
-          return fetch(request)
-            .then((networkResponse) => {
-              // Cache the fresh response
-              if (networkResponse && networkResponse.status === 200) {
-                const responseToCache = networkResponse.clone();
-                caches.open(CACHE_NAME).then((cache) => {
-                  cache.put(request, responseToCache);
-                });
-              }
-              return networkResponse;
-            })
-            .catch(() => {
-              // Network failed, return cached version or home page
-              if (cachedResponse) {
-                return cachedResponse;
-              }
-              // If no cached response for this specific page, try to return the home page
-              return caches.match('/');
-            });
-        }
+        // STRATEGY: Stale-While-Revalidate for ALL same-origin resources
+        // Return cached version immediately if available, update in background
         
-        // STRATEGY 2: Cache First for static assets
-        // Return cache immediately for speed, update in background
-        if (url.pathname.startsWith('/static/') || url.pathname.startsWith('/images/')) {
-          if (cachedResponse) {
-            // Fetch fresh version in background (stale-while-revalidate)
-            fetch(request).then((networkResponse) => {
-              if (networkResponse && networkResponse.status === 200) {
-                caches.open(CACHE_NAME).then((cache) => {
-                  cache.put(request, networkResponse);
-                });
-              }
-            }).catch(() => { /* Ignore background update failures */ });
-            return cachedResponse;
+        // Fetch fresh version in background
+        const fetchPromise = fetch(request)
+          .then((networkResponse) => {
+            // Only cache successful responses
+            if (networkResponse && networkResponse.status === 200) {
+              const responseToCache = networkResponse.clone();
+              caches.open(CACHE_NAME).then((cache) => {
+                cache.put(request, responseToCache);
+              });
+            }
+            return networkResponse;
+          })
+          .catch((error) => {
+            console.warn('[Service Worker] Fetch failed:', url.pathname, error.message);
+            throw error;
+          });
+        
+        // Return cached version immediately if available, otherwise wait for network
+        if (cachedResponse) {
+          // For navigation requests, prefer fresh content but fall back to cache
+          if (request.mode === 'navigate') {
+            return fetchPromise.catch(() => cachedResponse);
           }
           
-          return fetch(request)
-            .then((networkResponse) => {
-              if (networkResponse && networkResponse.status === 200) {
-                const responseToCache = networkResponse.clone();
-                caches.open(CACHE_NAME).then((cache) => {
-                  cache.put(request, responseToCache);
-                });
-              }
-              return networkResponse;
-            });
+          // For other requests, return cache immediately and update in background
+          event.waitUntil(fetchPromise);
+          return cachedResponse;
         }
         
-        // STRATEGY 3: Stale While Revalidate for quiz JSON
-        // Return cache immediately, fetch fresh in background
-        if (url.pathname.endsWith('.json') || url.pathname.startsWith('/modules/')) {
-          // Return cached version immediately if available
-          if (cachedResponse) {
-            // Fetch fresh version in background
-            fetch(request).then((networkResponse) => {
-              if (networkResponse && networkResponse.status === 200) {
-                caches.open(CACHE_NAME).then((cache) => {
-                  cache.put(request, networkResponse);
-                });
+        // No cache available, must wait for network
+        return fetchPromise.catch((error) => {
+          // If this is a navigation request and network failed, try to return home page
+          if (request.mode === 'navigate') {
+            return caches.match('/').then(homeResponse => {
+              if (homeResponse) {
+                return homeResponse;
               }
-            }).catch(() => {
-              // Ignore background update failures
+              // Last resort: minimal offline page
+              return new Response(
+                '<html><body><h1>Offline</h1><p>You are offline and this page is not cached.</p></body></html>',
+                { headers: { 'Content-Type': 'text/html' } }
+              );
             });
-            return cachedResponse;
           }
-          
-          // No cache, must fetch from network
-          return fetch(request)
-            .then((networkResponse) => {
-              if (networkResponse && networkResponse.status === 200) {
-                const responseToCache = networkResponse.clone();
-                caches.open(CACHE_NAME).then((cache) => {
-                  cache.put(request, responseToCache);
-                });
-              }
-              return networkResponse;
-            })
-            .catch((error) => {
-              console.error('[Service Worker] Fetch failed for:', url.pathname, error);
-              throw error;
-            });
-        }
-        
-        // Default: try cache first, then network
-        return cachedResponse || fetch(request);
+          throw error;
+        });
       })
   );
 });
@@ -403,10 +374,13 @@ async function updateCache() {
   const cache = await caches.open(CACHE_NAME);
   const allUrls = [...CORE_ASSETS, ...HTML_PAGES, ...QUIZ_DATA_FILES, ...IMAGE_FILES];
   
+  // Remove duplicates
+  const uniqueUrls = [...new Set(allUrls)];
+  
   let updated = 0;
   let failed = 0;
   
-  for (const url of allUrls) {
+  for (const url of uniqueUrls) {
     try {
       const response = await fetch(url, { cache: 'no-store' });
       if (response && response.status === 200) {
@@ -427,7 +401,7 @@ async function updateCache() {
     client.postMessage({ 
       type: 'CACHE_UPDATED', 
       version: CACHE_VERSION,
-      stats: { updated, failed, total: allUrls.length }
+      stats: { updated, failed, total: uniqueUrls.length }
     });
   });
   
