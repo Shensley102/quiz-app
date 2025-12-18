@@ -7,7 +7,7 @@
    - Detailed performance review
    - LocalStorage persistence for resuming quizzes
    - Resume only works with Full Module Question Bank
-   - Shows remaining questions count on resume button
+   - Shows remaining questions count on home page resume
    - Subcategory filtering for grouped modules
    - Retry missed questions feature
    - Auto-start functionality for direct quiz links
@@ -15,6 +15,8 @@
    - Custom header display for preloaded data
    - Module selector hidden for preloaded quizzes
    - FIXED: Correct JSON path construction for offline mode
+   - CHANGED: Resume button only on home page, not on quiz pages
+   - CHANGED: Start Quiz clears previous session
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -39,7 +41,6 @@ const launcher   = $('launcher');
 const moduleSel  = $('moduleSel');
 const lengthBtns = $('lengthBtns');
 const startBtn   = $('startBtn');
-const resumeBtn  = $('resumeBtn');
 
 // Quiz UI
 const quiz         = $('quiz');
@@ -236,6 +237,8 @@ function serializeRun() {
     thresholdWrong: run.thresholdWrong, wrongSinceLast: run.wrongSinceLast.map(q => q.id),
     totalQuestionsAnswered: run.totalQuestionsAnswered, isFullBank: run.isFullBank, isRetry: run.isRetry,
     title: pageTitle?.textContent || defaultTitle,
+    backUrl: window.backUrl || '/',
+    backLabel: window.backLabel || 'Nurse Success Study Hub',
   });
 }
 function saveRunState() { try { const s = serializeRun(); if (s) localStorage.setItem(STORAGE_KEY, s); } catch {} }
@@ -268,35 +271,32 @@ function loadRunState() {
 function clearSavedState(){ try { localStorage.removeItem(STORAGE_KEY); } catch {} }
 function getNotMasteredFromRun(runData) { return runData.masterPool.filter(q => !runData.answered.get(q.id)?.correct).length; }
 
-function showResumeIfAny(){
+/* ---------- Check for resume on page load and resume if user came from home page ---------- */
+function checkAndResumeFromHome() {
   const s = loadRunState();
-  const resumeContainer = document.getElementById('resumeContainer');
-  if (!resumeContainer) return;
+  
+  // Only resume if:
+  // 1. We have saved state
+  // 2. It's a full bank quiz
+  // 3. It's not a retry
+  // 4. User came to this page (not just loading fresh)
   if (!s || !s.run?.order?.length || !s.run?.isFullBank || s.run?.isRetry) {
-    resumeContainer.classList.add('hidden');
-    return;
+    return false; // No resume
   }
-  resumeContainer.classList.remove('hidden');
-  const remainingQuestions = getNotMasteredFromRun(s.run);
-  const remainingCountEl = document.getElementById('remainingQuestionsCount');
-  if (remainingCountEl) remainingCountEl.textContent = remainingQuestions + ' questions remaining';
-  if (resumeBtn) {
-    resumeBtn.onclick = () => {
-      run = s.run;
-      currentCategory = run.category; // Restore category
-      setHeaderTitle(run.displayName || run.bank || defaultTitle);
-      document.title = run.displayName ? run.displayName + ' - Nurse Success Study Hub' : (run.bank ? run.bank + ' - Nurse Success Study Hub' : 'Quiz - Nurse Success Study Hub');
-      const quizTitle = $('quizTitle');
-      if (quizTitle) quizTitle.textContent = run.displayName || run.bank || defaultTitle;
-      if (launcher) launcher.classList.add('hidden');
-      if (summary) summary.classList.add('hidden');
-      if (quiz) quiz.classList.remove('hidden');
-      if (countersBox) countersBox.classList.remove('hidden');
-      if (resetAll) resetAll.classList.remove('hidden');
-      const q = currentQuestion();
-      if (q) { run.uniqueSeen.add(q.id); renderQuestion(q); updateCounters(); }
-    };
+
+  // Check if we should actually resume (user came from home page or back button)
+  // We resume if the current module matches the saved module
+  const moduleFromPath = getModuleFromPath();
+  const categoryFromPath = getCategoryFromPath();
+  
+  if (moduleFromPath && categoryFromPath && 
+      moduleFromPath === s.run.bank && 
+      categoryFromPath === s.run.category) {
+    // This is the same quiz - resume it
+    return true;
   }
+
+  return false;
 }
 
 /* ---------- Normalize & shuffle ---------- */
@@ -859,6 +859,27 @@ async function initModulesWithPreselect() {
     }
 
     window.storedPreloadedData = { questions: window.preloadedQuizData, moduleName: window.preloadedModuleName };
+
+    // Check if we should resume from this page
+    if (checkAndResumeFromHome()) {
+      const saved = loadRunState();
+      if (saved && saved.run) {
+        run = saved.run;
+        currentCategory = run.category;
+        setHeaderTitle(run.displayName || run.bank || defaultTitle);
+        document.title = run.displayName ? run.displayName + ' - Nurse Success Study Hub' : (run.bank ? run.bank + ' - Nurse Success Study Hub' : 'Quiz - Nurse Success Study Hub');
+        const quizTitle = $('quizTitle');
+        if (quizTitle) quizTitle.textContent = run.displayName || run.bank || defaultTitle;
+        if (launcher) launcher.classList.add('hidden');
+        if (summary) summary.classList.add('hidden');
+        if (quiz) quiz.classList.remove('hidden');
+        if (countersBox) countersBox.classList.remove('hidden');
+        if (resetAll) resetAll.classList.remove('hidden');
+        const q = currentQuestion();
+        if (q) { run.uniqueSeen.add(q.id); renderQuestion(q); updateCounters(); }
+      }
+    }
+
     return;
   }
 
@@ -947,4 +968,3 @@ async function initModulesWithPreselect() {
 /* ---------- Init ---------- */
 setupCategoryDisplay();
 initModulesWithPreselect();
-showResumeIfAny();
