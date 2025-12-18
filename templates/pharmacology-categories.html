@@ -1,555 +1,295 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Pharmacology by Category - Nurse Success Study Hub</title>
-    
-    <!-- PWA Meta Tags -->
-    <link rel="manifest" href="/static/manifest.json">
-    <meta name="theme-color" content="#00acc1">
-    
-    <!-- Apple Mobile Web App Tags -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Nurse Success">
-    
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180x180.png">
-    <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167x167.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120x120.png">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+{% extends "base.html" %}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #00acc1 0%, #00838f 100%);
-            min-height: 100vh;
-            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-            padding-top: max(20px, env(safe-area-inset-top));
-            padding-bottom: max(20px, env(safe-area-inset-bottom));
-        }
+{% block title %}Pharmacology by Category - Nurse Success Study Hub{% endblock %}
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4 text-success"><i class="fas fa-pills"></i> Pharmacology by Category</h1>
+    <p class="text-center lead mb-5">Select a pharmacology category to study medication classes, mechanisms, and nursing implications</p>
 
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #00acc1;
-            text-decoration: none;
-            font-weight: 600;
-            margin-bottom: 15px;
-            transition: transform 0.2s;
-        }
-
-        .back-link:hover {
-            transform: translateX(-5px);
-        }
-
-        h1 {
-            color: #2c3e50;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .category-icon {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-
-        .description {
-            color: #555;
-            font-size: 1.1em;
-            line-height: 1.6;
-        }
-
-        .info-box {
-            background: linear-gradient(135deg, rgba(0, 172, 193, 0.1), rgba(0, 131, 143, 0.1));
-            border-left: 4px solid #00acc1;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-
-        .info-box h3 {
-            color: #00acc1;
-            margin-bottom: 8px;
-        }
-
-        .info-box p {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .info-box ul {
-            color: #666;
-            margin-left: 20px;
-            line-height: 1.8;
-        }
-
-        .quizzes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .quiz-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quiz-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, #00acc1, #00838f);
-        }
-
-        .quiz-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .quiz-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .quiz-icon {
-            font-size: 2em;
-        }
-
-        .quiz-title {
-            font-size: 1.5em;
-            font-weight: 700;
-            background: linear-gradient(90deg, #00acc1, #00838f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .quiz-description {
-            color: #666;
-            font-size: 0.95em;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .quiz-stats {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            padding-top: 15px;
-            border-top: 2px solid #f0f0f0;
-        }
-
-        .stat {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-label {
-            font-size: 0.75em;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        .stat-value {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        .arrow {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5em;
-            opacity: 0.3;
-            transition: all 0.3s ease;
-        }
-
-        .quiz-card:hover .arrow {
-            opacity: 1;
-            transform: translateY(-50%) translateX(5px);
-        }
-
-        /* Offline Indicator */
-        .offline-indicator {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ff9800;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            font-weight: 600;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .offline-indicator.hidden {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-
-            .quizzes-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .quiz-title {
-                font-size: 1.3em;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <a href="/category/Pharmacology" class="back-link">
-                <span>←</span>
-                <span>Back to Pharmacology</span>
-            </a>
-            <div class="category-icon">🗂️</div>
-            <h1>Pharmacology by Category</h1>
-            <p class="description">
-                Targeted practice organized by drug class for systematic learning and mastery of medication categories
-            </p>
-            
-            <div class="info-box">
-                <h3>💡 Study Tips for Drug Classes</h3>
-                <p>
-                    Learning medications by category helps you recognize patterns and remember key information. Look for:
-                </p>
-                <ul>
-                    <li><strong>Common suffixes</strong> (-pril for ACE inhibitors, -olol for beta blockers, -statin for cholesterol drugs)</li>
-                    <li><strong>Shared mechanisms</strong> of action within each class</li>
-                    <li><strong>Similar side effects</strong> across medications in the same category</li>
-                    <li><strong>Class-specific nursing considerations</strong> and patient education needs</li>
-                </ul>
+    <div class="row">
+        <!-- Cardiovascular Medications -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-heartbeat"></i> Cardiovascular Medications
+                    </h5>
+                    <p class="card-text">ACE inhibitors, ARBs, Beta blockers, Calcium channel blockers, Diuretics, Anticoagulants, Antiarrhythmics, Cardiac glycosides, Nitrates, Antiplatelets, Lipid-lowering agents</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">65 Questions</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='Cardiovascular_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='Cardiovascular_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="quizzes-grid">
-            <!-- Cardiovascular -->
-            <a href="/quiz/Pharmacology/Cardiovascular_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">❤️</div>
-                    <h2 class="quiz-title">Cardiovascular Drugs</h2>
-                </div>
-                <p class="quiz-description">
-                    Antihypertensives, antiarrhythmics, anticoagulants, heart failure medications, and lipid-lowering agents
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">65</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~25 min</span>
+        <!-- CNS & Psychiatric Medications -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-brain"></i> CNS & Psychiatric Medications
+                    </h5>
+                    <p class="card-text">Antidepressants (SSRIs, SNRIs, TCAs, MAOIs), Benzodiazepines, Antipsychotics, Anticonvulsants, Parkinson's disease medications, Alzheimer's medications, Sedative-hypnotics, Mood stabilizers</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">58 Questions</span>
                     </div>
                 </div>
-                <span class="arrow">→</span>
-            </a>
-
-            <!-- CNS/Psychiatric -->
-            <a href="/quiz/Pharmacology/CNS_Psychiatric_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">🧠</div>
-                    <h2 class="quiz-title">CNS & Psychiatric Drugs</h2>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='CNS_Psychiatric_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='CNS_Psychiatric_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
                 </div>
-                <p class="quiz-description">
-                    Antidepressants, antipsychotics, anxiolytics, mood stabilizers, and anticonvulsants
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">58</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~23 min</span>
-                    </div>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-
-            <!-- Anti-Infectives -->
-            <a href="/quiz/Pharmacology/Anti_Infectives_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">🦠</div>
-                    <h2 class="quiz-title">Anti-Infectives</h2>
-                </div>
-                <p class="quiz-description">
-                    Antibiotics, antivirals, antifungals, and antimicrobials across all major drug classes
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">50</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~20 min</span>
-                    </div>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-
-            <!-- Endocrine/Metabolic -->
-            <a href="/quiz/Pharmacology/Endocrine_Metabolic_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">⚡</div>
-                    <h2 class="quiz-title">Endocrine & Metabolic Drugs</h2>
-                </div>
-                <p class="quiz-description">
-                    Diabetes medications, thyroid agents, corticosteroids, and hormonal therapies
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">40</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~16 min</span>
-                    </div>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-
-            <!-- Respiratory -->
-            <a href="/quiz/Pharmacology/Respiratory_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">🫁</div>
-                    <h2 class="quiz-title">Respiratory Drugs</h2>
-                </div>
-                <p class="quiz-description">
-                    Bronchodilators, corticosteroids, antihistamines, and medications for asthma and COPD
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">35</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~14 min</span>
-                    </div>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-
-            <!-- GI -->
-            <a href="/quiz/Pharmacology/Gastrointestinal_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">🫃</div>
-                    <h2 class="quiz-title">Gastrointestinal Drugs</h2>
-                </div>
-                <p class="quiz-description">
-                    Antacids, antiemetics, laxatives, antidiarrheals, and medications for GI disorders
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">30</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~12 min</span>
-                    </div>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-
-            <!-- Pain Management -->
-            <a href="/quiz/Pharmacology/Pain_Management_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">💉</div>
-                    <h2 class="quiz-title">Pain Management</h2>
-                </div>
-                <p class="quiz-description">
-                    Opioids, NSAIDs, local anesthetics, and adjuvant analgesics for acute and chronic pain
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">45</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~18 min</span>
-                    </div>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-
-            <!-- Hematologic/Oncology -->
-            <a href="/quiz/Pharmacology/Hematologic_Oncology_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">🩸</div>
-                    <h2 class="quiz-title">Hematologic & Oncology Drugs</h2>
-                </div>
-                <p class="quiz-description">
-                    Chemotherapy agents, anticoagulants, antiplatelets, and medications for blood disorders
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">30</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~12 min</span>
-                    </div>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-
-            <!-- Renal/Electrolytes -->
-            <a href="/quiz/Pharmacology/Renal_Electrolytes_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">🫘</div>
-                    <h2 class="quiz-title">Renal & Electrolyte Drugs</h2>
-                </div>
-                <p class="quiz-description">
-                    Diuretics, electrolyte replacements, and medications for kidney disease management
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">25</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~10 min</span>
-                    </div>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-
-            <!-- Musculoskeletal -->
-            <a href="/quiz/Pharmacology/Musculoskeletal_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">🦴</div>
-                    <h2 class="quiz-title">Musculoskeletal Drugs</h2>
-                </div>
-                <p class="quiz-description">
-                    Muscle relaxants, DMARDs, osteoporosis medications, and gout treatments
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">20</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~8 min</span>
-                    </div>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-
-            <!-- Immunologic/Biologics -->
-            <a href="/quiz/Pharmacology/Immunologic_Biologics_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">🛡️</div>
-                    <h2 class="quiz-title">Immunologic & Biologics</h2>
-                </div>
-                <p class="quiz-description">
-                    Immunosuppressants, vaccines, monoclonal antibodies, and biologic disease-modifying agents
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">15</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~6 min</span>
-                    </div>
-                </div>
-                <span class="arrow">→</span>
-            </a>
-
-            <!-- High-Alert Medications -->
-            <a href="/quiz/Pharmacology/High_Alert_Medications_Pharm?autostart=true" class="quiz-card">
-                <div class="quiz-header">
-                    <div class="quiz-icon">⚠️</div>
-                    <h2 class="quiz-title">High-Alert Medications</h2>
-                </div>
-                <p class="quiz-description">
-                    Critical medications requiring extra vigilance: insulin, heparin, opioids, and other high-risk drugs
-                </p>
-                <div class="quiz-stats">
-                    <div class="stat">
-                        <span class="stat-label">Questions</span>
-                        <span class="stat-value">30</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">Duration</span>
-                        <span class="stat-value">~12 min</span>
-                    </div>
-                </div>
-                <span class="arrow">→</span>
-            </a>
+            </div>
         </div>
+
+        <!-- Anti-Infective Medications -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-shield-virus"></i> Anti-Infective Medications
+                    </h5>
+                    <p class="card-text">Antibiotics (Penicillins, Cephalosporins, Fluoroquinolones, Aminoglycosides, Macrolides, Tetracyclines), Antivirals, Antifungals, Antimycobacterials</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">50 Questions</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='Anti_Infectives_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='Anti_Infectives_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Endocrine & Metabolic Medications -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-syringe"></i> Endocrine & Metabolic Medications
+                    </h5>
+                    <p class="card-text">Insulin types (rapid, short, intermediate, long-acting), Oral antidiabetics (metformin, sulfonylureas, DPP-4 inhibitors, SGLT2 inhibitors), GLP-1 agonists, Thyroid medications, Corticosteroids, Bisphosphonates</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">48 Questions</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='Endocrine_Metabolic_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='Endocrine_Metabolic_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pain Management & Analgesics -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-hand-holding-medical"></i> Pain Management & Analgesics
+                    </h5>
+                    <p class="card-text">Opioid agonists, Opioid antagonists (Naloxone), NSAIDs, Acetaminophen, Adjuvant analgesics, Pain assessment and WHO pain ladder</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">45 Questions</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='Pain_Management_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='Pain_Management_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Respiratory Medications -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-lungs"></i> Respiratory Medications
+                    </h5>
+                    <p class="card-text">Beta-2 agonists (short and long-acting), Anticholinergics, Inhaled corticosteroids, Leukotriene modifiers, Methylxanthines, Antihistamines, Decongestants, Mucolytics</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">38 Questions</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='Respiratory_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='Respiratory_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gastrointestinal Medications -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-stomach"></i> Gastrointestinal Medications
+                    </h5>
+                    <p class="card-text">Proton pump inhibitors (PPIs), H2 receptor antagonists, Antiemetics, Antidiarrheals, Laxatives, Antacids, Antiulcer agents, Bowel prep medications</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">32 Questions</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='Gastrointestinal_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='Gastrointestinal_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hematologic & Oncology Medications -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-tint"></i> Hematologic & Oncology Medications
+                    </h5>
+                    <p class="card-text">Anticoagulants (Heparin, Warfarin, DOACs), Antiplatelets, Thrombolytics, Chemotherapy basics, Colony-stimulating factors, Anemia medications</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">30 Questions</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='Hematologic_Oncology_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='Hematologic_Oncology_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- High-Alert Medications & Patient Safety -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-exclamation-triangle"></i> High-Alert Medications & Patient Safety
+                    </h5>
+                    <p class="card-text">Critical medications where errors cause significant harm: Insulin, Heparin, Warfarin, Opioids, Digoxin, Potassium, Magnesium. Focus on dosing safety, monitoring, and error prevention.</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">30 Questions</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='High_Alert_Medications_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='High_Alert_Medications_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Renal & Electrolyte Medications -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-kidney"></i> Renal & Electrolyte Medications
+                    </h5>
+                    <p class="card-text">Loop diuretics, Thiazide diuretics, Potassium-sparing diuretics, Electrolyte replacements (K+, Mg2+, Ca2+), Fluid balance management</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">25 Questions</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='Renal_Electrolytes_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='Renal_Electrolytes_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Musculoskeletal Medications -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-bone"></i> Musculoskeletal Medications
+                    </h5>
+                    <p class="card-text">DMARDs, Bisphosphonates, Gout medications (Allopurinol, Colchicine), Muscle relaxants, Corticosteroids for inflammation</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">20 Questions</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='Musculoskeletal_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='Musculoskeletal_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Immunologic & Biologic Medications -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card category-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">
+                        <i class="fas fa-shield-alt"></i> Immunologic & Biologic Medications
+                    </h5>
+                    <p class="card-text">Monoclonal antibodies (-mab), Immunosuppressants, Vaccines, Immunoglobulins, Biologic therapies for autoimmune diseases</p>
+                    <div class="mt-3">
+                        <span class="badge bg-info">15 Questions</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ url_for('quiz_module', module='Immunologic_Biologics_Pharm', mode='comprehensive') }}" class="btn btn-success btn-sm me-2">
+                        <i class="fas fa-book-reader"></i> Comprehensive
+                    </a>
+                    <a href="{{ url_for('quiz_module', module='Immunologic_Biologics_Pharm', mode='categorical') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> By Category
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Offline Indicator -->
-    <div id="offline-indicator" class="offline-indicator hidden">
-        <span>📴</span>
-        <span>You are offline</span>
+    <div class="text-center mt-4">
+        <a href="{{ url_for('pharmacology') }}" class="btn btn-outline-success">
+            <i class="fas fa-arrow-left"></i> Back to Pharmacology Home
+        </a>
     </div>
-
-    <!-- PWA Utilities -->
-    <script src="/static/js/pwa-utils.js"></script>
-</body>
-</html>
+</div>
+{% endblock %}
