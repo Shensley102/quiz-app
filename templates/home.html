@@ -26,6 +26,67 @@
   
   <!-- Vercel Analytics -->
   <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
+  
+  <style>
+    /* Resume section styling */
+    .resume-section {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+    }
+
+    .resume-card {
+      background: linear-gradient(135deg, #2f61f3, #45B7D1);
+      border-radius: 12px;
+      padding: 24px;
+      color: white;
+      box-shadow: 0 4px 12px rgba(47, 97, 243, 0.3);
+    }
+
+    .resume-card h3 {
+      margin: 0 0 12px 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .resume-card p {
+      margin: 0 0 16px 0;
+      font-size: 14px;
+      opacity: 0.95;
+      line-height: 1.5;
+    }
+
+    .resume-card.disabled {
+      background: linear-gradient(135deg, #ccc, #aaa);
+      opacity: 0.6;
+    }
+
+    .resume-btn {
+      display: inline-block;
+      width: 100%;
+      padding: 12px 20px;
+      background: white;
+      color: #2f61f3;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .resume-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .resume-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -58,6 +119,15 @@
     <main class="categories-grid" id="categoriesGrid">
       <!-- Categories will be populated here by JavaScript -->
     </main>
+
+    <!-- Resume Quiz Section -->
+    <div class="resume-section" id="resumeSection">
+      <div class="resume-card" id="resumeCard">
+        <h3 id="resumeTitle">📚 Resume Your Last Quiz</h3>
+        <p id="resumeInfo">You have a quiz in progress.</p>
+        <button class="resume-btn" id="resumeBtn" onclick="resumeLastQuiz()">Resume Quiz</button>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer class="hub-footer">
@@ -133,9 +203,82 @@
         }
       }
     }
+
+    // Check for resumed quiz and update home page
+    function displayResumeOnHomePage() {
+      const resumeSection = document.getElementById('resumeSection');
+      const resumeCard = document.getElementById('resumeCard');
+      const resumeTitle = document.getElementById('resumeTitle');
+      const resumeInfo = document.getElementById('resumeInfo');
+      const resumeBtn = document.getElementById('resumeBtn');
+      
+      if (!resumeSection) return;
+
+      try {
+        const raw = localStorage.getItem('quizRunState_v1');
+        if (!raw) {
+          // No saved session
+          resumeCard.classList.add('disabled');
+          resumeTitle.textContent = '📚 No Quiz in Progress';
+          resumeInfo.textContent = 'Start a new quiz to begin studying.';
+          resumeBtn.disabled = true;
+          return;
+        }
+
+        const data = JSON.parse(raw);
+        
+        // Check if it's a full bank quiz (only show for full bank)
+        if (!data.isFullBank || data.isRetry) {
+          resumeCard.classList.add('disabled');
+          resumeTitle.textContent = '📚 No Quiz in Progress';
+          resumeInfo.textContent = 'Start a new quiz to begin studying.';
+          resumeBtn.disabled = true;
+          return;
+        }
+
+        // Calculate remaining questions
+        const answered = data.answered ? Array.from(Object.entries(data.answered)) : [];
+        const masterPool = (data.masterPool || []).length;
+        const notMastered = masterPool - answered.filter(([_, entry]) => entry && entry.correct).length;
+
+        // Show resume card
+        resumeCard.classList.remove('disabled');
+        resumeTitle.textContent = `📚 Resume: ${data.displayName}`;
+        resumeInfo.textContent = `${notMastered} questions remaining`;
+        resumeBtn.disabled = false;
+
+      } catch (error) {
+        console.error('Error checking resume state:', error);
+        resumeCard.classList.add('disabled');
+        resumeTitle.textContent = '📚 No Quiz in Progress';
+        resumeInfo.textContent = 'Start a new quiz to begin studying.';
+        resumeBtn.disabled = true;
+      }
+    }
+
+    // Resume the last quiz
+    function resumeLastQuiz() {
+      try {
+        const raw = localStorage.getItem('quizRunState_v1');
+        if (!raw) return;
+
+        const data = JSON.parse(raw);
+        const backUrl = data.backUrl || '/';
+        
+        // Redirect to quiz with resume flag
+        window.location.href = backUrl;
+
+      } catch (error) {
+        console.error('Error resuming quiz:', error);
+        alert('Error resuming quiz. Please try starting a new quiz.');
+      }
+    }
     
     // Initialize on page load
-    document.addEventListener('DOMContentLoaded', loadCategories);
+    document.addEventListener('DOMContentLoaded', function() {
+      loadCategories();
+      displayResumeOnHomePage();
+    });
   </script>
 </body>
 </html>
