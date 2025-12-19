@@ -158,9 +158,13 @@
         
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             margin-bottom: 25px;
+        }
+        
+        .stats-grid.three-col {
+            grid-template-columns: repeat(3, 1fr);
         }
         
         .stat-item {
@@ -295,15 +299,11 @@
                     </p>
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <span class="stat-number">1</span>
-                            <span class="stat-label">QUIZ</span>
-                        </div>
-                        <div class="stat-item">
                             <span class="stat-number">829</span>
                             <span class="stat-label">QUESTIONS</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">MCQ</span>
+                            <span class="stat-number">Multiple Choice Questions</span>
                             <span class="stat-label">FORMAT</span>
                         </div>
                     </div>
@@ -326,7 +326,7 @@
                         - cardiovascular, CNS, anti-infectives, endocrine, respiratory, pain management, and more 
                         specialized categories.
                     </p>
-                    <div class="stats-grid">
+                    <div class="stats-grid three-col">
                         <div class="stat-item">
                             <span class="stat-number">12</span>
                             <span class="stat-label">CATEGORIES</span>
@@ -336,7 +336,7 @@
                             <span class="stat-label">QUESTIONS</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">MCQ</span>
+                            <span class="stat-number">Multiple Choice Questions</span>
                             <span class="stat-label">FORMAT</span>
                         </div>
                     </div>
