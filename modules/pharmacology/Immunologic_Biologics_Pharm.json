@@ -1,0 +1,169 @@
+{
+  "module": "Immunologic_Biologics_Pharm",
+  "questions": [
+    {
+      "id": "IMMU_1",
+      "stem": "The nurse is discussing vaccines with the mother of a 4-year-old child who attends a day care center that requires the diphtheria, tetanus, acellular pertussis (DTaP) vaccine. The mother, who is pregnant, tells the nurse that she does not want her child to receive the pertussis vaccine because she has heard that the disease is \"not that serious\" in older children. What information will the nurse include when discussing this with the mother?",
+      "options": [
+        "If she gets the vaccine, both she and her 4-year-old child will be protected.",
+        "If the 4-year-old child contracts pertussis, it can be passed on to her newborn.",
+        "The vaccine will not be given to her child while she is pregnant.",
+        "Vaccinating the 4-year-old will provide passive immunity for her unborn child."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Even though pertussis is not as serious in older children, it is important to vaccinate children to prevent the spread of the disease to infants and others who are not immunized and who are at risk for significant morbidity and mortality from this disease. Vaccinating the mother will not protect the 4-year-old from getting pertussis. The DTaP vaccine may be given to children whose mothers are pregnant. Vaccinating the child does not confer passive immunity to the unborn child.",
+      "type": "single_select"
+    },
+    {
+      "id": "IMMU_2",
+      "stem": "A provider has ordered recombinant HPV quadrivalent vaccine to be given to a prepubertal 11- year-old female. The parent asks the nurse if this vaccine can be postponed until the child is in high school. The nurse will tell the parent that the vaccine",
+      "options": [
+        "is less effective in older adolescents.",
+        "is more effective if given before sexual activity begins.",
+        "is more effective if given prior to the hormonal changes of puberty.",
+        "is not effective if given after the onset of menses."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The HPV quadrivalent vaccine is most effective when the client is not yet sexually active. Ideally, the vaccine is administered to preteen boys and girls at age 11 or 12, but can be given through age 26.",
+      "type": "single_select"
+    },
+    {
+      "id": "IMMU_3",
+      "stem": "The nurse is preparing to administer rotavirus vaccine to a 4-month-old infant. The nurse notes that the infant received RV1 vaccine at 2 months of age. The nurse will plan to administer which of the following?",
+      "options": [
+        "RV1 today",
+        "RV1 today and again at age 6 months",
+        "RV5 today",
+        "RV5 today and again at age 6 months"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients receiving RV1 receive 2 doses at age 2 and 4 months only.",
+      "type": "single_select"
+    },
+    {
+      "id": "IMMU_4",
+      "stem": "A patient is preparing to travel with a 4-year-old child to India in 15 days and is in the clinic to receive typhoid vaccines. Which vaccines will be given to the parent and the child?",
+      "options": [
+        "Four capsules of live, oral vaccine to both patients.",
+        "Four capsules of live, oral vaccine for the parent and the intramuscular (IM) polysaccharide vaccine for the child.",
+        "Four capsules of live, oral vaccine for the child and the IM polysaccharide vaccine for the parent.",
+        "IM polysaccharide for both patients."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "While the live, oral vaccine may be given to patients older than 6 years, each capsule must be taken 48 hours apart with the last capsule given 1 week prior to travel. There would not be enough time to complete the regimen since the patients leave in 15 days. Children under age 6 cannot receive the oral vaccine. The IM polysaccharide vaccine should be administered at least 2 weeks before the expected exposure.",
+      "type": "single_select"
+    },
+    {
+      "id": "IMMU_5",
+      "stem": "The patient on immunosuppressant medications is speaking to the nurse about appropriate activities. Which statement requires intervention? (Select all that apply.)",
+      "options": [
+        "\"I am going to the state fair with my friends.\"",
+        "\"I enjoy working in my garden to relax.\" \"I will brush my teeth after meals.\" \"It's OK to eat fresh fruits and vegetables.\" \"I should get a new glass, if the one I am drinking from has been sitting out.\" \"I should bathe daily, using an antimicrobial soap.\""
+      ],
+      "correct": [
+        "A",
+        "B"
+      ],
+      "rationale": "Immunosuppressed patients should stay away from crowds and people who are sick. Fresh flowers, live plants, gardening, and standing water should be avoided. One should brush teeth at least twice a day with a soft toothbrush and bathe daily. In general, the patient should avoid activities that increase the risk of exposure to bacteria/germs.",
+      "type": "multi_select"
+    },
+    {
+      "id": "IMMU_6",
+      "stem": "A 32-year-old woman who is pregnant tells the nurse she has not had any vaccines but wants to begin so that she can protect her unborn child. Which vaccine listed below would be most appropriate to administer to this patient?",
+      "options": [
+        "Human papillomavirus (HPV) quadrivalent vaccine",
+        "Trivalent influenza vaccine",
+        "Measles\u2013mumps\u2013rubella (MMR) vaccine",
+        "Varicella vaccine"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The influenza vaccine is recommended for everyone 6 months and older, including pregnant women. Pregnant women should not receive the live attenuated influenza vaccine, however. HPV quadrivalent vaccine is given to preteen boys and girls at age 11 or 12 so they are protected before virus exposure. HPV quadrivalent vaccine can be administered in women and men through age 26. The MMR is contraindicated because rubella can cause serious teratogenic effects. Varicella is contraindicated during pregnancy.",
+      "type": "single_select"
+    },
+    {
+      "id": "IMMU_7",
+      "stem": "A 48-month-old child is scheduled to receive the following vaccines: MMR, varicella vaccine, IPV, and DTaP. The child's parents want the child to receive two vaccines today and the other two in 1 week. To accommodate the parents' wishes, the nurse will administer",
+      "options": [
+        "the DTaP and varicella vaccine today and the MMR and IPV in 1 week.",
+        "the IPV and MMR today and the varicella vaccine and DTaP in 1 week.",
+        "the MMR and DTaP today and the varicella vaccine and IPV in 1 week.",
+        "the MMR and varicella vaccine today and the DTaP and IPV in 1 week."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "If the MMR or other live virus vaccine is not given the same day as the varicella vaccine, administration of the two vaccines should be separated by at least 4 weeks. In the incorrect answers, the two live virus vaccines are given only 1 week apart.",
+      "type": "single_select"
+    },
+    {
+      "id": "IMMU_8",
+      "stem": "The parent of a toddler asks the nurse what can be done to prevent otitis media. What will the nurse recommend?",
+      "options": [
+        "Administer diphenhydramine when the child has a runny nose.",
+        "Give phenylephrine (Neo-Synephrine Ophthalmic) to prevent congestion.",
+        "Keep the child's immunizations up to date.",
+        "Remove cerumen with carbamide peroxide (Auro Ear Drops)."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The pneumococcal conjugate vaccine (PCV) protects children against S. pneumoniae and should be administered to all children to prevent otitis media. Antihistamines and decongestants have been shown to be ineffective in preventing otitis media. Removing cerumen helps to prevent otitis externa.",
+      "type": "single_select"
+    },
+    {
+      "id": "IMMU_9",
+      "stem": "The provider orders the zoster vaccine for a 60-year-old patient. The patient reports having had chicken pox as a child. Which action will the nurse take?",
+      "options": [
+        "Administer the vaccine as ordered.",
+        "Counsel the patient that the vaccine may cause a severe reaction because of previous exposure.",
+        "Hold the vaccine and notify the provider of the patient's history.",
+        "Request an order for a varicella booster instead of the zoster vaccine."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The zoster vaccine is given to boost the immunity to varicella-zoster virus among recipients. It is not likely to cause severe reaction secondary to prior exposure, since the immune response in most recipients has declined.",
+      "type": "single_select"
+    },
+    {
+      "id": "IMMU_10",
+      "stem": "The nurse is caring for a newborn infant whose mother is HBsAg-negative. The nurse expects to give the infant which of the following?",
+      "options": [
+        "Hepatitis B immune globulin",
+        "Hepatitis B immune globulin and hepatitis B vaccine 12 h later",
+        "No vaccines",
+        "Recombinant hepatitis B vaccine"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Infants whose mothers are HBsAg-negative will need to receive recombinant hepatitis B vaccine. Immune globulin is given to infants whose mother's status is unknown or who are positive. All infants receive the hepatitis B vaccine.",
+      "type": "single_select"
+    },
+    {
+      "id": "IMMU_11",
+      "stem": "A woman who is 2 months pregnant tells the nurse that she has never received the MMR vaccine and has not had these diseases. She has 3-year-old and 5-year-old children who have not been immunized. The nurse will recommend which of the following?",
+      "options": [
+        "Delay obtaining the vaccines for her children and herself until after her baby is born.",
+        "Have her children vaccinated now and obtain the vaccine for herself after the baby is born.",
+        "Obtain the MMR vaccine for her children and herself when she is in her third trimester of pregnancy.",
+        "Obtain the MMR vaccine for her children and herself within the next few weeks."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Pregnant women should not receive MMR vaccine because it is a live virus and there is risk to the fetus. Her children should be vaccinated so they do not contract rubella and pass it to her.",
+      "type": "single_select"
+    }
+  ]
+}

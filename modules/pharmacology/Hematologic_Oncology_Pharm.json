@@ -1,0 +1,280 @@
+{
+  "module": "Hematologic_Oncology_Pharm",
+  "questions": [
+    {
+      "id": "HEMA_1",
+      "stem": "A patient is receiving bone marrow transplantation for cancer and receives filgrastim. thepatient reports severe abdominal pain in theleft upper quadrant. thenurse will perform which action?",
+      "options": [
+        "Administer acetaminophen 650 mg.",
+        "Administer an antiemetic medication.",
+        "Report a potentially life-threatening event.",
+        "Request an order for cardiac enzyme levels."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Splenic rupture can occur with this drug and is manifested by pain in theleft upper quadrant. thenurse should report theabdominal pain to theprovider so thepatient can be evaluated for splenic rupture.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_2",
+      "stem": "The oral antiandrogen drug flutamide (Eulexin) is used to treat which condition?",
+      "options": [
+        "Benign prostatic hypertrophy (BPH)",
+        "Breast cancer",
+        "Male-pattern baldness",
+        "Metastatic prostate cancer"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "This antiandrogen drug is used to treat metastatic prostate cancer. It is not effective to treat other hormonally dependent diseases such as breast cancer, male-pattern baldness, or BPH.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_3",
+      "stem": "A patient is receiving theerythropoietin-stimulating agent (ESA) epoetin alfa. Which assessment finding would cause thenurse to notify thepatient's provider?",
+      "options": [
+        "Blood pressure of 90/65 mm Hg",
+        "Headache and nausea",
+        "Hemoglobin >11 g/dL",
+        "Infiltration of theIV"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "There is an increased risk of serious cardiovascular events and death when hemoglobin is greater than 11 g/dL. There is no need to notify theprovider of theother findings.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_4",
+      "stem": "The nurse is caring for a patient who is receiving 5-fluorouracil (5-FU) to treat pancreatic cancer. Which interventions are included in thenurse's plan of care for this patient? (Select all that apply.)",
+      "options": [
+        "Apply ice to theIV site if thepatient reports pain.",
+        "Administer antiemetics when thepatient reports nausea.",
+        "Counsel thepatient to use waxed dental floss.",
+        "Discourage visits with people who have respiratory infections.",
+        "Offer ice chips frequently.",
+        "Restrict to nothing by mouth during IV drug administration."
+      ],
+      "correct": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "rationale": "If thepatient reports pain at theIV site, thenurse should apply ice and notify theprovider. Patients should use waxed dental floss to avoid bleeding of thegums. Advise patient not to visit anyone who has a respiratory infection. Ice chips help with oral pain. Antiemetics should be given prior to administration of thedrug. Patients do not need to be nothing per os (NPO) during theIV infusion.",
+      "type": "multi_select"
+    },
+    {
+      "id": "HEMA_5",
+      "stem": "A patient who has metastatic colorectal cancer tells thenurse that a cousin who had colorectal cancer received bevacizumab and wonders how thedrug works. thenurse will explain that bevacizumab works by targeting which of thefollowing?",
+      "options": [
+        "HER2 receptors",
+        "Epidermal growth factor receptor-tyrosine kinase",
+        "The BRCA1 suppressor gene",
+        "Vascular endothelial growth factor (VEGF) proteins"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Bevacizumab acts by blocking VEGF (vascular endothelial growth factor); blocking VEGF may prevent thegrowth of new blood vessels, including those that may feed thetumor.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_6",
+      "stem": "A patient who is receiving cancer chemotherapy has been ordered to receive epoetin alfa 150 units/kg 3 times weekly. thenurse reviews thepatient's chart and notes a hemoglobin level of 10.9 g/dL. thenurse will perform which action?",
+      "options": [
+        "Administer themedication as ordered.",
+        "Hold thedose and notify theprovider.",
+        "Reduce thedose by 25%.",
+        "Request an order for an increased dose."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "For patients receiving cancer chemotherapy, ESAs should not be initiated at a hemoglobin level greater than or equal to 11 g/dL. Because thepatient has a hemoglobin of 10.9 g/dL it would be prudent to hold thedose and notify theprovider to determine next steps.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_7",
+      "stem": "The nurse is teaching a patient who is receiving vincristine about long-term management of thetreatment regimen. Which information will thenurse provide in teaching thepatient?",
+      "options": [
+        "\"If you experience numbness of your hands, it will eventually resolve.\"",
+        "\"If your IV starts to hurt, you should pull theIV out immediately.\"",
+        "\"You should ask for anti-nausea medication at thefirst sign of nausea.\"",
+        "\"You should report difficulty buttoning your clothes to your provider.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Difficulty buttoning clothing is a sign of peripheral neuropathy and should be reported. Numbness of hands may resolve after chemotherapy is stopped, but it may never resolve. If theIV infiltrates, theinfusion should be stopped and theneedle left in until attempts to aspirate residual vesicant are performed. Anti-nausea medication should be given prior to beginning theinfusion.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_8",
+      "stem": "The physician has ordered UGT1A1 gene testing for a patient with colon cancer. The nurse recognizes that which of the following drugs can result in severe diarrhea and neutropenia in persons with a specific UGT1A1 gene variant?",
+      "options": [
+        "Warfarin",
+        "Carbamazepine",
+        "Codeine",
+        "Irinotecan"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Genetic testing is recommended for patients with colon cancer receiving irinotecan as part of their treatment protocol. Persons with variation in the UGT1A1 gene may be unable to eliminate the drug, leading to severe diarrhea and severe neutropenia, resulting in life threatening infections.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_9",
+      "stem": "A patient who has cancer is about to begin chemotherapy. The patient asks the nurse why two chemotherapeutic agents are being used instead of just one. Which response by the nurse is correct?",
+      "options": [
+        "\"The drugs may be given in less toxic doses if two drugs are used.\"",
+        "\"Two agents used together can have synergistic effects.\"",
+        "\"Use of two drugs will increase tumoricidal activity in the G0 phase of the cell.\"",
+        "\"Using two agents will shorten the length of time chemotherapy is needed.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Using two or more chemotherapeutic agents can have a synergistic effect. Combination therapy typically uses two drugs with different dose-limiting toxicities, but the use of more than one drug does not allow for using less toxic doses. Combination therapy allows cell kill in all phases of the cell cycle. Combination therapy does not shorten the length of time chemotherapy is needed.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_10",
+      "stem": "In a 5-year clinical trial investigating a new cancer treatment, researchers note overwhelming improvement in almost all of the subjects in the treatment group during the second year of the trial. It is decided to stop the trial early and report the findings due to the overwhelmingly beneficial effects. This decision was made based on which ethical principle?",
+      "options": [
+        "Beneficence",
+        "Justice",
+        "Respect for persons",
+        "Veracity"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The principle of justice requires that all people be treated fairly. Because the findings were overwhelmingly positive, an ethical decision was made to stop the study early and report findings so that additional people could gain benefit from the treatment.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_11",
+      "stem": "Which of thefollowing is an indication for use of IFN-\u25a1?",
+      "options": [
+        "Chronic granulomatous disease",
+        "Hairy cell leukemia",
+        "Multiple sclerosis",
+        "Kaposi sarcoma"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Interferon beta is indicated for treatment of relapsing-remitting forms of multiple sclerosis. Interferon gamma is used to treat chronic granulomatous disease. Interferon alfa-2b is indicated to treat hairy cell leukemia and Kaposi sarcoma.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_12",
+      "stem": "A woman who has advanced breast cancer will begin receiving androgen therapy. thenurse will explain to thepatient that androgen therapy is used to",
+      "options": [
+        "enhance her own estrogen production.",
+        "give her a sense of well-being.",
+        "minimize hot flashes.",
+        "oppose theactivity of estrogen."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Androgen is used to treat breast cancer to promote regression of tumors by opposing theactivity of estrogen. Exogenous androgen therapy is most effective for palliative treatment of breast cancer among postmenopausal women. Other hormonal therapies are used in other circumstances to promote well-being and treat hot flashes.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_13",
+      "stem": "A patient who has cancer will begin treatment with a colony-stimulating factor. thepatient verbalizes understanding of why thedrug is being used with which statement?",
+      "options": [
+        "\"This drug permits use of higher doses of chemotherapy.\"",
+        "\"This drug has antitumor activity.\"",
+        "\"This drug has cytotoxic effects.\"",
+        "\"This drug has antiviral effects.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Colony-stimulating factors permit thedelivery of higher doses of drugs because they counter myelosuppression. They do not have antitumor activity, cytotoxic effects, or antiviral effects.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_14",
+      "stem": "A patient is receiving theantitumor antibiotic doxorubicin to treat lung cancer. thepatient is experiencing shortness of breath and palpitations. thenurse is concerned that thepatient has developed which condition?",
+      "options": [
+        "Anemia",
+        "Cardiotoxicity",
+        "Hypersensitivity",
+        "Pulmonary infection"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Cardiotoxicity is a known adverse effect of this drug and is manifested in shortness of breath, edema, and palpitations.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_15",
+      "stem": "A patient is receiving bleomycin as part of a chemotherapeutic regimen to treat leukemia. During IV administration of this drug, what will the nurse observe the patient closely for?",
+      "options": [
+        "Hypotension and visual disturbances",
+        "Pain and blistering at the IV site",
+        "Pink to red urine",
+        "Shortness of breath and wheezing"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Bleomycin can cause anaphylaxis, so patients should be monitored for respiratory distress. Pain and blistering at theIV site is common to antitumor antibiotics, except for bleomycin. Urine color changes occur with doxorubicin. Vincristine causes hypotension and visual disturbances.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_16",
+      "stem": "A 40-year-old woman is diagnosed with myasthenia gravis, and her provider recommends removal of her thymus gland. She asks the nurse why this would be helpful. The nurse will explain that removal of the thymus gland may",
+      "options": [
+        "increase binding of acetylcholine (ACh) molecules to ACh receptors.",
+        "increase the amount of ACh available at neuromuscular junction sites.",
+        "reduce the number of acetylcholine receptor sites.",
+        "reduce symptoms of myasthenia gravis following surgery."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Thymic hyperplasia and tumors are common in patients with myasthenia gravis (MG). The thymus gland is involved in systemic immunity that is active during infancy and early childhood, but the gland normally shrinks during adulthood. Approximately 70% of MG patients have thymic hyperplasia. A thymectomy (removal of the thymus gland) is most beneficial because it can cause a reduction of symptoms following the surgery.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_17",
+      "stem": "The nurse is teaching a patient who will begin receiving targeted therapy for cancer. thepatient asks how targeted therapy differs from other types of chemotherapies. thenurse will explain that targeted therapy",
+      "options": [
+        "damages cancer cell DNA to prevent cell replication.",
+        "directly kills or damages cancerous cells.",
+        "interferes with specific molecules in cancer cells.",
+        "prevents metastasis of cancer cells."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Targeted therapy differs from traditional cancer chemotherapy by taking advantage of biologic features particular to cancer cells and targeting specific mechanisms. They block thegrowth and spread of cancer by interfering with specific molecules within thecancer cells. Traditional chemotherapeutic agents damage cell DNA of cancer cells as well as normal cells. Targeted therapies do not directly kill or damage cancer cells or prevent metastasis.",
+      "type": "single_select"
+    },
+    {
+      "id": "HEMA_18",
+      "stem": "The nurse is teaching a group of adolescents about sun protection. What information will the nurse include when teaching this group?",
+      "options": [
+        "Effective sunscreens absolutely prevent melanoma and basal cell carcinoma.",
+        "Sunscreen products are all chemical blockers.",
+        "SPF ratings less than 15 can denote reduced risk of skin cancer and early skin aging.",
+        "The American Academy of Dermatology recommends water resistant sunscreen with an SPF 30 or higher."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The American Academy of Dermatology recommends water resistant sunscreen with an SPF of 30 or higher. Sunscreen products can be either chemical blockers or physical blockers. Products with an SPF rating less than 15 cannot denote reduced risk of skin cancer and early skin aging. This is reserved for products with an SPF of 15 and above.",
+      "type": "single_select"
+    }
+  ]
+}

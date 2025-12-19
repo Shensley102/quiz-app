@@ -1,0 +1,3134 @@
+{
+  "module": "Pharm_Quiz_1",
+  "questions": [
+    {
+      "id": "PHARM1_Q1",
+      "stem": "The nurse provides counseling to a patient who reports taking licorice root to treat a stomach ulcer. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I may take licorice root with prednisone.\"",
+        "\"I may develop hypotension while taking licorice root.\"",
+        "\"I should avoid licorice root when pregnant.\"",
+        "\"I should try licorice instead of coming back to see the provider.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "In large amounts, licorice root has been associated with preterm labor and should be avoided in women who are pregnant. Licorice root when taken with corticosteroids can lead to lifethreatening hypokalemia. In large amounts, it can elevate blood pressure. The benefits of licorice in the treatment of any condition have not been proven, and the client should see the provider rather than turn to the herbal medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q2",
+      "stem": "A patient who is being treated for dehydration is receiving 5% dextrose and 0.45% normal saline with 20 mEq/L potassium chloride at a rate of 125 mL/h. The nurse assuming care for the patient reviews the patient's serum electrolytes and notes a serum sodium level of 140 mEq/L and a serum potassium level of 3.6 mEq/L. The patient had a urine output of 250 mL during the last 12-hour shift. Which action will the nurse take?",
+      "options": [
+        "Contact the patient's provider to discuss increasing the potassium chloride to 40 mEq/L.",
+        "Continue the intravenous fluids as ordered and reassess the patient frequently.",
+        "Notify the provider and discuss increasing the rate of fluids to 200 mL/h.",
+        "Stop the intravenous fluids and notify the provider of the assessment findings."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The patient's potassium level is within normal limits, but the urine output is decreased, so the patient should not be receiving IV potassium. The nurse should stop the IV and report the findings to the provider. The patient does not need potassium supplementation at this time. The patient needs more fluids but not with potassium.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q3",
+      "stem": "Which patient may require a higher than expected dose of an opioid analgesic?",
+      "options": [
+        "A patient with cancer",
+        "A patient with a concussion",
+        "A patient with hypotension",
+        "A patient 3 days after surgery"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Opioids are titrated for oncology patients until pain relief is achieved or the side effects become intolerable, and extremely high doses may be required. Patient with closed head injuries should not receive opioids if possible due to the risk of increased intracranial pressure. Patients with hypotension should receive reduced doses to prevent further decrease in blood pressure. Patients who are 3 days post-operation should not be experiencing severe pain.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q4",
+      "stem": "The nurse is teaching a patient who will begin taking warfarin for atrial fibrillation. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I should eat plenty of green, leafy vegetables while taking this drug.\"",
+        "\"I should take a nonsteroidal anti-inflammatory drug (NSAID) instead of acetaminophen for pain or fever.\"",
+        "\"I will take cimetidine to prevent gastric irritation and bleeding.\"",
+        "\"I will tell my dentist that I am taking this medication.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Patients taking warfarin should tell their dentists that they are taking the medication because of the increased risk for bleeding. Patients should avoid foods high in vitamin K, which can decrease the effects of warfarin. Patients should not take NSAIDs or cimetidine because they can displace warfarin from protein-binding sites.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q5",
+      "stem": "The nurse is teaching a patient about rifampin. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I should not wear soft contact lenses while taking rifampin.\"",
+        "\"I will report any changes in my hearing while taking this drug.\"",
+        "\"I will report orange urine to my provider immediately.\"",
+        "\"I understand that renal toxicity is a common adverse effect.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients taking rifampin should be warned that urine, feces, saliva, sputum, sweat, and tears may turn a harmless red-orange color. Patients should not wear soft contact lenses to avoid permanent staining. Streptomycin is associated with ototoxicity. Orange urine is a harmless side effect and does not need to be reported. Renal toxicity is not common with rifampin.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q6",
+      "stem": "The nurse is caring for a patient who is taking hydrochlorothiazide and digoxin. Which potential electrolyte imbalance will thenurse monitor for in this patient?",
+      "options": [
+        "Hypermagnesemia",
+        "Hypernatremia",
+        "Hypocalcemia",
+        "Hypokalemia"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Thiazide diuretics can cause hypokalemia, which enhances theeffects of digoxin and can lead to digoxin toxicity. Thiazides can cause hypercalcemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q7",
+      "stem": "A patient who has HIV infection will begin treatment with efavirenz. The nurse knows that which of the following should be performed prior to drug initiation:",
+      "options": [
+        "Perform resistance testing prior to starting therapy",
+        "Ensure the patient has failed protease inhibitor therapy",
+        "Allergy testing",
+        "Spinal tap"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A major disadvantage of NNRTI therapy is the high prevalence of NNRTI-resistant viral strains. Resistance testing is recommended for treatment-na\u00efve patients before starting therapy. NNRTIs are often used first to reserve protease inhibitor therapy for future use. Allergy testing and spinal taps are not required prior to drug initiation.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q8",
+      "stem": "A patient has hypocalcemia caused by parathyroid hormone deficiency. Which medication will the nurse anticipate giving to this patient?",
+      "options": [
+        "Calcitonin",
+        "Calcitriol",
+        "Calcium",
+        "Vitamin D"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Calcitriol is given for management of hypocalcemia caused by parathyroid hormone deficiency. Calcitonin is used to treat hyperparathyroidism. Calcium and vitamin D are not useful in parathyroid deficiency.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q9",
+      "stem": "A patient reports severe localized itching after contact with a new brand of laundry detergent. The nurse will suggest that the patient contact the provider to discuss treatment with which product initially?",
+      "options": [
+        "Calamine lotion",
+        "Systemic glucocorticoid",
+        "Oral diphenhydramine",
+        "Topical corticosteroid"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "This patient has contact dermatitis related to contact with a chemical. Topical corticosteroids may be used for the itching. Calamine lotion is used mainly for contact with plant irritants. Oral diphenhydramine is not recommended initially, but could be added if itching persists. Systemic steroids are used for more severe reactions.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q10",
+      "stem": "A patient who recently began having mild symptoms of gastroesophageal reflux disease (GERD) is reluctant to take medication. What non-pharmacological measures will the nurse recommend to minimize this patient's symptoms? (Select all that apply.)",
+      "options": [
+        "Avoiding hot, spicy foods",
+        "Avoiding tobacco products",
+        "Drinking a glass of red wine with dinner",
+        "Eating a snack before bedtime",
+        "Taking ibuprofen with food",
+        "Using a small pillow for sleeping Wearing tight-fitted clothing"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "E"
+      ],
+      "rationale": "Hot, spicy foods aggravate gastric upset, tobacco increases gastric secretions, and ibuprofen on an empty stomach increases gastric secretions, so patients should be taught to avoid these actions. Alcohol should be avoided since it increases gastric secretions. Eating at bedtime increases reflux, as does laying relatively flat to sleep, or wearing tight-fitted clothing.",
+      "type": "multi_select"
+    },
+    {
+      "id": "PHARM1_Q11",
+      "stem": "Which actions can contribute to bacterial resistance to antibiotics? (Select all that apply.)",
+      "options": [
+        "Frequent use of antibiotics",
+        "Giving large doses of antibiotics",
+        "Skipping doses",
+        "Taking a full course of antibiotics",
+        "Treating viral infections with antibiotics"
+      ],
+      "correct": [
+        "A",
+        "C",
+        "E"
+      ],
+      "rationale": "Frequent use of antibiotics increases the exposure of bacteria to an antibiotic and results in acquired resistance. Skipping doses of an antibiotic can lead to incomplete treatment of an infection, and the remaining bacteria may develop acquired resistance. Treating viral infections with antibiotics is unnecessary and may cause acquired resistance to develop from unneeded exposure to a drug. Infections adequately treated with an antibiotic do not result in resistance.",
+      "type": "multi_select"
+    },
+    {
+      "id": "PHARM1_Q12",
+      "stem": "The nurse assumes care for a patient who is currently receiving a dose of intravenous vancomycin infusing at 20 mg/min. The nurse notes red blotches on the patient's face, neck, and chest and assesses a blood pressure of 80/55 mm Hg. Which action will the nurse take?",
+      "options": [
+        "Request an order for IV epinephrine to treat anaphylactic shock.",
+        "Slow the infusion to 10 mg/min and observe the patient closely.",
+        "Stop the infusion and obtain an order for a BUN and serum creatinine.",
+        "Suspect Stevens-Johnson syndrome and notify the provider immediately."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "When vancomycin is infused too rapidly, \"red man\" syndrome may occur; the rate should be decreased. This is a toxic reaction, not an allergic one, so epinephrine is not indicated. StevensJohnson syndrome is characterized by a rash and fever. Red man syndrome is not related to renal function.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q13",
+      "stem": "The nurse is providing teaching to a patient who will begin taking a cephalosporin to treat an infection. Which statement by the patient indicates a need for further teaching?",
+      "options": [
+        "\"I may stop taking the medication if my symptoms clear up.\"",
+        "\"I should eat yogurt while taking this medication.\"",
+        "\"I should stop taking the drug and call my provider if I develop a rash.\"",
+        "\"I can take this medication with food if it irritates my stomach.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients should take all of an antibiotic regimen even after symptoms clear to ensure complete treatment of the infection. Patients are often advised to eat yogurt or drink buttermilk to prevent superinfection. A rash is a sign of hypersensitivity, and patients should be counseled to stop taking the drug and notify the provider if this occurs. Oral cephalosporins can be taken with food if gastric irritation occurs.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q14",
+      "stem": "The nurse provides teaching for a postpartal woman who will take bisacodyl tablets to help with constipation. What information will the nurse include when teaching this patient about this medication?",
+      "options": [
+        "\"Crush the tablet if it is difficult to swallow.\"",
+        "\"Store this medication in a dry place.\"",
+        "\"Take the tablet with a carbonated beverage.\"",
+        "\"Take with milk if gastrointestinal upset occurs.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Bisacodyl tablets should be stored in a dry place away from excess humidity. They should not be crushed. It is not necessary to give with a carbonated beverage. Bisacodyl tablets should not be taken within 1\u20132 h of milk or antacid.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q15",
+      "stem": "The labeling for clopidogrel discusses pharmacogenomic testing for genetic variation in which of the following?",
+      "options": [
+        "CYP2C19",
+        "HLA-B*5701",
+        "CYP2D6",
+        "UGT1A1"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Persons with genetic variation in the CYP2C19 enzyme, which is necessary to convert the prodrug clopidogrel, an inhibitor of platelet aggregation, to the active metabolite, may be at risk for clot formation due to failure to convert the prodrug to active metabolite. Point-of-care buccal swab genetic testing has been available since 2013 to help guide treatment. The test determines if a person has the normal (also referred to as wild type) enzyme or a mutation in CYP2C19 enzyme.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q16",
+      "stem": "A patient reports having taken a large dose of ascorbic acid (vitamin C) and is experiencing diarrhea and gastrointestinal upset. The nurse will prepare to take which action?",
+      "options": [
+        "Administer activated charcoal.",
+        "Administer sodium bicarbonate.",
+        "Perform gastric lavage.",
+        "Provide symptomatic care."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The patient is experiencing uncomfortable side effects of excess vitamin C intake, but they are not life threatening, so no antidotes or treatment are indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q17",
+      "stem": "The nurse is preparing to administer an oral liquid medication to an 11-month-old child who is fussy and uncooperative. Which action will the nurse take to facilitate giving this medication?",
+      "options": [
+        "Adding honey to the medication to improve the taste",
+        "Putting the medication in the infant's formula",
+        "Requesting an injectable form of the medication",
+        "Using a syringe and allowing the parent to give the medication"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "When possible, family members or caregivers should be solicited to assist in medication administration. Infants should not receive honey because of the risk of botulism. A syringe allows more control over the amount of medication in the infant's mouth and should be used. Mixing the medication in a bottle requires ensuring that the infant takes the entire bottle in order to get the medication dose. Using an injectable form of medication is more traumatic and should be used only when an oral route is not possible or is contraindicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q18",
+      "stem": "A patient who takes phenytoin reports recently starting to take antacids for new-onset dyspepsia. thepatient previously had a phenytoin level in thenormal therapeutic range. thenurse might expect a serum phenytoin level in this patient to be in which range?",
+      "options": [
+        "5 to 10 mcg/mL",
+        "10 to 20 mcg/mL",
+        "20 to 30 mcg/mL",
+        "30 to 50 mcg/mL"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Antacids can decrease theeffects of phenytoin by inhibiting its absorption, which would decrease serum drug levels. thetherapeutic range is 10 to 20 mcg/mL, so a level lower than this may be expected in a patient who started antacids while on phenytoin.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q19",
+      "stem": "The nurse provides teaching to a patient who will begin taking cyclobenzaprine to treat acute muscle spasms. Which statement by the patient indicates a need for further teaching?",
+      "options": [
+        "\"I may experience dizziness and drowsiness when I take this drug.\"",
+        "\"I should not consume alcohol while taking this medication.\"",
+        "\"I should be careful driving with this medication because it can cause drowsiness.\"",
+        "\"I will take this medication for 3 months and then stop taking it.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Most centrally acting muscle relaxants used for acute spasms are taken for no longer than 3 weeks and should be tapered over 1 week to avoid rebound spasms. Patients may experience dizziness and drowsiness. Alcohol will compound the central nervous system sedative effects. Patients should be cautioned about driving and operating machinery while using muscle relaxants.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q20",
+      "stem": "A patient who has irritable bowel syndrome would most likely receive which type of drug to treat this condition?",
+      "options": [
+        "An anticholinergic",
+        "A cholinergic esterase inhibitor",
+        "A muscarinic agent",
+        "A nicotinic agent"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Anticholinergic drugs are used to treat peptic ulcers and intestinal spasticity because of their actions to decrease gastric secretions and gastrointestinal spasms. theother options listed would activate theGI tract and potentially worsen thepatient's symptoms.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q21",
+      "stem": "The nurse is teaching a 15-year-old female patient and her parents about an antibiotic the adolescent will begin taking. The drug is known to decrease the effectiveness of oral contraceptive pills (OCPs). The nurse will",
+      "options": [
+        "ask the adolescent and her parents whether she is taking OCPs.",
+        "tell her parents privately that pregnancy may occur if she is taking OCPs.",
+        "tell her privately that the medication may decrease the effectiveness of OCPs.",
+        "warn her and her parents that she may get pregnant if she is relying on OCPs."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "When soliciting adolescent health histories, the nurse should consider issues related to sexual practices and should provide privacy when asking sensitive questions or giving sensitive information. The other actions do not allow for patient privacy.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q22",
+      "stem": "The nurse is performing an assessment on a patient brought to the emergency department for treatment for dehydration. The nurse assesses a respiratory rate of 26 breaths/minute, a heart rate of 110 beats/minute, a blood pressure of 86/50 mm Hg, and a temperature of 39.5 C. The patient becomes dizzy when transferred from the wheelchair to a bed. The nurse notes cool, clammy skin. Which diagnosis does the nurse suspect?",
+      "options": [
+        "Fluid volume deficit (FVD)",
+        "Fluid volume excess (FVE)",
+        "Mild extracellular fluid (ECF) deficit",
+        "Renal failure"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients with FVD will exhibit elevated temperature, tachycardia, tachypnea, hypotension, orthostatic hypotension, and cool, clammy skin. Patients with FVE will have bounding pulses, elevated blood pressure, dyspnea, and crackles. Mild ECF deficit causes thirst. Renal failure generally leads to FVE.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q23",
+      "stem": "The nurse is preparing to administer a combination drug containing acetaminophen and codeine. The nurse knows that this drug is classified as which drug schedule?",
+      "options": [
+        "C-II",
+        "C-III",
+        "C-IV",
+        "C-V"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Codeine is normally a category II drug, except when it is part of a combination product such as with acetaminophen, making it a category III drug.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q24",
+      "stem": "A female patient has a serum lipid panel performed, which reveals a total cholesterol of 285 mg/dL, triglycerides of 188 mg/dL, a low-density lipoprotein (LDL) of 175 mg/dL, and a highdensity lipoprotein (HDL) of 40 mg/dL. The patient's blood pressure is 138/72 mm Hg. The patient is currently not receiving any prescription medications. Which of the following would be the most appropriate medication to be started at this time?",
+      "options": [
+        "Ezetimibe",
+        "Colestipol",
+        "Fenofibrate",
+        "Atorvastatin"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Statins have actions in decreasing serum cholesterol, LDL, VLDL, and triglycerides, and they slightly elevate HDL. Because the patient has elevated cholesterol levels, starting a statin at this time would be appropriate and considered an appropriate first-line antihyperlipidemic therapy.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q25",
+      "stem": "A patient who has been taking nizatidine continues to have pain associated with a peptic ulcer. A noninvasive breath test is negative. Which treatment does the nurse expect the provider to order for this patient?",
+      "options": [
+        "Adding an over-the-counter antacid to the patient's drug regimen",
+        "A dual drug therapy regimen",
+        "Amoxicillin, clarithromycin, and omeprazole",
+        "Lansoprazole instead of nizatidine"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "This patient does not have H. pylori ulcer disease, so dual and triple drug therapy with antibiotics is not indicated. Patients who fail treatment with a histamine2 blocker should be changed to a proton pump inhibitor (PPI) such as lansoprazole. PPIs tend to inhibit gastric acid secretion up to 90% greater than the histamine antagonists.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q26",
+      "stem": "A patient who is diagnosed with peptic ulcer disease has been started on a regimen that includes famotidine 40 mg daily at bedtime. The patient calls the clinic 2 days later to report no relief from discomfort. What action will the nurse take?",
+      "options": [
+        "Contact the provider to discuss changing to cimetidine.",
+        "Notify the provider to discuss increasing the dose.",
+        "Reassure the patient that it may take 1 to 2 weeks to notice an improvement in symptoms.",
+        "Suggest that the patient split the medication into twice daily dosing."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients taking histamine2 blockers can expect abdominal pain to decrease after 1 to 2 weeks of drug therapy. Cimetidine is not as potent as ranitidine and interacts with many medications through the cytochrome P450 system. 40 mg at bedtime is the recommended dose.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q27",
+      "stem": "Which agent listed below is used in surgery to achieve neuromuscular blockade and paralysis?",
+      "options": [
+        "Baclofen",
+        "Chlorzoxazone",
+        "Pancuronium bromide",
+        "Methocarbamol"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Pancuronium bromide is used as a muscle relaxant as adjunct to anesthesia. Baclofen is used for muscle spasms caused by MS or spinal cord injury. Chlorzoxazone and methocarbamol are used for acute muscle spasms.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q28",
+      "stem": "A patient who is taking clopidogrel and aspirin is preparing for orthopedic surgery. The nurse will consult with the surgeon and provide which instruction to the patient?",
+      "options": [
+        "Continue taking aspirin and stop taking clopidogrel 2 weeks prior to surgery.",
+        "Continue taking clopidogrel and stop taking aspirin 5 days prior to surgery.",
+        "Continue both medications to prevent thromboembolic events during surgery.",
+        "Stop taking both medications 7 days prior to surgery."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Because both drugs can prolong bleeding time, patients should discontinue the drugs 7 days prior to surgery.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q29",
+      "stem": "An older patient must learn to administer a medication using a device that requires manual dexterity. The patient becomes frustrated and expresses lack of self-confidence in performing this task. Which action will the nurse perform next?",
+      "options": [
+        "Ask the patient to keep trying until the skill is learned.",
+        "Provide written instructions with illustrations showing each step of the skill.",
+        "Schedule multiple sessions and practice each step separately.",
+        "Teach the procedure to family members who can administer the medication for the patient."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Nurses should be sensitive to patient's level of frustration when teaching skills. In this case, breaking the steps down into individual parts will help with this patient's frustration level.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q30",
+      "stem": "The parent of a child who is receiving chemotherapy asks the nurse why metoclopramide is not being used to suppress vomiting. The nurse will explain that, in children, this drug is more likely to cause which adverse effect?",
+      "options": [
+        "Excess sedation",
+        "Extrapyramidal symptoms",
+        "Paralytic ileus",
+        "Vertigo"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Metoclopramide can cause extrapyramidal symptoms, and these effects are more likely in children. Children are not more prone to sedative effects, paralytic ileus, or vertigo while taking this drug.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q31",
+      "stem": "A patient is receiving bone marrow transplantation for cancer and receives filgrastim. thepatient reports severe abdominal pain in theleft upper quadrant. thenurse will perform which action?",
+      "options": [
+        "Administer acetaminophen 650 mg.",
+        "Administer an antiemetic medication.",
+        "Report a potentially life-threatening event.",
+        "Request an order for cardiac enzyme levels."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Splenic rupture can occur with this drug and is manifested by pain in theleft upper quadrant. thenurse should report theabdominal pain to theprovider so thepatient can be evaluated for splenic rupture.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q32",
+      "stem": "A parent expresses concern that a 5-year-old child may develop epilepsy because thechild experienced a febrile seizure at age 18 months. What will thenurse tell this parent?",
+      "options": [
+        "\"A child who has had a febrile seizure is considered to have epilepsy.\"",
+        "\"A small percentage of children who have febrile seizures develop epilepsy.\"",
+        "\"I recommend discussing prophylactic anticonvulsant drugs with theprovider.\"",
+        "\"Treat fevers aggressively with aspirin and NSAIDs to prevent seizures.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Epilepsy develops in approximately 2.5% of children who have one or more febrile seizures. One febrile seizure does not always result in epilepsy. Prophylactic anticonvulsants are given to highrisk patients. Children should not receive aspirin for fever because of therisk of Reye's syndrome.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q33",
+      "stem": "The nurse is working in a neonatal intensive care unit and is caring for an infant who is experiencing multiple periods of apnea and bradycardia. Which of thefollowing drugs could be used to treat neonatal apnea?",
+      "options": [
+        "Albuterol",
+        "Caffeine citrate",
+        "Doxapram",
+        "Methylphenidate"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Caffeine citrate is indicated for use in newborns with respiratory distress. theother drugs listed are not used for this purpose.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q34",
+      "stem": "The nurse is enrolling subjects for a clinical drug trial in which subjects will be randomly assigned to either a treatment or a placebo group. The pills in both groups will be in identical packaging with identical appearance. The group that receives the intervention is the",
+      "options": [
+        "control group.",
+        "experimental group.",
+        "dependent group.",
+        "independent group."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The experimental group in a drug trial is the group that receives the drug being tested. The control group may receive no drug, a different drug, a placebo, or the same drug with a different dose, route, or frequency of administration. Dependent and independent are not terms to describe groups in a study; they denote the variables.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q35",
+      "stem": "A patient begins taking nicotinic acid and reports dizziness and flushing of the skin. The nurse will perform which action?",
+      "options": [
+        "Recommend that the patient take a baby aspirin with their niacin dose.",
+        "Counsel the patient to increase fluid intake.",
+        "Request an order for renal function tests.",
+        "Schedule the medication to be taken with meals."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Flushing of the skin and dizziness are common side effects of nicotinic acid, but with careful drug titration and concomitant use of aspirin, these effects can be minimized. Increasing fluid intake or taking with food does not alter these adverse effects. Nicotinic acid can affect liver enzymes not renal function.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q36",
+      "stem": "A woman is taking a combination oral contraceptive and asks the nurse why progestin is necessary. The nurse will explain that progestin helps prevent pregnancy by which method?",
+      "options": [
+        "Altering the quantity and viscosity of cervical mucus",
+        "Inhibiting proliferative and secretory changes in the endometrium",
+        "Increasing motility of muscles and cilia in the fallopian tubes",
+        "Stimulating a surge in luteinizing hormone (LH)"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Progestin alters the quantity and viscosity of cervical mucus, making it thick and hostile to sperm penetration. Estrogen inhibits proliferative and secretory changes in the endometrium. Progestin decreases muscle and ciliary motility and decreases the LH surge.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q37",
+      "stem": "A patient with high cholesterol is ordered to take atorvastatin. What information will be included in the patient teaching? (Select all that apply.)",
+      "options": [
+        "Dietary management is not a priority with this medication.",
+        "The medication should be taken on an empty stomach.",
+        "The medicine should be taken with a full glass of water.",
+        "The patient should watch for body aches or gastrointestinal upset as side effects.",
+        "The patient should have renal function tests frequently.",
+        "The patient should have periodic liver function testing."
+      ],
+      "correct": [
+        "C",
+        "D",
+        "F"
+      ],
+      "rationale": "This medication is most effective with careful monitoring of diet. Atorvastatin does not affect renal function.",
+      "type": "multi_select"
+    },
+    {
+      "id": "PHARM1_Q38",
+      "stem": "The nurse gives a highly metabolized medication to a patient with a history of liver disease. The nurse will monitor this patient for",
+      "options": [
+        "decreased drug effects.",
+        "increased drug effects.",
+        "decreased therapeutic range.",
+        "increased therapeutic range."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Liver diseases such as cirrhosis and hepatitis alter drug metabolism due to the liver having a lower capacity to metabolize medications. When the drug metabolism rate is decreased, excess drug accumulation can occur and lead to toxicity.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q39",
+      "stem": "A patient who has asthma requires treatment with a beta blocker to manage his cardiovascular disease. The nurse understands that which drug will be the safest to give this patient?",
+      "options": [
+        "Pindolol (Visken)",
+        "Metoprolol (Lopressor)",
+        "Nadolol (Corgard)",
+        "Propranolol (Inderal)"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Metoprolol is a cardioselective beta-adrenergic blocker that has a greater affinity for receptors that decrease heart rate and blood pressure and is less likely to cause bronchospasm. The other beta-adrenergic blockers are not selective and have a greater risk for causing bronchoconstriction.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q40",
+      "stem": "The nurse is instructing a patient who will take psyllium to treat constipation. What information will the nurse include when teaching this patient?",
+      "options": [
+        "The importance of consuming adequate amounts of water",
+        "The need to monitor for systemic side effects",
+        "The onset of action of 30 to 60 minutes after administration",
+        "The need to use the dry form of psyllium to prevent cramping"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Insufficient fluid intake can cause the drug to solidify in the gastrointestinal tract and place the patient at risk for GI obstruction, thus counseling on ingestion of adequate amounts of water is important. Psyllium is not systemically absorbed, so it does not have systemic side effects. Onset of action for psyllium is between 10 and 24 hours. All forms of bulk forming laxatives can contribute to GI side effects such as cramping.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q41",
+      "stem": "A patient will be discharged home on a beta blocker. Which skill is essential for the nurse to teach the patient's family?",
+      "options": [
+        "How to prepare a high-potassium diet",
+        "Assessments to detect fluid retention",
+        "How to monitor heart rate and blood pressure",
+        "Early signs of changing level of consciousness"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Because of the action and side effects of beta blockers, heart rate and blood pressure should be monitored frequently.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q42",
+      "stem": "A patient who has Raynaud's disease will begin taking an alpha-adrenergic blocker. The patient asks the nurse how the drug works to treat symptoms. The nurse explains that alpha-adrenergic blockers treat Raynaud's disease by causing",
+      "options": [
+        "decreased peripheral vascular resistance.",
+        "orthostatic hypotension.",
+        "reflex tachycardia.",
+        "vasodilation."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Peripheral alpha-adrenergic blockers can be used to treat peripheral vascular disorders like Raynaud's disease because they cause vasodilation.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q43",
+      "stem": "The oral antiandrogen drug flutamide (Eulexin) is used to treat which condition?",
+      "options": [
+        "Benign prostatic hypertrophy (BPH)",
+        "Breast cancer",
+        "Male-pattern baldness",
+        "Metastatic prostate cancer"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "This antiandrogen drug is used to treat metastatic prostate cancer. It is not effective to treat other hormonally dependent diseases such as breast cancer, male-pattern baldness, or BPH.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q44",
+      "stem": "The patient asks thenurse what apoptosis means. thenurse will explain that apoptosis refers to",
+      "options": [
+        "alteration of cellular functions.",
+        "inhibition of cell division.",
+        "prevention of cell phase progression.",
+        "slow, planned cellular death."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Apoptosis is programmed cell death, designed to ensure that tissues contain only healthy and optimally functional cells.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q45",
+      "stem": "The nurse is preparing to administer intravenous temsirolimus. To prevent a common adverse drug effect, thenurse will expect to administer which type of drug?",
+      "options": [
+        "An antibiotic",
+        "An anticoagulant",
+        "An antiemetic",
+        "An antihistamine"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Hypersensitivity reactions to temsirolimus are common, and pretreatment with antihistamines is recommended. Other drugs are given as needed but not prophylactically.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q46",
+      "stem": "The nurse is teaching a patient about taking colchicine to treat gout. What information will the nurse include when teaching this patient about this drug?",
+      "options": [
+        "Avoid all alcohol except beer.",
+        "Include salmon in the diet.",
+        "Increase fluid intake.",
+        "Take on an empty stomach."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The patient who is taking colchicine (and other antigout agents) should increase fluid intake to promote uric acid excretion and prevent renal calculi. Foods rich in purine should be avoided, including beer, and some sea foods, such as salmon. Gastric irritation is a common problem, so colchicine should be taken with food.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q47",
+      "stem": "A patient is admitted to the hospital for treatment of pneumonia after complaining of high fever and shortness of breath. The patient was not able to produce sputum for a culture. The nurse will expect the patient's provider to order which of the following?",
+      "options": [
+        "A broad-spectrum antibiotic",
+        "A narrow-spectrum antibiotic",
+        "Multiple antibiotics",
+        "The pneumococcal vaccine"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Broad-spectrum antibiotics are frequently used to treat infections when the offending organism has not been identified by culture and sensitivity (C&S). Narrow-spectrum antibiotics are usually effective against one type of organism and are used when the C&S indicates sensitivity to that antibiotic. The use of multiple antibiotics, unless indicated by C&S, can increase resistance. The pneumococcal vaccine is used to prevent, not treat, an infection.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q48",
+      "stem": "The nurse is caring for a 55-year-old patient who has been HIV-infected for 15 years. The nurse understands that this patient",
+      "options": [
+        "has an increased risk of transmitting the HIV infection.",
+        "is less likely to develop AIDS than younger persons with HIV infection.",
+        "is less likely to respond to antiretroviral agents.",
+        "may have comorbid illnesses that can complicate HIV."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Older HIV-infected patients may have age-related comorbid illness that can complicate management of HIV infection, such as renal dysfunction.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q49",
+      "stem": "During a clinical drug trial for a new medication, researchers note a previously unknown serious adverse effect occurring in more than 50% of subjects. The study is discontinued. Which ethical principle is being exercised?",
+      "options": [
+        "Beneficence",
+        "Justice",
+        "Respect for persons",
+        "Veracity"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Beneficence is the duty to protect subjects from harm. Once a serious adverse effect is noted and it is determined that the benefits do not outweigh the risks of the study, researchers have an ethical obligation to stop the study.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q50",
+      "stem": "A patient is prescribed raloxifene as a cancer prophylactic agent. Which type of cancer is this being used to prevent?",
+      "options": [
+        "Prostate cancer",
+        "Colon cancer",
+        "Multiple myeloma",
+        "Breast cancer"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Selective estrogen receptor modulators (SERMs) such as tamoxifen and raloxifene have both estrogenic and antiestrogenic effects on various tissues. Tamoxifen is primarily used for breast cancer in both men and women. Raloxifene produces estrogenic effects in bone and lipids and has an antiestrogenic property in mammary tissues. It is used as a prophylactic against breast cancer in high-risk postmenopausal women with osteoporosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q51",
+      "stem": "The nurse is preparing to give a medication to a child. The medication is approved for use in children. The child's parent asks whether the drug is safe for children. How will the nurse respond to the parent?",
+      "options": [
+        "\"Drugs approved for use in children are tested on adults and safe doses for children are based on weights compared to adult weights.\"",
+        "\"Drugs approved for use in children are deemed safe for children over time when repeated use proves effectiveness and safety.\"",
+        "\"Drugs approved for use in children are tested for both efficacy and safety in children in order to be marketed for pediatric use.\"",
+        "\"Drugs approved for use in children are tested on children in post-marketing studies and on a limited basis.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The Pediatric Research Equity Act requires drug manufacturers to test drugs on children.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q52",
+      "stem": "The nurse is caring for a patient who is receiving a high dose of intravenous azithromycin to treat an infection. The patient is also taking acetaminophen for pain. The nurse should expect to review which lab values when monitoring for this drug's side effects?",
+      "options": [
+        "Complete blood counts",
+        "Electrolytes",
+        "Liver enzymes",
+        "Urinalysis"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Liver function tests should be monitored in patients taking high doses of macrolides. Because this patient is also taking acetaminophen the patient may be at increased risk for hepatotoxicity.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q53",
+      "stem": "The nurse is caring for a patient who has increased intraocular pressure. The provider has ordered levobunolol 0.5% ophthalmic solution. The nurse will perform a thorough health history to make sure the patient does not have a history of which condition?",
+      "options": [
+        "Asthma",
+        "Diabetes",
+        "Hypertension",
+        "Renal disease"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Levobunolol is a non-selective beta blocker that can be used to treat increased intraocular pressure. This agent is contraindicated in patients with asthma.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q54",
+      "stem": "Which of the following is FALSE regarding pyridostigmine?",
+      "options": [
+        "It is poorly absorbed from the gastrointestinal tract.",
+        "Overdosing of pyridostigmine can result in cholinergic crisis.",
+        "Atropine is the antidote for pyridostigmine overdose.",
+        "Pyridostigmine is a muscarinic receptor antagonist."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Pyridostigmine is an acetylcholinesterase inhibitor and does not antagonize muscarinic receptors. The drug is poorly absorbed from the GI tract. Overdosing with pyridostigmine results in cholinergic crisis, and atropine is used as an antidote for pyridostigmine overdose.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q55",
+      "stem": "The nurse is preparing to administer interleukin-2 (aldesleukin) to a patient who has cancer. thepatient reports shortness of breath. thenurse assesses clear breath sounds, a respiratory rate of 22 breaths per minute, a heart rate of 80 beats per minute, an oxygen saturation of 88% on room air, and a blood pressure of 92/68 mm Hg. thenurse will perform which action?",
+      "options": [
+        "Administer thedose as ordered.",
+        "Administer oxygen while giving thedose.",
+        "Discuss permanently discontinuing this treatment with theprovider.",
+        "Hold thedose and notify theprovider."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Because of thepulmonary symptoms associated with aldesleukin, thedrug should be held if thepatient has an oxygen saturation <90% on room air. It may be given when thepatient's oxygen saturation improves. thedrug does not need to be permanently discontinued unless thepatient requires intubation for more than 72 hours.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q56",
+      "stem": "A patient is receiving theerythropoietin-stimulating agent (ESA) epoetin alfa. Which assessment finding would cause thenurse to notify thepatient's provider?",
+      "options": [
+        "Blood pressure of 90/65 mm Hg",
+        "Headache and nausea",
+        "Hemoglobin >11 g/dL",
+        "Infiltration of theIV"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "There is an increased risk of serious cardiovascular events and death when hemoglobin is greater than 11 g/dL. There is no need to notify theprovider of theother findings.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q57",
+      "stem": "The nurse is preparing to administer a schedule II injectable drug and is drawing up half of the contents of a single-use vial. Which nursing action is correct?",
+      "options": [
+        "Ask another nurse to observe and cosign wasting the remaining drug from the vial.",
+        "Keep the remaining amount in the patient's drawer to give at the next dose.",
+        "Record the amount unused in the patient's medication record.",
+        "Dispose of the vial with the remaining drug into a locked collection box."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Schedule II drugs are controlled substances, and all must be accounted for. When wasting a portion of a drug, another nurse should observe and cosign that a drug was wasted.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q58",
+      "stem": "The nurse provides teaching for a patient who will begin taking montelukast. thepatient has a known sensitivity to aspirin. Which statement by thepatient indicates a need for further teaching?",
+      "options": [
+        "\"I will need to have periodic laboratory tests while taking this medication.\"",
+        "\"I will not take ibuprofen for pain or fever while taking this drug.\"",
+        "\"I will take one tablet daily at bedtime.\"",
+        "\"I will use this as needed for acute symptoms.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Montelukast and other leukotriene receptor antagonists are not used to treat acute symptoms and are dosed once daily. Because they can affect liver enzymes, periodic liver function tests should be performed. Patients taking this drug should not use ibuprofen or aspirin as they will block theeffects of montelukast. This medication is recommended to be given in theevening.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q59",
+      "stem": "The nurse is teaching a nursing student about the minimal effective concentration (MEC) of antibiotics. Which statement by the nursing student indicates understanding of this concept?",
+      "options": [
+        "\"A serum drug level greater than the MEC ensures that the drug is bacteriostatic.\"",
+        "\"A serum drug level greater than the MEC broadens the spectrum of the drug.\"",
+        "\"A serum drug level greater than the MEC is sufficient to halt the growth of the microorganism.\"",
+        "\"A serum drug level greater than the MEC increases the therapeutic index.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The MEC is the minimum amount of drug needed to halt the growth of a microorganism. Raising the drug level does not usually broaden the spectrum or increase the therapeutic index of a drug.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q60",
+      "stem": "The nurse is caring for a patient who is receiving total parenteral nutrition (TPN). The patient reports nausea, headache, and thirst. The nurse will contact the provider to discuss which of the following?",
+      "options": [
+        "Giving acetaminophen for headache pain",
+        "Obtaining a blood glucose level",
+        "Ordering an antiemetic to prevent vomiting",
+        "Starting intravenous dextrose"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "This patient shows signs of hyperglycemia, which is a common adverse effect of TPN. The nurse should request an order for blood glucose testing. Symptoms should not be treated without first determining the underlying cause. Dextrose is given to prevent and/or treat hypoglycemia, but the patients blood glucose should be determined first.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q61",
+      "stem": "A patient with a peptic ulcer has been diagnosed with H. pylori. The provider has ordered lansoprazole, clarithromycin, and metronidazole. The patient asks the nurse why two antibiotics are needed. The nurse will explain that two antibiotics",
+      "options": [
+        "allow for less toxic dosing.",
+        "combat bacterial resistance.",
+        "have synergistic effects.",
+        "improve acid suppression."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The use of two antibiotics when treating H. pylori peptic ulcer disease helps to combat bacterial resistance because H. pylori develops resistance rapidly. Giving two antibiotics, in this case, is not to reduce the dose or to cause synergistic effects. Antibiotics do not affect acid production.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q62",
+      "stem": "The nurse assumes care of a patient who had surgery that morning. The provider has ordered hydrocodone (Lortab) every 4 hours for mild to moderate pain and morphine sulfate for moderate to severe pain. The nurse reviews the patient's record and notes the patient has received two doses of hydrocodone 4 hours apart for a pain level of 7 to 8 on a scale of 1 to 10 and has reported a decrease in pain to a level of 6 to 7 after 30 minutes. It has been 4 hours since the last dose, and the patient reports a pain level of 7. What will the nurse do?",
+      "options": [
+        "Administer the hydrocodone.",
+        "Administer morphine.",
+        "Ask the patient which drug to give.",
+        "Notify the provider of the patient's current pain level."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The previous nurse has documented a poor response to pain medication given for mild to moderate pain. The nurse should administer the medication ordered for moderate to severe pain. Hydrocodone has not been effective and should not be given. The nurse bases the drug selection on the patient's evaluation of pain, not on which drug the patient wants. The provider has written an order with nursing evaluations specified, so there is no need for the nurse to notify the provider.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q63",
+      "stem": "The nurse is preparing to administer atropine sulfate drops as a mydriatic agent. Which of the following is considered a contraindication to therapy?",
+      "options": [
+        "Tachycardia",
+        "Diarrhea",
+        "Bradycardia",
+        "Constipation"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Atropine sulfate is an anticholinergic medication that is contraindicated in patients with tachycardia and glaucoma. Anticholinergic effects could contribute to worsening constipation, but the presence of constipation would not be considered a contraindication.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q64",
+      "stem": "Prior to administration of interferon alpha, thenurse will administer which medications?",
+      "options": [
+        "Acetaminophen and diphenhydramine",
+        "Heparin and meperidine",
+        "Lorazepam and furosemide",
+        "Narcotic analgesics and loratadine"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients receiving these drugs should be premedicated with acetaminophen to reduce chills and fever and with diphenhydramine to reduce histamine effects.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q65",
+      "stem": "The nurse is caring for a patient who is taking trimethoprim\u2013sulfamethoxazole (TMP\u2013SMX). The nurse learns that the patient takes an angiotensin-converting enzyme (ACE) inhibitor. To monitor for drug interactions, the nurse will request an order for which laboratory test(s)?",
+      "options": [
+        "A complete blood count",
+        "BUN and creatinine",
+        "Electrolytes",
+        "Glucose"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "TMP\u2013SMX can result in hyperkalemia when taken with an ACE inhibitor. Monitoring of electrolytes and symptoms of hyperkalemia would be indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q66",
+      "stem": "Which of thefollowing agents is classified as a melatonin receptor agonist?",
+      "options": [
+        "Temazepam",
+        "Zolpidem",
+        "Butabarbital",
+        "Ramelteon"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Ramelteon is a sedative-hypnotic agent and is classified as a melatonin agonist. This is thefirst prescription hypnotic agent approved by theFDA that is not classified as a controlled substance.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q67",
+      "stem": "A patient has recently begun taking phenytoin (Dilantin) for a seizure disorder. thenurse notes a reddish-brown color to thepatient's urine. Which action will thenurse take?",
+      "options": [
+        "Ask theprovider to order a serum drug level.",
+        "Reassure thepatient that this is a harmless side effect.",
+        "Report possible thrombocytopenia to theprovider.",
+        "Request an order for a urinalysis and creatinine clearance."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Reddish-brown urine is a harmless side effect of phenytoin. thenurse should reassure thepatient. It is not necessary to order a serum drug level or renal function studies. It is not a symptom of thrombocytopenia.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q68",
+      "stem": "The nurse performs a history on a woman who will begin taking clomiphene citrate to induce ovulation. Which aspect of this patient's history is of concern?",
+      "options": [
+        "Anovulation",
+        "Dysmenorrhea",
+        "Sexually transmitted infection",
+        "Uterine fibroids"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Patients with a history of uterine fibroids should not take clomiphene. Anovulation is the indication for clomiphene. Dysmenorrhea and sexually transmitted infections are not contraindications.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q69",
+      "stem": "A patient, who has intermittent claudication, has been taking 100 mg of cilostazol twice daily with meals for 2 weeks. The patient calls the clinic and reports continued pain in both legs during exercise. How will the nurse advise the patient?",
+      "options": [
+        "\"It can take from 2-12 weeks for the medication to help with your claudication symptoms.\"",
+        "\"Notify the provider of the continued pain and request increasing the dose.\"",
+        "\"You should stop the medication immediately since it is not working.\"",
+        "\"Take the medication right before you exercise for best effects.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients should be counseled that the desired therapeutic effects may take up to 3 months. The patient is currently taking the maximum recommended daily dose of cilostazol, so an increase in dose would not be recommended. The medication should be taken 30 minutes before or 2 hours after the morning and evening meals. Taking it immediately before bouts of exercise will not increase effectiveness.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q70",
+      "stem": "The nurse is performing a health history on a patient who has multiple sclerosis (MS) who will be started on a new therapy. The patient asks about a medication he heard about on TV that can cause a life threatening viral infection in the CNS. The nurse recognizes that he is referring to which of the following medications?",
+      "options": [
+        "Siponimod",
+        "Mitoxantrone",
+        "Glatiramer acetate",
+        "Natalizumab"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Natalizumab has a black box warning for risk of leukoencephalopathy.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q71",
+      "stem": "A patient who is diagnosed with atrial fibrillation is to begin taking warfarin (Coumadin). The patient refuses to take the medication because \"it is rat poison.\" After the nurse provides teaching, the patient still refuses. What action will the nurse take?",
+      "options": [
+        "Hold the dose and document the patient's refusal.",
+        "Hold the dose, notify the provider of the situation, and document these actions.",
+        "Put the medication in the patient's food.",
+        "Tell the patient that the drug is necessary for treatment."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients have a right to refuse medications, but the provider should be notified if omitting the medication can have serious effects. According to the principle of autonomy, it is unethical to put a medication in a patient's food without their knowledge.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q72",
+      "stem": "The nurse is caring for a patient who has postoperative nausea and vomiting. The surgeon has ordered promethazine. Which aspect of this patient's health history would be of concern?",
+      "options": [
+        "Asthma",
+        "Diabetes",
+        "GERD",
+        "Glaucoma"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Promethazine is contraindicated in patients with glaucoma since it is an anticholinergic medication. It should be used with caution in patients with asthma. The other two conditions are not concerning with this medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q73",
+      "stem": "The nurse is caring for a patient who has had severe vomiting. The patient's serum sodium level is 130 mEq/L. The nurse will expect the patient's provider to order which treatment?",
+      "options": [
+        "Diuretic therapy",
+        "Intravenous hypertonic 5% saline",
+        "Intravenous normal saline 0.9%",
+        "Oral sodium supplements"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients with hyponatremia may be treated with oral sodium supplements if the patient is able or if the deficit is mild. This patient is vomiting and would not be able to take supplements easily. For a serum sodium level between 125 and 135 mEq/L, normal saline may increase sodium content in vascular fluid. Hypertonic saline is used for severe hyponatremia with a serum sodium <120 mEq/L. Diuretics would further deplete sodium and fluid volume in a patient already likely to be dehydrated from severe vomiting.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q74",
+      "stem": "A patient who is receiving chemotherapy will be given dronabinol to prevent nausea and vomiting. The nurse will tell the patient that this drug will be given at which time?",
+      "options": [
+        "Before and after the chemotherapy",
+        "During chemotherapy",
+        "Immediately prior to chemotherapy",
+        "24 hours prior to chemotherapy"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Cannabinoids are indicated for use prior to and after chemotherapy. Dronabinol is given 1-3 hours prior to chemotherapy and then every 2-4 hours after.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q75",
+      "stem": "Children who experience nightmares have these during which stage of sleep?",
+      "options": [
+        "Early morning sleep",
+        "Non rapid eye movement (NREM) sleep",
+        "Rapid eye movement (REM) sleep",
+        "Sleep induction"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Nightmares that occur in children take place during NREM sleep.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q76",
+      "stem": "The nurse is caring for a patient who was admitted with a fractured leg and for observation of a closed head injury after a motor vehicle accident. The patient reports having pain at a level of 3 on a 1 to 10 pain scale. The nurse will expect the provider to order which analgesic medication for this patient?",
+      "options": [
+        "Acetaminophen PO",
+        "Hydromorphone IM",
+        "Morphine sulfate PCA",
+        "Transdermal fentanyl"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Opioid analgesics should be used with extreme caution in patients with head injuries because of the risk of increased intracranial pressure. If opioids are necessary because of severe pain, they must be given in reduced doses. This patient is experiencing mild pain, so acetaminophen is an appropriate analgesic.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q77",
+      "stem": "A patient has recently begun taking carbamazepine (Tegretol) as an adjunct medication to treat refractory seizures. thepatient has a serum carbamazepine level of 18 mcg/mL. Which of thefollowing would be themost appropriate next step?",
+      "options": [
+        "Ask thepatient about usual dietary preferences.",
+        "Reassure thepatient that this is a therapeutic drug level.",
+        "Report a subtherapeutic drug dose to theprovider.",
+        "Discontinue thecarbamazepine."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This patient's carbamazepine level is high. When taken with grapefruit juice, an interaction may occur that results in toxic levels of carbamazepine. thenurse should question thepatient about food and fluid preferences. thetherapeutic level is 4 to 12 mcg/mL. This is a toxic level, not subtherapeutic. It would not be appropriate to discontinue therapy at this time.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q78",
+      "stem": "A woman who is experiencing symptoms of heart failure (HF) asks the nurse about using hawthorn. Which response by the nurse is correct?",
+      "options": [
+        "\"Hawthorn may be used long term in conjunction with nitrates.\"",
+        "\"Hawthorn may contribute to hypertension.\"",
+        "\"Hawthorn may interact with antihypertensive drugs.\"",
+        "\"Hawthorn treats heart failure by lowering potassium levels.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Hawthorn may increase the action of antihypertensive medications. Its efficacy is not conclusive and it may interact with nitrates. It may decrease blood pressure. There is no evidence that hawthorn lowers potassium levels.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q79",
+      "stem": "A patient has been started on a treatment regimen that includes atenolol (Tenormin) and complains to thenurse of feeling weak and fatigued. Which is thebest response from thenurse?",
+      "options": [
+        "\"I will hold your next dose of themedication.\"",
+        "\"You may need an increase in your next dose of themedication.\"",
+        "\"This is an adverse reaction to themedication. I will stop thedrug.\"",
+        "\"This is a side effect of themedication. I will notify your physician.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Weakness and fatigue can be a side effect of atenolol. Beta blockers should not be stopped abruptly, thus it would be appropriate to notify thepatient that these symptoms could be due to themedication and that thephysician will be notified.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q80",
+      "stem": "The nurse is caring for a 7-year-old patient who will receive oral antibiotics. Which antibiotic order will the nurse question for this patient?",
+      "options": [
+        "Azithromycin",
+        "Clarithromycin",
+        "Clindamycin",
+        "Tetracycline"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Tetracycline should not be given to children younger than 8 years of age because it can irreversibly discolor permanent teeth.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q81",
+      "stem": "The nurse is developing a teaching plan for an elderly patient who will begin taking an antihypertensive drug that causes dizziness and orthostatic hypotension. Which hypothesis (problem) documented by the nurse is appropriate for this patient?",
+      "options": [
+        "Deficient knowledge related to drug side effects.",
+        "Ineffective health maintenance related to age.",
+        "Readiness for enhanced knowledge related to medication side effects.",
+        "Risk for injury related to side effects of the medication."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "This patient has an increased risk for injury because of drug side effects, so this is an appropriate hypothesis (problem) to direct the type of care and follow-up the patient will receive.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q82",
+      "stem": "A young woman who is taking an oral contraceptive combination product containing drospirenone and ethinyl estradiol for contraception tells the nurse that her provider has told her it will help to treat her acne. The nurse explains that this is because this product is",
+      "options": [
+        "high in progestin.",
+        "low in androgenic activity.",
+        "low in estrogen.",
+        "triphasic."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Products with low androgenic activity help to reduce acne.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q83",
+      "stem": "The nurse gives 800 mg of a drug that has a half-life of 8 hours. How much drug will be left in the body in 24 hours if no additional drug is given?",
+      "options": [
+        "None",
+        "50 mg",
+        "100 mg",
+        "200 mg"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Eight hours after the drug is given, there will be 400 mg left. Eight hours after that (16 hours), there will be 200 mg left. At 24 hours, there will be 100 mg left.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q84",
+      "stem": "The nurse assists the provider to treat a patient who has warts with cantharidin (Cantharone). After the cantharidin is applied to the warts, the nurse will do which of the following?",
+      "options": [
+        "Apply gauze dressings to the warts and secure them with tape.",
+        "Cover the warts with nonporous tape when the solution dries.",
+        "Prepare to assist the provider with cryotherapy to complete the procedure.",
+        "Treat the warts with Burrow's soaks and apply a wet-to-dry dressing."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "To prevent damage to the surrounding skin, the wart should be covered with nonporous tape after the application of cantharidin is allowed to dry. This procedure can be repeated in approximately 2 weeks. Gauze dressings are porous and would allow the solution to come in contact with intact skin. Cryotherapy is a separate procedure and not done after treatment with cantharidin. Burow's soaks are not indicated for the treatment of warts.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q85",
+      "stem": "The patient tells the nurse that he understands that transplant rejection may happen and asks what can be done to minimize risk of rejection and other negative outcomes. What will the nurse include in the teaching?",
+      "options": [
+        "\"An anti-T-cell antibody should be used in conjunction with corticosteroid therapy for best results.\"",
+        "\"ATG rabbit started immediately after transplant can help prevent rejection.\"",
+        "\"Transplant rejection drugs can be used and while they have unwanted side effects, none are deadly.\"",
+        "\"Caution needs to be taken when other immunosuppressant drugs are administered to avoid serious infections.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Caution needs to be taken when other immunosuppressant drugs are administered because of the increased risk of serious infection. Treatment of rejection with an anti-T-cell antibody is used when corticosteroids have failed to reverse rejection or for treatment of a recurrent rejection. ATG rabbit is indicated to manage transplant rejection, but would not be used prophylactically to prevent rejection immediately after transplant. These drugs have unwanted side effects, some of which are serious and potentially deadly.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q86",
+      "stem": "The nurse is preparing to administer clarithromycin to a patient. When performing a medication history, the nurse learns that the patient takes warfarin to treat atrial fibrillation. The nurse will perform which action?",
+      "options": [
+        "Ask the provider if azithromycin may be used instead of clarithromycin.",
+        "Obtain an order for continuous cardiovascular monitoring.",
+        "Request an order for INR testing.",
+        "Withhold the clarithromycin and notify the provider."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Macrolides can increase serum levels of other drugs such as warfarin. If these drugs are used with macrolides, INR testing is warranted. All macrolides have this drug interaction. Cardiovascular monitoring is not indicated. The drug may be given as long as serum drug levels are monitored.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q87",
+      "stem": "The nurse teaches a patient about their antihypertensive medication. Which statements by the patient indicate understanding of the teaching? (Select all that apply.)",
+      "options": [
+        "\"I should be careful when I stand up from a chair when I start this medication.\"",
+        "\"I should not add extra salt to my foods.\"",
+        "\"If I have side effects, I should stop taking the drug immediately.\"",
+        "\"If my blood pressure returns to normal, I can stop taking this drug.\"",
+        "\"I may need to take a combination of drugs, including diuretics.\"",
+        "\"I will not need to make lifestyle changes since I am taking a medication.\""
+      ],
+      "correct": [
+        "A",
+        "B",
+        "E"
+      ],
+      "rationale": "The patient receiving an antihypertensive medication should be warned to rise slowly to avoid orthostatic hypotension. Patients should be counseled to continue to make lifestyle changes, including decreasing sodium. Often, more than one medication is required. Patients should not stop taking the drug abruptly to avoid rebound hypertension and will not stop the drug when blood pressure returns to normal.",
+      "type": "multi_select"
+    },
+    {
+      "id": "PHARM1_Q88",
+      "stem": "The nurse is preparing to teach a patient who will begin taking a non-selective monoamine oxidase (MAO) inhibitor. What is most important when teaching patients about non-selective MAO inhibitors?",
+      "options": [
+        "Emphasizing the importance of potassium intake",
+        "Giving detailed drug information",
+        "Reviewing dietary guidelines",
+        "Providing a schedule for medication administration"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Non-selective MAO inhibitors have many dietary restrictions with potentially serious adverse reactions, so this should be an important part of teaching.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q89",
+      "stem": "An adolescent patient who has acne is given a regimen of topical medications and an oral antibiotic that generally clears up lesions to fewer than 10 within 6 to 8 weeks. At a 2-month follow-up, the patient continues to have more than 25 lesions. The child's parent affirms that the child is using the medications as prescribed. Which statement below is correct for this patient to evaluate the outcome?",
+      "options": [
+        "\"Goal of fewer than 10 lesions in 6 to 8 weeks is not met.\"",
+        "\"Goal that the medication will be effective is not met.\"",
+        "\"Goal that the patient will take medications as prescribed is not met.\"",
+        "\"Goal that the patient understands the medication regimen is not met.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "6 All indications are that this patient is taking the medications and they are not effective. The first statement is correct because it identifies a measurable desired outcome and a specific time frame.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q90",
+      "stem": "A patient who works outdoors has frequent contact dermatitis flares secondary to exposure to plant irritants. The patient asks the nurse how to minimize these episodes. The nurse will counsel this patient to perform which action?",
+      "options": [
+        "Apply topical glucocorticoid medication prior to exposure.",
+        "Cleanse the skin immediately after any contact with plants.",
+        "Take oral diphenhydramine (Benadryl) after being outdoors.",
+        "Use calamine lotion prior to working outdoors."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Prevention is an important management strategy for contact dermatitis. Cleansing is one of the chief methods to decrease the irritation that has been caused by contact with the causative irritant or allergen.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q91",
+      "stem": "A woman who is infertile has taken 2.5 mg of letrozole daily for 5 days starting on day 3 of her cycle and has not ovulated. The nurse will anticipate that the provider will perform which action?",
+      "options": [
+        "Begin gonadotropin therapy.",
+        "Increase the dose to 5 mg daily for 5 days of her next cycle.",
+        "Order clomiphene citrate to be given throughout her next cycle.",
+        "Repeat the 2.5 mg of letrozole for 2 more cycles."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "If the first round of letrozole is not successful, the provider may increase the dose 5 mg on subsequent cycles. Dosing of up to 5 cycles is used. Gonadotropin may be used if other approaches prove unsuccessful. It is not correct to administer the drug throughout the cycle or to continue with the initial dose.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q92",
+      "stem": "A patient is ordered to receive a nitrate to relieve stable angina. What side effect(s) will thenurse anticipate in a patient receiving this medication?",
+      "options": [
+        "Nausea and vomiting",
+        "Increased blood pressure",
+        "Pruritus and skin rash",
+        "Headache"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Headache is a common side effect to nitrates and is related to vasodilation of thecerebral vessels. Headaches often improve with continued use. Nitrates decrease blood pressure.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q93",
+      "stem": "A 35-year-old woman reports lethargy, difficulty remembering things, facial edema, dry skin, and cessation of menses. The nurse notes a heart rate of 60 beats per minute and a weight increase of 5 pounds from a previous visit. The nurse suspects the patient will be diagnosed with which of the following?",
+      "options": [
+        "Cretinism",
+        "Early menopause",
+        "Hyperthyroidism",
+        "Myxedema"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Myxedema is severe hypothyroidism characterized by this woman's symptoms. Cretinism is congenital hypothyroidism. Early menopause is not characterized by memory loss, facial edema, dry skin, or bradycardia. Hyperthyroidism would include tachycardia and weight loss.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q94",
+      "stem": "A woman will begin taking a combination oral contraceptive (COC) that has a higher estrogenic activity than her previous COC. When teaching this woman about the new product, the nurse will explain that she may experience which effect(s)?",
+      "options": [
+        "Cyclic breast changes and chloasma",
+        "Decreased dysmenorrhea and menorrhagia",
+        "Decreased libido",
+        "Weight gain and fatigue"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Increased estrogenic activity may include side effects such as cyclic breast changes and chloasma as well as increased dysmenorrhea and menorrhagia. Increased progestin causes decreased libido, weight gain, and fatigue.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q95",
+      "stem": "The nurse is caring for a patient who will begin taking theophylline at home. During theassessment, thenurse learns that thepatient smokes. thenurse expects that thepatient will eventually require which of thefollowing?",
+      "options": [
+        "A smaller than typical dose of theophylline",
+        "A larger than typical dose of theophylline",
+        "A typical dose of theophylline",
+        "A change in medication since theophylline is contraindicated in those who smoke"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Tobacco smoking increases themetabolism of theophylline, so patients who smoke may require a higher dose for therapeutic effects.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q96",
+      "stem": "The nurse assesses an older patient 60 minutes after administering 4 mg of intravenous morphine sulfate (MS) for postoperative pain. The patient's analgesia order is for 2 to 5 mg of MS IV every 2 hours. The nurse notes that the patient is lying very still. The patient's heart rate is 96 beats per minute, respiratory rate is 14 breaths per minute, and blood pressure is 160/90 mm Hg. When asked to rate the level of pain, the patient replies \"just a 5.\" The nurse will perform which action?",
+      "options": [
+        "Give 3 mg of MS at the next dose.",
+        "Give 5 mg of MS at the next dose.",
+        "Request an order for an oral opioid to give now.",
+        "Request an order for acetaminophen to give now."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Older patients often minimize pain when asked, so the nurse should evaluate nonverbal cues to pain such as elevated heart rate and blood pressure and the fact that the patient is lying very still. The nurse should increase the dose the next time the pain medication is given.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q97",
+      "stem": "The patient asks the nurse about storing insulin. Which response by the nurse is correct?",
+      "options": [
+        "\"All insulin vials must be refrigerated before and during use.\"",
+        "\"Insulin will last longer if kept in the freezer.\"",
+        "\"Opened vials of insulin must be discarded after first use.\"",
+        "\"Some insulin products do not require refrigeration during use.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Some insulin products do not require refrigeration during use. Storing insulin in the freezer is not recommended. Opened vials may either be kept at room temperature or refrigerated. Drug information for each product should be reviewed for drug-specific storage information.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q98",
+      "stem": "The nurse provides teaching for a patient who will begin taking phenytoin. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"If I develop a rash, I should take diphenhydramine to control the itching.\"",
+        "\"If I experience bleeding gums, I should stop taking the medication immediately.\"",
+        "\"Most people develop diabetes while taking this medication.\"",
+        "\"I should not be alarmed if my urine turns reddish-brown.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Phenytoin can cause reddish-brown colored urine. Patients should be counseled to report a rash to the provider because it could be a serious adverse reaction. Bleeding gums are common, but patients should never stop taking anticonvulsants abruptly, or they may develop seizures. Changes in blood glucose may occur but do not necessarily result in diabetes.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q99",
+      "stem": "The nurse administers nalbuphine to a patient who is experiencing severe pain. Which statement by the patient indicates a need for further teaching about this drug?",
+      "options": [
+        "\"I may experience unusual dreams while taking this medication.\"",
+        "\"I may need to use a laxative when taking this drug.\"",
+        "\"I should ask for assistance when I get out of bed.\"",
+        "\"I should expect to have more frequent urination.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "A common side effect of opioid agents is urinary retention. Patients should notify the nurse if they cannot void. Side effects may include unusual dreams, constipation, and dizziness.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q100",
+      "stem": "The nurse is caring for a patient who will begin taking atenolol (Tenormin) as add-on therapy for the treatment of hypertension. What information will the nurse include when teaching the patient about taking this medication?",
+      "options": [
+        "The drug must be taken twice daily.",
+        "The patient should rise slowly from a chair or bed.",
+        "The medication is safe to take during pregnancy.",
+        "Use NSAIDs instead of acetaminophen for mild to moderate pain."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The side effects commonly associated with beta blockers include bradycardia, hypotension, and dizziness. Patients should be instructed to use caution when rising from a sitting or lying position to avoid orthostatic hypotension. Atenolol may be taken once daily. Atenolol should be used with caution in the pregnant patient. NSAIDs can increase blood pressure and should be avoided if possible in patients with uncontrolled hypertension.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q101",
+      "stem": "The nurse is teaching an adult male patient about the use of testosterone gel. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"A decreased urinary stream is an expected side effect.\"",
+        "\"I should apply the gel to my forearms every day.\"",
+        "\"I will have hand and wrist x-rays every 6 months.\"",
+        "\"I will need regular evaluation of serum lipid levels.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Testosterone can increase lipid levels so these should be monitored regularly. A decreased urinary stream can indicate prostatic hypertrophy and should be reported. Patients should apply the gel where it is least likely to come in contact with other people, such as on the trunk. Only prepubertal males require bone evaluation by x-ray.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q102",
+      "stem": "A patient has been taking spironolactone to treat heart failure. thenurse will monitor for which of thefollowing electrolyte abnormalities?",
+      "options": [
+        "Hyperkalemia",
+        "Hypermagnesemia",
+        "Hypocalcemia",
+        "Hypoglycemia"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Spironolactone is a potassium-sparing diuretic and can induce hyperkalemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q103",
+      "stem": "A nursing student asks the nurse to explain the role of cyclooxygenase-2 (COX-2) and its role in inflammation. The nurse will explain that COX-2",
+      "options": [
+        "converts arachidonic acid into a chemical mediator for inflammation.",
+        "directly causes vasodilation and increased capillary permeability.",
+        "directly irritates the gastric mucosa to cause gastrointestinal upset.",
+        "releases prostaglandins, which cause inflammation and pain in tissues."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "COX-2 is an enzyme that converts arachidonic acid into prostaglandins and their products, and this synthesis causes pain and inflammation. The COX-2 enzyme does not directly cause inflammation. Prostaglandins produced by COX-1 serve to protect the stomach lining and regulates platelet function. COX-2 converts arachidonic acid to prostaglandins, but does not release prostaglandins per se.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q104",
+      "stem": "The nurse is performing a health history on a patient who has arthritis. The patient reports tinnitus. Suspecting a drug adverse effect, the nurse will ask the patient about which medication?",
+      "options": [
+        "Aspirin",
+        "Acetaminophen",
+        "Anakinra",
+        "Prednisone"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Tinnitus is a sign of aspirin overdose or hypersensitivity to aspirin. The nurse should question the patient about this medication. The other medications are less likely to contribute to this side effect.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q105",
+      "stem": "A patient is diagnosed with anemia and asks the nurse why the provider has ordered vitamin B12. Which answer by the nurse is correct?",
+      "options": [
+        "\"Vitamin B12 is given to improve your overall energy level.\"",
+        "\"Vitamin B12 is necessary for the development of red blood cells.\"",
+        "\"Vitamin B12 prevents excess iron loss.\"",
+        "\"Vitamin B12 will help you absorb iron more efficiently.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Vitamin B12 is essential for DNA synthesis and aids in the conversion of folic acid to its active form and is also needed for the development of red blood cells. It does not directly improve energy level and does not affect iron loss or iron absorption.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q106",
+      "stem": "A patient will begin using an albuterol metered-dose inhaler to treat asthma symptoms. thepatient asks thenurse about thedifference between using an oral form of albuterol and theinhaled form. thenurse will explain that theinhaled form of albuterol",
+      "options": [
+        "has a more immediate onset than theoral form.",
+        "may cause more side effects than theoral preparation.",
+        "requires an increased dose in order to have therapeutic effects.",
+        "will not lead to tolerance with increased doses."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Inhaled medications have more immediate effects on thelungs when compared to oral preparations. As long as they are used correctly, systemic side effects are less common. Less drug is needed for therapeutic effects since thedrug is delivered directly to target tissues. Increased doses will lead to drug tolerance.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q107",
+      "stem": "A woman is diagnosed with bacterial vaginosis and will begin taking metronidazole (Flagyl). What will the nurse teach the patient about this medication?",
+      "options": [
+        "\"Abstain from sexual intercourse while taking this medication.\"",
+        "\"Do not consume alcohol while taking this drug and for 48 hours after finishing the prescription.\"",
+        "\"Take this medication on an empty stomach to increase absorption.\"",
+        "\"Topical preparations are ineffective for treating bacterial vaginosis.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Metronidazole can cause a disulfiram-like reaction when taken with alcohol, so patients should be cautioned against using foods or drug products that contain alcohol. There is no need to abstain from sexual intercourse. Metronidazole should be taken with food. The topical preparation is effective against bacterial vaginosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q108",
+      "stem": "The nurse is caring for a hospitalized patient who experiences an acute spike in blood pressure. The nurse will expect an order to administer which medication?",
+      "options": [
+        "Amlodipine",
+        "Nifedipine",
+        "Nifedipine extended release",
+        "Verapamil"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The short-acting nifedipine is used to treat rapid rises in blood pressure but cannot be used for out-patient treatment at high dosages because of an increased risk for sudden cardiac death. The other drugs are not used for rapid rise in BP.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q109",
+      "stem": "The nurse is caring for a postpartum woman who is refusing opioid analgesics but is rating her pain as a 7 or 8 on a 10-point pain scale. The nurse will contact the provider to request an order for which analgesic medication?",
+      "options": [
+        "Diclofenac",
+        "Ketoprofen",
+        "Ketorolac",
+        "Naproxen"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Ketorolac is an injectable NSAID and has shown analgesic efficacy equal or superior to that of opioid analgesics. The other NSAIDs listed are not used for postoperative pain.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q110",
+      "stem": "The nurse is teaching a group in the community about substance use disorder. Which statement by the nurse is correct?",
+      "options": [
+        "\"Cravings always disappear after long periods of abstinence by the person addicted to drugs.\"",
+        "\"Abuse and dependence are synonymous terms, describing reliance on illicit substances.\"",
+        "\"Substance use disorder occurs when recurrent use causes clinically and functionally significant impairment.\"",
+        "\"Excessive caffeine use is a classic example of substance use disorder.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Substance use disorder occurs when the recurrent use of alcohol and/or drugs causes clinically and functionally significant impairments. Cravings may diminish after long abstinence but do not disappear completely. The terms \"abuse\" and \"dependence\" are no longer recommended for use due to the violence and stigma associated with the term \"abuse\" and the ambiguity of the term \"dependence.\" Excessive caffeine use is not considered a substance use disorder.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q111",
+      "stem": "Which side effect listed below is NOT associated with the urinary analgesic phenazopyridine?",
+      "options": [
+        "Renal dysfunction",
+        "Altered blood glucose testing results",
+        "Reddish-orange urine",
+        "Hemolytic anemia"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Phenazopyridine can cause hemolytic anemia, renal and hepatic dysfunction, and a harmless discoloration of the urine to a reddish orange color. Phenazopyridine can alter urine glucose testing, but does not affect blood glucose test results.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q112",
+      "stem": "During resuscitation of a 5-year-old child, the provider requests a dose of 1 mL of epinephrine to be given STAT. The nurse will perform which action?",
+      "options": [
+        "Ask the provider to clarify the dose, route, and the concentration.",
+        "Draw up the dose and give it as a rapid intravenous bolus.",
+        "Give the dose as a slow intravenous bolus and monitor vital signs.",
+        "Request an order to give the dose via endotracheal tube."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Epinephrine is available in two primary concentrations: 1:1,000 and 1:10,000 mL. The 1:10,000 concentration is used when giving a single IV dose of epinephrine. The 1:1,000 concentration is used for other routes. The nurse should clarify the dose, route, and concentration prior to administration.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q113",
+      "stem": "The nurse is caring for a patient who is receiving diphenhydramine. thenurse notes that thepatient has not voided for 12 hours. What action will thenurse take?",
+      "options": [
+        "Encourage thepatient to drink more fluids.",
+        "Evaluate thebladder to check for distension.",
+        "Request an order for an intravenous fluid bolus.",
+        "Request an order for urinary catheterization."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Diphenhydramine has anticholinergic effects, including urinary retention. thenurse should assess for bladder distension to determine if this is thecase. Encouraging thepatient to drink more fluids or giving intravenous fluids may be necessary if thepatient has oliguria secondary to dehydration. Urinary catheterization is not indicated until urinary retention has been diagnosed.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q114",
+      "stem": "A patient who takes propantheline bromine and omeprazole for an ulcer will begin taking an antacid. The nurse will give which instruction to the patient regarding how to take the antacid?",
+      "options": [
+        "Take the antacid 2 hours after taking the propantheline.",
+        "Take the antacid along with a meal.",
+        "Take the antacid with milk.",
+        "Take the antacid with the propantheline bromine."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Antacids can slow the absorption of anticholinergics and should be taken 2 hours after anticholinergic administration. Antacids should be given 1 to 3 hours after a meal and should not be given with dairy products.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q115",
+      "stem": "A patient who has begun taking nifedipine to treat variant angina has had a recurrent blood pressure of 90/60 mm Hg or less. thenurse will anticipate that theprovider will do which of thefollowing?",
+      "options": [
+        "Add digoxin to thedrug regimen.",
+        "Change to a beta blocker.",
+        "Order serum liver enzymes.",
+        "Switch to diltiazem."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Hypotension is a common effect of calcium channel blockers and is more common with nifedipine. It is less common with diltiazem, so theprovider may order that drug. Adding digoxin, changing to a beta blocker, or ordering serum liver enzymes are not indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q116",
+      "stem": "The nurse is reviewing a patient's chart prior to administering gentamicin and notes that the last serum peak drug level was 9 mcg/mL and the last trough level was 2 mcg/mL. What action will the nurse take?",
+      "options": [
+        "Administer the next dose as ordered.",
+        "Obtain repeat peak and trough levels before giving the next dose.",
+        "Report possible drug toxicity to the patient's provider.",
+        "Report a decreased drug therapeutic level to the patient's provider."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Gentamicin peak values should be 5 to 8 mcg/mL, and trough levels should be <1 to 2 mcg/mL. Peak levels give information about whether or not a drug is reaching potentially toxic levels, while trough levels indicate whether a therapeutic level is maintained. This drug is at a toxic level, and the next dose should not be given.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q117",
+      "stem": "The nurse administers bethanechol (Urecholine) to a patient to treat urinary retention. After 30 minutes, thepatient voids 800 mL of urine and reports having a loose stool but no cramping or gastrointestinal pain. thepatient's blood pressure is 110/70 mm Hg. thenurse will perform which action?",
+      "options": [
+        "Notify theprovider of bethanechol adverse effects.",
+        "Record theurine output and theblood pressure and continue to monitor.",
+        "Request an order for intravenous atropine sulfate.",
+        "Suggest another dose of bethanechol to theprovider."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The patient is exhibiting desired effects and mild side effects of bethanechol, so thenurse should record information and continue to monitor thepatient. There is no need to notify theprovider, give an antidote, or repeat thedose.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q118",
+      "stem": "An adult patient is brought to the emergency department for treatment of an asthma exacerbation. The patient uses inhaled albuterol as needed to control wheezing. The nurse notes expiratory wheezing, tremors, restlessness, and a heart rate of 120 beats per minute. The nurse suspects that the patient has",
+      "options": [
+        "overused the albuterol.",
+        "not been using albuterol.",
+        "taken a beta-adrenergic blocker.",
+        "taken a monoamine oxidase (MAO) inhibitor."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "High doses of albuterol may affect beta1 receptors, causing an increase in heart rate. Patients having an asthma exacerbation may overuse their albuterol inhalers when seeking relief. Patients may have wheezing and increased heart rate during an untreated asthma exacerbation, but they will not have tremors and restlessness.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q119",
+      "stem": "The nurse is generating solutions (planning) for a patient who has chronic lung disease and hypoxia. The patient has been admitted for increased oxygen needs above a baseline of 2 L/min. The nurse generates an expected outcomes stating, \"The patient will have oxygen saturations of >95% on room air at the time of discharge from the hospital.\" What is wrong with this goal?",
+      "options": [
+        "It cannot be evaluated. 4",
+        "It is not measurable.",
+        "It is not patient-centered.",
+        "It is not realistic."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The expected outcome is not realistic because the patient is not usually on room air and should not be expected to attain that expected outcome by discharge from this hospitalization.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q120",
+      "stem": "A patient who has a cough will begin taking guaifenesin to help with secretions. When teaching this patient about themedication, thenurse will provide which instruction?",
+      "options": [
+        "\"Avoid driving or using heavy machinery.\"",
+        "\"Drink extra water while taking themedication.\"",
+        "\"Monitor urine output closely.\"",
+        "\"Take with an oral antihistamine for better effects.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Guaifenesin is an expectorant, and patients taking this medication should be advised to increase fluid intake to at least 8 glasses of water per day. (Remember to assess for contraindications to increasing fluid intake [e.g., heart failure, kidney failure with dialysis, etc.].) Guaifenesin does not cause drowsiness or urinary retention. Antihistamines will dry secretions, making them harder to expectorate.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q121",
+      "stem": "TOP: Nursing Process: N/A Which statement about the safety and efficacy of medications in children is accurate?",
+      "options": [
+        "Children cannot give consent, so clinical drug trials are not performed on children.",
+        "Children can only be subjects in quasi-experimental clinical studies.",
+        "Data from adult clinical drug trials should be extrapolated to children.",
+        "Federal law requires that drugs indicated for use in children be tested on children."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The U.S. Food and Drug Administration (FDA) Modernization Act of 1997 requires that drugs intended for use in children be tested on children.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q122",
+      "stem": "The nurse is caring for a postpartal patient who has just delivered her first baby by caesarean section. The mother's blood type is Rh-negative, and the infant's blood type is Rh-positive. The provider has ordered human D immune globulin (Rh0(D) immune globulin). The nurse understands that this patient may need",
+      "options": [
+        "less than the usual Rh0(D) immune globulin dose.",
+        "more than the usual Rh0(D) immune globulin dose.",
+        "no Rh0(D) immune globulin.",
+        "the usual Rh0(D) immune globulin dose."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "For women with abruption, previa, caesarean births, or manual placental removal, more than 15 mL of fetal-maternal hemorrhage of Rh-positive red blood cells may have occurred, necessitating an increased dose of Rh0(D) immune globulin.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q123",
+      "stem": "The nurse is caring for a patient who is receiving furosemide and an aminoglycoside antibiotic. thenurse will be most concerned if thepatient reports which symptom?",
+      "options": [
+        "Dizziness",
+        "Dysuria",
+        "Nausea",
+        "Tinnitus"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The interaction of furosemide and an aminoglycoside can produce ototoxicity in thepatient. Tinnitus is a sign of ototoxicity. Dizziness can occur as a result of diuretic therapy but not necessarily as a result of this combination. Dysuria and nausea are not common signs of these drugs interacting.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q124",
+      "stem": "A patient is diagnosed with stage 1 hypertension and states a desire to make lifestyle changes to avoid needing to take medication. thenurse will recommend which changes?",
+      "options": [
+        "Changing from weight bearing exercise to yoga",
+        "Decreased fluid intake and increased potassium intake",
+        "Stress reduction and increased protein intake",
+        "Weight reduction and decreased sodium intake"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Weight loss decreases thestress on theheart. Decreasing salt intake decreases vascular volume. Changing to yoga from weight-bearing exercise, limiting fluids, and increasing potassium are not indicated. Stress reduction is recommended, but increasing protein is not.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q125",
+      "stem": "The nurse is teaching a patient how to use phenylephrine HCl (Neo-Synephrine) nasal spray to treat congestion from a viral upper respiratory infection. What instruction will the nurse give the patient?",
+      "options": [
+        "Use this product for a maximum of 3 days.",
+        "Spray the medication into the nose while lying supine.",
+        "Use frequently since systemic side effects do not occur.",
+        "Use the medication prophylactically to prevent future nasal congestion during cold season."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Nurses should explain to patients that continuous use of nasal sprays containing adrenergic agonists may result in rebound nasal congestion; these sprays should not be used more than 3 days. To avoid systemic absorption, spray should be administered while the patient is in an upright position. Because phenylephrine overuse can result in rebound nasal congestion, it should not be used prophylactically.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q126",
+      "stem": "A patient will be discharged home with albuterol to use for asthma symptoms. What information will thenurse include when teaching this patient about this medication?",
+      "options": [
+        "Failure to respond to themedication indicates a need for a higher dose.",
+        "Monitor for hypoglycemia symptoms when using this medication.",
+        "Palpitations are common with this drug even at normal, therapeutic doses.",
+        "Overuse of this medication can result in tolerance."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Excessive use of bronchodilators can result in tolerance to themedication. Hyperglycemia can occur. Palpitations are common with increased doses but not at therapeutic doses.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q127",
+      "stem": "The nurse administers proparacaine HCl (Ophthaine) drops to a patient prior to an eye examination. What sign will the nurse look for to determine when the examination can begin?",
+      "options": [
+        "Absence of the blink reflex",
+        "Blurred vision",
+        "Drying of the corneal epithelium",
+        "Photophobia"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Proparacaine is a topical anesthetic for the eye and causes temporary loss of the blink reflex. Drying of the corneal epithelium is a side effect but occurs later as a result of the loss of the blink reflex. Blurred vision and photophobia result from mydriasis and miosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q128",
+      "stem": "A patient who is newly diagnosed with HIV infection after a recent exposure calls to report fever, sore throat, myalgia, and night sweats. The nurse will notify the provider that this patient is most likely experiencing which of the following?",
+      "options": [
+        "Acute retroviral syndrome",
+        "AIDS",
+        "An increased viral load",
+        "An opportunistic infection"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Acute retroviral syndrome often occurs 2 to 12 weeks after exposure and is caused by rapid viral replication. This patient is likely experiencing symptoms of this syndrome. AIDS is a diagnosis that indicates advanced disease. Opportunistic infection symptoms are related to the type of infection.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q129",
+      "stem": "The nurse provides teaching for a patient who will begin taking nitrofurantoin (Macrodantin) to treat a urinary tract infection. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"If I experience gastrointestinal upset, I may take an antacid.\"",
+        "\"I should notify my provider immediately if my urine is brown.\"",
+        "\"I should take the drug with food and increase my fluid intake.\"",
+        "\"There is no need to worry or contact my physician if I have sudden onset of chest pain.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients taking nitrofurantoin should take the drug with food and increase fluid intake. The drug should not be taken with antacids. Brown urine is a harmless side effect. Patients should contact their health care provider if the experience sudden onset of dyspnea, chest pain, cough, fever, and chills.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q130",
+      "stem": "A patient is taking phenytoin to prevent seizures. The nurse knows that phenytoin is highly protein-bound and has sedating effects. The nurse reviews the patient's chart and notes a low serum albumin. The nurse will notify the provider and observe the patient for which effects?",
+      "options": [
+        "Decreased sedative effects",
+        "Increased sedative effects",
+        "Increased seizures",
+        "No change in effects"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Phenytoin is highly protein-bound. When patients have a low serum albumin, there are fewer protein-binding sites, resulting in more free drug in the system. The nurse should expect the potential for an increase in the sedative side effects of phenytoin.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q131",
+      "stem": "A nursing student asks the nurse to differentiate the pathology of Alzheimer disease from that of Parkinson disease. Which description is correct?",
+      "options": [
+        "Alzheimer disease involves a possible excess of acetylcholine and neuritic plaques.",
+        "Alzheimer disease is caused by decreased amounts of dopamine and degeneration of cholinergic neurons.",
+        "Parkinson disease is characterized by an imbalance of dopamine and acetylcholine.",
+        "Parkinson disease involves increased dopamine production and decreased acetylcholine."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Parkinson disease (PD) is characterized by an imbalance of dopamine (DA) and acetylcholine (ACh) caused by an unexplained degeneration of the dopaminergic neurons, allowing the excitatory response of acetylcholine to exceed the inhibitory response of dopamine. Alzheimer disease (AD) may result from decreased ACh, degeneration of cholinergic neurons, and formation of neuritic plaques. Dopamine does not appear to play a role in Alzheimer disease.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q132",
+      "stem": "The nurse is caring for a patient who is receiving magnesium sulfate for ventricular tachycardia. The nurse assesses a heart rate of 68 beats per minute, a respiratory rate of 10 breaths per minute, a blood pressure of 90/60 mm Hg, and decreased deep tendon reflexes. The nurse understands that these are signs of which condition?",
+      "options": [
+        "Hyperkalemia",
+        "Hypermagnesemia",
+        "Impending cardiac arrest",
+        "Renal compromise"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients with hypermagnesemia will exhibit hypotension, bradycardia, and respiratory depression, along with decreased reflexes. Hyperkalemia causes ventricular arrhythmias.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q133",
+      "stem": "The nurse is evaluating a patient 2 hours after giving a dose of 30 mg of codeine with acetaminophen for postoperative pain following abdominal surgery. The patient reports a pain level of 7 on a scale of 1 to 10. The patient is not satisfied with their current level of pain relief. The nurse notes a heart rate of 110 beats per minute, a respiratory rate of 28 breaths per minute, and a blood pressure of 180/90 mm Hg. Which action will the nurse take?",
+      "options": [
+        "Administer the next dose of codeine 1 hour early.",
+        "Ask the provider if the codeine dose can be increased.",
+        "Contact the provider to ask if a dose of ibuprofen may be given now.",
+        "Request an order for oxycodone with acetaminophen."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The patient is showing signs of moderate to severe pain unrelieved by codeine, so the nurse should request a more potent opioid analgesic such as oxycodone. Codeine is effective for mild to moderate pain so will not be effective for this patient even if the dose is increased. The medication should not be given more frequently than every 4 hours. Ibuprofen is used for musculoskeletal pain and not postoperative pain.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q134",
+      "stem": "The nurse is preparing to give sargramostim to a patient who has acute myelogenous leukemia. thenurse assesses a heart rate of 78 beats per minute and a blood pressure of 120/70 mm Hg. thepatient reports shortness of breath and has a cough and bilateral crackles. What will thenurse do next?",
+      "options": [
+        "Contact theprovider; discuss giving a lower dose.",
+        "Contact thepharmacist; request a bronchodilator.",
+        "Contact thepharmacist; request an order for furosemide.",
+        "Contact theprovider; suggest administration of antibiotics."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients receiving this drug can experience sequestration of granulocytes in thepulmonary circulation and may experience dyspnea. thesargramostim infusion should be reduced by half if this occurs. Bronchospasm, pulmonary edema, and infection are not common side effects. Calling thepharmacist to request medication is an incorrect nursing action; antibiotics are not warranted in this situation.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q135",
+      "stem": "The nurse is teaching a parent about administering nitrofurantoin suspension to a 5-year-old child. Which instruction will the nurse include in the patient teaching?",
+      "options": [
+        "\"Give the medication on an empty stomach.\"",
+        "\"Have the child rinse their mouth after taking the drug.\"",
+        "\"Limit the child's fluid intake to concentrate the urine.\"",
+        "\"Report brownish-colored urine to the child's provider.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Nitrofurantoin suspension can stain the teeth, so patients should rinse their mouth after taking it. Nitrofurantoin should be taken with food, and patients should increase fluid intake. A reddishbrown discoloration of the urine is a harmless side effect.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q136",
+      "stem": "The nurse is preparing to administer a drug and learns that it is an indirect-acting cholinergic agonist. thenurse understands that this drug",
+      "options": [
+        "acts on muscarinic receptors.",
+        "acts on nicotinic receptors.",
+        "inhibits cholinesterase.",
+        "inhibits cholinergic receptors."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Agents that inhibit cholinesterase, which is theenzyme that breaks down acetylcholine, indirectly enhance theactions of acetylcholine.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q137",
+      "stem": "A patient is suspected of having severe hypocalcemia. While waiting for the patient's serum electrolyte results, the nurse will assess for which symptoms? (Select all that apply.)",
+      "options": [
+        "Laryngeal spasms",
+        "Fatigue",
+        "Muscle weakness",
+        "Nausea and vomiting",
+        "Hyperactive deep tendon reflexes",
+        "Twitching of the mouth"
+      ],
+      "correct": [
+        "A",
+        "E",
+        "F"
+      ],
+      "rationale": "Patients who have hypocalcemia will exhibit laryngeal spasms, hyperactive deep tendon reflexes, and twitching of the mouth. The other symptoms are not characteristic of hypocalcemia.",
+      "type": "multi_select"
+    },
+    {
+      "id": "PHARM1_Q138",
+      "stem": "The nurse is preparing to give a dose of a cephalosporin medication to a patient who has been receiving the antibiotic for 2 weeks. The nurse notes ulcers on the patient's tongue and buccal mucosa. Which action will the nurse take?",
+      "options": [
+        "Hold the drug and notify the provider.",
+        "Obtain an order to culture the oral lesions.",
+        "Gather emergency equipment to prepare for anaphylaxis.",
+        "Report a possible superinfection side effect of the cephalosporin."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The patient's symptoms may indicate a superinfection and should be reported to the physician so it can be assessed and treated; however, the drug does not need to be held. It is not necessary to culture the lesions. The symptoms do not indicate impending anaphylaxis.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q139",
+      "stem": "The nurse is caring for a newly admitted patient who has severe gastroenteritis. The patient's electrolytes reveal a serum sodium level of 140 mEq/L and a serum potassium level of 3.5 mEq/L. The nurse receives an order for intravenous 5% dextrose and normal saline with 20 mEq/L potassium chloride to infuse at 125 mL/h. Which action is necessary prior to administering this fluid?",
+      "options": [
+        "Evaluate the patient's urine output.",
+        "Contact the provider to order arterial blood gases.",
+        "Request an order for an initial potassium bolus.",
+        "Suggest a diet low in sodium and potassium."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "If the patient is receiving potassium and the urine output is <25 mL/h or <600 mL/d, potassium accumulation may occur. Patients with a low urine output should not receive IV potassium. Arterial blood gases are not necessary prior to IV potassium administration. Potassium should never be given as a bolus. Patients should be put on a potassium-enriched diet when foods are tolerated.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q140",
+      "stem": "The parent of a 12-month-old child who has received the MMR, varicella, and hepatitis A vaccines calls the clinic to report redness and swelling at the vaccine injection sites and a temperature of 100.3 F. The nurse will perform which action?",
+      "options": [
+        "Recommend aspirin or a nonsteroidal anti-inflammatory drug (NSAID) for pain and fever.",
+        "Recommend acetaminophen and cold compresses.",
+        "Report these adverse effects to the Vaccine Adverse Event Reporting System (VAERS).",
+        "Schedule an appointment in clinic so the provider can evaluate the child."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "These are common, minor side effects of vaccines and can be treated with acetaminophen and cold compresses. Aspirin is contraindicated in children because of its association with Reye's syndrome. Since these are not serious adverse effects, they do not need to be reported to VAERS. It is not necessary to schedule a clinic visit, but the parent should be encouraged to recontact the clinic if symptoms do not improve.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q141",
+      "stem": "The nurse is preparing to administer theanticholinergic medication benztropine (Cogentin) to a patient who has Parkinson disease. thenurse understands that this drug is used primarily for which purpose?",
+      "options": [
+        "To decrease drooling and excessive salivation",
+        "To improve mobility and muscle strength",
+        "To prevent urinary retention",
+        "To suppress tremors and lessen muscle rigidity"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Anticholinergic drugs are used in Parkinson disease mainly to reduce tremors and muscle rigidity.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q142",
+      "stem": "A woman with complaints of abnormal vaginal discharge, vaginal soreness, pruritus, and dysuria is diagnosed with vulvovaginal candidiasis (VVC). Which statement will the nurse include in teaching?",
+      "options": [
+        "\"Treatment with prescription medication is lifelong.\"",
+        "\"Alcohol should be avoided during treatment.\"",
+        "\"Candida albicans can be readily passed between sex partners.\"",
+        "\"Over the counter cream can be used to treat the condition.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Over the counter or prescribed medications can be used to treat the condition; treatment is episodic. The medications do not interact with alcohol. Uncomplicated VVC is not usually acquired through sexual intercourse, thus treatment of sexual partners is not necessary.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q143",
+      "stem": "The nurse is preparing to administer amoxicillin to a patient and learns that the patient previously experienced a severe rash when taking penicillin. Which action will the nurse take?",
+      "options": [
+        "Administer the amoxicillin and have epinephrine available.",
+        "Ask the provider to order an antihistamine.",
+        "Contact the provider to discuss using a different antibiotic.",
+        "Request an order for a beta-lactamase resistant drug."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients who have previously experienced manifestations of allergy to a penicillin should not use penicillins again unless deemed necessary. The nurse should contact the provider to discuss using another antibiotic from a different class. Epinephrine and antihistamines are useful when patients are experiencing allergic reactions, depending on severity.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q144",
+      "stem": "A patient who has major depressive disorder has been taking fluoxetine 20 mg daily for 3 months and reports improved mood, less fatigue, and an increased ability to concentrate. The patient's side effects have diminished with continued use. The only complaint from the patient is regarding the number of medications she takes daily. What will the nurse counsel this patient to discuss with the provider?",
+      "options": [
+        "Changing to once-weekly dosing",
+        "Decreasing the dose to 10 mg daily",
+        "Discontinuing the medication",
+        "Increasing the dose to 30 mg daily"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Once patients have demonstrated control of symptoms with decreased side effects on the maintenance dose of 20 mg daily, patients may be considered for once-weekly dosing. The 20mg dose is maintenance dosing, so decreasing or increasing the dose is not indicated. Patients should not stop taking the medication abruptly.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q145",
+      "stem": "The nurse is admitting a patient who has been taking minoxidil to treat resistant hypertension. Prior to beginning therapy with this medication, the patient had a blood pressure of 170/95 mm Hg and a heart rate of 72 beats per minute. The nurse assesses the patient and notes a blood pressure of 130/72 mm Hg and a heart rate of 78 beats per minute, and also notes a 2.2-kg weight gain since the previous hospitalization and edema of the hands and feet. The nurse will contact the provider to discuss which intervention?",
+      "options": [
+        "Adding hydrochlorothiazide to help increase urine output",
+        "Adding metoprolol (Lopressor) to help decrease the heart rate",
+        "Increasing the dose of minoxidil to lower the blood pressure",
+        "Restricting fluids to help with weight reduction"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Minoxidil is a direct-acting vasodilator, which can cause sodium and water retention. Combining this drug with a diuretic can help reduce edema by increasing urine output. If the patient were tachycardic, a beta blocker might be added. It is not necessary to increase the minoxidil dose or to restrict fluids.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q146",
+      "stem": "The nurse is providing teaching to a patient who will begin taking acetaminophen to treat arthritis pain. Which statement by the patient indicates a need for further teaching?",
+      "options": [
+        "\"I should increase fiber and fluids while taking aspirin.\"",
+        "\"I will call my provider if I experience significant abdominal pain.\"",
+        "\"I will avoid taking in combination with other over-the-counter pain relievers without talking with my doctor first.\"",
+        "\"I will notify my provider of ringing in my ears.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Aspirin is not constipating, so patients do not need to be counseled to consume extra fluids and fiber. Abdominal pain can occur with gastrointestinal bleeding, and tinnitus (ringing in the ears) can be an early sign of toxicity, so patients should be taught to contact their provider if these occur. Aspirin shouldn't be taken with other over-the-counter NSAIDs if possible.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q147",
+      "stem": "The nurse has been asked to provide medication education to a patient with type 2 diabetes starting a new oral medication. The patient can't remember the name of the medication but says that his physician called it a \"DPP-4 inhibitor.\" Which of the following medications is a DPP-4 inhibitor?",
+      "options": [
+        "Dapagliflozin",
+        "Glyburide",
+        "Liraglutide",
+        "Saxagliptin"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Saxagliptin is a DPP-4 inhibitor. Dapagliflozin is an SGLT2 inhibitor, liraglutide is a GLP-1 receptor agonist, and glyburide is a sulfonylurea.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q148",
+      "stem": "A female patient who is taking trimethoprim\u2013sulfamethoxazole (TMP\u2013SMZ) to treat a urinary tract infection reports vaginal itching and discharge. The nurse will perform which action?",
+      "options": [
+        "Ask the patient if she might be pregnant.",
+        "Reassure the patient that this is a normal side effect.",
+        "Report a possible superinfection to the provider.",
+        "Suspect that the patient is having a hematologic reaction."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Superinfection can occur with a secondary infection. Vaginal itching and discharge is a sign of superinfection. This is not symptomatic of pregnancy. These are not common side effects and do not indicate a hematologic reaction.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q149",
+      "stem": "A patient who is taking warfarin has an international normalized ratio (INR) of 5.5. The nurse will anticipate giving which of the following?",
+      "options": [
+        "Fresh frozen plasma",
+        "Intravenous iron",
+        "Oral vitamin K",
+        "Protamine sulfate"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Vitamin K is antagonizes the effects of warfarin, an oral anticoagulant. Patients with an INR of 5.5 should be given a low dose of oral vitamin K. Too much vitamin K may reduce the effectiveness of warfarin for up to 2 weeks. Fresh frozen plasma and intravenous iron are given for anemia caused by blood loss. Protamine sulfate is given for heparin overdose.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q150",
+      "stem": "The parent of a 16-year-old female tells the nurse that the child has not had a menstrual period despite having breast and pubic hair development. The nurse recognizes this as characteristic of which condition?",
+      "options": [
+        "Dysmenorrhea",
+        "Hypothyroidism",
+        "Primary amenorrhea",
+        "Secondary amenorrhea"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Females who have never had a period have primary amenorrhea, which is defined as no menses by age 14 without secondary sex characteristics, or no menses by age 16 with secondary sex characteristics. Dysmenorrhea refers to painful cramping with periods. Hypothyroidism can contribute to secondary amenorrhea, which is characterized by cessation of periods for at least 6 months once menses have begun.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q151",
+      "stem": "A patient has second- and third-degree burns, and the nurse is applying silver sulfadiazine (Silvadene) to the burns with each dressing change. The patient reports a burning sensation. The nurse understands that this is",
+      "options": [
+        "a hypersensitivity reaction to the medication.",
+        "an expected adverse reaction to the medication.",
+        "a sign of localized tissue infection.",
+        "a sign of skin necrosis."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "A common adverse reaction to silver sulfadiazine is a burning sensation. It does not indicate a hypersensitivity reaction, localized tissue infection, or skin necrosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q152",
+      "stem": "A patient has been prescribed aliskiren to treat their hypertension. thenurse knows that aliskiren is categorized as which of thefollowing?",
+      "options": [
+        "Direct renin inhibitor",
+        "Beta blocker",
+        "ACE inhibitor",
+        "Diuretic"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Aliskiren is a direct renin inhibitor indicated for thetreatment of hypertension.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q153",
+      "stem": "A child is brought to the emergency department after ingestion of a toxic substance. The child is alert and conscious and is reported to have ingested kerosene 20 minutes prior. The nurse will anticipate administering",
+      "options": [
+        "activated charcoal.",
+        "an anticholinergic antiemetic.",
+        "an antihistamine.",
+        "syrup of ipecac."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Activated charcoal is used when patients have ingested a caustic substance or a petroleum distillate in a patient who is alert and awake. Syrup of ipecac is not recommended. An anticholinergic or antihistamine would not be indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q154",
+      "stem": "The nurse is preparing to administer an oral medication that is water soluble. The nurse understands that this drug",
+      "options": [
+        "must be taken on an empty stomach.",
+        "requires active transport for absorption.",
+        "should be taken with fatty foods.",
+        "will readily diffuse into the GI tract."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Water-soluble drugs require a carrier enzyme or protein to pass through the GI membrane for absorption.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q155",
+      "stem": "The nurse is teaching a woman who is pregnant about iron supplementation. Which statement by the woman indicates understanding of the teaching?",
+      "options": [
+        "\"I may take the iron with an antacid to reduce gastrointestinal upset.\"",
+        "\"I should drink a glass of milk with iron to increase absorption.\"",
+        "\"I should take the iron supplement with a glass of orange juice.\"",
+        "\"I will stop taking the iron if my stools turn black.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Orange juice helps to improve absorption. Antacids and milk interfere with absorption. Darkened stools are an expected side effect and do not warrant stopping the supplement.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q156",
+      "stem": "The nurse is administering amiodarone to a patient who is being treated for a ventricular arrhythmia. The patient has received a bolus of 150 mg of amiodarone IV and is now receiving a continuous infusion of 1 mg/min. The nurse notes a heart rate of 60 beats per minute and a blood pressure of 88/54 mm Hg. The nurse will notify the provider and perform which other action?",
+      "options": [
+        "Continue the amiodarone infusion at 1 mg/min.",
+        "Decrease the rate of the amiodarone infusion to 0.5 mg/min.",
+        "Increase the rate of the amiodarone infusion to 1.5 mg/min.",
+        "Stop the infusion of amiodarone."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Amiodarone has significant adverse effects of hypotension and bradycardia. When these occur, the nurse should slow the infusion rate to prevent or treat these effects and contact the physician.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q157",
+      "stem": "A 45-year-old woman who has not had a period for 15 months reports severe hot flashes and poor sleep. The nurse reviews information about hormone replacement therapy and tells this woman that hormone therapy",
+      "options": [
+        "is very safe and may be used freely to treat menopausal symptoms.",
+        "may be used indefinitely to treat menopausal symptoms.",
+        "should be used at the lowest dose possible for less than 5 years.",
+        "will be necessary to prevent osteoporosis caused by estrogen depletion."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Women should use hormone therapy at the lowest dose possible for a period of less than 5 years. It carries risks for breast cancer and cardiovascular disease and cannot be used indefinitely. Hormone therapy can help slow osteoporosis, but it does not prevent osteoporosis and is not recommended for this use.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q158",
+      "stem": "The nurse is performing an assessment on a patient who will begin taking propranolol to treat hypertension. The nurse learns that the patient has a history of asthma and diabetes. The nurse will take which action?",
+      "options": [
+        "Administer the medication and monitor the patient's serum glucose.",
+        "Contact the provider to discuss another type of antihypertensive medication.",
+        "Request an order for renal function tests prior to administering this drug.",
+        "Teach the patient about the risks of combining herbal medications with this drug."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients with chronic lung disease are at risk for bronchospasm with beta blockers, especially those like propranolol, which are nonselective. Beta blockers, with the exception of carvedilol, also decrease the efficacy of many oral antidiabetic medications. Noncardioselective beta blockers may also impair recovery from hypoglycemia by inhibiting conversion of glycogen to glucose in the liver. The nurse should discuss a change in medications to one that does not carry these risks.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q159",
+      "stem": "The nurse is preparing to administer a rectal suppository antipyretic medication. Which action by the nurse is correct?",
+      "options": [
+        "Allowing the suppository to soften at room temperature before inserting",
+        "Avoid explaining the administration procedures to the patient so they don't decline the medication",
+        "Having the patient remain flat or on one side for at least 30 minutes after insertion",
+        "Using an oil-based lubricant such as petrolatum gel (Vaseline) to lubricate the medication"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients should remain flat or on one side for at least 30 minutes to prevent expulsion of the suppository. Softening the suppository is not indicated. The procedure should be explained to the patient before administration of the suppository. A water-soluble lubricant should be used.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q160",
+      "stem": "A woman is diagnosed with polycystic ovarian disease (PCOS) after being unable to conceive. Which of the following is considered the treatment of choice for ovulation induction for this patient?",
+      "options": [
+        "Metformin",
+        "Clomiphene citrate",
+        "Depot medroxyprogesterone",
+        "Letrozole"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "For women who are attempting to conceive, and weight loss has not restored ovulation, new studies have shown that letrozole, an aromatase inhibitor, is now the first-line ovulation induction agent over clomiphene citrate for women with PCOS, though it is an off-label use. Clomiphene citrate can still be used, but studies have shown that it is less effective for live birth rates than letrozole. Metformin has been used with clomiphene citrate, though current guidelines recommend against the use of metformin in obese women with PCOS, except in women with glucose intolerance not corrected with lifestyle changes. Depot medroxyprogesterone is used for contraception and would not be indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q161",
+      "stem": "The nurse is teaching a patient who has a folic acid deficiency about treatment for this disorder. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"Food sources of folic acid are better absorbed than synthetic folic acid products.\"",
+        "\"I should take large doses of folic acid to compensate for the deficiency.\"",
+        "\"Most folic acid I take is stored in the liver.\"",
+        "\"Symptoms of folic acid deficiency often do not appear for months.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Symptoms of folic acid deficiency usually are not noted until 2 to 4 months after folic acid storage is depleted. Synthetic folate is more stable and has greater bioavailability when compared with dietary folate. Large doses are not recommended. One-third of folic acid is stored in the liver with the rest stored in tissues.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q162",
+      "stem": "The nurse is caring for a patient who is receiving a third dose of high-dose cyclophosphamide. The nurse notes hematuria. The nurse will notify the provider and will perform which action?",
+      "options": [
+        "Ask whether the patient takes allopurinol.",
+        "Assess the patient's skin and fingernails for darkening.",
+        "Question the patient about fluid intake.",
+        "Reassure the patient that this is an expected side effect."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Hemorrhagic cystitis is a common adverse effect of high-dose cyclophosphamide and can be mitigated by increasing fluid intake. Allopurinol is given to treat gout, which is characterized by uric acid crystalluria. Darkening of the fingernails and skin is a common adverse effect of cyclophosphamide but is unrelated to hemorrhagic cystitis.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q163",
+      "stem": "The spouse of a patient newly diagnosed with mild, unilateral symptoms of Parkinson disease (PD) asks the nurse what, besides medication, can be done to manage the disease. The nurse will do which of the following?",
+      "options": [
+        "Counsel the spouse that parkinsonism is a normal part of the aging process in some people.",
+        "Recommend exercise, nutritional counseling, and group support to help manage the disease.",
+        "Tell the spouse that the disease will not progress if mild symptoms are treated early.",
+        "Tell the spouse that medication therapy can be curative if drugs are started in time."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "PD is a progressive disorder. Non-pharmacologic measures including exercise, nutritional counseling, and group support can lessen symptoms and help patients and families cope with the disorder. Although the aging process may contribute to the development of PD, it is not necessarily a normal part of aging. Treatment may slow the progression but does not arrest or cure the disease.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q164",
+      "stem": "The nurse is performing a medication history on a patient who has glaucoma. The patient has a prescription for brimonidine (Alphagan P). The nurse knows that this drug belongs to which class of medications?",
+      "options": [
+        "Alpha-adrenergic agonists",
+        "Beta-adrenergic blockers",
+        "Cholinergic agonists",
+        "Cholinesterase inhibitors"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Brimonidine is an alpha-adrenergic agonist.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q165",
+      "stem": "A pregnant woman asks the nurse if she must give up caffeinated coffee while pregnant and breast feeding. How will the nurse advise the patient?",
+      "options": [
+        "\"Limit your coffee consumption to 1 cup per day and avoid other sources of caffeine, such as tea and soda.\"",
+        "\"Drinking fewer than 6 cups of coffee per day is not harmful.\"",
+        "\"You may consume coffee freely during your third trimester.\"",
+        "\"Caffeine does not appear in breast milk.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Caffeine consumption should be limited, and patients should be advised to limit coffee ingestion to 1 cup per day and to limit consumption of other sources of caffeine (tea, soda, chocolate and certain drugs). One percent of caffeine consumed will appear in breast milk, so it is wise to not drink several cups of coffee in succession.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q166",
+      "stem": "A patient asks thenurse why nitroglycerin is given sublingually. thenurse will explain that nitroglycerin is administered by this route for which reason?",
+      "options": [
+        "To avoid hypotension",
+        "To increase therate of absorption",
+        "To minimize gastrointestinal upset",
+        "To prevent hepatotoxicity"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Nitroglycerin is given sublingually to avoid first-pass metabolism by theliver, which would occur if thedrug is swallowed, and to increase therate of absorption. It does not prevent hypotension. Gastrointestinal upset and hepatotoxicity usually do not occur.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q167",
+      "stem": "A patient is brought to the emergency department after ingesting an overdose of an opioid medication several hours prior. The patient has a respiratory rate of 6 to 10 breaths per minute and is unconscious. The nurse will prepare to perform which action?",
+      "options": [
+        "Administer disulfiram.",
+        "Administer flumazenil (Romazicon).",
+        "Administer naloxone (Narcan).",
+        "Administer IM thiamine."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Naloxone is the drug of choice in the treatment of respiratory depression associated with opioid overdose. Flumazenil is the antidote for benzodiazepine overdose. Disulfiram is used for the treatment of alcohol use disorder (AUD). Administration of thiamine is recommended in patients with AUD to prevent neurological damage associated with thiamine deficiency.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q168",
+      "stem": "The nurse is caring for a patient who is receiving an intravenous antibiotic. The patient has a serum drug trough of 1.5 mcg/mL. The normal trough for this drug is 1.7 to 2.2 mcg/mL. What will the nurse expect the patient to experience?",
+      "options": [
+        "Inadequate therapeutic effects",
+        "Increased risk for superinfection",
+        "Excessive adverse effects",
+        "Signs of drug toxicity"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A trough level below the normal trough range indicates that the medication is below the therapeutic level. This finding would not indicate altered risk for superinfection. Because drug levels are lower than indicated it would not be expected to see excessive adverse effects or signs of drug toxicity.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q169",
+      "stem": "A young woman tells the nurse that she has a strong family history of osteoporosis and that she has been taking calcium supplements. Which vitamin will the nurse recommend as an adjunct to calcium supplementation to ensure calcium absorption?",
+      "options": [
+        "Vitamin A",
+        "Vitamin D",
+        "Vitamin E",
+        "Vitamin K"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Vitamin D is needed for calcium absorption from the intestines and plays a major role in regulating calcium and phosphorus metabolism.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q170",
+      "stem": "A postoperative patient has a history of opioid use disorder. Which analgesic medication will the nurse expect the provider to order for this patient?",
+      "options": [
+        "Buprenorphine",
+        "Morphine sulfate",
+        "Naloxone",
+        "Oxycodone"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Buprenorphine is an opioid agonist\u2013antagonist analgesic and was developed to help treat opioid use disorder, but can also be used for the treatment of pain. Morphine and oxycodone should be avoided in a patient with a history of opioid use disorder. Naloxone is an opioid antagonist and is given to reverse the effects of opioids if toxicity occurs.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q171",
+      "stem": "The nurse is teaching a patient about using high-dose aspirin to treat arthritis. What information will the nurse include when teaching this patient?",
+      "options": [
+        "\"A normal serum aspirin level is between 30 and 40 mg/dL.\"",
+        "\"You may need to stop taking this drug a week prior to surgery.\"",
+        "\"You will need to monitor aspirin levels if you are also taking warfarin.\"",
+        "\"Your stools may become dark, but this is a harmless side effect.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Aspirin should be discontinued prior to surgery to avoid prolonged bleeding time. A normal serum level is 15 to 30 mg/dL. Patients taking warfarin and aspirin will require INR monitoring. Tarry stools are a symptom of gastrointestinal bleeding and should be reported.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q172",
+      "stem": "The nurse caring for a patient who will receive penicillin to treat an infection asks the patient about previous drug reactions. The patient reports having had a rash when taking penicillin. The nurse will contact the provider to",
+      "options": [
+        "discuss giving a smaller dose of penicillin.",
+        "discuss using erythromycin instead of penicillin.",
+        "request an order for diphenhydramine.",
+        "discuss giving a larger dose of penicillin."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Erythromycin is the drug of choice when penicillin is not an option. Giving smaller or larger doses of penicillin does not prevent hypersensitivity reactions. Diphenhydramine is useful when a hypersensitivity reaction has occurred.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q173",
+      "stem": "The nurse is discussing vaccines with the mother of a 4-year-old child who attends a day care center that requires the diphtheria, tetanus, acellular pertussis (DTaP) vaccine. The mother, who is pregnant, tells the nurse that she does not want her child to receive the pertussis vaccine because she has heard that the disease is \"not that serious\" in older children. What information will the nurse include when discussing this with the mother?",
+      "options": [
+        "If she gets the vaccine, both she and her 4-year-old child will be protected.",
+        "If the 4-year-old child contracts pertussis, it can be passed on to her newborn.",
+        "The vaccine will not be given to her child while she is pregnant.",
+        "Vaccinating the 4-year-old will provide passive immunity for her unborn child."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Even though pertussis is not as serious in older children, it is important to vaccinate children to prevent the spread of the disease to infants and others who are not immunized and who are at risk for significant morbidity and mortality from this disease. Vaccinating the mother will not protect the 4-year-old from getting pertussis. The DTaP vaccine may be given to children whose mothers are pregnant. Vaccinating the child does not confer passive immunity to the unborn child.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q174",
+      "stem": "A patient who has AIDS is at risk to contract aspergillosis. The nurse will anticipate that which antifungal medication will be ordered prophylactically for this patient?",
+      "options": [
+        "Metronidazole",
+        "Micafungin",
+        "Posaconazole",
+        "Voriconazole"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Posaconazole is given for prophylactic treatment of Aspergillus and Candida infections.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q175",
+      "stem": "The nurse is caring for a patient who has asthma. The provider has ordered an albuterol metered- dose inhaler (MDI), 2 puffs q4 to 6h PRN wheezing. The patient's last dose was 4 hours ago. What is the nurse's next action?",
+      "options": [
+        "Administer 2 puffs of albuterol with the MDI.",
+        "Auscultate the patient's lung sounds.",
+        "Give the albuterol if the patient reports wheezing.",
+        "Give the medication and evaluate its effectiveness."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The albuterol is to be given PRN if the patient is wheezing. The nurse should assess breath sounds and give the medication if the patient is wheezing. Even if the patient reports wheezing, the nurse should conduct and document an assessment.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q176",
+      "stem": "The nurse reviews a patient's database and learns that the patient lives alone, is forgetful, and does not have an established routine. The patient will be sent home with three new medications to be taken at different times of the day. The nurse develops a daily medication chart and enlists a family member to put the patient's pills in a pill organizer. This is an example of which element of the nursing process?",
+      "options": [
+        "Recognizing cues (assessment)",
+        "Analyze cues & prioritize hypothesis (analysis)",
+        "Take action (nursing interventions) 3",
+        "Generate solutions (planning)"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Taking action (nursing interventions) involves education and patient care in order to assist the patient to accomplish the goals of treatment.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q177",
+      "stem": "The nurse is caring for a patient who will begin taking a thiazide diuretic to treat hypertension. The patient says, \"I know this will lower my blood pressure, but how does it work?\" How will the nurse best respond?",
+      "options": [
+        "\"It can cause orthostatic hypotension, so be careful.\"",
+        "\"It reduces the volume of fluid in your blood stream to lower blood pressure.\"",
+        "\"The actions are complicated, but it's an effective drug.\"",
+        "\"Your provider should explain this medication to you.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients have a right to understand how the drugs they are taking work and to know about side effects. The nurse should explain how the medication can cause orthostatic hypotension after addressing the patient's current question. Telling the patient that the drug actions are complicated is disrespectful. Nurses are responsible for educating patients about medications.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q178",
+      "stem": "A patient has been receiving intravenous heparin. When laboratory tests are drawn, the nurse has difficulty stopping bleeding at the puncture site. The patient has bloody stools and is reporting abdominal pain. The nurse notes elevated partial thromboplastin time (PTT) and activated PPT (aPTT). Which action will the nurse perform?",
+      "options": [
+        "Ask for an order for oral warfarin (Coumadin).",
+        "Obtain an order for protamine sulfate.",
+        "Request an order for vitamin K.",
+        "Suggest that the patient receive subcutaneous heparin."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Protamine sulfate is given as an antidote to heparin when a patient's clotting times are elevated. Oral warfarin will not stop the anticoagulant effects of heparin. Vitamin K is used as an antidote for warfarin. Administering heparin by another route is not indicated when there is a need to reverse the effects of heparin.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q179",
+      "stem": "The nurse is preparing to administer phenytoin (Dilantin) to a patient who has a seizure disorder. thenurse notes that thelast random serum drug level was 18 mcg/mL. What action will thenurse take?",
+      "options": [
+        "Administer thedose since thepatient's labs do not indicate toxic phenytoin levels.",
+        "Contact theprovider to discuss decreasing thephenytoin dose.",
+        "Contact theprovider and discuss increasing thephenytoin dose.",
+        "Report drug toxicity to theproviders."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The patient's drug level is considered within thedesired therapeutic range of 10 to 20 mcg/mL. thenurse should administer thedose as written. It is not necessary to decrease thedose or increase thedose based on this serum level.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q180",
+      "stem": "Which antigout medication is considered first-line to treat chronic tophaceous gout?",
+      "options": [
+        "Allopurinol",
+        "Colchicine",
+        "Probenecid",
+        "Celecoxib"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Allopurinol inhibits the biosynthesis of uric acid and is used long-term to manage chronic gout and is considered the drug of choice for chronic tophaceous gout. Colchicine does not inhibit uric acid synthesis or promote uric acid secretion and is not used for chronic gout. Probenecid can be used for chronic gout but is not the first choice. Celecoxib is a COX-2 selective antiinflammatory and does not have a role in treating chronic tophaceous gout.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q181",
+      "stem": "The nurse is caring for a patient who has hypothyroidism. To assist in differentiating between primary and secondary hypothyroidism, the nurse will expect the provider to order which drug?",
+      "options": [
+        "Liothyronine sodium",
+        "Liotrix",
+        "Methimazole",
+        "Thyrotropin"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Thyrotropin is a purified extract of thyroid-stimulating hormone and is used as a diagnostic agent to differentiate between primary and secondary hypothyroidism. Liothyronine and liotrix are thyroid replacement drugs. Methimazole is used to decrease thyroid hormone secretion.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q182",
+      "stem": "The nurse is teaching a patient who has Parkinson disease about the side effects of carbidopa- levodopa. Which statement by the patient indicates a need for further teaching?",
+      "options": [
+        "\"I may experience nausea, vomiting, and dyskinesia.\"",
+        "\"I may feel dizzy at first, but this side effect should improve with time.\"",
+        "\"I should report nightmares and mental disturbances to my provider.\"",
+        "\"I should take the drug with protein to increase absorption.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Taking carbidopa-levodopa with high protein foods can decrease absorption of the drug, although gastrointestinal distress may decrease when the medication is taken with food. Gastrointestinal side effects are common, and dyskinesias can potentially occur. Orthostatic hypotension occurs early and will resolve over time. Nightmares and mental disturbances should be reported.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q183",
+      "stem": "A 75-year-old patient will be discharged home with a prescription for an opioid analgesic. To help the patient minimize adverse effects, what will the nurse recommend for this patient?",
+      "options": [
+        "Sucking on lozenges to moisten oral mucosa",
+        "Taking an antacid with each dose",
+        "Taking the medication on an empty stomach",
+        "Using a stool softener"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Opioid analgesics can cause constipation. Stool softeners can help minimize this effect. An important component of planning for this patient would be identifying measures to prevent constipation with this new therapy.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q184",
+      "stem": "A patient will begin taking amoxicillin. The nurse should instruct the patient to avoid which foods?",
+      "options": [
+        "Green leafy vegetables",
+        "Beef and other red meat",
+        "Coffee, tea, and colas",
+        "Acidic fruits and juices"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Acidic fruits and juices should be avoided while the client is being treated with amoxicillin. Amoxicillin may be less effective when taken with acidic fruit or juice.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q185",
+      "stem": "A family member expresses concern that a patient is taking several herbal remedies and worries that they may be unsafe. The nurse will respond by saying that herbal products",
+      "options": [
+        "are classified as medications by the Dietary Supplement Health and Education Act of 1994.",
+        "are regulated by the government and are determined to be safe.",
+        "aren't usually effective but are generally harmless.",
+        "should be discussed with the patient's provider in conjunction with other medications."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Herbs are sometimes useful but can also contribute to side effects and drug interactions, so should be discussed with the patient's provider. There are no agencies that regulate safety and efficacy of herbal products. Herbal products can be effective, but are not always harmless.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q186",
+      "stem": "The nurse is preparing to begin a medication regimen for a patient who will receive intravenous ampicillin and gentamicin. Which is an important nursing action?",
+      "options": [
+        "Administer each antibiotic to infuse over 15 to 20 minutes.",
+        "Order serum peak and trough levels of ampicillin.",
+        "Prepare the schedule so that the drugs are given at the same time.",
+        "Set up separate tubing sets for each drug labeled with the drug name and date."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Intravenous aminoglycosides can be given with penicillins and cephalosporins but should not be mixed in the same container. The IV line should be flushed between antibiotics, or separate tubing sets may be set up. Gentamicin must be infused over 30 to 60 minutes. It is not necessary to measure ampicillin peak and trough levels. Giving the drugs at the same time increases the risk of mixing them together.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q187",
+      "stem": "A 2-year-old child will receive several doses of an intramuscular medication. The nurse caring for this child will use which intervention to help the child cope with this regimen?",
+      "options": [
+        "Allowing the child to give \"pretend\" shots to a doll with an empty syringe",
+        "Allowing the child to select a Band-Aid to wear after each medication is given",
+        "Ensuring privacy while giving the medication",
+        "Explaining that the medicine will help the child to feel better"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Simple explanations, a firm approach, and enlisting the imagination of a toddler through play may enhance cooperation. Allowing the child to practice on a doll may help the toddler tolerate the injections. Preschool and school-age children fear bodily injury, and Band-Aids are important with those age groups. Adolescents need privacy, and school-age children and adolescents can understand the use of a medication in relation to future outcomes.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q188",
+      "stem": "The nurse is assisting with a clinical drug trial in which the side effects of two effective drugs are being compared. A patient who would benefit from either drug has elected to withdraw from the study, and the nurse assists with the paperwork to facilitate this. This is an example of",
+      "options": [
+        "autonomy.",
+        "beneficence.",
+        "justice.",
+        "veracity."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "All participants have the right to autonomy, which is the right to self-determination. Patients have the right to refuse to participate or to withdraw from a study at any time without penalty even if the health care provider disagrees with that choice.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q189",
+      "stem": "A patient who is intubated develops sinus bradycardia. Which medication will thenurse anticipate administering to treat this symptom?",
+      "options": [
+        "Atropine sulfate (Atropine)",
+        "Benztropine (Cogentin)",
+        "Bethanechol chloride (Urecholine)",
+        "Metoclopramide (Reglan)"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Atropine is most commonly used to decrease salivation and respiratory secretions preoperatively and to treat sinus bradycardia by increasing theheart rate.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q190",
+      "stem": "A patient asks the nurse about taking calcium supplements to avoid hypocalcemia. The nurse will suggest that the patient follow which instruction?",
+      "options": [
+        "Take a calcium and vitamin D combination supplement.",
+        "Take calcium along with phosphorus to improve absorption.",
+        "Take calcium with antacids to reduce stomach upset.",
+        "Use aspirin instead of acetaminophen when taking calcium."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Vitamin D enhances the absorption of calcium in the body. Calcium and phosphorus have an inverse relationship\u2014an increased level of one mineral decreases the level of the other, and they would bind in the gastrointestinal tract and not be absorbed if taken at the same time. Antacids can contain magnesium, which can promote calcium loss. Aspirin can alter vitamin D levels and interfere with calcium absorption.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q191",
+      "stem": "The nurse is preparing to administer an oral medication and wants to ensure a rapid drug action. Which form of the medication will the nurse prefer to administer?",
+      "options": [
+        "Capsule",
+        "Enteric-coated pill",
+        "Liquid suspension",
+        "Tablet"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Liquid drugs are already in solution, which is the form necessary for absorption in the gastrointestinal (GI) tract. The other forms must disintegrate into small particles and then dissolve before being absorbed.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q192",
+      "stem": "The nurse is caring for a patient whose serum sodium level is 140 mEq/L and serum potassium level is 5.4 mEq/L. The nurse will contact the patient's provider to discuss an order for",
+      "options": [
+        "a low-potassium diet.",
+        "intravenous sodium bicarbonate.",
+        "sodium polystyrene sulfonate (Kayexalate).",
+        "salt substitutes."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Mild hyperkalemia (5.4-5.6 mEq/L) may be treated with dietary restriction of potassium-rich foods. The patient's sodium level is normal, so sodium bicarbonate is not indicated. Sodium polystyrene sulfonate is used for severe hyperkalemia. Salt substitutes contain potassium and would exacerbate the hyperkalemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q193",
+      "stem": "A woman who is pregnant is taking an anticonvulsant medication to treat a seizure disorder. thenurse will ensure that thepatient takes which dietary supplement toward theend of her pregnancy?",
+      "options": [
+        "Vitamin D",
+        "Iron",
+        "Vitamin C",
+        "Vitamin K"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Anticonvulsants act as inhibitors of vitamin K and can contribute to hemorrhage in infants shortly after birth. Women taking these drugs should receive vitamin K within thelast week to 10 days of their pregnancies.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q194",
+      "stem": "A patient has symptoms that are characteristic of multiple sclerosis (MS). Which diagnostic tests are likely to be ordered to aid in the diagnosis?",
+      "options": [
+        "Cerebrospinal fluid (CSF) analysis and magnetic resonance imaging (MRI)",
+        "CSF proteins and an angiography",
+        "Serum albumin and a computed tomography (CT) scan",
+        "Serum anti-acetylcholine antibodies and x-rays"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Laboratory tests that may be used to confirm a diagnosis of MS include CSF analysis, evoked potential (EP) testing, and MRI.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q195",
+      "stem": "The nurse is caring for a 6-year-old child who had surgery that morning. The child is awake and lying very still in bed and won't respond when the nurse asks about pain. The nurse will perform which action?",
+      "options": [
+        "Ask the child to rate the pain on a scale of 1 to 10.",
+        "Encourage the child to request pain medication when needed.",
+        "Evaluate the child's pain using an \"ouch\" scale.",
+        "Plan to administer pain medication if the child begins to cry."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Some children will not verbalize discomfort even when they have severe pain because they fear injections. Nurses may use an \"ouch\" scale or a faces scale to evaluate pain if the child won't respond. Waiting for severe pain is not appropriate.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q196",
+      "stem": "A patient has been prescribed cilostazol. Which statement by the client indicates the need for further teaching?",
+      "options": [
+        "\"I can take the medication with food if it causes nausea.\"",
+        "\"This medication is used to improve blood flow.\"",
+        "\"I can continue to take ginkgo biloba to improve my memory.\"",
+        "\"I should be cautious when standing.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Cilostazol should not be taken with ginkgo biloba because bleeding time can be prolonged. It can cause nausea so the nurse should recommend taking the medication with food. Cilostazol does cause vasodilation and improves blood flow which can also cause peripheral edema. Caution should be taken when standing for long periods.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q197",
+      "stem": "The nurse is teaching a female patient who will begin taking 2 tablets of 325 mg acetaminophen every 4 to 6 hours as needed for pain. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I may take acetaminophen up to 6 times daily if needed.\"",
+        "\"I should increase the dose of acetaminophen if I drink caffeinated coffee.\"",
+        "\"If I take oral contraceptive pills, I should use back-up contraception.\"",
+        "\"It is safe to take acetaminophen with any over-the-counter medications.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The maximum daily dose of acetaminophen is 4000 mg. If this patient takes 650 mg/dose 6 times daily, this amount is safe for people without liver disease. Taking acetaminophen with caffeine increases the effect of the acetaminophen. Taking acetaminophen with OCPs decreases the effect of the acetaminophen but does not diminish the effect of the OCP. Many over-the-counter medications contain acetaminophen, so patients should be advised to read labels carefully to avoid overdose.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q198",
+      "stem": "Cough and cold products are also used for substance abuse. Which of the following contains the two most commonly misused cough and cold products?",
+      "options": [
+        "Dextromethorphan and promethazine-codeine",
+        "Dextromethorphan and phenylephrine",
+        "Promethazine-codeine and phenylephrine",
+        "Dextromethorphan and guaifenesin"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The two most frequently misused cough and cold products are dextromethorphan and promethazine-codeine cough syrup.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q199",
+      "stem": "The parent of an adolescent who has taken methylphenidate 20 mg/day for 6 months for attention-deficit/hyperactivity disorder (ADHD) brings thechild to clinic for evaluation of a recent onset of nausea, vomiting, and headaches. theparent expresses concern that thechild seems less focused and more hyperactive than before. What will thenurse do next?",
+      "options": [
+        "Ask thechild whether thedrug is being taken as prescribed.",
+        "Contact theprovider to discuss increasing thedose to 30 mg/day.",
+        "Recommend taking thedrug with meals to reduce gastrointestinal side effects.",
+        "Report signs of drug toxicity to thepatient's provider."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Nausea, vomiting, and headaches can occur with drug withdrawal, along with a recurrence of symptoms. thenurse should ask thechild about how they are taking themedication. Methylphenidate should be taken 30 to 45 minutes before meals, not with meals.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q200",
+      "stem": "A pregnant woman tells the nurse that she is taking ginger to reduce morning sickness. What will the nurse tell this patient?",
+      "options": [
+        "\"Ginger can cause fetal birth defects.\"",
+        "\"Ginger is not safe during pregnancy.\"",
+        "\"Ginger can cause abortion in low doses.\"",
+        "\"Ginger may be taken for the short-term treatment of nausea associated with pregnancy.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Ginger may be taken during pregnancy for short-term treatment of morning sickness. There is no evidence that it causes fetal birth defects.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q201",
+      "stem": "The nurse is caring for a patient who is receiving 5-fluorouracil (5-FU) to treat pancreatic cancer. Which interventions are included in thenurse's plan of care for this patient? (Select all that apply.)",
+      "options": [
+        "Apply ice to theIV site if thepatient reports pain.",
+        "Administer antiemetics when thepatient reports nausea.",
+        "Counsel thepatient to use waxed dental floss.",
+        "Discourage visits with people who have respiratory infections.",
+        "Offer ice chips frequently.",
+        "Restrict to nothing by mouth during IV drug administration."
+      ],
+      "correct": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "rationale": "If thepatient reports pain at theIV site, thenurse should apply ice and notify theprovider. Patients should use waxed dental floss to avoid bleeding of thegums. Advise patient not to visit anyone who has a respiratory infection. Ice chips help with oral pain. Antiemetics should be given prior to administration of thedrug. Patients do not need to be nothing per os (NPO) during theIV infusion.",
+      "type": "multi_select"
+    },
+    {
+      "id": "PHARM1_Q202",
+      "stem": "The nurse is caring for a patient who is hospitalized for an asthma exacerbation. thepatient reports taking diphenhydramine at home at night to help with symptoms of allergic rhinitis and cough. thenurse will contact thepatient's provider to request an order for which medication?",
+      "options": [
+        "Benzonatate",
+        "Cetirizine",
+        "Dextromethorphan hydrobromide",
+        "Diphenhydramine"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Cetirizine is an antihistamine, which is indicated for this patient's symptoms. Diphenhydramine is also an antihistamine but, because of its anticholinergic side effects, should be used with caution in patients with acute asthma. Benzonatate and dextromethorphan are antitussives and not antihistamines.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q203",
+      "stem": "The nurse is caring for a hospitalized patient who has symptoms characteristic of pyelonephritis. Before administering the first dose of the intravenous antibiotic, the nurse will ensure that which action is performed?",
+      "options": [
+        "An antipyretic is administered.",
+        "A dose of oral antibiotic is given.",
+        "A urinary analgesic is given.",
+        "A urine culture is obtained."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "A urinalysis, as well as a culture and sensitivity, is usually performed before initiating drug therapy. An antipyretic is indicated for fever but does not need to be timed before the antibiotic. An oral antibiotic is not indicated. A urinary analgesic is given as needed.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q204",
+      "stem": "A patient who has symptoms of peptic ulcer disease will undergo a test that requires drinking a liquid containing 13C urea and breathing into a container. The nurse will explain to the patient that this test is performed to",
+      "options": [
+        "assess the level of hydrochloric acid.",
+        "detect H. pylori antibodies.",
+        "measure the pH of gastric secretions.",
+        "test for the presence of H. pylori."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "When H. pylori is suspected, a noninvasive test is performed by administering 13C urea, which, in the presence of H. pylori, will release 13CO2. The test does not measure the amount of HCl acid or the pH and does not detect H. pylori antibodies.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q205",
+      "stem": "A patient who is about to begin chemotherapy asks the nurse when the risk of infection is highest. The nurse will tell the patient that infection risk is greatest at which point?",
+      "options": [
+        "A week to 10 days after each chemotherapy dose",
+        "During the week immediately after chemotherapy",
+        "Immediately prior to each dose of chemotherapy",
+        "When the patient's temperature is elevated by 1 F"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Following chemotherapy administration, the time at which the blood count, including white blood cells, is lowest is typically 7 to 10 days after treatment.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q206",
+      "stem": "A patient who has psoriasis will begin taking etanercept (Enbrel). The nurse will ensure that which laboratory test is performed prior to initiating treatment with this drug?",
+      "options": [
+        "Complete blood count (CBC) with differential",
+        "CD4 and T-cell count",
+        "Serum pregnancy test",
+        "Tuberculin skin test"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Etanercept can worsen infections by suppressing the immune system, and patients taking this drug must have a tuberculin skin test prior to initiation of treatment. CBC, CD4, and T-cell counts may be monitored during therapy. A serum pregnancy test is not specifically indicated prior to use.",
+      "type": "single_select"
+    },
+    {
+      "id": "PHARM1_Q207",
+      "stem": "The nurse is preparing to hang a new bag for a patient who is receiving total parenteral nutrition (TPN). During this procedure, the nurse will instruct the patient to take a deep breath and then perform which action?",
+      "options": [
+        "Exhale slowly and bear down.",
+        "Exhale slowly to the count of 10.",
+        "Hold the breath and bear down.",
+        "Take several rapid, shallow breaths."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The Valsalva maneuver is performed by taking a breath, holding it, and bearing down. Patients are instructed to perform this maneuver in order to help prevent the formation of air emboli during dressing, cap, and tubing changes.",
+      "type": "single_select"
+    }
+  ]
+}
