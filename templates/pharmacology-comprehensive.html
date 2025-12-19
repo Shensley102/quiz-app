@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pharmacology - Comprehensive | Nurse Success Study Hub</title>
+    <title>Comprehensive Pharmacology Quiz | Nurse Success Study Hub</title>
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
@@ -26,8 +26,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 0;
-            margin: 0;
+            padding: 20px;
         }
         
         /* Offline indicator */
@@ -49,114 +48,9 @@
             display: none;
         }
         
-        .comprehensive-container {
+        .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .page-header {
-            text-align: center;
-            margin-bottom: 30px;
-            color: white;
-        }
-        
-        .page-header h1 {
-            color: white;
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-        }
-        
-        .page-header p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-        }
-        
-        .quiz-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fdf8 100%);
-            border: 2px solid #c8e6c9;
-            border-radius: 16px;
-            padding: 40px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .quiz-card:hover {
-            border-color: #2e7d32;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.2);
-        }
-        
-        .quiz-card .icon {
-            font-size: 4rem;
-            margin-bottom: 15px;
-        }
-        
-        .quiz-card h3 {
-            color: #2e7d32;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .quiz-card .test-bank-label {
-            font-size: 0.9rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .quiz-card .description {
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 20px 0;
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
-            margin-bottom: 20px;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #2e7d32;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            font-size: 0.75rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .source-info {
-            text-align: center;
-            margin-top: 30px;
-            padding: 15px;
-            background: #fff8e1;
-            border-radius: 10px;
-            color: #f57c00;
-            font-size: 0.9rem;
         }
         
         .back-link {
@@ -177,67 +71,128 @@
             background: rgba(255, 255, 255, 0.3);
         }
         
-        .features {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
         }
         
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #666;
-            font-size: 0.9rem;
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
         
-        .feature .check {
-            color: #2e7d32;
-            font-weight: bold;
+        .page-header p {
+            font-size: 1rem;
+            opacity: 0.95;
         }
         
-        .cta-text {
-            font-size: 0.9rem;
-            color: #2e7d32;
+        .quiz-setup {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 20px;
             font-weight: 600;
-            margin-top: 10px;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option-button {
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .option-button:hover {
+            border-color: #764ba2;
+            background: #f8f4fc;
+        }
+        
+        .option-button.selected {
+            border-color: #764ba2;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .start-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .start-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
+        }
+        
+        .start-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .quiz-info {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .quiz-info h3 {
+            color: #764ba2;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .quiz-info p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
         
         @media (max-width: 600px) {
+            .quiz-setup {
+                padding: 25px;
+            }
+            
             .page-header h1 {
                 font-size: 1.5rem;
             }
             
-            .quiz-card {
-                padding: 30px 20px;
-            }
-            
-            .stat-number {
-                font-size: 1.6rem;
-            }
-            
-            .quiz-card .icon {
-                font-size: 3rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .features {
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
         @supports (padding-top: env(safe-area-inset-top)) {
             body {
-                padding-top: env(safe-area-inset-top);
-                padding-bottom: env(safe-area-inset-bottom);
+                padding-top: calc(20px + env(safe-area-inset-top));
+                padding-bottom: calc(20px + env(safe-area-inset-bottom));
             }
         }
     </style>
@@ -248,61 +203,72 @@
         <span>📴 You're offline - Using cached content</span>
     </div>
 
-    <div class="comprehensive-container">
+    <div class="container">
         <a href="/category/Pharmacology" class="back-link">
             ← Back to Pharmacology
         </a>
         
         <div class="page-header">
-            <h1>📖 Comprehensive</h1>
-            <p>Mixed Pharmacology Quizzes</p>
+            <h1>📖 Comprehensive Pharmacology Quiz</h1>
+            <p>829 Question Test Bank - Random Selection</p>
         </div>
         
-        <div style="text-align: center; margin-bottom: 30px;">
-            <p style="color: white; font-size: 0.95rem; line-height: 1.6;">
-                Test your comprehensive pharmacology knowledge with mixed-topic quizzes covering all drug categories, 
-                therapeutic classifications, and nursing considerations across multiple body systems.
-            </p>
-        </div>
-        
-        <a href="/quiz/Pharmacology/Pharm_Quiz_1?autostart=true" class="quiz-card">
-            <div class="icon">💊</div>
-            
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">1</span>
-                    <span class="stat-label">Quiz</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">829</span>
-                    <span class="stat-label">Questions</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">MCQ</span>
-                    <span class="stat-label">Format</span>
-                </div>
+        <div class="quiz-setup">
+            <div class="quiz-info">
+                <h3>📚 About This Quiz</h3>
+                <p>Test your knowledge with randomly selected pharmacology questions from the complete McCuistion Test Bank. Questions cover all drug classifications, mechanisms of action, nursing implications, and NCLEX-style clinical scenarios across all chapters.</p>
             </div>
             
-            <div class="test-bank-label">829 Question Test Bank</div>
-            <div class="description">
-                Test your knowledge with a random set of pharmacology questions from the complete 
-                McCuistion Test Bank. Each quiz session draws from 829 questions covering all drug 
-                classifications, mechanisms of action, nursing implications, and NCLEX-style clinical scenarios.
+            <div class="section-title">How many questions?</div>
+            
+            <div class="options-grid">
+                <button class="option-button selected" data-count="10">10 Questions</button>
+                <button class="option-button" data-count="25">25 Questions</button>
+                <button class="option-button" data-count="50">50 Questions</button>
+                <button class="option-button" data-count="100">100 Questions</button>
             </div>
             
-            <div class="features">
-                <span class="feature"><span class="check">✓</span> Random Selection</span>
-                <span class="feature"><span class="check">✓</span> SATA Questions</span>
-                <span class="feature"><span class="check">✓</span> Detailed Rationales</span>
-            </div>
-            
-            <div class="cta-text">View Comprehensive Quizzes →</div>
-        </a>
-        
-        <div class="source-info">
-            📚 Source: McCuistion Pharmacology Test Bank, 11th Edition (Chapters 1-58)
+            <button class="start-button" id="startQuiz">Start Quiz</button>
         </div>
     </div>
+    
+    <script>
+        let selectedCount = 10; // Default selection
+        
+        // Handle option selection
+        document.querySelectorAll('.option-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove selected class from all buttons
+                document.querySelectorAll('.option-button').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked button
+                this.classList.add('selected');
+                selectedCount = parseInt(this.dataset.count);
+            });
+        });
+        
+        // Handle start quiz
+        document.getElementById('startQuiz').addEventListener('click', function() {
+            // Navigate to quiz with selected question count
+            window.location.href = `/quiz/Pharmacology/Pharm_Quiz_1?count=${selectedCount}`;
+        });
+        
+        // Offline indicator handling
+        function updateOnlineStatus() {
+            const indicator = document.getElementById('offlineIndicator');
+            if (!navigator.onLine) {
+                indicator.classList.remove('hidden');
+            } else {
+                indicator.classList.add('hidden');
+            }
+        }
+        
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+    </script>
     
     <!-- PWA Utilities -->
     <script src="/static/js/pwa-utils.js"></script>
