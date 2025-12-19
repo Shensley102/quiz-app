@@ -9,6 +9,7 @@
     <link rel="manifest" href="/static/manifest.json">
     
     <meta name="theme-color" content="#2e7d32">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
@@ -222,10 +223,10 @@
             <div class="section-title">How many questions?</div>
             
             <div class="options-grid">
-                <button class="option-button selected" data-count="10">10 Questions</button>
-                <button class="option-button" data-count="25">25 Questions</button>
-                <button class="option-button" data-count="50">50 Questions</button>
-                <button class="option-button" data-count="100">100 Questions</button>
+                <button class="option-button selected" data-count="10" data-len="10">10 Questions</button>
+                <button class="option-button" data-count="25" data-len="25">25 Questions</button>
+                <button class="option-button" data-count="50" data-len="50">50 Questions</button>
+                <button class="option-button" data-count="100" data-len="100">100 Questions</button>
             </div>
             
             <button class="start-button" id="startQuiz">Start Quiz</button>
@@ -234,6 +235,7 @@
     
     <script>
         let selectedCount = 10; // Default selection
+        let selectedLen = '10'; // For quiz length button mapping
         
         // Handle option selection
         document.querySelectorAll('.option-button').forEach(button => {
@@ -246,13 +248,15 @@
                 // Add selected class to clicked button
                 this.classList.add('selected');
                 selectedCount = parseInt(this.dataset.count);
+                selectedLen = this.dataset.len;
             });
         });
         
-        // Handle start quiz
+        // Handle start quiz - navigate with length parameter for pre-selection
         document.getElementById('startQuiz').addEventListener('click', function() {
-            // Navigate to quiz with selected question count
-            window.location.href = `/quiz/Pharmacology/Pharm_Quiz_1?count=${selectedCount}`;
+            // Navigate to quiz with selected question count and length parameter
+            // The quiz page will read the 'len' parameter to pre-select the button
+            window.location.href = `/quiz/Pharmacology/Pharm_Quiz_1?len=${selectedLen}&autostart=true`;
         });
         
         // Offline indicator handling
