@@ -17,6 +17,7 @@
    - FIXED: Correct JSON path construction for offline mode
    - CHANGED: Resume button only on home page, not on quiz pages
    - CHANGED: Start Quiz clears previous session
+   - FIXED: Autostart now reads 'len' parameter from URL
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -802,11 +803,23 @@ function checkAutoStart() {
   return urlParams.get('autostart') === 'true';
 }
 
+/* ---------- Get length from URL parameter ---------- */
+function getLengthFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const len = urlParams.get('len');
+  // Return the len value if it's valid, otherwise null
+  if (len && ['10', '25', '50', '100', 'full'].includes(len)) {
+    return len;
+  }
+  return null;
+}
+
 /* ---------- Initialize modules with preselect and preloaded data ---------- */
 async function initModulesWithPreselect() {
   const moduleFromPath = getModuleFromPath();
   const categoryFromPath = getCategoryFromPath();
   const autostart = checkAutoStart();
+  const lengthFromURL = getLengthFromURL();
   const hasPreloadedData = window.preloadedQuizData && window.preloadedModuleName;
   
   // Set current category from path or preloaded data
@@ -951,12 +964,21 @@ async function initModulesWithPreselect() {
       if (quizTitle) quizTitle.textContent = displayName;
     }
 
+    // Handle autostart with length from URL
     if (autostart && moduleFromPath) {
       const lengthBtnsAll = document.querySelectorAll('#lengthBtns .seg-btn');
       lengthBtnsAll.forEach(btn => btn.classList.remove('active'));
+      
+      // Use length from URL if provided, otherwise default to 'full'
+      const targetLen = lengthFromURL || 'full';
+      
       lengthBtnsAll.forEach(btn => {
-        if (btn.dataset.len === 'full') { btn.classList.add('active'); btn.setAttribute('aria-pressed', 'true'); }
+        if (btn.dataset.len === targetLen) { 
+          btn.classList.add('active'); 
+          btn.setAttribute('aria-pressed', 'true'); 
+        }
       });
+      
       setTimeout(() => { startQuiz(); }, 100);
     }
   } catch (err) {
