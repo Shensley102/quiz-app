@@ -1,0 +1,905 @@
+{
+  "module": "Endocrine_Metabolic_Pharm",
+  "questions": [
+    {
+      "id": "ENDO_1",
+      "stem": "A patient has hypocalcemia caused by parathyroid hormone deficiency. Which medication will the nurse anticipate giving to this patient?",
+      "options": [
+        "Calcitonin",
+        "Calcitriol",
+        "Calcium",
+        "Vitamin D"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Calcitriol is given for management of hypocalcemia caused by parathyroid hormone deficiency. Calcitonin is used to treat hyperparathyroidism. Calcium and vitamin D are not useful in parathyroid deficiency.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_2",
+      "stem": "A patient reports severe localized itching after contact with a new brand of laundry detergent. The nurse will suggest that the patient contact the provider to discuss treatment with which product initially?",
+      "options": [
+        "Calamine lotion",
+        "Systemic glucocorticoid",
+        "Oral diphenhydramine",
+        "Topical corticosteroid"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "This patient has contact dermatitis related to contact with a chemical. Topical corticosteroids may be used for the itching. Calamine lotion is used mainly for contact with plant irritants. Oral diphenhydramine is not recommended initially, but could be added if itching persists. Systemic steroids are used for more severe reactions.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_3",
+      "stem": "The nurse is caring for a patient who is receiving total parenteral nutrition (TPN). The patient reports nausea, headache, and thirst. The nurse will contact the provider to discuss which of the following?",
+      "options": [
+        "Giving acetaminophen for headache pain",
+        "Obtaining a blood glucose level",
+        "Ordering an antiemetic to prevent vomiting",
+        "Starting intravenous dextrose"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "This patient shows signs of hyperglycemia, which is a common adverse effect of TPN. The nurse should request an order for blood glucose testing. Symptoms should not be treated without first determining the underlying cause. Dextrose is given to prevent and/or treat hypoglycemia, but the patients blood glucose should be determined first.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_4",
+      "stem": "A 35-year-old woman reports lethargy, difficulty remembering things, facial edema, dry skin, and cessation of menses. The nurse notes a heart rate of 60 beats per minute and a weight increase of 5 pounds from a previous visit. The nurse suspects the patient will be diagnosed with which of the following?",
+      "options": [
+        "Cretinism",
+        "Early menopause",
+        "Hyperthyroidism",
+        "Myxedema"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Myxedema is severe hypothyroidism characterized by this woman's symptoms. Cretinism is congenital hypothyroidism. Early menopause is not characterized by memory loss, facial edema, dry skin, or bradycardia. Hyperthyroidism would include tachycardia and weight loss.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_5",
+      "stem": "The patient asks the nurse about storing insulin. Which response by the nurse is correct?",
+      "options": [
+        "\"All insulin vials must be refrigerated before and during use.\"",
+        "\"Insulin will last longer if kept in the freezer.\"",
+        "\"Opened vials of insulin must be discarded after first use.\"",
+        "\"Some insulin products do not require refrigeration during use.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Some insulin products do not require refrigeration during use. Storing insulin in the freezer is not recommended. Opened vials may either be kept at room temperature or refrigerated. Drug information for each product should be reviewed for drug-specific storage information.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_6",
+      "stem": "Which side effect listed below is NOT associated with the urinary analgesic phenazopyridine?",
+      "options": [
+        "Renal dysfunction",
+        "Altered blood glucose testing results",
+        "Reddish-orange urine",
+        "Hemolytic anemia"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Phenazopyridine can cause hemolytic anemia, renal and hepatic dysfunction, and a harmless discoloration of the urine to a reddish orange color. Phenazopyridine can alter urine glucose testing, but does not affect blood glucose test results.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_7",
+      "stem": "The nurse has been asked to provide medication education to a patient with type 2 diabetes starting a new oral medication. The patient can't remember the name of the medication but says that his physician called it a \"DPP-4 inhibitor.\" Which of the following medications is a DPP-4 inhibitor?",
+      "options": [
+        "Dapagliflozin",
+        "Glyburide",
+        "Liraglutide",
+        "Saxagliptin"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Saxagliptin is a DPP-4 inhibitor. Dapagliflozin is an SGLT2 inhibitor, liraglutide is a GLP-1 receptor agonist, and glyburide is a sulfonylurea.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_8",
+      "stem": "The parent of a 16-year-old female tells the nurse that the child has not had a menstrual period despite having breast and pubic hair development. The nurse recognizes this as characteristic of which condition?",
+      "options": [
+        "Dysmenorrhea",
+        "Hypothyroidism",
+        "Primary amenorrhea",
+        "Secondary amenorrhea"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Females who have never had a period have primary amenorrhea, which is defined as no menses by age 14 without secondary sex characteristics, or no menses by age 16 with secondary sex characteristics. Dysmenorrhea refers to painful cramping with periods. Hypothyroidism can contribute to secondary amenorrhea, which is characterized by cessation of periods for at least 6 months once menses have begun.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_9",
+      "stem": "A 45-year-old woman who has not had a period for 15 months reports severe hot flashes and poor sleep. The nurse reviews information about hormone replacement therapy and tells this woman that hormone therapy",
+      "options": [
+        "is very safe and may be used freely to treat menopausal symptoms.",
+        "may be used indefinitely to treat menopausal symptoms.",
+        "should be used at the lowest dose possible for less than 5 years.",
+        "will be necessary to prevent osteoporosis caused by estrogen depletion."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Women should use hormone therapy at the lowest dose possible for a period of less than 5 years. It carries risks for breast cancer and cardiovascular disease and cannot be used indefinitely. Hormone therapy can help slow osteoporosis, but it does not prevent osteoporosis and is not recommended for this use.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_10",
+      "stem": "The nurse is performing an assessment on a patient who will begin taking propranolol to treat hypertension. The nurse learns that the patient has a history of asthma and diabetes. The nurse will take which action?",
+      "options": [
+        "Administer the medication and monitor the patient's serum glucose.",
+        "Contact the provider to discuss another type of antihypertensive medication.",
+        "Request an order for renal function tests prior to administering this drug.",
+        "Teach the patient about the risks of combining herbal medications with this drug."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients with chronic lung disease are at risk for bronchospasm with beta blockers, especially those like propranolol, which are nonselective. Beta blockers, with the exception of carvedilol, also decrease the efficacy of many oral antidiabetic medications. Noncardioselective beta blockers may also impair recovery from hypoglycemia by inhibiting conversion of glycogen to glucose in the liver. The nurse should discuss a change in medications to one that does not carry these risks.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_11",
+      "stem": "A woman is diagnosed with polycystic ovarian disease (PCOS) after being unable to conceive. Which of the following is considered the treatment of choice for ovulation induction for this patient?",
+      "options": [
+        "Metformin",
+        "Clomiphene citrate",
+        "Depot medroxyprogesterone",
+        "Letrozole"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "For women who are attempting to conceive, and weight loss has not restored ovulation, new studies have shown that letrozole, an aromatase inhibitor, is now the first-line ovulation induction agent over clomiphene citrate for women with PCOS, though it is an off-label use. Clomiphene citrate can still be used, but studies have shown that it is less effective for live birth rates than letrozole. Metformin has been used with clomiphene citrate, though current guidelines recommend against the use of metformin in obese women with PCOS, except in women with glucose intolerance not corrected with lifestyle changes. Depot medroxyprogesterone is used for contraception and would not be indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_12",
+      "stem": "A young woman tells the nurse that she has a strong family history of osteoporosis and that she has been taking calcium supplements. Which vitamin will the nurse recommend as an adjunct to calcium supplementation to ensure calcium absorption?",
+      "options": [
+        "Vitamin A",
+        "Vitamin D",
+        "Vitamin E",
+        "Vitamin K"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Vitamin D is needed for calcium absorption from the intestines and plays a major role in regulating calcium and phosphorus metabolism.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_13",
+      "stem": "The nurse is caring for a patient who has hypothyroidism. To assist in differentiating between primary and secondary hypothyroidism, the nurse will expect the provider to order which drug?",
+      "options": [
+        "Liothyronine sodium",
+        "Liotrix",
+        "Methimazole",
+        "Thyrotropin"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Thyrotropin is a purified extract of thyroid-stimulating hormone and is used as a diagnostic agent to differentiate between primary and secondary hypothyroidism. Liothyronine and liotrix are thyroid replacement drugs. Methimazole is used to decrease thyroid hormone secretion.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_14",
+      "stem": "A patient asks the nurse about taking calcium supplements to avoid hypocalcemia. The nurse will suggest that the patient follow which instruction?",
+      "options": [
+        "Take a calcium and vitamin D combination supplement.",
+        "Take calcium along with phosphorus to improve absorption.",
+        "Take calcium with antacids to reduce stomach upset.",
+        "Use aspirin instead of acetaminophen when taking calcium."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Vitamin D enhances the absorption of calcium in the body. Calcium and phosphorus have an inverse relationship\u2014an increased level of one mineral decreases the level of the other, and they would bind in the gastrointestinal tract and not be absorbed if taken at the same time. Antacids can contain magnesium, which can promote calcium loss. Aspirin can alter vitamin D levels and interfere with calcium absorption.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_15",
+      "stem": "A patient reports taking large doses of vitamin C to prevent upper respiratory infections. The nurse will perform which action?",
+      "options": [
+        "Monitor the patient for hyperglycemia.",
+        "Notify the provider and discuss a gradual taper of vitamin C.",
+        "Request an order for a CBC to assess the patient's hemoglobin.",
+        "Tell the patient that studies have confirmed the benefit of high dose vitamin C for this indication."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients who take large doses of vitamin C should be tapered down gradually to avoid vitamin deficiency. Vitamin C can produce a false positive urine glucose test but does not affect blood glucose. It does not affect hemoglobin. Studies have not demonstrated the effectiveness of vitamin C in preventing or treating colds.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_16",
+      "stem": "A patient who takes insulin to manage type 1 diabetes will begin taking levothyroxine. The nurse will advise this patient to monitor for",
+      "options": [
+        "hyperglycemia.",
+        "hypoglycemia.",
+        "hyperkalemia.",
+        "hypokalemia."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Insulin and oral antidiabetic drugs may need to be increased in patients taking levothyroxine. Patients should be taught to monitor for hyperglycemia, because of the reduced effects of these drugs.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_17",
+      "stem": "A patient with Graves' disease exhibits tachycardia, heat intolerance, and exophthalmos. Prior to surgery, which drug is used to alter thyroid hormone levels?",
+      "options": [
+        "Liotrix",
+        "Propranolol",
+        "Propylthiouracil (PTU)",
+        "Dessicated thyroid"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Propylthiouracil is a potent antithyroid drug used in preparation for a subtotal thyroidectomy. Liotrix and thyroid are used as thyroid replacement. Propranolol is used to treat hypertension associated with hyperthyroidism.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_18",
+      "stem": "The nurse is teaching the parents of a boy who has inadequate pituitary function and delayed puberty about testosterone cypionate injections. Which statement by the parents indicates a need for further teaching?",
+      "options": [
+        "\"He will need radiographs (x-rays) of his hands every 4-6 months.\"",
+        "\"Injections will be given deep into his gluteal muscles.\"",
+        "\"Sexual development will occur in 3\u20134 months.\"",
+        "\"His serum testosterone levels will need to be monitored.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "It takes 3\u20134 years for sexual development to occur with androgen therapy for hypogonadism, so parents should be reminded of this. X-rays are needed every 4-6 months to assess bone effects. Injections are given deep intramuscularly into gluteal muscles. Serum testosterone levels will need to be monitored to maintain normal levels and direct changes in testosterone dosing.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_19",
+      "stem": "A patient who is unconscious and has a pulse is brought to the emergency department. The patient is wearing a Medic-Alert bracelet indicating type 1 diabetes mellitus. Which of the following would be the most appropriate to administer to the patient at this time?",
+      "options": [
+        "Cardiopulmonary resuscitation (CPR)",
+        "Glucagon",
+        "Insulin",
+        "Orange juice"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "This patient is most likely hypoglycemic. Glucagon is given if patients are unable to ingest a carbohydrate, such as orange juice. CPR is not indicated. Insulin will compound the hypoglycemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_20",
+      "stem": "A patient who has type 2 diabetes mellitus asks the nurse about using a combination insulin product such as Humalog 70/30. The nurse will tell the patient that use of this product",
+      "options": [
+        "depends on individual insulin needs.",
+        "is useful for patients with severe insulin resistance.",
+        "means less rotation of injection sites.",
+        "requires refrigeration at all times."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Combination products are convenient because the patient does not have to mix insulin, but the products depend on individual needs, since the doses are fixed. They are generally not used for patients with severe insulin resistance that require large insulin doses. Patients must continue to rotate injection sites. They do not require refrigeration after first use.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_21",
+      "stem": "The nurse is teaching a group of nursing students about diabetes. The nurse explains that which type of diabetes is the most common?",
+      "options": [
+        "Type 1 diabetes mellitus",
+        "Type 2 diabetes mellitus",
+        "Diabetes insipidus",
+        "Secondary diabetes"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Type 2 diabetes mellitus is the most common type of diabetes.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_22",
+      "stem": "The nurse is caring for a patient who has experienced head trauma in a motor vehicle accident. The patient is having excessive output of dilute urine. The nurse will notify the provider and will anticipate administering which medication?",
+      "options": [
+        "Calcifediol",
+        "Corticotropin",
+        "Prednisolone",
+        "Vasopressin"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The posterior pituitary gland secretes antidiuretic hormone (ADH) (vasopressin). When there is a deficiency of ADH, sometimes caused by head trauma, patients excrete large amounts of dilute urine. ADH replacement is necessary to prevent fluid imbalance. Calcifediol is used to treat parathyroid disorders. Corticotropin and prednisolone do not prevent diuresis.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_23",
+      "stem": "A patient reports that they are taking a rapid-acting insulin with meals, but can't remember the name. Which of the following products is a rapid-acing insulin?",
+      "options": [
+        "Regular insulin (Novolin R)",
+        "Insulin glargine (Lantus)",
+        "Insulin lispro (Humalog)",
+        "Insulin degludec (Tresiba)"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Insulin lispro (Humalog) is a rapid-acing insulin product. Regular insulin is considered a shortacting insulin. Insulin glargine and insulin degludec are long-acting insulins.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_24",
+      "stem": "The nurse is preparing to administer trimethoprim\u2013sulfamethoxazole (TMP\u2013SMX) to a patient who is being treated for a urinary tract infection. The nurse learns that the patient has type 2 diabetes mellitus and takes a sulfonylurea oral antidiabetic drug. The nurse will monitor this patient closely for which effect?",
+      "options": [
+        "Headaches",
+        "Hypertension",
+        "Hypoglycemia",
+        "Superinfection"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Taking oral antidiabetic agents (sulfonylurea) with sulfonamides increases the hypoglycemic effect. Sulfonylureas do not increase the incidence of headaches, hypertension, or superinfection when taken with sulfonamides. Examples of antidiabetic sulfonylurea medications are glipizide, glimepiride, glyburide, tolazamide, and tolbutamide.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_25",
+      "stem": "The parents of a 16-year-old boy who plays football want their child to receive growth hormone to improve muscle strength. What will the nurse tell the parents?",
+      "options": [
+        "\"Growth hormone may be used to improve strength in young athletes.\"",
+        "\"If the epiphyses are not fused, growth hormone may be an option.\"",
+        "\"Small doses of growth hormone may be used indefinitely for this purpose.\"",
+        "\"Using growth hormone to build muscle mass is not recommended.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Athletes should be advised not to take growth hormone to build muscle because of its effects on blood sugar and other side effects.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_26",
+      "stem": "The nurse is caring for a patient recently diagnosed with mild emphysema and provides teaching about thedisease and medications for treatment. Which statement by thepatient indicates understanding of themedication regimen?",
+      "options": [
+        "\"I should use albuterol when my symptoms worsen.\"",
+        "\"I will need to take oral prednisone on a daily basis.\"",
+        "\"My provider will frequently prescribe prophylactic antibiotics.\"",
+        "\"My symptoms are reversible with proper medications.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Albuterol is used to treat bronchospasm during symptom flares. Oral prednisone is given for acute flares but not generally on a daily basis until symptoms are chronic and severe because of therisk of adrenal suppression. Prophylactic antibiotics are not given regularly because of therisk of antibiotic resistance. Symptoms of emphysema are generally not reversible.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_27",
+      "stem": "A patient who has type 2 diabetes mellitus asks the nurse why the provider has changed their oral antidiabetic agent from tolbutamide (Orinase) to glipizide (Glucotrol). The nurse will explain that glipizide",
+      "options": [
+        "has a longer duration of action.",
+        "has fewer gastrointestinal side effects.",
+        "may be taken on an as-needed basis.",
+        "does not cause hypoglycemia."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Glipizide is a second-generation sulfonylurea. It has a longer duration of action than the firstgeneration sulfonylurea tolbutamide. It has many gastrointestinal side effects. It is taken once daily, not as needed. All sulfonylureas can contribute to hypoglycemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_28",
+      "stem": "A 14-year-old female who has type 1 diabetes mellitus that has been well controlled for several years is admitted to the hospital for treatment of severe hyperglycemia. The patient's lab values indicate poor glycemic control for the past 3 months. The patient and her parents report no recent changes to her insulin use or lifestyle. The nurse caring for this patient will suspect which cause for the change in diabetes control?",
+      "options": [
+        "Adolescent rebellion and noncompliance",
+        "Changes in cognitive function",
+        "Hormonal fluctuations",
+        "Possible experimentation with drugs or alcohol"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "In adolescence, hormonal changes and growth spurts may necessitate changes in medication dosages; many children with chronic illness require dosage adjustments in the early teen years. This includes insulin use in adolescents with type 1 diabetes.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_29",
+      "stem": "A woman who is pregnant tells the nurse she has frequent heartburn despite eating small meals slowly; avoiding greasy, gas-forming foods; and remaining upright for 30 minutes after eating. The nurse will recommend which over-the-counter product?",
+      "options": [
+        "Sodium bicarbonate",
+        "Magnesium and aluminum containing antacids",
+        "H-2 receptor antagonist",
+        "Calcium carbonate"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "If a pregnant patient does not respond to nonpharmacologic therapy, antacids are first-line therapy, and patients should choose a nonsystemic low-sodium product that contains aluminum and magnesium in combination. Products that contain sodium bicarbonate can be harmful during pregnancy. A histamine2 receptor antagonist, such as famotidine, may be used, but only if recommended by the provider. Calcium-containing antacids can be constipating during pregnancy.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_30",
+      "stem": "The nurse is caring for a patient who is receiving growth hormone. Which assessment will the nurse monitor daily?",
+      "options": [
+        "Complete blood count",
+        "Height and weight",
+        "Renal function",
+        "Serum glucose"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Growth hormone antagonizes insulin secretion, so serum glucose should be monitored.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_31",
+      "stem": "A patient who is newly diagnosed with type 1 diabetes mellitus asks why insulin must be given by subcutaneous injection instead of by mouth. The nurse will explain that this is because",
+      "options": [
+        "absorption is diminished by the first-pass effects in the liver.",
+        "absorption is faster when insulin is given subcutaneously.",
+        "digestive enzymes in the GI tract break down the drug and prevent absorption.",
+        "the oral form is less predictable with more adverse effects."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Insulin, growth hormones, and other protein-based drugs are destroyed in the GI tract by digestive enzymes and must be given parenterally. Because insulin is destroyed by digestive enzymes, it must be given parenterally and would not make it to the liver for metabolism with a first-pass effect.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_32",
+      "stem": "The parent of a junior high school child who has type 1 diabetes asks the nurse if the child can participate in sports. The nurse will tell the parent",
+      "options": [
+        "that strenuous exercise is not recommended for children with diabetes.",
+        "that the child must be monitored for hyperglycemia while exercising.",
+        "to administer an extra dose of regular insulin prior to exercise.",
+        "to send a snack with the child to eat just prior to exercise."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Patients generally need less insulin with increased exercise, so the child should consume a snack to prevent hypoglycemia. Exercise is an integral part of diabetes management. Hypoglycemia is more likely to occur, and extra insulin is not indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_33",
+      "stem": "A 5-year-old child with type 1 diabetes mellitus has had repeated hospitalizations for episodes of hyperglycemia. The parents tell the nurse that they can't keep track of everything that has to be done to care for their child. The nurse reviews medications, diet, and symptom management with the parents and draws up a daily checklist for the family to use. These activities are completed in which step of the nursing process?",
+      "options": [
+        "Recognizing cues (assessment)",
+        "Analyze cues & prioritize hypothesis (analysis) 2",
+        "Generate solutions (planning)",
+        "Take action (nursing interventions)"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Taking action through nursing interventions is where the nurse provides patient health teaching, drug administration, patient care, and other interventions necessary to assist the patient in accomplishing expected outcomes.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_34",
+      "stem": "A patient who has type 1 diabetes mellitus must take a glucocorticoid medication for osteoarthritis. When teaching this patient, the nurse will explain that there may be a need to",
+      "options": [
+        "decrease the glucocorticoid dose.",
+        "decrease the insulin dose.",
+        "increase the glucocorticoid dose.",
+        "increase the insulin dose."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Glucocorticoids can cause hyperglycemia, so the insulin dose may need to be increased. Changing the glucocorticoid dose is usually not recommended. Decreasing the insulin dose will only compound the hyperglycemic effects of the glucocorticoid.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_35",
+      "stem": "Which would be a contraindication for hormone therapy with somatropin in a school-age child?",
+      "options": [
+        "Asthma",
+        "Dwarfism",
+        "Enuresis",
+        "Prader-Willi syndrome"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Fatalities associated with risks of taking growth hormone with Prader-Willi syndrome have been reported, so it is contraindicated in patients with this syndrome. It is not contraindicated in patients with asthma or enuresis. Dwarfism is an indication for hormone therapy.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_36",
+      "stem": "A patient develops type 2 diabetes mellitus. The nurse will explain that this type of diabetes",
+      "options": [
+        "is often triggered by viral infections.",
+        "is not as common as type 1 diabetes.",
+        "is often related to heredity and obesity.",
+        "will not require insulin therapy."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Type 2 diabetes is often caused by obesity and hereditary factors. Viral infections triggering an autoimmune response is associated with the development of type 1 diabetes Type 2 diabetes is the most common type of diabetes. Patients with type 2 diabetes may eventually require treatment with insulin.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_37",
+      "stem": "Which statement by a patient who will begin using an insulin pump indicates understanding of this device?",
+      "options": [
+        "\"I will have an increased risk for hypoglycemia.\"",
+        "\"I will leave this on when bathing or swimming.\"",
+        "\"I will not need to count carbohydrates anymore.\"",
+        "\"I will still need to monitor my glucose levels.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Patients using an insulin pump will still monitor glucose levels and count carbohydrates. The advantage of the pump is that it is programmed to deliver continuous rapid-acting insulin in varying amounts at different times throughout the day. Changes in food intake can alter the risk for hypoglycemia if the pump is not adjusted accordingly. Most devices must be removed when bathing or swimming.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_38",
+      "stem": "The nurse is providing teaching for an adolescent who has acne vulgaris. In addition to teaching about correct administration of the prescribed medications, the nurse will instruct this patient to do which of the following?",
+      "options": [
+        "Apply topical vitamin D3.",
+        "Cleanse the skin gently several times a day.",
+        "Cleanse the affected skin vigorously twice daily.",
+        "Take an oral vitamin D supplement."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Gentle cleansing is one of the chief nonpharmacologic treatments of acne. Vigorous scrubbing should be avoided. Topical vitamin D is sometimes used to treat psoriasis.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_39",
+      "stem": "The nurse is caring for a patient who is being treated for hypothyroidism. The patient reports insomnia, nervousness, and flushing of the skin. Before notifying the provider, the nurse will perform which action?",
+      "options": [
+        "Assess serum glucose to evaluate possible hypoglycemia.",
+        "Check the patient's heart rate to assess for tachycardia.",
+        "Perform an assessment of hydration status.",
+        "Take the patient's temperature to evaluate for infection."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The patient has signs of a thyroid crisis, which can occur with excess ingestion of thyroid hormone. The nurse should evaluate heart rate before notifying the provider. These are not symptoms of hypoglycemia. The symptoms are not indicative of infection.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_40",
+      "stem": "The nurse is teaching a patient who is newly diagnosed with type 1 diabetes mellitus about insulin administration. Which statement by the patient indicates a need for further teaching?",
+      "options": [
+        "\"I should rotate my injection sites.\"",
+        "\"I should give each injection a knuckle length away from a previous injection.\"",
+        "\"I will not be concerned about a raised knot under my skin from injecting insulin.\"",
+        "\"Insulin is absorbed better from subcutaneous sites on my abdomen.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Lipohypertrophy presents as a raised lump or knot on the skin surface caused by repeated injections into the same site, and this can interfere with insulin absorption. Patients are encouraged to rotate injection sites, giving each injection at least a knuckle length away from the previous injection. Insulin absorption is most predictable when given in abdominal areas.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_41",
+      "stem": "The nurse is teaching a patient how to administer insulin. The patient is thin with very little body fat. The nurse will suggest injecting insulin",
+      "options": [
+        "by pinching up the skin and injecting straight down.",
+        "in the abdomen only with the needle at a 90-degree angle.",
+        "subcutaneously with the needle at a 45- to 60-degree angle.",
+        "using the thigh and buttocks areas exclusively."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "In a thin person, with little fatty tissue, the needle is inserted at a 45- to 60-degree angle. In other patients, a 45- to 90-degree angle is acceptable. There is no recommendation for preferring one site over another.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_42",
+      "stem": "The parents of an 11-year-old boy ask about growth hormone therapy for their child, who is shorter than his 10-year-old sister. The nurse will tell the parents that growth hormone",
+      "options": [
+        "does not affect other hormones when given.",
+        "is available as an oral tablet to be taken once daily.",
+        "is given after tests prove that it is necessary.",
+        "may be given until the child's desired height is reached."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Growth hormone is given only when growth hormone deficiency is determined. It cannot be given orally. It antagonizes insulin secretion and thus can lead to the development of diabetes mellitus. It cannot be given after the epiphyses are fused.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_43",
+      "stem": "A patient who has type 2 diabetes mellitus asks the nurse about taking chromium supplements. The nurse will tell this patient that taking chromium",
+      "options": [
+        "can increase the risk for ketoacidosis.",
+        "is not recommended for persons with diabetes.",
+        "has only been proven to improve conditions associated with chromium deficiency.",
+        "should be taken in doses greater than 200 mcg/day."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Chromium has only been shown to improve conditions associated with a documented chromium deficiency. Chromium may help with blood glucose management and can be used in people with diabetes. It does not increase the risk for ketoacidosis. The normal dose is 25 to 35 mcg/day.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_44",
+      "stem": "A patient was administered regular insulin 45 minutes ago, but has not yet received a breakfast tray. The patient is experiencing nervousness and tremors. What is the nurse's first action?",
+      "options": [
+        "Administer glucagon.",
+        "Give the patient orange juice.",
+        "Notify the kitchen to deliver the tray.",
+        "Perform bedside glucose testing."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The patient is symptomatic and has hypoglycemia. The nurse should give orange juice. Glucagon is given for patients unable to ingest carbohydrates. The kitchen should be notified, and bedside glucose testing should be performed, but only after the patient is given carbohydrates.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_45",
+      "stem": "A woman reports using ginseng to treat menopausal symptoms. Which response by the nurse is correct?",
+      "options": [
+        "\"Ginseng will inhibit your immune system.\"",
+        "\"Ginseng can increase risk of hypoglycemia if taken with diabetes medications.\"",
+        "\"Ginseng has been proven effective in treating respiratory infections.\"",
+        "\"You may experience a decrease in blood pressure while taking ginseng.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "People with diabetes taking ginseng should consult with their provider if used in conjunction with other herbs or drugs, because ginseng use may increase hypoglycemia risk. It may boost the immune system, but has not been proven effective in treating respiratory infections. Ginseng can increase blood pressure.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_46",
+      "stem": "A patient is receiving a glucocorticoid medication to treat an inflammatory condition, and the provider has ordered a slow taper to discontinue this medication. The nurse explains to the patient that this is done to prevent which condition?",
+      "options": [
+        "Acromegaly",
+        "Adrenocortical insufficiency",
+        "Hypertensive crisis",
+        "Thyroid storm"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients receiving glucocorticoids stop making their own cortisol. These drugs should be tapered slowly to allow the body to resume making this hormone. Acromegaly is associated with growth hormone hypersecretion. Hypertensive crisis and thyroid storm are associated with thyroid replacement.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_47",
+      "stem": "A patient is admitted to the hospital with myxedema and requires treatment for hypothyroidism. For rapid improvement in symptoms, the nurse will expect to administer which medication?",
+      "options": [
+        "Levothyroxine sodium",
+        "Liothyronine",
+        "Liotrix",
+        "Dessicated thyroid"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Liothyronine has a short t1/2 and rapid onset of action and is not recommended for maintenance therapy but is used as initial therapy for severe myxedema. Levothyroxine is the drug of choice for replacement therapy. Liotrix is a second-line drug. Dessicated thyroid is used for hypothyroidism to reduce goiter size.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_48",
+      "stem": "A patient reports having three to four stools, which are sometimes hard, per week. The patient states that this represents less bowel movements than normal for her. The nurse will perform which action?",
+      "options": [
+        "Recommend increased intake of fluids and dietary fiber.",
+        "Request an order for a stimulant laxative as needed.",
+        "Request an order for a stool softener.",
+        "Request an order for magnesium citrate."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This patient is having stools that are within the normal range for frequency, but she does state that she generally has more frequent bowel movements. Nonpharmacologic measures, such as increased intake of fluids and dietary fiber, should be used first to help soften stools.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_49",
+      "stem": "A patient is ordered to receive insulin lispro at mealtimes. The nurse will instruct this patient to ideally administer the medication at which time?",
+      "options": [
+        "10-15 min before eating",
+        "15 min after eating",
+        "30 min before eating",
+        "10 min after eating"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Lispro acts faster than regular insulin, and patients should be taught to give this medication 1015 minutes before eating.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_50",
+      "stem": "A patient who has been receiving total parenteral nutrition (TPN) for several days accidently removes the intravenous (IV) line. While waiting for the IV therapy nurse, the nurse caring for this patient will monitor for which complication?",
+      "options": [
+        "Air embolism",
+        "Dehydration",
+        "Hypoglycemia",
+        "Infection"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Sudden interruption of TPN therapy can lead to hypoglycemia because of the sudden drop in glucose and the patient's continued increased insulin levels. Air embolism is a complication associated with changing TPN bags. Dehydration is not a complication of a sudden interruption of TPN. Infection is an ongoing concern, but the risk does not increase with a sudden interruption of TPN.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_51",
+      "stem": "A patient will begin taking an albuterol (Proventil) inhaler to treat asthma. The patient has no other chronic medical conditions. When teaching the patient about this drug, the nurse will make which recommendation?",
+      "options": [
+        "Report rapid or irregular heart rate.",
+        "Drink 8 to 16 extra ounces of fluid each day.",
+        "Monitor serum glucose daily.",
+        "Take a calcium supplement."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "High dosages of albuterol may activate beta1 receptors, causing an increase in heart rate. It is not necessary to consume extra fluids or take a calcium supplement while using this drug. Serum glucose may be elevated slightly, but this is generally not a concern in patients without diabetes.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_52",
+      "stem": "The nurse is caring for a patient who has multiple sclerosis (MS). The patient is experiencing an acute attack and reports sudden onset of blindness in one eye. Which drug does the nurse anticipate the provider will order?",
+      "options": [
+        "IV methylprednisolone",
+        "Mitoxantrone",
+        "Glatiramer acetate",
+        "Interferon-B"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "IV methylprednisolone (a corticosteroid) is given to treat an acute attack of MS. Glatiramer acetate, interferon products, and mitoxantrone are given chronically to prevent worsening of symptoms.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_53",
+      "stem": "The nurse administers intravenous corticotropin to a patient. A serum cortisol level drawn 60 minutes later shows no change in serum cortisol levels from prior to the dose. What is the nurse's first action?",
+      "options": [
+        "Notify the provider to discuss a possible non-functioning adrenal gland.",
+        "Recognize the need for an increased dose to treat pituitary insufficiency.",
+        "Request an order for a second dose of corticotropin to treat cortisone deficiency.",
+        "Request an order to repeat the serum cortisol level in 1\u20132"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Corticotropin is given to diagnose adrenal gland disorders as well as to treat adrenal gland insufficiency. When given intravenously, the serum cortisol level should increase within 30\u201360 min if the adrenal gland is functioning. The nurse should report adrenal gland dysfunction. The provider will determine how to treat. Since the levels should increase in 30\u201360 min, there is no need to repeat the test in 1\u20132 h.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_54",
+      "stem": "A pregnant woman asks the nurse about whether a medication is safe to take during pregnancy. The nurse notes that the drug has a low-molecular weight. Based on this drug characteristic, the nurse understands that this drug",
+      "options": [
+        "can cause greater gastrointestinal distress and hyperemesis when compared to high-molecular weight drugs.",
+        "has reduced renal elimination resulting in toxicity when compared to high- molecular weight drugs.",
+        "is more sensitive to metabolism by circulating maternal hormones when compared to high-molecular weight drugs.",
+        "will be more likely to cross the placenta and affect the fetus when compared to high-molecular weight drugs."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Low-molecular-weight drugs are more likely to cross the placental barrier when compared to high-molecular weight drugs. This characteristic does not contribute to increased GI distress or toxicity because of reduced renal elimination. Drugs with low-molecular weight are not more sensitive to metabolism by maternal hormones.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_55",
+      "stem": "A child exhibits acromegaly caused by a tumor that cannot be destroyed with radiation. Which medication would be appropriate to treat this child?",
+      "options": [
+        "Bromocriptine mesylate",
+        "Conivaptan",
+        "Somapacitan",
+        "Somatropin"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Bromocriptine is used to inhibit release of growth hormone from the pituitary gland if the tumor cannot be destroyed by radiation. Conivaptan is used for symptomatic euvolemic hyponatremia associated with SIADH. Somatropin and somapacitan are used to treat growth hormone deficiency and would make acromegaly worse.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_56",
+      "stem": "A 14-year-old male is being evaluated for delayed puberty. Which finding would indicate delayed puberty in this child?",
+      "options": [
+        "Androgen deficiency",
+        "Growth hormone deficiency",
+        "Height of 2.5 standard deviations below the mean",
+        "Lack of epiphyseal closure"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Low androgen levels indicate delayed puberty. Patients who are short and who have not developed secondary sexual characteristics may have growth hormone deficiency, normal variations in development, or delayed puberty. Growth hormone deficiency may cause short stature.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_57",
+      "stem": "The nurse receives the following order for insulin: IV NPH (Humulin NPH) 10 units. The nurse will perform which action?",
+      "options": [
+        "Administer the dose as ordered.",
+        "Clarify the insulin type and route.",
+        "Give the drug subcutaneously.",
+        "Question the insulin dose."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "NPH insulin is not indicated for intravenous administration. The nurse should clarify the order. The nurse should not administer the drug by a different route without first discussing the order with the provider.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_58",
+      "stem": "A young woman reports not having a period for 7 months. Which test will the provider likely order first to evaluate the cause of amenorrhea in this patient?",
+      "options": [
+        "Pelvic ultrasound",
+        "Pregnancy test",
+        "Progestational challenge test",
+        "Serum insulin levels"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "When secondary amenorrhea occurs, pregnancy must be ruled out prior to performing other tests. A progestational challenge test will be performed if the patient is not pregnant. If polycystic ovarian syndrome is suspected, serum insulin levels and possibly a pelvic ultrasound will be performed.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_59",
+      "stem": "A patient who is overweight is being evaluated for diabetes. The patient has a random blood glucose level of 160 mg/dL and a hemoglobin A1c of 5.8%. The nurse understands that this patient has which condition?",
+      "options": [
+        "Diabetes mellitus",
+        "Hypoglycemia",
+        "Normal blood levels",
+        "Prediabetes"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Patients with a hemoglobin A1c between 5.7% and 6.4% are considered to have prediabetes. A level of 6.5% or more indicates diabetes.",
+      "type": "single_select"
+    },
+    {
+      "id": "ENDO_60",
+      "stem": "A 45-year-old patient who is overweight has had a diagnosis of type 2 diabetes for 2 years. The patient uses 20 units of long-acting insulin per day. The patient's fasting blood glucose (FBG) is 190 mg/dL. The patient asks the nurse about using an oral antidiabetic agent. The nurse understands that oral antidiabetic agents",
+      "options": [
+        "cannot be used if the patient is overweight.",
+        "cannot be used once a patient requires insulin.",
+        "may be used in patients with type 2 diabetes in combination with insulin.",
+        "may not be used since this patient's fasting blood glucose is too high."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients with type 2 diabetes often use long-acting insulin in combination with oral agents to manage blood glucose.",
+      "type": "single_select"
+    }
+  ]
+}

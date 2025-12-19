@@ -1,0 +1,568 @@
+{
+  "module": "Renal_Electrolytes_Pharm",
+  "questions": [
+    {
+      "id": "RENA_1",
+      "stem": "A patient who is being treated for dehydration is receiving 5% dextrose and 0.45% normal saline with 20 mEq/L potassium chloride at a rate of 125 mL/h. The nurse assuming care for the patient reviews the patient's serum electrolytes and notes a serum sodium level of 140 mEq/L and a serum potassium level of 3.6 mEq/L. The patient had a urine output of 250 mL during the last 12-hour shift. Which action will the nurse take?",
+      "options": [
+        "Contact the patient's provider to discuss increasing the potassium chloride to 40 mEq/L.",
+        "Continue the intravenous fluids as ordered and reassess the patient frequently.",
+        "Notify the provider and discuss increasing the rate of fluids to 200 mL/h.",
+        "Stop the intravenous fluids and notify the provider of the assessment findings."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The patient's potassium level is within normal limits, but the urine output is decreased, so the patient should not be receiving IV potassium. The nurse should stop the IV and report the findings to the provider. The patient does not need potassium supplementation at this time. The patient needs more fluids but not with potassium.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_2",
+      "stem": "The nurse is performing an assessment on a patient brought to the emergency department for treatment for dehydration. The nurse assesses a respiratory rate of 26 breaths/minute, a heart rate of 110 beats/minute, a blood pressure of 86/50 mm Hg, and a temperature of 39.5 C. The patient becomes dizzy when transferred from the wheelchair to a bed. The nurse notes cool, clammy skin. Which diagnosis does the nurse suspect?",
+      "options": [
+        "Fluid volume deficit (FVD)",
+        "Fluid volume excess (FVE)",
+        "Mild extracellular fluid (ECF) deficit",
+        "Renal failure"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients with FVD will exhibit elevated temperature, tachycardia, tachypnea, hypotension, orthostatic hypotension, and cool, clammy skin. Patients with FVE will have bounding pulses, elevated blood pressure, dyspnea, and crackles. Mild ECF deficit causes thirst. Renal failure generally leads to FVE.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_3",
+      "stem": "A patient begins taking nicotinic acid and reports dizziness and flushing of the skin. The nurse will perform which action?",
+      "options": [
+        "Recommend that the patient take a baby aspirin with their niacin dose.",
+        "Counsel the patient to increase fluid intake.",
+        "Request an order for renal function tests.",
+        "Schedule the medication to be taken with meals."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Flushing of the skin and dizziness are common side effects of nicotinic acid, but with careful drug titration and concomitant use of aspirin, these effects can be minimized. Increasing fluid intake or taking with food does not alter these adverse effects. Nicotinic acid can affect liver enzymes not renal function.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_4",
+      "stem": "The nurse is caring for a patient who has had severe vomiting. The patient's serum sodium level is 130 mEq/L. The nurse will expect the patient's provider to order which treatment?",
+      "options": [
+        "Diuretic therapy",
+        "Intravenous hypertonic 5% saline",
+        "Intravenous normal saline 0.9%",
+        "Oral sodium supplements"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients with hyponatremia may be treated with oral sodium supplements if the patient is able or if the deficit is mild. This patient is vomiting and would not be able to take supplements easily. For a serum sodium level between 125 and 135 mEq/L, normal saline may increase sodium content in vascular fluid. Hypertonic saline is used for severe hyponatremia with a serum sodium <120 mEq/L. Diuretics would further deplete sodium and fluid volume in a patient already likely to be dehydrated from severe vomiting.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_5",
+      "stem": "The nurse is caring for a patient who is receiving diphenhydramine. thenurse notes that thepatient has not voided for 12 hours. What action will thenurse take?",
+      "options": [
+        "Encourage thepatient to drink more fluids.",
+        "Evaluate thebladder to check for distension.",
+        "Request an order for an intravenous fluid bolus.",
+        "Request an order for urinary catheterization."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Diphenhydramine has anticholinergic effects, including urinary retention. thenurse should assess for bladder distension to determine if this is thecase. Encouraging thepatient to drink more fluids or giving intravenous fluids may be necessary if thepatient has oliguria secondary to dehydration. Urinary catheterization is not indicated until urinary retention has been diagnosed.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_6",
+      "stem": "A patient who has a cough will begin taking guaifenesin to help with secretions. When teaching this patient about themedication, thenurse will provide which instruction?",
+      "options": [
+        "\"Avoid driving or using heavy machinery.\"",
+        "\"Drink extra water while taking themedication.\"",
+        "\"Monitor urine output closely.\"",
+        "\"Take with an oral antihistamine for better effects.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Guaifenesin is an expectorant, and patients taking this medication should be advised to increase fluid intake to at least 8 glasses of water per day. (Remember to assess for contraindications to increasing fluid intake [e.g., heart failure, kidney failure with dialysis, etc.].) Guaifenesin does not cause drowsiness or urinary retention. Antihistamines will dry secretions, making them harder to expectorate.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_7",
+      "stem": "The nurse is teaching a parent about administering nitrofurantoin suspension to a 5-year-old child. Which instruction will the nurse include in the patient teaching?",
+      "options": [
+        "\"Give the medication on an empty stomach.\"",
+        "\"Have the child rinse their mouth after taking the drug.\"",
+        "\"Limit the child's fluid intake to concentrate the urine.\"",
+        "\"Report brownish-colored urine to the child's provider.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Nitrofurantoin suspension can stain the teeth, so patients should rinse their mouth after taking it. Nitrofurantoin should be taken with food, and patients should increase fluid intake. A reddishbrown discoloration of the urine is a harmless side effect.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_8",
+      "stem": "A patient is suspected of having severe hypocalcemia. While waiting for the patient's serum electrolyte results, the nurse will assess for which symptoms? (Select all that apply.)",
+      "options": [
+        "Laryngeal spasms",
+        "Fatigue",
+        "Muscle weakness",
+        "Nausea and vomiting",
+        "Hyperactive deep tendon reflexes",
+        "Twitching of the mouth"
+      ],
+      "correct": [
+        "A",
+        "E",
+        "F"
+      ],
+      "rationale": "Patients who have hypocalcemia will exhibit laryngeal spasms, hyperactive deep tendon reflexes, and twitching of the mouth. The other symptoms are not characteristic of hypocalcemia.",
+      "type": "multi_select"
+    },
+    {
+      "id": "RENA_9",
+      "stem": "The nurse is caring for a newly admitted patient who has severe gastroenteritis. The patient's electrolytes reveal a serum sodium level of 140 mEq/L and a serum potassium level of 3.5 mEq/L. The nurse receives an order for intravenous 5% dextrose and normal saline with 20 mEq/L potassium chloride to infuse at 125 mL/h. Which action is necessary prior to administering this fluid?",
+      "options": [
+        "Evaluate the patient's urine output.",
+        "Contact the provider to order arterial blood gases.",
+        "Request an order for an initial potassium bolus.",
+        "Suggest a diet low in sodium and potassium."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "If the patient is receiving potassium and the urine output is <25 mL/h or <600 mL/d, potassium accumulation may occur. Patients with a low urine output should not receive IV potassium. Arterial blood gases are not necessary prior to IV potassium administration. Potassium should never be given as a bolus. Patients should be put on a potassium-enriched diet when foods are tolerated.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_10",
+      "stem": "The nurse is caring for a patient whose serum sodium level is 140 mEq/L and serum potassium level is 5.4 mEq/L. The nurse will contact the patient's provider to discuss an order for",
+      "options": [
+        "a low-potassium diet.",
+        "intravenous sodium bicarbonate.",
+        "sodium polystyrene sulfonate (Kayexalate).",
+        "salt substitutes."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Mild hyperkalemia (5.4-5.6 mEq/L) may be treated with dietary restriction of potassium-rich foods. The patient's sodium level is normal, so sodium bicarbonate is not indicated. Sodium polystyrene sulfonate is used for severe hyperkalemia. Salt substitutes contain potassium and would exacerbate the hyperkalemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_11",
+      "stem": "The nurse is assisting with placement of epidural anesthesia for a woman who is in labor. To help prevent maternal hypotension, which is the nurse's initial action?",
+      "options": [
+        "Administer 40\u201380 mcg of intravenous phenylephrine.",
+        "Infuse a bolus of 500\u20131000 mL of an isotonic solution before the procedure.",
+        "Monitor the patient's blood pressure closely during epidural placement.",
+        "Turn the patient onto her left side and give a rapid bolus of IV fluids."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "To decrease risk of maternal hypotension before epidural placement, an IV bolus of 500\u20131000 mL of an isotonic solution is initially given. When hypotension develops, the woman should be turned to her left side and administered a rapid bolus of IV fluids. Phenylephrine is given if hypotension does not resolve. Blood pressure should be monitored throughout the procedure.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_12",
+      "stem": "A patient is taking a loop diuretic and reports anorexia and fatigue. The nurse suspects which electrolyte imbalance in this patient?",
+      "options": [
+        "Hypercalcemia",
+        "Hypocalcemia",
+        "Hyperkalemia",
+        "Hypokalemia"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Loop diuretics cause the body to lose potassium. Patients who take loop and thiazide diuretics should be monitored for hypokalemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_13",
+      "stem": "The nurse is caring for a patient who is receiving oral potassium chloride supplements. The nurse notes that the patient has a heart rate of 120 beats per minute. The patient reports abdominal cramping, diarrhea, and facial paresthesia. Which action will the nurse take?",
+      "options": [
+        "Contact the provider to request an order for serum electrolytes.",
+        "Encourage the patient to consume less fluids.",
+        "Report symptoms of hyperchloremia to the provider.",
+        "Request an order to increase the patient's potassium dose."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Tachycardia, abdominal cramping, diarrhea, and facial paresthesia are signs of hyperkalemia, so the nurse should request an order for serum electrolytes. This patient should increase fluid intake. The patient is not exhibiting signs of hyperchloremia; the patient is showing signs of hyperkalemia, and an increased potassium dose is not indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_14",
+      "stem": "The nurse is caring for a patient who has unexplained, recurrent vomiting and who is unable to keep anything down. Until the cause of the vomiting is determined, the nurse will anticipate administering which medications?",
+      "options": [
+        "Antibiotics and antiemetics",
+        "Intravenous fluids and electrolytes",
+        "Nonprescription antiemetics",
+        "Prescription antiemetics"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Antiemetics can mask the underlying cause of vomiting and should not be used until the cause is determined unless vomiting is so severe that dehydration and electrolyte imbalance occur. Nonpharmacologic measures, such as fluid and electrolyte replacement, should be used. Antibiotics are only used if an infectious cause is determined.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_15",
+      "stem": "A patient who is taking chlorpromazine calls the clinic to report having reddish-brown urine. What action will the nurse take?",
+      "options": [
+        "Notify the provider and request orders for creatinine clearance and BUN levels.",
+        "Reassure the patient that this is a harmless side effect of this medication.",
+        "Tell the patient to come to the clinic for a urinalysis.",
+        "Tell the patient to discard any drug on hand and request a new prescription."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Phenothiazines, such as chlorpromazine, can cause a harmless pink or red-brown urine discoloration. There is no need to evaluate renal function with creatinine clearance, BUN, or urinalysis. The discoloration does not indicate that the medication has expired.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_16",
+      "stem": "The nurse is caring for a patient who is receiving isotonic intravenous (IV) fluids at an infusion rate of 125 mL/h. The nurse performs an assessment and notes a heart rate of 102 beats per minute, a blood pressure of 160/85 mm Hg, and crackles auscultated in both lungs. Which action will the nurse take?",
+      "options": [
+        "Decrease the IV fluid rate and notify the provider.",
+        "Increase the IV fluid rate and notify the provider.",
+        "Request an order for a colloidal IV solution.",
+        "Request an order for a hypertonic IV solution."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The patient shows signs of fluid volume excess, so the nurse should slow the IV fluid rate and notify the provider. Increasing the rate would compound the problem. Colloidal and hypertonic fluids would pull more fluids into the intravascular space and compound the problem.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_17",
+      "stem": "A patient is admitted with orthopnea, cough, pulmonary crackles, and peripheral edema. The patient's urine specific gravity is 1.002. The nurse will expect this patient's provider to order which treatment?",
+      "options": [
+        "Diuretics",
+        "Colloidal IV fluids",
+        "Hypertonic IV fluids",
+        "Hypotonic IV fluids"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This patient has signs of fluid volume excess (FVE). Urine specific gravity levels less than 1.010 g/mL indicate dilute urine and excess fluid. Diuretics are prescribed to reduce fluid overload.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_18",
+      "stem": "The nurse is caring for a patient who will begin taking lisinopril for hypertension. The nurse reviews the patient's laboratory test results and notes increased BUN and creatinine. Which action will the nurse take?",
+      "options": [
+        "Administer the captopril and monitor vital signs.",
+        "Contact the provider to discuss changing to fosinopril.",
+        "Obtain an order for intravenous fluids to improve urine output.",
+        "Request an order to add hydrochlorothiazide."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients who have renal insufficiency will not require a decrease in dose with fosinopril, as they would with other ACE inhibitors. If lisinopril is given, it should be given at a dose appropriate for the patients current kidney function. Increased IV fluids are not indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_19",
+      "stem": "The nurse is preparing to administer a drug that is eliminated through the kidneys. The nurse reviews the patient's chart and notes that the patient has increased serum creatinine and blood urea nitrogen (BUN) and a low estimated glomerular filtration rate (eGFR). The nurse will perform which action?",
+      "options": [
+        "Administer the drug as ordered.",
+        "Anticipate a shorter than usual half-life of the drug.",
+        "Expect decreased drug effects when the drug is given.",
+        "Verify that the dose ordered is appropriate based on the patient's kidney function."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Increased creatinine and BUN and a low eGFR indicate impaired kidney function, so a drug that is eliminated through the kidneys can accumulate leading to toxicity. The nurse should verify that the ordered dose is appropriate based on the patient's kidney function, and if not, discuss a lower dose or alternative medication with the provider. The drug will have a longer half-life and will exhibit increased effects with decreased kidney function.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_20",
+      "stem": "The provider has ordered sodium polystyrene sulfonate (Kayexalate) to be administered to a patient. The nurse caring for this patient would expect which serum electrolyte values prior to administration of this therapy?",
+      "options": [
+        "Sodium 125 mEq/L and potassium 2.5 mEq/L",
+        "Sodium 150 mEq/L and potassium 3.6 mEq/L",
+        "Sodium 135 mEq/L and potassium 6.9 mEq/L",
+        "Sodium 148 mEq/L and potassium 5.5 mEq/L"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Severe hyperkalemia, with a potassium level of 6.9 mEq/L, requires aggressive treatment to increase the body's excretion of potassium. Sodium polystyrene sulfonate is a potassium binder used to treat severe hyperkalemia. The normal range for serum potassium is 3.5 to 5.5 mEq/L, so use of a potassium binder would not be indicated for the serum electrolyte values presented in options A, B or D.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_21",
+      "stem": "The nurse is caring for a patient who weighs 75 kg. The patient has intravenous (IV) fluids infusing at a rate of 50 mL/h and has consumed 100 mL of fluids orally in the past 24 hours. Which action will the nurse take?",
+      "options": [
+        "Contact the provider to ask about increasing the IV rate to 100 mL/h.",
+        "Discuss with the provider the need to increase the IV rate to 200 mL/h.",
+        "Encourage the patient to drink more water so the IV can be discontinued.",
+        "Instruct the patient to drink 250 mL of water every 8 hours."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The recommended daily fluid intake for adults is 2300 to 2900 mL/day. This patient is currently receiving 1200 mL IV plus 100 mL orally for a total of 1300 mL. Increasing the IV rate to 100 mL/h would give the patient 2400 mL. If the patient continues to take oral fluids at their current rate, the amount of 2500 mL can be met. A rate of 200 mL/h would give the patient 4800 mL/day IV, which exceeds the recommended amount. Since this patient is not taking fluids well orally and is not receiving adequate IV fluids, encouraging an increased oral fluid intake is not indicated. Even if the patient drank 250 mL of water every 8 hours, the amount would not be sufficient to meet the recommended daily fluid intake for adults.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_22",
+      "stem": "The nurse is caring for a patient who has metabolic alkalosis and is experiencing fluid overload. theprovider orders acetazolamide. thepatient reports right-sided flank pain after taking this medication. thenurse suspects that this patient has developed which condition?",
+      "options": [
+        "Gout",
+        "Hemolytic anemia",
+        "Metabolic acidosis",
+        "Renal calculi"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Carbonic anhydrase inhibitors, such as acetazolamide, are used to treat patients who are in metabolic alkalosis and need a diuretic. They can cause electrolyte imbalance, metabolic acidosis, hemolytic anemia, and renal calculi. This patient has right-sided flank pain, which occurs with renal calculi.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_23",
+      "stem": "The nurse is caring for a patient in thepost-anesthesia recovery unit. thenurse notes that thepatient received atropine sulfate 2 mg 30 minutes prior to anesthesia induction. thepatient has received 1000 mL of intravenous fluids and has 700 mL of urine in theurinary catheter bag. thepatient reports having a dry mouth. thenurse notes a heart rate of 82 beats per minute. What action will thenurse perform?",
+      "options": [
+        "Administer a fluid bolus.",
+        "Give thepatient ice chips.",
+        "Palpate thepatient's bladder.",
+        "Reassess thepatient in 15 minutes."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Atropine can cause urinary retention. thepatient's urine output is less than thefluid intake, so thenurse should palpate thebladder to assess for distension. Dry mouth is an expected side effect and does not necessarily indicate dehydration in a patient who has been administered atropine.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_24",
+      "stem": "A patient who is HIV-positive begins combination therapy inclusive of zidovudine twice daily. The patient is in the clinic for follow-up 1 week after initiation of therapy and reports having nausea. The patient's creatinine clearance is estimated at 40 mL/minute. Based on these findings, the nurse will perform which action?",
+      "options": [
+        "Instruct the patient to take the medication 60 minutes prior to meals.",
+        "Notify the provider to discuss dose adjustments.",
+        "Request an order for once-daily dosing of this medication.",
+        "Suggest that the patient increase fluid intake."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "NRTIs require dosage adjustment in persons with renal insufficiency. The patient will need single-dose medications so that adjustments can be made.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_25",
+      "stem": "The nurse is caring for a patient with severe burns who will begin receiving total parenteral nutrition (TPN). The patient asks why TPN is necessary. The nurse explains that TPN is used for which reason?",
+      "options": [
+        "To minimize pulmonary complications",
+        "To prevent hyperglycemia and fluid overload",
+        "To promote wound healing and maintain cell integrity",
+        "To restore fluid and electrolyte imbalance"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "TPN is indicated for patients with severe burns. TPN enhances wound healing and provides the nutrients necessary to prevent cellular catabolism. While some pulmonary complications, such as aspiration pneumonia, do not occur with TPN, there is a risk of air embolism. Hyperglycemia and fluid overload may occur.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_26",
+      "stem": "A patient is admitted to thehospital after developing pneumonia. During theadmission assessment, thepatient reports having used a topical nasal decongestant spray for thepast few weeks but thinks thenasal congestion is getting worse. thenurse will",
+      "options": [
+        "request an order for a systemic decongestant medication.",
+        "request an order so thepatient can continue to use thedecongestant spray.",
+        "tell thepatient thecongestion will eventually clear up after stopping thespray.",
+        "tell thepatient to increase oral fluid intake."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Use of nasal decongestants longer than 3 days can cause rebound congestion. This will eventually clear up when thedecongestant spray is discontinued for several days or weeks. A systemic decongestant is not indicated. Continuing thespray will increase thecongestion. Increasing fluid intake is not recommended.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_27",
+      "stem": "The nurse is administering intravenous fluids to a patient who is dehydrated. On the second day of care, the patient's weight is increased by 2.25 pounds. The nurse would expect that the patient's fluid intake has",
+      "options": [
+        "equaled urine output.",
+        "exceeded urine output by 1 L.",
+        "exceeded urine output by 2.5 L.",
+        "exceeded urine output by 3 L."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "A weight gain of 1 kg, or 2.2 to 2.5 lb, is equivalent to 1 L of fluid.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_28",
+      "stem": "Which are characteristic signs of inflammation? (Select all that apply.)",
+      "options": [
+        "Edema",
+        "Erythema",
+        "Heat",
+        "Numbness",
+        "Pallor",
+        "Paresthesia"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "Edema, erythema, and heat are signs of inflammation. The other three are signs of neurocirculatory compromise.",
+      "type": "multi_select"
+    },
+    {
+      "id": "RENA_29",
+      "stem": "The parent of an 18-month-old toddler calls the clinic to report that the child has vomited 5 times that day. The nurse determines that the child has had three wet diapers in the past 6 hours. What will the nurse recommend for this child?",
+      "options": [
+        "Administering an OTC antiemetic medication such as diphenhydramine",
+        "Giving frequent, small amounts of Pedialyte",
+        "Keeping the child NPO until vomiting subsides",
+        "Taking the child to the emergency department for IV fluids"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The child is not dehydrated as evidenced by adequate wet diapers, so nonpharmacologic measures, such as oral fluids, are recommended. OTC antiemetics are not recommended unless dehydration occurs. Intravenous fluids are given when dehydration is present.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_30",
+      "stem": "The nurse is caring for an older adult patient who is receiving multiple medications. When monitoring this patient for potential drug toxicity, the nurse should review which lab values particularly closely given the patients advanced age?",
+      "options": [
+        "Complete blood count and serum glucose levels",
+        "Pancreatic enzymes and urinalysis",
+        "Serum creatinine and liver function tests (LFTs)",
+        "Serum lipids and electrolytes"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "With liver and kidney dysfunction, drug levels are generally increased and may cause toxicity due to decreased drug clearance. The nurse should review serum creatinine levels to monitor renal function and LFTs to monitor hepatic function. The other lab tests may be ordered for specific drugs if they affect those body systems.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_31",
+      "stem": "The nurse is teaching a patient who is going on a cruise about theuse of transdermal scopolamine. What information will thenurse include when teaching this patient?",
+      "options": [
+        "\"Apply thepatch as needed for nausea and vomiting.\"",
+        "\"Apply thepatch to your upper arm.\"",
+        "\"Change thepatch every 3 days.\"",
+        "\"Restrict fluids while using this patch.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The transdermal scopolamine patch is designed to last for 72 hours. thepatient should be taught to change it every 3 days. It works best when worn at all times and not just for symptomatic relief. thepatch should be applied behind theear. Patients should not restrict fluids.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_32",
+      "stem": "The nurse provides teaching for a patient who will begin taking allopurinol. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I should increase my vitamin C intake.\"",
+        "\"I will get yearly eye exams.\"",
+        "\"I will increase my protein intake.\"",
+        "\"I will limit fluids to prevent edema.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients taking allopurinol can have visual changes with prolonged use and should have yearly eye exams. It is not necessary to increase vitamin C. Protein can increase purine intake, which is not recommended. Patients should consume extra fluids.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_33",
+      "stem": "A patient's serum osmolality is 305 mOsm/kg. Which term describes this patient's body fluid osmolality?",
+      "options": [
+        "Iso-osmolar",
+        "Hypo-osmolar",
+        "Hyper-osmolar",
+        "Isotonic"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Normal osmolality is 275 to 295 mOsm/kg. This patient is therefore hyper-osmolar.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_34",
+      "stem": "A patient has begun taking spironolactone in addition to a thiazide diuretic. With theaddition of thespironolactone, thenurse will counsel this patient to do which of thefollowing?",
+      "options": [
+        "Continue taking a potassium supplement daily.",
+        "Recognize that abdominal cramping is a transient side effect.",
+        "Report decreased urine output to theprovider.",
+        "Take these medications at bedtime."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Caution must be used when giving potassium-sparing diuretics to patients with poor renal function, so patients should be taught to report a decrease in urine output. Patients taking potassium-sparing diuretics are at risk for hyperkalemia, so they should not take potassium supplements. Abdominal cramping should be reported to theprovider. themedications should be taken in themorning for patients who sleep during thenight.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_35",
+      "stem": "The nurse is caring for a patient in thepost-anesthesia care unit who has received a spinal anesthetic. Which action will thenurse perform?",
+      "options": [
+        "Ambulate thepatient as soon as consciousness returns.",
+        "Elevate thehead of thebed to a semi-Fowler's position.",
+        "Have thepatient lay flat for 6 to 8 hours after thesurgery.",
+        "Turn thepatient from side to side every 15 minutes."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients who have had spinal anesthesia should remain flat for 6 to 8 hours to decrease thelikelihood of losing spinal fluid, causing a headache.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_36",
+      "stem": "A patient receiving total parenteral nutrition (TPN) begins having cough and dyspnea. The nurse auscultates rales and notes neck vein engorgement and weight gain. The nurse suspects that the patient is experiencing which condition?",
+      "options": [
+        "Air embolism",
+        "Fluid overload",
+        "Pneumonia",
+        "Pneumothorax"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "This patient shows signs of fluid overload, characterized by pulmonary edema with cough and dyspnea, neck vein engorgement, and weight gain.",
+      "type": "single_select"
+    },
+    {
+      "id": "RENA_37",
+      "stem": "The nurse is caring for a patient who is receiving a high dose of tetracycline. Which laboratory values will the nurse expect to monitor while caring for this patient?",
+      "options": [
+        "Blood urea nitrogen (BUN) and creatinine levels",
+        "Complete blood counts",
+        "Electrolytes",
+        "Prothrombin time"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "High doses of tetracycline can lead to nephrotoxicity, especially when given along with other nephrotoxic drugs. Renal function tests should be performed to monitor for nephrotoxicity.",
+      "type": "single_select"
+    }
+  ]
+}

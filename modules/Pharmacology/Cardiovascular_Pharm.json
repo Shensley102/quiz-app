@@ -1,0 +1,2061 @@
+{
+  "module": "Cardiovascular_Pharm",
+  "questions": [
+    {
+      "id": "CARD_1",
+      "stem": "The nurse provides counseling to a patient who reports taking licorice root to treat a stomach ulcer. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I may take licorice root with prednisone.\"",
+        "\"I may develop hypotension while taking licorice root.\"",
+        "\"I should avoid licorice root when pregnant.\"",
+        "\"I should try licorice instead of coming back to see the provider.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "In large amounts, licorice root has been associated with preterm labor and should be avoided in women who are pregnant. Licorice root when taken with corticosteroids can lead to lifethreatening hypokalemia. In large amounts, it can elevate blood pressure. The benefits of licorice in the treatment of any condition have not been proven, and the client should see the provider rather than turn to the herbal medication.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_2",
+      "stem": "The nurse is teaching a patient who will begin taking warfarin for atrial fibrillation. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I should eat plenty of green, leafy vegetables while taking this drug.\"",
+        "\"I should take a nonsteroidal anti-inflammatory drug (NSAID) instead of acetaminophen for pain or fever.\"",
+        "\"I will take cimetidine to prevent gastric irritation and bleeding.\"",
+        "\"I will tell my dentist that I am taking this medication.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Patients taking warfarin should tell their dentists that they are taking the medication because of the increased risk for bleeding. Patients should avoid foods high in vitamin K, which can decrease the effects of warfarin. Patients should not take NSAIDs or cimetidine because they can displace warfarin from protein-binding sites.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_3",
+      "stem": "The nurse is caring for a patient who is taking hydrochlorothiazide and digoxin. Which potential electrolyte imbalance will thenurse monitor for in this patient?",
+      "options": [
+        "Hypermagnesemia",
+        "Hypernatremia",
+        "Hypocalcemia",
+        "Hypokalemia"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Thiazide diuretics can cause hypokalemia, which enhances theeffects of digoxin and can lead to digoxin toxicity. Thiazides can cause hypercalcemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_4",
+      "stem": "The nurse assumes care for a patient who is currently receiving a dose of intravenous vancomycin infusing at 20 mg/min. The nurse notes red blotches on the patient's face, neck, and chest and assesses a blood pressure of 80/55 mm Hg. Which action will the nurse take?",
+      "options": [
+        "Request an order for IV epinephrine to treat anaphylactic shock.",
+        "Slow the infusion to 10 mg/min and observe the patient closely.",
+        "Stop the infusion and obtain an order for a BUN and serum creatinine.",
+        "Suspect Stevens-Johnson syndrome and notify the provider immediately."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "When vancomycin is infused too rapidly, \"red man\" syndrome may occur; the rate should be decreased. This is a toxic reaction, not an allergic one, so epinephrine is not indicated. StevensJohnson syndrome is characterized by a rash and fever. Red man syndrome is not related to renal function.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_5",
+      "stem": "The labeling for clopidogrel discusses pharmacogenomic testing for genetic variation in which of the following?",
+      "options": [
+        "CYP2C19",
+        "HLA-B*5701",
+        "CYP2D6",
+        "UGT1A1"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Persons with genetic variation in the CYP2C19 enzyme, which is necessary to convert the prodrug clopidogrel, an inhibitor of platelet aggregation, to the active metabolite, may be at risk for clot formation due to failure to convert the prodrug to active metabolite. Point-of-care buccal swab genetic testing has been available since 2013 to help guide treatment. The test determines if a person has the normal (also referred to as wild type) enzyme or a mutation in CYP2C19 enzyme.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_6",
+      "stem": "A female patient has a serum lipid panel performed, which reveals a total cholesterol of 285 mg/dL, triglycerides of 188 mg/dL, a low-density lipoprotein (LDL) of 175 mg/dL, and a highdensity lipoprotein (HDL) of 40 mg/dL. The patient's blood pressure is 138/72 mm Hg. The patient is currently not receiving any prescription medications. Which of the following would be the most appropriate medication to be started at this time?",
+      "options": [
+        "Ezetimibe",
+        "Colestipol",
+        "Fenofibrate",
+        "Atorvastatin"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Statins have actions in decreasing serum cholesterol, LDL, VLDL, and triglycerides, and they slightly elevate HDL. Because the patient has elevated cholesterol levels, starting a statin at this time would be appropriate and considered an appropriate first-line antihyperlipidemic therapy.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_7",
+      "stem": "A patient who is taking clopidogrel and aspirin is preparing for orthopedic surgery. The nurse will consult with the surgeon and provide which instruction to the patient?",
+      "options": [
+        "Continue taking aspirin and stop taking clopidogrel 2 weeks prior to surgery.",
+        "Continue taking clopidogrel and stop taking aspirin 5 days prior to surgery.",
+        "Continue both medications to prevent thromboembolic events during surgery.",
+        "Stop taking both medications 7 days prior to surgery."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Because both drugs can prolong bleeding time, patients should discontinue the drugs 7 days prior to surgery.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_8",
+      "stem": "A patient with high cholesterol is ordered to take atorvastatin. What information will be included in the patient teaching? (Select all that apply.)",
+      "options": [
+        "Dietary management is not a priority with this medication.",
+        "The medication should be taken on an empty stomach.",
+        "The medicine should be taken with a full glass of water.",
+        "The patient should watch for body aches or gastrointestinal upset as side effects.",
+        "The patient should have renal function tests frequently.",
+        "The patient should have periodic liver function testing."
+      ],
+      "correct": [
+        "C",
+        "D",
+        "F"
+      ],
+      "rationale": "This medication is most effective with careful monitoring of diet. Atorvastatin does not affect renal function.",
+      "type": "multi_select"
+    },
+    {
+      "id": "CARD_9",
+      "stem": "A patient who has asthma requires treatment with a beta blocker to manage his cardiovascular disease. The nurse understands that which drug will be the safest to give this patient?",
+      "options": [
+        "Pindolol (Visken)",
+        "Metoprolol (Lopressor)",
+        "Nadolol (Corgard)",
+        "Propranolol (Inderal)"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Metoprolol is a cardioselective beta-adrenergic blocker that has a greater affinity for receptors that decrease heart rate and blood pressure and is less likely to cause bronchospasm. The other beta-adrenergic blockers are not selective and have a greater risk for causing bronchoconstriction.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_10",
+      "stem": "A patient will be discharged home on a beta blocker. Which skill is essential for the nurse to teach the patient's family?",
+      "options": [
+        "How to prepare a high-potassium diet",
+        "Assessments to detect fluid retention",
+        "How to monitor heart rate and blood pressure",
+        "Early signs of changing level of consciousness"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Because of the action and side effects of beta blockers, heart rate and blood pressure should be monitored frequently.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_11",
+      "stem": "A patient is prescribed raloxifene as a cancer prophylactic agent. Which type of cancer is this being used to prevent?",
+      "options": [
+        "Prostate cancer",
+        "Colon cancer",
+        "Multiple myeloma",
+        "Breast cancer"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Selective estrogen receptor modulators (SERMs) such as tamoxifen and raloxifene have both estrogenic and antiestrogenic effects on various tissues. Tamoxifen is primarily used for breast cancer in both men and women. Raloxifene produces estrogenic effects in bone and lipids and has an antiestrogenic property in mammary tissues. It is used as a prophylactic against breast cancer in high-risk postmenopausal women with osteoporosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_12",
+      "stem": "The nurse is caring for a patient who has increased intraocular pressure. The provider has ordered levobunolol 0.5% ophthalmic solution. The nurse will perform a thorough health history to make sure the patient does not have a history of which condition?",
+      "options": [
+        "Asthma",
+        "Diabetes",
+        "Hypertension",
+        "Renal disease"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Levobunolol is a non-selective beta blocker that can be used to treat increased intraocular pressure. This agent is contraindicated in patients with asthma.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_13",
+      "stem": "The nurse is caring for a patient who is taking trimethoprim\u2013sulfamethoxazole (TMP\u2013SMX). The nurse learns that the patient takes an angiotensin-converting enzyme (ACE) inhibitor. To monitor for drug interactions, the nurse will request an order for which laboratory test(s)?",
+      "options": [
+        "A complete blood count",
+        "BUN and creatinine",
+        "Electrolytes",
+        "Glucose"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "TMP\u2013SMX can result in hyperkalemia when taken with an ACE inhibitor. Monitoring of electrolytes and symptoms of hyperkalemia would be indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_14",
+      "stem": "A patient who is diagnosed with atrial fibrillation is to begin taking warfarin (Coumadin). The patient refuses to take the medication because \"it is rat poison.\" After the nurse provides teaching, the patient still refuses. What action will the nurse take?",
+      "options": [
+        "Hold the dose and document the patient's refusal.",
+        "Hold the dose, notify the provider of the situation, and document these actions.",
+        "Put the medication in the patient's food.",
+        "Tell the patient that the drug is necessary for treatment."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients have a right to refuse medications, but the provider should be notified if omitting the medication can have serious effects. According to the principle of autonomy, it is unethical to put a medication in a patient's food without their knowledge.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_15",
+      "stem": "A woman who is experiencing symptoms of heart failure (HF) asks the nurse about using hawthorn. Which response by the nurse is correct?",
+      "options": [
+        "\"Hawthorn may be used long term in conjunction with nitrates.\"",
+        "\"Hawthorn may contribute to hypertension.\"",
+        "\"Hawthorn may interact with antihypertensive drugs.\"",
+        "\"Hawthorn treats heart failure by lowering potassium levels.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Hawthorn may increase the action of antihypertensive medications. Its efficacy is not conclusive and it may interact with nitrates. It may decrease blood pressure. There is no evidence that hawthorn lowers potassium levels.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_16",
+      "stem": "A patient has been started on a treatment regimen that includes atenolol (Tenormin) and complains to thenurse of feeling weak and fatigued. Which is thebest response from thenurse?",
+      "options": [
+        "\"I will hold your next dose of themedication.\"",
+        "\"You may need an increase in your next dose of themedication.\"",
+        "\"This is an adverse reaction to themedication. I will stop thedrug.\"",
+        "\"This is a side effect of themedication. I will notify your physician.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Weakness and fatigue can be a side effect of atenolol. Beta blockers should not be stopped abruptly, thus it would be appropriate to notify thepatient that these symptoms could be due to themedication and that thephysician will be notified.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_17",
+      "stem": "The nurse is preparing to administer clarithromycin to a patient. When performing a medication history, the nurse learns that the patient takes warfarin to treat atrial fibrillation. The nurse will perform which action?",
+      "options": [
+        "Ask the provider if azithromycin may be used instead of clarithromycin.",
+        "Obtain an order for continuous cardiovascular monitoring.",
+        "Request an order for INR testing.",
+        "Withhold the clarithromycin and notify the provider."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Macrolides can increase serum levels of other drugs such as warfarin. If these drugs are used with macrolides, INR testing is warranted. All macrolides have this drug interaction. Cardiovascular monitoring is not indicated. The drug may be given as long as serum drug levels are monitored.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_18",
+      "stem": "The nurse teaches a patient about their antihypertensive medication. Which statements by the patient indicate understanding of the teaching? (Select all that apply.)",
+      "options": [
+        "\"I should be careful when I stand up from a chair when I start this medication.\"",
+        "\"I should not add extra salt to my foods.\"",
+        "\"If I have side effects, I should stop taking the drug immediately.\"",
+        "\"If my blood pressure returns to normal, I can stop taking this drug.\"",
+        "\"I may need to take a combination of drugs, including diuretics.\"",
+        "\"I will not need to make lifestyle changes since I am taking a medication.\""
+      ],
+      "correct": [
+        "A",
+        "B",
+        "E"
+      ],
+      "rationale": "The patient receiving an antihypertensive medication should be warned to rise slowly to avoid orthostatic hypotension. Patients should be counseled to continue to make lifestyle changes, including decreasing sodium. Often, more than one medication is required. Patients should not stop taking the drug abruptly to avoid rebound hypertension and will not stop the drug when blood pressure returns to normal.",
+      "type": "multi_select"
+    },
+    {
+      "id": "CARD_19",
+      "stem": "A patient is ordered to receive a nitrate to relieve stable angina. What side effect(s) will thenurse anticipate in a patient receiving this medication?",
+      "options": [
+        "Nausea and vomiting",
+        "Increased blood pressure",
+        "Pruritus and skin rash",
+        "Headache"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Headache is a common side effect to nitrates and is related to vasodilation of thecerebral vessels. Headaches often improve with continued use. Nitrates decrease blood pressure.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_20",
+      "stem": "The nurse is caring for a patient who will begin taking atenolol (Tenormin) as add-on therapy for the treatment of hypertension. What information will the nurse include when teaching the patient about taking this medication?",
+      "options": [
+        "The drug must be taken twice daily.",
+        "The patient should rise slowly from a chair or bed.",
+        "The medication is safe to take during pregnancy.",
+        "Use NSAIDs instead of acetaminophen for mild to moderate pain."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The side effects commonly associated with beta blockers include bradycardia, hypotension, and dizziness. Patients should be instructed to use caution when rising from a sitting or lying position to avoid orthostatic hypotension. Atenolol may be taken once daily. Atenolol should be used with caution in the pregnant patient. NSAIDs can increase blood pressure and should be avoided if possible in patients with uncontrolled hypertension.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_21",
+      "stem": "The nurse is teaching an adult male patient about the use of testosterone gel. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"A decreased urinary stream is an expected side effect.\"",
+        "\"I should apply the gel to my forearms every day.\"",
+        "\"I will have hand and wrist x-rays every 6 months.\"",
+        "\"I will need regular evaluation of serum lipid levels.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Testosterone can increase lipid levels so these should be monitored regularly. A decreased urinary stream can indicate prostatic hypertrophy and should be reported. Patients should apply the gel where it is least likely to come in contact with other people, such as on the trunk. Only prepubertal males require bone evaluation by x-ray.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_22",
+      "stem": "A patient has been taking spironolactone to treat heart failure. thenurse will monitor for which of thefollowing electrolyte abnormalities?",
+      "options": [
+        "Hyperkalemia",
+        "Hypermagnesemia",
+        "Hypocalcemia",
+        "Hypoglycemia"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Spironolactone is a potassium-sparing diuretic and can induce hyperkalemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_23",
+      "stem": "The nurse is performing a health history on a patient who has arthritis. The patient reports tinnitus. Suspecting a drug adverse effect, the nurse will ask the patient about which medication?",
+      "options": [
+        "Aspirin",
+        "Acetaminophen",
+        "Anakinra",
+        "Prednisone"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Tinnitus is a sign of aspirin overdose or hypersensitivity to aspirin. The nurse should question the patient about this medication. The other medications are less likely to contribute to this side effect.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_24",
+      "stem": "The nurse is caring for a hospitalized patient who experiences an acute spike in blood pressure. The nurse will expect an order to administer which medication?",
+      "options": [
+        "Amlodipine",
+        "Nifedipine",
+        "Nifedipine extended release",
+        "Verapamil"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The short-acting nifedipine is used to treat rapid rises in blood pressure but cannot be used for out-patient treatment at high dosages because of an increased risk for sudden cardiac death. The other drugs are not used for rapid rise in BP.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_25",
+      "stem": "A patient who has begun taking nifedipine to treat variant angina has had a recurrent blood pressure of 90/60 mm Hg or less. thenurse will anticipate that theprovider will do which of thefollowing?",
+      "options": [
+        "Add digoxin to thedrug regimen.",
+        "Change to a beta blocker.",
+        "Order serum liver enzymes.",
+        "Switch to diltiazem."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Hypotension is a common effect of calcium channel blockers and is more common with nifedipine. It is less common with diltiazem, so theprovider may order that drug. Adding digoxin, changing to a beta blocker, or ordering serum liver enzymes are not indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_26",
+      "stem": "The nurse administers bethanechol (Urecholine) to a patient to treat urinary retention. After 30 minutes, thepatient voids 800 mL of urine and reports having a loose stool but no cramping or gastrointestinal pain. thepatient's blood pressure is 110/70 mm Hg. thenurse will perform which action?",
+      "options": [
+        "Notify theprovider of bethanechol adverse effects.",
+        "Record theurine output and theblood pressure and continue to monitor.",
+        "Request an order for intravenous atropine sulfate.",
+        "Suggest another dose of bethanechol to theprovider."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The patient is exhibiting desired effects and mild side effects of bethanechol, so thenurse should record information and continue to monitor thepatient. There is no need to notify theprovider, give an antidote, or repeat thedose.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_27",
+      "stem": "The nurse is generating solutions (planning) for a patient who has chronic lung disease and hypoxia. The patient has been admitted for increased oxygen needs above a baseline of 2 L/min. The nurse generates an expected outcomes stating, \"The patient will have oxygen saturations of >95% on room air at the time of discharge from the hospital.\" What is wrong with this goal?",
+      "options": [
+        "It cannot be evaluated. 4",
+        "It is not measurable.",
+        "It is not patient-centered.",
+        "It is not realistic."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The expected outcome is not realistic because the patient is not usually on room air and should not be expected to attain that expected outcome by discharge from this hospitalization.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_28",
+      "stem": "The nurse is caring for a postpartal patient who has just delivered her first baby by caesarean section. The mother's blood type is Rh-negative, and the infant's blood type is Rh-positive. The provider has ordered human D immune globulin (Rh0(D) immune globulin). The nurse understands that this patient may need",
+      "options": [
+        "less than the usual Rh0(D) immune globulin dose.",
+        "more than the usual Rh0(D) immune globulin dose.",
+        "no Rh0(D) immune globulin.",
+        "the usual Rh0(D) immune globulin dose."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "For women with abruption, previa, caesarean births, or manual placental removal, more than 15 mL of fetal-maternal hemorrhage of Rh-positive red blood cells may have occurred, necessitating an increased dose of Rh0(D) immune globulin.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_29",
+      "stem": "The nurse is caring for a patient who is receiving furosemide and an aminoglycoside antibiotic. thenurse will be most concerned if thepatient reports which symptom?",
+      "options": [
+        "Dizziness",
+        "Dysuria",
+        "Nausea",
+        "Tinnitus"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The interaction of furosemide and an aminoglycoside can produce ototoxicity in thepatient. Tinnitus is a sign of ototoxicity. Dizziness can occur as a result of diuretic therapy but not necessarily as a result of this combination. Dysuria and nausea are not common signs of these drugs interacting.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_30",
+      "stem": "A patient is diagnosed with stage 1 hypertension and states a desire to make lifestyle changes to avoid needing to take medication. thenurse will recommend which changes?",
+      "options": [
+        "Changing from weight bearing exercise to yoga",
+        "Decreased fluid intake and increased potassium intake",
+        "Stress reduction and increased protein intake",
+        "Weight reduction and decreased sodium intake"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Weight loss decreases thestress on theheart. Decreasing salt intake decreases vascular volume. Changing to yoga from weight-bearing exercise, limiting fluids, and increasing potassium are not indicated. Stress reduction is recommended, but increasing protein is not.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_31",
+      "stem": "The nurse is caring for a patient who is receiving magnesium sulfate for ventricular tachycardia. The nurse assesses a heart rate of 68 beats per minute, a respiratory rate of 10 breaths per minute, a blood pressure of 90/60 mm Hg, and decreased deep tendon reflexes. The nurse understands that these are signs of which condition?",
+      "options": [
+        "Hyperkalemia",
+        "Hypermagnesemia",
+        "Impending cardiac arrest",
+        "Renal compromise"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients with hypermagnesemia will exhibit hypotension, bradycardia, and respiratory depression, along with decreased reflexes. Hyperkalemia causes ventricular arrhythmias.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_32",
+      "stem": "The parent of a 12-month-old child who has received the MMR, varicella, and hepatitis A vaccines calls the clinic to report redness and swelling at the vaccine injection sites and a temperature of 100.3 F. The nurse will perform which action?",
+      "options": [
+        "Recommend aspirin or a nonsteroidal anti-inflammatory drug (NSAID) for pain and fever.",
+        "Recommend acetaminophen and cold compresses.",
+        "Report these adverse effects to the Vaccine Adverse Event Reporting System (VAERS).",
+        "Schedule an appointment in clinic so the provider can evaluate the child."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "These are common, minor side effects of vaccines and can be treated with acetaminophen and cold compresses. Aspirin is contraindicated in children because of its association with Reye's syndrome. Since these are not serious adverse effects, they do not need to be reported to VAERS. It is not necessary to schedule a clinic visit, but the parent should be encouraged to recontact the clinic if symptoms do not improve.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_33",
+      "stem": "The nurse is admitting a patient who has been taking minoxidil to treat resistant hypertension. Prior to beginning therapy with this medication, the patient had a blood pressure of 170/95 mm Hg and a heart rate of 72 beats per minute. The nurse assesses the patient and notes a blood pressure of 130/72 mm Hg and a heart rate of 78 beats per minute, and also notes a 2.2-kg weight gain since the previous hospitalization and edema of the hands and feet. The nurse will contact the provider to discuss which intervention?",
+      "options": [
+        "Adding hydrochlorothiazide to help increase urine output",
+        "Adding metoprolol (Lopressor) to help decrease the heart rate",
+        "Increasing the dose of minoxidil to lower the blood pressure",
+        "Restricting fluids to help with weight reduction"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Minoxidil is a direct-acting vasodilator, which can cause sodium and water retention. Combining this drug with a diuretic can help reduce edema by increasing urine output. If the patient were tachycardic, a beta blocker might be added. It is not necessary to increase the minoxidil dose or to restrict fluids.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_34",
+      "stem": "A patient who is taking warfarin has an international normalized ratio (INR) of 5.5. The nurse will anticipate giving which of the following?",
+      "options": [
+        "Fresh frozen plasma",
+        "Intravenous iron",
+        "Oral vitamin K",
+        "Protamine sulfate"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Vitamin K is antagonizes the effects of warfarin, an oral anticoagulant. Patients with an INR of 5.5 should be given a low dose of oral vitamin K. Too much vitamin K may reduce the effectiveness of warfarin for up to 2 weeks. Fresh frozen plasma and intravenous iron are given for anemia caused by blood loss. Protamine sulfate is given for heparin overdose.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_35",
+      "stem": "A patient has been prescribed aliskiren to treat their hypertension. thenurse knows that aliskiren is categorized as which of thefollowing?",
+      "options": [
+        "Direct renin inhibitor",
+        "Beta blocker",
+        "ACE inhibitor",
+        "Diuretic"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Aliskiren is a direct renin inhibitor indicated for thetreatment of hypertension.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_36",
+      "stem": "The nurse is administering amiodarone to a patient who is being treated for a ventricular arrhythmia. The patient has received a bolus of 150 mg of amiodarone IV and is now receiving a continuous infusion of 1 mg/min. The nurse notes a heart rate of 60 beats per minute and a blood pressure of 88/54 mm Hg. The nurse will notify the provider and perform which other action?",
+      "options": [
+        "Continue the amiodarone infusion at 1 mg/min.",
+        "Decrease the rate of the amiodarone infusion to 0.5 mg/min.",
+        "Increase the rate of the amiodarone infusion to 1.5 mg/min.",
+        "Stop the infusion of amiodarone."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Amiodarone has significant adverse effects of hypotension and bradycardia. When these occur, the nurse should slow the infusion rate to prevent or treat these effects and contact the physician.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_37",
+      "stem": "A patient asks thenurse why nitroglycerin is given sublingually. thenurse will explain that nitroglycerin is administered by this route for which reason?",
+      "options": [
+        "To avoid hypotension",
+        "To increase therate of absorption",
+        "To minimize gastrointestinal upset",
+        "To prevent hepatotoxicity"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Nitroglycerin is given sublingually to avoid first-pass metabolism by theliver, which would occur if thedrug is swallowed, and to increase therate of absorption. It does not prevent hypotension. Gastrointestinal upset and hepatotoxicity usually do not occur.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_38",
+      "stem": "The nurse is teaching a patient about using high-dose aspirin to treat arthritis. What information will the nurse include when teaching this patient?",
+      "options": [
+        "\"A normal serum aspirin level is between 30 and 40 mg/dL.\"",
+        "\"You may need to stop taking this drug a week prior to surgery.\"",
+        "\"You will need to monitor aspirin levels if you are also taking warfarin.\"",
+        "\"Your stools may become dark, but this is a harmless side effect.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Aspirin should be discontinued prior to surgery to avoid prolonged bleeding time. A normal serum level is 15 to 30 mg/dL. Patients taking warfarin and aspirin will require INR monitoring. Tarry stools are a symptom of gastrointestinal bleeding and should be reported.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_39",
+      "stem": "The nurse is caring for a patient who will begin taking a thiazide diuretic to treat hypertension. The patient says, \"I know this will lower my blood pressure, but how does it work?\" How will the nurse best respond?",
+      "options": [
+        "\"It can cause orthostatic hypotension, so be careful.\"",
+        "\"It reduces the volume of fluid in your blood stream to lower blood pressure.\"",
+        "\"The actions are complicated, but it's an effective drug.\"",
+        "\"Your provider should explain this medication to you.\""
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients have a right to understand how the drugs they are taking work and to know about side effects. The nurse should explain how the medication can cause orthostatic hypotension after addressing the patient's current question. Telling the patient that the drug actions are complicated is disrespectful. Nurses are responsible for educating patients about medications.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_40",
+      "stem": "A patient has been receiving intravenous heparin. When laboratory tests are drawn, the nurse has difficulty stopping bleeding at the puncture site. The patient has bloody stools and is reporting abdominal pain. The nurse notes elevated partial thromboplastin time (PTT) and activated PPT (aPTT). Which action will the nurse perform?",
+      "options": [
+        "Ask for an order for oral warfarin (Coumadin).",
+        "Obtain an order for protamine sulfate.",
+        "Request an order for vitamin K.",
+        "Suggest that the patient receive subcutaneous heparin."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Protamine sulfate is given as an antidote to heparin when a patient's clotting times are elevated. Oral warfarin will not stop the anticoagulant effects of heparin. Vitamin K is used as an antidote for warfarin. Administering heparin by another route is not indicated when there is a need to reverse the effects of heparin.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_41",
+      "stem": "The nurse is preparing to administer furosemide to a patient who takes digoxin. The nurse will plan to monitor the patient for",
+      "options": [
+        "digoxin toxicity.",
+        "decreased digoxin effects.",
+        "furosemide toxicity.",
+        "decreased furosemide effects."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Increased loss of potassium through the kidneys can result in hypokalemia, which can enhance the action of digoxin and can lead to toxicity.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_42",
+      "stem": "The nurse is preparing to administer digoxin to a patient who is newly admitted to the intensive care unit. The nurse reviews the patient's admission electrolytes and notes a serum potassium level of 2.9 mEq/L. Which action by the nurse is correct?",
+      "options": [
+        "Administer the digoxin and monitor the patient's electrocardiogram closely.",
+        "Hold the digoxin dose and notify the provider of the patient's lab values.",
+        "Request an order for an intravenous bolus of potassium.",
+        "Request an order for oral potassium supplements."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Hypokalemia increases the risk for digoxin toxicity, so the nurse should hold the dose and notify the provider. Potassium should never be given as an IV bolus. Oral supplements are not used when hypokalemia is severe.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_43",
+      "stem": "Which fat-soluble vitamin can increase the risk of bleeding and would warrant close monitoring of prothrombin time in a patient also taking warfarin (Coumadin)?",
+      "options": [
+        "Vitamin A",
+        "Vitamin D",
+        "Vitamin E",
+        "Vitamin K"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Vitamin E may prolong the prothrombin time, so patients taking warfarin should have their PT monitored closely. Vitamin K is used as an antidote in the event of oral anticoagulant overdose.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_44",
+      "stem": "The nurse is preparing to administer thefirst dose of hydrochlorothiazide 50 mg to a patient who has a blood pressure of 160/95 mm Hg. thenurse notes that thepatient had a urine output of 200 mL in thepast 12 hours. thenurse will perform which action?",
+      "options": [
+        "Administer themedication as ordered.",
+        "Encourage thepatient to drink more fluids.",
+        "Hold themedication and request an order for serum BUN (blood urea nitrogen) and creatinine.",
+        "Request an order for serum electrolytes and administer themedication."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Thiazide diuretics are contraindicated in renal failure. This patient has oliguria and should be evaluated for renal failure prior to administration of thediuretic\u2014especially in theabsence of known renal failure for this patient. Drinking more fluids will not increase urine output in patients with renal failure.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_45",
+      "stem": "A patient will begin taking rosuvastatin to treat hyperlipidemia. The patient asks the nurse how to take the medication for best effect. Which statement by the nurse is correct?",
+      "options": [
+        "\"Increase your fluid intake while taking this medication.\"",
+        "\"Stop taking the medication immediately if you develop muscle aches.\"",
+        "\"Take the medication with food to improve absorption.\"",
+        "\"You may increase dietary fat while taking this medication.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients taking antihyperlipidemics should be advised to increase fluid intake. It is not necessary to take with food. Patients should never stop taking a statin without consulting the provider. Patients should continue a low-fat diet while taking statins.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_46",
+      "stem": "A patient who has recently had a myocardial infarction (MI) will begin taking clopidogrel to prevent a second MI. Which medication will the nurse expect the provider to order as adjunctive therapy for this patient?",
+      "options": [
+        "Aspirin",
+        "Enoxaparin sodium",
+        "Ticagrelor",
+        "Warfarin"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Aspirin is often used with clopidogrel to inhibit platelet aggregation (dual antiplatelet therapy) to increase the effectiveness of this drug. Enoxaparin is used to prevent venous thrombosis. Ticagrelor is similar to clopidogrel and is not used along with clopidogrel. Warfarin is used to prevent thrombosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_47",
+      "stem": "A patient arrives in theemergency department after developing a rash, runny nose, and sneezing after eating strawberries. What action will thenurse expect to take first?",
+      "options": [
+        "Administer diphenhydramine.",
+        "Administer epinephrine.",
+        "Assess for urinary retention.",
+        "Assess heart rate, respiratory rate, and lung sounds."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The patient probably has a food allergy, since eating strawberries is theprecipitating event. thenurse should assess cardiac and respiratory status to determine whether thepatient is developing an anaphylactic reaction. Diphenhydramine will be given for mild allergic symptoms of rash, runny nose, and sneezing, but epinephrine must be given for anaphylaxis. Urinary retention is a side effect of diphenhydramine and will be assessed if diphenhydramine is given.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_48",
+      "stem": "The nurse is preparing an 80-year-old patient for discharge home from the hospital. The patient will receive several new medications. The patient lives alone but has several family members who stop by every day. The patient reports problems with manual dexterity and difficulty with childproof medication bottles. Which suggestions will the nurse make for this family? (Select all that apply.)",
+      "options": [
+        "Ask the pharmacy for non-childproof medication bottles.",
+        "Ask the patient to record all medications and the times they are taken.",
+        "Consider placing the pills in an organizer container.",
+        "Provide the patient with the drug manufacturer information sheets.",
+        "Put water bottles near pills for convenience."
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "rationale": "To help older patients with compliance, medications should be convenient and easy to open. Asking the pharmacist for non-childproof containers will help make medications easier to access since the patient has reported difficulty with childproof medication bottles. Using an organizer container helps patients remember which drugs should be taken at what time. Keeping a record of the drugs and when they are to be taken can also increase adherence. Placing water bottles nearby eliminates a step in the process and increases the likelihood that a medication will be taken on time. Providing the patient with the drug manufacturer's information sheets is not needed for adherence; this level of information is not intended for the older consumer.",
+      "type": "multi_select"
+    },
+    {
+      "id": "CARD_49",
+      "stem": "The nurse is caring for a postoperative patient. The nurse will anticipate administering which medication to this patient to help prevent thrombus formation caused by slow venous blood flow?",
+      "options": [
+        "Alteplase",
+        "Aspirin",
+        "Clopidogrel",
+        "Low-molecular-weight heparin"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Low-molecular-weight heparins are anticoagulants used to inhibit clot formation. They are used clinically as prophylactic agents to prevent postoperative deep vein thrombosis. Alteplase is a thrombolytic, which is used to break down clots after they form; alteplase is contraindicated in any patient with recent surgery. Aspirin and clopidogrel are antiplatelet drugs and are used to prevent arterial thrombosis.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_50",
+      "stem": "A patient who has been taking nitroglycerin for angina has developed variant angina, and theprovider has added verapamil to thepatient's regimen. thenurse will explain that verapamil is given for which purpose?",
+      "options": [
+        "To facilitate oxygen use by theheart",
+        "To improve renal perfusion",
+        "To increase cardiac contractility",
+        "To relax coronary arteries"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Verapamil is a calcium channel blocker and is used to relax coronary artery spasm in patients with variant angina. It does not facilitate coronary muscle oxygen use, improve renal function, or increase cardiac contractility.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_51",
+      "stem": "The nurse is caring for a woman who is in labor and has a blood pressure of 180/98 mm Hg with proteinuria of 400 mg/24 h. The woman is receiving magnesium sulfate. The woman becomes lethargic with slurring of her speech and decreased muscle tone. Her serum magnesium sulfate level is 11 mEq/L. The nurse recognizes which condition in this patient?",
+      "options": [
+        "Abruptio placenta",
+        "Hypertensive crisis",
+        "Impending eclampsia",
+        "Magnesium toxicity"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Patients receiving magnesium sulfate can develop toxicity, evidenced by lethargy, slurred speech, and decreased muscle tone. A level greater than 10 mEq/L indicates toxicity. An elevated blood pressure and proteinuria are expected findings in a patient with pre-eclampsia. Patients with eclampsia will have marked elevation of blood pressure and seizures.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_52",
+      "stem": "The nurse is caring for an older patient who is taking 25 mg per day of hydrochlorothiazide. The nurse will closely monitor which lab value in this patient?",
+      "options": [
+        "Coagulation studies",
+        "White blood count",
+        "LFTs",
+        "Serum potassium"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Older patients who take doses of hydrochlorothiazide between 25 and 50 mg/day have increased risk of electrolyte imbalances, so potassium should be monitored.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_53",
+      "stem": "The nurse is caring for a patient who has a heart rate of 98 beats per minute and a blood pressure of 82/58 mm Hg. The patient is lethargic, is complaining of muscle weakness, and has had gastroenteritis for several days. Based on this patient's vital signs and presentation, which sodium value would the nurse expect?",
+      "options": [
+        "126 mEq/L",
+        "140 mEq/L",
+        "145 mEq/L",
+        "158 mEq/L"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients who are hyponatremic will present with tachycardia and hypotension along with lethargy and muscle weakness. The normal range for serum sodium is 135 to 145 mEq/L; a serum sodium level of 126 mEq/L would be considered hyponatremic.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_54",
+      "stem": "A patient who has atrial fibrillation is taking digoxin. thenurse expects which medication to be given concurrently to treat this condition?",
+      "options": [
+        "Hydrochlorothiazide",
+        "Digoxin-immune Fab",
+        "Milrinone",
+        "Warfarin"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Digoxin is given for atrial fibrillation to restore a normal heart rhythm. To prevent thromboemboli, warfarin is given concurrently. Hydrochlorothiazide is a diuretic medication. Milrinone is an inotropic agent used in decompensated heart failure. Digoxin-immune Fab is an antidote for digitalis toxicity.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_55",
+      "stem": "A patient who takes digoxin to treat HF will begin taking a vasodilator. thepatient asks thenurse why this new drug has been ordered. thenurse will explain that thevasodilator is used to",
+      "options": [
+        "decrease ventricular stretching.",
+        "improve renal perfusion.",
+        "increase cardiac output.",
+        "promote peripheral fluid loss."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Vasodilators are given to decrease venous blood return to theheart, resulting in decreased cardiac filling and decreased ventricular stretching, in turn reducing preload, contractility, and oxygen demand of theheart.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_56",
+      "stem": "Which of the following is NOT considered a potential life threatening adverse reaction to clopidogrel use?",
+      "options": [
+        "Hepatic failure",
+        "Ischemic stroke",
+        "Thrombocytopenia",
+        "Stevens-Johnson syndrome"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Antiplatelet agents like clopidogrel are not associated with clot formation and ischemia. Clopidogrel has been associated with life threatening adverse reactions such as hepatic failure, thrombocytopenia, and Stevens-Johnson syndrome.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_57",
+      "stem": "The nurse is preparing to give a dose of trimethoprim\u2013sulfamethoxazole (TMP\u2013SMX) and learns that the patient takes warfarin. The nurse will request an order for",
+      "options": [
+        "a decreased dose of TMP\u2013SMX.",
+        "a different antibiotic.",
+        "an increased dose of warfarin.",
+        "coagulation studies."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Sulfonamides can increase the anticoagulant effects of warfarin. The nurse should request INR levels. An increased dose of warfarin would likely lead to toxicity and to undesirable anticoagulation.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_58",
+      "stem": "A patient will begin taking the protease inhibitor combination Kaletra (lopinavir/ritonavir). What information will the nurse include when teaching the patient about dietary changes?",
+      "options": [
+        "Consume a low-cholesterol diet.",
+        "Consume more acidic foods.",
+        "Take the pill on an empty stomach.",
+        "Take the pill with fatty foods."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Protease inhibitors generally cause elevations of cholesterol and triglycerides, so patients should be counseled to consume a low-fat diet.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_59",
+      "stem": "A patient has been taking warfarin (Coumadin), which is highly protein-bound. The patient will begin taking gemfibrozil, which is also highly protein-bound. The nurse will observe the patient closely for",
+      "options": [
+        "decreased effects of warfarin.",
+        "increased effects of warfarin.",
+        "decreased effects of gemfibrozil.",
+        "decreased effects of both drugs."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "addition of a highly protein-bound drug will compete with warfarin for protein-binding sites, releasing more free warfarin into the system, increasing drug effects, and increasing the chance of toxicity (bleeding).",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_60",
+      "stem": "A patient is taking nicotinic acid (Niacin) to treat hyperlipidemia. The patient reports a flushing sensation along with gastrointestinal irritation. The nurse will perform which action?",
+      "options": [
+        "Contact the provider to discuss possible thromboembolism.",
+        "Discuss decreasing the patient's dose of nicotinic acid with the provider.",
+        "Reassure the patient that these effects will decrease over time.",
+        "Suggest that the patient take niacin with a full glass of cool water."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Large doses of niacin can cause gastrointestinal irritation and vasodilation, resulting in a flushing sensation. Decreasing the dose can alleviate these symptoms. They do not indicate development of thromboembolism. Taking niacin with a full glass of water does not alleviate these symptoms.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_61",
+      "stem": "A male patient wants to begin taking tadalafil (Cialis) to treat erectile dysfunction. Which aspect of this patient's history would require additional investigation to prevent a potentially serious drug interaction with tadalafil?",
+      "options": [
+        "Angina pectoris",
+        "Asthma",
+        "Benign prostatic hypertrophy (BPH)",
+        "Color blindness"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patient with angina are often treated with nitrates; phosphodiesterase inhibitors such as tadalafil are contraindicated in patients taking nitrates. Nitrate use should be evaluated prior to starting tadalafil.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_62",
+      "stem": "A patient who has received heparin after previous surgeries will be given enoxaparin sodium after knee-replacement surgery. The patient asks how this drug is different from heparin. The nurse will explain that the benefit of enoxaparin over heparin is that it",
+      "options": [
+        "decreases the need for laboratory tests.",
+        "has a shorter half-life than heparin.",
+        "increases the risk of hemorrhage.",
+        "may be taken orally instead of subcutaneously."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Enoxaparin is a low-molecular-weight heparin, which produces more stable responses at lower doses, thus reducing the need for frequent lab monitoring. It has a longer half-life than heparin. It decreases the risk of hemorrhage because it is more stable at lower doses. It is given subcutaneously.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_63",
+      "stem": "The nurse is preparing to administer a first dose of clopidogrel to a patient. As part of the history, the nurse learns that the patient has a previous history of peptic ulcers, diabetes, hyperlipidemia, and hypertension. The nurse understands that which of these conditions warrants caution with clopidogrel treatment?",
+      "options": [
+        "Peptic ulcer disease",
+        "Diabetes",
+        "Hyperlipidemia",
+        "Hypertension"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients with a previous history of peptic ulcer are at increased risk for gastric bleeding and clopidogrel should be used with caution. The patient should be counseled about signs and symptoms of GI bleeding if it is decided to use the medication. There are no contraindications or precautions for clopidogrel use in patients with diabetes, high cholesterol, or high blood pressure.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_64",
+      "stem": "A patient who takes warfarin and digoxin develops hypothyroidism and will begin taking levothyroxine. The nurse anticipates which potential adjustments in dosing for this patient?",
+      "options": [
+        "Decreased digoxin and decreased warfarin",
+        "Decreased digoxin and increased warfarin",
+        "Increased digoxin and decreased warfarin",
+        "Increased digoxin and increased warfarin"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Thyroid preparations increase the effect of oral anticoagulants, so the warfarin dose may need to be decreased. Levothyroxine can decrease the effectiveness of digoxin, so this dose may need to be increased.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_65",
+      "stem": "A patient with multiple sclerosis (MS) is to start treatment with interferon beta-1a. The presence of which of the following will prompt the nurse to check with the provider?",
+      "options": [
+        "History of diabetes mellitus",
+        "History of hypertension",
+        "History of depression and suicidal ideation",
+        "History of osteoarthritis"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Interferons are associated with contributing to symptoms of depression and suicidal ideation. For patients with a positive history of depression and suicidal ideation consideration of alternative therapy is likely prudent. A history of diabetes, hypertension or osteoarthritis would not preclude the use of interferon therapy.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_66",
+      "stem": "A patient is taking aspirin for secondary prevention of myocardial infarction and is experiencing moderate gastrointestinal upset. The nurse will contact the patient's provider to discuss changing from aspirin to which of the following?",
+      "options": [
+        "A COX-2 inhibitor",
+        "Celecoxib",
+        "Enteric-coated aspirin",
+        "Ibuprofen"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Aspirin is often used to inhibit platelet aggregation for cardiovascular prevention. Patients taking aspirin for this purpose would not benefit from COX-2 inhibitors, since the COX-1 enzyme is responsible for inhibiting platelet aggregation. The patient may benefit from taking an entericcoated aspirin product to lessen the gastrointestinal distress. Celecoxib and is a COX-2 selective inhibitor. Ibuprofen is not indicated for cardiovascular event prevention.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_67",
+      "stem": "A patient who has stable angina pectoris is given sublingual nitroglycerin to use as needed. In addition to pharmacotherapy, thenurse will give thepatient which instruction?",
+      "options": [
+        "Avoid extremes in weather.",
+        "Begin a rigorous exercise program.",
+        "Drink red wine daily.",
+        "Call 911 at thefirst sign of pain."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Avoiding extreme weather conditions is important to help prevent anginal attacks. Patients should be instructed to avoid strenuous exercise; avoid alcohol, which can enhance hypotensive effects of nitrates; and use nitroglycerin at thefirst sign of pain. If pain does not resolve after use of a single dose of sublingual nitroglycerin, thepatient should call 911.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_68",
+      "stem": "A patient with angina has been given 0.4 mg of nitroglycerin SL. The patient reports continued chest pain 5 min later. The nurse assesses a heart rate of 84 beats per minute and a blood pressure of 88/68 mm Hg. The nurse will take which action?",
+      "options": [
+        "Administer 0.4 mg of nitroglycerin SL.",
+        "Administer 0.3 mg of nitroglycerin SL.",
+        "Give nitroglycerin by translingual spray.",
+        "Notify the provider of the patient's vital signs."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Nitroglycerin should be held if the patient has a systolic blood pressure less than 90 mm Hg. The nurse should notify the provider.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_69",
+      "stem": "A patient is receiving a thrombolytic medication. The patient calls the nurse to report having bloody diarrhea. The nurse will anticipate administering which medication?",
+      "options": [
+        "Aminocaproic acid",
+        "Enoxaparin sodium",
+        "Protamine sulfate",
+        "Vitamin K"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The antithrombotic drug aminocaproic acid is used to treat hemorrhage. Nurses giving thrombolytic drugs should monitor patients for bleeding from the mouth and rectum. Enoxaparin is a low-molecular-weight heparin and would not be indicated. Protamine sulfate is an antidote for heparin. Vitamin K is an antidote for warfarin.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_70",
+      "stem": "The nurse is providing preoperative education to a patient who will have surgery in several weeks. The patient denies taking anticoagulant medications but reports using herbal supplements. Which herb would cause the nurse to be concerned about increased bleeding risk when used with blood thinners?",
+      "options": [
+        "Echinacea",
+        "Ginkgo biloba",
+        "Kava",
+        "Sage"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Ginkgo can prolong bleeding time and therefore should be discontinued 2 weeks prior to surgery.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_71",
+      "stem": "The nurse is caring for a newly admitted patient who will receive digoxin to treat a cardiac dysrhythmia. The patient takes hydrochlorothiazide (HydroDIURIL) and reports regular use of over-the-counter laxatives. Before administering the first dose of digoxin, the nurse will review the patient's electrolytes with careful attention to the levels of which electrolytes?",
+      "options": [
+        "Calcium and magnesium",
+        "Sodium and calcium",
+        "Potassium and chloride",
+        "Potassium and magnesium"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Hypomagnesemia, like hypokalemia, enhances the action of digitalis and causes digitalis toxicity. Laxatives and diuretics can deplete both of these electrolytes.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_72",
+      "stem": "The nurse is teaching a patient about using sublingual nitroglycerin at home. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I may put the tablet in food if I don't like the taste.\"",
+        "\"I may take a sip of water after placing the tablet in my mouth.\"",
+        "\"I will place the tablet between my cheek and gum.\"",
+        "\"I will place the tablet under my tongue and let it absorb.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Drugs given sublingually should be placed under the tongue. No foods or fluids should be given, since the tablet must remain under the tongue until it is fully absorbed. Medications ordered to be given \"buccally\" should be placed between the cheek and gum.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_73",
+      "stem": "The nurse is caring for a 70-year-old patient who has recently begun taking amlodipine 5 mg/day to control hypertension. The nurse notes mild edema of the patient's ankles, a blood pressure of 118/70 mm Hg, and a heart rate of 80 beats per minute. The patient reports flushing and dizziness. The nurse will notify the provider and",
+      "options": [
+        "ask to decrease the dose to 2.5 mg/day.",
+        "discuss twice daily dosing.",
+        "request an order for a diuretic.",
+        "suggest adding propranolol to the regimen."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This patient is experiencing side effects of the medication. Elderly patients often require lower doses, so the nurse should ask about a dose reduction. Older adults generally require 2.5 to 5.0 mg/day. Twice daily dosing is not recommended. Unless edema persists, a diuretic is not indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_74",
+      "stem": "The nurse performs a medication history and learns that thepatient takes a loop diuretic and digoxin. thenurse will question thepatient to ensure that thepatient is also taking which medication?",
+      "options": [
+        "Cortisone",
+        "Lidocaine",
+        "Nitroglycerin",
+        "Potassium"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "If a patient is taking digoxin and a potassium-wasting diuretic such as a loop diuretic, thepatient should also take a potassium supplement to prevent hypokalemia that could result in digoxin toxicity. It is not necessary to take cortisone, lidocaine, or nitroglycerin unless thepatient has symptoms that warrant these drugs.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_75",
+      "stem": "A woman who is experiencing premature labor is being given betamethasone. She asks the nurse why this drug is being given. The nurse will explain that betamethasone is given for which reason?",
+      "options": [
+        "It lowers her blood pressure and prevents seizures.",
+        "It prevents closure of the ductus arteriosus.",
+        "It prevents respiratory distress in her infant.",
+        "It stops her contractions."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The medication is given to accelerate lung maturation and lung surfactant development in the fetus in utero. It does not lower maternal blood pressure, stop maternal contractions, or prevent closure of the fetal ductus arteriosus.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_76",
+      "stem": "The patient who has nasal congestion asks thenurse to recommend a decongestant medication. thenurse performs a medication history and learns that thepatient takes a beta blocker to treat hypertension. Which of theover-the-counter products below would be most appropriate to recommend?",
+      "options": [
+        "Diphenhydramine",
+        "Ephedrine",
+        "Phenylephrine nasal",
+        "Loratadine"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Nasal phenylephrine is a topical decongestant and causes less systemic side effects than ephedrine, which should not be given with beta blockers. Diphenhydramine and loratadine are antihistamines, not decongestants.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_77",
+      "stem": "A patient experiences a blood clot in one leg, and the provider has ordered a thrombolytic medication. The patient learns that the medication is expensive and asks the nurse if it is necessary. Which response by the nurse is correct?",
+      "options": [
+        "\"The drug will decrease the likelihood of permanent tissue damage.\"",
+        "\"This medication also acts to prevent future blood clots from forming.\"",
+        "\"You could take aspirin instead of this drug to achieve the same effect.\"",
+        "\"Your body will break down the clot, so the drug is not necessary.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Thrombolytic medications are given primarily to prevent permanent tissue damage caused by compromised blood flow to the affected area. Thrombolytics do not prevent clots from forming. Aspirin prevents, but does not dissolve, clots. Although the body will break down the clot, the drug is needed to prevent tissue damage due to active ischemia.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_78",
+      "stem": "A patient has a serum cholesterol level of 270 mg/dL. The patient asks the nurse what this level means. Which response by the nurse is correct?",
+      "options": [
+        "\"Your cholesterol places you at high risk for coronary artery disease.\"",
+        "\"Your cholesterol places you at moderate risk for coronary artery disease.\"",
+        "\"You have a low risk for coronary artery disease.\"",
+        "\"You have no risk for coronary artery disease.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A cholesterol value >270 mg/dL for serum cholesterol puts the patient at high risk for CAD.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_79",
+      "stem": "The nurse is caring for a patient who has ingested a large dose of aspirin several hours prior. It is determined that the patient has overdosed on aspirin. The provider orders sodium bicarbonate to be given. The nurse understands that this drug is given for which purpose?",
+      "options": [
+        "To counter the toxic effects of the aspirin",
+        "To decrease the half-life of the aspirin",
+        "To increase the excretion of the aspirin",
+        "To neutralize the acid of the aspirin"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Aspirin is a weak acid and is more readily excreted in alkaline urine. Sodium bicarbonate alkalizes the urine. It does not act as an antidote to aspirin, decrease the half-life, or neutralize its pH.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_80",
+      "stem": "The nurse has just administered Rho(D) immune globulin to a postpartal woman. What information will the nurse include when teaching this patient?",
+      "options": [
+        "\"Avoid live vaccines for 3 months.\"",
+        "\"There are no adverse reactions to this injection.\"",
+        "\"The immune globulin does not cross into breast milk.\"",
+        "\"You will not need to have the injection with future deliveries.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients receiving Rho(D) immune globulin should be cautioned to avoid live vaccines for 3 months. Patients can experience hypersensitivity reactions to the immune globulin, and Rho(D) immune globulin crosses into breast milk. Women will need to have the immune globulin with future deliveries if the infant is Rh-positive.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_81",
+      "stem": "The nurse performs a medication history on a patient who will begin targeted therapy for cancer with gefitinib. thenurse learns that thepatient is taking carbamazepine, a histamine 2 blocker, and warfarin. thenurse will anticipate that theprovider will make which change to themedication regimen?",
+      "options": [
+        "Decrease thegefitinib dose.",
+        "Decrease thewarfarin dose.",
+        "Increase thehistamine2 blocker dose.",
+        "Increase thecarbamazepine dose."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "When patients taking warfarin take gefitinib, theeffectiveness of thewarfarin is greatly increased, and bleeding risk increases. Carbamazepine and histamine2 blockers decrease theeffectiveness of gefitinib, so decreasing thegefitinib dose or decreasing thecarbamazepine or histamine2 blocker is not recommended.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_82",
+      "stem": "A patient who takes high-dose aspirin to treat arthritis will need to take prednisone to treat an acute flare of symptoms. What action will the nurse perform?",
+      "options": [
+        "Observe the patient for hypoglycemia.",
+        "Monitor closely for increased urine output.",
+        "Observe the patient for hypotension.",
+        "Request an order for enteric-coated aspirin."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Glucocorticoids can increase gastric distress, so an enteric-coated aspirin product is indicated. Glucocorticoids increase the risk of hypoglycemia, fluid retention, and hypertension.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_83",
+      "stem": "The nurse is caring for a patient who is to begin receiving a thiazide diuretic to help manage heart failure. When performing a health history on this patient, thenurse will be concerned about a history of which condition?",
+      "options": [
+        "Asthma",
+        "Glaucoma",
+        "Gout",
+        "Hypertension"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Thiazides block uric acid secretion, and elevated levels can contribute to gout. Patients with a history of gout should take thiazide diuretics with caution; they may need behavioral and/or pharmacologic changes to their gout treatment.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_84",
+      "stem": "The nurse tells a woman postpartum that her baby will need hepatitis B vaccine. The mother says she does not want her baby to have a shot and refuses to sign the consent. The nurse will do which of the following?",
+      "options": [
+        "Administer the vaccine without consent.",
+        "Note the refusal in the mother's and baby's chart.",
+        "Tell her she will harm her baby if she does not consent.",
+        "Tell the mother that it is required by law."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Although hepatitis B vaccine is recommended, patients have a right to refuse. The refusal should be documented in the mother's and baby's chart. The nurse should never administer the vaccine without consent. Telling the mother that she will harm her baby if she does not consent is coercive. The vaccine is recommended and is required for admission to schools, but parents still have a right to refuse.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_85",
+      "stem": "The nurse is teaching a patient about theuse of a transdermal nitroglycerin patch. Which statement by thepatient indicates understanding of theteaching?",
+      "options": [
+        "\"I will apply thepatch as needed when I experience anginal pain.\"",
+        "\"I will remove theold patch and replace it with a new one at bedtime each day.\"",
+        "\"I should rotate sites when changing thepatch to prevent skin irritation.\"",
+        "\"When I am symptom-free, I may stop using thepatch on a regular basis.\""
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients should be taught to rotate application sites when using thetransdermal nitroglycerin. Transdermal nitroglycerin is not used as needed. Patients should remove thepatch at bedtime to provide an 8- to 12-hour nitrate-free interval. Patients should use thepatch even when symptomfree unless otherwise instructed by theprovider.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_86",
+      "stem": "Which of thefollowing calcium channel blockers can be used to treat dysrhythmias in addition to hypertension?",
+      "options": [
+        "Amlodipine",
+        "Nicardipine",
+        "Diltiazem",
+        "Felodipine"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Diltiazem and verapamil are non-dihydropyridine calcium channel blockers that can be used for thetreatment of hypertension in addition to managing cardiac dysrhythmias. Dihydropyridine calcium channel blockers like amlodipine, nicardipine, and felodipine are not used to treat dysrhythmias.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_87",
+      "stem": "A patient has been taking cholestyramine to treat hyperlipidemia. The patient reports abdominal cramping and constipation. The patient's serum low-density lipoprotein (LDL) has decreased from 170 to 110 mg/dL, and triglycerides have not changed from 150 mg/dL since beginning the medication. The provider changes the medication to colesevelam. The patient asks the nurse why the medication was changed, and the nurse will explain that colesevelam is ordered for which reason?",
+      "options": [
+        "It has fewer side effects.",
+        "It has more convenient dosing.",
+        "It provides greater LDL reduction.",
+        "It provides greater triglyceride reduction."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Colesevelam is similar to cholestyramine but has fewer gastrointestinal side effects. This patient has demonstrated good results with the bile acid sequestrant, so the provider has decided to offer a preparation with fewer adverse effects. Both drugs are given twice daily.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_88",
+      "stem": "A patient is diagnosed with Stevens-Johnson syndrome and the provider thinks this is related to an HLA B*1502 variant that resulted in drug toxicity. The nurse would know that which of the following medications is likely to blame?",
+      "options": [
+        "Warfarin",
+        "Carbamazepine",
+        "Codeine",
+        "Irinotecan"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Persons with the human leukocyte antigen (HLA) B*1502 variant should avoid using carbamazepine due to increased risk of developing Stevens-Johnson syndrome or toxic epidermal necrolysis. Persons of Asian descent are most likely to carry this genetic variant.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_89",
+      "stem": "The nurse is caring for a patient who develops marked edema and a low urine output due to heart failure. Which medication will thenurse expect theprovider to order for this patient?",
+      "options": [
+        "Digoxin",
+        "Furosemide",
+        "Hydrochlorothiazide",
+        "Spironolactone"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Furosemide is a loop diuretic and is given when thepatient's condition warrants immediate removal of body fluid, as can occur in heart failure. Digoxin improves cardiac function but does not remove fluid quickly. theother diuretics may be used when immediate fluid removal is not necessary.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_90",
+      "stem": "A patient will begin taking simvastatin to decrease serum cholesterol. When teaching the patient about this medication, the nurse will counsel the patient to take which action?",
+      "options": [
+        "Return to the clinic annually for laboratory testing.",
+        "Take care when rising from a sitting to standing position.",
+        "Take the medication in the evening for best effect.",
+        "Use ibuprofen as needed for severe muscle aches and pain."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Simvastatin is given in the evening. Laboratory tests are performed every 3 to 6 months, not annually. Statins do not cause postural hypotension. Patients taking statins should report severe muscle aches and weakness immediately.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_91",
+      "stem": "A patient is diagnosed with heart failure (HF), and theprescriber has ordered digoxin. thepatient asks what lifestyle changes will help in themanagement of this condition. thenurse will recommend which changes?",
+      "options": [
+        "Vigorous aerobic exercise and weight lifting 2 or 3 times weekly",
+        "Changing from cigarette smoking to pipe smoking",
+        "Consuming 3 teaspoons or less of salt every day",
+        "Having no more than one alcoholic beverage per day"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Alcohol should either be completely avoided or restricted to no more than one per day. Mild exercise, such as walking, is recommended. All methods of smoking can deprive theheart of oxygen. Salt should be limited to no more than one teaspoon per day.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_92",
+      "stem": "The nurse is teaching a patient who will begin taking furosemide. thenurse learns that thepatient has just begun a 2-week course of a steroid medication. What will thenurse recommend?",
+      "options": [
+        "Consume licorice to prevent excess potassium loss.",
+        "Report a urine output greater than 600 mL/24 hours.",
+        "Obtain an order for a potassium supplement.",
+        "Take thefurosemide at bedtime."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The interaction of furosemide and a steroid drug can result in an increased loss of potassium. Patients should take a potassium supplement. Patients should avoid licorice while taking furosemide, partially due to thehypokalemic effects of both substances. Urine output greater than 600 mL/24 hours is normal. Patients should take furosemide in themorning to avoid nocturia.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_93",
+      "stem": "A patient who has HF receives digoxin and an angiotensin-converting enzyme (ACE) inhibitor. thepatient will begin taking spironolactone. thepatient asks why thenew drug is necessary. thenurse will tell thepatient that spironolactone will be given for which reason?",
+      "options": [
+        "To enhance potassium excretion",
+        "To increase cardiac contractility",
+        "To minimize fluid losses",
+        "To provide cardioprotective effects"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Spironolactone is a potassium-sparing diuretic that blocks production of aldosterone, causing improved heart rate variability and decreased myocardial fibrosis. It is given in congestive HF for its cardioprotective effects. Spironolactone does not directly alter cardiac contractility but may slightly decrease contractility if fluid volume is decreased. It is a mild diuretic but is not given in this instance to minimize fluid losses.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_94",
+      "stem": "The nurse is caring for a patient who will receive intravenous calcium gluconate. Which nursing actions are appropriate when giving this solution? (Select all that apply.)",
+      "options": [
+        "Administering through a central line",
+        "Review the patients medication record to see if they are receiving digitalis",
+        "Giving as a rapid intravenous bolus",
+        "Mixing in a solution containing sodium bicarbonate",
+        "Monitoring the patient's electrocardiogram (ECG)",
+        "Reporting a serum calcium level of >2.5 mEq/L"
+      ],
+      "correct": [
+        "B",
+        "E",
+        "F"
+      ],
+      "rationale": "Calcium gluconate has the same action on the heart as digitalis and combined use can place the patient at risk for digitalis toxicity. Hypercalcemia can cause ECG changes. A serum calcium level greater than 2.5 mEq/L indicates hypercalcemia and therefore should be reported. Calcium does not require infusion through a central line and should not be given as a rapid IV bolus. Calcium should not be added to a solution containing bicarbonate, because rapid precipitation occurs.",
+      "type": "multi_select"
+    },
+    {
+      "id": "CARD_95",
+      "stem": "The nurse provides teaching to a patient who will begin taking simvastatin to treat hyperlipidemia. Which statement by the patient indicates understanding of the teaching?",
+      "options": [
+        "\"I may have diarrhea as a result of taking this medication.\"",
+        "\"I may stop taking this medication when my lipid levels are normal.\"",
+        "\"I will need an annual eye examination while taking this medication.\"",
+        "\"I will increase my intake of vitamins A, D, and E while taking this medication."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "The statins can affect visual acuity, so patients should be counseled to have annual eye examinations for assessment of cataract formation. The bile acid sequestrants, not statins, cause diarrhea. Statin drug therapy is typically lifelong or until behavioral changes prove equally effective (uncommon). Bile acid sequestrants, not statins, decrease the absorption of fat-soluble vitamins.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_96",
+      "stem": "The nurse is caring for a woman who is experiencing premature labor. The provider has ordered intravenous terbutaline to be given. The nurse will explain that this medication will have which action?",
+      "options": [
+        "It will decrease uterine contractions.",
+        "It will enhance fetal lung development.",
+        "It will increase fetal blood supply.",
+        "It will lower her blood pressure."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Terbutaline is given to relax the smooth muscle of the uterus and decrease contractions in order to stop premature labor. It does not affect fetal lung development or fetal blood supply and does not lower maternal blood pressure.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_97",
+      "stem": "A patient is prescribed bethanechol (a cholinergic agent) to help manage her urinary retention. Which of the following would correctly describe a cholinergic response?",
+      "options": [
+        "Pupillary constriction",
+        "Increased heart rate",
+        "Bronchiole relaxation",
+        "Increased blood pressure"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Cholinergic medications like bethanechol can result in constriction of the pupils. Increased heart rate, increased blood pressure, and relaxation of the bronchioles would be associated with anticholinergic medication use.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_98",
+      "stem": "The nurse is caring for a patient who has been prescribed azithromycin for an exacerbation of chronic bronchitis. The patient also takes digoxin and warfarin. Which of the following will the nurse expect?",
+      "options": [
+        "Decreased effectiveness of digoxin",
+        "Increased effectiveness of digoxin",
+        "Decreased effectiveness of warfarin",
+        "Increased effectiveness of azithromycin"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Azithromycin can interact with digoxin and warfarin to increase their effects. If azithromycin is added to treat bronchitis monitoring for increased effects of these medications would be appropriate.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_99",
+      "stem": "Which of the following would be considered a contraindication to thrombolytic therapy?",
+      "options": [
+        "Traumatic head injury",
+        "High blood pressure",
+        "Use of aspirin for secondary cardiovascular protection",
+        "A previous history of gastric ulcer"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Thrombolytics are contraindicated for patients with a recent history of traumatic injury, especially head injury due to bleeding risk. High blood pressure, use of aspirin for CV prevention, and past history of a gastric ulcer would not be considered contraindications to thrombolytic therapy.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_100",
+      "stem": "The nurse is teaching a patient about taking hydrochlorothiazide. Which statement by thepatient indicates a need for further teaching?",
+      "options": [
+        "\"I may need extra sodium and calcium while taking this drug.\"",
+        "\"I should eat plenty of fruits and vegetables while taking this medication.\"",
+        "\"I should take care when rising from a bed or chair when I'm starting this medication.\"",
+        "\"I will take themedication in themorning to minimize certain side effects.\""
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients do not need extra sodium or calcium while taking thiazide diuretics. Thiazide diuretics can lead to hypokalemia, so patients should be counseled to eat fruits and vegetables that are high in potassium. Patients can develop orthostatic hypotension and should be counseled to rise from sitting or lying down slowly. Taking themedication in themorning helps to prevent nocturia-induced insomnia.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_101",
+      "stem": "The nurse is preparing to administer doses of hydrochlorothiazide and digoxin to a patient who has heart failure. thepatient reports having blurred vision. thenurse notes a heart rate of 60 beats per minute and a blood pressure of 140/78 mm Hg. Which action will thenurse take?",
+      "options": [
+        "Administer themedications and request an order for serum electrolytes.",
+        "Give both medications and evaluate serum blood glucose frequently.",
+        "Hold thedigoxin and notify theprovider.",
+        "Hold thehydrochlorothiazide and notify theprovider."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "When thiazide diuretics are taken with digoxin, patients are at risk of digoxin toxicity because thiazides can cause hypokalemia. thepatient has bradycardia and blurred vision, which are both signs of digoxin toxicity. thenurse should hold thedigoxin and notify theprovider. Serum electrolytes may be ordered, but thedigoxin should not be given.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_102",
+      "stem": "The nurse is caring for a postpartal woman and reviews the following lab results in her medical record: HBsAg-negative, rubella titer less than 1:8/1:10, Rh-negative with Rh-positive infant. Which injections will the nurse expect to be ordered?",
+      "options": [
+        "Hepatitis B immune globulin and MMR today",
+        "MMR and Rho(D) immune globulin (RhoGAM) today",
+        "Rho(D) immune globulin and hepatitis B immune globulin today",
+        "Rho(D) immune globulin today and MMR in 3 months"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "The woman needs RhoGAM today and will need an MMR since her rubella titer is low. Because it is a live vaccine, the MMR should be given in 3 months. She does not need hepatitis B immune globulin.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_103",
+      "stem": "A patient is admitted to the hospital, and the provider orders gemfibrozil 600 mg twice daily, 30 minutes prior to meals. The nurse learns that the patient takes warfarin once daily. The nurse will contact the provider to discuss",
+      "options": [
+        "decreasing the dose of gemfibrozil.",
+        "giving the warfarin at noon.",
+        "increasing the dose of warfarin.",
+        "ordering frequent INR levels."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Gemfibrozil is highly protein-bound and competes for receptor sites with drugs such as warfarin. The anticoagulant dose should be decreased, and the international normalized ratio (INR) should be closely monitored. Decreasing the dose of gemfibrozil is not recommended. Giving the warfarin at a different time of day does not change this drug interaction. The warfarin dose should be decreased, not increased.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_104",
+      "stem": "The nurse is preparing to administer bethanechol (Urecholine) to a patient who is experiencing urinary retention. thenurse notes that thepatient has a blood pressure of 90/60 mm Hg. thenurse will perform which action?",
+      "options": [
+        "Administer thedrug and monitor urine output.",
+        "Administer themedication and monitor vital signs frequently.",
+        "Give themedication and notify theprovider of theincreased heart rate.",
+        "Hold themedication and notify theprovider of thedecreased blood pressure."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Bethanechol treatment can result in hypotension. thenurse should hold thedrug and notify theprovider of thelow blood pressure.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_105",
+      "stem": "The nurse is caring for an 80-year-old patient who has just started a thiazide diuretic to treat hypertension. What is an important aspect of care for this patient?",
+      "options": [
+        "Encouraging increased fluid intake",
+        "Increasing activity and exercise",
+        "Initiating a fall risk protocol",
+        "Providing a low potassium diet"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Older patients experience a higher risk of orthostatic hypotension when taking antihypertensive medications. Fall risk also increases with a need for increased trips to the bathroom. A fall risk protocol should be implemented. Increasing fluids and activity and limiting potassium are not indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_106",
+      "stem": "A patient is taking doxazosin mesylate (Cardura) 1 mg/day to treat hypertension. The nurse notes a blood pressure of 110/72 mm Hg and a heart rate of 92 beats per minute. The nurse will contact the provider to discuss which change to the drug regimen?",
+      "options": [
+        "Changing to an alternative medication class to treat hypertension",
+        "Decreasing the doxazosin dose",
+        "Increasing the doxazosin dose",
+        "Adding a diuretic"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Alpha-adrenergic blockers can cause orthostatic hypotension and reflex tachycardia. Changing to an alternative medication class to treat hypertension would be appropriate to avoid hypotensive events. Decreasing or increasing the drug dose is not recommended. Diuretics are added if blood pressure is not well controlled.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_107",
+      "stem": "The nurse is teaching a patient who has hypertension about long-term management of the disease with alpha blocker therapy. The patient reports typically consuming 1 to 2 glasses of wine each evening with meals. How will the nurse respond?",
+      "options": [
+        "\"Alpha blockers and wine cause a reflex hypertension.\"",
+        "\"Four to 6 ounces of wine is considered safe with these medications.\"",
+        "\"Wine in moderation helps you relax and get better blood pressure control.\"",
+        "\"Wine can increase the hypotensive effects of alpha blockers.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Patients who take alpha blockers should be aware that the hypotensive effects of alpha blockers, like prazosin, can be intensified when taken in combination with alcohol.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_108",
+      "stem": "The nurse is caring for a postoperative patient who is receiving alteplase after developing a blood clot. The nurse notes a heart rate of 110 beats per minute and a blood pressure of 90/60 mm Hg. The nurse will perform which action?",
+      "options": [
+        "Ask the patient about itching or shortness of breath.",
+        "Assess the surgical dressing for bleeding.",
+        "Evaluate the patient's urine output and fluid intake.",
+        "Recheck the patient's vital signs in 15 minutes."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Tachycardia and hypotension indicate bleeding. The nurse should check the patient's surgical dressing to assess for bleeding. These signs do not indicate anaphylaxis. They may indicate dehydration, but bleeding is the more likely cause of fluid volume deficit. The nurse should continue to evaluate vital signs, but it is imperative that the nurse assess the patient to explore the potential cause.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_109",
+      "stem": "A patient is being treated for shock after a motor vehicle accident. The provider orders Dextran 75 to be given intravenously. The nurse should expect which outcome as the result of this infusion?",
+      "options": [
+        "Decreased urine output",
+        "Improved blood oxygenation",
+        "Increased interstitial fluid",
+        "Stabilization of heart rate and blood pressure"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Dextran 75 is a high\u2013molecular-weight colloidal solution and is used to treat shock from hemorrhage, burns, or trauma. Colloids are plasma expanders, and use results in an improvement in heart rate (decreased) and blood pressure (increased). Plasma expanders will result in an increase in urine output. Blood oxygenation is not affected, and colloids do not increase the amount of interstitial fluid.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_110",
+      "stem": "A patient who is HIV-infected takes 800 mg of indinavir, a protease inhibitor medication. The provider has ordered adding ritonavir to the regimen. The nurse will teach the patient that the addition of ritonavir",
+      "options": [
+        "allows decreasing the dosing from 3 times daily to twice daily.",
+        "can lead to increased cholesterol and triglycerides.",
+        "may worsen insulin resistance.",
+        "will require increased dietary restrictions."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Ritonavir boosting is a mainstay of protease inhibitor therapy and can reduce dosing frequency and pill burden as well as overcome viral resistance. It does not increase the likelihood of elevated cholesterol and triglycerides or insulin resistance and does not lead to increased dietary restrictions.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_111",
+      "stem": "A patient is brought to the emergency department by a family member. The patient reports symptoms of paranoia and believes they are being followed. The patient presents with an elevated body temperature, elevated pulse, and high blood pressure. The nurse suspects that this patient has taken which of the following drugs?",
+      "options": [
+        "Alcohol",
+        "Cocaine",
+        "Heroin",
+        "Oxycodone"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "A stimulant psychosis can occur with cocaine use, and can present as symptoms of paranoia such as believing they are being followed or someone is trying to attack them. Cocaine users will also present with elevations in temperature, pulse, and blood pressure. These are not physical signs typically seen with substance use disorder involving alcohol, heroin or oxycodone.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_112",
+      "stem": "The nurse is caring for a patient who is receiving warfarin and notes bruising and petechiae on the patient's extremities. The nurse will request an order for which laboratory test?",
+      "options": [
+        "International normalized ratio (INR)",
+        "Platelet level",
+        "PTT and aPTT",
+        "Vitamin K level"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The INR is the test used most frequently to report prothrombin time results in patients taking warfarin. Warfarin is not an antiplatelet drug, so platelet levels are not indicated. PTT and aPTT are used to monitor heparin therapy. Vitamin K is an antidote for warfarin; levels are not routinely checked.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_113",
+      "stem": "The nurse is caring for an infant who is 2 days postpartum and notes that the infant has a poor sucking response. Which of the following medications can contribute to delayed breastfeeding with a poor sucking response for up to 4 days if used during labor?",
+      "options": [
+        "Butorphanol tartrate",
+        "Fentanyl",
+        "Nalbuphine",
+        "Pentobarbital"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Sedative-hypnotic drugs, such as pentobarbital, can cause neonatal respiratory depression, hypotonia, and a poor sucking response up to 4 days. Butorphanol tartrate, fentanyl, and nalbuphine do not have prolonged effects.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_114",
+      "stem": "The nurse is caring for an 80-year-old patient who is taking warfarin (Coumadin). Which action does the nurse understand is important when caring for this patient?",
+      "options": [
+        "Encouraging the patient to rise slowly from a sitting position",
+        "Initiating a fall-risk protocol",
+        "Maintaining strict intake and output measures",
+        "Monitoring blood pressure frequently"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients who take anticoagulants have an increased risk of hemorrhage. Older patients have an increased risk of falls that can lead to bleeding complications. Initiating a fall-risk protocol is important. Warfarin does not affect blood pressure and would not cause orthostatic hypotension. Warfarin does not alter urine output.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_115",
+      "stem": "The nurse is preparing to administer digoxin to a patient who has HF. thepatient reports nausea, vomiting, and visual halos around objects. thenurse notes a respiratory rate of 18 breaths per minute, a heart rate of 58 beats per minute, and a blood pressure of 120/78 mm Hg. What will thenurse do next?",
+      "options": [
+        "Administer thenext dose as ordered since these are mild side effects.",
+        "Hold thedose and notify theprovider of possible digoxin toxicity.",
+        "Reassure thepatient that these are common, self-limiting side effects.",
+        "Request an order for an antiemetic and an analgesic medication."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Nausea, vomiting, and headache are common signs of digoxin toxicity as is a heart rate less than 60 beats per minute. Patients will also sometimes present with visual illusions, such as colored halos around objectives. thenurse should hold thedose and notify theprovider.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_116",
+      "stem": "A patient is prescribed ivermectin to treat onchocerciasis. The patient is currently taking warfarin and atorvastatin. Which of the following will the nurse recommend monitoring for in this patient?",
+      "options": [
+        "Increase in INR",
+        "Decrease in INR",
+        "Increase in LDL cholesterol",
+        "Decrease in LDL cholesterol"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Ivermectin can interact with warfarin resulting in an increase in INR. There are no major concerns with ivermectin and LDL levels.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_117",
+      "stem": "A patient who takes the anticoagulant warfarin will begin taking the anticonvulsant drug carbamazepine. The nurse reviews the drug information for these drugs and learns that carbamazepine is a hepatic enzyme inducer. The nurse anticipates that which of the following may be required?",
+      "options": [
+        "Decrease the dose of carbamazepine.",
+        "Increase the dose of carbamazepine.",
+        "Decrease the dose of warfarin.",
+        "Increase the dose of warfarin."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Carbamazepine is a hepatic enzyme inducer, which can increase drug metabolism. Patients taking both drugs usually need a larger dose of warfarin. Warfarin therapeutic drug monitoring would be indicated to assess the impact of the carbamazepine on his warfarin effectiveness.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_118",
+      "stem": "A nursing student asks why the anticoagulant heparin is given to patients who have disseminated intravascular coagulation (DIC) and are at risk for excessive bleeding. The nurse will explain that heparin is used in this case for which reason?",
+      "options": [
+        "To decrease the risk of venous thrombosis",
+        "To dissolve blood clots as they form",
+        "To enhance the formation of fibrous clots",
+        "To preserve platelet function"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The primary use of heparin for patients with DIC is to prevent venous thrombosis, which can lead to pulmonary embolism or stroke. Heparin does not break down blood clots, enhance the formation of fibrous clots, or preserve platelet function.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_119",
+      "stem": "The nurse is caring for an African-American patient who has been taking a beta blocker to treat hypertension for several weeks with only slight improvement in blood pressure. thenurse will contact theprovider to discuss which of thefollowing?",
+      "options": [
+        "Adding a diuretic medication",
+        "Changing to an angiotensin-converting enzyme (ACE) inhibitor",
+        "Decreasing thebeta blocker dose",
+        "Doubling the beta blocker dose"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "African Americans do not respond well to beta blockers and ACE inhibitors, but do tend to respond to diuretics and calcium channel blockers. Changing to an ACE inhibitor or altering the beta blocker dose is not indicated. Hypertension in African-American patients can be controlled by combining beta blockers with diuretics.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_120",
+      "stem": "The nurse is preparing to care for a Native American patient who has hypertension. The nurse understands that which antihypertensive medication would be most effective in this patient?",
+      "options": [
+        "Acebutolol",
+        "Captopril",
+        "Carteolol",
+        "Metoprolol"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Captopril is an ACE inhibitor. Native American patients have a reduced response to treatment with beta blockers when compared to Caucasians. Acebutolol, carteolol, and metoprolol are all beta blockers.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_121",
+      "stem": "The nurse checks on a patient who received a dose of sumatriptan for treatment of a migraine headache 15 minutes ago. The patient reports moderate improvement in headache pain and reports feeling dizzy. The nurse notes a blood pressure of 160/85 mm Hg. Which action by the nurse would be most appropriate?",
+      "options": [
+        "Notify the provider of the dizziness.",
+        "Notify the provider of the increased blood pressure.",
+        "Plan to administer a second dose in 30 minutes.",
+        "Request an order for intranasal sumatriptan."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Triptans can cause increased blood pressure, which is an adverse drug reaction and should be reported to the provider. Dizziness is a common side effect but not potentially life-threatening. A second dose can be given after 2 hours as needed, but giving a second dose should be first confirmed with the provider due to the observed elevation in blood pressure. Intranasal sumatriptan has the same adverse effects.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_122",
+      "stem": "The nurse is preparing to administer digoxin to a patient who has a serum digoxin level of 2.5 ng/mL. thepatient takes 0.25 mg of digoxin per day. What action will thenurse take?",
+      "options": [
+        "Administer thenext dose as ordered.",
+        "Do not administer thedigoxin and notify theprovider of toxic digoxin levels.",
+        "Request an order to decrease thedigoxin dose.",
+        "Suggest that thepatient may need an increased digoxin dose."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The therapeutic range of digoxin is between 0.8 and 2 ng/mL. This patient's level is high, indicating toxic blood levels. thenurse should not give thenext dose or request a change in dose.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_123",
+      "stem": "The nurse is preparing to administer the first dose of digoxin (Lanoxin) to a patient and notes that the initial dose ordered is much higher than the ordered maintenance dose. Which of the following describes why the first dose is higher?",
+      "options": [
+        "Digoxin requires a loading dose.",
+        "Digoxin undergoes first-pass metabolism when initially administered.",
+        "Digoxin has a long duration of action.",
+        "Digoxin has a short half-life."
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The reason the first dose is higher than the ordered maintenance dose is because a loading dose is required. This is performed to more quickly reach steady state for a drug with a long half-life. The loading dose is not given due to first-pass metabolism or duration of action.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_124",
+      "stem": "The nurse administers a dose of digoxin to a patient who has HF and returns to theroom later to reassess thepatient. Which finding indicates that themedication is effective?",
+      "options": [
+        "Decreased dyspnea",
+        "Decreased urine output",
+        "Increased blood pressure",
+        "Increased heart rate"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The patient should show improvement in breathing and oxygenation. Urine output should increase. Blood pressure and heart rate will decrease.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_125",
+      "stem": "An older adult has difficulty falling asleep. thenurse understands that which sedative hypnotic is most appropriate for this patient?",
+      "options": [
+        "Butabarbital",
+        "Flurazepam",
+        "Secobarbital",
+        "Temazepam"
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Short- to intermediate-acting benzodiazepines such as temazepam are recommended for older adults and are considered safer than barbiturates and long-acting benzodiazepines.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_126",
+      "stem": "The nurse is assessing a patient prior to administering thrombolytic therapy. Which is an important assessment for this patient?",
+      "options": [
+        "Determining whether the patient has a history of diabetes",
+        "Finding out about a history of renal disease",
+        "Assessing which medications are taken for discomfort/pain",
+        "Assessing whether the patient eats green, leafy vegetables"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Patients who take aspirin or NSAIDs should be monitored closely for excessive bleeding when given thrombolytics. There are no contraindications or precautions for patients with diabetes or renal disease. Foods rich in vitamin K are of concern for patients taking warfarin.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_127",
+      "stem": "The nurse is caring for a patient who has recently begun taking atenolol (Tenormin) as add-on therapy to treat hypertension. The patient reports dizziness, nausea, vomiting, and decreased libido since beginning the medication. What will the nurse do?",
+      "options": [
+        "Hold the next dose until the provider can be notified of these side effects.",
+        "Reassure the patient that these symptoms are common and not worrisome.",
+        "Recommend that the patient discuss these effects with the provider.",
+        "Suggest that the patient request a different beta-adrenergic blocker."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Beta-adrenergic blockers can cause these side effects, which are often dose related. Patients experiencing these side effects should be encouraged to discuss them with their provider. Beta blockers should not be discontinued abruptly, or rebound symptoms may occur. Since symptoms may be dose related, reassuring the patient is not correct. All beta blockers have similar side effects.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_128",
+      "stem": "A patient has been taking atorvastatin for several months to treat hyperlipidemia. The patient reports severe muscle weakness and tenderness. The nurse will counsel the patient to do which of the following?",
+      "options": [
+        "Ask the provider about switching to simvastatin.",
+        "Contact the provider to report these symptoms.",
+        "Start taking ibuprofen to combat these effects.",
+        "Stop taking the medication immediately."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Patients taking statins should report immediately any muscle aches or weakness, which can lead to rhabdomyolysis, a muscle disintegration that can become fatal. All statins carry this risk, so changing to another statin is not indicated. Ibuprofen may be useful, but notifying the provider is essential. Patients should not abruptly discontinue statins without discussing this with the provider.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_129",
+      "stem": "A patient is taking clopidogrel. When teaching this patient about dietary restrictions while taking this medication, the nurse will instruct the patient to avoid excessive consumption of which food?",
+      "options": [
+        "Garlic",
+        "Grapefruit",
+        "Green, leafy vegetables",
+        "Red meats"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Patients taking this drug may experience increased bleeding when taken with garlic. There is no restriction for grapefruit as there is with many other medications. Green, leafy vegetables should be restricted in patients taking warfarin. Red meats are not contraindicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_130",
+      "stem": "A patient with suspected myocardial infarction is seen in the emergency department. The nurse is preparing to administer 325 mg of aspirin. The nurse will perform which action?",
+      "options": [
+        "Administer an enteric-coated tablet.",
+        "Ask the patient to chew the tablet.",
+        "Give the tablet with a large glass of water.",
+        "Place the tablet under the patient's tongue."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "To speed the absorption of aspirin, in a cardiac emergency, the patient should chew the tablet when given. An enteric-coated tablet will slow the absorption. Giving the aspirin with a large volume water or sublingually will slow the absorption rate.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_131",
+      "stem": "A patient who has recently begun taking captopril to treat hypertension calls a clinic to report a persistent cough that started right after starting the captopril. The nurse will perform which action?",
+      "options": [
+        "Instruct the patient to go to an emergency department because this is a hypersensitivity reaction.",
+        "Reassure the patient that this side effect is nothing to worry about and will diminish over time.",
+        "Schedule an appointment with the provider to evaluate the cough and discuss changing to an angiotensin II receptor blocker (ARB).",
+        "Tell the patient to stop taking the drug immediately since this is a serious side effect of this drug."
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "An ACE inhibitor, such as captopril, can cause a constant, irritated cough. The cough will stop with discontinuation of the drug, and many patients can switch to an ARB medication which will not contribute to cough. It does not indicate a hypersensitivity reaction. The cough will not diminish while still taking the drug. The patient does not need to stop taking the drug immediately.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_132",
+      "stem": "The nurse is teaching a patient about sublingual nitroglycerin administration. What information will thenurse include when teaching this patient?",
+      "options": [
+        "Call 911 if pain does not improve after three doses.",
+        "A second dose of nitroglycerin should be given regardless of symptom resolution.",
+        "Swallow thetablet with small sips of water.",
+        "Take thefirst tablet while sitting or lying down."
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Because nitroglycerin can cause hypotension, patients should be cautioned to take them while sitting or lying down. If pain is not better or has worsened 5 minutes after thefirst dose, patients should call 911. A second dose should be administered only if symptoms are not resolved after taking thefirst dose. thetablets must dissolve under thetongue and should not be swallowed.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_133",
+      "stem": "The nurse is assessing a patient who takes warfarin. The nurse notes a heart rate of 92 beats per minute and a blood pressure of 88/78 mm Hg. To evaluate the reason for these vital signs, the nurse will assess which of the following?",
+      "options": [
+        "Gums, nose, and skin",
+        "Lung sounds and respiratory effort",
+        "Skin turgor and oral mucous membranes",
+        "Urine output and level of consciousness"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "An increased heart rate followed by a decreased systolic pressure can indicate a fluid volume deficit caused by internal or external bleeding. The nurse should examine the patient's mouth, nose, and skin for signs of bleeding. These vital signs do not indicate a pulmonary problem. Skin turgor and mucous membranes as well as urine output and level of consciousness may be assessed to determine the level of fluid deficit, but finding the source of blood loss is more important. Signs of gastrointestinal bleeding should also be assessed.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_134",
+      "stem": "Reserpine would be best categorized as which of the following?",
+      "options": [
+        "Adrenergic neuron antagonist",
+        "Alpha blocker",
+        "Beta blocker",
+        "Alpha agonist"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Drugs that block therelease of norepinephrine from thesympathetic terminal neurons are often called adrenergic neuron antagonists (adrenergic neuron blockers). theclinical use is to decrease blood pressure. For example, reserpine is an antihypertensive agent that closely resembles alpha- and beta-adrenergic blockers; it also reduces theserotonin and catecholamine transmitters, depletion of which may lead to severe mental depression.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_135",
+      "stem": "The nurse is preparing to administer an ACE inhibitor to a patient who has hypertension. The patient started the ACE inhibitor the day prior. The nurse notes peripheral edema and swelling of the patient's lips. The patient has a blood pressure of 160/80 mm Hg and a heart rate of 76 beats per minute. What is the nurse's next action?",
+      "options": [
+        "Administer the dose and observe carefully for hypotension.",
+        "Hold the dose and notify the provider of a hypersensitivity reaction.",
+        "Notify the provider and request an order for a diuretic medication.",
+        "Request an order for serum electrolytes and renal function tests."
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "The patient has signs of angioedema, which indicates a hypersensitivity reaction. The nurse should hold the dose and notify the provider. Giving the dose will make the reaction more serious. These are not signs of edema, so a diuretic is not indicated. Electrolytes and renal function tests are not indicated.",
+      "type": "single_select"
+    },
+    {
+      "id": "CARD_136",
+      "stem": "The nurse is teaching a patient about theuse of an anticholinergic medication. What information will thenurse include when teaching this patient about this medication?",
+      "options": [
+        "\"Check your heart rate frequently to monitor for bradycardia.\"",
+        "\"Drink extra fluids while you are taking this medication.\"",
+        "\"Rise from a chair slowly to avoid dizziness when taking this drug.\"",
+        "\"Use gum or lozenges to decrease dry mouth caused by this drug.\""
+      ],
+      "correct": [
+        "D"
+      ],
+      "rationale": "Anticholinergic medications cause dry mouth, so patients should be advised to use gum or lozenges to counter this side effect. Anticholinergics cause increased heart rate and increased blood pressure. Anticholinergics can cause urinary retention so patients should not necessarily increase fluid intake.",
+      "type": "single_select"
+    }
+  ]
+}
