@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pharmacology - Comprehensive | Nurse Success Study Hub</title>
     
-    <!-- PWA Manifest - FIXED PATH -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
     
     <meta name="theme-color" content="#2e7d32">
@@ -83,7 +83,7 @@
             color: inherit;
             display: block;
             text-align: center;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
         }
         
@@ -104,25 +104,49 @@
             margin-bottom: 15px;
         }
         
-        .quiz-card .question-count {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #2e7d32;
-            margin-bottom: 5px;
-        }
-        
-        .quiz-card .question-label {
-            font-size: 1.1rem;
+        .quiz-card .test-bank-label {
+            font-size: 0.9rem;
             color: #666;
-            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
         
         .quiz-card .description {
             font-size: 0.95rem;
-            color: #888;
-            line-height: 1.5;
-            padding-top: 15px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px 0;
             border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .source-info {
@@ -157,7 +181,7 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin-top: 25px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
         
@@ -174,6 +198,13 @@
             font-weight: bold;
         }
         
+        .cta-text {
+            font-size: 0.9rem;
+            color: #2e7d32;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
         @media (max-width: 600px) {
             .page-header h1 {
                 font-size: 1.5rem;
@@ -183,12 +214,17 @@
                 padding: 30px 20px;
             }
             
-            .quiz-card .question-count {
-                font-size: 2.5rem;
+            .stat-number {
+                font-size: 1.6rem;
             }
             
             .quiz-card .icon {
                 font-size: 3rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
             
             .features {
@@ -218,24 +254,49 @@
         </a>
         
         <div class="page-header">
-            <h1>📖 Comprehensive Pharmacology</h1>
-            <p>Complete coverage from McCuistion Test Bank (11th Ed, Ch 1-58)</p>
+            <h1>📖 Comprehensive</h1>
+            <p>Mixed Pharmacology Quizzes</p>
+        </div>
+        
+        <div style="text-align: center; margin-bottom: 30px;">
+            <p style="color: white; font-size: 0.95rem; line-height: 1.6;">
+                Test your comprehensive pharmacology knowledge with mixed-topic quizzes covering all drug categories, 
+                therapeutic classifications, and nursing considerations across multiple body systems.
+            </p>
         </div>
         
         <a href="/quiz/Pharmacology/Pharm_Quiz_1?autostart=true" class="quiz-card">
             <div class="icon">💊</div>
-            <h3>Complete Pharmacology Review</h3>
-            <div class="question-count">829</div>
-            <div class="question-label">Questions</div>
-            <div class="description">
-                All chapters from McCuistion Pharmacology Test Bank covering drug classifications, 
-                mechanisms of action, nursing implications, patient education, and NCLEX-style questions.
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">Quiz</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">829</span>
+                    <span class="stat-label">Questions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">MCQ</span>
+                    <span class="stat-label">Format</span>
+                </div>
             </div>
+            
+            <div class="test-bank-label">829 Question Test Bank</div>
+            <div class="description">
+                Test your knowledge with a random set of pharmacology questions from the complete 
+                McCuistion Test Bank. Each quiz session draws from 829 questions covering all drug 
+                classifications, mechanisms of action, nursing implications, and NCLEX-style clinical scenarios.
+            </div>
+            
             <div class="features">
-                <span class="feature"><span class="check">✓</span> All 58 Chapters</span>
+                <span class="feature"><span class="check">✓</span> Random Selection</span>
                 <span class="feature"><span class="check">✓</span> SATA Questions</span>
                 <span class="feature"><span class="check">✓</span> Detailed Rationales</span>
             </div>
+            
+            <div class="cta-text">View Comprehensive Quizzes →</div>
         </a>
         
         <div class="source-info">
