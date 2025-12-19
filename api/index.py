@@ -193,17 +193,17 @@ def ccrn_page():
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/category/Pharmacology/Comprehensive')
+@app.route('/pharmacology/comprehensive')
 def pharmacology_comprehensive():
-    """Comprehensive Pharmacology Quizzes page"""
+    """Comprehensive Pharmacology quiz selection page"""
     try:
-        return render_template('pharmacology-comprehensive.html')
+        return render_template('pharmacology-comprehensive-select.html')
     except Exception as e:
         print(f"Error in pharmacology_comprehensive route: {e}")
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/category/Pharmacology/Categories')
+@app.route('/pharmacology/categories')
 def pharmacology_categories():
     """Pharmacology by Category page"""
     try:
@@ -253,11 +253,11 @@ def quiz(category, module):
             back_label = 'CCRN Practice Tests'
         # Special handling for Pharm Quizzes - go back to Comprehensive page
         elif module.startswith('Pharm_Quiz_') and category == 'Pharmacology':
-            back_url = '/category/Pharmacology/Comprehensive'
+            back_url = '/pharmacology/comprehensive'
             back_label = 'Comprehensive Pharmacology Quizzes'
         # Special handling for categorical pharm quizzes - go back to Categories page
         elif category == 'Pharmacology' and module.endswith('_Pharm'):
-            back_url = '/category/Pharmacology/Categories'
+            back_url = '/pharmacology/categories'
             back_label = 'Pharmacology by Category'
         else:
             back_url = f'/category/{category}'
