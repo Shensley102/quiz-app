@@ -1,28 +1,15 @@
-"""
-Vercel Serverless Function - Nurse Success Study Hub
-Wraps Flask application and handles HTTP requests properly
-Deploy to: api/index.py
-"""
-
 import json
 import os
-from pathlib import Path
-
-# Flask imports
 from flask import Flask, render_template, jsonify, request, send_from_directory
-from werkzeug.exceptions import NotFound
 
-# ==================== FLASK APP INITIALIZATION ====================
-
+# Initialize Flask app
 app = Flask(__name__, 
     template_folder=os.path.join(os.path.dirname(__file__), '../templates'),
     static_folder=os.path.join(os.path.dirname(__file__), '../static'),
     static_url_path='/static'
 )
 
-# ==================== CATEGORY CONFIGURATION ====================
-# Maps category display names to folder names and quiz files
-
+# Category configuration
 CATEGORIES = {
     'HESI': {
         'folder': 'HESI',
@@ -94,19 +81,13 @@ CATEGORIES = {
     }
 }
 
-# ==================== ROUTE: HOME PAGE ====================
-
 @app.route('/')
 @app.route('/index.html')
 def home():
-    """Render home page with category cards"""
     return render_template('home.html', categories=CATEGORIES)
-
-# ==================== ROUTE: CATEGORY PAGE ====================
 
 @app.route('/category/<category_name>')
 def category(category_name):
-    """Render category page with quiz list"""
     if category_name not in CATEGORIES:
         return jsonify({'error': 'Category not found'}), 404
     
@@ -117,18 +98,12 @@ def category(category_name):
         quizzes=category_data['quizzes']
     )
 
-# ==================== ROUTE: QUIZ PAGE ====================
-
 @app.route('/quiz/<category_name>/<quiz_id>')
 def quiz(category_name, quiz_id):
-    """Render quiz page for selected quiz"""
-    # Validate category exists
     if category_name not in CATEGORIES:
         return jsonify({'error': 'Category not found'}), 404
     
     category_data = CATEGORIES[category_name]
-    
-    # Find quiz in category
     quiz_info = None
     for q in category_data['quizzes']:
         if q['id'] == quiz_id:
@@ -138,7 +113,6 @@ def quiz(category_name, quiz_id):
     if not quiz_info:
         return jsonify({'error': 'Quiz not found'}), 404
     
-    # Return quiz template
     return render_template('quiz.html',
         category_name=category_name,
         quiz_id=quiz_id,
@@ -146,19 +120,14 @@ def quiz(category_name, quiz_id):
         quiz_file=quiz_info['file']
     )
 
-# ==================== ROUTE: API - LOAD QUIZ DATA ====================
-
 @app.route('/api/quiz/<category_name>/<quiz_filename>')
 def load_quiz(category_name, quiz_filename):
-    """Load quiz JSON data from modules directory"""
-    # Validate category
     if category_name not in CATEGORIES:
         return jsonify({'error': 'Category not found'}), 404
     
     category_data = CATEGORIES[category_name]
     folder = category_data['folder']
     
-    # Build path to quiz file
     quiz_path = os.path.join(
         os.path.dirname(__file__),
         '../modules',
@@ -166,19 +135,15 @@ def load_quiz(category_name, quiz_filename):
         quiz_filename
     )
     
-    # Resolve to absolute path and validate it's safe
     quiz_path = os.path.abspath(quiz_path)
     base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../modules'))
     
-    # Prevent directory traversal attacks
     if not quiz_path.startswith(base_path):
         return jsonify({'error': 'Invalid quiz path'}), 400
     
-    # Check file exists
     if not os.path.exists(quiz_path):
         return jsonify({'error': f'Quiz file not found: {quiz_filename}'}), 404
     
-    # Load and return quiz data
     try:
         with open(quiz_path, 'r', encoding='utf-8') as f:
             quiz_data = json.load(f)
@@ -188,54 +153,31 @@ def load_quiz(category_name, quiz_filename):
     except Exception as e:
         return jsonify({'error': f'Error loading quiz: {str(e)}'}), 500
 
-# ==================== ROUTE: STATIC FILES ====================
-
 @app.route('/static/<path:filename>')
 def serve_static(filename):
-    """Serve static files from static directory"""
     return send_from_directory(app.static_folder, filename)
 
 @app.route('/images/<filename>')
 def serve_images(filename):
-    """Serve images from images directory"""
-    images_path = os.path.join(
-        os.path.dirname(__file__),
-        '../images'
-    )
+    images_path = os.path.join(os.path.dirname(__file__), '../images')
     return send_from_directory(images_path, filename)
 
 @app.route('/modules/<path:filename>')
 def serve_modules(filename):
-    """Serve module files (quiz JSON data)"""
-    modules_path = os.path.join(
-        os.path.dirname(__file__),
-        '../modules'
-    )
+    modules_path = os.path.join(os.path.dirname(__file__), '../modules')
     return send_from_directory(modules_path, filename)
-
-# ==================== ERROR HANDLERS ====================
 
 @app.errorhandler(404)
 def page_not_found(error):
-    """Handle 404 errors - return offline page or JSON"""
     if request.accept_mimetypes.accept_json and not request.accept_mimetypes.accept_html:
         return jsonify({'error': 'Not found'}), 404
-    
     return render_template('404.html'), 404
 
 @app.errorhandler(500)
 def internal_error(error):
-    """Handle 500 errors"""
     if request.accept_mimetypes.accept_json and not request.accept_mimetypes.accept_html:
         return jsonify({'error': 'Internal server error'}), 500
-    
     return render_template('500.html'), 500
 
-# ==================== VERCEL SERVERLESS EXPORT ====================
-
-# Vercel will automatically detect and use the Flask app instance
-# No manual handler export needed - the app variable is all we need
-
-# For local development
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=3000)
