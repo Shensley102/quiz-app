@@ -133,8 +133,198 @@ body {
     color: white;
     font-size: 3rem;
 }
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Dict, List, Optional
+
+from flask import Flask, abort, jsonify, render_template, request
+
+# Paths
+BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATES_DIR = BASE_DIR / "templates"
+STATIC_DIR = BASE_DIR / "static"
+MODULES_DIR = BASE_DIR / "modules"
+
+app = Flask(
+    __name__,
+    template_folder=str(TEMPLATES_DIR),
+    static_folder=str(STATIC_DIR),
+    static_url_path="/static",
+)
+
+# Category metadata used for template selection and display copy
+CATEGORY_META: Dict[str, Dict[str, str]] = {
+    "HESI": {
+        "display_name": "HESI Exam Prep",
+        "description": "Practice questions for HESI specialty exams including Adult Health, Maternity, and Leadership.",
+        "icon": "📋",
+        "template": "category.html",
+    },
+    "Lab_Values": {
+        "display_name": "Lab Values",
+        "description": "Master essential laboratory values and their clinical significance.",
+        "icon": "🧪",
+        "template": "lab-values.html",
+    },
+    "Patient_Care_Management": {
+        "display_name": "Patient Care Management",
+        "description": "Prioritization, delegation, and clinical decision-making scenarios.",
+        "icon": "👥",
+        "template": "category.html",
+    },
+    "Pharmacology": {
+        "display_name": "Pharmacology",
+        "description": "Drug classifications, mechanisms, and nursing implications.",
+        "icon": "💊",
+        "template": "pharmacology.html",
+    },
+    "Nursing_Certifications": {
+        "display_name": "Nursing Certifications",
+        "description": "Prepare for CCRN and other specialty nursing certification exams.",
+        "icon": "🏆",
+        "template": "nursing-certifications.html",
+    },
+}
+
+# Optional descriptions shown on category grid cards
+MODULE_DESCRIPTIONS: Dict[str, str] = {
+    "CCRN_Test_1_Combined_QA": "Practice exam covering core critical care concepts.",
+    "CCRN_Test_2_Combined_QA": "Critical care scenarios focusing on multisystem organ failure.",
+    "CCRN_Test_3_Combined_QA": "Advanced topics including pharmacology and professional practice.",
+    "NCLEX_Lab_Values": "NCLEX-style multiple choice questions with rationales.",
+    "HESI_Comp_Quiz_1": "Comprehensive HESI practice questions from Exit Exam and study guides.",
+    "HESI_Comp_Quiz_2": "Comprehensive HESI practice questions from Exit Exam and study guides.",
+    "HESI_Comp_Quiz_3": "Comprehensive HESI practice questions from Exit Exam and study guides.",
+}
+
+
+def _read_questions(module_path: Path) -> List[dict]:
+    """Return the list of questions from a module JSON file."""
+    try:
+        with module_path.open("r", encoding="utf-8") as fh:
+            payload = json.load(fh)
+    except FileNotFoundError:
+        return []
+    except Exception as exc:  # pragma: no cover - defensive logging path
+        app.logger.warning("Unable to read %s: %s", module_path, exc)
+        return []
+
+    if isinstance(payload, list):
+        return payload
+    if isinstance(payload, dict) and isinstance(payload.get("questions"), list):
+        return payload["questions"]
+    return []
+
+
+def _module_description(module_name: str, category: str) -> str:
+    if module_name in MODULE_DESCRIPTIONS:
+        return MODULE_DESCRIPTIONS[module_name]
+    if category == "Nursing_Certifications":
+        return "Certification exam practice questions with detailed rationales."
+    if category == "HESI":
+        return "HESI exam preparation questions with detailed rationales."
+    if category == "Lab_Values":
+        return "Lab values practice questions with detailed rationales."
+    if category == "Pharmacology":
+        return "Pharmacology practice questions covering drug classifications and nursing implications."
+    return "Practice questions with detailed rationales to reinforce your understanding."
+
+
+def _build_module_list(category: str) -> List[Dict[str, str]]:
+    """Return module metadata for a category based on available JSON files."""
+    category_dir = MODULES_DIR / category
+    if not category_dir.exists():
+        return []
+
+    modules: List[Dict[str, str]] = []
+    for module_path in sorted(category_dir.glob("*.json")):
+        module_name = module_path.stem
+        questions = _read_questions(module_path)
+        modules.append(
+            {
+                "name": module_name,
+                "count": len(questions),
+                "description": _module_description(module_name, category),
+            }
+        )
+    return modules
+
+
+def _load_quiz(category: str, module_name: str) -> Optional[Dict[str, object]]:
+    module_path = MODULES_DIR / category / f"{module_name}.json"
+    if not module_path.exists():
+        return None
+
+    questions = _read_questions(module_path)
+    return {"module": module_name, "questions": questions, "total": len(questions)}
+
+
+@app.route("/")
+def home() -> str:
+    return render_template("home.html")
+
+
+@app.route("/category/<category_name>")
+def category_page(category_name: str) -> str:
+    meta = CATEGORY_META.get(category_name)
+    if not meta:
+        abort(404)
+
+    template_name = meta.get("template", "category.html")
+    context: Dict[str, object] = {}
+
+    if template_name == "category.html":
+        modules = _build_module_list(category_name)
+        context = {
+            "category": category_name,
+            "category_data": {
+                "display_name": meta["display_name"],
+                "description": meta["description"],
+                "icon": meta["icon"],
+                "modules": modules,
+            },
+        }
+
+    return render_template(template_name, **context)
+
+
+@app.route("/quiz")
+@app.route("/quiz/<category>/<module_name>")
+def quiz(category: Optional[str] = None, module_name: Optional[str] = None) -> str:
+    quiz_data = None
+    autostart = request.args.get("autostart") in {"1", "true", "True"}
+    back_url = None
+    back_label = None
+
+    if category and module_name:
+        quiz_data = _load_quiz(category, module_name)
+        if not quiz_data:
+            abort(404)
+        back_url = f"/category/{category}"
+        back_label = CATEGORY_META.get(category, {}).get("display_name", "Study Hub")
+
+    return render_template(
+        "quiz.html",
+        quiz_data=quiz_data["questions"] if quiz_data else None,
+        module_name=module_name,
+        category=category,
+        autostart=autostart,
+        back_url=back_url,
+        back_label=back_label,
+    )
+
 
 /* ==================== CATEGORY INFO ==================== */
+@app.route("/quiz-fill-blank")
+def quiz_fill_blank() -> str:
+    return render_template("quiz-fill-blank.html")
+
+
+@app.route("/quiz-fishbone-fill")
+def quiz_fishbone_fill() -> str:
+    return render_template("quiz-fishbone-fill.html")
 
 .category-info {
     padding: 25px;
@@ -150,6 +340,9 @@ body {
     gap: 12px;
     margin-bottom: 12px;
 }
+@app.route("/quiz-fishbone-mcq")
+def quiz_fishbone_mcq() -> str:
+    return render_template("quiz-fishbone-mcq.html")
 
 .category-icon {
     font-size: 2rem;
@@ -162,6 +355,9 @@ body {
     color: #333;
     margin: 0;
 }
+@app.route("/pharmacology")
+def pharmacology() -> str:
+    return render_template("pharmacology.html")
 
 .category-description {
     font-size: 0.95rem;
@@ -186,6 +382,9 @@ body {
     transition: all 0.2s ease;
     width: fit-content;
 }
+@app.route("/pharmacology/comprehensive")
+def pharmacology_comprehensive() -> str:
+    return render_template("pharmacology-comprehensive-select.html")
 
 .category-link:hover {
     transform: translateX(4px);
@@ -195,6 +394,9 @@ body {
 .category-link:active {
     transform: translateX(2px);
 }
+@app.route("/pharmacology/categories")
+def pharmacology_categories() -> str:
+    return render_template("pharmacology-categories.html")
 
 .category-link::after {
     content: '→';
@@ -202,6 +404,13 @@ body {
 }
 
 /* ==================== RESPONSIVE DESIGN ==================== */
+@app.route("/api/category/<category_name>/modules")
+def api_category_modules(category_name: str):
+    meta = CATEGORY_META.get(category_name)
+    if not meta:
+        abort(404)
+    modules = [m["name"] for m in _build_module_list(category_name)]
+    return jsonify({"category": category_name, "modules": modules})
 
 @media (max-width: 1024px) {
     .categories-grid {
@@ -212,6 +421,12 @@ body {
     .header h1 {
         font-size: 2rem;
     }
+@app.route("/modules")
+def api_all_modules():
+    module_names: List[str] = []
+    for category in CATEGORY_META:
+        module_names.extend([m["name"] for m in _build_module_list(category)])
+    return jsonify({"modules": sorted(module_names)})
 
     .header p {
         font-size: 1rem;
@@ -277,6 +492,12 @@ body {
 }
 
 /* ==================== HIGH CONTRAST MODE ==================== */
+@app.route("/api/quiz/<category>/<module_name>")
+def api_quiz(category: str, module_name: str):
+    quiz_data = _load_quiz(category, module_name)
+    if not quiz_data:
+        abort(404)
+    return jsonify(quiz_data)
 
 @media (prefers-contrast: more) {
     .category-card {
@@ -344,3 +565,6 @@ body {
         background: white;
     }
 }
+# For local debugging only
+if __name__ == "__main__":  # pragma: no cover
+    app.run(debug=True, host="0.0.0.0", port=5000)
