@@ -1,570 +1,242 @@
-/* Home Page Styling - Fixed to display category images completely */
-
-:root {
-    --primary-color: #667eea;
-    --secondary-color: #764ba2;
-    --accent-color: #2e7d32;
-    --light-bg: #f5f5f5;
-    --border-radius: 16px;
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.15);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #f8f9ff 0%, #f0f4ff 100%);
-    min-height: 100vh;
-    color: #333;
-}
-
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* ==================== HEADER ==================== */
-
-.header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding: 40px 20px;
-}
-
-.header h1 {
-    font-size: 2.5rem;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.header p {
-    font-size: 1.1rem;
-    color: #666;
-    font-weight: 500;
-}
-
-/* ==================== OFFLINE INDICATOR ==================== */
-
-.offline-indicator {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(135deg, #ff9800, #f57c00);
-    color: white;
-    padding: 12px 20px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 14px;
-    z-index: 10000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.offline-indicator.hidden {
-    display: none;
-}
-
-/* ==================== CATEGORIES GRID ==================== */
-
-.categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-/* ==================== CATEGORY CARD ==================== */
-
-.category-card {
-    background: white;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.category-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-hover);
-}
-
-.category-card:active {
-    transform: translateY(-4px);
-}
-
-/* ==================== CATEGORY IMAGE ==================== */
-
-.category-image-container {
-    width: 100%;
-    height: 220px;
-    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.category-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-}
-
-/* Fallback styling for missing images */
-.category-image-container.no-image {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: white;
-    font-size: 3rem;
-}
-from __future__ import annotations
+"""
+Vercel Serverless Function - Nurse Success Study Hub
+Wraps Flask application and handles HTTP requests properly
+Deploy to: api/index.py
+"""
 
 import json
+import os
 from pathlib import Path
-from typing import Dict, List, Optional
 
-from flask import Flask, abort, jsonify, render_template, request
+# Flask imports
+from flask import Flask, render_template, jsonify, request, send_from_directory
+from werkzeug.exceptions import NotFound
 
-# Paths
-BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATES_DIR = BASE_DIR / "templates"
-STATIC_DIR = BASE_DIR / "static"
-MODULES_DIR = BASE_DIR / "modules"
+# ==================== FLASK APP INITIALIZATION ====================
 
-app = Flask(
-    __name__,
-    template_folder=str(TEMPLATES_DIR),
-    static_folder=str(STATIC_DIR),
-    static_url_path="/static",
+app = Flask(__name__, 
+    template_folder=os.path.join(os.path.dirname(__file__), '../templates'),
+    static_folder=os.path.join(os.path.dirname(__file__), '../static'),
+    static_url_path='/static'
 )
 
-# Category metadata used for template selection and display copy
-CATEGORY_META: Dict[str, Dict[str, str]] = {
-    "HESI": {
-        "display_name": "HESI Exam Prep",
-        "description": "Practice questions for HESI specialty exams including Adult Health, Maternity, and Leadership.",
-        "icon": "📋",
-        "template": "category.html",
+# ==================== CATEGORY CONFIGURATION ====================
+# Maps category display names to folder names and quiz files
+
+CATEGORIES = {
+    'HESI': {
+        'folder': 'HESI',
+        'display_name': 'HESI Exam Prep',
+        'description': 'HESI A2 and RN exam preparation',
+        'quizzes': [
+            {'id': 'HESI_Adult_Health', 'name': 'Adult Health', 'file': 'HESI_Adult_Health.json'},
+            {'id': 'HESI_Clinical_Judgment', 'name': 'Clinical Judgment', 'file': 'HESI_Clinical_Judgment.json'},
+            {'id': 'HESI_Delegating', 'name': 'Delegating & Management', 'file': 'HESI_Delegating.json'},
+            {'id': 'HESI_Leadership', 'name': 'Leadership', 'file': 'HESI_Leadership.json'},
+            {'id': 'HESI_Management', 'name': 'Management', 'file': 'HESI_Management.json'},
+            {'id': 'HESI_Maternity', 'name': 'Maternity', 'file': 'HESI_Maternity.json'},
+            {'id': 'HESI_Comp_Quiz_1', 'name': 'Comprehensive Quiz 1', 'file': 'HESI_Comp_Quiz_1.json'},
+            {'id': 'HESI_Comp_Quiz_2', 'name': 'Comprehensive Quiz 2', 'file': 'HESI_Comp_Quiz_2.json'},
+            {'id': 'HESI_Comp_Quiz_3', 'name': 'Comprehensive Quiz 3', 'file': 'HESI_Comp_Quiz_3.json'},
+        ]
     },
-    "Lab_Values": {
-        "display_name": "Lab Values",
-        "description": "Master essential laboratory values and their clinical significance.",
-        "icon": "🧪",
-        "template": "lab-values.html",
+    'Pharmacology': {
+        'folder': 'Pharmacology',
+        'display_name': 'Pharmacology',
+        'description': 'Comprehensive pharmacology exam prep',
+        'quizzes': [
+            {'id': 'Comprehensive_Pharmacology', 'name': 'All Pharmacology (829 Questions)', 'file': 'Comprehensive_Pharmacology.json'},
+            {'id': 'Anti_Infectives_Pharm', 'name': 'Anti-Infectives', 'file': 'Anti_Infectives_Pharm.json'},
+            {'id': 'CNS_Psychiatric_Pharm', 'name': 'CNS & Psychiatric', 'file': 'CNS_Psychiatric_Pharm.json'},
+            {'id': 'Cardiovascular_Pharm', 'name': 'Cardiovascular', 'file': 'Cardiovascular_Pharm.json'},
+            {'id': 'Endocrine_Metabolic_Pharm', 'name': 'Endocrine & Metabolic', 'file': 'Endocrine_Metabolic_Pharm.json'},
+            {'id': 'Gastrointestinal_Pharm', 'name': 'Gastrointestinal', 'file': 'Gastrointestinal_Pharm.json'},
+            {'id': 'Hematologic_Oncology_Pharm', 'name': 'Hematologic & Oncology', 'file': 'Hematologic_Oncology_Pharm.json'},
+            {'id': 'High_Alert_Medications_Pharm', 'name': 'High Alert Medications', 'file': 'High_Alert_Medications_Pharm.json'},
+            {'id': 'Immunologic_Biologics_Pharm', 'name': 'Immunologic & Biologics', 'file': 'Immunologic_Biologics_Pharm.json'},
+            {'id': 'Musculoskeletal_Pharm', 'name': 'Musculoskeletal', 'file': 'Musculoskeletal_Pharm.json'},
+            {'id': 'Pain_Management_Pharm', 'name': 'Pain Management', 'file': 'Pain_Management_Pharm.json'},
+            {'id': 'Renal_Electrolytes_Pharm', 'name': 'Renal & Electrolytes', 'file': 'Renal_Electrolytes_Pharm.json'},
+            {'id': 'Respiratory_Pharm', 'name': 'Respiratory', 'file': 'Respiratory_Pharm.json'},
+        ]
     },
-    "Patient_Care_Management": {
-        "display_name": "Patient Care Management",
-        "description": "Prioritization, delegation, and clinical decision-making scenarios.",
-        "icon": "👥",
-        "template": "category.html",
+    'Lab_Values': {
+        'folder': 'Lab_Values',
+        'display_name': 'Lab Values',
+        'description': 'NCLEX-style lab value interpretation',
+        'quizzes': [
+            {'id': 'NCLEX_Lab_Values', 'name': 'Lab Values (Multiple Choice)', 'file': 'NCLEX_Lab_Values.json'},
+            {'id': 'NCLEX_Lab_Values_Fill_In_The_Blank', 'name': 'Lab Values (Fill-in-the-Blank)', 'file': 'NCLEX_Lab_Values_Fill_In_The_Blank.json'},
+        ]
     },
-    "Pharmacology": {
-        "display_name": "Pharmacology",
-        "description": "Drug classifications, mechanisms, and nursing implications.",
-        "icon": "💊",
-        "template": "pharmacology.html",
+    'Nursing_Certifications': {
+        'folder': 'Nursing_Certifications',
+        'display_name': 'Nursing Certifications',
+        'description': 'CCRN and specialty nursing exams',
+        'quizzes': [
+            {'id': 'CCRN_Test_1', 'name': 'CCRN Practice Test 1', 'file': 'CCRN_Test_1_Combined_QA.json'},
+            {'id': 'CCRN_Test_2', 'name': 'CCRN Practice Test 2', 'file': 'CCRN_Test_2_Combined_QA.json'},
+            {'id': 'CCRN_Test_3', 'name': 'CCRN Practice Test 3', 'file': 'CCRN_Test_3_Combined_QA.json'},
+        ]
     },
-    "Nursing_Certifications": {
-        "display_name": "Nursing Certifications",
-        "description": "Prepare for CCRN and other specialty nursing certification exams.",
-        "icon": "🏆",
-        "template": "nursing-certifications.html",
-    },
+    'Patient_Care_Management': {
+        'folder': 'Patient_Care_Management',
+        'display_name': 'Patient Care Management',
+        'description': 'Patient care and nursing management',
+        'quizzes': [
+            {'id': 'Module_1', 'name': 'Module 1', 'file': 'Module_1.json'},
+            {'id': 'Module_2', 'name': 'Module 2', 'file': 'Module_2.json'},
+            {'id': 'Module_3', 'name': 'Module 3', 'file': 'Module_3.json'},
+            {'id': 'Module_4', 'name': 'Module 4', 'file': 'Module_4.json'},
+            {'id': 'Learning_Module_1_2', 'name': 'Learning Questions (Module 1-2)', 'file': 'Learning_Questions_Module_1_2.json'},
+            {'id': 'Learning_Module_3_4', 'name': 'Learning Questions (Module 3-4)', 'file': 'Learning_Questions_Module_3_4_.json'},
+        ]
+    }
 }
 
-# Optional descriptions shown on category grid cards
-MODULE_DESCRIPTIONS: Dict[str, str] = {
-    "CCRN_Test_1_Combined_QA": "Practice exam covering core critical care concepts.",
-    "CCRN_Test_2_Combined_QA": "Critical care scenarios focusing on multisystem organ failure.",
-    "CCRN_Test_3_Combined_QA": "Advanced topics including pharmacology and professional practice.",
-    "NCLEX_Lab_Values": "NCLEX-style multiple choice questions with rationales.",
-    "HESI_Comp_Quiz_1": "Comprehensive HESI practice questions from Exit Exam and study guides.",
-    "HESI_Comp_Quiz_2": "Comprehensive HESI practice questions from Exit Exam and study guides.",
-    "HESI_Comp_Quiz_3": "Comprehensive HESI practice questions from Exit Exam and study guides.",
-}
+# ==================== ROUTE: HOME PAGE ====================
 
+@app.route('/')
+@app.route('/index.html')
+def home():
+    """Render home page with category cards"""
+    return render_template('home.html', categories=CATEGORIES)
 
-def _read_questions(module_path: Path) -> List[dict]:
-    """Return the list of questions from a module JSON file."""
-    try:
-        with module_path.open("r", encoding="utf-8") as fh:
-            payload = json.load(fh)
-    except FileNotFoundError:
-        return []
-    except Exception as exc:  # pragma: no cover - defensive logging path
-        app.logger.warning("Unable to read %s: %s", module_path, exc)
-        return []
+# ==================== ROUTE: CATEGORY PAGE ====================
 
-    if isinstance(payload, list):
-        return payload
-    if isinstance(payload, dict) and isinstance(payload.get("questions"), list):
-        return payload["questions"]
-    return []
-
-
-def _module_description(module_name: str, category: str) -> str:
-    if module_name in MODULE_DESCRIPTIONS:
-        return MODULE_DESCRIPTIONS[module_name]
-    if category == "Nursing_Certifications":
-        return "Certification exam practice questions with detailed rationales."
-    if category == "HESI":
-        return "HESI exam preparation questions with detailed rationales."
-    if category == "Lab_Values":
-        return "Lab values practice questions with detailed rationales."
-    if category == "Pharmacology":
-        return "Pharmacology practice questions covering drug classifications and nursing implications."
-    return "Practice questions with detailed rationales to reinforce your understanding."
-
-
-def _build_module_list(category: str) -> List[Dict[str, str]]:
-    """Return module metadata for a category based on available JSON files."""
-    category_dir = MODULES_DIR / category
-    if not category_dir.exists():
-        return []
-
-    modules: List[Dict[str, str]] = []
-    for module_path in sorted(category_dir.glob("*.json")):
-        module_name = module_path.stem
-        questions = _read_questions(module_path)
-        modules.append(
-            {
-                "name": module_name,
-                "count": len(questions),
-                "description": _module_description(module_name, category),
-            }
-        )
-    return modules
-
-
-def _load_quiz(category: str, module_name: str) -> Optional[Dict[str, object]]:
-    module_path = MODULES_DIR / category / f"{module_name}.json"
-    if not module_path.exists():
-        return None
-
-    questions = _read_questions(module_path)
-    return {"module": module_name, "questions": questions, "total": len(questions)}
-
-
-@app.route("/")
-def home() -> str:
-    return render_template("home.html")
-
-
-@app.route("/category/<category_name>")
-def category_page(category_name: str) -> str:
-    meta = CATEGORY_META.get(category_name)
-    if not meta:
-        abort(404)
-
-    template_name = meta.get("template", "category.html")
-    context: Dict[str, object] = {}
-
-    if template_name == "category.html":
-        modules = _build_module_list(category_name)
-        context = {
-            "category": category_name,
-            "category_data": {
-                "display_name": meta["display_name"],
-                "description": meta["description"],
-                "icon": meta["icon"],
-                "modules": modules,
-            },
-        }
-
-    return render_template(template_name, **context)
-
-
-@app.route("/quiz")
-@app.route("/quiz/<category>/<module_name>")
-def quiz(category: Optional[str] = None, module_name: Optional[str] = None) -> str:
-    quiz_data = None
-    autostart = request.args.get("autostart") in {"1", "true", "True"}
-    back_url = None
-    back_label = None
-
-    if category and module_name:
-        quiz_data = _load_quiz(category, module_name)
-        if not quiz_data:
-            abort(404)
-        back_url = f"/category/{category}"
-        back_label = CATEGORY_META.get(category, {}).get("display_name", "Study Hub")
-
-    return render_template(
-        "quiz.html",
-        quiz_data=quiz_data["questions"] if quiz_data else None,
-        module_name=module_name,
-        category=category,
-        autostart=autostart,
-        back_url=back_url,
-        back_label=back_label,
+@app.route('/category/<category_name>')
+def category(category_name):
+    """Render category page with quiz list"""
+    if category_name not in CATEGORIES:
+        return jsonify({'error': 'Category not found'}), 404
+    
+    category_data = CATEGORIES[category_name]
+    return render_template('category.html', 
+        category_name=category_name,
+        category_data=category_data,
+        quizzes=category_data['quizzes']
     )
 
+# ==================== ROUTE: QUIZ PAGE ====================
 
-/* ==================== CATEGORY INFO ==================== */
-@app.route("/quiz-fill-blank")
-def quiz_fill_blank() -> str:
-    return render_template("quiz-fill-blank.html")
+@app.route('/quiz/<category_name>/<quiz_id>')
+def quiz(category_name, quiz_id):
+    """Render quiz page for selected quiz"""
+    # Validate category exists
+    if category_name not in CATEGORIES:
+        return jsonify({'error': 'Category not found'}), 404
+    
+    category_data = CATEGORIES[category_name]
+    
+    # Find quiz in category
+    quiz_info = None
+    for q in category_data['quizzes']:
+        if q['id'] == quiz_id:
+            quiz_info = q
+            break
+    
+    if not quiz_info:
+        return jsonify({'error': 'Quiz not found'}), 404
+    
+    # Return quiz template
+    return render_template('quiz.html',
+        category_name=category_name,
+        quiz_id=quiz_id,
+        quiz_name=quiz_info['name'],
+        quiz_file=quiz_info['file']
+    )
 
+# ==================== ROUTE: API - LOAD QUIZ DATA ====================
 
-@app.route("/quiz-fishbone-fill")
-def quiz_fishbone_fill() -> str:
-    return render_template("quiz-fishbone-fill.html")
+@app.route('/api/quiz/<category_name>/<quiz_filename>')
+def load_quiz(category_name, quiz_filename):
+    """Load quiz JSON data from modules directory"""
+    # Validate category
+    if category_name not in CATEGORIES:
+        return jsonify({'error': 'Category not found'}), 404
+    
+    category_data = CATEGORIES[category_name]
+    folder = category_data['folder']
+    
+    # Build path to quiz file
+    quiz_path = os.path.join(
+        os.path.dirname(__file__),
+        '../modules',
+        folder,
+        quiz_filename
+    )
+    
+    # Resolve to absolute path and validate it's safe
+    quiz_path = os.path.abspath(quiz_path)
+    base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../modules'))
+    
+    # Prevent directory traversal attacks
+    if not quiz_path.startswith(base_path):
+        return jsonify({'error': 'Invalid quiz path'}), 400
+    
+    # Check file exists
+    if not os.path.exists(quiz_path):
+        return jsonify({'error': f'Quiz file not found: {quiz_filename}'}), 404
+    
+    # Load and return quiz data
+    try:
+        with open(quiz_path, 'r', encoding='utf-8') as f:
+            quiz_data = json.load(f)
+        return jsonify(quiz_data)
+    except json.JSONDecodeError:
+        return jsonify({'error': 'Invalid JSON in quiz file'}), 500
+    except Exception as e:
+        return jsonify({'error': f'Error loading quiz: {str(e)}'}), 500
 
-.category-info {
-    padding: 25px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+# ==================== ROUTE: STATIC FILES ====================
 
-.category-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-@app.route("/quiz-fishbone-mcq")
-def quiz_fishbone_mcq() -> str:
-    return render_template("quiz-fishbone-mcq.html")
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    """Serve static files from static directory"""
+    return send_from_directory(app.static_folder, filename)
 
-.category-icon {
-    font-size: 2rem;
-    flex-shrink: 0;
-}
+@app.route('/images/<filename>')
+def serve_images(filename):
+    """Serve images from images directory"""
+    images_path = os.path.join(
+        os.path.dirname(__file__),
+        '../images'
+    )
+    return send_from_directory(images_path, filename)
 
-.category-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #333;
-    margin: 0;
-}
-@app.route("/pharmacology")
-def pharmacology() -> str:
-    return render_template("pharmacology.html")
+@app.route('/modules/<path:filename>')
+def serve_modules(filename):
+    """Serve module files (quiz JSON data)"""
+    modules_path = os.path.join(
+        os.path.dirname(__file__),
+        '../modules'
+    )
+    return send_from_directory(modules_path, filename)
 
-.category-description {
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 18px;
-    flex-grow: 1;
-}
+# ==================== ERROR HANDLERS ====================
 
-.category-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 16px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-    width: fit-content;
-}
-@app.route("/pharmacology/comprehensive")
-def pharmacology_comprehensive() -> str:
-    return render_template("pharmacology-comprehensive-select.html")
+@app.errorhandler(404)
+def page_not_found(error):
+    """Handle 404 errors - return offline page or JSON"""
+    if request.accept_mimetypes.accept_json and not request.accept_mimetypes.accept_html:
+        return jsonify({'error': 'Not found'}), 404
+    
+    return render_template('404.html'), 404
 
-.category-link:hover {
-    transform: translateX(4px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-}
+@app.errorhandler(500)
+def internal_error(error):
+    """Handle 500 errors"""
+    if request.accept_mimetypes.accept_json and not request.accept_mimetypes.accept_html:
+        return jsonify({'error': 'Internal server error'}), 500
+    
+    return render_template('500.html'), 500
 
-.category-link:active {
-    transform: translateX(2px);
-}
-@app.route("/pharmacology/categories")
-def pharmacology_categories() -> str:
-    return render_template("pharmacology-categories.html")
+# ==================== VERCEL SERVERLESS EXPORT ====================
 
-.category-link::after {
-    content: '→';
-    font-weight: bold;
-}
+# This exports the Flask app for Vercel's serverless function handler
+# Vercel will automatically call this when requests come in
+handler = app.wsgi_app
 
-/* ==================== RESPONSIVE DESIGN ==================== */
-@app.route("/api/category/<category_name>/modules")
-def api_category_modules(category_name: str):
-    meta = CATEGORY_META.get(category_name)
-    if not meta:
-        abort(404)
-    modules = [m["name"] for m in _build_module_list(category_name)]
-    return jsonify({"category": category_name, "modules": modules})
-
-@media (max-width: 1024px) {
-    .categories-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
-    }
-
-    .header h1 {
-        font-size: 2rem;
-    }
-@app.route("/modules")
-def api_all_modules():
-    module_names: List[str] = []
-    for category in CATEGORY_META:
-        module_names.extend([m["name"] for m in _build_module_list(category)])
-    return jsonify({"modules": sorted(module_names)})
-
-    .header p {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 640px) {
-    .container {
-        padding: 15px;
-    }
-
-    .header {
-        margin-bottom: 30px;
-        padding: 30px 15px;
-    }
-
-    .header h1 {
-        font-size: 1.6rem;
-    }
-
-    .header p {
-        font-size: 0.95rem;
-    }
-
-    .categories-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .category-image-container {
-        height: 200px;
-    }
-
-    .category-info {
-        padding: 20px;
-    }
-
-    .category-title {
-        font-size: 1.2rem;
-    }
-
-    .category-description {
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-    }
-}
-
-/* ==================== ACCESSIBILITY ==================== */
-
-@media (prefers-reduced-motion: reduce) {
-    .category-card,
-    .category-link {
-        transition: none;
-    }
-
-    .category-card:hover {
-        transform: none;
-    }
-
-    .category-link:hover {
-        transform: none;
-    }
-}
-
-/* ==================== HIGH CONTRAST MODE ==================== */
-@app.route("/api/quiz/<category>/<module_name>")
-def api_quiz(category: str, module_name: str):
-    quiz_data = _load_quiz(category, module_name)
-    if not quiz_data:
-        abort(404)
-    return jsonify(quiz_data)
-
-@media (prefers-contrast: more) {
-    .category-card {
-        border: 2px solid #333;
-    }
-
-    .category-title {
-        font-weight: 900;
-    }
-
-    .category-description {
-        color: #333;
-    }
-}
-
-/* ==================== DARK MODE SUPPORT ==================== */
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
-        color: #e0e0e0;
-    }
-
-    .category-card {
-        background: #2a2a2a;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    }
-
-    .category-card:hover {
-        box-shadow: 0 12px 48px rgba(102, 126, 234, 0.3);
-    }
-
-    .category-title {
-        color: #e0e0e0;
-    }
-
-    .category-description {
-        color: #b0b0b0;
-    }
-
-    .header h1 {
-        -webkit-text-fill-color: white;
-    }
-
-    .header p {
-        color: #a0a0a0;
-    }
-}
-
-/* ==================== PRINT STYLES ==================== */
-
-@media print {
-    .offline-indicator,
-    .category-link {
-        display: none;
-    }
-
-    .category-card {
-        page-break-inside: avoid;
-        box-shadow: none;
-        border: 1px solid #ddd;
-    }
-
-    body {
-        background: white;
-    }
-}
-# For local debugging only
-if __name__ == "__main__":  # pragma: no cover
-    app.run(debug=True, host="0.0.0.0", port=5000)
+# For local development
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=3000)
