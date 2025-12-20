@@ -233,9 +233,8 @@ def internal_error(error):
 
 # ==================== VERCEL SERVERLESS EXPORT ====================
 
-# This exports the Flask app for Vercel's serverless function handler
-# Vercel will automatically call this when requests come in
-handler = app.wsgi_app
+# Vercel will automatically detect and use the Flask app instance
+# No manual handler export needed - the app variable is all we need
 
 # For local development
 if __name__ == '__main__':
