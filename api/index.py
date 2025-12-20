@@ -1,3 +1,8 @@
+"""
+Vercel Serverless Function - Nurse Success Study Hub
+Proper Flask WSGI application for Vercel Python runtime
+"""
+
 import json
 import os
 from flask import Flask, render_template, jsonify, request, send_from_directory
@@ -171,13 +176,21 @@ def serve_modules(filename):
 def page_not_found(error):
     if request.accept_mimetypes.accept_json and not request.accept_mimetypes.accept_html:
         return jsonify({'error': 'Not found'}), 404
-    return render_template('404.html'), 404
+    try:
+        return render_template('404.html'), 404
+    except:
+        return jsonify({'error': 'Not found'}), 404
 
 @app.errorhandler(500)
 def internal_error(error):
     if request.accept_mimetypes.accept_json and not request.accept_mimetypes.accept_html:
         return jsonify({'error': 'Internal server error'}), 500
-    return render_template('500.html'), 500
+    try:
+        return render_template('500.html'), 500
+    except:
+        return jsonify({'error': 'Internal server error'}), 500
 
+# WSGI application export for Vercel
+# Vercel's Python runtime will automatically detect and use this
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=3000)
