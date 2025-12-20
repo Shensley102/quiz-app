@@ -1,6 +1,7 @@
 """
 Vercel Serverless Function - Nurse Success Study Hub
-Proper Flask WSGI application for Vercel Python runtime
+Flask WSGI Application with explicit handler for Vercel Python runtime
+Deploy to: /api/index.py
 """
 
 import json
@@ -190,7 +191,15 @@ def internal_error(error):
     except:
         return jsonify({'error': 'Internal server error'}), 500
 
-# WSGI application export for Vercel
-# Vercel's Python runtime will automatically detect and use this
+# EXPLICIT WSGI HANDLER FOR VERCEL
+# This tells Vercel's Python runtime exactly what to call
+# Prevents auto-detection errors that cause issubclass() failures
+def handler(request, response):
+    """
+    WSGI handler function for Vercel Python runtime.
+    This is the explicit entry point Vercel will use.
+    """
+    return app(request, response)
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=3000)
