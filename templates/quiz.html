@@ -265,7 +265,7 @@
 
   <script src="/static/quiz-script.js"></script>
   
-  <!-- Autostart handler -->
+  <!-- FIXED: Autostart handler now respects 'len' URL parameter -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Check if autostart is enabled
@@ -274,11 +274,25 @@
         setTimeout(function() {
           const lengthBtns = document.getElementById('lengthBtns');
           if (lengthBtns) {
-            // Select "Full" option
+            // FIX: Read len parameter from URL instead of always using 'full'
+            const urlParams = new URLSearchParams(window.location.search);
+            const lenParam = urlParams.get('len');
+            
+            // Determine which length to use (default to 'full' if not specified or invalid)
+            const validLengths = ['10', '25', '50', '100', 'full'];
+            const targetLen = (lenParam && validLengths.includes(lenParam)) ? lenParam : 'full';
+            
+            // Remove active from all buttons
             lengthBtns.querySelectorAll('.seg-btn').forEach(btn => {
               btn.classList.remove('active');
-              if (btn.dataset.len === 'full') {
+              btn.setAttribute('aria-pressed', 'false');
+            });
+            
+            // Select the correct length button
+            lengthBtns.querySelectorAll('.seg-btn').forEach(btn => {
+              if (btn.dataset.len === targetLen) {
                 btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
               }
             });
             
