@@ -2,284 +2,197 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="description" content="Nurse Success Study Hub - NCLEX & HESI Exam Preparation">
-    <title>Nurse Success Study Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nurse Success Study Hub - HESI & NCLEX Exam Preparation</title>
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
     
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#2f61f3">
-    
-    <!-- PWA Specific -->
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#667eea">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Nurse Study">
+    <meta name="apple-mobile-web-app-title" content="Study Hub">
     
     <!-- Apple Touch Icons -->
     <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
-    <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
     
-    <link rel="stylesheet" href="/static/style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="/static/home-style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Vercel Analytics -->
-    <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
+    <!-- SEO -->
+    <meta name="description" content="Master HESI, NCLEX, and specialty nursing certification exams with comprehensive practice questions and study materials.">
+    <meta name="keywords" content="HESI, NCLEX, nursing exam, study guide, pharmacology, lab values">
+    <meta name="author" content="Nurse Success Study Hub">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/static/icons/icon-192.png">
+    <link rel="shortcut icon" href="/static/icons/icon-192.png">
     
     <style>
-        /* ISSUE 4 FIX: Full Card Clickability with Keyboard Accessibility */
+        /* Ensure images are loaded properly */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
         
-        /* Make the entire card a clickable anchor element */
-        .category-card {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-decoration: none;
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Remove default button styles for links styled as buttons */
+        a {
             color: inherit;
-            cursor: pointer;
-        }
-        
-        /* Entire card is now an anchor - add hover effect */
-        .category-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Keyboard focus styling - CRITICAL for accessibility */
-        .category-card:focus {
-            outline: 3px solid #2f61f3;
-            outline-offset: 3px;
-        }
-        
-        .category-card:focus-visible {
-            outline: 3px solid #2f61f3;
-            outline-offset: 3px;
-        }
-        
-        /* Active/pressed state */
-        .category-card:active {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-        }
-        
-        /* Card image section */
-        .card-image {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            background-color: #f0f0f0;
-        }
-        
-        /* Card content section */
-        .card-content {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .card-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin: 0 0 8px 0;
-        }
-        
-        .card-description {
-            font-size: 14px;
-            color: #666;
-            margin: 0;
-            line-height: 1.5;
-            flex-grow: 1;
-        }
-        
-        /* Arrow indicator - visual only, doesn't capture clicks */
-        .card-arrow {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 32px;
-            height: 32px;
-            background: #2f61f3;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px;
-            pointer-events: none; /* Arrow doesn't capture clicks */
-            transition: transform 0.2s ease, background 0.2s ease;
-        }
-        
-        .category-card:hover .card-arrow {
-            transform: translateX(4px);
-            background: #1e4fd6;
-        }
-        
-        /* Reduced motion preference */
-        @media (prefers-reduced-motion: reduce) {
-            .category-card,
-            .card-arrow {
-                transition: none;
-            }
-            
-            .category-card:hover,
-            .category-card:hover .card-arrow {
-                transform: none;
-            }
-        }
-        
-        /* Categories grid */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-        
-        /* Offline indicator */
-        .offline-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #ff9800, #f57c00);
-            color: white;
-            padding: 12px 20px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 14px;
-            z-index: 10000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .offline-indicator.hidden {
-            display: none;
-        }
-        
-        /* Safe area insets for iOS PWA */
-        @supports (padding-top: env(safe-area-inset-top)) {
-            body {
-                padding-top: env(safe-area-inset-top);
-                padding-bottom: env(safe-area-inset-bottom);
-                padding-left: env(safe-area-inset-left);
-                padding-right: env(safe-area-inset-right);
-            }
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <!-- Offline indicator -->
+    <!-- Offline Indicator -->
     <div id="offlineIndicator" class="offline-indicator hidden">
-        <span>📴 You're offline - Using cached content</span>
+        <span>📡 You're offline - Using cached content</span>
     </div>
 
     <div class="container">
         <!-- Header -->
-        <header class="header">
-            <h1>🩺 Nurse Success Study Hub</h1>
+        <div class="header">
+            <h1>📚 Nurse Success Study Hub</h1>
             <p>Prepare for your nursing exams with confidence</p>
-        </header>
-
-        <!-- Resume Quiz Section (if applicable) -->
-        <div id="resumeSection" class="resume-section hidden">
-            <!-- Dynamic content for resuming quizzes -->
         </div>
 
-        <!-- Categories Section -->
-        <section class="categories-section">
-            <h2>Study Categories</h2>
+        <!-- Categories Grid -->
+        <div class="categories-grid">
             
-            <!-- 
-            ISSUE 4 FIX: Each card is now a fully clickable anchor element
-            - Entire card is clickable (not just the arrow)
-            - Keyboard accessible via Tab + Enter/Space
-            - Arrow is purely visual (pointer-events: none)
-            -->
-            <ul class="categories-grid" role="list">
-                
-                <!-- HESI Exam Prep -->
-                <li>
-                    <a href="/category/HESI" class="category-card" role="link" aria-label="HESI Exam Prep - Practice questions for all HESI specialty exams">
-                        <img src="/images/Nursing_Hesi_Exam_Prep_Image.png" alt="" class="card-image" loading="lazy">
-                        <div class="card-content">
-                            <h3 class="card-title">HESI Exam Prep</h3>
-                            <p class="card-description">Practice questions for all HESI specialty exams including Adult Health, Maternity, and Leadership.</p>
+            <!-- HESI Category -->
+            <div class="category-card">
+                <div class="category-image-container">
+                    <img 
+                        src="/images/Nursing_Hesi_Exam_Prep_Image.png" 
+                        alt="HESI Exam Preparation"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="category-info">
+                    <div>
+                        <div class="category-header">
+                            <span class="category-icon">📋</span>
+                            <h2 class="category-title">HESI Exam Prep</h2>
                         </div>
-                        <span class="card-arrow" aria-hidden="true">→</span>
-                    </a>
-                </li>
-                
-                <!-- Lab Values -->
-                <li>
-                    <a href="/category/Lab_Values" class="category-card" role="link" aria-label="Lab Values - Master essential laboratory values for NCLEX">
-                        <img src="/images/Nursing_Lab_Values.png" alt="" class="card-image" loading="lazy">
-                        <div class="card-content">
-                            <h3 class="card-title">Lab Values</h3>
-                            <p class="card-description">Master essential laboratory values and their clinical significance for NCLEX success.</p>
+                        <p class="category-description">
+                            Practice questions for all HESI specialty exams including Adult Health, Maternity, and Leadership.
+                        </p>
+                    </div>
+                    <a href="/category/HESI" class="category-link">Start Studying</a>
+                </div>
+            </div>
+
+            <!-- Lab Values Category -->
+            <div class="category-card">
+                <div class="category-image-container">
+                    <img 
+                        src="/images/Nursing_Lab_Values.png" 
+                        alt="Laboratory Values"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="category-info">
+                    <div>
+                        <div class="category-header">
+                            <span class="category-icon">🧪</span>
+                            <h2 class="category-title">Lab Values</h2>
                         </div>
-                        <span class="card-arrow" aria-hidden="true">→</span>
-                    </a>
-                </li>
-                
-                <!-- Patient Care Management -->
-                <li>
-                    <a href="/category/Patient_Care_Management" class="category-card" role="link" aria-label="Patient Care Management - Leadership and delegation practice">
-                        <img src="/images/Nursing_Leadership_Image.png" alt="" class="card-image" loading="lazy">
-                        <div class="card-content">
-                            <h3 class="card-title">Patient Care Management</h3>
-                            <p class="card-description">Practice prioritization, delegation, and clinical decision-making scenarios.</p>
+                        <p class="category-description">
+                            Master essential laboratory values and their clinical significance for NCLEX success.
+                        </p>
+                    </div>
+                    <a href="/category/Lab_Values" class="category-link">Start Studying</a>
+                </div>
+            </div>
+
+            <!-- Patient Care Management Category -->
+            <div class="category-card">
+                <div class="category-image-container">
+                    <img 
+                        src="/images/Nursing_Leadership_Image.png" 
+                        alt="Patient Care Management"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="category-info">
+                    <div>
+                        <div class="category-header">
+                            <span class="category-icon">👥</span>
+                            <h2 class="category-title">Patient Care Management</h2>
                         </div>
-                        <span class="card-arrow" aria-hidden="true">→</span>
-                    </a>
-                </li>
-                
-                <!-- Pharmacology -->
-                <li>
-                    <a href="/category/Pharmacology" class="category-card" role="link" aria-label="Pharmacology - Comprehensive drug knowledge and NCLEX prep">
-                        <img src="/images/Nursing_Pharmacology_Image.png" alt="" class="card-image" loading="lazy">
-                        <div class="card-content">
-                            <h3 class="card-title">Pharmacology</h3>
-                            <p class="card-description">829+ questions covering drug classifications, mechanisms, and nursing implications.</p>
+                        <p class="category-description">
+                            Practice prioritization, delegation, and clinical decision-making scenarios.
+                        </p>
+                    </div>
+                    <a href="/category/Patient_Care_Management" class="category-link">Start Studying</a>
+                </div>
+            </div>
+
+            <!-- Pharmacology Category -->
+            <div class="category-card">
+                <div class="category-image-container">
+                    <img 
+                        src="/images/Nursing_Pharmacology_Image.png" 
+                        alt="Pharmacology"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="category-info">
+                    <div>
+                        <div class="category-header">
+                            <span class="category-icon">💊</span>
+                            <h2 class="category-title">Pharmacology</h2>
                         </div>
-                        <span class="card-arrow" aria-hidden="true">→</span>
-                    </a>
-                </li>
-                
-                <!-- Nursing Certifications -->
-                <li>
-                    <a href="/category/Nursing_Certifications" class="category-card" role="link" aria-label="Nursing Certifications - CCRN and specialty certification prep">
-                        <img src="/images/Nursing_Advanced_Certifications.png" alt="" class="card-image" loading="lazy">
-                        <div class="card-content">
-                            <h3 class="card-title">Nursing Certifications</h3>
-                            <p class="card-description">Prepare for CCRN and other specialty nursing certification exams.</p>
+                        <p class="category-description">
+                            829+ questions covering drug classifications, mechanisms, and nursing implications.
+                        </p>
+                    </div>
+                    <a href="/category/Pharmacology" class="category-link">Start Studying</a>
+                </div>
+            </div>
+
+            <!-- Nursing Certifications Category -->
+            <div class="category-card">
+                <div class="category-image-container">
+                    <img 
+                        src="/images/Nursing_Advanced_Certifications.png" 
+                        alt="Advanced Nursing Certifications"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="category-info">
+                    <div>
+                        <div class="category-header">
+                            <span class="category-icon">🏆</span>
+                            <h2 class="category-title">Nursing Certifications</h2>
                         </div>
-                        <span class="card-arrow" aria-hidden="true">→</span>
-                    </a>
-                </li>
-                
-            </ul>
-        </section>
+                        <p class="category-description">
+                            Prepare for CCRN and other specialty nursing certification exams.
+                        </p>
+                    </div>
+                    <a href="/category/Nursing_Certifications" class="category-link">Start Studying</a>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <!-- PWA Utilities -->
+    <!-- PWA Service Worker Registration -->
     <script src="/static/js/pwa-utils.js"></script>
     
+    <!-- Offline Status Indicator -->
     <script>
-        // Offline indicator handling
         function updateOnlineStatus() {
             const indicator = document.getElementById('offlineIndicator');
             if (!navigator.onLine) {
@@ -288,28 +201,23 @@
                 indicator.classList.add('hidden');
             }
         }
-        
+
         window.addEventListener('online', updateOnlineStatus);
         window.addEventListener('offline', updateOnlineStatus);
         updateOnlineStatus();
-        
-        // Keyboard accessibility for cards (Enter and Space trigger click)
-        // Note: Since cards are now anchor elements, this is handled natively
-        // But we add this for any non-anchor card implementations
-        document.querySelectorAll('.category-card').forEach(card => {
-            // If it's not already an anchor, make it keyboard accessible
-            if (card.tagName !== 'A') {
-                card.setAttribute('tabindex', '0');
-                card.setAttribute('role', 'link');
-                
-                card.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        this.click();
-                    }
-                });
-            }
+
+        // Preload images for better performance
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            img.src = img.dataset.src;
         });
+    </script>
+
+    <!-- Analytics (if needed) -->
+    <script>
+        // Placeholder for analytics tracking
+        // window.addEventListener('load', () => {
+        //     console.log('Study Hub loaded successfully');
+        // });
     </script>
 </body>
 </html>
