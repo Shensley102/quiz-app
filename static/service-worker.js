@@ -5,12 +5,13 @@
    TO ADD NEW QUIZ JSON: Add path to QUIZ_DATA_FILES array
    
    VERSION HISTORY:
+   v1.0.8 - Fixed 404 handling: return real 404 for unknown routes when online
    v1.0.7 - Comprehensive auto-caching implementation
    v1.0.6 - Fixed CSS filename (category-style.css), added automatic cache updates
    v1.0.5 - Added pharmacology routes and categories
    ============================================================ */
 
-const CACHE_VERSION = 'v1.0.7';
+const CACHE_VERSION = 'v1.0.8';
 const CACHE_NAME = `nurse-success-${CACHE_VERSION}`;
 
 // How often to check for updates (in milliseconds)
@@ -50,8 +51,8 @@ const HTML_PAGES = [
   '/category/Lab_Values',
   '/category/Patient_Care_Management',
   '/category/Pharmacology',
-  '/category/Pharmacology/Comprehensive',
-  '/category/Pharmacology/Categories',
+  '/pharmacology/comprehensive',
+  '/pharmacology/categories',
   '/category/Nursing_Certifications',
   '/category/Nursing_Certifications/CCRN',
   '/quiz-fishbone-mcq',
@@ -124,6 +125,144 @@ const IMAGE_FILES = [
   '/static/images/fishbone-abg.png',
   '/static/images/fishbone-elements.png'
 ];
+
+// Generate a simple 404 page
+function generate404Page(url) {
+  return new Response(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found - Nurse Success Study Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #e8e8e8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      max-width: 500px;
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .icon { font-size: 64px; margin-bottom: 20px; }
+    h1 { margin: 0 0 16px; color: #1a1a1a; font-size: 28px; }
+    p { color: #666; margin: 0 0 24px; line-height: 1.6; }
+    .url { 
+      background: #f5f5f5; 
+      padding: 12px; 
+      border-radius: 8px; 
+      word-break: break-all;
+      font-family: monospace;
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #2f61f3;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .btn:hover { background: #1e4fd6; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">🔍</div>
+    <h1>Page Not Found</h1>
+    <p>Sorry, the page you're looking for doesn't exist or may have been moved.</p>
+    <div class="url">${url}</div>
+    <a href="/" class="btn">← Back to Home</a>
+  </div>
+</body>
+</html>
+  `, { 
+    status: 404, 
+    statusText: 'Not Found',
+    headers: { 'Content-Type': 'text/html' } 
+  });
+}
+
+// Generate offline page
+function generateOfflinePage() {
+  return new Response(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - Nurse Success Study Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff9800, #f57c00);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      max-width: 500px;
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .icon { font-size: 64px; margin-bottom: 20px; }
+    h1 { margin: 0 0 16px; color: #1a1a1a; font-size: 28px; }
+    p { color: #666; margin: 0 0 24px; line-height: 1.6; }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #ff9800;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+    }
+    .btn:hover { background: #f57c00; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">📴</div>
+    <h1>You're Offline</h1>
+    <p>This page isn't available offline. Please check your internet connection and try again.</p>
+    <button class="btn" onclick="window.location.reload()">Try Again</button>
+  </div>
+</body>
+</html>
+  `, { 
+    status: 503, 
+    statusText: 'Service Unavailable',
+    headers: { 'Content-Type': 'text/html' } 
+  });
+}
 
 // Install event - IMMEDIATELY cache ALL assets
 self.addEventListener('install', (event) => {
@@ -215,7 +354,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch event - serve from cache with stale-while-revalidate strategy
+// Fetch event - FIXED: Proper handling of 404s vs offline fallback
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
@@ -240,62 +379,102 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  event.respondWith(
-    caches.match(request)
-      .then((cachedResponse) => {
-        
-        // STRATEGY: Stale-While-Revalidate for ALL same-origin resources
-        // Return cached version immediately if available, update in background
-        
-        // Fetch fresh version in background
-        const fetchPromise = fetch(request)
-          .then((networkResponse) => {
-            // Only cache successful responses
-            if (networkResponse && networkResponse.status === 200) {
-              const responseToCache = networkResponse.clone();
-              caches.open(CACHE_NAME).then((cache) => {
-                cache.put(request, responseToCache);
-              });
-            }
-            return networkResponse;
-          })
-          .catch((error) => {
-            console.warn('[Service Worker] Fetch failed:', url.pathname, error.message);
-            throw error;
-          });
-        
-        // Return cached version immediately if available, otherwise wait for network
+  event.respondWith(handleFetch(request, url));
+});
+
+async function handleFetch(request, url) {
+  const isNavigationRequest = request.mode === 'navigate';
+  
+  // Try cache first
+  const cachedResponse = await caches.match(request);
+  
+  // STRATEGY: Network-first for navigation, stale-while-revalidate for assets
+  if (isNavigationRequest) {
+    // For navigation requests: Try network first, then cache, then fallback
+    try {
+      const networkResponse = await fetch(request);
+      
+      // If we got a response, check if it's a real 404 from the server
+      if (networkResponse.status === 404) {
+        // Server returned 404 - return our styled 404 page
+        return generate404Page(url.pathname);
+      }
+      
+      // Cache successful responses
+      if (networkResponse.status === 200) {
+        const responseToCache = networkResponse.clone();
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(request, responseToCache);
+        });
+      }
+      
+      return networkResponse;
+      
+    } catch (error) {
+      // Network failed - check if we're actually offline
+      if (!navigator.onLine) {
+        // We're offline - try to serve from cache
         if (cachedResponse) {
-          // For navigation requests, prefer fresh content but fall back to cache
-          if (request.mode === 'navigate') {
-            return fetchPromise.catch(() => cachedResponse);
-          }
-          
-          // For other requests, return cache immediately and update in background
-          event.waitUntil(fetchPromise);
+          console.log('[Service Worker] Offline: serving cached:', url.pathname);
           return cachedResponse;
         }
-        
-        // No cache available, must wait for network
-        return fetchPromise.catch((error) => {
-          // If this is a navigation request and network failed, try to return home page
-          if (request.mode === 'navigate') {
-            return caches.match('/').then(homeResponse => {
-              if (homeResponse) {
-                return homeResponse;
-              }
-              // Last resort: minimal offline page
-              return new Response(
-                '<html><body><h1>Offline</h1><p>You are offline and this page is not cached.</p></body></html>',
-                { headers: { 'Content-Type': 'text/html' } }
-              );
-            });
-          }
-          throw error;
-        });
+        // No cache available - show offline page
+        console.log('[Service Worker] Offline: no cache for:', url.pathname);
+        return generateOfflinePage();
+      }
+      
+      // We appear to be online but fetch failed (network error, server down, etc.)
+      // Try cache as fallback
+      if (cachedResponse) {
+        console.log('[Service Worker] Network error, serving cached:', url.pathname);
+        return cachedResponse;
+      }
+      
+      // No cache, network failed - this could be a 404 or network issue
+      // Return 404 page since we can't determine for sure
+      console.log('[Service Worker] Network error, no cache:', url.pathname);
+      return generate404Page(url.pathname);
+    }
+    
+  } else {
+    // For non-navigation requests (assets): Stale-while-revalidate
+    
+    // Start network fetch in background
+    const fetchPromise = fetch(request)
+      .then((networkResponse) => {
+        // Only cache successful responses
+        if (networkResponse && networkResponse.status === 200) {
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, responseToCache);
+          });
+        }
+        return networkResponse;
       })
-  );
-});
+      .catch((error) => {
+        console.warn('[Service Worker] Fetch failed:', url.pathname, error.message);
+        throw error;
+      });
+    
+    // Return cached version immediately if available
+    if (cachedResponse) {
+      // Update in background (don't await)
+      event.waitUntil(fetchPromise.catch(() => {}));
+      return cachedResponse;
+    }
+    
+    // No cache - must wait for network
+    try {
+      return await fetchPromise;
+    } catch (error) {
+      // Asset fetch failed with no cache
+      return new Response('Resource not available', { 
+        status: 404, 
+        statusText: 'Not Found' 
+      });
+    }
+  }
+}
 
 // Handle messages from clients
 self.addEventListener('message', (event) => {
