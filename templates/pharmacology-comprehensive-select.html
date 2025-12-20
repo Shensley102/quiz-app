@@ -252,11 +252,11 @@
             });
         });
         
-        // Handle start quiz - navigate with length parameter for pre-selection
+        // Handle start quiz - FIXED: Use Comprehensive_Pharmacology.json instead of Pharm_Quiz_1
         document.getElementById('startQuiz').addEventListener('click', function() {
             // Navigate to quiz with selected question count and length parameter
-            // The quiz page will read the 'len' parameter to pre-select the button
-            window.location.href = `/quiz/Pharmacology/Pharm_Quiz_1?len=${selectedLen}&autostart=true`;
+            // FIXED: Use Comprehensive_Pharmacology instead of Pharm_Quiz_1
+            window.location.href = `/quiz/Pharmacology/Comprehensive_Pharmacology?len=${selectedLen}&autostart=true`;
         });
         
         // Offline indicator handling
