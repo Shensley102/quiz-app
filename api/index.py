@@ -1,395 +1,346 @@
-# api/index.py
+/* Home Page Styling - Fixed to display category images completely */
 
-import os
-import json
-from flask import Flask, render_template, request, jsonify, redirect, url_for
-from pathlib import Path
-from urllib.parse import unquote
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --accent-color: #2e7d32;
+    --light-bg: #f5f5f5;
+    --border-radius: 16px;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.15);
+}
 
-app = Flask(__name__, template_folder='../templates', static_folder='../static')
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-# Get the base directory
-BASE_DIR = Path(__file__).parent.parent
-MODULES_DIR = BASE_DIR / 'modules'
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #f8f9ff 0%, #f0f4ff 100%);
+    min-height: 100vh;
+    color: #333;
+}
 
-# Category metadata
-CATEGORY_METADATA = {
-    'HESI': {
-        'display_name': 'HESI',
-        'icon': '📋',
-        'image': '/images/Nursing_Hesi_Exam_Prep_Image.png',
-        'description': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides'
-    },
-    'Lab_Values': {
-        'display_name': 'Laboratory Values',
-        'icon': '🧪',
-        'image': '/images/Nursing_Lab_Values.png',
-        'description': 'Master critical laboratory values for NCLEX and HESI exams'
-    },
-    'Patient_Care_Management': {
-        'display_name': 'Patient Care Management',
-        'icon': '👥',
-        'image': '/images/Nursing_Leadership_Image.png',
-        'description': 'Patient care management and nursing leadership'
-    },
-    'Pharmacology': {
-        'display_name': 'Pharmacology',
-        'icon': '💊',
-        'image': '/images/Nursing_Pharmacology_Image.png',
-        'description': 'Comprehensive pharmacology study materials'
-    },
-    'Nursing_Certifications': {
-        'display_name': 'Nursing Certifications',
-        'icon': '🏆',
-        'image': '/images/Nursing_Advanced_Certifications.png',
-        'description': 'CCRN, CFRN, TCEN, and other certification prep'
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ==================== HEADER ==================== */
+
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 40px 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* ==================== OFFLINE INDICATOR ==================== */
+
+.offline-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 10000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.offline-indicator.hidden {
+    display: none;
+}
+
+/* ==================== CATEGORIES GRID ==================== */
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* ==================== CATEGORY CARD ==================== */
+
+.category-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.category-card:active {
+    transform: translateY(-4px);
+}
+
+/* ==================== CATEGORY IMAGE ==================== */
+
+.category-image-container {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.category-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Fallback styling for missing images */
+.category-image-container.no-image {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    font-size: 3rem;
+}
+
+/* ==================== CATEGORY INFO ==================== */
+
+.category-info {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.category-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.category-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.category-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    flex-grow: 1;
+}
+
+.category-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    width: fit-content;
+}
+
+.category-link:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.category-link:active {
+    transform: translateX(2px);
+}
+
+.category-link::after {
+    content: '→';
+    font-weight: bold;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .header p {
+        font-size: 1rem;
     }
 }
 
-
-def get_categories():
-    """Get all module categories (folder names)"""
-    if not MODULES_DIR.exists():
-        return []
-    try:
-        return sorted([d.name for d in MODULES_DIR.iterdir() 
-                      if d.is_dir() and not d.name.startswith('.')])
-    except Exception as e:
-        print(f"Error reading categories: {e}")
-        return []
-
-
-def get_modules_in_category(category):
-    """Get all modules (JSON files) in a specific category"""
-    category_path = MODULES_DIR / category
-    if not category_path.exists():
-        return []
-    
-    try:
-        modules = []
-        for file in sorted(category_path.glob('*.json')):
-            modules.append(file.stem)
-        return modules
-    except Exception as e:
-        print(f"Error reading modules: {e}")
-        return []
-
-
-def get_quiz_info(category, module):
-    """Get quiz information including type (standard or fill-in-the-blank)"""
-    module_path = MODULES_DIR / category / f'{module}.json'
-    
-    if not module_path.exists():
-        return None
-    
-    try:
-        with open(module_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        
-        is_fill_blank = 'Fill_In_The_Blank' in module
-        
-        return {
-            'name': module,
-            'type': 'fill-in-the-blank' if is_fill_blank else 'multiple-choice',
-            'count': len(data.get('questions', [])),
-            'description': data.get('description', '')
-        }
-    except Exception as e:
-        print(f"Error reading {module_path}: {e}")
-        return None
-
-
-def get_category_quizzes(category):
-    """Get all quizzes for a category, grouped by type"""
-    modules = get_modules_in_category(category)
-    quizzes = {
-        'multiple-choice': [],
-        'fill-in-the-blank': []
+@media (max-width: 640px) {
+    .container {
+        padding: 15px;
     }
-    
-    for module in modules:
-        info = get_quiz_info(category, module)
-        if info:
-            quizzes[info['type']].append(info)
-    
-    return quizzes
 
+    .header {
+        margin-bottom: 30px;
+        padding: 30px 15px;
+    }
 
-# ==================== ROUTES ====================
+    .header h1 {
+        font-size: 1.6rem;
+    }
 
-@app.route('/')
-def home():
-    """Home page with all categories"""
-    try:
-        categories = get_categories()
-        return render_template('home.html', categories=categories)
-    except Exception as e:
-        print(f"Error in home route: {e}")
-        return jsonify({'error': str(e)}), 500
+    .header p {
+        font-size: 0.95rem;
+    }
 
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 
-@app.route('/category/<category>')
-def category(category):
-    """Category landing page - shows available quizzes"""
-    try:
-        # Decode URL-encoded category names (e.g., "Patient_Care_Management" or spaces)
-        category = unquote(category)
-        
-        categories = get_categories()
-        
-        # Check if category exists in filesystem OR in metadata (for hardcoded categories)
-        category_exists = category in categories or category in CATEGORY_METADATA
-        
-        if not category_exists:
-            print(f"Category '{category}' not found. Available: {categories}")
-            return redirect(url_for('home'))
-        
-        quizzes = get_category_quizzes(category)
-        
-        # Get category metadata
-        metadata = CATEGORY_METADATA.get(category, {})
-        category_data = {
-            'display_name': metadata.get('display_name', category.replace('_', ' ')),
-            'icon': metadata.get('icon', '📚'),
-            'image': metadata.get('image', None),
-            'description': metadata.get('description', ''),
-            'modules': quizzes.get('multiple-choice', []) + quizzes.get('fill-in-the-blank', [])
-        }
-        
-        print(f"Category: {category}, Modules: {len(category_data['modules'])}")
-        
-        # Check if this is Lab Values with multiple quiz types
-        has_mc = len(quizzes.get('multiple-choice', [])) > 0
-        has_fb = len(quizzes.get('fill-in-the-blank', [])) > 0
-        
-        # Use special template for Lab Values
-        if category == 'Lab_Values' and has_mc and has_fb:
-            return render_template('lab-values.html', quizzes=quizzes)
-        
-        # Use special template for Nursing Certifications
-        if category == 'Nursing_Certifications':
-            return render_template('nursing-certifications.html', quizzes=quizzes)
-        
-        # Use special template for Pharmacology
-        if category == 'Pharmacology':
-            return render_template('pharmacology.html', quizzes=quizzes)
-        
-        # Use generic category template for others
-        return render_template('category.html', category=category, category_data=category_data, quizzes=quizzes)
-    except Exception as e:
-        print(f"Error in category route: {e}")
-        import traceback
-        traceback.print_exc()
-        return jsonify({'error': str(e)}), 500
+    .category-image-container {
+        height: 200px;
+    }
 
+    .category-info {
+        padding: 20px;
+    }
 
-@app.route('/category/Nursing_Certifications/CCRN')
-def ccrn_page():
-    """CCRN certification tests sub-page"""
-    try:
-        return render_template('ccrn.html')
-    except Exception as e:
-        print(f"Error in ccrn_page route: {e}")
-        return jsonify({'error': str(e)}), 500
+    .category-title {
+        font-size: 1.2rem;
+    }
 
+    .category-description {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+}
 
-@app.route('/pharmacology/comprehensive')
-def pharmacology_comprehensive():
-    """Comprehensive Pharmacology quiz selection page"""
-    try:
-        return render_template('pharmacology-comprehensive-select.html')
-    except Exception as e:
-        print(f"Error in pharmacology_comprehensive route: {e}")
-        return jsonify({'error': str(e)}), 500
+/* ==================== ACCESSIBILITY ==================== */
 
+@media (prefers-reduced-motion: reduce) {
+    .category-card,
+    .category-link {
+        transition: none;
+    }
 
-@app.route('/pharmacology/categories')
-def pharmacology_categories():
-    """Pharmacology by Category page"""
-    try:
-        return render_template('pharmacology-categories.html')
-    except Exception as e:
-        print(f"Error in pharmacology_categories route: {e}")
-        return jsonify({'error': str(e)}), 500
+    .category-card:hover {
+        transform: none;
+    }
 
+    .category-link:hover {
+        transform: none;
+    }
+}
 
-@app.route('/quiz/<category>/<module>')
-def quiz(category, module):
-    """Quiz page for multiple choice"""
-    try:
-        # Decode URL-encoded names
-        category = unquote(category)
-        module = unquote(module)
-        
-        categories = get_categories()
-        
-        # Allow categories that exist in metadata even if directory doesn't exist yet
-        category_exists = category in categories or category in CATEGORY_METADATA
-        
-        if not category_exists:
-            return redirect(url_for('home'))
-        
-        # Don't serve fill-in-the-blank through this route
-        if 'Fill_In_The_Blank' in module:
-            return redirect(url_for('quiz_fill_blank', category=category, module=module))
-        
-        module_path = MODULES_DIR / category / f'{module}.json'
-        
-        if not module_path.exists():
-            return redirect(url_for('category', category=category))
-        
-        with open(module_path, 'r', encoding='utf-8') as f:
-            quiz_data = json.load(f)
-        
-        # Check for autostart parameter (for Pharmacology categorical quizzes)
-        autostart = request.args.get('autostart', 'false').lower() == 'true'
-        
-        # Determine back link based on category and module
-        metadata = CATEGORY_METADATA.get(category, {})
-        
-        # Special handling for CCRN tests - go back to CCRN page
-        if 'CCRN' in module and category == 'Nursing_Certifications':
-            back_url = '/category/Nursing_Certifications/CCRN'
-            back_label = 'CCRN Practice Tests'
-        # Special handling for Pharm Quizzes - go back to Comprehensive page
-        elif module.startswith('Pharm_Quiz_') and category == 'Pharmacology':
-            back_url = '/pharmacology/comprehensive'
-            back_label = 'Comprehensive Pharmacology Quizzes'
-        # Special handling for categorical pharm quizzes - go back to Categories page
-        elif category == 'Pharmacology' and module.endswith('_Pharm'):
-            back_url = '/pharmacology/categories'
-            back_label = 'Pharmacology by Category'
-        else:
-            back_url = f'/category/{category}'
-            back_label = metadata.get('display_name', category.replace('_', ' '))
-        
-        return render_template('quiz.html',
-                             quiz_data=quiz_data,
-                             module_name=module,
-                             category=category,
-                             back_url=back_url,
-                             back_label=back_label,
-                             autostart=autostart)
-    except Exception as e:
-        print(f"Error in quiz route: {e}")
-        return jsonify({'error': str(e)}), 500
+/* ==================== HIGH CONTRAST MODE ==================== */
 
+@media (prefers-contrast: more) {
+    .category-card {
+        border: 2px solid #333;
+    }
 
-@app.route('/quiz-fill-blank/<category>/<module>')
-def quiz_fill_blank(category, module):
-    """Quiz page for fill-in-the-blank"""
-    try:
-        # Decode URL-encoded names
-        category = unquote(category)
-        module = unquote(module)
-        
-        categories = get_categories()
-        
-        if category not in categories:
-            return redirect(url_for('home'))
-        
-        # Add Fill_In_The_Blank suffix if not present
-        if 'Fill_In_The_Blank' not in module:
-            module = f'{module}_Fill_In_The_Blank'
-        
-        module_path = MODULES_DIR / category / f'{module}.json'
-        
-        if not module_path.exists():
-            return redirect(url_for('category', category=category))
-        
-        with open(module_path, 'r', encoding='utf-8') as f:
-            quiz_data = json.load(f)
-        
-        # Determine back link based on category
-        metadata = CATEGORY_METADATA.get(category, {})
-        back_url = f'/category/{category}'
-        back_label = metadata.get('display_name', category.replace('_', ' '))
-        
-        return render_template('quiz-fill-blank.html',
-                             quiz_data=quiz_data,
-                             module_name=module,
-                             category=category,
-                             back_url=back_url,
-                             back_label=back_label)
-    except Exception as e:
-        print(f"Error in quiz_fill_blank route: {e}")
-        return jsonify({'error': str(e)}), 500
+    .category-title {
+        font-weight: 900;
+    }
 
+    .category-description {
+        color: #333;
+    }
+}
 
-@app.route('/quiz-fishbone-mcq')
-def quiz_fishbone_mcq():
-    """Fishbone MCQ quiz page"""
-    try:
-        return render_template('quiz-fishbone-mcq.html')
-    except Exception as e:
-        print(f"Error in quiz_fishbone_mcq route: {e}")
-        return jsonify({'error': str(e)}), 500
+/* ==================== DARK MODE SUPPORT ==================== */
 
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+        color: #e0e0e0;
+    }
 
-@app.route('/quiz-fishbone-fill')
-def quiz_fishbone_fill():
-    """Fishbone fill-in-the-blank quiz page"""
-    try:
-        return render_template('quiz-fishbone-fill.html')
-    except Exception as e:
-        print(f"Error in quiz_fishbone_fill route: {e}")
-        return jsonify({'error': str(e)}), 500
+    .category-card {
+        background: #2a2a2a;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
 
+    .category-card:hover {
+        box-shadow: 0 12px 48px rgba(102, 126, 234, 0.3);
+    }
 
-@app.route('/api/categories')
-def api_categories():
-    """API endpoint to get all categories with metadata"""
-    try:
-        categories_list = get_categories()
-        result = {}
-        
-        for category in categories_list:
-            modules = get_modules_in_category(category)
-            metadata = CATEGORY_METADATA.get(category, {})
-            
-            result[category] = {
-                'display_name': metadata.get('display_name', category.replace('_', ' ')),
-                'icon': metadata.get('icon', '📚'),
-                'image': metadata.get('image', None),
-                'description': metadata.get('description', ''),
-                'modules': modules
-            }
-        
-        return jsonify(result)
-    except Exception as e:
-        print(f"Error in api_categories: {e}")
-        return jsonify({'error': str(e)}), 500
+    .category-title {
+        color: #e0e0e0;
+    }
 
+    .category-description {
+        color: #b0b0b0;
+    }
 
-@app.route('/api/category/<category>/quizzes')
-def api_category_quizzes(category):
-    """API endpoint to get quizzes for a category"""
-    try:
-        # Decode URL-encoded category
-        category = unquote(category)
-        
-        categories = get_categories()
-        
-        if category not in categories:
-            return jsonify({'error': 'Category not found'}), 404
-        
-        quizzes = get_category_quizzes(category)
-        return jsonify(quizzes)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    .header h1 {
+        -webkit-text-fill-color: white;
+    }
 
+    .header p {
+        color: #a0a0a0;
+    }
+}
 
-@app.route('/modules')
-def modules():
-    """Get all available modules (backward compatibility)"""
-    try:
-        all_modules = []
-        for category in get_categories():
-            modules_list = get_modules_in_category(category)
-            # Filter out Fill_In_The_Blank from regular quiz selector
-            regular_modules = [m for m in modules_list if 'Fill_In_The_Blank' not in m]
-            all_modules.extend(regular_modules)
-        
-        return jsonify({'modules': sorted(all_modules)})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .offline-indicator,
+    .category-link {
+        display: none;
+    }
+
+    .category-card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    body {
+        background: white;
+    }
+}
