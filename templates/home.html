@@ -2,222 +2,223 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nurse Success Study Hub - HESI & NCLEX Exam Preparation</title>
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/static/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nurse Success Study Hub - NCLEX, HESI, Pharmacology exam prep">
+    <meta name="theme-color" content="#1e40af">
     
     <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#667eea">
-    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Study Hub">
     
-    <!-- Apple Touch Icons -->
+    <title>Nurse Success Study Hub</title>
+    
+    <!-- Manifest & Icons -->
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/static/icons/icon-512.png">
     <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <!-- Styles -->
+    <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/home-style.css">
     
-    <!-- SEO -->
-    <meta name="description" content="Master HESI, NCLEX, and specialty nursing certification exams with comprehensive practice questions and study materials.">
-    <meta name="keywords" content="HESI, NCLEX, nursing exam, study guide, pharmacology, lab values">
-    <meta name="author" content="Nurse Success Study Hub">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/static/icons/icon-192.png">
-    <link rel="shortcut icon" href="/static/icons/icon-192.png">
-    
-    <style>
-        /* Ensure images are loaded properly */
-        img {
-            max-width: 100%;
-            height: auto;
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/static/service-worker.js')
+                    .then(function(registration) {
+                        console.log('[App] Service Worker registered successfully', registration);
+                    })
+                    .catch(function(error) {
+                        console.warn('[App] Service Worker registration failed:', error);
+                    });
+            });
         }
-        
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Remove default button styles for links styled as buttons */
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <!-- Offline Indicator -->
-    <div id="offlineIndicator" class="offline-indicator hidden">
-        <span>📡 You're offline - Using cached content</span>
-    </div>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1 class="app-title">
+                <span class="title-icon">📚</span>
+                Nurse Success Study Hub
+            </h1>
+            <p class="app-subtitle">Master NCLEX, HESI & Specialty Nursing Exams</p>
+        </div>
+    </header>
 
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>📚 Nurse Success Study Hub</h1>
-            <p>Prepare for your nursing exams with confidence</p>
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Offline Indicator -->
+        <div id="offline-indicator" class="offline-banner" style="display: none;">
+            <span class="offline-icon">📡</span>
+            <span class="offline-text">You're offline - content from cache</span>
         </div>
 
-        <!-- Categories Grid -->
-        <div class="categories-grid">
+        <!-- Category Grid -->
+        <div class="categories-section">
+            <h2 class="section-title">Choose Your Study Path</h2>
             
-            <!-- HESI Category -->
-            <div class="category-card">
-                <div class="category-image-container">
-                    <img 
-                        src="/images/Nursing_Hesi_Exam_Prep_Image.png" 
-                        alt="HESI Exam Preparation"
-                        loading="lazy"
-                    >
-                </div>
-                <div class="category-info">
-                    <div>
-                        <div class="category-header">
-                            <span class="category-icon">📋</span>
-                            <h2 class="category-title">HESI Exam Prep</h2>
-                        </div>
-                        <p class="category-description">
-                            Practice questions for all HESI specialty exams including Adult Health, Maternity, and Leadership.
-                        </p>
+            <div class="categories-grid">
+                {% for category_key, category_info in categories.items() %}
+                <!-- Category Card -->
+                <a href="/category/{{ category_key }}" class="category-card" 
+                   role="button" tabindex="0"
+                   aria-label="Study {{ category_info.display_name }}">
+                    
+                    <!-- Background Image -->
+                    <div class="category-image-container">
+                        {% if category_key == 'HESI' %}
+                            <img src="/images/Nursing_Hesi_Exam_Prep_Image.png" 
+                                 alt="HESI Exam Preparation"
+                                 class="category-image"
+                                 loading="lazy">
+                        {% elif category_key == 'Pharmacology' %}
+                            <img src="/images/Nursing_Pharmacology_Image.png" 
+                                 alt="Pharmacology"
+                                 class="category-image"
+                                 loading="lazy">
+                        {% elif category_key == 'Lab_Values' %}
+                            <img src="/images/Nursing_Lab_Values.png" 
+                                 alt="Lab Values"
+                                 class="category-image"
+                                 loading="lazy">
+                        {% elif category_key == 'Nursing_Certifications' %}
+                            <img src="/images/Nursing_Advanced_Certifications.png" 
+                                 alt="Nursing Certifications"
+                                 class="category-image"
+                                 loading="lazy">
+                        {% elif category_key == 'Patient_Care_Management' %}
+                            <img src="/images/Nursing_Leadership_Image.png" 
+                                 alt="Patient Care Management"
+                                 class="category-image"
+                                 loading="lazy">
+                        {% endif %}
                     </div>
-                    <a href="/category/HESI" class="category-link">Start Studying</a>
-                </div>
-            </div>
-
-            <!-- Lab Values Category -->
-            <div class="category-card">
-                <div class="category-image-container">
-                    <img 
-                        src="/images/Nursing_Lab_Values.png" 
-                        alt="Laboratory Values"
-                        loading="lazy"
-                    >
-                </div>
-                <div class="category-info">
-                    <div>
-                        <div class="category-header">
-                            <span class="category-icon">🧪</span>
-                            <h2 class="category-title">Lab Values</h2>
+                    
+                    <!-- Card Content Overlay -->
+                    <div class="category-overlay"></div>
+                    
+                    <div class="category-content">
+                        <h3 class="category-name">{{ category_info.display_name }}</h3>
+                        <p class="category-description">{{ category_info.description }}</p>
+                        
+                        <!-- Quiz Count -->
+                        <div class="quiz-meta">
+                            <span class="quiz-count">
+                                <span class="icon">📝</span>
+                                {{ category_info.quizzes|length }} {{ 'quiz' if category_info.quizzes|length == 1 else 'quizzes' }}
+                            </span>
                         </div>
-                        <p class="category-description">
-                            Master essential laboratory values and their clinical significance for NCLEX success.
-                        </p>
-                    </div>
-                    <a href="/category/Lab_Values" class="category-link">Start Studying</a>
-                </div>
-            </div>
-
-            <!-- Patient Care Management Category -->
-            <div class="category-card">
-                <div class="category-image-container">
-                    <img 
-                        src="/images/Nursing_Leadership_Image.png" 
-                        alt="Patient Care Management"
-                        loading="lazy"
-                    >
-                </div>
-                <div class="category-info">
-                    <div>
-                        <div class="category-header">
-                            <span class="category-icon">👥</span>
-                            <h2 class="category-title">Patient Care Management</h2>
+                        
+                        <!-- Hover Arrow -->
+                        <div class="category-arrow">
+                            <span class="arrow-icon">→</span>
                         </div>
-                        <p class="category-description">
-                            Practice prioritization, delegation, and clinical decision-making scenarios.
-                        </p>
                     </div>
-                    <a href="/category/Patient_Care_Management" class="category-link">Start Studying</a>
-                </div>
+                </a>
+                {% endfor %}
             </div>
-
-            <!-- Pharmacology Category -->
-            <div class="category-card">
-                <div class="category-image-container">
-                    <img 
-                        src="/images/Nursing_Pharmacology_Image.png" 
-                        alt="Pharmacology"
-                        loading="lazy"
-                    >
-                </div>
-                <div class="category-info">
-                    <div>
-                        <div class="category-header">
-                            <span class="category-icon">💊</span>
-                            <h2 class="category-title">Pharmacology</h2>
-                        </div>
-                        <p class="category-description">
-                            829+ questions covering drug classifications, mechanisms, and nursing implications.
-                        </p>
-                    </div>
-                    <a href="/category/Pharmacology" class="category-link">Start Studying</a>
-                </div>
-            </div>
-
-            <!-- Nursing Certifications Category -->
-            <div class="category-card">
-                <div class="category-image-container">
-                    <img 
-                        src="/images/Nursing_Advanced_Certifications.png" 
-                        alt="Advanced Nursing Certifications"
-                        loading="lazy"
-                    >
-                </div>
-                <div class="category-info">
-                    <div>
-                        <div class="category-header">
-                            <span class="category-icon">🏆</span>
-                            <h2 class="category-title">Nursing Certifications</h2>
-                        </div>
-                        <p class="category-description">
-                            Prepare for CCRN and other specialty nursing certification exams.
-                        </p>
-                    </div>
-                    <a href="/category/Nursing_Certifications" class="category-link">Start Studying</a>
-                </div>
-            </div>
-
         </div>
-    </div>
 
-    <!-- PWA Service Worker Registration -->
-    <script src="/static/js/pwa-utils.js"></script>
-    
-    <!-- Offline Status Indicator -->
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="section-title">Why Study Hub?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Works Offline</h3>
+                    <p class="feature-description">Study anywhere, anytime - even without internet connection</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Track Progress</h3>
+                    <p class="feature-description">Monitor your quiz performance and identify weak areas</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-description">Instant quiz loading and seamless navigation</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Comprehensive</h3>
+                    <p class="feature-description">1000+ questions across NCLEX, HESI, Pharmacology & more</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info Section -->
+        <section class="info-section">
+            <h2 class="section-title">Get Started</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>1. Choose Category</h3>
+                    <p>Select a study path that matches your exam or focus area</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>2. Select Quiz</h3>
+                    <p>Pick from comprehensive or focused quiz modules</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>3. Study & Practice</h3>
+                    <p>Answer questions, review rationales, and master the content</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>4. Track Results</h3>
+                    <p>Monitor your progress and focus on improvement areas</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Nurse Success Study Hub. Built for nursing excellence.</p>
+            <p class="footer-version">Version 1.0 | Service Worker v1.0.10</p>
+        </div>
+    </footer>
+
+    <!-- Offline Detection Script -->
     <script>
+        // Show/hide offline indicator based on connectivity
         function updateOnlineStatus() {
-            const indicator = document.getElementById('offlineIndicator');
-            if (!navigator.onLine) {
-                indicator.classList.remove('hidden');
+            const indicator = document.getElementById('offline-indicator');
+            if (navigator.onLine) {
+                indicator.style.display = 'none';
             } else {
-                indicator.classList.add('hidden');
+                indicator.style.display = 'flex';
             }
         }
 
+        // Listen for online/offline events
         window.addEventListener('online', updateOnlineStatus);
         window.addEventListener('offline', updateOnlineStatus);
+        
+        // Check initial status
         updateOnlineStatus();
 
-        // Preload images for better performance
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            img.src = img.dataset.src;
+        // Keyboard navigation for category cards
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    this.click();
+                }
+            });
         });
-    </script>
-
-    <!-- Analytics (if needed) -->
-    <script>
-        // Placeholder for analytics tracking
-        // window.addEventListener('load', () => {
-        //     console.log('Study Hub loaded successfully');
-        // });
     </script>
 </body>
 </html>
