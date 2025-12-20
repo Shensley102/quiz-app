@@ -15,48 +15,50 @@ const STATIC_ASSETS = [
   '/offline.html'
 ];
 
-// Quiz data files - FIXED: Removed non-existent Pharm_Quiz_1-4, added Comprehensive_Pharmacology
+// Quiz data files - FIXED: Updated to match actual application structure
 const QUIZ_DATA_FILES = [
   // HESI Quizzes
-  '/modules/HESI/Comprehensive_Quiz_1.json',
-  '/modules/HESI/Comprehensive_Quiz_2.json',
-  '/modules/HESI/Comprehensive_Quiz_3.json',
-  '/modules/HESI/HESI_RN_Exam_Test_Bank.json',
+  '/modules/HESI/HESI_Adult_Health.json',
+  '/modules/HESI/HESI_Clinical_Judgment.json',
+  '/modules/HESI/HESI_Comp_Quiz_1.json',
+  '/modules/HESI/HESI_Comp_Quiz_2.json',
+  '/modules/HESI/HESI_Comp_Quiz_3.json',
+  '/modules/HESI/HESI_Delegating.json',
+  '/modules/HESI/HESI_Leadership.json',
+  '/modules/HESI/HESI_Management.json',
+  '/modules/HESI/HESI_Maternity.json',
   
   // Pharmacology - FIXED: Using actual file names
-  '/modules/Pharmacology/Comprehensive_Pharmacology.json',
+  '/modules/Pharmacology/Anti_Infectives_Pharm.json',
+  '/modules/Pharmacology/CNS_Psychiatric_Pharm.json',
   '/modules/Pharmacology/Cardiovascular_Pharm.json',
-  '/modules/Pharmacology/Respiratory_Pharm.json',
+  '/modules/Pharmacology/Comprehensive_Pharmacology.json',
+  '/modules/Pharmacology/Endocrine_Metabolic_Pharm.json',
   '/modules/Pharmacology/Gastrointestinal_Pharm.json',
-  '/modules/Pharmacology/Neurological_Pharm.json',
-  '/modules/Pharmacology/Endocrine_Pharm.json',
-  '/modules/Pharmacology/Immune_Pharm.json',
+  '/modules/Pharmacology/Hematologic_Oncology_Pharm.json',
+  '/modules/Pharmacology/High_Alert_Medications_Pharm.json',
+  '/modules/Pharmacology/Immunologic_Biologics_Pharm.json',
   '/modules/Pharmacology/Musculoskeletal_Pharm.json',
-  '/modules/Pharmacology/Renal_Pharm.json',
-  '/modules/Pharmacology/Reproductive_Pharm.json',
-  '/modules/Pharmacology/Antiinfective_Pharm.json',
-  '/modules/Pharmacology/Oncology_Pharm.json',
-  '/modules/Pharmacology/Psychopharmacology_Pharm.json',
+  '/modules/Pharmacology/Pain_Management_Pharm.json',
+  '/modules/Pharmacology/Renal_Electrolytes_Pharm.json',
+  '/modules/Pharmacology/Respiratory_Pharm.json',
   
   // Lab Values
-  '/modules/Lab_Values/Lab_Values_MCQ.json',
-  '/modules/Lab_Values/Lab_Values_Fill_In_The_Blank.json',
-  '/modules/Lab_Values/CBC_Lab_Values.json',
-  '/modules/Lab_Values/BMP_Lab_Values.json',
-  '/modules/Lab_Values/Liver_Panel_Lab_Values.json',
-  '/modules/Lab_Values/Coagulation_Lab_Values.json',
-  '/modules/Lab_Values/ABG_Lab_Values.json',
+  '/modules/Lab_Values/NCLEX_Lab_Values.json',
+  '/modules/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank.json',
   
   // Nursing Certifications
-  '/modules/Nursing_Certifications/CCRN_Part_1.json',
-  '/modules/Nursing_Certifications/CCRN_Part_2.json',
-  '/modules/Nursing_Certifications/CCRN_Part_3.json',
-  '/modules/Nursing_Certifications/CFRN.json',
-  '/modules/Nursing_Certifications/TCEN.json',
-  '/modules/Nursing_Certifications/CPEN.json',
+  '/modules/Nursing_Certifications/CCRN_Test_1_Combined_QA.json',
+  '/modules/Nursing_Certifications/CCRN_Test_2_Combined_QA.json',
+  '/modules/Nursing_Certifications/CCRN_Test_3_Combined_QA.json',
   
   // Patient Care Management
-  '/modules/Patient_Care_Management/Patient_Care_Management.json'
+  '/modules/Patient_Care_Management/Learning_Questions_Module_1_2.json',
+  '/modules/Patient_Care_Management/Learning_Questions_Module_3_4_.json',
+  '/modules/Patient_Care_Management/Module_1.json',
+  '/modules/Patient_Care_Management/Module_2.json',
+  '/modules/Patient_Care_Management/Module_3.json',
+  '/modules/Patient_Care_Management/Module_4.json'
 ];
 
 // Install event - cache static assets
