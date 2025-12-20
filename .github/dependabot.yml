@@ -1,6 +1,6 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/app"   # wherever package.json is
+    directory: "/quiz-app"   # wherever package.json is
     schedule:
       interval: "daily"
