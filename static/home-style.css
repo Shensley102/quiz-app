@@ -1,763 +1,346 @@
-/* ============================================================
-   Home Page Styles for Nurse Success Study Hub
-   
-   VERSION: 2.0.0
-   UPDATED: Includes Issue 4 fix - full card clickability
-   
-   SECTIONS:
-   1. CSS Variables
-   2. Page Layout & Container
-   3. Header Styles
-   4. Category Cards (with clickability fix)
-   5. Resume Quiz Section
-   6. Offline Indicator
-   7. Footer
-   8. Animations & Transitions
-   9. Responsive Breakpoints
-   10. Accessibility
-   11. Print Styles
-   ============================================================ */
+/* Home Page Styling - Fixed to display category images completely */
 
-/* ============================================================
-   1. CSS VARIABLES
-   ============================================================ */
 :root {
-  /* Primary Colors */
-  --primary: #2f61f3;
-  --primary-hover: #1e4fd6;
-  --primary-light: #e8efff;
-  --primary-dark: #1a3a9e;
-  
-  /* Accent Colors */
-  --accent-green: #2e7d32;
-  --accent-green-hover: #1b5e20;
-  --accent-orange: #ff9800;
-  --accent-red: #e53935;
-  
-  /* Neutrals */
-  --ink: #1a1a1a;
-  --ink-soft: #666666;
-  --ink-muted: #888888;
-  --surface: #ffffff;
-  --surface-soft: #f8f9fa;
-  --surface-border: #e0e0e0;
-  --background: #e8e8e8;
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
-  --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.2);
-  
-  /* Border Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-full: 50%;
-  
-  /* Spacing */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
-  --space-2xl: 48px;
-  
-  /* Typography */
-  --font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-size-xs: 12px;
-  --font-size-sm: 14px;
-  --font-size-base: 16px;
-  --font-size-lg: 18px;
-  --font-size-xl: 24px;
-  --font-size-2xl: 32px;
-  --font-size-3xl: 40px;
-  
-  /* Transitions */
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.2s ease;
-  --transition-slow: 0.3s ease;
-  
-  /* Z-index layers */
-  --z-base: 1;
-  --z-dropdown: 100;
-  --z-sticky: 500;
-  --z-modal: 1000;
-  --z-toast: 10000;
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --accent-color: #2e7d32;
+    --light-bg: #f5f5f5;
+    --border-radius: 16px;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.15);
 }
 
-/* ============================================================
-   2. PAGE LAYOUT & CONTAINER
-   ============================================================ */
-.home-page {
-  min-height: 100vh;
-  background-color: var(--background);
-  padding: var(--space-lg);
-  padding-top: calc(var(--space-lg) + env(safe-area-inset-top, 0px));
-  padding-bottom: calc(var(--space-2xl) + env(safe-area-inset-bottom, 0px));
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.home-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #f8f9ff 0%, #f0f4ff 100%);
+    min-height: 100vh;
+    color: #333;
 }
 
-/* ============================================================
-   3. HEADER STYLES
-   ============================================================ */
-.home-header {
-  text-align: center;
-  margin-bottom: var(--space-xl);
-  padding: var(--space-lg) 0;
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.home-title {
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
-  color: var(--ink);
-  margin: 0 0 var(--space-sm) 0;
-  line-height: 1.2;
+/* ==================== HEADER ==================== */
+
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 40px 20px;
 }
 
-.home-title-emoji {
-  display: inline-block;
-  margin-right: var(--space-sm);
+.header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    font-weight: 700;
 }
 
-.home-subtitle {
-  font-size: var(--font-size-lg);
-  color: var(--ink-soft);
-  margin: 0;
-  font-weight: 400;
+.header p {
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 500;
 }
 
-/* ============================================================
-   4. CATEGORY CARDS (ISSUE 4 FIX - FULL CLICKABILITY)
-   ============================================================ */
-.categories-section {
-  margin-bottom: var(--space-2xl);
-}
+/* ==================== OFFLINE INDICATOR ==================== */
 
-.categories-section h2 {
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-  color: var(--ink);
-  margin: 0 0 var(--space-lg) 0;
-}
-
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--space-lg);
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-/* ISSUE 4 FIX: Make entire card a clickable anchor element */
-.category-card {
-  /* Layout */
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  
-  /* Appearance */
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  
-  /* Link behavior - entire card is clickable */
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  
-  /* Transitions */
-  transition: transform var(--transition-normal), 
-              box-shadow var(--transition-normal);
-  
-  /* Ensure proper stacking context */
-  isolation: isolate;
-}
-
-/* Hover state - lift card */
-.category-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-}
-
-/* Active/pressed state */
-.category-card:active {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-/* KEYBOARD ACCESSIBILITY: Focus styling */
-.category-card:focus {
-  outline: 3px solid var(--primary);
-  outline-offset: 3px;
-}
-
-.category-card:focus-visible {
-  outline: 3px solid var(--primary);
-  outline-offset: 3px;
-}
-
-/* Remove focus ring for mouse users */
-.category-card:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* Card image section */
-.card-image {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  background-color: var(--surface-soft);
-  border-bottom: 1px solid var(--surface-border);
-}
-
-/* Card image loading placeholder */
-.card-image[loading="lazy"] {
-  background: linear-gradient(135deg, var(--surface-soft) 0%, var(--surface-border) 100%);
-}
-
-/* Card content section */
-.card-content {
-  padding: var(--space-lg);
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-title {
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  color: var(--ink);
-  margin: 0 0 var(--space-sm) 0;
-  line-height: 1.3;
-}
-
-.card-description {
-  font-size: var(--font-size-sm);
-  color: var(--ink-soft);
-  margin: 0;
-  line-height: 1.6;
-  flex-grow: 1;
-}
-
-/* Question count badge */
-.card-badge {
-  display: inline-block;
-  margin-top: var(--space-md);
-  padding: var(--space-xs) var(--space-sm);
-  background: var(--primary-light);
-  color: var(--primary);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  border-radius: var(--radius-sm);
-}
-
-/* ARROW INDICATOR - Visual only, doesn't capture clicks */
-.card-arrow {
-  position: absolute;
-  bottom: var(--space-lg);
-  right: var(--space-lg);
-  width: 36px;
-  height: 36px;
-  background: var(--primary);
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: var(--font-size-base);
-  font-weight: 700;
-  
-  /* CRITICAL: Arrow doesn't capture clicks - whole card handles it */
-  pointer-events: none;
-  
-  /* Transitions */
-  transition: transform var(--transition-normal), 
-              background var(--transition-normal);
-}
-
-/* Arrow animation on card hover */
-.category-card:hover .card-arrow {
-  transform: translateX(4px);
-  background: var(--primary-hover);
-}
-
-/* Arrow styles for different categories */
-.category-card[data-category="hesi"] .card-arrow,
-.category-card.hesi .card-arrow {
-  background: #3498db;
-}
-
-.category-card[data-category="hesi"]:hover .card-arrow,
-.category-card.hesi:hover .card-arrow {
-  background: #2980b9;
-}
-
-.category-card[data-category="pharmacology"] .card-arrow,
-.category-card.pharmacology .card-arrow {
-  background: var(--accent-green);
-}
-
-.category-card[data-category="pharmacology"]:hover .card-arrow,
-.category-card.pharmacology:hover .card-arrow {
-  background: var(--accent-green-hover);
-}
-
-.category-card[data-category="lab-values"] .card-arrow,
-.category-card.lab-values .card-arrow {
-  background: #9c27b0;
-}
-
-.category-card[data-category="lab-values"]:hover .card-arrow,
-.category-card.lab-values:hover .card-arrow {
-  background: #7b1fa2;
-}
-
-.category-card[data-category="certifications"] .card-arrow,
-.category-card.certifications .card-arrow {
-  background: var(--accent-red);
-}
-
-.category-card[data-category="certifications"]:hover .card-arrow,
-.category-card.certifications:hover .card-arrow {
-  background: #c62828;
-}
-
-/* ============================================================
-   5. RESUME QUIZ SECTION
-   ============================================================ */
-.resume-section {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  margin-bottom: var(--space-xl);
-  color: white;
-  box-shadow: var(--shadow-md);
-}
-
-.resume-section.hidden {
-  display: none;
-}
-
-.resume-title {
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  margin: 0 0 var(--space-sm) 0;
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.resume-description {
-  font-size: var(--font-size-sm);
-  margin: 0 0 var(--space-md) 0;
-  opacity: 0.9;
-}
-
-.resume-progress {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-sm);
-  height: 8px;
-  overflow: hidden;
-  margin-bottom: var(--space-md);
-}
-
-.resume-progress-fill {
-  background: white;
-  height: 100%;
-  border-radius: var(--radius-sm);
-  transition: width var(--transition-slow);
-}
-
-.resume-actions {
-  display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-}
-
-.resume-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  transition: all var(--transition-fast);
-}
-
-.resume-btn-primary {
-  background: white;
-  color: var(--primary);
-}
-
-.resume-btn-primary:hover {
-  background: var(--surface-soft);
-  transform: translateY(-2px);
-}
-
-.resume-btn-secondary {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
-.resume-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* ============================================================
-   6. OFFLINE INDICATOR
-   ============================================================ */
 .offline-indicator {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(135deg, var(--accent-orange), #f57c00);
-  color: white;
-  padding: var(--space-md) var(--space-lg);
-  padding-top: calc(var(--space-md) + env(safe-area-inset-top, 0px));
-  text-align: center;
-  font-weight: 600;
-  font-size: var(--font-size-sm);
-  z-index: var(--z-toast);
-  box-shadow: var(--shadow-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-sm);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 10000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .offline-indicator.hidden {
-  display: none;
+    display: none;
 }
 
-.offline-icon {
-  font-size: var(--font-size-base);
+/* ==================== CATEGORIES GRID ==================== */
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
 }
 
-/* ============================================================
-   7. FOOTER
-   ============================================================ */
-.home-footer {
-  text-align: center;
-  padding: var(--space-xl) 0;
-  color: var(--ink-muted);
-  font-size: var(--font-size-sm);
-}
+/* ==================== CATEGORY CARD ==================== */
 
-.home-footer a {
-  color: var(--primary);
-  text-decoration: none;
-}
-
-.home-footer a:hover {
-  text-decoration: underline;
-}
-
-/* ============================================================
-   8. ANIMATIONS & TRANSITIONS
-   ============================================================ */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.6;
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn var(--transition-slow) ease forwards;
-}
-
-.categories-grid li {
-  animation: fadeIn 0.4s ease forwards;
-}
-
-.categories-grid li:nth-child(1) { animation-delay: 0.05s; }
-.categories-grid li:nth-child(2) { animation-delay: 0.1s; }
-.categories-grid li:nth-child(3) { animation-delay: 0.15s; }
-.categories-grid li:nth-child(4) { animation-delay: 0.2s; }
-.categories-grid li:nth-child(5) { animation-delay: 0.25s; }
-.categories-grid li:nth-child(6) { animation-delay: 0.3s; }
-
-/* Loading skeleton animation */
-.skeleton {
-  background: linear-gradient(90deg, var(--surface-soft) 25%, var(--surface-border) 50%, var(--surface-soft) 75%);
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
-}
-
-@keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-/* ============================================================
-   9. RESPONSIVE BREAKPOINTS
-   ============================================================ */
-
-/* Tablet */
-@media (max-width: 768px) {
-  .home-page {
-    padding: var(--space-md);
-  }
-  
-  .home-title {
-    font-size: var(--font-size-xl);
-  }
-  
-  .home-subtitle {
-    font-size: var(--font-size-base);
-  }
-  
-  .categories-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: var(--space-md);
-  }
-  
-  .card-image {
-    height: 140px;
-  }
-  
-  .card-content {
-    padding: var(--space-md);
-  }
-  
-  .card-arrow {
-    width: 32px;
-    height: 32px;
-    bottom: var(--space-md);
-    right: var(--space-md);
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  .home-page {
-    padding: var(--space-sm);
-  }
-  
-  .home-header {
-    margin-bottom: var(--space-lg);
-    padding: var(--space-md) 0;
-  }
-  
-  .home-title {
-    font-size: var(--font-size-lg);
-  }
-  
-  .home-subtitle {
-    font-size: var(--font-size-sm);
-  }
-  
-  .categories-section h2 {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--space-md);
-  }
-  
-  .categories-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
-  }
-  
-  .card-image {
-    height: 120px;
-  }
-  
-  .card-title {
-    font-size: var(--font-size-base);
-  }
-  
-  .card-description {
-    font-size: var(--font-size-xs);
-  }
-  
-  /* Keep arrow smaller on mobile */
-  .card-arrow {
-    width: 28px;
-    height: 28px;
-    font-size: var(--font-size-sm);
-  }
-  
-  .resume-section {
-    padding: var(--space-md);
-  }
-  
-  .resume-actions {
-    flex-direction: column;
-  }
-  
-  .resume-btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* Large screens */
-@media (min-width: 1400px) {
-  .home-container {
-    max-width: 1400px;
-  }
-  
-  .categories-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* ============================================================
-   10. ACCESSIBILITY
-   ============================================================ */
-
-/* Reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  .category-card:hover {
-    transform: none;
-  }
-  
-  .category-card:hover .card-arrow {
-    transform: none;
-  }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-  .category-card {
-    border: 2px solid var(--ink);
-  }
-  
-  .category-card:focus {
-    outline-width: 4px;
-  }
-  
-  .card-arrow {
-    border: 2px solid white;
-  }
-}
-
-/* Focus within for nested focusable elements */
-.category-card:focus-within {
-  outline: 3px solid var(--primary);
-  outline-offset: 3px;
-}
-
-/* Screen reader only text */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* Skip link for keyboard navigation */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--primary);
-  color: white;
-  padding: var(--space-sm) var(--space-md);
-  z-index: var(--z-toast);
-  transition: top var(--transition-fast);
-}
-
-.skip-link:focus {
-  top: 0;
-}
-
-/* ============================================================
-   11. PRINT STYLES
-   ============================================================ */
-@media print {
-  .home-page {
+.category-card {
     background: white;
-    padding: 0;
-  }
-  
-  .offline-indicator,
-  .resume-section,
-  .card-arrow {
-    display: none !important;
-  }
-  
-  .category-card {
-    break-inside: avoid;
-    box-shadow: none;
-    border: 1px solid var(--ink-muted);
-  }
-  
-  .categories-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-/* ============================================================
-   LEGACY CLASS SUPPORT
-   For backwards compatibility with existing markup
-   ============================================================ */
-
-/* Old card-link class - now entire card is the link */
-.card-link {
-  pointer-events: none;
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
 }
 
-/* Old arrow-overlay class */
-.arrow-overlay {
-  pointer-events: none;
+.category-card:active {
+    transform: translateY(-4px);
 }
 
-/* Old category-card-wrapper class */
-.category-card-wrapper {
-  display: contents;
+/* ==================== CATEGORY IMAGE ==================== */
+
+.category-image-container {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.category-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Fallback styling for missing images */
+.category-image-container.no-image {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    font-size: 3rem;
+}
+
+/* ==================== CATEGORY INFO ==================== */
+
+.category-info {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.category-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.category-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.category-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    flex-grow: 1;
+}
+
+.category-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    width: fit-content;
+}
+
+.category-link:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.category-link:active {
+    transform: translateX(2px);
+}
+
+.category-link::after {
+    content: '→';
+    font-weight: bold;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 15px;
+    }
+
+    .header {
+        margin-bottom: 30px;
+        padding: 30px 15px;
+    }
+
+    .header h1 {
+        font-size: 1.6rem;
+    }
+
+    .header p {
+        font-size: 0.95rem;
+    }
+
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .category-image-container {
+        height: 200px;
+    }
+
+    .category-info {
+        padding: 20px;
+    }
+
+    .category-title {
+        font-size: 1.2rem;
+    }
+
+    .category-description {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .category-card,
+    .category-link {
+        transition: none;
+    }
+
+    .category-card:hover {
+        transform: none;
+    }
+
+    .category-link:hover {
+        transform: none;
+    }
+}
+
+/* ==================== HIGH CONTRAST MODE ==================== */
+
+@media (prefers-contrast: more) {
+    .category-card {
+        border: 2px solid #333;
+    }
+
+    .category-title {
+        font-weight: 900;
+    }
+
+    .category-description {
+        color: #333;
+    }
+}
+
+/* ==================== DARK MODE SUPPORT ==================== */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+        color: #e0e0e0;
+    }
+
+    .category-card {
+        background: #2a2a2a;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .category-card:hover {
+        box-shadow: 0 12px 48px rgba(102, 126, 234, 0.3);
+    }
+
+    .category-title {
+        color: #e0e0e0;
+    }
+
+    .category-description {
+        color: #b0b0b0;
+    }
+
+    .header h1 {
+        -webkit-text-fill-color: white;
+    }
+
+    .header p {
+        color: #a0a0a0;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .offline-indicator,
+    .category-link {
+        display: none;
+    }
+
+    .category-card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    body {
+        background: white;
+    }
 }
