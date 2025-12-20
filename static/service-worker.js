@@ -1,202 +1,346 @@
-// Service Worker v1.0.9 (Updated: Fixed Pharm_Quiz pre-cache errors and ReferenceError)
-// Manages caching for offline PWA functionality
+/* Home Page Styling - Fixed to display category images completely */
 
-const CACHE_NAME = 'study-hub-v1.0.9';
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --accent-color: #2e7d32;
+    --light-bg: #f5f5f5;
+    --border-radius: 16px;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.15);
+}
 
-// Pre-cache essential assets
-const STATIC_ASSETS = [
-  '/',
-  '/static/css/style.css',
-  '/static/css/mobile.css',
-  '/static/js/pwa-utils.js',
-  '/static/manifest.json',
-  '/static/icons/icon-192.png',
-  '/static/icons/icon-512.png',
-  '/offline.html'
-];
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-// Quiz data files - FIXED: Updated to match actual application structure
-const QUIZ_DATA_FILES = [
-  // HESI Quizzes
-  '/modules/HESI/HESI_Adult_Health.json',
-  '/modules/HESI/HESI_Clinical_Judgment.json',
-  '/modules/HESI/HESI_Comp_Quiz_1.json',
-  '/modules/HESI/HESI_Comp_Quiz_2.json',
-  '/modules/HESI/HESI_Comp_Quiz_3.json',
-  '/modules/HESI/HESI_Delegating.json',
-  '/modules/HESI/HESI_Leadership.json',
-  '/modules/HESI/HESI_Management.json',
-  '/modules/HESI/HESI_Maternity.json',
-  
-  // Pharmacology - FIXED: Using actual file names
-  '/modules/Pharmacology/Anti_Infectives_Pharm.json',
-  '/modules/Pharmacology/CNS_Psychiatric_Pharm.json',
-  '/modules/Pharmacology/Cardiovascular_Pharm.json',
-  '/modules/Pharmacology/Comprehensive_Pharmacology.json',
-  '/modules/Pharmacology/Endocrine_Metabolic_Pharm.json',
-  '/modules/Pharmacology/Gastrointestinal_Pharm.json',
-  '/modules/Pharmacology/Hematologic_Oncology_Pharm.json',
-  '/modules/Pharmacology/High_Alert_Medications_Pharm.json',
-  '/modules/Pharmacology/Immunologic_Biologics_Pharm.json',
-  '/modules/Pharmacology/Musculoskeletal_Pharm.json',
-  '/modules/Pharmacology/Pain_Management_Pharm.json',
-  '/modules/Pharmacology/Renal_Electrolytes_Pharm.json',
-  '/modules/Pharmacology/Respiratory_Pharm.json',
-  
-  // Lab Values
-  '/modules/Lab_Values/NCLEX_Lab_Values.json',
-  '/modules/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank.json',
-  
-  // Nursing Certifications
-  '/modules/Nursing_Certifications/CCRN_Test_1_Combined_QA.json',
-  '/modules/Nursing_Certifications/CCRN_Test_2_Combined_QA.json',
-  '/modules/Nursing_Certifications/CCRN_Test_3_Combined_QA.json',
-  
-  // Patient Care Management
-  '/modules/Patient_Care_Management/Learning_Questions_Module_1_2.json',
-  '/modules/Patient_Care_Management/Learning_Questions_Module_3_4_.json',
-  '/modules/Patient_Care_Management/Module_1.json',
-  '/modules/Patient_Care_Management/Module_2.json',
-  '/modules/Patient_Care_Management/Module_3.json',
-  '/modules/Patient_Care_Management/Module_4.json'
-];
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #f8f9ff 0%, #f0f4ff 100%);
+    min-height: 100vh;
+    color: #333;
+}
 
-// Install event - cache static assets
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log(`[Service Worker] Installing v1.0.9: Starting cache of ${STATIC_ASSETS.length} static assets + ${QUIZ_DATA_FILES.length} quiz files`);
-        
-        // Cache static assets
-        const staticPromise = cache.addAll(STATIC_ASSETS).catch((error) => {
-          console.warn('[Service Worker] Some static assets failed to cache:', error);
-        });
-        
-        // Try to cache quiz data files, but don't fail if individual files are missing
-        const quizPromises = QUIZ_DATA_FILES.map((url) => {
-          return fetch(url)
-            .then((response) => {
-              if (response.ok) {
-                return cache.put(url, response);
-              } else {
-                console.warn(`[Service Worker] Quiz file not found: ${url} (${response.status})`);
-              }
-            })
-            .catch((error) => {
-              // Silently skip files that don't exist or are unreachable
-              console.warn(`[Service Worker] Could not cache quiz file: ${url}`, error.message);
-            });
-        });
-        
-        return Promise.all([staticPromise, ...quizPromises])
-          .then(() => {
-            console.log('[Service Worker] Cache installation complete');
-            self.skipWaiting();
-          });
-      })
-  );
-});
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-// Activate event - clean up old caches
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            console.log(`[Service Worker] Deleting old cache: ${cacheName}`);
-            return caches.delete(cacheName);
-          }
-        })
-      ).then(() => self.clients.claim());
-    })
-  );
-});
+/* ==================== HEADER ==================== */
 
-// Fetch event - use cache-first strategy for quiz data, network-first for others
-self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  const url = new URL(request.url);
-  
-  // Skip non-GET requests and external URLs
-  if (request.method !== 'GET' || url.origin !== self.location.origin) {
-    return;
-  }
-  
-  // Cache-first strategy for quiz data and static assets
-  if (url.pathname.includes('/modules/') || 
-      url.pathname.includes('/static/') ||
-      url.pathname === '/' ||
-      url.pathname.includes('favicon')) {
-    
-    event.respondWith(
-      caches.match(request)
-        .then((response) => {
-          if (response) {
-            console.log(`[Service Worker] Cache hit: ${url.pathname}`);
-            return response;
-          }
-          
-          // Not in cache, try network
-          return fetch(request)
-            .then((response) => {
-              // Only cache successful responses
-              if (response && response.status === 200) {
-                const responseClone = response.clone();
-                caches.open(CACHE_NAME).then((cache) => {
-                  cache.put(request, responseClone);
-                });
-              }
-              return response;
-            })
-            .catch((error) => {
-              // Network failed and no cache - return offline page if available
-              console.warn(`[Service Worker] Network error for ${url.pathname}:`, error);
-              if (url.pathname.includes('/quiz') || url.pathname === '/') {
-                return caches.match('/offline.html').catch(() => new Response('Offline'));
-              }
-              throw error;
-            });
-        })
-    );
-  } else {
-    // Network-first strategy for API calls and other requests
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          // Cache successful API responses
-          if (response && response.status === 200) {
-            const responseClone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(request, responseClone);
-            });
-          }
-          return response;
-        })
-        .catch((error) => {
-          // Network failed, try cache
-          console.warn(`[Service Worker] Network error for ${url.pathname}, checking cache:`, error);
-          return caches.match(request)
-            .then((cachedResponse) => {
-              if (cachedResponse) {
-                console.log(`[Service Worker] Using cached response for: ${url.pathname}`);
-                return cachedResponse;
-              }
-              // No cache and no network
-              return new Response('Service unavailable', {
-                status: 503,
-                statusText: 'Service Unavailable'
-              });
-            });
-        })
-    );
-  }
-});
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 40px 20px;
+}
 
-// Handle messages from clients
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
-});
+.header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* ==================== OFFLINE INDICATOR ==================== */
+
+.offline-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 10000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.offline-indicator.hidden {
+    display: none;
+}
+
+/* ==================== CATEGORIES GRID ==================== */
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* ==================== CATEGORY CARD ==================== */
+
+.category-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.category-card:active {
+    transform: translateY(-4px);
+}
+
+/* ==================== CATEGORY IMAGE ==================== */
+
+.category-image-container {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.category-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Fallback styling for missing images */
+.category-image-container.no-image {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    font-size: 3rem;
+}
+
+/* ==================== CATEGORY INFO ==================== */
+
+.category-info {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.category-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.category-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.category-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    flex-grow: 1;
+}
+
+.category-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    width: fit-content;
+}
+
+.category-link:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.category-link:active {
+    transform: translateX(2px);
+}
+
+.category-link::after {
+    content: '→';
+    font-weight: bold;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 15px;
+    }
+
+    .header {
+        margin-bottom: 30px;
+        padding: 30px 15px;
+    }
+
+    .header h1 {
+        font-size: 1.6rem;
+    }
+
+    .header p {
+        font-size: 0.95rem;
+    }
+
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .category-image-container {
+        height: 200px;
+    }
+
+    .category-info {
+        padding: 20px;
+    }
+
+    .category-title {
+        font-size: 1.2rem;
+    }
+
+    .category-description {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .category-card,
+    .category-link {
+        transition: none;
+    }
+
+    .category-card:hover {
+        transform: none;
+    }
+
+    .category-link:hover {
+        transform: none;
+    }
+}
+
+/* ==================== HIGH CONTRAST MODE ==================== */
+
+@media (prefers-contrast: more) {
+    .category-card {
+        border: 2px solid #333;
+    }
+
+    .category-title {
+        font-weight: 900;
+    }
+
+    .category-description {
+        color: #333;
+    }
+}
+
+/* ==================== DARK MODE SUPPORT ==================== */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+        color: #e0e0e0;
+    }
+
+    .category-card {
+        background: #2a2a2a;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .category-card:hover {
+        box-shadow: 0 12px 48px rgba(102, 126, 234, 0.3);
+    }
+
+    .category-title {
+        color: #e0e0e0;
+    }
+
+    .category-description {
+        color: #b0b0b0;
+    }
+
+    .header h1 {
+        -webkit-text-fill-color: white;
+    }
+
+    .header p {
+        color: #a0a0a0;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+    .offline-indicator,
+    .category-link {
+        display: none;
+    }
+
+    .category-card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    body {
+        background: white;
+    }
+}
