@@ -20,13 +20,12 @@ const STATIC_ASSETS = [
   '/static/icons/icon-512.png'
 ];
 
-// CSS and JavaScript files
+// CSS and JavaScript files - FIXED: Correct paths
 const SCRIPT_ASSETS = [
-  '/static/css/style.css',
-  '/static/css/home-style.css',
-  '/static/css/category-style.css',
-  '/static/css/quiz-style.css',
-  '/static/css/mobile.css',
+  '/static/style.css',
+  '/static/home-style.css',
+  '/static/category-style.css',
+  '/static/quiz-style.css',
   '/static/js/quiz-script.js'
 ];
 
