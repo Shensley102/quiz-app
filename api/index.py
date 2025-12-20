@@ -1,14 +1,13 @@
 """
 Vercel Serverless Function - Nurse Success Study Hub
 Flask WSGI Application for Vercel Python runtime
-Deploy to: /api/index.py
 """
 
 import json
 import os
 from flask import Flask, render_template, jsonify, request, send_from_directory
 
-# Initialize Flask app
+# Initialize Flask app - Vercel auto-detects this as WSGI
 app = Flask(__name__, 
     template_folder=os.path.join(os.path.dirname(__file__), '../templates'),
     static_folder=os.path.join(os.path.dirname(__file__), '../static'),
@@ -87,10 +86,12 @@ CATEGORIES = {
     }
 }
 
+
 @app.route('/')
 @app.route('/index.html')
 def home():
     return render_template('home.html', categories=CATEGORIES)
+
 
 @app.route('/category/<category_name>')
 def category(category_name):
@@ -103,6 +104,7 @@ def category(category_name):
         category_data=category_data,
         quizzes=category_data['quizzes']
     )
+
 
 @app.route('/quiz/<category_name>/<quiz_id>')
 def quiz(category_name, quiz_id):
@@ -125,6 +127,7 @@ def quiz(category_name, quiz_id):
         quiz_name=quiz_info['name'],
         quiz_file=quiz_info['file']
     )
+
 
 @app.route('/api/quiz/<category_name>/<quiz_filename>')
 def load_quiz(category_name, quiz_filename):
@@ -159,19 +162,23 @@ def load_quiz(category_name, quiz_filename):
     except Exception as e:
         return jsonify({'error': f'Error loading quiz: {str(e)}'}), 500
 
+
 @app.route('/static/<path:filename>')
 def serve_static(filename):
     return send_from_directory(app.static_folder, filename)
+
 
 @app.route('/images/<filename>')
 def serve_images(filename):
     images_path = os.path.join(os.path.dirname(__file__), '../images')
     return send_from_directory(images_path, filename)
 
+
 @app.route('/modules/<path:filename>')
 def serve_modules(filename):
     modules_path = os.path.join(os.path.dirname(__file__), '../modules')
     return send_from_directory(modules_path, filename)
+
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -182,6 +189,7 @@ def page_not_found(error):
     except:
         return jsonify({'error': 'Not found'}), 404
 
+
 @app.errorhandler(500)
 def internal_error(error):
     if request.accept_mimetypes.accept_json and not request.accept_mimetypes.accept_html:
@@ -190,7 +198,3 @@ def internal_error(error):
         return render_template('500.html'), 500
     except:
         return jsonify({'error': 'Internal server error'}), 500
-
-# For local development only
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=3000)
