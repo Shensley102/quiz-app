@@ -1,9 +1,5 @@
-# Flask Core Dependencies - Updated December 2025
-# All versions tested and compatible with Vercel Python runtime
-# Release dates: Flask (Aug 2025), Werkzeug (Nov 2025), Jinja2 (Mar 2025), Click (Nov 2025)
-
-Flask==3.1.2
-werkzeug==3.1.4
-jinja2==3.1.6
+Flask==3.0.0
+werkzeug==3.0.1
+jinja2==3.1.4
 itsdangerous==2.2.0
-click==8.3.0
+click==8.1.7
