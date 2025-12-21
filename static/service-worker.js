@@ -1,35 +1,64 @@
-// Service Worker v1.0.11 - Production Ready
-// Nurse Success Study Hub - Comprehensive PWA Service Worker
-// Features: Offline support, intelligent caching, proper error handling
+/* ============================================================
+   Service Worker for Nurse Success Study Hub PWA
+   
+   CACHE VERSION: Bump this when updating content
+   TO ADD NEW QUIZ JSON: Add path to QUIZ_DATA_FILES array
+   
+   VERSION HISTORY:
+   v1.0.6 - Fixed CSS filename (category-style.css), added automatic cache updates
+   v1.0.5 - Added pharmacology routes and categories
+   ============================================================ */
 
-'use strict';
+const CACHE_VERSION = 'v1.0.6';
+const CACHE_NAME = `nurse-success-${CACHE_VERSION}`;
 
-// ==================== CACHE CONFIGURATION ====================
+// How often to check for updates (in milliseconds)
+const UPDATE_CHECK_INTERVAL = 30 * 60 * 1000; // 30 minutes
 
-const CACHE_VERSION = 'v1.0.11';
-const CACHE_NAME = 'study-hub-' + CACHE_VERSION;
-const RUNTIME_CACHE = 'study-hub-runtime-' + CACHE_VERSION;
-const IMAGE_CACHE = 'study-hub-images-' + CACHE_VERSION;
-
-// Critical static assets
-const STATIC_ASSETS = [
+// Core files that MUST be cached for app to work offline
+const CORE_ASSETS = [
   '/',
-  '/index.html',
   '/static/manifest.json',
-  '/static/icons/icon-192.png',
-  '/static/icons/icon-512.png'
-];
-
-// CSS and JavaScript files - FIXED: Correct paths
-const SCRIPT_ASSETS = [
   '/static/style.css',
   '/static/home-style.css',
   '/static/category-style.css',
-  '/static/quiz-style.css',
-  '/static/js/quiz-script.js'
+  '/static/js/pwa-utils.js',
+  '/static/quiz-script.js',
+  '/static/quiz-fill-blank.js',
+  '/static/fishbone-utils.js',
+  '/static/quiz-fishbone-mcq.js',
+  '/static/quiz-fishbone-fill.js',
+  // Icons - all sizes
+  '/static/icons/icon-72.png',
+  '/static/icons/icon-96.png',
+  '/static/icons/icon-120.png',
+  '/static/icons/icon-128.png',
+  '/static/icons/icon-144.png',
+  '/static/icons/icon-152.png',
+  '/static/icons/icon-167.png',
+  '/static/icons/icon-180.png',
+  '/static/icons/icon-192.png',
+  '/static/icons/icon-384.png',
+  '/static/icons/icon-512.png'
 ];
 
-// All quiz data files
+// HTML pages to cache for offline navigation
+// IMPORTANT: These are the Flask routes, not template files
+const HTML_PAGES = [
+  '/',
+  '/category/HESI',
+  '/category/Lab_Values',
+  '/category/Patient_Care_Management',
+  '/category/Pharmacology',
+  '/category/Pharmacology/Comprehensive',
+  '/category/Pharmacology/Categories',
+  '/category/Nursing_Certifications',
+  '/category/Nursing_Certifications/CCRN',
+  '/quiz-fishbone-mcq',
+  '/quiz-fishbone-fill'
+];
+
+// Quiz JSON data files - ADD NEW QUIZ FILES HERE
 const QUIZ_DATA_FILES = [
   // HESI
   '/modules/HESI/HESI_Adult_Health.json',
@@ -42,360 +71,367 @@ const QUIZ_DATA_FILES = [
   '/modules/HESI/HESI_Management.json',
   '/modules/HESI/HESI_Maternity.json',
   
-  // Pharmacology
-  '/modules/Pharmacology/Anti_Infectives_Pharm.json',
-  '/modules/Pharmacology/CNS_Psychiatric_Pharm.json',
-  '/modules/Pharmacology/Cardiovascular_Pharm.json',
-  '/modules/Pharmacology/Comprehensive_Pharmacology.json',
-  '/modules/Pharmacology/Endocrine_Metabolic_Pharm.json',
-  '/modules/Pharmacology/Gastrointestinal_Pharm.json',
-  '/modules/Pharmacology/Hematologic_Oncology_Pharm.json',
-  '/modules/Pharmacology/High_Alert_Medications_Pharm.json',
-  '/modules/Pharmacology/Immunologic_Biologics_Pharm.json',
-  '/modules/Pharmacology/Musculoskeletal_Pharm.json',
-  '/modules/Pharmacology/Pain_Management_Pharm.json',
-  '/modules/Pharmacology/Renal_Electrolytes_Pharm.json',
-  '/modules/Pharmacology/Respiratory_Pharm.json',
-  
   // Lab Values
   '/modules/Lab_Values/NCLEX_Lab_Values.json',
   '/modules/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank.json',
   
-  // Nursing Certifications
-  '/modules/Nursing_Certifications/CCRN_Test_1_Combined_QA.json',
-  '/modules/Nursing_Certifications/CCRN_Test_2_Combined_QA.json',
-  '/modules/Nursing_Certifications/CCRN_Test_3_Combined_QA.json',
-  
   // Patient Care Management
-  '/modules/Patient_Care_Management/Learning_Questions_Module_1_2.json',
-  '/modules/Patient_Care_Management/Learning_Questions_Module_3_4_.json',
   '/modules/Patient_Care_Management/Module_1.json',
   '/modules/Patient_Care_Management/Module_2.json',
   '/modules/Patient_Care_Management/Module_3.json',
-  '/modules/Patient_Care_Management/Module_4.json'
+  '/modules/Patient_Care_Management/Module_4.json',
+  '/modules/Patient_Care_Management/Learning_Questions_Module_1_2.json',
+  '/modules/Patient_Care_Management/Learning_Questions_Module_3_4_.json',
+  
+  // Pharmacology - Comprehensive
+  '/modules/Pharmacology/Pharm_Quiz_1.json',
+  '/modules/Pharmacology/Pharm_Quiz_2.json',
+  '/modules/Pharmacology/Pharm_Quiz_3.json',
+  '/modules/Pharmacology/Pharm_Quiz_4.json',
+  
+  // Pharmacology - By Category
+  '/modules/Pharmacology/Cardiovascular_Pharm.json',
+  '/modules/Pharmacology/CNS_Psychiatric_Pharm.json',
+  '/modules/Pharmacology/Anti_Infectives_Pharm.json',
+  '/modules/Pharmacology/Endocrine_Metabolic_Pharm.json',
+  '/modules/Pharmacology/Respiratory_Pharm.json',
+  '/modules/Pharmacology/Gastrointestinal_Pharm.json',
+  '/modules/Pharmacology/Pain_Management_Pharm.json',
+  '/modules/Pharmacology/Hematologic_Oncology_Pharm.json',
+  '/modules/Pharmacology/Renal_Electrolytes_Pharm.json',
+  '/modules/Pharmacology/Musculoskeletal_Pharm.json',
+  '/modules/Pharmacology/Immunologic_Biologics_Pharm.json',
+  '/modules/Pharmacology/High_Alert_Medications_Pharm.json',
+  
+  // Nursing Certifications - CCRN
+  '/modules/Nursing_Certifications/CCRN_Test_1_Combined_QA.json',
+  '/modules/Nursing_Certifications/CCRN_Test_2_Combined_QA.json',
+  '/modules/Nursing_Certifications/CCRN_Test_3_Combined_QA.json'
 ];
 
 // Category images
-const IMAGE_ASSETS = [
-  '/images/Nursing_Advanced_Certifications.png',
+const IMAGE_FILES = [
   '/images/Nursing_Hesi_Exam_Prep_Image.png',
   '/images/Nursing_Lab_Values.png',
   '/images/Nursing_Leadership_Image.png',
   '/images/Nursing_Pharmacology_Image.png',
-  '/static/images/fishbone-abg.png',
-  '/static/images/fishbone-bmp.png',
+  '/images/Nursing_Advanced_Certifications.png',
+  // Fishbone diagram images
   '/static/images/fishbone-cbc.png',
+  '/static/images/fishbone-bmp.png',
+  '/static/images/fishbone-liver.png',
   '/static/images/fishbone-coagulation.png',
-  '/static/images/fishbone-elements.png',
-  '/static/images/fishbone-liver.png'
+  '/static/images/fishbone-abg.png',
+  '/static/images/fishbone-elements.png'
 ];
 
-// ==================== INSTALL EVENT ====================
-
-self.addEventListener('install', function(event) {
-  console.log('[Service Worker] Installing ' + CACHE_VERSION);
+// Install event - cache core assets
+self.addEventListener('install', (event) => {
+  console.log('[Service Worker] Installing version', CACHE_VERSION);
   
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('[Service Worker] Opened cache: ' + CACHE_NAME);
+      .then(async (cache) => {
+        console.log('[Service Worker] Caching core assets');
         
-        // Cache static assets
-        var staticPromises = STATIC_ASSETS.map(function(url) {
-          return fetchAndCache(cache, url);
-        });
+        // Cache core assets (fail fast if these fail)
+        await cache.addAll(CORE_ASSETS);
+        console.log('[Service Worker] Core assets cached');
         
-        // Cache scripts
-        var scriptPromises = SCRIPT_ASSETS.map(function(url) {
-          return fetchAndCache(cache, url);
-        });
+        // Try to cache HTML pages (don't fail install if these fail)
+        const htmlPromises = HTML_PAGES.map(url => 
+          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err.message))
+        );
+        await Promise.allSettled(htmlPromises);
+        console.log('[Service Worker] HTML pages cached');
         
-        // Cache quiz files
-        var quizPromises = QUIZ_DATA_FILES.map(function(url) {
-          return fetchAndCache(cache, url);
-        });
+        // Try to cache quiz data (don't fail install if these fail)
+        const quizPromises = QUIZ_DATA_FILES.map(url =>
+          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err.message))
+        );
+        await Promise.allSettled(quizPromises);
+        console.log('[Service Worker] Quiz data cached');
         
-        // Cache images
-        var imagePromises = IMAGE_ASSETS.map(function(url) {
-          return fetchAndCache(cache, url);
-        });
+        // Try to cache images (don't fail install if these fail)
+        const imagePromises = IMAGE_FILES.map(url =>
+          cache.add(url).catch(err => console.warn('[SW] Failed to cache:', url, err.message))
+        );
+        await Promise.allSettled(imagePromises);
         
-        return Promise.all(
-          staticPromises.concat(scriptPromises).concat(quizPromises).concat(imagePromises)
-        )
-        .then(function() {
-          console.log('[Service Worker] Installation complete - ' + CACHE_VERSION);
-          return self.skipWaiting();
-        })
-        .catch(function(error) {
-          console.warn('[Service Worker] Some assets failed to cache: ' + error.message);
-          return self.skipWaiting();
-        });
+        console.log('[Service Worker] All assets processed');
       })
-      .catch(function(error) {
-        console.error('[Service Worker] Failed to open cache: ' + error.message);
+      .then(() => {
+        console.log('[Service Worker] Skip waiting');
         return self.skipWaiting();
+      })
+      .catch((error) => {
+        console.error('[Service Worker] Install failed:', error);
       })
   );
 });
 
-/**
- * Helper function to fetch and cache a single file
- */
-function fetchAndCache(cache, url) {
-  return fetch(url)
-    .then(function(response) {
-      if (response.ok) {
-        return cache.put(url, response);
-      }
-      console.warn('[Service Worker] Asset returned non-ok status: ' + url + ' (' + response.status + ')');
-    })
-    .catch(function(error) {
-      console.warn('[Service Worker] Error caching ' + url + ': ' + error.message);
-    });
-}
-
-// ==================== ACTIVATE EVENT ====================
-
-self.addEventListener('activate', function(event) {
-  console.log('[Service Worker] Activating ' + CACHE_VERSION);
+// Activate event - clean up old caches and notify clients
+self.addEventListener('activate', (event) => {
+  console.log('[Service Worker] Activating version', CACHE_VERSION);
   
   event.waitUntil(
     caches.keys()
-      .then(function(cacheNames) {
-        console.log('[Service Worker] Found caches: ' + cacheNames.join(', '));
-        
-        var deletePromises = cacheNames.map(function(cacheName) {
-          // Delete old cache versions
-          if (cacheName !== CACHE_NAME && cacheName !== RUNTIME_CACHE && cacheName !== IMAGE_CACHE) {
-            console.log('[Service Worker] Deleting old cache: ' + cacheName);
-            return caches.delete(cacheName);
-          }
-        });
-        
-        return Promise.all(deletePromises);
+      .then((cacheNames) => {
+        return Promise.all(
+          cacheNames
+            .filter((cacheName) => cacheName.startsWith('nurse-success-') && cacheName !== CACHE_NAME)
+            .map((cacheName) => {
+              console.log('[Service Worker] Deleting old cache:', cacheName);
+              return caches.delete(cacheName);
+            })
+        );
       })
-      .then(function() {
-        console.log('[Service Worker] Activation complete');
+      .then(() => {
+        console.log('[Service Worker] Claiming clients');
         return self.clients.claim();
       })
-      .catch(function(error) {
-        console.error('[Service Worker] Error during activation: ' + error.message);
+      .then(() => {
+        // Notify all clients that a new version is available
+        return self.clients.matchAll().then(clients => {
+          clients.forEach(client => {
+            client.postMessage({
+              type: 'SW_ACTIVATED',
+              version: CACHE_VERSION
+            });
+          });
+        });
       })
   );
 });
 
-// ==================== FETCH EVENT ====================
+// Fetch event - serve from cache with appropriate strategies
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+  const url = new URL(request.url);
 
-self.addEventListener('fetch', function(event) {
-  var request = event.request;
-  var url = new URL(request.url);
-  
-  // Skip non-GET and external requests
-  if (request.method !== 'GET' || url.origin !== self.location.origin) {
+  // Skip non-GET requests
+  if (request.method !== 'GET') {
     return;
   }
-  
-  // Strategy 1: Cache-first for quiz data (JSON files)
-  if (url.pathname.includes('/modules/') && url.pathname.endsWith('.json')) {
-    event.respondWith(cacheFirstWithFallback(request, CACHE_NAME, 'json'));
+
+  // Skip Chrome extensions and other non-http(s) requests
+  if (!url.protocol.startsWith('http')) {
     return;
   }
-  
-  // Strategy 2: Cache-first for static assets (CSS, JS, icons)
-  if (url.pathname.startsWith('/static/') || url.pathname.endsWith('.css') || url.pathname.endsWith('.js')) {
-    event.respondWith(cacheFirstWithFallback(request, CACHE_NAME, 'static'));
+
+  // Skip external resources (like Vercel Analytics) - let them fail silently when offline
+  if (!url.hostname.includes(self.location.hostname) && !url.hostname.includes('localhost')) {
+    event.respondWith(
+      fetch(request).catch(() => {
+        // Return empty response for external resources when offline
+        return new Response('', { status: 499, statusText: 'Network Unavailable' });
+      })
+    );
     return;
   }
-  
-  // Strategy 3: Cache-first for images
-  if (url.pathname.startsWith('/images/') || url.pathname.endsWith('.png') || url.pathname.endsWith('.jpg') || url.pathname.endsWith('.jpeg')) {
-    event.respondWith(cacheFirstImages(request));
-    return;
-  }
-  
-  // Strategy 4: Network-first for HTML pages and API calls
-  if (url.pathname === '/' || url.pathname.endsWith('.html') || url.pathname.startsWith('/api/') || url.pathname.startsWith('/category') || url.pathname.startsWith('/quiz')) {
-    event.respondWith(networkFirstWithCache(request, CACHE_NAME));
-    return;
-  }
+
+  event.respondWith(
+    caches.match(request)
+      .then((cachedResponse) => {
+        
+        // STRATEGY 1: Network First for HTML pages and API calls
+        // Try network first for fresh content, fall back to cache
+        if (request.mode === 'navigate' || url.pathname.startsWith('/api/') || HTML_PAGES.includes(url.pathname)) {
+          return fetch(request)
+            .then((networkResponse) => {
+              // Cache the fresh response
+              if (networkResponse && networkResponse.status === 200) {
+                const responseToCache = networkResponse.clone();
+                caches.open(CACHE_NAME).then((cache) => {
+                  cache.put(request, responseToCache);
+                });
+              }
+              return networkResponse;
+            })
+            .catch(() => {
+              // Network failed, return cached version or home page
+              if (cachedResponse) {
+                return cachedResponse;
+              }
+              // If no cached response for this specific page, try to return the home page
+              return caches.match('/');
+            });
+        }
+        
+        // STRATEGY 2: Cache First for static assets
+        // Return cache immediately for speed, update in background
+        if (url.pathname.startsWith('/static/') || url.pathname.startsWith('/images/')) {
+          if (cachedResponse) {
+            // Fetch fresh version in background (stale-while-revalidate)
+            fetch(request).then((networkResponse) => {
+              if (networkResponse && networkResponse.status === 200) {
+                caches.open(CACHE_NAME).then((cache) => {
+                  cache.put(request, networkResponse);
+                });
+              }
+            }).catch(() => { /* Ignore background update failures */ });
+            return cachedResponse;
+          }
+          
+          return fetch(request)
+            .then((networkResponse) => {
+              if (networkResponse && networkResponse.status === 200) {
+                const responseToCache = networkResponse.clone();
+                caches.open(CACHE_NAME).then((cache) => {
+                  cache.put(request, responseToCache);
+                });
+              }
+              return networkResponse;
+            });
+        }
+        
+        // STRATEGY 3: Stale While Revalidate for quiz JSON
+        // Return cache immediately, fetch fresh in background
+        if (url.pathname.endsWith('.json') || url.pathname.startsWith('/modules/')) {
+          // Return cached version immediately if available
+          if (cachedResponse) {
+            // Fetch fresh version in background
+            fetch(request).then((networkResponse) => {
+              if (networkResponse && networkResponse.status === 200) {
+                caches.open(CACHE_NAME).then((cache) => {
+                  cache.put(request, networkResponse);
+                });
+              }
+            }).catch(() => {
+              // Ignore background update failures
+            });
+            return cachedResponse;
+          }
+          
+          // No cache, must fetch from network
+          return fetch(request)
+            .then((networkResponse) => {
+              if (networkResponse && networkResponse.status === 200) {
+                const responseToCache = networkResponse.clone();
+                caches.open(CACHE_NAME).then((cache) => {
+                  cache.put(request, responseToCache);
+                });
+              }
+              return networkResponse;
+            })
+            .catch((error) => {
+              console.error('[Service Worker] Fetch failed for:', url.pathname, error);
+              throw error;
+            });
+        }
+        
+        // Default: try cache first, then network
+        return cachedResponse || fetch(request);
+      })
+  );
 });
 
-// ==================== CACHING STRATEGIES ====================
-
-/**
- * Cache-first strategy with proper error handling
- */
-function cacheFirstWithFallback(request, cacheName, type) {
-  return caches.match(request)
-    .then(function(response) {
-      if (response) {
-        console.log('[Service Worker] Cache hit: ' + request.url);
-        return response;
-      }
-      
-      // Not in cache, fetch from network
-      return fetch(request)
-        .then(function(response) {
-          // Cache successful responses
-          if (response && response.status === 200 && response.type === 'basic') {
-            var responseClone = response.clone();
-            caches.open(cacheName)
-              .then(function(cache) {
-                cache.put(request, responseClone);
-              })
-              .catch(function(error) {
-                console.warn('[Service Worker] Error caching response: ' + error.message);
-              });
-          }
-          return response;
-        })
-        .catch(function(error) {
-          console.warn('[Service Worker] Network error for ' + request.url + ': ' + error.message);
-          
-          // Return cached version if available
-          return caches.match(request)
-            .then(function(response) {
-              if (response) {
-                return response;
-              }
-              
-              // Return appropriate offline response
-              if (type === 'json') {
-                return new Response(
-                  JSON.stringify({error: 'Quiz data unavailable offline'}),
-                  {status: 503, statusText: 'Service Unavailable', headers: new Headers({'Content-Type': 'application/json'})}
-                );
-              }
-              
-              return new Response('Content unavailable offline', {status: 503});
-            });
-        });
-    })
-    .catch(function(error) {
-      console.error('[Service Worker] Cache match error: ' + error.message);
-      return fetch(request).catch(function() {
-        return new Response('Service unavailable', {status: 503});
-      });
-    });
-}
-
-/**
- * Cache-first for images
- */
-function cacheFirstImages(request) {
-  return caches.match(request)
-    .then(function(response) {
-      if (response) {
-        return response;
-      }
-      
-      return fetch(request)
-        .then(function(response) {
-          if (response && response.status === 200) {
-            var responseClone = response.clone();
-            caches.open(IMAGE_CACHE)
-              .then(function(cache) {
-                cache.put(request, responseClone);
-              });
-          }
-          return response;
-        })
-        .catch(function(error) {
-          console.warn('[Service Worker] Image fetch error: ' + error.message);
-          
-          // Try cached version
-          return caches.match(request)
-            .catch(function() {
-              // Return transparent 1x1 pixel
-              return new Response(
-                Buffer ? Buffer.from([0x47, 0x49, 0x46, 0x38, 0x39, 0x61, 0x01, 0x00, 0x01, 0x00, 0x80, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x21, 0xF9, 0x04, 0x01, 0x0A, 0x00, 0x01, 0x00, 0x2C, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x02, 0x02, 0x4C, 0x01, 0x00, 0x3B]) : '',
-                {
-                  status: 200,
-                  headers: new Headers({'Content-Type': 'image/gif'})
-                }
-              );
-            });
-        });
-    });
-}
-
-/**
- * Network-first strategy with cache fallback
- */
-function networkFirstWithCache(request, cacheName) {
-  return fetch(request)
-    .then(function(response) {
-      // Check if response is valid
-      if (!response || response.status === 404) {
-        // Real 404 - page doesn't exist on server
-        return response;
-      }
-      
-      // Cache successful responses
-      if (response.status === 200 && response.type === 'basic') {
-        var responseClone = response.clone();
-        caches.open(RUNTIME_CACHE)
-          .then(function(cache) {
-            cache.put(request, responseClone);
-          });
-      }
-      
-      return response;
-    })
-    .catch(function(error) {
-      console.warn('[Service Worker] Network request failed: ' + request.url);
-      
-      // Fall back to cache
-      return caches.match(request)
-        .then(function(response) {
-          if (response) {
-            console.log('[Service Worker] Returning cached response: ' + request.url);
-            return response;
-          }
-          
-          // No cache available and offline
-          return new Response(
-            '<html><body><h1>Offline</h1><p>This page is not available offline.</p><a href="/">Go Home</a></body></html>',
-            {
-              status: 503,
-              statusText: 'Service Unavailable',
-              headers: new Headers({'Content-Type': 'text/html'})
-            }
-          );
-        })
-        .catch(function(cacheError) {
-          console.error('[Service Worker] Cache lookup failed: ' + cacheError.message);
-          return new Response('Service unavailable', {status: 503});
-        });
-    });
-}
-
-// ==================== MESSAGE EVENT ====================
-
-self.addEventListener('message', function(event) {
+// Handle messages from clients
+self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
+    console.log('[Service Worker] Skip waiting requested');
     self.skipWaiting();
   }
   
-  if (event.data && event.data.type === 'CLEAR_CACHE') {
-    caches.keys()
-      .then(function(cacheNames) {
-        return Promise.all(
-          cacheNames.map(function(cacheName) {
-            return caches.delete(cacheName);
-          })
-        );
-      })
-      .then(function() {
-        console.log('[Service Worker] All caches cleared');
-        if (event.ports[0]) {
-          event.ports[0].postMessage({success: true});
-        }
-      });
+  if (event.data && event.data.type === 'FORCE_UPDATE') {
+    console.log('[Service Worker] Force update requested');
+    event.waitUntil(updateCache());
+  }
+  
+  if (event.data && event.data.type === 'CHECK_UPDATE') {
+    console.log('[Service Worker] Checking for updates');
+    event.waitUntil(checkForUpdates(event.source));
+  }
+  
+  if (event.data && event.data.type === 'CACHE_URLS') {
+    console.log('[Service Worker] Caching additional URLs');
+    event.waitUntil(
+      caches.open(CACHE_NAME)
+        .then((cache) => cache.addAll(event.data.urls))
+    );
+  }
+  
+  if (event.data && event.data.type === 'GET_VERSION') {
+    event.ports[0].postMessage({ version: CACHE_VERSION });
   }
 });
 
-// ==================== LOGGING ====================
+// Background sync for cache updates (if supported)
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'update-cache') {
+    console.log('[Service Worker] Background sync: updating cache');
+    event.waitUntil(updateCache());
+  }
+});
 
-console.log('[Service Worker] ' + CACHE_VERSION + ' loaded and ready');
+// Periodic background sync (if supported)
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'update-cache') {
+    console.log('[Service Worker] Periodic sync: updating cache');
+    event.waitUntil(updateCache());
+  }
+});
+
+// Check for updates by fetching the service worker file
+async function checkForUpdates(client) {
+  try {
+    const response = await fetch('/service-worker.js', { cache: 'no-store' });
+    if (response.ok) {
+      const text = await response.text();
+      const versionMatch = text.match(/CACHE_VERSION\s*=\s*['"]([^'"]+)['"]/);
+      if (versionMatch && versionMatch[1] !== CACHE_VERSION) {
+        console.log('[Service Worker] New version available:', versionMatch[1]);
+        if (client) {
+          client.postMessage({
+            type: 'UPDATE_AVAILABLE',
+            currentVersion: CACHE_VERSION,
+            newVersion: versionMatch[1]
+          });
+        }
+        return true;
+      }
+    }
+  } catch (error) {
+    console.warn('[Service Worker] Update check failed:', error.message);
+  }
+  return false;
+}
+
+// Function to update all cached content
+async function updateCache() {
+  console.log('[Service Worker] Starting cache update');
+  const cache = await caches.open(CACHE_NAME);
+  const allUrls = [...CORE_ASSETS, ...HTML_PAGES, ...QUIZ_DATA_FILES, ...IMAGE_FILES];
+  
+  let updated = 0;
+  let failed = 0;
+  
+  for (const url of allUrls) {
+    try {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (response && response.status === 200) {
+        await cache.put(url, response);
+        updated++;
+      }
+    } catch (error) {
+      console.warn('[Service Worker] Failed to update:', url, error.message);
+      failed++;
+    }
+  }
+  
+  console.log(`[Service Worker] Cache update complete. Updated: ${updated}, Failed: ${failed}`);
+  
+  // Notify clients that cache was updated
+  const clients = await self.clients.matchAll();
+  clients.forEach(client => {
+    client.postMessage({ 
+      type: 'CACHE_UPDATED', 
+      version: CACHE_VERSION,
+      stats: { updated, failed, total: allUrls.length }
+    });
+  });
+  
+  return { updated, failed };
+}
+
+console.log('[Service Worker] Script loaded - version', CACHE_VERSION);
