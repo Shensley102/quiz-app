@@ -1,685 +1,400 @@
-/* -----------------------------------------------------------
-   Fill-in-the-Blank Quiz - Lab Values
-   - Text input validation
-   - Exact answer matching with flexible spacing
-   - Case-insensitive comparison
-   - Two-part answer support (ranges)
-   - Color-coded input feedback
-   - Progress tracking
-   - LocalStorage persistence
------------------------------------------------------------ */
-
-const $ = (id) => document.getElementById(id);
-
-// DOM elements
-const startBtn = $('startBtn');
-const setupCard = $('setup');
-const quizCard = $('quiz');
-const summaryCard = $('summary');
-const lengthBtns = $('lengthBtns');
-
-const questionText = $('questionText');
-const answerInputs = $('answerInputs');
-const submitBtn = $('submitBtn');
-const feedback = $('feedback');
-const answerLine = $('answerLine');
-const rationale = $('rationale');
-
-const runCounter = $('runCounter');
-const remainingCounter = $('remainingCounter');
-const progressFill = $('progressFill');
-const progressLabel = $('progressLabel');
-
-const restartBtn = $('restartBtn');
-const resetAllBtn = $('resetAll');
-const retryMissedBtn = $('retryMissedBtn');
-const firstTrySummary = $('firstTrySummary');
-const reviewList = $('reviewList');
-
-/* ---------- State ---------- */
-let allQuestions = [];
-let run = {
-  order: [],
-  masterPool: [],
-  i: 0,
-  answered: new Map(),
-  uniqueSeen: new Set(),
-  wrongSinceLast: [],
-  totalQuestionsAnswered: 0,
-  isFullBank: false,
-  isRetry: false,
-};
-
-let lastQuizMissedQuestions = [];
-
-/* ---------- Persistence ---------- */
-const STORAGE_KEY = 'fillBlankRunState_v1';
-
-function serializeRun() {
-  if (!run || !run.order?.length) return null;
-  return JSON.stringify({
-    order: run.order.map(q => ({ id: q.id, question: q.question, answer: q.answer, display_answer: q.display_answer, rationale: q.rationale })),
-    masterPool: run.masterPool.map(q => q.id),
-    i: run.i,
-    answered: Array.from(run.answered.entries()),
-    uniqueSeen: Array.from(run.uniqueSeen),
-    wrongSinceLast: run.wrongSinceLast.map(q => q.id),
-    totalQuestionsAnswered: run.totalQuestionsAnswered,
-    isFullBank: run.isFullBank,
-    isRetry: run.isRetry,
-  });
-}
-
-function saveRunState() {
-  try {
-    const s = serializeRun();
-    if (s) localStorage.setItem(STORAGE_KEY, s);
-  } catch {}
-}
-
-function loadRunState() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    const data = JSON.parse(raw);
-
-    const qById = new Map();
-    const restoredOrder = (data.order || []).map(q => {
-      const qq = { id: q.id, question: q.question, answer: q.answer, display_answer: q.display_answer, rationale: q.rationale };
-      qById.set(qq.id, qq);
-      return qq;
-    });
-    const idToQ = (id) => qById.get(id) || null;
-
-    const restored = {
-      order: restoredOrder,
-      masterPool: (data.masterPool || []).map(idToQ).filter(Boolean),
-      i: Math.max(0, parseInt(data.i || 0, 10)),
-      answered: new Map(Array.isArray(data.answered) ? data.answered : []),
-      uniqueSeen: new Set(Array.isArray(data.uniqueSeen) ? data.uniqueSeen : []),
-      wrongSinceLast: (data.wrongSinceLast || []).map(idToQ).filter(Boolean),
-      totalQuestionsAnswered: Math.max(0, parseInt(data.totalQuestionsAnswered || 0, 10)),
-      isFullBank: Boolean(data.isFullBank),
-      isRetry: Boolean(data.isRetry),
-    };
-    return restored;
-  } catch {
-    return null;
-  }
-}
-
-function clearSavedState() {
-  try {
-    localStorage.removeItem(STORAGE_KEY);
-  } catch {}
-}
-
-/* ---------- Utilities ---------- */
-const randomInt = (n) => Math.floor(Math.random() * n);
-
-function shuffleInPlace(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = randomInt(i + 1);
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-function sampleQuestions(all, req) {
-  const a = all.slice();
-  if (req === 'full' || req >= a.length) return shuffleInPlace(a);
-  const k = Math.max(0, req | 0);
-  for (let i = 0; i < k; i++) {
-    const j = i + randomInt(a.length - i);
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a.slice(0, k);
-}
-
-function escapeHTML(s = '') {
-  return String(s)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
-
-function scrollToBottomSmooth() {
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
-    });
-  });
-}
-
-function scrollToQuizTop() {
-  if (!quizCard) return;
-  quizCard.scrollIntoView({ behavior: 'auto', block: 'start' });
-}
-
-/* ---------- Answer validation ---------- */
-function normalizeAnswer(text) {
-  return String(text || '')
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, ' ')
-    .replace(/[^\w\s.-]/g, '');
-}
-
-function isAnswerCorrect(userAnswers, correctAnswers) {
-  if (!Array.isArray(userAnswers) || !Array.isArray(correctAnswers)) return false;
-
-  if (userAnswers.length !== correctAnswers.length) return false;
-
-  const normalized = userAnswers.map(normalizeAnswer).sort();
-  const expectedNormalized = correctAnswers.map(normalizeAnswer).sort();
-
-  return normalized.every((ans, idx) => {
-    const expected = expectedNormalized[idx];
-    return ans === expected || ans.includes(expected) || expected.includes(ans);
-  });
-}
-
-/* ---------- Render question ---------- */
-function renderQuestion(q) {
-  if (!questionText || !answerInputs) return;
-
-  questionText.textContent = q.question;
-  answerInputs.innerHTML = '';
-
-  if (feedback) {
-    feedback.textContent = '';
-    feedback.className = 'feedback hidden';
-  }
-  if (answerLine) {
-    answerLine.innerHTML = '';
-    answerLine.classList.add('hidden');
-  }
-  if (rationale) {
-    rationale.textContent = '';
-    rationale.classList.add('hidden');
-  }
-
-  const answers = Array.isArray(q.answer) ? q.answer : [q.answer];
-  const inputCount = answers.length;
-
-  const inputsContainer = document.createElement('div');
-  inputsContainer.className = 'fill-blank-inputs';
-
-  answers.forEach((_, idx) => {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'input-wrapper';
-
-    const label = document.createElement('label');
-    label.textContent = inputCount > 1 ? `Blank ${idx + 1}:` : 'Answer:';
-    label.className = 'input-label';
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.className = 'fill-blank-input';
-    input.id = `answer-${idx}`;
-    input.placeholder = 'Type your answer';
-    input.autocomplete = 'off';
-
-    input.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        if (submitBtn && !submitBtn.disabled) {
-          submitBtn.click();
-        }
-      }
-    });
-
-    wrapper.appendChild(label);
-    wrapper.appendChild(input);
-    inputsContainer.appendChild(wrapper);
-  });
-
-  answerInputs.appendChild(inputsContainer);
-
-  if (submitBtn) {
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submit Answer';
-    submitBtn.dataset.mode = 'submit';
-  }
-
-  // Focus first input for immediate typing
-  const firstInput = answerInputs.querySelector('.fill-blank-input');
-  if (firstInput) firstInput.focus();
-}
-
-function getUserAnswers() {
-  const inputs = answerInputs?.querySelectorAll('.fill-blank-input') || [];
-  return Array.from(inputs).map(inp => inp.value.trim()).filter(v => v.length > 0);
-}
-
-function getAllAnswerInputs() {
-  return answerInputs?.querySelectorAll('.fill-blank-input') || [];
-}
-
-function onInputChanged() {
-  if (!submitBtn) return;
-  const inputs = getAllAnswerInputs();
-  const allFilled = Array.from(inputs).every(inp => inp.value.trim().length > 0);
-  submitBtn.disabled = !allFilled;
-}
-
-/* ---------- Get current question ---------- */
-function currentQuestion() {
-  return run.order?.[run.i] || null;
-}
-
-/* ---------- Get not mastered ---------- */
-function getNotMastered() {
-  return run.masterPool.filter(q => !run.answered.get(q.id)?.correct);
-}
-
-/* ---------- Next index ---------- */
-function nextIndex() {
-  const nextIdx = (run.i ?? 0) + 1;
-  if (nextIdx < run.order.length) {
-    run.i = nextIdx;
-    return { fromBuffer: false, q: run.order[run.i] };
-  }
-
-  const allCorrect = run.masterPool.every(q => run.answered.get(q.id)?.correct);
-
-  if (!allCorrect) {
-    const notMastered = getNotMastered();
-    if (notMastered.length > 0) {
-      run.wrongSinceLast = [];
-      run.order.push(...notMastered);
-      run.i = nextIdx;
-      return { fromBuffer: true, q: run.order[run.i] };
-    }
-  }
-
-  return { fromBuffer: false, q: null };
-}
-
-/* ---------- Update counters ---------- */
-function updateCounters() {
-  const remaining = getNotMastered().length;
-  const total = run.masterPool.length;
-
-  if (runCounter) runCounter.textContent = `Question: ${run.totalQuestionsAnswered}`;
-  if (remainingCounter) remainingCounter.textContent = `Remaining to master: ${remaining}`;
-
-  const masteredCount = total - remaining;
-  const percentage = total ? Math.floor((masteredCount / total) * 100) : 0;
-
-  if (progressFill) progressFill.style.width = `${percentage}%`;
-  if (progressLabel) progressLabel.textContent = `${percentage}% mastered`;
-
-  const r = Math.round(47 + (76 - 47) * (percentage / 100));
-  const g = Math.round(97 + (175 - 97) * (percentage / 100));
-  const b = Math.round(243 + (80 - 243) * (percentage / 100));
-  if (progressFill) progressFill.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-
-  saveRunState();
-}
-
-/* ---------- Record answer ---------- */
-function recordAnswer(q, userAnswers, isCorrect) {
-  const firstTime = !run.answered.has(q.id);
-  const entry = run.answered.get(q.id) || { firstTryCorrect: null, correct: false, userAnswers: [] };
-  if (firstTime) entry.firstTryCorrect = !!isCorrect;
-  entry.correct = !!isCorrect;
-  entry.userAnswers = userAnswers.slice();
-  run.answered.set(q.id, entry);
-}
-
-/* ---------- Start quiz ---------- */
-async function startQuiz() {
-  if (!lengthBtns || !startBtn) return;
-
-  const lenBtn = lengthBtns.querySelector('.seg-btn.active');
-  if (!lenBtn) {
-    alert('Pick Length Of Quiz Before Starting');
-    lengthBtns.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    return;
-  }
-
-  const qty = lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10);
-  const isFullBank = qty === 'full';
-
-  startBtn.disabled = true;
-
-  try {
-    let rawData;
-
-    if (window.storedPreloadedData && window.storedPreloadedData.moduleName === 'NCLEX_Lab_Values_Fill_In_The_Blank') {
-      rawData = window.storedPreloadedData.questions;
-    } else {
-      const moduleName = 'NCLEX_Lab_Values_Fill_In_The_Blank';
-      const jsonUrl = `/modules/Lab_Values/${moduleName}.json`;
-
-      const res = await fetch(jsonUrl, { cache: 'no-store' });
-      if (!res.ok) {
-        alert(`Could not load quiz data (${res.status})`);
-        startBtn.disabled = false;
-        return;
-      }
-      rawData = await res.json();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="Fill-in-the-Blank Quiz - Nurse Success Study Hub">
+  <title id="pageTitle">Fill-in-the-Blank Quiz - Nurse Success Study Hub</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/static/manifest.json">
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#2f61f3">
+  
+  <!-- PWA Specific -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Nurse Study">
+  
+  <!-- Apple Touch Icons - All Sizes -->
+  <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
+  
+  <!-- Vercel Analytics -->
+  <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
+  
+  <style>
+    /* Offline indicator */
+    .offline-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #ff9800, #f57c00);
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      z-index: 10000;
     }
 
-    allQuestions = Array.isArray(rawData) ? rawData : (rawData.questions || []);
-
-    const sampled = sampleQuestions(allQuestions, qty);
-
-    run = {
-      order: [...sampled],
-      masterPool: [...sampled],
-      i: 0,
-      answered: new Map(),
-      uniqueSeen: new Set(),
-      wrongSinceLast: [],
-      totalQuestionsAnswered: 1,
-      isFullBank: isFullBank,
-      isRetry: false,
-    };
-
-    if (setupCard) setupCard.classList.add('hidden');
-    if (summaryCard) summaryCard.classList.add('hidden');
-    if (quizCard) quizCard.classList.remove('hidden');
-
-    const q0 = run.order[0];
-    run.uniqueSeen.add(q0.id);
-    renderQuestion(q0);
-    updateCounters();
-
-    startBtn.disabled = false;
-  } catch (err) {
-    console.error('Error starting quiz:', err);
-    alert('Error loading quiz. Please try again.');
-    if (startBtn) startBtn.disabled = false;
-  }
-}
-
-/* ---------- Handle submit ---------- */
-function handleSubmit() {
-  if (!submitBtn) return;
-
-  if (submitBtn.dataset.mode === 'next') {
-    scrollToQuizTop();
-    const next = nextIndex();
-    const q = next.q;
-    if (!q) return endRun();
-    run.uniqueSeen.add(q.id);
-    run.totalQuestionsAnswered++;
-    renderQuestion(q);
-    updateCounters();
-    return;
-  }
-
-  const q = currentQuestion();
-  if (!q) return;
-
-  const userAnswers = getUserAnswers();
-  const correctAnswers = Array.isArray(q.answer) ? q.answer : [q.answer];
-  const isCorrect = isAnswerCorrect(userAnswers, correctAnswers);
-
-  recordAnswer(q, userAnswers, isCorrect);
-
-  if (!isCorrect) {
-    run.wrongSinceLast.push(q);
-  }
-
-  if (feedback) {
-    feedback.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
-    feedback.classList.remove('hidden');
-    feedback.classList.add(isCorrect ? 'ok' : 'bad');
-  }
-
-  if (answerLine) {
-    answerLine.innerHTML = `<strong>Correct Answer:</strong> ${escapeHTML(q.display_answer || String(q.answer))}`;
-    answerLine.classList.remove('hidden');
-  }
-
-  if (rationale) {
-    rationale.textContent = q.rationale || '';
-    rationale.classList.remove('hidden');
-  }
-
-  const inputs = getAllAnswerInputs();
-  inputs.forEach(inp => inp.disabled = true);
-
-  if (submitBtn) {
-    submitBtn.textContent = 'Next';
-    submitBtn.dataset.mode = 'next';
-    submitBtn.disabled = false;
-  }
-
-  scrollToBottomSmooth();
-  updateCounters();
-}
-
-/* ---------- End run ---------- */
-function endRun() {
-  if (quizCard) quizCard.classList.add('hidden');
-  if (summaryCard) summaryCard.classList.remove('hidden');
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  const uniq = [...run.answered.values()];
-  const ftCorrect = uniq.filter(x => x.firstTryCorrect).length;
-  const totalUnique = uniq.length;
-
-  lastQuizMissedQuestions = run.masterPool.filter(q => {
-    const ans = run.answered.get(q.id);
-    return ans && ans.firstTryCorrect === false;
-  });
-
-  if (retryMissedBtn) {
-    if (lastQuizMissedQuestions.length > 0 && !run.isRetry) {
-      retryMissedBtn.classList.remove('hidden');
-      const missedCount = document.getElementById('missedCount');
-      if (missedCount) {
-        missedCount.textContent = lastQuizMissedQuestions.length;
-      }
-    } else {
-      retryMissedBtn.classList.add('hidden');
+    .offline-indicator.hidden {
+      display: none;
     }
-  }
 
-  if (firstTrySummary) {
-    if (totalUnique > 0) {
-      firstTrySummary.classList.remove('hidden');
-      const summaryHTML = `
-        <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
-          <div>
-            <strong>First-try mastery:</strong>
-            <span id="firstTryPct">0%</span>
-            (<span id="firstTryCount">0</span> / <span id="firstTryTotal">0</span>)
-          </div>
-          <div>
-            <strong>Total Questions Answered:</strong>
-            <span>${run.totalQuestionsAnswered}</span>
+    /* Fill-in-the-blank specific styles */
+    .fill-blank-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+    
+    .input-label {
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    
+    .fill-blank-input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 18px;
+      border: 3px solid var(--border);
+      border-radius: 10px;
+      font-family: inherit;
+      background: #fff;
+      transition: all 0.2s ease;
+    }
+    
+    .fill-blank-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(47, 97, 243, 0.15);
+    }
+    
+    .fill-blank-input::placeholder {
+      color: #aaa;
+    }
+    
+    .fill-blank-input.correct {
+      border-color: #4caf50 !important;
+      background: rgba(76, 175, 80, 0.08);
+    }
+    
+    .fill-blank-input.incorrect {
+      border-color: #f44336 !important;
+      background: rgba(244, 67, 54, 0.08);
+    }
+    
+    .fill-blank-input:disabled {
+      background: #f9f9f9;
+      cursor: not-allowed;
+    }
+    
+    /* Question styling enhancements for fill-in-blank */
+    .question {
+      font-size: 20px;
+      line-height: 1.5;
+      padding: 20px;
+      background: rgba(139, 92, 246, 0.05);
+      border-radius: 10px;
+      border-left: 4px solid #8B5CF6;
+      margin-bottom: 24px;
+    }
+    
+    /* Hard mode badge */
+    .hard-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(244, 67, 54, 0.1);
+      color: var(--danger);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+
+    /* Dynamic length selector styles */
+    .length-selector-container {
+      margin-bottom: 20px;
+    }
+
+    .length-selector-container.hidden {
+      display: none !important;
+    }
+
+    .length-selector-label {
+      display: block;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .length-buttons {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .length-btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 14px 16px;
+      border: 1px solid #d0d0d0;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: inherit;
+      text-align: center;
+    }
+
+    .length-btn:first-child {
+      border-radius: 8px 0 0 8px;
+    }
+
+    .length-btn:last-child {
+      border-radius: 0 8px 8px 0;
+    }
+
+    .length-btn:only-child {
+      border-radius: 8px;
+    }
+
+    .length-btn:not(:last-child) {
+      border-right: none;
+    }
+
+    .length-btn:hover:not(.active) {
+      background: #f5f5f5;
+    }
+
+    .length-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .length-btn.active + .length-btn {
+      border-left: 1px solid var(--primary);
+    }
+
+    /* Start Quiz button styling */
+    .start-quiz-btn {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      background: #5cb85c;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      margin-top: 16px;
+    }
+
+    .start-quiz-btn:hover:not(:disabled) {
+      background: #4cae4c;
+    }
+
+    .start-quiz-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    /* Safe area insets for iOS PWA */
+    @supports (padding-top: env(safe-area-inset-top)) {
+      body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .length-buttons {
+        flex-direction: column;
+      }
+
+      .length-btn {
+        border-radius: 0 !important;
+        border-right: 1px solid #d0d0d0 !important;
+        border-bottom: none;
+      }
+
+      .length-btn:first-child {
+        border-radius: 8px 8px 0 0 !important;
+      }
+
+      .length-btn:last-child {
+        border-radius: 0 0 8px 8px !important;
+        border-bottom: 1px solid #d0d0d0;
+      }
+
+      .length-btn:only-child {
+        border-radius: 8px !important;
+        border-bottom: 1px solid #d0d0d0;
+      }
+
+      .length-btn.active + .length-btn {
+        border-left: 1px solid #d0d0d0;
+        border-top: 1px solid var(--primary);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Offline indicator -->
+  <div id="offlineIndicator" class="offline-indicator hidden">
+    <span>📴 You're offline - Using cached content</span>
+  </div>
+
+  <div class="container">
+    <!-- Title Bar -->
+    <div class="title-bar">
+      <div>
+        <a href="{{ back_url if back_url else '/' }}" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 4px; display: inline-block; font-size: 14px;">← {{ back_label if back_label else 'Nurse Success Study Hub' }}</a>
+        <h1 id="quizTitle">Lab Values - Fill in the Blank <span class="hard-badge">HARD MODE</span></h1>
+      </div>
+      <div id="resumeContainer" class="resume-container hidden">
+        <span id="remainingQuestionsCount" class="remaining-count"></span>
+        <button class="btn btn-blue" id="resumeBtn">Resume Quiz</button>
+      </div>
+    </div>
+
+    <!-- Setup Card -->
+    <div class="card" id="setup">
+      <h2>Fill-in-the-Blank Quiz</h2>
+      <p style="color: var(--ink-soft); margin-bottom: 24px;">Test your recall of exact laboratory values. Type your answers - no multiple choice hints!</p>
+      
+      <!-- Dynamic Length Selector -->
+      <div class="length-selector-container" id="lengthSelectorContainer">
+        <label class="length-selector-label">How many questions?</label>
+        <div class="length-buttons" id="lengthBtns">
+          <!-- Buttons will be dynamically generated based on question count -->
+          <button class="length-btn active" data-len="10">10 Questions</button>
+          <button class="length-btn" data-len="25">25 Questions</button>
+          <button class="length-btn" data-len="50">50 Questions</button>
+          <button class="length-btn" data-len="full">All 100 Questions</button>
+        </div>
+      </div>
+
+      <button class="start-quiz-btn" id="startBtn">Start Quiz</button>
+
+      <!-- How This Quiz Works -->
+      <div style="margin-top: 32px; padding: 24px; background: rgba(139, 92, 246, 0.05); border-radius: 8px; border-left: 4px solid #8B5CF6;">
+        <h3 style="color: var(--ink); margin-bottom: 16px; font-size: 20px;">How Fill-in-the-Blank Works</h3>
+        <ul style="margin: 0; padding-left: 24px;">
+          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Type Your Answers:</strong> Enter the exact value or term in the text field(s).</li>
+          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Case Insensitive:</strong> "negative" and "Negative" are both accepted.</li>
+          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Two-Part Questions:</strong> Some questions have two blanks (e.g., ranges). Both must be correct.</li>
+          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Individual Feedback:</strong> Each blank shows ✓ or ✗ so you know exactly what you got right or wrong.</li>
+          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Press Enter:</strong> Use Enter to move to the next field or submit your answer.</li>
+          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Mastery System:</strong> Incorrect answers will repeat until you get them right.</li>
+          <li style="margin-bottom: 12px; line-height: 1.6; color: var(--ink-soft);"><strong>Offline Mode:</strong> This app works offline! Your progress is saved locally.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quiz Card -->
+    <div class="card hidden" id="quiz">
+      <!-- Counters -->
+      <div id="countersBox" class="hidden">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+          <span id="runCounter" style="font-weight: 600; font-size: 14px;">Question: 1</span>
+          <span id="remainingCounter" style="font-weight: 600; font-size: 14px;">Remaining to master: 0</span>
+        </div>
+        <div style="position: relative; margin-bottom: 16px;">
+          <div id="progressBar" class="pbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div id="progressFill" class="pbar-fill"></div>
+            <div id="progressLabel" class="pbar-label">0% mastered</div>
           </div>
         </div>
-      `;
-      firstTrySummary.innerHTML = summaryHTML;
-      const firstTryPct = document.getElementById('firstTryPct');
-      const firstTryCount = document.getElementById('firstTryCount');
-      const firstTryTotal = document.getElementById('firstTryTotal');
-      if (firstTryPct) firstTryPct.textContent = `${Math.round((ftCorrect / totalUnique) * 100)}%`;
-      if (firstTryCount) firstTryCount.textContent = ftCorrect;
-      if (firstTryTotal) firstTryTotal.textContent = totalUnique;
-    } else {
-      firstTrySummary.classList.add('hidden');
-    }
-  }
+      </div>
 
-  if (reviewList) {
-    reviewList.innerHTML = '';
+      <div id="questionText" class="question"></div>
+      
+      <div id="answerInputs" class="fill-blank-inputs">
+        <!-- Input fields will be generated here -->
+      </div>
+      
+      <div id="feedback" class="feedback hidden"></div>
+      <div id="answerLine" class="answer-line hidden"></div>
+      <div id="rationale" class="rationale hidden"></div>
 
-    const questionWrongCount = {};
-    run.order.forEach(q => {
-      questionWrongCount[q.id] = (questionWrongCount[q.id] || 0) + 1;
-    });
+      <div class="actions">
+        <button class="btn primary" id="submitBtn">Submit Answer</button>
+      </div>
+    </div>
 
-    const maxWrong = Math.max(...Object.values(questionWrongCount), 1);
+    <!-- Summary Card -->
+    <div class="card hidden" id="summary">
+      <h2>Quiz Complete! 🎉</h2>
+      <div id="firstTrySummary" class="first-try hidden"></div>
 
-    const sortedQuestions = [...run.order].sort((a, b) => {
-      const ansA = run.answered.get(a.id);
-      const ansB = run.answered.get(b.id);
+      <!-- Action Buttons -->
+      <div class="actions" style="margin-bottom: 24px;">
+        <button class="btn danger hidden" id="retryMissedBtn">Retry <span id="missedCount">0</span> Missed Questions</button>
+        <button class="btn primary" id="restartBtn">Start New Quiz</button>
+      </div>
 
-      if (ansA?.correct !== ansB?.correct) {
-        return ansA?.correct ? 1 : -1;
-      }
+      <!-- Help Section -->
+      <div class="help" style="margin-top: 0; margin-bottom: 32px;">
+        <h3>Need More Practice?</h3>
+        <ul>
+          <li>Review the rationales for questions you missed</li>
+          <li>Try the "Retry Missed Questions" feature to focus on weak areas</li>
+          <li>Consider taking the Multiple Choice quiz first to build familiarity</li>
+          <li>Use flashcards or mnemonics for difficult values</li>
+        </ul>
+      </div>
 
-      const countA = questionWrongCount[a.id] || 1;
-      const countB = questionWrongCount[b.id] || 1;
-      return countB - countA;
-    });
+      <h3>Review Your Answers:</h3>
+      <div id="reviewList" class="review-list"></div>
+    </div>
 
-    const displayedIds = new Set();
+    <!-- Reset Button (hidden initially) -->
+    <button class="btn danger hidden" id="resetAll" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">Reset Quiz</button>
+  </div>
 
-    sortedQuestions.forEach(q => {
-      if (displayedIds.has(q.id)) return;
-      displayedIds.add(q.id);
+  <!-- PWA Utilities -->
+  <script src="/static/js/pwa-utils.js"></script>
 
-      const row = document.createElement('div');
-      const ans = run.answered.get(q.id);
-      row.className = 'rev-item ' + (ans?.correct ? 'ok' : 'bad');
+  <script>
+    // Check if quiz data was passed from the server
+    window.preloadedQuizData = null;
+    window.preloadedModuleName = null;
+    
+    {% if quiz_data %}
+      window.preloadedQuizData = {{ quiz_data | tojson }};
+      window.preloadedModuleName = "{{ module_name }}";
+    {% endif %}
+  </script>
 
-      const qEl = document.createElement('div');
-      qEl.className = 'rev-q';
-      qEl.textContent = q.question;
-
-      const wrongCountEl = document.createElement('div');
-      wrongCountEl.className = 'rev-wrong-count';
-      const wrongCount = Math.max(0, questionWrongCount[q.id] - 1);
-      wrongCountEl.textContent = `Times marked wrong: ${wrongCount}`;
-
-      const caEl = document.createElement('div');
-      caEl.className = 'rev-ans';
-      caEl.innerHTML = `<strong>Correct Answer:</strong> ${escapeHTML(q.display_answer || String(q.answer))}`;
-
-      const rEl = document.createElement('div');
-      rEl.className = 'rev-rationale';
-      rEl.innerHTML = `<strong>Rationale:</strong> ${escapeHTML(q.rationale || '')}`;
-
-      row.appendChild(qEl);
-      row.appendChild(wrongCountEl);
-      row.appendChild(caEl);
-      row.appendChild(rEl);
-      reviewList.appendChild(row);
-    });
-  }
-
-  clearSavedState();
-}
-
-/* ---------- Keyboard shortcuts ---------- */
-document.addEventListener('keydown', (e) => {
-  if (!quizCard || quizCard.classList.contains('hidden')) return;
-  if (e.altKey || e.ctrlKey || e.metaKey) return;
-
-  const key = e.key || '';
-
-  if (key === 'Enter') {
-    e.preventDefault();
-    if (submitBtn && !submitBtn.disabled) {
-      submitBtn.click();
-    }
-    return;
-  }
-});
-
-/* ---------- Event listeners ---------- */
-if (lengthBtns) {
-  lengthBtns.addEventListener('click', (e) => {
-    const btn = e.target.closest('.seg-btn');
-    if (!btn) return;
-    lengthBtns.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  });
-}
-
-if (startBtn) {
-  startBtn.addEventListener('click', startQuiz);
-}
-
-if (answerInputs) {
-  answerInputs.addEventListener('input', onInputChanged);
-}
-
-if (submitBtn) {
-  submitBtn.addEventListener('click', handleSubmit);
-}
-
-if (restartBtn) {
-  restartBtn.addEventListener('click', () => {
-    location.reload();
-  });
-}
-
-if (resetAllBtn) {
-  resetAllBtn.addEventListener('click', () => {
-    clearSavedState();
-    location.reload();
-  });
-}
-
-if (retryMissedBtn) {
-  retryMissedBtn.addEventListener('click', () => {
-    if (!lastQuizMissedQuestions.length) return;
-
-    const shuffled = shuffleInPlace([...lastQuizMissedQuestions]);
-
-    run = {
-      order: [...shuffled],
-      masterPool: [...shuffled],
-      i: 0,
-      answered: new Map(),
-      uniqueSeen: new Set(),
-      wrongSinceLast: [],
-      totalQuestionsAnswered: 1,
-      isFullBank: false,
-      isRetry: true,
-    };
-
-    if (setupCard) setupCard.classList.add('hidden');
-    if (summaryCard) summaryCard.classList.add('hidden');
-    if (quizCard) quizCard.classList.remove('hidden');
-
-    const q0 = run.order[0];
-    run.uniqueSeen.add(q0.id);
-    renderQuestion(q0);
-    updateCounters();
-  });
-}
-
-/* ---------- Init ---------- */
-document.addEventListener('DOMContentLoaded', () => {
-  const saved = loadRunState();
-  if (saved && saved.order?.length && saved.isFullBank && !saved.isRetry) {
-    run = saved;
-    const resumeContainer = document.getElementById('resumeContainer');
-    if (resumeContainer) {
-      resumeContainer.classList.remove('hidden');
-      const remainingQuestions = getNotMastered().length;
-      const remainingCountEl = document.getElementById('remainingQuestionsCount');
-      if (remainingCountEl) {
-        remainingCountEl.textContent = `${remainingQuestions} questions remaining`;
-      }
-      const resumeBtn = document.getElementById('resumeBtn');
-      if (resumeBtn) {
-        resumeBtn.onclick = () => {
-          if (setupCard) setupCard.classList.add('hidden');
-          if (summaryCard) summaryCard.classList.add('hidden');
-          if (quizCard) quizCard.classList.remove('hidden');
-
-          const q = currentQuestion();
-          if (q) {
-            run.uniqueSeen.add(q.id);
-            renderQuestion(q);
-            updateCounters();
-          }
-        };
-      }
-    }
-  }
-});
+  <script src="/static/quiz-fill-blank.js"></script>
+</body>
+</html>
