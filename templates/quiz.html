@@ -100,6 +100,100 @@
     .module-selector-group.hidden-for-preloaded {
       display: none !important;
     }
+
+    /* Dynamic length selector styles */
+    .length-selector-container {
+      margin-bottom: 20px;
+    }
+
+    .length-selector-container.hidden {
+      display: none !important;
+    }
+
+    .length-selector-label {
+      display: block;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .length-buttons {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .length-btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 14px 16px;
+      border: 1px solid #d0d0d0;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: inherit;
+      text-align: center;
+    }
+
+    .length-btn:first-child {
+      border-radius: 8px 0 0 8px;
+    }
+
+    .length-btn:last-child {
+      border-radius: 0 8px 8px 0;
+    }
+
+    .length-btn:only-child {
+      border-radius: 8px;
+    }
+
+    .length-btn:not(:last-child) {
+      border-right: none;
+    }
+
+    .length-btn:hover:not(.active) {
+      background: #f5f5f5;
+    }
+
+    .length-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .length-btn.active + .length-btn {
+      border-left: 1px solid var(--primary);
+    }
+
+    /* Start Quiz button styling */
+    .start-quiz-btn {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      background: #5cb85c;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      margin-top: 16px;
+    }
+
+    .start-quiz-btn:hover:not(:disabled) {
+      background: #4cae4c;
+    }
+
+    .start-quiz-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
     
     /* Safe area insets for iOS PWA */
     @supports (padding-top: env(safe-area-inset-top)) {
@@ -112,6 +206,37 @@
       
       .offline-indicator {
         padding-top: calc(12px + env(safe-area-inset-top));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .length-buttons {
+        flex-direction: column;
+      }
+
+      .length-btn {
+        border-radius: 0 !important;
+        border-right: 1px solid #d0d0d0 !important;
+        border-bottom: none;
+      }
+
+      .length-btn:first-child {
+        border-radius: 8px 8px 0 0 !important;
+      }
+
+      .length-btn:last-child {
+        border-radius: 0 0 8px 8px !important;
+        border-bottom: 1px solid #d0d0d0;
+      }
+
+      .length-btn:only-child {
+        border-radius: 8px !important;
+        border-bottom: 1px solid #d0d0d0;
+      }
+
+      .length-btn.active + .length-btn {
+        border-left: 1px solid #d0d0d0;
+        border-top: 1px solid var(--primary);
       }
     }
   </style>
@@ -158,19 +283,19 @@
         </div>
       </div>
 
-      <div class="field">
-        <label>How many questions?</label>
-        <div class="seg" id="lengthBtns">
-          <button class="seg-btn active" data-len="10">10 Questions</button>
-          <button class="seg-btn" data-len="25">25 Questions</button>
-          <button class="seg-btn" data-len="50">50 Questions</button>
-          <button class="seg-btn" data-len="full">Full Module Question Bank</button>
+      <!-- Dynamic Length Selector -->
+      <div class="length-selector-container" id="lengthSelectorContainer">
+        <label class="length-selector-label">How many questions?</label>
+        <div class="length-buttons" id="lengthBtns">
+          <!-- Buttons will be dynamically generated based on question count -->
+          <button class="length-btn active" data-len="10">10 Questions</button>
+          <button class="length-btn" data-len="25">25 Questions</button>
+          <button class="length-btn" data-len="50">50 Questions</button>
+          <button class="length-btn" data-len="full">Full Module Question Bank</button>
         </div>
       </div>
 
-      <div class="actions">
-        <button class="btn primary" id="startBtn">Start Quiz</button>
-      </div>
+      <button class="start-quiz-btn" id="startBtn">Start Quiz</button>
 
       <!-- How This Quiz Works -->
       <div class="help">
@@ -279,7 +404,7 @@
           const lengthBtns = document.getElementById('lengthBtns');
           if (lengthBtns) {
             // Select "Full" option
-            lengthBtns.querySelectorAll('.seg-btn').forEach(btn => {
+            lengthBtns.querySelectorAll('.length-btn').forEach(btn => {
               btn.classList.remove('active');
               if (btn.dataset.len === 'full') {
                 btn.classList.add('active');
