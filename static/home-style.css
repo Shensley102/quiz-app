@@ -1,4 +1,4 @@
-/* Home Page Styles - Nurse Success Study Hub */
+/* Home Page Styles - Nurse Success Study Hub - ENHANCED VERSION */
 
 :root {
     --primary: #1e40af;
@@ -46,9 +46,10 @@ html {
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     color: var(--dark);
-    background-color: #f9fafb;
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
     line-height: 1.6;
     font-size: 16px;
+    min-height: 100vh;
 }
 
 /* ==================== HEADER ==================== */
@@ -60,11 +61,28 @@ body {
     text-align: center;
     box-shadow: var(--shadow-lg);
     margin-bottom: var(--spacing-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.app-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .header-content {
     max-width: 900px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .app-title {
@@ -97,7 +115,7 @@ body {
 /* ==================== OFFLINE INDICATOR ==================== */
 
 .offline-banner {
-    background-color: var(--warning);
+    background: linear-gradient(135deg, var(--warning), #ff8c00);
     color: var(--white);
     padding: var(--spacing-md) var(--spacing-lg);
     border-radius: var(--border-radius-md);
@@ -106,6 +124,7 @@ body {
     gap: var(--spacing-md);
     margin: 0 0 var(--spacing-xl) 0;
     animation: slideDown 0.3s ease-out;
+    box-shadow: var(--shadow-md);
 }
 
 .offline-icon {
@@ -195,7 +214,6 @@ body {
     outline: none;
 }
 
-/* Ensure entire card is clickable */
 .category-card::before {
     content: '';
     position: absolute;
@@ -209,7 +227,7 @@ body {
 
 .category-card:hover,
 .category-card:focus {
-    transform: translateY(-8px);
+    transform: translateY(-12px);
     box-shadow: var(--shadow-xl);
 }
 
@@ -218,7 +236,6 @@ body {
     outline-offset: 2px;
 }
 
-/* Keyboard focus visible */
 .category-card:focus-visible {
     outline: 3px solid var(--secondary);
     outline-offset: 2px;
@@ -352,7 +369,7 @@ body {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: var(--spacing-xl);
 }
 
@@ -360,13 +377,16 @@ body {
     text-align: center;
     padding: var(--spacing-xl);
     border-radius: var(--border-radius-md);
-    background: #f3f4f6;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
     transition: all 0.3s ease;
+    border: 1px solid #bae6fd;
 }
 
 .feature-card:hover {
-    background: #e5e7eb;
+    background: linear-gradient(135deg, #e0f2fe 0%, #d1e7f7 100%);
     transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-light);
 }
 
 .feature-icon {
@@ -557,7 +577,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #111827;
+        background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
         color: #f3f4f6;
     }
     
@@ -566,11 +586,12 @@ body {
     }
     
     .feature-card {
-        background: #374151;
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        border-color: #3b82f6;
     }
     
     .feature-card:hover {
-        background: #4b5563;
+        background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     }
     
     .info-card {
@@ -630,7 +651,6 @@ body {
     }
 }
 
-/* High contrast mode support */
 @media (prefers-contrast: more) {
     .category-card {
         border: 2px solid var(--primary);
