@@ -1,160 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Study {{ category_data.display_name }} - {{ category_data.description }}">
-    <meta name="theme-color" content="#1e40af">
-    
-    <!-- PWA Meta Tags -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Study Hub">
-    
-    <title>{{ category_data.display_name }} - Nurse Success Study Hub</title>
-    
-    <!-- Manifest & Icons -->
-    <link rel="manifest" href="/static/manifest.json">
-    <link rel="icon" type="image/png" sizes="192x192" href="/static/icons/icon-192.png">
-    <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/static/style.css">
-    <link rel="stylesheet" href="/static/category-style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>{{ category_data.display_name }} - Nurse Success Study Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/static/manifest.json">
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#667eea">
+  
+  <!-- PWA Specific -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Nurse Study">
+  
+  <!-- Apple Touch Icons - All Sizes -->
+  <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
+  
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --primary: #2f61f3;
+      --success: #45B7D1;
+      --danger: #f44336;
+      --warning: #ff9800;
+      --green: #4caf50;
+      --ink: #1a1a1a;
+      --ink-soft: #666;
+      --border: #e0e0e0;
+      --radius: 12px;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .offline-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #ff9800, #f57c00);
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      z-index: 10000;
+    }
+    .offline-indicator.hidden { display: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .header { color: white; margin-bottom: 40px; animation: slideDown 0.6s ease; }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .back-btn {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .back-btn:hover { opacity: 1; }
+    .category-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px; }
+    .category-icon { font-size: 60px; line-height: 1; }
+    .category-title { flex: 1; }
+    .category-title h1 { margin: 0 0 8px 0; font-size: 42px; font-weight: 800; }
+    .category-description { font-size: 18px; opacity: 0.95; margin: 0; }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .module-card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      height: 100%;
+    }
+    .module-card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); }
+    .module-card-header {
+      background: linear-gradient(135deg, var(--primary), var(--success));
+      color: white;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .module-card-title { font-size: 18px; font-weight: 700; margin: 0; line-height: 1.3; }
+    .module-card-count { font-size: 13px; opacity: 0.9; margin: 0; }
+    .module-card-body {
+      padding: 20px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .module-card-description { font-size: 14px; color: var(--ink-soft); line-height: 1.5; margin: 0 0 16px 0; }
+    .module-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .module-card-link:hover { gap: 12px; }
+    .footer { text-align: center; color: white; padding: 40px 20px; opacity: 0.8; font-size: 14px; }
+    @media (max-width: 768px) {
+      .category-header { flex-direction: column; gap: 12px; }
+      .category-icon { font-size: 48px; }
+      .category-title h1 { font-size: 32px; }
+      .category-description { font-size: 16px; }
+      .modules-grid { grid-template-columns: 1fr; }
+    }
+    @supports (padding-top: env(safe-area-inset-top)) {
+      body { 
+        padding-top: env(safe-area-inset-top); 
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="app-header category-header">
-        <div class="header-content">
-            <a href="/" class="back-button" aria-label="Back to home">
-                <span class="back-icon">←</span>
-            </a>
-            
-            <div class="header-text">
-                <h1 class="category-title">{{ category_data.display_name }}</h1>
-                <p class="category-info">{{ category_data.description }}</p>
-            </div>
+  <div id="offlineIndicator" class="offline-indicator hidden">
+    <span>📴 You're offline - Using cached content</span>
+  </div>
+  <div class="container">
+    <div class="header">
+      <a href="/" class="back-btn">← Back to Hub</a>
+      <div class="category-header">
+        <div class="category-icon">{{ category_data.icon }}</div>
+        <div class="category-title">
+          <h1>{{ category_data.display_name }}</h1>
+          <p class="category-description">{{ category_data.description }}</p>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Offline Indicator -->
-        <div id="offline-indicator" class="offline-banner" style="display: none;">
-            <span class="offline-icon">📡</span>
-            <span class="offline-text">You're offline - content from cache</span>
-        </div>
-
-        <!-- Quizzes Section -->
-        <section class="quizzes-section">
-            <h2 class="section-title">Available Quizzes ({{ quizzes|length }})</h2>
-            
-            <div class="quizzes-grid">
-                {% for quiz in quizzes %}
-                <!-- Quiz Card -->
-                <a href="/quiz/{{ category_name }}/{{ quiz.id }}" 
-                   class="quiz-card"
-                   role="button" tabindex="0"
-                   aria-label="Start {{ quiz.name }} quiz">
-                    
-                    <!-- Card Icon/Number -->
-                    <div class="quiz-icon">
-                        <span class="icon-number">{{ loop.index }}</span>
-                    </div>
-                    
-                    <!-- Card Content -->
-                    <div class="quiz-content">
-                        <h3 class="quiz-name">{{ quiz.name }}</h3>
-                        <div class="quiz-footer">
-                            <span class="quiz-label">Start Quiz</span>
-                            <span class="quiz-arrow">→</span>
-                        </div>
-                    </div>
-                </a>
-                {% endfor %}
-            </div>
-            
-            <!-- Empty State (if no quizzes) -->
-            {% if not quizzes %}
-            <div class="empty-state">
-                <div class="empty-icon">📭</div>
-                <h3>No quizzes available</h3>
-                <p>Check back soon for more study materials</p>
-                <a href="/" class="btn btn-primary">Back to Home</a>
-            </div>
+      </div>
+    </div>
+    <div class="modules-grid" id="modulesContainer">
+      {% if category_data.modules %}
+        {% for module in category_data.modules %}
+        <a href="/quiz/{{ category|urlencode }}/{{ module.name }}" class="module-card">
+          <div class="module-card-header">
+            <h3 class="module-card-title">{{ module.name.replace('_', ' ') }}</h3>
+            <p class="module-card-count">{{ module.count }} questions</p>
+          </div>
+          <div class="module-card-body">
+            {% if module.description %}
+            <p class="module-card-description">{{ module.description }}</p>
             {% endif %}
-        </section>
-
-        <!-- Tips Section -->
-        <section class="tips-section">
-            <h2 class="section-title">Study Tips</h2>
-            
-            <div class="tips-grid">
-                <div class="tip-card">
-                    <div class="tip-number">1</div>
-                    <h3>Take Your Time</h3>
-                    <p>Read each question carefully and review the rationales to understand why answers are correct</p>
-                </div>
-                
-                <div class="tip-card">
-                    <div class="tip-number">2</div>
-                    <h3>Repeat Missed Questions</h3>
-                    <p>Use the "Retry Missed" feature to focus on questions you found challenging</p>
-                </div>
-                
-                <div class="tip-card">
-                    <div class="tip-number">3</div>
-                    <h3>Track Progress</h3>
-                    <p>Monitor your scores across quizzes to identify improvement areas and measure growth</p>
-                </div>
-                
-                <div class="tip-card">
-                    <div class="tip-number">4</div>
-                    <h3>Study Offline</h3>
-                    <p>The app works without internet - download the quizzes and study anywhere, anytime</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="app-footer">
-        <div class="footer-content">
-            <p>&copy; 2024 Nurse Success Study Hub. Built for nursing excellence.</p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script>
-        // Offline detection
-        function updateOnlineStatus() {
-            const indicator = document.getElementById('offline-indicator');
-            if (navigator.onLine) {
-                indicator.style.display = 'none';
-            } else {
-                indicator.style.display = 'flex';
-            }
-        }
-
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
-        updateOnlineStatus();
-
-        // Keyboard navigation
-        document.querySelectorAll('.quiz-card').forEach(card => {
-            card.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    this.click();
-                }
-            });
-        });
-
-        // Back button
-        document.querySelector('.back-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.history.back();
-        });
-    </script>
+            <div class="module-card-link">Start Quiz →</div>
+          </div>
+        </a>
+        {% endfor %}
+      {% else %}
+      <div style="grid-column: 1/-1; text-align: center; color: white; padding: 40px 20px;">
+        <p style="font-size: 18px; opacity: 0.9;">No quizzes available for this category yet.</p>
+      </div>
+      {% endif %}
+    </div>
+    <footer class="footer">&copy; 2025 Nurse Success Study Hub. Study smarter, succeed faster.</footer>
+  </div>
+  
+  <!-- PWA Utilities -->
+  <script src="/static/js/pwa-utils.js"></script>
 </body>
 </html>
