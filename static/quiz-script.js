@@ -15,6 +15,7 @@
    - Custom header display for preloaded data
    - Module selector hidden for preloaded quizzes
    - FIXED: Correct JSON path construction for offline mode
+   - Dynamic length options based on question count
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -38,6 +39,7 @@ const setHeaderTitle = (t) => { if (pageTitle) pageTitle.textContent = t; };
 const launcher   = $('launcher');
 const moduleSel  = $('moduleSel');
 const lengthBtns = $('lengthBtns');
+const lengthSelectorContainer = $('lengthSelectorContainer');
 const startBtn   = $('startBtn');
 const resumeBtn  = $('resumeBtn');
 
@@ -212,6 +214,74 @@ function scrollToQuizTop() {
 }
 function isTextEditingTarget(el){
   return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' || el.isContentEditable);
+}
+
+/* ---------- Dynamic Length Options ---------- */
+function updateLengthOptions(totalQuestions) {
+  if (!lengthBtns || !lengthSelectorContainer) return;
+  
+  // If less than 30 questions, hide the length selector entirely
+  if (totalQuestions < 30) {
+    lengthSelectorContainer.classList.add('hidden');
+    // Set a hidden default to 'full'
+    lengthBtns.innerHTML = '<button class="length-btn active" data-len="full" style="display:none;">Full</button>';
+    return;
+  }
+  
+  // Show the length selector
+  lengthSelectorContainer.classList.remove('hidden');
+  
+  // Clear existing buttons
+  lengthBtns.innerHTML = '';
+  
+  if (totalQuestions >= 100) {
+    // For 100+ questions: 10, 25, 50, Full Module Question Bank
+    const options = [
+      { len: '10', text: '10 Questions' },
+      { len: '25', text: '25 Questions' },
+      { len: '50', text: '50 Questions' },
+      { len: 'full', text: 'Full Module Question Bank' }
+    ];
+    
+    options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'length-btn' + (idx === 0 ? ' active' : '');
+      btn.setAttribute('data-len', opt.len);
+      btn.textContent = opt.text;
+      lengthBtns.appendChild(btn);
+    });
+  } else {
+    // For 30-99 questions: 10, Half (~50%), Full
+    const halfCount = Math.round(totalQuestions / 2);
+    const options = [
+      { len: '10', text: '10 Questions' },
+      { len: String(halfCount), text: halfCount + ' Questions' },
+      { len: 'full', text: 'Full Module Question Bank' }
+    ];
+    
+    options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'length-btn' + (idx === 0 ? ' active' : '');
+      btn.setAttribute('data-len', opt.len);
+      btn.textContent = opt.text;
+      lengthBtns.appendChild(btn);
+    });
+  }
+  
+  // Re-attach click handlers
+  attachLengthButtonHandlers();
+}
+
+function attachLengthButtonHandlers() {
+  if (!lengthBtns) return;
+  
+  lengthBtns.addEventListener('click', (e) => {
+    const btn = e.target.closest('.length-btn');
+    if (!btn) return;
+    lengthBtns.querySelectorAll('.length-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    lengthBtns.querySelectorAll('.length-btn').forEach(b => b.setAttribute('aria-pressed', b.classList.contains('active') ? 'true' : 'false'));
+  });
 }
 
 /* ---------- State ---------- */
@@ -501,10 +571,10 @@ function nextIndex(){
 /* ---------- Start / End ---------- */
 async function startQuiz(){
   if (!lengthBtns || !moduleSel || !startBtn) return;
-  const lenBtn = lengthBtns.querySelector('.seg-btn.active');
+  const lenBtn = lengthBtns.querySelector('.length-btn.active');
   if (!lenBtn) {
     alert('Pick Length Of Quiz Before Starting');
-    lengthBtns.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (lengthSelectorContainer) lengthSelectorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
   const bank = moduleSel.value;
@@ -699,14 +769,9 @@ function endRun(){
 }
 
 /* ---------- Event wiring ---------- */
-if (lengthBtns) {
-  lengthBtns.addEventListener('click', (e) => {
-    const btn = e.target.closest('.seg-btn'); if (!btn) return;
-    lengthBtns.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    lengthBtns.querySelectorAll('.seg-btn').forEach(b => b.setAttribute('aria-pressed', b.classList.contains('active')?'true':'false'));
-  });
-}
+// Initial length button handlers (will be re-attached when options change)
+attachLengthButtonHandlers();
+
 if (startBtn) startBtn.addEventListener('click', startQuiz);
 if (form) form.addEventListener('change', onSelectionChanged);
 if (submitBtn) submitBtn.addEventListener('click', handleSubmitClick);
@@ -859,6 +924,11 @@ async function initModulesWithPreselect() {
     }
 
     window.storedPreloadedData = { questions: window.preloadedQuizData, moduleName: window.preloadedModuleName };
+    
+    // Update length options based on preloaded question count
+    const questions = Array.isArray(window.preloadedQuizData) ? window.preloadedQuizData : (window.preloadedQuizData?.questions || []);
+    updateLengthOptions(questions.length);
+    
     return;
   }
 
@@ -928,10 +998,21 @@ async function initModulesWithPreselect() {
       const displayName = prettifyModuleName(moduleFromPath);
       const quizTitle = $('quizTitle');
       if (quizTitle) quizTitle.textContent = displayName;
+      
+      // Fetch and update length options based on actual question count
+      await fetchAndUpdateLengthOptions(category || currentCategory, moduleFromPath);
     }
 
+    // Add change handler to module selector to update length options
+    moduleSel.addEventListener('change', async () => {
+      const selectedModule = moduleSel.value;
+      if (selectedModule) {
+        await fetchAndUpdateLengthOptions(currentCategory, selectedModule);
+      }
+    });
+
     if (autostart && moduleFromPath) {
-      const lengthBtnsAll = document.querySelectorAll('#lengthBtns .seg-btn');
+      const lengthBtnsAll = document.querySelectorAll('#lengthBtns .length-btn');
       lengthBtnsAll.forEach(btn => btn.classList.remove('active'));
       lengthBtnsAll.forEach(btn => {
         if (btn.dataset.len === 'full') { btn.classList.add('active'); btn.setAttribute('aria-pressed', 'true'); }
@@ -941,6 +1022,37 @@ async function initModulesWithPreselect() {
   } catch (err) {
     console.error('Error loading modules:', err);
     if (moduleSel) moduleSel.innerHTML = '<option value="">Error loading modules</option>';
+  }
+}
+
+/* ---------- Fetch module and update length options ---------- */
+async function fetchAndUpdateLengthOptions(category, moduleName) {
+  if (!category || !moduleName) {
+    // Default to showing all options
+    updateLengthOptions(100);
+    return;
+  }
+  
+  try {
+    const jsonUrl = buildModuleJsonUrl(category, moduleName);
+    if (!jsonUrl) {
+      updateLengthOptions(100);
+      return;
+    }
+    
+    const res = await fetch(jsonUrl, { cache: 'no-store' });
+    if (!res.ok) {
+      console.warn('[Quiz] Could not fetch module for length options:', res.status);
+      updateLengthOptions(100);
+      return;
+    }
+    
+    const rawData = await res.json();
+    const questions = Array.isArray(rawData) ? rawData : (rawData?.questions || []);
+    updateLengthOptions(questions.length);
+  } catch (err) {
+    console.warn('[Quiz] Error fetching module for length options:', err);
+    updateLengthOptions(100);
   }
 }
 
