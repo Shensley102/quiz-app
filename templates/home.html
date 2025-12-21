@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="Nurse Success Study Hub - HESI and NCLEX Exam Prep">
+  <title>Nurse Success Study Hub - HESI & NCLEX Exam Prep</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/home-style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#2f61f3">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Nurse Study">
+  
+  <!-- Apple Touch Icons - All Sizes -->
+  <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
+  
+  <!-- Vercel Analytics -->
+  <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Offline indicator -->
+    <div id="offlineIndicator" class="offline-indicator hidden">
+      <span>📴 You're offline - Using cached content</span>
+    </div>
+
+    <!-- Header -->
+    <div class="hub-header">
+      <h1>Nurse Success Study Hub</h1>
+      <p class="tagline">Master HESI & NCLEX Exams with Comprehensive Study Materials</p>
+      
+      <!-- Quote Container - displays random motivational quote -->
+      <div id="quote-container" class="quote-container"></div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input 
+        type="text" 
+        class="search-bar" 
+        id="searchBar" 
+        placeholder="Search categories or modules..."
+        style="display: none;"
+      >
+    </div>
+
+    <!-- Categories Grid -->
+    <main class="categories-grid" id="categoriesGrid">
+      <!-- Categories will be populated here by JavaScript -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="hub-footer">
+      <p>&copy; 2025 Nurse Success Study Hub. Study smarter, succeed faster.</p>
+      <p id="pwaStatus" class="pwa-status"></p>
+    </footer>
+  </div>
+
+  <!-- PWA Utilities - handles SW registration, quotes, and updates -->
+  <script src="/static/js/pwa-utils.js"></script>
+
+  <script>
+    // Load and display categories
+    async function loadCategories() {
+      try {
+        const res = await fetch('/api/categories', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to load categories');
+        
+        const categories = await res.json();
+        const grid = document.getElementById('categoriesGrid');
+        
+        if (!grid) return;
+        
+        grid.innerHTML = '';
+        
+        // Define display order
+        const categoryOrder = ['HESI', 'Lab_Values', 'Patient_Care_Management', 'Pharmacology', 'Nursing_Certifications'];
+        const sortedCategories = Object.entries(categories).sort((a, b) => {
+          const indexA = categoryOrder.indexOf(a[0]);
+          const indexB = categoryOrder.indexOf(b[0]);
+          return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
+        });
+        
+        sortedCategories.forEach(([categoryName, categoryData]) => {
+          const card = document.createElement('a');
+          card.href = `/category/${encodeURIComponent(categoryName)}`;
+          card.className = 'category-card';
+          
+          // If there's an image, add image-card class
+          if (categoryData.image) {
+            card.classList.add('image-card');
+          }
+          
+          // Build card HTML
+          let cardHTML = '';
+          
+          if (categoryData.image) {
+            // Image card
+            cardHTML = `
+              <img src="${categoryData.image}" alt="${categoryName}" style="width: 100%; height: 100%; object-fit: contain; object-position: center;">
+              <div class="fallback-icon">${categoryData.icon}</div>
+            `;
+          } else {
+            // Text card with icon
+            cardHTML = `
+              <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 48px; margin-bottom: 16px;">${categoryData.icon}</div>
+                <h3 style="margin: 0 0 8px 0; font-size: 20px; color: var(--ink); font-weight: 700;">${categoryData.display_name}</h3>
+                <p style="margin: 0; font-size: 13px; color: var(--ink-soft); line-height: 1.4;">${categoryData.modules.length} modules</p>
+              </div>
+            `;
+          }
+          
+          card.innerHTML = cardHTML + '<div class="card-arrow">→</div>';
+          grid.appendChild(card);
+        });
+        
+      } catch (error) {
+        console.error('Error loading categories:', error);
+        const grid = document.getElementById('categoriesGrid');
+        if (grid) {
+          grid.innerHTML = '<p style="color: var(--ink-soft); text-align: center; grid-column: 1/-1;">Error loading categories. Please refresh the page.</p>';
+        }
+      }
+    }
+    
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', loadCategories);
+  </script>
+</body>
+</html>
