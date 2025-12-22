@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/quiz-content.schema.json",
+  "title": "Quiz Content Schema (Module MCQ + Fill-in-the-Blank)",
+  "description": "Validates the two quiz JSON formats used in this repository: (1) module multiple-choice (single/multi select) and (2) lab-values fill-in-the-blank.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/moduleQuiz"
+    },
+    {
+      "$ref": "#/$defs/fillBlankQuiz"
+    }
+  ],
+  "$defs": {
+    "moduleQuiz": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "module",
+        "questions"
+      ],
+      "properties": {
+        "module": {
+          "type": "string",
+          "minLength": 1
+        },
+        "questions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/moduleQuestion"
+          }
+        }
+      }
+    },
+    "moduleQuestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "stem",
+        "options",
+        "correct",
+        "rationale",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stem": {
+          "type": "string",
+          "minLength": 1
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string"
+          }
+        },
+        "correct": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]$"
+          }
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "single_select",
+            "multi_select"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "single_select"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "correct": {
+                "minItems": 1,
+                "maxItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "multi_select"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "correct": {
+                "minItems": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    "fillBlankQuiz": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "instructions",
+        "questions"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "instructions": {
+          "type": "string"
+        },
+        "questions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/fillBlankQuestion"
+          }
+        }
+      }
+    },
+    "fillBlankQuestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "question",
+        "answer",
+        "display_answer",
+        "rationale"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "display_answer": {
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "module": "Module_1",
+      "questions": [
+        {
+          "id": "Module_1_Q1",
+          "stem": "Which key element is included in the scope of professional practice identity?",
+          "options": [
+            "Adhering to a fixed level of practice",
+            "Finding out ways to get tasks done faster, with assigned tasks as the key focus of care",
+            "Maintaining professional boundaries",
+            "Remaining at the level of practice upon graduating from nursing school"
+          ],
+          "correct": [
+            "C"
+          ],
+          "rationale": "The scope of professional identity includes five attributes: doing, being, acting ethically, flourishing, and changing identities. By maintaining professional boundaries, the nurse would be acting ethically. Adhering to a fixed level of practice would not be prudent, for it would not allow the nurse to achieve attributes. Finding out ways to get things done faster with assigned tasks would be in opposition to the attribute of \"being\" as the key focus is to do the right thing, even when no one is looking. A nurse who remains at the level of practice upon graduation from nursing school would be in opposition to the attribute of flourishing.",
+          "type": "single_select"
+        },
+        {
+          "id": "Module_1_Q2",
+          "stem": "Components of a professional identity in nursing include which attributes? (Select all that apply.)",
+          "options": [
+            "Doing",
+            "Being",
+            "Acting ethically",
+            "Flourishing",
+            "Culture"
+          ],
+          "correct": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "rationale": "The scope of professional identity in nursing includes: doing, being, acting ethically, flourishing, and changing identities. Cultural sensitivity is important to professional nursing; however, culture is an inherent quality of nurses and patients, not a component of the professional identity.",
+          "type": "multi_select"
+        }
+      ]
+    },
+    {
+      "title": "Laboratory Values Fill-in-the-Blank (Hard)",
+      "instructions": "Fill in the blank with the correct normal laboratory value range. Include units where indicated.",
+      "questions": [
+        {
+          "id": 1,
+          "question": "The normal serum sodium (Na⁺) range is _____ to _____ mEq/L.",
+          "answer": [
+            "135",
+            "145"
+          ],
+          "display_answer": "135-145 mEq/L",
+          "rationale": "Normal serum sodium is 135-145 mEq/L. Values below 135 indicate hyponatremia; values above 145 indicate hypernatremia."
+        },
+        {
+          "id": 2,
+          "question": "The normal serum potassium (K⁺) range is _____ to _____ mEq/L.",
+          "answer": [
+            "3.5",
+            "5.0"
+          ],
+          "display_answer": "3.5-5.0 mEq/L",
+          "rationale": "Normal serum potassium is 3.5-5.0 mEq/L. Potassium is critical for cardiac and neuromuscular function. Both hypo- and hyperkalemia can cause life-threatening arrhythmias."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "module_quiz_example": {
+    "module": "Module_1",
+    "questions": [
+      {
+        "id": "Module_1_Q1",
+        "stem": "Which key element is included in the scope of professional practice identity?",
+        "options": [
+          "Adhering to a fixed level of practice",
+          "Finding out ways to get tasks done faster, with assigned tasks as the key focus of care",
+          "Maintaining professional boundaries",
+          "Remaining at the level of practice upon graduating from nursing school"
+        ],
+        "correct": [
+          "C"
+        ],
+        "rationale": "The scope of professional identity includes five attributes: doing, being, acting ethically, flourishing, and changing identities. By maintaining professional boundaries, the nurse would be acting ethically. Adhering to a fixed level of practice would not be prudent, for it would not allow the nurse to achieve attributes. Finding out ways to get things done faster with assigned tasks would be in opposition to the attribute of \"being\" as the key focus is to do the right thing, even when no one is looking. A nurse who remains at the level of practice upon graduation from nursing school would be in opposition to the attribute of flourishing.",
+        "type": "single_select"
+      },
+      {
+        "id": "Module_1_Q2",
+        "stem": "Components of a professional identity in nursing include which attributes? (Select all that apply.)",
+        "options": [
+          "Doing",
+          "Being",
+          "Acting ethically",
+          "Flourishing",
+          "Culture"
+        ],
+        "correct": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "rationale": "The scope of professional identity in nursing includes: doing, being, acting ethically, flourishing, and changing identities. Cultural sensitivity is important to professional nursing; however, culture is an inherent quality of nurses and patients, not a component of the professional identity.",
+        "type": "multi_select"
+      }
+    ]
+  },
+  "fill_in_the_blank_example": {
+    "title": "Laboratory Values Fill-in-the-Blank (Hard)",
+    "instructions": "Fill in the blank with the correct normal laboratory value range. Include units where indicated.",
+    "questions": [
+      {
+        "id": 1,
+        "question": "The normal serum sodium (Na⁺) range is _____ to _____ mEq/L.",
+        "answer": [
+          "135",
+          "145"
+        ],
+        "display_answer": "135-145 mEq/L",
+        "rationale": "Normal serum sodium is 135-145 mEq/L. Values below 135 indicate hyponatremia; values above 145 indicate hypernatremia."
+      },
+      {
+        "id": 2,
+        "question": "The normal serum potassium (K⁺) range is _____ to _____ mEq/L.",
+        "answer": [
+          "3.5",
+          "5.0"
+        ],
+        "display_answer": "3.5-5.0 mEq/L",
+        "rationale": "Normal serum potassium is 3.5-5.0 mEq/L. Potassium is critical for cardiac and neuromuscular function. Both hypo- and hyperkalemia can cause life-threatening arrhythmias."
+      }
+    ]
+  },
+  "notes": {
+    "do_not_change": [
+      "Do not rename keys.",
+      "Do not change answer encoding.",
+      "Module format uses `stem/options/correct/type` fields.",
+      "Fill-in-the-blank format uses `question/answer/display_answer` fields."
+    ]
+  }
+}
