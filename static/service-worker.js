@@ -5,11 +5,12 @@
    TO ADD NEW QUIZ JSON: Add path to QUIZ_DATA_FILES array
    
    VERSION HISTORY:
+   v1.0.7 - Improved caching: Range header bypass, Cache-Control respect, inline offline response
    v1.0.6 - Fixed CSS filename (category-style.css), added automatic cache updates
    v1.0.5 - Added pharmacology routes and categories
    ============================================================ */
 
-const CACHE_VERSION = 'v1.0.6';
+const CACHE_VERSION = 'v1.0.7';
 const CACHE_NAME = `nurse-success-${CACHE_VERSION}`;
 
 // How often to check for updates (in milliseconds)
@@ -161,7 +162,7 @@ self.addEventListener('install', (event) => {
         console.log('[Service Worker] All assets processed');
       })
       .then(() => {
-        console.log('[Service Worker] Skip waiting');
+        console.log('[Service Worker] Skip waiting after successful precache');
         return self.skipWaiting();
       })
       .catch((error) => {
@@ -214,6 +215,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Skip requests with Range headers (streaming/partial content)
+  if (request.headers.has('Range')) {
+    return;
+  }
+
   // Skip Chrome extensions and other non-http(s) requests
   if (!url.protocol.startsWith('http')) {
     return;
@@ -234,18 +240,24 @@ self.addEventListener('fetch', (event) => {
     caches.match(request)
       .then((cachedResponse) => {
         
-        // STRATEGY 1: Network First for HTML pages and API calls
-        // Try network first for fresh content, fall back to cache
+        // STRATEGY 1: Network First for navigations, HTML pages, and API calls
         if (request.mode === 'navigate' || url.pathname.startsWith('/api/') || HTML_PAGES.includes(url.pathname)) {
           return fetch(request)
             .then((networkResponse) => {
-              // Cache the fresh response
-              if (networkResponse && networkResponse.status === 200) {
-                const responseToCache = networkResponse.clone();
-                caches.open(CACHE_NAME).then((cache) => {
-                  cache.put(request, responseToCache);
-                });
+              // Only cache successful responses
+              if (!networkResponse || networkResponse.status !== 200) {
+                return networkResponse;
               }
+              // Respect Cache-Control: no-store
+              const cacheControl = networkResponse.headers.get('Cache-Control') || '';
+              if (cacheControl.includes('no-store')) {
+                return networkResponse;
+              }
+              // Cache the fresh response
+              const responseToCache = networkResponse.clone();
+              caches.open(CACHE_NAME).then((cache) => {
+                cache.put(request, responseToCache);
+              });
               return networkResponse;
             })
             .catch(() => {
@@ -253,8 +265,17 @@ self.addEventListener('fetch', (event) => {
               if (cachedResponse) {
                 return cachedResponse;
               }
-              // If no cached response for this specific page, try to return the home page
-              return caches.match('/');
+              // If no cached response, try home page, else return minimal offline response
+              return caches.match('/').then((homeResponse) => {
+                if (homeResponse) {
+                  return homeResponse;
+                }
+                // Return minimal inline HTML response (no styling, no new file)
+                return new Response(
+                  '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Offline</title></head><body><h1>Offline</h1><p>Please check your connection and try again.</p></body></html>',
+                  { status: 503, headers: { 'Content-Type': 'text/html' } }
+                );
+              });
             });
         }
         
@@ -262,19 +283,28 @@ self.addEventListener('fetch', (event) => {
         // Return cache immediately for speed, update in background
         if (url.pathname.startsWith('/static/') || url.pathname.startsWith('/images/')) {
           if (cachedResponse) {
-            // Fetch fresh version in background (stale-while-revalidate)
-            fetch(request).then((networkResponse) => {
-              if (networkResponse && networkResponse.status === 200) {
-                caches.open(CACHE_NAME).then((cache) => {
-                  cache.put(request, networkResponse);
-                });
-              }
-            }).catch(() => { /* Ignore background update failures */ });
+            // Check Cache-Control before background refresh
+            const cacheControl = cachedResponse.headers.get('Cache-Control') || '';
+            if (!cacheControl.includes('no-store')) {
+              // Fetch fresh version in background (stale-while-revalidate)
+              fetch(request).then((networkResponse) => {
+                if (networkResponse && networkResponse.status === 200) {
+                  caches.open(CACHE_NAME).then((cache) => {
+                    cache.put(request, networkResponse);
+                  });
+                }
+              }).catch(() => { /* Ignore background update failures */ });
+            }
             return cachedResponse;
           }
           
           return fetch(request)
             .then((networkResponse) => {
+              // Only cache successful responses that allow caching
+              const cacheControl = networkResponse.headers.get('Cache-Control') || '';
+              if (cacheControl.includes('no-store')) {
+                return networkResponse;
+              }
               if (networkResponse && networkResponse.status === 200) {
                 const responseToCache = networkResponse.clone();
                 caches.open(CACHE_NAME).then((cache) => {
@@ -290,22 +320,31 @@ self.addEventListener('fetch', (event) => {
         if (url.pathname.endsWith('.json') || url.pathname.startsWith('/modules/')) {
           // Return cached version immediately if available
           if (cachedResponse) {
-            // Fetch fresh version in background
-            fetch(request).then((networkResponse) => {
-              if (networkResponse && networkResponse.status === 200) {
-                caches.open(CACHE_NAME).then((cache) => {
-                  cache.put(request, networkResponse);
-                });
-              }
-            }).catch(() => {
-              // Ignore background update failures
-            });
+            // Check Cache-Control before background refresh
+            const cacheControl = cachedResponse.headers.get('Cache-Control') || '';
+            if (!cacheControl.includes('no-store')) {
+              // Fetch fresh version in background
+              fetch(request).then((networkResponse) => {
+                if (networkResponse && networkResponse.status === 200) {
+                  caches.open(CACHE_NAME).then((cache) => {
+                    cache.put(request, networkResponse);
+                  });
+                }
+              }).catch(() => {
+                // Ignore background update failures
+              });
+            }
             return cachedResponse;
           }
           
           // No cache, must fetch from network
           return fetch(request)
             .then((networkResponse) => {
+              // Only cache successful responses that allow caching
+              const cacheControl = networkResponse.headers.get('Cache-Control') || '';
+              if (cacheControl.includes('no-store')) {
+                return networkResponse;
+              }
               if (networkResponse && networkResponse.status === 200) {
                 const responseToCache = networkResponse.clone();
                 caches.open(CACHE_NAME).then((cache) => {
