@@ -34,6 +34,7 @@
 
   let swRegistration = null;
   let updateCheckInterval = null;
+  let refreshing = false;
 
   // Register service worker
   async function registerServiceWorker() {
@@ -58,14 +59,25 @@
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
             // New service worker available
-            log('New Service Worker installed, showing update banner');
-            showUpdateBanner();
+            log('New Service Worker installed, prompting user');
+            // Use window.confirm for minimal, non-invasive update UX
+            if (window.confirm('A new version is available. Reload to update?')) {
+              newWorker.postMessage({ type: 'SKIP_WAITING' });
+            }
           }
         });
       });
 
       // Listen for messages from service worker
       navigator.serviceWorker.addEventListener('message', handleSWMessage);
+
+      // Listen for controller change and reload once
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+        refreshing = true;
+        log('Controller changed, reloading page');
+        window.location.reload();
+      });
 
       // Start periodic update checks
       startPeriodicUpdateChecks();
@@ -177,11 +189,6 @@
 
     log('Forcing service worker update');
     swRegistration.waiting.postMessage({ type: 'SKIP_WAITING' });
-    
-    // Reload after a short delay
-    setTimeout(() => {
-      window.location.reload();
-    }, 100);
   }
 
   // ============================================================
