@@ -357,11 +357,10 @@
             });
         });
 
-        // Start quiz - FIXED: Use correct filename with "Catagorised" (typo matches actual file)
+        // Start quiz - FIXED: Use correct filename with "Categorised" (typo matches actual file)
         document.getElementById('startQuizBtn').addEventListener('click', () => {
             // Navigate to the quiz page with comprehensive mode enabled
-            // Using the actual filename with the typo: "Catagorised"
-            const url = `/quiz/HESI/HESI_Comprehensive_Master_Catagorised?is_comprehensive=true&quiz_length=${selectedLength}`;
+            const url = `/quiz/HESI/HESI_Comprehensive_Master_Categorised?is_comprehensive=true&quiz_length=${selectedLength}`;
             window.location.href = url;
         });
     </script>
