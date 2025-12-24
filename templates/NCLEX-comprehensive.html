@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>NCLEX Comprehensive Quiz - Nurse Success Study Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='category-style.css') }}">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/static/manifest.json">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#2f61f3">
+    
+    <!-- PWA Specific -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nurse Study">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
+    
+    <style>
+        /* Offline indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 10000;
+        }
+        .offline-indicator.hidden { display: none; }
+
+        .back-link {
+            display: inline-block;
+            color: #0066cc;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+        .page-header-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 8px;
+        }
+        .page-header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            color: #333;
+        }
+        .page-header p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 1.1em;
+        }
+        .header-icon { font-size: 2.5em; }
+
+        /* Main card */
+        .main-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Weight distribution table */
+        .weights-section {
+            margin-bottom: 28px;
+        }
+        .weights-section h3 {
+            margin: 0 0 16px 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .weights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 12px;
+        }
+        .weight-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #2f61f3;
+        }
+        .weight-item .category-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95em;
+        }
+        .weight-item .weight-badge {
+            background: #2f61f3;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85em;
+        }
+        .weight-item .question-count {
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 4px;
+        }
+
+        /* Quiz length selector */
+        .length-section {
+            margin-bottom: 28px;
+        }
+        .length-section h3 {
+            margin: 0 0 16px 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .length-options {
+            display: flex;
+            gap: 0;
+            flex-wrap: wrap;
+        }
+        .length-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 16px 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            font-size: 1em;
+            font-family: inherit;
+            text-align: center;
+        }
+        .length-btn:first-child { border-radius: 10px 0 0 10px; }
+        .length-btn:last-child { border-radius: 0 10px 10px 0; }
+        .length-btn:not(:last-child) { border-right: none; }
+        .length-btn:hover:not(.active) {
+            background: #f5f5f5;
+            border-color: #2f61f3;
+        }
+        .length-btn.active {
+            background: #2f61f3;
+            color: white;
+            border-color: #2f61f3;
+        }
+        .length-btn .sub-text {
+            display: block;
+            font-size: 0.75em;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* Note about 10-question quiz */
+        .note-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            color: #e65100;
+        }
+        .note-box strong { color: #bf360c; }
+
+        /* Start button */
+        .start-section {
+            text-align: center;
+            padding-top: 12px;
+        }
+        .start-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4caf50, #45B7D1);
+            color: white;
+            padding: 18px 48px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Info section */
+        .info-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 28px;
+            border-left: 4px solid #4caf50;
+        }
+        .info-section h3 {
+            color: #2e7d32;
+            margin: 0 0 12px 0;
+            font-size: 1.1em;
+        }
+        .info-section ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+        .info-section li { margin-bottom: 8px; }
+
+        /* Safe area insets for iOS PWA */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            body {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 1.6em; }
+            .main-card { padding: 20px; }
+            .weights-grid { grid-template-columns: 1fr; }
+            .length-options { flex-direction: column; }
+            .length-btn {
+                border-radius: 0 !important;
+                border-right: 2px solid #e0e0e0 !important;
+                border-bottom: none;
+            }
+            .length-btn:first-child { border-radius: 10px 10px 0 0 !important; }
+            .length-btn:last-child { 
+                border-radius: 0 0 10px 10px !important; 
+                border-bottom: 2px solid #e0e0e0;
+            }
+            .length-btn.active + .length-btn {
+                border-top: 2px solid #2f61f3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Offline indicator -->
+    <div id="offlineIndicator" class="offline-indicator hidden">
+        <span>📴 You're offline - Using cached content</span>
+    </div>
+
+    <div class="container">
+        <a href="/category/HESI" class="back-link">← HESI Comprehensive System</a>
+        
+        <div class="page-header">
+            <div class="page-header-top">
+                <span class="header-icon">🎯</span>
+                <h1>NCLEX Comprehensive Quiz</h1>
+            </div>
+            <p>Questions weighted according to the official NCLEX-RN test plan percentages</p>
+        </div>
+
+        <div class="main-card">
+            <!-- Weight Distribution -->
+            <div class="weights-section">
+                <h3>📊 NCLEX-RN Category Distribution</h3>
+                <div class="weights-grid">
+                    {% for cat_name, weight in nclex_categories.items() %}
+                    <div class="weight-item">
+                        <div>
+                            <div class="category-name">{{ cat_name }}</div>
+                            <div class="question-count">{{ category_stats[cat_name].count }} questions available</div>
+                        </div>
+                        <span class="weight-badge">{{ (weight * 100) | int }}%</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Quiz Length Selector -->
+            <div class="length-section">
+                <h3>📝 Select Quiz Length</h3>
+                <div class="length-options" id="lengthOptions">
+                    <button class="length-btn" data-length="10">
+                        10 Questions
+                        <span class="sub-text">Quick practice</span>
+                    </button>
+                    <button class="length-btn active" data-length="25">
+                        25 Questions
+                        <span class="sub-text">~15 minutes</span>
+                    </button>
+                    <button class="length-btn" data-length="50">
+                        50 Questions
+                        <span class="sub-text">~30 minutes</span>
+                    </button>
+                    <button class="length-btn" data-length="100">
+                        100 Questions
+                        <span class="sub-text">Full practice</span>
+                    </button>
+                </div>
+                
+                <div class="note-box">
+                    <strong>📌 Note:</strong> 10-question quizzes use random selection (not weighted) due to the small sample size. For weighted distribution matching NCLEX percentages, choose 25 or more questions.
+                </div>
+            </div>
+
+            <!-- Start Button -->
+            <div class="start-section">
+                <button class="start-btn" id="startQuizBtn">Start Comprehensive Quiz →</button>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <h3>💡 How the Weighted Quiz Works</h3>
+            <ul>
+                <li><strong>NCLEX-Weighted Selection:</strong> Questions are distributed according to official NCLEX-RN test plan percentages (25/50/100 question quizzes only)</li>
+                <li><strong>Performance Tracking:</strong> Your results are tracked by category and saved to your scoreboard</li>
+                <li><strong>Category Breakdown:</strong> After completing the quiz, see your performance across all 8 NCLEX categories</li>
+                <li><strong>Weak Area Identification:</strong> Categories where you score below 70% will be highlighted for extra practice</li>
+                <li><strong>No Repeats:</strong> Questions won't repeat within the same quiz session</li>
+                <li><strong>Mastery System:</strong> Incorrect answers will reappear until you get them right</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PWA Utilities -->
+    <script src="/static/js/pwa-utils.js"></script>
+
+    <script>
+        // Length selection
+        const lengthBtns = document.querySelectorAll('.length-btn');
+        let selectedLength = 25;
+
+        lengthBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                lengthBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedLength = parseInt(btn.dataset.length, 10);
+            });
+        });
+
+        // Start quiz
+        document.getElementById('startQuizBtn').addEventListener('click', () => {
+            // Navigate to the quiz page with comprehensive mode enabled
+            const url = `/quiz/HESI/HESI_Comprehensive_Master_Categorized?is_comprehensive=true&quiz_length=${selectedLength}`;
+            window.location.href = url;
+        });
+    </script>
+</body>
+</html>
