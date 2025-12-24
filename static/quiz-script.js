@@ -16,6 +16,9 @@
    - Module selector hidden for preloaded quizzes
    - FIXED: Correct JSON path construction for offline mode
    - Dynamic length options based on question count
+   - NCLEX-weighted question selection for comprehensive quizzes
+   - Category-based performance tracking with localStorage
+   - Enhanced summary screen with category breakdown
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -60,10 +63,24 @@ const restartBtn2      = $('restartBtnSummary');
 const resetAll         = $('resetAll');
 const retryMissedBtn   = $('retryMissedBtn');
 
+/* ---------- NCLEX Category Weights ---------- */
+const NCLEX_WEIGHTS = {
+  'Management of Care': 0.18,
+  'Safety and Infection Control': 0.13,
+  'Health Promotion and Maintenance': 0.09,
+  'Psychosocial Integrity': 0.09,
+  'Basic Care and Comfort': 0.09,
+  'Pharmacological and Parenteral Therapies': 0.16,
+  'Reduction of Risk Potential': 0.12,
+  'Physiological Adaptation': 0.14
+};
+
+/* ---------- Performance Stats Storage Key ---------- */
+const HESI_STATS_KEY = 'hesiPerformanceStats';
+
 /* ---------- Extract category from URL path ---------- */
 function getCategoryFromPath() {
   const path = window.location.pathname;
-  // Match /quiz/{category}/{module} or /quiz-fill-blank/{category}/{module}
   const match = path.match(/\/(?:quiz|quiz-fill-blank)\/([^\/]+)\/([^\/]+)/);
   if (match) {
     return decodeURIComponent(match[1]);
@@ -79,6 +96,12 @@ function getModuleFromPath() {
     return decodeURIComponent(match[2]);
   }
   return null;
+}
+
+/* ---------- Get URL parameters ---------- */
+function getUrlParam(name) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(name);
 }
 
 /* ---------- Build correct JSON URL for module ---------- */
@@ -121,9 +144,9 @@ function prettifyModuleName(name) {
     'HESI_Maternity': 'HESI Maternity',
     'HESI_Adult_Health': 'HESI Adult Health',
     'HESI_Clinical_Judgment': 'HESI Clinical Judgment',
+    'HESI_Comprehensive_Master_Categorized': 'HESI NCLEX Comprehensive',
     'NCLEX_Lab_Values': 'NCLEX Lab Values - Multiple Choice',
     'NCLEX_Lab_Values_Fill_In_The_Blank': 'NCLEX Lab Values - Fill in the Blank',
-    // Pharmacology Categories
     'Cardiovascular_Pharm': 'Cardiovascular Drugs',
     'CNS_Psychiatric_Pharm': 'CNS & Psychiatric Drugs',
     'Anti_Infectives_Pharm': 'Anti-Infectives',
@@ -152,39 +175,6 @@ function prettifyModuleName(name) {
   return raw.replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
-/* ---------- Get module description ---------- */
-function getModuleDescription(moduleName, category) {
-  const descriptions = {
-    'CCRN_Test_1_Combined_QA': 'Practice exam covering core critical care concepts including cardiovascular, respiratory, and neurological emergencies.',
-    'CCRN_Test_2_Combined_QA': 'Practice exam with additional critical care scenarios focusing on multisystem organ failure and complex patient management.',
-    'CCRN_Test_3_Combined_QA': 'Practice exam covering advanced topics including pharmacology, procedures, and professional caring practices.',
-    'NCLEX_Lab_Values': 'Test your knowledge with NCLEX-style multiple choice questions. Each question includes detailed rationales.',
-    'HESI_Comp_Quiz_1': 'Comprehensive HESI practice questions from Exit Exam and study guides.',
-    'HESI_Comp_Quiz_2': 'Comprehensive HESI practice questions from Exit Exam and study guides.',
-    'HESI_Comp_Quiz_3': 'Comprehensive HESI practice questions from Exit Exam and study guides.',
-  };
-  if (descriptions[moduleName]) return descriptions[moduleName];
-  if (category === 'Nursing_Certifications') return 'Certification exam practice questions with detailed rationales.';
-  if (category === 'HESI') return 'HESI exam preparation questions with detailed rationales.';
-  if (category === 'Lab_Values') return 'Lab values practice questions with detailed rationales.';
-  if (category === 'Pharmacology') return 'Pharmacology practice questions covering drug classifications and nursing implications.';
-  return 'Practice questions with detailed rationales to reinforce your understanding.';
-}
-
-/* ---------- Get badge class for module ---------- */
-function getBadgeClass(moduleName, category) {
-  if (moduleName.includes('CCRN')) return 'badge-ccrn';
-  return 'badge-standard';
-}
-
-/* ---------- Get badge text for module ---------- */
-function getBadgeText(moduleName, category) {
-  if (moduleName.includes('CCRN')) return 'CCRN PRACTICE TEST';
-  if (category === 'Nursing_Certifications') return 'CERTIFICATION PREP';
-  if (category === 'HESI') return 'HESI PREP';
-  return 'STANDARD';
-}
-
 /* ---------- Utilities ---------- */
 function escapeHTML(s=''){
   return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
@@ -203,6 +193,87 @@ function sampleQuestions(all, req){
   for (let i = 0; i < k; i++) { const j = i + randomInt(a.length - i); [a[i], a[j]] = [a[j], a[i]]; }
   return a.slice(0, k);
 }
+
+/* ---------- NCLEX-Weighted Question Selection ---------- */
+function sampleQuestionsWeighted(allQuestions, targetCount) {
+  const byCategory = {};
+  for (const cat of Object.keys(NCLEX_WEIGHTS)) {
+    byCategory[cat] = [];
+  }
+  byCategory['Uncategorized'] = [];
+  
+  allQuestions.forEach(q => {
+    const cat = q.category || 'Uncategorized';
+    if (byCategory[cat]) {
+      byCategory[cat].push(q);
+    } else {
+      byCategory['Uncategorized'].push(q);
+    }
+  });
+  
+  const targets = {};
+  let totalAllocated = 0;
+  
+  for (const [cat, weight] of Object.entries(NCLEX_WEIGHTS)) {
+    const target = Math.round(targetCount * weight);
+    targets[cat] = target;
+    totalAllocated += target;
+  }
+  
+  const diff = targetCount - totalAllocated;
+  if (diff !== 0) {
+    targets['Management of Care'] += diff;
+  }
+  
+  const selected = [];
+  const deficits = {};
+  
+  for (const [cat, target] of Object.entries(targets)) {
+    const available = byCategory[cat] || [];
+    const shuffled = shuffleInPlace([...available]);
+    
+    if (shuffled.length >= target) {
+      selected.push(...shuffled.slice(0, target));
+    } else {
+      selected.push(...shuffled);
+      deficits[cat] = target - shuffled.length;
+    }
+  }
+  
+  let totalDeficit = Object.values(deficits).reduce((a, b) => a + b, 0);
+  
+  if (totalDeficit > 0) {
+    const surplusCategories = Object.entries(targets)
+      .filter(([cat, target]) => {
+        const available = byCategory[cat]?.length || 0;
+        const used = Math.min(available, target);
+        return available > used;
+      })
+      .sort((a, b) => {
+        const surplusA = (byCategory[a[0]]?.length || 0) - a[1];
+        const surplusB = (byCategory[b[0]]?.length || 0) - b[1];
+        return surplusB - surplusA;
+      });
+    
+    for (const [cat, target] of surplusCategories) {
+      if (totalDeficit <= 0) break;
+      
+      const available = byCategory[cat] || [];
+      const alreadyUsed = Math.min(available.length, target);
+      const surplus = available.length - alreadyUsed;
+      
+      if (surplus > 0) {
+        const toTake = Math.min(surplus, totalDeficit);
+        const extra = available.slice(alreadyUsed, alreadyUsed + toTake);
+        selected.push(...extra);
+        totalDeficit -= toTake;
+      }
+    }
+  }
+  
+  return shuffleInPlace(selected);
+}
+
 function scrollToBottomSmooth() {
   requestAnimationFrame(() => { requestAnimationFrame(() => {
     window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
@@ -220,22 +291,16 @@ function isTextEditingTarget(el){
 function updateLengthOptions(totalQuestions) {
   if (!lengthBtns || !lengthSelectorContainer) return;
   
-  // If less than 30 questions, hide the length selector entirely
   if (totalQuestions < 30) {
     lengthSelectorContainer.classList.add('hidden');
-    // Set a hidden default to 'full'
     lengthBtns.innerHTML = '<button class="length-btn active" data-len="full" style="display:none;">Full</button>';
     return;
   }
   
-  // Show the length selector
   lengthSelectorContainer.classList.remove('hidden');
-  
-  // Clear existing buttons
   lengthBtns.innerHTML = '';
   
   if (totalQuestions >= 100) {
-    // For 100+ questions: 10, 25, 50, Full Module Question Bank
     const options = [
       { len: '10', text: '10 Questions' },
       { len: '25', text: '25 Questions' },
@@ -251,7 +316,6 @@ function updateLengthOptions(totalQuestions) {
       lengthBtns.appendChild(btn);
     });
   } else {
-    // For 30-99 questions: 10, Half (~50%), Full
     const halfCount = Math.round(totalQuestions / 2);
     const options = [
       { len: '10', text: '10 Questions' },
@@ -268,7 +332,6 @@ function updateLengthOptions(totalQuestions) {
     });
   }
   
-  // Re-attach click handlers
   attachLengthButtonHandlers();
 }
 
@@ -280,17 +343,17 @@ function attachLengthButtonHandlers() {
     if (!btn) return;
     lengthBtns.querySelectorAll('.length-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    lengthBtns.querySelectorAll('.length-btn').forEach(b => b.setAttribute('aria-pressed', b.classList.contains('active') ? 'true' : 'false'));
   });
 }
 
 /* ---------- State ---------- */
 let allQuestions = [];
-let currentCategory = null; // Track current category for JSON URL construction
+let currentCategory = null;
 let run = {
   bank: '', displayName: '', category: '', order: [], masterPool: [], i: 0,
   answered: new Map(), uniqueSeen: new Set(), thresholdWrong: 0,
   wrongSinceLast: [], totalQuestionsAnswered: 0, isFullBank: false, isRetry: false,
+  isComprehensive: false, isCategoryQuiz: false,
 };
 let lastQuizMissedQuestions = [];
 
@@ -300,11 +363,12 @@ function serializeRun() {
   if (!run || !run.order?.length) return null;
   return JSON.stringify({
     bank: run.bank, displayName: run.displayName, category: run.category,
-    order: run.order.map(q => ({ id:q.id, stem:q.stem, options:q.options, correctLetters:q.correctLetters, rationale:q.rationale, type:q.type })),
+    order: run.order.map(q => ({ id:q.id, stem:q.stem, options:q.options, correctLetters:q.correctLetters, rationale:q.rationale, type:q.type, category: q.category })),
     masterPool: run.masterPool.map(q => q.id), i: run.i,
     answered: Array.from(run.answered.entries()), uniqueSeen: Array.from(run.uniqueSeen),
     thresholdWrong: run.thresholdWrong, wrongSinceLast: run.wrongSinceLast.map(q => q.id),
     totalQuestionsAnswered: run.totalQuestionsAnswered, isFullBank: run.isFullBank, isRetry: run.isRetry,
+    isComprehensive: run.isComprehensive, isCategoryQuiz: run.isCategoryQuiz,
     title: pageTitle?.textContent || defaultTitle,
   });
 }
@@ -316,7 +380,7 @@ function loadRunState() {
     const data = JSON.parse(raw);
     const qById = new Map();
     const restoredOrder = (data.order || []).map(q => {
-      const qq = { id:String(q.id), stem:String(q.stem||''), options:q.options||{}, correctLetters:(q.correctLetters||[]), rationale:String(q.rationale||''), type:String(q.type||'single_select') };
+      const qq = { id:String(q.id), stem:String(q.stem||''), options:q.options||{}, correctLetters:(q.correctLetters||[]), rationale:String(q.rationale||''), type:String(q.type||'single_select'), category: q.category || '' };
       qById.set(qq.id, qq);
       return qq;
     });
@@ -331,12 +395,54 @@ function loadRunState() {
       wrongSinceLast: (data.wrongSinceLast||[]).map(idToQ).filter(Boolean),
       totalQuestionsAnswered: Math.max(0, parseInt(data.totalQuestionsAnswered||0,10)),
       isFullBank: Boolean(data.isFullBank), isRetry: Boolean(data.isRetry),
+      isComprehensive: Boolean(data.isComprehensive), isCategoryQuiz: Boolean(data.isCategoryQuiz),
     };
     return { run: restored, title: data.title || defaultTitle };
   } catch { return null; }
 }
 function clearSavedState(){ try { localStorage.removeItem(STORAGE_KEY); } catch {} }
 function getNotMasteredFromRun(runData) { return runData.masterPool.filter(q => !runData.answered.get(q.id)?.correct).length; }
+
+/* ---------- HESI Performance Stats Management ---------- */
+function loadHesiStats() {
+  try {
+    const raw = localStorage.getItem(HESI_STATS_KEY);
+    if (!raw) return {};
+    return JSON.parse(raw);
+  } catch (e) {
+    console.error('Error loading HESI stats:', e);
+    return {};
+  }
+}
+
+function saveHesiStats(stats) {
+  try {
+    localStorage.setItem(HESI_STATS_KEY, JSON.stringify(stats));
+  } catch (e) {
+    console.error('Error saving HESI stats:', e);
+  }
+}
+
+function updateHesiStats(categoryResults) {
+  const stats = loadHesiStats();
+  
+  for (const [category, result] of Object.entries(categoryResults)) {
+    if (!stats[category]) {
+      stats[category] = {
+        totalAnswered: 0,
+        totalCorrect: 0,
+        lastUpdated: null
+      };
+    }
+    
+    stats[category].totalAnswered += result.total;
+    stats[category].totalCorrect += result.correct;
+    stats[category].lastUpdated = new Date().toISOString();
+  }
+  
+  saveHesiStats(stats);
+  return stats;
+}
 
 function showResumeIfAny(){
   const s = loadRunState();
@@ -353,7 +459,7 @@ function showResumeIfAny(){
   if (resumeBtn) {
     resumeBtn.onclick = () => {
       run = s.run;
-      currentCategory = run.category; // Restore category
+      currentCategory = run.category;
       setHeaderTitle(run.displayName || run.bank || defaultTitle);
       document.title = run.displayName ? run.displayName + ' - Nurse Success Study Hub' : (run.bank ? run.bank + ' - Nurse Success Study Hub' : 'Quiz - Nurse Success Study Hub');
       const quizTitle = $('quizTitle');
@@ -390,7 +496,8 @@ function normalizeQuestions(data){
       id: String(q.id || Math.random()), stem: stemText, options: optionsObj,
       correctLetters: correctLetters.length > 0 ? correctLetters : ['A'],
       rationale: String(q.rationale || ''),
-      type: (isSelectAll || q.type === 'multiple_select') ? 'multiple_select' : 'single_select',
+      type: (isSelectAll || q.type === 'multiple_select' || q.type === 'multi_select') ? 'multiple_select' : 'single_select',
+      category: q.category || '',
     };
   });
 }
@@ -416,647 +523,518 @@ function updateHoverClasses(){
   else { form.classList.remove('has-selection'); form.classList.remove('is-multi-select'); }
 }
 
-function getColorClass(wrongCount, maxWrong) {
-  if (wrongCount === 0) return '';
-  if (wrongCount <= maxWrong * 0.33) return 'yellow';
-  if (wrongCount <= maxWrong * 0.66) return 'orange';
-  return 'red';
-}
-
-function setupCategoryDisplay() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const category = urlParams.get('category');
-  const categoryTitles = { 'HESI': 'HESI Exit Comprehensive Study Quizzes', 'Patient Care Management': 'Patient Care Management', 'Nursing Certifications': 'Nursing Certifications', 'Pharmacology': 'Pharmacology', 'Lab Values': 'Lab Values - Multiple Choice' };
-  const moduleSelectionTitles = { 'HESI': 'HESI Study Material', 'Patient Care Management': 'Patient Care Management Study Material', 'Nursing Certifications': 'Nursing Certifications Study Material', 'Pharmacology': 'Pharmacology Study Material', 'Lab Values': 'Lab Values Study Material' };
-  const categoryDescriptions = { 'HESI': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides' };
-  if (category) {
-    const displayTitle = categoryTitles[category] || category;
-    const displayDescription = categoryDescriptions[category] || '';
-    const quizTitle = document.getElementById('quizTitle');
-    if (quizTitle) quizTitle.textContent = moduleSelectionTitles[category] || category;
-    const quizDescription = document.getElementById('quizDescription');
-    if (quizDescription) {
-      if (displayDescription) { quizDescription.textContent = displayDescription; quizDescription.style.display = 'block'; }
-      else { quizDescription.style.display = 'none'; }
-    }
-  }
-}
-
-/* ---------- Render Question ---------- */
+/* ---------- Render ---------- */
 function renderQuestion(q){
-  if (!qText || !form) return;
-  qText.textContent = q.stem;
-  form.innerHTML = '';
-  if (feedback) { feedback.textContent = ''; feedback.className = 'feedback hidden'; }
-  if (answerLine) { answerLine.innerHTML = ''; answerLine.classList.add('hidden'); }
-  if (rationaleBox) { rationaleBox.textContent = ''; rationaleBox.classList.add('hidden'); }
-  const isMulti = (q.type === 'multiple_select');
+  if (!q) return;
+  const isMulti = q.type === 'multiple_select';
+  const qIndexForDisplay = run.uniqueSeen.size;
+  const totalForDisplay = Math.max(run.masterPool.length, qIndexForDisplay);
+  
+  if (progressBar && progressFill && progressLabel) {
+    progressBar.classList.remove('hidden');
+    const pct = (qIndexForDisplay / totalForDisplay) * 100;
+    progressFill.style.width = pct + '%';
+    progressLabel.textContent = `Question ${qIndexForDisplay} of ${totalForDisplay}`;
+  }
+  
+  qText.innerHTML = escapeHTML(q.stem) + (isMulti ? '<span class="multi-hint">(Select all that apply)</span>' : '');
+  
   const letters = Object.keys(q.options).sort();
-  letters.forEach(letter => {
-    const optDiv = document.createElement('div');
-    optDiv.className = 'opt';
-    optDiv.dataset.letter = letter;
-    const inp = document.createElement('input');
-    inp.type = isMulti ? 'checkbox' : 'radio';
-    inp.name = 'answer';
-    inp.id = 'opt-' + letter;
-    inp.value = letter;
-    const lbl = document.createElement('label');
-    lbl.setAttribute('for', 'opt-' + letter);
-    const keySpan = document.createElement('span');
-    keySpan.className = 'k';
-    keySpan.textContent = letter;
-    const answerSpan = document.createElement('span');
-    answerSpan.className = 'ans';
-    answerSpan.textContent = q.options[letter];
-    lbl.appendChild(keySpan);
-    lbl.appendChild(answerSpan);
-    optDiv.appendChild(inp);
-    optDiv.appendChild(lbl);
-    form.appendChild(optDiv);
-    optDiv.addEventListener('click', (e) => {
-      if (e.target === lbl || e.target === keySpan || e.target === answerSpan) {
-        e.preventDefault();
-        inp.checked = !inp.checked;
-        onSelectionChanged();
-      }
+  const inputType = isMulti ? 'checkbox' : 'radio';
+  
+  form.innerHTML = letters.map((letter, idx) => {
+    const id = 'opt-' + letter;
+    return `<label class="option-label" for="${id}">
+      <input type="${inputType}" name="answer" id="${id}" value="${letter}" data-idx="${idx}">
+      <span class="option-letter">${escapeHTML(letter)}</span>
+      <span class="option-text">${escapeHTML(q.options[letter])}</span>
+    </label>`;
+  }).join('');
+  
+  form.querySelectorAll('input').forEach(input => {
+    input.addEventListener('change', () => {
+      updateHoverClasses();
+      if (inputType === 'radio') submitBtn.focus();
     });
   });
-  setActionState('submit');
+  
   updateHoverClasses();
+  submitBtn.disabled = false;
+  submitBtn.classList.remove('hidden');
+  feedback.classList.add('hidden');
+  answerLine.textContent = '';
+  rationaleBox.textContent = '';
+  scrollToQuizTop();
 }
 
-function currentQuestion() { return run.order?.[run.i] || null; }
-function getUserLetters(){
-  if (!form) return [];
-  const checked = [...form.querySelectorAll('input:checked')];
-  return checked.map(inp => inp.value).sort();
-}
-function onSelectionChanged(){
-  if (!submitBtn) return;
-  const hasSelection = getUserLetters().length > 0;
-  submitBtn.disabled = !hasSelection;
-  updateHoverClasses();
-}
-function setActionState(mode){
-  if (!submitBtn) return;
-  submitBtn.dataset.mode = mode;
-  if (mode === 'submit') {
-    submitBtn.textContent = 'Submit';
-    submitBtn.classList.remove('btn-blue');
-    submitBtn.classList.add('primary');
-    submitBtn.disabled = getUserLetters().length === 0;
-  } else {
-    submitBtn.textContent = 'Next';
-    submitBtn.classList.remove('primary');
-    submitBtn.classList.add('btn-blue');
-    submitBtn.disabled = false;
-  }
-}
-function formatCorrectAnswers(q){
-  return (q.correctLetters || []).map(l => '<strong>' + escapeHTML(l) + '</strong>. ' + escapeHTML(q.options[l]||'')).join('<br>');
-}
-function highlightAnswers(q, userLetters, isCorrect) {
-  if (!form) return;
-  const correctLetters = q.correctLetters || [];
-  form.querySelectorAll('.opt').forEach(optDiv => {
-    const letter = optDiv.dataset.letter;
-    const isCorrectAnswer = correctLetters.includes(letter);
-    const wasSelected = userLetters.includes(letter);
-    optDiv.classList.remove('correct-answer', 'wrong-answer');
-    if (isCorrect && wasSelected) optDiv.classList.add('correct-answer');
-    else if (!isCorrect && wasSelected && !isCorrectAnswer) optDiv.classList.add('wrong-answer');
-  });
-}
+function currentQuestion(){ return run.order[run.i] || null; }
+function getUserLetters(){ return [...form.querySelectorAll('input:checked')].map(i => i.value).sort(); }
 
-/* ---------- Counters / Progress Bar ---------- */
 function updateCounters(){
-  const remaining = getNotMastered().length;
-  const total = run.masterPool.length;
-  if (runCounter) runCounter.textContent = 'Question: ' + run.totalQuestionsAnswered;
-  if (remainingCounter) remainingCounter.textContent = 'Remaining to master: ' + remaining;
-  const masteredCount = total - remaining;
-  const percentage = total ? Math.floor((masteredCount / total) * 100) : 0;
-  if (progressFill) progressFill.style.width = percentage + '%';
-  if (progressLabel) progressLabel.textContent = percentage + '% mastered';
-  if (progressBar) progressBar.setAttribute('aria-valuenow', percentage);
-  updateProgressBar();
+  if (!countersBox) return;
+  const seenCount = run.uniqueSeen.size;
+  const totalBankSize = run.masterPool.length;
+  const remaining = Math.max(0, totalBankSize - seenCount);
+  
+  if (runCounter) runCounter.textContent = run.totalQuestionsAnswered || 0;
+  if (remainingCounter) remainingCounter.textContent = remaining;
+}
+
+function arraysEqual(a, b){ return a.length === b.length && a.every((v, i) => v === b[i]); }
+
+/* ---------- Submit Answer ---------- */
+function doSubmit(){
+  const q = currentQuestion();
+  if (!q) return;
+  const sel = getUserLetters();
+  if (!sel.length) { alert('Please select an answer.'); return; }
+  
+  const correct = arraysEqual(sel, q.correctLetters);
+  const existing = run.answered.get(q.id);
+  
+  if (!existing) {
+    run.answered.set(q.id, { q, correct, selectedLetters: sel, firstTry: true });
+    run.totalQuestionsAnswered++;
+  } else if (!existing.correct && correct) {
+    existing.correct = true;
+    run.totalQuestionsAnswered++;
+  }
+  
+  if (!correct && !run.wrongSinceLast.some(x => x.id === q.id)) run.wrongSinceLast.push(q);
+  
+  form.querySelectorAll('.option-label').forEach(lbl => {
+    const input = lbl.querySelector('input');
+    const letter = input?.value;
+    if (!letter) return;
+    const isCorrect = q.correctLetters.includes(letter);
+    const wasChosen = sel.includes(letter);
+    lbl.classList.remove('highlight-correct', 'highlight-wrong', 'highlight-missed');
+    if (isCorrect) lbl.classList.add('highlight-correct');
+    else if (wasChosen && !isCorrect) lbl.classList.add('highlight-wrong');
+  });
+  
+  const correctText = q.correctLetters.map(l => `${l}. ${q.options[l] || ''}`).join(', ');
+  answerLine.innerHTML = `<strong>Correct answer:</strong> ${escapeHTML(correctText)}`;
+  
+  if (q.rationale) rationaleBox.innerHTML = `<strong>Rationale:</strong> ${escapeHTML(q.rationale)}`;
+  else rationaleBox.textContent = '';
+  
+  feedback.textContent = correct ? '✓ Correct!' : '✗ Incorrect';
+  feedback.className = 'feedback ' + (correct ? 'correct' : 'wrong');
+  feedback.classList.remove('hidden');
+  
+  submitBtn.classList.add('hidden');
+  updateCounters();
+  saveRunState();
+  scrollToBottomSmooth();
+}
+
+/* ---------- Next Question ---------- */
+function doNext(){
+  if (run.i + 1 >= run.order.length) {
+    if (run.wrongSinceLast.length >= run.thresholdWrong) {
+      const toReinject = run.wrongSinceLast.splice(0, run.wrongSinceLast.length);
+      shuffleInPlace(toReinject);
+      run.order.push(...toReinject);
+    }
+  }
+  
+  run.i++;
+  const q = currentQuestion();
+  
+  if (!q) {
+    clearSavedState();
+    finishQuiz();
+    return;
+  }
+  
+  run.uniqueSeen.add(q.id);
+  renderQuestion(shuffleQuestionOptions(q));
+  updateCounters();
   saveRunState();
 }
-function recordAnswer(q, userLetters, isCorrect){
-  const firstTime = !run.answered.has(q.id);
-  const entry = run.answered.get(q.id) || { firstTryCorrect: null, correct: false, userLetters: [] };
-  if (firstTime) entry.firstTryCorrect = !!isCorrect;
-  entry.correct = !!isCorrect;
-  entry.userLetters = userLetters.slice();
-  run.answered.set(q.id, entry);
-}
-function getNotMastered(){ return run.masterPool.filter(q => !run.answered.get(q.id)?.correct); }
-function nextIndex(){
-  const nextIdx = (run.i ?? 0) + 1;
-  if (nextIdx < run.order.length) { run.i = nextIdx; return { fromBuffer: false, q: run.order[run.i] }; }
-  const allCorrect = run.masterPool.every(q => run.answered.get(q.id)?.correct);
-  if (!allCorrect) {
-    const notMastered = getNotMastered();
-    if (notMastered.length > 0) {
-      run.wrongSinceLast = [];
-      run.order.push(...notMastered);
-      run.i = nextIdx;
-      return { fromBuffer: true, q: run.order[run.i] };
+
+/* ---------- Quiz Completion ---------- */
+function finishQuiz(){
+  if (quiz) quiz.classList.add('hidden');
+  if (countersBox) countersBox.classList.add('hidden');
+  if (progressBar) progressBar.classList.add('hidden');
+  if (resetAll) resetAll.classList.add('hidden');
+  if (summary) summary.classList.remove('hidden');
+  
+  let firstTryCorrect = 0, firstTryTotal = 0;
+  const missed = [];
+  const categoryResults = {};
+  
+  run.masterPool.forEach(q => {
+    const rec = run.answered.get(q.id);
+    if (rec && rec.firstTry) {
+      firstTryTotal++;
+      
+      if (run.isComprehensive && q.category) {
+        if (!categoryResults[q.category]) {
+          categoryResults[q.category] = { correct: 0, total: 0 };
+        }
+        categoryResults[q.category].total++;
+        
+        if (rec.correct) {
+          firstTryCorrect++;
+          categoryResults[q.category].correct++;
+        } else {
+          missed.push(rec);
+        }
+      } else {
+        if (rec.correct) firstTryCorrect++;
+        else missed.push(rec);
+      }
+    }
+  });
+  
+  lastQuizMissedQuestions = missed.map(m => m.q);
+  const pct = firstTryTotal > 0 ? Math.round((firstTryCorrect / firstTryTotal) * 100) : 0;
+  
+  if (run.isComprehensive && !run.isCategoryQuiz && Object.keys(categoryResults).length > 0) {
+    updateHesiStats(categoryResults);
+  }
+  
+  if (firstTrySummary) {
+    firstTrySummary.innerHTML = `
+      <div class="summary-score">
+        <div class="score-circle ${pct >= 75 ? 'green' : pct >= 60 ? 'yellow' : 'red'}">
+          <span class="score-number">${pct}%</span>
+        </div>
+        <div class="score-details">
+          <p><strong>${firstTryCorrect}</strong> of <strong>${firstTryTotal}</strong> correct on first try</p>
+          <p class="score-message">${pct >= 85 ? 'Excellent work! 🎉' : pct >= 75 ? 'Great job! Keep it up! 👍' : pct >= 60 ? 'Good effort! Review the missed questions. 📚' : 'Keep practicing! Review the rationales carefully. 💪'}</p>
+        </div>
+      </div>
+    `;
+    
+    if (run.isComprehensive && Object.keys(categoryResults).length > 0) {
+      const categoryBreakdownHTML = buildCategoryBreakdown(categoryResults);
+      firstTrySummary.innerHTML += categoryBreakdownHTML;
     }
   }
-  return { fromBuffer: false, q: null };
-}
-
-/* ---------- Start / End ---------- */
-async function startQuiz(){
-  if (!lengthBtns || !moduleSel || !startBtn) return;
-  const lenBtn = lengthBtns.querySelector('.length-btn.active');
-  if (!lenBtn) {
-    alert('Pick Length Of Quiz Before Starting');
-    if (lengthSelectorContainer) lengthSelectorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    return;
-  }
-  const bank = moduleSel.value;
-  const displayName = prettifyModuleName(bank);
-  const qty = (lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10));
-  const isFullBank = (qty === 'full');
   
-  // Determine category - check multiple sources
-  const category = window.preloadedCategory || getCategoryFromPath() || currentCategory;
-  
-  if (!category) {
-    console.error('[Quiz] Could not determine category for module:', bank);
-    alert('Error: Could not determine quiz category. Please try navigating from the category page.');
-    return;
-  }
-  
-  currentCategory = category; // Store for later use
-  
-  setHeaderTitle(displayName);
-  document.title = displayName + ' - Nurse Success Study Hub';
-  const quizTitle = $('quizTitle');
-  if (quizTitle) quizTitle.textContent = displayName;
-  startBtn.disabled = true;
-  
-  try {
-    let rawData;
-    
-    // Check for preloaded data first
-    if (window.storedPreloadedData && window.storedPreloadedData.moduleName === bank) {
-      console.log('[Quiz] Using preloaded data for:', bank);
-      rawData = window.storedPreloadedData.questions;
+  if (retryMissedBtn) {
+    if (missed.length > 0) {
+      retryMissedBtn.classList.remove('hidden');
+      retryMissedBtn.textContent = `Retry ${missed.length} Missed Question${missed.length > 1 ? 's' : ''}`;
     } else {
-      // Build correct JSON URL path: /modules/{category}/{module}.json
-      const jsonUrl = buildModuleJsonUrl(category, bank);
-      
-      if (!jsonUrl) {
-        alert('Error: Could not build quiz URL');
-        startBtn.disabled = false;
-        return;
-      }
-      
-      console.log('[Quiz] Fetching from:', jsonUrl);
-      
-      const res = await fetch(jsonUrl, { cache: 'no-store' });
-      if (!res.ok) {
-        console.error('[Quiz] Fetch failed:', res.status, res.statusText);
-        alert('Could not load quiz. Status: ' + res.status + '. Make sure you are online or the quiz is cached for offline use.');
-        startBtn.disabled = false;
-        setHeaderTitle(defaultTitle);
-        document.title = 'Quiz - Nurse Success Study Hub';
-        return;
-      }
-      rawData = await res.json();
+      retryMissedBtn.classList.add('hidden');
     }
+  }
+  
+  if (reviewList) {
+    if (missed.length > 0) {
+      reviewList.innerHTML = '<h3>Questions to Review</h3>' + missed.map((rec, idx) => {
+        const q = rec.q;
+        const correctText = q.correctLetters.map(l => `${l}. ${q.options[l] || ''}`).join(', ');
+        const selectedText = rec.selectedLetters.map(l => `${l}. ${q.options[l] || ''}`).join(', ');
+        return `
+          <div class="review-item">
+            <div class="review-question"><strong>${idx + 1}.</strong> ${escapeHTML(q.stem)}</div>
+            <div class="review-your-answer wrong">Your answer: ${escapeHTML(selectedText)}</div>
+            <div class="review-correct-answer">Correct: ${escapeHTML(correctText)}</div>
+            ${q.rationale ? `<div class="review-rationale">${escapeHTML(q.rationale)}</div>` : ''}
+            ${q.category ? `<div class="review-category"><span class="category-tag">${escapeHTML(q.category)}</span></div>` : ''}
+          </div>
+        `;
+      }).join('');
+    } else {
+      reviewList.innerHTML = '<p class="all-correct">🎉 Perfect score! No questions to review.</p>';
+    }
+  }
+  
+  scrollToQuizTop();
+}
+
+/* ---------- Category Breakdown for HESI Comprehensive ---------- */
+function buildCategoryBreakdown(categoryResults) {
+  const sortedCategories = Object.entries(categoryResults)
+    .sort((a, b) => {
+      const weightA = NCLEX_WEIGHTS[a[0]] || 0;
+      const weightB = NCLEX_WEIGHTS[b[0]] || 0;
+      return weightB - weightA;
+    });
+  
+  let html = '<div class="category-breakdown">';
+  html += '<h3>📊 Performance by NCLEX Category</h3>';
+  html += '<div class="category-results">';
+  
+  sortedCategories.forEach(([category, result]) => {
+    const pct = result.total > 0 ? Math.round((result.correct / result.total) * 100) : 0;
+    const colorClass = pct >= 75 ? 'green' : pct >= 60 ? 'yellow' : 'red';
+    const weight = NCLEX_WEIGHTS[category] || 0;
+    const needsWork = pct < 70;
     
-    allQuestions = normalizeQuestions(rawData);
-    const sampled = sampleQuestions(allQuestions, qty);
-    const shuffledQuestions = sampled.map((q) => shuffleQuestionOptions(q));
-    
-    run = {
-      bank, displayName, category, order: [...shuffledQuestions], masterPool: [...shuffledQuestions],
-      i: 0, answered: new Map(), uniqueSeen: new Set(), thresholdWrong: 0,
-      wrongSinceLast: [], totalQuestionsAnswered: 1, isFullBank: isFullBank, isRetry: false,
-    };
-    
-    const total = run.masterPool.length;
-    const frac = (qty === 'full' || (typeof qty === 'number' && qty >= 100)) ? 0.05 : 0.15;
-    run.thresholdWrong = Math.max(1, Math.ceil(total * frac));
-    
-    if (launcher) launcher.classList.add('hidden');
-    if (summary) summary.classList.add('hidden');
-    if (quiz) quiz.classList.remove('hidden');
-    if (countersBox) countersBox.classList.remove('hidden');
-    if (resetAll) resetAll.classList.remove('hidden');
-    
-    const q0 = run.order[0];
-    run.uniqueSeen.add(q0.id);
-    renderQuestion(q0);
+    html += `
+      <div class="category-result-item ${needsWork ? 'needs-work' : ''}">
+        <div class="category-result-header">
+          <span class="category-name">${escapeHTML(category)}</span>
+          <span class="category-weight">${Math.round(weight * 100)}% NCLEX</span>
+        </div>
+        <div class="category-result-bar">
+          <div class="category-bar-fill ${colorClass}" style="width: ${pct}%"></div>
+        </div>
+        <div class="category-result-stats">
+          <span class="category-score ${colorClass}">${pct}%</span>
+          <span class="category-count">${result.correct}/${result.total}</span>
+        </div>
+        ${needsWork ? `<a href="/category/HESI/category/${encodeURIComponent(category)}" class="practice-weak-btn">Practice this category →</a>` : ''}
+      </div>
+    `;
+  });
+  
+  html += '</div></div>';
+  
+  const weakAreas = sortedCategories.filter(([cat, res]) => {
+    const pct = res.total > 0 ? Math.round((res.correct / res.total) * 100) : 0;
+    return pct < 70;
+  });
+  
+  if (weakAreas.length > 0) {
+    html += `
+      <div class="weak-areas-prompt">
+        <h4>⚠️ Areas Needing Attention</h4>
+        <p>You scored below 70% in ${weakAreas.length} categor${weakAreas.length > 1 ? 'ies' : 'y'}. Consider practicing these areas:</p>
+        <div class="weak-areas-list">
+          ${weakAreas.map(([cat]) => `<a href="/category/HESI/category/${encodeURIComponent(cat)}" class="weak-area-link">${escapeHTML(cat)}</a>`).join('')}
+        </div>
+      </div>
+    `;
+  }
+  
+  return html;
+}
+
+/* ---------- Retry Missed Questions ---------- */
+function startRetryMissed(){
+  if (lastQuizMissedQuestions.length === 0) return;
+  
+  const questionsToRetry = lastQuizMissedQuestions.map(q => ({ ...q }));
+  shuffleInPlace(questionsToRetry);
+  
+  run = {
+    bank: run.bank, displayName: run.displayName + ' (Retry)', category: run.category,
+    order: questionsToRetry.slice(), masterPool: questionsToRetry.slice(),
+    i: 0, answered: new Map(), uniqueSeen: new Set(),
+    thresholdWrong: Math.max(1, Math.ceil(questionsToRetry.length / 3)),
+    wrongSinceLast: [], totalQuestionsAnswered: 0, isFullBank: false, isRetry: true,
+    isComprehensive: false, isCategoryQuiz: false,
+  };
+  
+  lastQuizMissedQuestions = [];
+  
+  if (summary) summary.classList.add('hidden');
+  if (quiz) quiz.classList.remove('hidden');
+  if (countersBox) countersBox.classList.remove('hidden');
+  if (resetAll) resetAll.classList.remove('hidden');
+  
+  const q = currentQuestion();
+  if (q) {
+    run.uniqueSeen.add(q.id);
+    renderQuestion(shuffleQuestionOptions(q));
     updateCounters();
-    startBtn.disabled = false;
-  } catch (err) {
-    console.error('Error starting quiz:', err);
-    alert('Error loading quiz. Please check your connection and try again.');
-    if (startBtn) startBtn.disabled = false;
+    saveRunState();
   }
 }
 
-async function startRetryQuiz(missedQuestions) {
-  if (!missedQuestions || missedQuestions.length === 0) { alert('No missed questions to retry'); return; }
-  const displayName = run.displayName + ' - Retry Missed Questions';
-  const category = run.category || currentCategory;
-  setHeaderTitle(displayName);
-  document.title = displayName + ' - Nurse Success Study Hub';
-  const quizTitle = $('quizTitle');
-  if (quizTitle) quizTitle.textContent = displayName;
-  const shuffledQuestions = missedQuestions.map((q) => shuffleQuestionOptions(q));
+/* ---------- Start Quiz ---------- */
+async function startQuiz(moduleName, length, displayName, preloadedData, isComprehensive = false, isCategoryQuiz = false){
+  currentCategory = getCategoryFromPath() || getUrlParam('category') || 'HESI';
+  
+  let questions;
+  
+  if (preloadedData) {
+    questions = normalizeQuestions(preloadedData);
+  } else {
+    const jsonUrl = buildModuleJsonUrl(currentCategory, moduleName);
+    if (!jsonUrl) {
+      alert('Error: Could not determine module location.');
+      return;
+    }
+    
+    try {
+      const resp = await fetch(jsonUrl);
+      if (!resp.ok) throw new Error('Failed to load quiz data: ' + resp.status);
+      const data = await resp.json();
+      questions = normalizeQuestions(data);
+    } catch (e) {
+      console.error('Failed to load quiz:', e);
+      alert('Failed to load quiz. Please try again.');
+      return;
+    }
+  }
+  
+  if (!questions || questions.length === 0) {
+    alert('No questions found in this module.');
+    return;
+  }
+  
+  allQuestions = questions;
+  
+  let selectedQuestions;
+  const numLength = length === 'full' ? questions.length : parseInt(length, 10);
+  
+  if (isComprehensive && numLength >= 25) {
+    selectedQuestions = sampleQuestionsWeighted(questions, numLength);
+  } else {
+    selectedQuestions = sampleQuestions(questions, numLength);
+  }
+  
+  const isFullBank = length === 'full' || numLength >= questions.length;
+  
   run = {
-    bank: run.bank, displayName: displayName, category: category, order: [...shuffledQuestions], masterPool: [...shuffledQuestions],
-    i: 0, answered: new Map(), uniqueSeen: new Set(), thresholdWrong: 0,
-    wrongSinceLast: [], totalQuestionsAnswered: 1, isFullBank: false, isRetry: true,
+    bank: moduleName, displayName: displayName || prettifyModuleName(moduleName),
+    category: currentCategory,
+    order: selectedQuestions.map(q => shuffleQuestionOptions(q)),
+    masterPool: selectedQuestions.slice(),
+    i: 0, answered: new Map(), uniqueSeen: new Set(),
+    thresholdWrong: Math.max(1, Math.ceil(selectedQuestions.length / 3)),
+    wrongSinceLast: [], totalQuestionsAnswered: 0, isFullBank, isRetry: false,
+    isComprehensive, isCategoryQuiz,
   };
-  const total = run.masterPool.length;
-  run.thresholdWrong = Math.max(1, Math.ceil(total * 0.15));
+  
+  lastQuizMissedQuestions = [];
+  
+  setHeaderTitle(run.displayName);
+  document.title = run.displayName + ' - Nurse Success Study Hub';
+  const quizTitle = $('quizTitle');
+  if (quizTitle) quizTitle.textContent = run.displayName;
+  
   if (launcher) launcher.classList.add('hidden');
   if (summary) summary.classList.add('hidden');
   if (quiz) quiz.classList.remove('hidden');
   if (countersBox) countersBox.classList.remove('hidden');
   if (resetAll) resetAll.classList.remove('hidden');
-  const q0 = run.order[0];
-  run.uniqueSeen.add(q0.id);
-  renderQuestion(q0);
-  updateCounters();
-}
-
-function endRun(){
-  if (quiz) quiz.classList.add('hidden');
-  if (summary) summary.classList.remove('hidden');
-  if (countersBox) countersBox.classList.add('hidden');
-  setHeaderTitle(run.displayName || run.bank || defaultTitle);
-  document.title = run.displayName || run.bank || 'Quiz - Nurse Success Study Hub';
-  if (restartBtn2) restartBtn2.classList.remove('hidden');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  const uniq = [...run.answered.values()];
-  const ftCorrect = uniq.filter(x => x.firstTryCorrect).length;
-  const totalUnique = uniq.length;
-  lastQuizMissedQuestions = run.masterPool.filter(q => {
-    const ans = run.answered.get(q.id);
-    return ans && ans.firstTryCorrect === false;
-  });
-  if (retryMissedBtn) {
-    if (lastQuizMissedQuestions.length > 0 && !run.isRetry) {
-      retryMissedBtn.classList.remove('hidden');
-      const missedCount = document.getElementById('missedCount');
-      if (missedCount) missedCount.textContent = lastQuizMissedQuestions.length;
-    } else {
-      retryMissedBtn.classList.add('hidden');
-    }
-  }
-  if (firstTrySummary) {
-    if (totalUnique > 0){
-      firstTrySummary.classList.remove('hidden');
-      firstTrySummary.innerHTML = '<div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;"><div><strong>First-try mastery:</strong> <span id="firstTryPct">0%</span> (<span id="firstTryCount">0</span> / <span id="firstTryTotal">0</span>)</div><div><strong>Total Questions Answered:</strong> <span>' + run.totalQuestionsAnswered + '</span></div></div>';
-      const firstTryPct = document.getElementById('firstTryPct');
-      const firstTryCount = document.getElementById('firstTryCount');
-      const firstTryTotal = document.getElementById('firstTryTotal');
-      if (firstTryPct) firstTryPct.textContent = Math.round((ftCorrect / totalUnique) * 100) + '%';
-      if (firstTryCount) firstTryCount.textContent = ftCorrect;
-      if (firstTryTotal) firstTryTotal.textContent = totalUnique;
-    } else {
-      firstTrySummary.classList.add('hidden');
-    }
-  }
-  if (reviewList) {
-    reviewList.innerHTML = '';
-    const questionWrongCount = {};
-    run.order.forEach(q => { questionWrongCount[q.id] = (questionWrongCount[q.id] || 0) + 1; });
-    const maxWrong = Math.max(...Object.values(questionWrongCount));
-    const sortedQuestions = [...run.order].sort((a, b) => {
-      const ansA = run.answered.get(a.id);
-      const ansB = run.answered.get(b.id);
-      if (ansA?.correct !== ansB?.correct) return ansA?.correct ? 1 : -1;
-      const countA = questionWrongCount[a.id] || 1;
-      const countB = questionWrongCount[b.id] || 1;
-      return countB - countA;
-    });
-    const displayedIds = new Set();
-    sortedQuestions.forEach(q => {
-      if (displayedIds.has(q.id)) return;
-      displayedIds.add(q.id);
-      const row = document.createElement('div');
-      const ans = run.answered.get(q.id);
-      row.className = 'rev-item ' + (ans?.correct ? 'ok' : 'bad');
-      const qEl = document.createElement('div'); qEl.className = 'rev-q'; qEl.textContent = q.stem;
-      const wrongCountEl = document.createElement('div'); 
-      wrongCountEl.className = 'rev-wrong-count';
-      const wrongCount = Math.max(0, questionWrongCount[q.id] - 1);
-      wrongCountEl.textContent = 'Times marked wrong: ' + wrongCount;
-      const colorClass = getColorClass(wrongCount, maxWrong);
-      if (colorClass) wrongCountEl.classList.add(colorClass);
-      const caEl = document.createElement('div'); caEl.className = 'rev-ans';
-      caEl.innerHTML = '<strong>Correct Answer:</strong><br>' + formatCorrectAnswers(q);
-      const rEl = document.createElement('div'); rEl.className = 'rev-rationale';
-      rEl.innerHTML = '<strong>Rationale:</strong> ' + escapeHTML(q.rationale || '');
-      row.appendChild(qEl); 
-      row.appendChild(wrongCountEl);
-      row.appendChild(caEl); 
-      row.appendChild(rEl);
-      reviewList.appendChild(row);
-    });
-  }
-  clearSavedState();
-}
-
-/* ---------- Event wiring ---------- */
-// Initial length button handlers (will be re-attached when options change)
-attachLengthButtonHandlers();
-
-if (startBtn) startBtn.addEventListener('click', startQuiz);
-if (form) form.addEventListener('change', onSelectionChanged);
-if (submitBtn) submitBtn.addEventListener('click', handleSubmitClick);
-
-function handleSubmitClick() {
-  if (!submitBtn) return;
-  if (submitBtn.dataset.mode === 'next') {
-    scrollToQuizTop();
-    const next = nextIndex();
-    const q = next.q;
-    if (!q) return endRun();
+  
+  const q = currentQuestion();
+  if (q) {
     run.uniqueSeen.add(q.id);
-    run.totalQuestionsAnswered++;
     renderQuestion(q);
     updateCounters();
-    return;
+    if (isFullBank) saveRunState();
   }
-  const q = currentQuestion();
-  if (!q) return;
-  const userLetters = getUserLetters();
-  const correctLetters = (q.correctLetters || []).slice().sort();
-  const isCorrect = JSON.stringify(userLetters) === JSON.stringify(correctLetters);
-  recordAnswer(q, userLetters, isCorrect);
-  if (!isCorrect) {
-    run.wrongSinceLast.push(q);
-    if (run.wrongSinceLast.length >= run.thresholdWrong) {
-      const seen = new Set(); const uniqueBatch = [];
-      for (const item of run.wrongSinceLast) {
-        if (!seen.has(item.id)) { seen.add(item); uniqueBatch.push(item); }
-      }
-      run.wrongSinceLast = [];
-      if (uniqueBatch.length) run.order.splice(run.i + 1, 0, ...uniqueBatch);
-    }
-  }
-  if (feedback) {
-    feedback.textContent = isCorrect ? 'Correct!' : 'Incorrect';
-    feedback.classList.remove('ok','bad', 'hidden');
-    feedback.classList.add(isCorrect ? 'ok' : 'bad');
-  }
-  highlightAnswers(q, userLetters, isCorrect);
-  if (answerLine) { answerLine.innerHTML = '<strong>Correct Answer:</strong><br>' + formatCorrectAnswers(q); answerLine.classList.remove('hidden'); }
-  if (rationaleBox) { rationaleBox.textContent = q.rationale || ''; rationaleBox.classList.remove('hidden'); }
-  if (form) form.querySelectorAll('input').forEach(i => i.disabled = true);
-  setActionState('next');
-  scrollToBottomSmooth();
-  updateCounters();
 }
 
-if (resetAll) resetAll.addEventListener('click', () => { clearSavedState(); location.reload(); });
-if (restartBtn2) restartBtn2.addEventListener('click', () => { location.reload(); });
-if (retryMissedBtn) retryMissedBtn.addEventListener('click', () => { startRetryQuiz(lastQuizMissedQuestions); });
+/* ---------- Reset Quiz ---------- */
+function resetQuiz(){
+  if (!confirm('Are you sure you want to reset and start over?')) return;
+  clearSavedState();
+  
+  if (quiz) quiz.classList.add('hidden');
+  if (summary) summary.classList.add('hidden');
+  if (countersBox) countersBox.classList.add('hidden');
+  if (progressBar) progressBar.classList.add('hidden');
+  if (resetAll) resetAll.classList.add('hidden');
+  
+  if (launcher) launcher.classList.remove('hidden');
+  showResumeIfAny();
+  
+  setHeaderTitle(defaultTitle);
+  document.title = 'Quiz - Nurse Success Study Hub';
+}
 
-/* ---------- Keyboard shortcuts ---------- */
-document.addEventListener('keydown', (e) => {
-  if (!quiz || quiz.classList.contains('hidden')) return;
-  if (isTextEditingTarget(e.target)) return;
-  if (e.altKey || e.ctrlKey || e.metaKey) return;
-  const key = e.key || '';
-  const upper = key.toUpperCase();
-  if (key === 'Enter') {
-    e.preventDefault();
-    if (submitBtn && !submitBtn.disabled) submitBtn.click();
-    return;
+/* ---------- Initialize ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const preloadedData = window.PRELOADED_QUIZ_DATA || null;
+  const preloadedModule = window.PRELOADED_MODULE_NAME || null;
+  const autoStart = window.AUTO_START_QUIZ || false;
+  const isComprehensive = window.IS_COMPREHENSIVE || false;
+  const isCategoryQuiz = window.IS_CATEGORY_QUIZ || false;
+  
+  const urlQuizLength = getUrlParam('quiz_length');
+  
+  if (preloadedData && preloadedData.questions) {
+    const questionCount = preloadedData.questions.length;
+    updateLengthOptions(questionCount);
+    
+    const moduleSelector = $('moduleSelector');
+    if (moduleSelector) moduleSelector.classList.add('hidden');
+    
+    const displayName = window.CUSTOM_HEADER_TITLE || prettifyModuleName(preloadedModule);
+    setHeaderTitle(displayName);
+    
+    if (autoStart || urlQuizLength) {
+      const length = urlQuizLength || 'full';
+      startQuiz(preloadedModule, length, displayName, preloadedData, isComprehensive, isCategoryQuiz);
+      return;
+    }
   }
-  if (/^[A-Z]$/.test(upper) && submitBtn && submitBtn.dataset.mode === 'submit') {
-    const input = document.getElementById('opt-' + upper);
-    if (!input || input.disabled) return;
-    e.preventDefault();
-    input.checked = !input.checked;
-    onSelectionChanged();
+  
+  if (startBtn) {
+    startBtn.addEventListener('click', () => {
+      const activeLen = lengthBtns?.querySelector('.length-btn.active');
+      const length = activeLen?.dataset?.len || 'full';
+      
+      if (preloadedData) {
+        const displayName = window.CUSTOM_HEADER_TITLE || prettifyModuleName(preloadedModule);
+        startQuiz(preloadedModule, length, displayName, preloadedData, isComprehensive, isCategoryQuiz);
+      } else if (moduleSel) {
+        const moduleName = moduleSel.value;
+        if (!moduleName) {
+          alert('Please select a module.');
+          return;
+        }
+        startQuiz(moduleName, length, prettifyModuleName(moduleName), null, false, false);
+      }
+    });
   }
+  
+  if (submitBtn) {
+    submitBtn.addEventListener('click', doSubmit);
+  }
+  
+  if (feedback) {
+    feedback.addEventListener('click', doNext);
+  }
+  
+  if (restartBtn2) {
+    restartBtn2.addEventListener('click', resetQuiz);
+  }
+  if (resetAll) {
+    resetAll.addEventListener('click', resetQuiz);
+  }
+  
+  if (retryMissedBtn) {
+    retryMissedBtn.addEventListener('click', startRetryMissed);
+  }
+  
+  document.addEventListener('keydown', (e) => {
+    if (isTextEditingTarget(e.target)) return;
+    
+    const key = e.key.toUpperCase();
+    
+    if (['A', 'B', 'C', 'D', 'E'].includes(key)) {
+      const input = form?.querySelector(`input[value="${key}"]`);
+      if (input && !input.disabled) {
+        if (input.type === 'checkbox') {
+          input.checked = !input.checked;
+        } else {
+          input.checked = true;
+        }
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+        e.preventDefault();
+      }
+    }
+    
+    if (e.key === 'Enter' || e.key === ' ') {
+      if (submitBtn && !submitBtn.classList.contains('hidden') && !submitBtn.disabled) {
+        doSubmit();
+        e.preventDefault();
+      } else if (feedback && !feedback.classList.contains('hidden')) {
+        doNext();
+        e.preventDefault();
+      }
+    }
+  });
+  
+  attachLengthButtonHandlers();
+  showResumeIfAny();
 });
 
-/* ---------- Progress bar update ---------- */
-function updateProgressBar() {
-  const remaining = getNotMastered().length;
-  const total = run.masterPool.length;
-  const masteredCount = total - remaining;
-  const percentage = total ? Math.floor((masteredCount / total) * 100) : 0;
-  if (progressFill) {
-    progressFill.style.width = percentage + '%';
-    const r = Math.round(47 + (76 - 47) * (percentage / 100));
-    const g = Math.round(97 + (175 - 97) * (percentage / 100));
-    const b = Math.round(243 + (80 - 243) * (percentage / 100));
-    progressFill.style.backgroundColor = 'rgb(' + r + ', ' + g + ', ' + b + ')';
-  }
-  if (progressLabel) progressLabel.textContent = percentage + '% mastered';
-  if (progressBar) progressBar.setAttribute('aria-valuenow', percentage);
-}
-
-function checkAutoStart() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('autostart') === 'true';
-}
-
-/* ---------- Initialize modules with preselect and preloaded data ---------- */
-async function initModulesWithPreselect() {
-  const moduleFromPath = getModuleFromPath();
-  const categoryFromPath = getCategoryFromPath();
-  const autostart = checkAutoStart();
-  const hasPreloadedData = window.preloadedQuizData && window.preloadedModuleName;
-  
-  // Set current category from path or preloaded data
-  currentCategory = window.preloadedCategory || categoryFromPath;
-  
-  if (hasPreloadedData) {
-    const displayName = prettifyModuleName(window.preloadedModuleName);
-    const category = window.preloadedCategory || categoryFromPath || '';
-    const description = getModuleDescription(window.preloadedModuleName, category);
-    const badgeClass = getBadgeClass(window.preloadedModuleName, category);
-    const badgeText = getBadgeText(window.preloadedModuleName, category);
-    
-    currentCategory = category; // Store category
-    
-    const quizTitle = $('quizTitle');
-    if (quizTitle) quizTitle.textContent = displayName;
-
-    if (launcher) launcher.classList.remove('hidden');
-    if (summary) summary.classList.add('hidden');
-    if (quiz) quiz.classList.add('hidden');
-    if (countersBox) countersBox.classList.add('hidden');
-    if (resetAll) resetAll.classList.add('hidden');
-
-    const moduleSelectorGroup = document.getElementById('moduleSelectorGroup');
-    if (moduleSelectorGroup) moduleSelectorGroup.classList.add('hidden-for-preloaded');
-
-    const preloadedTitleWrapper = document.getElementById('preloadedTitleWrapper');
-    if (preloadedTitleWrapper) preloadedTitleWrapper.style.display = 'block';
-
-    // Set dynamic preloaded header content
-    const preloadedBadge = document.getElementById('preloadedBadge');
-    const preloadedTitle = document.getElementById('preloadedTitle');
-    const preloadedDescription = document.getElementById('preloadedDescription');
-    
-    if (preloadedBadge) { preloadedBadge.textContent = badgeText; preloadedBadge.className = 'launcher-badge ' + badgeClass; }
-    if (preloadedTitle) preloadedTitle.textContent = displayName;
-    if (preloadedDescription) preloadedDescription.textContent = description;
-
-    const defaultTitleEl = document.getElementById('defaultTitle');
-    if (defaultTitleEl) defaultTitleEl.style.display = 'none';
-
-    if (moduleSel) {
-      moduleSel.innerHTML = '';
-      const opt = document.createElement('option');
-      opt.value = window.preloadedModuleName;
-      opt.textContent = displayName;
-      opt.selected = true;
-      moduleSel.appendChild(opt);
-      moduleSel.disabled = true;
-    }
-
-    window.storedPreloadedData = { questions: window.preloadedQuizData, moduleName: window.preloadedModuleName };
-    
-    // Update length options based on preloaded question count
-    const questions = Array.isArray(window.preloadedQuizData) ? window.preloadedQuizData : (window.preloadedQuizData?.questions || []);
-    updateLengthOptions(questions.length);
-    
-    return;
-  }
-
-  if (!moduleSel) return;
-  
-  const preloadedTitleWrapper = document.getElementById('preloadedTitleWrapper');
-  if (preloadedTitleWrapper) preloadedTitleWrapper.style.display = 'none';
-
-  const defaultTitleEl = document.getElementById('defaultTitle');
-  if (defaultTitleEl) defaultTitleEl.style.display = 'block';
-
-  const moduleSelectorGroup = document.getElementById('moduleSelectorGroup');
-  if (moduleSelectorGroup) moduleSelectorGroup.classList.remove('hidden-for-preloaded');
-  
-  try {
-    const urlParams = new URLSearchParams(window.location.search);
-    const category = urlParams.get('category') || categoryFromPath;
-    const subcategory = urlParams.get('subcategory');
-    let modules = [];
-    
-    // Store the category for later use
-    if (category) {
-      currentCategory = category;
-    }
-    
-    if (category) {
-      const endpoint = '/api/category/' + encodeURIComponent(category) + '/modules';
-      const res = await fetch(endpoint, { cache: 'no-store' });
-      if (res.ok) { const json = await res.json(); modules = Array.isArray(json.modules) ? json.modules : []; }
-    } else {
-      const res = await fetch('/modules', { cache: 'no-store' });
-      if (res.ok) { const json = await res.json(); modules = Array.isArray(json.modules) ? json.modules : []; }
-    }
-    
-    if (subcategory && category) {
-      const moduleGroupings = {
-        'Nursing Certifications': { 'CCRN': ['CCRN_Test_1_Combined_QA', 'CCRN_Test_2_Combined_QA', 'CCRN_Test_3_Combined_QA'] },
-        'Pharmacology': { 'Pharm Quizzes': ['Pharm_Quiz_1', 'Pharm_Quiz_2', 'Pharm_Quiz_3', 'Pharm_Quiz_4'] }
-      };
-      if (moduleGroupings[category] && moduleGroupings[category][subcategory]) {
-        const allowedModules = moduleGroupings[category][subcategory];
-        modules = modules.filter(m => allowedModules.includes(m));
-      }
-    }
-    
-    modules = modules.filter(m => !m.includes('Fill_In_The_Blank'));
-    moduleSel.innerHTML = '';
-    if (!modules.length && !moduleFromPath) { moduleSel.innerHTML = '<option value="">No modules available</option>'; return; }
-
-    modules.forEach(mod => {
-      const opt = document.createElement('option');
-      opt.value = mod;
-      opt.textContent = prettifyModuleName(mod);
-      if (moduleFromPath && mod === moduleFromPath) opt.selected = true;
-      moduleSel.appendChild(opt);
-    });
-    
-    if (moduleFromPath && !modules.includes(moduleFromPath)) {
-      const opt = document.createElement('option');
-      opt.value = moduleFromPath;
-      opt.textContent = prettifyModuleName(moduleFromPath);
-      opt.selected = true;
-      moduleSel.insertBefore(opt, moduleSel.firstChild);
-    }
-    
-    if (moduleFromPath) {
-      const displayName = prettifyModuleName(moduleFromPath);
-      const quizTitle = $('quizTitle');
-      if (quizTitle) quizTitle.textContent = displayName;
-      
-      // Fetch and update length options based on actual question count
-      await fetchAndUpdateLengthOptions(category || currentCategory, moduleFromPath);
-    }
-
-    // Add change handler to module selector to update length options
-    moduleSel.addEventListener('change', async () => {
-      const selectedModule = moduleSel.value;
-      if (selectedModule) {
-        await fetchAndUpdateLengthOptions(currentCategory, selectedModule);
-      }
-    });
-
-    if (autostart && moduleFromPath) {
-      const lengthBtnsAll = document.querySelectorAll('#lengthBtns .length-btn');
-      lengthBtnsAll.forEach(btn => btn.classList.remove('active'));
-      lengthBtnsAll.forEach(btn => {
-        if (btn.dataset.len === 'full') { btn.classList.add('active'); btn.setAttribute('aria-pressed', 'true'); }
-      });
-      setTimeout(() => { startQuiz(); }, 100);
-    }
-  } catch (err) {
-    console.error('Error loading modules:', err);
-    if (moduleSel) moduleSel.innerHTML = '<option value="">Error loading modules</option>';
-  }
-}
-
-/* ---------- Fetch module and update length options ---------- */
-async function fetchAndUpdateLengthOptions(category, moduleName) {
-  if (!category || !moduleName) {
-    // Default to showing all options
-    updateLengthOptions(100);
-    return;
-  }
-  
-  try {
-    const jsonUrl = buildModuleJsonUrl(category, moduleName);
-    if (!jsonUrl) {
-      updateLengthOptions(100);
-      return;
-    }
-    
-    const res = await fetch(jsonUrl, { cache: 'no-store' });
-    if (!res.ok) {
-      console.warn('[Quiz] Could not fetch module for length options:', res.status);
-      updateLengthOptions(100);
-      return;
-    }
-    
-    const rawData = await res.json();
-    const questions = Array.isArray(rawData) ? rawData : (rawData?.questions || []);
-    updateLengthOptions(questions.length);
-  } catch (err) {
-    console.warn('[Quiz] Error fetching module for length options:', err);
-    updateLengthOptions(100);
-  }
-}
-
-/* ---------- Init ---------- */
-setupCategoryDisplay();
-initModulesWithPreselect();
-showResumeIfAny();
+window.startQuiz = startQuiz;
+window.doSubmit = doSubmit;
+window.doNext = doNext;
+window.resetQuiz = resetQuiz;
