@@ -205,12 +205,12 @@ def category(category):
         has_mc = len(quizzes.get('multiple-choice', [])) > 0
         has_fb = len(quizzes.get('fill-in-the-blank', [])) > 0
         
-        # Use special template for HESI - the new landing page
+        # ========== PART 1 & PART 2: Use special template for HESI - the new landing page ==========
         if category == 'HESI':
             # Load category stats for display
             category_stats = get_hesi_category_stats()
             total_questions = sum(s['count'] for s in category_stats.values())
-            return render_template('hesi-landing.html', 
+            return render_template('HESI-Landing.html',  # PART 2: Changed from 'hesi-landing.html' to 'HESI-Landing.html'
                                    category_stats=category_stats,
                                    nclex_categories=NCLEX_CATEGORIES,
                                    total_questions=total_questions,
