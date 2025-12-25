@@ -1,0 +1,479 @@
+/* ===== Quiz Page Specific Styles ===== */
+/* This file provides quiz-specific styling overrides for quiz.html */
+/* Complements style.css with additional quiz-page-specific classes */
+
+/* Back Link Navigation */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 0;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--success);
+  transform: translateX(-4px);
+}
+
+/* Quiz Title */
+.quiz-title {
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 800;
+  color: var(--ink);
+  margin: 0 0 20px 0;
+  line-height: 1.3;
+}
+
+/* Quiz Container */
+.quiz-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 60px; /* Space for offline indicator */
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.progress-bar.hidden {
+  display: none;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--success));
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+.progress-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink);
+  text-shadow: 0 0 4px #fff;
+}
+
+/* Counters Box */
+.counters-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(47, 97, 243, 0.05);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.counters-box.hidden {
+  display: none;
+}
+
+/* Launcher Section */
+.launcher {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+.launcher.hidden {
+  display: none;
+}
+
+/* Module Selector */
+.module-selector {
+  margin-bottom: 20px;
+}
+
+.module-selector.hidden {
+  display: none;
+}
+
+/* Length Selector */
+.length-selector {
+  margin-bottom: 20px;
+}
+
+.length-selector label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+
+.length-buttons {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.length-btn {
+  flex: 1;
+  min-width: 100px;
+  padding: 12px 16px;
+  border: 2px solid var(--border);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: inherit;
+  text-align: center;
+}
+
+.length-btn:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.length-btn:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.length-btn:not(:last-child) {
+  border-right: none;
+}
+
+.length-btn:hover:not(.active) {
+  background: rgba(47, 97, 243, 0.05);
+  border-color: var(--primary);
+}
+
+.length-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* Start Button */
+.start-btn {
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
+  background: #5cb85c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.start-btn:hover {
+  background: #4cae4c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(92, 184, 92, 0.3);
+}
+
+/* Resume Container */
+.resume-container {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(69, 183, 209, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid var(--success);
+}
+
+.resume-container.hidden {
+  display: none;
+}
+
+.resume-container p {
+  margin: 0 0 12px 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.resume-btn {
+  padding: 10px 20px;
+  background: var(--success);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.resume-btn:hover {
+  background: #3a9fb8;
+}
+
+/* Quiz Interface */
+.quiz-interface {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+.quiz-interface.hidden {
+  display: none;
+}
+
+/* Question Text */
+.question-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Options Form */
+.options-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Submit Button */
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 14px 24px;
+  background: #5cb85c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #4cae4c;
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Reset Button */
+.reset-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: var(--shadow-md);
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.reset-btn:hover {
+  background: #d32f2f;
+  transform: translateY(-2px);
+}
+
+.reset-btn.hidden {
+  display: none;
+}
+
+/* Summary Section */
+.summary {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+.summary.hidden {
+  display: none;
+}
+
+.summary h2 {
+  margin: 0 0 20px 0;
+  font-size: 28px;
+  color: var(--ink);
+}
+
+/* First Try Summary */
+.first-try-summary {
+  padding: 20px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Retry Missed Button */
+.retry-missed-btn {
+  display: block;
+  width: 100%;
+  padding: 14px 24px;
+  background: var(--warning);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.retry-missed-btn:hover {
+  background: #f57c00;
+}
+
+.retry-missed-btn.hidden {
+  display: none;
+}
+
+/* Restart Button */
+.restart-btn {
+  display: block;
+  width: 100%;
+  padding: 14px 24px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.restart-btn:hover {
+  background: #2451d3;
+}
+
+/* Answer Line */
+.answer-line {
+  padding: 16px 20px;
+  background: rgba(47, 97, 243, 0.05);
+  border-left: 4px solid var(--primary);
+  border-radius: 4px;
+  margin: 16px 0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.answer-line:empty {
+  display: none;
+}
+
+/* Rationale */
+.rationale {
+  padding: 16px 20px;
+  background: rgba(69, 183, 209, 0.05);
+  border-left: 4px solid var(--success);
+  border-radius: 4px;
+  margin: 16px 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+
+.rationale:empty {
+  display: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .quiz-container {
+    padding-top: 50px;
+  }
+
+  .quiz-title {
+    font-size: 22px;
+  }
+
+  .length-buttons {
+    flex-direction: column;
+  }
+
+  .length-btn {
+    border-radius: 0 !important;
+    border-right: 2px solid var(--border) !important;
+    border-bottom: none;
+  }
+
+  .length-btn:first-child {
+    border-radius: 8px 8px 0 0 !important;
+  }
+
+  .length-btn:last-child {
+    border-radius: 0 0 8px 8px !important;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .counters-box {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .reset-btn {
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-title {
+    font-size: 20px;
+  }
+
+  .question-text {
+    font-size: 16px;
+  }
+
+  .launcher,
+  .quiz-interface,
+  .summary {
+    padding: 16px;
+  }
+}
+
+/* Safe area insets for iOS PWA */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .quiz-container {
+    padding-top: calc(60px + env(safe-area-inset-top));
+  }
+}
