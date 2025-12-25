@@ -7,13 +7,14 @@
    PART 2: Added HESI comprehensive quiz routes and category routes
    
    VERSION HISTORY:
+   v1.0.9 - Added quiz-style.css to core assets
    v1.0.8 - Added HESI landing routes and all 8 NCLEX category quiz routes for comprehensive quiz support
    v1.0.7 - Improved caching: Range header bypass, Cache-Control respect, inline offline response
    v1.0.6 - Fixed CSS filename (category-style.css), added automatic cache updates
    v1.0.5 - Added pharmacology routes and categories
    ============================================================ */
 
-const CACHE_VERSION = 'v1.0.8';
+const CACHE_VERSION = 'v1.0.9';
 const CACHE_NAME = `nurse-success-${CACHE_VERSION}`;
 
 // How often to check for updates (in milliseconds)
@@ -24,6 +25,7 @@ const CORE_ASSETS = [
   '/',
   '/static/manifest.json',
   '/static/style.css',
+  '/static/quiz-style.css',
   '/static/home-style.css',
   '/static/category-style.css',
   '/static/js/pwa-utils.js',
