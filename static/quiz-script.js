@@ -1086,10 +1086,20 @@ document.addEventListener('keydown', (e) => {
 
 /* ---------- Check for preloaded quiz data ---------- */
 function checkForPreloadedData() {
+  // Check if we have preloaded quiz data from the server
   if (window.preloadedQuizData && window.preloadedModuleName) {
+    // Get quiz length from window variable (set by template) or URL params
     const params = new URLSearchParams(window.location.search);
-    const isComprehensive = params.get('is_comprehensive') === 'true';
-    const quizLength = params.get('quiz_length') || 'full';
+    const quizLength = window.quizLength || params.get('quiz_length') || 'full';
+    const isComprehensive = window.isComprehensive || params.get('is_comprehensive') === 'true';
+    
+    console.log('[Quiz] Starting with preloaded data:', {
+      module: window.preloadedModuleName,
+      length: quizLength,
+      comprehensive: isComprehensive,
+      questionCount: Array.isArray(window.preloadedQuizData) ? window.preloadedQuizData.length : 
+                     (window.preloadedQuizData?.questions?.length || 'unknown')
+    });
 
     startQuizWithPreloadedData(
       window.preloadedQuizData,
@@ -1100,6 +1110,7 @@ function checkForPreloadedData() {
     return true;
   }
 
+  // Check for autostart flag (for Pharmacology categorical quizzes)
   if (window.autostart === true && window.preloadedQuizData && window.preloadedModuleName) {
     startQuizWithPreloadedData(
       window.preloadedQuizData,
