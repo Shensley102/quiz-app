@@ -19,7 +19,7 @@
    - NCLEX-weighted question selection for comprehensive quizzes
    - Category-based performance tracking with localStorage
    - Enhanced summary screen with category breakdown
-   - FIXED: Submit/Next button and keyboard interactions
+   - FIXED: Toggle selection for both mouse and keyboard
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -79,7 +79,7 @@ const NCLEX_WEIGHTS = {
 /* ---------- Performance Stats Storage Key ---------- */
 const HESI_STATS_KEY = 'hesiPerformanceStats';
 
-/* ========== HESI PERFORMANCE STATS MODULE (PART 2) ========== */
+/* ========== HESI PERFORMANCE STATS MODULE ========== */
 
 /**
  * Load current HESI performance stats from localStorage
@@ -481,9 +481,6 @@ function loadRunState() {
 function clearSavedState(){ try { localStorage.removeItem(STORAGE_KEY); } catch {} }
 function getNotMasteredFromRun(runData) { return runData.masterPool.filter(q => !runData.answered.get(q.id)?.correct).length; }
 
-/* ---------- HESI Performance Stats Management ---------- */
-// Note: loadHesiStats, saveHesiStats, updateHesiStats are already defined above
-
 function showResumeIfAny(){
   const s = loadRunState();
   const resumeContainer = document.getElementById('resumeContainer');
@@ -500,7 +497,7 @@ function showResumeIfAny(){
     resumeBtn.onclick = () => {
       run = s.run;
       currentCategory = run.category;
-      questionSubmitted = false; // Reset submission state
+      questionSubmitted = false;
       setHeaderTitle(run.displayName || run.bank || defaultTitle);
       document.title = run.displayName ? run.displayName + ' - Nurse Success Study Hub' : (run.bank ? run.bank + ' - Nurse Success Study Hub' : 'Quiz - Nurse Success Study Hub');
       const quizTitle = $('quizTitle');
@@ -564,28 +561,6 @@ function updateHoverClasses(){
   else { form.classList.remove('has-selection'); form.classList.remove('is-multi-select'); }
 }
 
-/* ---------- Toggle answer selection (supports deselection for radio buttons) ---------- */
-function toggleAnswer(letter) {
-  if (!form || questionSubmitted) return; // Block if already submitted
-  
-  const input = form.querySelector(`input[value="${letter}"]`);
-  if (!input) return;
-  
-  if (input.type === 'checkbox') {
-    // Checkbox: simple toggle
-    input.checked = !input.checked;
-  } else {
-    // Radio button: toggle behavior (click same = deselect)
-    if (input.checked) {
-      input.checked = false;
-    } else {
-      input.checked = true;
-    }
-  }
-  
-  input.dispatchEvent(new Event('change', { bubbles: true }));
-}
-
 /* ---------- Render ---------- */
 function renderQuestion(q){
   if (!q) return;
@@ -611,38 +586,46 @@ function renderQuestion(q){
   
   form.innerHTML = letters.map((letter, idx) => {
     const id = 'opt-' + letter;
-    return `<label class="option-label" for="${id}">
+    return `<label class="option-label" for="${id}" data-letter="${letter}">
       <input type="${inputType}" name="answer" id="${id}" value="${letter}" data-idx="${idx}">
       <span class="option-letter">${escapeHTML(letter)}</span>
       <span class="option-text">${escapeHTML(q.options[letter])}</span>
     </label>`;
   }).join('');
   
-  // Add click handlers for option labels (for toggle behavior on radio buttons)
+  // Set up click handlers for toggle behavior
   form.querySelectorAll('.option-label').forEach(label => {
-    label.addEventListener('click', (e) => {
+    label.addEventListener('click', function(e) {
+      // Block all interaction after submission
       if (questionSubmitted) {
         e.preventDefault();
+        e.stopPropagation();
         return;
       }
       
-      const input = label.querySelector('input');
+      const input = this.querySelector('input');
       if (!input) return;
       
-      // For radio buttons, implement toggle (deselect if already selected)
+      // For radio buttons: if already checked, we need to uncheck it
+      // We must preventDefault to stop the browser from re-checking it
       if (input.type === 'radio' && input.checked) {
         e.preventDefault();
+        e.stopPropagation();
         input.checked = false;
-        input.dispatchEvent(new Event('change', { bubbles: true }));
+        updateHoverClasses();
+        return;
       }
+      
+      // For checkboxes: native toggle works fine, just update classes after
+      // For radio buttons selecting a new option: native behavior works fine
+      // We let the native click happen, then update classes
+      setTimeout(updateHoverClasses, 0);
     });
   });
   
+  // Also listen for change events (for any programmatic changes)
   form.querySelectorAll('input').forEach(input => {
-    input.addEventListener('change', () => {
-      updateHoverClasses();
-      // Don't auto-focus submit for radio - let user confirm with Enter or click
-    });
+    input.addEventListener('change', updateHoverClasses);
   });
   
   updateHoverClasses();
@@ -669,6 +652,31 @@ function updateCounters(){
 }
 
 function arraysEqual(a, b){ return a.length === b.length && a.every((v, i) => v === b[i]); }
+
+/* ---------- Toggle answer by letter (for keyboard) ---------- */
+function toggleAnswerByLetter(letter) {
+  if (questionSubmitted) return; // Block after submission
+  if (!form) return;
+  
+  const input = form.querySelector(`input[value="${letter}"]`);
+  if (!input) return;
+  
+  if (input.type === 'checkbox') {
+    // Checkbox: simple toggle
+    input.checked = !input.checked;
+  } else {
+    // Radio: toggle (if checked, uncheck; if unchecked, check and uncheck others)
+    if (input.checked) {
+      input.checked = false;
+    } else {
+      // Uncheck all radios first, then check this one
+      form.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+      input.checked = true;
+    }
+  }
+  
+  updateHoverClasses();
+}
 
 /* ---------- Submit Answer ---------- */
 function doSubmit(){
@@ -712,7 +720,7 @@ function doSubmit(){
   if (q.rationale) rationaleBox.innerHTML = `<strong>Rationale:</strong> ${escapeHTML(q.rationale)}`;
   else rationaleBox.textContent = '';
   
-  feedback.textContent = correct ? '✓ Correct! Click or press Enter for next question →' : '✗ Incorrect. Click or press Enter for next question →';
+  feedback.textContent = correct ? '✓ Correct! Click or press Enter for next →' : '✗ Incorrect. Click or press Enter for next →';
   feedback.className = 'feedback ' + (correct ? 'correct' : 'wrong');
   feedback.classList.remove('hidden');
   
@@ -920,7 +928,7 @@ function startRetryMissed(){
   };
   
   lastQuizMissedQuestions = [];
-  questionSubmitted = false; // Reset submission state
+  questionSubmitted = false;
   
   if (summary) summary.classList.add('hidden');
   if (quiz) quiz.classList.remove('hidden');
@@ -939,7 +947,7 @@ function startRetryMissed(){
 /* ---------- Start Quiz ---------- */
 async function startQuiz(moduleName, length, displayName, preloadedData, isComprehensive = false, isCategoryQuiz = false){
   currentCategory = getCategoryFromPath() || getUrlParam('category') || 'HESI';
-  questionSubmitted = false; // Reset submission state
+  questionSubmitted = false;
   
   let questions;
   
@@ -1019,7 +1027,7 @@ async function startQuiz(moduleName, length, displayName, preloadedData, isCompr
 function resetQuiz(){
   if (!confirm('Are you sure you want to reset and start over?')) return;
   clearSavedState();
-  questionSubmitted = false; // Reset submission state
+  questionSubmitted = false;
   
   if (quiz) quiz.classList.add('hidden');
   if (summary) summary.classList.add('hidden');
@@ -1080,6 +1088,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
+  // Submit button click handler
   if (submitBtn) {
     submitBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1087,10 +1096,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
+  // Feedback click handler (for "Next Question")
   if (feedback) {
     feedback.addEventListener('click', doNext);
   }
   
+  // Restart buttons
   if (restartBtn2) {
     restartBtn2.addEventListener('click', resetQuiz);
   }
@@ -1098,48 +1109,49 @@ document.addEventListener('DOMContentLoaded', () => {
     resetAll.addEventListener('click', resetQuiz);
   }
   
+  // Retry missed button
   if (retryMissedBtn) {
     retryMissedBtn.addEventListener('click', startRetryMissed);
   }
   
   // Global keyboard handler
   document.addEventListener('keydown', (e) => {
-    // Skip if typing in an input field
-    if (isTextEditingTarget(e.target)) return;
+    // Skip if typing in a text input (but NOT our radio/checkbox inputs)
+    const target = e.target;
+    if (target.tagName === 'TEXTAREA' || target.tagName === 'SELECT' || 
+        (target.tagName === 'INPUT' && target.type !== 'radio' && target.type !== 'checkbox') ||
+        target.isContentEditable) {
+      return;
+    }
     
-    // Skip if modifier keys are pressed (except Shift for capital letters)
+    // Skip if modifier keys are pressed (Ctrl, Alt, Meta) - but allow Shift for capitals
     if (e.ctrlKey || e.altKey || e.metaKey) return;
     
     const key = e.key.toUpperCase();
     
-    // Handle letter keys A-E for answer selection
+    // Handle letter keys A-E for answer selection (only before submission)
     if (['A', 'B', 'C', 'D', 'E'].includes(key)) {
-      // Only allow selection if quiz is visible and question not yet submitted
+      // Only if quiz is visible
       if (quiz && !quiz.classList.contains('hidden') && !questionSubmitted) {
-        toggleAnswer(key);
+        toggleAnswerByLetter(key);
         e.preventDefault();
       }
       return;
     }
     
-    // Handle Enter and Space for Submit/Next
-    if (e.key === 'Enter' || e.key === ' ') {
-      // Prevent default scrolling for Space
-      if (e.key === ' ') {
-        e.preventDefault();
-      }
-      
-      // Check if quiz interface is active
+    // Handle Enter for Submit or Next
+    if (e.key === 'Enter') {
+      // Only if quiz interface is active
       if (!quiz || quiz.classList.contains('hidden')) return;
       
       if (!questionSubmitted) {
-        // Question not yet submitted - try to submit
-        if (submitBtn && !submitBtn.classList.contains('hidden') && !submitBtn.disabled) {
+        // Not yet submitted - try to submit
+        if (submitBtn && !submitBtn.classList.contains('hidden')) {
           doSubmit();
           e.preventDefault();
         }
       } else {
-        // Question already submitted - advance to next
+        // Already submitted - go to next question
         if (feedback && !feedback.classList.contains('hidden')) {
           doNext();
           e.preventDefault();
