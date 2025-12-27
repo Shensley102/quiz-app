@@ -392,6 +392,12 @@ function renderQuestion(q) {
   const correctAnswers = normalizeAnswer(q);
   const isMultiSelect = correctAnswers.length > 1;
   
+  // Add class to track single vs multi-select for CSS hover behavior
+  if (form) {
+    form.classList.toggle('is-multi-select', isMultiSelect);
+    form.classList.toggle('is-single-select', !isMultiSelect);
+  }
+  
   if (form) {
     form.innerHTML = '';
     
@@ -584,6 +590,9 @@ function handleSubmit() {
     feedback.classList.remove('ok','bad', 'hidden');
     feedback.classList.add(isCorrect ? 'ok' : 'bad');
   }
+
+  // Mark that selection has been made (for single-select hover disabling)
+  if (form) form.classList.add('has-selection');
 
   // Highlight correct and wrong answers in the options
   highlightAnswers(q, userLetters, isCorrect);
