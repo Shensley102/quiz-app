@@ -1,341 +1,357 @@
-// ============================================================
-// NURSE SUCCESS STUDY HUB - SERVICE WORKER
-// Version: 1.1.1 - Fixed HESI Comprehensive routes and typos
-// ============================================================
+/* -----------------------------------------------------------
+   Nurse Success Study Hub - Service Worker
+   - PWA offline support
+   - Cache-first strategy for static assets
+   - Network-first for API/dynamic content
+   - Automatic cache refresh for new content
+   - NCLEX Comprehensive System routes support
+----------------------------------------------------------- */
 
-const CACHE_VERSION = '1.1.1';
-const CACHE_NAME = `nurse-success-${CACHE_VERSION}`;
+const CACHE_VERSION = 'v2.0.0';
+const CACHE_NAME = `nurse-study-hub-${CACHE_VERSION}`;
+const DATA_CACHE_NAME = `nurse-study-hub-data-${CACHE_VERSION}`;
 
-// ============================================================
-// CORE ASSETS - These must be cached for the app to work
-// ============================================================
-const CORE_ASSETS = [
+// Static assets to precache
+const STATIC_ASSETS = [
   '/',
   '/static/style.css',
-  '/static/home-style.css',
   '/static/category-style.css',
   '/static/quiz-style.css',
   '/static/quiz-script.js',
-  '/static/quiz-fill-blank.js',
-  '/static/quiz-fishbone-mcq.js',
-  '/static/quiz-fishbone-fill.js',
-  '/static/fishbone-utils.js',
   '/static/js/pwa-utils.js',
   '/static/manifest.json',
   '/static/icons/icon-192.png',
-  '/static/icons/icon-512.png'
+  '/static/icons/icon-512.png',
+  '/static/icons/icon-120.png',
+  '/static/icons/icon-152.png',
+  '/static/icons/icon-167.png',
+  '/static/icons/icon-180.png',
+  '/static/images/Nursing_Hesi_Exam_Prep_Image.png',
+  '/static/images/Nursing_Lab_Values.png',
+  '/static/images/Nursing_Leadership_Image.png',
+  '/static/images/Nursing_Pharmacology_Image.png',
+  '/static/images/Nursing_Advanced_Certifications.png',
 ];
 
-// ============================================================
-// HTML PAGES - Navigation routes to cache
-// ============================================================
+// HTML pages to precache
 const HTML_PAGES = [
   '/',
-  '/category/HESI',
-  '/category/HESI/NCLEX_Comprehensive',
+  '/category/NCLEX',
+  '/category/NCLEX/NCLEX_Comprehensive',
   '/category/Lab_Values',
   '/category/Patient_Care_Management',
   '/category/Pharmacology',
-  '/category/Pharmacology/Categories',
   '/category/Pharmacology/Comprehensive',
+  '/category/Pharmacology/Categories',
   '/category/Nursing_Certifications',
   '/category/Nursing_Certifications/CCRN',
-  '/quiz-fishbone-mcq',
-  '/quiz-fishbone-fill'
 ];
 
-// ============================================================
-// QUIZ DATA FILES - JSON question banks
-// Note: Fixed typo in Learning_Questions_Module_3_4 (removed extra underscore)
-// ============================================================
-const QUIZ_DATA_FILES = [
-  // HESI
-  '/modules/HESI/HESI_Comprehensive_Master_Categorized.json',
+// NCLEX category routes
+const NCLEX_CATEGORY_ROUTES = [
+  '/category/NCLEX/category/Management%20of%20Care',
+  '/category/NCLEX/category/Safety%20and%20Infection%20Control',
+  '/category/NCLEX/category/Health%20Promotion%20and%20Maintenance',
+  '/category/NCLEX/category/Psychosocial%20Integrity',
+  '/category/NCLEX/category/Basic%20Care%20and%20Comfort',
+  '/category/NCLEX/category/Pharmacological%20and%20Parenteral%20Therapies',
+  '/category/NCLEX/category/Reduction%20of%20Risk%20Potential',
+  '/category/NCLEX/category/Physiological%20Adaptation',
+];
+
+// JSON files to precache (quiz data)
+const JSON_PRECACHE = [
+  // NCLEX Comprehensive
+  '/modules/NCLEX/NCLEX_Comprehensive_Master_Categorized.json',
   
   // Lab Values
-  '/modules/Lab_Values/NCLEX_Lab_Values.json',
-  '/modules/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank.json',
+  '/modules/Lab_Values/Lab_Values_Fishbone.json',
+  '/modules/Lab_Values/Lab_Values_Module.json',
+  
+  // Patient Care Management
+  '/modules/Patient_Care_Management/Patient_Care_Management_Learning_Questions_Module_1.json',
+  '/modules/Patient_Care_Management/Patient_Care_Management_Learning_Questions_Module_2.json',
+  '/modules/Patient_Care_Management/Patient_Care_Management_Learning_Questions_Module_3_4.json',
+  
+  // Pharmacology
+  '/modules/Pharmacology/Pharmacology_Comprehensive.json',
+  '/modules/Pharmacology/Pharmacology_Cardiac_Drugs.json',
+  '/modules/Pharmacology/Pharmacology_Respiratory_Drugs.json',
+  '/modules/Pharmacology/Pharmacology_GI_Drugs.json',
+  '/modules/Pharmacology/Pharmacology_Endocrine_Drugs.json',
+  '/modules/Pharmacology/Pharmacology_Neuro_Drugs.json',
+  '/modules/Pharmacology/Pharmacology_Antibiotics.json',
+  '/modules/Pharmacology/Pharmacology_Pain_Management.json',
+  '/modules/Pharmacology/Pharmacology_Psych_Drugs.json',
+  '/modules/Pharmacology/Pharmacology_Immune_Drugs.json',
+  '/modules/Pharmacology/Pharmacology_Blood_Drugs.json',
   
   // Nursing Certifications
-  '/modules/Nursing_Certifications/CCRN_Test_1_Combined_QA.json',
-  '/modules/Nursing_Certifications/CCRN_Test_2_Combined_QA.json',
-  '/modules/Nursing_Certifications/CCRN_Test_3_Combined_QA.json',
-  
-  // Patient Care Management (FIXED: removed extra underscore from Module_3_4)
-  '/modules/Patient_Care_Management/Learning_Questions_Module_1_2.json',
-  '/modules/Patient_Care_Management/Learning_Questions_Module_3_4.json',
-  '/modules/Patient_Care_Management/Module_1.json',
-  '/modules/Patient_Care_Management/Module_2.json',
-  '/modules/Patient_Care_Management/Module_3.json',
-  '/modules/Patient_Care_Management/Module_4.json',
-  
-  // Pharmacology - Comprehensive
-  '/modules/Pharmacology/Comprehensive_Pharmacology.json',
-  '/modules/Pharmacology/Pharm_Quiz_1.json',
-  '/modules/Pharmacology/Pharm_Quiz_2.json',
-  '/modules/Pharmacology/Pharm_Quiz_3.json',
-  '/modules/Pharmacology/Pharm_Quiz_4.json',
-  
-  // Pharmacology - Categories
-  '/modules/Pharmacology/Anti_Infectives_Pharm.json',
-  '/modules/Pharmacology/CNS_Psychiatric_Pharm.json',
-  '/modules/Pharmacology/Cardiovascular_Pharm.json',
-  '/modules/Pharmacology/Endocrine_Metabolic_Pharm.json',
-  '/modules/Pharmacology/Gastrointestinal_Pharm.json',
-  '/modules/Pharmacology/Hematologic_Oncology_Pharm.json',
-  '/modules/Pharmacology/High_Alert_Medications_Pharm.json',
-  '/modules/Pharmacology/Immunologic_Biologics_Pharm.json',
-  '/modules/Pharmacology/Musculoskeletal_Pharm.json',
-  '/modules/Pharmacology/Pain_Management_Pharm.json',
-  '/modules/Pharmacology/Renal_Electrolytes_Pharm.json',
-  '/modules/Pharmacology/Respiratory_Pharm.json'
+  '/modules/Nursing_Certifications/CCRN/CCRN_Module.json',
+  '/modules/Nursing_Certifications/PCCN/PCCN_Module.json',
+  '/modules/Nursing_Certifications/CMSRN/CMSRN_Module.json',
 ];
 
-// ============================================================
-// IMAGE FILES - Category images and fishbone diagrams
-// ============================================================
-const IMAGE_FILES = [
-  '/images/Nursing_Hesi_Exam_Prep_Image.png',
-  '/images/Nursing_Lab_Values.png',
-  '/images/Nursing_Leadership_Image.png',
-  '/images/Nursing_Pharmacology_Image.png',
-  '/images/Nursing_Advanced_Certifications.png',
-  '/static/images/fishbone-cbc.png',
-  '/static/images/fishbone-bmp.png',
-  '/static/images/fishbone-liver.png',
-  '/static/images/fishbone-coagulation.png',
-  '/static/images/fishbone-abg.png',
-  '/static/images/fishbone-elements.png'
-];
-
-// ============================================================
-// INSTALL EVENT - Cache core assets
-// ============================================================
+// Install event - precache assets
 self.addEventListener('install', (event) => {
-  console.log('[Service Worker] Installing version', CACHE_VERSION);
+  console.log('[SW] Installing service worker version:', CACHE_VERSION);
   
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('[Service Worker] Caching core assets...');
-        
-        // Cache core assets (fail install if these fail)
-        return cache.addAll(CORE_ASSETS)
-          .then(() => {
-            console.log('[Service Worker] Core assets cached successfully');
-            
-            // Try to cache HTML pages (don't fail if some fail)
-            return Promise.allSettled(
-              HTML_PAGES.map(url => 
-                cache.add(url).catch(err => {
-                  console.warn(`[Service Worker] Failed to cache HTML: ${url}`, err.message);
-                })
-              )
-            );
-          })
-          .then(() => {
-            // Try to cache quiz data files (don't fail if some fail)
-            console.log('[Service Worker] Caching quiz data files...');
-            return Promise.allSettled(
-              QUIZ_DATA_FILES.map(url => 
-                cache.add(url).catch(err => {
-                  console.warn(`[Service Worker] Failed to cache quiz data: ${url}`, err.message);
-                })
-              )
-            );
-          })
-          .then(() => {
-            // Try to cache images (don't fail if some fail)
-            console.log('[Service Worker] Caching images...');
-            return Promise.allSettled(
-              IMAGE_FILES.map(url => 
-                cache.add(url).catch(err => {
-                  console.warn(`[Service Worker] Failed to cache image: ${url}`, err.message);
-                })
-              )
-            );
-          });
+        console.log('[SW] Caching static assets');
+        return cache.addAll(STATIC_ASSETS);
       })
       .then(() => {
-        console.log('[Service Worker] Installation complete, skipping waiting');
+        return caches.open(CACHE_NAME);
+      })
+      .then((cache) => {
+        console.log('[SW] Caching HTML pages');
+        // Cache HTML pages (allow failures for pages that may not exist yet)
+        return Promise.allSettled(
+          [...HTML_PAGES, ...NCLEX_CATEGORY_ROUTES].map(url => 
+            cache.add(url).catch(err => console.log(`[SW] Could not cache ${url}:`, err.message))
+          )
+        );
+      })
+      .then(() => {
+        return caches.open(DATA_CACHE_NAME);
+      })
+      .then((cache) => {
+        console.log('[SW] Caching JSON data files');
+        // Cache JSON files (allow failures for files that may not exist)
+        return Promise.allSettled(
+          JSON_PRECACHE.map(url => 
+            cache.add(url).catch(err => console.log(`[SW] Could not cache ${url}:`, err.message))
+          )
+        );
+      })
+      .then(() => {
+        console.log('[SW] Install complete');
+        // Notify clients that offline mode is ready
+        self.clients.matchAll().then(clients => {
+          clients.forEach(client => {
+            client.postMessage({
+              type: 'OFFLINE_READY',
+              version: CACHE_VERSION
+            });
+          });
+        });
         return self.skipWaiting();
       })
-      .catch((error) => {
-        console.error('[Service Worker] Install failed:', error);
+      .catch((err) => {
+        console.error('[SW] Install failed:', err);
       })
   );
 });
 
-// ============================================================
-// ACTIVATE EVENT - Clean up old caches
-// ============================================================
+// Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  console.log('[Service Worker] Activating version', CACHE_VERSION);
+  console.log('[SW] Activating service worker...');
   
   event.waitUntil(
     caches.keys()
       .then((cacheNames) => {
         return Promise.all(
           cacheNames
-            .filter((cacheName) => cacheName.startsWith('nurse-success-') && cacheName !== CACHE_NAME)
-            .map((cacheName) => {
-              console.log('[Service Worker] Deleting old cache:', cacheName);
-              return caches.delete(cacheName);
+            .filter((name) => name.startsWith('nurse-study-hub-') && 
+                             name !== CACHE_NAME && 
+                             name !== DATA_CACHE_NAME)
+            .map((name) => {
+              console.log('[SW] Deleting old cache:', name);
+              return caches.delete(name);
             })
         );
       })
       .then(() => {
-        console.log('[Service Worker] Claiming clients');
+        console.log('[SW] Claiming clients');
         return self.clients.claim();
-      })
-      .then(() => {
-        // Notify all clients that a new version is active
-        return self.clients.matchAll().then((clients) => {
-          clients.forEach((client) => {
-            client.postMessage({
-              type: 'SW_UPDATED',
-              version: CACHE_VERSION
-            });
-          });
-        });
       })
   );
 });
 
-// ============================================================
-// FETCH EVENT - Serve from cache, fallback to network
-// ============================================================
+// Helper function to determine if a request is for a static asset
+function isStaticAsset(pathname) {
+  const staticExtensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2', '.ttf', '.eot'];
+  return pathname.startsWith('/static/') || staticExtensions.some(ext => pathname.endsWith(ext));
+}
+
+// Helper function to determine if a request is for JSON data
+function isJsonData(pathname) {
+  return pathname.endsWith('.json') || pathname.startsWith('/modules/');
+}
+
+// Network first strategy with cache fallback
+async function networkFirstWithCache(request, cacheName) {
+  try {
+    const networkResponse = await fetch(request);
+    
+    // Cache successful responses
+    if (networkResponse.ok) {
+      const cache = await caches.open(cacheName);
+      cache.put(request, networkResponse.clone());
+    }
+    
+    return networkResponse;
+  } catch (error) {
+    console.log('[SW] Network failed, trying cache:', request.url);
+    
+    const cachedResponse = await caches.match(request);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    
+    // Return offline fallback for navigation requests
+    if (request.mode === 'navigate') {
+      const offlinePage = await caches.match('/');
+      if (offlinePage) {
+        return offlinePage;
+      }
+    }
+    
+    throw error;
+  }
+}
+
+// Cache first strategy with network fallback
+async function cacheFirstWithNetwork(request, cacheName) {
+  const cachedResponse = await caches.match(request);
+  
+  if (cachedResponse) {
+    // Refresh cache in background (stale-while-revalidate)
+    fetch(request)
+      .then(async (networkResponse) => {
+        if (networkResponse.ok) {
+          const cache = await caches.open(cacheName);
+          cache.put(request, networkResponse);
+        }
+      })
+      .catch(() => {
+        // Network failed, but we have cache - that's fine
+      });
+    
+    return cachedResponse;
+  }
+  
+  // Not in cache, fetch from network
+  try {
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse.ok) {
+      const cache = await caches.open(cacheName);
+      cache.put(request, networkResponse.clone());
+    }
+    
+    return networkResponse;
+  } catch (error) {
+    console.error('[SW] Both cache and network failed for:', request.url);
+    throw error;
+  }
+}
+
+// Fetch event - handle requests
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   
   // Skip non-GET requests
-  if (event.request.method !== 'GET') return;
-  
-  // Skip cross-origin requests (except for fonts, analytics, etc.)
-  if (url.origin !== location.origin) {
-    // Allow Google Fonts
-    if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
-      event.respondWith(
-        caches.match(event.request).then((cached) => {
-          return cached || fetch(event.request).then((response) => {
-            return caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, response.clone());
-              return response;
-            });
-          });
-        })
-      );
-    }
+  if (event.request.method !== 'GET') {
     return;
   }
   
-  // For quiz routes with query parameters, try network first for fresh data
-  if (url.pathname.startsWith('/quiz/')) {
-    event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          // Clone and cache successful responses
-          if (response && response.status === 200) {
-            const responseToCache = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
-          }
-          return response;
-        })
-        .catch(() => {
-          // Fallback to cache if network fails
-          return caches.match(event.request).then((cached) => {
-            return cached || caches.match('/').then((home) => home);
-          });
-        })
-    );
+  // Skip external requests
+  if (!url.origin.includes(self.location.origin)) {
     return;
   }
   
-  // For static assets and JSON files, use cache-first strategy
-  if (url.pathname.startsWith('/static/') || 
-      url.pathname.startsWith('/modules/') || 
-      url.pathname.startsWith('/images/')) {
-    event.respondWith(
-      caches.match(event.request).then((cached) => {
-        if (cached) {
-          // Return cached version, but also update cache in background
-          fetch(event.request).then((response) => {
-            if (response && response.status === 200) {
-              caches.open(CACHE_NAME).then((cache) => {
-                cache.put(event.request, response);
-              });
-            }
-          }).catch(() => {});
-          return cached;
-        }
-        
-        // Not in cache, fetch from network
-        return fetch(event.request).then((response) => {
-          if (response && response.status === 200) {
-            const responseToCache = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
-          }
-          return response;
-        });
+  // Skip API requests (let them go to network)
+  if (url.pathname.startsWith('/api/')) {
+    return;
+  }
+  
+  const pathname = url.pathname;
+  
+  // Strategy based on resource type
+  if (isStaticAsset(pathname)) {
+    // Static assets: Cache first
+    event.respondWith(cacheFirstWithNetwork(event.request, CACHE_NAME));
+  } else if (isJsonData(pathname)) {
+    // JSON data: Cache first (quiz questions don't change often)
+    event.respondWith(cacheFirstWithNetwork(event.request, DATA_CACHE_NAME));
+  } else {
+    // HTML pages and dynamic content: Network first
+    event.respondWith(networkFirstWithCache(event.request, CACHE_NAME));
+  }
+});
+
+// Listen for messages from the main thread
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+  
+  if (event.data && event.data.type === 'CACHE_URLS') {
+    const urls = event.data.urls || [];
+    caches.open(DATA_CACHE_NAME)
+      .then((cache) => cache.addAll(urls))
+      .then(() => {
+        console.log('[SW] Cached additional URLs:', urls);
+      })
+      .catch((err) => {
+        console.error('[SW] Failed to cache additional URLs:', err);
+      });
+  }
+  
+  if (event.data && event.data.type === 'GET_VERSION') {
+    event.source.postMessage({
+      type: 'VERSION',
+      version: CACHE_VERSION
+    });
+  }
+});
+
+// Background sync for offline quiz submissions (future feature)
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'sync-quiz-results') {
+    console.log('[SW] Background sync triggered');
+    // Future: sync quiz results when back online
+  }
+});
+
+// Push notification handler (future feature)
+self.addEventListener('push', (event) => {
+  if (event.data) {
+    const data = event.data.json();
+    console.log('[SW] Push received:', data);
+    
+    event.waitUntil(
+      self.registration.showNotification(data.title || 'Nurse Success Study Hub', {
+        body: data.body || 'You have a new notification',
+        icon: '/static/icons/icon-192.png',
+        badge: '/static/icons/icon-192.png',
+        data: data.url || '/'
       })
     );
-    return;
   }
+});
+
+// Notification click handler
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
   
-  // For HTML pages, use network-first strategy
-  event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        if (response && response.status === 200) {
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
-        }
-        return response;
-      })
-      .catch(() => {
-        return caches.match(event.request).then((cached) => {
-          if (cached) return cached;
-          
-          // For navigation requests, return cached home page as fallback
-          if (event.request.mode === 'navigate') {
-            return caches.match('/');
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true })
+      .then((clientList) => {
+        // Focus existing window or open new one
+        for (const client of clientList) {
+          if (client.url === event.notification.data && 'focus' in client) {
+            return client.focus();
           }
-          
-          return new Response('Offline', { status: 503 });
-        });
+        }
+        if (clients.openWindow) {
+          return clients.openWindow(event.notification.data || '/');
+        }
       })
   );
 });
 
-// ============================================================
-// MESSAGE HANDLER - For client communication
-// ============================================================
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    console.log('[Service Worker] Skip waiting requested');
-    self.skipWaiting();
-  }
-  
-  if (event.data && event.data.type === 'GET_VERSION') {
-    event.ports[0].postMessage({ version: CACHE_VERSION });
-  }
-  
-  if (event.data && event.data.type === 'CLEAR_CACHE') {
-    console.log('[Service Worker] Clearing all caches');
-    event.waitUntil(
-      caches.keys().then((cacheNames) => {
-        return Promise.all(
-          cacheNames.map((cacheName) => caches.delete(cacheName))
-        );
-      })
-    );
-  }
-});
-
-console.log('[Service Worker] Script loaded - version', CACHE_VERSION);
+console.log('[SW] Service worker loaded, version:', CACHE_VERSION);
