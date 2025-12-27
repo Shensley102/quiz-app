@@ -1,12 +1,13 @@
 /* ============================
    Home (Main Hub) Page Styles
    ============================
-   Requirements:
+   Goals:
    - Keep same card WIDTH
-   - Make cards TALLER
-   - Show ENTIRE image (no cropping)
-   - Make images appear a bit smaller inside the cards
-   - Remove the tiny overlay icons (arrow badge)
+   - Make cards taller
+   - Show ENTIRE image (no cropping) via object-fit: contain
+   - Make images larger than the “too small” version
+   - Keep layout flush (clean centered grid, predictable spacing)
+   - Remove the tiny overlay arrow badge
 */
 
 /* ---- Header ---- */
@@ -52,11 +53,15 @@
 .categories-grid {
   display: grid;
 
-  /* Keep same width behavior, prevent gigantic stretching on wide screens */
+  /* Same width behavior you already had */
   grid-template-columns: repeat(auto-fit, minmax(260px, 340px));
-  justify-content: center;
 
-  gap: 24px;
+  /* Keep the grid “flush” on big screens (3-card width max) */
+  max-width: calc(340px * 3 + 22px * 2);
+  margin: 0 auto;
+
+  justify-content: center;
+  gap: 22px;
   padding: 18px 0 32px;
 }
 
@@ -65,8 +70,8 @@
   position: relative;
   display: block;
 
-  /* ✅ Taller cards (same width) */
-  height: 240px;
+  /* Taller than before so images can be big AND fully visible */
+  height: 260px;
 
   border-radius: 18px;
   overflow: hidden;
@@ -94,10 +99,10 @@
   outline-offset: 4px;
 }
 
-/* ✅ Image cards (your PNGs) */
+/* ---- Image cards ---- */
 .category-card.image-card {
-  /* make image appear slightly smaller and centered */
-  padding: 22px;
+  /* Smaller padding so the image renders larger */
+  padding: 10px;
 
   display: flex;
   align-items: center;
@@ -107,16 +112,16 @@
 .category-image {
   display: block;
 
-  /* slightly smaller inside the taller card */
-  width: 94%;
-  height: 94%;
+  /* Take the full padded area */
+  width: 100%;
+  height: 100%;
 
-  /* ✅ show the whole image (no cropping) */
+  /* Show entire image, no cropping */
   object-fit: contain;
   object-position: center;
 }
 
-/* ✅ Remove tiny overlay icons/badges */
+/* ---- Remove tiny overlay arrow badge ---- */
 .card-arrow {
   display: none !important;
 }
@@ -169,19 +174,14 @@
   .categories-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
+    max-width: 100%;
   }
 
-  /* still taller than before, but not oversized on small screens */
   .category-card {
-    height: 220px;
+    height: 235px;
   }
 
   .category-card.image-card {
-    padding: 18px;
-  }
-
-  .category-image {
-    width: 96%;
-    height: 96%;
+    padding: 8px;
   }
 }
