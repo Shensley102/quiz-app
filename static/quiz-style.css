@@ -253,6 +253,34 @@
   margin-bottom: 20px;
 }
 
+/* Feedback Indicator - Small box for Correct/Incorrect */
+.feedback {
+  display: inline-block;
+  width: 10%;
+  min-width: 80px;
+  max-width: 120px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.feedback.hidden {
+  display: none;
+}
+
+.feedback.ok {
+  background: #4caf50;
+  color: #fff;
+}
+
+.feedback.bad {
+  background: #f44336;
+  color: #fff;
+}
+
 /* Submit Button */
 .submit-btn {
   display: block;
