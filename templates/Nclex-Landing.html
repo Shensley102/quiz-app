@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>HESI Comprehensive System - Nurse Success Study Hub</title>
+    <title>NCLEX Comprehensive System - Nurse Success Study Hub</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='category-style.css') }}">
     
@@ -353,16 +353,16 @@
         <div class="page-header">
             <div class="page-header-top">
                 <span class="header-icon">📋</span>
-                <h1>HESI Comprehensive System</h1>
+                <h1>NCLEX Comprehensive System</h1>
             </div>
             <p>NCLEX-weighted practice with performance tracking across all 8 test plan categories</p>
         </div>
 
-        <!-- Component 1: HESI Comprehensive Quiz -->
+        <!-- Component 1: NCLEX Comprehensive Quiz -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">🎯</span>
-                <h2>HESI Comprehensive Quiz (NCLEX-Weighted)</h2>
+                <h2>NCLEX Comprehensive Quiz (NCLEX-Weighted)</h2>
             </div>
             <div class="comprehensive-card">
                 <h3>Master the NCLEX Test Plan</h3>
@@ -371,11 +371,11 @@
                     <strong>📊 Question Distribution:</strong>
                     Questions are weighted by NCLEX category: Management of Care (18%), Pharmacological Therapies (16%), Physiological Adaptation (14%), Safety & Infection Control (13%), Reduction of Risk (12%), and more.
                 </div>
-                <a href="/category/HESI/NCLEX_Comprehensive" class="comprehensive-btn">Start Comprehensive Quiz →</a>
+                <a href="/category/NCLEX/NCLEX_Comprehensive" class="comprehensive-btn">Start Comprehensive Quiz →</a>
             </div>
         </div>
 
-        <!-- Component 2: HESI Categories -->
+        <!-- Component 2: NCLEX Categories -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">📚</span>
@@ -385,7 +385,7 @@
             
             <div class="categories-grid">
                 {% for cat_name, weight in nclex_categories.items() %}
-                <a href="/category/HESI/category/{{ cat_name | urlencode }}" class="category-card">
+                <a href="/category/NCLEX/category/{{ cat_name | urlencode }}" class="category-card">
                     <div class="category-card-header">
                         <h4>{{ cat_name }}</h4>
                         <span class="category-weight">{{ (weight * 100) | int }}%</span>
@@ -419,8 +419,8 @@
 
         <!-- Info Box -->
         <div class="info-box">
-            <h3>📚 About the HESI Comprehensive System</h3>
-            <p>This system uses {{ total_questions }} questions from HESI Exit Exam and Comprehensive study guides, categorized according to the NCLEX-RN test plan. The comprehensive quiz weights questions by NCLEX percentages to simulate real exam conditions. Your performance is tracked to help you identify and strengthen weak areas. Category quizzes are for targeted practice and don't affect your overall stats.</p>
+            <h3>📚 About the NCLEX Comprehensive System</h3>
+            <p>This system uses {{ total_questions }} questions from NCLEX Exit Exam and Comprehensive study guides, categorized according to the NCLEX-RN test plan. The comprehensive quiz weights questions by NCLEX percentages to simulate real exam conditions. Your performance is tracked to help you identify and strengthen weak areas. Category quizzes are for targeted practice and don't affect your overall stats.</p>
         </div>
     </div>
 
@@ -440,7 +440,7 @@
             'Physiological Adaptation': 0.14
         };
 
-        const STORAGE_KEY = 'hesiPerformanceStats';
+        const STORAGE_KEY = 'nclexPerformanceStats';
 
         // Load stats from localStorage
         function loadStats() {
@@ -538,7 +538,7 @@
                         </div>
                         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85em; color: #666;">
                             <span>${cat.totalCorrect}/${cat.totalAnswered} correct • NCLEX weight: ${Math.round(cat.weight * 100)}%</span>
-                            <a href="/category/HESI/category/${encodeURIComponent(cat.name)}" class="practice-btn">Practice →</a>
+                            <a href="/category/NCLEX/category/${encodeURIComponent(cat.name)}" class="practice-btn">Practice →</a>
                         </div>
                     </div>
                 `;
@@ -547,7 +547,7 @@
 
         // Reset stats
         function resetStats() {
-            if (confirm('Are you sure you want to reset all HESI performance stats? This cannot be undone.')) {
+            if (confirm('Are you sure you want to reset all NCLEX performance stats? This cannot be undone.')) {
                 localStorage.removeItem(STORAGE_KEY);
                 renderScoreboard();
             }
