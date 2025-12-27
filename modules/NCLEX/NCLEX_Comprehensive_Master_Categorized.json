@@ -245,7 +245,7 @@
         "E"
       ],
       "rationale": "Bringing items close and widening stance improve balance. Leaning forward, locking knees, and bending waist impair balance and cause injury.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -460,7 +460,7 @@
         "E"
       ],
       "rationale": "Lymphadenopathy, elevated WBC, and fever indicate spreading infection and systemic response requiring provider notification.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -627,7 +627,7 @@
         "E"
       ],
       "rationale": "PNs can administer insulin, perform routine dressing changes, and obtain vital signs. Initating PCA and starting transfusions require RN assessment and judgment.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -1980,7 +1980,7 @@
         "D"
       ],
       "rationale": "Older adults benefit from simple language, visual aids, and definitions. 8-10 point font is too small; 5th-6th grade reading level is appropriate.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Management of Care",
@@ -2031,7 +2031,7 @@
         "E"
       ],
       "rationale": "Tea is a clear liquid; lentils and potato soup are appropriate full liquid choices. Cheese and whole grain breads are solid foods.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Reduction of Risk Potential",
@@ -2252,7 +2252,7 @@
         "E"
       ],
       "rationale": "Turkey is lean protein, berries are low sodium, bouillon is low fat, almonds are unsalted and healthy. Mayo and peanut butter are high fat.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -2550,7 +2550,7 @@
         "E"
       ],
       "rationale": "UAPs can report objective findings like pain, weight changes, and intake. Assessment and evaluation require RN judgment.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Physiological Adaptation",
@@ -3666,7 +3666,7 @@
         "B"
       ],
       "rationale": "Functional ability and skin integrity directly reflect treatment effectiveness for herpes zoster. Bowel and heart sounds are not relevant.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -3899,7 +3899,7 @@
         "D"
       ],
       "rationale": "Acute confusion suggests infection (check temp), UTI (dysuria), or malnutrition. Protein helps cognitive function. Allergies may be unrelated to acute onset.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Psychosocial Integrity",
@@ -4132,7 +4132,7 @@
         "F"
       ],
       "rationale": "These are appropriate diabetes education and management interventions. Insulin aspart is rapid-acting for meals (not IV); insulin types should not be mixed.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -4399,7 +4399,7 @@
         "E"
       ],
       "rationale": "Both tetralogy of Fallot and transposition of the great vessels are classified as cyanotic heart disease, in which unoxygenated blood is pumped into the systemic circulation, causing cyanosis (D and E). The others are all abnormal cardiac conditions, but are classified as acyanotic and involve left-to-right shunts, increased pulmonary blood flow, or obstructive defects. (A, B, and C).",
-      "type": "select_all_that_apply"
+      "type": "multi_select"
     },
     {
       "category": "Physiological Adaptation",
@@ -4855,7 +4855,7 @@
         "D"
       ],
       "rationale": "WBC indicates infection severity; culture guides antibiotics; contact precautions prevent transmission. Low bacteria diet and masking alone are not indicated.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -4922,7 +4922,7 @@
         "C"
       ],
       "rationale": "Transfer strategies, nutrition, and community support address immediate rehabilitation needs. Rigorous exercise is inappropriate during GBS recovery.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -5021,7 +5021,7 @@
         "D"
       ],
       "rationale": "Loosen clothing to prevent injury, ease to floor safely, and document duration. Never insert objects or restrain during seizure.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -5072,7 +5072,7 @@
         "D"
       ],
       "rationale": "Frequent syncope, flat affect, and blurred vision all relate to Parkinson's disease and can affect accurate blood pressure measurement. Syncope indicates orthostatic hypotension; blurred vision affects client cooperation.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -5365,7 +5365,7 @@
         "C"
       ],
       "rationale": "Teaching family, assessing self-care ability, and providing medication instructions are essential. Home safety inspection and oxygen setup depend on individual assessment.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Management of Care",
@@ -5448,7 +5448,7 @@
         "E"
       ],
       "rationale": "The fundus should be palpated and massaged frequently to prevent hemorrhage (B). The lochia should be assessed to detect for hemorrhage (D) and ice packs and witch hazel can decrease edema and discomfort (E). Bed rest is only recommended for the first 2 hours (A). A full bladder is suspected if the fundus is deviated to the right or left of the umbilicus (C).",
-      "type": "select_all_that_apply"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -5482,7 +5482,7 @@
         "B"
       ],
       "rationale": "These are normal findings (A and B). The others indicate abnormalities or complications and should be reported to the primary health care provider (C, D, and E).",
-      "type": "select_all_that_apply"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -5750,7 +5750,7 @@
         "E"
       ],
       "rationale": "The drug causes sedation, so it should be given at bedtime (B). Cardiovascular adverse reactions include orthostatic hypotension; therefore, the blood pressure should be assessed (D). This drug can cause anticholinergic effects such as dry mouth, blurred vision, constipation, and urinary retention (E). The drug takes 2 to 6 weeks to achieve therapeutic effects (A). All monoamine oxidase (MAO) inhibitors such as isocarboxazid should be discontinued 1 to 3 weeks prior to the administration of Elavil (C).",
-      "type": "select_all_that_apply"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -5897,7 +5897,7 @@
         "D"
       ],
       "rationale": "These are all signs of abruptio placentae (A, B, and D). The others are signs of placenta previa (C and E).",
-      "type": "select_all_that_apply"
+      "type": "multi_select"
     },
     {
       "category": "Health Promotion and Maintenance",
@@ -6161,7 +6161,7 @@
         "E"
       ],
       "rationale": "Anthrax can be transmitted by the inhalation, cutaneous, and digestive routes (A, B, D, and E); however, the disease is not spread from person to person (C).",
-      "type": "select_all_that_apply"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -6196,7 +6196,7 @@
         "E"
       ],
       "rationale": "Residual limb shrinker helps prepare the limb for prosthesis fitting. Skin inspection prevents complications. Regular washing maintains hygiene. Alcohol is contraindicated as it dries skin. ROM exercises are necessary to prevent contractures.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Physiological Adaptation",
@@ -7492,7 +7492,7 @@
         "E"
       ],
       "rationale": "Metabolic syndrome is a name for a group of risk factors that increase the risk for coronary artery disease, type 2 diabetes, and stroke (A, B, D, and E). Hypoglycemia is not a risk factor for metabolic syndrome (C).",
-      "type": "select_all_that_apply"
+      "type": "multi_select"
     },
     {
       "category": "Pharmacological and Parenteral Therapies",
@@ -7980,7 +7980,7 @@
         "B"
       ],
       "rationale": "The RN is responsible for ensuring client safety at all times. The nurse should ensure adequate coverage and assess client needs before taking a break. Nursing assistants can monitor basic client status but cannot perform nursing judgments like medication administration.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Management of Care",
@@ -7998,7 +7998,7 @@
         "D"
       ],
       "rationale": "LPNs can administer medications including pain medications and insulin. They have the education and licensure for medication administration. Basic care and routine procedures can be delegated to nursing assistants.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Management of Care",
@@ -8356,7 +8356,7 @@
         "E"
       ],
       "rationale": "A case manager is a nurse who ensures responsibility for coordinating the client's care from point of admission through post-discharge. Specific responsibilities of the case manager include communicating with the client and family, making the case manager, case manager, communicating about referrals and facilitating discharges including a plan of nursing care, care plan, and cost-effective plan of care with the client's diagnoses, skill, cost-effectiveness, and prescribed treatments ensuring the client's well-being. Establishing a safe and cost-effective plan of care with the client. Prescribing intravenous specific to the client's needs is not within the scope of a case manager. That is the responsibility of the case manager as a nurse who ensures responsibility for coordinating the client's care.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Management of Care",
@@ -8998,7 +8998,7 @@
         "E"
       ],
       "rationale": "If the client's condition changes, the DNR order may need to be changed. For this reason, DNR orders require frequent review. A DNR order is effective as specified by state or agency policy. A DNR order may be changed at any time and does not remain in effect for the duration of the client's hospitalization. The client's request regarding DNR status is the basis.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Health Promotion and Maintenance",
@@ -9017,7 +9017,7 @@
         "E"
       ],
       "rationale": "The purpose of standards of care is to provide a broad direction for the overall practice of nursing that applies to all nursing situations, across specialty areas, across the country. Standards of care provide the provision of competent care on the basis of current practice. Methods of treatment are individualized to the care of a specific client.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Management of Care",
@@ -9035,7 +9035,7 @@
         "E"
       ],
       "rationale": "Standards of care are authoritative statements that describe a common or acceptable level of client care or performance. They have some similarity to policies and procedures. Therefore standards of care define professional practice. The American Nurses Association has formulated general standards and guidelines for nursing practice.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Psychosocial Integrity",
@@ -9198,7 +9198,7 @@
         "E"
       ],
       "rationale": "A change-of-shift report ensures continuity of care among nurses caring for a client and informs the nurse on the oncoming shift of the client's current status, as well as the nurses are walking rounds as a client receives. Steps used to perform a procedure should not be described in a change-of-shift report.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Management of Care",
@@ -9216,12 +9216,12 @@
         "C"
       ],
       "rationale": "The nurse must base assignments on the basis of the skill of the staff member and the needs of the client. The nursing assistant is capable of caring for the client with a 1-day catheter placement. The nursing assistant may also perform the procedure for changing the client's sterile dressing at the postoperative care site. The nursing assistant may perform tasks.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Health Promotion and Maintenance",
       "id": "MOC_Q095",
-      "stem": "A case manager is reviewing the records of the clients in the nursing unit. Which notations in a client's record indicate an unexpected outcome and the need for further action?",
+      "stem": "A case manager is reviewing the records of the clients in the nursing unit. Which notations in a client's record indicate an unexpected outcome and the need for further action? (Select all that apply.)",
       "options": [
         "A client with a control venous catheter has a temperature of 101.2\u00b0F (38.7\u00b0C)",
         "A client who has just undergone surgery is passing stool from the prescribed pain medications",
@@ -9233,7 +9233,7 @@
         "A"
       ],
       "rationale": "A temperature of 100\u00b0F (37.8\u00b0C) is a client with a central venous catheter is an unexpected outcome. A case manager is a nurse who assumes responsibility for coordinating a client's care from the point of admission through post-discharge. If an unexpected outcome is noted, the case needs follow-up.",
-      "type": "single_select"
+      "type": "multi_select"
     },
     {
       "category": "Management of Care",
@@ -9251,7 +9251,7 @@
         "E"
       ],
       "rationale": "All organizations have a purpose or reason for existing. This purpose is often expressed in the form of an organizational mission or vision statement. An organization's mission statement describes the organization's purpose, and goals or objectives into a single statement that unites the philosophy, purpose, and goals of the organization.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Management of Care",
@@ -9269,7 +9269,7 @@
         "C"
       ],
       "rationale": "The term authority must appropriately refers to the official power of an individual to approve or command an action. It also refers to the official power to do true an organizational decision is reinforced. Being responsible for the actions of others reflects the term 'accountability.'",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Psychosocial Integrity",
@@ -9288,7 +9288,7 @@
         "D"
       ],
       "rationale": "Accountability is the process of answering or being responsible for who occurs. Carries legal implications for safe performance. Accountability cannot be delegated as is responsible for her own actions. The nurse is responsible for the care they provide to the client.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Management of Care",
@@ -9306,7 +9306,7 @@
         "E"
       ],
       "rationale": "An organizational chart depicts and communicates how activities are arranged. How the communication channels are established, and how the chain of command is determined. The chart helps the nurse determine who is in charge and who reports to whom. Use the chart to identify the components of an organizational chart to answer the question.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -9327,7 +9327,7 @@
         "D"
       ],
       "rationale": "The nurse is responsible for documenting specific information about the client who is wearing any type of restraint. The points that must be included in such documentation are the reason for the restraint; alternatives to the restraint that were used; the method of restraint; the procedure used in applying the restraint; date and time of application of the restraint; client's response to application of the restrained body part; assessment of circulatory, neurovascular, and skin integrity; periodic release from restraint with movement or range of motion exercise.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -9460,7 +9460,7 @@
         "F"
       ],
       "rationale": "The physiologic changes that occur during the aging process increase the client's risk for accidents. These changes include slowed voluntary and autonomic reflexes, slowed peripheral vision and less accommodation, delayed transmission of hot and cold impulses, and impaired hearing as high-frequency tones become inaudible.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10183,7 +10183,7 @@
         "E"
       ],
       "rationale": "The client should follow the oxygen prescription exactly. The use of electric razors or other equipment that could emit sparks should be avoided while oxygen is in use, because fire and ignition sources could result from heat in the form of flames or sparks. The oxygen concentrator should be placed slightly away from walls and corners to permit adequate air flow. Smoking should never be allowed within 10 feet (3 meters) of the oxygen concentrator.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10203,7 +10203,7 @@
         "D"
       ],
       "rationale": "Anthrax, caused by Bacillus anthracis, can be contracted through the respiratory system (inhalation), the gastrointestinal system, and the integumentary system (skin). It is not contracted through the immune system, urinary tract, or lymphatic system.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10221,7 +10221,7 @@
         "D"
       ],
       "rationale": "Home modifications to reduce the risk of falls include ensuring ample lighting, removing scatter rugs, securing loose handrails in bathrooms, and wearing sturdy flat rubber-soled shoes to prevent slips and falls. Walking barefoot will not reduce the risk of falls. Removal of wall-to-wall carpeting is not necessary.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10239,7 +10239,7 @@
         "E"
       ],
       "rationale": "When moving an object, the nursing assistant should position the object between his knees. The assistant should keep the client or object to be moved as close to his body as possible. When turning a client, the assistant should not turn his back to change position while moving a client. The assistant should turn his feet, rather than twisting his back.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10258,7 +10258,7 @@
         "E"
       ],
       "rationale": "The nurse should first assess the client's medical history, including risk factors for burns. The heating pad should not be placed under the client as this could result in burns from the direct heat. Assessing the client for proper electrical function is an appropriate measure for safe use of a heating pad. Frequently assessing the client's skin for signs of burns is important.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10278,7 +10278,7 @@
         "C"
       ],
       "rationale": "Infections that occur during hospitalization, or are a result of hospitalization, are referred to as healthcare-associated infections, hospital-acquired infections, or nosocomial infections. Colonization is defined as a condition in which microorganisms are present in body tissues; there is no damage to the tissues, and no local signs/symptoms of infection are evident.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10298,7 +10298,7 @@
         "E"
       ],
       "rationale": "Although strict adherence to universal or standard precautions can reduce significantly the incidence of exposure to blood and body fluids, the use of recessed needles, needleless devices, shielded needles, and puncture-resistant containers for the disposal of needles are all of significant benefit in the disposal of accidental needlesticks.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10317,7 +10317,7 @@
         "E"
       ],
       "rationale": "The nurse should blot the spill with an absorbent disposable material such as disposable towels, not a face cloth or cloth towel. The broken glass is disposed of in a sharps container. The area is disinfected with a dilute Bleach solution or other agency-accepted product.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10337,7 +10337,7 @@
         "F"
       ],
       "rationale": "An extremely low white blood cell count puts the client at risk for infection, necessitating the implementation of a low-bacteria diet. The client must avoid fresh fruits and vegetables, which may harbor microorganisms that cause infection, and ensure that meat is thoroughly cooked. Italian bread, baked chicken, and a well-done cheeseburger are all acceptable foods for the diet.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10357,7 +10357,7 @@
         "E"
       ],
       "rationale": "In the event of accidental poisoning, the poison center is called before any attempt at interventions is made. Additional interventions in an accidental poisoning include assessing the client's airway patency, breathing, and circulation; removing any visible materials from the nose and mouth to terminate exposure; determining the type and amount of substance ingested, if possible; and saving vomitus for laboratory analysis. Vomiting should never be induced in an unconscious client or if the substance is incompatible with vomiting is never induced in an unconscious client or if the substance is a strong corrosive or petroleum product.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10376,12 +10376,12 @@
         "C"
       ],
       "rationale": "Infection caused by MRSA necessitates contact precautions. The care of this client requires the use of gown, gloves, and a face shield. The face shield is worn to protect the face and the mucous membranes of the mouth, nose, and eyes during interventions that could produce splashes of blood, body fluids, secretions, and excretions. Masks do not provide adequate protection. Shoe protectors are not necessary.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
       "id": "SIC_Q065",
-      "stem": "A nurse is attending an in-service program on disaster preparedness. Which of the following events are described as examples of natural disasters? Select all that apply.",
+      "stem": "A nurse is attending an in-service program on disaster preparedness. Which of the following events are described as examples of natural disasters? (Select all that apply.)",
       "options": [
         "Hurricane",
         "Terrorist attack",
@@ -10396,12 +10396,12 @@
         "F"
       ],
       "rationale": "A disaster is any human-made or natural event that results in destruction and devastation that cannot be alleviated without outside assistance. A natural disaster usually cannot be prevented, whereas a human-made disaster can be prevented. Flood, drought, and hurricane are the only natural disasters identified in the options. Bus accidents, terrorist attacks, and toxic waste spills are all human-made disasters.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
       "id": "SIC_Q066",
-      "stem": "A nurse is reading an article about the role of the American Red Cross (ARC) in a disaster. Which of the following responsibilities does the article ascribe to the ARC? Select all that apply.",
+      "stem": "A nurse is reading an article about the role of the American Red Cross (ARC) in a disaster. Which of the following responsibilities does the article ascribe to the ARC? (Select all that apply.)",
       "options": [
         "Identifying and training personnel for disaster response",
         "Developing a federal disaster response plan",
@@ -10416,7 +10416,7 @@
         "E"
       ],
       "rationale": "The ARC has been given authority by the federal government to provide disaster relief. The organization works with the government in developing and testing community disaster plans, identifying and training personnel for disaster response, working with businesses and labor organizations to identify resources and people for disaster relief, educating the public about ways to prepare for disasters, and other responsibilities. Other responsibilities include operating shelters, providing disaster relief services in mass care, and providing relief-related information.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10434,7 +10434,7 @@
         "D"
       ],
       "rationale": "Anthrax, which is caused by Bacillus anthracis, can be contracted through the digestive system (foodborne), the skin (cutaneous), the lungs (inhalation anthrax), or through contact with infectious saliva. Close intimate contact with an infected person should be treated for scabies at the same time. A blood test performed to detect anthrax includes antibodies or DNA from the anthrax. A vaccine exists, but its availability is limited. Anthrax is usually treated with ciprofloxacin, doxycycline, or penicillin.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10454,7 +10454,7 @@
         "C"
       ],
       "rationale": "The mitigation phase consists of actions or measures that can either prevent the occurrence of a disaster or reduce a disaster's damaging effects. The task of determining the available resources available for the care of infants, older clients, the disabled, and people with chronic health problems is addressed in this phase. The preparedness phase involves actions that plan for rescue, evacuation, and care of disaster victims. The response phase includes actions taken to return to normal after the disaster.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -10474,7 +10474,7 @@
         "F"
       ],
       "rationale": "Several general interventions can be used to minimize stress in the hospitalized client. These include acknowledging the client's feelings, providing information, providing social support, and giving the client control, when possible, over the client's environment. Limiting visitors and putting the client in a room far from the nurses' station would both serve to increase the client's anxiety. Keeping the door open and the room lights on at all times could further disrupt the client's sleep pattern.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Safety and Infection Control",
@@ -11556,7 +11556,7 @@
         "E"
       ],
       "rationale": "Constant bubbling in the water seal chamber of a closed chest tube drainage system may indicate an air leak. The primary healthcare provider should be notified if the air leak is not present and the air leak is a new occurrence, the primary healthcare provider should be notified. Changing suction system settings, documenting findings, and assessing for external air leaks are appropriate nursing interventions.",
-      "type": "multiple_select",
+      "type": "multi_select",
       "test_taking_strategy": "Focus on the appropriate nursing interventions for chest tube drainage system complications",
       "level_of_cognitive_ability": "Applying",
       "hesi_concepts": [
@@ -11580,7 +11580,7 @@
         "C"
       ],
       "rationale": "Routine screening tests include complete blood cell count, serum electrolyte analysis, coagulation studies, and serum creatinine tests. The complete blood count includes hemoglobin and hematocrit levels. A client has low hemoglobin (B) and low hematocrit (C), which could necessitate further investigation before surgery.",
-      "type": "multiple_select",
+      "type": "multi_select",
       "test_taking_strategy": "Focus on preoperative laboratory values that may impact surgical readiness",
       "level_of_cognitive_ability": "Analyzing",
       "hesi_concepts": [
@@ -11607,7 +11607,7 @@
         "F"
       ],
       "rationale": "A careful history should include any previous episodes of uric acid stone formation, fluid overload, and medications. The family history of calculi and previous episodes of stone formation are important. The diet, fluid intake, and problems with fluid overload are not directly related to the development of uric acid calculi.",
-      "type": "multiple_select",
+      "type": "multi_select",
       "test_taking_strategy": "Focus on the key areas in assessing a client with suspected uric acid calculi",
       "level_of_cognitive_ability": "Analyzing",
       "hesi_concepts": [
@@ -11634,7 +11634,7 @@
         "F"
       ],
       "rationale": "The normal pH range is 4.5 to 7.8, and normal specific gravity ranges from 1.016 to 1.022. The nurse is typically screened for proteins, glucose, ketones, bilirubin, casts, crystals, and cellular findings. The presence of ketones, glucose, and casts would be considered abnormal findings.",
-      "type": "multiple_select",
+      "type": "multi_select",
       "test_taking_strategy": "Focus on the subject, which urine findings are considered abnormal",
       "level_of_cognitive_ability": "Analyzing",
       "hesi_concepts": [
@@ -13199,7 +13199,7 @@
         "D"
       ],
       "rationale": "For an ERCP procedure, clients should be NPO (nothing by mouth) before the test, and multiple position changes are often necessary to guide the endoscope through the gastrointestinal tract. The test typically takes 30-60 minutes, and premedication for sedation is usually required.",
-      "type": "multiple_select",
+      "type": "multi_select",
       "test_taking_strategy": "Focus on the key preparation steps for ERCP",
       "level_of_cognitive_ability": "Applying",
       "hesi_concepts": [
@@ -13225,7 +13225,7 @@
         "E"
       ],
       "rationale": "LDL Cholesterol above 130 is considered elevated. Hemoglobin levels of 21 (0.30) are abnormally high. The other values are within normal ranges: Magnesium (1.5-2.5 mg/dL), Calcium (8.5-10.5 mg/dL), Sodium (135-145 mEq/L), Potassium (3.5-5.0 mEq/L).",
-      "type": "multiple_select",
+      "type": "multi_select",
       "test_taking_strategy": "Focus on identifying abnormal laboratory values",
       "level_of_cognitive_ability": "Analyzing",
       "hesi_concepts": [
@@ -14420,7 +14420,7 @@
     {
       "category": "Management of Care",
       "id": "HESI_MOC_MOC_74",
-      "stem": "The primary difference between a r\u00e9sum\u00e9 and a CV is that a r\u00e9sum\u00e9:",
+      "stem": "The primary difference between a resume and a CV is that a resume:",
       "options": [
         "reflects your skills, knowledge, and background in relation to a specific position.",
         "offers a detailed listing of positions held and where positions were held.",
@@ -20517,7 +20517,7 @@
         "C"
       ],
       "rationale": "Foods that are lower in sodium include fruits and vegetables, which do not contain physiologic saline. Fresh poultry and pastas are also low in sodium. Highly processed and refined foods and luncheon meats are high in sodium unless they are specifically labeled 'low sodium.' Saltwater fish and shellfish are higher in sodium.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -20535,7 +20535,7 @@
         "E"
       ],
       "rationale": "Organ meats such as liver, as well as certain sea foods, including scallops, sardines, and herring, should be omitted from the diet of the client with gout because of the high purine content. The foods identified in the other options contain negligible amounts of purines and may be consumed freely by the client with gout.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -20555,7 +20555,7 @@
         "E"
       ],
       "rationale": "A clear liquid diet consists of foods, such as apple juice, chicken broth, and gelatin, which are relatively transparent. Custard, orange juice, and vanilla ice cream are components of a full liquid diet.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -20575,7 +20575,7 @@
         "F"
       ],
       "rationale": "Triamterene is a potassium-retaining diuretic, so the client should avoid foods high in potassium. Fruits that are naturally high in potassium include dried prunes, avocado, bananas, fresh oranges and mangoes, nectarines, and papayas.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -20611,7 +20611,7 @@
         "E"
       ],
       "rationale": "Fruits and vegetables tend to be lower in fat because they do not come from animal sources, although olives, though technically a fruit, are high in fat (as are avocados), and fish is also naturally lower in fat. Meats and dairy products (e.g., cream cheese) are higher in fat, although modifications can be made to these foods to reduce their fat content.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -20631,7 +20631,7 @@
         "F"
       ],
       "rationale": "Anticoagulant medications work by antagonizing the action of vitamin K, which is needed for clotting. When a client is taking an anticoagulant, foods high in vitamin K are often omitted from the diet. Vitamin K is found in large amounts in green leafy vegetables such as lettuce, broccoli, spinach, Brussels sprouts, cabbage, and turnip greens. Cherries, potatoes, and spaghetti are foods that are low in vitamin K.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -20698,7 +20698,7 @@
         "D"
       ],
       "rationale": "The client who has undergone partial gastrectomy is at risk for dumping syndrome. This client should be prescribed a diet that is high in protein, moderate in fat, and low in carbohydrates. The client should lie down after meals and avoid drinking liquids with meals. Frequent small meals are encouraged. The client should also avoid concentrated sweets.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -20782,7 +20782,7 @@
         "C"
       ],
       "rationale": "Because phenelzine is an MAOI, the client should avoid foods that are high in tyramine, which could trigger a potentially fatal hypertensive crisis. Foods to avoid include aged cheeses, smoked or processed meats, red wines, beer, and certain fruits, including avocados, raisins, and figs. Vegetables, with the exception of broad-bean pods, are generally acceptable.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -20816,7 +20816,7 @@
         "D"
       ],
       "rationale": "The client taking a medication to treat hypocalcemia should be instructed to avoid excessive consumption of spinach, rhubarb, bran, and whole-grain cereals, all of which may limit calcium absorption. Good dietary sources of calcium include milk products, dark-green leafy vegetables, clams, oysters, sardines, and orange juice fortified with calcium.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -20932,7 +20932,7 @@
         "F"
       ],
       "rationale": "Deodorizing foods for the client with an ostomy include beet greens, parsley, buttermilk, cranberry juice, and yogurt. Eggs, broccoli, and cucumbers are gas-forming foods.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -21000,7 +21000,7 @@
         "F"
       ],
       "rationale": "Thiamine is present in a variety of foods of plant and animal origin. Pork products are especially rich in the vitamin, but other good sources are peanuts, asparagus, legumes, and whole-grain and enriched cereals. Milk is high in vitamins A and D, calcium, and magnesium. Chicken is high in protein. Broccoli is high in calcium and folic acid.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -21068,7 +21068,7 @@
         "E"
       ],
       "rationale": "The client with iron-deficiency anemia should increase intake of foods that are naturally high in iron. The best sources of dietary iron are red meat, liver, and other organ meats, blackstrap molasses, and oysters. Other good sources are kidney beans, soybeans, lentils, whole-wheat bread, egg yolk, spinach, kale, turnip tops, beet greens, carrots, raisins, and apricots.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -21392,7 +21392,7 @@
         "F"
       ],
       "rationale": "Meats, eggs, whole-grain breads, cranberries, plums, and prunes increase urine acidity. These foods are metabolized into acid end-products that eventually enter the urine. The incorrect options are not food items that will acidify the urine.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -21538,7 +21538,7 @@
         "C"
       ],
       "rationale": "The client should use only crutches that have been measured and set for him. When ascending or descending stairs, the client generally uses a three-phase sequence involving both crutches. Crutch tips should be kept as dry as possible. Water could cause slippage by reducing the friction of the rubber tip against the floor. If the tips get wet, the client should dry them with a cloth or paper towel. The tips should be inspected for wear, and spare crutches and tips should be available. Leaning into the crutches to support the body's weight increases the risk of axillary nerve injury.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -21751,7 +21751,7 @@
         "F"
       ],
       "rationale": "A bowel training program can help clients who still have some neuromuscular control after a stroke achieve control of bowel reflexes and have normal defecation. The cornerstone of such a training program is a daily routine. First the client should be encouraged to attempt to defecate at the same time each day after the trigger meal. Other measures include administering a daily stool softener or a cathartic suppository at least a half-hour before defecation time, providing a hot drink or juice that will stimulate peristalsis before defecation time, providing privacy and time for defecation, and assisting the client into a position that will facilitate defecation (e.g., a sitting position). Dietary measures that can help the client achieve bowel-training success include increased fiber intake (with the aim of 25 to 30 g of dietary fiber per day) and adequate dietary fluid intake.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -21947,7 +21947,7 @@
         "F"
       ],
       "rationale": "A variety of measures may be used to promote and enhance sleep. These measures include avoiding caffeinated beverages (caffeine is a stimulant) for at least 2 hours before bedtime, avoiding alcohol, maintaining a regular exercise schedule but not exercising immediately before bedtime, getting up at the same time each day, avoiding naps during the day, adjusting the room temperature to a comfortable level, and eliminating lights, noise, and other environmental distractions. Alcohol can lighten and fragment sleep. Exercising just before bedtime promotes stimulation and may prevent sleep. Black tea contains caffeine.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -22030,7 +22030,7 @@
         "E"
       ],
       "rationale": "Side/adverse effects of meperidine hydrochloride include respiratory depression, orthostatic hypotension, tachycardia, drowsiness and mental clouding, constipation, and urine retention. The incorrect options are effects opposite those expected with meperidine hydrochloride.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -22048,7 +22048,7 @@
         "D"
       ],
       "rationale": "Because urine retention may occur with the use of opioid analgesics, the nurse would monitor the volume of the client's urine output. Because the client is also at risk for constipation, the nurse would monitor the frequency of bowel movements. Other side/adverse effects include hypotension and slowed respiration. The incorrect options are not specifically associated with this medication.",
-      "type": "multiple_select"
+      "type": "multi_select"
     },
     {
       "category": "Basic Care and Comfort",
@@ -22163,7 +22163,7 @@
         "C"
       ],
       "rationale": "A PCA pump contains a cartridge or syringe that holds the prescribed pain medication. The client pushes a button to administer a dose of the medication within limitations prescribed by the health care provider. The client must be able to understand the use of the equipment and be physically able to locate and press the button to deliver the dose. Clients who are confused and unresponsive, those with neurological disease, and those with impaired renal or pulmonary functions are not candidates for PCA.",
-      "type": "multiple_select"
+      "type": "multi_select"
     }
   ]
 }
