@@ -357,6 +357,9 @@ def quiz(category, module):
         # Check for is_comprehensive parameter (for NCLEX comprehensive quiz)
         is_comprehensive = request.args.get('is_comprehensive', 'false').lower() == 'true'
         
+        # Check for quiz_length parameter (for comprehensive quiz length selection)
+        quiz_length = request.args.get('quiz_length', 'full')
+        
         # Determine back link based on category and module
         metadata = CATEGORY_METADATA.get(category, {})
         
@@ -387,7 +390,8 @@ def quiz(category, module):
                              back_url=back_url,
                              back_label=back_label,
                              autostart=autostart,
-                             is_comprehensive=is_comprehensive)
+                             is_comprehensive=is_comprehensive,
+                             quiz_length=quiz_length)
     except Exception as e:
         print(f"Error in quiz route: {e}")
         return jsonify({'error': str(e)}), 500
