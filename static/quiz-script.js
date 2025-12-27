@@ -361,7 +361,9 @@ function normalizeOptions(q) {
 }
 
 function normalizeAnswer(q) {
-  let ans = q.answer || q.correct_answer || '';
+  // NCLEX questions use 'correct' field; other formats use 'answer' or 'correct_answer'
+  // Check 'correct' first to handle NCLEX Comprehensive Master Categorized questions
+  let ans = q.correct || q.answer || q.correct_answer || '';
   
   if (Array.isArray(ans)) {
     return ans.map(a => String(a).toUpperCase().trim());
