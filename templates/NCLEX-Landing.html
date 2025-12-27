@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>NCLEX Comprehensive System</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="/static/category-style.css" />
+</head>
+<body>
+  <div class="page">
+    <a href="/" class="back-link">← Nurse Success Study Hub</a>
+
+    <div class="header">
+      <div class="header-icon">🎯</div>
+      <div>
+        <h1 class="title">NCLEX Comprehensive System</h1>
+        <div class="subtitle">NCLEX-weighted practice with performance tracking across all 8 test plan categories</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">🎯 NCLEX Comprehensive Quiz (NCLEX-Weighted)</h2>
+
+      <div class="hero">
+        <div class="hero-title">Master the NCLEX Test Plan</div>
+        <div class="hero-sub">
+          Take a comprehensive quiz with questions distributed according to the official NCLEX-RN test plan
+          percentages. Your performance is tracked across all 8 categories to identify areas needing more practice.
+        </div>
+
+        <div class="pill-row">
+          <div class="pill-card">
+            📊 <b>Question Distribution:</b><br />
+            Questions are weighted by NCLEX category: Management of Care (18%), Pharmacological Therapies (16%),
+            Physiological Adaptation (14%), Safety &amp; Infection Control (13%), Reduction of Risk (12%) and more.
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="primary-btn" href="/category/NCLEX/NCLEX_Comprehensive">Start Comprehensive Quiz →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">🧭 Practice by NCLEX Category</h2>
+      <div class="grid">
+        <a class="mini-card link" href="/category/NCLEX/category/Management%20of%20Care">
+          <div class="mini-title">Management of Care</div>
+          <div class="mini-sub">Weighted practice set</div>
+          <div class="pill">18%</div>
+        </a>
+
+        <a class="mini-card link" href="/category/NCLEX/category/Safety%20and%20Infection%20Control">
+          <div class="mini-title">Safety and Infection Control</div>
+          <div class="mini-sub">Weighted practice set</div>
+          <div class="pill">13%</div>
+        </a>
+
+        <a class="mini-card link" href="/category/NCLEX/category/Health%20Promotion%20and%20Maintenance">
+          <div class="mini-title">Health Promotion and Maintenance</div>
+          <div class="mini-sub">Weighted practice set</div>
+          <div class="pill">9%</div>
+        </a>
+
+        <a class="mini-card link" href="/category/NCLEX/category/Psychosocial%20Integrity">
+          <div class="mini-title">Psychosocial Integrity</div>
+          <div class="mini-sub">Weighted practice set</div>
+          <div class="pill">9%</div>
+        </a>
+
+        <a class="mini-card link" href="/category/NCLEX/category/Basic%20Care%20and%20Comfort">
+          <div class="mini-title">Basic Care and Comfort</div>
+          <div class="mini-sub">Weighted practice set</div>
+          <div class="pill">9%</div>
+        </a>
+
+        <a class="mini-card link" href="/category/NCLEX/category/Pharmacological%20and%20Parenteral%20Therapies">
+          <div class="mini-title">Pharmacological and Parenteral Therapies</div>
+          <div class="mini-sub">Weighted practice set</div>
+          <div class="pill">16%</div>
+        </a>
+
+        <a class="mini-card link" href="/category/NCLEX/category/Reduction%20of%20Risk%20Potential">
+          <div class="mini-title">Reduction of Risk Potential</div>
+          <div class="mini-sub">Weighted practice set</div>
+          <div class="pill">12%</div>
+        </a>
+
+        <a class="mini-card link" href="/category/NCLEX/category/Physiological%20Adaptation">
+          <div class="mini-title">Physiological Adaptation</div>
+          <div class="mini-sub">Weighted practice set</div>
+          <div class="pill">14%</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">📈 Areas of Focus (Performance Tracking)</h2>
+      <div class="note">
+        Your results are stored locally in your browser. Use this to spot weak areas and prioritize practice.
+      </div>
+
+      <div id="focusGrid" class="grid" style="margin-top:16px;"></div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;">
+        <button class="secondary-btn" id="resetBtn">Reset Stats</button>
+        <button class="secondary-btn" id="exportBtn">Export Stats (JSON)</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // --- Stats storage key (NCLEX) ---
+  // Migration: if hesiPerformanceStats exists, copy it forward once.
+  const OLD_KEY = 'hesiPerformanceStats';
+  const KEY = 'nclexPerformanceStats';
+
+  function migrateIfNeeded() {
+    try {
+      const existing = localStorage.getItem(KEY);
+      if (existing) return;
+      const old = localStorage.getItem(OLD_KEY);
+      if (!old) return;
+      localStorage.setItem(KEY, old);
+    } catch (e) {}
+  }
+
+  function loadStats() {
+    migrateIfNeeded();
+    try {
+      return JSON.parse(localStorage.getItem(KEY) || '{}');
+    } catch {
+      return {};
+    }
+  }
+
+  function saveStats(stats) {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(stats));
+    } catch (e) {}
+  }
+
+  const categories = [
+    { name: "Management of Care", weight: 18 },
+    { name: "Safety and Infection Control", weight: 13 },
+    { name: "Health Promotion and Maintenance", weight: 9 },
+    { name: "Psychosocial Integrity", weight: 9 },
+    { name: "Basic Care and Comfort", weight: 9 },
+    { name: "Pharmacological and Parenteral Therapies", weight: 16 },
+    { name: "Reduction of Risk Potential", weight: 12 },
+    { name: "Physiological Adaptation", weight: 14 },
+  ];
+
+  function ensureStatsShape(stats) {
+    categories.forEach(c => {
+      if (!stats[c.name]) {
+        stats[c.name] = { correct: 0, total: 0 };
+      }
+      if (typeof stats[c.name].correct !== 'number') stats[c.name].correct = 0;
+      if (typeof stats[c.name].total !== 'number') stats[c.name].total = 0;
+    });
+    return stats;
+  }
+
+  function pct(correct, total) {
+    if (!total) return 0;
+    return Math.round((correct / total) * 100);
+  }
+
+  function render() {
+    const grid = document.getElementById('focusGrid');
+    grid.innerHTML = '';
+
+    let stats = ensureStatsShape(loadStats());
+
+    categories.forEach(c => {
+      const s = stats[c.name];
+      const p = pct(s.correct, s.total);
+
+      const card = document.createElement('div');
+      card.className = 'mini-card';
+
+      const title = document.createElement('div');
+      title.className = 'mini-title';
+      title.textContent = c.name;
+
+      const sub = document.createElement('div');
+      sub.className = 'mini-sub';
+      sub.textContent = `Correct: ${s.correct} / ${s.total}`;
+
+      const pill = document.createElement('div');
+      pill.className = 'pill';
+      pill.textContent = `${p}%`;
+
+      card.appendChild(title);
+      card.appendChild(sub);
+      card.appendChild(pill);
+      grid.appendChild(card);
+    });
+
+    saveStats(stats);
+  }
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    const blank = {};
+    categories.forEach(c => blank[c.name] = { correct: 0, total: 0 });
+    saveStats(blank);
+    render();
+  });
+
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    const stats = ensureStatsShape(loadStats());
+    const blob = new Blob([JSON.stringify(stats, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'nclexPerformanceStats.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  render();
+</script>
+</body>
+</html>
