@@ -14,17 +14,17 @@ MODULES_DIR = BASE_DIR / 'modules'
 
 # Category metadata
 CATEGORY_METADATA = {
-    'HESI': {
-        'display_name': 'HESI',
+    'NCLEX': {
+        'display_name': 'NCLEX',
         'icon': '📋',
         'image': '/images/Nursing_Hesi_Exam_Prep_Image.png',
-        'description': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from HESI Exit Exam and HESI Comprehensive study guides'
+        'description': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from NCLEX Exit Exam and NCLEX Comprehensive study guides'
     },
     'Lab_Values': {
         'display_name': 'Laboratory Values',
         'icon': '🧪',
         'image': '/images/Nursing_Lab_Values.png',
-        'description': 'Master critical laboratory values for NCLEX and HESI exams'
+        'description': 'Master critical laboratory values for NCLEX exams'
     },
     'Patient_Care_Management': {
         'display_name': 'Patient Care Management',
@@ -127,9 +127,9 @@ def get_category_quizzes(category):
     return quizzes
 
 
-def load_hesi_master_questions():
-    """Load the HESI Comprehensive Master Categorized questions"""
-    master_path = MODULES_DIR / 'HESI' / 'HESI_Comprehensive_Master_Categorized.json'
+def load_nclex_master_questions():
+    """Load the NCLEX Comprehensive Master Categorized questions"""
+    master_path = MODULES_DIR / 'NCLEX' / 'NCLEX_Comprehensive_Master_Categorized.json'
     if not master_path.exists():
         return []
     
@@ -138,13 +138,13 @@ def load_hesi_master_questions():
             data = json.load(f)
         return data.get('questions', [])
     except Exception as e:
-        print(f"Error loading HESI master questions: {e}")
+        print(f"Error loading NCLEX master questions: {e}")
         return []
 
 
-def get_hesi_category_stats():
+def get_nclex_category_stats():
     """Get statistics about questions per NCLEX category from master file"""
-    questions = load_hesi_master_questions()
+    questions = load_nclex_master_questions()
     stats = {}
     
     for cat in NCLEX_CATEGORIES.keys():
@@ -205,12 +205,12 @@ def category(category):
         has_mc = len(quizzes.get('multiple-choice', [])) > 0
         has_fb = len(quizzes.get('fill-in-the-blank', [])) > 0
         
-        # ========== PART 1 & PART 2: Use special template for HESI - the new landing page ==========
-        if category == 'HESI':
+        # ========== Use special template for NCLEX - the new landing page ==========
+        if category == 'NCLEX':
             # Load category stats for display
-            category_stats = get_hesi_category_stats()
+            category_stats = get_nclex_category_stats()
             total_questions = sum(s['count'] for s in category_stats.values())
-            return render_template('HESI-Landing.html',  # PART 2: Changed from 'hesi-landing.html' to 'HESI-Landing.html'
+            return render_template('NCLEX-Landing.html',
                                    category_stats=category_stats,
                                    nclex_categories=NCLEX_CATEGORIES,
                                    total_questions=total_questions,
@@ -237,24 +237,24 @@ def category(category):
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/category/HESI/NCLEX_Comprehensive')
-def hesi_nclex_comprehensive():
+@app.route('/category/NCLEX/NCLEX_Comprehensive')
+def nclex_comprehensive():
     """NCLEX-weighted Comprehensive Quiz page"""
     try:
-        category_stats = get_hesi_category_stats()
+        category_stats = get_nclex_category_stats()
         total_questions = sum(s['count'] for s in category_stats.values())
         return render_template('nclex-comprehensive.html',
                                category_stats=category_stats,
                                nclex_categories=NCLEX_CATEGORIES,
                                total_questions=total_questions)
     except Exception as e:
-        print(f"Error in hesi_nclex_comprehensive route: {e}")
+        print(f"Error in nclex_comprehensive route: {e}")
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/category/HESI/category/<category_name>')
-def hesi_category_quiz(category_name):
-    """HESI category-specific quiz - filters questions by NCLEX category"""
+@app.route('/category/NCLEX/category/<category_name>')
+def nclex_category_quiz(category_name):
+    """NCLEX category-specific quiz - filters questions by NCLEX category"""
     try:
         # Decode URL-encoded category name
         category_name = unquote(category_name)
@@ -262,32 +262,32 @@ def hesi_category_quiz(category_name):
         # Validate category name
         if category_name not in NCLEX_CATEGORIES:
             print(f"Invalid NCLEX category: {category_name}")
-            return redirect(url_for('category', category='HESI'))
+            return redirect(url_for('category', category='NCLEX'))
         
         # Load and filter questions
-        questions = load_hesi_master_questions()
+        questions = load_nclex_master_questions()
         filtered_questions = [q for q in questions if q.get('category') == category_name]
         
         if not filtered_questions:
             print(f"No questions found for category: {category_name}")
-            return redirect(url_for('category', category='HESI'))
+            return redirect(url_for('category', category='NCLEX'))
         
         # Create quiz data structure
         quiz_data = {
-            'module': f'HESI_{category_name.replace(" ", "_")}',
+            'module': f'NCLEX_{category_name.replace(" ", "_")}',
             'questions': filtered_questions
         }
         
         return render_template('quiz.html',
                              quiz_data=quiz_data,
-                             module_name=f'HESI - {category_name}',
-                             category='HESI',
-                             back_url='/category/HESI',
-                             back_label='HESI Comprehensive System',
+                             module_name=f'NCLEX - {category_name}',
+                             category='NCLEX',
+                             back_url='/category/NCLEX',
+                             back_label='NCLEX Comprehensive System',
                              autostart=False,
                              is_category_quiz=True)
     except Exception as e:
-        print(f"Error in hesi_category_quiz route: {e}")
+        print(f"Error in nclex_category_quiz route: {e}")
         import traceback
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -354,7 +354,7 @@ def quiz(category, module):
         # Check for autostart parameter (for Pharmacology categorical quizzes)
         autostart = request.args.get('autostart', 'false').lower() == 'true'
         
-        # Check for is_comprehensive parameter (for HESI comprehensive quiz)
+        # Check for is_comprehensive parameter (for NCLEX comprehensive quiz)
         is_comprehensive = request.args.get('is_comprehensive', 'false').lower() == 'true'
         
         # Determine back link based on category and module
@@ -372,9 +372,9 @@ def quiz(category, module):
         elif category == 'Pharmacology' and module.endswith('_Pharm'):
             back_url = '/category/Pharmacology/Categories'
             back_label = 'Pharmacology by Category'
-        # Special handling for HESI Comprehensive Master - go back to NCLEX Comprehensive page
-        elif category == 'HESI' and module == 'HESI_Comprehensive_Master_Categorized':
-            back_url = '/category/HESI/NCLEX_Comprehensive'
+        # Special handling for NCLEX Comprehensive Master - go back to NCLEX Comprehensive page
+        elif category == 'NCLEX' and module == 'NCLEX_Comprehensive_Master_Categorized':
+            back_url = '/category/NCLEX/NCLEX_Comprehensive'
             back_label = 'NCLEX Comprehensive Quiz'
         else:
             back_url = f'/category/{category}'
@@ -497,11 +497,11 @@ def api_category_quizzes(category):
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/api/hesi/category-stats')
-def api_hesi_category_stats():
-    """API endpoint to get HESI category statistics"""
+@app.route('/api/nclex/category-stats')
+def api_nclex_category_stats():
+    """API endpoint to get NCLEX category statistics"""
     try:
-        stats = get_hesi_category_stats()
+        stats = get_nclex_category_stats()
         return jsonify(stats)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
