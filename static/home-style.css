@@ -2,12 +2,11 @@
    Home (Main Hub) Page Styles
    ============================
    Goals:
-   - Keep same card WIDTH
-   - Make cards taller
-   - Show ENTIRE image (no cropping) via object-fit: contain
-   - Make images larger than the “too small” version
-   - Keep layout flush (clean centered grid, predictable spacing)
-   - Remove the tiny overlay arrow badge
+   - Keep same card width
+   - Images fill the entire component (no white bars on sides)
+   - Image size stays “good”
+   - Cards remain flush/aligned in the grid
+   - Remove tiny overlay arrow badge
 */
 
 /* ---- Header ---- */
@@ -53,14 +52,14 @@
 .categories-grid {
   display: grid;
 
-  /* Same width behavior you already had */
+  /* Keep the same width behavior */
   grid-template-columns: repeat(auto-fit, minmax(260px, 340px));
+  justify-content: center;
 
-  /* Keep the grid “flush” on big screens (3-card width max) */
+  /* Helps keep layout “flush” on wide screens */
   max-width: calc(340px * 3 + 22px * 2);
   margin: 0 auto;
 
-  justify-content: center;
   gap: 22px;
   padding: 18px 0 32px;
 }
@@ -70,7 +69,7 @@
   position: relative;
   display: block;
 
-  /* Taller than before so images can be big AND fully visible */
+  /* Keep the size you liked */
   height: 260px;
 
   border-radius: 18px;
@@ -99,26 +98,23 @@
   outline-offset: 4px;
 }
 
-/* ---- Image cards ---- */
+/* ---- Image cards: edge-to-edge image (no white sides) ---- */
 .category-card.image-card {
-  /* Smaller padding so the image renders larger */
-  padding: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0;              /* remove any internal white space */
+  background: transparent; /* card is effectively the image */
 }
 
 .category-image {
-  display: block;
-
-  /* Take the full padded area */
   width: 100%;
   height: 100%;
+  display: block;
 
-  /* Show entire image, no cropping */
-  object-fit: contain;
+  /* Fills the card completely (removes side bars) */
+  object-fit: cover;
   object-position: center;
+
+  /* keeps rounding consistent */
+  border-radius: inherit;
 }
 
 /* ---- Remove tiny overlay arrow badge ---- */
@@ -126,7 +122,7 @@
   display: none !important;
 }
 
-/* ---- Text fallback cards (if ever used) ---- */
+/* ---- Text fallback cards (only used if an image fails) ---- */
 .category-card-content {
   width: 100%;
   height: 100%;
@@ -179,9 +175,5 @@
 
   .category-card {
     height: 235px;
-  }
-
-  .category-card.image-card {
-    padding: 8px;
   }
 }
