@@ -267,7 +267,7 @@
     </div>
 
     <div class="container">
-        <a href="/category/HESI" class="back-link">← HESI Comprehensive System</a>
+        <a href="/category/NCLEX" class="back-link">← NCLEX Comprehensive System</a>
         
         <div class="page-header">
             <div class="page-header-top">
@@ -357,10 +357,9 @@
             });
         });
 
-        // Start quiz - FIXED: Use correct filename with American spelling "Categorized"
+        // Start quiz - Navigate to the quiz page with comprehensive mode enabled
         document.getElementById('startQuizBtn').addEventListener('click', () => {
-            // Navigate to the quiz page with comprehensive mode enabled
-            const url = `/quiz/HESI/HESI_Comprehensive_Master_Categorized?is_comprehensive=true&quiz_length=${selectedLength}`;
+            const url = `/quiz/NCLEX/NCLEX_Comprehensive_Master_Categorized?is_comprehensive=true&quiz_length=${selectedLength}`;
             window.location.href = url;
         });
     </script>
