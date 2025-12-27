@@ -1,13 +1,11 @@
 /* ============================
    Home (Main Hub) Page Styles
    ============================
-   Requirements (per your request):
-   - Do NOT resize the image to fit a fixed-height card
-   - Resize the button/component to match the image
-   - Image should display fully (no cropping)
-   - Remove white side bars by making the component wrap the image
-   - Keep layout centered/flush
-   - Remove tiny overlay arrow
+   Change requested:
+   - Reduce BOTH the component/card and image size by 25%
+   - Keep alignment and aspect ratio
+   - Keep image matching card (card wraps image)
+   - No overlay arrow badge
 */
 
 /* ---- Header ---- */
@@ -53,15 +51,15 @@
 .categories-grid {
   display: grid;
 
-  /* Same width behavior */
-  grid-template-columns: repeat(auto-fit, minmax(260px, 340px));
+  /* 25% smaller than 260–340px -> 195–255px */
+  grid-template-columns: repeat(auto-fit, minmax(195px, 255px));
+  justify-content: center;
 
-  /* Keeps the 3-up layout centered/flush on wide screens */
-  max-width: calc(340px * 3 + 22px * 2);
+  /* 25% smaller than previous 3-up max width and smaller gaps */
+  max-width: calc(255px * 3 + 16px * 2);
   margin: 0 auto;
 
-  justify-content: center;
-  gap: 22px;
+  gap: 16px;
   padding: 18px 0 32px;
 }
 
@@ -70,15 +68,15 @@
   position: relative;
   display: block;
 
-  /* ✅ IMPORTANT: Let the component height be defined by its contents (the image) */
+  /* ✅ Card height is defined by the image (wraps it) */
   height: auto !important;
 
-  border-radius: 18px;
+  /* 25% smaller than 18px -> ~14px */
+  border-radius: 14px;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
 
-  /* Card styling (shadow + border) */
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: var(--shadow-md);
@@ -102,38 +100,25 @@
 
 /* ---- Image Cards ---- */
 .category-card.image-card {
-  /* ✅ IMPORTANT: No padding. The component should be the image. */
   padding: 0 !important;
-
-  /* Optional: if you want absolutely no white background behind images */
   background: transparent;
-
-  /* Ensure the card wraps the image and doesn't try to center/flex it */
   display: block !important;
 }
 
-/*
-  ✅ IMPORTANT:
-  - Keep the image “same size behavior”: scale by width only.
-  - Height becomes natural (auto) so the card expands to fit.
-  - This prevents cropping/zooming that happens with height:100% + object-fit.
-*/
+/* Image scales with card width while preserving aspect ratio */
 .category-card.image-card .category-image,
 .category-card.image-card img {
   width: 100% !important;
   height: auto !important;
-
   display: block;
 
-  /* Override any previous object-fit rules (not needed when height is auto,
-     but this prevents legacy styles from forcing crop/contain behavior). */
+  /* Ensure no legacy object-fit rules interfere */
   object-fit: unset !important;
 
-  /* Maintain rounded corners */
   border-radius: inherit;
 }
 
-/* ✅ Remove tiny overlay arrow badge (if it exists in markup) */
+/* ---- Remove overlay arrow badge ---- */
 .card-arrow {
   display: none !important;
 }
@@ -141,11 +126,14 @@
 /* ---- Text fallback cards (only used if an image fails) ---- */
 .category-card-content {
   width: 100%;
-  min-height: 240px; /* gives text cards a pleasant height */
+  /* 25% smaller than 240px -> 180px */
+  min-height: 180px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   padding: 18px;
   text-align: center;
   gap: 10px;
@@ -184,13 +172,13 @@
   }
 
   .categories-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
     max-width: 100%;
   }
 
-  /* still auto-height, but keep text cards from collapsing */
   .category-card-content {
-    min-height: 220px;
+    /* 25% smaller than 220px -> 165px */
+    min-height: 165px;
   }
 }
