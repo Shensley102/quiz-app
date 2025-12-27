@@ -1,523 +1,412 @@
 # api/index.py
-
-import os
 import json
-from flask import Flask, render_template, request, jsonify, redirect, url_for
+import os
+import random
+from collections import defaultdict
 from pathlib import Path
-from urllib.parse import unquote
 
-app = Flask(__name__, template_folder='../templates', static_folder='../static')
+from flask import Flask, jsonify, redirect, render_template, request, url_for
 
-# Get the base directory
-BASE_DIR = Path(__file__).parent.parent
-MODULES_DIR = BASE_DIR / 'modules'
+app = Flask(
+    __name__,
+    static_folder="../static",
+    template_folder="../templates",
+)
 
-# Category metadata
+ROOT_DIR = Path(__file__).resolve().parent.parent
+MODULES_DIR = ROOT_DIR / "modules"
+
+# --- NCLEX category weightings (used by the comprehensive quiz page) ---
+# These are practice-weight defaults to approximate the NCLEX Client Needs framework.
+NCLEX_CATEGORY_WEIGHTS = {
+    "Management of Care": 18,
+    "Safety and Infection Control": 13,
+    "Health Promotion and Maintenance": 9,
+    "Psychosocial Integrity": 9,
+    "Basic Care and Comfort": 9,
+    "Pharmacological and Parenteral Therapies": 16,
+    "Reduction of Risk Potential": 12,
+    "Physiological Adaptation": 14,
+}
+
+# --- Category metadata used for cards + headers ---
 CATEGORY_METADATA = {
-    'NCLEX': {
-        'display_name': 'NCLEX',
-        'icon': '📋',
-        'image': '/images/Nursing_Hesi_Exam_Prep_Image.png',
-        'description': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from NCLEX Exit Exam and NCLEX Comprehensive study guides'
+    "NCLEX": {
+        "display_name": "NCLEX Comprehensive System",
+        "subtitle": "NCLEX-weighted practice with performance tracking across all 8 test plan categories",
+        "description": (
+            "Take a comprehensive quiz with questions distributed according to NCLEX-RN client needs categories. "
+            "Track performance across categories to identify areas needing more practice."
+        ),
+        "hero_image": "/images/Nursing_Nclex_Exam_Prep_Image.png",
+        "icon": "🎯",
     },
-    'Lab_Values': {
-        'display_name': 'Laboratory Values',
-        'icon': '🧪',
-        'image': '/images/Nursing_Lab_Values.png',
-        'description': 'Master critical laboratory values for NCLEX exams'
+    "Lab_Values": {
+        "display_name": "Lab Values",
+        "subtitle": "Practice common lab values and interpretation",
+        "description": "Study and quiz yourself on key nursing lab values.",
+        "hero_image": "/images/Nursing_Lab_Values.png",
+        "icon": "🧪",
     },
-    'Patient_Care_Management': {
-        'display_name': 'Patient Care Management',
-        'icon': '👥',
-        'image': '/images/Nursing_Leadership_Image.png',
-        'description': 'Patient care management and nursing leadership'
+    "Pharmacology": {
+        "display_name": "Pharmacology",
+        "subtitle": "Medication classes and nursing considerations",
+        "description": "Practice pharmacology by category or comprehensive sets.",
+        "hero_image": "/images/Nursing_Pharmacology_Image.png",
+        "icon": "💊",
     },
-    'Pharmacology': {
-        'display_name': 'Pharmacology',
-        'icon': '💊',
-        'image': '/images/Nursing_Pharmacology_Image.png',
-        'description': 'Comprehensive pharmacology study materials'
+    "Patient_Care_Management": {
+        "display_name": "Patient Care Management",
+        "subtitle": "Core nursing management modules",
+        "description": "Practice patient care management concepts.",
+        "hero_image": "/images/Nursing_Leadership_Image.png",
+        "icon": "🩺",
     },
-    'Nursing_Certifications': {
-        'display_name': 'Nursing Certifications',
-        'icon': '🏆',
-        'image': '/images/Nursing_Advanced_Certifications.png',
-        'description': 'CCRN, CFRN, TCEN, and other certification prep'
-    }
+    "Nursing_Certifications": {
+        "display_name": "Nursing Certifications",
+        "subtitle": "Practice certification-style exams",
+        "description": "Practice questions for advanced nursing certifications.",
+        "hero_image": "/images/Nursing_Advanced_Certifications.png",
+        "icon": "🏅",
+    },
 }
 
-# NCLEX-RN Test Plan Categories with weights
-NCLEX_CATEGORIES = {
-    'Management of Care': 0.18,
-    'Safety and Infection Control': 0.13,
-    'Health Promotion and Maintenance': 0.09,
-    'Psychosocial Integrity': 0.09,
-    'Basic Care and Comfort': 0.09,
-    'Pharmacological and Parenteral Therapies': 0.16,
-    'Reduction of Risk Potential': 0.12,
-    'Physiological Adaptation': 0.14
-}
+# Master module name/path for the NCLEX comprehensive pool
+NCLEX_MASTER_MODULE_NAME = "NCLEX_Comprehensive_Master_Categorized"
+NCLEX_MASTER_MODULE_PATH = MODULES_DIR / "NCLEX" / f"{NCLEX_MASTER_MODULE_NAME}.json"
 
 
-def get_categories():
-    """Get all module categories (folder names)"""
+def list_categories():
+    """List top-level category folders in /modules."""
     if not MODULES_DIR.exists():
         return []
-    try:
-        return sorted([d.name for d in MODULES_DIR.iterdir() 
-                      if d.is_dir() and not d.name.startswith('.')])
-    except Exception as e:
-        print(f"Error reading categories: {e}")
+    categories = []
+    for item in MODULES_DIR.iterdir():
+        if item.is_dir() and not item.name.startswith("."):
+            categories.append(item.name)
+    categories.sort()
+    return categories
+
+
+def list_modules_for_category(category_name):
+    """List JSON module files for a given category folder."""
+    category_dir = MODULES_DIR / category_name
+    if not category_dir.exists() or not category_dir.is_dir():
         return []
+    modules = []
+    for f in category_dir.glob("*.json"):
+        modules.append(f.stem)
+    modules.sort()
+    return modules
 
 
-def get_modules_in_category(category):
-    """Get all modules (JSON files) in a specific category"""
-    category_path = MODULES_DIR / category
-    if not category_path.exists():
-        return []
-    
-    try:
-        modules = []
-        for file in sorted(category_path.glob('*.json')):
-            modules.append(file.stem)
-        return modules
-    except Exception as e:
-        print(f"Error reading modules: {e}")
-        return []
-
-
-def get_quiz_info(category, module):
-    """Get quiz information including type (standard or fill-in-the-blank)"""
-    module_path = MODULES_DIR / category / f'{module}.json'
-    
+def load_module_json(category, module_name):
+    """Load a module JSON file from /modules/<category>/<module_name>.json."""
+    module_path = MODULES_DIR / category / f"{module_name}.json"
     if not module_path.exists():
-        return None
-    
-    try:
-        with open(module_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        
-        is_fill_blank = 'Fill_In_The_Blank' in module
-        
-        return {
-            'name': module,
-            'type': 'fill-in-the-blank' if is_fill_blank else 'multiple-choice',
-            'count': len(data.get('questions', [])),
-            'description': data.get('description', '')
-        }
-    except Exception as e:
-        print(f"Error reading {module_path}: {e}")
-        return None
+        raise FileNotFoundError(f"Module not found: {module_path}")
+    with module_path.open("r", encoding="utf-8") as fp:
+        return json.load(fp)
 
 
-def get_category_quizzes(category):
-    """Get all quizzes for a category, grouped by type"""
-    modules = get_modules_in_category(category)
-    quizzes = {
-        'multiple-choice': [],
-        'fill-in-the-blank': []
+def is_fill_in_blank_module(module_json):
+    """Determine if module is fill-in-the-blank."""
+    # Supports both:
+    #   {"questions":[{"question":"...", "answer":"..."}]}
+    # or lists directly
+    questions = module_json.get("questions") if isinstance(module_json, dict) else module_json
+    if not questions:
+        return False
+    first = questions[0]
+    return isinstance(first, dict) and ("answer" in first) and ("question" in first)
+
+
+def normalize_questions(module_json):
+    """Return questions list regardless of whether module JSON is dict or list."""
+    if isinstance(module_json, dict):
+        return module_json.get("questions", [])
+    if isinstance(module_json, list):
+        return module_json
+    return []
+
+
+def get_category_meta(category):
+    """Return metadata dict for a category."""
+    meta = CATEGORY_METADATA.get(category)
+    if meta:
+        return meta
+    # Fallback metadata if not specified
+    return {
+        "display_name": category.replace("_", " "),
+        "subtitle": "",
+        "description": "",
+        "hero_image": "",
+        "icon": "📚",
     }
-    
-    for module in modules:
-        info = get_quiz_info(category, module)
-        if info:
-            quizzes[info['type']].append(info)
-    
-    return quizzes
 
 
-def load_nclex_master_questions():
-    """Load the NCLEX Comprehensive Master Categorized questions"""
-    master_path = MODULES_DIR / 'NCLEX' / 'NCLEX_Comprehensive_Master_Categorized.json'
-    if not master_path.exists():
-        return []
-    
-    try:
-        with open(master_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        return data.get('questions', [])
-    except Exception as e:
-        print(f"Error loading NCLEX master questions: {e}")
-        return []
-
-
-def get_nclex_category_stats():
-    """Get statistics about questions per NCLEX category from master file"""
-    questions = load_nclex_master_questions()
-    stats = {}
-    
-    for cat in NCLEX_CATEGORIES.keys():
-        count = sum(1 for q in questions if q.get('category') == cat)
-        stats[cat] = {
-            'count': count,
-            'weight': NCLEX_CATEGORIES[cat],
-            'weight_pct': int(NCLEX_CATEGORIES[cat] * 100)
-        }
-    
-    return stats
-
-
-# ==================== ROUTES ====================
-
-@app.route('/')
+@app.route("/")
 def home():
-    """Home page with all categories"""
+    categories = list_categories()
+    cards = []
+    for cat in categories:
+        cards.append({"category": cat, **get_category_meta(cat)})
+    # Prefer a home template if present; otherwise redirect to NCLEX category
     try:
-        categories = get_categories()
-        return render_template('home.html', categories=categories)
-    except Exception as e:
-        print(f"Error in home route: {e}")
-        return jsonify({'error': str(e)}), 500
+        return render_template("home.html", categories=cards)
+    except Exception:
+        return redirect(url_for("category_page", category="NCLEX"))
 
 
-@app.route('/category/<category>')
-def category(category):
-    """Category landing page - shows available quizzes"""
-    try:
-        # Decode URL-encoded category names (e.g., "Patient_Care_Management" or spaces)
-        category = unquote(category)
-        
-        categories = get_categories()
-        
-        # Check if category exists in filesystem OR in metadata (for hardcoded categories)
-        category_exists = category in categories or category in CATEGORY_METADATA
-        
-        if not category_exists:
-            print(f"Category '{category}' not found. Available: {categories}")
-            return redirect(url_for('home'))
-        
-        quizzes = get_category_quizzes(category)
-        
-        # Get category metadata
-        metadata = CATEGORY_METADATA.get(category, {})
-        category_data = {
-            'display_name': metadata.get('display_name', category.replace('_', ' ')),
-            'icon': metadata.get('icon', '📚'),
-            'image': metadata.get('image', None),
-            'description': metadata.get('description', ''),
-            'modules': quizzes.get('multiple-choice', []) + quizzes.get('fill-in-the-blank', [])
-        }
-        
-        print(f"Category: {category}, Modules: {len(category_data['modules'])}")
-        
-        # Check if this is Lab Values with multiple quiz types
-        has_mc = len(quizzes.get('multiple-choice', [])) > 0
-        has_fb = len(quizzes.get('fill-in-the-blank', [])) > 0
-        
-        # ========== Use special template for NCLEX - the new landing page ==========
-        if category == 'NCLEX':
-            # Load category stats for display
-            category_stats = get_nclex_category_stats()
-            total_questions = sum(s['count'] for s in category_stats.values())
-            return render_template('NCLEX-Landing.html',
-                                   category_stats=category_stats,
-                                   nclex_categories=NCLEX_CATEGORIES,
-                                   total_questions=total_questions,
-                                   quizzes=quizzes)
-        
-        # Use special template for Lab Values
-        if category == 'Lab_Values' and has_mc and has_fb:
-            return render_template('lab-values.html', quizzes=quizzes)
-        
-        # Use special template for Nursing Certifications
-        if category == 'Nursing_Certifications':
-            return render_template('nursing-certifications.html', quizzes=quizzes)
-        
-        # Use special template for Pharmacology
-        if category == 'Pharmacology':
-            return render_template('pharmacology.html', quizzes=quizzes)
-        
-        # Use generic category template for others
-        return render_template('category.html', category=category, category_data=category_data, quizzes=quizzes)
-    except Exception as e:
-        print(f"Error in category route: {e}")
-        import traceback
-        traceback.print_exc()
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/NCLEX/NCLEX_Comprehensive')
-def nclex_comprehensive():
-    """NCLEX-weighted Comprehensive Quiz page"""
-    try:
-        category_stats = get_nclex_category_stats()
-        total_questions = sum(s['count'] for s in category_stats.values())
-        return render_template('nclex-comprehensive.html',
-                               category_stats=category_stats,
-                               nclex_categories=NCLEX_CATEGORIES,
-                               total_questions=total_questions)
-    except Exception as e:
-        print(f"Error in nclex_comprehensive route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/NCLEX/category/<category_name>')
-def nclex_category_quiz(category_name):
-    """NCLEX category-specific quiz - filters questions by NCLEX category"""
-    try:
-        # Decode URL-encoded category name
-        category_name = unquote(category_name)
-        
-        # Validate category name
-        if category_name not in NCLEX_CATEGORIES:
-            print(f"Invalid NCLEX category: {category_name}")
-            return redirect(url_for('category', category='NCLEX'))
-        
-        # Load and filter questions
-        questions = load_nclex_master_questions()
-        filtered_questions = [q for q in questions if q.get('category') == category_name]
-        
-        if not filtered_questions:
-            print(f"No questions found for category: {category_name}")
-            return redirect(url_for('category', category='NCLEX'))
-        
-        # Create quiz data structure
-        quiz_data = {
-            'module': f'NCLEX_{category_name.replace(" ", "_")}',
-            'questions': filtered_questions
-        }
-        
-        return render_template('quiz.html',
-                             quiz_data=quiz_data,
-                             module_name=f'NCLEX - {category_name}',
-                             category='NCLEX',
-                             back_url='/category/NCLEX',
-                             back_label='NCLEX Comprehensive System',
-                             autostart=False,
-                             is_category_quiz=True)
-    except Exception as e:
-        print(f"Error in nclex_category_quiz route: {e}")
-        import traceback
-        traceback.print_exc()
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Nursing_Certifications/CCRN')
-def ccrn_page():
-    """CCRN certification tests sub-page"""
-    try:
-        return render_template('ccrn.html')
-    except Exception as e:
-        print(f"Error in ccrn_page route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Pharmacology/Comprehensive')
-def pharmacology_comprehensive():
-    """Comprehensive Pharmacology Quizzes page"""
-    try:
-        return render_template('pharmacology-comprehensive.html')
-    except Exception as e:
-        print(f"Error in pharmacology_comprehensive route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Pharmacology/Categories')
-def pharmacology_categories():
-    """Pharmacology by Category page"""
-    try:
-        return render_template('pharmacology-categories.html')
-    except Exception as e:
-        print(f"Error in pharmacology_categories route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/quiz/<category>/<module>')
-def quiz(category, module):
-    """Quiz page for multiple choice"""
-    try:
-        # Decode URL-encoded names
-        category = unquote(category)
-        module = unquote(module)
-        
-        categories = get_categories()
-        
-        # Allow categories that exist in metadata even if directory doesn't exist yet
-        category_exists = category in categories or category in CATEGORY_METADATA
-        
-        if not category_exists:
-            return redirect(url_for('home'))
-        
-        # Don't serve fill-in-the-blank through this route
-        if 'Fill_In_The_Blank' in module:
-            return redirect(url_for('quiz_fill_blank', category=category, module=module))
-        
-        module_path = MODULES_DIR / category / f'{module}.json'
-        
-        if not module_path.exists():
-            return redirect(url_for('category', category=category))
-        
-        with open(module_path, 'r', encoding='utf-8') as f:
-            quiz_data = json.load(f)
-        
-        # Check for autostart parameter (for Pharmacology categorical quizzes)
-        autostart = request.args.get('autostart', 'false').lower() == 'true'
-        
-        # Check for is_comprehensive parameter (for NCLEX comprehensive quiz)
-        is_comprehensive = request.args.get('is_comprehensive', 'false').lower() == 'true'
-        
-        # Determine back link based on category and module
-        metadata = CATEGORY_METADATA.get(category, {})
-        
-        # Special handling for CCRN tests - go back to CCRN page
-        if 'CCRN' in module and category == 'Nursing_Certifications':
-            back_url = '/category/Nursing_Certifications/CCRN'
-            back_label = 'CCRN Practice Tests'
-        # Special handling for Pharm Quizzes - go back to Comprehensive page
-        elif module.startswith('Pharm_Quiz_') and category == 'Pharmacology':
-            back_url = '/category/Pharmacology/Comprehensive'
-            back_label = 'Comprehensive Pharmacology Quizzes'
-        # Special handling for categorical pharm quizzes - go back to Categories page
-        elif category == 'Pharmacology' and module.endswith('_Pharm'):
-            back_url = '/category/Pharmacology/Categories'
-            back_label = 'Pharmacology by Category'
-        # Special handling for NCLEX Comprehensive Master - go back to NCLEX Comprehensive page
-        elif category == 'NCLEX' and module == 'NCLEX_Comprehensive_Master_Categorized':
-            back_url = '/category/NCLEX/NCLEX_Comprehensive'
-            back_label = 'NCLEX Comprehensive Quiz'
-        else:
-            back_url = f'/category/{category}'
-            back_label = metadata.get('display_name', category.replace('_', ' '))
-        
-        return render_template('quiz.html',
-                             quiz_data=quiz_data,
-                             module_name=module,
-                             category=category,
-                             back_url=back_url,
-                             back_label=back_label,
-                             autostart=autostart,
-                             is_comprehensive=is_comprehensive)
-    except Exception as e:
-        print(f"Error in quiz route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/quiz-fill-blank/<category>/<module>')
-def quiz_fill_blank(category, module):
-    """Quiz page for fill-in-the-blank"""
-    try:
-        # Decode URL-encoded names
-        category = unquote(category)
-        module = unquote(module)
-        
-        categories = get_categories()
-        
-        if category not in categories:
-            return redirect(url_for('home'))
-        
-        # Add Fill_In_The_Blank suffix if not present
-        if 'Fill_In_The_Blank' not in module:
-            module = f'{module}_Fill_In_The_Blank'
-        
-        module_path = MODULES_DIR / category / f'{module}.json'
-        
-        if not module_path.exists():
-            return redirect(url_for('category', category=category))
-        
-        with open(module_path, 'r', encoding='utf-8') as f:
-            quiz_data = json.load(f)
-        
-        # Determine back link based on category
-        metadata = CATEGORY_METADATA.get(category, {})
-        back_url = f'/category/{category}'
-        back_label = metadata.get('display_name', category.replace('_', ' '))
-        
-        return render_template('quiz-fill-blank.html',
-                             quiz_data=quiz_data,
-                             module_name=module,
-                             category=category,
-                             back_url=back_url,
-                             back_label=back_label)
-    except Exception as e:
-        print(f"Error in quiz_fill_blank route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/quiz-fishbone-mcq')
-def quiz_fishbone_mcq():
-    """Fishbone MCQ quiz page"""
-    try:
-        return render_template('quiz-fishbone-mcq.html')
-    except Exception as e:
-        print(f"Error in quiz_fishbone_mcq route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/quiz-fishbone-fill')
-def quiz_fishbone_fill():
-    """Fishbone fill-in-the-blank quiz page"""
-    try:
-        return render_template('quiz-fishbone-fill.html')
-    except Exception as e:
-        print(f"Error in quiz_fishbone_fill route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/api/categories')
+@app.route("/api/categories")
 def api_categories():
-    """API endpoint to get all categories with metadata"""
-    try:
-        categories_list = get_categories()
-        result = {}
-        
-        for category in categories_list:
-            modules = get_modules_in_category(category)
-            metadata = CATEGORY_METADATA.get(category, {})
-            
-            result[category] = {
-                'display_name': metadata.get('display_name', category.replace('_', ' ')),
-                'icon': metadata.get('icon', '📚'),
-                'image': metadata.get('image', None),
-                'description': metadata.get('description', ''),
-                'modules': modules
+    categories = list_categories()
+    payload = []
+    for cat in categories:
+        meta = get_category_meta(cat)
+        payload.append(
+            {
+                "category": cat,
+                "display_name": meta.get("display_name", cat),
+                "subtitle": meta.get("subtitle", ""),
+                "description": meta.get("description", ""),
+                "hero_image": meta.get("hero_image", ""),
+                "icon": meta.get("icon", "📚"),
+                "modules": list_modules_for_category(cat),
             }
-        
-        return jsonify(result)
-    except Exception as e:
-        print(f"Error in api_categories: {e}")
-        return jsonify({'error': str(e)}), 500
+        )
+    return jsonify(payload)
 
 
-@app.route('/api/category/<category>/quizzes')
-def api_category_quizzes(category):
-    """API endpoint to get quizzes for a category"""
+@app.route("/category/<category>")
+def category_page(category):
+    # Special landing for NCLEX
+    if category == "NCLEX":
+        meta = get_category_meta("NCLEX")
+        # Render dedicated landing template
+        return render_template(
+            "NCLEX-Landing.html",
+            category="NCLEX",
+            meta=meta,
+            weights=NCLEX_CATEGORY_WEIGHTS,
+        )
+
+    meta = get_category_meta(category)
+    modules = list_modules_for_category(category)
+    module_cards = [{"name": m, "url": url_for("quiz_page", category=category, module_name=m)} for m in modules]
+    return render_template(
+        "category.html",
+        category=category,
+        meta=meta,
+        modules=module_cards,
+    )
+
+
+@app.route("/category/NCLEX/NCLEX_Comprehensive")
+def nclex_comprehensive():
+    # A dedicated page for selecting weighted quiz length
+    meta = get_category_meta("NCLEX")
+    return render_template(
+        "nclex-comprehensive.html",
+        category="NCLEX",
+        meta=meta,
+        weights=NCLEX_CATEGORY_WEIGHTS,
+    )
+
+
+@app.route("/category/NCLEX/category/<category_name>")
+def nclex_practice_by_category(category_name):
+    """
+    Start a quiz filtered by a single NCLEX category (Client Needs category).
+    Pulls from the master pool file and filters by `nclex_category` field.
+    """
+    if not NCLEX_MASTER_MODULE_PATH.exists():
+        return "NCLEX master module not found.", 404
+
+    with NCLEX_MASTER_MODULE_PATH.open("r", encoding="utf-8") as fp:
+        master = json.load(fp)
+
+    questions = normalize_questions(master)
+    filtered = [q for q in questions if q.get("nclex_category") == category_name]
+
+    if not filtered:
+        return f"No questions found for category: {category_name}", 404
+
+    # Preload quiz data for quiz.html
+    preloaded = {
+        "moduleName": f"{category_name} Practice",
+        "questions": filtered,
+    }
+    return render_template(
+        "quiz.html",
+        category="NCLEX",
+        module_name=f"{NCLEX_MASTER_MODULE_NAME}__filtered__{category_name}",
+        module_display_name=f"{category_name} Practice",
+        preloaded_quiz_data=json.dumps(preloaded),
+        back_url=url_for("category_page", category="NCLEX"),
+    )
+
+
+@app.route("/quiz/<category>/<module_name>")
+def quiz_page(category, module_name):
+    """Render quiz page for a module."""
     try:
-        # Decode URL-encoded category
-        category = unquote(category)
-        
-        categories = get_categories()
-        
-        if category not in categories:
-            return jsonify({'error': 'Category not found'}), 404
-        
-        quizzes = get_category_quizzes(category)
-        return jsonify(quizzes)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        module_json = load_module_json(category, module_name)
+    except FileNotFoundError:
+        return "Module not found.", 404
+
+    if is_fill_in_blank_module(module_json):
+        return redirect(url_for("quiz_fill_blank_page", category=category, module_name=module_name))
+
+    questions = normalize_questions(module_json)
+    module_display_name = module_json.get("title", module_name.replace("_", " ")) if isinstance(module_json, dict) else module_name.replace("_", " ")
+
+    # Determine back link
+    back_url = url_for("category_page", category=category)
+
+    preloaded = {
+        "moduleName": module_display_name,
+        "questions": questions,
+    }
+
+    return render_template(
+        "quiz.html",
+        category=category,
+        module_name=module_name,
+        module_display_name=module_display_name,
+        preloaded_quiz_data=json.dumps(preloaded),
+        back_url=back_url,
+    )
 
 
-@app.route('/api/nclex/category-stats')
-def api_nclex_category_stats():
-    """API endpoint to get NCLEX category statistics"""
+@app.route("/quiz-fill-blank/<category>/<module_name>")
+def quiz_fill_blank_page(category, module_name):
+    """Render fill-in-the-blank quiz page for a module."""
     try:
-        stats = get_nclex_category_stats()
-        return jsonify(stats)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        module_json = load_module_json(category, module_name)
+    except FileNotFoundError:
+        return "Module not found.", 404
+
+    questions = normalize_questions(module_json)
+    module_display_name = module_json.get("title", module_name.replace("_", " ")) if isinstance(module_json, dict) else module_name.replace("_", " ")
+
+    preloaded = {
+        "moduleName": module_display_name,
+        "questions": questions,
+    }
+
+    return render_template(
+        "quiz-fill-blank.html",
+        category=category,
+        module_name=module_name,
+        module_display_name=module_display_name,
+        preloaded_quiz_data=json.dumps(preloaded),
+        back_url=url_for("category_page", category=category),
+    )
 
 
-@app.route('/modules')
-def modules():
-    """Get all available modules (backward compatibility)"""
+@app.route("/api/quiz/<category>/<module_name>")
+def api_quiz(category, module_name):
+    """Return module JSON as API."""
     try:
-        all_modules = []
-        for category in get_categories():
-            modules_list = get_modules_in_category(category)
-            # Filter out Fill_In_The_Blank from regular quiz selector
-            regular_modules = [m for m in modules_list if 'Fill_In_The_Blank' not in m]
-            all_modules.extend(regular_modules)
-        
-        return jsonify({'modules': sorted(all_modules)})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        module_json = load_module_json(category, module_name)
+    except FileNotFoundError:
+        return jsonify({"error": "Module not found"}), 404
+    return jsonify(module_json)
+
+
+def weighted_sample_counts(total_questions, weights_dict):
+    """
+    Return integer counts per category based on weights.
+    Ensures sum == total_questions.
+    """
+    categories = list(weights_dict.keys())
+    weights = [weights_dict[c] for c in categories]
+    total_weight = sum(weights)
+    raw = [(total_questions * w) / total_weight for w in weights]
+    counts = [int(x) for x in raw]
+    # distribute remainder
+    remainder = total_questions - sum(counts)
+    # assign remainder to largest fractional parts
+    frac = [(raw[i] - counts[i], i) for i in range(len(raw))]
+    frac.sort(reverse=True)
+    for k in range(remainder):
+        counts[frac[k][1]] += 1
+    return dict(zip(categories, counts))
+
+
+def build_weighted_quiz_from_master(total_questions):
+    """Build a weighted quiz from the master NCLEX pool."""
+    if not NCLEX_MASTER_MODULE_PATH.exists():
+        raise FileNotFoundError("NCLEX master module not found.")
+
+    with NCLEX_MASTER_MODULE_PATH.open("r", encoding="utf-8") as fp:
+        master = json.load(fp)
+
+    all_questions = normalize_questions(master)
+    # bucket by category
+    buckets = defaultdict(list)
+    for q in all_questions:
+        cat = q.get("nclex_category") or q.get("category") or "Uncategorized"
+        buckets[cat].append(q)
+
+    desired = weighted_sample_counts(total_questions, NCLEX_CATEGORY_WEIGHTS)
+
+    selected = []
+    for cat, count in desired.items():
+        pool = buckets.get(cat, [])
+        if not pool:
+            continue
+        if count >= len(pool):
+            selected.extend(pool)
+        else:
+            selected.extend(random.sample(pool, count))
+
+    random.shuffle(selected)
+    return selected
+
+
+@app.route("/quiz/NCLEX/<module_name>/weighted")
+def nclex_weighted_quiz(module_name):
+    """
+    Start a weighted quiz run from the master pool.
+    `module_name` is expected to be the master name, but we accept any.
+    Query param: ?n=25 (default 25)
+    """
+    try:
+        n = int(request.args.get("n", "25"))
+    except ValueError:
+        n = 25
+
+    if n <= 0:
+        n = 25
+
+    questions = build_weighted_quiz_from_master(n)
+
+    preloaded = {
+        "moduleName": f"NCLEX Comprehensive ({n} Questions)",
+        "questions": questions,
+        "isWeightedComprehensive": True,
+        "weights": NCLEX_CATEGORY_WEIGHTS,
+    }
+
+    return render_template(
+        "quiz.html",
+        category="NCLEX",
+        module_name=f"{NCLEX_MASTER_MODULE_NAME}__weighted__{n}",
+        module_display_name=f"NCLEX Comprehensive ({n} Questions)",
+        preloaded_quiz_data=json.dumps(preloaded),
+        back_url=url_for("nclex_comprehensive"),
+    )
+
+
+@app.errorhandler(404)
+def not_found(e):
+    try:
+        return render_template("404.html"), 404
+    except Exception:
+        return "Not Found", 404
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
