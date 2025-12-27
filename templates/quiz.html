@@ -163,6 +163,7 @@
     window.backLabel = null;
     window.autostart = false;
     window.isComprehensive = false;
+    window.isCategoryQuiz = false;
     window.quizLength = null;
     
     // Inject data from Flask template if available
@@ -191,6 +192,10 @@
       window.isComprehensive = {{ is_comprehensive | tojson }};
     {% endif %}
     
+    {% if is_category_quiz is defined %}
+      window.isCategoryQuiz = {{ is_category_quiz | tojson }};
+    {% endif %}
+    
     // Also read quiz_length from URL parameters as fallback
     (function() {
       const params = new URLSearchParams(window.location.search);
@@ -209,6 +214,7 @@
       moduleName: window.preloadedModuleName,
       category: window.preloadedCategory,
       isComprehensive: window.isComprehensive,
+      isCategoryQuiz: window.isCategoryQuiz,
       quizLength: window.quizLength,
       autostart: window.autostart
     });
