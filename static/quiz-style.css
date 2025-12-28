@@ -187,13 +187,15 @@
   font-weight: 800;
 }
 
-/* Feedback (Correct/Incorrect) */
+/* Feedback (Correct/Incorrect) - Small pill, left-aligned */
 .feedback {
+  display: inline-block;
   margin-top: 12px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  font-weight: 800;
-  text-align: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: left;
   border: 1px solid transparent;
 }
 
