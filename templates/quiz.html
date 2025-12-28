@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="Quiz - Nurse Success Study Hub">
+  <title id="pageTitle">Quiz - Nurse Success Study Hub</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/quiz-style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/static/manifest.json">
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#2f61f3">
+  
+  <!-- PWA Specific -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Nurse Study">
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
+  
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <style>
+    .offline-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #ff9800, #f57c00);
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      z-index: 10000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .offline-indicator.hidden { display: none; }
+  </style>
+</head>
+<body>
+  <!-- Offline indicator -->
+  <div id="offlineIndicator" class="offline-indicator hidden">
+    <span>📴 You're offline - Using cached content</span>
+  </div>
+
+  <div class="container">
+    <!-- Title Bar -->
+    <div class="title-bar">
+      <div>
+        <a href="{{ back_url if back_url else '/' }}" id="backLink" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 4px; display: inline-block; font-size: 14px;">← {{ back_label if back_label else 'Home' }}</a>
+        <h1 id="pageTitle">{{ module_name | replace('_', ' ') if module_name else 'Select a Module' }}</h1>
+      </div>
+    </div>
+
+    <!-- Module Launcher (hidden if preloaded data) -->
+    <div class="card" id="launcher">
+      <div id="categoryHeader" class="category-header">
+        <span id="categoryIcon" class="category-icon"></span>
+        <div>
+          <h2 id="categoryTitle">Quiz Selection</h2>
+          <p id="categoryDescription" style="display: none;"></p>
+        </div>
+      </div>
+
+      <label for="moduleSel" class="label">Select Module:</label>
+      <select id="moduleSel" class="select">
+        <option value="">-- Select a Module --</option>
+      </select>
+
+      <label class="label" style="margin-top: 16px;">Quiz Length:</label>
+      <div id="lengthBtns" class="seg-btns">
+        <button class="seg-btn" data-len="10">10</button>
+        <button class="seg-btn" data-len="25">25</button>
+        <button class="seg-btn active" data-len="50">50</button>
+        <button class="seg-btn" data-len="full">Full</button>
+      </div>
+
+      <button class="btn primary" id="startBtn" disabled>Start Quiz</button>
+      <button class="btn btn-blue hidden" id="resumeBtn">Resume Last Quiz</button>
+    </div>
+
+    <!-- Quiz Questions -->
+    <div id="quiz" class="card hidden">
+      <div id="countersBox" class="counters hidden">
+        <span id="runCounter">Question 1 of 10</span>
+        <span id="remainingCounter">10 remaining</span>
+      </div>
+
+      <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div id="progressFill" class="progress-fill"></div>
+        <span id="progressLabel" class="progress-label">0% mastered</span>
+      </div>
+
+      <p id="questionText" class="question-text"></p>
+
+      <form id="optionsForm" class="options-form"></form>
+
+      <button class="btn primary" id="submitBtn" disabled data-mode="submit">Submit</button>
+
+      <div id="feedback" class="feedback hidden"></div>
+      <div id="answerLine" class="answer-line hidden"></div>
+      <div id="rationale" class="rationale hidden"></div>
+    </div>
+
+    <!-- Summary -->
+    <div id="summary" class="card hidden">
+      <div id="categoryHeaderSummary" class="category-header">
+        <span id="categoryIconSummary" class="category-icon">📊</span>
+        <div>
+          <h2 id="summaryTitle">Quiz Complete!</h2>
+          <p id="summaryDescription" style="display: none;"></p>
+        </div>
+      </div>
+
+      <h2>Quiz Complete! 🎉</h2>
+      <div id="firstTrySummary" class="first-try"></div>
+
+      <div class="actions" style="margin-bottom: 24px;">
+        <button class="btn danger hidden" id="retryMissedBtn">Retry Missed Questions</button>
+        <button class="btn primary" id="restartBtnSummary">Start New Quiz</button>
+      </div>
+
+      <div class="help" style="margin-top: 0; margin-bottom: 32px;">
+        <h3>Need More Practice?</h3>
+        <ul>
+          <li>Review the rationales for questions you missed</li>
+          <li>Try the "Retry Missed Questions" feature to focus on weak areas</li>
+          <li>Consider a shorter quiz length for more frequent practice sessions</li>
+          <li>Use the keyboard shortcuts (A-E, Enter) for faster navigation</li>
+        </ul>
+      </div>
+
+      <h3>Review Your Answers:</h3>
+      <div id="reviewList" class="review-list"></div>
+    </div>
+
+    <!-- Reset Button -->
+    <button class="btn danger hidden" id="resetAll" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">Reset Quiz</button>
+  </div>
+
+  <!-- PWA Utilities -->
+  <script src="/static/js/pwa-utils.js"></script>
+
+  <!-- Server-side data injection -->
+  <script>
+    // Initialize all variables
+    window.preloadedQuizData = null;
+    window.preloadedModuleName = null;
+    window.preloadedCategory = null;
+    window.backUrl = null;
+    window.backLabel = null;
+    window.autostart = false;
+    window.isComprehensive = false;
+    window.isCategoryQuiz = false;
+    window.quizLength = null;
+    
+    // Inject data from Flask template if available
+    {% if quiz_data %}
+      window.preloadedQuizData = {{ quiz_data | tojson }};
+    {% endif %}
+    
+    {% if module_name %}
+      window.preloadedModuleName = "{{ module_name }}";
+    {% endif %}
+    
+    {% if category %}
+      window.preloadedCategory = "{{ category }}";
+    {% endif %}
+    
+    {% if back_url %}
+      window.backUrl = "{{ back_url }}";
+      window.backLabel = "{{ back_label }}";
+    {% endif %}
+    
+    {% if autostart is defined %}
+      window.autostart = {{ autostart | tojson }};
+    {% endif %}
+    
+    {% if is_comprehensive is defined %}
+      window.isComprehensive = {{ is_comprehensive | tojson }};
+    {% endif %}
+    
+    {% if is_category_quiz is defined %}
+      window.isCategoryQuiz = {{ is_category_quiz | tojson }};
+    {% endif %}
+    
+    // Also read quiz_length from URL parameters as fallback
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const urlQuizLength = params.get('quiz_length');
+      if (urlQuizLength) {
+        window.quizLength = urlQuizLength;
+      }
+      const urlIsComprehensive = params.get('is_comprehensive');
+      if (urlIsComprehensive === 'true') {
+        window.isComprehensive = true;
+      }
+    })();
+    
+    console.log('[Quiz] Preloaded data:', {
+      hasQuizData: !!window.preloadedQuizData,
+      moduleName: window.preloadedModuleName,
+      category: window.preloadedCategory,
+      isComprehensive: window.isComprehensive,
+      isCategoryQuiz: window.isCategoryQuiz,
+      quizLength: window.quizLength,
+      autostart: window.autostart
+    });
+  </script>
+
+  <script src="/static/js/quiz-script.js"></script>
+</body>
+</html>
