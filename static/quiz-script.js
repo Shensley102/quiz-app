@@ -266,9 +266,49 @@ let run = {
   isComprehensive: false,
   isCategoryQuiz: false,
   questionNumber: 0,  // Tracks total questions shown (keeps going up)
+  quizLength: 0,      // Original quiz length for threshold calculation
+  missedQueue: [],    // Questions waiting to be re-queued when threshold hit
 };
 
 let lastQuizMissedQuestions = [];
+
+/**
+ * Get the miss threshold percentage based on quiz length
+ * @returns {number} Threshold as decimal (e.g., 0.15 for 15%)
+ */
+function getMissThreshold() {
+  const len = run.quizLength;
+  if (len <= 10) return 0.20;      // 20% for 10 questions
+  if (len <= 50) return 0.15;      // 15% for 25-50 questions
+  return 0.10;                      // 10% for 100+ questions
+}
+
+/**
+ * Get the number of missed questions needed to trigger re-queue
+ * @returns {number} Number of missed questions that triggers re-queue
+ */
+function getMissThresholdCount() {
+  const threshold = getMissThreshold();
+  return Math.ceil(run.quizLength * threshold);
+}
+
+/**
+ * Check if missed threshold is reached and re-queue missed questions
+ */
+function checkAndRequeueMissed() {
+  const thresholdCount = getMissThresholdCount();
+  
+  if (run.missedQueue.length >= thresholdCount) {
+    console.log(`[Quiz] Miss threshold reached (${run.missedQueue.length}/${thresholdCount}). Re-queuing missed questions.`);
+    
+    // Add all missed questions back to the front of the queue (shuffled)
+    const missedToRequeue = shuffleArray([...run.missedQueue]);
+    run.queue = [...missedToRequeue, ...run.queue];
+    
+    // Clear the missed queue
+    run.missedQueue = [];
+  }
+}
 
 /* ---------- Utility functions ---------- */
 function shuffleArray(arr) {
@@ -301,6 +341,8 @@ function saveState() {
     isComprehensive: run.isComprehensive,
     isCategoryQuiz: run.isCategoryQuiz,
     questionNumber: run.questionNumber,
+    quizLength: run.quizLength,
+    missedQueue: run.missedQueue,
     savedAt: Date.now()
   };
   
@@ -338,9 +380,17 @@ function getNotMastered() {
 
 function pickNext() {
   if (run.queue.length === 0) {
-    const remaining = getNotMastered();
-    if (remaining.length === 0) return null;
-    run.queue = shuffleArray(remaining);
+    // First check if there are missed questions waiting
+    if (run.missedQueue.length > 0) {
+      console.log(`[Quiz] Queue empty, re-queuing ${run.missedQueue.length} missed questions.`);
+      run.queue = shuffleArray([...run.missedQueue]);
+      run.missedQueue = [];
+    } else {
+      // No missed queue, check for remaining unmastered questions
+      const remaining = getNotMastered();
+      if (remaining.length === 0) return null;
+      run.queue = shuffleArray(remaining);
+    }
   }
   return run.queue.shift();
 }
@@ -612,6 +662,16 @@ function handleSubmit() {
     category: q.category || ''
   });
   
+  // If incorrect, add to missed queue (will be re-queued when threshold hit)
+  if (!isCorrect) {
+    // Only add if not already in missed queue
+    if (!run.missedQueue.find(mq => mq.id === q.id)) {
+      run.missedQueue.push(q);
+    }
+    // Check if we need to re-queue missed questions
+    checkAndRequeueMissed();
+  }
+  
   // Save state
   saveState();
   
@@ -657,12 +717,34 @@ function handleNext() {
   if (remaining.length === 0) {
     finishQuiz();
   } else {
+    // If queue is empty but we still have remaining questions, 
+    // add any missed questions back to queue
+    if (run.queue.length === 0 && run.missedQueue.length > 0) {
+      console.log(`[Quiz] Queue empty, re-queuing ${run.missedQueue.length} missed questions.`);
+      run.queue = shuffleArray([...run.missedQueue]);
+      run.missedQueue = [];
+    }
+    
     const next = pickNext();
     if (next) {
       renderQuestion(next);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      finishQuiz();
+      // If still no next question but remaining > 0, 
+      // rebuild queue from remaining questions
+      if (remaining.length > 0) {
+        run.queue = shuffleArray([...remaining]);
+        run.missedQueue = [];
+        const retryNext = pickNext();
+        if (retryNext) {
+          renderQuestion(retryNext);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          finishQuiz();
+        }
+      } else {
+        finishQuiz();
+      }
     }
   }
 }
@@ -793,6 +875,8 @@ function startRetryQuiz(questions) {
   run.answered = new Map();
   run.current = null;
   run.questionNumber = 0;  // Reset question counter for retry
+  run.quizLength = run.masterPool.length;  // Set quiz length for threshold
+  run.missedQueue = [];    // Reset missed queue
   
   if (summary) summary.classList.add('hidden');
   if (quiz) quiz.classList.remove('hidden');
@@ -816,6 +900,7 @@ function startQuiz(moduleName, questions, quizLength, isComprehensive = false, i
   run.isComprehensive = isComprehensive;
   run.isCategoryQuiz = isCategoryQuiz;
   run.questionNumber = 0;  // Reset question counter
+  run.missedQueue = [];    // Reset missed queue
   
   // Prepare questions
   let pool = questions.map((q, i) => ({
@@ -832,9 +917,12 @@ function startQuiz(moduleName, questions, quizLength, isComprehensive = false, i
   }
   
   run.masterPool = pool;
+  run.quizLength = pool.length;  // Store actual quiz length for threshold calculation
   run.queue = shuffleArray([...pool]);
   run.answered = new Map();
   run.current = null;
+  
+  console.log(`[Quiz] Quiz length: ${run.quizLength}, Miss threshold: ${getMissThresholdCount()} questions (${Math.round(getMissThreshold() * 100)}%)`);
   
   // Hide launcher, show quiz
   if (launcher) launcher.classList.add('hidden');
@@ -859,6 +947,8 @@ function resumeQuiz(state) {
   run.isComprehensive = state.isComprehensive || false;
   run.isCategoryQuiz = state.isCategoryQuiz || false;
   run.questionNumber = state.questionNumber || 0;  // Restore question counter
+  run.quizLength = state.quizLength || state.masterPool.length;  // Restore quiz length
+  run.missedQueue = state.missedQueue || [];  // Restore missed queue
   run.isRetry = false;
   run.current = null;
   
