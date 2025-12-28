@@ -504,20 +504,39 @@ function highlightAnswers(q, userLetters, isCorrect) {
   
   form.querySelectorAll('.option').forEach(div => {
     const input = div.querySelector('input');
-    if (!input) return;
+    const label = div.querySelector('label');
+    if (!input || !label) return;
     
     const letter = input.value.toUpperCase();
     const isUserSelected = userLetters.includes(letter);
     const isCorrectAnswer = correctLetters.includes(letter);
     
-    div.classList.remove('correct', 'incorrect', 'missed');
+    // Mark as answered (resets styling)
+    div.classList.add('answered');
     
-    if (isCorrectAnswer && isUserSelected) {
-      div.classList.add('correct');
-    } else if (isCorrectAnswer && !isUserSelected) {
-      div.classList.add('missed');
-    } else if (!isCorrectAnswer && isUserSelected) {
-      div.classList.add('incorrect');
+    // Remove any existing result icons
+    const existingIcon = label.querySelector('.result-icon');
+    if (existingIcon) existingIcon.remove();
+    
+    // Create result icon span
+    const icon = document.createElement('span');
+    icon.className = 'result-icon';
+    
+    if (isCorrectAnswer) {
+      // Green checkmark for correct answers (whether user selected or not)
+      icon.classList.add('correct');
+      icon.textContent = '✓';
+      div.classList.add('show-correct');
+    } else if (isUserSelected) {
+      // Red X for incorrect answers user selected
+      icon.classList.add('incorrect');
+      icon.textContent = '✗';
+      div.classList.add('show-incorrect');
+    }
+    
+    // Insert icon at the beginning of the label (before the letter)
+    if (icon.textContent) {
+      label.insertBefore(icon, label.firstChild);
     }
   });
 }
