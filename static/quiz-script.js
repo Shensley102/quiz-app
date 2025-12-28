@@ -476,9 +476,10 @@ function renderQuestion(q) {
       div.appendChild(label);
       form.appendChild(div);
       
-      // Click handler for the div
+      // Click handler for the div - only toggle when clicking div background
+      // Not when clicking input (native) or label (native triggers input)
       div.addEventListener('click', (e) => {
-        if (e.target !== input) {
+        if (e.target === div) {
           input.checked = !input.checked;
           onSelectionChanged();
         }
