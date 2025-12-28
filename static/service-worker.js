@@ -7,7 +7,7 @@
    - NCLEX Comprehensive System routes support
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.0.0';
+const CACHE_VERSION = 'v2.1.0';
 const CACHE_NAME = `nurse-study-hub-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `nurse-study-hub-data-${CACHE_VERSION}`;
 
@@ -17,8 +17,10 @@ const STATIC_ASSETS = [
   '/static/style.css',
   '/static/category-style.css',
   '/static/quiz-style.css',
+  '/static/home-style.css',
   '/static/quiz-script.js',
   '/static/js/pwa-utils.js',
+  '/static/js/progress-store.js',
   '/static/manifest.json',
   '/static/icons/icon-192.png',
   '/static/icons/icon-512.png',
@@ -26,11 +28,11 @@ const STATIC_ASSETS = [
   '/static/icons/icon-152.png',
   '/static/icons/icon-167.png',
   '/static/icons/icon-180.png',
-  '/static/images/Nursing_Hesi_Exam_Prep_Image.png',
-  '/static/images/Nursing_Lab_Values.png',
-  '/static/images/Nursing_Leadership_Image.png',
-  '/static/images/Nursing_Pharmacology_Image.png',
-  '/static/images/Nursing_Advanced_Certifications.png',
+  '/images/Nursing_Nclex_Exam_Prep_Image.png',
+  '/images/Nursing_Lab_Values.png',
+  '/images/Nursing_Leadership_Image.png',
+  '/images/Nursing_Pharmacology_Image.png',
+  '/images/Nursing_Advanced_Certifications.png',
 ];
 
 // HTML pages to precache
@@ -65,31 +67,40 @@ const JSON_PRECACHE = [
   '/modules/NCLEX/NCLEX_Comprehensive_Master_Categorized.json',
   
   // Lab Values
-  '/modules/Lab_Values/Lab_Values_Fishbone.json',
-  '/modules/Lab_Values/Lab_Values_Module.json',
+  '/modules/Lab_Values/NCLEX_Lab_Values.json',
+  '/modules/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank.json',
   
   // Patient Care Management
-  '/modules/Patient_Care_Management/Patient_Care_Management_Learning_Questions_Module_1.json',
-  '/modules/Patient_Care_Management/Patient_Care_Management_Learning_Questions_Module_2.json',
-  '/modules/Patient_Care_Management/Patient_Care_Management_Learning_Questions_Module_3_4.json',
+  '/modules/Patient_Care_Management/Learning_Questions_Module_1_2.json',
+  '/modules/Patient_Care_Management/Learning_Questions_Module_3_4.json',
+  '/modules/Patient_Care_Management/Module_1.json',
+  '/modules/Patient_Care_Management/Module_2.json',
+  '/modules/Patient_Care_Management/Module_3.json',
+  '/modules/Patient_Care_Management/Module_4.json',
   
   // Pharmacology
-  '/modules/Pharmacology/Pharmacology_Comprehensive.json',
-  '/modules/Pharmacology/Pharmacology_Cardiac_Drugs.json',
-  '/modules/Pharmacology/Pharmacology_Respiratory_Drugs.json',
-  '/modules/Pharmacology/Pharmacology_GI_Drugs.json',
-  '/modules/Pharmacology/Pharmacology_Endocrine_Drugs.json',
-  '/modules/Pharmacology/Pharmacology_Neuro_Drugs.json',
-  '/modules/Pharmacology/Pharmacology_Antibiotics.json',
-  '/modules/Pharmacology/Pharmacology_Pain_Management.json',
-  '/modules/Pharmacology/Pharmacology_Psych_Drugs.json',
-  '/modules/Pharmacology/Pharmacology_Immune_Drugs.json',
-  '/modules/Pharmacology/Pharmacology_Blood_Drugs.json',
+  '/modules/Pharmacology/Comprehensive_Pharmacology.json',
+  '/modules/Pharmacology/Pharm_Quiz_1.json',
+  '/modules/Pharmacology/Pharm_Quiz_2.json',
+  '/modules/Pharmacology/Pharm_Quiz_3.json',
+  '/modules/Pharmacology/Pharm_Quiz_4.json',
+  '/modules/Pharmacology/Anti_Infectives_Pharm.json',
+  '/modules/Pharmacology/Cardiovascular_Pharm.json',
+  '/modules/Pharmacology/CNS_Psychiatric_Pharm.json',
+  '/modules/Pharmacology/Endocrine_Metabolic_Pharm.json',
+  '/modules/Pharmacology/Gastrointestinal_Pharm.json',
+  '/modules/Pharmacology/Hematologic_Oncology_Pharm.json',
+  '/modules/Pharmacology/High_Alert_Medications_Pharm.json',
+  '/modules/Pharmacology/Immunologic_Biologics_Pharm.json',
+  '/modules/Pharmacology/Musculoskeletal_Pharm.json',
+  '/modules/Pharmacology/Pain_Management_Pharm.json',
+  '/modules/Pharmacology/Renal_Electrolytes_Pharm.json',
+  '/modules/Pharmacology/Respiratory_Pharm.json',
   
   // Nursing Certifications
-  '/modules/Nursing_Certifications/CCRN/CCRN_Module.json',
-  '/modules/Nursing_Certifications/PCCN/PCCN_Module.json',
-  '/modules/Nursing_Certifications/CMSRN/CMSRN_Module.json',
+  '/modules/Nursing_Certifications/CCRN_Test_1_Combined_QA.json',
+  '/modules/Nursing_Certifications/CCRN_Test_2_Combined_QA.json',
+  '/modules/Nursing_Certifications/CCRN_Test_3_Combined_QA.json',
 ];
 
 // Install event - precache assets
