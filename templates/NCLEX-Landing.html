@@ -534,14 +534,22 @@
         const lengthBtns = document.querySelectorAll('.length-btn');
         const startBtn = document.getElementById('startCategoryQuizBtn');
 
-        // Category card selection
+        // Category card selection (toggle behavior)
         categoryCards.forEach(card => {
             card.addEventListener('click', () => {
+                const wasSelected = card.classList.contains('selected');
+                
                 // Deselect all
                 categoryCards.forEach(c => c.classList.remove('selected'));
-                // Select this one
-                card.classList.add('selected');
-                selectedCategory = card.dataset.category;
+                
+                if (wasSelected) {
+                    // Was already selected - deselect it (clear selection)
+                    selectedCategory = null;
+                } else {
+                    // Wasn't selected - select it
+                    card.classList.add('selected');
+                    selectedCategory = card.dataset.category;
+                }
                 
                 // Update button state
                 updateStartButton();
