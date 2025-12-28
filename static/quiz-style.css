@@ -288,6 +288,22 @@
   border-color: #4caf50;
 }
 
+/* Answer feedback overlays after submission */
+.option.correct label {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: #4caf50;
+}
+
+.option.incorrect label {
+  background: rgba(244, 67, 54, 0.2);
+  border-color: #f44336;
+}
+
+.option.missed label {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: #4caf50;
+}
+
 /* Single-select: Disable hover after selection */
 .options-form.is-single-select.has-selection .option label:hover {
   border-color: var(--border);
@@ -298,7 +314,7 @@
 /* Submit Button */
 .submit-btn {
   display: block;
-  width: 95%;
+  width: 100%;
   padding: 14px 24px;
   background: #5cb85c;
   color: #fff;
@@ -331,13 +347,14 @@
 /* Feedback Indicator */
 .feedback {
   display: block;
-  width: 95%;
+  width: 100%;
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 13px;
   font-weight: 700;
   text-align: center;
   margin-bottom: 12px;
+  margin-top: 20px;
 }
 
 .feedback.hidden {
