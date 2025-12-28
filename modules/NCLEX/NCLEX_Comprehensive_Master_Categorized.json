@@ -5785,22 +5785,6 @@
       "type": "single_select"
     },
     {
-      "category": "Pharmacological and Parenteral Therapies",
-      "id": "Q29",
-      "stem": "The nurse prepares to administer ophthalmic drops to a client prior to cataract surgery. List the steps in the order that they should be implemented from first step to final step.",
-      "options": [
-        "C, B, A, D",
-        "B, C, A, D",
-        "A, B, D, C",
-        "A, C, B, D"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Washing hands and applying gloves prior to procedure initiation prevents the spread of infection (B). Placing the dominant hand on the client's forehead (C) stabilizes the hand so the nurse can hold the dropper 1 to 2 cm above the conjunctival sac and drop the prescribed number of drops (A); asking the client to close the eye gently helps distribute the medication (D).",
-      "type": "single_select"
-    },
-    {
       "category": "Basic Care and Comfort",
       "id": "HESI_Comp_Q173",
       "stem": "A nurse is performing an assessment of a client with suspected pheochromocytoma. Which clinical manifestation does the nurse expect to note?",
