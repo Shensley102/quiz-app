@@ -359,7 +359,7 @@
 
         // Start quiz - Navigate to the quiz page with comprehensive mode enabled
         document.getElementById('startQuizBtn').addEventListener('click', () => {
-            const url = `/quiz/NCLEX/NCLEX_Comprehensive_Master_Categorized?is_comprehensive=true&quiz_length=${selectedLength}`;
+            const url = `/quiz/NCLEX/NCLEX_Comprehensive_Master_Categorized?is_comprehensive=true&quiz_length=${selectedLength}&autostart=true`;
             window.location.href = url;
         });
     </script>
