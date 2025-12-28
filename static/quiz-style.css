@@ -138,7 +138,6 @@
 /* Disabled input styling */
 .option input:disabled + label {
   cursor: not-allowed;
-  opacity: 0.85;
 }
 
 .option input:disabled + label:hover {
@@ -147,22 +146,46 @@
   background: #fff;
 }
 
-/* Answer feedback overlays after submission */
-.option.correct input + label,
-.option.correct input:checked + label {
-  background: rgba(76, 175, 80, 0.2);
+/* ===== Answer Feedback Icons (Checkmarks and X marks) ===== */
+
+/* Result icon that appears to the left of the letter */
+.result-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Green checkmark for correct answers */
+.result-icon.correct {
+  color: #4caf50;
+}
+
+/* Red X for incorrect answers user selected */
+.result-icon.incorrect {
+  color: #f44336;
+}
+
+/* After submission - reset all option styling */
+.option.answered input + label {
+  background: #fff;
+  border-color: var(--border);
+  opacity: 1;
+}
+
+/* Correct answer gets subtle green border after submission */
+.option.show-correct input + label {
   border-color: #4caf50;
 }
 
-.option.incorrect input + label,
-.option.incorrect input:checked + label {
-  background: rgba(244, 67, 54, 0.2);
+/* Incorrect selection gets subtle red border after submission */
+.option.show-incorrect input + label {
   border-color: #f44336;
-}
-
-.option.missed input + label {
-  background: rgba(76, 175, 80, 0.2);
-  border-color: #4caf50;
 }
 
 /* Single-select: Disable hover AFTER selection is made (but keep selected styling intact) */
