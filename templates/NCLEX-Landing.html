@@ -63,15 +63,15 @@
         }
         .page-header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 2.2em;
             color: #333;
         }
         .page-header p {
             margin: 5px 0 0 0;
             color: #666;
-            font-size: 1.1em;
+            font-size: 1.05em;
         }
-        .header-icon { font-size: 2.5em; }
+        .header-icon { font-size: 2.2em; }
 
         /* Section styling */
         .section {
@@ -85,14 +85,14 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         .section-header h2 {
             margin: 0;
-            font-size: 1.5em;
+            font-size: 1.4em;
             color: #333;
         }
-        .section-icon { font-size: 1.8em; }
+        .section-icon { font-size: 1.6em; }
         .section-description {
             color: #666;
             font-size: 0.95em;
@@ -110,7 +110,7 @@
         }
         .comprehensive-card h3 {
             margin: 0 0 12px 0;
-            font-size: 1.6em;
+            font-size: 1.5em;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -155,151 +155,250 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         }
 
-        /* Category Grid */
+        /* ============================================
+           Category Quiz Launcher - One Stop Shop
+           ============================================ */
+        
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
         }
+
         .category-card {
             background: #f8f9fa;
             border-radius: 12px;
-            padding: 20px;
-            border-left: 4px solid #0099cc;
-            transition: transform 0.2s, box-shadow 0.2s;
+            padding: 18px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
         }
         .category-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            background: #f0f4f8;
+            border-color: #90caf9;
         }
-        .category-card h4 {
-            margin: 0 0 8px 0;
-            font-size: 1.1em;
-            color: #333;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .category-card .weight-badge {
+        .category-card.selected {
             background: #e3f2fd;
-            color: #1976d2;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-        .category-card .question-count {
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 12px;
-        }
-        .category-card .practice-link {
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95em;
-        }
-        .category-card .practice-link:hover {
-            text-decoration: underline;
+            border-color: #1976d2;
+            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2);
         }
 
-        /* Areas of Focus / Scoreboard */
-        .focus-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .focus-item {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 18px 20px;
-            border-left: 4px solid #ff9800;
-        }
-        .focus-item.good { border-left-color: #4caf50; }
-        .focus-item.fair { border-left-color: #ff9800; }
-        .focus-item.needs-work { border-left-color: #f44336; }
-        
-        .focus-item-header {
+        .category-card-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 8px;
         }
-        .focus-item h4 {
+        .category-card h4 {
             margin: 0;
             font-size: 1.05em;
             color: #333;
+            flex: 1;
+            padding-right: 10px;
         }
-        .focus-item .score {
-            font-size: 1.2em;
-            font-weight: 700;
+        .weight-badge {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            white-space: nowrap;
         }
-        .focus-item.good .score { color: #4caf50; }
-        .focus-item.fair .score { color: #ff9800; }
-        .focus-item.needs-work .score { color: #f44336; }
-        
-        .focus-item .feedback {
-            font-size: 0.9em;
+
+        .category-card .question-count {
             color: #666;
-            margin-bottom: 10px;
+            font-size: 0.85em;
+            margin-bottom: 12px;
         }
-        .focus-item .progress-bar {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 10px;
+
+        /* Performance Bar */
+        .performance-bar-container {
+            margin-top: 12px;
         }
-        .focus-item .progress-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.3s;
-        }
-        .focus-item.good .progress-fill { background: #4caf50; }
-        .focus-item.fair .progress-fill { background: #ff9800; }
-        .focus-item.needs-work .progress-fill { background: #f44336; }
-        
-        .focus-item .stats {
+        .performance-bar-label {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 6px;
             font-size: 0.85em;
+        }
+        .performance-bar-label .label-text {
             color: #666;
         }
-        .focus-item .practice-btn {
-            background: #0066cc;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.85em;
+        .performance-bar-label .percentage {
+            font-weight: 700;
+            font-size: 1em;
         }
-        .focus-item .practice-btn:hover {
-            background: #0052a3;
+        .performance-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .performance-bar-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+        
+        /* No data state */
+        .performance-bar-container.no-data .performance-bar {
+            background: #e8e8e8;
+        }
+        .performance-bar-container.no-data .performance-bar-fill {
+            display: none;
+        }
+        .performance-bar-container.no-data .percentage {
+            color: #999;
+            font-weight: 500;
         }
 
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #666;
+        /* Selection indicator */
+        .selection-indicator {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
         }
-        .empty-state .icon {
-            font-size: 3em;
-            margin-bottom: 16px;
+        .category-card.selected .selection-indicator {
+            background: #1976d2;
+            border-color: #1976d2;
         }
-        .empty-state h3 {
-            margin: 0 0 8px 0;
+        .selection-indicator::after {
+            content: '';
+            display: none;
+        }
+        .category-card.selected .selection-indicator::after {
+            content: '✓';
+            display: block;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Quiz Length Selector */
+        .quiz-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-top: 8px;
+        }
+
+        .length-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .length-selector label {
+            font-weight: 600;
             color: #333;
-        }
-        .empty-state p {
-            margin: 0;
             font-size: 0.95em;
         }
+        .length-buttons {
+            display: flex;
+            gap: 0;
+        }
+        .length-btn {
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            background: white;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .length-btn:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .length-btn:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        .length-btn:not(:last-child) {
+            border-right: none;
+        }
+        .length-btn:hover:not(.active) {
+            background: #f5f5f5;
+            border-color: #1976d2;
+        }
+        .length-btn.active {
+            background: #1976d2;
+            color: white;
+            border-color: #1976d2;
+        }
 
+        .start-category-btn {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .start-category-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+        }
+        .start-category-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 1.8em; }
+            .section { padding: 20px; }
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            .quiz-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+            .length-selector {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .length-buttons {
+                width: 100%;
+            }
+            .length-btn {
+                flex: 1;
+                padding: 12px 16px;
+            }
+            .start-category-btn {
+                width: 100%;
+            }
+        }
+
+        /* Reset button */
         .reset-stats-btn {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 16px;
             padding: 10px 20px;
             background: #f5f5f5;
             color: #666;
@@ -308,6 +407,7 @@
             font-size: 0.9em;
             cursor: pointer;
             transition: background 0.2s;
+            font-family: inherit;
         }
         .reset-stats-btn:hover {
             background: #e0e0e0;
@@ -337,15 +437,14 @@
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">🎯</span>
-                <h2>NCLEX Comprehensive Quiz (NCLEX-Weighted)</h2>
+                <h2>NCLEX Comprehensive Quiz</h2>
             </div>
 
             <div class="comprehensive-card">
                 <h3>Master the NCLEX Test Plan</h3>
                 <p class="card-description">
                     Take a comprehensive quiz with questions distributed according to the official NCLEX-RN 
-                    test plan percentages. Your performance is tracked across all 8 categories to identify areas 
-                    needing more practice.
+                    test plan percentages. Your performance is tracked across all 8 categories.
                 </p>
                 <div class="info-box">
                     <h4>📊 Question Distribution:</h4>
@@ -357,24 +456,25 @@
             </div>
         </div>
 
-        <!-- Section 2: Practice by Category -->
+        <!-- Section 2: Practice by Category - ONE STOP SHOP -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">📚</span>
                 <h2>Practice by NCLEX Category</h2>
             </div>
             <p class="section-description">
-                Focus on specific NCLEX-RN test plan categories. Category quizzes do NOT affect your performance 
-                scoreboard - they're for targeted practice only.
+                Select a category and quiz length to start focused practice. Your scores are tracked to help identify areas needing improvement.
             </p>
 
-            <div class="category-grid">
+            <!-- Category Grid - Selectable -->
+            <div class="category-grid" id="categoryGrid">
                 {% for category, weight in nclex_categories.items() %}
-                <div class="category-card">
-                    <h4>
-                        {{ category }}
+                <div class="category-card" data-category="{{ category }}" data-count="{{ category_stats[category].count if category_stats and category in category_stats else 0 }}">
+                    <div class="selection-indicator"></div>
+                    <div class="category-card-header">
+                        <h4>{{ category }}</h4>
                         <span class="weight-badge">{{ (weight * 100)|int }}%</span>
-                    </h4>
+                    </div>
                     <p class="question-count">
                         {% if category_stats and category in category_stats %}
                             {{ category_stats[category].count }} questions available
@@ -382,184 +482,206 @@
                             Questions available
                         {% endif %}
                     </p>
-                    <a href="/category/NCLEX/category/{{ category|urlencode }}" class="practice-link">
-                        Practice this category →
-                    </a>
+                    <div class="performance-bar-container no-data" data-category="{{ category }}">
+                        <div class="performance-bar-label">
+                            <span class="label-text">Performance</span>
+                            <span class="percentage">No Data</span>
+                        </div>
+                        <div class="performance-bar">
+                            <div class="performance-bar-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
                 </div>
                 {% endfor %}
             </div>
-        </div>
 
-        <!-- Section 3: Areas of Focus (Scoreboard) -->
-        <div class="section">
-            <div class="section-header">
-                <span class="section-icon">📈</span>
-                <h2>Areas of Focus</h2>
-            </div>
-            <p class="section-description">
-                Your top 5 categories needing improvement, ranked by weighted priority score. Complete 
-                comprehensive quizzes to see your personalized areas of focus.
-            </p>
-
-            <div id="focusList" class="focus-list">
-                <!-- Will be populated by JavaScript -->
-                <div class="empty-state">
-                    <div class="icon">📊</div>
-                    <h3>No Performance Data Yet</h3>
-                    <p>Complete a comprehensive quiz to see your areas of focus.</p>
+            <!-- Quiz Controls -->
+            <div class="quiz-controls">
+                <div class="length-selector">
+                    <label>Quiz Length:</label>
+                    <div class="length-buttons">
+                        <button class="length-btn" data-length="10">10</button>
+                        <button class="length-btn active" data-length="25">25</button>
+                        <button class="length-btn" data-length="50">50</button>
+                    </div>
                 </div>
+                <button class="start-category-btn" id="startCategoryQuizBtn" disabled>
+                    Select a Category to Start
+                </button>
             </div>
 
-            <button id="resetStatsBtn" class="reset-stats-btn" style="display: none;">
-                🔄 Reset Performance Stats
+            <button id="resetStatsBtn" class="reset-stats-btn">
+                🔄 Reset Category Performance
             </button>
         </div>
     </div>
 
+    <!-- Progress Store -->
+    <script src="{{ url_for('static', filename='js/progress-store.js') }}"></script>
+    
     <!-- PWA Utils -->
     <script src="{{ url_for('static', filename='js/pwa-utils.js') }}"></script>
 
     <script>
-        // NCLEX category weights for priority calculation
-        const NCLEX_WEIGHTS = {
-            'Management of Care': 0.18,
-            'Safety and Infection Control': 0.13,
-            'Health Promotion and Maintenance': 0.09,
-            'Psychosocial Integrity': 0.09,
-            'Basic Care and Comfort': 0.09,
-            'Pharmacological and Parenteral Therapies': 0.16,
-            'Reduction of Risk Potential': 0.12,
-            'Physiological Adaptation': 0.14
-        };
+        // ============================================
+        // Category Selection & Quiz Launcher
+        // ============================================
+        
+        let selectedCategory = null;
+        let selectedLength = 25;
 
-        const STATS_KEY = 'nclexPerformanceStats';
+        const categoryCards = document.querySelectorAll('.category-card');
+        const lengthBtns = document.querySelectorAll('.length-btn');
+        const startBtn = document.getElementById('startCategoryQuizBtn');
 
-        function loadStats() {
-            try {
-                const raw = localStorage.getItem(STATS_KEY);
-                if (!raw) return null;
-                return JSON.parse(raw);
-            } catch (e) {
-                console.error('Error loading stats:', e);
-                return null;
-            }
-        }
-
-        function clearStats() {
-            localStorage.removeItem(STATS_KEY);
-            renderFocusList();
-        }
-
-        function calculatePriorityScore(categoryName, stats) {
-            // Priority = (100 - score%) × NCLEX weight
-            // Higher score = more important to improve
-            const weight = NCLEX_WEIGHTS[categoryName] || 0.1;
-            const score = stats.totalAnswered > 0 
-                ? (stats.totalCorrect / stats.totalAnswered) * 100 
-                : 0;
-            return (100 - score) * weight;
-        }
-
-        function getStatusClass(percentage) {
-            if (percentage >= 80) return 'good';
-            if (percentage >= 60) return 'fair';
-            return 'needs-work';
-        }
-
-        function getFeedback(percentage, categoryName) {
-            if (percentage >= 80) {
-                return `Great job on ${categoryName}! Keep it up.`;
-            } else if (percentage >= 60) {
-                return `${categoryName} needs some work. Practice to improve.`;
-            } else {
-                return `You're struggling with ${categoryName}. Click to practice this area.`;
-            }
-        }
-
-        function renderFocusList() {
-            const focusList = document.getElementById('focusList');
-            const resetBtn = document.getElementById('resetStatsBtn');
-            const stats = loadStats();
-
-            if (!stats || Object.keys(stats).length === 0) {
-                focusList.innerHTML = `
-                    <div class="empty-state">
-                        <div class="icon">📊</div>
-                        <h3>No Performance Data Yet</h3>
-                        <p>Complete a comprehensive quiz to see your areas of focus.</p>
-                    </div>
-                `;
-                resetBtn.style.display = 'none';
-                return;
-            }
-
-            // Calculate priority scores and sort
-            const prioritized = Object.entries(stats)
-                .map(([category, data]) => ({
-                    category,
-                    ...data,
-                    percentage: data.totalAnswered > 0 
-                        ? Math.round((data.totalCorrect / data.totalAnswered) * 100) 
-                        : 0,
-                    priority: calculatePriorityScore(category, data)
-                }))
-                .sort((a, b) => b.priority - a.priority)
-                .slice(0, 5); // Top 5
-
-            if (prioritized.length === 0) {
-                focusList.innerHTML = `
-                    <div class="empty-state">
-                        <div class="icon">📊</div>
-                        <h3>No Performance Data Yet</h3>
-                        <p>Complete a comprehensive quiz to see your areas of focus.</p>
-                    </div>
-                `;
-                resetBtn.style.display = 'none';
-                return;
-            }
-
-            focusList.innerHTML = prioritized.map(item => {
-                const statusClass = getStatusClass(item.percentage);
-                const feedback = getFeedback(item.percentage, item.category);
-                const weight = NCLEX_WEIGHTS[item.category] || 0.1;
-                const weightPercent = Math.round(weight * 100);
-
-                return `
-                    <div class="focus-item ${statusClass}">
-                        <div class="focus-item-header">
-                            <h4>${item.category}</h4>
-                            <span class="score">${item.percentage}%</span>
-                        </div>
-                        <p class="feedback">${feedback}</p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${item.percentage}%"></div>
-                        </div>
-                        <div class="stats">
-                            <span>${item.totalCorrect}/${item.totalAnswered} correct · NCLEX weight: ${weightPercent}%</span>
-                            <a href="/category/NCLEX/category/${encodeURIComponent(item.category)}" class="practice-btn">
-                                Practice →
-                            </a>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            resetBtn.style.display = 'inline-block';
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            renderFocusList();
-
-            // Reset button handler
-            document.getElementById('resetStatsBtn').addEventListener('click', () => {
-                if (confirm('Are you sure you want to reset all your NCLEX performance stats? This cannot be undone.')) {
-                    clearStats();
-                }
+        // Category card selection
+        categoryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Deselect all
+                categoryCards.forEach(c => c.classList.remove('selected'));
+                // Select this one
+                card.classList.add('selected');
+                selectedCategory = card.dataset.category;
+                
+                // Update button state
+                updateStartButton();
             });
         });
 
-        // Offline indicator
+        // Length button selection
+        lengthBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                lengthBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedLength = parseInt(btn.dataset.length, 10);
+                updateStartButton();
+            });
+        });
+
+        function updateStartButton() {
+            if (selectedCategory) {
+                const card = document.querySelector(`.category-card[data-category="${selectedCategory}"]`);
+                const availableCount = parseInt(card?.dataset.count || 0, 10);
+                
+                if (selectedLength > availableCount) {
+                    startBtn.disabled = true;
+                    startBtn.textContent = `Only ${availableCount} questions available`;
+                } else {
+                    startBtn.disabled = false;
+                    startBtn.textContent = `Start ${selectedCategory} Quiz (${selectedLength} questions) →`;
+                }
+            } else {
+                startBtn.disabled = true;
+                startBtn.textContent = 'Select a Category to Start';
+            }
+        }
+
+        // Start quiz button
+        startBtn.addEventListener('click', () => {
+            if (!selectedCategory || startBtn.disabled) return;
+            
+            const url = `/category/NCLEX/category/${encodeURIComponent(selectedCategory)}?quiz_length=${selectedLength}&autostart=true`;
+            window.location.href = url;
+        });
+
+        // ============================================
+        // Performance Bars - Color Gradient
+        // ============================================
+        
+        /**
+         * Get color for performance percentage
+         * Red (0%) → Yellow (77%) → Green (100%)
+         */
+        function getPerformanceColor(percentage) {
+            if (percentage < 77) {
+                // Red to Yellow: 0-76%
+                // Red: rgb(244, 67, 54) at 0%
+                // Yellow: rgb(255, 193, 7) at 76%
+                const ratio = percentage / 76;
+                const r = Math.round(244 + (255 - 244) * ratio);
+                const g = Math.round(67 + (193 - 67) * ratio);
+                const b = Math.round(54 + (7 - 54) * ratio);
+                return `rgb(${r}, ${g}, ${b})`;
+            } else if (percentage < 85) {
+                // Yellow to Light Green: 77-84%
+                // Yellow: rgb(255, 193, 7) at 77%
+                // Light Green: rgb(139, 195, 74) at 84%
+                const ratio = (percentage - 77) / 7;
+                const r = Math.round(255 + (139 - 255) * ratio);
+                const g = Math.round(193 + (195 - 193) * ratio);
+                const b = Math.round(7 + (74 - 7) * ratio);
+                return `rgb(${r}, ${g}, ${b})`;
+            } else {
+                // Light Green to Green: 85-100%
+                // Light Green: rgb(139, 195, 74) at 85%
+                // Green: rgb(76, 175, 80) at 100%
+                const ratio = (percentage - 85) / 15;
+                const r = Math.round(139 + (76 - 139) * ratio);
+                const g = Math.round(195 + (175 - 195) * ratio);
+                const b = Math.round(74 + (80 - 74) * ratio);
+                return `rgb(${r}, ${g}, ${b})`;
+            }
+        }
+
+        function updatePerformanceBars() {
+            if (!window.StudyGuruProgress) return;
+            
+            const averages = window.StudyGuruProgress.getAllCategoryAverages();
+            
+            document.querySelectorAll('.performance-bar-container').forEach(container => {
+                const category = container.dataset.category;
+                const average = averages[category];
+                const percentageEl = container.querySelector('.percentage');
+                const barFill = container.querySelector('.performance-bar-fill');
+                
+                if (average !== undefined && average !== null) {
+                    // Has data
+                    container.classList.remove('no-data');
+                    percentageEl.textContent = `${average}%`;
+                    percentageEl.style.color = getPerformanceColor(average);
+                    barFill.style.width = `${average}%`;
+                    barFill.style.backgroundColor = getPerformanceColor(average);
+                    barFill.style.display = 'block';
+                } else {
+                    // No data
+                    container.classList.add('no-data');
+                    percentageEl.textContent = 'No Data';
+                    percentageEl.style.color = '#999';
+                    barFill.style.width = '0%';
+                    barFill.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize performance bars on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePerformanceBars();
+        });
+
+        // Update when storage changes (from other tabs)
+        window.addEventListener('storage', (e) => {
+            if (e.key && e.key.startsWith('sg:v1:')) {
+                updatePerformanceBars();
+            }
+        });
+
+        // ============================================
+        // Reset Stats
+        // ============================================
+        
+        document.getElementById('resetStatsBtn').addEventListener('click', () => {
+            if (confirm('Are you sure you want to reset all category performance data? This cannot be undone.')) {
+                if (window.StudyGuruProgress) {
+                    window.StudyGuruProgress.clearCategoryPerformance();
+                    updatePerformanceBars();
+                }
+            }
+        });
+
+        // ============================================
+        // Offline Indicator
+        // ============================================
+        
         function updateOfflineIndicator() {
             const indicator = document.getElementById('offlineIndicator');
             if (navigator.onLine) {
