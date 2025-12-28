@@ -147,25 +147,30 @@
   background: #fff;
 }
 
-/* Answer feedback overlays after submission */
+/* === ANSWER FEEDBACK AFTER SUBMISSION === */
+
+/* Correct answer style (green) */
 .option.correct input + label,
 .option.correct input:checked + label {
   background: rgba(76, 175, 80, 0.2);
   border-color: #4caf50;
 }
 
+/* Incorrect answer style (red) */
 .option.incorrect input + label,
 .option.incorrect input:checked + label {
   background: rgba(244, 67, 54, 0.2);
   border-color: #f44336;
 }
 
-.option.missed input + label {
+/* Missed correct answers (when multi-select) */
+.option.missed input + label,
+.option.missed input:checked + label {
   background: rgba(76, 175, 80, 0.2);
   border-color: #4caf50;
 }
 
-/* Single-select: Disable hover AFTER selection is made (but keep selected styling intact) */
+/* Single-select: Disable hover AFTER selection is made (but keep selected styling) */
 .options-form.is-single-select.has-selection .option input:not(:checked) + label:hover {
   border-color: var(--border);
   background: #fff;
@@ -230,7 +235,7 @@
   padding: 10px 12px;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.10);
+  border: 1px solid rgba(0, 0, 0.10);
   color: var(--text);
   font-size: 14px;
   line-height: 1.5;
