@@ -3,164 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="description" content="Nurse Success Study Hub - HESI and NCLEX Exam Prep">
-  <title>Nurse Success Study Hub - HESI & NCLEX Exam Prep</title>
+  <meta name="description" content="Nurse Success Study Hub - Comprehensive study materials for nursing exams">
+  <title>Nurse Success Study Hub</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/home-style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- PWA Meta Tags -->
+  
+  <!-- PWA Manifest -->
   <link rel="manifest" href="/static/manifest.json">
+  
+  <!-- Theme Color -->
   <meta name="theme-color" content="#2f61f3">
+  
+  <!-- PWA Specific -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Nurse Study">
-
-  <!-- Apple Touch Icons - All Sizes -->
+  
+  <!-- Apple Touch Icons -->
   <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
   <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
   <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
-
+  
   <!-- Vercel Analytics -->
-  <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
+  <!-- Offline Indicator -->
+  <div id="offlineIndicator" class="offline-indicator hidden">
+    📡 You're offline - Using cached content
+  </div>
+
   <div class="container">
-    <!-- Offline indicator -->
-    <div id="offlineIndicator" class="offline-indicator hidden">
-      <span>📴 You're offline - Using cached content</span>
-    </div>
-
     <!-- Header -->
-    <div class="hub-header">
-      <h1>Nurse Success Study Hub</h1>
-      <p class="tagline">Master HESI & NCLEX Exams with Comprehensive Study Materials</p>
+    <header class="hub-header">
+      <h1>🩺 Nurse Success Study Hub</h1>
+      <p class="tagline">Your path to nursing excellence</p>
+      
+      <!-- Weekly Progress Widget -->
+      <div class="weekly-progress-widget" id="weeklyProgressWidget">
+        <span class="progress-icon">📊</span>
+        <span class="progress-label">Questions answered this week:</span>
+        <span class="progress-value" id="weeklyAnsweredCount">0</span>
+      </div>
+    </header>
 
-      <!-- Quote Container - displays random motivational quote -->
-      <div id="quote-container" class="quote-container"></div>
+    <!-- Motivational Quote -->
+    <div class="quote-container" id="quote-container">
+      <!-- Populated by pwa-utils.js -->
     </div>
 
-    <!-- Search Bar -->
-    <div class="search-container">
-      <input
-        type="text"
-        class="search-bar"
-        id="searchBar"
-        placeholder="Search categories or modules..."
-        style="display: none;"
-      >
+    <!-- Category Cards -->
+    <div class="categories-grid">
+      {% for cat in categories %}
+      <a href="/category/{{ cat }}" class="category-card image-card">
+        {% if cat == 'NCLEX' %}
+        <img src="/images/Nursing_Nclex_Exam_Prep_Image.png" alt="NCLEX Comprehensive System" class="category-image">
+        {% elif cat == 'Lab_Values' %}
+        <img src="/images/Nursing_Lab_Values.png" alt="Laboratory Values" class="category-image">
+        {% elif cat == 'Patient_Care_Management' %}
+        <img src="/images/Nursing_Leadership_Image.png" alt="Patient Care Management" class="category-image">
+        {% elif cat == 'Pharmacology' %}
+        <img src="/images/Nursing_Pharmacology_Image.png" alt="Pharmacology" class="category-image">
+        {% elif cat == 'Nursing_Certifications' %}
+        <img src="/images/Nursing_Advanced_Certifications.png" alt="Nursing Certifications" class="category-image">
+        {% else %}
+        <div class="category-card-content">
+          <div class="category-icon">📚</div>
+          <h3 class="category-title">{{ cat.replace('_', ' ') }}</h3>
+        </div>
+        {% endif %}
+      </a>
+      {% endfor %}
     </div>
-
-    <!-- Categories Grid -->
-    <main class="categories-grid" id="categoriesGrid">
-      <!-- Categories will be populated here by JavaScript -->
-    </main>
 
     <!-- Footer -->
     <footer class="hub-footer">
       <p>&copy; 2025 Nurse Success Study Hub. Study smarter, succeed faster.</p>
-      <p id="pwaStatus" class="pwa-status"></p>
+      <p id="pwaStatus" style="font-size: 12px; opacity: 0.7;"></p>
     </footer>
   </div>
 
-  <!-- PWA Utilities - handles SW registration, quotes, and updates -->
+  <!-- Progress Store (must load before pwa-utils) -->
+  <script src="/static/js/progress-store.js"></script>
+  
+  <!-- PWA Utilities -->
   <script src="/static/js/pwa-utils.js"></script>
 
   <script>
-    // Load and display categories
-    async function loadCategories() {
-      try {
-        const res = await fetch('/api/categories', { cache: 'no-store' });
-        if (!res.ok) throw new Error('Failed to load categories');
-
-        const categories = await res.json();
-        const grid = document.getElementById('categoriesGrid');
-
-        if (!grid) return;
-
-        grid.innerHTML = '';
-
-        // Define display order (your 5 main buttons). If any other categories
-        // exist (e.g., legacy "HESI"), they will fall to the bottom.
-        const categoryOrder = [
-          'NCLEX',
-          'Lab_Values',
-          'Patient_Care_Management',
-          'Pharmacology',
-          'Nursing_Certifications',
-          'HESI'
-        ];
-
-        const sortedCategories = Object.entries(categories).sort((a, b) => {
-          const indexA = categoryOrder.indexOf(a[0]);
-          const indexB = categoryOrder.indexOf(b[0]);
-          return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
-        });
-
-        const buildTextCard = (categoryName, categoryData) => {
-          const modulesCount = Array.isArray(categoryData.modules) ? categoryData.modules.length : 0;
-          return `
-            <div class="category-card-content">
-              <div class="category-icon">${categoryData.icon || '📚'}</div>
-              <h3 class="category-title">${categoryData.display_name || String(categoryName).replace(/_/g, ' ')}</h3>
-              <p class="category-subtitle">${modulesCount} modules</p>
-            </div>
-          `;
-        };
-
-        sortedCategories.forEach(([categoryName, categoryData]) => {
-          const card = document.createElement('a');
-          card.href = `/category/${encodeURIComponent(categoryName)}`;
-          card.className = 'category-card';
-
-          // Arrow (always)
-          const arrow = document.createElement('div');
-          arrow.className = 'card-arrow';
-          arrow.textContent = '→';
-
-          // If an image is provided, render an image-only card.
-          // If the image fails to load, fall back to a clean text card.
-          if (categoryData.image) {
-            card.classList.add('image-card');
-
-            const img = document.createElement('img');
-            img.className = 'category-image';
-            img.src = categoryData.image;
-            img.alt = categoryData.display_name || categoryName;
-            img.loading = 'lazy';
-            img.decoding = 'async';
-
-            img.onerror = () => {
-              card.classList.remove('image-card');
-              card.innerHTML = buildTextCard(categoryName, categoryData);
-              card.appendChild(arrow);
-            };
-
-            card.appendChild(img);
-            card.appendChild(arrow);
-          } else {
-            // No image -> text card
-            card.innerHTML = buildTextCard(categoryName, categoryData);
-            card.appendChild(arrow);
-          }
-
-          grid.appendChild(card);
-        });
-
-      } catch (error) {
-        console.error('Error loading categories:', error);
-        const grid = document.getElementById('categoriesGrid');
-        if (grid) {
-          grid.innerHTML = '<p style="color: var(--ink-soft); text-align: center; grid-column: 1/-1;">Error loading categories. Please refresh the page.</p>';
-        }
+    // ============================================================
+    // Weekly Progress Widget
+    // ============================================================
+    
+    function updateWeeklyCount() {
+      const countEl = document.getElementById('weeklyAnsweredCount');
+      if (countEl && window.StudyGuruProgress) {
+        const count = window.StudyGuruProgress.answeredThisWeek();
+        countEl.textContent = count.toLocaleString();
+        
+        // Add animation class on update
+        countEl.classList.remove('updated');
+        void countEl.offsetWidth; // Trigger reflow
+        countEl.classList.add('updated');
       }
     }
 
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', loadCategories);
+    // Update on page load
+    document.addEventListener('DOMContentLoaded', updateWeeklyCount);
+
+    // Listen for storage events (updates from other tabs)
+    window.addEventListener('storage', function(e) {
+      // Check if it's one of our keys
+      if (e.key && e.key.startsWith('sg:v1:')) {
+        console.log('[Home] Storage event detected, updating weekly count');
+        updateWeeklyCount();
+      }
+    });
+
+    // Also update when page becomes visible (in case user answered in another tab)
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'visible') {
+        updateWeeklyCount();
+      }
+    });
+
+    // Offline indicator
+    function updateOfflineIndicator() {
+      const indicator = document.getElementById('offlineIndicator');
+      if (navigator.onLine) {
+        indicator.classList.add('hidden');
+      } else {
+        indicator.classList.remove('hidden');
+      }
+    }
+
+    window.addEventListener('online', updateOfflineIndicator);
+    window.addEventListener('offline', updateOfflineIndicator);
+    updateOfflineIndicator();
   </script>
 </body>
 </html>
