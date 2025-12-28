@@ -26,6 +26,71 @@
   font-weight: 600;
 }
 
+/* ---- Weekly Progress Widget ---- */
+.weekly-progress-widget {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px auto 0;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(47, 97, 243, 0.2);
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(47, 97, 243, 0.1);
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.weekly-progress-widget .progress-icon {
+  font-size: 18px;
+}
+
+.weekly-progress-widget .progress-label {
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.weekly-progress-widget .progress-value {
+  font-weight: 800;
+  font-size: 18px;
+  color: #2f61f3;
+  min-width: 24px;
+  text-align: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Animation when count updates */
+.weekly-progress-widget .progress-value.updated {
+  animation: countPulse 0.4s ease;
+}
+
+@keyframes countPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); color: #4caf50; }
+  100% { transform: scale(1); }
+}
+
+/* Offline indicator */
+.offline-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 10000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.offline-indicator.hidden {
+  display: none;
+}
+
 /* Quote container */
 .quote-container {
   margin: 14px auto 0;
@@ -180,5 +245,17 @@
   .category-card-content {
     /* 25% smaller than 220px -> 165px */
     min-height: 165px;
+  }
+
+  /* Responsive weekly progress widget */
+  .weekly-progress-widget {
+    flex-wrap: wrap;
+    padding: 8px 16px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .weekly-progress-widget .progress-value {
+    font-size: 16px;
   }
 }
