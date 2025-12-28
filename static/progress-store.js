@@ -4,6 +4,7 @@
    Device-only (no login) progress tracking that works offline.
    - Tracks questions answered this week
    - Tracks per-question attempt counts
+   - Tracks category performance (scores over time)
    - All data stored on-device only (localStorage)
    - Persists across sessions
    - Updates across tabs via storage event
@@ -16,6 +17,7 @@
   const PREFIX = 'sg:v1:';
   const ATTEMPTS_KEY = PREFIX + 'attemptsByQuestion';
   const DAILY_KEY = PREFIX + 'dailyAnsweredCounts';
+  const CATEGORY_PERF_KEY = PREFIX + 'categoryPerformance';
   
   // How many days of daily counts to keep
   const DAILY_RETENTION_DAYS = 21;
@@ -169,7 +171,124 @@
   }
 
   // ============================================================
-  // PUBLIC API
+  // CATEGORY PERFORMANCE FUNCTIONS
+  // ============================================================
+
+  /**
+   * Load category performance data from localStorage
+   * @returns {Object} Map of categoryName -> { scores: number[] }
+   */
+  function loadCategoryPerformance() {
+    return safeJsonParse(localStorage.getItem(CATEGORY_PERF_KEY), {});
+  }
+
+  /**
+   * Save category performance data to localStorage
+   * @param {Object} data - Map of categoryName -> { scores: number[] }
+   */
+  function saveCategoryPerformance(data) {
+    try {
+      localStorage.setItem(CATEGORY_PERF_KEY, JSON.stringify(data));
+    } catch (e) {
+      console.error('[ProgressStore] Failed to save category performance:', e);
+    }
+  }
+
+  /**
+   * Record a quiz score for a specific category
+   * @param {string} categoryName - The NCLEX category name
+   * @param {number} percentage - The score as a percentage (0-100)
+   */
+  function recordCategoryScore(categoryName, percentage) {
+    if (!categoryName) {
+      console.warn('[ProgressStore] recordCategoryScore called without categoryName');
+      return;
+    }
+
+    const perfData = loadCategoryPerformance();
+    
+    if (!perfData[categoryName]) {
+      perfData[categoryName] = { scores: [] };
+    }
+    
+    // Add the new score
+    perfData[categoryName].scores.push(Math.round(percentage));
+    
+    // Keep only last 50 scores per category to prevent unlimited growth
+    if (perfData[categoryName].scores.length > 50) {
+      perfData[categoryName].scores = perfData[categoryName].scores.slice(-50);
+    }
+    
+    saveCategoryPerformance(perfData);
+    
+    console.log(`[ProgressStore] Recorded ${categoryName} score: ${percentage}%. Average now: ${getCategoryAverage(categoryName)}%`);
+  }
+
+  /**
+   * Get the average score for a specific category
+   * @param {string} categoryName - The NCLEX category name
+   * @returns {number|null} Average percentage or null if no data
+   */
+  function getCategoryAverage(categoryName) {
+    if (!categoryName) return null;
+    
+    const perfData = loadCategoryPerformance();
+    const catData = perfData[categoryName];
+    
+    if (!catData || !catData.scores || catData.scores.length === 0) {
+      return null;
+    }
+    
+    const sum = catData.scores.reduce((a, b) => a + b, 0);
+    return Math.round(sum / catData.scores.length);
+  }
+
+  /**
+   * Get average scores for all categories
+   * @returns {Object} Map of categoryName -> average percentage (or null if no data)
+   */
+  function getAllCategoryAverages() {
+    const perfData = loadCategoryPerformance();
+    const averages = {};
+    
+    for (const [categoryName, catData] of Object.entries(perfData)) {
+      if (catData.scores && catData.scores.length > 0) {
+        const sum = catData.scores.reduce((a, b) => a + b, 0);
+        averages[categoryName] = Math.round(sum / catData.scores.length);
+      }
+    }
+    
+    return averages;
+  }
+
+  /**
+   * Get the number of quiz attempts for a category
+   * @param {string} categoryName - The NCLEX category name
+   * @returns {number} Number of recorded scores
+   */
+  function getCategoryAttemptCount(categoryName) {
+    if (!categoryName) return 0;
+    
+    const perfData = loadCategoryPerformance();
+    const catData = perfData[categoryName];
+    
+    return catData?.scores?.length || 0;
+  }
+
+  /**
+   * Clear all category performance data
+   */
+  function clearCategoryPerformance() {
+    try {
+      localStorage.removeItem(CATEGORY_PERF_KEY);
+      console.log('[ProgressStore] Category performance data cleared');
+    } catch (e) {
+      console.error('[ProgressStore] Failed to clear category performance:', e);
+    }
+  }
+
+  // ============================================================
+  // PUBLIC API - QUESTION TRACKING
   // ============================================================
 
   /**
@@ -277,6 +396,7 @@
     try {
       localStorage.removeItem(ATTEMPTS_KEY);
       localStorage.removeItem(DAILY_KEY);
+      localStorage.removeItem(CATEGORY_PERF_KEY);
       console.log('[ProgressStore] All progress data cleared');
     } catch (e) {
       console.error('[ProgressStore] Failed to clear data:', e);
@@ -302,6 +422,7 @@
   // ============================================================
 
   window.StudyGuruProgress = {
+    // Question tracking
     recordAnswered,
     answeredThisWeek,
     answeredToday,
@@ -309,7 +430,17 @@
     getAttemptsMap,
     getDailyHistory,
     getStableId,
+    
+    // Category performance tracking
+    recordCategoryScore,
+    getCategoryAverage,
+    getAllCategoryAverages,
+    getCategoryAttemptCount,
+    clearCategoryPerformance,
+    
+    // Utility
     clearAll,
+    
     // Constants for external reference
     PREFIX: PREFIX
   };
