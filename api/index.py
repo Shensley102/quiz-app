@@ -278,14 +278,19 @@ def nclex_category_quiz(category_name):
             'questions': filtered_questions
         }
 
+        # Get parameters from URL
+        quiz_length = request.args.get('quiz_length', 'full')
+        autostart = request.args.get('autostart', 'false').lower() == 'true'
+
         return render_template('quiz.html',
                                quiz_data=quiz_data,
                                module_name=f'NCLEX - {category_name}',
                                category='NCLEX',
                                back_url='/category/NCLEX',
                                back_label='NCLEX Comprehensive System',
-                               autostart=False,
-                               is_category_quiz=True)
+                               autostart=autostart,
+                               is_category_quiz=True,
+                               quiz_length=quiz_length)
     except Exception as e:
         print(f"Error in nclex_category_quiz route: {e}")
         import traceback
