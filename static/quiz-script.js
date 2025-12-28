@@ -265,6 +265,7 @@ let run = {
   isRetry: false,
   isComprehensive: false,
   isCategoryQuiz: false,
+  questionNumber: 0,  // Tracks total questions shown (keeps going up)
 };
 
 let lastQuizMissedQuestions = [];
@@ -299,6 +300,7 @@ function saveState() {
     answered: Array.from(run.answered.entries()),
     isComprehensive: run.isComprehensive,
     isCategoryQuiz: run.isCategoryQuiz,
+    questionNumber: run.questionNumber,
     savedAt: Date.now()
   };
   
@@ -377,6 +379,9 @@ function renderQuestion(q) {
   
   run.current = q;
   
+  // Increment question number each time a new question is shown
+  run.questionNumber++;
+  
   // Update question text.  Use getQuestionContent() to support NCLEX
   // questions which may define their prompt under keys such as `stem` or
   // `prompt` instead of the `question`/`text` fields. This fallback
@@ -396,6 +401,7 @@ function renderQuestion(q) {
   if (form) {
     form.classList.toggle('is-multi-select', isMultiSelect);
     form.classList.toggle('is-single-select', !isMultiSelect);
+    form.classList.remove('has-selection');
   }
   
   if (form) {
@@ -528,10 +534,16 @@ function scrollToBottomSmooth() {
 function updateCounters() {
   const remaining = getNotMastered().length;
   const total = run.masterPool.length;
-  const answered = run.answered.size;
   
-  if (runCounter) runCounter.textContent = answered;
-  if (remainingCounter) remainingCounter.textContent = remaining;
+  // Update Question # counter (keeps going up with each question shown)
+  if (runCounter) {
+    runCounter.textContent = `Question ${run.questionNumber}:`;
+  }
+  
+  // Update Questions Remaining counter (only decreases when answered correctly)
+  if (remainingCounter) {
+    remainingCounter.textContent = `Questions Remaining: ${remaining}`;
+  }
   
   if (countersBox) {
     countersBox.classList.toggle('hidden', total === 0);
@@ -615,6 +627,8 @@ function handleSubmit() {
   setActionState('next');
 
   scrollToBottomSmooth();
+  
+  // Update counters after answering (remaining will decrease if correct)
   updateCounters();
 }
 
@@ -759,6 +773,7 @@ function startRetryQuiz(questions) {
   run.queue = shuffleArray([...run.masterPool]);
   run.answered = new Map();
   run.current = null;
+  run.questionNumber = 0;  // Reset question counter for retry
   
   if (summary) summary.classList.add('hidden');
   if (quiz) quiz.classList.remove('hidden');
@@ -781,6 +796,7 @@ function startQuiz(moduleName, questions, quizLength, isComprehensive = false, i
   run.isRetry = false;
   run.isComprehensive = isComprehensive;
   run.isCategoryQuiz = isCategoryQuiz;
+  run.questionNumber = 0;  // Reset question counter
   
   // Prepare questions
   let pool = questions.map((q, i) => ({
@@ -823,6 +839,7 @@ function resumeQuiz(state) {
   run.answered = new Map(state.answered);
   run.isComprehensive = state.isComprehensive || false;
   run.isCategoryQuiz = state.isCategoryQuiz || false;
+  run.questionNumber = state.questionNumber || 0;  // Restore question counter
   run.isRetry = false;
   run.current = null;
   
