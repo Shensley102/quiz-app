@@ -662,6 +662,15 @@ function handleSubmit() {
     category: q.category || ''
   });
   
+  // ========== PROGRESS TRACKING ==========
+  // Record this answer in the progress store for weekly tracking
+  if (window.StudyGuruProgress) {
+    // Get stable ID: prefer stable_id, then id, then fallback to module::index
+    const stableId = window.StudyGuruProgress.getStableId(q, run.moduleName, q.id);
+    window.StudyGuruProgress.recordAnswered(stableId);
+  }
+  // ========== END PROGRESS TRACKING ==========
+  
   // If incorrect, add to missed queue (will be re-queued when threshold hit)
   if (!isCorrect) {
     // Only add if not already in missed queue
