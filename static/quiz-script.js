@@ -12,6 +12,7 @@
    - Retry missed questions feature
    - NCLEX Comprehensive weighted quiz support
    - NCLEX Performance Stats tracking
+   - First-try accuracy scoring (re-queued questions don't affect score)
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -650,6 +651,11 @@ function handleSubmit() {
   const existing = run.answered.get(q.id);
   const isFirstTry = !existing;
   
+  // Track first-try correctness - this value should NEVER change once set
+  // If this is first attempt, record whether it was correct
+  // If this is a retry, preserve the original first-try result
+  const firstTryCorrect = isFirstTry ? isCorrect : (existing?.firstTryCorrect || false);
+  
   run.answered.set(q.id, {
     id: q.id,
     question: q.question || q.text,
@@ -657,6 +663,7 @@ function handleSubmit() {
     correctAnswer: correctLetters,
     correct: isCorrect,
     firstTry: isFirstTry,
+    firstTryCorrect: firstTryCorrect,  // Was it correct on the FIRST attempt?
     options: normalizeOptions(q),
     rationale: q.rationale || '',
     category: q.category || ''
@@ -765,38 +772,52 @@ function finishQuiz() {
   if (progressBar) progressBar.classList.add('hidden');
   if (countersBox) countersBox.classList.add('hidden');
   
-  // Calculate stats
+  // Calculate stats based on FIRST-TRY accuracy
+  // Total questions = original quiz size (not number of first attempts)
+  const totalQuestions = run.quizLength || run.masterPool.length;
   let firstTryCorrect = 0;
-  let firstTryTotal = 0;
   const missed = [];
   const categoryResults = {};
   
+  // Count first-try correct for each question in the quiz
   run.masterPool.forEach(q => {
     const rec = run.answered.get(q.id);
-    if (rec && rec.firstTry) {
-      firstTryTotal++;
-      
-      // Track category results for comprehensive quizzes
-      if (run.isComprehensive && q.category) {
-        if (!categoryResults[q.category]) {
-          categoryResults[q.category] = { correct: 0, total: 0 };
-        }
-        categoryResults[q.category].total++;
-        
-        if (rec.correct) {
-          firstTryCorrect++;
-          categoryResults[q.category].correct++;
-        } else {
-          missed.push(rec);
+    const category = q.category || '';
+    
+    // Initialize category tracking
+    if (category) {
+      if (!categoryResults[category]) {
+        categoryResults[category] = { correct: 0, total: 0 };
+      }
+      categoryResults[category].total++;
+    }
+    
+    if (rec) {
+      // Check if correct on FIRST try (not eventual correctness)
+      if (rec.firstTryCorrect) {
+        firstTryCorrect++;
+        if (category) {
+          categoryResults[category].correct++;
         }
       } else {
-        if (rec.correct) firstTryCorrect++;
-        else missed.push(rec);
+        // Missed on first try - add to missed list
+        missed.push(rec);
       }
     }
   });
   
-  // Update NCLEX stats for comprehensive quizzes (not category quizzes)
+  // Save category scores to progress store (for both comprehensive AND category quizzes)
+  if (window.StudyGuruProgress && Object.keys(categoryResults).length > 0) {
+    for (const [category, result] of Object.entries(categoryResults)) {
+      if (result.total > 0) {
+        const catPct = Math.round((result.correct / result.total) * 100);
+        window.StudyGuruProgress.recordCategoryScore(category, catPct);
+      }
+    }
+    console.log('[Quiz] Category scores saved to progress store');
+  }
+  
+  // Update legacy NCLEX stats for comprehensive quizzes only
   if (shouldUpdateNclexStats() && Object.keys(categoryResults).length > 0) {
     updateNclexStats(categoryResults);
   }
@@ -807,24 +828,24 @@ function finishQuiz() {
     return q;
   }).filter(Boolean);
   
-  // Display summary
-  const pct = firstTryTotal > 0 ? Math.round((firstTryCorrect / firstTryTotal) * 100) : 0;
+  // Calculate percentage: first-try correct / total questions
+  const pct = totalQuestions > 0 ? Math.round((firstTryCorrect / totalQuestions) * 100) : 0;
   
   if (firstTrySummary) {
     firstTrySummary.innerHTML = `
       <div class="score-display">
         <div class="score-number">${pct}%</div>
-        <div class="score-details">${firstTryCorrect} / ${firstTryTotal} correct on first try</div>
+        <div class="score-details">${firstTryCorrect} / ${totalQuestions} correct on first try</div>
       </div>
     `;
     
-    // Add category breakdown for comprehensive quizzes
-    if (run.isComprehensive && Object.keys(categoryResults).length > 0) {
+    // Add category breakdown for quizzes with category data
+    if (Object.keys(categoryResults).length > 0) {
       let categoryHtml = '<div class="category-breakdown"><h3>Category Breakdown</h3><ul>';
       
       for (const [cat, result] of Object.entries(categoryResults)) {
         const catPct = result.total > 0 ? Math.round((result.correct / result.total) * 100) : 0;
-        const statusClass = catPct >= 80 ? 'good' : catPct >= 60 ? 'fair' : 'needs-work';
+        const statusClass = catPct >= 85 ? 'good' : catPct >= 77 ? 'fair' : 'needs-work';
         categoryHtml += `<li class="${statusClass}"><span class="cat-name">${cat}</span><span class="cat-score">${result.correct}/${result.total} (${catPct}%)</span></li>`;
       }
       
