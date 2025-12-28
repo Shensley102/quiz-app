@@ -1,19 +1,37 @@
 /* -----------------------------------------------------------
    Nurse Success Study Hub - Quiz Application
-   (UPDATED: auto-start when preloaded data is present + selection UX fixes)
+   (UPDATED: auto-start when preloaded data is present +
+    selection UX + hover + keyboard behavior)
    ----------------------------------------------------------- */
 
 /* ---------- Utilities ---------- */
 const $ = (id) => document.getElementById(id);
 const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+
 function isTextEditingTarget(el) {
   if (!el) return false;
   const tag = (el.tagName || '').toLowerCase();
   return tag === 'input' || tag === 'textarea' || el.isContentEditable;
 }
 
+function scrollToBottomSmooth() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
 /* ---------- Global State ---------- */
-const run = { pool: [], current: null, idx: 0, correct: 0, answered: new Map(), missed: [], history: [] };
+const run = {
+  pool: [],
+  current: null,
+  idx: 0,
+  correct: 0,
+  answered: new Map(),
+  missed: [],
+  history: [],
+  startedAt: null,
+};
+
+let allContent = []; // may not be used if preloaded
+let categoryModules = [];
 
 /* ---------- DOM ---------- */
 const launcher   = $('launcher');
@@ -33,6 +51,8 @@ const rationale   = $('rationale');
 const summary     = $('summary');
 const restartBtn  = $('restartBtn');
 const retryMissed = $('retryMissedBtn');
+
+const counterLabel = $('counterLabel');
 
 /* ---------- Helpers ---------- */
 function getQuestionContent(q) {
@@ -65,28 +85,46 @@ function getSelectedAnswers() {
 }
 
 function updateCounters() {
-  const total = run.pool.length;
-  const current = run.idx + 1;
-  $('counterLabel')?.textContent = `${current} / ${total}`;
+  if (counterLabel) {
+    const total = run.pool.length;
+    const current = clamp(run.idx + 1, 1, total);
+    counterLabel.textContent = `${current} / ${total}`;
+  }
 }
 
-/* ---------- QUIZ INIT + AUTO-START ---------- */
+/* ---------- AUTO-START / LAUNCHER ---------- */
 async function initModules() {
+  // Check for preloaded quiz data (injected by template)
   const raw = window.preloadedQuizData;
-  const preloaded = Array.isArray(raw) ? raw : (raw?.questions || null);
+  const preloadedQuestions = Array.isArray(raw)
+    ? raw
+    : (raw && Array.isArray(raw.questions) ? raw.questions : null);
+
   const params = new URLSearchParams(window.location.search);
-  const urlLength = params.get('quiz_length');
-  const autostart  = params.get('autostart') === 'true';
+  const urlQuizLength = params.get('quiz_length');
+  const autoStartFlag = params.get('autostart') === 'true';
 
-  if (preloaded && preloaded.length) {
-    const moduleName = window.preloadedModuleName || raw.moduleName || 'Quiz';
-    const quizLen = window.quizLength || urlLength || 'full';
+  if (preloadedQuestions && preloadedQuestions.length) {
+    // Preloaded scenario
+    const moduleName =
+      window.preloadedModuleName ||
+      (raw && raw.moduleName) ||
+      '';
+    const quizLength =
+      window.quizLength ||
+      urlQuizLength ||
+      (raw && raw.quizLength) ||
+      'full';
 
-    if (autostart || urlLength) {
-      startQuiz(moduleName, preloaded, quizLen);
+    const shouldAutoStart = autoStartFlag || !!urlQuizLength;
+
+    // If auto-start (quiz_length in URL or autostart flag)
+    if (shouldAutoStart) {
+      startQuiz(moduleName, preloadedQuestions, quizLength);
       return;
     }
 
+    // Otherwise leave launcher visible and populate only this single module option
     if (moduleSel) {
       moduleSel.innerHTML = '';
       const opt = document.createElement('option');
@@ -99,16 +137,17 @@ async function initModules() {
     if (startBtn) {
       startBtn.disabled = false;
       startBtn.addEventListener('click', () => {
-        startQuiz(moduleName, preloaded, quizLen);
+        startQuiz(moduleName, preloadedQuestions, quizLength);
       }, { once: true });
     }
     return;
   }
 
-  // otherwise show module selector
+  // No preloaded → show regular launcher
   if (moduleSel) {
     moduleSel.disabled = false;
   }
+  if (startBtn) startBtn.disabled = false;
 }
 
 /* ---------- START QUIZ ---------- */
@@ -125,15 +164,16 @@ function renderQuestion(q) {
   if (!q || !form) return;
 
   run.current = q;
-  qText.textContent = getQuestionContent(q);
+  qText.innerHTML = getQuestionContent(q);
 
   const opts = normalizeOptions(q);
-  const correct = normalizeAnswer(q);
-  const isMulti = correct.length > 1;
+  const correctAnswers = normalizeAnswer(q);
+  const isMultiSelect = correctAnswers.length > 1;
 
-  form.classList.toggle('is-multi-select', isMulti);
-  form.classList.toggle('is-single-select', !isMulti);
+  form.classList.toggle('is-multi-select', isMultiSelect);
+  form.classList.toggle('is-single-select', !isMultiSelect);
   form.classList.remove('has-selection');
+
   form.innerHTML = '';
 
   Object.entries(opts).forEach(([letter, text]) => {
@@ -141,7 +181,7 @@ function renderQuestion(q) {
     div.className = 'option';
 
     const input = document.createElement('input');
-    input.type = isMulti ? 'checkbox' : 'radio';
+    input.type = isMultiSelect ? 'checkbox' : 'radio';
     input.name = 'answer';
     input.id = `opt-${letter}`;
     input.value = letter;
@@ -150,17 +190,18 @@ function renderQuestion(q) {
     label.htmlFor = input.id;
     label.innerHTML = `<strong>${letter}.</strong> ${text}`;
 
-    const toggle = (e) => {
-      if (submitBtn.dataset.mode !== 'submit') return;
+    const toggleSelection = (e) => {
+      if (submitBtn && submitBtn.dataset.mode !== 'submit') return;
       if (input.disabled) return;
       e.preventDefault();
       input.checked = !input.checked;
       onSelectionChanged();
-      try { input.focus({ preventScroll: true }); } catch { input.focus(); }
+      try { input.focus({ preventScroll: true }); }
+      catch { input.focus(); }
     };
 
-    label.addEventListener('click', toggle);
-    div.addEventListener('click', toggle);
+    div.addEventListener('click', toggleSelection);
+    label.addEventListener('click', toggleSelection);
     input.addEventListener('change', onSelectionChanged);
 
     div.appendChild(input);
@@ -173,13 +214,15 @@ function renderQuestion(q) {
   rationale.classList.add('hidden');
 
   onSelectionChanged();
+  setActionState('submit');
+  updateCounters();
 }
 
 /* ---------- SELECTION HANDLING ---------- */
 function onSelectionChanged() {
   if (!submitBtn) return;
   const selected = getSelectedAnswers();
-  submitBtn.disabled = !selected.length;
+  submitBtn.disabled = selected.length === 0;
 
   if (form.classList.contains('is-single-select')) {
     form.classList.toggle('has-selection', selected.length > 0);
@@ -188,23 +231,40 @@ function onSelectionChanged() {
   }
 }
 
-/* ---------- SUBMIT / NEXT ---------- */
+/* ---------- SUBMIT / NEXT HANDLING ---------- */
 function handleSubmit() {
   const q = run.current;
   if (!q) return;
 
-  const user = getSelectedAnswers();
-  const correct = normalizeAnswer(q);
+  const userLetters = getSelectedAnswers();
+  const correctLetters = normalizeAnswer(q);
 
-  const isCorrect = user.length === correct.length &&
-    user.every(l => correct.includes(l));
+  const isCorrect =
+    userLetters.length === correctLetters.length &&
+    userLetters.every(l => correctLetters.includes(l));
 
-  highlightAnswers(q, user);
-  showAnswerLine(q);
+  feedback.textContent = isCorrect ? 'Correct!' : 'Incorrect';
+  feedback.classList.remove('hidden');
+  feedback.classList.toggle('ok', isCorrect);
+  feedback.classList.toggle('bad', !isCorrect);
+
+  highlightAnswers(q, userLetters);
+
+  answerLine.innerHTML = `<strong>Correct Answer:</strong> ${correctLetters.join(', ')}`;
+  answerLine.classList.remove('hidden');
+
+  if (rationale) {
+    rationale.textContent = q.rationale || '';
+    rationale.classList.remove('hidden');
+  }
 
   form.querySelectorAll('input').forEach(i => i.disabled = true);
-  submitBtn.textContent = 'Next →';
-  submitBtn.dataset.mode = 'next';
+
+  setActionState('next');
+
+  run.history.push({ q, userLetters, correctLetters, isCorrect });
+
+  scrollToBottomSmooth();
 }
 
 function handleNext() {
@@ -213,60 +273,70 @@ function handleNext() {
     endQuiz();
   } else {
     showQuestionAt(run.idx);
-    submitBtn.dataset.mode = 'submit';
-    submitBtn.textContent = 'Submit';
   }
 }
 
 function showQuestionAt(idx) {
   const q = run.pool[idx];
+  if (!q) {
+    endQuiz();
+    return;
+  }
   renderQuestion(q);
-  updateCounters();
 }
 
 function endQuiz() {
-  quiz.classList.add('hidden');
-  summary.classList.remove('hidden');
+  if (quiz) quiz.classList.add('hidden');
+  if (summary) summary.classList.remove('hidden');
 }
 
-/* ---------- VISUAL ANSWER STYLING ---------- */
-function highlightAnswers(q, user) {
+/* ---------- ANSWER HIGHLIGHTING ---------- */
+function highlightAnswers(q, userLetters) {
   form.querySelectorAll('.option').forEach(div => {
     const input = div.querySelector('input');
     const letter = input.value.toUpperCase();
     div.classList.remove('correct','incorrect','missed');
 
     const correctLetters = normalizeAnswer(q);
-    if (correctLetters.includes(letter) && user.includes(letter)) div.classList.add('correct');
-    else if (!correctLetters.includes(letter) && user.includes(letter)) div.classList.add('incorrect');
-    else if (correctLetters.includes(letter) && !user.includes(letter)) div.classList.add('missed');
+
+    if (correctLetters.includes(letter) && userLetters.includes(letter)) {
+      div.classList.add('correct');
+    } else if (!correctLetters.includes(letter) && userLetters.includes(letter)) {
+      div.classList.add('incorrect');
+    } else if (correctLetters.includes(letter) && !userLetters.includes(letter)) {
+      div.classList.add('missed');
+    }
   });
 }
 
-function showAnswerLine(q) {
-  const correct = normalizeAnswer(q).join(', ');
-  answerLine.textContent = `Correct Answer: ${correct}`;
-  answerLine.classList.remove('hidden');
+/* ---------- BUTTON STATE ---------- */
+function setActionState(mode) {
+  if (!submitBtn) return;
+  if (mode === 'submit') {
+    submitBtn.textContent = 'Submit';
+    submitBtn.dataset.mode = 'submit';
+    submitBtn.disabled = true;
+  } else {
+    submitBtn.textContent = 'Next →';
+    submitBtn.dataset.mode = 'next';
+    submitBtn.disabled = false;
+  }
 }
 
-/* ---------- EVENT LISTENERS ---------- */
-submitBtn?.addEventListener('click', () => {
-  submitBtn.dataset.mode === 'submit' ? handleSubmit() : handleNext();
-});
-
+/* ---------- KEYBOARD SUPPORT ---------- */
 document.addEventListener('keydown', (e) => {
-  if (quiz.classList.contains('hidden')) return;
+  if (!quiz || quiz.classList.contains('hidden')) return;
   if (isTextEditingTarget(e.target)) return;
 
-  if (e.key === 'Enter' && !submitBtn.disabled) {
+  if (e.key === 'Enter') {
     e.preventDefault();
-    submitBtn.click();
+    if (submitBtn && !submitBtn.disabled) submitBtn.click();
     return;
   }
 
-  const letterKey = e.key && /^[A-Z]$/i.test(e.key) && e.key.toUpperCase();
-  if (letterKey && submitBtn.dataset.mode === 'submit') {
-    const input = document.getElementById(`opt-${letterKey}`);
+  const char = /^[A-Z]$/i.test(e.key) && e.key.toUpperCase();
+  if (char && submitBtn && submitBtn.dataset.mode === 'submit') {
+    const input = document.getElementById(`opt-${char}`);
     if (input && !input.disabled) {
       input.checked = !input.checked;
       onSelectionChanged();
@@ -274,5 +344,5 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-/* ---------- INIT ---------- */
+/* ---------- STARTUP ---------- */
 window.addEventListener('load', () => initModules());
