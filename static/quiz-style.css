@@ -311,8 +311,8 @@
   transform: none;
 }
 
-/* Submit Button */
-.submit-btn {
+/* Submit/Next Button - Target .btn.primary from base styles */
+.btn.primary {
   display: block;
   width: 100%;
   padding: 14px 24px;
@@ -327,19 +327,19 @@
   font-family: inherit;
 }
 
-.submit-btn[data-mode="next"] {
+.btn.primary[data-mode="next"] {
   background: #2f61f3;
 }
 
-.submit-btn[data-mode="next"]:hover:not(:disabled) {
+.btn.primary[data-mode="next"]:hover:not(:disabled) {
   background: #1e3aa8;
 }
 
-.submit-btn:hover:not(:disabled) {
+.btn.primary:hover:not(:disabled) {
   background: #4cae4c;
 }
 
-.submit-btn:disabled {
+.btn.primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -347,7 +347,7 @@
 /* Feedback Indicator */
 .feedback {
   display: block;
-  width: 100%;
+  width: 25%;
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 13px;
@@ -557,7 +557,7 @@
     border-bottom: 2px solid var(--border);
   }
 
-  .submit-btn {
+  .btn.primary {
     width: 100%;
   }
 
@@ -581,7 +581,7 @@
     padding: 16px;
   }
 
-  .submit-btn {
+  .btn.primary {
     width: 100%;
     font-size: 14px;
     padding: 12px 16px;
