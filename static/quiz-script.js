@@ -12,10 +12,10 @@
    - Resume quiz support
    
    PATCH NOTES:
-   - Fixed progress store API compatibility (answeredThisWeek, clearAll)
-   - Added preloaded quiz data support for NCLEX pages
-   - Added NCLEX weighted question selection
-   - Retry runs don't increment weekly count
+   - Fixed field names: stem, options, correct (NCLEX format)
+   - Fixed HTML structure: .opt wrapper with .k and .ans spans
+   - Fixed correct answer detection for ["C"] letter format
+   - Matches existing CSS styling in style.css
 ------------------------------------------------------------ */
 
 (function () {
@@ -34,6 +34,9 @@
     'Reduction of Risk Potential': 0.12,
     'Physiological Adaptation': 0.14
   };
+
+  // Letter labels for options
+  const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
   // -----------------------------------------------------------
   // State
@@ -72,6 +75,99 @@
 
   function getProgressStore() {
     return window.StudyGuruProgress || null;
+  }
+
+  // -----------------------------------------------------------
+  // Question Field Helpers
+  // -----------------------------------------------------------
+  
+  // Get question text (handles multiple field names)
+  function getQuestionText(q) {
+    return q.stem || q.question || q.prompt || q.text || q.content || '(No question text)';
+  }
+
+  // Get choices array (handles multiple field names)
+  function getChoices(q) {
+    return q.options || q.choices || q.answers || [];
+  }
+
+  // Get correct answer index from question
+  // Handles: ["C"], "C", 2, "Answer text"
+  function getCorrectIndex(q) {
+    const choices = getChoices(q);
+
+    // Check for choice object with correct: true
+    for (let i = 0; i < choices.length; i++) {
+      const c = choices[i];
+      if (typeof c === 'object' && c.correct === true) {
+        return i;
+      }
+    }
+
+    // Check correct field (NCLEX format: ["C"] or "C")
+    if (q.correct !== undefined) {
+      const correctVal = q.correct;
+
+      // Array of letters: ["C"]
+      if (Array.isArray(correctVal) && correctVal.length > 0) {
+        const letter = correctVal[0].toUpperCase();
+        return LETTERS.indexOf(letter);
+      }
+      
+      // Single letter: "C"
+      if (typeof correctVal === 'string' && correctVal.length === 1) {
+        return LETTERS.indexOf(correctVal.toUpperCase());
+      }
+      
+      // Number index
+      if (typeof correctVal === 'number') {
+        return correctVal;
+      }
+    }
+
+    // Check answer field
+    if (q.answer !== undefined) {
+      const answer = q.answer;
+
+      if (typeof answer === 'number') {
+        return answer;
+      }
+      
+      if (typeof answer === 'string' && answer.length === 1) {
+        return LETTERS.indexOf(answer.toUpperCase());
+      }
+    }
+
+    // Check correctAnswer field
+    if (q.correctAnswer !== undefined) {
+      const ca = q.correctAnswer;
+      if (typeof ca === 'number') return ca;
+      if (typeof ca === 'string' && ca.length === 1) {
+        return LETTERS.indexOf(ca.toUpperCase());
+      }
+    }
+
+    return -1;
+  }
+
+  // Check if selected answer is correct
+  function isCorrectAnswer(q, selectedOriginalIndex) {
+    const correctIdx = getCorrectIndex(q);
+    return correctIdx === selectedOriginalIndex;
+  }
+
+  // Get correct answer text for display
+  function getCorrectAnswerText(q) {
+    const choices = getChoices(q);
+    const correctIdx = getCorrectIndex(q);
+
+    if (correctIdx >= 0 && correctIdx < choices.length) {
+      const c = choices[correctIdx];
+      const text = typeof c === 'string' ? c : (c.text || c.label || String(c));
+      return `${LETTERS[correctIdx]}. ${text}`;
+    }
+
+    return '';
   }
 
   // -----------------------------------------------------------
@@ -168,7 +264,7 @@
   // -----------------------------------------------------------
   function ensureQuestionId(q, index) {
     if (!q.id) {
-      const base = (q.question || q.prompt || '').slice(0, 60);
+      const base = getQuestionText(q).slice(0, 60);
       let hash = 0;
       for (let i = 0; i < base.length; i++) {
         hash = ((hash << 5) - hash) + base.charCodeAt(i);
@@ -233,7 +329,6 @@
 
     let selected;
     if (opts.isRetry) {
-      // Retry: use questions as-is
       selected = shuffle(normalized);
     } else if (isComprehensive || isCategoryQuiz) {
       selected = selectQuestionsWithWeighting(normalized, requested, isComprehensive, isCategoryQuiz);
@@ -311,23 +406,18 @@
   function nextQuestion() {
     if (!run) return;
 
-    // Check if done
     if (run.queue.length === 0) {
       finishQuiz();
       return;
     }
 
-    // Get next question
     const q = run.queue.shift();
     run.current = q;
     run.answered = false;
     run.questionNumber++;
 
-    // Update UI
     updateProgress();
     renderQuestion(q);
-
-    // Save for resume
     saveResumeData();
   }
 
@@ -343,8 +433,12 @@
     if (els.remainingCounter) els.remainingCounter.textContent = `${remaining} remaining`;
   }
 
+  // -----------------------------------------------------------
+  // Render Question - FIXED HTML STRUCTURE
+  // Uses .opt wrapper, .k letter badge, .ans text span
+  // -----------------------------------------------------------
   function renderQuestion(q) {
-    // Clear previous
+    // Clear feedback
     if (els.feedback) {
       els.feedback.classList.add('hidden');
       els.feedback.textContent = '';
@@ -359,44 +453,72 @@
       els.answerLine.textContent = '';
     }
 
-    // Show question
+    // Show question text - NOW USING getQuestionText() which checks 'stem'
     if (els.questionText) {
-      els.questionText.textContent = q.question || q.prompt || q.text || '(No question text)';
+      els.questionText.textContent = getQuestionText(q);
     }
 
-    // Render options
+    // Render options with CORRECT HTML structure
     if (els.optionsForm) {
       els.optionsForm.innerHTML = '';
+      els.optionsForm.className = 'options';
 
-      const choices = q.choices || q.options || [];
-      const shuffledChoices = shuffle(choices.map((c, i) => ({
-        text: typeof c === 'string' ? c : (c.text || c.label || ''),
-        originalIndex: i,
-        correct: typeof c === 'object' ? c.correct : false
-      })));
+      const choices = getChoices(q);
+      
+      // Build choice objects with original indices
+      const choiceObjects = choices.map((c, i) => ({
+        text: typeof c === 'string' ? c : (c.text || c.label || String(c)),
+        originalIndex: i
+      }));
+      
+      // Shuffle choices
+      const shuffledChoices = shuffle(choiceObjects);
 
-      shuffledChoices.forEach((choice, idx) => {
-        const label = document.createElement('label');
-        label.className = 'option';
+      shuffledChoices.forEach((choice, displayIdx) => {
+        const displayLetter = LETTERS[displayIdx];
+        
+        // Create .opt wrapper div
+        const optDiv = document.createElement('div');
+        optDiv.className = 'opt';
+        optDiv.dataset.originalIndex = choice.originalIndex;
 
+        // Create hidden radio input
         const input = document.createElement('input');
         input.type = 'radio';
         input.name = 'answer';
-        input.value = idx;
+        input.id = `opt${displayIdx}`;
+        input.value = displayIdx;
         input.dataset.originalIndex = choice.originalIndex;
-        input.dataset.correct = choice.correct;
         input.dataset.text = choice.text;
 
-        const span = document.createElement('span');
-        span.textContent = choice.text;
+        // Create label
+        const label = document.createElement('label');
+        label.htmlFor = `opt${displayIdx}`;
 
-        label.appendChild(input);
-        label.appendChild(span);
-        els.optionsForm.appendChild(label);
+        // Create .k letter badge span
+        const letterSpan = document.createElement('span');
+        letterSpan.className = 'k';
+        letterSpan.textContent = displayLetter;
 
-        // Enable submit when an option is selected
+        // Create .ans answer text span
+        const ansSpan = document.createElement('span');
+        ansSpan.className = 'ans';
+        ansSpan.textContent = choice.text;
+
+        // Assemble: label contains letter badge + answer text
+        label.appendChild(letterSpan);
+        label.appendChild(ansSpan);
+        
+        // opt contains input + label
+        optDiv.appendChild(input);
+        optDiv.appendChild(label);
+        
+        els.optionsForm.appendChild(optDiv);
+
+        // Enable submit when selected + add has-selection class
         input.addEventListener('change', () => {
           if (els.submitBtn) els.submitBtn.disabled = false;
+          els.optionsForm.classList.add('has-selection');
         });
       });
     }
@@ -409,13 +531,15 @@
     }
   }
 
+  // -----------------------------------------------------------
+  // Handle Submit/Next
+  // -----------------------------------------------------------
   function handleSubmit() {
     if (!run || !run.current) return;
 
     const mode = els.submitBtn?.dataset.mode;
 
     if (mode === 'submit') {
-      // Submit answer
       const selected = els.optionsForm?.querySelector('input[name="answer"]:checked');
       if (!selected) return;
 
@@ -423,7 +547,8 @@
       run.totalAttempts++;
 
       const q = run.current;
-      const isCorrect = checkAnswer(selected, q);
+      const selectedOriginalIndex = parseInt(selected.dataset.originalIndex, 10);
+      const isCorrect = isCorrectAnswer(q, selectedOriginalIndex);
 
       // Record attempt
       let rec = run.perQuestion.find(p => p.id === q.id);
@@ -433,6 +558,10 @@
       }
       rec.attempts++;
 
+      // Get all .opt elements and correct index
+      const allOpts = els.optionsForm.querySelectorAll('.opt');
+      const correctIdx = getCorrectIndex(q);
+
       if (isCorrect) {
         if (rec.correct === null) {
           rec.correct = true;
@@ -440,6 +569,14 @@
         }
         run.mastered.add(q.id);
         showFeedback(true, q);
+
+        // Mark selected option as correct
+        allOpts.forEach(opt => {
+          const origIdx = parseInt(opt.dataset.originalIndex, 10);
+          if (origIdx === selectedOriginalIndex) {
+            opt.classList.add('correct-answer');
+          }
+        });
       } else {
         if (rec.correct === null) {
           rec.correct = false;
@@ -447,23 +584,33 @@
         }
         run.missedQueue.push(q);
 
-        // Requeue if threshold reached
         if (run.missedQueue.length >= run.requeueThreshold) {
           const batch = run.missedQueue.splice(0, run.requeueBatchSize);
           run.queue = batch.concat(run.queue);
         }
 
-        showFeedback(false, q, selected.dataset.text);
+        showFeedback(false, q);
+
+        // Mark selected as wrong, highlight correct
+        allOpts.forEach(opt => {
+          const origIdx = parseInt(opt.dataset.originalIndex, 10);
+          if (origIdx === selectedOriginalIndex) {
+            opt.classList.add('wrong-answer');
+          }
+          if (origIdx === correctIdx) {
+            opt.classList.add('correct-answer');
+          }
+        });
       }
 
       // Change button to Next
       if (els.submitBtn) {
-        els.submitBtn.textContent = 'Next Question';
+        els.submitBtn.textContent = 'Next →';
         els.submitBtn.dataset.mode = 'next';
         els.submitBtn.disabled = false;
       }
 
-      // Disable options
+      // Disable all inputs
       els.optionsForm?.querySelectorAll('input').forEach(inp => {
         inp.disabled = true;
       });
@@ -476,79 +623,33 @@
     }
   }
 
-  function checkAnswer(selectedInput, q) {
-    // Check if choice has correct property
-    if (selectedInput.dataset.correct === 'true') return true;
-
-    // Check against q.answer or q.correct
-    const answer = q.answer ?? q.correct ?? q.correctAnswer;
-    if (answer == null) return false;
-
-    const originalIndex = parseInt(selectedInput.dataset.originalIndex, 10);
-    const selectedText = selectedInput.dataset.text;
-
-    // If answer is a number (index)
-    if (typeof answer === 'number') {
-      return originalIndex === answer;
-    }
-
-    // If answer is a string
-    if (typeof answer === 'string') {
-      return selectedText.trim().toLowerCase() === answer.trim().toLowerCase();
-    }
-
-    return false;
-  }
-
-  function showFeedback(isCorrect, q, userAnswer = null) {
+  // -----------------------------------------------------------
+  // Show Feedback
+  // -----------------------------------------------------------
+  function showFeedback(isCorrect, q) {
     if (!els.feedback) return;
 
     els.feedback.classList.remove('hidden');
 
     if (isCorrect) {
-      els.feedback.className = 'feedback correct';
-      els.feedback.textContent = '✅ Correct!';
+      els.feedback.className = 'feedback ok';
+      els.feedback.textContent = 'Correct!';
     } else {
-      els.feedback.className = 'feedback incorrect';
-      const correctAnswer = getCorrectAnswerText(q);
-      els.feedback.textContent = `❌ Incorrect.`;
+      els.feedback.className = 'feedback bad';
+      els.feedback.textContent = 'Incorrect';
 
+      const correctAnswer = getCorrectAnswerText(q);
       if (els.answerLine && correctAnswer) {
         els.answerLine.classList.remove('hidden');
-        els.answerLine.textContent = `Correct answer: ${correctAnswer}`;
+        els.answerLine.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}`;
       }
     }
 
     // Show rationale if available
     if (els.rationale && q.rationale) {
       els.rationale.classList.remove('hidden');
-      els.rationale.textContent = q.rationale;
+      els.rationale.innerHTML = `<strong>Rationale:</strong> ${q.rationale}`;
     }
-  }
-
-  function getCorrectAnswerText(q) {
-    const choices = q.choices || q.options || [];
-    const answer = q.answer ?? q.correct ?? q.correctAnswer;
-
-    // Check for choice with correct: true
-    for (const c of choices) {
-      if (typeof c === 'object' && c.correct === true) {
-        return c.text || c.label || '';
-      }
-    }
-
-    // If answer is an index
-    if (typeof answer === 'number' && choices[answer]) {
-      const c = choices[answer];
-      return typeof c === 'string' ? c : (c.text || c.label || '');
-    }
-
-    // If answer is a string
-    if (typeof answer === 'string') {
-      return answer;
-    }
-
-    return '';
   }
 
   // -----------------------------------------------------------
@@ -556,19 +657,22 @@
   // -----------------------------------------------------------
   function finishQuiz() {
     console.log('[Quiz] Quiz complete');
-
     showView('summary');
 
     const total = run.quizLength;
     const correct = run.correctFirstTry;
     const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
 
-    // Summary text
+    // Determine color based on score
+    let scoreColor = '#f44336'; // Red < 60%
+    if (pct >= 77) scoreColor = '#4caf50'; // Green >= 77%
+    else if (pct >= 60) scoreColor = '#ff9800'; // Orange 60-76%
+
     if (els.firstTrySummary) {
       els.firstTrySummary.innerHTML = `
-        <div class="summary-stat">
-          <span class="stat-value">${correct}/${total}</span>
-          <span class="stat-label">Correct First Try (${pct}%)</span>
+        <div style="text-align: center;">
+          <div style="font-size: 3em; font-weight: 800; color: ${scoreColor};">${correct}/${total}</div>
+          <div style="font-size: 1.1em; color: #666; margin-top: 8px;">Correct First Try (${pct}%)</div>
         </div>
       `;
     }
@@ -591,10 +695,11 @@
         div.className = `review-item ${p.correct ? 'review-correct' : 'review-incorrect'}`;
 
         const correctAnswer = getCorrectAnswerText(q);
+        const questionText = getQuestionText(q);
 
         div.innerHTML = `
-          <div class="review-question">${p.correct ? '✅' : '❌'} ${q.question || q.prompt || ''}</div>
-          <div class="review-correct-answer"><strong>Answer:</strong> ${correctAnswer}</div>
+          <div class="review-question"><strong>${p.correct ? '✅' : '❌'}</strong> ${questionText}</div>
+          <div class="review-correct-answer"><strong>Correct Answer:</strong> ${correctAnswer}</div>
           ${q.rationale ? `<div class="review-rationale"><strong>Rationale:</strong> ${q.rationale}</div>` : ''}
         `;
 
@@ -617,19 +722,16 @@
     // Record to progress store
     const store = getProgressStore();
     if (store) {
-      // Only count non-retry quizzes toward weekly total
       if (!run.isRetry && store.recordCompletedQuiz) {
         store.recordCompletedQuiz(total);
         console.log(`[Quiz] Recorded ${total} questions to weekly count`);
       }
 
-      // Record attempts for least-asked tracking
       if (store.recordQuizAttempts) {
         const ids = run.perQuestion.map(p => p.id).filter(Boolean);
         store.recordQuizAttempts(ids);
       }
 
-      // Record category scores
       if (store.recordCategoryScore) {
         const categoryResults = {};
         run.perQuestion.forEach(p => {
@@ -657,7 +759,6 @@
 
   function saveResumeData() {
     if (!run) return;
-
     const data = {
       moduleName: state.moduleName,
       category: state.category,
@@ -679,7 +780,6 @@
         questionObj: p.questionObj
       }))
     };
-
     try {
       localStorage.setItem(RESUME_KEY, JSON.stringify(data));
     } catch (e) {
@@ -744,34 +844,28 @@
   // Event Setup
   // -----------------------------------------------------------
   function setupEvents() {
-    // Start button
     if (els.startBtn) {
       els.startBtn.addEventListener('click', startQuiz);
     }
 
-    // Resume button
     if (els.resumeBtn) {
       els.resumeBtn.addEventListener('click', resumeQuiz);
     }
 
-    // Submit/Next button
     if (els.submitBtn) {
       els.submitBtn.addEventListener('click', handleSubmit);
     }
 
-    // Retry missed button
     if (els.retryMissedBtn) {
       els.retryMissedBtn.addEventListener('click', startRetryQuiz);
     }
 
-    // Restart button
     if (els.restartBtnSummary) {
       els.restartBtnSummary.addEventListener('click', () => {
         showView('launcher');
       });
     }
 
-    // Length buttons
     if (els.lengthBtns) {
       els.lengthBtns.querySelectorAll('.seg-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -783,7 +877,6 @@
       });
     }
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && els.submitBtn && !els.submitBtn.disabled) {
         e.preventDefault();
@@ -801,7 +894,6 @@
     cacheElements();
     setupEvents();
 
-    // Load preloaded data
     if (window.preloadedQuizData && window.preloadedQuizData.questions) {
       const pd = window.preloadedQuizData;
 
@@ -812,7 +904,6 @@
       state.isCategoryQuiz = pd.isCategoryQuiz || false;
       state.autostart = pd.autostart || false;
 
-      // Parse quiz length
       const len = pd.quizLength;
       if (len === 'full' || !len) {
         state.quizLength = state.questions.length;
@@ -829,15 +920,12 @@
         quizLength: state.quizLength
       });
 
-      // Enable start button
       if (els.startBtn) els.startBtn.disabled = false;
 
-      // Hide module selector for preloaded quizzes
       if (els.moduleSel) els.moduleSel.style.display = 'none';
       const moduleLabel = els.launcher?.querySelector('label[for="moduleSel"]');
       if (moduleLabel) moduleLabel.style.display = 'none';
 
-      // Set active length button
       if (els.lengthBtns) {
         els.lengthBtns.querySelectorAll('.seg-btn').forEach(btn => {
           btn.classList.remove('active');
@@ -850,7 +938,6 @@
         });
       }
 
-      // Auto-start if requested
       if (state.autostart) {
         console.log('[Quiz] Auto-starting quiz...');
         setTimeout(startQuiz, 100);
@@ -858,14 +945,10 @@
       }
     }
 
-    // Check for resume
     checkResumeAvailable();
-
-    // Show launcher
     showView('launcher');
   }
 
-  // Start when DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
