@@ -139,20 +139,79 @@
             font-size: 0.9em;
             opacity: 0.9;
         }
-        .start-btn {
-            display: inline-block;
+
+        /* Comprehensive Quiz Controls */
+        .comprehensive-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            margin-top: 8px;
+        }
+
+        .comprehensive-length-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .comprehensive-length-selector label {
+            font-weight: 600;
+            color: white;
+            font-size: 0.95em;
+        }
+        .comprehensive-length-buttons {
+            display: flex;
+            gap: 0;
+        }
+        .comprehensive-length-btn {
+            padding: 10px 20px;
+            border: 2px solid rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-weight: 600;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .comprehensive-length-btn:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .comprehensive-length-btn:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        .comprehensive-length-btn:not(:last-child) {
+            border-right: none;
+        }
+        .comprehensive-length-btn:hover:not(.active) {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.6);
+        }
+        .comprehensive-length-btn.active {
             background: white;
             color: #006699;
-            padding: 14px 28px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05em;
-            transition: transform 0.2s, box-shadow 0.2s;
+            border-color: white;
         }
-        .start-btn:hover {
+
+        .start-comprehensive-btn {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .start-comprehensive-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
         }
 
         /* ============================================
@@ -393,6 +452,25 @@
             .start-category-btn {
                 width: 100%;
             }
+            .comprehensive-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+            .comprehensive-length-selector {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .comprehensive-length-buttons {
+                width: 100%;
+            }
+            .comprehensive-length-btn {
+                flex: 1;
+                padding: 12px 16px;
+            }
+            .start-comprehensive-btn {
+                width: 100%;
+            }
         }
 
         /* Reset button */
@@ -441,7 +519,7 @@
             </div>
 
             <div class="comprehensive-card">
-                <h3>Master the NCLEX Test Plan</h3>
+                <h3>Master the NCLEX</h3>
                 <p class="card-description">
                     Take a comprehensive quiz with questions distributed according to the official NCLEX-RN 
                     test plan percentages. Your performance is tracked across all 8 categories.
@@ -452,7 +530,22 @@
                        Pharmacological Therapies (16%), Physiological Adaptation (14%), Safety & Infection 
                        Control (13%), Reduction of Risk (12%), and more.</p>
                 </div>
-                <a href="/category/NCLEX/NCLEX_Comprehensive" class="start-btn">Start Comprehensive Quiz →</a>
+                
+                <!-- Quiz Controls -->
+                <div class="comprehensive-controls">
+                    <div class="comprehensive-length-selector">
+                        <label>Quiz Length:</label>
+                        <div class="comprehensive-length-buttons">
+                            <button class="comprehensive-length-btn" data-length="10">10</button>
+                            <button class="comprehensive-length-btn active" data-length="25">25</button>
+                            <button class="comprehensive-length-btn" data-length="50">50</button>
+                            <button class="comprehensive-length-btn" data-length="100">100</button>
+                        </div>
+                    </div>
+                    <button class="start-comprehensive-btn" id="startComprehensiveBtn">
+                        Start Comprehensive Quiz →
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -523,6 +616,30 @@
     <script src="{{ url_for('static', filename='js/pwa-utils.js') }}"></script>
 
     <script>
+        // ============================================
+        // Comprehensive Quiz Launcher
+        // ============================================
+        
+        let comprehensiveLength = 25;
+        
+        const comprehensiveLengthBtns = document.querySelectorAll('.comprehensive-length-btn');
+        const startComprehensiveBtn = document.getElementById('startComprehensiveBtn');
+        
+        // Comprehensive length button selection
+        comprehensiveLengthBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                comprehensiveLengthBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                comprehensiveLength = parseInt(btn.dataset.length, 10);
+            });
+        });
+        
+        // Start comprehensive quiz
+        startComprehensiveBtn.addEventListener('click', () => {
+            const url = `/quiz/NCLEX/NCLEX_Comprehensive_Master_Categorized?is_comprehensive=true&quiz_length=${comprehensiveLength}&autostart=true`;
+            window.location.href = url;
+        });
+
         // ============================================
         // Category Selection & Quiz Launcher
         // ============================================
