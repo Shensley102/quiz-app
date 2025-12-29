@@ -292,9 +292,31 @@
   // ============================================================
 
   /**
-   * Record that a question was answered
-   * - Increments attemptsByQuestion[stableId]
-   * - Increments dailyAnsweredCounts[today]
+   * Record a completed quiz - adds quiz length to daily/weekly count
+   * Called once when a quiz is finished, not per-answer
+   * @param {number} questionCount - Number of questions in the completed quiz
+   */
+  function recordCompletedQuiz(questionCount) {
+    if (!questionCount || questionCount <= 0) {
+      console.warn('[ProgressStore] recordCompletedQuiz called with invalid count');
+      return;
+    }
+
+    // Update daily count
+    const today = getTodayISO();
+    let dailyCounts = loadDailyCounts();
+    dailyCounts[today] = (dailyCounts[today] || 0) + questionCount;
+    
+    // Prune old entries
+    dailyCounts = pruneDailyCounts(dailyCounts);
+    saveDailyCounts(dailyCounts);
+
+    console.log(`[ProgressStore] Recorded ${questionCount} completed questions. Today total: ${dailyCounts[today]}`);
+  }
+
+  /**
+   * Record that a question was answered (DEPRECATED - use recordCompletedQuiz instead)
+   * Kept for backward compatibility but no longer called by quiz-script
    * @param {string} stableId - Stable identifier for the question
    */
   function recordAnswered(stableId) {
@@ -308,16 +330,8 @@
     attempts[stableId] = (attempts[stableId] || 0) + 1;
     saveAttempts(attempts);
 
-    // Update daily count
-    const today = getTodayISO();
-    let dailyCounts = loadDailyCounts();
-    dailyCounts[today] = (dailyCounts[today] || 0) + 1;
-    
-    // Prune old entries
-    dailyCounts = pruneDailyCounts(dailyCounts);
-    saveDailyCounts(dailyCounts);
-
-    console.log(`[ProgressStore] Recorded answer for ${stableId}. Today: ${dailyCounts[today]}, Total attempts: ${attempts[stableId]}`);
+    // Note: No longer updating daily counts here - use recordCompletedQuiz instead
+    console.log(`[ProgressStore] Recorded attempt for ${stableId}. Total attempts: ${attempts[stableId]}`);
   }
 
   /**
@@ -423,7 +437,8 @@
 
   window.StudyGuruProgress = {
     // Question tracking
-    recordAnswered,
+    recordCompletedQuiz,
+    recordAnswered,  // Deprecated but kept for compatibility
     answeredThisWeek,
     answeredToday,
     getAttempts,
