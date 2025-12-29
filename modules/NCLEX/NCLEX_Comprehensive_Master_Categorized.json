@@ -8887,17 +8887,17 @@
     {
       "category": "Management of Care",
       "id": "Q546",
-      "stem": "A 64 year old client with amyotrophic lateral sclerosis (Lou Gehrig's disease) is admitted to the hospital because his condition is deteriorating. The client asks the nurse that he has a living will and wants everything possible done to extend his life. The client has a \"Do not order.\" Which is the most appropriate action?",
+      "stem": "A 51-year-old client with amyotrophic lateral sclerosis (Lou Gehrig's disease) is admitted to the hospital because their condition is deteriorating. The client tells the nurse that they want a do-not-resuscitate (DNR) order. What is the most appropriate action by the nurse?",
       "options": [
-        "The primary health care provider makes the final decision about a DNR request",
+        "The primary health care provider (PHCP) makes the final decision about a DNR request",
         "Consent must be obtained from the family",
-        "The DNR request should be discussed with the physician, who will write the order",
-        "Our consent is sufficient and this instruction will be honored by all practicing healthcare providers"
+        "The DNR request should be discussed with the PHCP, who will write the order",
+        "Oral consent is sufficient and this instruction will be honored by all practicing healthcare providers"
       ],
       "correct": [
         "C"
       ],
-      "rationale": "A client may request a DNR order after being given the appropriate information by the physician. However, it is a client's right to request a DNR order. This consent needs to be obtained from the client. The DNR order should be discussed with the physician, who will write the order. The client consents to the request which becomes part of the client's record. The client's wishes must be followed unless the provisions of a particular healthcare provider who will honor the client's wishes. Using informed consent to make initial care treatment will allow this client's wishes.",
+      "rationale": "A client may request a DNR order after being given the appropriate information by the physician. Therefore, if a client requests a DNR order the nurse should contact the primary health care provider so that the primary health care provider may discuss the request with the client. A DNR order should be written, not verbal. The pertinent agency and state guidelines must be followed with regard to when a verbal DNR order is acceptable.",
       "type": "single_select"
     },
     {
