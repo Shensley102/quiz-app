@@ -11280,7 +11280,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q680",
-      "stem": "A client has the following arterial blood gas (ABG) results: pH 7.51, Partial Pressure of Carbon Dioxide (PaCO2) 231 mm Hg (4.12 kPa), Partial Pressure of Oxygen (PaO2) 94 mm Hg (12.45 kPa), Bicarbonate (HCO3)- 24 mEq/L (24 mmol/L). Which acid-base disturbance does the nurse recognize in these results?",
+      "stem": "A client has the following arterial blood gas (ABG) results: pH 7.51, Partial Pressure of Carbon Dioxide (PaCO2) 31 mm Hg, Partial Pressure of Oxygen (PaO2) 94 mm Hg, Bicarbonate (HCO3) 24 mEq/L. Which acid-base disturbance does the nurse recognize in these results?",
       "options": [
         "Respiratory acidosis",
         "Metabolic acidosis",
@@ -11288,7 +11288,7 @@
         "Metabolic alkalosis"
       ],
       "correct": [
-        "A"
+        "C"
       ],
       "rationale": "The normal pH is 7.35 to 7.45. The normal Partial Pressure of Carbon Dioxide (PaCO2) is 35 to 45 mm Hg (4.66-5.98 kPa). Acidosis is defined as a pH of less than 7.35, alkalosis is defined as a pH greater than 7.45. In a respiratory condition, an opposite effect will be seen because the pH and the Partial Pressure of Carbon Dioxide (PaCO2) are both increased. Respiratory acidosis occurs when the Partial Pressure of Carbon Dioxide (PaCO2) is increased and the pH is decreased.",
       "type": "single_select",
