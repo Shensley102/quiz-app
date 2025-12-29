@@ -8375,22 +8375,6 @@
       "type": "single_select"
     },
     {
-      "category": "Reduction of Risk Potential",
-      "id": "Q513",
-      "stem": "A case manager is reviewing progress notes in a client's medical record. Which notation indicates the need for follow-up?",
-      "options": [
-        "No.",
-        "Client Condition",
-        "Notation",
-        "1. Client 1 Vision posture/spirit 1"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Cardiac arrest in the client is an unexpected and untoward outcome reporting follow-up because they could indicate the development of cardiovascular symptoms. A case manager is responsible for reviewing and analyzing the client's outcome related to the plan of care to ensure appropriate, safe and cost-effective service. This outcome needs follow-up because only could indicate the development. If the client develops a sudden change or abnormal outcome is noted, the case needs to be aware of the occurrence.",
-      "type": "single_select"
-    },
-    {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q514",
       "stem": "A client is receiving a client's record sees that the following medications are prescribed. Which medication should the nurse plan to administer first?",
