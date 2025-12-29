@@ -1,1478 +1,985 @@
 /* -----------------------------------------------------------
-   Nurse Success Study Hub - Quiz Application
-   - Complete quiz functionality with module selection
-   - Category-specific module filtering
-   - Keyboard shortcuts support
-   - Progress tracking and mastery system
-   - Detailed performance review
-   - LocalStorage persistence for resuming quizzes
-   - Resume only works with Full Module Question Bank
-   - Shows remaining questions count on resume button
-   - Subcategory filtering for grouped modules
-   - Retry missed questions feature
-   - NCLEX Comprehensive weighted quiz support
-   - NCLEX Performance Stats tracking
-   - First-try accuracy scoring (re-queued questions don't affect score)
------------------------------------------------------------ */
+   Study Guru Quiz App (quiz-script.js)
+   - Category/module selection
+   - Quiz start, progress, mastery/requeue
+   - Weekly counter + least-asked
+   - Fishbone / fill-in-the-blank support
+   - Resume quiz support
 
-const $ = (id) => document.getElementById(id);
+   PATCH NOTE:
+   - Retry runs (run.isRetry === true) no longer increment weekly count.
+------------------------------------------------------------ */
 
-/*
- * Extract a human‑readable question prompt from a quiz object. The NCLEX data
- * sometimes uses different property names (e.g. `stem` or `prompt`) instead
- * of the `question` or `text` fields expected by the existing code. When
- * neither `question` nor `text` is present this helper iterates over a list of
- * potential keys and falls back to the first non‑empty string found.
- *
- * @param {Object} q The question object
- * @returns {String} A string representing the question text
- */
-function getQuestionContent(q) {
-  if (!q || typeof q !== 'object') return '';
-  // Preferred keys in order of precedence
-  const preferred = ['question', 'text', 'stem', 'prompt', 'description', 'question_text', 'title'];
-  for (const key of preferred) {
-    if (q[key]) return String(q[key]);
-  }
-  // Fallback: return the first non‑empty string property that isn't clearly an answer, options or metadata
-  const exclude = new Set(['answer', 'correct_answer', 'options', 'category', 'rationale', 'id']);
-  for (const [k, v] of Object.entries(q)) {
-    if (!exclude.has(k) && typeof v === 'string' && v.trim()) {
-      return v;
-    }
-  }
-  return '';
-}
+(function () {
+  'use strict';
 
-// ========== NCLEX CATEGORY WEIGHTS ==========
-// Official NCLEX-RN Test Plan category weights
-const NCLEX_CATEGORY_WEIGHTS = {
-  'Management of Care': 0.18,
-  'Safety and Infection Control': 0.13,
-  'Health Promotion and Maintenance': 0.09,
-  'Psychosocial Integrity': 0.09,
-  'Basic Care and Comfort': 0.09,
-  'Pharmacological and Parenteral Therapies': 0.16,
-  'Reduction of Risk Potential': 0.12,
-  'Physiological Adaptation': 0.14
-};
-
-// ========== WEIGHTED QUESTION SELECTION ==========
-
-/**
- * Select questions using weighted category distribution and least-asked priority
- * 
- * @param {Array} allQuestions - Full pool of questions with 'id' and 'category' properties
- * @param {number} quizLength - Desired number of questions
- * @param {boolean} isComprehensive - If true, apply NCLEX category weighting for 25/50/100
- * @param {boolean} isCategoryQuiz - If true, questions are already filtered to one category
- * @returns {Array} Selected questions
- */
-function selectQuestionsWithWeighting(allQuestions, quizLength, isComprehensive, isCategoryQuiz) {
-  console.log('[Quiz] selectQuestionsWithWeighting:', { 
-    totalQuestions: allQuestions.length, 
-    quizLength, 
-    isComprehensive, 
-    isCategoryQuiz 
-  });
-  
-  // Get attempt counts from progress store
-  const attemptsMap = window.StudyGuruProgress ? window.StudyGuruProgress.getAttemptsMap() : {};
-  
-  // Helper: Sort questions by attempts (least first), with random tiebreaker
-  function sortByLeastAttempts(questions) {
-    return [...questions].sort((a, b) => {
-      const attemptsA = attemptsMap[a.id] || 0;
-      const attemptsB = attemptsMap[b.id] || 0;
-      if (attemptsA !== attemptsB) return attemptsA - attemptsB;
-      return Math.random() - 0.5; // Random tiebreaker
-    });
-  }
-  
-  // Helper: Select with 1:1 ratio (half least-asked, half random)
-  function selectWithRatio(questions, count) {
-    if (count <= 0 || questions.length === 0) return [];
-    if (questions.length <= count) return shuffleArray([...questions]);
-    
-    const sorted = sortByLeastAttempts(questions);
-    const halfCount = Math.ceil(count / 2);
-    
-    // Take least-asked half
-    const leastAsked = sorted.slice(0, halfCount);
-    const leastAskedIds = new Set(leastAsked.map(q => q.id));
-    
-    // Get remaining questions for random selection
-    const remaining = questions.filter(q => !leastAskedIds.has(q.id));
-    const randomCount = count - leastAsked.length;
-    const randomPicks = shuffleArray(remaining).slice(0, randomCount);
-    
-    console.log(`[Quiz] Selected ${leastAsked.length} least-asked + ${randomPicks.length} random = ${leastAsked.length + randomPicks.length} total`);
-    
-    return shuffleArray([...leastAsked, ...randomPicks]);
-  }
-  
-  // ========== CASE 1: Category Quiz (single category, 1:1 ratio) ==========
-  if (isCategoryQuiz) {
-    console.log('[Quiz] Category quiz - using 1:1 ratio selection');
-    return selectWithRatio(allQuestions, quizLength);
-  }
-  
-  // ========== CASE 2: Comprehensive Quiz, 10 questions (100% least-asked, no weighting) ==========
-  if (isComprehensive && quizLength === 10) {
-    console.log('[Quiz] Comprehensive 10-question quiz - 100% least-asked, no weighting');
-    const sorted = sortByLeastAttempts(allQuestions);
-    return sorted.slice(0, 10);
-  }
-  
-  // ========== CASE 3: Comprehensive Quiz, 25/50/100 (weighted by category with 1:1 ratio) ==========
-  if (isComprehensive && (quizLength === 25 || quizLength === 50 || quizLength === 100)) {
-    console.log('[Quiz] Comprehensive weighted quiz - applying NCLEX category weights');
-    
-    // Group questions by category
-    const byCategory = {};
-    for (const cat of Object.keys(NCLEX_CATEGORY_WEIGHTS)) {
-      byCategory[cat] = allQuestions.filter(q => q.category === cat);
-    }
-    
-    // Calculate target count per category
-    const targetCounts = {};
-    let totalAllocated = 0;
-    
-    for (const [cat, weight] of Object.entries(NCLEX_CATEGORY_WEIGHTS)) {
-      const target = Math.round(quizLength * weight);
-      targetCounts[cat] = target;
-      totalAllocated += target;
-    }
-    
-    // Adjust for rounding errors (add/remove from largest category)
-    if (totalAllocated !== quizLength) {
-      const diff = quizLength - totalAllocated;
-      targetCounts['Management of Care'] += diff;
-    }
-    
-    console.log('[Quiz] Category targets:', targetCounts);
-    
-    // Select from each category with 1:1 ratio
-    const selected = [];
-    for (const [cat, target] of Object.entries(targetCounts)) {
-      const available = byCategory[cat] || [];
-      const actualTarget = Math.min(target, available.length);
-      
-      if (actualTarget > 0) {
-        const catSelection = selectWithRatio(available, actualTarget);
-        selected.push(...catSelection);
-        console.log(`[Quiz] ${cat}: ${catSelection.length}/${target} selected (${available.length} available)`);
-      }
-    }
-    
-    // If we're short on questions (some categories don't have enough), fill from any category
-    if (selected.length < quizLength) {
-      const selectedIds = new Set(selected.map(q => q.id));
-      const remaining = allQuestions.filter(q => !selectedIds.has(q.id));
-      const needed = quizLength - selected.length;
-      const additional = selectWithRatio(remaining, needed);
-      selected.push(...additional);
-      console.log(`[Quiz] Added ${additional.length} additional questions to reach target`);
-    }
-    
-    return shuffleArray(selected);
-  }
-  
-  // ========== CASE 4: Default (non-comprehensive or 'full' length) ==========
-  // Just shuffle and return all or slice to length
-  console.log('[Quiz] Default selection - shuffle and slice');
-  const shuffled = shuffleArray([...allQuestions]);
-  
-  if (quizLength && quizLength !== 'full' && !isNaN(parseInt(quizLength))) {
-    const len = parseInt(quizLength);
-    return shuffled.slice(0, Math.min(len, shuffled.length));
-  }
-  
-  return shuffled;
-}
-
-// ========== NCLEX PERFORMANCE STATS MODULE ==========
-
-const NCLEX_STATS_KEY = 'nclexPerformanceStats';
-
-/**
- * Load current NCLEX performance stats from localStorage
- * @returns {Object} Performance stats object or empty object if none exist
- */
-function loadNclexStats() {
-  try {
-    const raw = localStorage.getItem(NCLEX_STATS_KEY);
-    if (!raw) return {};
-    return JSON.parse(raw);
-  } catch (e) {
-    console.error('Error loading NCLEX stats:', e);
-    return {};
-  }
-}
-
-/**
- * Save NCLEX performance stats to localStorage
- * @param {Object} stats - Stats object to save
- */
-function saveNclexStats(stats) {
-  try {
-    localStorage.setItem(NCLEX_STATS_KEY, JSON.stringify(stats));
-  } catch (e) {
-    console.error('Error saving NCLEX stats:', e);
-  }
-}
-
-/**
- * Update NCLEX performance stats based on quiz results
- * Only called for COMPREHENSIVE quizzes, not category quizzes
- * @param {Object} categoryResults - Object with category scores
- * @returns {Object} Updated stats object
- */
-function updateNclexStats(categoryResults) {
-  // Load existing stats
-  const stats = loadNclexStats();
-  
-  // Update each category
-  for (const [category, result] of Object.entries(categoryResults)) {
-    if (!stats[category]) {
-      stats[category] = {
-        totalAnswered: 0,
-        totalCorrect: 0,
-        lastUpdated: null
-      };
-    }
-    
-    // Add to running totals
-    stats[category].totalAnswered += result.total;
-    stats[category].totalCorrect += result.correct;
-    stats[category].lastUpdated = new Date().toISOString();
-  }
-  
-  // Save updated stats
-  saveNclexStats(stats);
-  console.log('NCLEX stats updated:', stats);
-  
-  return stats;
-}
-
-/**
- * Clear all NCLEX performance stats (for testing or reset)
- */
-function clearNclexStats() {
-  try {
-    localStorage.removeItem(NCLEX_STATS_KEY);
-    console.log('NCLEX stats cleared');
-  } catch (e) {
-    console.error('Error clearing NCLEX stats:', e);
-  }
-}
-
-/**
- * Check if this quiz should update NCLEX stats
- * Only comprehensive quizzes (not category-specific) should update stats
- */
-function shouldUpdateNclexStats() {
-  // Check if this is the NCLEX comprehensive master quiz
-  const currentModule = run.moduleName || '';
-  return currentModule === 'NCLEX_Comprehensive_Master_Categorized' && 
-         run.isComprehensive === true && 
-         run.isCategoryQuiz !== true;
-}
-
-// ========== END NCLEX PERFORMANCE STATS MODULE ==========
-
-
-// Top info
-const runCounter       = $('runCounter');
-const remainingCounter = $('remainingCounter');
-const countersBox      = $('countersBox');
-
-// Progress bar
-const progressBar   = $('progressBar');
-const progressFill  = $('progressFill');
-const progressLabel = $('progressLabel');
-
-// Page title handling
-const pageTitle    = $('pageTitle');
-const defaultTitle = pageTitle?.textContent || 'Quiz - Nurse Success Study Hub';
-const setHeaderTitle = (t) => { if (pageTitle) pageTitle.textContent = t; };
-
-// Launcher
-const launcher   = $('launcher');
-const moduleSel  = $('moduleSel');
-const lengthBtns = $('lengthBtns');
-const startBtn   = $('startBtn');
-const resumeBtn  = $('resumeBtn');
-
-// Quiz UI
-const quiz         = $('quiz');
-const qText        = $('questionText');
-const form         = $('optionsForm');
-const submitBtn    = $('submitBtn');
-const feedback     = $('feedback');
-const answerLine   = $('answerLine');
-const rationaleBox = $('rationale');
-
-// Summary
-const summary          = $('summary');
-const firstTrySummary  = $('firstTrySummary');
-const reviewList       = $('reviewList');
-const restartBtn2      = $('restartBtnSummary');
-const resetAll         = $('resetAll');
-const retryMissedBtn   = $('retryMissedBtn');
-
-/* ---------- Pretty names for modules ---------- */
-function prettifyModuleName(name) {
-  const raw = String(name || '');
-
-  const normalized = raw
-    .replace(/moduele/gi, 'module')
-    .replace(/question(?:s)?[-_\s]?bank/gi, '')
-    .replace(/[-_]/g, ' ')
-    .replace(/\.json$/i, '')
-    .trim();
-
-  const titled = normalized
-    .split(/\s+/)
-    .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
-    .join(' ');
-
-  return titled
-    .replace(/\bNclex\b/gi, 'NCLEX')
-    .replace(/\bHesi\b/gi, 'HESI')
-    .replace(/\bCcrn\b/gi, 'CCRN')
-    .replace(/\bPccn\b/gi, 'PCCN')
-    .replace(/\bCmsrn\b/gi, 'CMSRN')
-    .replace(/\bRn\b/gi, 'RN')
-    .replace(/\bLpn\b/gi, 'LPN')
-    .replace(/\bIcu\b/gi, 'ICU')
-    .replace(/\bEr\b/gi, 'ER')
-    .replace(/\bEkg\b/gi, 'EKG')
-    .replace(/\bEcg\b/gi, 'ECG')
-    .replace(/\bIv\b/gi, 'IV')
-    .replace(/\bCpr\b/gi, 'CPR')
-    .replace(/\bBls\b/gi, 'BLS')
-    .replace(/\bAcls\b/gi, 'ACLS')
-    .replace(/\bPals\b/gi, 'PALS')
-    .replace(/\bAdn\b/gi, 'ADN')
-    .replace(/\bBsn\b/gi, 'BSN')
-    .replace(/\bMsn\b/gi, 'MSN')
-    .replace(/\bDnp\b/gi, 'DNP')
-    .replace(/\bPhd\b/gi, 'PhD')
-    .replace(/\bOb\b/gi, 'OB')
-    .replace(/\bGyn\b/gi, 'GYN')
-    .replace(/\bPt\b/gi, 'PT')
-    .replace(/\bOt\b/gi, 'OT')
-    .replace(/\bCna\b/gi, 'CNA')
-    .replace(/\bMa\b/gi, 'MA')
-    .replace(/\bLvn\b/gi, 'LVN')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-/* ---------- Module registry with paths ---------- */
-const MODULE_REGISTRY = {
-  // NCLEX Comprehensive (formerly HESI)
-  'NCLEX_Comprehensive_Master_Categorized': '/modules/NCLEX/NCLEX_Comprehensive_Master_Categorized.json',
-  
-  // Lab Values
-  'Lab_Values_Fishbone': '/modules/Lab_Values/Lab_Values_Fishbone.json',
-  'Lab_Values_Module': '/modules/Lab_Values/Lab_Values_Module.json',
-  
-  // Patient Care Management
-  'Patient_Care_Management_Learning_Questions_Module_1': '/modules/Patient_Care_Management/Patient_Care_Management_Learning_Questions_Module_1.json',
-  'Patient_Care_Management_Learning_Questions_Module_2': '/modules/Patient_Care_Management/Patient_Care_Management_Learning_Questions_Module_2.json',
-  'Patient_Care_Management_Learning_Questions_Module_3_4': '/modules/Patient_Care_Management/Patient_Care_Management_Learning_Questions_Module_3_4.json',
-  
-  // Pharmacology
-  'Pharmacology_Comprehensive': '/modules/Pharmacology/Pharmacology_Comprehensive.json',
-  'Pharmacology_Cardiac_Drugs': '/modules/Pharmacology/Pharmacology_Cardiac_Drugs.json',
-  'Pharmacology_Respiratory_Drugs': '/modules/Pharmacology/Pharmacology_Respiratory_Drugs.json',
-  'Pharmacology_GI_Drugs': '/modules/Pharmacology/Pharmacology_GI_Drugs.json',
-  'Pharmacology_Endocrine_Drugs': '/modules/Pharmacology/Pharmacology_Endocrine_Drugs.json',
-  'Pharmacology_Neuro_Drugs': '/modules/Pharmacology/Pharmacology_Neuro_Drugs.json',
-  'Pharmacology_Antibiotics': '/modules/Pharmacology/Pharmacology_Antibiotics.json',
-  'Pharmacology_Pain_Management': '/modules/Pharmacology/Pharmacology_Pain_Management.json',
-  'Pharmacology_Psych_Drugs': '/modules/Pharmacology/Pharmacology_Psych_Drugs.json',
-  'Pharmacology_Immune_Drugs': '/modules/Pharmacology/Pharmacology_Immune_Drugs.json',
-  'Pharmacology_Blood_Drugs': '/modules/Pharmacology/Pharmacology_Blood_Drugs.json',
-  
-  // Nursing Certifications
-  'CCRN_Module': '/modules/Nursing_Certifications/CCRN/CCRN_Module.json',
-  'PCCN_Module': '/modules/Nursing_Certifications/PCCN/PCCN_Module.json',
-  'CMSRN_Module': '/modules/Nursing_Certifications/CMSRN/CMSRN_Module.json',
-};
-
-/* ---------- State ---------- */
-let run = {
-  moduleName: '',
-  masterPool: [],
-  queue: [],
-  answered: new Map(),
-  current: null,
-  isRetry: false,
-  isComprehensive: false,
-  isCategoryQuiz: false,
-  questionNumber: 0,  // Tracks total questions shown (keeps going up)
-  quizLength: 0,      // Original quiz length for threshold calculation
-  missedQueue: [],    // Questions waiting to be re-queued when threshold hit
-};
-
-let lastQuizMissedQuestions = [];
-
-/**
- * Get the miss threshold percentage based on quiz length
- * @returns {number} Threshold as decimal (e.g., 0.15 for 15%)
- */
-function getMissThreshold() {
-  const len = run.quizLength;
-  if (len <= 10) return 0.20;      // 20% for 10 questions
-  if (len <= 50) return 0.15;      // 15% for 25-50 questions
-  return 0.10;                      // 10% for 100+ questions
-}
-
-/**
- * Get the number of missed questions needed to trigger re-queue
- * @returns {number} Number of missed questions that triggers re-queue
- */
-function getMissThresholdCount() {
-  const threshold = getMissThreshold();
-  return Math.ceil(run.quizLength * threshold);
-}
-
-/**
- * Check if missed threshold is reached and re-queue missed questions
- */
-function checkAndRequeueMissed() {
-  const thresholdCount = getMissThresholdCount();
-  
-  if (run.missedQueue.length >= thresholdCount) {
-    console.log(`[Quiz] Miss threshold reached (${run.missedQueue.length}/${thresholdCount}). Re-queuing missed questions.`);
-    
-    // Add all missed questions back to the front of the queue (shuffled)
-    const missedToRequeue = shuffleArray([...run.missedQueue]);
-    run.queue = [...missedToRequeue, ...run.queue];
-    
-    // Clear the missed queue
-    run.missedQueue = [];
-  }
-}
-
-/* ---------- Utility functions ---------- */
-function shuffleArray(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function getStorageKey(moduleName) {
-  return `quiz_state_${moduleName}`;
-}
-
-function clearSavedState() {
-  if (run.moduleName) {
-    localStorage.removeItem(getStorageKey(run.moduleName));
-  }
-}
-
-function saveState() {
-  if (!run.moduleName || run.queue.length === 0) return;
-  
+  // -----------------------------------------------------------
+  // Global / State
+  // -----------------------------------------------------------
   const state = {
-    moduleName: run.moduleName,
-    masterPool: run.masterPool,
-    queue: run.queue,
-    answered: Array.from(run.answered.entries()),
-    isComprehensive: run.isComprehensive,
-    isCategoryQuiz: run.isCategoryQuiz,
-    questionNumber: run.questionNumber,
-    quizLength: run.quizLength,
-    missedQueue: run.missedQueue,
-    savedAt: Date.now()
+    content: null,
+    categories: [],
+    selectedCategory: null,
+    selectedSubcategory: null,
+    selectedModuleKey: null,
+    selectedCount: 10,
+    mode: 'mcq', // 'mcq' | 'fill' | 'fishbone-mcq' | 'fishbone-fill'
+    quiz: null,
+    resumeAvailable: false
   };
-  
-  try {
-    localStorage.setItem(getStorageKey(run.moduleName), JSON.stringify(state));
-  } catch (e) {
-    console.error('Failed to save state:', e);
+
+  // "run" is the active quiz runtime object
+  let run = null;
+
+  // Elements cache
+  const els = {};
+
+  // -----------------------------------------------------------
+  // Utilities
+  // -----------------------------------------------------------
+  function $(sel) {
+    return document.querySelector(sel);
   }
-}
 
-function loadState(moduleName) {
-  try {
-    const raw = localStorage.getItem(getStorageKey(moduleName));
-    if (!raw) return null;
-    
-    const state = JSON.parse(raw);
-    
-    // Validate state
-    if (!state.masterPool || !state.queue || !state.answered) return null;
-    
-    return state;
-  } catch (e) {
-    console.error('Failed to load state:', e);
-    return null;
+  function $all(sel) {
+    return Array.from(document.querySelectorAll(sel));
   }
-}
 
-/* ---------- Question handling ---------- */
-function getNotMastered() {
-  return run.masterPool.filter(q => {
-    const rec = run.answered.get(q.id);
-    return !rec || !rec.correct;
-  });
-}
+  function clamp(n, min, max) {
+    return Math.max(min, Math.min(max, n));
+  }
 
-function pickNext() {
-  if (run.queue.length === 0) {
-    // First check if there are missed questions waiting
-    if (run.missedQueue.length > 0) {
-      console.log(`[Quiz] Queue empty, re-queuing ${run.missedQueue.length} missed questions.`);
-      run.queue = shuffleArray([...run.missedQueue]);
-      run.missedQueue = [];
-    } else {
-      // No missed queue, check for remaining unmastered questions
-      const remaining = getNotMastered();
-      if (remaining.length === 0) return null;
-      run.queue = shuffleArray(remaining);
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function safeJsonParse(str, fallback = null) {
+    try {
+      return JSON.parse(str);
+    } catch (e) {
+      return fallback;
     }
   }
-  return run.queue.shift();
-}
 
-function normalizeOptions(q) {
-  if (q.options && typeof q.options === 'object' && !Array.isArray(q.options)) {
-    // Already in {A: "...", B: "..."} format
-    return q.options;
+  function nowIso() {
+    return new Date().toISOString();
   }
-  
-  if (Array.isArray(q.options)) {
-    const opts = {};
-    q.options.forEach((opt, i) => {
-      opts[String.fromCharCode(65 + i)] = opt;
-    });
-    return opts;
-  }
-  
-  return {};
-}
 
-function normalizeAnswer(q) {
-  // NCLEX questions use 'correct' field; other formats use 'answer' or 'correct_answer'
-  // Check 'correct' first to handle NCLEX Comprehensive Master Categorized questions
-  let ans = q.correct || q.answer || q.correct_answer || '';
-  
-  if (Array.isArray(ans)) {
-    return ans.map(a => String(a).toUpperCase().trim());
+  function formatPct(n) {
+    if (!Number.isFinite(n)) return '0%';
+    return `${Math.round(n)}%`;
   }
-  
-  return [String(ans).toUpperCase().trim()];
-}
 
-function renderQuestion(q) {
-  if (!q) return;
-  
-  run.current = q;
-  
-  // Increment question number each time a new question is shown
-  run.questionNumber++;
-  
-  // Update question text.  Use getQuestionContent() to support NCLEX
-  // questions which may define their prompt under keys such as `stem` or
-  // `prompt` instead of the `question`/`text` fields. This fallback
-  // ensures that the question text is always visible instead of
-  // displaying a blank area with only answer options.
-  if (qText) {
-    const content = getQuestionContent(q);
-    qText.innerHTML = content || '';
+  // -----------------------------------------------------------
+  // Progress Store helpers (if present)
+  // -----------------------------------------------------------
+  function getProgressStore() {
+    return window.StudyGuruProgress || null;
   }
-  
-  // Build options
-  const opts = normalizeOptions(q);
-  const correctAnswers = normalizeAnswer(q);
-  const isMultiSelect = correctAnswers.length > 1;
-  
-  // Add class to track single vs multi-select for CSS hover behavior
-  if (form) {
-    form.classList.toggle('is-multi-select', isMultiSelect);
-    form.classList.toggle('is-single-select', !isMultiSelect);
-    form.classList.remove('has-selection');
+
+  // -----------------------------------------------------------
+  // Content Loading
+  // -----------------------------------------------------------
+  async function loadContent() {
+    const res = await fetch('/static/js/quiz-content.fixtures.json', { cache: 'no-store' });
+    if (!res.ok) {
+      throw new Error(`Failed to load quiz content fixtures. HTTP ${res.status}`);
+    }
+    const data = await res.json();
+    state.content = data;
+    state.categories = Object.keys(data.categories || {});
   }
-  
-  if (form) {
-    form.innerHTML = '';
-    
-    Object.entries(opts).forEach(([letter, text]) => {
-      const div = document.createElement('div');
-      div.className = 'option';
-      
-      const input = document.createElement('input');
-      input.type = isMultiSelect ? 'checkbox' : 'radio';
-      input.name = 'answer';
-      input.id = `opt-${letter}`;
-      input.value = letter;
-      
-      const label = document.createElement('label');
-      label.htmlFor = `opt-${letter}`;
-      label.innerHTML = `<strong>${letter}.</strong> ${text}`;
-      
-      div.appendChild(input);
-      div.appendChild(label);
-      form.appendChild(div);
-      
-      // Click handler for the div - only toggle when clicking div background
-      // Not when clicking input (native) or label (native triggers input)
-      div.addEventListener('click', (e) => {
-        if (e.target === div) {
-          input.checked = !input.checked;
-          onSelectionChanged();
-        }
+
+  // -----------------------------------------------------------
+  // UI Setup
+  // -----------------------------------------------------------
+  function cacheElements() {
+    els.app = $('#app');
+    els.categoryList = $('#categoryList');
+    els.subcategoryList = $('#subcategoryList');
+    els.moduleList = $('#moduleList');
+    els.quizControls = $('#quizControls');
+    els.countSelect = $('#countSelect');
+    els.modeSelect = $('#modeSelect');
+    els.startBtn = $('#startQuizBtn');
+    els.resumeBtn = $('#resumeQuizBtn');
+    els.resetBtn = $('#resetProgressBtn');
+
+    els.quizView = $('#quizView');
+    els.quizTitle = $('#quizTitle');
+    els.progressText = $('#progressText');
+    els.progressBarFill = $('#progressBarFill');
+
+    els.questionContainer = $('#questionContainer');
+    els.answerContainer = $('#answerContainer');
+
+    els.feedback = $('#feedback');
+    els.nextBtn = $('#nextBtn');
+    els.quitBtn = $('#quitBtn');
+    els.retryMissedBtn = $('#retryMissedBtn');
+
+    els.resultsView = $('#resultsView');
+    els.resultsSummary = $('#resultsSummary');
+    els.resultsDetails = $('#resultsDetails');
+    els.backHomeBtn = $('#backHomeBtn');
+
+    els.weeklyCount = $('#weeklyCount');
+    els.weeklyLabel = $('#weeklyLabel');
+
+    els.miniToast = $('#miniToast');
+  }
+
+  function showToast(msg) {
+    if (!els.miniToast) return;
+    els.miniToast.textContent = msg;
+    els.miniToast.classList.add('show');
+    setTimeout(() => els.miniToast.classList.remove('show'), 2200);
+  }
+
+  function setView(viewName) {
+    // views: home, quiz, results
+    const home = $('#homeView');
+    const quiz = els.quizView;
+    const results = els.resultsView;
+
+    if (home) home.style.display = viewName === 'home' ? 'block' : 'none';
+    if (quiz) quiz.style.display = viewName === 'quiz' ? 'block' : 'none';
+    if (results) results.style.display = viewName === 'results' ? 'block' : 'none';
+  }
+
+  function updateWeeklyUI() {
+    const store = getProgressStore();
+    if (!store || !els.weeklyCount) return;
+
+    const weekly = store.getWeeklyCount ? store.getWeeklyCount() : null;
+    if (weekly == null) return;
+
+    els.weeklyCount.textContent = weekly;
+    if (els.weeklyLabel) {
+      els.weeklyLabel.textContent = weekly === 1 ? 'question answered this week' : 'questions answered this week';
+    }
+  }
+
+  function updateCategoryList() {
+    if (!els.categoryList) return;
+    els.categoryList.innerHTML = '';
+
+    state.categories.forEach((cat) => {
+      const btn = document.createElement('button');
+      btn.className = 'pill';
+      btn.textContent = cat;
+      btn.addEventListener('click', () => {
+        state.selectedCategory = cat;
+        state.selectedSubcategory = null;
+        state.selectedModuleKey = null;
+        updateSubcategoryList();
+        updateModuleList();
+        updateControlsEnabled();
       });
-      
-      input.addEventListener('change', onSelectionChanged);
+      els.categoryList.appendChild(btn);
     });
   }
-  
-  // Reset UI
-  if (feedback) {
-    feedback.textContent = '';
-    feedback.classList.add('hidden');
-    feedback.classList.remove('ok', 'bad');
+
+  function getSubcategoriesForCategory(cat) {
+    if (!state.content || !state.content.categories) return [];
+    const c = state.content.categories[cat];
+    if (!c) return [];
+    const subcats = Object.keys(c.subcategories || {});
+    return subcats;
   }
-  
-  if (answerLine) {
-    answerLine.innerHTML = '';
-    answerLine.classList.add('hidden');
-  }
-  
-  if (rationaleBox) {
-    rationaleBox.textContent = '';
-    rationaleBox.classList.add('hidden');
-  }
-  
-  setActionState('submit');
-  updateCounters();
-  updateProgressBar();
-}
 
-function onSelectionChanged() {
-  if (!submitBtn) return;
-  
-  const selected = getSelectedAnswers();
-  submitBtn.disabled = selected.length === 0;
-}
+  function updateSubcategoryList() {
+    if (!els.subcategoryList) return;
+    els.subcategoryList.innerHTML = '';
 
-function getSelectedAnswers() {
-  if (!form) return [];
-  
-  const inputs = form.querySelectorAll('input:checked');
-  return Array.from(inputs).map(i => i.value.toUpperCase());
-}
+    if (!state.selectedCategory) return;
 
-function setActionState(mode) {
-  if (!submitBtn) return;
-  
-  if (mode === 'submit') {
-    submitBtn.textContent = 'Submit';
-    submitBtn.dataset.mode = 'submit';
-    submitBtn.disabled = true;
-  } else {
-    submitBtn.textContent = 'Next →';
-    submitBtn.dataset.mode = 'next';
-    submitBtn.disabled = false;
-  }
-}
-
-function formatCorrectAnswers(q) {
-  const opts = normalizeOptions(q);
-  const correct = normalizeAnswer(q);
-  
-  return correct.map(letter => {
-    const text = opts[letter] || '';
-    return `<strong>${letter}.</strong> ${text}`;
-  }).join('<br>');
-}
-
-function highlightAnswers(q, userLetters, isCorrect) {
-  if (!form) return;
-  
-  const correctLetters = normalizeAnswer(q);
-  
-  form.querySelectorAll('.option').forEach(div => {
-    const input = div.querySelector('input');
-    const label = div.querySelector('label');
-    if (!input || !label) return;
-    
-    const letter = input.value.toUpperCase();
-    const isUserSelected = userLetters.includes(letter);
-    const isCorrectAnswer = correctLetters.includes(letter);
-    
-    // Mark as answered (resets styling)
-    div.classList.add('answered');
-    
-    // Remove any existing result icons
-    const existingIcon = label.querySelector('.result-icon');
-    if (existingIcon) existingIcon.remove();
-    
-    // Create result icon span
-    const icon = document.createElement('span');
-    icon.className = 'result-icon';
-    
-    if (isCorrectAnswer) {
-      // Green checkmark for correct answers (whether user selected or not)
-      icon.classList.add('correct');
-      icon.textContent = '✓';
-      div.classList.add('show-correct');
-    } else if (isUserSelected) {
-      // Red X for incorrect answers user selected
-      icon.classList.add('incorrect');
-      icon.textContent = '✗';
-      div.classList.add('show-incorrect');
-    }
-    
-    // Insert icon at the beginning of the label (before the letter)
-    if (icon.textContent) {
-      label.insertBefore(icon, label.firstChild);
-    }
-  });
-}
-
-function scrollToBottomSmooth() {
-  setTimeout(() => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth'
+    const subs = getSubcategoriesForCategory(state.selectedCategory);
+    subs.forEach((sub) => {
+      const btn = document.createElement('button');
+      btn.className = 'pill';
+      btn.textContent = sub;
+      btn.addEventListener('click', () => {
+        state.selectedSubcategory = sub;
+        state.selectedModuleKey = null;
+        updateModuleList();
+        updateControlsEnabled();
+      });
+      els.subcategoryList.appendChild(btn);
     });
-  }, 100);
-}
-
-function updateCounters() {
-  const remaining = getNotMastered().length;
-  const total = run.masterPool.length;
-  
-  // Update Question # counter (keeps going up with each question shown)
-  if (runCounter) {
-    runCounter.textContent = `Question ${run.questionNumber}:`;
-  }
-  
-  // Update Questions Remaining counter (only decreases when answered correctly)
-  if (remainingCounter) {
-    remainingCounter.textContent = `Questions Remaining: ${remaining}`;
-  }
-  
-  if (countersBox) {
-    countersBox.classList.toggle('hidden', total === 0);
-  }
-}
-
-/* ---------- Submit / Next handling ---------- */
-if (submitBtn) {
-  submitBtn.addEventListener('click', () => {
-    const mode = submitBtn.dataset.mode;
-    
-    if (mode === 'submit') {
-      handleSubmit();
-    } else {
-      handleNext();
-    }
-  });
-}
-
-function handleSubmit() {
-  const q = run.current;
-  if (!q) return;
-  
-  const userLetters = getSelectedAnswers();
-  if (userLetters.length === 0) return;
-  
-  const correctLetters = normalizeAnswer(q);
-  
-  // Check if correct
-  const isCorrect = 
-    userLetters.length === correctLetters.length &&
-    userLetters.every(l => correctLetters.includes(l));
-  
-  // Record answer
-  const existing = run.answered.get(q.id);
-  const isFirstTry = !existing;
-  
-  // Track first-try correctness - this value should NEVER change once set
-  // If this is first attempt, record whether it was correct
-  // If this is a retry, preserve the original first-try result
-  const firstTryCorrect = isFirstTry ? isCorrect : (existing?.firstTryCorrect || false);
-  
-  run.answered.set(q.id, {
-    id: q.id,
-    question: getQuestionContent(q),
-    userAnswer: userLetters,
-    correctAnswer: correctLetters,
-    correct: isCorrect,
-    firstTry: isFirstTry,
-    firstTryCorrect: firstTryCorrect,  // Was it correct on the FIRST attempt?
-    options: normalizeOptions(q),
-    rationale: q.rationale || '',
-    category: q.category || ''
-  });
-  
-  // If incorrect, add to missed queue (will be re-queued when threshold hit)
-  if (!isCorrect) {
-    // Only add if not already in missed queue
-    if (!run.missedQueue.find(mq => mq.id === q.id)) {
-      run.missedQueue.push(q);
-    }
-    // Check if we need to re-queue missed questions
-    checkAndRequeueMissed();
-  }
-  
-  // Save state
-  saveState();
-  
-  // Update UI
-  if (feedback) {
-    feedback.textContent = isCorrect ? 'Correct!' : 'Incorrect';
-    feedback.classList.remove('ok','bad', 'hidden');
-    feedback.classList.add(isCorrect ? 'ok' : 'bad');
   }
 
-  // Mark that selection has been made (for single-select hover disabling)
-  if (form) form.classList.add('has-selection');
-
-  // Highlight correct and wrong answers in the options
-  highlightAnswers(q, userLetters, isCorrect);
-
-  // Always show the correct answer
-  if (answerLine) {
-    answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formatCorrectAnswers(q)}`;
-    answerLine.classList.remove('hidden');
-  }
-  
-  if (rationaleBox) {
-    rationaleBox.textContent = q.rationale || '';
-    rationaleBox.classList.remove('hidden');
+  function getModulesForSelection(cat, subcat) {
+    if (!state.content || !state.content.categories) return [];
+    const c = state.content.categories[cat];
+    if (!c) return [];
+    const s = (c.subcategories || {})[subcat];
+    if (!s) return [];
+    return Object.keys(s.modules || {});
   }
 
-  if (form) {
-    form.querySelectorAll('input').forEach(i => i.disabled = true);
-  }
-  
-  setActionState('next');
+  function updateModuleList() {
+    if (!els.moduleList) return;
+    els.moduleList.innerHTML = '';
 
-  scrollToBottomSmooth();
-  
-  // Update counters after answering (remaining will decrease if correct)
-  updateCounters();
-}
+    if (!state.selectedCategory || !state.selectedSubcategory) return;
 
-function handleNext() {
-  const remaining = getNotMastered();
-  
-  if (remaining.length === 0) {
-    finishQuiz();
-  } else {
-    // If queue is empty but we still have remaining questions, 
-    // add any missed questions back to queue
-    if (run.queue.length === 0 && run.missedQueue.length > 0) {
-      console.log(`[Quiz] Queue empty, re-queuing ${run.missedQueue.length} missed questions.`);
-      run.queue = shuffleArray([...run.missedQueue]);
-      run.missedQueue = [];
-    }
-    
-    const next = pickNext();
-    if (next) {
-      renderQuestion(next);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      // If still no next question but remaining > 0, 
-      // rebuild queue from remaining questions
-      if (remaining.length > 0) {
-        run.queue = shuffleArray([...remaining]);
-        run.missedQueue = [];
-        const retryNext = pickNext();
-        if (retryNext) {
-          renderQuestion(retryNext);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          finishQuiz();
-        }
-      } else {
-        finishQuiz();
-      }
-    }
-  }
-}
-
-/* ---------- Finish quiz ---------- */
-function finishQuiz() {
-  if (quiz) quiz.classList.add('hidden');
-  if (summary) summary.classList.remove('hidden');
-  if (progressBar) progressBar.classList.add('hidden');
-  if (countersBox) countersBox.classList.add('hidden');
-  
-  // Calculate stats based on FIRST-TRY accuracy
-  // Total questions = original quiz size (not number of first attempts)
-  const totalQuestions = run.quizLength || run.masterPool.length;
-  let firstTryCorrect = 0;
-  const missed = [];
-  const categoryResults = {};
-  
-  // Count first-try correct for each question in the quiz
-  run.masterPool.forEach(q => {
-    const rec = run.answered.get(q.id);
-    const category = q.category || '';
-    
-    // Initialize category tracking
-    if (category) {
-      if (!categoryResults[category]) {
-        categoryResults[category] = { correct: 0, total: 0 };
-      }
-      categoryResults[category].total++;
-    }
-    
-    if (rec) {
-      // Check if correct on FIRST try (not eventual correctness)
-      if (rec.firstTryCorrect) {
-        firstTryCorrect++;
-        if (category) {
-          categoryResults[category].correct++;
-        }
-      } else {
-        // Missed on first try - add to missed list
-        missed.push(rec);
-      }
-    }
-  });
-  
-  // Save category scores to progress store (for both comprehensive AND category quizzes)
-  if (window.StudyGuruProgress && Object.keys(categoryResults).length > 0) {
-    for (const [category, result] of Object.entries(categoryResults)) {
-      if (result.total > 0) {
-        const catPct = Math.round((result.correct / result.total) * 100);
-        window.StudyGuruProgress.recordCategoryScore(category, catPct);
-      }
-    }
-    console.log('[Quiz] Category scores saved to progress store');
-  }
-  
-  // ========== WEEKLY QUESTION COUNT ==========
-  // Record completed quiz questions (quiz length, not retries)
-  if (window.StudyGuruProgress) {
-    window.StudyGuruProgress.recordCompletedQuiz(totalQuestions);
-    console.log(`[Quiz] Recorded ${totalQuestions} completed questions to weekly count`);
-    
-    // Record attempts for each question in the quiz (for least-asked tracking)
-    const questionIds = run.masterPool.map(q => q.id).filter(Boolean);
-    window.StudyGuruProgress.recordQuizAttempts(questionIds);
-    console.log(`[Quiz] Recorded attempts for ${questionIds.length} questions`);
-  }
-  // ========== END WEEKLY QUESTION COUNT ==========
-  
-  // Update legacy NCLEX stats for comprehensive quizzes only
-  if (shouldUpdateNclexStats() && Object.keys(categoryResults).length > 0) {
-    updateNclexStats(categoryResults);
-  }
-  
-  // Store missed for retry
-  lastQuizMissedQuestions = missed.map(m => {
-    const q = run.masterPool.find(q => q.id === m.id);
-    return q;
-  }).filter(Boolean);
-  
-  // Calculate percentage: first-try correct / total questions
-  const pct = totalQuestions > 0 ? Math.round((firstTryCorrect / totalQuestions) * 100) : 0;
-  
-  if (firstTrySummary) {
-    firstTrySummary.innerHTML = `
-      <div class="score-display">
-        <div class="score-number">${pct}%</div>
-        <div class="score-details">${firstTryCorrect} / ${totalQuestions} correct on first try</div>
-      </div>
-    `;
-    
-    // Add category breakdown for quizzes with category data
-    if (Object.keys(categoryResults).length > 0) {
-      let categoryHtml = '<div class="category-breakdown"><h3>Category Breakdown</h3><ul>';
-      
-      for (const [cat, result] of Object.entries(categoryResults)) {
-        const catPct = result.total > 0 ? Math.round((result.correct / result.total) * 100) : 0;
-        const statusClass = catPct >= 85 ? 'good' : catPct >= 77 ? 'fair' : 'needs-work';
-        categoryHtml += `<li class="${statusClass}"><span class="cat-name">${cat}</span><span class="cat-score">${result.correct}/${result.total} (${catPct}%)</span></li>`;
-      }
-      
-      categoryHtml += '</ul></div>';
-      firstTrySummary.innerHTML += categoryHtml;
-    }
-  }
-  
-  // Build review list - show ALL questions, not just missed
-  if (reviewList) {
-    reviewList.innerHTML = '';
-    
-    // Get all answered questions in order
-    const allAnswered = [];
-    run.masterPool.forEach((q, idx) => {
-      const rec = run.answered.get(q.id);
-      if (rec) {
-        allAnswered.push({ ...rec, originalIndex: idx });
-      }
+    const mods = getModulesForSelection(state.selectedCategory, state.selectedSubcategory);
+    mods.forEach((modKey) => {
+      const btn = document.createElement('button');
+      btn.className = 'pill';
+      btn.textContent = modKey;
+      btn.addEventListener('click', () => {
+        state.selectedModuleKey = modKey;
+        updateControlsEnabled();
+      });
+      els.moduleList.appendChild(btn);
     });
-    
-    if (allAnswered.length === 0) {
-      reviewList.innerHTML = '<p>No questions to review.</p>';
-    } else {
-      allAnswered.forEach((rec, i) => {
-        const div = document.createElement('div');
-        div.className = 'review-item';
-        
-        // Add class based on whether it was correct on first try
-        if (rec.firstTryCorrect) {
-          div.classList.add('review-correct');
-        } else {
-          div.classList.add('review-incorrect');
-        }
-        
-        const correctAnswerText = rec.correctAnswer.map(l => `${l}. ${rec.options[l] || ''}`).join(', ');
-        
-        div.innerHTML = `
-          <div class="review-question"><strong>Q${i + 1}:</strong> ${rec.question || 'Question text unavailable'}</div>
-          <div class="review-correct-answer"><strong>Correct Answer:</strong> ${correctAnswerText}</div>
-          ${rec.rationale ? `<div class="review-rationale"><strong>Rationale:</strong> ${rec.rationale}</div>` : ''}
-        `;
-        
-        reviewList.appendChild(div);
+  }
+
+  function updateControlsEnabled() {
+    const ready = !!(state.selectedCategory && state.selectedSubcategory && state.selectedModuleKey);
+    if (els.startBtn) els.startBtn.disabled = !ready;
+  }
+
+  function setupControls() {
+    if (els.countSelect) {
+      els.countSelect.addEventListener('change', (e) => {
+        state.selectedCount = parseInt(e.target.value, 10) || 10;
       });
     }
-    
-    // Show/hide retry button based on missed count
-    if (missed.length === 0) {
-      if (retryMissedBtn) retryMissedBtn.classList.add('hidden');
-    } else {
-      if (retryMissedBtn) {
-        retryMissedBtn.classList.remove('hidden');
-        retryMissedBtn.textContent = `Retry ${missed.length} Missed Questions`;
-      }
+    if (els.modeSelect) {
+      els.modeSelect.addEventListener('change', (e) => {
+        state.mode = e.target.value;
+      });
+    }
+    if (els.startBtn) {
+      els.startBtn.addEventListener('click', () => {
+        startQuiz();
+      });
+    }
+    if (els.resumeBtn) {
+      els.resumeBtn.addEventListener('click', () => {
+        resumeQuiz();
+      });
+    }
+    if (els.resetBtn) {
+      els.resetBtn.addEventListener('click', () => {
+        const store = getProgressStore();
+        if (!store) return;
+        if (confirm('Reset all progress? This will clear mastery, weekly count, and stats.')) {
+          store.resetAll();
+          showToast('Progress reset');
+          updateWeeklyUI();
+          setupCategoryDisplay();
+          showResumeIfAny();
+        }
+      });
+    }
+
+    if (els.nextBtn) {
+      els.nextBtn.addEventListener('click', () => {
+        nextQuestion();
+      });
+    }
+    if (els.quitBtn) {
+      els.quitBtn.addEventListener('click', () => {
+        if (confirm('Quit this quiz? Your progress will be saved for resume.')) {
+          saveRunForResume();
+          endQuizToHome();
+        }
+      });
+    }
+    if (els.retryMissedBtn) {
+      els.retryMissedBtn.addEventListener('click', () => {
+        startRetryQuiz();
+      });
+    }
+    if (els.backHomeBtn) {
+      els.backHomeBtn.addEventListener('click', () => {
+        endQuizToHome();
+      });
     }
   }
-  
-  // Add "Return to Category" button if it doesn't exist
-  let returnBtn = $('returnToCategoryBtn');
-  if (!returnBtn && summary) {
-    // Find the button container (where retryMissedBtn and restartBtnSummary are)
-    const buttonContainer = retryMissedBtn?.parentElement || restartBtn2?.parentElement;
-    if (buttonContainer) {
-      returnBtn = document.createElement('a');
-      returnBtn.id = 'returnToCategoryBtn';
-      returnBtn.className = 'btn btn-secondary return-btn';
-      buttonContainer.appendChild(returnBtn);
+
+  // -----------------------------------------------------------
+  // Category display / progress
+  // -----------------------------------------------------------
+  function setupCategoryDisplay() {
+    // highlight selections and show mastery summaries if desired
+    const store = getProgressStore();
+    if (!store) return;
+
+    // Optional: update category buttons with mastery info etc.
+    // This implementation is minimal.
+  }
+
+  // -----------------------------------------------------------
+  // Quiz Data Access
+  // -----------------------------------------------------------
+  function getQuestionsForSelection(cat, subcat, modKey, mode) {
+    if (!state.content || !state.content.categories) return [];
+    const c = state.content.categories[cat];
+    if (!c) return [];
+    const s = (c.subcategories || {})[subcat];
+    if (!s) return [];
+    const m = (s.modules || {})[modKey];
+    if (!m) return [];
+
+    // mode-specific sources
+    // Each module can have: mcq, fill, fishboneMcq, fishboneFill arrays (depending on fixtures)
+    if (mode === 'fill') return m.fill || m.fillInBlank || [];
+    if (mode === 'fishbone-mcq') return m.fishboneMcq || [];
+    if (mode === 'fishbone-fill') return m.fishboneFill || [];
+    return m.mcq || m.questions || [];
+  }
+
+  function normalizeQuestion(q) {
+    // Ensure each question has an id and consistent fields
+    const nq = Object.assign({}, q);
+    if (!nq.id) {
+      // create a semi-stable id from prompt text
+      const base = (nq.question || nq.prompt || JSON.stringify(nq)).slice(0, 80);
+      nq.id = `q_${hashString(base)}`;
     }
+    return nq;
   }
-  
-  // Set the return URL based on category
-  if (returnBtn) {
-    const backUrl = window.backUrl || '/category/NCLEX';
-    const backLabel = window.backLabel || 'NCLEX Comprehensive System';
-    returnBtn.href = backUrl;
-    returnBtn.textContent = `← Return to ${backLabel}`;
-    returnBtn.style.display = 'block';
-  }
-  
-  // Clear saved state on completion
-  clearSavedState();
-  
-  setHeaderTitle(defaultTitle);
-}
 
-/* ---------- Retry missed questions ---------- */
-function startRetryQuiz(questions) {
-  if (!questions || questions.length === 0) return;
-  
-  run.isRetry = true;
-  run.masterPool = questions.map((q, i) => ({
-    ...q,
-    id: q.id || `retry-${i}`
-  }));
-  run.queue = shuffleArray([...run.masterPool]);
-  run.answered = new Map();
-  run.current = null;
-  run.questionNumber = 0;  // Reset question counter for retry
-  run.quizLength = run.masterPool.length;  // Set quiz length for threshold
-  run.missedQueue = [];    // Reset missed queue
-  
-  if (summary) summary.classList.add('hidden');
-  if (quiz) quiz.classList.remove('hidden');
-  if (progressBar) progressBar.classList.remove('hidden');
-  if (countersBox) countersBox.classList.remove('hidden');
-  
-  setHeaderTitle(`Retry: ${run.moduleName}`);
-  
-  const first = pickNext();
-  if (first) renderQuestion(first);
-  
-  updateProgressBar();
-}
-
-/* ---------- Start quiz ---------- */
-function startQuiz(moduleName, questions, quizLength, isComprehensive = false, isCategoryQuiz = false) {
-  console.log('[Quiz] Starting quiz:', { moduleName, questionCount: questions.length, quizLength, isComprehensive, isCategoryQuiz });
-  
-  run.moduleName = moduleName;
-  run.isRetry = false;
-  run.isComprehensive = isComprehensive;
-  run.isCategoryQuiz = isCategoryQuiz;
-  run.questionNumber = 0;  // Reset question counter
-  run.missedQueue = [];    // Reset missed queue
-  
-  // Prepare questions - ensure all have IDs
-  const preparedQuestions = questions.map((q, i) => ({
-    ...q,
-    id: q.id || `${moduleName}-${i}`
-  }));
-  
-  // Parse quiz length
-  let targetLength = preparedQuestions.length;
-  if (quizLength && quizLength !== 'full' && !isNaN(parseInt(quizLength))) {
-    targetLength = parseInt(quizLength);
-  }
-  
-  // Use weighted selection for NCLEX quizzes
-  let pool;
-  if (isComprehensive || isCategoryQuiz) {
-    pool = selectQuestionsWithWeighting(preparedQuestions, targetLength, isComprehensive, isCategoryQuiz);
-  } else {
-    // Standard selection for non-NCLEX quizzes
-    pool = shuffleArray([...preparedQuestions]);
-    if (targetLength < pool.length) {
-      pool = pool.slice(0, targetLength);
+  function hashString(str) {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) {
+      h = ((h << 5) - h) + str.charCodeAt(i);
+      h |= 0;
     }
+    return Math.abs(h).toString(36);
   }
-  
-  run.masterPool = pool;
-  run.quizLength = pool.length;  // Store actual quiz length for threshold calculation
-  run.queue = shuffleArray([...pool]);
-  run.answered = new Map();
-  run.current = null;
-  
-  console.log(`[Quiz] Quiz length: ${run.quizLength}, Miss threshold: ${getMissThresholdCount()} questions (${Math.round(getMissThreshold() * 100)}%)`);
-  
-  // Hide launcher, show quiz
-  if (launcher) launcher.classList.add('hidden');
-  if (quiz) quiz.classList.remove('hidden');
-  if (progressBar) progressBar.classList.remove('hidden');
-  if (countersBox) countersBox.classList.remove('hidden');
-  
-  setHeaderTitle(prettifyModuleName(moduleName));
-  
-  const first = pickNext();
-  if (first) renderQuestion(first);
-  
-  updateProgressBar();
-}
 
-/* ---------- Resume quiz ---------- */
-function resumeQuiz(state) {
-  run.moduleName = state.moduleName;
-  run.masterPool = state.masterPool;
-  run.queue = state.queue;
-  run.answered = new Map(state.answered);
-  run.isComprehensive = state.isComprehensive || false;
-  run.isCategoryQuiz = state.isCategoryQuiz || false;
-  run.questionNumber = state.questionNumber || 0;  // Restore question counter
-  run.quizLength = state.quizLength || state.masterPool.length;  // Restore quiz length
-  run.missedQueue = state.missedQueue || [];  // Restore missed queue
-  run.isRetry = false;
-  run.current = null;
-  
-  if (launcher) launcher.classList.add('hidden');
-  if (quiz) quiz.classList.remove('hidden');
-  if (progressBar) progressBar.classList.remove('hidden');
-  if (countersBox) countersBox.classList.remove('hidden');
-  
-  setHeaderTitle(prettifyModuleName(run.moduleName));
-  
-  const next = pickNext();
-  if (next) renderQuestion(next);
-  
-  updateProgressBar();
-}
+  // -----------------------------------------------------------
+  // Quiz Run Lifecycle
+  // -----------------------------------------------------------
+  function buildRun(questions, opts = {}) {
+    const store = getProgressStore();
+    const normalized = questions.map(normalizeQuestion);
 
-/* ---------- Show resume button ---------- */
-function showResumeIfAny() {
-  if (!resumeBtn || !moduleSel) return;
-  
-  const selected = moduleSel.value;
-  if (!selected) {
-    resumeBtn.classList.add('hidden');
-    return;
+    // Filter out already-mastered questions for normal runs,
+    // but allow forcing full set for retries if opts.forceAll.
+    let pool = normalized;
+    if (store && !opts.forceAll) {
+      pool = normalized.filter(q => !store.isMastered(q.id));
+    }
+
+    // If everything mastered, just use full set so user can still quiz
+    if (pool.length === 0) pool = normalized;
+
+    // Select N
+    const requested = opts.count || 10;
+    const selected = shuffle(pool).slice(0, Math.min(requested, pool.length));
+
+    const r = {
+      createdAt: nowIso(),
+      category: state.selectedCategory,
+      subcategory: state.selectedSubcategory,
+      moduleKey: state.selectedModuleKey,
+      mode: state.mode,
+      isRetry: !!opts.isRetry,
+      requestedCount: requested,
+
+      masterPool: selected,          // the original selection
+      quizLength: selected.length,   // IMPORTANT: this is counted toward weekly on completion (unless retry)
+      queue: selected.slice(),       // questions remaining to master
+      missedQueue: [],               // questions missed that may be re-queued
+      mastered: new Set(),           // ids mastered during this run
+      correctCount: 0,
+      incorrectCount: 0,
+      attempts: 0,                   // number of question screens attempted (includes retries)
+      questionNumber: 0,             // 1-based index of screens shown
+      current: null,
+      currentAnswered: false,
+      currentCorrect: false,
+
+      // Requeue logic
+      requeueThreshold: 3,           // when missedQueue hits this, requeue them to front
+      requeueBatchSize: 3,
+
+      // Stats for results
+      perQuestion: [], // {id, correct, attempts}
+    };
+
+    return r;
   }
-  
-  const state = loadState(selected);
-  if (!state) {
-    resumeBtn.classList.add('hidden');
-    return;
-  }
-  
-  const remaining = state.masterPool.filter(q => {
-    const answered = state.answered.find(([id]) => id === q.id);
-    return !answered || !answered[1].correct;
-  }).length;
-  
-  if (remaining > 0) {
-    resumeBtn.textContent = `Resume (${remaining} remaining)`;
-    resumeBtn.classList.remove('hidden');
-  } else {
-    resumeBtn.classList.add('hidden');
-  }
-}
 
-/* ---------- Module loading ---------- */
-async function loadModule(moduleName) {
-  const path = MODULE_REGISTRY[moduleName];
-  
-  if (!path) {
-    console.error('Module not found:', moduleName);
-    return null;
-  }
-  
-  try {
-    const response = await fetch(path);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    
-    const data = await response.json();
-    return Array.isArray(data) ? data : (data.questions || []);
-  } catch (e) {
-    console.error('Failed to load module:', e);
-    return null;
-  }
-}
+  function startQuiz() {
+    const qs = getQuestionsForSelection(
+      state.selectedCategory,
+      state.selectedSubcategory,
+      state.selectedModuleKey,
+      state.mode
+    );
 
-/* ---------- Category display ---------- */
-function setupCategoryDisplay() {
-  const categoryDisplay = $('categoryDisplay');
-  const categoryInfo = $('categoryInfo');
-  
-  if (categoryDisplay && window.QUIZ_CATEGORY) {
-    categoryDisplay.textContent = `Category: ${window.QUIZ_CATEGORY}`;
-    categoryDisplay.classList.remove('hidden');
-  }
-  
-  if (categoryInfo && window.QUIZ_CATEGORY) {
-    categoryInfo.textContent = `Practicing: ${window.QUIZ_CATEGORY}`;
-    categoryInfo.classList.remove('hidden');
-  }
-}
-
-/* ---------- Initialize modules ---------- */
-async function initModules() {
-  // If the server injected a module payload, use it (no fixtures required).
-  const pre = window.preloadedQuizData;
-  const preQuestions = Array.isArray(pre)
-    ? pre
-    : (pre && (pre.questions || pre.Questions || pre.items || pre.data)) || null;
-
-  if (preQuestions && preQuestions.length) {
-    const moduleName =
-      window.preloadedModuleName ||
-      (pre && (pre.moduleName || pre.module || pre.module_name || pre.name)) ||
-      'Quiz';
-
-    const quizLength =
-      window.quizLength ||
-      (pre && (pre.quizLength || pre.quiz_length)) ||
-      null;
-
-    const isComprehensive = !!(window.isComprehensive || (pre && (pre.isComprehensive || pre.is_comprehensive)));
-    const isCategoryQuiz = !!(window.isCategoryQuiz || (pre && (pre.isCategoryQuiz || pre.is_category_quiz)));
-
-    const shouldAutoStart = !!window.autostart || !!quizLength || isComprehensive || isCategoryQuiz;
-
-    console.log('[Quiz] Preloaded data:', {
-      hasQuizData: true,
-      moduleName,
-      questionCount: preQuestions.length,
-      quizLength,
-      isComprehensive,
-      isCategoryQuiz,
-      autostart: window.autostart
-    });
-
-    // If we're coming from a "length picker" page (or an autostart link), go straight in.
-    if (shouldAutoStart) {
-      startQuiz(moduleName, preQuestions, quizLength || 'full', isComprehensive, isCategoryQuiz);
+    if (!qs || qs.length === 0) {
+      alert('No questions available for that selection.');
       return;
     }
 
-    // Otherwise, keep the launcher so the user can pick a length, but lock the module.
-    if (moduleSel) {
-      moduleSel.innerHTML = '';
-      const opt = document.createElement('option');
-      opt.value = moduleName;
-      opt.textContent = prettifyModuleName(moduleName);
-      moduleSel.appendChild(opt);
-      moduleSel.value = moduleName;
-      moduleSel.disabled = true;
-    }
+    run = buildRun(qs, { count: state.selectedCount, isRetry: false, forceAll: false });
 
-    // Length button handlers
-    if (lengthBtns) {
-      lengthBtns.querySelectorAll('button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          lengthBtns.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-        });
-      });
-    }
+    // Clear any previous resume data once a fresh quiz starts
+    clearResumeData();
 
-    if (startBtn) {
-      startBtn.disabled = false;
-      startBtn.addEventListener('click', () => {
-        const lengthBtn = lengthBtns?.querySelector('.active');
-        const len = lengthBtn?.dataset.len || 'full';
-        startQuiz(moduleName, preQuestions, len, isComprehensive, isCategoryQuiz);
-      }, { once: true });
-    }
-
-    if (resumeBtn) {
-      resumeBtn.addEventListener('click', () => {
-        const state = loadState(moduleName);
-        if (state) resumeQuiz(state);
-      });
-    }
-
-    showResumeIfAny();
-    updateLengthButtons();
-    return;
+    // Update UI
+    setView('quiz');
+    updateQuizTitle();
+    renderNextFromQueue();
   }
 
-  // Otherwise show module selector (standalone / fixtures-less mode)
-  if (moduleSel) {
-    moduleSel.addEventListener('change', () => {
-      showResumeIfAny();
-      updateLengthButtons();
+  function startRetryQuiz() {
+    if (!run) return;
+    // Build retry pool from missed questions in last run's results
+    const missed = (run.perQuestion || []).filter(p => p.correct === false).map(p => p.questionObj).filter(Boolean);
+
+    if (!missed || missed.length === 0) {
+      alert('No missed questions to retry.');
+      return;
+    }
+
+    run = buildRun(missed, { count: missed.length, isRetry: true, forceAll: true });
+    setView('quiz');
+    updateQuizTitle();
+    renderNextFromQueue();
+  }
+
+  function updateQuizTitle() {
+    if (!els.quizTitle) return;
+    const parts = [];
+    if (run?.category) parts.push(run.category);
+    if (run?.subcategory) parts.push(run.subcategory);
+    if (run?.moduleKey) parts.push(run.moduleKey);
+    const base = parts.join(' / ') || 'Quiz';
+    const tag = run?.isRetry ? ' (Retry)' : '';
+    els.quizTitle.textContent = `${base}${tag}`;
+  }
+
+  function endQuizToHome() {
+    run = null;
+    setView('home');
+    updateWeeklyUI();
+    showResumeIfAny();
+  }
+
+  // -----------------------------------------------------------
+  // Resume Quiz Persistence
+  // -----------------------------------------------------------
+  const RESUME_KEY = 'study_guru_resume_run_v1';
+
+  function saveRunForResume() {
+    if (!run) return;
+
+    const serializable = {
+      createdAt: run.createdAt,
+      category: run.category,
+      subcategory: run.subcategory,
+      moduleKey: run.moduleKey,
+      mode: run.mode,
+      isRetry: run.isRetry,
+      requestedCount: run.requestedCount,
+      quizLength: run.quizLength,
+      masterPool: run.masterPool,
+      queue: run.queue,
+      missedQueue: run.missedQueue,
+      mastered: Array.from(run.mastered || []),
+      correctCount: run.correctCount,
+      incorrectCount: run.incorrectCount,
+      attempts: run.attempts,
+      questionNumber: run.questionNumber,
+      perQuestion: (run.perQuestion || []).map(p => ({
+        id: p.id,
+        correct: p.correct,
+        attempts: p.attempts
+      }))
+    };
+
+    localStorage.setItem(RESUME_KEY, JSON.stringify(serializable));
+  }
+
+  function loadResumeData() {
+    const raw = localStorage.getItem(RESUME_KEY);
+    if (!raw) return null;
+    const data = safeJsonParse(raw, null);
+    if (!data) return null;
+    return data;
+  }
+
+  function clearResumeData() {
+    localStorage.removeItem(RESUME_KEY);
+  }
+
+  function showResumeIfAny() {
+    const data = loadResumeData();
+    state.resumeAvailable = !!data;
+    if (els.resumeBtn) {
+      els.resumeBtn.style.display = state.resumeAvailable ? 'inline-flex' : 'none';
+    }
+  }
+
+  function resumeQuiz() {
+    const data = loadResumeData();
+    if (!data) return;
+
+    // restore selection
+    state.selectedCategory = data.category;
+    state.selectedSubcategory = data.subcategory;
+    state.selectedModuleKey = data.moduleKey;
+    state.mode = data.mode || 'mcq';
+
+    // restore run
+    run = {
+      createdAt: data.createdAt,
+      category: data.category,
+      subcategory: data.subcategory,
+      moduleKey: data.moduleKey,
+      mode: data.mode,
+      isRetry: !!data.isRetry,
+      requestedCount: data.requestedCount,
+      quizLength: data.quizLength,
+      masterPool: (data.masterPool || []).map(normalizeQuestion),
+      queue: (data.queue || []).map(normalizeQuestion),
+      missedQueue: (data.missedQueue || []).map(normalizeQuestion),
+      mastered: new Set(data.mastered || []),
+      correctCount: data.correctCount || 0,
+      incorrectCount: data.incorrectCount || 0,
+      attempts: data.attempts || 0,
+      questionNumber: data.questionNumber || 0,
+      current: null,
+      currentAnswered: false,
+      currentCorrect: false,
+      requeueThreshold: 3,
+      requeueBatchSize: 3,
+      perQuestion: (data.perQuestion || []).map(p => Object.assign({}, p))
+    };
+
+    setView('quiz');
+    updateQuizTitle();
+    renderNextFromQueue();
+  }
+
+  // -----------------------------------------------------------
+  // Rendering / Flow
+  // -----------------------------------------------------------
+  function renderNextFromQueue() {
+    if (!run) return;
+
+    // If queue empty, finish
+    if (!run.queue || run.queue.length === 0) {
+      finishQuiz();
+      return;
+    }
+
+    // Pop next
+    const q = run.queue.shift();
+    run.current = q;
+    run.currentAnswered = false;
+    run.currentCorrect = false;
+    run.questionNumber += 1;
+
+    updateProgressUI();
+    renderQuestion(q);
+    renderAnswers(q);
+
+    if (els.feedback) els.feedback.textContent = '';
+    if (els.nextBtn) els.nextBtn.disabled = true;
+
+    // Save resume on each render
+    saveRunForResume();
+  }
+
+  function updateProgressUI() {
+    if (!els.progressText || !els.progressBarFill) return;
+
+    const total = run.quizLength || (run.masterPool ? run.masterPool.length : 0);
+    const remaining = run.queue.length;
+    const masteredCount = run.mastered.size;
+
+    // Progress is based on mastery for the original quiz length
+    const pct = total > 0 ? (masteredCount / total) * 100 : 0;
+    els.progressText.textContent = `Mastered ${masteredCount}/${total} • Remaining ${remaining}`;
+    els.progressBarFill.style.width = `${clamp(pct, 0, 100)}%`;
+  }
+
+  function renderQuestion(q) {
+    if (!els.questionContainer) return;
+
+    // Clear
+    els.questionContainer.innerHTML = '';
+
+    const prompt = q.question || q.prompt || q.text || '(No question text)';
+    const h = document.createElement('div');
+    h.className = 'question-text';
+    h.textContent = prompt;
+    els.questionContainer.appendChild(h);
+
+    // Optional: extra info
+    if (q.stem) {
+      const s = document.createElement('div');
+      s.className = 'question-stem';
+      s.textContent = q.stem;
+      els.questionContainer.appendChild(s);
+    }
+  }
+
+  function renderAnswers(q) {
+    if (!els.answerContainer) return;
+    els.answerContainer.innerHTML = '';
+
+    // Mode-specific render
+    if (run.mode === 'fill' || run.mode === 'fishbone-fill') {
+      renderFillBlank(q);
+      return;
+    }
+
+    renderMcq(q);
+  }
+
+  function renderMcq(q) {
+    const choices = q.choices || q.options || [];
+    const shuffled = shuffle(choices.map((c) => (typeof c === 'string' ? { text: c } : c)));
+
+    shuffled.forEach((choice) => {
+      const btn = document.createElement('button');
+      btn.className = 'answer-btn';
+      btn.textContent = choice.text || choice.label || '(choice)';
+      btn.addEventListener('click', () => {
+        onAnswerSelected(choice, q);
+      });
+      els.answerContainer.appendChild(btn);
     });
   }
 
-  if (startBtn) {
-    startBtn.addEventListener('click', async () => {
-      const selected = moduleSel?.value;
-      if (!selected) return;
+  function renderFillBlank(q) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'fill-wrapper';
 
-      const questions = await loadModule(selected);
-      if (!questions || questions.length === 0) {
-        alert('Failed to load questions');
-        return;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'fill-input';
+    input.placeholder = 'Type your answer...';
+
+    const submit = document.createElement('button');
+    submit.className = 'answer-btn';
+    submit.textContent = 'Submit';
+    submit.addEventListener('click', () => {
+      onFillSubmit(input.value, q);
+    });
+
+    wrapper.appendChild(input);
+    wrapper.appendChild(submit);
+    els.answerContainer.appendChild(wrapper);
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') onFillSubmit(input.value, q);
+    });
+  }
+
+  // -----------------------------------------------------------
+  // Answer Handling
+  // -----------------------------------------------------------
+  function onAnswerSelected(choice, q) {
+    if (!run || run.currentAnswered) return;
+
+    run.currentAnswered = true;
+    run.attempts += 1;
+
+    // Determine correctness
+    const correct = isChoiceCorrect(choice, q);
+    run.currentCorrect = correct;
+
+    recordQuestionAttempt(q, correct);
+
+    if (correct) {
+      run.correctCount += 1;
+      markMastered(q);
+      showFeedback(true, q);
+    } else {
+      run.incorrectCount += 1;
+      handleIncorrect(q);
+      showFeedback(false, q);
+    }
+
+    if (els.nextBtn) els.nextBtn.disabled = false;
+    saveRunForResume();
+  }
+
+  function onFillSubmit(value, q) {
+    if (!run || run.currentAnswered) return;
+
+    run.currentAnswered = true;
+    run.attempts += 1;
+
+    const correct = isFillCorrect(value, q);
+    run.currentCorrect = correct;
+
+    recordQuestionAttempt(q, correct);
+
+    if (correct) {
+      run.correctCount += 1;
+      markMastered(q);
+      showFeedback(true, q);
+    } else {
+      run.incorrectCount += 1;
+      handleIncorrect(q);
+      showFeedback(false, q, value);
+    }
+
+    if (els.nextBtn) els.nextBtn.disabled = false;
+    saveRunForResume();
+  }
+
+  function isChoiceCorrect(choice, q) {
+    // Common formats:
+    // - q.answer is index or string
+    // - q.correct is string
+    // - choice.correct boolean
+    if (choice && typeof choice === 'object' && choice.correct === true) return true;
+
+    const ans = q.answer ?? q.correct ?? q.correctAnswer;
+    if (ans == null) return false;
+
+    // If ans is a number index in original choices
+    if (typeof ans === 'number') {
+      const original = (q.choices || q.options || [])[ans];
+      if (original == null) return false;
+      const originalText = typeof original === 'string' ? original : (original.text || original.label);
+      const selectedText = choice.text || choice.label;
+      return (originalText || '').trim() === (selectedText || '').trim();
+    }
+
+    // If ans is a string (match)
+    if (typeof ans === 'string') {
+      const selectedText = choice.text || choice.label || '';
+      return ans.trim().toLowerCase() === selectedText.trim().toLowerCase();
+    }
+
+    return false;
+  }
+
+  function isFillCorrect(input, q) {
+    const ans = q.answer ?? q.correct ?? q.correctAnswer ?? q.expected ?? '';
+    const user = (input || '').trim().toLowerCase();
+    const expected = (ans || '').trim().toLowerCase();
+
+    if (!expected) return false;
+
+    // allow arrays of acceptable answers
+    if (Array.isArray(ans)) {
+      return ans.some(a => (a || '').trim().toLowerCase() === user);
+    }
+
+    return user === expected;
+  }
+
+  function showFeedback(isCorrect, q, userValue = null) {
+    if (!els.feedback) return;
+
+    if (isCorrect) {
+      els.feedback.textContent = '✅ Correct';
+      els.feedback.className = 'feedback correct';
+    } else {
+      const ans = q.answer ?? q.correct ?? q.correctAnswer ?? q.expected;
+      const ansText = Array.isArray(ans) ? ans.join(', ') : ans;
+      els.feedback.textContent = `❌ Incorrect. Answer: ${ansText || '(unknown)'}${userValue != null ? ` (you: ${userValue})` : ''}`;
+      els.feedback.className = 'feedback incorrect';
+    }
+
+    // disable answer buttons
+    $all('.answer-btn').forEach(b => {
+      b.disabled = true;
+    });
+    const fillInput = $('.fill-input');
+    if (fillInput) fillInput.disabled = true;
+  }
+
+  function recordQuestionAttempt(q, correct) {
+    // Track perQuestion attempts for results + retry pool
+    const id = q.id;
+    let rec = run.perQuestion.find(p => p.id === id);
+    if (!rec) {
+      rec = { id, correct: null, attempts: 0, questionObj: q };
+      run.perQuestion.push(rec);
+    }
+    rec.attempts += 1;
+    // Correct stays true if ever correct; false only if never corrected
+    if (correct) rec.correct = true;
+    else if (rec.correct !== true) rec.correct = false;
+  }
+
+  function markMastered(q) {
+    const store = getProgressStore();
+    run.mastered.add(q.id);
+    if (store) store.setMastered(q.id, true);
+  }
+
+  function handleIncorrect(q) {
+    // Add to missed queue for requeue system
+    run.missedQueue.push(q);
+
+    // If we reached threshold, requeue missed questions
+    if (run.missedQueue.length >= run.requeueThreshold) {
+      const batch = run.missedQueue.splice(0, run.requeueBatchSize);
+      // Put missed batch back to front of queue
+      run.queue = batch.concat(run.queue);
+    }
+  }
+
+  function nextQuestion() {
+    if (!run) return;
+
+    // If current question answered correctly, it's mastered.
+    // If incorrect, it may be requeued by handleIncorrect.
+
+    // Remove current from screen and proceed
+    renderNextFromQueue();
+  }
+
+  // -----------------------------------------------------------
+  // Finish / Results
+  // -----------------------------------------------------------
+  function finishQuiz() {
+    if (!run) return;
+
+    // Determine total questions in THIS quiz selection (not retries through requeue).
+    const totalQuestions = run.quizLength || (run.masterPool ? run.masterPool.length : 0);
+
+    // Update results UI
+    setView('results');
+
+    // Hide retry button unless there are missed
+    const missedCount = (run.perQuestion || []).filter(p => p.correct === false).length;
+    if (els.retryMissedBtn) {
+      els.retryMissedBtn.style.display = missedCount > 0 ? 'inline-flex' : 'none';
+    }
+
+    // Build summary
+    const masteredCount = run.mastered.size;
+    const pct = totalQuestions > 0 ? (masteredCount / totalQuestions) * 100 : 0;
+
+    if (els.resultsSummary) {
+      const retryTag = run.isRetry ? ' (Retry run — not counted toward weekly)' : '';
+      els.resultsSummary.textContent =
+        `Mastered ${masteredCount}/${totalQuestions} (${formatPct(pct)}) • Correct: ${run.correctCount} • Incorrect: ${run.incorrectCount} • Attempts: ${run.attempts}${retryTag}`;
+    }
+
+    // Detail list
+    if (els.resultsDetails) {
+      els.resultsDetails.innerHTML = '';
+      const ul = document.createElement('ul');
+      ul.className = 'results-list';
+
+      (run.perQuestion || []).forEach((p) => {
+        const li = document.createElement('li');
+        const status = p.correct ? '✅' : '❌';
+        li.textContent = `${status} ${p.id} • attempts: ${p.attempts}`;
+        ul.appendChild(li);
+      });
+
+      els.resultsDetails.appendChild(ul);
+    }
+
+    // Save category score to progress store
+    const store = getProgressStore();
+    if (store && store.recordCategoryScore) {
+      // Compute category-level percent correct in this run by category field if available
+      // Minimal: just store pct for the specific module selection
+      const key = `${run.category} / ${run.subcategory} / ${run.moduleKey}`;
+      store.recordCategoryScore(key, Math.round(pct));
+    }
+
+    // If your content includes category tags per question, store those too (optional)
+    // E.g. q.categoryTag
+    if (store && store.recordCategoryScore && (run.perQuestion || []).length > 0) {
+      const categoryResults = {};
+      run.perQuestion.forEach((p) => {
+        const q = p.questionObj;
+        const category = q && (q.categoryTag || q.category || q.tag);
+        if (!category) return;
+        categoryResults[category] = categoryResults[category] || { correct: 0, total: 0 };
+        categoryResults[category].total += 1;
+        if (p.correct) categoryResults[category].correct += 1;
+      });
+
+      if (categoryResults && Object.keys(categoryResults).length > 0) {
+        for (const [category, result] of Object.entries(categoryResults)) {
+          const catPct = Math.round((result.correct / result.total) * 100);
+          store.recordCategoryScore(category, catPct);
+        }
+      }
+      console.log('[Quiz] Category scores saved to progress store');
+    }
+
+    // ========== WEEKLY QUESTION COUNT ==========
+    // Only count ORIGINAL quizzes toward the weekly counter.
+    // Retry runs (e.g., "Retry Missed Questions") should NOT add to the weekly total.
+    if (window.StudyGuruProgress) {
+      if (!run.isRetry) {
+        window.StudyGuruProgress.recordCompletedQuiz(totalQuestions);
+        console.log(`[Quiz] Recorded ${totalQuestions} completed questions to weekly count`);
+      } else {
+        console.log('[Quiz] Retry run detected; skipping weekly question count increment');
       }
 
-      const lengthBtn = lengthBtns?.querySelector('.active');
-      const len = lengthBtn?.dataset.len || 'full';
-
-      startQuiz(selected, questions, len);
-    });
-  }
-
-  if (resumeBtn) {
-    resumeBtn.addEventListener('click', () => {
-      const selected = moduleSel?.value;
-      if (!selected) return;
-
-      const state = loadState(selected);
-      if (state) resumeQuiz(state);
-    });
-  }
-
-  // Length button handlers
-  if (lengthBtns) {
-    lengthBtns.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        lengthBtns.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
-  }
-
-  showResumeIfAny();
-  updateLengthButtons();
-}
-
-
-function updateLengthButtons() {
-  // Show/hide length buttons based on module question count
-  if (!lengthBtns || !moduleSel) return;
-  
-  const selected = moduleSel.value;
-  if (!selected) return;
-  
-  // For now, show all length options
-  lengthBtns.classList.remove('hidden');
-}
-
-function isTextEditingTarget(element) {
-  if (!element) return false;
-  const tag = element.tagName.toLowerCase();
-  return tag === 'input' || tag === 'textarea' || element.isContentEditable;
-}
-
-if (resetAll) {
-  resetAll.addEventListener('click', () => { clearSavedState(); location.reload(); });
-}
-
-if (restartBtn2) {
-  restartBtn2.addEventListener('click', () => { location.reload(); });
-}
-
-if (retryMissedBtn) {
-  retryMissedBtn.addEventListener('click', () => {
-    startRetryQuiz(lastQuizMissedQuestions);
-  });
-}
-
-/* ---------- Keyboard shortcuts ---------- */
-document.addEventListener('keydown', (e) => {
-  if (!quiz || quiz.classList.contains('hidden')) return;
-  if (isTextEditingTarget(e.target)) return;
-  if (e.altKey || e.ctrlKey || e.metaKey) return;
-
-  const key = e.key || '';
-  const upper = key.toUpperCase();
-
-  if (key === 'Enter') {
-    e.preventDefault();
-    if (submitBtn && !submitBtn.disabled) {
-      submitBtn.click();
+      // Record attempts for each question in the quiz (for least-asked tracking)
+      const questionIds = run.masterPool.map(q => q.id).filter(Boolean);
+      window.StudyGuruProgress.recordQuizAttempts(questionIds);
+      console.log(`[Quiz] Recorded attempts for ${questionIds.length} questions`);
     }
-    return;
+    // ========== END WEEKLY QUESTION COUNT ==========
+
+    // clear resume data since quiz completed
+    clearResumeData();
+
+    // Update weekly UI on results screen if shown there
+    updateWeeklyUI();
   }
 
-  if (/^[A-Z]$/.test(upper) && submitBtn && submitBtn.dataset.mode === 'submit') {
-    const input = document.getElementById(`opt-${upper}`);
-    if (!input || input.disabled) return;
-    e.preventDefault();
-    input.checked = !input.checked;
-    onSelectionChanged();
+  // -----------------------------------------------------------
+  // Home init / display (progress summaries, etc)
+  // -----------------------------------------------------------
+  function initModules() {
+    // Populate default selections
+    if (els.countSelect) els.countSelect.value = String(state.selectedCount);
+    if (els.modeSelect) els.modeSelect.value = state.mode;
+
+    updateCategoryList();
+    updateSubcategoryList();
+    updateModuleList();
+    updateControlsEnabled();
+    updateWeeklyUI();
+    setupCategoryDisplay();
   }
-});
 
-/* ---------- Progress bar update ---------- */
-function updateProgressBar() {
-  const remaining = getNotMastered().length;
-  const total = run.masterPool.length;
-  const masteredCount = total - remaining;
-  const percentage = total ? Math.floor((masteredCount / total) * 100) : 0;
+  // -----------------------------------------------------------
+  // App Init
+  // -----------------------------------------------------------
+  async function init() {
+    cacheElements();
+    setupControls();
 
-  if (progressFill) {
-    progressFill.style.width = `${percentage}%`;
-    // Transition from blue (#2f61f3) to green (#4caf50) based on percentage
-    const r = Math.round(47 + (76 - 47) * (percentage / 100));
-    const g = Math.round(97 + (175 - 97) * (percentage / 100));
-    const b = Math.round(243 + (80 - 243) * (percentage / 100));
-    progressFill.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    try {
+      await loadContent();
+    } catch (e) {
+      console.error(e);
+      alert('Failed to load content. Please refresh.');
+      return;
+    }
+
+    setView('home');
+    initModules();
+    showResumeIfAny();
   }
-  if (progressLabel) progressLabel.textContent = `${percentage}% mastered`;
-  if (progressBar) progressBar.setAttribute('aria-valuenow', percentage);
-}
 
-/* ---------- Init ---------- */
-setupCategoryDisplay();
-initModules();
-showResumeIfAny();
+  // Start
+  document.addEventListener('DOMContentLoaded', init);
+})();
