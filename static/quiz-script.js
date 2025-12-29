@@ -6,12 +6,14 @@
    - Fishbone / fill-in-the-blank support
    - Resume quiz support
    - NCLEX weighted category selection
-   - Preloaded data support (no JSON fetch needed)
+   - Preloaded data support (window.preloadedQuizData)
 
-   PATCH NOTE:
+   PATCH NOTES:
    - Retry runs (run.isRetry === true) no longer increment weekly count.
-   - Supports window.preloadedQuizData for server-injected questions
-   - NCLEX comprehensive quizzes use weighted category distribution
+   - Fixed progress store API compatibility
+   - Added preloaded quiz data support for NCLEX pages
+   - Added auto-start support via URL parameters
+   - Added NCLEX weighted question selection
 ------------------------------------------------------------ */
 
 (function () {
@@ -233,6 +235,7 @@
     // Check for preloaded data first (from server-side injection)
     if (window.preloadedQuizData) {
       console.log('[Quiz] Using preloaded quiz data');
+      console.log('[Quiz] Preloaded data:', window.preloadedQuizData);
       
       // Store preload flags
       state.isComprehensive = window.preloadedQuizData.isComprehensive || false;
@@ -281,9 +284,9 @@
       state.content = data;
       state.categories = Object.keys(data.categories || {});
     } catch (e) {
-      // If preloaded data exists, ignore fetch error
+      // If preloaded data exists but in unexpected format, don't fail completely
       if (window.preloadedQuizData) {
-        console.log('[Quiz] Using preloaded data, ignoring fetch error');
+        console.warn('[Quiz] Using preloaded data despite fetch error:', e);
         return;
       }
       throw e;
@@ -351,6 +354,7 @@
     const store = getProgressStore();
     if (!store || !els.weeklyCount) return;
 
+    // FIXED: Use actual method name from progress-store.js
     const weekly = store.answeredThisWeek ? store.answeredThisWeek() : null;
     if (weekly == null) return;
 
@@ -474,6 +478,7 @@
         const store = getProgressStore();
         if (!store) return;
         if (confirm('Reset all progress? This will clear mastery, weekly count, and stats.')) {
+          // FIXED: Use actual method name from progress-store.js
           store.clearAll();
           showToast('Progress reset');
           updateWeeklyUI();
@@ -571,7 +576,8 @@
   function buildRun(questions, opts = {}) {
     const normalized = questions.map(normalizeQuestion);
 
-    // Use full pool (no mastery filtering - we use attempt-based selection instead)
+    // FIXED: Removed isMastered() call - progress store tracks attempts, not mastery
+    // Use full question pool and let weighted selection handle prioritization
     let pool = normalized;
 
     // Select N using weighted selection if applicable
@@ -1040,7 +1046,7 @@
   }
 
   function markMastered(q) {
-    // Track mastery within the current run (not persisted to store)
+    // FIXED: Only track mastery within current run (progress store doesn't have setMastered)
     run.mastered.add(q.id);
   }
 
@@ -1112,8 +1118,14 @@
 
     // Save category score to progress store
     const store = getProgressStore();
-    
-    // If your content includes category tags per question, store those
+    if (store && store.recordCategoryScore) {
+      // Compute category-level percent correct in this run by category field if available
+      // Minimal: just store pct for the specific module selection
+      const key = `${run.category} / ${run.subcategory} / ${run.moduleKey}`;
+      store.recordCategoryScore(key, Math.round(pct));
+    }
+
+    // If your content includes category tags per question, store those too
     if (store && store.recordCategoryScore && (run.perQuestion || []).length > 0) {
       const categoryResults = {};
       run.perQuestion.forEach((p) => {
@@ -1137,22 +1149,18 @@
     // ========== WEEKLY QUESTION COUNT ==========
     // Only count ORIGINAL quizzes toward the weekly counter.
     // Retry runs (e.g., "Retry Missed Questions") should NOT add to the weekly total.
-    if (store) {
+    if (window.StudyGuruProgress) {
       if (!run.isRetry) {
-        if (store.recordCompletedQuiz) {
-          store.recordCompletedQuiz(totalQuestions);
-          console.log(`[Quiz] Recorded ${totalQuestions} completed questions to weekly count`);
-        }
+        window.StudyGuruProgress.recordCompletedQuiz(totalQuestions);
+        console.log(`[Quiz] Recorded ${totalQuestions} completed questions to weekly count`);
       } else {
         console.log('[Quiz] Retry run detected; skipping weekly question count increment');
       }
 
       // Record attempts for each question in the quiz (for least-asked tracking)
-      if (store.recordQuizAttempts) {
-        const questionIds = run.masterPool.map(q => q.id).filter(Boolean);
-        store.recordQuizAttempts(questionIds);
-        console.log(`[Quiz] Recorded attempts for ${questionIds.length} questions`);
-      }
+      const questionIds = run.masterPool.map(q => q.id).filter(Boolean);
+      window.StudyGuruProgress.recordQuizAttempts(questionIds);
+      console.log(`[Quiz] Recorded attempts for ${questionIds.length} questions`);
     }
     // ========== END WEEKLY QUESTION COUNT ==========
 
@@ -1214,7 +1222,7 @@
     initModules();
     showResumeIfAny();
     
-    // Check for auto-start
+    // Check for auto-start (for NCLEX comprehensive pages)
     checkAutoStart();
   }
 
