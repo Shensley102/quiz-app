@@ -119,7 +119,7 @@
       </div>
     </div>
 
-    <!-- Module Launcher (hidden if preloaded data) -->
+    <!-- Module Launcher (hidden if preloaded data with autostart) -->
     <div class="card" id="launcher">
       <div id="categoryHeader" class="category-header">
         <span id="categoryIcon" class="category-icon"></span>
@@ -204,73 +204,66 @@
 
   <!-- Server-side data injection -->
   <script>
-    // Initialize all variables
+    // Build a SINGLE preloadedQuizData object with ALL necessary properties
+    // This is what quiz-script.js expects
     window.preloadedQuizData = null;
-    window.preloadedModuleName = null;
-    window.preloadedCategory = null;
-    window.backUrl = null;
-    window.backLabel = null;
-    window.autostart = false;
-    window.isComprehensive = false;
-    window.isCategoryQuiz = false;
-    window.quizLength = null;
     
-    // Inject data from Flask template if available
     {% if quiz_data %}
-      window.preloadedQuizData = {{ quiz_data | tojson }};
-    {% endif %}
-    
-    {% if module_name %}
-      window.preloadedModuleName = "{{ module_name }}";
-    {% endif %}
-    
-    {% if category %}
-      window.preloadedCategory = "{{ category }}";
-    {% endif %}
-    
-    {% if back_url %}
-      window.backUrl = "{{ back_url }}";
-      window.backLabel = "{{ back_label }}";
-    {% endif %}
-    
-    {% if autostart is defined %}
-      window.autostart = {{ autostart | tojson }};
-    {% endif %}
-    
-    {% if is_comprehensive is defined %}
-      window.isComprehensive = {{ is_comprehensive | tojson }};
-    {% endif %}
-    
-    {% if is_category_quiz is defined %}
-      window.isCategoryQuiz = {{ is_category_quiz | tojson }};
-    {% endif %}
-    
-    {% if quiz_length is defined and quiz_length %}
-      window.quizLength = "{{ quiz_length }}";
-    {% endif %}
-    
-    // Also read quiz_length from URL parameters as fallback
     (function() {
-      const params = new URLSearchParams(window.location.search);
-      const urlQuizLength = params.get('quiz_length');
-      if (urlQuizLength) {
-        window.quizLength = urlQuizLength;
-      }
-      const urlIsComprehensive = params.get('is_comprehensive');
-      if (urlIsComprehensive === 'true') {
-        window.isComprehensive = true;
-      }
+      // Get the raw quiz data from Flask
+      var rawQuizData = {{ quiz_data | tojson }};
+      
+      // Get URL parameters
+      var params = new URLSearchParams(window.location.search);
+      var urlQuizLength = params.get('quiz_length');
+      var urlIsComprehensive = params.get('is_comprehensive') === 'true';
+      var urlAutostart = params.get('autostart') === 'true';
+      
+      // Build the unified preloadedQuizData object
+      window.preloadedQuizData = {
+        // Questions from the JSON file
+        questions: rawQuizData.questions || [],
+        
+        // Metadata
+        moduleName: "{{ module_name | default('Quiz', true) }}",
+        category: "{{ category | default('General', true) }}",
+        description: rawQuizData.description || '',
+        title: rawQuizData.title || '',
+        total_questions: rawQuizData.questions ? rawQuizData.questions.length : 0,
+        
+        // Quiz flags - from Flask template variables OR URL parameters
+        isComprehensive: {% if is_comprehensive is defined %}{{ is_comprehensive | tojson }}{% else %}false{% endif %} || urlIsComprehensive,
+        isCategoryQuiz: {% if is_category_quiz is defined %}{{ is_category_quiz | tojson }}{% else %}false{% endif %},
+        autostart: {% if autostart is defined %}{{ autostart | tojson }}{% else %}false{% endif %} || urlAutostart,
+        
+        // Quiz length - from Flask template variable OR URL parameter
+        quizLength: urlQuizLength || "{{ quiz_length | default('full', true) }}"
+      };
+      
+      // Also set these as window properties for backward compatibility
+      window.preloadedModuleName = window.preloadedQuizData.moduleName;
+      window.preloadedCategory = window.preloadedQuizData.category;
+      window.isComprehensive = window.preloadedQuizData.isComprehensive;
+      window.isCategoryQuiz = window.preloadedQuizData.isCategoryQuiz;
+      window.autostart = window.preloadedQuizData.autostart;
+      window.quizLength = window.preloadedQuizData.quizLength;
+      window.backUrl = "{{ back_url | default('/', true) }}";
+      window.backLabel = "{{ back_label | default('Home', true) }}";
+      
+      console.log('[Quiz] Preloaded data:', {
+        hasQuizData: true,
+        moduleName: window.preloadedQuizData.moduleName,
+        category: window.preloadedQuizData.category,
+        questionCount: window.preloadedQuizData.questions.length,
+        isComprehensive: window.preloadedQuizData.isComprehensive,
+        isCategoryQuiz: window.preloadedQuizData.isCategoryQuiz,
+        autostart: window.preloadedQuizData.autostart,
+        quizLength: window.preloadedQuizData.quizLength
+      });
     })();
-    
-    console.log('[Quiz] Preloaded data:', {
-      hasQuizData: !!window.preloadedQuizData,
-      moduleName: window.preloadedModuleName,
-      category: window.preloadedCategory,
-      isComprehensive: window.isComprehensive,
-      isCategoryQuiz: window.isCategoryQuiz,
-      quizLength: window.quizLength,
-      autostart: window.autostart
-    });
+    {% else %}
+    console.log('[Quiz] No preloaded data - will fetch from fixtures');
+    {% endif %}
   </script>
 
   <!-- Quiz Script -->
