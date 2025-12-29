@@ -11882,9 +11882,9 @@
         "3.8 mEq/L (3.8 mmol/L)"
       ],
       "correct": [
-        "B"
+        "A"
       ],
-      "rationale": "The normal serum potassium level in the adult is 3.5 to 5.0 mEq/L (3.5 to 5.0 mmol/L), and 3.5 to 5.2 mEq/L (3.5 to 5.2 mmol/L) is considered high. Administering furosemide to a client with a high potassium level could further alter electrolyte balance. The 5.2 mEq/L level would require notification of the primary healthcare provider before medication administration.",
+      "rationale": "The normal serum potassium level in the adult is 3.5 to 5.1 mEq/L. A result of 3.0 mEq/L is low, 3.8 and 4.2 mEq/L are normal, and 5.1 mEq/L is high. Administering furosemide to a client with a low potassium level and a history of cardiovascular disease could precipitate ventricular dysrhythmias in the client. The normal and high levels do not require withholding of the dose. In fact, the high level may be lowered by administration of the medication, which is a potassium-losing diuretic.",
       "type": "single_select",
       "test_taking_strategy": "Focus on the normal potassium levels and potential medication interactions",
       "level_of_cognitive_ability": "Analyzing",
