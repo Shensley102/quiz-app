@@ -15564,13 +15564,14 @@
     {
       "category": "Management of Care",
       "id": "Q909",
-      "stem": "A nurse manager is discussing with unit staff the repeated lack of staff compliance in documenting exercise activity for post -cardiac surgery clients. The unit\u2018s licensed practical/vocational nurses are responsible for ensuring that clients carry out the prescribed exercise regimen and that the activity is documented. Using Drucker\u2018s five basic functions of a manager, identify appropriate functions for the nurse manager to use when addressing this situation: (Select all that apply.)",
+      "stem": "A nurse manager is discussing with unit staff the repeated lack of staff compliance in documenting exercise activity for post-cardiac surgery clients. The unit\u2018s licensed practical/vocational nurses are responsible for ensuring that clients carry out the prescribed exercise regimen and that the activity is documented. Using Drucker\u2018s five basic functions of a manager, identify appropriate functions for the nurse manager to use when addressing this situation: (Select all that apply.)",
       "options": [
         "Divide the necessary activities into manageable tasks, so clients adhere to the exercise regimen.",
         "Establish objectives and goals for each area and decide who is accountable for them.",
         "Allow clients to organize the activities.",
         "Engage in activities that motivate the team and communicate effectively with the responsible staff members.",
-        "Analyze, appraise, and interpret the performance of responsible staff, and communicate these findings to staff management. F. allow clients to establish objectives and goals."
+        "Analyze, appraise, and interpret the performance of responsible staff, and communicate these findings to staff management.", 
+        "Allow clients to establish objectives and goals."
       ],
       "correct": [
         "A",
