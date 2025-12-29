@@ -7987,7 +7987,7 @@
     {
       "category": "Psychosocial Integrity",
       "id": "Q489",
-      "stem": "In which situation is the nurse upholding the ethical principle of fidelity?",
+      "stem": "In which situation is the nurse upholding the ethical principle of fidelity? (Select all that apply.)",
       "options": [
         "Providing complete information regarding nutrition options to a client with cancer",
         "Keeping promises made to clients",
@@ -7996,10 +7996,11 @@
         "Allowing a client to decide when to do routine daily hygiene care"
       ],
       "correct": [
-        "B"
+        "B",
+        "C"
       ],
       "rationale": "Fidelity is the ethical principle of keeping promises made to clients. This involves being truthful and fulfilling commitments made to clients in their care.",
-      "type": "single_select"
+      "type": "multi_select"
     },
     {
       "category": "Management of Care",
