@@ -779,14 +779,15 @@
     } else {
       els.feedback.className = 'feedback bad';
       els.feedback.textContent = 'Incorrect';
+    }
 
-      const correctAnswer = getCorrectAnswerText(q);
-      if (els.answerLine && correctAnswer) {
-        els.answerLine.classList.remove('hidden');
-        // Convert newlines to <br> for multi-select vertical display
-        const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
-        els.answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formattedAnswer}`;
-      }
+    // Always show correct answer (for both correct and incorrect)
+    const correctAnswer = getCorrectAnswerText(q);
+    if (els.answerLine && correctAnswer) {
+      els.answerLine.classList.remove('hidden');
+      // Convert newlines to <br> for multi-select vertical display
+      const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
+      els.answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formattedAnswer}`;
     }
 
     // Show rationale if available
