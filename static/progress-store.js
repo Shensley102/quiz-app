@@ -315,6 +315,64 @@
   }
 
   /**
+   * Record attempts for a batch of questions at quiz completion
+   * Increments attempt count for each question ID
+   * @param {Array<string>} questionIds - Array of question IDs (e.g., ["Q1", "Q15", "Q203"])
+   */
+  function recordQuizAttempts(questionIds) {
+    if (!questionIds || !Array.isArray(questionIds) || questionIds.length === 0) {
+      console.warn('[ProgressStore] recordQuizAttempts called with invalid questionIds');
+      return;
+    }
+
+    const attempts = loadAttempts();
+    
+    for (const qId of questionIds) {
+      if (qId) {
+        attempts[qId] = (attempts[qId] || 0) + 1;
+      }
+    }
+    
+    saveAttempts(attempts);
+    console.log(`[ProgressStore] Recorded attempts for ${questionIds.length} questions`);
+  }
+
+  /**
+   * Get attempt counts for multiple questions at once
+   * @param {Array<string>} questionIds - Array of question IDs
+   * @returns {Object} Map of questionId -> attempt count
+   */
+  function getAttemptsForQuestions(questionIds) {
+    if (!questionIds || !Array.isArray(questionIds)) return {};
+    
+    const allAttempts = loadAttempts();
+    const result = {};
+    
+    for (const qId of questionIds) {
+      result[qId] = allAttempts[qId] || 0;
+    }
+    
+    return result;
+  }
+
+  /**
+   * Sort questions by attempt count (least attempted first)
+   * @param {Array<Object>} questions - Array of question objects with 'id' property
+   * @returns {Array<Object>} Sorted array (least attempted first)
+   */
+  function sortByLeastAttempted(questions) {
+    if (!questions || !Array.isArray(questions)) return [];
+    
+    const attempts = loadAttempts();
+    
+    return [...questions].sort((a, b) => {
+      const attemptsA = attempts[a.id] || 0;
+      const attemptsB = attempts[b.id] || 0;
+      return attemptsA - attemptsB;
+    });
+  }
+
+  /**
    * Record that a question was answered (DEPRECATED - use recordCompletedQuiz instead)
    * Kept for backward compatibility but no longer called by quiz-script
    * @param {string} stableId - Stable identifier for the question
@@ -438,11 +496,14 @@
   window.StudyGuruProgress = {
     // Question tracking
     recordCompletedQuiz,
+    recordQuizAttempts,
     recordAnswered,  // Deprecated but kept for compatibility
     answeredThisWeek,
     answeredToday,
     getAttempts,
     getAttemptsMap,
+    getAttemptsForQuestions,
+    sortByLeastAttempted,
     getDailyHistory,
     getStableId,
     
