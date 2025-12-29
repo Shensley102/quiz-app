@@ -429,8 +429,8 @@
 
     if (els.progressFill) els.progressFill.style.width = `${pct}%`;
     if (els.progressLabel) els.progressLabel.textContent = `${pct}% mastered`;
-    if (els.runCounter) els.runCounter.textContent = `Question ${run.questionNumber} of ${total}`;
-    if (els.remainingCounter) els.remainingCounter.textContent = `${remaining} remaining`;
+    if (els.runCounter) els.runCounter.textContent = `Question: ${run.questionNumber}`;
+    if (els.remainingCounter) els.remainingCounter.textContent = `Questions Remaining: ${remaining}`;
   }
 
   // -----------------------------------------------------------
