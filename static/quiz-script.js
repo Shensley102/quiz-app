@@ -78,6 +78,15 @@
   }
 
   // -----------------------------------------------------------
+  // Dynamic Requeue Threshold
+  // -----------------------------------------------------------
+  function getRequeueThreshold(quizLength) {
+    if (quizLength <= 10) return 2;
+    if (quizLength <= 25) return 5;
+    return 10;  // 50 and 100+
+  }
+
+  // -----------------------------------------------------------
   // Question Field Helpers
   // -----------------------------------------------------------
   
@@ -420,8 +429,7 @@
       current: null,
       answered: false,
       perQuestion: [],
-      requeueThreshold: 3,
-      requeueBatchSize: 3
+      requeueThreshold: getRequeueThreshold(selected.length)
     };
   }
 
@@ -475,6 +483,18 @@
   function nextQuestion() {
     if (!run) return;
 
+    // Check if all questions are mastered - quiz complete!
+    if (run.mastered.size === run.quizLength) {
+      finishQuiz();
+      return;
+    }
+
+    // If queue is empty but still have missed questions, move them back
+    if (run.queue.length === 0 && run.missedQueue.length > 0) {
+      run.queue = run.missedQueue.splice(0);  // Move all missed to queue
+    }
+
+    // If still no questions (shouldn't happen), end quiz
     if (run.queue.length === 0) {
       finishQuiz();
       return;
@@ -493,7 +513,7 @@
   function updateProgress() {
     const total = run.quizLength;
     const mastered = run.mastered.size;
-    const remaining = run.queue.length;
+    const remaining = total - mastered;  // Questions still need to be answered correctly
     const pct = total > 0 ? Math.round((mastered / total) * 100) : 0;
 
     if (els.progressFill) els.progressFill.style.width = `${pct}%`;
@@ -684,9 +704,9 @@
         }
         run.missedQueue.push(q);
 
+        // When threshold reached, move all missed questions back to queue
         if (run.missedQueue.length >= run.requeueThreshold) {
-          const batch = run.missedQueue.splice(0, run.requeueBatchSize);
-          run.queue = batch.concat(run.queue);
+          run.queue = run.queue.concat(run.missedQueue.splice(0));
         }
 
         showFeedback(false, q);
@@ -938,8 +958,7 @@
       current: null,
       answered: false,
       perQuestion: data.perQuestion || [],
-      requeueThreshold: 3,
-      requeueBatchSize: 3
+      requeueThreshold: getRequeueThreshold(data.quizLength || 10)
     };
 
     showView('quiz');
@@ -949,7 +968,12 @@
 
   function checkResumeAvailable() {
     const data = loadResumeData();
-    const available = !!(data && data.queue && data.queue.length > 0);
+    // Resume available if there are questions in queue OR missedQueue, AND not all mastered
+    const mastered = data?.mastered?.length || 0;
+    const quizLength = data?.quizLength || 0;
+    const hasQuestionsLeft = (data?.queue?.length > 0) || (data?.missedQueue?.length > 0);
+    const notComplete = mastered < quizLength;
+    const available = !!(data && hasQuestionsLeft && notComplete);
     if (els.resumeBtn) {
       els.resumeBtn.classList.toggle('hidden', !available);
     }
