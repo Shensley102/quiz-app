@@ -159,8 +159,19 @@
   // Get correct answer text for display
   function getCorrectAnswerText(q) {
     const choices = getChoices(q);
+    
+    // For multi-select, show all correct answers
+    if (isMultiSelect(q)) {
+      const indices = getCorrectIndices(q);
+      return indices.map(idx => {
+        const c = choices[idx];
+        const text = typeof c === 'string' ? c : (c.text || c.label || String(c));
+        return `${LETTERS[idx]}. ${text}`;
+      }).join(', ');
+    }
+    
+    // Single select
     const correctIdx = getCorrectIndex(q);
-
     if (correctIdx >= 0 && correctIdx < choices.length) {
       const c = choices[correctIdx];
       const text = typeof c === 'string' ? c : (c.text || c.label || String(c));
@@ -168,6 +179,64 @@
     }
 
     return '';
+  }
+
+  // Check if question is multi-select
+  function isMultiSelect(q) {
+    if (q.type === 'multi_select' || q.type === 'multiple_select' || q.type === 'multi-select') {
+      return true;
+    }
+    // Also check if correct has multiple answers
+    if (Array.isArray(q.correct) && q.correct.length > 1) {
+      return true;
+    }
+    return false;
+  }
+
+  // Get all correct answer indices for multi-select
+  function getCorrectIndices(q) {
+    const indices = [];
+    
+    // Check correct field (NCLEX format: ["A", "C"])
+    if (q.correct !== undefined && Array.isArray(q.correct)) {
+      q.correct.forEach(val => {
+        if (typeof val === 'string' && val.length === 1) {
+          const idx = LETTERS.indexOf(val.toUpperCase());
+          if (idx !== -1) indices.push(idx);
+        } else if (typeof val === 'number') {
+          indices.push(val);
+        }
+      });
+    }
+    
+    // If no indices found, fall back to single correct
+    if (indices.length === 0) {
+      const single = getCorrectIndex(q);
+      if (single !== -1) indices.push(single);
+    }
+    
+    return indices;
+  }
+
+  // Check if selected answers are correct (handles both single and multi-select)
+  function checkAnswerCorrect(q, selectedIndices) {
+    const correctIndices = getCorrectIndices(q);
+    
+    // Must have same number of selections as correct answers
+    if (selectedIndices.length !== correctIndices.length) return false;
+    
+    // All selected must be in correct, and all correct must be selected
+    const selectedSet = new Set(selectedIndices);
+    const correctSet = new Set(correctIndices);
+    
+    for (const idx of selectedIndices) {
+      if (!correctSet.has(idx)) return false;
+    }
+    for (const idx of correctIndices) {
+      if (!selectedSet.has(idx)) return false;
+    }
+    
+    return true;
   }
 
   // -----------------------------------------------------------
@@ -436,6 +505,7 @@
   // -----------------------------------------------------------
   // Render Question - FIXED HTML STRUCTURE
   // Uses .opt wrapper, .k letter badge, .ans text span
+  // Uses checkbox for multi-select, radio for single-select
   // -----------------------------------------------------------
   function renderQuestion(q) {
     // Clear feedback
@@ -458,10 +528,17 @@
       els.questionText.textContent = getQuestionText(q);
     }
 
+    // Determine if multi-select
+    const multiSelect = isMultiSelect(q);
+    const inputType = multiSelect ? 'checkbox' : 'radio';
+
     // Render options with CORRECT HTML structure
     if (els.optionsForm) {
       els.optionsForm.innerHTML = '';
       els.optionsForm.className = 'options';
+      if (multiSelect) {
+        els.optionsForm.classList.add('is-multi-select');
+      }
 
       const choices = getChoices(q);
       
@@ -481,10 +558,11 @@
         const optDiv = document.createElement('div');
         optDiv.className = 'opt';
         optDiv.dataset.originalIndex = choice.originalIndex;
+        optDiv.dataset.displayIndex = displayIdx;
 
-        // Create hidden radio input
+        // Create input (radio or checkbox based on question type)
         const input = document.createElement('input');
-        input.type = 'radio';
+        input.type = inputType;
         input.name = 'answer';
         input.id = `opt${displayIdx}`;
         input.value = displayIdx;
@@ -517,8 +595,7 @@
 
         // Enable submit when selected + add has-selection class
         input.addEventListener('change', () => {
-          if (els.submitBtn) els.submitBtn.disabled = false;
-          els.optionsForm.classList.add('has-selection');
+          updateSubmitButtonState();
         });
       });
     }
@@ -531,6 +608,22 @@
     }
   }
 
+  // Update submit button state based on selections
+  function updateSubmitButtonState() {
+    if (!els.optionsForm || !els.submitBtn) return;
+    
+    const checked = els.optionsForm.querySelectorAll('input[name="answer"]:checked');
+    const hasSelection = checked.length > 0;
+    
+    els.submitBtn.disabled = !hasSelection;
+    
+    if (hasSelection) {
+      els.optionsForm.classList.add('has-selection');
+    } else {
+      els.optionsForm.classList.remove('has-selection');
+    }
+  }
+
   // -----------------------------------------------------------
   // Handle Submit/Next
   // -----------------------------------------------------------
@@ -540,15 +633,22 @@
     const mode = els.submitBtn?.dataset.mode;
 
     if (mode === 'submit') {
-      const selected = els.optionsForm?.querySelector('input[name="answer"]:checked');
-      if (!selected) return;
+      const checkedInputs = els.optionsForm?.querySelectorAll('input[name="answer"]:checked');
+      if (!checkedInputs || checkedInputs.length === 0) return;
 
       run.answered = true;
       run.totalAttempts++;
 
       const q = run.current;
-      const selectedOriginalIndex = parseInt(selected.dataset.originalIndex, 10);
-      const isCorrect = isCorrectAnswer(q, selectedOriginalIndex);
+      const multiSelect = isMultiSelect(q);
+      
+      // Get all selected original indices
+      const selectedIndices = Array.from(checkedInputs).map(inp => 
+        parseInt(inp.dataset.originalIndex, 10)
+      );
+      
+      // Check if answer is correct
+      const isCorrect = checkAnswerCorrect(q, selectedIndices);
 
       // Record attempt
       let rec = run.perQuestion.find(p => p.id === q.id);
@@ -558,9 +658,9 @@
       }
       rec.attempts++;
 
-      // Get all .opt elements and correct index
+      // Get all .opt elements and correct indices
       const allOpts = els.optionsForm.querySelectorAll('.opt');
-      const correctIdx = getCorrectIndex(q);
+      const correctIndices = getCorrectIndices(q);
 
       if (isCorrect) {
         if (rec.correct === null) {
@@ -570,10 +670,10 @@
         run.mastered.add(q.id);
         showFeedback(true, q);
 
-        // Mark selected option as correct
+        // Mark all selected options as correct
         allOpts.forEach(opt => {
           const origIdx = parseInt(opt.dataset.originalIndex, 10);
-          if (origIdx === selectedOriginalIndex) {
+          if (selectedIndices.includes(origIdx)) {
             opt.classList.add('correct-answer');
           }
         });
@@ -591,13 +691,18 @@
 
         showFeedback(false, q);
 
-        // Mark selected as wrong, highlight correct
+        // Mark selected as wrong if incorrect, highlight all correct answers
         allOpts.forEach(opt => {
           const origIdx = parseInt(opt.dataset.originalIndex, 10);
-          if (origIdx === selectedOriginalIndex) {
+          const wasSelected = selectedIndices.includes(origIdx);
+          const isCorrectAnswer = correctIndices.includes(origIdx);
+          
+          if (wasSelected && !isCorrectAnswer) {
+            // User selected a wrong answer
             opt.classList.add('wrong-answer');
           }
-          if (origIdx === correctIdx) {
+          if (isCorrectAnswer) {
+            // This is a correct answer - highlight it
             opt.classList.add('correct-answer');
           }
         });
@@ -877,7 +982,42 @@
       });
     }
 
+    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
+      // Don't handle if we're not in quiz mode or question is answered
+      if (!run || !els.optionsForm) return;
+      
+      const key = e.key.toUpperCase();
+      
+      // Letter keys A-H to select/deselect options
+      const letterIndex = LETTERS.indexOf(key);
+      if (letterIndex !== -1 && !run.answered) {
+        const input = els.optionsForm.querySelector(`#opt${letterIndex}`);
+        if (input && !input.disabled) {
+          e.preventDefault();
+          
+          const multiSelect = isMultiSelect(run.current);
+          
+          if (multiSelect) {
+            // Multi-select: toggle the checkbox
+            input.checked = !input.checked;
+          } else {
+            // Single-select: toggle behavior
+            if (input.checked) {
+              // Deselect if already selected
+              input.checked = false;
+            } else {
+              // Select this one (radio buttons auto-deselect others)
+              input.checked = true;
+            }
+          }
+          
+          // Update submit button state
+          updateSubmitButtonState();
+        }
+      }
+      
+      // Enter key for Submit/Next
       if (e.key === 'Enter' && els.submitBtn && !els.submitBtn.disabled) {
         e.preventDefault();
         handleSubmit();
