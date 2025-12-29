@@ -659,7 +659,7 @@ function handleSubmit() {
   
   run.answered.set(q.id, {
     id: q.id,
-    question: q.question || q.text,
+    question: getQuestionContent(q),
     userAnswer: userLetters,
     correctAnswer: correctLetters,
     correct: isCorrect,
@@ -855,36 +855,76 @@ function finishQuiz() {
     }
   }
   
-  // Build review list
+  // Build review list - show ALL questions, not just missed
   if (reviewList) {
     reviewList.innerHTML = '';
     
-    if (missed.length === 0) {
-      reviewList.innerHTML = '<p class="all-correct">🎉 Perfect score! All questions answered correctly on first try.</p>';
-      if (retryMissedBtn) retryMissedBtn.classList.add('hidden');
+    // Get all answered questions in order
+    const allAnswered = [];
+    run.masterPool.forEach((q, idx) => {
+      const rec = run.answered.get(q.id);
+      if (rec) {
+        allAnswered.push({ ...rec, originalIndex: idx });
+      }
+    });
+    
+    if (allAnswered.length === 0) {
+      reviewList.innerHTML = '<p>No questions to review.</p>';
     } else {
-      missed.forEach((rec, i) => {
+      allAnswered.forEach((rec, i) => {
         const div = document.createElement('div');
         div.className = 'review-item';
         
-        const userAnswerText = rec.userAnswer.map(l => `${l}. ${rec.options[l] || ''}`).join(', ');
+        // Add class based on whether it was correct on first try
+        if (rec.firstTryCorrect) {
+          div.classList.add('review-correct');
+        } else {
+          div.classList.add('review-incorrect');
+        }
+        
         const correctAnswerText = rec.correctAnswer.map(l => `${l}. ${rec.options[l] || ''}`).join(', ');
         
         div.innerHTML = `
-          <div class="review-question"><strong>Q${i + 1}:</strong> ${rec.question}</div>
-          <div class="review-your-answer"><strong>Your answer:</strong> ${userAnswerText}</div>
-          <div class="review-correct-answer"><strong>Correct answer:</strong> ${correctAnswerText}</div>
+          <div class="review-question"><strong>Q${i + 1}:</strong> ${rec.question || 'Question text unavailable'}</div>
+          <div class="review-correct-answer"><strong>Correct Answer:</strong> ${correctAnswerText}</div>
           ${rec.rationale ? `<div class="review-rationale"><strong>Rationale:</strong> ${rec.rationale}</div>` : ''}
         `;
         
         reviewList.appendChild(div);
       });
-      
+    }
+    
+    // Show/hide retry button based on missed count
+    if (missed.length === 0) {
+      if (retryMissedBtn) retryMissedBtn.classList.add('hidden');
+    } else {
       if (retryMissedBtn) {
         retryMissedBtn.classList.remove('hidden');
         retryMissedBtn.textContent = `Retry ${missed.length} Missed Questions`;
       }
     }
+  }
+  
+  // Add "Return to Category" button if it doesn't exist
+  let returnBtn = $('returnToCategoryBtn');
+  if (!returnBtn && summary) {
+    // Find the button container (where retryMissedBtn and restartBtnSummary are)
+    const buttonContainer = retryMissedBtn?.parentElement || restartBtn2?.parentElement;
+    if (buttonContainer) {
+      returnBtn = document.createElement('a');
+      returnBtn.id = 'returnToCategoryBtn';
+      returnBtn.className = 'btn btn-secondary return-btn';
+      buttonContainer.appendChild(returnBtn);
+    }
+  }
+  
+  // Set the return URL based on category
+  if (returnBtn) {
+    const backUrl = window.backUrl || '/category/NCLEX';
+    const backLabel = window.backLabel || 'NCLEX Comprehensive System';
+    returnBtn.href = backUrl;
+    returnBtn.textContent = `← Return to ${backLabel}`;
+    returnBtn.style.display = 'block';
   }
   
   // Clear saved state on completion
