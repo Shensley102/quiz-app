@@ -816,8 +816,8 @@
     if (els.firstTrySummary) {
       els.firstTrySummary.innerHTML = `
         <div style="text-align: center;">
-          <div style="font-size: 3em; font-weight: 800; color: ${scoreColor};">${correct}/${total}</div>
-          <div style="font-size: 1.1em; color: #666; margin-top: 8px;">Correct First Try (${pct}%)</div>
+          <div style="font-size: 3.5em; font-weight: 800; color: ${scoreColor};">${pct}%</div>
+          <div style="font-size: 1.1em; color: #666; margin-top: 8px;">${correct}/${total} Correct First Try</div>
         </div>
       `;
     }
@@ -826,6 +826,10 @@
     const missedCount = run.perQuestion.filter(p => !p.correct).length;
     if (els.retryMissedBtn) {
       els.retryMissedBtn.classList.toggle('hidden', missedCount === 0);
+      // Adjust Start New Quiz width when Retry is hidden
+      if (missedCount === 0 && els.restartBtnSummary) {
+        els.restartBtnSummary.style.flex = '0 0 80%';
+      }
     }
 
     // Build review list
@@ -854,14 +858,15 @@
       });
     }
 
-    // Add return button
+    // Add return button with 20% width
     if (els.summaryActions && window.backUrl) {
       let returnBtn = els.summaryActions.querySelector('.return-btn');
       if (!returnBtn) {
         returnBtn = document.createElement('a');
         returnBtn.className = 'return-btn';
+        returnBtn.style.cssText = 'flex: 0 0 20%; min-width: 0; display: flex; align-items: center; justify-content: center; text-align: center; margin-top: 0;';
         returnBtn.href = window.backUrl;
-        returnBtn.textContent = `← Return to ${window.backLabel || 'Home'}`;
+        returnBtn.textContent = `← Return to ${window.backLabel || 'Learning Page'}`;
         els.summaryActions.appendChild(returnBtn);
       }
     }
