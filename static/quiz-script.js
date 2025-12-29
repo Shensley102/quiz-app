@@ -720,10 +720,21 @@
         inp.disabled = true;
       });
 
+      // Scroll to show rationale/feedback
+      setTimeout(() => {
+        if (els.rationale && !els.rationale.classList.contains('hidden')) {
+          els.rationale.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else if (els.feedback && !els.feedback.classList.contains('hidden')) {
+          els.feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
+
       updateProgress();
       saveResumeData();
 
     } else if (mode === 'next') {
+      // Scroll to top for new question
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       nextQuestion();
     }
   }
