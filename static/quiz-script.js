@@ -5,9 +5,13 @@
    - Weekly counter + least-asked
    - Fishbone / fill-in-the-blank support
    - Resume quiz support
+   - NCLEX weighted category selection
+   - Preloaded data support (no JSON fetch needed)
 
    PATCH NOTE:
    - Retry runs (run.isRetry === true) no longer increment weekly count.
+   - Supports window.preloadedQuizData for server-injected questions
+   - NCLEX comprehensive quizzes use weighted category distribution
 ------------------------------------------------------------ */
 
 (function () {
@@ -25,7 +29,10 @@
     selectedCount: 10,
     mode: 'mcq', // 'mcq' | 'fill' | 'fishbone-mcq' | 'fishbone-fill'
     quiz: null,
-    resumeAvailable: false
+    resumeAvailable: false,
+    // Preloaded data flags
+    isComprehensive: false,
+    isCategoryQuiz: false
   };
 
   // "run" is the active quiz runtime object
@@ -33,6 +40,20 @@
 
   // Elements cache
   const els = {};
+
+  // -----------------------------------------------------------
+  // NCLEX Category Weights (Official NCLEX-RN Test Plan)
+  // -----------------------------------------------------------
+  const NCLEX_CATEGORY_WEIGHTS = {
+    'Management of Care': 0.18,
+    'Safety and Infection Control': 0.13,
+    'Health Promotion and Maintenance': 0.09,
+    'Psychosocial Integrity': 0.09,
+    'Basic Care and Comfort': 0.09,
+    'Pharmacological and Parenteral Therapies': 0.16,
+    'Reduction of Risk Potential': 0.12,
+    'Physiological Adaptation': 0.14
+  };
 
   // -----------------------------------------------------------
   // Utilities
@@ -83,16 +104,190 @@
   }
 
   // -----------------------------------------------------------
+  // Weighted Question Selection (NCLEX)
+  // -----------------------------------------------------------
+  /**
+   * Select questions using weighted category distribution and least-asked priority
+   * 
+   * @param {Array} allQuestions - Full pool of questions with 'id' and 'category' properties
+   * @param {number} quizLength - Desired number of questions
+   * @param {boolean} isComprehensive - If true, apply NCLEX category weighting for 25/50/100
+   * @param {boolean} isCategoryQuiz - If true, questions are already filtered to one category
+   * @returns {Array} Selected questions
+   */
+  function selectQuestionsWithWeighting(allQuestions, quizLength, isComprehensive, isCategoryQuiz) {
+    console.log('[Quiz] selectQuestionsWithWeighting:', { 
+      totalQuestions: allQuestions.length, 
+      quizLength, 
+      isComprehensive, 
+      isCategoryQuiz 
+    });
+    
+    // Get attempt counts from progress store
+    const store = getProgressStore();
+    const attemptsMap = store && store.getAttemptsMap ? store.getAttemptsMap() : {};
+    
+    // Helper: Sort questions by attempts (least first), with random tiebreaker
+    function sortByLeastAttempts(questions) {
+      return [...questions].sort((a, b) => {
+        const attemptsA = attemptsMap[a.id] || 0;
+        const attemptsB = attemptsMap[b.id] || 0;
+        if (attemptsA !== attemptsB) return attemptsA - attemptsB;
+        return Math.random() - 0.5; // Random tiebreaker
+      });
+    }
+    
+    // Helper: Select with 1:1 ratio (half least-asked, half random)
+    function selectWithRatio(questions, count) {
+      if (count <= 0 || questions.length === 0) return [];
+      if (questions.length <= count) return shuffle([...questions]);
+      
+      const sorted = sortByLeastAttempts(questions);
+      const halfCount = Math.ceil(count / 2);
+      
+      // Take least-asked half
+      const leastAsked = sorted.slice(0, halfCount);
+      
+      // Take random from remainder
+      const remainder = sorted.slice(halfCount);
+      const randomPick = shuffle(remainder).slice(0, count - halfCount);
+      
+      return shuffle([...leastAsked, ...randomPick]);
+    }
+    
+    // CASE 1: Comprehensive 10Q - 100% least-asked, no weighting
+    if (isComprehensive && quizLength === 10) {
+      console.log('[Quiz] Using 100% least-asked selection for 10Q comprehensive');
+      const sorted = sortByLeastAttempts(allQuestions);
+      return sorted.slice(0, Math.min(quizLength, allQuestions.length));
+    }
+    
+    // CASE 2: Category quiz (any length) - 1:1 ratio within single category
+    if (isCategoryQuiz) {
+      console.log('[Quiz] Using 1:1 ratio for category quiz');
+      return selectWithRatio(allQuestions, quizLength);
+    }
+    
+    // CASE 3: Comprehensive 25/50/100Q - NCLEX weighted + 1:1 ratio per category
+    if (isComprehensive && quizLength > 10) {
+      console.log('[Quiz] Using NCLEX weighted selection for', quizLength, 'questions');
+      
+      // Group questions by category
+      const byCategory = {};
+      allQuestions.forEach(q => {
+        const cat = q.category || 'Uncategorized';
+        if (!byCategory[cat]) byCategory[cat] = [];
+        byCategory[cat].push(q);
+      });
+      
+      const selected = [];
+      
+      // Select from each category according to weight
+      for (const [category, weight] of Object.entries(NCLEX_CATEGORY_WEIGHTS)) {
+        const categoryQuestions = byCategory[category] || [];
+        if (categoryQuestions.length === 0) continue;
+        
+        // Calculate target count for this category
+        const targetCount = Math.round(quizLength * weight);
+        if (targetCount === 0) continue;
+        
+        // Use 1:1 ratio selection within category
+        const categorySelected = selectWithRatio(categoryQuestions, targetCount);
+        selected.push(...categorySelected);
+        
+        console.log(`[Quiz] ${category}: target=${targetCount}, selected=${categorySelected.length}`);
+      }
+      
+      // Handle any uncategorized questions
+      const uncategorized = byCategory['Uncategorized'] || [];
+      if (uncategorized.length > 0 && selected.length < quizLength) {
+        const remaining = quizLength - selected.length;
+        const extra = selectWithRatio(uncategorized, remaining);
+        selected.push(...extra);
+      }
+      
+      // If we don't have enough, fill from any category
+      if (selected.length < quizLength) {
+        const selectedIds = new Set(selected.map(q => q.id));
+        const remaining = allQuestions.filter(q => !selectedIds.has(q.id));
+        const needed = quizLength - selected.length;
+        const extra = selectWithRatio(remaining, needed);
+        selected.push(...extra);
+      }
+      
+      // Trim if we have too many (due to rounding)
+      const final = shuffle(selected).slice(0, quizLength);
+      console.log('[Quiz] Final weighted selection:', final.length, 'questions');
+      return final;
+    }
+    
+    // CASE 4: Default fallback - simple 1:1 ratio
+    console.log('[Quiz] Using default 1:1 ratio selection');
+    return selectWithRatio(allQuestions, quizLength);
+  }
+
+  // -----------------------------------------------------------
   // Content Loading
   // -----------------------------------------------------------
   async function loadContent() {
-    const res = await fetch('/static/js/quiz-content.fixtures.json', { cache: 'no-store' });
-    if (!res.ok) {
-      throw new Error(`Failed to load quiz content fixtures. HTTP ${res.status}`);
+    // Check for preloaded data first (from server-side injection)
+    if (window.preloadedQuizData) {
+      console.log('[Quiz] Using preloaded quiz data');
+      
+      // Store preload flags
+      state.isComprehensive = window.preloadedQuizData.isComprehensive || false;
+      state.isCategoryQuiz = window.preloadedQuizData.isCategoryQuiz || false;
+      
+      // If we have direct questions array (from NCLEX pages)
+      if (window.preloadedQuizData.questions) {
+        state.content = {
+          preloaded: true,
+          questions: window.preloadedQuizData.questions,
+          moduleName: window.preloadedQuizData.moduleName || 'Quiz',
+          category: window.preloadedQuizData.category || 'General'
+        };
+        state.categories = [state.content.category];
+        
+        // Auto-select for preloaded quizzes
+        state.selectedCategory = state.content.category;
+        state.selectedSubcategory = 'default';
+        state.selectedModuleKey = state.content.moduleName;
+        
+        console.log('[Quiz] Preloaded data:', {
+          moduleName: state.content.moduleName,
+          category: state.content.category,
+          questionCount: state.content.questions.length,
+          isComprehensive: state.isComprehensive,
+          isCategoryQuiz: state.isCategoryQuiz
+        });
+        return;
+      }
+      
+      // If we have categories structure
+      if (window.preloadedQuizData.categories) {
+        state.content = window.preloadedQuizData;
+        state.categories = Object.keys(window.preloadedQuizData.categories || {});
+        return;
+      }
     }
-    const data = await res.json();
-    state.content = data;
-    state.categories = Object.keys(data.categories || {});
+    
+    // Fallback: fetch from JSON file (for non-NCLEX pages)
+    try {
+      const res = await fetch('/static/js/quiz-content.fixtures.json', { cache: 'no-store' });
+      if (!res.ok) {
+        throw new Error(`Failed to load quiz content fixtures. HTTP ${res.status}`);
+      }
+      const data = await res.json();
+      state.content = data;
+      state.categories = Object.keys(data.categories || {});
+    } catch (e) {
+      // If no preloaded data and fetch fails, check if we should auto-start
+      if (window.preloadedQuizData) {
+        console.log('[Quiz] Using preloaded data, ignoring fetch error');
+        return;
+      }
+      throw e;
+    }
   }
 
   // -----------------------------------------------------------
@@ -243,6 +438,12 @@
   }
 
   function updateControlsEnabled() {
+    // For preloaded quizzes, always enable
+    if (state.content && state.content.preloaded) {
+      if (els.startBtn) els.startBtn.disabled = false;
+      return;
+    }
+    
     const ready = !!(state.selectedCategory && state.selectedSubcategory && state.selectedModuleKey);
     if (els.startBtn) els.startBtn.disabled = !ready;
   }
@@ -323,6 +524,11 @@
   // Quiz Data Access
   // -----------------------------------------------------------
   function getQuestionsForSelection(cat, subcat, modKey, mode) {
+    // For preloaded content, return questions directly
+    if (state.content && state.content.preloaded) {
+      return state.content.questions || [];
+    }
+    
     if (!state.content || !state.content.categories) return [];
     const c = state.content.categories[cat];
     if (!c) return [];
@@ -376,9 +582,19 @@
     // If everything mastered, just use full set so user can still quiz
     if (pool.length === 0) pool = normalized;
 
-    // Select N
+    // Select N using weighted selection if applicable
     const requested = opts.count || 10;
-    const selected = shuffle(pool).slice(0, Math.min(requested, pool.length));
+    const isComprehensive = opts.isComprehensive || state.isComprehensive || false;
+    const isCategoryQuiz = opts.isCategoryQuiz || state.isCategoryQuiz || false;
+    
+    let selected;
+    if (opts.useWeighting !== false && (isComprehensive || isCategoryQuiz)) {
+      // Use weighted selection for NCLEX quizzes
+      selected = selectQuestionsWithWeighting(pool, requested, isComprehensive, isCategoryQuiz);
+    } else {
+      // Simple shuffle selection for other quizzes
+      selected = shuffle(pool).slice(0, Math.min(requested, pool.length));
+    }
 
     const r = {
       createdAt: nowIso(),
@@ -387,6 +603,8 @@
       moduleKey: state.selectedModuleKey,
       mode: state.mode,
       isRetry: !!opts.isRetry,
+      isComprehensive: isComprehensive,
+      isCategoryQuiz: isCategoryQuiz,
       requestedCount: requested,
 
       masterPool: selected,          // the original selection
@@ -426,7 +644,13 @@
       return;
     }
 
-    run = buildRun(qs, { count: state.selectedCount, isRetry: false, forceAll: false });
+    run = buildRun(qs, { 
+      count: state.selectedCount, 
+      isRetry: false, 
+      forceAll: false,
+      isComprehensive: state.isComprehensive,
+      isCategoryQuiz: state.isCategoryQuiz
+    });
 
     // Clear any previous resume data once a fresh quiz starts
     clearResumeData();
@@ -447,7 +671,12 @@
       return;
     }
 
-    run = buildRun(missed, { count: missed.length, isRetry: true, forceAll: true });
+    run = buildRun(missed, { 
+      count: missed.length, 
+      isRetry: true, 
+      forceAll: true,
+      useWeighting: false  // Don't use weighting for retries
+    });
     setView('quiz');
     updateQuizTitle();
     renderNextFromQueue();
@@ -457,7 +686,7 @@
     if (!els.quizTitle) return;
     const parts = [];
     if (run?.category) parts.push(run.category);
-    if (run?.subcategory) parts.push(run.subcategory);
+    if (run?.subcategory && run.subcategory !== 'default') parts.push(run.subcategory);
     if (run?.moduleKey) parts.push(run.moduleKey);
     const base = parts.join(' / ') || 'Quiz';
     const tag = run?.isRetry ? ' (Retry)' : '';
@@ -486,6 +715,8 @@
       moduleKey: run.moduleKey,
       mode: run.mode,
       isRetry: run.isRetry,
+      isComprehensive: run.isComprehensive,
+      isCategoryQuiz: run.isCategoryQuiz,
       requestedCount: run.requestedCount,
       quizLength: run.quizLength,
       masterPool: run.masterPool,
@@ -544,6 +775,8 @@
       moduleKey: data.moduleKey,
       mode: data.mode,
       isRetry: !!data.isRetry,
+      isComprehensive: !!data.isComprehensive,
+      isCategoryQuiz: !!data.isCategoryQuiz,
       requestedCount: data.requestedCount,
       quizLength: data.quizLength,
       masterPool: (data.masterPool || []).map(normalizeQuestion),
@@ -931,9 +1164,11 @@
       }
 
       // Record attempts for each question in the quiz (for least-asked tracking)
-      const questionIds = run.masterPool.map(q => q.id).filter(Boolean);
-      window.StudyGuruProgress.recordQuizAttempts(questionIds);
-      console.log(`[Quiz] Recorded attempts for ${questionIds.length} questions`);
+      if (window.StudyGuruProgress.recordQuizAttempts) {
+        const questionIds = run.masterPool.map(q => q.id).filter(Boolean);
+        window.StudyGuruProgress.recordQuizAttempts(questionIds);
+        console.log(`[Quiz] Recorded attempts for ${questionIds.length} questions`);
+      }
     }
     // ========== END WEEKLY QUESTION COUNT ==========
 
@@ -961,6 +1196,22 @@
   }
 
   // -----------------------------------------------------------
+  // Auto-start support for preloaded quizzes
+  // -----------------------------------------------------------
+  function checkAutoStart() {
+    // Check URL for autostart parameter
+    const params = new URLSearchParams(window.location.search);
+    const autostart = params.get('autostart') === 'true';
+    const quizLength = parseInt(params.get('quiz_length'), 10) || 10;
+    
+    if (autostart && state.content && state.content.preloaded) {
+      console.log('[Quiz] Auto-starting quiz with length:', quizLength);
+      state.selectedCount = quizLength;
+      startQuiz();
+    }
+  }
+
+  // -----------------------------------------------------------
   // App Init
   // -----------------------------------------------------------
   async function init() {
@@ -978,6 +1229,9 @@
     setView('home');
     initModules();
     showResumeIfAny();
+    
+    // Check for auto-start
+    checkAutoStart();
   }
 
   // Start
