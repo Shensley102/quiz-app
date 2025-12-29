@@ -165,29 +165,29 @@
     return correctIdx === selectedOriginalIndex;
   }
 
-  // Get correct answer text for display
+  // Get correct answer text for display (uses display letters after shuffle)
   function getCorrectAnswerText(q) {
     const choices = getChoices(q);
+    const correctIndices = getCorrectIndices(q);
     
-    // For multi-select, show all correct answers
-    if (isMultiSelect(q)) {
-      const indices = getCorrectIndices(q);
-      return indices.map(idx => {
-        const c = choices[idx];
-        const text = typeof c === 'string' ? c : (c.text || c.label || String(c));
-        return `${LETTERS[idx]}. ${text}`;
-      }).join(', ');
-    }
-    
-    // Single select
-    const correctIdx = getCorrectIndex(q);
-    if (correctIdx >= 0 && correctIdx < choices.length) {
-      const c = choices[correctIdx];
+    // Build array of {displayLetter, text}
+    const answers = correctIndices.map(origIdx => {
+      const displayLetter = run?.shuffleMap?.[origIdx] || LETTERS[origIdx];
+      const c = choices[origIdx];
       const text = typeof c === 'string' ? c : (c.text || c.label || String(c));
-      return `${LETTERS[correctIdx]}. ${text}`;
+      return { displayLetter, text };
+    });
+    
+    // Sort by display letter (A, B, C...)
+    answers.sort((a, b) => a.displayLetter.localeCompare(b.displayLetter));
+    
+    // For multi-select, format vertically
+    if (isMultiSelect(q)) {
+      return answers.map(a => `${a.displayLetter}: ${a.text}`).join('\n');
     }
-
-    return '';
+    
+    // For single-select, format inline
+    return answers.map(a => `${a.displayLetter}. ${a.text}`).join('');
   }
 
   // Check if question is multi-select
@@ -571,6 +571,12 @@
       // Shuffle choices
       const shuffledChoices = shuffle(choiceObjects);
 
+      // Store mapping: originalIndex -> displayLetter for correct answer display
+      run.shuffleMap = {};
+      shuffledChoices.forEach((choice, displayIdx) => {
+        run.shuffleMap[choice.originalIndex] = LETTERS[displayIdx];
+      });
+
       shuffledChoices.forEach((choice, displayIdx) => {
         const displayLetter = LETTERS[displayIdx];
         
@@ -777,7 +783,9 @@
       const correctAnswer = getCorrectAnswerText(q);
       if (els.answerLine && correctAnswer) {
         els.answerLine.classList.remove('hidden');
-        els.answerLine.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}`;
+        // Convert newlines to <br> for multi-select vertical display
+        const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
+        els.answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formattedAnswer}`;
       }
     }
 
@@ -832,10 +840,12 @@
 
         const correctAnswer = getCorrectAnswerText(q);
         const questionText = getQuestionText(q);
+        // Convert newlines to <br> for multi-select vertical display
+        const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
 
         div.innerHTML = `
           <div class="review-question"><strong>${p.correct ? '✅' : '❌'}</strong> ${questionText}</div>
-          <div class="review-correct-answer"><strong>Correct Answer:</strong> ${correctAnswer}</div>
+          <div class="review-correct-answer"><strong>Correct Answer:</strong><br>${formattedAnswer}</div>
           ${q.rationale ? `<div class="review-rationale"><strong>Rationale:</strong> ${q.rationale}</div>` : ''}
         `;
 
