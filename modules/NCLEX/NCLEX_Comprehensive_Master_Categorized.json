@@ -8305,7 +8305,7 @@
       "correct": [
         "B"
       ],
-      "rationale": "If the chest tube becomes disconnected, the first action is to submerge the end of the chest tube in a bottle of sterile water or normal saline to maintain water seal. Clamping the tube may cause a pneumothorax, changing the chest tube may precipitate a tension pneumothorax. Contact the tube should be submerged to maintain the seal and prevent air and/or leakage.",
+      "rationale": "If the tube becomes disconnected, it is best to immediately reattach it to the drainage system or to submerge the end in a bottle of sterile water or saline solution to reestablish a water seal. The health care provider must be notified, but this is not the first action. The client would not be instructed to inhale, because this would cause atmospheric air to enter the pleural space. In most situations, clamping of chest tubes is contraindicated. When the client has a residual air leak or pneumothorax, clamping the chest tube may precipitate a tension pneumothorax, because the air has no escape route.",
       "type": "single_select"
     },
     {
