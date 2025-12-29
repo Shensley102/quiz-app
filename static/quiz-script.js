@@ -281,7 +281,7 @@
       state.content = data;
       state.categories = Object.keys(data.categories || {});
     } catch (e) {
-      // If no preloaded data and fetch fails, check if we should auto-start
+      // If preloaded data exists, ignore fetch error
       if (window.preloadedQuizData) {
         console.log('[Quiz] Using preloaded data, ignoring fetch error');
         return;
@@ -351,7 +351,7 @@
     const store = getProgressStore();
     if (!store || !els.weeklyCount) return;
 
-    const weekly = store.getWeeklyCount ? store.getWeeklyCount() : null;
+    const weekly = store.answeredThisWeek ? store.answeredThisWeek() : null;
     if (weekly == null) return;
 
     els.weeklyCount.textContent = weekly;
@@ -474,7 +474,7 @@
         const store = getProgressStore();
         if (!store) return;
         if (confirm('Reset all progress? This will clear mastery, weekly count, and stats.')) {
-          store.resetAll();
+          store.clearAll();
           showToast('Progress reset');
           updateWeeklyUI();
           setupCategoryDisplay();
@@ -569,18 +569,10 @@
   // Quiz Run Lifecycle
   // -----------------------------------------------------------
   function buildRun(questions, opts = {}) {
-    const store = getProgressStore();
     const normalized = questions.map(normalizeQuestion);
 
-    // Filter out already-mastered questions for normal runs,
-    // but allow forcing full set for retries if opts.forceAll.
+    // Use full pool (no mastery filtering - we use attempt-based selection instead)
     let pool = normalized;
-    if (store && !opts.forceAll) {
-      pool = normalized.filter(q => !store.isMastered(q.id));
-    }
-
-    // If everything mastered, just use full set so user can still quiz
-    if (pool.length === 0) pool = normalized;
 
     // Select N using weighted selection if applicable
     const requested = opts.count || 10;
@@ -647,7 +639,6 @@
     run = buildRun(qs, { 
       count: state.selectedCount, 
       isRetry: false, 
-      forceAll: false,
       isComprehensive: state.isComprehensive,
       isCategoryQuiz: state.isCategoryQuiz
     });
@@ -674,7 +665,6 @@
     run = buildRun(missed, { 
       count: missed.length, 
       isRetry: true, 
-      forceAll: true,
       useWeighting: false  // Don't use weighting for retries
     });
     setView('quiz');
@@ -1050,9 +1040,8 @@
   }
 
   function markMastered(q) {
-    const store = getProgressStore();
+    // Track mastery within the current run (not persisted to store)
     run.mastered.add(q.id);
-    if (store) store.setMastered(q.id, true);
   }
 
   function handleIncorrect(q) {
@@ -1123,15 +1112,8 @@
 
     // Save category score to progress store
     const store = getProgressStore();
-    if (store && store.recordCategoryScore) {
-      // Compute category-level percent correct in this run by category field if available
-      // Minimal: just store pct for the specific module selection
-      const key = `${run.category} / ${run.subcategory} / ${run.moduleKey}`;
-      store.recordCategoryScore(key, Math.round(pct));
-    }
-
-    // If your content includes category tags per question, store those too (optional)
-    // E.g. q.categoryTag
+    
+    // If your content includes category tags per question, store those
     if (store && store.recordCategoryScore && (run.perQuestion || []).length > 0) {
       const categoryResults = {};
       run.perQuestion.forEach((p) => {
@@ -1155,18 +1137,20 @@
     // ========== WEEKLY QUESTION COUNT ==========
     // Only count ORIGINAL quizzes toward the weekly counter.
     // Retry runs (e.g., "Retry Missed Questions") should NOT add to the weekly total.
-    if (window.StudyGuruProgress) {
+    if (store) {
       if (!run.isRetry) {
-        window.StudyGuruProgress.recordCompletedQuiz(totalQuestions);
-        console.log(`[Quiz] Recorded ${totalQuestions} completed questions to weekly count`);
+        if (store.recordCompletedQuiz) {
+          store.recordCompletedQuiz(totalQuestions);
+          console.log(`[Quiz] Recorded ${totalQuestions} completed questions to weekly count`);
+        }
       } else {
         console.log('[Quiz] Retry run detected; skipping weekly question count increment');
       }
 
       // Record attempts for each question in the quiz (for least-asked tracking)
-      if (window.StudyGuruProgress.recordQuizAttempts) {
+      if (store.recordQuizAttempts) {
         const questionIds = run.masterPool.map(q => q.id).filter(Boolean);
-        window.StudyGuruProgress.recordQuizAttempts(questionIds);
+        store.recordQuizAttempts(questionIds);
         console.log(`[Quiz] Recorded attempts for ${questionIds.length} questions`);
       }
     }
