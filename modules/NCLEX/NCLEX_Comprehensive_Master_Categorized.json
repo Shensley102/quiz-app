@@ -199,7 +199,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q13",
-      "stem": "An emergency department (Emergency Department (ED)) nurse is monitoring a client who sustained a severe inhalation burn injury during a fire in which the client was trapped in an enclosed space. The nurse auscultates the client's trachea and notes that the previously heard wheezing sounds have disappeared. What is the most appropriate action the nurse should take?",
+      "stem": "An emergency department (ED) nurse is monitoring a client who sustained a severe inhalation burn injury during a fire in which the client was trapped in an enclosed space. The nurse auscultates the client's trachea and notes that the previously heard wheezing sounds have disappeared. What is the most appropriate action the nurse should take?",
       "options": [
         "Continue monitoring the client",
         "Remove the oxygen mask and fit the client with a nasal cannula",
@@ -381,7 +381,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q24",
-      "stem": "Lorazepam 1 mg by way of intravenous (Intravenous (IV)) injection (Intravenous (IV) push) is prescribed for a client for the management of anxiety. The nurse prepares the medication as prescribed. Over what period of time should the nurse administer this medication?",
+      "stem": "Lorazepam 1 mg by way of intravenous (IV) injection (Intravenous (IV) push) is prescribed for a client for the management of anxiety. The nurse prepares the medication as prescribed. Over what period of time should the nurse administer this medication?",
       "options": [
         "10 seconds",
         "30 minutes",
@@ -429,7 +429,7 @@
     {
       "category": "Basic Care and Comfort",
       "id": "Q27",
-      "stem": "A nurse provides home care instructions to a client with coronary artery disease (Coronary Artery Disease (CAD)) who is being discharged from the hospital. Which statement by the client indicates a need for further instruction?",
+      "stem": "A nurse provides home care instructions to a client with coronary artery disease (CAD) who is being discharged from the hospital. Which statement by the client indicates a need for further instruction?",
       "options": [
         "I need to check my pulse before, during, and after exercise.",
         "I need to avoid foods with saturated fats and foods high in cholesterol.",
@@ -516,7 +516,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q32",
-      "stem": "The nurse is caring for a client with chronic renal failure (Chronic Renal Failure (CRF)) who is receiving dialysis therapy. Which nursing intervention has the greatest priority when planning this client's care?",
+      "stem": "The nurse is caring for a client with chronic renal failure (CRF) who is receiving dialysis therapy. Which nursing intervention has the greatest priority when planning this client's care?",
       "options": [
         "Palpate for pitting edema.",
         "Provide meticulous skin care.",
@@ -647,7 +647,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q40",
-      "stem": "A client with rheumatoid arthritis (Rheumatoid Arthritis (RA)) starts a new prescription for etanercept subcutaneously once weekly. The nurse should emphasize the importance of reporting which problem to the healthcare provider?",
+      "stem": "A client with rheumatoid arthritis (RA) starts a new prescription for etanercept subcutaneously once weekly. The nurse should emphasize the importance of reporting which problem to the healthcare provider?",
       "options": [
         "Joint stiffness",
         "Persistent fever",
@@ -753,7 +753,7 @@
       "correct": [
         "A"
       ],
-      "rationale": "This client has a need for a skill that is within the scope of practice for the LPN (A). Titration of an Intravenous (IV) drip, establishing care plans, and discharge teaching are within the scope of practice of a registered nurse (Registered Nurse (RN)) and are not delegated (B, C, and D).",
+      "rationale": "This client has a need for a skill that is within the scope of practice for the LPN (A). Titration of an Intravenous (IV) drip, establishing care plans, and discharge teaching are within the scope of practice of a registered nurse (RN) and are not delegated (B, C, and D).",
       "type": "single_select"
     },
     {
@@ -1015,7 +1015,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q63",
-      "stem": "A primipara presents to the perinatal unit describing rupture of the membranes (Range of Motion (ROM)), which occurred 12 hours prior to coming to the hospital. An oxytocin (Pitocin) infusion is begun, and 8 hours later the client's contractions are irregular and mild. What vital sign should the nurse monitor with greater frequency than the typical unit protocol?",
+      "stem": "A primipara presents to the perinatal unit describing rupture of the membranes (ROM), which occurred 12 hours prior to coming to the hospital. An oxytocin (Pitocin) infusion is begun, and 8 hours later the client's contractions are irregular and mild. What vital sign should the nurse monitor with greater frequency than the typical unit protocol?",
       "options": [
         "Maternal temperature",
         "Fetal blood pressure",
@@ -1025,7 +1025,7 @@
       "correct": [
         "A"
       ],
-      "rationale": "Maternal temperature (A) should be monitored frequently as a primary indicator of infection. This client's rupture of membranes (Range of Motion (ROM)) occurred at least 20 hours ago (12 hours before coming to the hospital, in addition to 8 hours since hospital admission). Delivery is not imminent, and there is an increased risk of the development of infection 24 hours after Range of Motion (ROM). (B) cannot be established with standard bedside monitoring. (C) is not specifically related to Range of Motion (ROM). (D) is always monitored during labor; this situation would not prompt the nurse to increase FHR monitoring.",
+      "rationale": "Maternal temperature (A) should be monitored frequently as a primary indicator of infection. This client's rupture of membranes (ROM) occurred at least 20 hours ago (12 hours before coming to the hospital, in addition to 8 hours since hospital admission). Delivery is not imminent, and there is an increased risk of the development of infection 24 hours after Range of Motion (ROM). (B) cannot be established with standard bedside monitoring. (C) is not specifically related to Range of Motion (ROM). (D) is always monitored during labor; this situation would not prompt the nurse to increase FHR monitoring.",
       "type": "single_select"
     },
     {
@@ -1377,7 +1377,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q85",
-      "stem": "The nurse is completing the admission assessment of a 3-year old who is admitted with bacterial meningitis and hydrocephalus. Which assessment finding is evidence that the child is experiencing increased intracranial pressure (Intracranial Pressure (ICP))?",
+      "stem": "The nurse is completing the admission assessment of a 3-year old who is admitted with bacterial meningitis and hydrocephalus. Which assessment finding is evidence that the child is experiencing increased intracranial pressure (ICP)?",
       "options": [
         "Tachycardia and tachypnea",
         "Sluggish and unequal pupillary responses",
@@ -1864,7 +1864,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q115",
-      "stem": "A client is brought to the emergency department by ambulance, and diabetic ketoacidosis is suspected. Blood samples are taken, and the nurse obtains supplies that will be needed to treat the client. Which type of insulin does the nurse take from the medication supply room for intravenous (Intravenous (IV)) administration?",
+      "stem": "A client is brought to the emergency department by ambulance, and diabetic ketoacidosis is suspected. Blood samples are taken, and the nurse obtains supplies that will be needed to treat the client. Which type of insulin does the nurse take from the medication supply room for intravenous (IV) administration?",
       "options": [
         "Lente (Humulin L)",
         "NPH (Humulin N)",
@@ -2056,7 +2056,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q126",
-      "stem": "A nurse reviews arterial blood gas (Arterial Blood Gas (ABG)) values and notes a pH of 7.50 and a PCO2 of 30 mm Hg. What does the nurse interpret these values as indicative of?",
+      "stem": "A nurse reviews arterial blood gas (ABG) values and notes a pH of 7.50 and a PCO2 of 30 mm Hg. What does the nurse interpret these values as indicative of?",
       "options": [
         "Respiratory acidosis",
         "Metabolic alkalosis",
@@ -2200,7 +2200,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q135",
-      "stem": "A nurse provides information to a client with chronic obstructive pulmonary disease (Chronic Obstructive Pulmonary Disease (COPD)) about methods of alleviating shortness of breath while the client is eating. Which statement by the client indicates a need for further instruction?",
+      "stem": "A nurse provides information to a client with chronic obstructive pulmonary disease (COPD) about methods of alleviating shortness of breath while the client is eating. Which statement by the client indicates a need for further instruction?",
       "options": [
         "I should use my bronchodilator 30 minutes before I eat.",
         "I should eat three meals a day, and the biggest meal should be at suppertime.",
@@ -2272,7 +2272,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q139",
-      "stem": "A nurse is reviewing the medical record of a client with a suspected systemic lupus erythematosus (Systemic Lupus Erythematosus (SLE)). Which manifestations of Systemic Lupus Erythematosus (SLE) would the nurse expect to find noted in the client's medical record? (Select all that apply.)",
+      "stem": "A nurse is reviewing the medical record of a client with a suspected systemic lupus erythematosus (SLE). Which manifestations of Systemic Lupus Erythematosus (SLE) would the nurse expect to find noted in the client's medical record? (Select all that apply.)",
       "options": [
         "Weight gain",
         "Vasculitis",
@@ -2323,7 +2323,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q142",
-      "stem": "A nurse in the cardiac care unit (CCU) is told that a client with a diagnosis of myocardial infarction (Myocardial Infarction (MI)) will be admitted from the emergency department (Emergency Department (ED)). Which item does the nurse give priority to placing at the client's bedside?",
+      "stem": "A nurse in the cardiac care unit (CCU) is told that a client with a diagnosis of myocardial infarction (MI) will be admitted from the emergency department (ED). Which item does the nurse give priority to placing at the client's bedside?",
       "options": [
         "Suctioning equipment",
         "Oxygen cannula and flowmeter",
@@ -2339,7 +2339,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q143",
-      "stem": "A nurse is gathering subjective and objective data from a client with suspected rheumatoid arthritis (Rheumatoid Arthritis (RA)). Which early manifestations of Rheumatoid Arthritis (RA) would the nurse expect to note? (Select all that apply.)",
+      "stem": "A nurse is gathering subjective and objective data from a client with suspected rheumatoid arthritis (RA). Which early manifestations of Rheumatoid Arthritis (RA) would the nurse expect to note? (Select all that apply.)",
       "options": [
         "Fatigue",
         "Weight loss",
@@ -2421,7 +2421,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q148",
-      "stem": "The nurse is caring for a client who has chronic obstructive pulmonary disease (Chronic Obstructive Pulmonary Disease (COPD)) and chest pain related to a recent fall. What nursing intervention requires the greatest caution when caring for a client with Chronic Obstructive Pulmonary Disease (COPD)?",
+      "stem": "The nurse is caring for a client who has chronic obstructive pulmonary disease (COPD) and chest pain related to a recent fall. What nursing intervention requires the greatest caution when caring for a client with Chronic Obstructive Pulmonary Disease (COPD)?",
       "options": [
         "Monitoring telemetry and cardiac rhythm",
         "Assisting client to cough and deep breath",
@@ -2778,7 +2778,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q170",
-      "stem": "A client with human immunodeficiency virus (Human Immunodeficiency Virus (HIV)) develops a painful blistering skin rash on the right lateral abdominal area. Which drug should the nurse expect to administer to treat this condition?",
+      "stem": "A client with human immunodeficiency virus (HIV) develops a painful blistering skin rash on the right lateral abdominal area. Which drug should the nurse expect to administer to treat this condition?",
       "options": [
         "Levofoxacin (Levaquin)",
         "Acyclovir sodium (Zovirax)",
@@ -2938,7 +2938,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q180",
-      "stem": "An adult client is admitted to the emergency department after falling from the ladder. While waiting to have a computed tomography (Computed Tomography (CT)) scan, the client requests something for a severe headache. When the nurse offers a prescribed dose of acetaminophen, the client asks for something stronger. Which intervention should the nurse implement?",
+      "stem": "An adult client is admitted to the emergency department after falling from the ladder. While waiting to have a computed tomography (CT) scan, the client requests something for a severe headache. When the nurse offers a prescribed dose of acetaminophen, the client asks for something stronger. Which intervention should the nurse implement?",
       "options": [
         "Review client's history for use of illicit drugs",
         "Explain the reason for using only non-narcotics",
@@ -3201,7 +3201,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q196",
-      "stem": "The nurse is caring for a client with respiratory distress whose arterial blood gas (Arterial Blood Gas (ABG)) results are as follows: pH, 7.33; Pco2, 50 mm Hg; Po2, 70 mm Hg; Bicarbonate (HCO3), 26 mEq/L. How should the nurse interpret these results?",
+      "stem": "The nurse is caring for a client with respiratory distress whose arterial blood gas (ABG) results are as follows: pH, 7.33; Pco2, 50 mm Hg; Po2, 70 mm Hg; Bicarbonate (HCO3), 26 mEq/L. How should the nurse interpret these results?",
       "options": [
         "Metabolic acidosis",
         "Respiratory alkalosis",
@@ -3217,7 +3217,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q197",
-      "stem": "An older client with a long history of coronary artery disease (Coronary Artery Disease (CAD)), hypertension (Hypertension (HTN)), and heart failure (HF) arrives in the Emergency Department (Emergency Department (ED)) in respiratory distress. The healthcare provider prescribes furosemide Intravenous (IV). Which therapeutic response to furosemide should the nurse expected in the client with acute HF?",
+      "stem": "An older client with a long history of coronary artery disease (CAD), hypertension (HTN), and heart failure (HF) arrives in the Emergency Department (ED) in respiratory distress. The healthcare provider prescribes furosemide Intravenous (IV). Which therapeutic response to furosemide should the nurse expected in the client with acute HF?",
       "options": [
         "Increased cardiac contractility",
         "Reduced preload",
@@ -3428,7 +3428,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q210",
-      "stem": "The nurse discovers that a client receiving heparin sodium by way of continuous intravenous (Intravenous (IV)) infusion has removed the Intravenous (IV) tubing from the infusion pump to change his hospital gown. After assessing the client and placing the tubing back in the infusion pump, which medication does the nurse check for in the medication room in case a heparin overdose has occurred?",
+      "stem": "The nurse discovers that a client receiving heparin sodium by way of continuous intravenous (IV) infusion has removed the Intravenous (IV) tubing from the infusion pump to change his hospital gown. After assessing the client and placing the tubing back in the infusion pump, which medication does the nurse check for in the medication room in case a heparin overdose has occurred?",
       "options": [
         "Aminocaproic acid",
         "Enoxaparin",
@@ -3734,7 +3734,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q229",
-      "stem": "An 8-year-old child is receiving digoxin (Lanoxin) for congestive heart failure (Congestive Heart Failure (CHF)). In assessing the child, the nurse finds that her apical heart rate is 80 beats/min, she complains of being slightly nauseated, and her serum digoxin level is 1.2 ng/mL. What action should the nurse take?",
+      "stem": "An 8-year-old child is receiving digoxin (Lanoxin) for congestive heart failure (CHF). In assessing the child, the nurse finds that her apical heart rate is 80 beats/min, she complains of being slightly nauseated, and her serum digoxin level is 1.2 ng/mL. What action should the nurse take?",
       "options": [
         "Because the child's heart rate and digoxin level are within normal range, assess for the cause of the nausea.",
         "Hold the next dose of digoxin until the health care provider can be notified because the serum digoxin level is elevated.",
@@ -4114,7 +4114,7 @@
         "D",
         "F"
       ],
-      "rationale": "These are appropriate diabetes education and management interventions. Insulin aspart is rapid-acting for meals (not Intravenous (IV)); insulin types should not be mixed.",
+      "rationale": "These are appropriate diabetes education and management interventions. Insulin aspart is rapid-acting for meals (IV); insulin types should not be mixed.",
       "type": "multi_select"
     },
     {
@@ -4403,7 +4403,7 @@
     {
       "category": "Basic Care and Comfort",
       "id": "Q270",
-      "stem": "A nurse provides dietary instruction to a hospitalized client with chronic obstructive pulmonary disease (Chronic Obstructive Pulmonary Disease (COPD)). Which menu selection by the client tells the nurse that the client understands the instructions?",
+      "stem": "A nurse provides dietary instruction to a hospitalized client with chronic obstructive pulmonary disease (COPD). Which menu selection by the client tells the nurse that the client understands the instructions?",
       "options": [
         "Broccoli",
         "Cheeseburger",
@@ -4910,7 +4910,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q301",
-      "stem": "The nurse is caring for a client with the sexually transmitted infection (Sexually Transmitted Infection (STI)) chlamydia. The client reports having sex with someone who had many partners. Which response should the nurse provide?",
+      "stem": "The nurse is caring for a client with the sexually transmitted infection (STI) chlamydia. The client reports having sex with someone who had many partners. Which response should the nurse provide?",
       "options": [
         "Inform that follow-up may end after the treatment is finished",
         "Reassure that complications will not occur if the infection is treated",
@@ -4974,7 +4974,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q305",
-      "stem": "A nurse is monitoring a client with pheochromocytoma who is receiving an intravenous (Intravenous (IV)) infusion of phentolamine. Which vital sign does the nurse monitor most closely during the infusion?",
+      "stem": "A nurse is monitoring a client with pheochromocytoma who is receiving an intravenous (IV) infusion of phentolamine. Which vital sign does the nurse monitor most closely during the infusion?",
       "options": [
         "Blood pressure",
         "Apical pulse",
@@ -5502,7 +5502,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q337",
-      "stem": "A nurse is providing home care instructions to a client diagnosed with coronary artery disease (Coronary Artery Disease (CAD)) who will be discharged home and will be taking 1 aspirin daily. What does the nurse tell the client?",
+      "stem": "A nurse is providing home care instructions to a client diagnosed with coronary artery disease (CAD) who will be discharged home and will be taking 1 aspirin daily. What does the nurse tell the client?",
       "options": [
         "That ringing in the ears is a sign of toxicity",
         "That the aspirin is a short-term treatment and will probably be discontinued in 2 weeks",
@@ -5518,7 +5518,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q338",
-      "stem": "The nurse is caring for a client with a cerebrovascular accident (Cerebrovascular Accident (CVA)) who is receiving enteral tube feedings. Which task performed by the UAP requires immediate intervention by the nurse?",
+      "stem": "The nurse is caring for a client with a cerebrovascular accident (CVA) who is receiving enteral tube feedings. Which task performed by the UAP requires immediate intervention by the nurse?",
       "options": [
         "Suctions oral secretions from mouth",
         "Positions head of bed flat when changing sheets",
@@ -5671,7 +5671,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q347",
-      "stem": "When admitting a client with a diagnosis of transient ischemic attack (Transient Ischemic Attack (TIA)), which intervention is most important for the nurse to include in this client's plan of care?",
+      "stem": "When admitting a client with a diagnosis of transient ischemic attack (TIA), which intervention is most important for the nurse to include in this client's plan of care?",
       "options": [
         "Assess bilateral breath sounds",
         "Review client's daily medications",
@@ -6262,7 +6262,7 @@
         "D",
         "F"
       ],
-      "rationale": "The primary goals for the client with a burn injury are to maintain a patent airway, administer intravenous (Intravenous (IV)) fluids to prevent hypovolemic shock, and preserve vital organ functioning.",
+      "rationale": "The primary goals for the client with a burn injury are to maintain a patent airway, administer intravenous (IV) fluids to prevent hypovolemic shock, and preserve vital organ functioning.",
       "type": "multi_select"
     },
     {
@@ -6310,7 +6310,7 @@
       "correct": [
         "B"
       ],
-      "rationale": "Blood and blood products must be initiated by the registered nurse (Registered Nurse (RN)) (B); however, obtaining vital signs may be delegated as long as the results are evaluated by the Registered Nurse (RN). (A, C, and D) are all part of the nursing process and the scope of the Registered Nurse (RN).",
+      "rationale": "Blood and blood products must be initiated by the registered nurse (RN) (B); however, obtaining vital signs may be delegated as long as the results are evaluated by the Registered Nurse (RN). (A, C, and D) are all part of the nursing process and the scope of the Registered Nurse (RN).",
       "type": "single_select"
     },
     {
@@ -6640,7 +6640,7 @@
     {
       "category": "Basic Care and Comfort",
       "id": "Q406",
-      "stem": "A nurse provides information about smoking-cessation measures to a client diagnosed with coronary artery disease (Coronary Artery Disease (CAD)). Which statement by the client indicates a need for further information?",
+      "stem": "A nurse provides information about smoking-cessation measures to a client diagnosed with coronary artery disease (CAD). Which statement by the client indicates a need for further information?",
       "options": [
         "A community support group will help me quit.",
         "I should drink a cup (235 ml) of coffee if I feel the urge to smoke.",
@@ -6916,7 +6916,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q423",
-      "stem": "A client is scheduled for a spiral computed tomography (Computed Tomography (CT)) scan with contrast to evaluate for pulmonary embolism. Which information in the client's history requires follow-up by the nurse?",
+      "stem": "A client is scheduled for a spiral computed tomography (CT) scan with contrast to evaluate for pulmonary embolism. Which information in the client's history requires follow-up by the nurse?",
       "options": [
         "CT scan that was performed 6 months earlier",
         "Metal hip prosthesis was placed 20 years ago",
@@ -6948,7 +6948,7 @@
     {
       "category": "Basic Care and Comfort",
       "id": "Q425",
-      "stem": "The nurse is preparing a client for discharge who was hospitalized with an acute flare of systemic lupus erythematosus (Systemic Lupus Erythematosus (SLE)) symptoms. Which instruction is most important for the nurse to include?",
+      "stem": "The nurse is preparing a client for discharge who was hospitalized with an acute flare of systemic lupus erythematosus (SLE) symptoms. Which instruction is most important for the nurse to include?",
       "options": [
         "Use a walker when weakness occurs",
         "Take prescribed cortisone accurately",
@@ -7364,7 +7364,7 @@
     {
       "category": "Management of Care",
       "id": "Q451",
-      "stem": "A client who experienced a cerebrovascular accident (Cerebrovascular Accident (CVA)) is aphasic and has left sided paralysis. Which nurse should be responsible for coordinating the progression of this client's care?",
+      "stem": "A client who experienced a cerebrovascular accident (CVA) is aphasic and has left sided paralysis. Which nurse should be responsible for coordinating the progression of this client's care?",
       "options": [
         "Nurse case manager",
         "Adult nurse practitioner",
@@ -7565,7 +7565,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q463",
-      "stem": "An emergency department (Emergency Department (ED)) nurse is monitoring a client with suspected acute myocardial infarction (Myocardial Infarction (MI)) who is awaiting transfer to the coronary intensive care unit. The nurse notes the sudden onset of premature ventricular contractions (PVCs) on the monitor, checks the client's carotid pulse, and determines that the PVCs are not perfusing. What is the nurse's most appropriate action?",
+      "stem": "An emergency department (ED) nurse is monitoring a client with suspected acute myocardial infarction (MI) who is awaiting transfer to the coronary intensive care unit. The nurse notes the sudden onset of premature ventricular contractions (PVCs) on the monitor, checks the client's carotid pulse, and determines that the PVCs are not perfusing. What is the nurse's most appropriate action?",
       "options": [
         "Inform the client that PVCs are expected after an MI",
         "Ask the ED primary health care provider to check the client",
@@ -7661,7 +7661,7 @@
     {
       "category": "Physiological Adaptation",
       "id": "Q469",
-      "stem": "A client is found to have hypoxemic respiratory failure. Which finding does the nurse expect to note on review of the results of the client's arterial blood gas (Arterial Blood Gas (ABG)) analysis?",
+      "stem": "A client is found to have hypoxemic respiratory failure. Which finding does the nurse expect to note on review of the results of the client's arterial blood gas (ABG) analysis?",
       "options": [
         "PaO2 of 58 mm Hg, PaCO2 of 35 mm Hg",
         "PaO2 of 49 mm Hg, PaCO2 of 32 mm Hg",
@@ -7773,7 +7773,7 @@
     {
       "category": "Psychosocial Integrity",
       "id": "Q476",
-      "stem": "An on-call nurse in charge of the emergency department (Emergency Department (ED)) during the night shift. A client arrives at the Emergency Department (ED) for treatment after a sexual assault. The nurse has never cared for anyone who has been raped. What should the nurse do most appropriately in regard to this client's care?",
+      "stem": "An on-call nurse in charge of the emergency department (ED) during the night shift. A client arrives at the Emergency Department (ED) for treatment after a sexual assault. The nurse has never cared for anyone who has been raped. What should the nurse do most appropriately in regard to this client's care?",
       "options": [
         "Call the nurses in charge of the day shift",
         "Ask the police officers who brought the client to the ED",
@@ -7837,7 +7837,7 @@
     {
       "category": "Management of Care",
       "id": "Q480",
-      "stem": "A nurse sees another nurse changing an intravenous (Intravenous (IV)) solution because the wrong solution was infusing intravenously. The action corrects the error but does not report it. What should the nurse who observed the error do?",
+      "stem": "A nurse sees another nurse changing an intravenous (IV) solution because the wrong solution was infusing intravenously. The action corrects the error but does not report it. What should the nurse who observed the error do?",
       "options": [
         "Call the outside primary health care provider",
         "Report the nurse who changed the IV solution",
@@ -7934,7 +7934,7 @@
     {
       "category": "Management of Care",
       "id": "Q486",
-      "stem": "A registered nurse (Registered Nurse (RN)) in charge of a long-term care facility who is working with a nursing assistant on the night shift prepares to take her break. To ensure client safety during the break, which of the following actions should the nurse take? Select all that apply.",
+      "stem": "A registered nurse (RN) in charge of a long-term care facility who is working with a nursing assistant on the night shift prepares to take her break. To ensure client safety during the break, which of the following actions should the nurse take? Select all that apply.",
       "options": [
         "Take the nursing assistant breaks using the client area of coffee from a waiting location",
         "Consider clients' needs before taking the break",
@@ -7952,7 +7952,7 @@
     {
       "category": "Management of Care",
       "id": "Q487",
-      "stem": "A registered nurse (Registered Nurse (RN)) is planning assignments for four clients on the nursing unit. The team includes a licensed practical nurse (LPN) and a nursing assistant. Which client should the nurse assign to the LPN? Select all that apply.",
+      "stem": "A registered nurse (RN) is planning assignments for four clients on the nursing unit. The team includes a licensed practical nurse (LPN) and a nursing assistant. Which client should the nurse assign to the LPN? Select all that apply.",
       "options": [
         "A client who is confused and requires assistance with a shower",
         "A client who must be accompanied to physical therapy twice during the shift",
@@ -8165,7 +8165,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q500",
-      "stem": "A nurse is preparing to administer medications to a client by way of a nasogastric (Nasogastric (NG)) tube. What should the nurse do first before administering the medication?",
+      "stem": "A nurse is preparing to administer medications to a client by way of a nasogastric (NG) tube. What should the nurse do first before administering the medication?",
       "options": [
         "Check the client's apical pulse",
         "Check an placement of the side",
@@ -8229,7 +8229,7 @@
     {
       "category": "Psychosocial Integrity",
       "id": "Q504",
-      "stem": "As 16-year-old client is brought to the emergency department (Emergency Department (ED)) by emergency medical services after sustaining blunt abdominal injuries in an automobile accident. The client is unconscious and becomes when the left side. Where in the Emergency Department (ED) room does the nurse record on the chart?",
+      "stem": "As 16-year-old client is brought to the emergency department (ED) by emergency medical services after sustaining blunt abdominal injuries in an automobile accident. The client is unconscious and becomes when the left side. Where in the Emergency Department (ED) room does the nurse record on the chart?",
       "options": [
         "The nurse will sign informed consent on behalf of the client and ask another nurse to witness the signature",
         "The nurse understands that consent is not needed",
@@ -8328,7 +8328,7 @@
     {
       "category": "Management of Care",
       "id": "Q510",
-      "stem": "A registered nurse (Registered Nurse (RN)) who has a licensed practical nurse (LPN) and a nursing assistant on the nursing team is planning client assignments for the day. Which of the following clients should the Registered Nurse (RN) assign to the LPN?",
+      "stem": "A registered nurse (RN) who has a licensed practical nurse (LPN) and a nursing assistant on the nursing team is planning client assignments for the day. Which of the following clients should the Registered Nurse (RN) assign to the LPN?",
       "options": [
         "A client with initial distension who is wearing leg pouches and requires assistance with hygiene measures",
         "A client on insulin who needs assistance with feeding",
@@ -8423,7 +8423,7 @@
     {
       "category": "Management of Care",
       "id": "Q516",
-      "stem": "A registered nurse (Registered Nurse (RN)) has received the assignments for the day shift. Once she Registered Nurse (RN) has made initial rounds and checked all of the assigned clients, which client will highlight plan to assess first?",
+      "stem": "A registered nurse (RN) has received the assignments for the day shift. Once she Registered Nurse (RN) has made initial rounds and checked all of the assigned clients, which client will highlight plan to assess first?",
       "options": [
         "A client who is able to perform activities of daily living independently",
         "A client in skeletal traction who has just received pain medication",
@@ -8439,7 +8439,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q517",
-      "stem": "A registered nurse (Registered Nurse (RN)) is experiencing a positive outcome ambulating a client with weak, unstable windows. What advanced activity by the nursing assistant would lead the Registered Nurse (RN) to conclude that the nursing assistant is performing the procedure incorrectly?",
+      "stem": "A registered nurse (RN) is experiencing a positive outcome ambulating a client with weak, unstable windows. What advanced activity by the nursing assistant would lead the Registered Nurse (RN) to conclude that the nursing assistant is performing the procedure incorrectly?",
       "options": [
         "Stands behind the client",
         "Positions the front hand on the client's shoulder",
@@ -8455,7 +8455,7 @@
     {
       "category": "Pharmacological and Parenteral Therapies",
       "id": "Q518",
-      "stem": "A registered nurse (Registered Nurse (RN)) is assisting in a room (forward femoral) (Intramuscular (IM)) admixture on intravenous (Intramuscular (IM)) injection in a client's deltoid muscle. What action by the LPN helps in performing the procedure correctly?",
+      "stem": "A registered nurse (RN) is assisting in a room (forward femoral) (Intramuscular (IM)) admixture on intravenous (IM) injection in a client's deltoid muscle. What action by the LPN helps in performing the procedure correctly?",
       "options": [
         "Administer the injection 2 inches (5 cm) below the acromion process",
         "Position the client to a prone or lie position",
@@ -8503,7 +8503,7 @@
     {
       "category": "Management of Care",
       "id": "Q521",
-      "stem": "A registered nurse (Registered Nurse (RN)) must determine how best to assign co-workers (another Registered Nurse (RN) and one licensed practical nurse (LPN)) to provide care to a group of clients. Which of the following is the best assignment?",
+      "stem": "A registered nurse (RN) must determine how best to assign co-workers (another Registered Nurse (RN) and one licensed practical nurse (LPN)) to provide care to a group of clients. Which of the following is the best assignment?",
       "options": [
         "The RN is assigned to care for a 75 year-old woman hospitalized for dehydration, who is being discharged home only with no medications",
         "The RN is assigned to care for a woman with newly diagnosed ileostomy who has a medical at home",
@@ -8663,7 +8663,7 @@
     {
       "category": "Health Promotion and Maintenance",
       "id": "Q531",
-      "stem": "A primary health care provider is not that a client with congenital heart failure (Congestive Heart Failure (CHF)) is receiving diuretics and announcing of advancing. The primary health care provider, who is in a busy clinic, asks the nurse to write a letter to the client's parents regarding the administration. What is the appropriate action on the part of the nurse?",
+      "stem": "A primary health care provider is not that a client with congenital heart failure (CHF) is receiving diuretics and announcing of advancing. The primary health care provider, who is in a busy clinic, asks the nurse to write a letter to the client's parents regarding the administration. What is the appropriate action on the part of the nurse?",
       "options": [
         "Call the nursing supervisor for assistance in determining the case of administration",
         "Call the primary health care provider who gave the telephone prescription to clarify the prescription",
@@ -8759,7 +8759,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q537",
-      "stem": "At the charge nurse on the 11 pm to 7 am shift is gathering the nursing staff together to burn in the 1 am to 11 pm intravenous report, the charge nurse notes that a staff member has a full front on the front of the client's vital signs and and suggests a medication. Which is the most appropriate action for the charge nurse to take?",
+      "stem": "A charge nurse on the 11 pm-to-7 am shift is gathering the nursing staff together to listen to the 3-to-11 pm intershift report. The charge nurse notes that a staff member has an odor of alcohol on her breath, slurred speech, and an unsteady gait and suspects alcohol intoxication. Which is the most appropriate action for the charge nurse to take?",
       "options": [
         "Contact the nursing supervisor",
         "Ask the staff member how much alcohol the client consumed",
@@ -8934,7 +8934,7 @@
     {
       "category": "Management of Care",
       "id": "Q548",
-      "stem": "A registered nurse (Registered Nurse (RN)) is planning client assignments for the day. Which of the following clients should the Registered Nurse (RN) assign to the nursing assistant?",
+      "stem": "A registered nurse (RN) is planning client assignments for the day. Which of the following clients should the Registered Nurse (RN) assign to the nursing assistant?",
       "options": [
         "A client who requires periodic suctioning",
         "A client who needs frequent ambulation with a walker",
@@ -9170,7 +9170,7 @@
     {
       "category": "Management of Care",
       "id": "Q562",
-      "stem": "A registered nurse (Registered Nurse (RN)) is planning client assignments for the day. Which clients should the nurse assign to a nursing assistant (possible personnel)? Select all that apply.",
+      "stem": "A registered nurse (RN) is planning client assignments for the day. Which clients should the nurse assign to a nursing assistant (possible personnel)? Select all that apply.",
       "options": [
         "A client who requires transport to the radiology department is a wheelschair",
         "A client requiring a gastrostomy tube dressing change",
@@ -9247,7 +9247,7 @@
         "It refers to the process of answering or being responsible for what occurs",
         "The nurse is responsible for her own actions",
         "It carries legal implications for safe performance",
-        "It carries legal implications for safe performance"
+        "You are not responsible for the care that you ask others to complete"
       ],
       "correct": [
         "B",
@@ -9464,7 +9464,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q579",
-      "stem": "A nurse is preparing a chemotherapy infusion to be administered to a client with a diagnosis of Hodgkin's disease. Which precaution should the nurse take while working with this intravenous (Intravenous (IV)) infusion?",
+      "stem": "A nurse is preparing a chemotherapy infusion to be administered to a client with a diagnosis of Hodgkin's disease. Which precaution should the nurse take while working with this intravenous (IV) infusion?",
       "options": [
         "Wearing gloves and a mask",
         "Wearing gloves and a gown",
@@ -9480,7 +9480,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q580",
-      "stem": "A nurse is preparing a continuous intravenous (Intravenous (IV)) infusion at the medication cart. As the nurse goes to attach the Intravenous (IV) tubing port to the solution bag, the tubing drops, hitting the top of the medication cart. Which action should the nurse take to maintain asepsis?",
+      "stem": "A nurse is preparing a continuous intravenous (IV) infusion at the medication cart. As the nurse goes to attach the Intravenous (IV) tubing port to the solution bag, the tubing drops, hitting the top of the medication cart. Which action should the nurse take to maintain asepsis?",
       "options": [
         "Scrub the tubing port with an alcohol swab",
         "Obtain a new IV solution bag",
@@ -9496,7 +9496,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q581",
-      "stem": "A home health nurse is visiting a client with tuberculosis (Tuberculosis (TB)). Which action by the client tells the nurse that the client understands the necessary respiratory precautions to be taken at home?",
+      "stem": "A home health nurse is visiting a client with tuberculosis (TB). Which action by the client tells the nurse that the client understands the necessary respiratory precautions to be taken at home?",
       "options": [
         "Wearing an oxygen mask at all times",
         "Staying secluded in the bedroom",
@@ -9624,7 +9624,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q589",
-      "stem": "A licensed practical nurse (LPN) tells the registered nurse (Registered Nurse (RN)) that the administered acetaminophen to a client by way of the rectal route rather than the prescribed oral route because the client was extremely nauseous. What is the most appropriate action by the Registered Nurse (RN)?",
+      "stem": "A licensed practical nurse (LPN) tells the registered nurse (RN) that the administered acetaminophen to a client by way of the rectal route rather than the prescribed oral route because the client was extremely nauseous. What is the most appropriate action by the Registered Nurse (RN)?",
       "options": [
         "Tells the LPN that she made a sound judgment in administering the medication by way of the rectal route",
         "Instructs the LPN to write \"pr\" (per rectum) on the medication record next to the time at which the medication was administered",
@@ -9688,7 +9688,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q593",
-      "stem": "The unit supervisor of an emergency department (Emergency Department (ED)) is called at home and told by an emergency department nurse who is on duty that an airplane crash has occurred and numerous casualties will be arriving at the Emergency Department (ED). What should the initial response by the unit supervisor be?",
+      "stem": "The unit supervisor of an emergency department (ED) is called at home and told by an emergency department nurse who is on duty that an airplane crash has occurred and numerous casualties will be arriving at the Emergency Department (ED). What should the initial response by the unit supervisor be?",
       "options": [
         "\"Has the disaster plan been activated?\"",
         "\"Be sure that the nursing staff finds as many stretchers as they can.\"",
@@ -9752,7 +9752,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q597",
-      "stem": "A staff nurse caring for a client with a head injury notes that the client is restless and pulling at the intravenous (Intravenous (IV)) line. The client's primary health care provider does not want to prescribe sedation, and the family has requested that the client not be restrained. Which action by the nurse is best?",
+      "stem": "A staff nurse caring for a client with a head injury notes that the client is restless and pulling at the intravenous (IV) line. The client's primary health care provider does not want to prescribe sedation, and the family has requested that the client not be restrained. Which action by the nurse is best?",
       "options": [
         "Asking a family member to sit with the client",
         "Telling the family that the application of wrist restraints is critical in preventing injury to the client",
@@ -9768,7 +9768,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q598",
-      "stem": "A nurse manager of an emergency department (Emergency Department (ED)) arrives at work and is told that four registered nurses called in sick and will not be reporting to work because they are ill. Every trauma room is busy, and emergency medical services (EMS) has just called to report that several victims involved in a 10-car wreck on the interstate will be brought to the Emergency Department (ED). How does the nurse manager initially manage this situation?",
+      "stem": "A nurse manager of an emergency department (ED) arrives at work and is told that four registered nurses called in sick and will not be reporting to work because they are ill. Every trauma room is busy, and emergency medical services (EMS) has just called to report that several victims involved in a 10-car wreck on the interstate will be brought to the Emergency Department (ED). How does the nurse manager initially manage this situation?",
       "options": [
         "Calling the nursing supervisor to discuss activation of the disaster plan",
         "Closing the emergency department temporarily to incoming clients",
@@ -9960,7 +9960,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q610",
-      "stem": "A client with a new diagnosis of tuberculosis (Tuberculosis (TB)) is being admitted to the hospital. During the collection of data from the client, which of the following considerations is most important?",
+      "stem": "A client with a new diagnosis of tuberculosis (TB) is being admitted to the hospital. During the collection of data from the client, which of the following considerations is most important?",
       "options": [
         "The name of the person from whom the client contracted TB, so that the person may be reported for follow-up care",
         "What medications have been prescribed and what the client knows about his or her side effects",
@@ -10008,7 +10008,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q613",
-      "stem": "A teenage client returns to the gynecological (GYN) clinic for a follow-up visit after diagnosis and initial treatment of a sexually transmitted infection (Sexually Transmitted Infection (STI)). Which statement by the client indicates the need for further teaching?",
+      "stem": "A teenage client returns to the gynecological (GYN) clinic for a follow-up visit after diagnosis and initial treatment of a sexually transmitted infection (STI). Which statement by the client indicates the need for further teaching?",
       "options": [
         "\"I know you won't tell my parents I'm in sick.\"",
         "\"I always make sure my boyfriend uses a condom.\"",
@@ -10120,7 +10120,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q620",
-      "stem": "A registered nurse (Registered Nurse (RN)) is watching as a new licensed practical nurse (LPN) suctions a client with a diagnosis of acquired immunodeficiency syndrome (Acquired Immunodeficiency Syndrome (AIDS)). Which of the following protective devices worn by the LPN would cause the Registered Nurse (RN) to determine that the LPN was performing the procedure safely?",
+      "stem": "A registered nurse (RN) is watching as a new licensed practical nurse (LPN) suctions a client with a diagnosis of acquired immunodeficiency syndrome (AIDS). Which of the following protective devices worn by the LPN would cause the Registered Nurse (RN) to determine that the LPN was performing the procedure safely?",
       "options": [
         "Gloves, gown, and face shield",
         "Gown and protective eyewear",
@@ -10467,7 +10467,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q638",
-      "stem": "A triage nurse in an emergency department (Emergency Department (ED)) is attending to the victims of a train crash. All victims are alert. Which of these clients does the nurse assign to the emergent category? (Select all that apply.)",
+      "stem": "A triage nurse in an emergency department (ED) is attending to the victims of a train crash. All victims are alert. Which of these clients does the nurse assign to the emergent category? (Select all that apply.)",
       "options": [
         "A victim with a fractured humerus",
         "A victim with respiratory distress",
@@ -10602,7 +10602,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q645",
-      "stem": "An emergency department (Emergency Department (ED)) nurse is triaging victims of an explosion at a nearby manufacturing plant. To which victims should the nurse assign the emergent (priority 1) designation? (Select all that apply.)",
+      "stem": "An emergency department (ED) nurse is triaging victims of an explosion at a nearby manufacturing plant. To which victims should the nurse assign the emergent (priority 1) designation? (Select all that apply.)",
       "options": [
         "A victim who is dazed and staggering around the other victims",
         "A victim with burns of both arms",
@@ -10620,7 +10620,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q646",
-      "stem": "A client with an infection is receiving antibiotics by way of intramuscular (Intramuscular (IM)) injection. The client is also receiving subcutaneous (Subcutaneous (SC)) injections of heparin. Which precautions does the nurse understand are most appropriate to help ensure the safety of this client? (Select all that apply.)",
+      "stem": "A client with an infection is receiving antibiotics by way of intramuscular (IM) injection. The client is also receiving subcutaneous (SC) injections of heparin. Which precautions does the nurse understand are most appropriate to help ensure the safety of this client? (Select all that apply.)",
       "options": [
         "Switching injection sites",
         "Applying a pressure bandage to the site after each IM injection",
@@ -10694,7 +10694,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q650",
-      "stem": "A nurse employed on a medical care unit is administering medications. She tells a client that she is going to administer his furosemide through his intravenous (Intravenous (IV)) line. The client tells the nurse that he takes this medication orally at home every day and is concerned that it is being administered by way of a different route. The nurse should take which most appropriate action?",
+      "stem": "A nurse employed on a medical care unit is administering medications. She tells a client that she is going to administer his furosemide through his intravenous (IV) line. The client tells the nurse that he takes this medication orally at home every day and is concerned that it is being administered by way of a different route. The nurse should take which most appropriate action?",
       "options": [
         "Explaining to the client that the oral route will not permit the medication to exert an adequate effect",
         "Verifying the primary health care provider's prescription",
@@ -10710,7 +10710,7 @@
     {
       "category": "Safety and Infection Control",
       "id": "Q651",
-      "stem": "At the beginning of the 7 am\u20133 pm shift, the nurse checks her assigned clients and notes that a client with diabetes mellitus has an intravenous (Intravenous (IV)) bag of 5% dextrose in water hanging and infusing instead of the prescribed 0.9% normal saline solution. The nurse verifies the prescription and changes the Intravenous (IV) solution to the correct one. The nurse assesses the client noting that the blood glucose level at 7:15 am was 149 mg/dL (8.3 mmol/L), notifies the primary health care provider, and completes an incident report. Which information about the event is appropriate for inclusion on the incident report? (Select all that apply.)",
+      "stem": "At the beginning of the 7 am\u20133 pm shift, the nurse checks her assigned clients and notes that a client with diabetes mellitus has an intravenous (IV) bag of 5% dextrose in water hanging and infusing instead of the prescribed 0.9% normal saline solution. The nurse verifies the prescription and changes the Intravenous (IV) solution to the correct one. The nurse assesses the client noting that the blood glucose level at 7:15 am was 149 mg/dL (8.3 mmol/L), notifies the primary health care provider, and completes an incident report. Which information about the event is appropriate for inclusion on the incident report? (Select all that apply.)",
       "options": [
         "The primary health care provider was contacted.",
         "The blood glucose level at 7:15 am was 149 mg/dL (8.3 mmol/L).",
@@ -11280,7 +11280,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q680",
-      "stem": "A client has the following arterial blood gas (Arterial Blood Gas (ABG)) results: pH 7.51, Partial Pressure of Carbon Dioxide (PaCO2) 231 mm Hg (4.12 kPa), Partial Pressure of Oxygen (PaO2) 94 mm Hg (12.45 kPa), Bicarbonate (HCO3)- 24 mEq/L (24 mmol/L). Which acid-base disturbance does the nurse recognize in these results?",
+      "stem": "A client has the following arterial blood gas (ABG) results: pH 7.51, Partial Pressure of Carbon Dioxide (PaCO2) 231 mm Hg (4.12 kPa), Partial Pressure of Oxygen (PaO2) 94 mm Hg (12.45 kPa), Bicarbonate (HCO3)- 24 mEq/L (24 mmol/L). Which acid-base disturbance does the nurse recognize in these results?",
       "options": [
         "Respiratory acidosis",
         "Metabolic acidosis",
@@ -11303,7 +11303,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q681",
-      "stem": "A client with histoplasmosis has the following arterial blood gas (Arterial Blood Gas (ABG)) results: pH 7.30, Partial Pressure of Carbon Dioxide (PaCO2) 58 mm Hg (7.73 kPa), Partial Pressure of Oxygen (PaO2) 75 mm Hg (9.93 kPa), Bicarbonate (HCO3)- 26 mEq/L (26 mmol/L). Which acid-base disturbance does the nurse recognize in these results?",
+      "stem": "A client with histoplasmosis has the following arterial blood gas (ABG) results: pH 7.30, Partial Pressure of Carbon Dioxide (PaCO2) 58 mm Hg (7.73 kPa), Partial Pressure of Oxygen (PaO2) 75 mm Hg (9.93 kPa), Bicarbonate (HCO3)- 26 mEq/L (26 mmol/L). Which acid-base disturbance does the nurse recognize in these results?",
       "options": [
         "Respiratory alkalosis",
         "Metabolic acidosis",
@@ -11326,7 +11326,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q682",
-      "stem": "A client is brought to the emergency department by a neighbor. The client is lethargic and has a fruity odor on the breath. The client's arterial blood gas (Arterial Blood Gas (ABG)) results are pH 7.24, Partial Pressure of Carbon Dioxide (PaCO2) 24 mEq/L (4.52 kPa), Partial Pressure of Oxygen (PaO2) 140 (4.14 mmol/L). Which acid-base disturbance does the nurse recognize in these results?",
+      "stem": "A client is brought to the emergency department by a neighbor. The client is lethargic and has a fruity odor on the breath. The client's arterial blood gas (ABG) results are pH 7.24, Partial Pressure of Carbon Dioxide (PaCO2) 24 mEq/L (4.52 kPa), Partial Pressure of Oxygen (PaO2) 140 (4.14 mmol/L). Which acid-base disturbance does the nurse recognize in these results?",
       "options": [
         "Respiratory acidosis",
         "Respiratory alkalosis",
@@ -11395,7 +11395,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q685",
-      "stem": "A client with chronic obstructive pulmonary disease (Chronic Obstructive Pulmonary Disease (COPD)) who is beginning oxygen therapy asks the nurse why the flow can cannot be increased more than 2 L/min. The nurse responds that this would be harmful because it could cause which effect?",
+      "stem": "A client with chronic obstructive pulmonary disease (COPD) who is beginning oxygen therapy asks the nurse why the flow can cannot be increased more than 2 L/min. The nurse responds that this would be harmful because it could cause which effect?",
       "options": [
         "Decrease the client's oxygen-based respiratory drive",
         "Increase the risk of pneumonia as a result of dirt air passages",
@@ -11728,7 +11728,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q699",
-      "stem": "A client with diabetes mellitus (Diabetes Mellitus (DM)) is scheduled to have blood drawn in the morning for a fasting blood glucose determination. What does the nurse tell the client is acceptable to consume on the morning of the test?",
+      "stem": "A client with diabetes mellitus (DM) is scheduled to have blood drawn in the morning for a fasting blood glucose determination. What does the nurse tell the client is acceptable to consume on the morning of the test?",
       "options": [
         "Clear liquids such as apple juice",
         "Coffee without any milk",
@@ -11751,7 +11751,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q700",
-      "stem": "A client is scheduled to undergo computerized tomography (Computed Tomography (CT)) with contrast for evaluation of an abdominal mass. The nurse should provide which information about the test?",
+      "stem": "A client is scheduled to undergo computerized tomography (CT) with contrast for evaluation of an abdominal mass. The nurse should provide which information about the test?",
       "options": [
         "The test may be painful",
         "Food and fluids are not allowed 4 hours after the test",
@@ -12083,7 +12083,7 @@
       "correct": [
         "D"
       ],
-      "rationale": "The client should wear comfortable rubber-soled shoes, such as sneakers, for the procedure. The client must wear loose, comfortable clothing that is helpful for electrocardiogram (Electrocardiograph (ECG)) placement. The client should be Nothing by mouth (NPO) (nothing by mouth) before the test and wear appropriate clothing for a fitness test.",
+      "rationale": "The client should wear comfortable rubber-soled shoes, such as sneakers, for the procedure. The client must wear loose, comfortable clothing that is helpful for electrocardiogram (ECG) placement. The client should be Nothing by mouth (NPO) (nothing by mouth) before the test and wear appropriate clothing for a fitness test.",
       "type": "single_select",
       "test_taking_strategy": "Focus on the subject, client preparation for exercise stress test",
       "level_of_cognitive_ability": "Applying",
@@ -12671,7 +12671,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q740",
-      "stem": "A client has been scheduled for magnetic resonance imaging (Magnetic Resonance Imaging (MRI)). For which condition, a contraindication to 10 Magnetic Resonance Imaging (MRI), does the nurse check that the client does not have a history?",
+      "stem": "A client has been scheduled for magnetic resonance imaging (MRI). For which condition, a contraindication to 10 Magnetic Resonance Imaging (MRI), does the nurse check that the client does not have a history?",
       "options": [
         "Chronic airway limitation",
         "Pacemaker insertion",
@@ -12717,7 +12717,7 @@
     {
       "category": "Reduction of Risk Potential",
       "id": "Q742",
-      "stem": "A client just returned to the nursing unit after computerized tomography (Computed Tomography (CT)) with contrast medium. Which should the nurse provide care for this client?",
+      "stem": "A client just returned to the nursing unit after computerized tomography (CT) with contrast medium. Which should the nurse provide care for this client?",
       "options": [
         "Holding all medications for at least 2 hours",
         "Encouraging fluid intake",
@@ -13240,7 +13240,7 @@
     {
       "category": "Management of Care",
       "id": "Q765",
-      "stem": "A new registered nurse asks the registered nurse (Registered Nurse (RN)) preceptor what could be done to become more professional. What is the preceptor's best response?",
+      "stem": "A new registered nurse asks the registered nurse (RN) preceptor what could be done to become more professional. What is the preceptor's best response?",
       "options": [
         "Attend nursing educational meetings",
         "Listen to other nurses",
@@ -15451,7 +15451,7 @@
     {
       "category": "Management of Care",
       "id": "Q902",
-      "stem": "Sally (Registered Nurse (RN)) and Melissa (Registered Nurse (RN)) have shared an ongoing conflict since the first day that Melissa worked on the unit. Sally has confided to another colleague that she doesn\u2018t even know why the conflict started or what it was about. This is an example of:",
+      "stem": "Sally (RN) and Melissa (RN) have shared an ongoing conflict since the first day that Melissa worked on the unit. Sally has confided to another colleague that she doesn\u2018t even know why the conflict started or what it was about. This is an example of:",
       "options": [
         "How expectations and objectives need to be made clear in team situations.",
         "the need to encourage open discussion of disagreements in opinions.",
@@ -18299,7 +18299,7 @@
     {
       "category": "Health Promotion and Maintenance",
       "id": "Q1072",
-      "stem": "A nurse in the emergency department is performing a musculoskeletal assessment of a client. The preprinted which noted condition does the nurse use to test the range of motion (Range of Motion (ROM)) of the cervical spine?",
+      "stem": "A nurse in the emergency department is performing a musculoskeletal assessment of a client. The preprinted which noted condition does the nurse use to test the range of motion (ROM) of the cervical spine?",
       "options": [
         "Muscle spasms",
         "Sinus infection",
@@ -18546,7 +18546,7 @@
     {
       "category": "Health Promotion and Maintenance",
       "id": "Q1085",
-      "stem": "During a health assessment interview, the client tells the nurse that she has some vaginal drainage. The client is concerned that it may indicate a sexually transmitted infection (Sexually Transmitted Infection (STI)). Which statement should the nurse make to the client?",
+      "stem": "During a health assessment interview, the client tells the nurse that she has some vaginal drainage. The client is concerned that it may indicate a sexually transmitted infection (STI). Which statement should the nurse make to the client?",
       "options": [
         "When was your last gynecological checkup?",
         "I need some more information about the discharge. What color is it?",
@@ -20152,7 +20152,7 @@
     {
       "category": "Psychosocial Integrity",
       "id": "Q1182",
-      "stem": "A client and her newborn infant have undergone human immunodeficiency virus (Human Immunodeficiency Virus (HIV)) testing, and the results for both clients are positive. The news is devastating, and the mother is crying. What is the appropriate nursing action at this time?",
+      "stem": "A client and her newborn infant have undergone human immunodeficiency virus (HIV) testing, and the results for both clients are positive. The news is devastating, and the mother is crying. What is the appropriate nursing action at this time?",
       "options": [
         "Describe the stages of and treatments for HIV",
         "Listen quietly while the mother talks and cries",
@@ -21788,7 +21788,7 @@
     {
       "category": "Basic Care and Comfort",
       "id": "Q1281",
-      "stem": "The health care provider (Health Care Provider (HCP)) prescribes \"enemas until clear\" for a client. The nurse has administered three enemas to the client, but the client is still passing brown stool and fluid. Which action should the nurse take?",
+      "stem": "The health care provider (HCP) prescribes \"enemas until clear\" for a client. The nurse has administered three enemas to the client, but the client is still passing brown stool and fluid. Which action should the nurse take?",
       "options": [
         "Notify the HCP",
         "Continue administering enemas until the fluid returns clear",
@@ -22053,7 +22053,7 @@
     {
       "category": "Basic Care and Comfort",
       "id": "Q1297",
-      "stem": "A client arrives at the emergency department after sustaining an ankle injury, and the health care provider (Health Care Provider (HCP)) prescribes the application of a cold compress to the ankle. The nurse, preparing to apply the compress, assesses the ankle and notes that it is extremely edematous. The nurse should take which action?",
+      "stem": "A client arrives at the emergency department after sustaining an ankle injury, and the health care provider (HCP) prescribes the application of a cold compress to the ankle. The nurse, preparing to apply the compress, assesses the ankle and notes that it is extremely edematous. The nurse should take which action?",
       "options": [
         "Apply the cold compress to the ankle",
         "Consult with the HCP before applying the cold compress",
