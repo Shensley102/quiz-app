@@ -44,6 +44,153 @@ function getQuestionContent(q) {
   return '';
 }
 
+// ========== NCLEX CATEGORY WEIGHTS ==========
+// Official NCLEX-RN Test Plan category weights
+const NCLEX_CATEGORY_WEIGHTS = {
+  'Management of Care': 0.18,
+  'Safety and Infection Control': 0.13,
+  'Health Promotion and Maintenance': 0.09,
+  'Psychosocial Integrity': 0.09,
+  'Basic Care and Comfort': 0.09,
+  'Pharmacological and Parenteral Therapies': 0.16,
+  'Reduction of Risk Potential': 0.12,
+  'Physiological Adaptation': 0.14
+};
+
+// ========== WEIGHTED QUESTION SELECTION ==========
+
+/**
+ * Select questions using weighted category distribution and least-asked priority
+ * 
+ * @param {Array} allQuestions - Full pool of questions with 'id' and 'category' properties
+ * @param {number} quizLength - Desired number of questions
+ * @param {boolean} isComprehensive - If true, apply NCLEX category weighting for 25/50/100
+ * @param {boolean} isCategoryQuiz - If true, questions are already filtered to one category
+ * @returns {Array} Selected questions
+ */
+function selectQuestionsWithWeighting(allQuestions, quizLength, isComprehensive, isCategoryQuiz) {
+  console.log('[Quiz] selectQuestionsWithWeighting:', { 
+    totalQuestions: allQuestions.length, 
+    quizLength, 
+    isComprehensive, 
+    isCategoryQuiz 
+  });
+  
+  // Get attempt counts from progress store
+  const attemptsMap = window.StudyGuruProgress ? window.StudyGuruProgress.getAttemptsMap() : {};
+  
+  // Helper: Sort questions by attempts (least first), with random tiebreaker
+  function sortByLeastAttempts(questions) {
+    return [...questions].sort((a, b) => {
+      const attemptsA = attemptsMap[a.id] || 0;
+      const attemptsB = attemptsMap[b.id] || 0;
+      if (attemptsA !== attemptsB) return attemptsA - attemptsB;
+      return Math.random() - 0.5; // Random tiebreaker
+    });
+  }
+  
+  // Helper: Select with 1:1 ratio (half least-asked, half random)
+  function selectWithRatio(questions, count) {
+    if (count <= 0 || questions.length === 0) return [];
+    if (questions.length <= count) return shuffleArray([...questions]);
+    
+    const sorted = sortByLeastAttempts(questions);
+    const halfCount = Math.ceil(count / 2);
+    
+    // Take least-asked half
+    const leastAsked = sorted.slice(0, halfCount);
+    const leastAskedIds = new Set(leastAsked.map(q => q.id));
+    
+    // Get remaining questions for random selection
+    const remaining = questions.filter(q => !leastAskedIds.has(q.id));
+    const randomCount = count - leastAsked.length;
+    const randomPicks = shuffleArray(remaining).slice(0, randomCount);
+    
+    console.log(`[Quiz] Selected ${leastAsked.length} least-asked + ${randomPicks.length} random = ${leastAsked.length + randomPicks.length} total`);
+    
+    return shuffleArray([...leastAsked, ...randomPicks]);
+  }
+  
+  // ========== CASE 1: Category Quiz (single category, 1:1 ratio) ==========
+  if (isCategoryQuiz) {
+    console.log('[Quiz] Category quiz - using 1:1 ratio selection');
+    return selectWithRatio(allQuestions, quizLength);
+  }
+  
+  // ========== CASE 2: Comprehensive Quiz, 10 questions (100% least-asked, no weighting) ==========
+  if (isComprehensive && quizLength === 10) {
+    console.log('[Quiz] Comprehensive 10-question quiz - 100% least-asked, no weighting');
+    const sorted = sortByLeastAttempts(allQuestions);
+    return sorted.slice(0, 10);
+  }
+  
+  // ========== CASE 3: Comprehensive Quiz, 25/50/100 (weighted by category with 1:1 ratio) ==========
+  if (isComprehensive && (quizLength === 25 || quizLength === 50 || quizLength === 100)) {
+    console.log('[Quiz] Comprehensive weighted quiz - applying NCLEX category weights');
+    
+    // Group questions by category
+    const byCategory = {};
+    for (const cat of Object.keys(NCLEX_CATEGORY_WEIGHTS)) {
+      byCategory[cat] = allQuestions.filter(q => q.category === cat);
+    }
+    
+    // Calculate target count per category
+    const targetCounts = {};
+    let totalAllocated = 0;
+    
+    for (const [cat, weight] of Object.entries(NCLEX_CATEGORY_WEIGHTS)) {
+      const target = Math.round(quizLength * weight);
+      targetCounts[cat] = target;
+      totalAllocated += target;
+    }
+    
+    // Adjust for rounding errors (add/remove from largest category)
+    if (totalAllocated !== quizLength) {
+      const diff = quizLength - totalAllocated;
+      targetCounts['Management of Care'] += diff;
+    }
+    
+    console.log('[Quiz] Category targets:', targetCounts);
+    
+    // Select from each category with 1:1 ratio
+    const selected = [];
+    for (const [cat, target] of Object.entries(targetCounts)) {
+      const available = byCategory[cat] || [];
+      const actualTarget = Math.min(target, available.length);
+      
+      if (actualTarget > 0) {
+        const catSelection = selectWithRatio(available, actualTarget);
+        selected.push(...catSelection);
+        console.log(`[Quiz] ${cat}: ${catSelection.length}/${target} selected (${available.length} available)`);
+      }
+    }
+    
+    // If we're short on questions (some categories don't have enough), fill from any category
+    if (selected.length < quizLength) {
+      const selectedIds = new Set(selected.map(q => q.id));
+      const remaining = allQuestions.filter(q => !selectedIds.has(q.id));
+      const needed = quizLength - selected.length;
+      const additional = selectWithRatio(remaining, needed);
+      selected.push(...additional);
+      console.log(`[Quiz] Added ${additional.length} additional questions to reach target`);
+    }
+    
+    return shuffleArray(selected);
+  }
+  
+  // ========== CASE 4: Default (non-comprehensive or 'full' length) ==========
+  // Just shuffle and return all or slice to length
+  console.log('[Quiz] Default selection - shuffle and slice');
+  const shuffled = shuffleArray([...allQuestions]);
+  
+  if (quizLength && quizLength !== 'full' && !isNaN(parseInt(quizLength))) {
+    const len = parseInt(quizLength);
+    return shuffled.slice(0, Math.min(len, shuffled.length));
+  }
+  
+  return shuffled;
+}
+
 // ========== NCLEX PERFORMANCE STATS MODULE ==========
 
 const NCLEX_STATS_KEY = 'nclexPerformanceStats';
@@ -814,6 +961,11 @@ function finishQuiz() {
   if (window.StudyGuruProgress) {
     window.StudyGuruProgress.recordCompletedQuiz(totalQuestions);
     console.log(`[Quiz] Recorded ${totalQuestions} completed questions to weekly count`);
+    
+    // Record attempts for each question in the quiz (for least-asked tracking)
+    const questionIds = run.masterPool.map(q => q.id).filter(Boolean);
+    window.StudyGuruProgress.recordQuizAttempts(questionIds);
+    console.log(`[Quiz] Recorded attempts for ${questionIds.length} questions`);
   }
   // ========== END WEEKLY QUESTION COUNT ==========
   
@@ -972,17 +1124,27 @@ function startQuiz(moduleName, questions, quizLength, isComprehensive = false, i
   run.questionNumber = 0;  // Reset question counter
   run.missedQueue = [];    // Reset missed queue
   
-  // Prepare questions
-  let pool = questions.map((q, i) => ({
+  // Prepare questions - ensure all have IDs
+  const preparedQuestions = questions.map((q, i) => ({
     ...q,
     id: q.id || `${moduleName}-${i}`
   }));
   
-  // Apply length limit if specified
+  // Parse quiz length
+  let targetLength = preparedQuestions.length;
   if (quizLength && quizLength !== 'full' && !isNaN(parseInt(quizLength))) {
-    const len = parseInt(quizLength);
-    if (len < pool.length) {
-      pool = shuffleArray(pool).slice(0, len);
+    targetLength = parseInt(quizLength);
+  }
+  
+  // Use weighted selection for NCLEX quizzes
+  let pool;
+  if (isComprehensive || isCategoryQuiz) {
+    pool = selectQuestionsWithWeighting(preparedQuestions, targetLength, isComprehensive, isCategoryQuiz);
+  } else {
+    // Standard selection for non-NCLEX quizzes
+    pool = shuffleArray([...preparedQuestions]);
+    if (targetLength < pool.length) {
+      pool = pool.slice(0, targetLength);
     }
   }
   
