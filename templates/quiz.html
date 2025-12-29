@@ -47,6 +47,61 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
     .offline-indicator.hidden { display: none; }
+    
+    /* Return button styling */
+    .return-btn {
+      display: block;
+      width: 100%;
+      padding: 14px 24px;
+      margin-top: 12px;
+      background: #6c757d;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1em;
+      transition: background 0.2s;
+    }
+    .return-btn:hover {
+      background: #5a6268;
+      color: white;
+      text-decoration: none;
+    }
+    
+    /* Review item styling improvements */
+    .review-item {
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      border-left: 4px solid #ccc;
+      background: #f8f9fa;
+    }
+    .review-item.review-correct {
+      border-left-color: #4caf50;
+      background: #f1f8e9;
+    }
+    .review-item.review-incorrect {
+      border-left-color: #f44336;
+      background: #ffebee;
+    }
+    .review-question {
+      margin-bottom: 12px;
+      font-size: 1em;
+      line-height: 1.5;
+    }
+    .review-correct-answer {
+      margin-bottom: 8px;
+      color: #2e7d32;
+    }
+    .review-rationale {
+      color: #555;
+      font-size: 0.95em;
+      line-height: 1.5;
+      padding-top: 8px;
+      border-top: 1px solid #ddd;
+      margin-top: 8px;
+    }
   </style>
 </head>
 <body>
@@ -127,22 +182,13 @@
       <h2>Quiz Complete! 🎉</h2>
       <div id="firstTrySummary" class="first-try"></div>
 
-      <div class="actions" style="margin-bottom: 24px;">
+      <div class="actions" id="summaryActions" style="margin-bottom: 24px;">
         <button class="btn danger hidden" id="retryMissedBtn">Retry Missed Questions</button>
         <button class="btn primary" id="restartBtnSummary">Start New Quiz</button>
+        <!-- Return button will be dynamically inserted here by JS -->
       </div>
 
-      <div class="help" style="margin-top: 0; margin-bottom: 32px;">
-        <h3>Need More Practice?</h3>
-        <ul>
-          <li>Review the rationales for questions you missed</li>
-          <li>Try the "Retry Missed Questions" feature to focus on weak areas</li>
-          <li>Consider a shorter quiz length for more frequent practice sessions</li>
-          <li>Use the keyboard shortcuts (A-E, Enter) for faster navigation</li>
-        </ul>
-      </div>
-
-      <h3>Review Your Answers:</h3>
+      <h3>Review All Questions:</h3>
       <div id="reviewList" class="review-list"></div>
     </div>
 
@@ -150,7 +196,7 @@
     <button class="btn danger hidden" id="resetAll" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">Reset Quiz</button>
   </div>
 
-  <!-- Progress Store (for tracking answered questions) -->
+  <!-- Progress Store -->
   <script src="/static/js/progress-store.js"></script>
 
   <!-- PWA Utilities -->
@@ -199,6 +245,10 @@
       window.isCategoryQuiz = {{ is_category_quiz | tojson }};
     {% endif %}
     
+    {% if quiz_length is defined and quiz_length %}
+      window.quizLength = "{{ quiz_length }}";
+    {% endif %}
+    
     // Also read quiz_length from URL parameters as fallback
     (function() {
       const params = new URLSearchParams(window.location.search);
@@ -223,7 +273,7 @@
     });
   </script>
 
-  <!-- Quiz Script - FIXED PATH -->
+  <!-- Quiz Script -->
   <script src="/static/quiz-script.js"></script>
 </body>
 </html>
