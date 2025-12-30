@@ -454,6 +454,14 @@
     showView('quiz');
     if (els.countersBox) els.countersBox.classList.remove('hidden');
     nextQuestion();
+    
+    // Center quiz card after first question loads
+    setTimeout(() => {
+      const quizCard = document.getElementById('quiz');
+      if (quizCard) {
+        quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 50);
   }
 
   function startRetryQuiz() {
@@ -478,6 +486,14 @@
     showView('quiz');
     if (els.countersBox) els.countersBox.classList.remove('hidden');
     nextQuestion();
+    
+    // Center quiz card after first question loads
+    setTimeout(() => {
+      const quizCard = document.getElementById('quiz');
+      if (quizCard) {
+        quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 50);
   }
 
   function nextQuestion() {
@@ -759,9 +775,15 @@
       saveResumeData();
 
     } else if (mode === 'next') {
-      // Scroll to top for new question
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Center quiz card in viewport for new question
       nextQuestion();
+      // Small delay to ensure DOM is updated before scrolling
+      setTimeout(() => {
+        const quizCard = document.getElementById('quiz');
+        if (quizCard) {
+          quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 50);
     }
   }
 
@@ -822,13 +844,22 @@
       `;
     }
 
-    // Show/hide retry button
+    // Show/hide retry button and update missed count
     const missedCount = run.perQuestion.filter(p => !p.correct).length;
     if (els.retryMissedBtn) {
       els.retryMissedBtn.classList.toggle('hidden', missedCount === 0);
-      // Adjust Start New Quiz width when Retry is hidden
+      
+      // Update the missed count display
+      const missedCountDisplay = document.getElementById('missedCountDisplay');
+      if (missedCountDisplay) {
+        missedCountDisplay.textContent = `(${missedCount})`;
+      }
+      
+      // Adjust Start New Quiz width when Retry is hidden (takes 5/6 of space)
       if (missedCount === 0 && els.restartBtnSummary) {
-        els.restartBtnSummary.style.flex = '0 0 80%';
+        els.restartBtnSummary.style.flex = '5';
+      } else if (els.restartBtnSummary) {
+        els.restartBtnSummary.style.flex = '4';
       }
     }
 
@@ -858,15 +889,15 @@
       });
     }
 
-    // Add return button with 20% width
+    // Add return button with flex: 1 (same as Retry for 1:4:1 ratio)
     if (els.summaryActions && window.backUrl) {
       let returnBtn = els.summaryActions.querySelector('.return-btn');
       if (!returnBtn) {
         returnBtn = document.createElement('a');
         returnBtn.className = 'return-btn';
-        returnBtn.style.cssText = 'flex: 0 0 20%; min-width: 0; display: flex; align-items: center; justify-content: center; text-align: center; margin-top: 0;';
+        returnBtn.style.cssText = 'flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; text-align: center; margin-top: 0; padding: 14px 12px;';
         returnBtn.href = window.backUrl;
-        returnBtn.textContent = `← Return to ${window.backLabel || 'Learning Page'}`;
+        returnBtn.textContent = '← Return to NCLEX Learning Page';
         els.summaryActions.appendChild(returnBtn);
       }
     }
@@ -980,6 +1011,14 @@
     showView('quiz');
     if (els.countersBox) els.countersBox.classList.remove('hidden');
     nextQuestion();
+    
+    // Center quiz card after first question loads
+    setTimeout(() => {
+      const quizCard = document.getElementById('quiz');
+      if (quizCard) {
+        quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 50);
   }
 
   function checkResumeAvailable() {
