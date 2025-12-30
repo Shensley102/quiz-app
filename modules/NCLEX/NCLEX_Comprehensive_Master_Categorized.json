@@ -9508,7 +9508,7 @@
       "correct": [
         "A"
       ],
-      "rationale": "The nurse should immediately remove any clients in immediate danger. The next step is to activate the fire alarm. The nurse would then confine the fire by closing all the doors and, finally, extinguish the fire.",
+      "rationale": "R = RESCUE anyone in immediate danger from the fire, if it does not endanger your own life. A = ALERT by activating the fire alarm system. C = CONFINE the fire by closing all doors and windows. E = EXTINGUISH the fire with a fire extinguisher or EVACUATE if the fire is too large.",
       "type": "single_select"
     },
     {
