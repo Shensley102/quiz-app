@@ -153,9 +153,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 20px;
-  height: 20px;
-  margin-right: 6px;
+  min-width: 22px;
+  height: 22px;
+  margin-right: 8px;
   font-size: 18px;
   font-weight: 700;
   flex-shrink: 0;
@@ -163,29 +163,41 @@
 
 /* Green checkmark for correct answers */
 .result-icon.correct {
-  color: #4caf50;
+  color: #4caf50 !important;
 }
 
 /* Red X for incorrect answers user selected */
-.result-icon.incorrect {
-  color: #f44336;
+.result-icon.wrong {
+  color: #f44336 !important;
 }
 
-/* After submission - reset all option styling */
-.option.answered input + label {
-  background: #fff;
-  border-color: var(--border);
-  opacity: 1;
+/* ===== SUBMITTED STATE - Override style.css highlighting ===== */
+
+/* After submission - remove ALL background highlighting */
+/* This overrides .opt.correct-answer and .opt.wrong-answer from style.css */
+.options.submitted .opt label,
+.options.submitted .opt input:checked + label,
+.options.submitted .opt.correct-answer label,
+.options.submitted .opt.wrong-answer label {
+  background: #fff !important;
+  border-color: var(--border, #e0e0e0) !important;
+  cursor: default !important;
+  transform: none !important;
 }
 
-/* Correct answer gets subtle green border after submission */
-.option.show-correct input + label {
-  border-color: #4caf50;
+/* Override the .k badge colors from style.css after submission */
+.options.submitted .opt .k,
+.options.submitted .opt.correct-answer label .k,
+.options.submitted .opt.wrong-answer label .k,
+.options.submitted .opt input:checked + label .k {
+  background: var(--primary, #2f61f3) !important;
 }
 
-/* Incorrect selection gets subtle red border after submission */
-.option.show-incorrect input + label {
-  border-color: #f44336;
+/* Disable hover effects after submission */
+.options.submitted .opt label:hover {
+  background: #fff !important;
+  border-color: var(--border, #e0e0e0) !important;
+  transform: none !important;
 }
 
 /* Single-select: Disable hover AFTER selection is made (but keep selected styling intact) */
