@@ -8215,12 +8215,12 @@
     {
       "category": "Psychosocial Integrity",
       "id": "Q504",
-      "stem": "As 16-year-old client is brought to the emergency department (ED) by emergency medical services after sustaining blunt abdominal injuries in an automobile accident. The client is unconscious and becomes when the left side. Where in the Emergency Department (ED) room does the nurse record on the chart?",
+      "stem": "A 16-year-old arrives to the ED after a motor vehicle crash with suspected intra-abdominal bleeding. The client is unconscious, hypotensive, and the provider prepares for emergent surgery. A parent/guardian cannot be reached. Which action is most appropriate?",
       "options": [
-        "The nurse will sign informed consent on behalf of the client and ask another nurse to witness the signature",
-        "The nurse understands that consent is not needed",
-        "The nurse will prepare the client to undergo mechanical ventilation until the client's parents can be contacted",
-        "The nurse will contact the hospital intern to provide informed consent"
+        "Delay surgery until a parent/guardian provides consent",
+        "Proceed with emergency treatment under presumed/implied consent and document attempts to contact the parent/guardian.",
+        "Ask the nurse to sign the consent form as a witness and proxy decision maker",
+        "Ask the hospital intern to provide consent for the procedure."
       ],
       "correct": [
         "B"
