@@ -18286,7 +18286,7 @@
     {
       "category": "Health Promotion and Maintenance",
       "id": "Q1072",
-      "stem": "A nurse in the emergency department is performing a musculoskeletal assessment of a client. The preprinted which noted condition does the nurse use to test the range of motion (ROM) of the cervical spine?",
+      "stem": "A nurse in the emergency department is performing a musculoskeletal assessment of a client. The presence of which condition would cause the nurse to avoid testing range of motion (ROM) of the cervical spine?",
       "options": [
         "Muscle spasms",
         "Sinus infection",
@@ -18296,11 +18296,8 @@
       "correct": [
         "C"
       ],
-      "rationale": "A nurse performing a musculoskeletal assessment would note Range of Motion (ROM) in a client with neck trauma. This assessment helps determine if a cervical injury is present. Further movement of the neck could result in spinal cord injury. Range of Motion (ROM) testing does not need to be performed for headaches, muscle spasms, or sinus infections unless specifically indicated.",
-      "type": "single_select",
-      "references": [
-        "Potter, F., & Perry, A. (2009). Fundamentals of nursing (7th ed., p. 1612). St. Louis: Mosby."
-      ]
+      "rationale": "A nurse would not test ROM in a client who has sustained neck trauma, which may have resulted in a cervical fracture. Further movement of the neck could result in spinal cord injury. ROM testing does not need to be avoided for headaches, sinus infections, or muscle spasms.",
+      "type": "single_select"
     },
     {
       "category": "Health Promotion and Maintenance",
