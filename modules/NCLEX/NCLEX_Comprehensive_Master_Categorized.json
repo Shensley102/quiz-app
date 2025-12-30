@@ -9161,10 +9161,10 @@
       "stem": "A case manager is reviewing the records of the clients in the nursing unit. Which notations in a client's record indicate an unexpected outcome and the need for further action? (Select all that apply.)",
       "options": [
         "A client with a control venous catheter has a temperature of 101.2\u00b0F (38.7\u00b0C)",
-        "A client who has just undergone surgery is passing stool from the prescribed pain medications",
-        "A client with a new diagnosis of diarrhea mellitus is still administering insulin",
-        "A client is performing his own care without measuring irregularities",
-        "A client who is on a nursing care has a potassium level of more than 10 mEq/L"
+        "A client who has just undergone surgery is getting relief from the prescribed pain medication.",
+        "A client who has just undergone surgery has a urine output of more than 30 mL/hr.",
+        "A client with a new diagnosis of diabetes mellitus is self-administering insulin.",
+        "A client is performing his/her own colostomy irrigations."
       ],
       "correct": [
         "A"
