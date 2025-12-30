@@ -704,6 +704,9 @@
       const allOpts = els.optionsForm.querySelectorAll('.opt');
       const correctIndices = getCorrectIndices(q);
 
+      // Add submitted class to form - removes all highlighting
+      els.optionsForm.classList.add('submitted');
+
       if (isCorrect) {
         if (rec.correct === null) {
           rec.correct = true;
@@ -712,11 +715,11 @@
         run.mastered.add(q.id);
         showFeedback(true, q);
 
-        // Mark all selected options as correct
+        // Add checkmark icons to all correct answers (which user selected correctly)
         allOpts.forEach(opt => {
           const origIdx = parseInt(opt.dataset.originalIndex, 10);
           if (selectedIndices.includes(origIdx)) {
-            opt.classList.add('correct-answer');
+            addResultIcon(opt, 'correct');
           }
         });
       } else {
@@ -733,19 +736,19 @@
 
         showFeedback(false, q);
 
-        // Mark selected as wrong if incorrect, highlight all correct answers
+        // Add icons: X for wrong selections, checkmark for correct answers
         allOpts.forEach(opt => {
           const origIdx = parseInt(opt.dataset.originalIndex, 10);
           const wasSelected = selectedIndices.includes(origIdx);
           const isCorrectAnswer = correctIndices.includes(origIdx);
           
           if (wasSelected && !isCorrectAnswer) {
-            // User selected a wrong answer
-            opt.classList.add('wrong-answer');
+            // User selected a wrong answer - show X
+            addResultIcon(opt, 'wrong');
           }
           if (isCorrectAnswer) {
-            // This is a correct answer - highlight it
-            opt.classList.add('correct-answer');
+            // This is a correct answer - show checkmark
+            addResultIcon(opt, 'correct');
           }
         });
       }
@@ -785,6 +788,27 @@
         }
       }, 50);
     }
+  }
+
+  /**
+   * Add a result icon (✓ or ✗) to an option
+   * @param {HTMLElement} optElement - The .opt div element
+   * @param {string} type - 'correct' or 'wrong'
+   */
+  function addResultIcon(optElement, type) {
+    const label = optElement.querySelector('label');
+    if (!label) return;
+    
+    // Check if icon already exists
+    if (label.querySelector('.result-icon')) return;
+    
+    // Create the icon span
+    const iconSpan = document.createElement('span');
+    iconSpan.className = `result-icon ${type}`;
+    iconSpan.textContent = type === 'correct' ? '✓' : '✗';
+    
+    // Insert at the beginning of the label (before the letter badge)
+    label.insertBefore(iconSpan, label.firstChild);
   }
 
   // -----------------------------------------------------------
