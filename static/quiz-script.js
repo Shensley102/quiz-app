@@ -276,10 +276,11 @@
       if (questions.length <= count) return shuffle([...questions]);
 
       const sorted = sortByLeastAttempts(questions);
-      const halfCount = Math.ceil(count / 2);
-      const leastAsked = sorted.slice(0, halfCount);
-      const remainder = sorted.slice(halfCount);
-      const randomPick = shuffle(remainder).slice(0, count - halfCount);
+      // 2:1 ratio - 2 least-asked : 1 random (67% least-asked)
+      const twoThirdsCount = Math.ceil((count * 2) / 3);
+      const leastAsked = sorted.slice(0, twoThirdsCount);
+      const remainder = sorted.slice(twoThirdsCount);
+      const randomPick = shuffle(remainder).slice(0, count - twoThirdsCount);
 
       return shuffle([...leastAsked, ...randomPick]);
     }
@@ -291,9 +292,9 @@
       return sorted.slice(0, Math.min(quizLength, allQuestions.length));
     }
 
-    // Category quiz: 1:1 ratio
+    // Category quiz: 2:1 ratio (2 least-asked : 1 random)
     if (isCategoryQuiz) {
-      console.log('[Quiz] Using 1:1 ratio for category quiz');
+      console.log('[Quiz] Using 2:1 ratio for category quiz');
       return selectWithRatio(allQuestions, quizLength);
     }
 
@@ -333,7 +334,7 @@
       return shuffle(selected).slice(0, quizLength);
     }
 
-    // Default: 1:1 ratio
+    // Default: 2:1 ratio (2 least-asked : 1 random)
     return selectWithRatio(allQuestions, quizLength);
   }
 
