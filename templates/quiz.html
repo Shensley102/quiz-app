@@ -48,49 +48,6 @@
     }
     .offline-indicator.hidden { display: none; }
     
-    /* Weekly Progress Widget */
-    .weekly-progress-widget {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(47, 97, 243, 0.2);
-      border-radius: 50px;
-      box-shadow: 0 2px 8px rgba(47, 97, 243, 0.1);
-      font-size: 14px;
-      color: #333;
-    }
-    .weekly-progress-widget .progress-icon {
-      font-size: 18px;
-    }
-    .weekly-progress-widget .progress-label {
-      color: #666;
-      font-weight: 500;
-    }
-    .weekly-progress-widget .progress-value {
-      font-weight: 800;
-      font-size: 18px;
-      color: #2f61f3;
-      min-width: 24px;
-      text-align: center;
-    }
-    .widget-container {
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    
-    @media (max-width: 768px) {
-      .weekly-progress-widget {
-        padding: 8px 16px;
-        font-size: 13px;
-      }
-      .weekly-progress-widget .progress-value {
-        font-size: 16px;
-      }
-    }
-    
     /* Return button styling */
     .return-btn {
       display: block;
@@ -159,15 +116,6 @@
       <div>
         <a href="{{ back_url if back_url else '/' }}" id="backLink" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 4px; display: inline-block; font-size: 14px;">← {{ back_label if back_label else 'Home' }}</a>
         <h1 id="pageTitle">{{ module_name | replace('_', ' ') if module_name else 'Select a Module' }}</h1>
-      </div>
-    </div>
-
-    <!-- Weekly Progress Widget -->
-    <div class="widget-container">
-      <div class="weekly-progress-widget">
-        <span class="progress-icon">📊</span>
-        <span class="progress-label">Questions answered this week:</span>
-        <span class="progress-value" id="weeklyCount">0</span>
       </div>
     </div>
 
@@ -309,24 +257,6 @@
     {% else %}
     console.log('[Quiz] No preloaded data - will fetch from fixtures');
     {% endif %}
-    
-    // Update weekly count
-    function updateWeeklyCount() {
-      if (window.StudyGuruProgress) {
-        const count = window.StudyGuruProgress.answeredThisWeek();
-        document.getElementById('weeklyCount').textContent = count;
-      }
-    }
-    
-    // Update on load
-    document.addEventListener('DOMContentLoaded', updateWeeklyCount);
-    
-    // Update when storage changes (from other tabs)
-    window.addEventListener('storage', (e) => {
-      if (e.key && e.key.startsWith('sg:v1:')) {
-        updateWeeklyCount();
-      }
-    });
   </script>
 
   <!-- Quiz Script -->
