@@ -707,7 +707,7 @@
         
         // Start comprehensive quiz
         startComprehensiveBtn.addEventListener('click', () => {
-            const url = `/quiz/NCLEX/NCLEX_Comprehensive_Master_Categorized?is_comprehensive=true&quiz_length=${comprehensiveLength}&autostart=true`;
+            const url = `/quiz/NCLEX/NCLEX_Comprehensive_Master_Categorized?is_comprehensive=true&quiz_length=${comprehensiveLength}&autostart=true&back_url=/category/NCLEX&back_label=NCLEX Learning Page`;
             window.location.href = url;
         });
 
@@ -776,7 +776,7 @@
         startBtn.addEventListener('click', () => {
             if (!selectedCategory || startBtn.disabled) return;
             
-            const url = `/category/NCLEX/category/${encodeURIComponent(selectedCategory)}?quiz_length=${selectedLength}&autostart=true`;
+            const url = `/category/NCLEX/category/${encodeURIComponent(selectedCategory)}?quiz_length=${selectedLength}&autostart=true&back_url=/category/NCLEX&back_label=NCLEX Learning Page`;
             window.location.href = url;
         });
 
