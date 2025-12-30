@@ -39,7 +39,6 @@ const STATIC_ASSETS = [
 const HTML_PAGES = [
   '/',
   '/category/NCLEX',
-  '/category/NCLEX/NCLEX_Comprehensive',
   '/category/Lab_Values',
   '/category/Patient_Care_Management',
   '/category/Pharmacology',
