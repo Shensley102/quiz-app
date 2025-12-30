@@ -175,9 +175,12 @@
       
       <div id="firstTrySummary" class="first-try"></div>
 
-      <div class="actions" id="summaryActions" style="margin-bottom: 24px; display: flex; gap: 12px; flex-wrap: nowrap;">
-        <button class="btn danger hidden" id="retryMissedBtn" style="flex: 0 0 20%; min-width: 0;">Retry Missed</button>
-        <button class="btn primary" id="restartBtnSummary" style="flex: 0 0 60%; min-width: 0;">Start New Quiz</button>
+      <div class="actions" id="summaryActions" style="margin-bottom: 24px; display: flex; gap: 12px; flex-wrap: nowrap; align-items: stretch;">
+        <button class="btn danger hidden" id="retryMissedBtn" style="flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.3;">
+          <span>Retry Missed Questions</span>
+          <span id="missedCountDisplay" style="font-size: 0.85em; opacity: 0.9;">(0)</span>
+        </button>
+        <button class="btn primary" id="restartBtnSummary" style="flex: 4; min-width: 0;">Start New Quiz</button>
         <!-- Return button will be dynamically inserted here by JS -->
       </div>
 
