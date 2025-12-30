@@ -237,21 +237,6 @@ def category(category):
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/category/NCLEX/NCLEX_Comprehensive')
-def nclex_comprehensive():
-    """NCLEX-weighted Comprehensive Quiz page"""
-    try:
-        category_stats = get_nclex_category_stats()
-        total_questions = sum(s['count'] for s in category_stats.values())
-        return render_template('nclex-comprehensive.html',
-                               category_stats=category_stats,
-                               nclex_categories=NCLEX_CATEGORIES,
-                               total_questions=total_questions)
-    except Exception as e:
-        print(f"Error in nclex_comprehensive route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
 @app.route('/category/NCLEX/category/<category_name>')
 def nclex_category_quiz(category_name):
     """NCLEX category-specific quiz - filters questions by NCLEX category"""
@@ -380,10 +365,10 @@ def quiz(category, module):
         elif category == 'Pharmacology' and module.endswith('_Pharm'):
             back_url = '/category/Pharmacology/Categories'
             back_label = 'Pharmacology by Category'
-        # Special handling for NCLEX Comprehensive Master - go back to NCLEX Comprehensive page
+        # Special handling for NCLEX Comprehensive Master - go back to NCLEX main landing page
         elif category == 'NCLEX' and module == 'NCLEX_Comprehensive_Master_Categorized':
-            back_url = '/category/NCLEX/NCLEX_Comprehensive'
-            back_label = 'NCLEX Comprehensive Quiz'
+            back_url = '/category/NCLEX'
+            back_label = 'NCLEX Learning Page'
         else:
             back_url = f'/category/{category}'
             back_label = metadata.get('display_name', category.replace('_', ' '))
