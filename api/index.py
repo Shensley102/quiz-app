@@ -58,6 +58,20 @@ NCLEX_CATEGORIES = {
     'Physiological Adaptation': 0.14
 }
 
+# CFRN Exam Content Categories (no weights - just category names)
+CFRN_CATEGORIES = [
+    'Trauma, Burns, and Transfusion',
+    'Airway, Ventilation, and Respiratory Care',
+    'Cardiac and Hemodynamic Care',
+    'Obstetric, Neonatal, and Pediatric Special Populations',
+    'Medical Emergencies and Critical Care',
+    'Neurologic and Neurosurgical Care',
+    'Operations, Safety, and Transport',
+    'Flight Physiology and Environmental Factors',
+    'Pediatric Assessment and Management',
+    'Toxicology and Pharmacology'
+]
+
 
 def get_categories():
     """Get all module categories (folder names)"""
@@ -154,6 +168,33 @@ def get_nclex_category_stats():
             'weight': NCLEX_CATEGORIES[cat],
             'weight_pct': int(NCLEX_CATEGORIES[cat] * 100)
         }
+
+    return stats
+
+
+def load_cfrn_questions():
+    """Load the CFRN Question Bank questions"""
+    cfrn_path = MODULES_DIR / 'Nursing_Certifications' / 'CFRN_Question_Bank.json'
+    if not cfrn_path.exists():
+        return []
+
+    try:
+        with open(cfrn_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return data.get('questions', [])
+    except Exception as e:
+        print(f"Error loading CFRN questions: {e}")
+        return []
+
+
+def get_cfrn_category_stats():
+    """Get statistics about questions per CFRN category"""
+    questions = load_cfrn_questions()
+    stats = {}
+
+    for cat in CFRN_CATEGORIES:
+        count = sum(1 for q in questions if q.get('category') == cat)
+        stats[cat] = count
 
     return stats
 
@@ -293,6 +334,67 @@ def ccrn_page():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/category/Nursing_Certifications/CFRN')
+def cfrn_page():
+    """CFRN certification practice system page"""
+    try:
+        category_stats = get_cfrn_category_stats()
+        total_questions = sum(category_stats.values())
+        return render_template('cfrn.html',
+                               category_stats=category_stats,
+                               cfrn_categories=CFRN_CATEGORIES,
+                               total_questions=total_questions)
+    except Exception as e:
+        print(f"Error in cfrn_page route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/category/Nursing_Certifications/CFRN/category/<category_name>')
+def cfrn_category_quiz(category_name):
+    """CFRN category-specific quiz - filters questions by CFRN category"""
+    try:
+        # Decode URL-encoded category name
+        category_name = unquote(category_name)
+
+        # Validate category name
+        if category_name not in CFRN_CATEGORIES:
+            print(f"Invalid CFRN category: {category_name}")
+            return redirect(url_for('cfrn_page'))
+
+        # Load and filter questions
+        questions = load_cfrn_questions()
+        filtered_questions = [q for q in questions if q.get('category') == category_name]
+
+        if not filtered_questions:
+            print(f"No questions found for CFRN category: {category_name}")
+            return redirect(url_for('cfrn_page'))
+
+        # Create quiz data structure
+        quiz_data = {
+            'module': f'CFRN_{category_name.replace(" ", "_")}',
+            'questions': filtered_questions
+        }
+
+        # Get parameters from URL
+        quiz_length = request.args.get('quiz_length', 'full')
+        autostart = request.args.get('autostart', 'false').lower() == 'true'
+
+        return render_template('quiz.html',
+                               quiz_data=quiz_data,
+                               module_name=f'CFRN - {category_name}',
+                               category='Nursing_Certifications',
+                               back_url='/category/Nursing_Certifications/CFRN',
+                               back_label='CFRN Practice System',
+                               autostart=autostart,
+                               is_category_quiz=True,
+                               quiz_length=quiz_length)
+    except Exception as e:
+        print(f"Error in cfrn_category_quiz route: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/category/Pharmacology/Comprehensive')
 def pharmacology_comprehensive():
     """Comprehensive Pharmacology Quizzes page"""
@@ -357,6 +459,10 @@ def quiz(category, module):
         if 'CCRN' in module and category == 'Nursing_Certifications':
             back_url = '/category/Nursing_Certifications/CCRN'
             back_label = 'CCRN Practice Tests'
+        # Special handling for CFRN tests - go back to CFRN page
+        elif 'CFRN' in module and category == 'Nursing_Certifications':
+            back_url = '/category/Nursing_Certifications/CFRN'
+            back_label = 'CFRN Practice System'
         # Special handling for Pharm Quizzes - go back to Comprehensive page
         elif module.startswith('Pharm_Quiz_') and category == 'Pharmacology':
             back_url = '/category/Pharmacology/Comprehensive'
