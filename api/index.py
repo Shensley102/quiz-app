@@ -313,7 +313,7 @@ def nclex_category_quiz(category_name):
                                module_name=f'NCLEX - {category_name}',
                                category='NCLEX',
                                back_url='/category/NCLEX',
-                               back_label='NCLEX Comprehensive System',
+                               back_label='NCLEX Learning Page',
                                autostart=autostart,
                                is_category_quiz=True,
                                quiz_length=quiz_length)
@@ -384,7 +384,7 @@ def cfrn_category_quiz(category_name):
                                module_name=f'CFRN - {category_name}',
                                category='Nursing_Certifications',
                                back_url='/category/Nursing_Certifications/CFRN',
-                               back_label='CFRN Practice System',
+                               back_label='CFRN Learning Page',
                                autostart=autostart,
                                is_category_quiz=True,
                                quiz_length=quiz_length)
@@ -462,7 +462,7 @@ def quiz(category, module):
         # Special handling for CFRN tests - go back to CFRN page
         elif 'CFRN' in module and category == 'Nursing_Certifications':
             back_url = '/category/Nursing_Certifications/CFRN'
-            back_label = 'CFRN Practice System'
+            back_label = 'CFRN Learning Page'
         # Special handling for Pharm Quizzes - go back to Comprehensive page
         elif module.startswith('Pharm_Quiz_') and category == 'Pharmacology':
             back_url = '/category/Pharmacology/Comprehensive'
