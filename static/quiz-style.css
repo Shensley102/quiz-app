@@ -281,3 +281,120 @@
 #summaryBody strong {
   color: var(--text);
 }
+
+/* ===== Fill-in-the-Blank Styles ===== */
+
+.options.fill-in-the-blank {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.fitb-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fitb-instruction {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: var(--muted, #666);
+  font-weight: 500;
+}
+
+.fitb-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fitb-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text, #333);
+  min-width: 70px;
+}
+
+.fitb-input {
+  flex: 1;
+  padding: 14px 16px;
+  font-size: 16px;
+  font-family: inherit;
+  border: 2px solid var(--border, #e0e0e0);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text, #333);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  max-width: 400px;
+}
+
+.fitb-input:focus {
+  outline: none;
+  border-color: var(--primary, #2f61f3);
+  box-shadow: 0 0 0 3px rgba(47, 97, 243, 0.15);
+}
+
+.fitb-input::placeholder {
+  color: #999;
+}
+
+/* Fill-in-the-blank result states */
+.fitb-input.correct {
+  border-color: #4caf50 !important;
+  background: rgba(76, 175, 80, 0.08);
+}
+
+.fitb-input.wrong {
+  border-color: #f44336 !important;
+  background: rgba(244, 67, 54, 0.08);
+}
+
+.fitb-input:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+/* Result icons for fill-in-the-blank */
+.fitb-result-icon {
+  font-size: 20px;
+  font-weight: 700;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.fitb-result-icon.correct {
+  color: #4caf50;
+  background: rgba(76, 175, 80, 0.15);
+}
+
+.fitb-result-icon.wrong {
+  color: #f44336;
+  background: rgba(244, 67, 54, 0.15);
+}
+
+/* Mobile adjustments for fill-in-the-blank */
+@media (max-width: 600px) {
+  .fitb-input-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+  
+  .fitb-label {
+    min-width: auto;
+  }
+  
+  .fitb-input {
+    max-width: none;
+  }
+  
+  .fitb-result-icon {
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+}
