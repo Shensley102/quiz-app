@@ -7,7 +7,7 @@
    - NCLEX Comprehensive System routes support
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.1.0';
+const CACHE_VERSION = 'v2.2.0';
 const CACHE_NAME = `nurse-study-hub-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `nurse-study-hub-data-${CACHE_VERSION}`;
 
@@ -46,6 +46,7 @@ const HTML_PAGES = [
   '/category/Pharmacology/Categories',
   '/category/Nursing_Certifications',
   '/category/Nursing_Certifications/CCRN',
+  '/category/Nursing_Certifications/CFRN',
 ];
 
 // NCLEX category routes
@@ -58,6 +59,20 @@ const NCLEX_CATEGORY_ROUTES = [
   '/category/NCLEX/category/Pharmacological%20and%20Parenteral%20Therapies',
   '/category/NCLEX/category/Reduction%20of%20Risk%20Potential',
   '/category/NCLEX/category/Physiological%20Adaptation',
+];
+
+// CFRN category routes
+const CFRN_CATEGORY_ROUTES = [
+  '/category/Nursing_Certifications/CFRN/category/Trauma%2C%20Burns%2C%20and%20Transfusion',
+  '/category/Nursing_Certifications/CFRN/category/Airway%2C%20Ventilation%2C%20and%20Respiratory%20Care',
+  '/category/Nursing_Certifications/CFRN/category/Cardiac%20and%20Hemodynamic%20Care',
+  '/category/Nursing_Certifications/CFRN/category/Obstetric%2C%20Neonatal%2C%20and%20Pediatric%20Special%20Populations',
+  '/category/Nursing_Certifications/CFRN/category/Medical%20Emergencies%20and%20Critical%20Care',
+  '/category/Nursing_Certifications/CFRN/category/Neurologic%20and%20Neurosurgical%20Care',
+  '/category/Nursing_Certifications/CFRN/category/Operations%2C%20Safety%2C%20and%20Transport',
+  '/category/Nursing_Certifications/CFRN/category/Flight%20Physiology%20and%20Environmental%20Factors',
+  '/category/Nursing_Certifications/CFRN/category/Pediatric%20Assessment%20and%20Management',
+  '/category/Nursing_Certifications/CFRN/category/Toxicology%20and%20Pharmacology',
 ];
 
 // JSON files to precache (quiz data)
@@ -100,6 +115,7 @@ const JSON_PRECACHE = [
   '/modules/Nursing_Certifications/CCRN_Test_1_Combined_QA.json',
   '/modules/Nursing_Certifications/CCRN_Test_2_Combined_QA.json',
   '/modules/Nursing_Certifications/CCRN_Test_3_Combined_QA.json',
+  '/modules/Nursing_Certifications/CFRN_Question_Bank.json',
 ];
 
 // Install event - precache assets
@@ -119,7 +135,7 @@ self.addEventListener('install', (event) => {
         console.log('[SW] Caching HTML pages');
         // Cache HTML pages (allow failures for pages that may not exist yet)
         return Promise.allSettled(
-          [...HTML_PAGES, ...NCLEX_CATEGORY_ROUTES].map(url => 
+          [...HTML_PAGES, ...NCLEX_CATEGORY_ROUTES, ...CFRN_CATEGORY_ROUTES].map(url => 
             cache.add(url).catch(err => console.log(`[SW] Could not cache ${url}:`, err.message))
           )
         );
