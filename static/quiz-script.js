@@ -1,1525 +1,4826 @@
-/* -----------------------------------------------------------
-   Study Guru Quiz App (quiz-script.js)
-   Compatible with quiz.html template
-   
-   Features:
-   - Preloaded data support (window.preloadedQuizData)
-   - Auto-start from URL parameters
-   - NCLEX weighted category selection
-   - Least-asked question prioritization
-   - Progress tracking via StudyGuruProgress
-   - Mastery-based requeue system
-   - Resume quiz support
-   - Fill-in-the-blank question support (single and multi-blank)
-   
-   PATCH NOTES:
-   - Fixed field names: stem, options, correct (NCLEX format)
-   - Fixed HTML structure: .opt wrapper with .k and .ans spans
-   - Fixed correct answer detection for ["C"] letter format
-   - Matches existing CSS styling in style.css
-   - Added fill-in-the-blank and multi-fill-in-the-blank support
------------------------------------------------------------- */
-
-(function () {
-  'use strict';
-
-  // -----------------------------------------------------------
-  // NCLEX Category Weights (Official NCLEX-RN Test Plan)
-  // -----------------------------------------------------------
-  const NCLEX_CATEGORY_WEIGHTS = {
-    'Management of Care': 0.18,
-    'Safety and Infection Control': 0.13,
-    'Health Promotion and Maintenance': 0.09,
-    'Psychosocial Integrity': 0.09,
-    'Basic Care and Comfort': 0.09,
-    'Pharmacological and Parenteral Therapies': 0.16,
-    'Reduction of Risk Potential': 0.12,
-    'Physiological Adaptation': 0.14
-  };
-
-  // Letter labels for options
-  const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-
-  // -----------------------------------------------------------
-  // State
-  // -----------------------------------------------------------
-  const state = {
-    questions: [],
-    moduleName: '',
-    category: '',
-    isComprehensive: false,
-    isCategoryQuiz: false,
-    quizLength: 10,
-    autostart: false
-  };
-
-  // Current quiz run
-  let run = null;
-
-  // Element cache
-  const els = {};
-
-  // -----------------------------------------------------------
-  // Utilities
-  // -----------------------------------------------------------
-  function $(sel) {
-    return document.querySelector(sel);
-  }
-
-  function shuffle(arr) {
-    const a = arr.slice();
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
+{
+  "module": "CFRN_Question_Bank",
+  "title": "CFRN Certification Question Bank",
+  "description": "Comprehensive CFRN (Certified Flight Registered Nurse) practice questions covering all exam content areas",
+  "total_questions": 300,
+  "questions": [
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q001",
+      "stem": "An aircraft squawks transponder code 1200. What does this code indicate?",
+      "options": [
+        "Hijack",
+        "Emergency",
+        "Visual Flight Rules (VFR) code",
+        "Communications failure"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Transponder code 1200 is used to signal **Visual Flight Rules (VFR) code**. The other choices are standard codes for different situations (e.g., hijack, communications failure, or general VFR), so choosing the wrong one can miscommunicate the urgency and nature of the event.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q002",
+      "stem": "An aircraft squawks transponder code 7500. What does this code indicate?",
+      "options": [
+        "Military intercept code",
+        "Hijack",
+        "Communications failure",
+        "Visual Flight Rules (VFR) code"
+      ],
+      "correct": [
+        "B"
+      ],
+      "rationale": "Transponder code 7500 is used to signal **Hijack**. The other choices are standard codes for different situations (e.g., hijack, communications failure, or general VFR), so choosing the wrong one can miscommunicate the urgency and nature of the event.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q003",
+      "stem": "An aircraft squawks transponder code 7600. What does this code indicate?",
+      "options": [
+        "Emergency",
+        "Military intercept code",
+        "Communications failure",
+        "Visual Flight Rules (VFR) code"
+      ],
+      "correct": [
+        "C"
+      ],
+      "rationale": "Transponder code 7600 is used to signal **Communications failure**. The other choices are standard codes for different situations (e.g., hijack, communications failure, or general VFR), so choosing the wrong one can miscommunicate the urgency and nature of the event.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q004",
+      "stem": "An aircraft squawks transponder code 7700. What does this code indicate?",
+      "options": [
+        "Emergency",
+        "Visual Flight Rules (VFR) code",
+        "Hijack",
+        "Communications failure"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Transponder code 7700 is used to signal **Emergency**. The other choices are standard codes for different situations (e.g., hijack, communications failure, or general VFR), so choosing the wrong one can miscommunicate the urgency and nature of the event.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q005",
+      "stem": "An aircraft squawks transponder code 7777. What does this code indicate?",
+      "options": [
+        "Military intercept code",
+        "Emergency",
+        "Hijack",
+        "Visual Flight Rules (VFR) code"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Transponder code 7777 is used to signal **Military intercept code**. The other choices are standard codes for different situations (e.g., hijack, communications failure, or general VFR), so choosing the wrong one can miscommunicate the urgency and nature of the event.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q006",
+      "stem": "A hasty/unsecured helicopter landing zone (HLZ) should generally be at least what size to support safe landing operations?",
+      "options": [
+        "100 ft x 100 ft",
+        "50 ft x 50 ft",
+        "75 ft x 150 ft",
+        "200 ft x 200 ft"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A commonly taught minimum for a hasty HLZ is **about 100' x 100'**. Smaller zones increase rotor/obstacle strike risk and make hazard identification harder; much larger zones may be needed depending on aircraft type, wind, slope, and obstacles.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q007",
+      "stem": "Which actions are appropriate during HLZ setup for a hasty/unsecured HLZ? (Select all that apply.)",
+      "options": [
+        "Ensure communication with the ground/LZ coordinator",
+        "Use a single approach and departure heading for planning",
+        "Perform two passes prior to landing (one high, one low) to identify hazards",
+        "Mark the HLZ at night by having two vehicles cross their headlight beams",
+        "Stand directly under the rotor disk to guide the pilot"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Safe HLZ operations emphasize **communication**, **hazard reconnaissance**, and **clear markings**. Two reconnaissance passes help identify wires/obstacles. Standing under the rotor disk is unsafe; ground personnel should remain clear of rotor arc and follow the pilot-in-command (PIC) direction.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q008",
+      "stem": "When approaching a helicopter on the ground (when directed by the pilot-in-command), which approach direction is generally recommended?",
+      "options": [
+        "From the 11 o'clock or 1 o'clock position",
+        "From the 6 o'clock position (directly from the rear)",
+        "From any direction as long as you stay low",
+        "From the 3 o'clock position (directly from the side)"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Approach is typically from **forward quadrants (around 11 or 1 o'clock)** to stay within the pilot\u2019s field of view and away from the tail rotor. Approaching from the rear increases the risk of tail rotor strike and reduces the pilot\u2019s ability to see you.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q009",
+      "stem": "A patient is being loaded for flight. Which securing practices are recommended? (Select all that apply.)",
+      "options": [
+        "Use three cross straps (chest, hips, and knees)",
+        "Position the patient's head forward when feasible",
+        "Pad voids to reduce movement",
+        "Leave shoulder harness off to allow easier access",
+        "Secure only the stretcher and not the patient"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "In rotor- or fixed-wing transport, **patient and equipment restraint** prevents secondary injury during turbulence or abrupt maneuvering. Three cross straps plus a shoulder harness (as tolerated) and padding voids reduce shear and fall risk. Leaving restraints off increases hazard during even minor movement.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q010",
+      "stem": "In Air Medical Resource Management (AMRM), which statement best reflects the crew decision-making principle?",
+      "options": [
+        "All crew members must agree to proceed; any one member can call for a stop",
+        "Only the pilot may decide to abort a mission",
+        "Medical crew decisions override pilot authority",
+        "Proceed unless there is a written policy prohibiting it"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "AMRM is an adaptation of crew resource management that supports safety culture: **\u201call to go, one to say no.\u201d** While the PIC retains ultimate authority, AMRM encourages speaking up early and stopping when any crew member identifies a safety threat.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q011",
+      "stem": "When is a 'sterile cockpit' commonly implemented in air medical operations? (Select all that apply.)",
+      "options": [
+        "Taxiing",
+        "Takeoff",
+        "Landing",
+        "Refueling",
+        "Cruise flight above 10,000 ft only"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Sterile cockpit periods reduce nonessential conversation/distraction during **high-workload and high-risk phases** (taxi, takeoff, landing, refueling). It's not limited to a specific altitude; it\u2019s about task loading and risk.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q012",
+      "stem": "Per a typical emergency action plan (EAP) trigger, the plan is activated after which event?",
+      "options": [
+        "Two missed checks or 30 minutes after the last check",
+        "One missed check only",
+        "After landing at the destination",
+        "Only after confirmation of an accident by authorities"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "An EAP is designed to start **early** when an aircraft is overdue or contact is lost. A common trigger is **two missed check-ins or 30 minutes after the last check**, prompting escalation before delays become life-threatening.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q013",
+      "stem": "A flight crew member asks about 'bottle to throttle' time under FAR 91. What is commonly taught as the minimum time between alcohol consumption and flying duties?",
+      "options": [
+        "8 hours",
+        "4 hours",
+        "12 hours",
+        "24 hours"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Under FAR 91, a commonly taught minimum is **8 hours** (\u201cbottle to throttle\u201d). Many programs also use stricter policies based on impairment risk; the key exam concept is recognizing regulatory minimums vs. more conservative organizational standards.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q014",
+      "stem": "A day flight is being considered. What weather minimums are commonly cited for a day flight in this study framework?",
+      "options": [
+        "800 ft ceiling and 2 miles visibility",
+        "500 ft ceiling and 1 mile visibility",
+        "1,500 ft ceiling and 5 miles visibility",
+        "No minimums for day flight"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "In this framework, **day weather minimums** are taught as **800 ft ceiling and 2 miles visibility**, while night minimums are more restrictive. Weather minimums reduce controlled flight into terrain risk and preserve route/landing options.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q015",
+      "stem": "A night flight is being considered. What weather minimums are commonly cited for a night flight in this study framework?",
+      "options": [
+        "800 ft ceiling and 3 miles visibility",
+        "800 ft ceiling and 1 mile visibility",
+        "500 ft ceiling and 2 miles visibility",
+        "1,000 ft ceiling and 2 miles visibility"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "In this framework, **night weather minimums** are taught as **800 ft ceiling and 3 miles visibility**, reflecting the increased risk of obstacle collision and spatial disorientation when visual cues are limited.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q016",
+      "stem": "According to CAMTS-style ground operations standards, a ground ambulance should be capable of traveling at least what distance without refueling (minimum range)?",
+      "options": [
+        "175 miles",
+        "75 miles",
+        "250 miles",
+        "100 miles"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A commonly cited CAMTS operational benchmark is a **175-mile range**. The intent is to maintain operational readiness and reduce mission failure from insufficient fuel capacity.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q017",
+      "stem": "According to CAMTS-style ground operations standards, minimum ground clearance at gross ambulance weight should be approximately:",
+      "options": [
+        "6 inches",
+        "2 inches",
+        "10 inches",
+        "12 inches"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A typical CAMTS benchmark is **~6 inches** of ground clearance when loaded, helping reduce undercarriage damage and mobility issues (e.g., ramps, uneven terrain) that can compromise safety.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q018",
+      "stem": "According to CAMTS-style ground operations standards, sirens should be audible under normal conditions from at least:",
+      "options": [
+        "> 500 feet",
+        "> 100 feet",
+        "> 1,000 feet",
+        "> 50 feet"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A common CAMTS benchmark is that the siren should be audible at **greater than 500 feet**. This supports earlier warning to traffic, though crews should remember that at highway speeds you can still 'outrun your siren.'",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q019",
+      "stem": "What is commonly described as the most dangerous location for a ground ambulance during emergency driving?",
+      "options": [
+        "An intersection",
+        "A straight highway segment",
+        "A parking lot",
+        "A cul-de-sac"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Intersections combine crossing traffic, unpredictable driver behavior, and reduced reaction time\u2014making **intersections** the highest-risk area. Defensive driving and controlled intersection clearing are key safety practices.",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "Q020",
+      "stem": "Which duties are commonly assigned to a surface vehicle co-pilot during transport operations? (Select all that apply.)",
+      "options": [
+        "Navigation and verifying GPS input",
+        "Managing lights and sirens response",
+        "Monitoring operator fatigue/impairment",
+        "Performing nonessential cell phone/computer use",
+        "Staying alert on all legs of the transport"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "rationale": "A co-pilot supports safe transport by handling **navigation**, **warning device operations**, and **crew risk monitoring** (fatigue/impairment). Nonessential phone/computer use is typically prohibited because it increases distraction risk.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q021",
+      "stem": "Which altitude range is commonly described as the 'physiologically deficient zone' in this study framework?",
+      "options": [
+        "10,000 to 50,000 feet",
+        "Sea level to 10,000 feet",
+        "50,000 to 250,000 feet",
+        "Above 250,000 feet only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The **physiologically deficient zone (10k\u201350k ft)** is where hypoxia becomes increasingly dangerous and supplemental oxygen may be required. Below 10,000 ft is generally considered the physiologic zone; above 50,000 ft is often described as 'space-equivalent' in training materials.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q022",
+      "stem": "Approximately how much does PaO2 drop for each 1,000-foot increase in altitude (as taught in this framework)?",
+      "options": [
+        "About 5 mmHg",
+        "About 1 mmHg",
+        "About 10 mmHg",
+        "It remains constant until 18,000 feet"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A commonly taught rule of thumb is **~5 mmHg PaO2 drop per 1,000 ft**. This highlights why patients with marginal oxygenation at sea level can deteriorate quickly with ascent.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q023",
+      "stem": "Oxygen is required above 10,000 feet for any time greater than approximately how many minutes (as taught in this framework)?",
+      "options": [
+        "10 minutes",
+        "60 minutes",
+        "2 minutes",
+        "30 minutes"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "In this framework, supplemental oxygen is taught as required above **10,000 ft for >10 minutes**, reflecting the progressive hypoxia risk with continued exposure.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q024",
+      "stem": "A patient is transported in an unpressurized aircraft. What is a commonly taught atmospheric pressure at sea level?",
+      "options": [
+        "760 mmHg (torr)",
+        "523 mmHg",
+        "380 mmHg",
+        "87 mmHg"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Sea-level barometric pressure is commonly taught as **760 mmHg (torr)**. Lower pressures (e.g., 523 mmHg, 380 mmHg) correspond to higher altitudes.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q025",
+      "stem": "In this framework, the atmospheric pressure at approximately 18,000 feet is:",
+      "options": [
+        "About 380 torr",
+        "About 760 torr",
+        "About 523 torr",
+        "About 87 torr"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Training materials often reference **~380 torr at 18,000 ft**, roughly half of sea-level pressure. Lower ambient pressure drives gas expansion (Boyle\u2019s law) and worsens hypoxia (lower inspired PO2).",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q026",
+      "stem": "A rapid loss of cabin pressure occurs at 30,000 feet. What is the commonly taught Time of Useful Consciousness (TUC) for rapid decompression at this altitude?",
+      "options": [
+        "About 45 seconds",
+        "About 5 minutes",
+        "About 15 minutes",
+        "About 90 minutes"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "At **30,000 ft**, rapid decompression dramatically shortens TUC\u2014commonly taught as **~45 seconds**\u2014because oxygen reserve and inspired partial pressure drop abruptly. Slower decompression can allow longer effective performance time, but action must still be immediate.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q027",
+      "stem": "A gradual decompression occurs at 30,000 feet. What is the commonly taught TUC for slower decompression at this altitude?",
+      "options": [
+        "About 90 seconds",
+        "About 10 minutes",
+        "About 30 seconds",
+        "About 20 minutes"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "At **30,000 ft**, slower decompression is commonly taught as giving **~90 seconds** of useful consciousness. Even this short window requires rapid oxygen application and descent planning.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q028",
+      "stem": "Barodontalgia (tooth pain) is primarily associated with which phase of flight in this framework?",
+      "options": [
+        "Ascent",
+        "Descent",
+        "Hovering",
+        "Taxiing"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Barodontalgia is typically associated with **ascent** because trapped gas in dental spaces expands with decreasing ambient pressure, producing pain. Descent more commonly causes middle ear or sinus barotrauma when gas cannot equalize.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q029",
+      "stem": "Barotitis media (middle ear barotrauma) is primarily associated with which phase of flight in this framework?",
+      "options": [
+        "Descent",
+        "Ascent",
+        "Cruise",
+        "Refueling"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Middle ear barotrauma is commonly linked to **descent** because increasing ambient pressure requires active equalization via the Eustachian tube; blockage traps relative negative pressure in the middle ear, causing pain and injury.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q030",
+      "stem": "Barosinusitis (sinus barotrauma) is primarily associated with which phase of flight in this framework?",
+      "options": [
+        "Descent",
+        "Ascent",
+        "Taxiing",
+        "Hovering"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Sinus barotrauma is commonly taught as a **descent** problem: increasing ambient pressure requires sinus venting; obstruction prevents equalization, producing mucosal injury and pain.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q031",
+      "stem": "Which gas law is most commonly associated with decompression sickness due to nitrogen coming out of solution as pressure decreases?",
+      "options": [
+        "Henry's law",
+        "Boyle's law",
+        "Dalton's law",
+        "Graham's law"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Decompression sickness involves dissolved gases (primarily nitrogen) **coming out of solution** as ambient pressure decreases\u2014this is described by **Henry\u2019s law**. Boyle\u2019s law describes gas volume expansion; Dalton\u2019s law describes partial pressures.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q032",
+      "stem": "Which hypoxia stages are described in this study framework as altitude increases? (Select all that apply.)",
+      "options": [
+        "Indifference (0\u201310,000 ft)",
+        "Compensatory (10,000\u201315,000 ft)",
+        "Disturbance (15,000\u201320,000 ft)",
+        "Critical (20,000+ ft)",
+        "Recovery (20,000+ ft)"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Training frameworks often describe progressive hypoxia stages: **Indifference**, **Compensatory**, **Disturbance**, and **Critical**. Recognizing the stage helps anticipate cognitive/coordination decline and the need for immediate oxygen and descent.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q033",
+      "stem": "Which gravitational force direction is generally considered best tolerated by humans in aviation physiology training?",
+      "options": [
+        "Gx (anterior\u2013posterior)",
+        "Gz (head-to-foot)",
+        "Gy (lateral)",
+        "All are equally tolerated"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Humans generally tolerate **Gx (anterior\u2013posterior)** better than sustained head-to-foot (Gz) loading, which promotes blood pooling and reduced cerebral perfusion. Tolerance depends on magnitude, duration, and restraint/positioning.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q034",
+      "stem": "For every 1,000-foot increase in altitude, temperature is commonly taught to decrease by approximately:",
+      "options": [
+        "2 degrees (F)",
+        "10 degrees (F)",
+        "0.5 degrees (F)",
+        "It increases with altitude"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A common aviation rule of thumb is temperature decreases **~2\u00b0 per 1,000 ft** (rate varies by conditions). Cooler temperatures can worsen hypothermia risk in exposed patients and affect equipment performance.",
+      "type": "single_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q035",
+      "stem": "Which formula best represents a commonly taught method to adjust FiO2 for a change in atmospheric pressure with altitude?",
+      "options": [
+        "(Current FiO2 \u00d7 P1) / P2 = new FiO2",
+        "(Current FiO2 \u00d7 P2) / P1 = new FiO2",
+        "FiO2 does not change with altitude",
+        "FiO2 should always be set to 1.0 at altitude"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A common teaching tool uses **(FiO2 \u00d7 current pressure) / expected pressure** to estimate the FiO2 needed to maintain a similar inspired oxygen partial pressure. It\u2019s a conceptual aid; in practice, you titrate to clinical targets (SpO2/PaO2).",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q036",
+      "stem": "Which findings are taught as indications for advanced airway management/intubation? (Select all that apply.)",
+      "options": [
+        "GCS < 8",
+        "Inhalational burns",
+        "Anaphylaxis with threatened airway",
+        "Patient able to swallow and protect airway",
+        "Apnea"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "rationale": "Indications focus on inability to **oxygenate/ventilate** or **protect the airway**, and anticipated deterioration (e.g., inhalation injury). A patient who can swallow and protect the airway is not an automatic candidate solely on diagnosis.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q037",
+      "stem": "In this framework, which ABG value alone may indicate the possible need for intubation due to respiratory failure?",
+      "options": [
+        "PaO2 < 60 mmHg",
+        "PaO2 > 100 mmHg",
+        "pH 7.45",
+        "PaCO2 35 mmHg"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A **PaO2 < 60 mmHg** reflects significant hypoxemia. In this study framework, any single critical ABG abnormality (e.g., low pH, high CO2, low PaO2) can support the decision to intubate when paired with clinical failure to oxygenate/ventilate.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q038",
+      "stem": "Which ventilator pressure best reflects alveolar pressure and is commonly considered the most important pressure to monitor for lung injury risk?",
+      "options": [
+        "Plateau pressure (Pplat)",
+        "Peak inspiratory pressure (PIP)",
+        "Mean airway pressure",
+        "PEEP"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Plateau pressure (Pplat) approximates **alveolar pressure** during an inspiratory hold, making it a key marker of overdistension risk. PIP is influenced by airway resistance (tube/circuit/bronchospasm) and may overestimate alveolar stress.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q039",
+      "stem": "A ventilated patient has PIP 48 cm H2O and Pplat 18 cm H2O. What is the most likely problem category?",
+      "options": [
+        "Increased airway resistance/upper airway issue",
+        "Decreased lung compliance (alveolar issue)",
+        "Pulmonary edema causing stiff lungs",
+        "ARDS worsening alveolar pressure"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A **high PIP with normal Pplat** suggests resistance problems (kinked tube, biting, secretions, bronchospasm, circuit obstruction). If both PIP and Pplat rise, compliance/alveolar issues (ARDS, edema, tension pneumothorax) are more likely.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q040",
+      "stem": "A trauma patient on volume control has PIP 48 cm H2O and Pplat 38 cm H2O with sudden deterioration. Which cause and immediate action are most consistent with this pattern in this study framework?",
+      "options": [
+        "Tension pneumothorax; perform immediate needle decompression",
+        "Kinked suction catheter; remove and continue ventilation",
+        "ETT too small; increase tidal volume",
+        "Low PEEP; turn PEEP to zero"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "When **both PIP and Pplat are elevated**, compliance is reduced and alveolar pressure is high. In a trauma patient with sudden decline, tension pneumothorax is a high\u2011risk, time\u2011critical cause\u2014needle decompression is the rapid lifesaving intervention.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q041",
+      "stem": "A non-trauma patient has PIP 48 cm H2O and Pplat 38 cm H2O. Which explanation is most consistent with this pattern in this study framework?",
+      "options": [
+        "Fluid/pressure limiting lung expansion (e.g., pulmonary edema, ascites, compartment syndrome)",
+        "Primary airway resistance from a kinked tube",
+        "A loose ventilator connection",
+        "Increased patient drive with normal lung mechanics"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "If **PIP and Pplat rise together**, the issue is typically reduced compliance (stiffer lungs or external compression). Non-trauma causes include pulmonary edema, ARDS, ascites, or abdominal compartment syndrome\u2014conditions that increase alveolar pressure for a given tidal volume.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q042",
+      "stem": "In this study framework, plateau pressure should generally be kept below which threshold to reduce barotrauma risk?",
+      "options": [
+        "30 cm H2O",
+        "40 cm H2O",
+        "50 cm H2O",
+        "20 cm H2O"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A commonly taught lung-protective target is **Pplat < 30 cm H2O**, because higher plateau pressures correlate with overdistension/ventilator-induced lung injury. PIP targets can be higher and are less specific for alveolar stress.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q043",
+      "stem": "In this study framework, peak inspiratory pressure (PIP) is commonly targeted to remain below:",
+      "options": [
+        "40 cm H2O",
+        "20 cm H2O",
+        "30 cm H2O",
+        "60 cm H2O"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "PIP is often targeted **< 40 cm H2O** as a general safety threshold. Because PIP reflects resistance plus compliance, it is less specific than plateau pressure for alveolar overdistension but still useful as an alarm/monitoring parameter.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q044",
+      "stem": "Which factors can increase plateau pressure (Pplat) in a ventilated patient? (Select all that apply.)",
+      "options": [
+        "ARDS",
+        "Increased tidal volume",
+        "Tension pneumothorax",
+        "Trendelenburg positioning",
+        "A kinked ventilator circuit with normal lungs"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Pplat rises with **decreased compliance** or increased distending volume: ARDS, edema, tension pneumothorax, higher tidal volumes, and external compression (Trendelenburg, obesity, pregnancy, ascites). Circuit kinks primarily increase PIP (resistance), not plateau pressure.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q045",
+      "stem": "If Pplat is elevated in this study framework, which ventilator adjustment sequence is most consistent with a lung-protective approach?",
+      "options": [
+        "Reduce tidal volume in small steps and reassess; consider switching from volume to pressure delivery if needed",
+        "Increase tidal volume to improve ventilation regardless of pressures",
+        "Increase inspiratory flow to raise plateau pressure intentionally",
+        "Eliminate PEEP completely in all cases"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A lung-protective strategy prioritizes **limiting alveolar overdistension**. If plateau pressure is high, first correct reversible causes (positioning, pneumothorax, abdominal distension) and **decrease tidal volume stepwise**, reassessing plateau. If pressures remain high, switching delivery mode may help.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q046",
+      "stem": "Which ventilator setting primarily applies only to spontaneous breaths and provides a pressure 'boost' when the patient initiates a breath?",
+      "options": [
+        "Pressure support (PS)",
+        "PEEP",
+        "Tidal volume",
+        "Respiratory rate"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Pressure support is applied to **spontaneous breaths** to overcome circuit/ETT resistance and reduce work of breathing. It is not the same as PEEP (baseline pressure) or a set tidal volume (volume-controlled target).",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q047",
+      "stem": "In this study framework, a typical starting pressure support level is approximately:",
+      "options": [
+        "10 cm H2O",
+        "2 cm H2O",
+        "20 cm H2O",
+        "0 cm H2O"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A commonly taught starting PS is **~10 cm H2O**, then titrated based on tidal volumes, work of breathing, synchrony, and gas exchange. Too much support can reduce respiratory drive and delay liberation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q048",
+      "stem": "In pressure support ventilation, if spontaneous tidal volume exceeds ~75% of the set/target tidal volume in this study framework, what is an appropriate action?",
+      "options": [
+        "Increase trigger sensitivity, deepen sedation if needed, and/or decrease PS by small increments",
+        "Increase PS substantially to further raise tidal volume",
+        "Turn PEEP to zero immediately",
+        "Switch off monitoring alarms"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Excessive spontaneous tidal volumes under PS may indicate over-assistance or dyssynchrony. The framework recommends optimizing **trigger sensitivity**, ensuring adequate **sedation/comfort**, and **reducing PS** gradually to avoid volutrauma and improve synchrony.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q049",
+      "stem": "High FiO2 can contribute to absorptive atelectasis primarily by which mechanism?",
+      "options": [
+        "Nitrogen washout reduces 'alveolar stenting,' increasing collapse risk unless PEEP is maintained",
+        "Oxygen directly paralyzes surfactant production in all patients",
+        "FiO2 increases airway resistance immediately",
+        "High FiO2 always prevents atelectasis regardless of PEEP"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Nitrogen helps maintain alveolar volume because it is poorly absorbed; high FiO2 **washes out nitrogen**, allowing alveoli to collapse as oxygen diffuses into blood. **PEEP** helps maintain alveolar recruitment and reduces this collapse risk.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q050",
+      "stem": "For obstructive lung disease ventilation strategy in this framework, which respiratory rate and I:E ratio are most appropriate?",
+      "options": [
+        "RR 10\u201312/min and I:E 1:4 to 1:5",
+        "RR 20\u201324/min and I:E 1:1",
+        "RR 14\u201316/min and I:E 1:2",
+        "RR 30/min and I:E 2:1"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Obstructive disease management emphasizes **long expiratory time** to limit air trapping/auto\u2011PEEP: lower RR (10\u201312) and prolonged exhalation (I:E 1:4\u20131:5). Higher RR shortens exhalation and worsens dynamic hyperinflation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q051",
+      "stem": "Which components are included in the LEMON difficult airway assessment mnemonic? (Select all that apply.)",
+      "options": [
+        "Look externally",
+        "Evaluate 3-3-2 rule",
+        "Mallampati",
+        "Obstruction/Obesity",
+        "Neck mobility"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "rationale": "LEMON summarizes bedside predictors of difficult laryngoscopy: **Look**, **Evaluate 3\u20113\u20112**, **Mallampati**, **Obstruction/Obesity**, and **Neck mobility**. It helps teams anticipate adjuncts, positioning, and backup plans.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q052",
+      "stem": "For pediatric ETT sizing, this study framework uses an age-based calculation of:",
+      "options": [
+        "(16 \u2212 age in years) / 4",
+        "(age in years) / 2",
+        "(age in years) + 4",
+        "(weight in kg) / 10"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "An age-based estimate taught here is **(16 \u2212 age)/4** (framework-specific). Pediatric sizing should be confirmed with clinical fit/leak and local protocols; having multiple tube sizes ready is standard.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q053",
+      "stem": "Needle cricothyrotomy is taught in this framework to be performed in which pediatric age group?",
+      "options": [
+        "Children < 8 years old",
+        "Children > 12 years old",
+        "Neonates only",
+        "Adults only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "In this framework, **needle cricothyrotomy** is recommended for children **under 8** because surgical cric anatomy is small and higher-risk. Age cutoffs vary by system; the exam concept is choosing a front-of-neck option appropriate to pediatric anatomy.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q054",
+      "stem": "The Pediatric Assessment Triangle (PAT) evaluates which three domains? (Select all that apply.)",
+      "options": [
+        "Appearance",
+        "Work of breathing",
+        "Circulation to skin",
+        "Capillary refill time only",
+        "Temperature"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "PAT is a rapid visual assessment of **Appearance**, **Work of breathing**, and **Circulation to skin**. It is designed for quick severity assessment before detailed vitals and directs urgency and immediate interventions.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q055",
+      "stem": "Which are the three key anatomical landmarks emphasized in this framework for direct laryngoscopy/intubation?",
+      "options": [
+        "Epiglottis, vallecula, true vocal cords",
+        "Uvula, tonsils, tongue",
+        "Soft palate, hard palate, gums",
+        "Tracheal rings, carina, bronchi"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Direct laryngoscopy focuses on identifying the **epiglottis**, placing the blade in the **vallecula** (with Macintosh technique), and visualizing the **true vocal cords** for tube passage. Missing these landmarks increases esophageal placement risk.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q056",
+      "stem": "Which step occurs first in the intubation sequence described in this framework?",
+      "options": [
+        "Place the patient in the sniffing position",
+        "Inflate the cuff",
+        "Secure the tube",
+        "Advance the tube 2\u20133 cm after passing the cords"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Positioning (sniffing) aligns oral, pharyngeal, and laryngeal axes and improves glottic view. Tube advancement, cuff inflation, confirmation (ETCO2/auscultation), and securing occur later.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q057",
+      "stem": "After intubation, which steps are part of confirmation and securing in the sequence described in this framework? (Select all that apply.)",
+      "options": [
+        "Attach ETCO2/capnography device",
+        "Auscultate breath sounds bilaterally",
+        "Secure the tube",
+        "Deflate cuff to reduce pressure",
+        "Skip confirmation if chest rises"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "Post\u2011intubation safety requires **ETCO2 confirmation**, **bilateral auscultation**, and **securement**. Chest rise alone is unreliable. Cuff is inflated (not deflated) to maintain seal and prevent aspiration, with pressure monitored to avoid mucosal injury.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q058",
+      "stem": "In ventilator terminology, 'trigger' or 'sensitivity' primarily refers to:",
+      "options": [
+        "How much patient effort is required to initiate a breath",
+        "The set tidal volume delivered",
+        "The baseline PEEP value",
+        "The fraction of inspired oxygen"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Trigger/sensitivity is the **effort threshold** (pressure or flow) required for the patient to trigger a breath. Too sensitive may cause auto-triggering; not sensitive enough increases work of breathing and dyssynchrony.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q059",
+      "stem": "Peak inspiratory pressure (PIP) is best described as:",
+      "options": [
+        "The highest pressure measured at the airway during inspiration (affected by resistance and compliance)",
+        "A measurement of alveolar pressure during an inspiratory hold",
+        "A calculation of minute ventilation",
+        "A measure of oxygen diffusion across the alveoli"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "PIP is the **highest airway pressure** during inspiration (in volume modes), influenced by flow rate, airway resistance (tube/circuit/bronchospasm), and lung compliance. Plateau pressure is the better surrogate for alveolar pressure.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q060",
+      "stem": "In this framework, what is a common alarm limit setting for ventilator pressure to avoid exceeding unsafe airway pressures?",
+      "options": [
+        "35 cm H2O",
+        "15 cm H2O",
+        "55 cm H2O",
+        "No pressure alarm is recommended"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A commonly taught pressure alarm setting is **~35 cm H2O** to reduce risk of barotrauma and quickly alert the team to resistance/compliance changes. Alarm values should be individualized to patient and mode.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q061",
+      "stem": "Which best describes Pressure Regulated Volume Control (PRVC) ventilation in this framework?",
+      "options": [
+        "A mode that targets tidal volume using the lowest necessary pressure, with constant pressure during inspiration",
+        "A spontaneous breathing-only mode without set parameters",
+        "A mode that delivers fixed pressure without regard to tidal volume",
+        "A mode that is used only during CPR"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "PRVC is described as blending volume and pressure concepts: the ventilator adjusts pressure to achieve a target volume while limiting excessive pressures. It\u2019s often discussed in pediatrics because it adapts to changing compliance while aiming for protective volumes.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q062",
+      "stem": "Which formula is used to calculate cerebral perfusion pressure (CPP)?",
+      "options": [
+        "CPP = MAP \u2212 ICP",
+        "CPP = ICP \u2212 MAP",
+        "CPP = SBP \u2212 DBP",
+        "CPP = HR \u00d7 SV"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "CPP reflects the pressure gradient driving cerebral blood flow and is taught as **CPP = MAP \u2212 ICP**. Rising ICP or falling MAP reduces CPP and increases ischemia risk\u2014key targets during neurocritical transport.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q063",
+      "stem": "Normal intracranial pressure (ICP) is typically taught to be in which range?",
+      "options": [
+        "5\u201315 mmHg",
+        "0\u20132 mmHg",
+        "20\u201330 mmHg",
+        "40\u201360 mmHg"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Normal ICP is commonly **5\u201315 mmHg**. Sustained elevations increase herniation risk and impair CPP; management focuses on positioning, ventilation targets, and osmotherapy when indicated.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q064",
+      "stem": "A normal CPP is typically taught to be in which range?",
+      "options": [
+        "70\u201390 mmHg",
+        "20\u201340 mmHg",
+        "90\u2013110 mmHg",
+        "40\u201360 mmHg"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Normal CPP is often cited as **70\u201390 mmHg** in this framework. The goal is adequate cerebral blood flow without provoking edema; the exact target may vary by pathology and institutional protocol.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q065",
+      "stem": "Where should the transducer be leveled when monitoring ICP in this framework?",
+      "options": [
+        "External auditory meatus/tragus (foramen of Monro level)",
+        "At the patient\u2019s mid-sternum",
+        "At the iliac crest",
+        "At the nipple line"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "ICP transducers are leveled to the **foramen of Monro**, approximated by the **external auditory meatus/tragus**. Incorrect leveling creates falsely high/low readings and can lead to harmful over- or undertreatment.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q066",
+      "stem": "What unique risk is emphasized for air transport of a patient with a skull fracture in this framework?",
+      "options": [
+        "Pneumocephalus expansion",
+        "Immediate spinal cord transection",
+        "Coronary thrombosis",
+        "Renal infarction"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Air transport can worsen **pneumocephalus** because trapped intracranial air expands as ambient pressure decreases (Boyle\u2019s law). This can increase ICP and neurologic deterioration\u2014requiring careful risk-benefit consideration.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q067",
+      "stem": "Cushing's triad is most consistent with which combination of findings?",
+      "options": [
+        "Hypertension with widened pulse pressure, bradycardia, and irregular respirations",
+        "Hypotension, tachycardia, and fever",
+        "Tachypnea, wheezing, and hypoxia",
+        "Bradycardia, hypotension, and warm flushed skin"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Cushing\u2019s triad reflects **brainstem compression** from rising ICP: sympathetic response raises systolic pressure/widens pulse pressure, vagal response slows the heart, and respiratory pattern becomes irregular.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q068",
+      "stem": "In this framework, when managing impending herniation, minute ventilation may be increased to target an ETCO2/PaCO2 of approximately:",
+      "options": [
+        "30\u201334 mmHg",
+        "40\u201345 mmHg",
+        "50\u201355 mmHg",
+        "20\u201325 mmHg for prolonged periods"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Brief, targeted hyperventilation can lower PaCO2 to **~30\u201334 mmHg**, causing cerebral vasoconstriction and transient ICP reduction. Overly aggressive/prolonged hyperventilation risks cerebral ischemia, so it should be used judiciously with definitive care planning.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q069",
+      "stem": "Which are clinical features of rising intracranial pressure? (Select all that apply.)",
+      "options": [
+        "Decreased level of consciousness",
+        "Pupillary changes",
+        "Posturing",
+        "Worsening headache/vomiting",
+        "Improving coordination and alertness"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Rising ICP commonly presents with **altered mental status**, **pupil abnormalities**, **abnormal posturing**, and symptoms like **headache/vomiting**. Improvement in alertness would be inconsistent with worsening ICP.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q070",
+      "stem": "An epidural hematoma classically involves which vessel and clinical pattern?",
+      "options": [
+        "Middle meningeal artery injury with a lucid interval followed by rapid decline",
+        "Bridging vein injury with gradual decline over weeks",
+        "Venous sinus occlusion with progressive fever",
+        "Carotid dissection with isolated leg weakness"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Epidural hematoma is often arterial (middle meningeal) and can show **LOC \u2192 lucid interval \u2192 deterioration** as bleeding expands. Subdural hematomas are more often venous (bridging veins) and can be acute or chronic.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q071",
+      "stem": "Which intracranial hemorrhage type is more common in head trauma in this framework?",
+      "options": [
+        "Subdural hematoma",
+        "Epidural hematoma",
+        "Intraventricular hemorrhage",
+        "Subarachnoid hemorrhage only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework notes **subdural hematomas** are more common than epidurals and carry higher mortality. The mechanism is often tearing of bridging veins, especially in elderly and pediatric populations.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q072",
+      "stem": "Which findings are consistent with neurogenic shock? (Select all that apply.)",
+      "options": [
+        "Hypotension",
+        "Bradycardia or absence of tachycardia",
+        "Warm, flushed, dry skin below the lesion",
+        "High SVR with cool clammy skin",
+        "SVR < 800 (low)"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "rationale": "Neurogenic shock results from loss of sympathetic tone: **vasodilation (low SVR)** and **relative bradycardia**. Warm dry skin below the lesion reflects vasodilation. Cool clammy skin and high SVR are more typical of hypovolemia.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q073",
+      "stem": "Spinal shock is best described as:",
+      "options": [
+        "A temporary neurologic condition after spinal trauma with paralysis and absent reflexes that typically resolves in 24\u201372 hours",
+        "A permanent loss of sympathetic tone causing bradycardia and hypotension",
+        "A hemorrhagic shock state due to spinal bleeding",
+        "A chronic condition due to sepsis"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Spinal shock is a **transient** loss of motor/sensory/reflex function below a spinal injury, often resolving over **24\u201372 hours**. Neurogenic shock is a hemodynamic syndrome from sympathetic disruption.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q074",
+      "stem": "Autonomic dysreflexia is most commonly associated with spinal cord injuries above which level?",
+      "options": [
+        "T6",
+        "L4",
+        "C7",
+        "T12"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Autonomic dysreflexia (hyperreflexia) is a late complication often seen with injuries **above T6**, where noxious stimuli below the lesion trigger uncontrolled sympathetic discharge, causing dangerous hypertension and secondary increases in ICP.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q075",
+      "stem": "In this framework, what is responsible for the majority (75\u201385%) of autonomic dysreflexia triggers?",
+      "options": [
+        "Bladder distension/irritation",
+        "Bright lights",
+        "Noise exposure",
+        "Hypoglycemia"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Bladder distension/irritation is a common trigger because it creates strong afferent stimuli below the lesion. Management focuses on removing the stimulus (e.g., check Foley for kinks, drain bladder slowly) and treating severe hypertension if needed.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q076",
+      "stem": "Which are considered cardinal signs of meningitis in this framework? (Select all that apply.)",
+      "options": [
+        "Photophobia",
+        "Head pressure/headache",
+        "Nuchal rigidity",
+        "Painless bright red vaginal bleeding",
+        "Flank ecchymosis"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "Classic meningitis features include **photophobia**, **headache/pressure**, and **nuchal rigidity**, reflecting meningeal irritation and inflammation. The other options are unrelated findings (OB bleeding, retroperitoneal bleeding).",
+      "type": "multi_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q077",
+      "stem": "Kernig's sign is best described as:",
+      "options": [
+        "With hip and knee flexed to 90\u00b0, extension causes pain/resistance",
+        "Forced neck flexion causes hip/knee flexion reflex",
+        "Pain in left shoulder from splenic rupture",
+        "Increased JVP with inspiration"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Kernig\u2019s sign is assessed by flexing the hip/knee and attempting extension; **pain/resistance** suggests meningeal irritation. Brudzinski\u2019s involves reflex hip/knee flexion with neck flexion.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q078",
+      "stem": "Brudzinski's sign is best described as:",
+      "options": [
+        "Forced neck flexion causes reflex hip/knee flexion and leg abduction",
+        "Pain on dorsiflexion of foot due to calf tenderness",
+        "A crunching sound from mediastinal air",
+        "Loss of reflexes resolving in 24\u201372 hours"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Brudzinski\u2019s sign reflects meningeal irritation: **neck flexion triggers reflex hip/knee flexion**. It\u2019s used alongside Kernig\u2019s sign and clinical assessment for meningitis suspicion.",
+      "type": "single_select"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "Q079",
+      "stem": "Which spinal cord syndrome often presents with greater motor weakness in the upper extremities than the lower extremities?",
+      "options": [
+        "Central cord syndrome",
+        "Anterior cord syndrome",
+        "Brown-Sequard syndrome",
+        "Complete cord transection"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Central cord syndrome (often hyperextension cervical injury) classically produces **greater upper extremity weakness** due to central tract involvement. Anterior cord affects motor and pain/temp; Brown-Sequard produces ipsilateral motor/vibration loss with contralateral pain/temp loss.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q080",
+      "stem": "Cardiac output (CO) is calculated as:",
+      "options": [
+        "Heart rate \u00d7 stroke volume",
+        "Stroke volume \u00f7 heart rate",
+        "Mean arterial pressure \u00f7 ICP",
+        "SVR \u00d7 PVR"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "CO is the volume of blood pumped per minute and is calculated as **CO = HR \u00d7 SV**. Many shock states can be understood by which component (HR or SV) is primarily impaired.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q081",
+      "stem": "Systemic vascular resistance (SVR) is most closely associated with afterload of which side of the heart?",
+      "options": [
+        "Left heart",
+        "Right heart",
+        "Both equally",
+        "Neither; SVR measures preload"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "SVR reflects **left ventricular afterload** (systemic arterial tone). Right ventricular afterload is reflected by pulmonary vascular resistance (PVR).",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q082",
+      "stem": "Pulmonary vascular resistance (PVR) is most closely associated with afterload of which side of the heart?",
+      "options": [
+        "Right heart",
+        "Left heart",
+        "Only the atria",
+        "Only the ventricles during diastole"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "PVR reflects **right ventricular afterload** (pulmonary arterial tone). Increased PVR (hypoxia, acidosis, hypercapnia) can strain the right ventricle and worsen oxygenation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q083",
+      "stem": "Which conditions can increase SVR in this framework? (Select all that apply.)",
+      "options": [
+        "Hypothermia",
+        "Hypovolemic shock",
+        "Low cardiac output",
+        "Sepsis",
+        "Anaphylaxis"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "SVR increases when the body vasoconstricts to preserve perfusion\u2014seen in **hypothermia, hypovolemia, and low CO** states. Sepsis and anaphylaxis typically decrease SVR due to vasodilation.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q084",
+      "stem": "Which conditions can decrease SVR in this framework? (Select all that apply.)",
+      "options": [
+        "Sepsis",
+        "Neurogenic shock",
+        "Anaphylaxis",
+        "Vasodilators",
+        "Hypothermia"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Distributive shock states (sepsis, neurogenic, anaphylaxis) and vasodilator medications reduce systemic tone, producing **low SVR** and relative hypotension. Hypothermia tends to increase SVR via vasoconstriction.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q085",
+      "stem": "Which conditions can increase PVR in this framework? (Select all that apply.)",
+      "options": [
+        "Acidosis",
+        "Hypercapnia",
+        "Hypoxia",
+        "Atelectasis/ARDS",
+        "Alkalosis"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "PVR rises with **hypoxia, hypercapnia, and acidosis** (hypoxic pulmonary vasoconstriction) and with alveolar collapse/ARDS. Alkalosis and hypocapnia generally decrease PVR.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q086",
+      "stem": "An S3 heart sound is most consistent with which condition in this framework?",
+      "options": [
+        "Congestive heart failure/volume overload",
+        "Acute myocardial infarction only",
+        "Severe dehydration",
+        "Pericardial tamponade"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "An **S3** is associated with increased ventricular filling and volume overload, commonly seen in **congestive heart failure**. It reflects rapid filling into a dilated or noncompliant ventricle.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q087",
+      "stem": "An S4 heart sound is most consistent with which condition in this framework?",
+      "options": [
+        "Myocardial infarction/stiff ventricle",
+        "Pulmonary embolism",
+        "COPD exacerbation",
+        "Hypoglycemia"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "An **S4** occurs when atrial contraction forces blood into a stiff ventricle and is associated with conditions like MI/ischemia or hypertrophy. It\u2019s an indicator of decreased compliance rather than volume overload.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q088",
+      "stem": "On a cardiac enzyme panel, which marker is described in this framework as most specific for cardiac tissue death?",
+      "options": [
+        "Troponin",
+        "Myoglobin",
+        "CK-MM",
+        "ALT"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Troponin is highly **specific** for myocardial injury/necrosis compared with other markers. Myoglobin is very sensitive but less specific because it is present in skeletal muscle as well.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q089",
+      "stem": "On a cardiac enzyme panel, which marker is described in this framework as most sensitive (earliest) for muscle injury?",
+      "options": [
+        "Myoglobin",
+        "Troponin",
+        "BNP",
+        "D-dimer"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Myoglobin can rise early and is often considered **sensitive**, but it lacks specificity. Troponin is more specific but may have a different time course; the exam concept is differentiating sensitivity vs specificity.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q090",
+      "stem": "ST elevation in leads II, III, and aVF most commonly suggests infarction in which territory and artery in this framework?",
+      "options": [
+        "Inferior wall; right coronary artery (RCA)",
+        "Anterior wall; left anterior descending (LAD)",
+        "Lateral wall; circumflex",
+        "Septal wall; RCA"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Inferior STEMI is classically seen in **II, III, aVF** and often involves the **RCA**. This matters because RCA infarcts may include right ventricular infarction and can be preload-sensitive.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q091",
+      "stem": "Which region of the heart is commonly evaluated by leads V1\u2013V2 in this framework?",
+      "options": [
+        "Septal",
+        "Inferior",
+        "Lateral",
+        "Posterior"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Leads **V1\u2013V2** look at the **septal** region. Recognizing lead territories supports STEMI localization and detection of contiguous lead changes.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q092",
+      "stem": "In this framework, what is a key treatment difference emphasized for a right-sided MI compared with a left-sided MI?",
+      "options": [
+        "Avoid nitroglycerin/beta blockers and give a fluid bolus due to preload dependence",
+        "Give large doses of nitroglycerin first-line",
+        "Diurese aggressively with furosemide",
+        "Use hyperventilation to reduce afterload"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Right ventricular infarcts are often **preload dependent**; vasodilators (nitro) and beta blockers can worsen hypotension. A **fluid challenge** can improve RV filling and output while definitive care is arranged.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q093",
+      "stem": "Mean arterial pressure (MAP) is calculated as:",
+      "options": [
+        "[(2 \u00d7 DBP) + SBP] / 3",
+        "[SBP + DBP] / 2",
+        "SBP \u2212 DBP",
+        "HR \u00d7 SV"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "MAP weights diastolic pressure more heavily because the heart spends more time in diastole; a common formula is **(2\u00d7DBP + SBP)/3**. It is a key perfusion variable in shock and neurocritical care.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q094",
+      "stem": "Which are considered contraindications to intra-aortic balloon pump (IABP) use in this framework? (Select all that apply.)",
+      "options": [
+        "Aortic insufficiency/regurgitation",
+        "Significant peripheral vascular disease",
+        "Septic shock",
+        "Stable angina",
+        "Aortic regurgitation"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "E"
+      ],
+      "rationale": "IABP requires an effective aortic valve and adequate arterial access. **Aortic insufficiency/regurgitation** can worsen with balloon inflation, and **peripheral vascular disease** can complicate insertion/perfusion. Other conditions may be relative or indication-dependent.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q095",
+      "stem": "In this framework, the distal tip of an IABP should be positioned approximately:",
+      "options": [
+        "2\u20133 cm below the left subclavian artery",
+        "At the aortic valve leaflets",
+        "In the right ventricle",
+        "Below the renal arteries"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Proper IABP placement is typically described as **2\u20133 cm below the left subclavian artery** to augment coronary perfusion without obstructing major branches. Malposition risks limb ischemia or organ hypoperfusion.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q096",
+      "stem": "Which finding suggests an IABP has migrated too high in this framework?",
+      "options": [
+        "Diminished/absent left brachial pulse",
+        "Increased urine output",
+        "Warm flushed legs",
+        "Improved mental status"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "High migration can compromise flow to the left subclavian region, leading to **diminished left brachial pulse**. Monitoring distal pulses and perfusion is essential during transport.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q097",
+      "stem": "Which finding suggests an IABP has migrated too low in this framework?",
+      "options": [
+        "Decreased urine output",
+        "Left arm pain with absent brachial pulse",
+        "Improved coronary perfusion",
+        "Increased PaO2"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Low migration can obstruct renal perfusion, leading to **decreased urine output**. Positioning and frequent assessment help detect migration early.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q098",
+      "stem": "Blood is noted in the IABP tubing. What is the appropriate action in this framework?",
+      "options": [
+        "Stop therapy, place patient head down, and transport urgently for balloon removal",
+        "Increase balloon augmentation to improve perfusion",
+        "Flush the line with saline and continue",
+        "Switch to 1:2 augmentation and observe"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Blood in the system suggests balloon rupture and risk of clot/embolization. The framework recommends **stopping therapy**, placing the patient **head down**, and urgent transport for surgical removal.",
+      "type": "single_select"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "Q099",
+      "stem": "During CPR, should the IABP be stopped in this framework?",
+      "options": [
+        "No\u2014continue IABP; it can provide significant support",
+        "Yes\u2014always stop it immediately",
+        "Only stop if BP is high",
+        "Only stop if ETCO2 rises"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework emphasizes that continuing IABP during CPR can provide beneficial diastolic augmentation and perfusion support; stopping may remove a critical hemodynamic aid.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q100",
+      "stem": "What are the three components of the trauma triad of death? (Select all that apply.)",
+      "options": [
+        "Hypothermia",
+        "Acidosis",
+        "Coagulopathy",
+        "Hyperglycemia",
+        "Bradycardia"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "The trauma triad of death is **hypothermia + acidosis + coagulopathy**. Each worsens the others (cold impairs clotting, acidosis reduces coagulation factor function), creating a spiral that requires early prevention (warming, hemorrhage control, balanced resuscitation).",
+      "type": "multi_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q101",
+      "stem": "Hypotension in hemorrhagic trauma is commonly not observed until approximately what percent of blood volume has been lost (as taught in this framework)?",
+      "options": [
+        "~30%",
+        "~10%",
+        "~5%",
+        "~60%"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Compensation (tachycardia/vasoconstriction) can maintain BP early. This framework emphasizes hypotension often appears after **~30% blood loss**, meaning normal BP does not rule out significant hemorrhage.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q102",
+      "stem": "A patient with left shoulder pain after abdominal trauma (Kehr's sign) most strongly suggests injury to which organ?",
+      "options": [
+        "Spleen",
+        "Liver",
+        "Kidney",
+        "Pancreas"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Kehr\u2019s sign is referred pain to the left shoulder from diaphragmatic irritation, classically associated with **splenic rupture** and intra-abdominal bleeding.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q103",
+      "stem": "The most commonly injured solid organ in blunt abdominal trauma in this framework is:",
+      "options": [
+        "Spleen",
+        "Liver",
+        "Kidney",
+        "Pancreas"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework emphasizes the **spleen** as the most commonly injured solid organ in blunt trauma. It is vascular and susceptible to deceleration forces.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q104",
+      "stem": "The most commonly injured solid organ in penetrating abdominal trauma in this framework is:",
+      "options": [
+        "Liver",
+        "Spleen",
+        "Pancreas",
+        "Stomach"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework emphasizes the **liver** as the most commonly injured solid organ in penetrating trauma due to its size and anterior position.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q105",
+      "stem": "The most commonly injured hollow organ in penetrating abdominal trauma in this framework is:",
+      "options": [
+        "Intestines",
+        "Bladder",
+        "Gallbladder",
+        "Esophagus"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "The **intestines** are commonly injured in penetrating trauma because of their large surface area and central location within the abdomen.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q106",
+      "stem": "In an unstable pelvic fracture, the largest immediate risk emphasized in this framework is:",
+      "options": [
+        "Exsanguination/hemorrhage",
+        "Pulmonary embolism",
+        "Sepsis",
+        "Compartment syndrome of the forearm"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Pelvic fractures can disrupt major venous plexuses and arterial sources, causing **massive hemorrhage**. Early stabilization (pelvic binder), resuscitation, and rapid transport are critical.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q107",
+      "stem": "Coopernail's sign (scrotal or labial ecchymosis) is most often associated with:",
+      "options": [
+        "Pelvic fracture",
+        "Basilar skull fracture",
+        "Splenic rupture",
+        "Tension pneumothorax"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Perineal/scrotal/labial ecchymosis suggests pelvic bleeding and is commonly associated with **pelvic fractures** (though it can also be seen with other abdominal bleeding).",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q108",
+      "stem": "An open chest wound is considered a 'sucking chest wound' when it is approximately what size compared with the trachea (as taught in this framework)?",
+      "options": [
+        "2\u20133 times the size of the trachea",
+        "Half the size of the trachea",
+        "Equal to the size of the trachea",
+        "Any visible wound qualifies"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A large defect (often taught as **2\u20133\u00d7 tracheal diameter**) allows preferential air entry through the wound, impairing ventilation and increasing pneumothorax risk. Management focuses on occlusive dressing principles and monitoring for tension physiology.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q109",
+      "stem": "Which are acceptable needle decompression sites in this framework? (Select all that apply.)",
+      "options": [
+        "2nd intercostal space, midclavicular line",
+        "5th intercostal space, midaxillary line",
+        "1st intercostal space, sternal border",
+        "7th intercostal space, posterior axillary line"
+      ],
+      "correct": [
+        "A",
+        "B"
+      ],
+      "rationale": "This framework lists **2nd ICS MCL** and **5th ICS MAL** as acceptable sites. Correct landmarking reduces risk of vascular injury and improves success, especially in larger patients where anterior chest wall thickness may be greater.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q110",
+      "stem": "A massive hemothorax is most consistent with approximately what blood volume in the pleural space (as taught in this framework)?",
+      "options": [
+        "~1,500 mL (about 1/3 of blood volume)",
+        "~250 mL",
+        "~500 mL",
+        "~3,000 mL in all adults"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Massive hemothorax is commonly taught as **~1,500 mL** (or about **1/3 of circulating volume**). It can cause shock and hypoxia and often requires definitive chest drainage and hemorrhage control.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q111",
+      "stem": "Which management is emphasized in this framework for rib fractures to reduce hypoventilation and complications?",
+      "options": [
+        "Analgesia and noninvasive positive pressure ventilation as indicated",
+        "Avoid pain control to prevent hypotension",
+        "High-dose diuretics",
+        "Routine intubation for all rib fractures"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Rib fractures cause splinting and hypoventilation. Adequate **analgesia** supports ventilation and coughing; **NIPPV** can improve oxygenation and reduce work of breathing in select patients. Not all rib fractures require intubation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q112",
+      "stem": "A flail chest is defined as:",
+      "options": [
+        "Two or more ribs fractured in two or more places",
+        "A single rib fracture with bruising",
+        "A sternal fracture only",
+        "Any chest wall abrasion"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Flail chest occurs when a segment of the chest wall becomes unstable (multiple fractures), leading to paradoxical motion and impaired ventilation. Management focuses on oxygenation, pain control, and sometimes ventilatory support.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q113",
+      "stem": "During trauma assessment, a sunken abdomen with bowel sounds in the chest suggests:",
+      "options": [
+        "Diaphragmatic hernia",
+        "Tension pneumothorax",
+        "Pericardial tamponade",
+        "Pancreatitis"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Bowel sounds in the chest and abdominal contour changes suggest **diaphragmatic rupture/herniation**, allowing abdominal contents into the thorax. This can compromise ventilation and requires definitive surgical management.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q114",
+      "stem": "Kussmaul's sign is defined as:",
+      "options": [
+        "Increased JVP with inspiration",
+        "Decreased JVP with inspiration",
+        "Bradycardia with hypotension",
+        "Left shoulder pain"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Kussmaul\u2019s sign is a paradoxical rise in JVP with inspiration and can be seen in conditions limiting right heart filling (e.g., tamponade, constrictive pericarditis). It\u2019s a hemodynamic clue, not a respiratory pattern.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q115",
+      "stem": "Approximately what volume of pericardial fluid is described in this framework as seriously life-threatening?",
+      "options": [
+        "~150 mL",
+        "~20 mL",
+        "~500 mL in all cases",
+        "~1,000 mL only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework cites **~150 mL** as potentially life-threatening, acknowledging that clinical impact depends on rate of accumulation. Rapid accumulation can cause tamponade at lower volumes than chronic effusions.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q116",
+      "stem": "Beck's triad is associated with cardiac tamponade. Which findings are included? (Select all that apply.)",
+      "options": [
+        "Hypotension",
+        "Muffled heart sounds",
+        "Jugular venous distension (JVD)",
+        "Wheezing",
+        "Hyperthermia"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "Beck\u2019s triad\u2014**hypotension, muffled heart sounds, and JVD**\u2014reflects impaired ventricular filling and reduced stroke volume. Wheezing/fever are not defining features.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q117",
+      "stem": "Electrical alternans on ECG is most suggestive of:",
+      "options": [
+        "Cardiac tamponade",
+        "Pulmonary embolism",
+        "Hyperkalemia",
+        "Inferior MI only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Electrical alternans (beat-to-beat variation in QRS amplitude/direction) can occur when the heart swings within a fluid-filled pericardium, making it a classic association with **tamponade**.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q118",
+      "stem": "Hamman's crunch is most consistent with:",
+      "options": [
+        "Pneumomediastinum or esophageal rupture (Boerhaave syndrome)",
+        "Pulmonary edema",
+        "Splenic rupture",
+        "Acute appendicitis"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Hamman\u2019s crunch is a mediastinal crunch/click synchronized with the heartbeat, classically linked to **pneumomediastinum** (including from esophageal rupture). It reflects air being moved by cardiac motion.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q119",
+      "stem": "Which are common signs of an acute transfusion reaction highlighted in this framework? (Select all that apply.)",
+      "options": [
+        "Fever",
+        "Pallor",
+        "Drop in blood pressure",
+        "Tachycardia",
+        "Sudden improvement in oxygenation only"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Common reaction clues include **fever**, **pallor**, **hypotension**, and **tachycardia**. Any suspected reaction should prompt stopping the transfusion and evaluating for hemolysis, overload, or lung injury.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q120",
+      "stem": "What is the recommended treatment for transfusion-associated circulatory overload (TACO) in this framework?",
+      "options": [
+        "Stop the transfusion and administer furosemide (Lasix)",
+        "Continue transfusion and give antihistamine",
+        "Increase infusion rate to complete sooner",
+        "Give sodium bicarbonate"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "TACO is volume overload; management is **stop transfusion**, provide oxygen/ventilatory support as needed, and diurese (e.g., **furosemide**) while monitoring hemodynamics.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q121",
+      "stem": "What is the recommended treatment for a suspected hemolytic transfusion reaction in this framework?",
+      "options": [
+        "Stop infusion and maintain high urine output with fluids",
+        "Continue infusion at a slower rate",
+        "Administer diphenhydramine and continue",
+        "Give naloxone"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Hemolytic reactions can cause hemoglobinuria and renal injury. The framework emphasizes stopping the transfusion and keeping **urine output high** with fluids to support renal clearance while initiating definitive evaluation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q122",
+      "stem": "What is the recommended treatment for an urticarial (mild allergic) transfusion reaction in this framework?",
+      "options": [
+        "Administer diphenhydramine and continue transfusion with caution",
+        "Stop transfusion permanently and discard all blood products",
+        "Give furosemide",
+        "Intubate immediately"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Mild allergic reactions may respond to **diphenhydramine**. If symptoms resolve and there are no signs of severe reaction, transfusion may continue cautiously per protocol; severe reactions require immediate cessation and escalation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q123",
+      "stem": "If you suspect TRALI (transfusion-related acute lung injury), what should you do first in this framework?",
+      "options": [
+        "Stop the transfusion",
+        "Give a fluid bolus to increase BP",
+        "Administer naloxone",
+        "Increase transfusion rate to maintain hemoglobin"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "TRALI presents with acute hypoxemia and noncardiogenic pulmonary edema during/after transfusion. The first action is **stop the transfusion**, then provide supportive respiratory care and report the reaction.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q124",
+      "stem": "The palm of the patient's hand (including fingers) approximates what percent of total body surface area (TBSA) for burn estimation in this framework?",
+      "options": [
+        "1%",
+        "5%",
+        "0.1%",
+        "10%"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A common bedside estimate is that the patient\u2019s palm (with fingers) is **~1% TBSA**, useful for small or scattered burns when the rule of nines is less precise.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q125",
+      "stem": "Which is the Parkland formula for burn resuscitation in this framework?",
+      "options": [
+        "4 mL \u00d7 kg \u00d7 %TBSA over 24 hours (half in first 8 hours)",
+        "2 mL \u00d7 kg \u00d7 %TBSA over 24 hours (half in first 8 hours)",
+        "1 mL \u00d7 kg \u00d7 %TBSA over 8 hours only",
+        "10 mL \u00d7 kg \u00d7 %TBSA in the first hour only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Parkland is taught as **4 mL/kg/%TBSA over 24 hours**, giving **half in the first 8 hours** from time of burn. The key is timed resuscitation and titrating to endpoints (urine output, perfusion), avoiding over-resuscitation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q126",
+      "stem": "Which is the Brooke formula for burn resuscitation in this framework?",
+      "options": [
+        "2 mL \u00d7 kg \u00d7 %TBSA over 24 hours (half in first 8 hours)",
+        "4 mL \u00d7 kg \u00d7 %TBSA over 24 hours",
+        "6 mL \u00d7 kg \u00d7 %TBSA over 24 hours",
+        "30 mL/kg bolus then maintenance only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Brooke is taught as **2 mL/kg/%TBSA over 24 hours**, typically with half in the first 8 hours. Formulas provide a starting point; ongoing titration to perfusion and urine output is essential.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q127",
+      "stem": "A major metabolic risk of compartment syndrome emphasized in this framework is:",
+      "options": [
+        "Lactic acidosis and hyperkalemia",
+        "Respiratory alkalosis",
+        "Hypoglycemia only",
+        "Hypernatremia only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Ischemic muscle releases lactate and potassium; reperfusion can worsen acidosis and cause dangerous **hyperkalemia**. Early recognition and definitive decompression (fasciotomy) prevent limb loss and systemic collapse.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q128",
+      "stem": "Hydrofluoric acid burns are neutralized/treated with which agent in this framework?",
+      "options": [
+        "Calcium gluconate",
+        "Sodium bicarbonate",
+        "Naloxone",
+        "Activated charcoal"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Hydrofluoric acid binds calcium and can cause profound hypocalcemia and dysrhythmias. **Calcium gluconate** binds fluoride and treats local and systemic toxicity; management often requires monitoring and escalation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q129",
+      "stem": "In electrocution injuries, the threshold taught in this framework separating low voltage from high voltage is approximately:",
+      "options": [
+        "1,000 volts",
+        "120 volts",
+        "10,000 volts",
+        "240 volts"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework uses **1,000 V** as a cutoff. High-voltage exposures increase deep tissue injury and arrhythmia risk. Clinical severity depends on current path, duration, and contact conditions.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q130",
+      "stem": "With alternating current (AC) electrocution, can a patient typically pull away from the source in this framework?",
+      "options": [
+        "No\u2014AC can cause tetany preventing release",
+        "Yes\u2014AC always allows release",
+        "Only if voltage is <120 V",
+        "Only if wet skin is present"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "AC can cause sustained muscle contraction (tetany) that prevents release from the source, prolonging exposure. Direct current (DC) tends to cause a single strong contraction that may throw the patient clear.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q131",
+      "stem": "If blood is seen in the Foley bag during burn/crush/rhabdomyolysis-type concerns, what urine output target is emphasized in this framework?",
+      "options": [
+        "100 mL/hr",
+        "10 mL/hr",
+        "0.5 mL/kg/hr only",
+        "No urine output goal is needed"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Hematuria/concerns for pigment nephropathy prompt higher urine output targets. This framework cites **100 mL/hr** as a goal to support renal clearance while definitive evaluation and lab monitoring proceed.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q132",
+      "stem": "Cullen's sign (periumbilical ecchymosis) is most consistent with which condition in this framework?",
+      "options": [
+        "Hemorrhagic pancreatitis/hemoperitoneum",
+        "Basilar skull fracture",
+        "Pulmonary embolism",
+        "Urticarial transfusion reaction"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Cullen\u2019s sign reflects blood tracking to the umbilicus and is associated with **hemorrhagic pancreatitis** or other hemoperitoneum. It indicates significant bleeding and systemic risk.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q133",
+      "stem": "Grey-Turner's sign (flank ecchymosis) is most consistent with:",
+      "options": [
+        "Retroperitoneal bleeding (e.g., hemorrhagic pancreatitis)",
+        "Right-sided MI",
+        "Anaphylaxis",
+        "Neurogenic shock"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Flank ecchymosis suggests **retroperitoneal bleeding**, classically hemorrhagic pancreatitis. It is a late/serious sign and warrants aggressive supportive care and definitive evaluation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q134",
+      "stem": "In this framework, which labs are most likely to be elevated in pancreatitis?",
+      "options": [
+        "Amylase and lipase",
+        "Troponin and CK-MB",
+        "Creatinine and BUN only",
+        "INR and platelets"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Pancreatic inflammation releases digestive enzymes\u2014**amylase and lipase** typically rise (lipase often more specific). Severe pancreatitis can progress to ARDS and shock.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q135",
+      "stem": "Asterixis in a patient with altered mental status is most consistent with which diagnosis in this framework?",
+      "options": [
+        "Hepatic encephalopathy",
+        "Neurogenic shock",
+        "Placenta previa",
+        "Tension pneumothorax"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Asterixis (coarse flapping tremor) is a classic sign of **hepatic encephalopathy**, reflecting neurotoxicity from impaired liver clearance (e.g., ammonia). Management includes supportive care and agents like lactulose.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q136",
+      "stem": "Hepatic encephalopathy is treated in this framework with:",
+      "options": [
+        "Lactulose",
+        "Furosemide",
+        "Digibind",
+        "Indomethacin"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Lactulose reduces ammonia absorption/production and is a mainstay for hepatic encephalopathy in many clinical frameworks. Airway protection and precipitating cause evaluation are also critical.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q137",
+      "stem": "Which criteria are included in SIRS screening as presented in this framework? (Select all that apply.)",
+      "options": [
+        "Heart rate > 90 bpm",
+        "Respiratory rate > 20/min or ETCO2 < 30 mmHg",
+        "Fever",
+        "WBC < 4,000 or > 12,000",
+        "Platelets > 450,000 only"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "This framework lists common SIRS criteria: **tachycardia**, **tachypnea/low ETCO2**, **fever**, and **abnormal WBC**. SIRS can precede sepsis; trends and perfusion markers (lactate, mental status, urine output) guide escalation.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q138",
+      "stem": "In this framework, a lactate level greater than what value suggests inadequate cellular perfusion and higher septic shock risk?",
+      "options": [
+        "> 2 mmol/L",
+        "> 0.5 mmol/L",
+        "> 10 mmol/L only",
+        "Lactate is not used"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Lactate rises with tissue hypoperfusion and anaerobic metabolism. This framework notes **>2 mmol/L** indicates inadequate perfusion, with higher values (e.g., \u22654) often prompting aggressive resuscitation and urgent source control.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q139",
+      "stem": "For septic shock initial fluid resuscitation in this framework, what crystalloid dose is emphasized for hypotension or lactate \u22654?",
+      "options": [
+        "30 mL/kg",
+        "10 mL/kg",
+        "250 mL total",
+        "2 L for all adults regardless of weight"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Weight-based resuscitation (**30 mL/kg crystalloid**) is emphasized to rapidly restore intravascular volume and perfusion. After fluids, vasopressors are used if hypotension persists.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q140",
+      "stem": "Which vasopressor is described as preferred in this framework for septic shock when hypotension persists after fluids?",
+      "options": [
+        "Norepinephrine (Levophed)",
+        "Epinephrine",
+        "Phenylephrine only",
+        "Dopamine only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework identifies **norepinephrine** as the preferred pressor in septic shock because it raises MAP primarily via alpha effects with manageable arrhythmia risk compared with dopamine.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q141",
+      "stem": "In this framework, vasopressors are used to maintain a mean arterial pressure (MAP) of at least:",
+      "options": [
+        "65 mmHg",
+        "50 mmHg",
+        "90 mmHg",
+        "35 mmHg"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A common resuscitation target is **MAP \u2265 65 mmHg**, balancing organ perfusion against excessive vasoconstriction. Targets may be individualized (chronic hypertension, neurocritical care).",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q142",
+      "stem": "Virchow's triad (risk factors for venous thrombosis) includes which elements? (Select all that apply.)",
+      "options": [
+        "Venous stasis",
+        "Hypercoagulability",
+        "Vessel wall injury",
+        "Hypothermia",
+        "Hypoglycemia"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "Virchow\u2019s triad explains thrombosis risk: **stasis**, **hypercoagulability**, and **endothelial injury**. Recognizing these supports DVT/PE suspicion in immobilized or post-op patients.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q143",
+      "stem": "Homan's sign is best described as:",
+      "options": [
+        "Dorsiflexion of the foot causing calf tenderness",
+        "Neck flexion causing hip/knee flexion",
+        "A crunching mediastinal sound",
+        "Left shoulder pain from splenic rupture"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Homan\u2019s sign is calf pain with dorsiflexion and is historically linked to DVT, though it is neither sensitive nor specific. In exam contexts, it signals DVT suspicion when paired with swelling/pain risk factors.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q144",
+      "stem": "Hypertensive urgency is best defined as:",
+      "options": [
+        "Severely elevated BP without signs/symptoms of end-organ damage",
+        "Elevated BP with headache, vomiting, and neurologic deficits",
+        "Any BP > 140/90",
+        "Severely elevated BP requiring immediate intubation"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Hypertensive urgency is high BP **without** end-organ injury; BP reduction should be gradual. Hypertensive emergency includes symptoms or evidence of organ damage (neuro, renal, cardiac) and requires controlled IV therapy.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q145",
+      "stem": "In hypertensive emergency, BP reduction is generally recommended in this framework to be no more than:",
+      "options": [
+        "25% per hour",
+        "50% per hour",
+        "10% per minute",
+        "Immediate normalization to 120/80"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Rapid overcorrection can cause ischemia due to autoregulation shifts. This framework recommends lowering BP **no more than ~25% per hour** and not below the patient\u2019s usual baseline too quickly.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q146",
+      "stem": "Myxedema coma is best described as:",
+      "options": [
+        "An extreme manifestation of hypothyroidism with hypothermia and altered mentation",
+        "A hyperthyroid storm with fever and tachycardia",
+        "A diabetic ketoacidosis variant",
+        "A primary respiratory alkalosis disorder"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Myxedema coma is severe hypothyroidism with **altered mental status**, **hypothermia**, and often bradycardia/hypotension. Treatment includes supportive care, **IV thyroid replacement**, and stress-dose steroids.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q147",
+      "stem": "Which treatments are emphasized for myxedema coma in this framework? (Select all that apply.)",
+      "options": [
+        "IV fluids",
+        "Corticosteroids",
+        "IV thyroid replacement",
+        "High-dose aspirin",
+        "Induced hyperthermia with hot baths only"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "Management focuses on airway/ventilation, cautious warming, and replacing deficient hormones. **Steroids** are often given due to possible adrenal insufficiency and stress response; aspirin is avoided in thyroid storm frameworks and is not a primary treatment here.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q148",
+      "stem": "Serum osmolality is best defined as:",
+      "options": [
+        "A measure of solute concentration in plasma relative to water",
+        "A measure of red blood cell size",
+        "A measure of platelet function",
+        "A measure of cardiac output indexed to BSA"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Serum osmolality reflects **solute concentration** and drives water movement across membranes. It is central to interpreting hyponatremia, SIADH/DI, dehydration, and overhydration.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q149",
+      "stem": "Normal serum osmolality in this framework is approximately:",
+      "options": [
+        "275\u2013295 mOsm/kg",
+        "100\u2013150 mOsm/kg",
+        "350\u2013450 mOsm/kg",
+        "50\u201375 mOsm/kg"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A commonly cited normal osmolality range is **275\u2013295 mOsm/kg**. Higher values suggest dehydration/hyperosmolar states; lower values suggest excess free water.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q150",
+      "stem": "Which lab findings are most consistent with SIADH in this framework? (Select all that apply.)",
+      "options": [
+        "Hyponatremia (Na < 135)",
+        "Low serum osmolality (<270)",
+        "Concentrated urine with high specific gravity",
+        "Hypernatremia",
+        "Very dilute urine with low specific gravity"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "SIADH causes inappropriate ADH effect \u2192 **water retention**, leading to **dilutional hyponatremia** and **low serum osmolality**, but urine remains **concentrated**. DI produces the opposite pattern (free water loss, hypernatremia, dilute urine).",
+      "type": "multi_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q151",
+      "stem": "Which findings are most consistent with diabetes insipidus (DI) in this framework? (Select all that apply.)",
+      "options": [
+        "Hypernatremia",
+        "Increased serum osmolality",
+        "Low urine specific gravity (dilute urine)",
+        "Water retention with concentrated urine",
+        "Large free water loss"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "rationale": "DI is low/ineffective ADH \u2192 **free water loss**, producing **hypernatremia**, **high serum osmolality**, and **dilute urine** with low specific gravity. SIADH is the opposite (water retention and dilutional hyponatremia).",
+      "type": "multi_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q152",
+      "stem": "Which medication is emphasized in this framework for DI treatment as a synthetic ADH option?",
+      "options": [
+        "Vasopressin or desmopressin (DDAVP)",
+        "Indomethacin",
+        "Prostaglandin E1",
+        "Naloxone"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "DI management includes replacing free water/volume and providing ADH analogs such as **vasopressin** or **desmopressin (DDAVP)**, with careful monitoring of electrolytes and urine output.",
+      "type": "single_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q153",
+      "stem": "In this framework, DKA diagnosis requires which components? (Select all that apply.)",
+      "options": [
+        "Hyperglycemia",
+        "Acidosis",
+        "Ketones in blood or urine",
+        "Hyponatremia only",
+        "Bradycardia"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rationale": "DKA is defined by **hyperglycemia + metabolic acidosis + ketonemia/ketonuria**. Early management focuses on fluids, insulin, electrolyte monitoring (especially potassium), and identifying precipitating causes.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "Q154",
+      "stem": "In this framework, for every 100 mg/dL of glucose over 100, sodium is expected to decrease by approximately:",
+      "options": [
+        "1.6 mEq/L",
+        "0.16 mEq/L",
+        "5 mEq/L",
+        "10 mEq/L"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Hyperglycemia increases serum osmolality and pulls water into the intravascular space, diluting measured sodium. The correction taught here is **~1.6 mEq/L decrease per 100 mg/dL glucose over 100**.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q155",
+      "stem": "During pregnancy, cardiac output increases by approximately what percentage in this framework?",
+      "options": [
+        "20\u201340%",
+        "5\u201310%",
+        "60\u201380%",
+        "It decreases by 20%"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Pregnancy increases metabolic demand and circulatory volume; this framework cites **20\u201340% CO increase**. This affects shock recognition because pregnant patients can compensate significantly before decompensation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q156",
+      "stem": "During pregnancy, blood volume increases by approximately:",
+      "options": [
+        "~50%",
+        "~10%",
+        "~20%",
+        "It decreases by 30%"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework cites **~50% blood volume increase**, explaining why pregnant patients can lose a large volume before overt hypotension, and why uteroplacental perfusion can be compromised early.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q157",
+      "stem": "A 'full term' pregnancy is defined in this framework as:",
+      "options": [
+        "38\u201342 weeks",
+        "Before 38 weeks",
+        "After 42 weeks",
+        "34\u201336 weeks"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework defines full term as **38\u201342 weeks**. Knowing term definitions helps anticipate neonatal complications (prematurity, post-term risks) and transport needs.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q158",
+      "stem": "Complete cervical dilation is considered to be:",
+      "options": [
+        "10 cm",
+        "6 cm",
+        "8 cm",
+        "12 cm"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Complete dilation is **10 cm**, marking the transition to the second stage of labor (expulsion). Accurate staging supports anticipating delivery and managing complications.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q159",
+      "stem": "Normal fetal heart rate range is approximately:",
+      "options": [
+        "120\u2013160 bpm",
+        "60\u2013100 bpm",
+        "80\u2013120 bpm",
+        "160\u2013200 bpm always"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A typical fetal heart rate range is **120\u2013160 bpm**. Sustained bradycardia/tachycardia or poor variability suggests fetal distress and requires interventions and rapid obstetric support.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q160",
+      "stem": "In this framework, the single best predictor of fetal wellness is:",
+      "options": [
+        "Heart rate variability",
+        "Maternal heart rate",
+        "Maternal blood pressure alone",
+        "Amniotic fluid color only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Fetal heart rate **variability** reflects intact autonomic function and oxygenation. Decreased variability is commonly linked to hypoxia, acidosis, or CNS depressants.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q161",
+      "stem": "Late decelerations on fetal monitoring are a sign of:",
+      "options": [
+        "Uteroplacental insufficiency",
+        "Normal fetal sleep cycle",
+        "Maternal hypothermia only",
+        "Cord prolapse always"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Late decels reflect impaired oxygen transfer at the placenta, consistent with **uteroplacental insufficiency**. Management focuses on maternal positioning, oxygenation/perfusion, and rapid definitive care if persistent.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q162",
+      "stem": "A sinusoidal fetal heart rate pattern is associated in this framework with:",
+      "options": [
+        "Fetal anemia/hypoxia/acidosis and poor prognosis",
+        "Benign variability",
+        "Maternal dehydration only",
+        "Normal labor progression"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A true sinusoidal pattern is linked to serious fetal compromise (e.g., **anemia, hypoxia, acidosis**) and is considered ominous. It warrants urgent obstetric evaluation and likely emergent delivery if feasible.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q163",
+      "stem": "Which are signs of imminent childbirth? (Select all that apply.)",
+      "options": [
+        "Crowning",
+        "Strong contractions <10 minutes apart with increasing intensity",
+        "An urgent need to have a bowel movement",
+        "Sudden painless bright red bleeding with a soft uterus",
+        "Vaginal bleeding"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "rationale": "Imminent delivery is suggested by **crowning**, rapid intense contractions, and rectal pressure/urge to defecate, with possible vaginal bleeding. Painless bright red bleeding with a soft uterus suggests placenta previa and requires minimizing vaginal exams and movement.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q164",
+      "stem": "The three stages of delivery in this framework are:",
+      "options": [
+        "Dilation, expulsion, placental",
+        "Engagement, crowning, rupture",
+        "Contraction, transition, recovery",
+        "Preterm, term, post-term"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Labor is commonly described in three stages: **dilation**, **expulsion**, and **placental**. Staging helps anticipate hemorrhage risks and newborn needs.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q165",
+      "stem": "McRoberts maneuver is used for shoulder dystocia and involves:",
+      "options": [
+        "Hyperflexing the mother's legs to the abdomen and applying suprapubic pressure",
+        "Applying fundal pressure to push the baby out",
+        "Inserting a hand to manually extract the placenta",
+        "Immediate delivery by forceps only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "McRoberts improves pelvic dimensions by **hyperflexing hips**, and **suprapubic pressure** helps dislodge the anterior shoulder. Fundal pressure is generally avoided because it can worsen impaction.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q166",
+      "stem": "Abruptio placenta is best described as:",
+      "options": [
+        "Painful bleeding; consider any blunt trauma/MVA as abruption until proven otherwise",
+        "Painless bright red bleeding with soft uterus",
+        "Uterine inversion protruding from vagina",
+        "Normal labor"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Placental abruption often presents with **painful bleeding** and may be concealed. Trauma can precipitate abruption; it threatens both maternal volume status and fetal oxygenation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q167",
+      "stem": "Placenta previa is best described as:",
+      "options": [
+        "Painless bright red bleeding; avoid vaginal exams",
+        "Painful bleeding with rigid uterus",
+        "A condition requiring immediate chest decompression",
+        "A postpartum uterine atony complication only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Placenta previa classically causes **painless bright red bleeding**. Vaginal exams can provoke catastrophic hemorrhage; management emphasizes minimizing disturbance and rapid obstetric evaluation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q168",
+      "stem": "Postpartum hemorrhage (PPH) is defined in this framework as blood loss of greater than:",
+      "options": [
+        "500 mL within 24 hours after delivery",
+        "100 mL within 2 hours",
+        "1,500 mL during labor only",
+        "Any visible bleeding after birth"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework defines PPH as **>500 mL within 24 hours**. Etiologies are often summarized as the '4 Ts' (tone, trauma, tissue, thrombin), guiding targeted interventions.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q169",
+      "stem": "Which medication is emphasized in this framework to control postpartum hemorrhage by promoting uterine contraction?",
+      "options": [
+        "Oxytocin (Pitocin)",
+        "Prostaglandin E1",
+        "Naloxone",
+        "Indomethacin only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Oxytocin (**Pitocin**) promotes uterine contraction and reduces bleeding in uterine atony. Additional measures include fundal/bimanual massage and monitoring ongoing blood loss.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q170",
+      "stem": "Uterine inversion treatment in this framework includes:",
+      "options": [
+        "Manual replacement and/or hydrostatic correction with saline/dextrose",
+        "Immediate diuresis with furosemide",
+        "Needle decompression",
+        "Activated charcoal"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Uterine inversion is an obstetric emergency; the uterus must be **replaced manually** (and sometimes with hydrostatic techniques). Aggressive hemorrhage control and shock management accompany definitive obstetric care.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q171",
+      "stem": "In neonates, what is taught as the narrowest part of the airway in this framework?",
+      "options": [
+        "Cricoid ring",
+        "Vocal cords",
+        "Nares",
+        "Trachea at the carina"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework teaches the **cricoid ring** as the narrowest part of the neonatal airway, reinforcing the importance of correct tube sizing and gentle airway technique to reduce edema and obstruction.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q172",
+      "stem": "What is the recommended order of suctioning in neonates in this framework?",
+      "options": [
+        "Mouth first, then nose",
+        "Nose first, then mouth",
+        "Only suction the nose",
+        "Only suction the mouth"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Suctioning the **mouth first** reduces aspiration risk. Stimulating the nares first can trigger gasping and potentially draw secretions into the airway.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q173",
+      "stem": "Neonatal sepsis is most commonly caused by:",
+      "options": [
+        "Group B Streptococcus",
+        "E. coli O157:H7",
+        "Influenza A",
+        "Staphylococcus epidermidis only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework identifies **Group B Strep** as the most common neonatal sepsis pathogen, especially with prolonged rupture of membranes. Early recognition and antibiotics are critical.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q174",
+      "stem": "In this framework, antibiotic treatment for premature rupture of membranes (PROM) related neonatal infection risk is:",
+      "options": [
+        "Ampicillin + gentamicin",
+        "Ceftriaxone only",
+        "Vancomycin only",
+        "No antibiotics are used"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Empiric neonatal sepsis coverage commonly includes **ampicillin + gentamicin** to cover Group B Strep and gram-negative organisms while awaiting cultures.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q175",
+      "stem": "In neonatal resuscitation/transport in this framework, initial fluid resuscitation is:",
+      "options": [
+        "10 mL/kg",
+        "30 mL/kg",
+        "1 mL/kg",
+        "100 mL/kg"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework cites **10 mL/kg** boluses for neonatal resuscitation. Neonates are sensitive to both hypovolemia and fluid overload; careful reassessment is essential.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q176",
+      "stem": "In this framework, an isolette is typically required for neonates who are:",
+      "options": [
+        "\u2264 5 kg or \u2264 28 days gestation/age (as taught here)",
+        "Any pediatric patient < 10 years old",
+        "Only neonates with fever",
+        "Only patients requiring intubation"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "An isolette provides thermal stability and supports equipment integration (IV pumps, specialized ventilation). This framework notes typical criteria around **very small size or very young age**, emphasizing thermoregulation needs.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q177",
+      "stem": "Gastroschisis is best described as:",
+      "options": [
+        "Extrusion of abdominal contents not covered by peritoneum",
+        "Herniation of abdominal contents into umbilical cord sealed by peritoneum",
+        "Congenital posterior nasal obstruction",
+        "Failure of ductus arteriosus to close"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Gastroschisis involves exposed bowel **without a peritoneal sac**, increasing fluid/heat loss and infection risk. Omphalocele has a protective sac and is often associated with other anomalies.",
+      "type": "single_select"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "Q178",
+      "stem": "Which transport interventions are recommended for gastroschisis in this framework? (Select all that apply.)",
+      "options": [
+        "Cover exposed contents with sterile wet dressings",
+        "Place an orogastric tube for decompression",
+        "Keep the infant NPO",
+        "Actively maintain body temperature",
+        "Apply dry gauze only and allow feeding as tolerated"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Gastroschisis care focuses on preventing **fluid/heat loss**, protecting exposed viscera, decompressing the stomach to reduce bowel distension, and avoiding enteral feeds (NPO) until definitive surgical management.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Pediatric Assessment and Management",
+      "id": "Q179",
+      "stem": "A neonate is defined in this framework as what age range?",
+      "options": [
+        "0\u201328 days",
+        "28 days to 1 year",
+        "1\u20132 years",
+        "2\u20135 years"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Neonatal physiology (thermoregulation, airway anatomy, oxygen demand) is unique from infants and toddlers. This framework defines neonate as **0\u201328 days**.",
+      "type": "single_select"
+    },
+    {
+      "category": "Pediatric Assessment and Management",
+      "id": "Q180",
+      "stem": "An infant is defined in this framework as:",
+      "options": [
+        "28 days to 1 year",
+        "0\u201328 days",
+        "1\u20132 years",
+        "2\u20135 years"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework defines infant as **28 days to 1 year**, reflecting developmental differences in airway, circulation, and dosing.",
+      "type": "single_select"
+    },
+    {
+      "category": "Pediatric Assessment and Management",
+      "id": "Q181",
+      "stem": "Normal urine output for an infant in this framework is approximately:",
+      "options": [
+        "2 mL/kg/hr",
+        "0.5 mL/kg/hr",
+        "5 mL/kg/hr",
+        "0 mL/kg/hr"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Infants typically have higher baseline urine output; **~2 mL/kg/hr** is a common target reflecting higher metabolic rate and fluid turnover compared with adults.",
+      "type": "single_select"
+    },
+    {
+      "category": "Pediatric Assessment and Management",
+      "id": "Q182",
+      "stem": "Estimated circulating blood volume for an infant in this framework is approximately:",
+      "options": [
+        "80 mL/kg",
+        "40 mL/kg",
+        "120 mL/kg",
+        "10 mL/kg"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework cites **~80 mL/kg** circulating volume in infants. Because total volume is small, even modest absolute blood loss can be hemodynamically significant.",
+      "type": "single_select"
+    },
+    {
+      "category": "Pediatric Assessment and Management",
+      "id": "Q183",
+      "stem": "An age-based estimate for pediatric systolic hypotension threshold in this framework is:",
+      "options": [
+        "SBP = 70 + 2(age in years)",
+        "SBP = 90 + age",
+        "SBP = 100 \u2212 age",
+        "SBP = 60 + 5(age)"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "A common teaching estimate is **70 + 2\u00d7age** for minimum acceptable SBP. It helps identify early shock when absolute BP numbers can be misleading across ages.",
+      "type": "single_select"
+    },
+    {
+      "category": "Pediatric Assessment and Management",
+      "id": "Q184",
+      "stem": "Which medication keeps the patent ductus arteriosus (PDA) open in this framework?",
+      "options": [
+        "Prostaglandin E1",
+        "Indomethacin",
+        "Nitroglycerin",
+        "Oxytocin"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Prostaglandin E1 maintains ductal patency in duct\u2011dependent congenital heart disease. Indomethacin (and increased oxygen) promotes closure.",
+      "type": "single_select"
+    },
+    {
+      "category": "Pediatric Assessment and Management",
+      "id": "Q185",
+      "stem": "Which factors are taught in this framework to close the patent ductus arteriosus? (Select all that apply.)",
+      "options": [
+        "Oxygen",
+        "Indomethacin",
+        "Prostaglandin E1",
+        "Naloxone"
+      ],
+      "correct": [
+        "A",
+        "B"
+      ],
+      "rationale": "Ductus closure is promoted by rising oxygen tension after birth and prostaglandin inhibition (e.g., **indomethacin**). Prostaglandin E1 is used therapeutically to keep the ductus open.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Pediatric Assessment and Management",
+      "id": "Q186",
+      "stem": "Tetralogy of Fallot includes which four components? (Select all that apply.)",
+      "options": [
+        "Overriding aorta",
+        "Ventricular septal defect (VSD)",
+        "Pulmonary stenosis",
+        "Right ventricular hypertrophy",
+        "Patent ductus arteriosus"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "Tetralogy is a four-lesion complex: **VSD**, **pulmonary stenosis**, **overriding aorta**, and **RV hypertrophy**. PDA may coexist but is not part of the classic tetrad.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Pediatric Assessment and Management",
+      "id": "Q187",
+      "stem": "The most common congenital cardiac defect in newborns in this framework is:",
+      "options": [
+        "Ventricular septal defect (VSD)",
+        "Tetralogy of Fallot",
+        "Transposition of the great arteries",
+        "Coarctation of the aorta"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework identifies **VSD** as the most common congenital defect. Clinical impact varies by size; small VSDs may be asymptomatic while large shunts can cause heart failure and pulmonary overcirculation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Toxicology and Pharmacology",
+      "id": "Q188",
+      "stem": "Which medication is used to reverse opioid toxicity and has an onset of action commonly under 2 minutes in this framework?",
+      "options": [
+        "Naloxone (Narcan)",
+        "Digibind",
+        "Physostigmine",
+        "Pralidoxime (2-PAM)"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Naloxone is a competitive opioid receptor antagonist with rapid onset (often <2 minutes IV). Titrating small doses restores ventilation while avoiding abrupt withdrawal and agitation in opioid-dependent patients.",
+      "type": "single_select"
+    },
+    {
+      "category": "Toxicology and Pharmacology",
+      "id": "Q189",
+      "stem": "In this framework, naloxone dosing is commonly started at approximately:",
+      "options": [
+        "0.4 mg and titrated upward to effect",
+        "10 mg as a single bolus",
+        "0.04 mg only once",
+        "20 vials immediately"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "This framework describes starting with **0.4 mg** and titrating to desired effect. The goal is adequate ventilation\u2014not necessarily full arousal\u2014while monitoring for recurrence due to shorter naloxone half-life than many opioids.",
+      "type": "single_select"
+    },
+    {
+      "category": "Toxicology and Pharmacology",
+      "id": "Q190",
+      "stem": "What is the reversal agent for digitalis (digoxin) overdose in this framework?",
+      "options": [
+        "Digoxin immune Fab (Digibind)",
+        "Naloxone",
+        "Atropine",
+        "Calcium gluconate"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Digoxin immune Fab binds circulating digoxin and is the specific antidote for severe toxicity. Supportive care also includes managing dysrhythmias and electrolytes (especially potassium) with caution.",
+      "type": "single_select"
+    },
+    {
+      "category": "Toxicology and Pharmacology",
+      "id": "Q191",
+      "stem": "Cocaine overdose is treated primarily with which medication class in this framework?",
+      "options": [
+        "Benzodiazepines",
+        "Beta blockers as first-line",
+        "Naloxone",
+        "Prostaglandin E1"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Benzodiazepines reduce sympathetic surge, agitation, and seizure risk in cocaine toxicity. Nonselective beta blockers can worsen coronary vasospasm; management prioritizes sedation, cooling, and cardiovascular support per protocol.",
+      "type": "single_select"
+    },
+    {
+      "category": "Toxicology and Pharmacology",
+      "id": "Q192",
+      "stem": "Tricyclic antidepressant (TCA) overdose treatment emphasized in this framework is:",
+      "options": [
+        "Sodium bicarbonate",
+        "Furosemide",
+        "Indomethacin",
+        "Oxytocin"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Sodium bicarbonate is used to treat TCA toxicity by narrowing QRS and improving hemodynamics (alkalinization and sodium load). Supportive airway and seizure management are also key.",
+      "type": "single_select"
+    },
+    {
+      "category": "Toxicology and Pharmacology",
+      "id": "Q193",
+      "stem": "Antifreeze (ethylene glycol) or methanol ingestion treatment emphasized in this framework is:",
+      "options": [
+        "IV ethanol",
+        "Activated charcoal only",
+        "Naloxone",
+        "Calcium gluconate"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Ethanol competes for alcohol dehydrogenase, reducing formation of toxic metabolites (glycolic/oxalic acids or formic acid). Definitive care may include fomepizole and dialysis depending on severity and resources.",
+      "type": "single_select"
+    },
+    {
+      "category": "Toxicology and Pharmacology",
+      "id": "Q194",
+      "stem": "Organophosphate exposure treatment emphasized in this framework includes:",
+      "options": [
+        "Pralidoxime (2-PAM) plus atropine",
+        "Physostigmine only",
+        "Digibind",
+        "Sodium bicarbonate"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Organophosphates inhibit acetylcholinesterase causing cholinergic crisis (SLUDGE). Treatment includes **atropine** (symptomatic) and **2\u2011PAM** (reactivates enzyme), plus decontamination and supportive airway care.",
+      "type": "single_select"
+    },
+    {
+      "category": "Toxicology and Pharmacology",
+      "id": "Q195",
+      "stem": "Anticholinergic overdose treatment emphasized in this framework is:",
+      "options": [
+        "Physostigmine",
+        "Atropine",
+        "Pralidoxime",
+        "Naloxone"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Physostigmine is a reversible acetylcholinesterase inhibitor that can counter anticholinergic toxicity in select cases (with monitoring for dysrhythmias/seizures). Supportive care and risk assessment are essential.",
+      "type": "single_select"
+    },
+    {
+      "category": "Toxicology and Pharmacology",
+      "id": "Q196",
+      "stem": "Magnesium toxicity (loss of DTRs, respiratory suppression) is treated in this framework with:",
+      "options": [
+        "Calcium",
+        "Sodium bicarbonate",
+        "Ethanol",
+        "Furosemide only"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Calcium antagonizes magnesium\u2019s physiologic effects at the neuromuscular junction and myocardium. Airway support and stopping magnesium administration are critical.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q197",
+      "stem": "You suspect sudden ventilator decompensation. The mnemonic DOPES helps troubleshoot. Which items are included? (Select all that apply.)",
+      "options": [
+        "Displacement (tube)",
+        "Obstruction",
+        "Pneumothorax",
+        "Equipment failure",
+        "Sepsis"
+      ],
+      "correct": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "rationale": "DOPES is a rapid troubleshooting framework: **Displacement**, **Obstruction**, **Pneumothorax**, **Equipment failure**, and sometimes **Stacking** (auto\u2011PEEP) in some versions. Sepsis can worsen ventilation but is not part of the immediate DOPES check.",
+      "type": "multi_select"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "Q198",
+      "stem": "A patient is stable on FiO2 0.40 at sea level (760 torr) but will be transported to an altitude where ambient pressure is ~523 torr. Using the framework formula (FiO2 \u00d7 P1)/P2, what FiO2 is estimated to maintain a similar inspired oxygen partial pressure?",
+      "options": [
+        "About 0.58",
+        "About 0.28",
+        "About 0.40",
+        "About 0.76"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Using (0.40 \u00d7 760) / 523 \u2248 **0.58**. This is an estimate; clinically you would titrate oxygen to SpO2/PaO2 while also managing ventilation and PEEP to reduce atelectasis risk at higher FiO2.",
+      "type": "single_select"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "Q199",
+      "stem": "A ventilated COPD patient becomes hypotensive with rising peak pressures and incomplete exhalation. The most likely cause is:",
+      "options": [
+        "Dynamic hyperinflation (auto-PEEP) reducing venous return",
+        "Hypovolemia from diuresis only",
+        "Pulmonary embolism with normal airway mechanics",
+        "Acute pleural effusion causing low PIP and low Pplat"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "In obstructive disease, short expiratory time can cause air trapping and **auto\u2011PEEP**, increasing intrathoracic pressure, reducing venous return, and causing hypotension. Management includes reducing RR, increasing expiratory time, and sometimes disconnecting briefly to allow full exhalation.",
+      "type": "single_select"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "Q200",
+      "stem": "Which clinical clue is most associated with pneumomediastinum in this framework?",
+      "options": [
+        "Hamman's crunch (precordial crackles/clicks with heartbeat)",
+        "Cullen's sign",
+        "Kernig's sign",
+        "Homan's sign"
+      ],
+      "correct": [
+        "A"
+      ],
+      "rationale": "Hamman\u2019s crunch is a classic finding of **pneumomediastinum**, produced as the heart beats against air in the mediastinum. The other findings point to abdominal bleeding (Cullen), meningitis (Kernig), or DVT suspicion (Homan).",
+      "type": "single_select"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "F001",
+      "stem": "In AMRM decision-making, the phrase is: 'All to go, ____ to say no.'",
+      "options": [],
+      "correct": [
+        [
+          "one",
+          "1"
+        ]
+      ],
+      "rationale": "AMRM emphasizes that mission safety requires unanimous agreement to proceed, and **any single crew member** can stop the mission when a safety threat is identified.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "F002",
+      "stem": "A commonly taught minimum hasty HLZ size is ____ ft by ____ ft.",
+      "options": [],
+      "correct": [
+        [
+          "100",
+          "100ft",
+          "100 feet"
+        ],
+        [
+          "100",
+          "100ft",
+          "100 feet"
+        ]
+      ],
+      "rationale": "Many training programs teach **100' x 100'** as a minimum for a hasty HLZ, with adjustments for aircraft type, obstacles, slope, and wind.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "F003",
+      "stem": "The transponder code for communications failure is ____.",
+      "options": [],
+      "correct": [
+        [
+          "7600"
+        ]
+      ],
+      "rationale": "Standard aviation transponder codes include 7600 for **communications failure**, helping ATC identify and prioritize assistance.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "F004",
+      "stem": "The transponder code for hijacking is ____.",
+      "options": [],
+      "correct": [
+        [
+          "7500"
+        ]
+      ],
+      "rationale": "Transponder code **7500** signals hijacking. Crews should follow aviation procedures; medical teams focus on safety and communication through appropriate channels.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "F005",
+      "stem": "The transponder code for a general emergency is ____.",
+      "options": [],
+      "correct": [
+        [
+          "7700"
+        ]
+      ],
+      "rationale": "Transponder code **7700** is a general emergency code used to communicate urgent situations to ATC.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "F006",
+      "stem": "A 'sterile cockpit' is commonly used during taxi, takeoff, landing, and ____.",
+      "options": [],
+      "correct": [
+        [
+          "refueling",
+          "refuelling"
+        ]
+      ],
+      "rationale": "Sterile cockpit is implemented during high-workload/high-risk phases\u2014commonly including **refueling**\u2014to reduce distraction-related errors.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "F007",
+      "stem": "Per this framework, day weather minimums are ____ ft ceiling and ____ miles visibility.",
+      "options": [],
+      "correct": [
+        [
+          "800",
+          "800ft",
+          "800 feet"
+        ],
+        [
+          "2",
+          "2 miles",
+          "two"
+        ]
+      ],
+      "rationale": "This framework teaches **800 ft ceiling and 2 miles visibility** as a day minimum to reduce controlled flight into terrain and landing hazards.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "F008",
+      "stem": "Per this framework, night weather minimums are ____ ft ceiling and ____ miles visibility.",
+      "options": [],
+      "correct": [
+        [
+          "800",
+          "800ft",
+          "800 feet"
+        ],
+        [
+          "3",
+          "3 miles",
+          "three"
+        ]
+      ],
+      "rationale": "This framework teaches **800 ft ceiling and 3 miles visibility** at night to mitigate reduced visual cues and obstacle risk.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "F009",
+      "stem": "CAMTS-style benchmarks commonly cite ambulance interior temperature of ____ to ____ degrees (F).",
+      "options": [],
+      "correct": [
+        [
+          "68",
+          "68\u00b0F",
+          "68"
+        ],
+        [
+          "78",
+          "78\u00b0F",
+          "78"
+        ]
+      ],
+      "rationale": "Thermal control supports patient stability and equipment reliability; this framework cites **68\u201378\u00b0F** as a common operating range.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Operations, Safety, and Transport",
+      "id": "F010",
+      "stem": "The most dangerous location for emergency driving in an ambulance is an ____.",
+      "options": [],
+      "correct": [
+        [
+          "intersection",
+          "intersections"
+        ]
+      ],
+      "rationale": "Intersections combine cross-traffic, unpredictable driver behavior, and limited reaction time, making them the highest-risk environment for collisions.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "F011",
+      "stem": "Sea-level barometric pressure is approximately ____ mmHg (torr).",
+      "options": [],
+      "correct": [
+        [
+          "760"
+        ]
+      ],
+      "rationale": "Sea-level atmospheric pressure is commonly taught as **760 torr**, which is foundational for partial pressure and altitude calculations.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "F012",
+      "stem": "At about 18,000 ft, atmospheric pressure is approximately ____ torr in this framework.",
+      "options": [],
+      "correct": [
+        [
+          "380"
+        ]
+      ],
+      "rationale": "This framework cites **~380 torr** at 18,000 ft (about half sea-level pressure), contributing to hypoxia and gas expansion.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "F013",
+      "stem": "The 'physiologically deficient zone' is taught as ____ to ____ feet.",
+      "options": [],
+      "correct": [
+        [
+          "10000",
+          "10,000",
+          "10k",
+          "10000 feet"
+        ],
+        [
+          "50000",
+          "50,000",
+          "50k",
+          "50000 feet"
+        ]
+      ],
+      "rationale": "Between **10,000 and 50,000 ft**, hypoxia risk rises and supplemental oxygen/pressurization becomes increasingly necessary.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "F014",
+      "stem": "A rule of thumb in this framework: PaO2 drops about ____ mmHg per 1,000 ft of altitude.",
+      "options": [],
+      "correct": [
+        [
+          "5",
+          "5 mmHg",
+          "five"
+        ]
+      ],
+      "rationale": "This simplified rule highlights how ascent can rapidly worsen marginal oxygenation, especially in critically ill patients.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "F015",
+      "stem": "Oxygen is required above 10,000 ft for any time greater than about ____ minutes in this framework.",
+      "options": [],
+      "correct": [
+        [
+          "10",
+          "ten"
+        ]
+      ],
+      "rationale": "Prolonged exposure above 10,000 ft increases hypoxia risk; this framework uses **10 minutes** as a threshold for oxygen requirement.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "F016",
+      "stem": "Boyle's law states that at a constant temperature, pressure and volume are ____ related.",
+      "options": [],
+      "correct": [
+        [
+          "inversely",
+          "inversely proportional",
+          "inverse"
+        ]
+      ],
+      "rationale": "Boyle\u2019s law (P\u00d7V=constant) explains gas expansion with ascent and contraction with descent, driving many air-transport physiologic issues.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "F017",
+      "stem": "Decompression sickness is most closely associated with ____'s law.",
+      "options": [],
+      "correct": [
+        [
+          "Henry",
+          "Henry's",
+          "Henrys"
+        ]
+      ],
+      "rationale": "Henry\u2019s law explains how dissolved gases come out of solution when ambient pressure drops, producing decompression sickness.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "F018",
+      "stem": "Barotitis media is primarily associated with ____ (ascent/descent) in this framework.",
+      "options": [],
+      "correct": [
+        [
+          "descent",
+          "descending"
+        ]
+      ],
+      "rationale": "During descent, ambient pressure rises and trapped middle ear air must vent through the Eustachian tube; obstruction causes barotrauma.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "F019",
+      "stem": "Barodontalgia is primarily associated with ____ (ascent/descent) in this framework.",
+      "options": [],
+      "correct": [
+        [
+          "ascent",
+          "ascending"
+        ]
+      ],
+      "rationale": "During ascent, ambient pressure falls and trapped gas in dental spaces expands, producing tooth pain.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Flight Physiology and Environmental Factors",
+      "id": "F020",
+      "stem": "Using the framework FiO2 adjustment: (FiO2 \u00d7 ____ pressure) / ____ pressure = estimated new FiO2.",
+      "options": [],
+      "correct": [
+        [
+          "current",
+          "starting",
+          "sea level",
+          "P1"
+        ],
+        [
+          "expected",
+          "new",
+          "altitude",
+          "P2"
+        ]
+      ],
+      "rationale": "The formula is a conceptual aid to maintain similar inspired oxygen partial pressure when ambient pressure changes; clinically you still titrate to oxygenation goals.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F021",
+      "stem": "Plateau pressure (Pplat) approximates ____ pressure and is commonly targeted to stay below ____ cm H2O.",
+      "options": [],
+      "correct": [
+        [
+          "alveolar",
+          "alveoli"
+        ],
+        [
+          "30",
+          "30 cm",
+          "30cm"
+        ]
+      ],
+      "rationale": "Pplat is the best surrogate for alveolar distending pressure; keeping it **<30 cm H2O** is a key lung-protective strategy.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F022",
+      "stem": "Peak inspiratory pressure (PIP) is commonly targeted to remain below ____ cm H2O in this framework.",
+      "options": [],
+      "correct": [
+        [
+          "40",
+          "40 cm",
+          "40cm"
+        ]
+      ],
+      "rationale": "PIP reflects resistance plus compliance and is often alarm-limited around **40 cm H2O** to rapidly identify problems that could cause barotrauma.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F023",
+      "stem": "High PIP with normal Pplat usually indicates increased ____ (tube/circuit/bronchospasm) rather than decreased compliance.",
+      "options": [],
+      "correct": [
+        [
+          "airway resistance",
+          "resistance",
+          "airway"
+        ]
+      ],
+      "rationale": "When PIP rises but plateau does not, the alveoli aren\u2019t seeing higher pressure; the issue is typically **resistance** (kink, secretions, bronchospasm, biting).",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F024",
+      "stem": "When both PIP and Pplat rise, the problem is typically decreased ____ (stiffer lungs/limited expansion).",
+      "options": [],
+      "correct": [
+        [
+          "compliance",
+          "lung compliance"
+        ]
+      ],
+      "rationale": "If both peak and plateau pressures rise, the alveoli are experiencing higher pressures due to **reduced compliance** (ARDS, edema, pneumothorax, abdominal compartment).",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F025",
+      "stem": "The DOPES ventilator troubleshooting mnemonic includes: Displacement, Obstruction, Pneumothorax, and ____ failure.",
+      "options": [],
+      "correct": [
+        [
+          "equipment",
+          "ventilator equipment"
+        ]
+      ],
+      "rationale": "DOPES is a rapid approach to life-threatening ventilator problems: check tube position, obstruction, pneumothorax, and **equipment** issues.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F026",
+      "stem": "A common obstructive ventilation strategy in this framework is RR ____\u2013____/min with I:E ratio about 1:____ to 1:____.",
+      "options": [],
+      "correct": [
+        [
+          "10",
+          "ten"
+        ],
+        [
+          "12",
+          "twelve"
+        ],
+        [
+          "4",
+          "four"
+        ],
+        [
+          "5",
+          "five"
+        ]
+      ],
+      "rationale": "Lower RR and prolonged exhalation (I:E **1:4\u20131:5**) reduce air trapping and auto\u2011PEEP in obstructive disease.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F027",
+      "stem": "A typical starting Pressure Support (PS) level in this framework is about ____ cm H2O.",
+      "options": [],
+      "correct": [
+        [
+          "10",
+          "10 cm",
+          "10cm"
+        ]
+      ],
+      "rationale": "Starting around **10 cm H2O** helps overcome ETT/circuit resistance; titrate to comfort, synchrony, and safe tidal volumes.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F028",
+      "stem": "The LEMON difficult airway mnemonic includes Look, Evaluate, Mallampati, Obstruction/Obesity, and ____ mobility.",
+      "options": [],
+      "correct": [
+        [
+          "neck",
+          "cervical neck"
+        ]
+      ],
+      "rationale": "LEMON helps anticipate difficulty by assessing anatomy and limitations\u2014especially **neck mobility**, which affects alignment and view.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F029",
+      "stem": "In this framework, pediatric needle cricothyrotomy is taught for children under ____ years old.",
+      "options": [],
+      "correct": [
+        [
+          "8",
+          "eight"
+        ]
+      ],
+      "rationale": "Because pediatric anatomy is smaller and surgical cric can be high-risk, this framework uses **<8 years** for needle cric.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F030",
+      "stem": "The Pediatric Assessment Triangle (PAT) assesses Appearance, Work of Breathing, and Circulation to ____.",
+      "options": [],
+      "correct": [
+        [
+          "skin"
+        ]
+      ],
+      "rationale": "PAT uses rapid visual assessment: appearance, work of breathing, and **circulation to skin** (color/mottling) to gauge severity.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F031",
+      "stem": "In this framework, a critical ABG value suggesting respiratory failure includes PaO2 < ____ mmHg.",
+      "options": [],
+      "correct": [
+        [
+          "60"
+        ]
+      ],
+      "rationale": "A PaO2 below **60 mmHg** indicates significant hypoxemia, particularly concerning if not correctable with less invasive support.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F032",
+      "stem": "In this framework, a critical ABG value includes PaCO2 > ____ mmHg.",
+      "options": [],
+      "correct": [
+        [
+          "55"
+        ]
+      ],
+      "rationale": "A PaCO2 above **55 mmHg** can indicate ventilatory failure, especially when paired with acidosis and clinical fatigue.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F033",
+      "stem": "In this framework, a critical ABG value includes pH < ____.",
+      "options": [],
+      "correct": [
+        [
+          "7.2",
+          "7.20"
+        ]
+      ],
+      "rationale": "A pH below **7.20** reflects significant acidemia; with respiratory failure, it may prompt ventilatory support/intubation when clinically indicated.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Airway, Ventilation, and Respiratory Care",
+      "id": "F034",
+      "stem": "Nitrogen washout at high FiO2 can cause ____ atelectasis, which is mitigated by maintaining adequate ____.",
+      "options": [],
+      "correct": [
+        [
+          "absorptive",
+          "absorption"
+        ],
+        [
+          "PEEP",
+          "positive end expiratory pressure"
+        ]
+      ],
+      "rationale": "High FiO2 reduces alveolar nitrogen, promoting collapse (absorptive atelectasis). **PEEP** helps keep alveoli open and improves oxygenation.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F035",
+      "stem": "Cerebral perfusion pressure (CPP) is calculated as CPP = ____ \u2212 ____.",
+      "options": [],
+      "correct": [
+        [
+          "MAP",
+          "mean arterial pressure"
+        ],
+        [
+          "ICP",
+          "intracranial pressure"
+        ]
+      ],
+      "rationale": "CPP depends on systemic perfusion pressure (MAP) and opposing intracranial pressure (ICP). Either low MAP or high ICP reduces CPP and can worsen ischemia.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F036",
+      "stem": "Normal ICP is typically ____ to ____ mmHg.",
+      "options": [],
+      "correct": [
+        [
+          "5"
+        ],
+        [
+          "15"
+        ]
+      ],
+      "rationale": "Normal ICP is commonly taught as **5\u201315 mmHg**; sustained elevation increases herniation risk.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F037",
+      "stem": "Cushing's triad includes hypertension, ____cardia, and irregular respirations.",
+      "options": [],
+      "correct": [
+        [
+          "brady",
+          "bradycardia",
+          "brady-"
+        ]
+      ],
+      "rationale": "Cushing\u2019s triad reflects brainstem compression from increased ICP: blood pressure rises, heart rate slows, and respirations become irregular.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F038",
+      "stem": "In this framework, impending herniation ventilation targets may include PaCO2/ETCO2 around ____ to ____ mmHg.",
+      "options": [],
+      "correct": [
+        [
+          "30"
+        ],
+        [
+          "34"
+        ]
+      ],
+      "rationale": "Briefly lowering PaCO2 to **30\u201334 mmHg** can decrease cerebral blood volume and ICP; prolonged aggressive hyperventilation risks cerebral ischemia.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F039",
+      "stem": "ICP transducer leveling is performed at the external auditory meatus/____.",
+      "options": [],
+      "correct": [
+        [
+          "tragus"
+        ]
+      ],
+      "rationale": "The tragus approximates the foramen of Monro level for ICP monitoring; incorrect leveling yields erroneous readings.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F040",
+      "stem": "Epidural hematoma is classically associated with a '____ interval' before deterioration.",
+      "options": [],
+      "correct": [
+        [
+          "lucid"
+        ]
+      ],
+      "rationale": "A lucid interval following brief LOC is classic for epidural bleeding, often from middle meningeal artery injury.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F041",
+      "stem": "Neurogenic shock typically presents with hypotension and relative ____cardia (absence of tachycardia).",
+      "options": [],
+      "correct": [
+        [
+          "brady",
+          "bradycardia"
+        ]
+      ],
+      "rationale": "Loss of sympathetic tone causes vasodilation and reduced heart rate response, distinguishing neurogenic shock from most other shock types.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F042",
+      "stem": "Spinal shock is a transient loss of reflexes and motor/sensory function that often resolves in about ____ to ____ hours in this framework.",
+      "options": [],
+      "correct": [
+        [
+          "24"
+        ],
+        [
+          "72"
+        ]
+      ],
+      "rationale": "Spinal shock is temporary; reflexes often return over **24\u201372 hours**, unlike permanent deficits from complete cord injury.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F043",
+      "stem": "Autonomic dysreflexia is most associated with spinal cord injury above ____.",
+      "options": [],
+      "correct": [
+        [
+          "T6",
+          "t6"
+        ]
+      ],
+      "rationale": "Injuries above T6 can produce uncontrolled sympathetic discharge to stimuli below the lesion, causing dangerous hypertension.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F044",
+      "stem": "The most common trigger of autonomic dysreflexia is ____ distension.",
+      "options": [],
+      "correct": [
+        [
+          "bladder"
+        ]
+      ],
+      "rationale": "Bladder distension/irritation triggers most cases; management includes checking Foley patency and relieving bladder pressure.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F045",
+      "stem": "Kernig's sign: with hip/knee at 90\u00b0, ____ of the leg causes pain/resistance.",
+      "options": [],
+      "correct": [
+        [
+          "extension",
+          "extending"
+        ]
+      ],
+      "rationale": "Kernig\u2019s sign assesses meningeal irritation; pain with attempted extension suggests meningitis.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F046",
+      "stem": "Brudzinski's sign: forced ____ flexion causes reflex hip/knee flexion.",
+      "options": [],
+      "correct": [
+        [
+          "neck",
+          "cervical"
+        ]
+      ],
+      "rationale": "Neck flexion stretches inflamed meninges, triggering reflex leg flexion.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F047",
+      "stem": "Central cord syndrome often causes greater weakness in the ____ extremities than the lower extremities.",
+      "options": [],
+      "correct": [
+        [
+          "upper",
+          "upper extremities",
+          "arms"
+        ]
+      ],
+      "rationale": "Central cord syndrome disproportionately affects upper extremity motor tracts, often after cervical hyperextension injuries.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F048",
+      "stem": "A key air-transport neurologic risk in skull fracture is expansion of ____cephalus.",
+      "options": [],
+      "correct": [
+        [
+          "pneumo",
+          "pneumocephalus"
+        ]
+      ],
+      "rationale": "Trapped intracranial air expands as ambient pressure drops (Boyle\u2019s law), potentially raising ICP and worsening neuro status.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Neurologic and Neurosurgical Care",
+      "id": "F049",
+      "stem": "The classic meningitis triad in this framework includes photophobia, headache/pressure, and nuchal ____.",
+      "options": [],
+      "correct": [
+        [
+          "rigidity",
+          "stiffness"
+        ]
+      ],
+      "rationale": "Meningeal inflammation produces neck stiffness (nuchal rigidity), photophobia, and headache.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F050",
+      "stem": "Cardiac output (CO) = ____ \u00d7 ____.",
+      "options": [],
+      "correct": [
+        [
+          "HR",
+          "heart rate"
+        ],
+        [
+          "SV",
+          "stroke volume"
+        ]
+      ],
+      "rationale": "CO is the product of heart rate and stroke volume; shock states can often be understood by which component is failing.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F051",
+      "stem": "Mean arterial pressure (MAP) = [(2 \u00d7 ____ ) + ____] / 3.",
+      "options": [],
+      "correct": [
+        [
+          "DBP",
+          "diastolic",
+          "diastolic blood pressure"
+        ],
+        [
+          "SBP",
+          "systolic",
+          "systolic blood pressure"
+        ]
+      ],
+      "rationale": "MAP weights diastole because it lasts longer; maintaining adequate MAP supports coronary, renal, and cerebral perfusion.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F052",
+      "stem": "An S3 heart sound is associated with congestive heart ____ in this framework.",
+      "options": [],
+      "correct": [
+        [
+          "failure",
+          "failure/CHF",
+          "CHF"
+        ]
+      ],
+      "rationale": "S3 is linked to volume overload and rapid ventricular filling into a dilated ventricle\u2014often CHF.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F053",
+      "stem": "An S4 heart sound is associated with myocardial ____ or a stiff ventricle in this framework.",
+      "options": [],
+      "correct": [
+        [
+          "infarction",
+          "infarct",
+          "MI",
+          "ischemia"
+        ]
+      ],
+      "rationale": "S4 reflects atrial contraction into a stiff ventricle, commonly due to ischemia/MI or hypertrophy.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F054",
+      "stem": "Inferior MI territory involves leads II, III, aVF and often the ____ coronary artery.",
+      "options": [],
+      "correct": [
+        [
+          "right",
+          "RCA",
+          "right coronary",
+          "right coronary artery"
+        ]
+      ],
+      "rationale": "Inferior MI is classically RCA; this matters because RV infarcts may be preload sensitive.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F055",
+      "stem": "The most specific cardiac enzyme for myocardial death in this framework is ____.",
+      "options": [],
+      "correct": [
+        [
+          "troponin",
+          "Troponin"
+        ]
+      ],
+      "rationale": "Troponin is highly specific for myocardial injury compared with other muscle markers.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F056",
+      "stem": "The most sensitive early muscle injury marker in this framework is ____.",
+      "options": [],
+      "correct": [
+        [
+          "myoglobin",
+          "Myoglobin"
+        ]
+      ],
+      "rationale": "Myoglobin rises early but is not specific (also present in skeletal muscle).",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F057",
+      "stem": "In right-sided MI management in this framework, avoid nitroglycerin and give a ____ bolus to support preload.",
+      "options": [],
+      "correct": [
+        [
+          "fluid",
+          "IV fluid",
+          "normal saline",
+          "crystalloid"
+        ]
+      ],
+      "rationale": "Right ventricular infarcts often require preload support; vasodilators can precipitate severe hypotension.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F058",
+      "stem": "IABP distal tip placement is about ____ to ____ cm below the left subclavian artery.",
+      "options": [],
+      "correct": [
+        [
+          "2"
+        ],
+        [
+          "3"
+        ]
+      ],
+      "rationale": "This placement optimizes diastolic augmentation while avoiding obstruction of major branches.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F059",
+      "stem": "A sign of high IABP migration is absent/diminished left ____ pulse.",
+      "options": [],
+      "correct": [
+        [
+          "brachial"
+        ]
+      ],
+      "rationale": "High migration can reduce perfusion to the left arm via the subclavian artery, causing a weak brachial pulse.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F060",
+      "stem": "A sign of low IABP migration is decreased ____ output.",
+      "options": [],
+      "correct": [
+        [
+          "urine"
+        ]
+      ],
+      "rationale": "Low migration can compromise renal perfusion, leading to decreased urine output.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F061",
+      "stem": "Blood in the IABP tubing suggests balloon rupture; stop therapy and position patient ____ down.",
+      "options": [],
+      "correct": [
+        [
+          "head",
+          "trendelenburg",
+          "head-down"
+        ]
+      ],
+      "rationale": "Stopping therapy prevents embolic complications; head-down positioning is taught here as part of urgent management while arranging removal.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F062",
+      "stem": "Normal serum SVR in this framework is approximately ____ to ____ dynes\u00b7sec\u00b7cm\u207b\u2075.",
+      "options": [],
+      "correct": [
+        [
+          "800"
+        ],
+        [
+          "1200"
+        ]
+      ],
+      "rationale": "SVR is a key afterload marker; distributive shock lowers SVR, while hypovolemia/hypothermia often increase it.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F063",
+      "stem": "Normal PVR in this framework is approximately ____ to ____ dynes\u00b7sec\u00b7cm\u207b\u2075.",
+      "options": [],
+      "correct": [
+        [
+          "50"
+        ],
+        [
+          "250"
+        ]
+      ],
+      "rationale": "PVR reflects right ventricular afterload; hypoxia/hypercapnia/acidosis increase PVR and strain the RV.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Cardiac and Hemodynamic Care",
+      "id": "F064",
+      "stem": "Troponin rises with myocardial injury and is more ____ than myoglobin.",
+      "options": [],
+      "correct": [
+        [
+          "specific",
+          "specificity"
+        ]
+      ],
+      "rationale": "Troponin is more specific to cardiac tissue than myoglobin, which is found in many muscle types.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F065",
+      "stem": "The trauma triad of death consists of hypothermia, acidosis, and ____.",
+      "options": [],
+      "correct": [
+        [
+          "coagulopathy"
+        ]
+      ],
+      "rationale": "Coagulopathy worsens bleeding, which worsens hypothermia and acidosis, creating a lethal cycle that must be interrupted early.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F066",
+      "stem": "Hypotension in hemorrhage is often not seen until roughly ____% blood loss in this framework.",
+      "options": [],
+      "correct": [
+        [
+          "30",
+          "30%",
+          "thirty"
+        ]
+      ],
+      "rationale": "Early compensation can maintain BP despite significant blood loss; rely on perfusion markers and mechanism, not BP alone.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F067",
+      "stem": "Kehr's sign is referred pain to the ____ shoulder, suggesting splenic irritation.",
+      "options": [],
+      "correct": [
+        [
+          "left"
+        ]
+      ],
+      "rationale": "Diaphragmatic irritation from splenic bleeding refers pain to the left shoulder via the phrenic nerve.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F068",
+      "stem": "A massive hemothorax is commonly taught as about ____ mL of blood in the pleural space.",
+      "options": [],
+      "correct": [
+        [
+          "1500",
+          "1,500"
+        ]
+      ],
+      "rationale": "Large intrathoracic blood loss can cause rapid shock and hypoxia; definitive drainage and hemorrhage control are required.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F069",
+      "stem": "Needle decompression sites include 2nd intercostal space midclavicular line and 5th intercostal space ____ axillary line (as taught here).",
+      "options": [],
+      "correct": [
+        [
+          "mid",
+          "midaxillary",
+          "MAL"
+        ]
+      ],
+      "rationale": "These landmarks aim to access the pleural space safely while avoiding major vascular structures.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F070",
+      "stem": "Beck's triad includes hypotension, muffled heart sounds, and ____ venous distension.",
+      "options": [],
+      "correct": [
+        [
+          "jugular",
+          "JVD",
+          "jugular venous",
+          "jugular venous distension"
+        ]
+      ],
+      "rationale": "Tamponade restricts filling, elevates venous pressure (JVD), and reduces stroke volume (hypotension) with muffled sounds from fluid.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F071",
+      "stem": "Electrical alternans is most associated with cardiac ____.",
+      "options": [],
+      "correct": [
+        [
+          "tamponade"
+        ]
+      ],
+      "rationale": "Beat-to-beat QRS changes can occur when the heart swings in a fluid-filled pericardium.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F072",
+      "stem": "Hamman's crunch is most consistent with pneumo____ (mediastinal air).",
+      "options": [],
+      "correct": [
+        [
+          "mediastinum",
+          "mediastinal",
+          "pneumomediastinum"
+        ]
+      ],
+      "rationale": "Hamman\u2019s crunch is a precordial sound caused by the heart beating against mediastinal air.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F073",
+      "stem": "The palm (including fingers) approximates ____% TBSA for burn estimation.",
+      "options": [],
+      "correct": [
+        [
+          "1",
+          "1%",
+          "one"
+        ]
+      ],
+      "rationale": "Palm method is useful for small or patchy burns when rule-of-nines is less practical.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F074",
+      "stem": "Parkland formula: ____ mL \u00d7 kg \u00d7 %TBSA over 24 hours (half in first 8 hours).",
+      "options": [],
+      "correct": [
+        [
+          "4",
+          "4 mL",
+          "four"
+        ]
+      ],
+      "rationale": "Parkland provides a starting estimate for resuscitation; fluids are titrated to endpoints (mental status, perfusion, urine output).",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F075",
+      "stem": "Brooke formula: ____ mL \u00d7 kg \u00d7 %TBSA over 24 hours (half in first 8 hours).",
+      "options": [],
+      "correct": [
+        [
+          "2",
+          "2 mL",
+          "two"
+        ]
+      ],
+      "rationale": "Brooke uses a lower starting volume than Parkland; whichever formula is used, reassessment prevents under- or over-resuscitation.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F076",
+      "stem": "Hydrofluoric acid burns are treated with ____ gluconate.",
+      "options": [],
+      "correct": [
+        [
+          "calcium",
+          "Calcium"
+        ]
+      ],
+      "rationale": "Fluoride binds calcium; calcium gluconate treats local and systemic toxicity and reduces dysrhythmia risk.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F077",
+      "stem": "Alternating current (AC) electrocution can cause sustained ____ preventing release.",
+      "options": [],
+      "correct": [
+        [
+          "tetany",
+          "muscle tetany",
+          "muscle contraction"
+        ]
+      ],
+      "rationale": "AC can lock patients onto the source, prolonging exposure and increasing deep tissue and arrhythmia risk.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F078",
+      "stem": "A common threshold separating low from high voltage electrocution in this framework is ____ volts.",
+      "options": [],
+      "correct": [
+        [
+          "1000",
+          "1,000"
+        ]
+      ],
+      "rationale": "High-voltage exposures generally cause more deep tissue damage and arrhythmias, though clinical severity varies with current path and duration.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Trauma, Burns, and Transfusion",
+      "id": "F079",
+      "stem": "If blood is seen in the Foley bag during pigment nephropathy concerns, this framework targets urine output of about ____ mL/hr.",
+      "options": [],
+      "correct": [
+        [
+          "100"
+        ]
+      ],
+      "rationale": "Higher urine output targets help protect kidneys by promoting clearance of myoglobin/hemoglobin pigments.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "F080",
+      "stem": "Cullen's sign is ____bilical ecchymosis, often seen in hemorrhagic pancreatitis/hemoperitoneum.",
+      "options": [],
+      "correct": [
+        [
+          "peri",
+          "periumbilical",
+          "peri-"
+        ]
+      ],
+      "rationale": "Blood tracking to the umbilicus suggests significant internal bleeding, classically hemorrhagic pancreatitis.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "F081",
+      "stem": "Grey-Turner's sign is ____ ecchymosis indicating retroperitoneal bleeding.",
+      "options": [],
+      "correct": [
+        [
+          "flank",
+          "flanks"
+        ]
+      ],
+      "rationale": "Flank bruising suggests retroperitoneal bleeding and may appear later, indicating severe disease.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "F082",
+      "stem": "Asterixis in altered mental status is most consistent with ____ encephalopathy.",
+      "options": [],
+      "correct": [
+        [
+          "hepatic",
+          "liver"
+        ]
+      ],
+      "rationale": "Asterixis is a classic hepatic encephalopathy sign, reflecting toxin accumulation from impaired liver clearance.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "F083",
+      "stem": "Hepatic encephalopathy is treated in this framework with ____.",
+      "options": [],
+      "correct": [
+        [
+          "lactulose"
+        ]
+      ],
+      "rationale": "Lactulose reduces ammonia absorption/production and is a mainstay therapy alongside supportive care.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "F084",
+      "stem": "Septic shock initial crystalloid resuscitation dose emphasized here is ____ mL/kg.",
+      "options": [],
+      "correct": [
+        [
+          "30"
+        ]
+      ],
+      "rationale": "A weight-based 30 mL/kg bolus supports rapid perfusion restoration; reassess and escalate with pressors if hypotension persists.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "F085",
+      "stem": "Preferred first-line vasopressor for septic shock in this framework is ____.",
+      "options": [],
+      "correct": [
+        [
+          "norepinephrine",
+          "Levophed",
+          "noradrenaline",
+          "noradrenalin"
+        ]
+      ],
+      "rationale": "Norepinephrine increases vascular tone and MAP with relatively lower arrhythmia risk compared with some alternatives.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "F086",
+      "stem": "Sepsis resuscitation often targets MAP \u2265 ____ mmHg.",
+      "options": [],
+      "correct": [
+        [
+          "65"
+        ]
+      ],
+      "rationale": "MAP \u226565 mmHg is a common minimum perfusion goal, adjusted based on patient factors and specific clinical scenarios.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "F087",
+      "stem": "Virchow's triad includes venous stasis, hypercoagulability, and vessel wall ____.",
+      "options": [],
+      "correct": [
+        [
+          "injury",
+          "damage",
+          "endothelial injury"
+        ]
+      ],
+      "rationale": "Understanding Virchow\u2019s triad helps identify DVT/PE risk in immobile or post-operative patients.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "F088",
+      "stem": "Hypertensive emergency BP reduction should generally be limited to about ____% per hour in this framework.",
+      "options": [],
+      "correct": [
+        [
+          "25",
+          "25%",
+          "twenty-five"
+        ]
+      ],
+      "rationale": "Avoiding overly rapid reduction prevents ischemia due to cerebral and coronary autoregulation shifts.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Medical Emergencies and Critical Care",
+      "id": "F089",
+      "stem": "Corrected sodium in hyperglycemia: Na decreases by about ____ mEq/L for each 100 mg/dL glucose above 100 (as taught here).",
+      "options": [],
+      "correct": [
+        [
+          "1.6",
+          "1.6 mEq",
+          "1.6 mEq/L"
+        ]
+      ],
+      "rationale": "Hyperglycemia dilutes measured sodium by shifting water into the intravascular space; correcting sodium avoids underestimating true sodium status.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "F090",
+      "stem": "Normal fetal heart rate is about ____ to ____ bpm.",
+      "options": [],
+      "correct": [
+        [
+          "120"
+        ],
+        [
+          "160"
+        ]
+      ],
+      "rationale": "This range reflects typical fetal autonomic balance; persistent deviations or poor variability can suggest distress.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "F091",
+      "stem": "Complete cervical dilation is ____ cm.",
+      "options": [],
+      "correct": [
+        [
+          "10"
+        ]
+      ],
+      "rationale": "At 10 cm, the cervix is fully dilated and the second stage (expulsion) begins.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "F092",
+      "stem": "The best predictor of fetal well-being in this framework is heart rate ____.",
+      "options": [],
+      "correct": [
+        [
+          "variability"
+        ]
+      ],
+      "rationale": "Variability reflects intact fetal neurologic function and oxygenation; absent variability can suggest hypoxia/acidosis or medication effects.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "F093",
+      "stem": "Late decelerations indicate uteroplacental ____.",
+      "options": [],
+      "correct": [
+        [
+          "insufficiency"
+        ]
+      ],
+      "rationale": "Late decels reflect impaired oxygen transfer at the placenta; maternal positioning and perfusion optimization are immediate priorities.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "F094",
+      "stem": "Postpartum hemorrhage is defined here as > ____ mL within 24 hours after delivery.",
+      "options": [],
+      "correct": [
+        [
+          "500"
+        ]
+      ],
+      "rationale": "PPH is a high-mortality risk condition; early recognition and uterotonic therapy reduce progression to shock.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "F095",
+      "stem": "First-line uterotonic for postpartum hemorrhage in this framework is ____ (Pitocin).",
+      "options": [],
+      "correct": [
+        [
+          "oxytocin",
+          "Oxytocin"
+        ]
+      ],
+      "rationale": "Oxytocin promotes uterine contraction and is commonly first-line for uterine atony, the most common cause of PPH.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "F096",
+      "stem": "In neonates, suction the ____ first, then the nose.",
+      "options": [],
+      "correct": [
+        [
+          "mouth",
+          "oropharynx"
+        ]
+      ],
+      "rationale": "Mouth-first suction reduces aspiration risk; nasal suction first can trigger gasping and draw secretions into the airway.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "F097",
+      "stem": "The most common neonatal sepsis pathogen in this framework is Group B ____.",
+      "options": [],
+      "correct": [
+        [
+          "Streptococcus",
+          "strep",
+          "Strep"
+        ]
+      ],
+      "rationale": "Group B strep remains a key neonatal pathogen, particularly with prolonged rupture of membranes; early antibiotics are essential.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "F098",
+      "stem": "PROM-related neonatal infection risk antibiotic regimen in this framework: ____ + ____.",
+      "options": [],
+      "correct": [
+        [
+          "ampicillin",
+          "Ampicillin"
+        ],
+        [
+          "gentamicin",
+          "Gentamicin"
+        ]
+      ],
+      "rationale": "Ampicillin covers group B strep and listeria; gentamicin covers gram-negative organisms\u2014together providing broad neonatal empiric coverage.",
+      "type": "multi_fill_in_the_blank"
+    },
+    {
+      "category": "Obstetric, Neonatal, and Pediatric Special Populations",
+      "id": "F099",
+      "stem": "Neonatal fluid bolus dose in this framework is ____ mL/kg.",
+      "options": [],
+      "correct": [
+        [
+          "10",
+          "10 mL",
+          "ten"
+        ]
+      ],
+      "rationale": "Neonates are volume-sensitive; 10 mL/kg boluses are reassessed frequently to avoid overload while correcting hypovolemia.",
+      "type": "fill_in_the_blank"
+    },
+    {
+      "category": "Pediatric Assessment and Management",
+      "id": "F100",
+      "stem": "A neonate is defined as age ____ to ____ days.",
+      "options": [],
+      "correct": [
+        [
+          "0",
+          "zero"
+        ],
+        [
+          "28",
+          "28 days",
+          "twenty-eight"
+        ]
+      ],
+      "rationale": "Neonates have unique airway and thermoregulation physiology; defining the age group guides risk and equipment selection.",
+      "type": "multi_fill_in_the_blank"
     }
-    return a;
-  }
-
-  function getProgressStore() {
-    return window.StudyGuruProgress || null;
-  }
-
-  // -----------------------------------------------------------
-  // Dynamic Requeue Threshold
-  // -----------------------------------------------------------
-  function getRequeueThreshold(quizLength) {
-    if (quizLength <= 10) return 2;
-    if (quizLength <= 25) return 5;
-    return 10;  // 50 and 100+
-  }
-
-  // -----------------------------------------------------------
-  // Question Field Helpers
-  // -----------------------------------------------------------
-  
-  // Get question text (handles multiple field names)
-  function getQuestionText(q) {
-    return q.stem || q.question || q.prompt || q.text || q.content || '(No question text)';
-  }
-
-  // Get choices array (handles multiple field names)
-  function getChoices(q) {
-    return q.options || q.choices || q.answers || [];
-  }
-
-  // Get correct answer index from question
-  // Handles: ["C"], "C", 2, "Answer text"
-  function getCorrectIndex(q) {
-    const choices = getChoices(q);
-
-    // Check for choice object with correct: true
-    for (let i = 0; i < choices.length; i++) {
-      const c = choices[i];
-      if (typeof c === 'object' && c.correct === true) {
-        return i;
-      }
-    }
-
-    // Check correct field (NCLEX format: ["C"] or "C")
-    if (q.correct !== undefined) {
-      const correctVal = q.correct;
-
-      // Array of letters: ["C"]
-      if (Array.isArray(correctVal) && correctVal.length > 0) {
-        const letter = correctVal[0].toUpperCase();
-        return LETTERS.indexOf(letter);
-      }
-      
-      // Single letter: "C"
-      if (typeof correctVal === 'string' && correctVal.length === 1) {
-        return LETTERS.indexOf(correctVal.toUpperCase());
-      }
-      
-      // Number index
-      if (typeof correctVal === 'number') {
-        return correctVal;
-      }
-    }
-
-    // Check answer field
-    if (q.answer !== undefined) {
-      const answer = q.answer;
-
-      if (typeof answer === 'number') {
-        return answer;
-      }
-      
-      if (typeof answer === 'string' && answer.length === 1) {
-        return LETTERS.indexOf(answer.toUpperCase());
-      }
-    }
-
-    // Check correctAnswer field
-    if (q.correctAnswer !== undefined) {
-      const ca = q.correctAnswer;
-      if (typeof ca === 'number') return ca;
-      if (typeof ca === 'string' && ca.length === 1) {
-        return LETTERS.indexOf(ca.toUpperCase());
-      }
-    }
-
-    return -1;
-  }
-
-  // Check if selected answer is correct
-  function isCorrectAnswer(q, selectedOriginalIndex) {
-    const correctIdx = getCorrectIndex(q);
-    return correctIdx === selectedOriginalIndex;
-  }
-
-  // Get correct answer text for display (uses display letters after shuffle)
-  function getCorrectAnswerText(q) {
-    // Handle fill-in-the-blank questions
-    if (isAnyFillInTheBlank(q) && Array.isArray(q.correct)) {
-      const blanksCount = getBlankCount(q);
-      const answers = [];
-      
-      for (let i = 0; i < blanksCount; i++) {
-        const acceptableAnswers = q.correct[i] || [];
-        // Show first acceptable answer, or "any of: x, y, z" if multiple
-        if (acceptableAnswers.length === 1) {
-          answers.push(acceptableAnswers[0]);
-        } else if (acceptableAnswers.length > 1) {
-          answers.push(acceptableAnswers[0] + ` (or: ${acceptableAnswers.slice(1).join(', ')})`);
-        }
-      }
-      
-      if (blanksCount === 1) {
-        return answers[0] || '';
-      }
-      return answers.map((a, i) => `Blank ${i + 1}: ${a}`).join('\n');
-    }
-    
-    // Handle MCQ questions
-    const choices = getChoices(q);
-    const correctIndices = getCorrectIndices(q);
-    
-    // Build array of {displayLetter, text}
-    const answers = correctIndices.map(origIdx => {
-      const displayLetter = run?.shuffleMap?.[origIdx] || LETTERS[origIdx];
-      const c = choices[origIdx];
-      const text = typeof c === 'string' ? c : (c.text || c.label || String(c));
-      return { displayLetter, text };
-    });
-    
-    // Sort by display letter (A, B, C...)
-    answers.sort((a, b) => a.displayLetter.localeCompare(b.displayLetter));
-    
-    // For multi-select, format vertically
-    if (isMultiSelect(q)) {
-      return answers.map(a => `${a.displayLetter}: ${a.text}`).join('\n');
-    }
-    
-    // For single-select, format inline
-    return answers.map(a => `${a.displayLetter}. ${a.text}`).join('');
-  }
-
-  // Check if question is multi-select
-  function isMultiSelect(q) {
-    if (q.type === 'multi_select' || q.type === 'multiple_select' || q.type === 'multi-select') {
-      return true;
-    }
-    // Also check if correct has multiple answers (but NOT for fill-in-the-blank)
-    if (isFillInTheBlank(q) || isMultiFillInTheBlank(q)) {
-      return false;
-    }
-    if (Array.isArray(q.correct) && q.correct.length > 1) {
-      return true;
-    }
-    return false;
-  }
-
-  // Check if question is fill-in-the-blank (single blank)
-  function isFillInTheBlank(q) {
-    return q.type === 'fill_in_the_blank';
-  }
-
-  // Check if question is multi-fill-in-the-blank (multiple blanks)
-  function isMultiFillInTheBlank(q) {
-    return q.type === 'multi_fill_in_the_blank';
-  }
-
-  // Check if question is any fill-in-the-blank type
-  function isAnyFillInTheBlank(q) {
-    return isFillInTheBlank(q) || isMultiFillInTheBlank(q);
-  }
-
-  // Get number of blanks for fill-in-the-blank questions
-  function getBlankCount(q) {
-    if (isFillInTheBlank(q)) return 1;
-    if (isMultiFillInTheBlank(q) && Array.isArray(q.correct)) {
-      return q.correct.length;
-    }
-    return 0;
-  }
-
-  // Normalize text for comparison (lowercase, trim, remove extra spaces)
-  function normalizeAnswer(text) {
-    if (!text) return '';
-    return text.toString().toLowerCase().trim().replace(/\s+/g, ' ');
-  }
-
-  // Check if user answer matches any acceptable answer
-  function answerMatches(userAnswer, acceptableAnswers) {
-    const normalized = normalizeAnswer(userAnswer);
-    if (!normalized) return false;
-    
-    for (const acceptable of acceptableAnswers) {
-      if (normalizeAnswer(acceptable) === normalized) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  // Check fill-in-the-blank answer correctness
-  // userAnswers: array of strings from text inputs
-  // Returns: { correct: boolean, results: [{userAnswer, isCorrect, acceptableAnswers}] }
-  function checkFillInTheBlankAnswer(q, userAnswers) {
-    if (!Array.isArray(q.correct)) {
-      return { correct: false, results: [] };
-    }
-
-    const results = [];
-    let allCorrect = true;
-
-    // q.correct format: [["answer1", "alt1"], ["answer2", "alt2"]] for multi
-    // or [["answer1", "alt1"]] for single
-    const blanksCount = getBlankCount(q);
-    
-    for (let i = 0; i < blanksCount; i++) {
-      const userAnswer = userAnswers[i] || '';
-      const acceptableAnswers = q.correct[i] || [];
-      const isCorrect = answerMatches(userAnswer, acceptableAnswers);
-      
-      results.push({
-        userAnswer,
-        isCorrect,
-        acceptableAnswers
-      });
-      
-      if (!isCorrect) allCorrect = false;
-    }
-
-    return { correct: allCorrect, results };
-  }
-
-  // Get all correct answer indices for multi-select
-  function getCorrectIndices(q) {
-    const indices = [];
-    
-    // Check correct field (NCLEX format: ["A", "C"])
-    if (q.correct !== undefined && Array.isArray(q.correct)) {
-      q.correct.forEach(val => {
-        if (typeof val === 'string' && val.length === 1) {
-          const idx = LETTERS.indexOf(val.toUpperCase());
-          if (idx !== -1) indices.push(idx);
-        } else if (typeof val === 'number') {
-          indices.push(val);
-        }
-      });
-    }
-    
-    // If no indices found, fall back to single correct
-    if (indices.length === 0) {
-      const single = getCorrectIndex(q);
-      if (single !== -1) indices.push(single);
-    }
-    
-    return indices;
-  }
-
-  // Check if selected answers are correct (handles both single and multi-select)
-  function checkAnswerCorrect(q, selectedIndices) {
-    const correctIndices = getCorrectIndices(q);
-    
-    // Must have same number of selections as correct answers
-    if (selectedIndices.length !== correctIndices.length) return false;
-    
-    // All selected must be in correct, and all correct must be selected
-    const selectedSet = new Set(selectedIndices);
-    const correctSet = new Set(correctIndices);
-    
-    for (const idx of selectedIndices) {
-      if (!correctSet.has(idx)) return false;
-    }
-    for (const idx of correctIndices) {
-      if (!selectedSet.has(idx)) return false;
-    }
-    
-    return true;
-  }
-
-  // -----------------------------------------------------------
-  // Weighted Question Selection
-  // -----------------------------------------------------------
-  function selectQuestionsWithWeighting(allQuestions, quizLength, isComprehensive, isCategoryQuiz) {
-    console.log('[Quiz] selectQuestionsWithWeighting:', {
-      totalQuestions: allQuestions.length,
-      quizLength,
-      isComprehensive,
-      isCategoryQuiz
-    });
-
-    const store = getProgressStore();
-    const attemptsMap = store && store.getAttemptsMap ? store.getAttemptsMap() : {};
-
-    function sortByLeastAttempts(questions) {
-      return [...questions].sort((a, b) => {
-        const attemptsA = attemptsMap[a.id] || 0;
-        const attemptsB = attemptsMap[b.id] || 0;
-        if (attemptsA !== attemptsB) return attemptsA - attemptsB;
-        return Math.random() - 0.5;
-      });
-    }
-
-    function selectWithRatio(questions, count) {
-      if (count <= 0 || questions.length === 0) return [];
-      if (questions.length <= count) return shuffle([...questions]);
-
-      const sorted = sortByLeastAttempts(questions);
-      // 2:1 ratio - 2 least-asked : 1 random (67% least-asked)
-      const twoThirdsCount = Math.ceil((count * 2) / 3);
-      const leastAsked = sorted.slice(0, twoThirdsCount);
-      const remainder = sorted.slice(twoThirdsCount);
-      const randomPick = shuffle(remainder).slice(0, count - twoThirdsCount);
-
-      return shuffle([...leastAsked, ...randomPick]);
-    }
-
-    // 10Q comprehensive: 100% least-asked
-    if (isComprehensive && quizLength === 10) {
-      console.log('[Quiz] Using 100% least-asked selection for 10Q');
-      const sorted = sortByLeastAttempts(allQuestions);
-      return sorted.slice(0, Math.min(quizLength, allQuestions.length));
-    }
-
-    // Category quiz: 2:1 ratio (2 least-asked : 1 random)
-    if (isCategoryQuiz) {
-      console.log('[Quiz] Using 2:1 ratio for category quiz');
-      return selectWithRatio(allQuestions, quizLength);
-    }
-
-    // Comprehensive 25/50/100Q: NCLEX weighted
-    if (isComprehensive && quizLength > 10) {
-      console.log('[Quiz] Using NCLEX weighted selection for', quizLength, 'questions');
-
-      const byCategory = {};
-      allQuestions.forEach(q => {
-        const cat = q.category || 'Uncategorized';
-        if (!byCategory[cat]) byCategory[cat] = [];
-        byCategory[cat].push(q);
-      });
-
-      const selected = [];
-
-      for (const [category, weight] of Object.entries(NCLEX_CATEGORY_WEIGHTS)) {
-        const categoryQuestions = byCategory[category] || [];
-        if (categoryQuestions.length === 0) continue;
-
-        const targetCount = Math.round(quizLength * weight);
-        if (targetCount === 0) continue;
-
-        const categorySelected = selectWithRatio(categoryQuestions, targetCount);
-        selected.push(...categorySelected);
-        console.log(`[Quiz] ${category}: target=${targetCount}, selected=${categorySelected.length}`);
-      }
-
-      // Fill if needed
-      if (selected.length < quizLength) {
-        const selectedIds = new Set(selected.map(q => q.id));
-        const remaining = allQuestions.filter(q => !selectedIds.has(q.id));
-        const extra = selectWithRatio(remaining, quizLength - selected.length);
-        selected.push(...extra);
-      }
-
-      return shuffle(selected).slice(0, quizLength);
-    }
-
-    // Default: 2:1 ratio (2 least-asked : 1 random)
-    return selectWithRatio(allQuestions, quizLength);
-  }
-
-  // -----------------------------------------------------------
-  // Question ID normalization
-  // -----------------------------------------------------------
-  function ensureQuestionId(q, index) {
-    if (!q.id) {
-      const base = getQuestionText(q).slice(0, 60);
-      let hash = 0;
-      for (let i = 0; i < base.length; i++) {
-        hash = ((hash << 5) - hash) + base.charCodeAt(i);
-        hash |= 0;
-      }
-      q.id = `q_${Math.abs(hash).toString(36)}_${index}`;
-    }
-    return q;
-  }
-
-  // -----------------------------------------------------------
-  // Element Caching
-  // -----------------------------------------------------------
-  function cacheElements() {
-    els.launcher = $('#launcher');
-    els.quiz = $('#quiz');
-    els.summary = $('#summary');
-
-    els.moduleSel = $('#moduleSel');
-    els.lengthBtns = $('#lengthBtns');
-    els.startBtn = $('#startBtn');
-    els.resumeBtn = $('#resumeBtn');
-
-    els.questionText = $('#questionText');
-    els.optionsForm = $('#optionsForm');
-    els.submitBtn = $('#submitBtn');
-    els.feedback = $('#feedback');
-    els.rationale = $('#rationale');
-    els.answerLine = $('#answerLine');
-
-    els.progressFill = $('#progressFill');
-    els.progressLabel = $('#progressLabel');
-    els.runCounter = $('#runCounter');
-    els.remainingCounter = $('#remainingCounter');
-    els.countersBox = $('#countersBox');
-
-    els.firstTrySummary = $('#firstTrySummary');
-    els.reviewList = $('#reviewList');
-    els.retryMissedBtn = $('#retryMissedBtn');
-    els.restartBtnSummary = $('#restartBtnSummary');
-    els.summaryActions = $('#summaryActions');
-  }
-
-  // -----------------------------------------------------------
-  // View Management
-  // -----------------------------------------------------------
-  function showView(viewName) {
-    if (els.launcher) els.launcher.classList.toggle('hidden', viewName !== 'launcher');
-    if (els.quiz) els.quiz.classList.toggle('hidden', viewName !== 'quiz');
-    if (els.summary) els.summary.classList.toggle('hidden', viewName !== 'summary');
-  }
-
-  // -----------------------------------------------------------
-  // Quiz Building
-  // -----------------------------------------------------------
-  function buildRun(questions, opts = {}) {
-    const normalized = questions.map((q, i) => ensureQuestionId({ ...q }, i));
-
-    const requested = opts.count || 10;
-    const isComprehensive = opts.isComprehensive || state.isComprehensive;
-    const isCategoryQuiz = opts.isCategoryQuiz || state.isCategoryQuiz;
-
-    let selected;
-    if (opts.isRetry) {
-      selected = shuffle(normalized);
-    } else if (isComprehensive || isCategoryQuiz) {
-      selected = selectQuestionsWithWeighting(normalized, requested, isComprehensive, isCategoryQuiz);
-    } else {
-      selected = shuffle(normalized).slice(0, Math.min(requested, normalized.length));
-    }
-
-    return {
-      isRetry: !!opts.isRetry,
-      isComprehensive,
-      isCategoryQuiz,
-      quizLength: selected.length,
-      queue: selected.slice(),
-      missedQueue: [],
-      mastered: new Set(),
-      correctFirstTry: 0,
-      incorrectFirstTry: 0,
-      totalAttempts: 0,
-      questionNumber: 0,
-      current: null,
-      answered: false,
-      perQuestion: [],
-      requeueThreshold: getRequeueThreshold(selected.length)
-    };
-  }
-
-  // -----------------------------------------------------------
-  // Quiz Flow
-  // -----------------------------------------------------------
-  function startQuiz() {
-    if (!state.questions || state.questions.length === 0) {
-      alert('No questions available.');
-      return;
-    }
-
-    run = buildRun(state.questions, {
-      count: state.quizLength,
-      isComprehensive: state.isComprehensive,
-      isCategoryQuiz: state.isCategoryQuiz,
-      isRetry: false
-    });
-
-    console.log('[Quiz] Starting quiz with', run.quizLength, 'questions');
-    clearResumeData();
-    showView('quiz');
-    if (els.countersBox) els.countersBox.classList.remove('hidden');
-    nextQuestion();
-    
-    // Center quiz card after first question loads
-    setTimeout(() => {
-      const quizCard = document.getElementById('quiz');
-      if (quizCard) {
-        quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }, 50);
-  }
-
-  function startRetryQuiz() {
-    if (!run) return;
-
-    const missed = run.perQuestion
-      .filter(p => !p.correct)
-      .map(p => p.questionObj)
-      .filter(Boolean);
-
-    if (missed.length === 0) {
-      alert('No missed questions to retry.');
-      return;
-    }
-
-    run = buildRun(missed, {
-      count: missed.length,
-      isRetry: true
-    });
-
-    console.log('[Quiz] Starting retry with', run.quizLength, 'questions');
-    showView('quiz');
-    if (els.countersBox) els.countersBox.classList.remove('hidden');
-    nextQuestion();
-    
-    // Center quiz card after first question loads
-    setTimeout(() => {
-      const quizCard = document.getElementById('quiz');
-      if (quizCard) {
-        quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }, 50);
-  }
-
-  function nextQuestion() {
-    if (!run) return;
-
-    // Check if all questions are mastered - quiz complete!
-    if (run.mastered.size === run.quizLength) {
-      finishQuiz();
-      return;
-    }
-
-    // If queue is empty but still have missed questions, move them back
-    if (run.queue.length === 0 && run.missedQueue.length > 0) {
-      run.queue = run.missedQueue.splice(0);  // Move all missed to queue
-    }
-
-    // If still no questions (shouldn't happen), end quiz
-    if (run.queue.length === 0) {
-      finishQuiz();
-      return;
-    }
-
-    const q = run.queue.shift();
-    run.current = q;
-    run.answered = false;
-    run.questionNumber++;
-
-    updateProgress();
-    renderQuestion(q);
-    saveResumeData();
-  }
-
-  function updateProgress() {
-    const total = run.quizLength;
-    const mastered = run.mastered.size;
-    const remaining = total - mastered;  // Questions still need to be answered correctly
-    const pct = total > 0 ? Math.round((mastered / total) * 100) : 0;
-
-    if (els.progressFill) els.progressFill.style.width = `${pct}%`;
-    if (els.progressLabel) els.progressLabel.textContent = `${pct}% mastered`;
-    if (els.runCounter) els.runCounter.textContent = `Question: ${run.questionNumber}`;
-    if (els.remainingCounter) els.remainingCounter.textContent = `Questions Remaining: ${remaining}`;
-  }
-
-  // -----------------------------------------------------------
-  // Render Question - FIXED HTML STRUCTURE
-  // Uses .opt wrapper, .k letter badge, .ans text span
-  // Uses checkbox for multi-select, radio for single-select
-  // -----------------------------------------------------------
-  function renderQuestion(q) {
-    // Clear feedback
-    if (els.feedback) {
-      els.feedback.classList.add('hidden');
-      els.feedback.textContent = '';
-      els.feedback.className = 'feedback hidden';
-    }
-    if (els.rationale) {
-      els.rationale.classList.add('hidden');
-      els.rationale.textContent = '';
-    }
-    if (els.answerLine) {
-      els.answerLine.classList.add('hidden');
-      els.answerLine.textContent = '';
-    }
-
-    // Show question text - NOW USING getQuestionText() which checks 'stem'
-    if (els.questionText) {
-      els.questionText.textContent = getQuestionText(q);
-    }
-
-    // Check if fill-in-the-blank question
-    if (isAnyFillInTheBlank(q)) {
-      renderFillInTheBlank(q);
-      return;
-    }
-
-    // Determine if multi-select (MCQ)
-    const multiSelect = isMultiSelect(q);
-    const inputType = multiSelect ? 'checkbox' : 'radio';
-
-    // Render options with CORRECT HTML structure
-    if (els.optionsForm) {
-      els.optionsForm.innerHTML = '';
-      els.optionsForm.className = 'options';
-      els.optionsForm.classList.remove('fill-in-the-blank');
-      if (multiSelect) {
-        els.optionsForm.classList.add('is-multi-select');
-      }
-
-      const choices = getChoices(q);
-      
-      // Build choice objects with original indices
-      const choiceObjects = choices.map((c, i) => ({
-        text: typeof c === 'string' ? c : (c.text || c.label || String(c)),
-        originalIndex: i
-      }));
-      
-      // Shuffle choices
-      const shuffledChoices = shuffle(choiceObjects);
-
-      // Store mapping: originalIndex -> displayLetter for correct answer display
-      run.shuffleMap = {};
-      shuffledChoices.forEach((choice, displayIdx) => {
-        run.shuffleMap[choice.originalIndex] = LETTERS[displayIdx];
-      });
-
-      shuffledChoices.forEach((choice, displayIdx) => {
-        const displayLetter = LETTERS[displayIdx];
-        
-        // Create .opt wrapper div
-        const optDiv = document.createElement('div');
-        optDiv.className = 'opt';
-        optDiv.dataset.originalIndex = choice.originalIndex;
-        optDiv.dataset.displayIndex = displayIdx;
-
-        // Create input (radio or checkbox based on question type)
-        const input = document.createElement('input');
-        input.type = inputType;
-        input.name = 'answer';
-        input.id = `opt${displayIdx}`;
-        input.value = displayIdx;
-        input.dataset.originalIndex = choice.originalIndex;
-        input.dataset.text = choice.text;
-
-        // Create label
-        const label = document.createElement('label');
-        label.htmlFor = `opt${displayIdx}`;
-
-        // Create .k letter badge span
-        const letterSpan = document.createElement('span');
-        letterSpan.className = 'k';
-        letterSpan.textContent = displayLetter;
-
-        // Create .ans answer text span
-        const ansSpan = document.createElement('span');
-        ansSpan.className = 'ans';
-        ansSpan.textContent = choice.text;
-
-        // Assemble: label contains letter badge + answer text
-        label.appendChild(letterSpan);
-        label.appendChild(ansSpan);
-        
-        // opt contains input + label
-        optDiv.appendChild(input);
-        optDiv.appendChild(label);
-        
-        els.optionsForm.appendChild(optDiv);
-
-        // Enable submit when selected + add has-selection class
-        input.addEventListener('change', () => {
-          updateSubmitButtonState();
-        });
-      });
-    }
-
-    // Reset submit button
-    if (els.submitBtn) {
-      els.submitBtn.disabled = true;
-      els.submitBtn.textContent = 'Submit';
-      els.submitBtn.dataset.mode = 'submit';
-    }
-  }
-
-  // -----------------------------------------------------------
-  // Render Fill-in-the-Blank Question
-  // -----------------------------------------------------------
-  function renderFillInTheBlank(q) {
-    if (!els.optionsForm) return;
-
-    els.optionsForm.innerHTML = '';
-    els.optionsForm.className = 'options fill-in-the-blank';
-    
-    const blanksCount = getBlankCount(q);
-    
-    // Create container for fill-in-the-blank inputs
-    const container = document.createElement('div');
-    container.className = 'fitb-container';
-    
-    // Add instruction text
-    const instruction = document.createElement('p');
-    instruction.className = 'fitb-instruction';
-    instruction.textContent = blanksCount > 1 
-      ? `Type your answers in the ${blanksCount} fields below:`
-      : 'Type your answer below:';
-    container.appendChild(instruction);
-    
-    // Create input fields for each blank
-    for (let i = 0; i < blanksCount; i++) {
-      const inputWrapper = document.createElement('div');
-      inputWrapper.className = 'fitb-input-wrapper';
-      
-      if (blanksCount > 1) {
-        const label = document.createElement('label');
-        label.className = 'fitb-label';
-        label.htmlFor = `fitb-input-${i}`;
-        label.textContent = `Blank ${i + 1}:`;
-        inputWrapper.appendChild(label);
-      }
-      
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.className = 'fitb-input';
-      input.id = `fitb-input-${i}`;
-      input.name = `fitb-answer-${i}`;
-      input.placeholder = blanksCount > 1 ? `Answer ${i + 1}` : 'Your answer';
-      input.autocomplete = 'off';
-      input.autocapitalize = 'off';
-      input.spellcheck = false;
-      
-      // Enable submit when any text is entered
-      input.addEventListener('input', () => {
-        updateSubmitButtonState();
-      });
-      
-      // Allow Enter key to submit
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          if (!els.submitBtn?.disabled) {
-            handleSubmit();
-          }
-        }
-      });
-      
-      inputWrapper.appendChild(input);
-      
-      // Add result icon container (will be populated after submit)
-      const resultIcon = document.createElement('span');
-      resultIcon.className = 'fitb-result-icon';
-      inputWrapper.appendChild(resultIcon);
-      
-      container.appendChild(inputWrapper);
-    }
-    
-    els.optionsForm.appendChild(container);
-    
-    // Focus first input
-    setTimeout(() => {
-      const firstInput = els.optionsForm.querySelector('.fitb-input');
-      if (firstInput) firstInput.focus();
-    }, 100);
-    
-    // Reset submit button
-    if (els.submitBtn) {
-      els.submitBtn.disabled = true;
-      els.submitBtn.textContent = 'Submit';
-      els.submitBtn.dataset.mode = 'submit';
-    }
-  }
-
-  // Update submit button state based on selections
-  function updateSubmitButtonState() {
-    if (!els.optionsForm || !els.submitBtn) return;
-    
-    // Check for fill-in-the-blank inputs
-    const fitbInputs = els.optionsForm.querySelectorAll('.fitb-input');
-    if (fitbInputs.length > 0) {
-      // For fill-in-the-blank: enable submit if at least one input has text
-      const hasAnyText = Array.from(fitbInputs).some(input => input.value.trim() !== '');
-      els.submitBtn.disabled = !hasAnyText;
-      
-      if (hasAnyText) {
-        els.optionsForm.classList.add('has-selection');
-      } else {
-        els.optionsForm.classList.remove('has-selection');
-      }
-      return;
-    }
-    
-    // For MCQ: check for checked inputs
-    const checked = els.optionsForm.querySelectorAll('input[name="answer"]:checked');
-    const hasSelection = checked.length > 0;
-    
-    els.submitBtn.disabled = !hasSelection;
-    
-    if (hasSelection) {
-      els.optionsForm.classList.add('has-selection');
-    } else {
-      els.optionsForm.classList.remove('has-selection');
-    }
-  }
-
-  // -----------------------------------------------------------
-  // Handle Submit/Next
-  // -----------------------------------------------------------
-  function handleSubmit() {
-    if (!run || !run.current) return;
-
-    const mode = els.submitBtn?.dataset.mode;
-
-    if (mode === 'submit') {
-      const q = run.current;
-      
-      // Check if this is a fill-in-the-blank question
-      if (isAnyFillInTheBlank(q)) {
-        handleFillInTheBlankSubmit(q);
-        return;
-      }
-      
-      // MCQ handling
-      const checkedInputs = els.optionsForm?.querySelectorAll('input[name="answer"]:checked');
-      if (!checkedInputs || checkedInputs.length === 0) return;
-
-      run.answered = true;
-      run.totalAttempts++;
-
-      const multiSelect = isMultiSelect(q);
-      
-      // Get all selected original indices
-      const selectedIndices = Array.from(checkedInputs).map(inp => 
-        parseInt(inp.dataset.originalIndex, 10)
-      );
-      
-      // Check if answer is correct
-      const isCorrect = checkAnswerCorrect(q, selectedIndices);
-
-      // Record attempt
-      let rec = run.perQuestion.find(p => p.id === q.id);
-      if (!rec) {
-        rec = { id: q.id, correct: null, attempts: 0, questionObj: q };
-        run.perQuestion.push(rec);
-      }
-      rec.attempts++;
-
-      // Get all .opt elements and correct indices
-      const allOpts = els.optionsForm.querySelectorAll('.opt');
-      const correctIndices = getCorrectIndices(q);
-
-      // Add submitted class to form - removes all highlighting
-      els.optionsForm.classList.add('submitted');
-
-      if (isCorrect) {
-        if (rec.correct === null) {
-          rec.correct = true;
-          run.correctFirstTry++;
-        }
-        run.mastered.add(q.id);
-        showFeedback(true, q);
-
-        // Add checkmark icons to all correct answers (which user selected correctly)
-        allOpts.forEach(opt => {
-          const origIdx = parseInt(opt.dataset.originalIndex, 10);
-          if (selectedIndices.includes(origIdx)) {
-            addResultIcon(opt, 'correct');
-          }
-        });
-      } else {
-        if (rec.correct === null) {
-          rec.correct = false;
-          run.incorrectFirstTry++;
-        }
-        run.missedQueue.push(q);
-
-        // When threshold reached, move all missed questions back to queue
-        if (run.missedQueue.length >= run.requeueThreshold) {
-          run.queue = run.queue.concat(run.missedQueue.splice(0));
-        }
-
-        showFeedback(false, q);
-
-        // Add icons: X for wrong selections, checkmark for correct answers
-        allOpts.forEach(opt => {
-          const origIdx = parseInt(opt.dataset.originalIndex, 10);
-          const wasSelected = selectedIndices.includes(origIdx);
-          const isCorrectAnswer = correctIndices.includes(origIdx);
-          
-          if (wasSelected && !isCorrectAnswer) {
-            // User selected a wrong answer - show X
-            addResultIcon(opt, 'wrong');
-          }
-          if (isCorrectAnswer) {
-            // This is a correct answer - show checkmark
-            addResultIcon(opt, 'correct');
-          }
-        });
-      }
-
-      // Change button to Next
-      if (els.submitBtn) {
-        els.submitBtn.textContent = 'Next →';
-        els.submitBtn.dataset.mode = 'next';
-        els.submitBtn.disabled = false;
-      }
-
-      // Disable all inputs
-      els.optionsForm?.querySelectorAll('input').forEach(inp => {
-        inp.disabled = true;
-      });
-
-      // Scroll to show rationale/feedback
-      setTimeout(() => {
-        if (els.rationale && !els.rationale.classList.contains('hidden')) {
-          els.rationale.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else if (els.feedback && !els.feedback.classList.contains('hidden')) {
-          els.feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }, 100);
-
-      updateProgress();
-      saveResumeData();
-
-    } else if (mode === 'next') {
-      // Center quiz card in viewport for new question
-      nextQuestion();
-      // Small delay to ensure DOM is updated before scrolling
-      setTimeout(() => {
-        const quizCard = document.getElementById('quiz');
-        if (quizCard) {
-          quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }, 50);
-    }
-  }
-
-  // -----------------------------------------------------------
-  // Handle Fill-in-the-Blank Submit
-  // -----------------------------------------------------------
-  function handleFillInTheBlankSubmit(q) {
-    // Get all fill-in-the-blank inputs
-    const fitbInputs = els.optionsForm?.querySelectorAll('.fitb-input');
-    if (!fitbInputs || fitbInputs.length === 0) return;
-
-    run.answered = true;
-    run.totalAttempts++;
-
-    // Collect user answers
-    const userAnswers = Array.from(fitbInputs).map(input => input.value.trim());
-    
-    // Check answers
-    const result = checkFillInTheBlankAnswer(q, userAnswers);
-
-    // Record attempt
-    let rec = run.perQuestion.find(p => p.id === q.id);
-    if (!rec) {
-      rec = { id: q.id, correct: null, attempts: 0, questionObj: q };
-      run.perQuestion.push(rec);
-    }
-    rec.attempts++;
-
-    // Add submitted class
-    els.optionsForm.classList.add('submitted');
-
-    // Show result icons for each input
-    const inputWrappers = els.optionsForm.querySelectorAll('.fitb-input-wrapper');
-    result.results.forEach((res, i) => {
-      const wrapper = inputWrappers[i];
-      const input = wrapper?.querySelector('.fitb-input');
-      const iconSpan = wrapper?.querySelector('.fitb-result-icon');
-      
-      if (input) {
-        input.classList.add(res.isCorrect ? 'correct' : 'wrong');
-      }
-      
-      if (iconSpan) {
-        iconSpan.textContent = res.isCorrect ? '✓' : '✗';
-        iconSpan.classList.add(res.isCorrect ? 'correct' : 'wrong');
-      }
-    });
-
-    if (result.correct) {
-      if (rec.correct === null) {
-        rec.correct = true;
-        run.correctFirstTry++;
-      }
-      run.mastered.add(q.id);
-      showFeedback(true, q);
-    } else {
-      if (rec.correct === null) {
-        rec.correct = false;
-        run.incorrectFirstTry++;
-      }
-      run.missedQueue.push(q);
-
-      // When threshold reached, move all missed questions back to queue
-      if (run.missedQueue.length >= run.requeueThreshold) {
-        run.queue = run.queue.concat(run.missedQueue.splice(0));
-      }
-
-      showFeedback(false, q);
-    }
-
-    // Change button to Next
-    if (els.submitBtn) {
-      els.submitBtn.textContent = 'Next →';
-      els.submitBtn.dataset.mode = 'next';
-      els.submitBtn.disabled = false;
-    }
-
-    // Disable all inputs
-    fitbInputs.forEach(inp => {
-      inp.disabled = true;
-    });
-
-    // Scroll to show rationale/feedback
-    setTimeout(() => {
-      if (els.rationale && !els.rationale.classList.contains('hidden')) {
-        els.rationale.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else if (els.feedback && !els.feedback.classList.contains('hidden')) {
-        els.feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }, 100);
-
-    updateProgress();
-    saveResumeData();
-  }
-
-  /**
-   * Add a result icon (✓ or ✗) to an option
-   * @param {HTMLElement} optElement - The .opt div element
-   * @param {string} type - 'correct' or 'wrong'
-   */
-  function addResultIcon(optElement, type) {
-    const label = optElement.querySelector('label');
-    if (!label) return;
-    
-    // Check if icon already exists
-    if (label.querySelector('.result-icon')) return;
-    
-    // Create the icon span
-    const iconSpan = document.createElement('span');
-    iconSpan.className = `result-icon ${type}`;
-    iconSpan.textContent = type === 'correct' ? '✓' : '✗';
-    
-    // Insert at the beginning of the label (before the letter badge)
-    label.insertBefore(iconSpan, label.firstChild);
-  }
-
-  // -----------------------------------------------------------
-  // Show Feedback
-  // -----------------------------------------------------------
-  function showFeedback(isCorrect, q) {
-    if (!els.feedback) return;
-
-    els.feedback.classList.remove('hidden');
-
-    if (isCorrect) {
-      els.feedback.className = 'feedback ok';
-      els.feedback.textContent = 'Correct!';
-    } else {
-      els.feedback.className = 'feedback bad';
-      els.feedback.textContent = 'Incorrect';
-    }
-
-    // Always show correct answer (for both correct and incorrect)
-    const correctAnswer = getCorrectAnswerText(q);
-    if (els.answerLine && correctAnswer) {
-      els.answerLine.classList.remove('hidden');
-      // Convert newlines to <br> for multi-select vertical display
-      const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
-      els.answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formattedAnswer}`;
-    }
-
-    // Show rationale if available
-    if (els.rationale && q.rationale) {
-      els.rationale.classList.remove('hidden');
-      els.rationale.innerHTML = `<strong>Rationale:</strong> ${q.rationale}`;
-    }
-  }
-
-  // -----------------------------------------------------------
-  // Quiz Completion
-  // -----------------------------------------------------------
-  function finishQuiz() {
-    console.log('[Quiz] Quiz complete');
-    showView('summary');
-
-    const total = run.quizLength;
-    const correct = run.correctFirstTry;
-    const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
-
-    // Determine color based on score
-    let scoreColor = '#f44336'; // Red < 60%
-    if (pct >= 77) scoreColor = '#4caf50'; // Green >= 77%
-    else if (pct >= 60) scoreColor = '#ff9800'; // Orange 60-76%
-
-    if (els.firstTrySummary) {
-      els.firstTrySummary.innerHTML = `
-        <div style="text-align: center;">
-          <div style="font-size: 3.5em; font-weight: 800; color: ${scoreColor};">${pct}%</div>
-          <div style="font-size: 1.1em; color: #666; margin-top: 8px;">${correct}/${total} Correct First Try</div>
-        </div>
-      `;
-    }
-
-    // Show/hide retry button and update missed count
-    const missedCount = run.perQuestion.filter(p => !p.correct).length;
-    if (els.retryMissedBtn) {
-      els.retryMissedBtn.classList.toggle('hidden', missedCount === 0);
-      
-      // Update the missed count display
-      const missedCountDisplay = document.getElementById('missedCountDisplay');
-      if (missedCountDisplay) {
-        missedCountDisplay.textContent = `(${missedCount})`;
-      }
-      
-      // Adjust Start New Quiz width when Retry is hidden (takes 5/6 of space)
-      if (missedCount === 0 && els.restartBtnSummary) {
-        els.restartBtnSummary.style.flex = '5';
-      } else if (els.restartBtnSummary) {
-        els.restartBtnSummary.style.flex = '4';
-      }
-    }
-
-    // Build review list
-    if (els.reviewList) {
-      els.reviewList.innerHTML = '';
-
-      run.perQuestion.forEach(p => {
-        const q = p.questionObj;
-        if (!q) return;
-
-        const div = document.createElement('div');
-        div.className = `review-item ${p.correct ? 'review-correct' : 'review-incorrect'}`;
-
-        const correctAnswer = getCorrectAnswerText(q);
-        const questionText = getQuestionText(q);
-        // Convert newlines to <br> for multi-select vertical display
-        const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
-
-        div.innerHTML = `
-          <div class="review-question"><strong>${p.correct ? '✅' : '❌'}</strong> ${questionText}</div>
-          <div class="review-correct-answer"><strong>Correct Answer:</strong><br>${formattedAnswer}</div>
-          ${q.rationale ? `<div class="review-rationale"><strong>Rationale:</strong> ${q.rationale}</div>` : ''}
-        `;
-
-        els.reviewList.appendChild(div);
-      });
-    }
-
-    // Add return button with flex: 1 (same as Retry for 1:4:1 ratio)
-    if (els.summaryActions && window.backUrl) {
-      let returnBtn = els.summaryActions.querySelector('.return-btn');
-      if (!returnBtn) {
-        returnBtn = document.createElement('a');
-        returnBtn.className = 'return-btn';
-        returnBtn.style.cssText = 'flex: 1; min-width: 0;';
-        returnBtn.href = window.backUrl;
-        returnBtn.innerHTML = '<span>← Return to NCLEX</span><span>Learning Page</span>';
-        els.summaryActions.appendChild(returnBtn);
-      }
-    }
-
-    // Record to progress store
-    const store = getProgressStore();
-    if (store) {
-      if (!run.isRetry && store.recordCompletedQuiz) {
-        store.recordCompletedQuiz(total);
-        console.log(`[Quiz] Recorded ${total} questions to weekly count`);
-      }
-
-      if (store.recordQuizAttempts) {
-        const ids = run.perQuestion.map(p => p.id).filter(Boolean);
-        store.recordQuizAttempts(ids);
-      }
-
-      if (store.recordCategoryScore) {
-        const categoryResults = {};
-        run.perQuestion.forEach(p => {
-          const cat = p.questionObj?.category;
-          if (!cat) return;
-          if (!categoryResults[cat]) categoryResults[cat] = { correct: 0, total: 0 };
-          categoryResults[cat].total++;
-          if (p.correct) categoryResults[cat].correct++;
-        });
-
-        for (const [cat, res] of Object.entries(categoryResults)) {
-          const catPct = Math.round((res.correct / res.total) * 100);
-          store.recordCategoryScore(cat, catPct);
-        }
-      }
-    }
-
-    clearResumeData();
-  }
-
-  // -----------------------------------------------------------
-  // Resume Support
-  // -----------------------------------------------------------
-  const RESUME_KEY = 'study_guru_resume_v2';
-
-  function saveResumeData() {
-    if (!run) return;
-    const data = {
-      moduleName: state.moduleName,
-      category: state.category,
-      isComprehensive: run.isComprehensive,
-      isCategoryQuiz: run.isCategoryQuiz,
-      isRetry: run.isRetry,
-      quizLength: run.quizLength,
-      queue: run.queue,
-      missedQueue: run.missedQueue,
-      mastered: Array.from(run.mastered),
-      correctFirstTry: run.correctFirstTry,
-      incorrectFirstTry: run.incorrectFirstTry,
-      totalAttempts: run.totalAttempts,
-      questionNumber: run.questionNumber,
-      perQuestion: run.perQuestion.map(p => ({
-        id: p.id,
-        correct: p.correct,
-        attempts: p.attempts,
-        questionObj: p.questionObj
-      }))
-    };
-    try {
-      localStorage.setItem(RESUME_KEY, JSON.stringify(data));
-    } catch (e) {
-      console.warn('[Quiz] Failed to save resume data:', e);
-    }
-  }
-
-  function loadResumeData() {
-    try {
-      const raw = localStorage.getItem(RESUME_KEY);
-      if (!raw) return null;
-      return JSON.parse(raw);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  function clearResumeData() {
-    try {
-      localStorage.removeItem(RESUME_KEY);
-    } catch (e) {}
-  }
-
-  function resumeQuiz() {
-    const data = loadResumeData();
-    if (!data) return;
-
-    run = {
-      isRetry: data.isRetry || false,
-      isComprehensive: data.isComprehensive || false,
-      isCategoryQuiz: data.isCategoryQuiz || false,
-      quizLength: data.quizLength || 10,
-      queue: data.queue || [],
-      missedQueue: data.missedQueue || [],
-      mastered: new Set(data.mastered || []),
-      correctFirstTry: data.correctFirstTry || 0,
-      incorrectFirstTry: data.incorrectFirstTry || 0,
-      totalAttempts: data.totalAttempts || 0,
-      questionNumber: data.questionNumber || 0,
-      current: null,
-      answered: false,
-      perQuestion: data.perQuestion || [],
-      requeueThreshold: getRequeueThreshold(data.quizLength || 10)
-    };
-
-    showView('quiz');
-    if (els.countersBox) els.countersBox.classList.remove('hidden');
-    nextQuestion();
-    
-    // Center quiz card after first question loads
-    setTimeout(() => {
-      const quizCard = document.getElementById('quiz');
-      if (quizCard) {
-        quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }, 50);
-  }
-
-  function checkResumeAvailable() {
-    const data = loadResumeData();
-    // Resume available if there are questions in queue OR missedQueue, AND not all mastered
-    const mastered = data?.mastered?.length || 0;
-    const quizLength = data?.quizLength || 0;
-    const hasQuestionsLeft = (data?.queue?.length > 0) || (data?.missedQueue?.length > 0);
-    const notComplete = mastered < quizLength;
-    const available = !!(data && hasQuestionsLeft && notComplete);
-    if (els.resumeBtn) {
-      els.resumeBtn.classList.toggle('hidden', !available);
-    }
-    return available;
-  }
-
-  // -----------------------------------------------------------
-  // Event Setup
-  // -----------------------------------------------------------
-  function setupEvents() {
-    if (els.startBtn) {
-      els.startBtn.addEventListener('click', startQuiz);
-    }
-
-    if (els.resumeBtn) {
-      els.resumeBtn.addEventListener('click', resumeQuiz);
-    }
-
-    if (els.submitBtn) {
-      els.submitBtn.addEventListener('click', handleSubmit);
-    }
-
-    if (els.retryMissedBtn) {
-      els.retryMissedBtn.addEventListener('click', startRetryQuiz);
-    }
-
-    if (els.restartBtnSummary) {
-      els.restartBtnSummary.addEventListener('click', () => {
-        showView('launcher');
-      });
-    }
-
-    if (els.lengthBtns) {
-      els.lengthBtns.querySelectorAll('.seg-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          els.lengthBtns.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          const len = btn.dataset.len;
-          state.quizLength = len === 'full' ? state.questions.length : parseInt(len, 10);
-        });
-      });
-    }
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      // Don't handle if we're not in quiz mode or question is answered
-      if (!run || !els.optionsForm) return;
-      
-      const key = e.key.toUpperCase();
-      
-      // Letter keys A-H to select/deselect options
-      const letterIndex = LETTERS.indexOf(key);
-      if (letterIndex !== -1 && !run.answered) {
-        const input = els.optionsForm.querySelector(`#opt${letterIndex}`);
-        if (input && !input.disabled) {
-          e.preventDefault();
-          
-          const multiSelect = isMultiSelect(run.current);
-          
-          if (multiSelect) {
-            // Multi-select: toggle the checkbox
-            input.checked = !input.checked;
-          } else {
-            // Single-select: toggle behavior
-            if (input.checked) {
-              // Deselect if already selected
-              input.checked = false;
-            } else {
-              // Select this one (radio buttons auto-deselect others)
-              input.checked = true;
-            }
-          }
-          
-          // Update submit button state
-          updateSubmitButtonState();
-        }
-      }
-      
-      // Enter key for Submit/Next
-      if (e.key === 'Enter' && els.submitBtn && !els.submitBtn.disabled) {
-        e.preventDefault();
-        handleSubmit();
-      }
-    });
-  }
-
-  // -----------------------------------------------------------
-  // Initialization
-  // -----------------------------------------------------------
-  function init() {
-    console.log('[Quiz] Initializing...');
-
-    cacheElements();
-    setupEvents();
-
-    if (window.preloadedQuizData && window.preloadedQuizData.questions) {
-      const pd = window.preloadedQuizData;
-
-      state.questions = pd.questions;
-      state.moduleName = pd.moduleName || '';
-      state.category = pd.category || '';
-      state.isComprehensive = pd.isComprehensive || false;
-      state.isCategoryQuiz = pd.isCategoryQuiz || false;
-      state.autostart = pd.autostart || false;
-
-      const len = pd.quizLength;
-      if (len === 'full' || !len) {
-        state.quizLength = state.questions.length;
-      } else {
-        state.quizLength = parseInt(len, 10) || 10;
-      }
-
-      console.log('[Quiz] Loaded preloaded data:', {
-        questionCount: state.questions.length,
-        moduleName: state.moduleName,
-        isComprehensive: state.isComprehensive,
-        isCategoryQuiz: state.isCategoryQuiz,
-        autostart: state.autostart,
-        quizLength: state.quizLength
-      });
-
-      if (els.startBtn) els.startBtn.disabled = false;
-
-      if (els.moduleSel) els.moduleSel.style.display = 'none';
-      const moduleLabel = els.launcher?.querySelector('label[for="moduleSel"]');
-      if (moduleLabel) moduleLabel.style.display = 'none';
-
-      if (els.lengthBtns) {
-        els.lengthBtns.querySelectorAll('.seg-btn').forEach(btn => {
-          btn.classList.remove('active');
-          const btnLen = btn.dataset.len;
-          if (btnLen === 'full' && state.quizLength === state.questions.length) {
-            btn.classList.add('active');
-          } else if (parseInt(btnLen, 10) === state.quizLength) {
-            btn.classList.add('active');
-          }
-        });
-      }
-
-      if (state.autostart) {
-        console.log('[Quiz] Auto-starting quiz...');
-        setTimeout(startQuiz, 100);
-        return;
-      }
-    }
-
-    checkResumeAvailable();
-    showView('launcher');
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-
-})();
+  ]
+}
