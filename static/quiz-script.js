@@ -10,12 +10,14 @@
    - Progress tracking via StudyGuruProgress
    - Mastery-based requeue system
    - Resume quiz support
+   - Fill-in-the-blank question support (single and multi-blank)
    
    PATCH NOTES:
    - Fixed field names: stem, options, correct (NCLEX format)
    - Fixed HTML structure: .opt wrapper with .k and .ans spans
    - Fixed correct answer detection for ["C"] letter format
    - Matches existing CSS styling in style.css
+   - Added fill-in-the-blank and multi-fill-in-the-blank support
 ------------------------------------------------------------ */
 
 (function () {
@@ -167,6 +169,28 @@
 
   // Get correct answer text for display (uses display letters after shuffle)
   function getCorrectAnswerText(q) {
+    // Handle fill-in-the-blank questions
+    if (isAnyFillInTheBlank(q) && Array.isArray(q.correct)) {
+      const blanksCount = getBlankCount(q);
+      const answers = [];
+      
+      for (let i = 0; i < blanksCount; i++) {
+        const acceptableAnswers = q.correct[i] || [];
+        // Show first acceptable answer, or "any of: x, y, z" if multiple
+        if (acceptableAnswers.length === 1) {
+          answers.push(acceptableAnswers[0]);
+        } else if (acceptableAnswers.length > 1) {
+          answers.push(acceptableAnswers[0] + ` (or: ${acceptableAnswers.slice(1).join(', ')})`);
+        }
+      }
+      
+      if (blanksCount === 1) {
+        return answers[0] || '';
+      }
+      return answers.map((a, i) => `Blank ${i + 1}: ${a}`).join('\n');
+    }
+    
+    // Handle MCQ questions
     const choices = getChoices(q);
     const correctIndices = getCorrectIndices(q);
     
@@ -195,11 +219,89 @@
     if (q.type === 'multi_select' || q.type === 'multiple_select' || q.type === 'multi-select') {
       return true;
     }
-    // Also check if correct has multiple answers
+    // Also check if correct has multiple answers (but NOT for fill-in-the-blank)
+    if (isFillInTheBlank(q) || isMultiFillInTheBlank(q)) {
+      return false;
+    }
     if (Array.isArray(q.correct) && q.correct.length > 1) {
       return true;
     }
     return false;
+  }
+
+  // Check if question is fill-in-the-blank (single blank)
+  function isFillInTheBlank(q) {
+    return q.type === 'fill_in_the_blank';
+  }
+
+  // Check if question is multi-fill-in-the-blank (multiple blanks)
+  function isMultiFillInTheBlank(q) {
+    return q.type === 'multi_fill_in_the_blank';
+  }
+
+  // Check if question is any fill-in-the-blank type
+  function isAnyFillInTheBlank(q) {
+    return isFillInTheBlank(q) || isMultiFillInTheBlank(q);
+  }
+
+  // Get number of blanks for fill-in-the-blank questions
+  function getBlankCount(q) {
+    if (isFillInTheBlank(q)) return 1;
+    if (isMultiFillInTheBlank(q) && Array.isArray(q.correct)) {
+      return q.correct.length;
+    }
+    return 0;
+  }
+
+  // Normalize text for comparison (lowercase, trim, remove extra spaces)
+  function normalizeAnswer(text) {
+    if (!text) return '';
+    return text.toString().toLowerCase().trim().replace(/\s+/g, ' ');
+  }
+
+  // Check if user answer matches any acceptable answer
+  function answerMatches(userAnswer, acceptableAnswers) {
+    const normalized = normalizeAnswer(userAnswer);
+    if (!normalized) return false;
+    
+    for (const acceptable of acceptableAnswers) {
+      if (normalizeAnswer(acceptable) === normalized) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Check fill-in-the-blank answer correctness
+  // userAnswers: array of strings from text inputs
+  // Returns: { correct: boolean, results: [{userAnswer, isCorrect, acceptableAnswers}] }
+  function checkFillInTheBlankAnswer(q, userAnswers) {
+    if (!Array.isArray(q.correct)) {
+      return { correct: false, results: [] };
+    }
+
+    const results = [];
+    let allCorrect = true;
+
+    // q.correct format: [["answer1", "alt1"], ["answer2", "alt2"]] for multi
+    // or [["answer1", "alt1"]] for single
+    const blanksCount = getBlankCount(q);
+    
+    for (let i = 0; i < blanksCount; i++) {
+      const userAnswer = userAnswers[i] || '';
+      const acceptableAnswers = q.correct[i] || [];
+      const isCorrect = answerMatches(userAnswer, acceptableAnswers);
+      
+      results.push({
+        userAnswer,
+        isCorrect,
+        acceptableAnswers
+      });
+      
+      if (!isCorrect) allCorrect = false;
+    }
+
+    return { correct: allCorrect, results };
   }
 
   // Get all correct answer indices for multi-select
@@ -565,7 +667,13 @@
       els.questionText.textContent = getQuestionText(q);
     }
 
-    // Determine if multi-select
+    // Check if fill-in-the-blank question
+    if (isAnyFillInTheBlank(q)) {
+      renderFillInTheBlank(q);
+      return;
+    }
+
+    // Determine if multi-select (MCQ)
     const multiSelect = isMultiSelect(q);
     const inputType = multiSelect ? 'checkbox' : 'radio';
 
@@ -573,6 +681,7 @@
     if (els.optionsForm) {
       els.optionsForm.innerHTML = '';
       els.optionsForm.className = 'options';
+      els.optionsForm.classList.remove('fill-in-the-blank');
       if (multiSelect) {
         els.optionsForm.classList.add('is-multi-select');
       }
@@ -651,10 +760,113 @@
     }
   }
 
+  // -----------------------------------------------------------
+  // Render Fill-in-the-Blank Question
+  // -----------------------------------------------------------
+  function renderFillInTheBlank(q) {
+    if (!els.optionsForm) return;
+
+    els.optionsForm.innerHTML = '';
+    els.optionsForm.className = 'options fill-in-the-blank';
+    
+    const blanksCount = getBlankCount(q);
+    
+    // Create container for fill-in-the-blank inputs
+    const container = document.createElement('div');
+    container.className = 'fitb-container';
+    
+    // Add instruction text
+    const instruction = document.createElement('p');
+    instruction.className = 'fitb-instruction';
+    instruction.textContent = blanksCount > 1 
+      ? `Type your answers in the ${blanksCount} fields below:`
+      : 'Type your answer below:';
+    container.appendChild(instruction);
+    
+    // Create input fields for each blank
+    for (let i = 0; i < blanksCount; i++) {
+      const inputWrapper = document.createElement('div');
+      inputWrapper.className = 'fitb-input-wrapper';
+      
+      if (blanksCount > 1) {
+        const label = document.createElement('label');
+        label.className = 'fitb-label';
+        label.htmlFor = `fitb-input-${i}`;
+        label.textContent = `Blank ${i + 1}:`;
+        inputWrapper.appendChild(label);
+      }
+      
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'fitb-input';
+      input.id = `fitb-input-${i}`;
+      input.name = `fitb-answer-${i}`;
+      input.placeholder = blanksCount > 1 ? `Answer ${i + 1}` : 'Your answer';
+      input.autocomplete = 'off';
+      input.autocapitalize = 'off';
+      input.spellcheck = false;
+      
+      // Enable submit when any text is entered
+      input.addEventListener('input', () => {
+        updateSubmitButtonState();
+      });
+      
+      // Allow Enter key to submit
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (!els.submitBtn?.disabled) {
+            handleSubmit();
+          }
+        }
+      });
+      
+      inputWrapper.appendChild(input);
+      
+      // Add result icon container (will be populated after submit)
+      const resultIcon = document.createElement('span');
+      resultIcon.className = 'fitb-result-icon';
+      inputWrapper.appendChild(resultIcon);
+      
+      container.appendChild(inputWrapper);
+    }
+    
+    els.optionsForm.appendChild(container);
+    
+    // Focus first input
+    setTimeout(() => {
+      const firstInput = els.optionsForm.querySelector('.fitb-input');
+      if (firstInput) firstInput.focus();
+    }, 100);
+    
+    // Reset submit button
+    if (els.submitBtn) {
+      els.submitBtn.disabled = true;
+      els.submitBtn.textContent = 'Submit';
+      els.submitBtn.dataset.mode = 'submit';
+    }
+  }
+
   // Update submit button state based on selections
   function updateSubmitButtonState() {
     if (!els.optionsForm || !els.submitBtn) return;
     
+    // Check for fill-in-the-blank inputs
+    const fitbInputs = els.optionsForm.querySelectorAll('.fitb-input');
+    if (fitbInputs.length > 0) {
+      // For fill-in-the-blank: enable submit if at least one input has text
+      const hasAnyText = Array.from(fitbInputs).some(input => input.value.trim() !== '');
+      els.submitBtn.disabled = !hasAnyText;
+      
+      if (hasAnyText) {
+        els.optionsForm.classList.add('has-selection');
+      } else {
+        els.optionsForm.classList.remove('has-selection');
+      }
+      return;
+    }
+    
+    // For MCQ: check for checked inputs
     const checked = els.optionsForm.querySelectorAll('input[name="answer"]:checked');
     const hasSelection = checked.length > 0;
     
@@ -676,13 +888,21 @@
     const mode = els.submitBtn?.dataset.mode;
 
     if (mode === 'submit') {
+      const q = run.current;
+      
+      // Check if this is a fill-in-the-blank question
+      if (isAnyFillInTheBlank(q)) {
+        handleFillInTheBlankSubmit(q);
+        return;
+      }
+      
+      // MCQ handling
       const checkedInputs = els.optionsForm?.querySelectorAll('input[name="answer"]:checked');
       if (!checkedInputs || checkedInputs.length === 0) return;
 
       run.answered = true;
       run.totalAttempts++;
 
-      const q = run.current;
       const multiSelect = isMultiSelect(q);
       
       // Get all selected original indices
@@ -789,6 +1009,98 @@
         }
       }, 50);
     }
+  }
+
+  // -----------------------------------------------------------
+  // Handle Fill-in-the-Blank Submit
+  // -----------------------------------------------------------
+  function handleFillInTheBlankSubmit(q) {
+    // Get all fill-in-the-blank inputs
+    const fitbInputs = els.optionsForm?.querySelectorAll('.fitb-input');
+    if (!fitbInputs || fitbInputs.length === 0) return;
+
+    run.answered = true;
+    run.totalAttempts++;
+
+    // Collect user answers
+    const userAnswers = Array.from(fitbInputs).map(input => input.value.trim());
+    
+    // Check answers
+    const result = checkFillInTheBlankAnswer(q, userAnswers);
+
+    // Record attempt
+    let rec = run.perQuestion.find(p => p.id === q.id);
+    if (!rec) {
+      rec = { id: q.id, correct: null, attempts: 0, questionObj: q };
+      run.perQuestion.push(rec);
+    }
+    rec.attempts++;
+
+    // Add submitted class
+    els.optionsForm.classList.add('submitted');
+
+    // Show result icons for each input
+    const inputWrappers = els.optionsForm.querySelectorAll('.fitb-input-wrapper');
+    result.results.forEach((res, i) => {
+      const wrapper = inputWrappers[i];
+      const input = wrapper?.querySelector('.fitb-input');
+      const iconSpan = wrapper?.querySelector('.fitb-result-icon');
+      
+      if (input) {
+        input.classList.add(res.isCorrect ? 'correct' : 'wrong');
+      }
+      
+      if (iconSpan) {
+        iconSpan.textContent = res.isCorrect ? '✓' : '✗';
+        iconSpan.classList.add(res.isCorrect ? 'correct' : 'wrong');
+      }
+    });
+
+    if (result.correct) {
+      if (rec.correct === null) {
+        rec.correct = true;
+        run.correctFirstTry++;
+      }
+      run.mastered.add(q.id);
+      showFeedback(true, q);
+    } else {
+      if (rec.correct === null) {
+        rec.correct = false;
+        run.incorrectFirstTry++;
+      }
+      run.missedQueue.push(q);
+
+      // When threshold reached, move all missed questions back to queue
+      if (run.missedQueue.length >= run.requeueThreshold) {
+        run.queue = run.queue.concat(run.missedQueue.splice(0));
+      }
+
+      showFeedback(false, q);
+    }
+
+    // Change button to Next
+    if (els.submitBtn) {
+      els.submitBtn.textContent = 'Next →';
+      els.submitBtn.dataset.mode = 'next';
+      els.submitBtn.disabled = false;
+    }
+
+    // Disable all inputs
+    fitbInputs.forEach(inp => {
+      inp.disabled = true;
+    });
+
+    // Scroll to show rationale/feedback
+    setTimeout(() => {
+      if (els.rationale && !els.rationale.classList.contains('hidden')) {
+        els.rationale.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else if (els.feedback && !els.feedback.classList.contains('hidden')) {
+        els.feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 100);
+
+    updateProgress();
+    saveResumeData();
   }
 
   /**
