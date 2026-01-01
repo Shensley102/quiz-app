@@ -173,8 +173,8 @@
     submitBtn.dataset.mode = 'submit';
     submitBtn.textContent = 'Submit';
     
-    // Display question text
-    questionText.innerHTML = question.question || question.text || '';
+    // Display question text (handle different property names)
+    questionText.innerHTML = question.stem || question.question || question.text || '';
     
     // Build options
     optionsForm.innerHTML = '';
@@ -224,7 +224,12 @@
     const question = quizQuestions[currentIndex];
     
     // Get correct answer - handle various formats
-    let correctAnswer = question.correct_answer || question.answer || question.correctAnswer;
+    let correctAnswer = question.correct_answer || question.answer || question.correctAnswer || question.correct;
+    
+    // Handle array format (e.g., ["A"] or ["A", "B"])
+    if (Array.isArray(correctAnswer)) {
+      correctAnswer = correctAnswer[0]; // For single-select, take first element
+    }
     
     // Normalize to letter format
     if (typeof correctAnswer === 'number') {
@@ -395,7 +400,7 @@
       const correctDisplay = typeof correctText === 'string' ? correctText : correctText?.text || correctText;
       
       let html = `
-        <div class="review-question"><strong>Q${idx + 1}:</strong> ${q.question || q.text}</div>
+        <div class="review-question"><strong>Q${idx + 1}:</strong> ${q.stem || q.question || q.text}</div>
         <div class="review-correct-answer"><strong>Correct:</strong> ${item.correctAnswer}. ${correctDisplay}</div>
       `;
       
