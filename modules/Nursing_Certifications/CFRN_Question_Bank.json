@@ -591,16 +591,15 @@
         "GCS < 8",
         "Inhalational burns",
         "Anaphylaxis with threatened airway",
-        "Patient able to swallow and protect airway",
+        "Patient cannot protect their airway",
         "Apnea"
       ],
       "correct": [
-        "A",
         "B",
         "C",
         "E"
       ],
-      "rationale": "Indications focus on inability to **oxygenate/ventilate** or **protect the airway**, and anticipated deterioration (e.g., inhalation injury). A patient who can swallow and protect the airway is not an automatic candidate solely on diagnosis.",
+      "rationale": "Indications focus on inability to oxygenate/ventilate or protect the airway, and anticipated deterioration (e.g., inhalation injury). A GCS of <8 is not an imediate indicatioin for intubation.",
       "type": "multi_select"
     },
     {
