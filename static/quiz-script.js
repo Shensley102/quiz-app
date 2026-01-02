@@ -276,22 +276,39 @@
   }
 
   // Get correct answer(s) from FITB question
+  // Handles both flat arrays: ["1.6", "1.6 mEq", "1.6 mEq/L"]
+  // AND nested arrays: [["ampicillin", "Ampicillin"], ["gentamicin", "Gentamicin"]]
   function getFitbCorrectAnswers(q) {
+    let answers = [];
+
     if (!q.correct) {
       if (q.correctAnswer) {
-        const ca = Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
-        return ca.map(c => String(c));  // Ensure all are strings
+        answers = Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
+      } else if (q.answer) {
+        answers = Array.isArray(q.answer) ? q.answer : [q.answer];
+      } else {
+        return [];
       }
-      if (q.answer) {
-        const a = Array.isArray(q.answer) ? q.answer : [q.answer];
-        return a.map(c => String(c));  // Ensure all are strings
+    } else {
+      answers = Array.isArray(q.correct) ? q.correct : [q.correct];
+    }
+
+    // Flatten nested arrays: [["ampicillin", "Ampicillin"], ["gentamicin", "Gentamicin"]]
+    // becomes: ["ampicillin", "Ampicillin", "gentamicin", "Gentamicin"]
+    const flattened = [];
+    answers.forEach(item => {
+      if (Array.isArray(item)) {
+        // Nested array - add all items
+        item.forEach(subItem => {
+          flattened.push(String(subItem));
+        });
+      } else {
+        // Single item - add directly
+        flattened.push(String(item));
       }
-      return [];
-    }
-    if (Array.isArray(q.correct)) {
-      return q.correct.map(c => String(c));  // Ensure all are strings
-    }
-    return [String(q.correct)];
+    });
+
+    return flattened;
   }
 
   // Check if user answer matches any correct answer (case-insensitive, whitespace-tolerant)
