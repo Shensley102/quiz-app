@@ -1624,7 +1624,7 @@
       "id": "Q098",
       "stem": "Blood is noted in the IABP tubing. What is the appropriate action in this framework?",
       "options": [
-        "Stop therapy, place patient head down, and transport urgently for balloon removal",
+        "Stop therapy, Dissconect, Clamp, Place the Pt flat, Notify Physician",
         "Increase balloon augmentation to improve perfusion",
         "Flush the line with saline and continue",
         "Switch to 1:2 augmentation and observe"
@@ -1632,7 +1632,7 @@
       "correct": [
         "A"
       ],
-      "rationale": "Blood in the system suggests balloon rupture and risk of clot/embolization. The framework recommends **stopping therapy**, placing the patient **head down**, and urgent transport for surgical removal.",
+      "rationale": "The appropriate action when blood is noted in the intra-aortic balloon pump (IABP) tubing is immediate cessation of pumping and preparation for device removal, as this indicates a balloon rupture. Stop pumping by placing the IABP console in standby mode. Disconnect the catheter extender tubing from the IABP console to allow the balloon to deflate. Clamp the extracorporeal tubing between the white Y-fitting and the male connector. Place the patient in Trendelenburg position if tolerated, to help guide any residual helium away from cerebral vessels. Notify the physician immediately and prepare for urgent IAB catheter removal or replacement.",
       "type": "single_select"
     },
     {
