@@ -453,6 +453,7 @@
     els.retryMissedBtn = $('#retryMissedBtn');
     els.restartBtnSummary = $('#restartBtnSummary');
     els.summaryActions = $('#summaryActions');
+    els.resetBtn = $('#resetBtn');
   }
 
   // -----------------------------------------------------------
@@ -462,6 +463,7 @@
     if (els.launcher) els.launcher.classList.toggle('hidden', viewName !== 'launcher');
     if (els.quiz) els.quiz.classList.toggle('hidden', viewName !== 'quiz');
     if (els.summary) els.summary.classList.toggle('hidden', viewName !== 'summary');
+    if (els.resetBtn) els.resetBtn.classList.toggle('hidden', viewName !== 'quiz');
   }
 
   // -----------------------------------------------------------
@@ -522,9 +524,39 @@
     clearResumeData();
     showView('quiz');
     if (els.countersBox) els.countersBox.classList.remove('hidden');
+    if (els.resetBtn) els.resetBtn.classList.remove('hidden');
     nextQuestion();
     
     // Center quiz card after first question loads
+    setTimeout(() => {
+      const quizCard = document.getElementById('quiz');
+      if (quizCard) {
+        quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 50);
+  }
+
+  function resetQuiz() {
+    if (!run || !state.questions) return;
+
+    console.log('[Quiz] Resetting quiz...');
+    
+    // Rebuild run with same configuration
+    run = buildRun(state.questions, {
+      count: state.quizLength,
+      isComprehensive: state.isComprehensive,
+      isCategoryQuiz: state.isCategoryQuiz,
+      isRetry: false
+    });
+
+    console.log('[Quiz] Quiz reset with', run.quizLength, 'new questions');
+    clearResumeData();
+    
+    // Reset to first question
+    run.questionNumber = 0;
+    nextQuestion();
+    
+    // Center quiz card after reset
     setTimeout(() => {
       const quizCard = document.getElementById('quiz');
       if (quizCard) {
@@ -1186,7 +1218,9 @@
         returnBtn.className = 'return-btn';
         returnBtn.style.cssText = 'flex: 1; min-width: 0;';
         returnBtn.href = window.backUrl;
-        returnBtn.innerHTML = '<span>← Return to NCLEX</span><span>Learning Page</span>';
+        // Use dynamic backLabel from window, fallback to default
+        const label = window.backLabel || 'Learning Page';
+        returnBtn.innerHTML = `<span>← Return to</span><span>${label}</span>`;
         els.summaryActions.appendChild(returnBtn);
       }
     }
@@ -1330,6 +1364,10 @@
   function setupEvents() {
     if (els.startBtn) {
       els.startBtn.addEventListener('click', startQuiz);
+    }
+
+    if (els.resetBtn) {
+      els.resetBtn.addEventListener('click', resetQuiz);
     }
 
     if (els.resumeBtn) {
