@@ -327,10 +327,52 @@
     return false;
   }
 
-  // Get first correct answer for FITB display
+  // Get display text for all correct answers (handles multi-blank)
   function getFitbCorrectAnswerText(q) {
     const answers = getFitbCorrectAnswers(q);
-    return answers.length > 0 ? answers[0] : '(No correct answer defined)';
+    
+    if (answers.length === 0) {
+      return '(No correct answer defined)';
+    }
+
+    // Check if nested arrays (multi-blank format)
+    if (Array.isArray(answers[0])) {
+      // Multi-blank: show each blank's answer
+      const blankAnswers = answers.map((blankOptions, idx) => {
+        // For each blank, show all options joined with " or "
+        const options = blankOptions.join(' or ');
+        return `Blank ${idx + 1}: ${options}`;
+      });
+      return blankAnswers.join(' | ');
+    }
+
+    // Single-blank: return first answer
+    return answers[0] || '(No correct answer defined)';
+  }
+
+  // Count blanks in question stem (number of ____ patterns)
+  function countBlanks(stem) {
+    if (!stem) return 0;
+    const matches = stem.match(/____/g);
+    return matches ? matches.length : 0;
+  }
+
+  // Get correct answers for specific blank position (for multi-blank questions)
+  // Returns array of acceptable variations for that blank
+  function getFitbCorrectAnswersForBlank(q, blankIndex) {
+    const allAnswers = getFitbCorrectAnswers(q);
+    
+    // If answers are nested arrays (multi-blank format)
+    if (Array.isArray(allAnswers[0])) {
+      return allAnswers[blankIndex] || [];
+    }
+    
+    // If flat array (single blank), return as-is
+    if (blankIndex === 0) {
+      return allAnswers;
+    }
+    
+    return [];
   }
 
   // -----------------------------------------------------------
@@ -693,7 +735,23 @@
       els.questionText.textContent = getQuestionText(q);
     }
 
-    // Get blank label
+    // Count blanks in the question
+    const blankCount = countBlanks(getQuestionText(q));
+    
+    if (blankCount > 1) {
+      // Multi-blank question
+      return renderMultiBlankFitbQuestion(q, blankCount);
+    }
+
+    // Single-blank question (existing logic)
+    return renderSingleBlankFitbQuestion(q);
+  }
+
+  // -----------------------------------------------------------
+  // Render Single-Blank FITB Question
+  // -----------------------------------------------------------
+  function renderSingleBlankFitbQuestion(q) {
+    // Get blank label (or use default)
     const blankLabel = q.blank_label || 'Your answer';
 
     // Render fill-in-the-blank input
@@ -701,6 +759,7 @@
       els.optionsForm.innerHTML = '';
       els.optionsForm.className = 'fitb-container';
       els.optionsForm.dataset.questionType = 'fitb';
+      els.optionsForm.dataset.blankCount = '1';
 
       const wrapper = document.createElement('div');
       wrapper.className = 'fitb-input-wrapper';
@@ -715,6 +774,7 @@
       input.id = 'fitbInput';
       input.placeholder = 'Type your answer here...';
       input.dataset.qid = q.id;
+      input.dataset.blankIndex = '0';
       input.autocomplete = 'off';
 
       wrapper.appendChild(label);
@@ -726,9 +786,7 @@
 
       // Enable submit button when input has text
       input.addEventListener('input', () => {
-        if (els.submitBtn) {
-          els.submitBtn.disabled = input.value.trim().length === 0;
-        }
+        updateFitbSubmitButtonState();
       });
 
       // Allow Enter key to submit
@@ -746,6 +804,84 @@
       els.submitBtn.textContent = 'Submit';
       els.submitBtn.dataset.mode = 'submit';
     }
+  }
+
+  // -----------------------------------------------------------
+  // Render Multi-Blank FITB Question (NEW)
+  // -----------------------------------------------------------
+  function renderMultiBlankFitbQuestion(q, blankCount) {
+    if (els.optionsForm) {
+      els.optionsForm.innerHTML = '';
+      els.optionsForm.className = 'fitb-container';
+      els.optionsForm.dataset.questionType = 'fitb';
+      els.optionsForm.dataset.blankCount = String(blankCount);
+
+      // Create input field for each blank
+      for (let i = 0; i < blankCount; i++) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'fitb-input-wrapper';
+
+        const label = document.createElement('div');
+        label.className = 'fitb-label';
+        label.textContent = `Blank ${i + 1}`;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'fitb-input';
+        input.id = `fitbInput${i}`;
+        input.placeholder = `Blank ${i + 1} answer...`;
+        input.dataset.qid = q.id;
+        input.dataset.blankIndex = String(i);
+        input.autocomplete = 'off';
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        els.optionsForm.appendChild(wrapper);
+
+        // Focus on first input
+        if (i === 0) {
+          input.focus();
+        }
+
+        // Enable submit button when all inputs have text
+        input.addEventListener('input', () => {
+          updateFitbSubmitButtonState();
+        });
+
+        // Allow Enter key to submit only if all blanks filled
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter' && els.submitBtn && !els.submitBtn.disabled) {
+            e.preventDefault();
+            handleSubmit();
+          }
+        });
+      }
+    }
+
+    // Reset submit button
+    if (els.submitBtn) {
+      els.submitBtn.disabled = true;
+      els.submitBtn.textContent = 'Submit';
+      els.submitBtn.dataset.mode = 'submit';
+    }
+  }
+
+  // Update submit button state for FITB (handles both single and multi-blank)
+  function updateFitbSubmitButtonState() {
+    if (!els.optionsForm || !els.submitBtn) return;
+
+    const blankCount = parseInt(els.optionsForm.dataset.blankCount || '1', 10);
+    let allFilled = true;
+
+    for (let i = 0; i < blankCount; i++) {
+      const input = document.getElementById(`fitbInput${i}`) || document.getElementById('fitbInput');
+      if (!input || !input.value.trim()) {
+        allFilled = false;
+        break;
+      }
+    }
+
+    els.submitBtn.disabled = !allFilled;
   }
 
   // -----------------------------------------------------------
@@ -887,12 +1023,29 @@
 
     // ===== FITB SUBMISSION (NEW) =====
     if (isFitb) {
-      const input = document.getElementById('fitbInput');
-      if (!input) return;
+      const q = run.current;
+      const blankCount = countBlanks(getQuestionText(q));
+      
+      // Get all user inputs
+      const userAnswers = [];
+      let allAnswered = true;
+      
+      for (let i = 0; i < blankCount; i++) {
+        const input = document.getElementById(`fitbInput${i}`) || document.getElementById('fitbInput');
+        if (!input) {
+          allAnswered = false;
+          break;
+        }
+        const answer = input.value.trim();
+        if (!answer) {
+          allAnswered = false;
+          break;
+        }
+        userAnswers.push(answer);
+      }
 
-      const userAnswer = input.value.trim();
-      if (!userAnswer) {
-        alert('Please enter an answer');
+      if (!allAnswered) {
+        alert('Please fill in all blanks');
         return;
       }
 
@@ -900,7 +1053,26 @@
         run.answered = true;
         run.totalAttempts++;
 
-        const isCorrect = isFitbAnswerCorrect(userAnswer, q);
+        // Check if all blanks are correct
+        let isCorrect = true;
+        for (let i = 0; i < blankCount; i++) {
+          const correctAnswersForBlank = getFitbCorrectAnswersForBlank(q, i);
+          const userAnswer = userAnswers[i];
+          
+          // Check if this blank's answer matches any of its correct variations
+          let blankCorrect = false;
+          for (const correctAns of correctAnswersForBlank) {
+            if (normalizeAnswer(userAnswer) === normalizeAnswer(correctAns)) {
+              blankCorrect = true;
+              break;
+            }
+          }
+          
+          if (!blankCorrect) {
+            isCorrect = false;
+            break;
+          }
+        }
 
         // Record attempt
         let rec = run.perQuestion.find(p => p.id === q.id);
@@ -910,9 +1082,19 @@
         }
         rec.attempts++;
 
-        // Disable input and show result styling
-        input.disabled = true;
-        input.classList.remove('wrong', 'correct');
+        // Disable all inputs and show result styling
+        for (let i = 0; i < blankCount; i++) {
+          const input = document.getElementById(`fitbInput${i}`) || document.getElementById('fitbInput');
+          if (input) {
+            input.disabled = true;
+            input.classList.remove('wrong', 'correct');
+            if (isCorrect) {
+              input.classList.add('correct');
+            } else {
+              input.classList.add('wrong');
+            }
+          }
+        }
 
         if (isCorrect) {
           if (rec.correct === null) {
@@ -920,7 +1102,6 @@
             run.correctFirstTry++;
           }
           run.mastered.add(q.id);
-          input.classList.add('correct');
         } else {
           if (rec.correct === null) {
             rec.correct = false;
@@ -929,9 +1110,9 @@
           run.missedQueue.push(q);
         }
 
-        // Add result icon
-        const wrapper = input.closest('.fitb-input-wrapper');
-        if (wrapper) {
+        // Add result icons for all blanks
+        const wrappers = els.optionsForm.querySelectorAll('.fitb-input-wrapper');
+        wrappers.forEach((wrapper, idx) => {
           const existingIcon = wrapper.querySelector('.fitb-result-icon');
           if (existingIcon) existingIcon.remove();
 
@@ -939,7 +1120,7 @@
           icon.className = `fitb-result-icon ${isCorrect ? 'correct' : 'wrong'}`;
           icon.textContent = isCorrect ? '✓' : '✗';
           wrapper.appendChild(icon);
-        }
+        });
 
         // Show feedback
         showFeedback(isCorrect, q, true);
