@@ -10,12 +10,15 @@
    - Progress tracking via StudyGuruProgress
    - Mastery-based requeue system
    - Resume quiz support
+   - Fill-in-the-blank question support (NEW)
    
    PATCH NOTES:
-   - Fixed field names: stem, options, correct (NCLEX format)
-   - Fixed HTML structure: .opt wrapper with .k and .ans spans
-   - Fixed correct answer detection for ["C"] letter format
-   - Matches existing CSS styling in style.css
+   - Added FITB detection and rendering
+   - Added FITB answer validation and normalization
+   - Added FITB submission handling
+   - All MCQ functionality unchanged
+   - Mixed MCQ+FITB quizzes now supported
+   
 ------------------------------------------------------------ */
 
 (function () {
@@ -246,6 +249,61 @@
     }
     
     return true;
+  }
+
+  // -----------------------------------------------------------
+  // Fill-in-the-Blank Helpers (NEW)
+  // -----------------------------------------------------------
+
+  // Detect if question is fill-in-the-blank
+  function isFitbQuestion(q) {
+    return q.type === 'fill_in_the_blank' || 
+           q.type === 'fitb' || 
+           q.type === 'fill-in-the-blank' ||
+           !getChoices(q) || 
+           getChoices(q).length === 0;
+  }
+
+  // Normalize answer for comparison (lowercase, trim whitespace, remove extra spaces)
+  function normalizeAnswer(text) {
+    if (!text) return '';
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, ' ');  // Collapse multiple spaces to single space
+  }
+
+  // Get correct answer(s) from FITB question
+  function getFitbCorrectAnswers(q) {
+    if (!q.correct) {
+      if (q.correctAnswer) return Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
+      if (q.answer) return Array.isArray(q.answer) ? q.answer : [q.answer];
+      return [];
+    }
+    if (Array.isArray(q.correct)) return q.correct;
+    return [String(q.correct)];
+  }
+
+  // Check if user answer matches any correct answer (case-insensitive, whitespace-tolerant)
+  function isFitbAnswerCorrect(userAnswer, q) {
+    const correctAnswers = getFitbCorrectAnswers(q);
+    if (correctAnswers.length === 0) return false;
+
+    const normalized = normalizeAnswer(userAnswer);
+    if (!normalized) return false;
+
+    for (const correct of correctAnswers) {
+      if (normalizeAnswer(correct) === normalized) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Get first correct answer for FITB display
+  function getFitbCorrectAnswerText(q) {
+    const answers = getFitbCorrectAnswers(q);
+    return answers.length > 0 ? answers[0] : '(No correct answer defined)';
   }
 
   // -----------------------------------------------------------
@@ -540,11 +598,101 @@
   }
 
   // -----------------------------------------------------------
-  // Render Question - FIXED HTML STRUCTURE
-  // Uses .opt wrapper, .k letter badge, .ans text span
-  // Uses checkbox for multi-select, radio for single-select
+  // Render Question - DETECTS MCQ vs FITB
   // -----------------------------------------------------------
   function renderQuestion(q) {
+    // Check if this is a fill-in-the-blank question
+    if (isFitbQuestion(q)) {
+      return renderFitbQuestion(q);
+    }
+
+    // MCQ rendering below
+    renderMcqQuestion(q);
+  }
+
+  // -----------------------------------------------------------
+  // Render Fill-in-the-Blank Question (NEW)
+  // -----------------------------------------------------------
+  function renderFitbQuestion(q) {
+    // Clear feedback
+    if (els.feedback) {
+      els.feedback.classList.add('hidden');
+      els.feedback.textContent = '';
+      els.feedback.className = 'feedback hidden';
+    }
+    if (els.rationale) {
+      els.rationale.classList.add('hidden');
+      els.rationale.textContent = '';
+    }
+    if (els.answerLine) {
+      els.answerLine.classList.add('hidden');
+      els.answerLine.textContent = '';
+    }
+
+    // Show question text
+    if (els.questionText) {
+      els.questionText.textContent = getQuestionText(q);
+    }
+
+    // Get blank label
+    const blankLabel = q.blank_label || 'Your answer';
+
+    // Render fill-in-the-blank input
+    if (els.optionsForm) {
+      els.optionsForm.innerHTML = '';
+      els.optionsForm.className = 'fitb-container';
+      els.optionsForm.dataset.questionType = 'fitb';
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'fitb-input-wrapper';
+
+      const label = document.createElement('div');
+      label.className = 'fitb-label';
+      label.textContent = blankLabel;
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'fitb-input';
+      input.id = 'fitbInput';
+      input.placeholder = 'Type your answer here...';
+      input.dataset.qid = q.id;
+      input.autocomplete = 'off';
+
+      wrapper.appendChild(label);
+      wrapper.appendChild(input);
+      els.optionsForm.appendChild(wrapper);
+
+      // Focus on input
+      input.focus();
+
+      // Enable submit button when input has text
+      input.addEventListener('input', () => {
+        if (els.submitBtn) {
+          els.submitBtn.disabled = input.value.trim().length === 0;
+        }
+      });
+
+      // Allow Enter key to submit
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && input.value.trim().length > 0 && els.submitBtn && !els.submitBtn.disabled) {
+          e.preventDefault();
+          handleSubmit();
+        }
+      });
+    }
+
+    // Reset submit button
+    if (els.submitBtn) {
+      els.submitBtn.disabled = true;
+      els.submitBtn.textContent = 'Submit';
+      els.submitBtn.dataset.mode = 'submit';
+    }
+  }
+
+  // -----------------------------------------------------------
+  // Render MCQ Question (MOVED FROM renderQuestion)
+  // -----------------------------------------------------------
+  function renderMcqQuestion(q) {
     // Clear feedback
     if (els.feedback) {
       els.feedback.classList.add('hidden');
@@ -573,6 +721,7 @@
     if (els.optionsForm) {
       els.optionsForm.innerHTML = '';
       els.optionsForm.className = 'options';
+      els.optionsForm.dataset.questionType = 'mcq';
       if (multiSelect) {
         els.optionsForm.classList.add('is-multi-select');
       }
@@ -674,6 +823,100 @@
     if (!run || !run.current) return;
 
     const mode = els.submitBtn?.dataset.mode;
+    const q = run.current;
+    const isFitb = isFitbQuestion(q);
+
+    // ===== FITB SUBMISSION (NEW) =====
+    if (isFitb) {
+      const input = document.getElementById('fitbInput');
+      if (!input) return;
+
+      const userAnswer = input.value.trim();
+      if (!userAnswer) {
+        alert('Please enter an answer');
+        return;
+      }
+
+      if (mode === 'submit') {
+        run.answered = true;
+        run.totalAttempts++;
+
+        const isCorrect = isFitbAnswerCorrect(userAnswer, q);
+
+        // Record attempt
+        let rec = run.perQuestion.find(p => p.id === q.id);
+        if (!rec) {
+          rec = { id: q.id, correct: null, attempts: 0, questionObj: q };
+          run.perQuestion.push(rec);
+        }
+        rec.attempts++;
+
+        // Disable input and show result styling
+        input.disabled = true;
+        input.classList.remove('wrong', 'correct');
+
+        if (isCorrect) {
+          if (rec.correct === null) {
+            rec.correct = true;
+            run.correctFirstTry++;
+          }
+          run.mastered.add(q.id);
+          input.classList.add('correct');
+        } else {
+          if (rec.correct === null) {
+            rec.correct = false;
+            run.incorrectFirstTry++;
+          }
+          run.missedQueue.push(q);
+        }
+
+        // Add result icon
+        const wrapper = input.closest('.fitb-input-wrapper');
+        if (wrapper) {
+          const existingIcon = wrapper.querySelector('.fitb-result-icon');
+          if (existingIcon) existingIcon.remove();
+
+          const icon = document.createElement('span');
+          icon.className = `fitb-result-icon ${isCorrect ? 'correct' : 'wrong'}`;
+          icon.textContent = isCorrect ? '✓' : '✗';
+          wrapper.appendChild(icon);
+        }
+
+        // Show feedback
+        showFeedback(isCorrect, q, true);
+
+        // Change button to Next
+        if (els.submitBtn) {
+          els.submitBtn.textContent = 'Next →';
+          els.submitBtn.dataset.mode = 'next';
+          els.submitBtn.disabled = false;
+        }
+
+        // Scroll to show feedback
+        setTimeout(() => {
+          if (els.answerLine && !els.answerLine.classList.contains('hidden')) {
+            els.answerLine.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else if (els.feedback && !els.feedback.classList.contains('hidden')) {
+            els.feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
+
+        updateProgress();
+        saveResumeData();
+
+      } else if (mode === 'next') {
+        nextQuestion();
+        setTimeout(() => {
+          const quizCard = document.getElementById('quiz');
+          if (quizCard) {
+            quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 50);
+      }
+      return;
+    }
+
+    // ===== MCQ SUBMISSION (EXISTING) =====
 
     if (mode === 'submit') {
       const checkedInputs = els.optionsForm?.querySelectorAll('input[name="answer"]:checked');
@@ -682,7 +925,6 @@
       run.answered = true;
       run.totalAttempts++;
 
-      const q = run.current;
       const multiSelect = isMultiSelect(q);
       
       // Get all selected original indices
@@ -714,7 +956,7 @@
           run.correctFirstTry++;
         }
         run.mastered.add(q.id);
-        showFeedback(true, q);
+        showFeedback(true, q, false);
 
         // Add checkmark icons to all correct answers (which user selected correctly)
         allOpts.forEach(opt => {
@@ -735,7 +977,7 @@
           run.queue = run.queue.concat(run.missedQueue.splice(0));
         }
 
-        showFeedback(false, q);
+        showFeedback(false, q, false);
 
         // Add icons: X for wrong selections, checkmark for correct answers
         allOpts.forEach(opt => {
@@ -815,7 +1057,7 @@
   // -----------------------------------------------------------
   // Show Feedback
   // -----------------------------------------------------------
-  function showFeedback(isCorrect, q) {
+  function showFeedback(isCorrect, q, isFitb = false) {
     if (!els.feedback) return;
 
     els.feedback.classList.remove('hidden');
@@ -829,12 +1071,16 @@
     }
 
     // Always show correct answer (for both correct and incorrect)
-    const correctAnswer = getCorrectAnswerText(q);
+    const correctAnswer = isFitb ? getFitbCorrectAnswerText(q) : getCorrectAnswerText(q);
     if (els.answerLine && correctAnswer) {
       els.answerLine.classList.remove('hidden');
-      // Convert newlines to <br> for multi-select vertical display
-      const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
-      els.answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formattedAnswer}`;
+      if (isFitb) {
+        els.answerLine.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}`;
+      } else {
+        // Convert newlines to <br> for multi-select vertical display
+        const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
+        els.answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formattedAnswer}`;
+      }
     }
 
     // Show rationale if available
@@ -899,14 +1145,22 @@
         const div = document.createElement('div');
         div.className = `review-item ${p.correct ? 'review-correct' : 'review-incorrect'}`;
 
-        const correctAnswer = getCorrectAnswerText(q);
+        const isFitb = isFitbQuestion(q);
+        const correctAnswer = isFitb ? getFitbCorrectAnswerText(q) : getCorrectAnswerText(q);
         const questionText = getQuestionText(q);
-        // Convert newlines to <br> for multi-select vertical display
-        const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
+        
+        // Format answer display
+        let answerHtml;
+        if (isFitb) {
+          answerHtml = `<div class="review-correct-answer"><strong>Correct Answer:</strong> ${correctAnswer}</div>`;
+        } else {
+          const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
+          answerHtml = `<div class="review-correct-answer"><strong>Correct Answer:</strong><br>${formattedAnswer}</div>`;
+        }
 
         div.innerHTML = `
           <div class="review-question"><strong>${p.correct ? '✅' : '❌'}</strong> ${questionText}</div>
-          <div class="review-correct-answer"><strong>Correct Answer:</strong><br>${formattedAnswer}</div>
+          ${answerHtml}
           ${q.rationale ? `<div class="review-rationale"><strong>Rationale:</strong> ${q.rationale}</div>` : ''}
         `;
 
@@ -1104,31 +1358,33 @@
       
       const key = e.key.toUpperCase();
       
-      // Letter keys A-H to select/deselect options
-      const letterIndex = LETTERS.indexOf(key);
-      if (letterIndex !== -1 && !run.answered) {
-        const input = els.optionsForm.querySelector(`#opt${letterIndex}`);
-        if (input && !input.disabled) {
-          e.preventDefault();
-          
-          const multiSelect = isMultiSelect(run.current);
-          
-          if (multiSelect) {
-            // Multi-select: toggle the checkbox
-            input.checked = !input.checked;
-          } else {
-            // Single-select: toggle behavior
-            if (input.checked) {
-              // Deselect if already selected
-              input.checked = false;
+      // Letter keys A-H to select/deselect options (MCQ only)
+      if (!isFitbQuestion(run.current)) {
+        const letterIndex = LETTERS.indexOf(key);
+        if (letterIndex !== -1 && !run.answered) {
+          const input = els.optionsForm.querySelector(`#opt${letterIndex}`);
+          if (input && !input.disabled) {
+            e.preventDefault();
+            
+            const multiSelect = isMultiSelect(run.current);
+            
+            if (multiSelect) {
+              // Multi-select: toggle the checkbox
+              input.checked = !input.checked;
             } else {
-              // Select this one (radio buttons auto-deselect others)
-              input.checked = true;
+              // Single-select: toggle behavior
+              if (input.checked) {
+                // Deselect if already selected
+                input.checked = false;
+              } else {
+                // Select this one (radio buttons auto-deselect others)
+                input.checked = true;
+              }
             }
+            
+            // Update submit button state
+            updateSubmitButtonState();
           }
-          
-          // Update submit button state
-          updateSubmitButtonState();
         }
       }
       
