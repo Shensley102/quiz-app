@@ -266,8 +266,10 @@
 
   // Normalize answer for comparison (lowercase, trim whitespace, remove extra spaces)
   function normalizeAnswer(text) {
-    if (!text) return '';
-    return text
+    // Convert to string if needed, handle null/undefined
+    if (text === null || text === undefined) return '';
+    const str = String(text);  // Convert to string first
+    return str
       .toLowerCase()
       .trim()
       .replace(/\s+/g, ' ');  // Collapse multiple spaces to single space
@@ -276,11 +278,19 @@
   // Get correct answer(s) from FITB question
   function getFitbCorrectAnswers(q) {
     if (!q.correct) {
-      if (q.correctAnswer) return Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
-      if (q.answer) return Array.isArray(q.answer) ? q.answer : [q.answer];
+      if (q.correctAnswer) {
+        const ca = Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
+        return ca.map(c => String(c));  // Ensure all are strings
+      }
+      if (q.answer) {
+        const a = Array.isArray(q.answer) ? q.answer : [q.answer];
+        return a.map(c => String(c));  // Ensure all are strings
+      }
       return [];
     }
-    if (Array.isArray(q.correct)) return q.correct;
+    if (Array.isArray(q.correct)) {
+      return q.correct.map(c => String(c));  // Ensure all are strings
+    }
     return [String(q.correct)];
   }
 
