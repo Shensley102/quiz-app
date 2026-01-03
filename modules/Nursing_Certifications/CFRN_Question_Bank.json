@@ -4170,20 +4170,6 @@
     },
     {
       "category": "Cardiac and Hemodynamic Care",
-      "id": "F056",
-      "stem": "The most sensitive early muscle injury marker in this framework is ____.",
-      "options": [],
-      "correct": [
-        [
-          "myoglobin",
-          "Myoglobin"
-        ]
-      ],
-      "rationale": "Myoglobin rises early but is not specific (also present in skeletal muscle).",
-      "type": "fill_in_the_blank"
-    },
-    {
-      "category": "Cardiac and Hemodynamic Care",
       "id": "F057",
       "stem": "In right-sided MI management in this framework, avoid nitroglycerin and give a ____ bolus to support preload.",
       "options": [],
@@ -4287,32 +4273,6 @@
       "rationale": "PVR reflects right ventricular afterload; hypoxia/hypercapnia/acidosis increase PVR and strain the RV.",
       "type": "multi_fill_in_the_blank"
     },
-    {
-      "category": "Cardiac and Hemodynamic Care",
-      "id": "F064",
-      "stem": "Troponin rises with myocardial injury and is more ____ than myoglobin.",
-      "options": [],
-      "correct": [
-        [
-          "specific",
-          "specificity"
-        ]
-      ],
-      "rationale": "Troponin is more specific to cardiac tissue than myoglobin, which is found in many muscle types.",
-      "type": "fill_in_the_blank"
-    },
-    {
-      "category": "Trauma, Burns, and Transfusion",
-      "id": "F065",
-      "stem": "The trauma triad of death consists of hypothermia, acidosis, and ____.",
-      "options": [],
-      "correct": [
-        [
-          "coagulopathy"
-        ]
-      ],
-      "rationale": "Coagulopathy worsens bleeding, which worsens hypothermia and acidosis, creating a lethal cycle that must be interrupted early.",
-      "type": "fill_in_the_blank"
     },
     {
       "category": "Trauma, Burns, and Transfusion",
