@@ -260,6 +260,7 @@
     return q.type === 'fill_in_the_blank' || 
            q.type === 'fitb' || 
            q.type === 'fill-in-the-blank' ||
+           q.type === 'multi_fill_in_the_blank' ||
            !getChoices(q) || 
            getChoices(q).length === 0;
   }
@@ -370,19 +371,60 @@
 
   // Get correct answers for specific blank position (for multi-blank questions)
   // Returns array of acceptable variations for that blank
+  // 
+  // Handles these JSON structures for any number of blanks:
+  // - Single blank with variations: [["800", "eight hundred"]] → Blank 0 accepts "800" or "eight hundred"
+  // - Two blanks: [["800"], ["3"]] → Blank 0 accepts "800", Blank 1 accepts "3"
+  // - Two blanks with variations: [["800", "eight hundred"], ["3", "three"]]
+  // - Three+ blanks: [["10"], ["12"], ["4"], ["5"]] → Four blanks
+  // - Legacy flat format (single blank): ["1.6", "1.6 mEq/L"] → Single blank accepts any of these
   function getFitbCorrectAnswersForBlank(q, blankIndex) {
-    const allAnswers = getFitbCorrectAnswers(q);
+    // Get raw correct value directly from question (not the flattened version)
+    let rawCorrect = null;
     
-    // If answers are nested arrays (multi-blank format)
-    if (Array.isArray(allAnswers[0])) {
-      return allAnswers[blankIndex] || [];
+    if (q.correct) {
+      rawCorrect = q.correct;
+    } else if (q.correctAnswer) {
+      rawCorrect = q.correctAnswer;
+    } else if (q.answer) {
+      rawCorrect = q.answer;
     }
     
-    // If flat array (single blank), return as-is
+    // If no correct answers defined, return empty
+    if (!rawCorrect) {
+      return [];
+    }
+    
+    // Ensure it's an array
+    if (!Array.isArray(rawCorrect)) {
+      rawCorrect = [rawCorrect];
+    }
+    
+    // Check if this is nested arrays (multi-blank format)
+    // e.g., [["800"], ["3"]] or [["800", "eight hundred"], ["3", "three"]]
+    const isNestedFormat = rawCorrect.length > 0 && Array.isArray(rawCorrect[0]);
+    
+    if (isNestedFormat) {
+      // Multi-blank format: rawCorrect[blankIndex] is the array of acceptable answers for that blank
+      const blankAnswers = rawCorrect[blankIndex];
+      if (!blankAnswers) {
+        return [];
+      }
+      // Ensure we return an array of strings
+      if (Array.isArray(blankAnswers)) {
+        return blankAnswers.map(a => String(a));
+      }
+      return [String(blankAnswers)];
+    }
+    
+    // Flat format (legacy single-blank): all items are acceptable answers for blank 0
+    // e.g., ["1.6", "1.6 mEq/L", "1.6 mEq"]
     if (blankIndex === 0) {
-      return allAnswers;
+      return rawCorrect.map(a => String(a));
     }
     
+    // Flat format but asking for blank > 0: this shouldn't happen with well-formed data
+    // Return empty as a fallback
     return [];
   }
 
@@ -1066,6 +1108,8 @@
 
         // Check if all blanks are correct
         let isCorrect = true;
+        const blankResults = []; // Track individual blank correctness for styling
+        
         for (let i = 0; i < blankCount; i++) {
           const correctAnswersForBlank = getFitbCorrectAnswersForBlank(q, i);
           const userAnswer = userAnswers[i];
@@ -1079,9 +1123,10 @@
             }
           }
           
+          blankResults.push(blankCorrect);
+          
           if (!blankCorrect) {
             isCorrect = false;
-            break;
           }
         }
 
@@ -1093,13 +1138,14 @@
         }
         rec.attempts++;
 
-        // Disable all inputs and show result styling
+        // Disable all inputs and show result styling per blank
         for (let i = 0; i < blankCount; i++) {
           const input = document.getElementById(`fitbInput${i}`) || document.getElementById('fitbInput');
           if (input) {
             input.disabled = true;
             input.classList.remove('wrong', 'correct');
-            if (isCorrect) {
+            // Style each blank based on its individual correctness
+            if (blankResults[i]) {
               input.classList.add('correct');
             } else {
               input.classList.add('wrong');
@@ -1128,8 +1174,8 @@
           if (existingIcon) existingIcon.remove();
 
           const icon = document.createElement('span');
-          icon.className = `fitb-result-icon ${isCorrect ? 'correct' : 'wrong'}`;
-          icon.textContent = isCorrect ? '✓' : '✗';
+          icon.className = `fitb-result-icon ${blankResults[idx] ? 'correct' : 'wrong'}`;
+          icon.textContent = blankResults[idx] ? '✓' : '✗';
           wrapper.appendChild(icon);
         });
 
