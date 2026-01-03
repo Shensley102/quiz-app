@@ -329,25 +329,36 @@
 
   // Get display text for all correct answers (handles multi-blank)
   function getFitbCorrectAnswerText(q) {
-    const answers = getFitbCorrectAnswers(q);
-    
-    if (answers.length === 0) {
+    if (!q.correct) {
+      if (q.correctAnswer) {
+        const ca = Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
+        return ca.map(c => String(c)).join(', ');
+      }
+      if (q.answer) {
+        const a = Array.isArray(q.answer) ? q.answer : [q.answer];
+        return a.map(c => String(c)).join(', ');
+      }
       return '(No correct answer defined)';
     }
 
-    // Check if nested arrays (multi-blank format)
-    if (Array.isArray(answers[0])) {
-      // Multi-blank: show each blank's answer
-      const blankAnswers = answers.map((blankOptions, idx) => {
-        // For each blank, show all options joined with " or "
-        const options = blankOptions.join(' or ');
+    const rawCorrect = Array.isArray(q.correct) ? q.correct : [q.correct];
+    
+    // Check if this is a multi-blank question (nested arrays like [["alveolar"], ["30"]])
+    const isMultiBlank = rawCorrect.length > 0 && Array.isArray(rawCorrect[0]);
+    
+    if (isMultiBlank) {
+      // Multi-blank: show each blank's answer(s)
+      const blankAnswers = rawCorrect.map((blankOptions, idx) => {
+        const opts = Array.isArray(blankOptions) ? blankOptions : [blankOptions];
+        const options = opts.map(o => String(o)).join(' or ');
         return `Blank ${idx + 1}: ${options}`;
       });
       return blankAnswers.join(' | ');
     }
 
-    // Single-blank: return first answer
-    return answers[0] || '(No correct answer defined)';
+    // Single-blank or flat array: show all as comma-separated
+    const answers = rawCorrect.map(c => String(c));
+    return answers.length > 0 ? answers.join(', ') : '(No correct answer defined)';
   }
 
   // Count blanks in question stem (number of ____ patterns)
