@@ -46,20 +46,35 @@
             display: none;
         }
 
-        .back-link {
-            display: inline-block;
-            color: #0066cc;
-            text-decoration: none;
-            margin-bottom: 8px;
-            font-weight: 500;
+        /* Navigation Links - Differentiated Styling */
+        .nav-links {
+            margin-bottom: 20px;
         }
 
-        .back-link:hover {
+        .nav-links .home-link {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .nav-links .home-link:hover {
+            color: #333;
             text-decoration: underline;
         }
 
-        .nav-links {
-            margin-bottom: 20px;
+        .nav-links .back-link {
+            display: inline-block;
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links .back-link:hover {
+            text-decoration: underline;
         }
 
         .page-header {
@@ -259,7 +274,7 @@
 
     <div class="container">
         <div class="nav-links">
-            <a href="/" class="back-link">← Nurse Success Study Hub</a><br>
+            <a href="/" class="home-link">🏠 Nurse Success Study Hub</a><br>
             <a href="/category/Pharmacology" class="back-link">← Pharmacology</a>
         </div>
         
