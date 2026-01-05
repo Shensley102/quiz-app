@@ -48,6 +48,24 @@
     }
     .offline-indicator.hidden { display: none; }
     
+    /* Navigation links container */
+    .nav-links {
+      margin-bottom: 4px;
+    }
+    .nav-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      font-size: 14px;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    .nav-links .home-link {
+      margin-bottom: 4px;
+    }
+    
     /* Return button styling */
     .return-btn {
       display: flex;
@@ -117,7 +135,10 @@
     <!-- Title Bar -->
     <div class="title-bar">
       <div>
-        <a href="{{ back_url if back_url else '/' }}" id="backLink" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 4px; display: inline-block; font-size: 14px;">← {{ back_label if back_label else 'Home' }}</a>
+        <div class="nav-links">
+          <a href="/" class="home-link">← Nurse Success Study Hub</a><br>
+          <a href="{{ back_url if back_url else '/' }}" id="backLink">← {{ back_label if back_label else 'Home' }}</a>
+        </div>
         <h1 id="pageTitle">{{ module_name | replace('_', ' ') if module_name else 'Select a Module' }}</h1>
       </div>
     </div>
