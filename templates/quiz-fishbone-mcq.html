@@ -71,18 +71,28 @@
       margin-bottom: 20px;
     }
     .header { margin-bottom: 30px; }
+    /* Navigation Links - Differentiated Styling */
     .nav-links { margin-bottom: 12px; }
-    .back-link {
+    .nav-links .home-link {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 4px;
+      display: inline-block;
+      font-size: 12px;
+      transition: color 0.2s;
+    }
+    .nav-links .home-link:hover { color: white; }
+    .nav-links .back-link {
       color: white;
       text-decoration: none;
       font-weight: 600;
-      margin-bottom: 8px;
       display: inline-block;
       font-size: 14px;
       opacity: 0.9;
       transition: opacity 0.2s;
     }
-    .back-link:hover { opacity: 1; }
+    .nav-links .back-link:hover { opacity: 1; }
     h1 { margin: 0 0 12px 0; font-size: 36px; color: white; font-weight: 800; }
     .subtitle { color: rgba(255, 255, 255, 0.9); font-size: 18px; margin: 0; }
     .progress-section {
@@ -264,7 +274,7 @@
   <div class="container">
     <div class="header">
       <div class="nav-links">
-        <a href="/" class="back-link">← Nurse Success Study Hub</a><br>
+        <a href="/" class="home-link">🏠 Nurse Success Study Hub</a><br>
         <a href="/category/Lab_Values" class="back-link">← Laboratory Values</a>
       </div>
       <h1>🧪 Fishbone Lab Values</h1>
