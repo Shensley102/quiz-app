@@ -50,22 +50,31 @@
       display: none;
     }
 
-    /* Navigation links container */
+    /* Navigation Links - Differentiated Styling */
     .nav-links {
       margin-bottom: 4px;
     }
-    .nav-links a {
+    .nav-links .home-link {
+      color: #666;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .nav-links .home-link:hover {
+      color: #333;
+      text-decoration: underline;
+    }
+    .nav-links .back-link {
       color: var(--primary);
       text-decoration: none;
       font-weight: 600;
       display: inline-block;
       font-size: 14px;
     }
-    .nav-links a:hover {
+    .nav-links .back-link:hover {
       text-decoration: underline;
-    }
-    .nav-links .home-link {
-      margin-bottom: 4px;
     }
 
     /* Fill-in-the-blank specific styles */
@@ -296,8 +305,8 @@
     <div class="title-bar">
       <div>
         <div class="nav-links">
-          <a href="/" class="home-link">← Nurse Success Study Hub</a><br>
-          <a href="{{ back_url if back_url else '/' }}">← {{ back_label if back_label else 'Nurse Success Study Hub' }}</a>
+          <a href="/" class="home-link">🏠 Nurse Success Study Hub</a><br>
+          <a href="{{ back_url if back_url else '/' }}" class="back-link">← {{ back_label if back_label else 'Nurse Success Study Hub' }}</a>
         </div>
         <h1 id="quizTitle">Lab Values - Fill in the Blank <span class="hard-badge">HARD MODE</span></h1>
       </div>
