@@ -50,6 +50,24 @@
       display: none;
     }
 
+    /* Navigation links container */
+    .nav-links {
+      margin-bottom: 4px;
+    }
+    .nav-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      font-size: 14px;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    .nav-links .home-link {
+      margin-bottom: 4px;
+    }
+
     /* Fill-in-the-blank specific styles */
     .fill-blank-inputs {
       display: flex;
@@ -277,7 +295,10 @@
     <!-- Title Bar -->
     <div class="title-bar">
       <div>
-        <a href="{{ back_url if back_url else '/' }}" style="color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 4px; display: inline-block; font-size: 14px;">← {{ back_label if back_label else 'Nurse Success Study Hub' }}</a>
+        <div class="nav-links">
+          <a href="/" class="home-link">← Nurse Success Study Hub</a><br>
+          <a href="{{ back_url if back_url else '/' }}">← {{ back_label if back_label else 'Nurse Success Study Hub' }}</a>
+        </div>
         <h1 id="quizTitle">Lab Values - Fill in the Blank <span class="hard-badge">HARD MODE</span></h1>
       </div>
       <div id="resumeContainer" class="resume-container hidden">
