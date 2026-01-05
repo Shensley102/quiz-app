@@ -51,6 +51,10 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
+        .nav-links {
+            margin-bottom: 15px;
+        }
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -58,7 +62,7 @@
             color: #00acc1;
             text-decoration: none;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             transition: transform 0.2s;
         }
 
@@ -252,10 +256,16 @@
 <body>
     <div class="container">
         <div class="header">
-            <a href="/category/Pharmacology" class="back-link">
-                <span>←</span>
-                <span>Back to Pharmacology</span>
-            </a>
+            <div class="nav-links">
+                <a href="/" class="back-link">
+                    <span>←</span>
+                    <span>Nurse Success Study Hub</span>
+                </a><br>
+                <a href="/category/Pharmacology" class="back-link">
+                    <span>←</span>
+                    <span>Back to Pharmacology</span>
+                </a>
+            </div>
             <div class="category-icon">🗂️</div>
             <h1>Pharmacology by Category</h1>
             <p class="description">
