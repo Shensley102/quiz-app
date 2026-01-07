@@ -202,6 +202,42 @@
       color: #2f61f3;
     }
 
+    /* Comprehensive Section */
+    .comprehensive-section {
+      max-width: 900px;
+      margin: 0 auto 30px;
+      padding: 0 20px;
+    }
+
+    .comprehensive-card {
+      border: 2px solid #10b981;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.08));
+    }
+
+    .comprehensive-card:hover {
+      border-color: #059669;
+    }
+
+    .comprehensive-badge {
+      background: linear-gradient(135deg, #10b981, #059669) !important;
+    }
+
+    .comprehensive-btn {
+      border-color: #10b981 !important;
+      color: #10b981 !important;
+    }
+
+    .comprehensive-btn:hover:not(.disabled) {
+      background: #10b981 !important;
+      color: white !important;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+    }
+
+    .comprehensive-btn.disabled {
+      border-color: #ddd !important;
+      color: #bbb !important;
+    }
+
     @media (max-width: 600px) {
       .module-grid {
         grid-template-columns: 1fr;
@@ -220,6 +256,10 @@
         padding: 12px 6px;
         font-size: 13px;
         min-width: 50px;
+      }
+
+      .comprehensive-section {
+        padding: 0 16px;
       }
     }
   </style>
@@ -339,6 +379,27 @@
             <a href="/category/Adult_Health/module/5?quiz_length=25&autostart=true" class="quiz-btn {% if count5 < 25 %}disabled{% endif %}" {% if count5 < 25 %}onclick="return false;"{% endif %}>25</a>
             <a href="/category/Adult_Health/module/5?quiz_length=50&autostart=true" class="quiz-btn {% if count5 < 50 %}disabled{% endif %}" {% if count5 < 50 %}onclick="return false;"{% endif %}>50</a>
             <a href="/category/Adult_Health/module/5?quiz_length=100&autostart=true" class="quiz-btn {% if count5 < 100 %}disabled{% endif %}" {% if count5 < 100 %}onclick="return false;"{% endif %}>100</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comprehensive Quiz Card -->
+    <div class="comprehensive-section">
+      <div class="module-card comprehensive-card">
+        <div class="module-header">
+          <span class="module-number comprehensive-badge">COMPREHENSIVE</span>
+          <h3 class="module-title">All Modules Combined</h3>
+          <p class="module-status available">{{ total_count if total_count else 0 }} questions available</p>
+        </div>
+        <div class="quiz-length-section">
+          <div class="quiz-length-label">Quiz Length</div>
+          <div class="quiz-length-buttons">
+            {% set countAll = total_count if total_count else 0 %}
+            <a href="/category/Adult_Health/module/comprehensive?quiz_length=10&autostart=true" class="quiz-btn comprehensive-btn {% if countAll < 10 %}disabled{% endif %}" {% if countAll < 10 %}onclick="return false;"{% endif %}>10</a>
+            <a href="/category/Adult_Health/module/comprehensive?quiz_length=25&autostart=true" class="quiz-btn comprehensive-btn {% if countAll < 25 %}disabled{% endif %}" {% if countAll < 25 %}onclick="return false;"{% endif %}>25</a>
+            <a href="/category/Adult_Health/module/comprehensive?quiz_length=50&autostart=true" class="quiz-btn comprehensive-btn {% if countAll < 50 %}disabled{% endif %}" {% if countAll < 50 %}onclick="return false;"{% endif %}>50</a>
+            <a href="/category/Adult_Health/module/comprehensive?quiz_length=100&autostart=true" class="quiz-btn comprehensive-btn {% if countAll < 100 %}disabled{% endif %}" {% if countAll < 100 %}onclick="return false;"{% endif %}>100</a>
           </div>
         </div>
       </div>
