@@ -206,12 +206,13 @@
     .comprehensive-section {
       max-width: 900px;
       margin: 0 auto 30px;
-      padding: 0 20px;
+      padding: 0 0 0 0;
     }
 
     .comprehensive-card {
+      grid-column: 1 / -1;
       border: 2px solid #10b981;
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.08));
+      background: #e6f7f1;
     }
 
     .comprehensive-card:hover {
@@ -256,10 +257,6 @@
         padding: 12px 6px;
         font-size: 13px;
         min-width: 50px;
-      }
-
-      .comprehensive-section {
-        padding: 0 16px;
       }
     }
   </style>
@@ -382,10 +379,8 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Comprehensive Quiz Card -->
-    <div class="comprehensive-section">
+      <!-- Comprehensive Quiz Card -->
       <div class="module-card comprehensive-card">
         <div class="module-header">
           <span class="module-number comprehensive-badge">COMPREHENSIVE</span>
