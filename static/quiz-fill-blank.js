@@ -123,6 +123,53 @@ function getUrlParam(name) {
   return params.get(name);
 }
 
+/* ---------- Question Normalization ---------- */
+// Normalizes different JSON formats to a consistent internal structure
+function normalizeQuestion(q) {
+  // Get question text: prefer 'question', fall back to 'stem'
+  const question = q.question || q.stem || '';
+  
+  // Get answer(s): prefer 'answer', fall back to 'correct'
+  let answer;
+  const rawAnswer = q.answer !== undefined ? q.answer : q.correct;
+  
+  if (Array.isArray(rawAnswer)) {
+    // Check if it's an array of arrays (e.g., [["135"], ["145"]])
+    if (rawAnswer.length > 0 && Array.isArray(rawAnswer[0])) {
+      // Flatten: take first acceptable answer from each blank
+      answer = rawAnswer.map(arr => Array.isArray(arr) ? arr[0] : arr);
+    } else {
+      answer = rawAnswer;
+    }
+  } else {
+    answer = rawAnswer;
+  }
+  
+  // Generate display_answer if not provided
+  let display_answer = q.display_answer;
+  if (!display_answer && answer) {
+    if (Array.isArray(answer)) {
+      // For ranges like ["135", "145"], display as "135 to 145"
+      display_answer = answer.join(' to ');
+    } else {
+      display_answer = String(answer);
+    }
+  }
+  
+  return {
+    id: q.id,
+    question: question,
+    answer: answer,
+    display_answer: display_answer,
+    rationale: q.rationale || ''
+  };
+}
+
+// Normalize an array of questions
+function normalizeQuestions(questions) {
+  return questions.map(normalizeQuestion);
+}
+
 /* ---------- Utilities ---------- */
 const randomInt = (n) => Math.floor(Math.random() * n);
 
@@ -440,7 +487,8 @@ async function startQuiz() {
       rawData = await res.json();
     }
 
-    allQuestions = Array.isArray(rawData) ? rawData : (rawData.questions || []);
+    const rawQuestions = Array.isArray(rawData) ? rawData : (rawData.questions || []);
+    allQuestions = normalizeQuestions(rawQuestions);
 
     const sampled = sampleQuestions(allQuestions, qty);
 
@@ -497,7 +545,8 @@ async function autostartQuiz(quizLength) {
       rawData = await res.json();
     }
 
-    allQuestions = Array.isArray(rawData) ? rawData : (rawData.questions || []);
+    const rawQuestions = Array.isArray(rawData) ? rawData : (rawData.questions || []);
+    allQuestions = normalizeQuestions(rawQuestions);
 
     // Determine quantity from URL parameter
     let qty;
