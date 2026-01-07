@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="Adult Health Nursing - Nurse Success Study Hub">
+  <title>Adult Health - Nurse Success Study Hub</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/category-style.css">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/static/manifest.json">
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#2f61f3">
+  
+  <!-- PWA Specific -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Nurse Study">
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+  
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <style>
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    .module-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e0e0e0;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: block;
+    }
+
+    .module-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .module-card .module-number {
+      display: inline-block;
+      background: linear-gradient(135deg, #2f61f3, #1e4fd6);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .module-card .module-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 8px 0;
+      line-height: 1.3;
+    }
+
+    .module-card .module-status {
+      font-size: 13px;
+      color: #888;
+      margin: 0;
+    }
+
+    .module-card .module-status.available {
+      color: #4caf50;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
+
+    .page-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin: 0 0 8px 0;
+      color: #1a1a1a;
+    }
+
+    .page-header .subtitle {
+      font-size: 16px;
+      color: #666;
+      margin: 0;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: #2f61f3;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .page-description {
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 16px 20px;
+      background: rgba(47, 97, 243, 0.05);
+      border-radius: 10px;
+      border-left: 4px solid #2f61f3;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    @media (max-width: 600px) {
+      .module-grid {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+
+      .page-header h1 {
+        font-size: 26px;
+      }
+
+      .module-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Back Link -->
+    <a href="/" class="back-link">← Back to Study Hub</a>
+
+    <!-- Page Header -->
+    <header class="page-header">
+      <h1>🏥 Adult Health Nursing</h1>
+      <p class="subtitle">Adult health nursing concepts and clinical care</p>
+    </header>
+
+    <!-- Description -->
+    <div class="page-description">
+      Master essential adult health nursing concepts across 5 comprehensive modules covering tissue integrity, perfusion, immunity, neurological regulation, and elimination systems.
+    </div>
+
+    <!-- Module Grid -->
+    <div class="module-grid">
+      <!-- Module 1 -->
+      <a href="/quiz/Adult_Health/Module_1_Tissue_Integrity_Safety" class="module-card">
+        <span class="module-number">MODULE 1</span>
+        <h3 class="module-title">Tissue Integrity & Safety</h3>
+        <p class="module-status">Coming soon</p>
+      </a>
+
+      <!-- Module 2 -->
+      <a href="/quiz/Adult_Health/Module_2_Perfusion" class="module-card">
+        <span class="module-number">MODULE 2</span>
+        <h3 class="module-title">Perfusion</h3>
+        <p class="module-status">Coming soon</p>
+      </a>
+
+      <!-- Module 3 -->
+      <a href="/quiz/Adult_Health/Module_3_Immunity_Infection" class="module-card">
+        <span class="module-number">MODULE 3</span>
+        <h3 class="module-title">Immunity & Infection</h3>
+        <p class="module-status">Coming soon</p>
+      </a>
+
+      <!-- Module 4 -->
+      <a href="/quiz/Adult_Health/Module_4_Intracranial_Regulation_Palliative_Care" class="module-card">
+        <span class="module-number">MODULE 4</span>
+        <h3 class="module-title">Intracranial Regulation & Palliative Care</h3>
+        <p class="module-status">Coming soon</p>
+      </a>
+
+      <!-- Module 5 -->
+      <a href="/quiz/Adult_Health/Module_5_Elimination" class="module-card">
+        <span class="module-number">MODULE 5</span>
+        <h3 class="module-title">Elimination</h3>
+        <p class="module-status">Coming soon</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Progress Store -->
+  <script src="/static/js/progress-store.js"></script>
+  
+  <!-- PWA Utilities -->
+  <script src="/static/js/pwa-utils.js"></script>
+</body>
+</html>
