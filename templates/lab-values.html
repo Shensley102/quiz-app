@@ -178,8 +178,75 @@
         }
 
         .quiz-card-footer {
-            padding: 25px;
+            padding: 20px 25px 25px;
             border-top: 1px solid #eee;
+        }
+
+        /* Quiz Controls in Card Footer */
+        .quiz-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .length-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .length-label {
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .length-buttons {
+            display: flex;
+            gap: 0;
+            flex: 1;
+        }
+
+        .length-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            background: white;
+            color: #333;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .length-btn:first-child {
+            border-radius: 6px 0 0 6px;
+        }
+
+        .length-btn:last-child {
+            border-radius: 0 6px 6px 0;
+        }
+
+        .length-btn:not(:last-child) {
+            border-right: none;
+        }
+
+        .length-btn:hover:not(.active) {
+            background: #f5f5f5;
+            border-color: #0066cc;
+        }
+
+        .length-btn.active {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+
+        .length-btn.hard-active {
+            background: #ff6b6b;
+            border-color: #ff6b6b;
         }
 
         .btn {
@@ -246,6 +313,15 @@
             .page-header h1 {
                 font-size: 1.8em;
             }
+
+            .length-selector {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .length-buttons {
+                width: 100%;
+            }
         }
         
         /* Safe area insets for iOS PWA */
@@ -278,7 +354,87 @@
 
         <!-- COMPREHENSIVE QUIZZES SECTION -->
         <h2 style="color: #333; margin-top: 30px; margin-bottom: 20px; font-size: 1.4em;">Comprehensive Quizzes</h2>
-        <p style="color: #666; margin-bottom: 25px;">Deep study with detailed rationales - 100+ questions covering all lab value categories</p>
+        <p style="color: #666; margin-bottom: 25px;">Deep study with detailed rationales - 100 questions covering all lab value categories</p>
+
+        <div class="quiz-container">
+            <!-- Multiple Choice Card -->
+            <div class="quiz-card">
+                <div class="quiz-card-header standard">
+                    📋 STANDARD
+                </div>
+                <div class="quiz-card-content">
+                    <h2>Multiple Choice</h2>
+                    <p>Test your knowledge with 100 NCLEX-style multiple choice questions. Each question includes detailed rationales to reinforce your understanding of normal values, abnormal findings, and nursing interventions.</p>
+                    <div class="quiz-stats">
+                        <div class="stat">
+                            <span class="stat-number">100</span>
+                            <span class="stat-label">Questions</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">MCQ</span>
+                            <span class="stat-label">Type</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="mcqDuration">~30 min</span>
+                            <span class="stat-label">Duration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="quiz-card-footer">
+                    <div class="quiz-controls">
+                        <div class="length-selector">
+                            <span class="length-label">Quiz Length:</span>
+                            <div class="length-buttons" id="mcqLengthBtns">
+                                <button class="length-btn" data-length="10">10</button>
+                                <button class="length-btn active" data-length="25">25</button>
+                                <button class="length-btn" data-length="50">50</button>
+                                <button class="length-btn" data-length="100">100</button>
+                            </div>
+                        </div>
+                        <a href="/quiz/Lab_Values/NCLEX_Lab_Values?quiz_length=25&autostart=true&back_url=/category/Lab_Values&back_label=Lab Values" class="btn" id="mcqStartBtn">Start Quiz →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fill in the Blank Card -->
+            <div class="quiz-card">
+                <div class="quiz-card-header hard">
+                    ✏️ HARD MODE
+                </div>
+                <div class="quiz-card-content">
+                    <h2>Fill in the Blank</h2>
+                    <p>Challenge yourself with 100 fill-in-the-blank questions that test your exact recall of laboratory values. Type your answers with no multiple choice hints!</p>
+                    <div class="quiz-stats">
+                        <div class="stat">
+                            <span class="stat-number">100</span>
+                            <span class="stat-label">Questions</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">Fill-in</span>
+                            <span class="stat-label">Type</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="fitbDuration">~40 min</span>
+                            <span class="stat-label">Duration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="quiz-card-footer">
+                    <div class="quiz-controls">
+                        <div class="length-selector">
+                            <span class="length-label">Quiz Length:</span>
+                            <div class="length-buttons" id="fitbLengthBtns">
+                                <button class="length-btn" data-length="10">10</button>
+                                <button class="length-btn active" data-length="25">25</button>
+                                <button class="length-btn" data-length="50">50</button>
+                                <button class="length-btn" data-length="100">100</button>
+                            </div>
+                        </div>
+                        <a href="/quiz-fill-blank/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank?quiz_length=25&autostart=true&back_url=/category/Lab_Values&back_label=Lab Values" class="btn btn-hard" id="fitbStartBtn">Start Quiz →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- STUDY TIPS SECTION -->
         <div style="margin-top: 30px; margin-bottom: 30px; padding: 25px; background: #f0f9ff; border-radius: 8px; border-left: 4px solid #0099d8;">
@@ -344,66 +500,11 @@
             </div>
         </div>
 
-        <div class="quiz-container">
-            <!-- Multiple Choice Card -->
-            <div class="quiz-card">
-                <div class="quiz-card-header standard">
-                    📋 STANDARD
-                </div>
-                <div class="quiz-card-content">
-                    <h2>Multiple Choice</h2>
-                    <p>Test your knowledge with 100 NCLEX-style multiple choice questions. Each question includes detailed rationales to reinforce your understanding of normal values, abnormal findings, and nursing interventions.</p>
-                    <div class="quiz-stats">
-                        <div class="stat">
-                            <span class="stat-number">100</span>
-                            <span class="stat-label">Questions</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">MCQ</span>
-                            <span class="stat-label">Type</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">~30 min</span>
-                            <span class="stat-label">Duration</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="quiz-card-footer">
-                    <a href="/quiz/Lab_Values/NCLEX_Lab_Values" class="btn">Start Quiz →</a>
-                </div>
-            </div>
-
-            <!-- Fill in the Blank Card -->
-            <div class="quiz-card">
-                <div class="quiz-card-header hard">
-                    ✏️ HARD MODE
-                </div>
-                <div class="quiz-card-content">
-                    <h2>Fill in the Blank</h2>
-                    <p>Challenge yourself with 100 fill-in-the-blank questions that test your exact recall of laboratory values. Type your answers with no multiple choice hints!</p>
-                    <div class="quiz-stats">
-                        <div class="stat">
-                            <span class="stat-number">100</span>
-                            <span class="stat-label">Questions</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">Fill-in</span>
-                            <span class="stat-label">Type</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">~40 min</span>
-                            <span class="stat-label">Duration</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="quiz-card-footer">
-                    <a href="/quiz-fill-blank/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank" class="btn btn-hard">Start Quiz →</a>
-                </div>
-            </div>
-        </div>
-
         <!-- QUICK DRILLS SECTION - FISHBONE QUIZZES -->
-        <div class="quiz-container" style="margin-top: 40px;">
+        <h2 style="color: #333; margin-top: 40px; margin-bottom: 20px; font-size: 1.4em;">Quick Drills - Fishbone Diagrams</h2>
+        <p style="color: #666; margin-bottom: 25px;">Visual learning with interactive fishbone diagrams - perfect for quick review sessions</p>
+
+        <div class="quiz-container">
             <!-- Fishbone MCQ Card -->
             <div class="quiz-card">
                 <div class="quiz-card-header quick-mcq">
@@ -466,5 +567,84 @@
 
     <!-- PWA Utilities -->
     <script src="/static/js/pwa-utils.js"></script>
+
+    <script>
+    (function() {
+        // ============================================
+        // Quiz Length Selection - MCQ
+        // ============================================
+        
+        let mcqLength = 25;
+        const mcqLengthBtns = document.querySelectorAll('#mcqLengthBtns .length-btn');
+        const mcqStartBtn = document.getElementById('mcqStartBtn');
+        const mcqDuration = document.getElementById('mcqDuration');
+        
+        // Duration estimates (minutes per question)
+        const mcqMinPerQ = 0.3;
+        
+        mcqLengthBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                mcqLengthBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                mcqLength = parseInt(btn.dataset.length, 10);
+                updateMcqButton();
+            });
+        });
+        
+        function updateMcqButton() {
+            const minutes = Math.round(mcqLength * mcqMinPerQ);
+            mcqDuration.textContent = `~${minutes} min`;
+            mcqStartBtn.href = `/quiz/Lab_Values/NCLEX_Lab_Values?quiz_length=${mcqLength}&autostart=true&back_url=/category/Lab_Values&back_label=Lab Values`;
+        }
+        
+        // ============================================
+        // Quiz Length Selection - Fill in the Blank
+        // ============================================
+        
+        let fitbLength = 25;
+        const fitbLengthBtns = document.querySelectorAll('#fitbLengthBtns .length-btn');
+        const fitbStartBtn = document.getElementById('fitbStartBtn');
+        const fitbDuration = document.getElementById('fitbDuration');
+        
+        // Duration estimates (minutes per question - FITB takes longer)
+        const fitbMinPerQ = 0.4;
+        
+        fitbLengthBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                fitbLengthBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.classList.remove('hard-active');
+                });
+                btn.classList.add('active');
+                btn.classList.add('hard-active');
+                fitbLength = parseInt(btn.dataset.length, 10);
+                updateFitbButton();
+            });
+        });
+        
+        function updateFitbButton() {
+            const minutes = Math.round(fitbLength * fitbMinPerQ);
+            fitbDuration.textContent = `~${minutes} min`;
+            fitbStartBtn.href = `/quiz-fill-blank/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank?quiz_length=${fitbLength}&autostart=true&back_url=/category/Lab_Values&back_label=Lab Values`;
+        }
+
+        // ============================================
+        // Offline Indicator
+        // ============================================
+        
+        function updateOfflineIndicator() {
+            const indicator = document.getElementById('offlineIndicator');
+            if (navigator.onLine) {
+                indicator.classList.add('hidden');
+            } else {
+                indicator.classList.remove('hidden');
+            }
+        }
+
+        window.addEventListener('online', updateOfflineIndicator);
+        window.addEventListener('offline', updateOfflineIndicator);
+        updateOfflineIndicator();
+    })();
+    </script>
 </body>
 </html>
