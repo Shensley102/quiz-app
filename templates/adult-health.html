@@ -32,133 +32,14 @@
   <script defer src="/_vercel/insights/script.js"></script>
 
   <style>
-    .module-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      max-width: 900px;
+    body {
+      background: #f0f2f5;
+    }
+
+    .container {
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 20px 0;
-    }
-
-    .module-card {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      border: 1px solid #e0e0e0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .module-card .module-header {
-      margin-bottom: 16px;
-    }
-
-    .module-card .module-number {
-      display: inline-block;
-      background: linear-gradient(135deg, #2f61f3, #1e4fd6);
-      color: white;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 20px;
-      margin-bottom: 10px;
-    }
-
-    .module-card .module-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin: 0 0 6px 0;
-      line-height: 1.3;
-    }
-
-    .module-card .module-status {
-      font-size: 13px;
-      color: #888;
-      margin: 0;
-    }
-
-    .module-card .module-status.available {
-      color: #4caf50;
-      font-weight: 600;
-    }
-
-    /* Quiz Length Selection */
-    .quiz-length-section {
-      margin-top: auto;
-      padding-top: 16px;
-      border-top: 1px solid #eee;
-    }
-
-    .quiz-length-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: #666;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .quiz-length-buttons {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .quiz-btn {
-      flex: 1;
-      min-width: 55px;
-      padding: 10px 8px;
-      border: 2px solid #2f61f3;
-      background: white;
-      color: #2f61f3;
-      font-size: 14px;
-      font-weight: 700;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      text-align: center;
-      display: inline-block;
-    }
-
-    .quiz-btn:hover:not(.disabled) {
-      background: #2f61f3;
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(47, 97, 243, 0.3);
-    }
-
-    .quiz-btn.disabled {
-      border-color: #ddd;
-      color: #bbb;
-      cursor: not-allowed;
-      background: #f9f9f9;
-    }
-
-    .quiz-btn.disabled:hover {
-      transform: none;
-      box-shadow: none;
-    }
-
-    .page-header {
-      text-align: center;
-      padding: 30px 20px 10px;
-    }
-
-    .page-header h1 {
-      font-size: 32px;
-      font-weight: 800;
-      margin: 0 0 8px 0;
-      color: #1a1a1a;
-    }
-
-    .page-header .subtitle {
-      font-size: 16px;
-      color: #666;
-      margin: 0;
+      padding: 20px;
     }
 
     .back-link {
@@ -174,89 +55,341 @@
       text-decoration: underline;
     }
 
-    .page-description {
-      max-width: 700px;
-      margin: 20px auto;
-      padding: 16px 20px;
-      background: rgba(47, 97, 243, 0.05);
-      border-radius: 10px;
-      border-left: 4px solid #2f61f3;
-      font-size: 15px;
-      line-height: 1.6;
-      color: #444;
+    /* Page Header Card */
+    .page-header-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      margin-bottom: 24px;
     }
 
-    /* Selection Method Info */
-    .selection-info {
-      max-width: 700px;
-      margin: 10px auto 20px;
-      padding: 12px 16px;
-      background: #f8f9fa;
-      border-radius: 8px;
-      font-size: 13px;
+    .page-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin: 0 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .page-title-icon {
+      font-size: 28px;
+    }
+
+    /* Practice by Module Section */
+    .section-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .section-icon {
+      font-size: 24px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
       color: #666;
-      text-align: center;
+      margin: 0 0 20px 0;
     }
 
-    .selection-info strong {
+    /* Module Grid */
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    /* Selectable Module Card */
+    .module-card {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .module-card:hover {
+      border-color: #2f61f3;
+      box-shadow: 0 4px 12px rgba(47, 97, 243, 0.15);
+    }
+
+    .module-card.selected {
+      border-color: #2f61f3;
+      background: rgba(47, 97, 243, 0.05);
+    }
+
+    .module-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 24px;
+      height: 24px;
+      background: #2f61f3;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .module-number {
+      display: inline-block;
+      background: linear-gradient(135deg, #2f61f3, #1e4fd6);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+
+    .module-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 6px 0;
+      line-height: 1.3;
+      padding-right: 30px;
+    }
+
+    .module-count {
+      font-size: 13px;
+      color: #4caf50;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* Quiz Controls */
+    .quiz-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      flex-wrap: wrap;
+    }
+
+    .length-selector {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .length-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .length-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .length-btn {
+      padding: 10px 18px;
+      border: 2px solid #ddd;
+      background: white;
+      color: #333;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .length-btn:hover {
+      border-color: #2f61f3;
       color: #2f61f3;
+    }
+
+    .length-btn.active {
+      background: #2f61f3;
+      border-color: #2f61f3;
+      color: white;
+    }
+
+    .length-btn.disabled {
+      border-color: #eee;
+      color: #ccc;
+      cursor: not-allowed;
+      background: #f9f9f9;
+    }
+
+    .start-btn {
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #4caf50, #43a047);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .start-btn:hover:not(.disabled) {
+      background: linear-gradient(135deg, #43a047, #388e3c);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    }
+
+    .start-btn.disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
     }
 
     /* Comprehensive Section */
     .comprehensive-section {
-      max-width: 900px;
-      margin: 0 auto 30px;
-      padding: 0 0 0 0;
+      background: #e8f5e9;
+      border: 2px solid #4caf50;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
     }
 
-    .comprehensive-card {
-      grid-column: 1 / -1;
-      border: 2px solid #10b981;
-      background: #e6f7f1;
-    }
-
-    .comprehensive-card:hover {
-      border-color: #059669;
+    .comprehensive-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
     }
 
     .comprehensive-badge {
-      background: linear-gradient(135deg, #10b981, #059669) !important;
+      display: inline-block;
+      background: linear-gradient(135deg, #4caf50, #43a047);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
     }
 
-    .comprehensive-btn {
-      border-color: #10b981 !important;
-      color: #10b981 !important;
+    .comprehensive-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0;
     }
 
-    .comprehensive-btn:hover:not(.disabled) {
-      background: #10b981 !important;
-      color: white !important;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+    .comprehensive-subtitle {
+      font-size: 14px;
+      color: #4caf50;
+      font-weight: 600;
+      margin: 0 0 20px 0;
     }
 
-    .comprehensive-btn.disabled {
-      border-color: #ddd !important;
-      color: #bbb !important;
+    .comprehensive-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
-    @media (max-width: 600px) {
+    .comprehensive-length-btn {
+      padding: 10px 18px;
+      border: 2px solid #4caf50;
+      background: white;
+      color: #4caf50;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .comprehensive-length-btn:hover {
+      background: rgba(76, 175, 80, 0.1);
+    }
+
+    .comprehensive-length-btn.active {
+      background: #4caf50;
+      color: white;
+    }
+
+    .comprehensive-length-btn.disabled {
+      border-color: #ccc;
+      color: #ccc;
+      cursor: not-allowed;
+      background: #f5f5f5;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .quiz-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .length-selector {
+        justify-content: center;
+      }
+
+      .start-btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .comprehensive-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .comprehensive-controls .length-selector {
+        justify-content: center;
+      }
+
+      .comprehensive-controls .start-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
       .module-grid {
         grid-template-columns: 1fr;
-        padding: 16px;
       }
 
-      .page-header h1 {
-        font-size: 26px;
+      .length-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
-      .module-card {
-        padding: 20px;
-      }
-
-      .quiz-btn {
-        padding: 12px 6px;
+      .length-btn, .comprehensive-length-btn {
+        padding: 10px 14px;
         font-size: 13px;
-        min-width: 50px;
       }
     }
   </style>
@@ -267,136 +400,71 @@
     <a href="/" class="back-link">← Back to Study Hub</a>
 
     <!-- Page Header -->
-    <header class="page-header">
-      <h1>🏥 Adult Health Nursing</h1>
-      <p class="subtitle">Adult health nursing concepts and clinical care</p>
-    </header>
-
-    <!-- Description -->
-    <div class="page-description">
-      Master essential adult health nursing concepts across 5 comprehensive modules covering tissue integrity, perfusion, immunity, neurological regulation, and elimination systems.
+    <div class="page-header-card">
+      <h1 class="page-title">
+        <span class="page-title-icon">🏥</span>
+        Adult Health Nursing
+      </h1>
+      <p style="color: #666; margin: 0; font-size: 15px;">
+        Master essential adult health nursing concepts across 5 comprehensive modules covering tissue integrity, perfusion, immunity, neurological regulation, and elimination systems.
+      </p>
     </div>
 
-    <!-- Selection Info -->
-    <div class="selection-info">
-      <strong>10Q:</strong> 100% least-asked questions &nbsp;|&nbsp; 
-      <strong>25/50/100:</strong> 2:1 ratio (least-asked + random mix)
+    <!-- Practice by Module Section -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-icon">📚</span>
+        <h2 class="section-title">Practice by Module</h2>
+      </div>
+      <p class="section-subtitle">Select a module and quiz length to start focused practice.</p>
+
+      <!-- Module Grid -->
+      <div class="module-grid">
+        {% for num in [1, 2, 3, 4, 5] %}
+        {% set module = module_stats[num] if module_stats and module_stats[num] else {'name': 'Module ' ~ num, 'count': 0} %}
+        <div class="module-card" data-module="{{ num }}" data-name="{{ module.name }}" data-count="{{ module.count }}">
+          <span class="module-number">MODULE {{ num }}</span>
+          <h3 class="module-title">{{ module.name }}</h3>
+          <p class="module-count">{{ module.count }} questions available</p>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Quiz Controls -->
+      <div class="quiz-controls">
+        <div class="length-selector">
+          <span class="length-label">Quiz Length:</span>
+          <div class="length-buttons">
+            <button class="length-btn" data-length="10">10</button>
+            <button class="length-btn active" data-length="25">25</button>
+            <button class="length-btn" data-length="50">50</button>
+            <button class="length-btn" data-length="100">100</button>
+          </div>
+        </div>
+        <a href="#" class="start-btn disabled" id="startModuleBtn">Select a Module to Start</a>
+      </div>
     </div>
 
-    <!-- Module Grid -->
-    <div class="module-grid">
-      <!-- Module 1 -->
-      <div class="module-card">
-        <div class="module-header">
-          <span class="module-number">MODULE 1</span>
-          <h3 class="module-title">Tissue Integrity & Safety</h3>
-          <p class="module-status available">{{ module_stats[1]['count'] if module_stats and module_stats[1] else 0 }} questions available</p>
-        </div>
-        <div class="quiz-length-section">
-          <div class="quiz-length-label">Quiz Length</div>
-          <div class="quiz-length-buttons">
-            {% set count1 = module_stats[1]['count'] if module_stats and module_stats[1] else 0 %}
-            <a href="/category/Adult_Health/module/1?quiz_length=10&autostart=true" class="quiz-btn {% if count1 < 10 %}disabled{% endif %}" {% if count1 < 10 %}onclick="return false;"{% endif %}>10</a>
-            <a href="/category/Adult_Health/module/1?quiz_length=25&autostart=true" class="quiz-btn {% if count1 < 25 %}disabled{% endif %}" {% if count1 < 25 %}onclick="return false;"{% endif %}>25</a>
-            <a href="/category/Adult_Health/module/1?quiz_length=50&autostart=true" class="quiz-btn {% if count1 < 50 %}disabled{% endif %}" {% if count1 < 50 %}onclick="return false;"{% endif %}>50</a>
-            <a href="/category/Adult_Health/module/1?quiz_length=100&autostart=true" class="quiz-btn {% if count1 < 100 %}disabled{% endif %}" {% if count1 < 100 %}onclick="return false;"{% endif %}>100</a>
-          </div>
-        </div>
+    <!-- Comprehensive Section -->
+    <div class="comprehensive-section">
+      <div class="comprehensive-header">
+        <span class="comprehensive-badge">COMPREHENSIVE</span>
       </div>
+      <h2 class="comprehensive-title">All Modules Combined</h2>
+      <p class="comprehensive-subtitle">{{ total_count if total_count else 0 }} questions available</p>
 
-      <!-- Module 2 -->
-      <div class="module-card">
-        <div class="module-header">
-          <span class="module-number">MODULE 2</span>
-          <h3 class="module-title">Perfusion</h3>
-          <p class="module-status available">{{ module_stats[2]['count'] if module_stats and module_stats[2] else 0 }} questions available</p>
-        </div>
-        <div class="quiz-length-section">
-          <div class="quiz-length-label">Quiz Length</div>
-          <div class="quiz-length-buttons">
-            {% set count2 = module_stats[2]['count'] if module_stats and module_stats[2] else 0 %}
-            <a href="/category/Adult_Health/module/2?quiz_length=10&autostart=true" class="quiz-btn {% if count2 < 10 %}disabled{% endif %}" {% if count2 < 10 %}onclick="return false;"{% endif %}>10</a>
-            <a href="/category/Adult_Health/module/2?quiz_length=25&autostart=true" class="quiz-btn {% if count2 < 25 %}disabled{% endif %}" {% if count2 < 25 %}onclick="return false;"{% endif %}>25</a>
-            <a href="/category/Adult_Health/module/2?quiz_length=50&autostart=true" class="quiz-btn {% if count2 < 50 %}disabled{% endif %}" {% if count2 < 50 %}onclick="return false;"{% endif %}>50</a>
-            <a href="/category/Adult_Health/module/2?quiz_length=100&autostart=true" class="quiz-btn {% if count2 < 100 %}disabled{% endif %}" {% if count2 < 100 %}onclick="return false;"{% endif %}>100</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Module 3 -->
-      <div class="module-card">
-        <div class="module-header">
-          <span class="module-number">MODULE 3</span>
-          <h3 class="module-title">Immunity & Infection</h3>
-          <p class="module-status available">{{ module_stats[3]['count'] if module_stats and module_stats[3] else 0 }} questions available</p>
-        </div>
-        <div class="quiz-length-section">
-          <div class="quiz-length-label">Quiz Length</div>
-          <div class="quiz-length-buttons">
-            {% set count3 = module_stats[3]['count'] if module_stats and module_stats[3] else 0 %}
-            <a href="/category/Adult_Health/module/3?quiz_length=10&autostart=true" class="quiz-btn {% if count3 < 10 %}disabled{% endif %}" {% if count3 < 10 %}onclick="return false;"{% endif %}>10</a>
-            <a href="/category/Adult_Health/module/3?quiz_length=25&autostart=true" class="quiz-btn {% if count3 < 25 %}disabled{% endif %}" {% if count3 < 25 %}onclick="return false;"{% endif %}>25</a>
-            <a href="/category/Adult_Health/module/3?quiz_length=50&autostart=true" class="quiz-btn {% if count3 < 50 %}disabled{% endif %}" {% if count3 < 50 %}onclick="return false;"{% endif %}>50</a>
-            <a href="/category/Adult_Health/module/3?quiz_length=100&autostart=true" class="quiz-btn {% if count3 < 100 %}disabled{% endif %}" {% if count3 < 100 %}onclick="return false;"{% endif %}>100</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Module 4 -->
-      <div class="module-card">
-        <div class="module-header">
-          <span class="module-number">MODULE 4</span>
-          <h3 class="module-title">Intracranial Regulation & Palliative Care</h3>
-          <p class="module-status available">{{ module_stats[4]['count'] if module_stats and module_stats[4] else 0 }} questions available</p>
-        </div>
-        <div class="quiz-length-section">
-          <div class="quiz-length-label">Quiz Length</div>
-          <div class="quiz-length-buttons">
-            {% set count4 = module_stats[4]['count'] if module_stats and module_stats[4] else 0 %}
-            <a href="/category/Adult_Health/module/4?quiz_length=10&autostart=true" class="quiz-btn {% if count4 < 10 %}disabled{% endif %}" {% if count4 < 10 %}onclick="return false;"{% endif %}>10</a>
-            <a href="/category/Adult_Health/module/4?quiz_length=25&autostart=true" class="quiz-btn {% if count4 < 25 %}disabled{% endif %}" {% if count4 < 25 %}onclick="return false;"{% endif %}>25</a>
-            <a href="/category/Adult_Health/module/4?quiz_length=50&autostart=true" class="quiz-btn {% if count4 < 50 %}disabled{% endif %}" {% if count4 < 50 %}onclick="return false;"{% endif %}>50</a>
-            <a href="/category/Adult_Health/module/4?quiz_length=100&autostart=true" class="quiz-btn {% if count4 < 100 %}disabled{% endif %}" {% if count4 < 100 %}onclick="return false;"{% endif %}>100</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Module 5 -->
-      <div class="module-card">
-        <div class="module-header">
-          <span class="module-number">MODULE 5</span>
-          <h3 class="module-title">Elimination</h3>
-          <p class="module-status available">{{ module_stats[5]['count'] if module_stats and module_stats[5] else 0 }} questions available</p>
-        </div>
-        <div class="quiz-length-section">
-          <div class="quiz-length-label">Quiz Length</div>
-          <div class="quiz-length-buttons">
-            {% set count5 = module_stats[5]['count'] if module_stats and module_stats[5] else 0 %}
-            <a href="/category/Adult_Health/module/5?quiz_length=10&autostart=true" class="quiz-btn {% if count5 < 10 %}disabled{% endif %}" {% if count5 < 10 %}onclick="return false;"{% endif %}>10</a>
-            <a href="/category/Adult_Health/module/5?quiz_length=25&autostart=true" class="quiz-btn {% if count5 < 25 %}disabled{% endif %}" {% if count5 < 25 %}onclick="return false;"{% endif %}>25</a>
-            <a href="/category/Adult_Health/module/5?quiz_length=50&autostart=true" class="quiz-btn {% if count5 < 50 %}disabled{% endif %}" {% if count5 < 50 %}onclick="return false;"{% endif %}>50</a>
-            <a href="/category/Adult_Health/module/5?quiz_length=100&autostart=true" class="quiz-btn {% if count5 < 100 %}disabled{% endif %}" {% if count5 < 100 %}onclick="return false;"{% endif %}>100</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Comprehensive Quiz Card -->
-      <div class="module-card comprehensive-card">
-        <div class="module-header">
-          <span class="module-number comprehensive-badge">COMPREHENSIVE</span>
-          <h3 class="module-title">All Modules Combined</h3>
-          <p class="module-status available">{{ total_count if total_count else 0 }} questions available</p>
-        </div>
-        <div class="quiz-length-section">
-          <div class="quiz-length-label">Quiz Length</div>
-          <div class="quiz-length-buttons">
+      <div class="comprehensive-controls">
+        <div class="length-selector">
+          <span class="length-label">Quiz Length:</span>
+          <div class="length-buttons">
             {% set countAll = total_count if total_count else 0 %}
-            <a href="/category/Adult_Health/module/comprehensive?quiz_length=10&autostart=true" class="quiz-btn comprehensive-btn {% if countAll < 10 %}disabled{% endif %}" {% if countAll < 10 %}onclick="return false;"{% endif %}>10</a>
-            <a href="/category/Adult_Health/module/comprehensive?quiz_length=25&autostart=true" class="quiz-btn comprehensive-btn {% if countAll < 25 %}disabled{% endif %}" {% if countAll < 25 %}onclick="return false;"{% endif %}>25</a>
-            <a href="/category/Adult_Health/module/comprehensive?quiz_length=50&autostart=true" class="quiz-btn comprehensive-btn {% if countAll < 50 %}disabled{% endif %}" {% if countAll < 50 %}onclick="return false;"{% endif %}>50</a>
-            <a href="/category/Adult_Health/module/comprehensive?quiz_length=100&autostart=true" class="quiz-btn comprehensive-btn {% if countAll < 100 %}disabled{% endif %}" {% if countAll < 100 %}onclick="return false;"{% endif %}>100</a>
+            <button class="comprehensive-length-btn {% if countAll < 10 %}disabled{% endif %}" data-length="10">10</button>
+            <button class="comprehensive-length-btn active {% if countAll < 25 %}disabled{% endif %}" data-length="25">25</button>
+            <button class="comprehensive-length-btn {% if countAll < 50 %}disabled{% endif %}" data-length="50">50</button>
+            <button class="comprehensive-length-btn {% if countAll < 100 %}disabled{% endif %}" data-length="100">100</button>
           </div>
         </div>
+        <a href="/category/Adult_Health/module/comprehensive?quiz_length=25&autostart=true" class="start-btn" id="startComprehensiveBtn">Start Comprehensive Quiz (25 questions) →</a>
       </div>
     </div>
   </div>
@@ -406,5 +474,115 @@
   
   <!-- PWA Utilities -->
   <script src="/static/js/pwa-utils.js"></script>
+
+  <script>
+    (function() {
+      // State
+      let selectedModule = null;
+      let selectedLength = 25;
+      let comprehensiveLength = 25;
+
+      // Elements
+      const moduleCards = document.querySelectorAll('.module-card');
+      const lengthBtns = document.querySelectorAll('.length-btn');
+      const startBtn = document.getElementById('startModuleBtn');
+      const comprehensiveLengthBtns = document.querySelectorAll('.comprehensive-length-btn');
+      const comprehensiveStartBtn = document.getElementById('startComprehensiveBtn');
+
+      // Module selection
+      moduleCards.forEach(card => {
+        card.addEventListener('click', () => {
+          // Deselect all
+          moduleCards.forEach(c => c.classList.remove('selected'));
+          // Select this one
+          card.classList.add('selected');
+          
+          selectedModule = {
+            num: card.dataset.module,
+            name: card.dataset.name,
+            count: parseInt(card.dataset.count)
+          };
+
+          updateStartButton();
+          updateLengthButtons();
+        });
+      });
+
+      // Length selection
+      lengthBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('disabled')) return;
+          
+          lengthBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          selectedLength = parseInt(btn.dataset.length);
+          
+          updateStartButton();
+        });
+      });
+
+      // Update length button disabled states based on selected module
+      function updateLengthButtons() {
+        if (!selectedModule) return;
+        
+        lengthBtns.forEach(btn => {
+          const length = parseInt(btn.dataset.length);
+          if (length > selectedModule.count) {
+            btn.classList.add('disabled');
+            btn.classList.remove('active');
+          } else {
+            btn.classList.remove('disabled');
+          }
+        });
+
+        // If current selection is disabled, select highest available
+        const activeBtn = document.querySelector('.length-btn.active:not(.disabled)');
+        if (!activeBtn) {
+          const availableBtns = Array.from(lengthBtns).filter(b => !b.classList.contains('disabled'));
+          if (availableBtns.length > 0) {
+            const lastAvailable = availableBtns[availableBtns.length - 1];
+            lastAvailable.classList.add('active');
+            selectedLength = parseInt(lastAvailable.dataset.length);
+          }
+        }
+      }
+
+      // Update start button
+      function updateStartButton() {
+        if (!selectedModule) {
+          startBtn.textContent = 'Select a Module to Start';
+          startBtn.classList.add('disabled');
+          startBtn.href = '#';
+          return;
+        }
+
+        const displayLength = Math.min(selectedLength, selectedModule.count);
+        startBtn.textContent = `Start ${selectedModule.name} Quiz (${displayLength} questions) →`;
+        startBtn.classList.remove('disabled');
+        startBtn.href = `/category/Adult_Health/module/${selectedModule.num}?quiz_length=${displayLength}&autostart=true`;
+      }
+
+      // Comprehensive length selection
+      comprehensiveLengthBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('disabled')) return;
+          
+          comprehensiveLengthBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          comprehensiveLength = parseInt(btn.dataset.length);
+          
+          updateComprehensiveButton();
+        });
+      });
+
+      function updateComprehensiveButton() {
+        comprehensiveStartBtn.textContent = `Start Comprehensive Quiz (${comprehensiveLength} questions) →`;
+        comprehensiveStartBtn.href = `/category/Adult_Health/module/comprehensive?quiz_length=${comprehensiveLength}&autostart=true`;
+      }
+
+      // Initialize
+      updateStartButton();
+    })();
+  </script>
 </body>
 </html>
