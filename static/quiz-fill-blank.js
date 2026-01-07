@@ -8,6 +8,7 @@
    - Progress tracking
    - LocalStorage persistence
    - Dynamic length options based on question count
+   - Autostart support via URL parameters
 ----------------------------------------------------------- */
 
 const $ = (id) => document.getElementById(id);
@@ -114,6 +115,12 @@ function clearSavedState() {
   try {
     localStorage.removeItem(STORAGE_KEY);
   } catch {}
+}
+
+/* ---------- URL Parameter Helpers ---------- */
+function getUrlParam(name) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(name);
 }
 
 /* ---------- Utilities ---------- */
@@ -466,6 +473,72 @@ async function startQuiz() {
   }
 }
 
+/* ---------- Autostart Quiz (from URL parameters) ---------- */
+async function autostartQuiz(quizLength) {
+  if (!startBtn) return;
+
+  startBtn.disabled = true;
+
+  try {
+    let rawData;
+
+    if (window.storedPreloadedData && window.storedPreloadedData.moduleName === 'NCLEX_Lab_Values_Fill_In_The_Blank') {
+      rawData = window.storedPreloadedData.questions;
+    } else {
+      const moduleName = 'NCLEX_Lab_Values_Fill_In_The_Blank';
+      const jsonUrl = `/modules/Lab_Values/${moduleName}.json`;
+
+      const res = await fetch(jsonUrl, { cache: 'no-store' });
+      if (!res.ok) {
+        console.error(`Could not load quiz data (${res.status})`);
+        startBtn.disabled = false;
+        return;
+      }
+      rawData = await res.json();
+    }
+
+    allQuestions = Array.isArray(rawData) ? rawData : (rawData.questions || []);
+
+    // Determine quantity from URL parameter
+    let qty;
+    if (quizLength === 'full' || quizLength === 'all') {
+      qty = 'full';
+    } else {
+      const parsed = parseInt(quizLength, 10);
+      qty = isNaN(parsed) ? 10 : parsed;
+    }
+
+    const isFullBank = qty === 'full';
+    const sampled = sampleQuestions(allQuestions, qty);
+
+    run = {
+      order: [...sampled],
+      masterPool: [...sampled],
+      i: 0,
+      answered: new Map(),
+      uniqueSeen: new Set(),
+      wrongSinceLast: [],
+      totalQuestionsAnswered: 1,
+      isFullBank: isFullBank,
+      isRetry: false,
+    };
+
+    if (setupCard) setupCard.classList.add('hidden');
+    if (summaryCard) summaryCard.classList.add('hidden');
+    if (quizCard) quizCard.classList.remove('hidden');
+
+    const q0 = run.order[0];
+    run.uniqueSeen.add(q0.id);
+    renderQuestion(q0);
+    updateCounters();
+
+    startBtn.disabled = false;
+  } catch (err) {
+    console.error('Error autostarting quiz:', err);
+    if (startBtn) startBtn.disabled = false;
+  }
+}
+
 /* ---------- Handle submit ---------- */
 function handleSubmit() {
   if (!submitBtn) return;
@@ -741,6 +814,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.warn('Could not fetch quiz data for length options:', err);
     // Default to 100+ options
     updateLengthOptions(100);
+  }
+  
+  // Check for autostart parameter
+  const autostart = getUrlParam('autostart');
+  const quizLength = getUrlParam('quiz_length');
+  
+  if (autostart === 'true' && quizLength) {
+    // Autostart the quiz with the specified length
+    autostartQuiz(quizLength);
+    return; // Skip saved state check when autostarting
   }
   
   // Check for saved state
