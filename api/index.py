@@ -382,7 +382,9 @@ def category(category):
         # ========== Use special template for Adult_Health ==========
         if category == 'Adult_Health':
             module_stats = get_adult_health_module_stats()
-            return render_template('adult-health.html', quizzes=quizzes, module_stats=module_stats)
+            # Calculate total questions across all modules
+            total_count = sum(m['count'] for m in module_stats.values() if m)
+            return render_template('adult-health.html', quizzes=quizzes, module_stats=module_stats, total_count=total_count)
 
         # ========== Use special template for NCLEX - the new landing page ==========
         if category == 'NCLEX':
