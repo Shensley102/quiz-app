@@ -2,6 +2,7 @@
 
 import os
 import json
+import re
 from flask import Flask, render_template, request, jsonify, redirect, url_for, send_from_directory
 from pathlib import Path
 from urllib.parse import unquote
@@ -77,6 +78,51 @@ CFRN_CATEGORIES = [
     'Pediatric Assessment and Management',
     'Toxicology and Pharmacology'
 ]
+
+# Adult Health Module Definitions
+# Each module specifies which book + chapter/concept combinations to include
+ADULT_HEALTH_MODULES = {
+    1: {
+        'name': 'Tissue Integrity & Safety',
+        'filters': [
+            {'book': 'Ignatavicus Medical-Surgical Nursing', 'chapters': ['01', '04', '10', '20', '21']},
+            {'book': 'Giddens Concepts for Nursing Practice', 'chapters': ['26', '45']},
+            {'book': 'McCuistion Pharmacology', 'chapters': ['09', '14']}
+        ]
+    },
+    2: {
+        'name': 'Perfusion',
+        'filters': [
+            {'book': 'Ignatavicus Medical-Surgical Nursing', 'chapters': ['27', '28', '29', '31']},
+            {'book': 'Giddens Concepts for Nursing Practice', 'chapters': ['18']},
+            {'book': 'McCuistion Pharmacology', 'chapters': ['40', '41', '43', '44', '58']}
+        ]
+    },
+    3: {
+        'name': 'Immunity & Infection',
+        'filters': [
+            {'book': 'Ignatavicus Medical-Surgical Nursing', 'chapters': ['03', '16', '17', '19']},
+            {'book': 'Giddens Concepts for Nursing Practice', 'chapters': ['22', '24']},
+            {'book': 'McCuistion Pharmacology', 'chapters': ['26', '30', '32', '34']}
+        ]
+    },
+    4: {
+        'name': 'Intracranial Regulation & Palliative Care',
+        'filters': [
+            {'book': 'Ignatavicus Medical-Surgical Nursing', 'chapters': ['08', '38']},
+            {'book': 'Giddens Concepts for Nursing Practice', 'chapters': ['13', '51']},
+            {'book': 'McCuistion Pharmacology', 'chapters': ['28', '38']}
+        ]
+    },
+    5: {
+        'name': 'Elimination',
+        'filters': [
+            {'book': 'Ignatavicus Medical-Surgical Nursing', 'chapters': ['57', '59', '60']},
+            {'book': 'Giddens Concepts for Nursing Practice', 'chapters': ['17']},
+            {'book': 'McCuistion Pharmacology', 'chapters': ['12']}
+        ]
+    }
+}
 
 
 def get_categories():
@@ -205,6 +251,87 @@ def get_cfrn_category_stats():
     return stats
 
 
+def load_adult_health_questions():
+    """Load the Adult Health master question bank"""
+    adult_health_path = MODULES_DIR / 'Adult_Health' / 'Adult_Health.json'
+    if not adult_health_path.exists():
+        print(f"[Adult Health] File not found: {adult_health_path}")
+        return []
+
+    try:
+        with open(adult_health_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return data.get('questions', [])
+    except Exception as e:
+        print(f"Error loading Adult Health questions: {e}")
+        return []
+
+
+def extract_chapter_number(category_str):
+    """
+    Extract chapter/concept number from category string.
+    Examples:
+      "Chapter 47: Concepts of Care..." -> "47"
+      "Chapter 01: Introduction..." -> "01"
+      "Concept 26: Tissue Integrity" -> "26"
+    """
+    if not category_str:
+        return None
+    
+    # Match "Chapter XX" or "Concept XX" at the start
+    match = re.match(r'^(?:Chapter|Concept)\s+(\d+)', category_str, re.IGNORECASE)
+    if match:
+        return match.group(1).zfill(2)  # Pad to 2 digits for consistent matching
+    return None
+
+
+def filter_adult_health_questions(questions, module_num):
+    """
+    Filter questions for a specific Adult Health module based on book and chapter/concept.
+    """
+    if module_num not in ADULT_HEALTH_MODULES:
+        return []
+    
+    module_def = ADULT_HEALTH_MODULES[module_num]
+    filters = module_def['filters']
+    
+    filtered = []
+    for q in questions:
+        q_book = q.get('book', '')
+        q_category = q.get('category', '')
+        q_chapter = extract_chapter_number(q_category)
+        
+        # Check if this question matches any of the module's filters
+        for f in filters:
+            if q_book == f['book']:
+                # Check if chapter matches (compare with zero-padded versions)
+                for ch in f['chapters']:
+                    # Compare both raw and zero-padded versions
+                    if q_chapter == ch or q_chapter == ch.zfill(2) or q_chapter == ch.lstrip('0'):
+                        filtered.append(q)
+                        break
+                else:
+                    continue
+                break  # Found a match, move to next question
+    
+    return filtered
+
+
+def get_adult_health_module_stats():
+    """Get question counts for each Adult Health module"""
+    questions = load_adult_health_questions()
+    stats = {}
+    
+    for module_num, module_def in ADULT_HEALTH_MODULES.items():
+        filtered = filter_adult_health_questions(questions, module_num)
+        stats[module_num] = {
+            'name': module_def['name'],
+            'count': len(filtered)
+        }
+    
+    return stats
+
+
 # ==================== ROUTES ====================
 
 @app.route('/')
@@ -254,7 +381,8 @@ def category(category):
 
         # ========== Use special template for Adult_Health ==========
         if category == 'Adult_Health':
-            return render_template('adult-health.html', quizzes=quizzes)
+            module_stats = get_adult_health_module_stats()
+            return render_template('adult-health.html', quizzes=quizzes, module_stats=module_stats)
 
         # ========== Use special template for NCLEX - the new landing page ==========
         if category == 'NCLEX':
@@ -395,6 +523,51 @@ def cfrn_category_quiz(category_name):
                                category='Nursing_Certifications',
                                back_url='/category/Nursing_Certifications/CFRN',
                                back_label='CFRN Learning Page',
+                               autostart=autostart,
+                               is_category_quiz=True,
+                               quiz_length=quiz_length)
+    except Exception as e:
+        print(f"Error in cfrn_category_quiz route: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/category/Adult_Health/module/<int:module_num>')
+def adult_health_module_quiz(module_num):
+    """Adult Health module-specific quiz - filters questions by book and chapter/concept"""
+    try:
+        # Validate module number
+        if module_num not in ADULT_HEALTH_MODULES:
+            print(f"Invalid Adult Health module: {module_num}")
+            return redirect(url_for('category', category='Adult_Health'))
+
+        # Load and filter questions
+        questions = load_adult_health_questions()
+        filtered_questions = filter_adult_health_questions(questions, module_num)
+
+        if not filtered_questions:
+            print(f"No questions found for Adult Health module {module_num}")
+            return redirect(url_for('category', category='Adult_Health'))
+
+        module_def = ADULT_HEALTH_MODULES[module_num]
+
+        # Create quiz data structure
+        quiz_data = {
+            'module': f'Adult_Health_Module_{module_num}',
+            'questions': filtered_questions
+        }
+
+        # Get parameters from URL
+        quiz_length = request.args.get('quiz_length', '10')
+        autostart = request.args.get('autostart', 'false').lower() == 'true'
+
+        return render_template('quiz.html',
+                               quiz_data=quiz_data,
+                               module_name=f'Module {module_num}: {module_def["name"]}',
+                               category='Adult_Health',
+                               back_url='/category/Adult_Health',
+                               back_label='Adult Health',
                                autostart=autostart,
                                is_category_quiz=True,
                                quiz_length=quiz_length)
