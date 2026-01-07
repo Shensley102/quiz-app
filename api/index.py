@@ -535,6 +535,56 @@ def cfrn_category_quiz(category_name):
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/category/Adult_Health/module/comprehensive')
+def adult_health_comprehensive_quiz():
+    """Adult Health comprehensive quiz - combines ALL questions from all 5 modules"""
+    try:
+        # Load all questions from the Adult Health JSON
+        all_questions = load_adult_health_questions()
+        
+        # Filter questions for ALL modules and combine them
+        combined_questions = []
+        seen_ids = set()
+        
+        for module_num in ADULT_HEALTH_MODULES.keys():
+            filtered = filter_adult_health_questions(all_questions, module_num)
+            for q in filtered:
+                # Avoid duplicates (in case chapters overlap)
+                q_id = q.get('id', q.get('stem', ''))
+                if q_id not in seen_ids:
+                    combined_questions.append(q)
+                    seen_ids.add(q_id)
+        
+        if not combined_questions:
+            print("No questions found for Adult Health Comprehensive")
+            return redirect(url_for('category', category='Adult_Health'))
+        
+        # Create quiz data structure
+        quiz_data = {
+            'module': 'Adult_Health_Comprehensive',
+            'questions': combined_questions
+        }
+        
+        # Get parameters from URL
+        quiz_length = request.args.get('quiz_length', '10')
+        autostart = request.args.get('autostart', 'false').lower() == 'true'
+        
+        return render_template('quiz.html',
+                               quiz_data=quiz_data,
+                               module_name='Adult Health: All Modules Combined',
+                               category='Adult_Health',
+                               back_url='/category/Adult_Health',
+                               back_label='Adult Health',
+                               autostart=autostart,
+                               is_category_quiz=True,
+                               quiz_length=quiz_length)
+    except Exception as e:
+        print(f"Error in adult_health_comprehensive_quiz route: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/category/Adult_Health/module/<int:module_num>')
 def adult_health_module_quiz(module_num):
     """Adult Health module-specific quiz - filters questions by book and chapter/concept"""
