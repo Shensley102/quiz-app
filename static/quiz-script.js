@@ -18,6 +18,7 @@
    - Added FITB submission handling
    - All MCQ functionality unchanged
    - Mixed MCQ+FITB quizzes now supported
+   - Fixed object-format options support (e.g., {A: "...", B: "..."})
    
 ------------------------------------------------------------ */
 
@@ -99,8 +100,30 @@
   }
 
   // Get choices array (handles multiple field names)
+  // Also handles object-format options like {A: "text", B: "text", C: "text", D: "text"}
   function getChoices(q) {
-    return q.options || q.choices || q.answers || [];
+    const raw = q.options || q.choices || q.answers || [];
+    
+    // If already an array, return as-is
+    if (Array.isArray(raw)) {
+      return raw;
+    }
+    
+    // If it's an object like {A: "text", B: "text"}, convert to array in letter order
+    if (raw && typeof raw === 'object') {
+      // Get keys and sort by letter order (A, B, C, D, ...)
+      const keys = Object.keys(raw).sort((a, b) => {
+        const idxA = LETTERS.indexOf(a.toUpperCase());
+        const idxB = LETTERS.indexOf(b.toUpperCase());
+        if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+        return a.localeCompare(b);
+      });
+      
+      // Return values in sorted key order
+      return keys.map(k => raw[k]);
+    }
+    
+    return [];
   }
 
   // Get correct answer index from question
