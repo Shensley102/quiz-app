@@ -64,7 +64,9 @@
     <div class="categories-grid">
       {% for cat in categories %}
       <a href="/category/{{ cat }}" class="category-card image-card">
-        {% if cat == 'NCLEX' %}
+        {% if cat == 'Adult_Health' %}
+        <img src="/images/Adult_Health.png" alt="Adult Health" class="category-image">
+        {% elif cat == 'NCLEX' %}
         <img src="/images/Nursing_Nclex_Exam_Prep_Image.png" alt="NCLEX Comprehensive System" class="category-image">
         {% elif cat == 'Lab_Values' %}
         <img src="/images/Nursing_Lab_Values.png" alt="Laboratory Values" class="category-image">
