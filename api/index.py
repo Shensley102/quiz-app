@@ -14,6 +14,12 @@ MODULES_DIR = BASE_DIR / 'modules'
 
 # Category metadata
 CATEGORY_METADATA = {
+    'Adult_Health': {
+        'display_name': 'Adult Health',
+        'icon': '🏥',
+        'image': '/images/Adult_Health.png',
+        'description': 'Adult health nursing concepts and clinical care'
+    },
     'NCLEX': {
         'display_name': 'NCLEX',
         'icon': '📋',
@@ -245,6 +251,10 @@ def category(category):
         # Check if this is Lab Values with multiple quiz types
         has_mc = len(quizzes.get('multiple-choice', [])) > 0
         has_fb = len(quizzes.get('fill-in-the-blank', [])) > 0
+
+        # ========== Use special template for Adult_Health ==========
+        if category == 'Adult_Health':
+            return render_template('adult-health.html', quizzes=quizzes)
 
         # ========== Use special template for NCLEX - the new landing page ==========
         if category == 'NCLEX':
