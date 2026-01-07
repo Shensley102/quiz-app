@@ -152,8 +152,8 @@
       </div>
     </div>
 
-    <!-- Module Launcher (hidden if preloaded data with autostart) -->
-    <div class="card" id="launcher">
+    <!-- Module Launcher (hidden if autostart is true) -->
+    <div class="card {% if autostart %}hidden{% endif %}" id="launcher" {% if autostart %}style="display: none;"{% endif %}>
       <div id="categoryHeader" class="category-header">
         <span id="categoryIcon" class="category-icon"></span>
         <div>
