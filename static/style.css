@@ -13,6 +13,54 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* ===== Content Protection ===== */
+/* Prevent text selection across the entire app */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Prevent image dragging */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
+/* Re-enable pointer events for clickable images (like category cards) */
+a img,
+button img,
+.category-card img {
+  pointer-events: auto;
+}
+
+/* Prevent text selection on all text elements */
+p, h1, h2, h3, h4, h5, h6, span, div, label, li, td, th {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow selection in form inputs (necessary for usability) */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea,
+.fitb-input {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 /* ===== Base Styles ===== */
 * {
   box-sizing: border-box;
