@@ -8,6 +8,7 @@
    - Offline detection
    - Update notifications
    - Motivational quotes for home page
+   - Content protection (copy/paste prevention)
    ============================================================ */
 
 (function() {
@@ -26,6 +27,101 @@
     if (CONFIG.DEBUG) {
       console.log('[PWA Utils]', ...args);
     }
+  }
+
+  // ============================================================
+  // CONTENT PROTECTION
+  // ============================================================
+
+  function setupContentProtection() {
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable text selection via selectstart
+    document.addEventListener('selectstart', function(e) {
+      // Allow selection in input fields
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        return true;
+      }
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable copy
+    document.addEventListener('copy', function(e) {
+      // Allow copy in input fields
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        return true;
+      }
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable cut
+    document.addEventListener('cut', function(e) {
+      // Allow cut in input fields
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        return true;
+      }
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable paste (optional - uncomment if needed)
+    // document.addEventListener('paste', function(e) {
+    //   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+    //     return true;
+    //   }
+    //   e.preventDefault();
+    //   return false;
+    // });
+
+    // Disable drag
+    document.addEventListener('dragstart', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // Block keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      // Check for Ctrl/Cmd key combinations
+      if (e.ctrlKey || e.metaKey) {
+        switch (e.key.toLowerCase()) {
+          case 'c': // Copy
+          case 'x': // Cut
+          case 'a': // Select All
+          case 'p': // Print
+          case 's': // Save
+            // Allow in input fields for copy/cut/select all
+            if ((e.key.toLowerCase() === 'c' || e.key.toLowerCase() === 'x' || e.key.toLowerCase() === 'a') &&
+                (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) {
+              return true;
+            }
+            e.preventDefault();
+            return false;
+          case 'u': // View source
+            e.preventDefault();
+            return false;
+        }
+      }
+
+      // Block F12 (DevTools) - optional, can be commented out
+      // if (e.key === 'F12') {
+      //   e.preventDefault();
+      //   return false;
+      // }
+
+      // Block PrintScreen
+      if (e.key === 'PrintScreen') {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    log('Content protection enabled');
   }
 
   // ============================================================
@@ -325,6 +421,9 @@
 
   function init() {
     log('Initializing PWA Utils');
+
+    // Setup content protection first
+    setupContentProtection();
 
     // Register service worker
     registerServiceWorker();
