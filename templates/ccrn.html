@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>CCRN Practice Tests - Nurse Success Study Hub</title>
+    <title>CCRN Practice System - Nurse Success Study Hub</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='category-style.css') }}">
     
@@ -19,7 +19,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Nurse Study">
     
-    <!-- Apple Touch Icons - All Sizes -->
+    <!-- Apple Touch Icons -->
     <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
@@ -41,10 +41,7 @@
             font-size: 14px;
             z-index: 10000;
         }
-
-        .offline-indicator.hidden {
-            display: none;
-        }
+        .offline-indicator.hidden { display: none; }
 
         /* Weekly Progress Widget */
         .weekly-progress-widget {
@@ -52,11 +49,12 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            margin: 0 auto 20px;
             padding: 10px 20px;
             background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(47, 97, 243, 0.2);
+            border: 1px solid rgba(229, 57, 53, 0.2);
             border-radius: 50px;
-            box-shadow: 0 2px 8px rgba(47, 97, 243, 0.1);
+            box-shadow: 0 2px 8px rgba(229, 57, 53, 0.1);
             font-size: 14px;
             color: #333;
         }
@@ -70,7 +68,7 @@
         .weekly-progress-widget .progress-value {
             font-weight: 800;
             font-size: 18px;
-            color: #2f61f3;
+            color: #e53935;
             min-width: 24px;
             text-align: center;
         }
@@ -111,200 +109,448 @@
         }
 
         .page-header {
-            margin-bottom: 15px;
+            margin-bottom: 30px;
         }
-
         .page-header-top {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 8px;
         }
-
         .page-header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 2.2em;
             color: #333;
         }
-
         .page-header p {
             margin: 5px 0 0 0;
             color: #666;
-            font-size: 1.1em;
+            font-size: 1.05em;
         }
+        .header-icon { font-size: 2.2em; }
 
-        .header-icon {
-            font-size: 2.5em;
+        /* Section styling */
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
         }
-
         .section-header {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
-
         .section-header h2 {
             margin: 0;
-            font-size: 1.6em;
-            color: #333;
-        }
-
-        .section-header p {
-            margin: 5px 0 0 0;
-            color: #666;
-            font-size: 0.95em;
-            line-height: 1.5;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.7em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-
-        .status-badge.available {
-            background-color: rgba(76, 175, 80, 0.15);
-            color: #4caf50;
-        }
-
-        .tests-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-
-        .test-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .test-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            border-color: rgba(229, 57, 53, 0.3);
-        }
-
-        .test-card-header {
-            background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
-            padding: 16px 20px;
-            color: white;
-        }
-
-        .test-card-header-content {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .test-card-header .test-icon {
-            font-size: 1.2em;
-        }
-
-        .test-card-header .badge {
-            font-size: 0.7em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .test-card-body {
-            padding: 24px;
-        }
-
-        .test-card-body h3 {
-            margin: 0 0 12px 0;
             font-size: 1.4em;
             color: #333;
         }
-
-        .test-card-body p {
-            margin: 0 0 20px 0;
+        .section-icon { font-size: 1.6em; }
+        .section-description {
             color: #666;
-            font-size: 0.9em;
+            font-size: 0.95em;
             line-height: 1.6;
-        }
-
-        .test-stats {
-            display: flex;
-            justify-content: space-around;
-            padding: 16px 0;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
             margin-bottom: 20px;
         }
 
-        .test-stat {
-            text-align: center;
-        }
-
-        .test-stat-number {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #333;
-            display: block;
-        }
-
-        .test-stat-label {
-            font-size: 0.65em;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 4px;
-        }
-
-        .test-btn {
-            display: block;
-            width: 100%;
-            padding: 14px 20px;
-            border: 2px solid #e53935;
-            background-color: white;
-            color: #e53935;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            text-align: center;
-            transition: all 0.3s ease;
-            font-size: 0.95em;
-        }
-
-        .test-btn:hover {
-            background-color: #e53935;
+        /* Comprehensive Quiz Card - CCRN Red Theme */
+        .comprehensive-card {
+            background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
+            border-radius: 16px;
+            padding: 28px;
             color: white;
+            margin-bottom: 24px;
         }
-
-        .info-box {
-            margin-top: 40px;
-            padding: 25px;
-            background: linear-gradient(135deg, #ffebee 0%, #fce4ec 100%);
-            border-radius: 12px;
-            border-left: 4px solid #e53935;
-        }
-
-        .info-box h3 {
-            color: #c62828;
+        .comprehensive-card h3 {
             margin: 0 0 12px 0;
-            font-size: 1.15em;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .comprehensive-card .card-description {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+        .comprehensive-card .info-box {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .comprehensive-card .info-box h4 {
+            margin: 0 0 8px 0;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .comprehensive-card .info-box p {
+            margin: 0;
+            font-size: 0.9em;
+            opacity: 0.9;
         }
 
-        .info-box p {
-            color: #555;
-            margin: 0;
-            line-height: 1.7;
+        /* Comprehensive Quiz Controls */
+        .comprehensive-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            margin-top: 8px;
+        }
+
+        .comprehensive-length-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .comprehensive-length-selector label {
+            font-weight: 600;
+            color: white;
             font-size: 0.95em;
+        }
+        .comprehensive-length-buttons {
+            display: flex;
+            gap: 0;
+        }
+        .comprehensive-length-btn {
+            padding: 10px 20px;
+            border: 2px solid rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-weight: 600;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .comprehensive-length-btn:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .comprehensive-length-btn:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        .comprehensive-length-btn:not(:last-child) {
+            border-right: none;
+        }
+        .comprehensive-length-btn:hover:not(.active) {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.6);
+        }
+        .comprehensive-length-btn.active {
+            background: white;
+            color: #c62828;
+            border-color: white;
+        }
+
+        .start-comprehensive-btn {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .start-comprehensive-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .category-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 18px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .category-card:hover {
+            background: #ffebee;
+            border-color: #ef9a9a;
+        }
+        .category-card.selected {
+            background: #ffebee;
+            border-color: #e53935;
+            box-shadow: 0 4px 12px rgba(229, 57, 53, 0.2);
+        }
+
+        .category-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        .category-card h4 {
+            margin: 0;
+            font-size: 1.05em;
+            color: #333;
+            flex: 1;
+            padding-right: 10px;
+        }
+        .question-count-badge {
+            background: #ffebee;
+            color: #e53935;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .category-card .question-count {
+            color: #666;
+            font-size: 0.85em;
+            margin-bottom: 12px;
+        }
+
+        /* Performance Bar */
+        .performance-bar-container {
+            margin-top: 12px;
+        }
+        .performance-bar-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 0.85em;
+        }
+        .performance-bar-label .label-text {
+            color: #666;
+        }
+        .performance-bar-label .percentage {
+            font-weight: 700;
+            font-size: 1em;
+        }
+        .performance-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .performance-bar-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.3s ease, background-color 0.3s ease;
         }
         
+        /* No data state */
+        .performance-bar-container.no-data .performance-bar {
+            background: #e8e8e8;
+        }
+        .performance-bar-container.no-data .performance-bar-fill {
+            display: none;
+        }
+        .performance-bar-container.no-data .percentage {
+            color: #999;
+            font-weight: 500;
+        }
+
+        /* Selection indicator */
+        .selection-indicator {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .category-card.selected .selection-indicator {
+            background: #e53935;
+            border-color: #e53935;
+        }
+        .selection-indicator::after {
+            content: '';
+            display: none;
+        }
+        .category-card.selected .selection-indicator::after {
+            content: '✓';
+            display: block;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Quiz Length Selector */
+        .quiz-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-top: 8px;
+        }
+
+        .length-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .length-selector label {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95em;
+        }
+        .length-buttons {
+            display: flex;
+            gap: 0;
+        }
+        .length-btn {
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            background: white;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .length-btn:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        .length-btn:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        .length-btn:not(:last-child) {
+            border-right: none;
+        }
+        .length-btn:hover:not(.active) {
+            background: #f5f5f5;
+            border-color: #e53935;
+        }
+        .length-btn.active {
+            background: #e53935;
+            color: white;
+            border-color: #e53935;
+        }
+
+        .start-category-btn {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .start-category-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+        }
+        .start-category-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 1.8em; }
+            .section { padding: 20px; }
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            .quiz-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+            .length-selector {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .length-buttons {
+                width: 100%;
+            }
+            .length-btn {
+                flex: 1;
+                padding: 12px 16px;
+            }
+            .start-category-btn {
+                width: 100%;
+            }
+            .comprehensive-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+            .comprehensive-length-selector {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .comprehensive-length-buttons {
+                width: 100%;
+            }
+            .comprehensive-length-btn {
+                flex: 1;
+                padding: 12px 16px;
+            }
+            .start-comprehensive-btn {
+                width: 100%;
+            }
+            .weekly-progress-widget {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+            .weekly-progress-widget .progress-value {
+                font-size: 16px;
+            }
+        }
+
+        /* Reset button */
+        .reset-stats-btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 20px;
+            background: #f5f5f5;
+            color: #666;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+        }
+        .reset-stats-btn:hover {
+            background: #e0e0e0;
+        }
+
         /* Safe area insets for iOS PWA */
         @supports (padding-top: env(safe-area-inset-top)) {
             body {
@@ -314,30 +560,21 @@
                 padding-right: env(safe-area-inset-right);
             }
         }
-
-        @media (max-width: 768px) {
-            .weekly-progress-widget {
-                padding: 8px 16px;
-                font-size: 13px;
-            }
-            .weekly-progress-widget .progress-value {
-                font-size: 16px;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Offline indicator -->
+    <!-- Offline Indicator -->
     <div id="offlineIndicator" class="offline-indicator hidden">
-        <span>📴 You're offline - Using cached content</span>
+        📡 You're offline - Using cached content
     </div>
 
     <div class="container">
+        <!-- Navigation Links -->
         <div class="nav-links">
             <a href="/" class="home-link">🏠 Nurse Success Study Hub</a><br>
             <a href="/category/Nursing_Certifications" class="back-link">← Nursing Certifications</a>
         </div>
-        
+
         <!-- Weekly Progress Widget -->
         <div class="widget-container">
             <div class="weekly-progress-widget">
@@ -346,126 +583,119 @@
                 <span class="progress-value" id="weeklyCount">0</span>
             </div>
         </div>
-        
+
+        <!-- Page Header -->
         <div class="page-header">
             <div class="page-header-top">
-                <span class="header-icon">🏆</span>
-                <h1>Nursing Certifications</h1>
+                <span class="header-icon">🏅</span>
+                <h1>CCRN Practice System</h1>
             </div>
-            <p>Prepare for advanced nursing certification exams</p>
+            <p>Critical Care Registered Nurse exam preparation with performance tracking across all 12 content areas</p>
         </div>
 
-        <div class="section-header">
-            <span style="font-size: 1.8em;">🏅</span>
-            <div>
-                <h2>CCRN - Critical Care Registered Nurse <span class="status-badge available">Available</span></h2>
-                <p>Comprehensive practice tests for the Adult CCRN certification exam. Each test covers critical care nursing concepts including hemodynamic monitoring, mechanical ventilation, cardiac emergencies, and more.</p>
-            </div>
-        </div>
-
-        <div class="tests-grid">
-            <!-- CCRN Test 1 -->
-            <div class="test-card">
-                <div class="test-card-header">
-                    <div class="test-card-header-content">
-                        <span class="test-icon">📋</span>
-                        <span class="badge">PRACTICE TEST</span>
-                    </div>
-                </div>
-                <div class="test-card-body">
-                    <h3>CCRN Test 1</h3>
-                    <p>First practice exam covering core critical care concepts including cardiovascular, respiratory, and neurological emergencies.</p>
-                    <div class="test-stats">
-                        <div class="test-stat">
-                            <span class="test-stat-number">150</span>
-                            <span class="test-stat-label">Questions</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">MCQ</span>
-                            <span class="test-stat-label">Type</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">~45 min</span>
-                            <span class="test-stat-label">Duration</span>
-                        </div>
-                    </div>
-                    <a href="/quiz/Nursing_Certifications/CCRN_Test_1_Combined_QA" class="test-btn">Start Test →</a>
-                </div>
+        <!-- Section 1: Comprehensive Quiz -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🎯</span>
+                <h2>CCRN Comprehensive Quiz</h2>
             </div>
 
-            <!-- CCRN Test 2 -->
-            <div class="test-card">
-                <div class="test-card-header">
-                    <div class="test-card-header-content">
-                        <span class="test-icon">📋</span>
-                        <span class="badge">PRACTICE TEST</span>
-                    </div>
+            <div class="comprehensive-card">
+                <h3>Master the CCRN</h3>
+                <p class="card-description">
+                    Take a comprehensive practice quiz covering all CCRN exam content areas. 
+                    Questions are selected from our complete {{ total_questions }}-question bank spanning all 12 categories.
+                </p>
+                <div class="info-box">
+                    <h4>📊 Content Coverage:</h4>
+                    <p>{{ total_questions }} questions across 12 categories: Cardiovascular, Pulmonary/Respiratory, 
+                       Neurological, Renal/Urinary, Gastrointestinal/Hepatic, Endocrine, Hematologic/Immunologic, 
+                       Infection/Sepsis, Trauma/Shock, Vascular, and more.</p>
                 </div>
-                <div class="test-card-body">
-                    <h3>CCRN Test 2</h3>
-                    <p>Second practice exam with additional critical care scenarios focusing on multisystem organ failure and complex patient management.</p>
-                    <div class="test-stats">
-                        <div class="test-stat">
-                            <span class="test-stat-number">150</span>
-                            <span class="test-stat-label">Questions</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">MCQ</span>
-                            <span class="test-stat-label">Type</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">~45 min</span>
-                            <span class="test-stat-label">Duration</span>
+                
+                <!-- Quiz Controls -->
+                <div class="comprehensive-controls">
+                    <div class="comprehensive-length-selector">
+                        <label>Quiz Length:</label>
+                        <div class="comprehensive-length-buttons">
+                            <button class="comprehensive-length-btn" data-length="10">10</button>
+                            <button class="comprehensive-length-btn active" data-length="25">25</button>
+                            <button class="comprehensive-length-btn" data-length="50">50</button>
+                            <button class="comprehensive-length-btn" data-length="100">100</button>
                         </div>
                     </div>
-                    <a href="/quiz/Nursing_Certifications/CCRN_Test_2_Combined_QA" class="test-btn">Start Test →</a>
-                </div>
-            </div>
-
-            <!-- CCRN Test 3 -->
-            <div class="test-card">
-                <div class="test-card-header">
-                    <div class="test-card-header-content">
-                        <span class="test-icon">📋</span>
-                        <span class="badge">PRACTICE TEST</span>
-                    </div>
-                </div>
-                <div class="test-card-body">
-                    <h3>CCRN Test 3</h3>
-                    <p>Third practice exam covering advanced topics including pharmacology, procedures, and professional caring practices.</p>
-                    <div class="test-stats">
-                        <div class="test-stat">
-                            <span class="test-stat-number">150</span>
-                            <span class="test-stat-label">Questions</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">MCQ</span>
-                            <span class="test-stat-label">Type</span>
-                        </div>
-                        <div class="test-stat">
-                            <span class="test-stat-number">~45 min</span>
-                            <span class="test-stat-label">Duration</span>
-                        </div>
-                    </div>
-                    <a href="/quiz/Nursing_Certifications/CCRN_Test_3_Combined_QA" class="test-btn">Start Test →</a>
+                    <button class="start-comprehensive-btn" id="startComprehensiveBtn">
+                        Start Comprehensive Quiz →
+                    </button>
                 </div>
             </div>
         </div>
 
-        <div class="info-box">
-            <h3>📚 About the CCRN Exam</h3>
-            <p>The CCRN (Critical Care Registered Nurse) certification validates your expertise in caring for acutely and critically ill adult patients. The actual exam consists of 150 questions covering clinical judgment across cardiovascular, pulmonary, endocrine, hematology, neurology, multisystem, and behavioral/psychosocial domains. These practice tests mirror the format and difficulty level of the real exam. This app works offline so you can study anywhere!</p>
+        <!-- Section 2: Practice by Category -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📚</span>
+                <h2>Practice by CCRN Category</h2>
+            </div>
+            <p class="section-description">
+                Select a category and quiz length to start focused practice. Your scores are tracked to help identify areas needing improvement.
+            </p>
+
+            <!-- Category Grid - Selectable -->
+            <div class="category-grid" id="categoryGrid">
+                {% for category, count in category_stats.items() %}
+                <div class="category-card" data-category="{{ category }}" data-count="{{ count }}">
+                    <div class="selection-indicator"></div>
+                    <div class="category-card-header">
+                        <h4>{{ category }}</h4>
+                        <span class="question-count-badge">{{ count }} Q</span>
+                    </div>
+                    <p class="question-count">{{ count }} questions available</p>
+                    <div class="performance-bar-container no-data" data-category="{{ category }}">
+                        <div class="performance-bar-label">
+                            <span class="label-text">Performance</span>
+                            <span class="percentage">No Data</span>
+                        </div>
+                        <div class="performance-bar">
+                            <div class="performance-bar-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Quiz Controls -->
+            <div class="quiz-controls">
+                <div class="length-selector">
+                    <label>Quiz Length:</label>
+                    <div class="length-buttons">
+                        <button class="length-btn" data-length="10">10</button>
+                        <button class="length-btn active" data-length="25">25</button>
+                        <button class="length-btn" data-length="50">50</button>
+                    </div>
+                </div>
+                <button class="start-category-btn" id="startCategoryQuizBtn" disabled>
+                    Select a Category to Start
+                </button>
+            </div>
+
+            <button id="resetStatsBtn" class="reset-stats-btn">
+                🔄 Reset Category Performance
+            </button>
         </div>
     </div>
 
     <!-- Progress Store -->
-    <script src="/static/js/progress-store.js"></script>
+    <script src="{{ url_for('static', filename='js/progress-store.js') }}"></script>
     
-    <!-- PWA Utilities -->
-    <script src="/static/js/pwa-utils.js"></script>
-    
+    <!-- PWA Utils -->
+    <script src="{{ url_for('static', filename='js/pwa-utils.js') }}"></script>
+
     <script>
-        // Update weekly count
+        // ============================================
+        // Weekly Progress Counter
+        // ============================================
+        
         function updateWeeklyCount() {
             if (window.StudyGuruProgress) {
                 const count = window.StudyGuruProgress.answeredThisWeek();
@@ -482,6 +712,204 @@
                 updateWeeklyCount();
             }
         });
+
+        // ============================================
+        // Comprehensive Quiz Launcher
+        // ============================================
+        
+        let comprehensiveLength = 25;
+        
+        const comprehensiveLengthBtns = document.querySelectorAll('.comprehensive-length-btn');
+        const startComprehensiveBtn = document.getElementById('startComprehensiveBtn');
+        
+        // Comprehensive length button selection
+        comprehensiveLengthBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                comprehensiveLengthBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                comprehensiveLength = parseInt(btn.dataset.length, 10);
+            });
+        });
+        
+        // Start comprehensive quiz
+        startComprehensiveBtn.addEventListener('click', () => {
+            const url = `/quiz/Nursing_Certifications/CCRN_Comprehensive?quiz_length=${comprehensiveLength}&autostart=true&back_url=/category/Nursing_Certifications/CCRN&back_label=CCRN Practice System`;
+            window.location.href = url;
+        });
+
+        // ============================================
+        // Category Selection & Quiz Launcher
+        // ============================================
+        
+        let selectedCategory = null;
+        let selectedLength = 25;
+
+        const categoryCards = document.querySelectorAll('.category-card');
+        const lengthBtns = document.querySelectorAll('.length-btn');
+        const startBtn = document.getElementById('startCategoryQuizBtn');
+
+        // Category card selection (toggle behavior)
+        categoryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const wasSelected = card.classList.contains('selected');
+                
+                // Deselect all
+                categoryCards.forEach(c => c.classList.remove('selected'));
+                
+                if (wasSelected) {
+                    // Was already selected - deselect it (clear selection)
+                    selectedCategory = null;
+                } else {
+                    // Wasn't selected - select it
+                    card.classList.add('selected');
+                    selectedCategory = card.dataset.category;
+                }
+                
+                // Update button state
+                updateStartButton();
+            });
+        });
+
+        // Length button selection
+        lengthBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                lengthBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedLength = parseInt(btn.dataset.length, 10);
+                updateStartButton();
+            });
+        });
+
+        function updateStartButton() {
+            if (selectedCategory) {
+                const card = document.querySelector(`.category-card[data-category="${selectedCategory}"]`);
+                const availableCount = parseInt(card?.dataset.count || 0, 10);
+                
+                if (selectedLength > availableCount) {
+                    startBtn.disabled = true;
+                    startBtn.textContent = `Only ${availableCount} questions available`;
+                } else {
+                    startBtn.disabled = false;
+                    startBtn.textContent = `Start ${selectedCategory.split('/')[0]}... Quiz (${selectedLength}Q) →`;
+                }
+            } else {
+                startBtn.disabled = true;
+                startBtn.textContent = 'Select a Category to Start';
+            }
+        }
+
+        // Start quiz button
+        startBtn.addEventListener('click', () => {
+            if (!selectedCategory || startBtn.disabled) return;
+            
+            const url = `/category/Nursing_Certifications/CCRN/category/${encodeURIComponent(selectedCategory)}?quiz_length=${selectedLength}&autostart=true&back_url=/category/Nursing_Certifications/CCRN&back_label=CCRN Practice System`;
+            window.location.href = url;
+        });
+
+        // ============================================
+        // Performance Bars - Color Gradient
+        // ============================================
+        
+        /**
+         * Get color for performance percentage
+         * Red (0%) → Yellow (77%) → Green (100%)
+         */
+        function getPerformanceColor(percentage) {
+            if (percentage < 77) {
+                // Red to Yellow: 0-76%
+                const ratio = percentage / 76;
+                const r = Math.round(244 + (255 - 244) * ratio);
+                const g = Math.round(67 + (193 - 67) * ratio);
+                const b = Math.round(54 + (7 - 54) * ratio);
+                return `rgb(${r}, ${g}, ${b})`;
+            } else if (percentage < 85) {
+                // Yellow to Light Green: 77-84%
+                const ratio = (percentage - 77) / 7;
+                const r = Math.round(255 + (139 - 255) * ratio);
+                const g = Math.round(193 + (195 - 193) * ratio);
+                const b = Math.round(7 + (74 - 7) * ratio);
+                return `rgb(${r}, ${g}, ${b})`;
+            } else {
+                // Light Green to Green: 85-100%
+                const ratio = (percentage - 85) / 15;
+                const r = Math.round(139 + (76 - 139) * ratio);
+                const g = Math.round(195 + (175 - 195) * ratio);
+                const b = Math.round(74 + (80 - 74) * ratio);
+                return `rgb(${r}, ${g}, ${b})`;
+            }
+        }
+
+        function updatePerformanceBars() {
+            if (!window.StudyGuruProgress) return;
+            
+            const averages = window.StudyGuruProgress.getAllCategoryAverages();
+            
+            document.querySelectorAll('.performance-bar-container').forEach(container => {
+                const category = container.dataset.category;
+                const average = averages[category];
+                const percentageEl = container.querySelector('.percentage');
+                const barFill = container.querySelector('.performance-bar-fill');
+                
+                if (average !== undefined && average !== null) {
+                    // Has data
+                    container.classList.remove('no-data');
+                    percentageEl.textContent = `${average}%`;
+                    percentageEl.style.color = getPerformanceColor(average);
+                    barFill.style.width = `${average}%`;
+                    barFill.style.backgroundColor = getPerformanceColor(average);
+                    barFill.style.display = 'block';
+                } else {
+                    // No data
+                    container.classList.add('no-data');
+                    percentageEl.textContent = 'No Data';
+                    percentageEl.style.color = '#999';
+                    barFill.style.width = '0%';
+                    barFill.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize performance bars on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePerformanceBars();
+        });
+
+        // Update when storage changes (from other tabs)
+        window.addEventListener('storage', (e) => {
+            if (e.key && e.key.startsWith('sg:v1:')) {
+                updatePerformanceBars();
+            }
+        });
+
+        // ============================================
+        // Reset Stats
+        // ============================================
+        
+        document.getElementById('resetStatsBtn').addEventListener('click', () => {
+            if (confirm('Are you sure you want to reset all category performance data? This cannot be undone.')) {
+                if (window.StudyGuruProgress) {
+                    window.StudyGuruProgress.clearCategoryPerformance();
+                    updatePerformanceBars();
+                }
+            }
+        });
+
+        // ============================================
+        // Offline Indicator
+        // ============================================
+        
+        function updateOfflineIndicator() {
+            const indicator = document.getElementById('offlineIndicator');
+            if (navigator.onLine) {
+                indicator.classList.add('hidden');
+            } else {
+                indicator.classList.remove('hidden');
+            }
+        }
+
+        window.addEventListener('online', updateOfflineIndicator);
+        window.addEventListener('offline', updateOfflineIndicator);
+        updateOfflineIndicator();
     </script>
 </body>
 </html>
