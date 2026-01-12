@@ -121,14 +121,6 @@
             background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
         }
 
-        .cert-card-header.tcrn {
-            background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
-        }
-
-        .cert-card-header.pccn {
-            background: linear-gradient(135deg, #8e24aa 0%, #6a1b9a 100%);
-        }
-
         .cert-card-header .cert-icon {
             font-size: 56px;
             margin-bottom: 16px;
@@ -220,75 +212,6 @@
             color: white;
         }
 
-        .cert-btn.tcrn {
-            border-color: #43a047;
-            color: #43a047;
-        }
-
-        .cert-btn.tcrn:hover {
-            background-color: #43a047;
-            color: white;
-        }
-
-        .cert-btn.pccn {
-            border-color: #8e24aa;
-            color: #8e24aa;
-        }
-
-        .cert-btn.pccn:hover {
-            background-color: #8e24aa;
-            color: white;
-        }
-
-        .coming-soon-card {
-            position: relative;
-        }
-
-        .coming-soon-card .cert-card-header {
-            filter: grayscale(40%);
-            opacity: 0.8;
-        }
-
-        .coming-soon-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: 700;
-            color: #ff9800;
-            font-size: 0.75em;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .coming-soon-card .cert-btn {
-            pointer-events: none;
-            opacity: 0.5;
-            background-color: #eee;
-            border-color: #ccc;
-            color: #999;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.7em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-left: 15px;
-            vertical-align: middle;
-        }
-
-        .status-badge.available {
-            background-color: rgba(76, 175, 80, 0.15);
-            color: #4caf50;
-        }
-
         .info-section {
             margin-top: 50px;
             padding: 30px;
@@ -338,7 +261,7 @@
         </div>
 
         <div class="certifications-grid">
-            <!-- CCRN Card - Available -->
+            <!-- CCRN Card -->
             <div class="cert-card">
                 <div class="cert-card-header ccrn">
                     <div class="cert-icon">🏥</div>
@@ -348,10 +271,6 @@
                 <div class="cert-card-body">
                     <p>Comprehensive practice tests for the Adult CCRN certification exam. Covers hemodynamic monitoring, mechanical ventilation, cardiac emergencies, neurological assessment, and more.</p>
                     <div class="cert-stats">
-                        <div class="cert-stat">
-                            <span class="cert-stat-number">3</span>
-                            <span class="cert-stat-label">Practice Tests</span>
-                        </div>
                         <div class="cert-stat">
                             <span class="cert-stat-number">450</span>
                             <span class="cert-stat-label">Questions</span>
@@ -365,7 +284,7 @@
                 </div>
             </div>
 
-            <!-- CFRN Card - Available -->
+            <!-- CFRN Card -->
             <div class="cert-card">
                 <div class="cert-card-header cfrn">
                     <div class="cert-icon">🚁</div>
@@ -376,11 +295,7 @@
                     <p>Prepare for flight nursing certification with practice questions covering patient assessment, flight physiology, safety protocols, and emergency interventions in transport environments.</p>
                     <div class="cert-stats">
                         <div class="cert-stat">
-                            <span class="cert-stat-number">1</span>
-                            <span class="cert-stat-label">Question Bank</span>
-                        </div>
-                        <div class="cert-stat">
-                            <span class="cert-stat-number">300</span>
+                            <span class="cert-stat-number">583</span>
                             <span class="cert-stat-label">Questions</span>
                         </div>
                         <div class="cert-stat">
@@ -389,62 +304,6 @@
                         </div>
                     </div>
                     <a href="/category/Nursing_Certifications/CFRN" class="cert-btn cfrn">View CFRN Tests →</a>
-                </div>
-            </div>
-
-            <!-- TCRN Card - Coming Soon -->
-            <div class="cert-card coming-soon-card">
-                <span class="coming-soon-badge">Coming Soon</span>
-                <div class="cert-card-header tcrn">
-                    <div class="cert-icon">🚨</div>
-                    <h2>TCRN</h2>
-                    <p class="cert-full-name">Trauma Certified Registered Nurse</p>
-                </div>
-                <div class="cert-card-body">
-                    <p>Practice tests for trauma nursing certification covering injury prevention, trauma resuscitation, multi-system trauma management, and specialized trauma populations.</p>
-                    <div class="cert-stats">
-                        <div class="cert-stat">
-                            <span class="cert-stat-number">—</span>
-                            <span class="cert-stat-label">Practice Tests</span>
-                        </div>
-                        <div class="cert-stat">
-                            <span class="cert-stat-number">—</span>
-                            <span class="cert-stat-label">Questions</span>
-                        </div>
-                        <div class="cert-stat">
-                            <span class="cert-stat-number">MCQ</span>
-                            <span class="cert-stat-label">Format</span>
-                        </div>
-                    </div>
-                    <span class="cert-btn tcrn">Coming Soon</span>
-                </div>
-            </div>
-
-            <!-- PCCN Card - Coming Soon -->
-            <div class="cert-card coming-soon-card">
-                <span class="coming-soon-badge">Coming Soon</span>
-                <div class="cert-card-header pccn">
-                    <div class="cert-icon">💜</div>
-                    <h2>PCCN</h2>
-                    <p class="cert-full-name">Progressive Care Certified Nurse</p>
-                </div>
-                <div class="cert-card-body">
-                    <p>Prepare for progressive care certification with questions on cardiac monitoring, respiratory management, medication administration, and transitional care planning.</p>
-                    <div class="cert-stats">
-                        <div class="cert-stat">
-                            <span class="cert-stat-number">—</span>
-                            <span class="cert-stat-label">Practice Tests</span>
-                        </div>
-                        <div class="cert-stat">
-                            <span class="cert-stat-number">—</span>
-                            <span class="cert-stat-label">Questions</span>
-                        </div>
-                        <div class="cert-stat">
-                            <span class="cert-stat-number">MCQ</span>
-                            <span class="cert-stat-label">Format</span>
-                        </div>
-                    </div>
-                    <span class="cert-btn pccn">Coming Soon</span>
                 </div>
             </div>
         </div>
