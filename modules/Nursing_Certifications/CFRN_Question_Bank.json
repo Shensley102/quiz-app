@@ -2068,13 +2068,14 @@
         "Catheter whip",
         "Excessive tubing length",
         "Air bubbles in the system",
-        "Both B and C"
+        "Under-pressureised tubing"
       ],
       "correct": [
-        "D"
+        "B",
+        "C"
       ],
       "rationale": "Overdamping causes flattened waveform. Causes include: air bubbles, blood clots, kinked tubing, excessive tubing length, loose connections.",
-      "type": "single_select"
+      "type": "multi-select"
     },
     {
       "category": "Pulmonary Diseases",
