@@ -2063,18 +2063,23 @@
     {
       "category": "Hemodynamic Monitoring",
       "id": "Q129",
-      "stem": "An overdamped arterial waveform can be caused by:",
+      "stem": "A patient’s invasive arterial line shows an overdamped waveform (absent dicrotic notch, narrowed pulse pressure, and underestimated systolic pressure). Which of the following factors are known to cause an overdamped arterial tracing? (Select all that apply.)",
       "options": [
-        "Catheter whip",
-        "Excessive tubing length",
-        "Air bubbles in the system",
-        "Under-pressureised tubing"
+        "Air bubbles within the arterial line tubing",
+        "A thrombus partially occluding the catheter tiph",
+        "Using an excessively long, flexible pressure tubing with multiple stopcock connectors",
+        "An overly stiff, short tubing system with high natural frequency (very non-compliant setup)",
+        "Loose connections or low flush bag pressure leading to backflow in the line",
+        "Arterial vasospasm at the catheter insertion site",
       ],
       "correct": [
+        "A",
         "B",
-        "C"
+        "C",
+        "E",
+        "F"
       ],
-      "rationale": "Overdamping causes flattened waveform. Causes include: air bubbles, blood clots, kinked tubing, excessive tubing length, loose connections.",
+      "rationale": "An overdamped arterial waveform looks flattened and slurred, often with a diminished or absent dicrotic notch and a narrowed pulse pressure. It occurs when the monitoring setup absorbs too much of the pressure wave, usually because of added compliance (something compressible/elastic in the system) or added resistance/obstruction between the artery and the transducer. Common causes include air bubbles (compressible, so they cushion and blunt the waveform), partial clots/fibrin at the catheter tip (creates obstruction and dampens transmission), kinked or occluded catheter/tubing or the catheter tip resting against the vessel wall (mechanical blockage), excessively long or overly compliant tubing and extra stopcocks (increases compliance and resistance), loose connections or small leaks (introduces compliance and can allow air entry), inadequate flush bag pressure/low flush flow (promotes backflow and clot formation and reduces system performance), and sometimes arterial vasospasm around the catheter (physiologic narrowing that mimics partial obstruction).",
       "type": "multi-select"
     },
     {
