@@ -276,6 +276,9 @@ def load_ccrn_comprehensive_questions():
     try:
         with open(ccrn_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
+        # Handle both array format and {questions: []} format
+        if isinstance(data, list):
+            return data
         return data.get('questions', [])
     except Exception as e:
         print(f"Error loading CCRN Comprehensive questions: {e}")
@@ -771,6 +774,10 @@ def quiz(category, module):
 
         with open(module_path, 'r', encoding='utf-8') as f:
             quiz_data = json.load(f)
+
+        # Normalize JSON format: wrap arrays in {questions: []} object
+        if isinstance(quiz_data, list):
+            quiz_data = {'questions': quiz_data}
 
         # Check for autostart parameter (for Pharmacology categorical quizzes)
         autostart = request.args.get('autostart', 'false').lower() == 'true'
