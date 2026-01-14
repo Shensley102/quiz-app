@@ -293,7 +293,7 @@
       "correct": [
         "A"
       ],
-      "rationale": "Type I (Hypoxic) respiratory failure shows hypoxemia with normal or low PaCO2. The patient can ventilate but has impaired oxygenation (V/Q mismatch, shunt). Examples: pneumonia, Pulmonary Embolism (PE), ARDS.",
+      "rationale": "Type I (hypoxemic/hypoxic) respiratory failure is characterized by low PaO₂ with a normal or low PaCO₂ because the patient can usually ventilate (and often hyperventilates, blowing off CO₂) but cannot oxygenate due to V/Q mismatch, shunt, or diffusion impairment; classic examples include pneumonia, ARDS, pulmonary edema, and pulmonary embolism. In contrast, Type II respiratory failure is primarily a ventilation problem with elevated PaCO₂ from hypoventilation (e.g., COPD exacerbation, CNS depression, neuromuscular weakness), while Type III is a perioperative/post-op pattern driven by atelectasis that looks like hypoxemia (Type I physiology) in the surgical setting, and Type IV occurs in shock where hypoperfusion and high work of breathing lead to respiratory muscle fatigue and eventual failure. Framing it by hypoxia types, this stem describes hypoxic (hypoxemic) hypoxia (low PaO₂), whereas anemic, circulatory, and histotoxic hypoxia can all present with a normal PaO₂, so they don’t match the “hypoxemia with normal/low PaCO₂” pattern.",
       "type": "single_select"
     },
     {
