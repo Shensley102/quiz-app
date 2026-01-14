@@ -134,6 +134,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
 
         .cert-card:hover {
@@ -270,7 +271,7 @@
 <body>
     <!-- Offline indicator -->
     <div id="offlineIndicator" class="offline-indicator hidden">
-        <span>📴 You're offline - Using cached content</span>
+        <span>🔴 You're offline - Using cached content</span>
     </div>
 
     <div class="container">
@@ -295,7 +296,7 @@
 
         <div class="certifications-grid">
             <!-- CCRN Card -->
-            <div class="cert-card">
+            <div class="cert-card" data-href="/category/Nursing_Certifications/CCRN">
                 <div class="cert-card-header">
                     <img src="/images/CCRN_Header.png" alt="CCRN - Critical Care Registered Nurse" class="cert-icon-img">
                 </div>
@@ -316,7 +317,7 @@
             </div>
 
             <!-- CFRN Card -->
-            <div class="cert-card">
+            <div class="cert-card" data-href="/category/Nursing_Certifications/CFRN">
                 <div class="cert-card-header">
                     <img src="/images/CFRN_Header.png" alt="CFRN - Certified Flight Registered Nurse" class="cert-icon-img">
                 </div>
@@ -366,6 +367,18 @@
             if (e.key && e.key.startsWith('sg:v1:')) {
                 updateWeeklyCount();
             }
+        });
+
+        // Clickable card navigation
+        document.querySelectorAll('.cert-card[data-href]').forEach(function(card) {
+            card.addEventListener('click', function(e) {
+                // If click was on the button, let the button handle navigation
+                if (e.target.closest('.cert-btn')) {
+                    return;
+                }
+                // Navigate to the card's href
+                window.location.href = card.dataset.href;
+            });
         });
     </script>
 </body>
