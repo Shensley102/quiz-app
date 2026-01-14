@@ -8462,17 +8462,17 @@
     },
     {
       "id": "Q529",
-      "stem": "After a motor vehicle collision, a 45-year-old male presents to the emergency department. He complains of severe abdominal pain and exhibits signs of hypovolemic shock. Vital signs show a heart rate of: 130 bpm, blood pressure of 90/60 mm Hg respiratory rate of 28 breaths/min Which of the following diagnostic tests should be prioritized to assess for intra-abdominal bleeding?",
+      "stem": "After a motor vehicle collision, a 45-year-old man presents to the emergency department with severe abdominal pain and signs of hypovolemic shock. Vital signs: HR 130/min, BP 90/60 mm Hg, RR 28/min. He is pale and diaphoretic. After initiating resuscitation, which diagnostic test should be prioritized at the bedside to rapidly assess for intra-abdominal hemorrhage?",
       "options": [
-        "CT angiography",
+        "CT angiography of the abdomen and pelvis",
         "Diagnostic peritoneal lavage (DPL)",
-        "Abdominal ultrasound",
+        "Focused Assessment with Sonography for Trauma (FAST)",
         "X-ray of the abdomen"
       ],
       "correct": [
-        "A"
+        "C"
       ],
-      "rationale": "CT angiography allows for the identification of injuries and internal bleeding in patients with abdominal trauma and also provides detailed imaging of the abdomen.",
+      "rationale": "In a hemodynamically unstable patient after blunt abdominal trauma, the priority is a rapid bedside test that can be performed during resuscitation to detect free intraperitoneal fluid (usually blood); the FAST exam is designed for this purpose and is typically completed within minutes. Because FAST has high specificity for clinically significant hemoperitoneum, an unstable patient with a positive FAST should proceed to urgent operative intervention (e.g., exploratory laparotomy) rather than being delayed for CT imaging, while CT (with IV contrast/CTA) is generally reserved for hemodynamically stable patients to better characterize injuries and guide nonoperative or interventional management.",
       "type": "single_select"
     },
     {
