@@ -2282,13 +2282,15 @@
         "Ketamine",
         "Etomidate",
         "Propofol",
-        "Both B and C"
+        "Versed"
       ],
       "correct": [
-        "D"
+        "A",
+        "D",
+        "C"
       ],
-      "rationale": "Both Etomidate and Propofol decrease ICP and cerebral metabolic oxygen demand (CMRO2), making them preferred for head-injured patients.",
-      "type": "single_select"
+      "rationale": "Etomidate lowers cerebral metabolic rate of oxygen (CMRO₂—how much oxygen the brain consumes) and cerebral blood flow (CBF—the volume of blood delivered to brain tissue per unit time), which helps reduce intracranial pressure (ICP), and it usually has relatively little effect on systemic blood pressure—helping preserve cerebral perfusion pressure (CPP) in head-injured patients. Ketamine was historically avoided because of concern for increasing ICP, but in sedated/ventilated severe traumatic brain injury patients it generally does not increase ICP and may lower it in selected cases, while often supporting blood pressure/CPP. Propofol also reduces CMRO₂/CBF and can reduce ICP, but it can cause vasodilation and clinically significant hypotension, which can jeopardize CPP if not carefully supported—so it’s used cautiously when blood pressure is tenuous.",
+      "type": "multi_select"
     },
     {
       "category": "Aircraft Operations & Safety",
