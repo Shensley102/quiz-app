@@ -78,6 +78,78 @@
   text-align: right;
 }
 
+/* ===== Question Image Styles (NEW) ===== */
+.question-image-container {
+  margin: 16px 0;
+  text-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8f9fa;
+  border: 2px solid var(--border, #e0e0e0);
+  transition: opacity 0.3s ease;
+}
+
+.question-image-container.loaded {
+  background: transparent;
+}
+
+.question-image {
+  max-width: 100%;
+  max-height: 400px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  /* Re-enable pointer events for question images so users can zoom/inspect */
+  pointer-events: auto;
+  /* Allow selection for accessibility */
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}
+
+.question-image-error {
+  padding: 40px 20px;
+  color: #999;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Image in review section */
+.review-image {
+  margin: 12px 0;
+  text-align: center;
+}
+
+.review-image img {
+  max-width: 100%;
+  max-height: 300px;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border, #e0e0e0);
+  pointer-events: auto;
+}
+
+/* Mobile adjustments for question images */
+@media (max-width: 600px) {
+  .question-image-container {
+    margin: 12px 0;
+  }
+  
+  .question-image {
+    max-height: 300px;
+  }
+  
+  .review-image img {
+    max-height: 200px;
+  }
+}
+
+/* ===== End Question Image Styles ===== */
+
 /* Question Text */
 .question-text {
   font-size: 18px;
