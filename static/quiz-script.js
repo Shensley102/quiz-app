@@ -10,15 +10,14 @@
    - Progress tracking via StudyGuruProgress
    - Mastery-based requeue system
    - Resume quiz support
-   - Fill-in-the-blank question support (NEW)
+   - Fill-in-the-blank question support
+   - Image question support (NEW)
    
    PATCH NOTES:
-   - Added FITB detection and rendering
-   - Added FITB answer validation and normalization
-   - Added FITB submission handling
-   - All MCQ functionality unchanged
-   - Mixed MCQ+FITB quizzes now supported
-   - Fixed object-format options support (e.g., {A: "...", B: "..."})
+   - Added image question support for questions with images
+   - Images display above question stem
+   - Supports all image formats (PNG, JPG, JPEG, GIF, WEBP, SVG)
+   - Works with both MCQ and FITB question types
    
 ------------------------------------------------------------ */
 
@@ -275,7 +274,67 @@
   }
 
   // -----------------------------------------------------------
-  // Fill-in-the-Blank Helpers (NEW)
+  // Image Question Helpers (NEW)
+  // -----------------------------------------------------------
+
+  // Check if question has an image
+  function hasQuestionImage(q) {
+    return !!(q.image && typeof q.image === 'string' && q.image.trim().length > 0);
+  }
+
+  // Get full image URL from question image field
+  // Handles: "cfrn/vfib_rhythm.png" -> "/static/images/cfrn/vfib_rhythm.png"
+  // Also handles full paths if provided: "/static/images/..." -> as-is
+  function getQuestionImageUrl(q) {
+    if (!hasQuestionImage(q)) return null;
+    
+    const imagePath = q.image.trim();
+    
+    // If already a full path, return as-is
+    if (imagePath.startsWith('/') || imagePath.startsWith('http')) {
+      return imagePath;
+    }
+    
+    // Otherwise, prepend the images directory
+    return `/static/images/${imagePath}`;
+  }
+
+  // Render question image if present
+  // Returns the image container element or null if no image
+  function renderQuestionImage(q) {
+    if (!hasQuestionImage(q)) return null;
+    
+    const imageUrl = getQuestionImageUrl(q);
+    if (!imageUrl) return null;
+    
+    // Create image container
+    const container = document.createElement('div');
+    container.className = 'question-image-container';
+    
+    // Create image element
+    const img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = 'Question image';
+    img.className = 'question-image';
+    
+    // Add loading state
+    img.addEventListener('load', () => {
+      container.classList.add('loaded');
+    });
+    
+    // Handle image load errors gracefully
+    img.addEventListener('error', () => {
+      console.warn('[Quiz] Failed to load question image:', imageUrl);
+      container.classList.add('error');
+      container.innerHTML = '<div class="question-image-error">Image could not be loaded</div>';
+    });
+    
+    container.appendChild(img);
+    return container;
+  }
+
+  // -----------------------------------------------------------
+  // Fill-in-the-Blank Helpers
   // -----------------------------------------------------------
 
   // Detect if question is fill-in-the-blank
@@ -795,7 +854,18 @@
   }
 
   // -----------------------------------------------------------
-  // Render Fill-in-the-Blank Question (NEW)
+  // Clear and Render Question Image (NEW)
+  // -----------------------------------------------------------
+  function clearQuestionImage() {
+    // Remove any existing question image container
+    const existingContainer = document.querySelector('.question-image-container');
+    if (existingContainer) {
+      existingContainer.remove();
+    }
+  }
+
+  // -----------------------------------------------------------
+  // Render Fill-in-the-Blank Question
   // -----------------------------------------------------------
   function renderFitbQuestion(q) {
     // Clear feedback
@@ -811,6 +881,18 @@
     if (els.answerLine) {
       els.answerLine.classList.add('hidden');
       els.answerLine.textContent = '';
+    }
+
+    // Clear any previous question image
+    clearQuestionImage();
+
+    // Render question image if present (NEW)
+    if (hasQuestionImage(q) && els.questionText) {
+      const imageContainer = renderQuestionImage(q);
+      if (imageContainer) {
+        // Insert image before the question text
+        els.questionText.parentNode.insertBefore(imageContainer, els.questionText);
+      }
     }
 
     // Show question text
@@ -890,7 +972,7 @@
   }
 
   // -----------------------------------------------------------
-  // Render Multi-Blank FITB Question (NEW)
+  // Render Multi-Blank FITB Question
   // -----------------------------------------------------------
   function renderMultiBlankFitbQuestion(q, blankCount) {
     if (els.optionsForm) {
@@ -968,7 +1050,7 @@
   }
 
   // -----------------------------------------------------------
-  // Render MCQ Question (MOVED FROM renderQuestion)
+  // Render MCQ Question
   // -----------------------------------------------------------
   function renderMcqQuestion(q) {
     // Clear feedback
@@ -984,6 +1066,18 @@
     if (els.answerLine) {
       els.answerLine.classList.add('hidden');
       els.answerLine.textContent = '';
+    }
+
+    // Clear any previous question image
+    clearQuestionImage();
+
+    // Render question image if present (NEW)
+    if (hasQuestionImage(q) && els.questionText) {
+      const imageContainer = renderQuestionImage(q);
+      if (imageContainer) {
+        // Insert image before the question text
+        els.questionText.parentNode.insertBefore(imageContainer, els.questionText);
+      }
     }
 
     // Show question text - NOW USING getQuestionText() which checks 'stem'
@@ -1104,7 +1198,7 @@
     const q = run.current;
     const isFitb = isFitbQuestion(q);
 
-    // ===== FITB SUBMISSION (NEW) =====
+    // ===== FITB SUBMISSION =====
     if (isFitb) {
       const q = run.current;
       const blankCount = countBlanks(getQuestionText(q));
@@ -1485,8 +1579,16 @@
           answerHtml = `<div class="review-correct-answer"><strong>Correct Answer:</strong><br>${formattedAnswer}</div>`;
         }
 
+        // Add image to review if question has one (NEW)
+        let imageHtml = '';
+        if (hasQuestionImage(q)) {
+          const imageUrl = getQuestionImageUrl(q);
+          imageHtml = `<div class="review-image"><img src="${imageUrl}" alt="Question image" /></div>`;
+        }
+
         div.innerHTML = `
           <div class="review-question"><strong>${p.correct ? '✅' : '❌'}</strong> ${questionText}</div>
+          ${imageHtml}
           ${answerHtml}
           ${q.rationale ? `<div class="review-rationale"><strong>Rationale:</strong> ${q.rationale}</div>` : ''}
         `;
