@@ -9298,7 +9298,9 @@
       "Multifocal atrial tachycardia",
       "Sinus arrhythmia"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Atrial fibrillation is characterized by an irregularly irregular rhythm with absent P waves and fibrillatory baseline. It is the most common sustained arrhythmia. Atrial flutter has regular 'sawtooth' waves; MAT has varying P-wave morphologies; sinus arrhythmia has normal P waves with respiratory variation.",
     "type": "single_select"
   },
@@ -9313,7 +9315,9 @@
       "IV amiodarone bolus",
       "IV adenosine"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "For stable AF with rapid ventricular response (RVR), rate control with IV diltiazem or beta-blockers is first-line. Cardioversion is reserved for unstable patients. Adenosine is ineffective in AF. Amiodarone is used for rhythm control but rate control is the priority in stable patients.",
     "type": "single_select"
   },
@@ -9328,7 +9332,9 @@
       "Sinus tachycardia",
       "SVT"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Atrial flutter classically shows 'sawtooth' flutter waves at ~300 bpm, best seen in inferior leads (II, III, aVF). With 2:1 AV block, the ventricular rate is ~150 bpm. AF is irregularly irregular without flutter waves; sinus tachycardia has normal P waves; SVT typically has hidden P waves.",
     "type": "single_select"
   },
@@ -9343,7 +9349,9 @@
       "Immediate defibrillation",
       "IV lidocaine"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Vagal maneuvers (carotid massage) or adenosine transiently increase AV block, slowing ventricular response and unmasking flutter waves for diagnosis. Amiodarone and lidocaine do not help unmask flutter waves; defibrillation is for unstable rhythms.",
     "type": "single_select"
   },
@@ -9358,7 +9366,9 @@
       "Supraventricular tachycardia (SVT/AVNRT)",
       "Ventricular tachycardia"
     ],
-    "correct": ["C"],
+    "correct": [
+      "C"
+    ],
     "rationale": "A regular narrow-complex tachycardia (~150-250 bpm) with hidden or retrograde P waves is classic for SVT/AVNRT. Sinus tachycardia has visible P waves; AF is irregularly irregular; VT is wide-complex.",
     "type": "single_select"
   },
@@ -9373,7 +9383,9 @@
       "IV amiodarone",
       "Oral metoprolol"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "For stable SVT/AVNRT, vagal maneuvers or IV adenosine are first-line. Adenosine will usually terminate AVNRT. Amiodarone and beta-blockers are slower; cardioversion is reserved for instability.",
     "type": "single_select"
   },
@@ -9388,7 +9400,9 @@
       "Hyperkalemia",
       "Left anterior fascicular block"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "WPW is defined by a PR <120 ms and delta wave (slurred initial QRS) due to an accessory pathway. LBBB and fascicular block do not show delta waves, and hyperkalemia causes peaked T waves, not delta waves.",
     "type": "single_select"
   },
@@ -9403,7 +9417,9 @@
       "IV adenosine",
       "IV verapamil"
     ],
-    "correct": ["D"],
+    "correct": [
+      "D"
+    ],
     "rationale": "In WPW with atrial fibrillation, AV nodal blockers like verapamil (and adenosine, diltiazem, digoxin) are contraindicated as they can precipitate ventricular fibrillation by allowing unopposed conduction through the accessory pathway. Procainamide is preferred; amiodarone is safer in this scenario.",
     "type": "single_select"
   },
@@ -9418,7 +9434,9 @@
       "Premature ventricular complex (PVC)",
       "Sinus block"
     ],
-    "correct": ["C"],
+    "correct": [
+      "C"
+    ],
     "rationale": "A PVC is an early wide QRS (no P wave) with compensatory pause. Junctional escape occurs late (not early); PAC would have a P wave; sinus block would simply delay a sinus beat, not produce a wide complex.",
     "type": "single_select"
   },
@@ -9433,7 +9451,9 @@
       "Observation and treat underlying cause",
       "IV metoprolol"
     ],
-    "correct": ["C"],
+    "correct": [
+      "C"
+    ],
     "rationale": "In a stable patient, isolated PVCs require no acute treatment; one should search for reversible causes (electrolytes, ischemia, hypoxia). Lidocaine or cardioversion is reserved for VT. Metoprolol is not needed if the patient is stable.",
     "type": "single_select"
   },
@@ -9448,7 +9468,9 @@
       "SVT with aberrancy",
       "Atrial flutter with 1:1 conduction"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "Regular wide QRS tachycardia with fusion beats is diagnostic for VT. Fusion beats prove ventricular origin. Torsades is irregular/polymorphic. SVT with aberrancy doesn't have fusion beats, and atrial flutter 1:1 would show atrial activity.",
     "type": "single_select"
   },
@@ -9463,7 +9485,9 @@
       "IV metoprolol",
       "IV magnesium"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Hemodynamically unstable VT (hypotension) requires immediate synchronized cardioversion. Amiodarone is for stable VT. Beta-blocker or magnesium are not first-line in acute unstable VT.",
     "type": "single_select"
   },
@@ -9478,7 +9502,9 @@
       "Polymorphic VT (not torsades)",
       "Atrial fibrillation with aberrancy"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Twisting polymorphic VT on a prolonged QT is classic for Torsades de Pointes ('twisting of the points'). VF is totally chaotic without the twisting pattern; polymorphic VT without long QT is a different entity. AF has irregular narrow QRS typically.",
     "type": "single_select"
   },
@@ -9493,7 +9519,9 @@
       "IV magnesium sulfate",
       "IV epinephrine"
     ],
-    "correct": ["C"],
+    "correct": [
+      "C"
+    ],
     "rationale": "In torsades with a pulse, IV magnesium is first-line therapy to stabilize the myocardium. Defibrillation is for pulseless VT/VF. Procainamide is contraindicated (can worsen QT); epinephrine is for cardiac arrest.",
     "type": "single_select"
   },
@@ -9508,7 +9536,9 @@
       "Third-degree AV block with ventricular escape",
       "Junctional tachycardia"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "AIVR is a ventricular rhythm of intermediate rate (50-120 bpm) often seen after reperfusion. VT is usually >120 bpm. AIVR has capture/fusion beats and coexists with atrial activity. Third-degree block shows AV dissociation with slower escape.",
     "type": "single_select"
   },
@@ -9523,7 +9553,9 @@
       "No treatment; observe",
       "External pacing"
     ],
-    "correct": ["C"],
+    "correct": [
+      "C"
+    ],
     "rationale": "AIVR post-reperfusion is usually benign and a sign of successful reperfusion. No intervention is needed in a stable patient. Pacing or medications are not indicated unless it evolves into VT or causes instability.",
     "type": "single_select"
   },
@@ -9538,7 +9570,9 @@
       "Third-degree AV block",
       "Sinus bradycardia"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "First-degree AV block is defined by a constant PR >200 ms with all P waves conducted. There are no dropped beats (distinguishing it from second-degree). Third-degree has complete dissociation.",
     "type": "single_select"
   },
@@ -9553,7 +9587,9 @@
       "Implant pacemaker",
       "Give IV atropine"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Asymptomatic first-degree block requires no treatment. If due to medication, dose adjustment could be considered, but not mandatory if patient is stable. Pacemaker and atropine are unnecessary for asymptomatic first-degree block.",
     "type": "single_select"
   },
@@ -9568,7 +9604,9 @@
       "Third-degree block",
       "2:1 AV block"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "Mobitz I (Wenckebach) shows progressive PR prolongation culminating in a dropped beat, then the cycle resets. Mobitz II has sudden drops without PR changes. Complete block has no association between P and QRS.",
     "type": "single_select"
   },
@@ -9583,7 +9621,9 @@
       "Urgent pacemaker",
       "IV magnesium"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "In Lyme disease, AV block is often reversible with antibiotic treatment. Antibiotics (doxycycline) and monitoring are appropriate. Pacing is only needed if patient becomes unstable. Lyme-associated Mobitz I often resolves with treatment.",
     "type": "single_select"
   },
@@ -9598,7 +9638,9 @@
       "First-degree AV block",
       "Atrial flutter with block"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Mobitz II has dropped QRS without PR prolongation - the PR is constant on conducted beats with sudden non-conducted P waves. This contrasts with Mobitz I (progressive PR increase). It's a high-grade block requiring urgent attention.",
     "type": "single_select"
   },
@@ -9613,7 +9655,9 @@
       "Transcutaneous pacing",
       "IV adenosine"
     ],
-    "correct": ["C"],
+    "correct": [
+      "C"
+    ],
     "rationale": "Mobitz II is unstable and can progress to complete block. Pacing (temporary transcutaneous) is indicated for symptomatic Mobitz II. Atropine may have limited effect in infranodal block. Adenosine is for SVT, not block management.",
     "type": "single_select"
   },
@@ -9628,7 +9672,9 @@
       "Atrial fibrillation",
       "Ventricular tachycardia"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Complete dissociation of atria and ventricles (P waves marching through at one rate, QRS at another with no relationship) indicates third-degree (complete) heart block. Each chamber beats independently.",
     "type": "single_select"
   },
@@ -9643,7 +9689,9 @@
       "Transcutaneous pacing",
       "IV adenosine"
     ],
-    "correct": ["C"],
+    "correct": [
+      "C"
+    ],
     "rationale": "Complete heart block with hypotension and altered mental status requires immediate pacing. Atropine might help transiently but is often ineffective in complete block. Adenosine would worsen heart block; pacing addresses the rhythm definitively.",
     "type": "single_select"
   },
@@ -9658,7 +9706,9 @@
       "Ventricular tachycardia",
       "Hyperkalemia effect"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "LBBB features include QRS ≥120 ms with broad R in lateral leads (I, aVL, V5-V6) and a QS or deep S in V1. RBBB has an rSR' ('bunny ears') pattern in V1, which is absent here.",
     "type": "single_select"
   },
@@ -9673,7 +9723,9 @@
       "Start IV metoprolol",
       "Reassure and observe"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "New LBBB with chest pain is treated as a 'STEMI equivalent' until proven otherwise. Urgent reperfusion evaluation is needed. Carotid massage (for SVT), beta-blockers alone, or reassurance would be inappropriate.",
     "type": "single_select"
   },
@@ -9688,7 +9740,9 @@
       "Ventricular tachycardia",
       "Left anterior fascicular block"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "RBBB is diagnosed by QRS ≥120 ms with RSR' ('bunny ears' or 'M-shaped') pattern in V1 and wide S in lateral leads (I, V6). LBBB has different morphology (broad R in V6, deep S in V1).",
     "type": "single_select"
   },
@@ -9703,7 +9757,9 @@
       "Left circumflex",
       "Posterior descending artery (PDA)"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "New RBBB in the setting of anterior MI suggests proximal LAD occlusion involving the septal perforators that supply the right bundle branch. RCA occlusion causes inferior MI and AV nodal block but not usually RBBB.",
     "type": "single_select"
   },
@@ -9718,7 +9774,9 @@
       "Hypokalemia",
       "Non-specific T-wave changes"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Wellens' syndrome is characterized by deeply inverted (Type A) or biphasic (Type B) T waves in V2-V3 during pain-free periods. It is highly specific for critical proximal LAD stenosis. This is not benign repolarization or hypokalemia.",
     "type": "single_select"
   },
@@ -9733,7 +9791,9 @@
       "Observation only",
       "High-dose aspirin"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Wellens' syndrome predicts a critical LAD lesion with high risk of anterior MI. Stress testing is contraindicated (may precipitate infarction). The correct step is emergent angiography for possible revascularization.",
     "type": "single_select"
   },
@@ -9748,7 +9808,9 @@
       "de Winter's anterior STEMI equivalent",
       "Wellens' syndrome"
     ],
-    "correct": ["C"],
+    "correct": [
+      "C"
+    ],
     "rationale": "de Winter pattern has upsloping ST depression at the J-point with tall, prominent T waves in anterior leads - a STEMI equivalent for proximal LAD occlusion. It is NOT benign repolarization or Wellens' (which has inverted T waves without ST depression).",
     "type": "single_select"
   },
@@ -9763,7 +9825,9 @@
       "IV nitroglycerin and observe",
       "IV magnesium sulfate"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "The de Winter pattern is treated as an acute anterior STEMI. Immediate reperfusion (primary PCI) is indicated. If PCI isn't available, fibrinolysis would be used. Medical therapy alone is insufficient for this STEMI-equivalent.",
     "type": "single_select"
   },
@@ -9778,7 +9842,9 @@
       "Lateral MI (circumflex)",
       "Posterior MI (PDA)"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "ST elevation in the precordial leads (V1-V4/V5) indicates an anterior wall MI, classically due to LAD occlusion. Reciprocal depression in the inferior leads (II, III, aVF) confirms anterior distribution.",
     "type": "single_select"
   },
@@ -9793,7 +9859,9 @@
       "IV metoprolol",
       "IV nitrates"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "In anterior MI with hypotension, cautious IV fluids may help improve preload. The priority is urgent reperfusion (transport to cath lab). Nitrates are contraindicated in hypotension; beta-blocker could worsen shock. Epinephrine may be needed for cardiogenic shock but fluids and rapid PCI are the priority.",
     "type": "single_select"
   },
@@ -9808,7 +9876,9 @@
       "Inferior",
       "Posterior"
     ],
-    "correct": ["C"],
+    "correct": [
+      "C"
+    ],
     "rationale": "ST elevation in II, III, aVF indicates an inferior wall MI (often RCA, sometimes circumflex). Reciprocal changes in I, aVL support this. High lateral (I, aVL elevation) and anterior (V leads elevation) are not the pattern here.",
     "type": "single_select"
   },
@@ -9823,7 +9893,9 @@
       "IV diltiazem",
       "Oral metoprolol"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Inferior MI can cause AV block and vagally-mediated bradycardia. If atropine fails, external pacing is indicated for symptomatic bradycardia. Calcium channel blockers (diltiazem) and beta-blockers would worsen bradycardia.",
     "type": "single_select"
   },
@@ -9838,7 +9910,9 @@
       "Hypocalcemia",
       "Hypermagnesemia"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Peaked ('tent-like') T waves and QRS widening are classic for hyperkalemia. Hypokalemia causes flattened T waves and U waves. Hypocalcemia prolongs QT; hypermagnesemia causes bradycardia and prolonged PR.",
     "type": "single_select"
   },
@@ -9853,7 +9927,9 @@
       "IV furosemide",
       "Emergent dialysis"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "IV calcium is given immediately to stabilize cardiac membranes in hyperkalemia with ECG changes, buying time for other measures. Insulin/glucose shifts K+ intracellularly, but calcium addresses the urgent arrhythmia risk first.",
     "type": "single_select"
   },
@@ -9868,7 +9944,9 @@
       "Hypokalemia",
       "Early repolarization"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Digoxin causes characteristic sagging ('scooped') ST depressions, flat T waves, and shortened QT - the benign 'digoxin effect.' This should not be mistaken for ischemia. Hypokalemia and early repolarization have different patterns.",
     "type": "single_select"
   },
@@ -9883,7 +9961,9 @@
       "Urgent coronary angiography",
       "Administer IV calcium"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "The ECG shows digoxin effect, not toxicity. If patient is asymptomatic, simply continue monitoring and ensure digoxin level is therapeutic. Digoxin Fab is only for severe toxicity. No indication for cath or calcium.",
     "type": "single_select"
   },
@@ -9898,7 +9978,9 @@
       "Ventricular bigeminy",
       "Pulmonary embolism"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "Electrical alternans (alternating QRS voltage beat-to-beat) is classic for a swinging heart in a large pericardial effusion/tamponade. The other options don't produce true electrical alternans.",
     "type": "single_select"
   },
@@ -9913,7 +9995,9 @@
       "High-dose IV steroids",
       "IV furosemide"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Tamponade with hemodynamic compromise requires immediate drainage of the pericardial fluid via pericardiocentesis. Medications alone (pressors, diuretics, steroids) are insufficient to relieve the mechanical obstruction.",
     "type": "single_select"
   },
@@ -9928,7 +10012,9 @@
       "Ventricular fibrillation",
       "Ventricular bigeminy"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "Bidirectional VT is characterized by alternating QRS axis/morphology every beat - a classic finding in digoxin toxicity or catecholaminergic polymorphic VT. Torsades has a gradual twisting pattern, not exact beat-to-beat alternation. VF is chaotic.",
     "type": "single_select"
   },
@@ -9943,7 +10029,9 @@
       "IV lidocaine",
       "IV verapamil"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "Bidirectional VT is strongly associated with digoxin toxicity. The antidote is digoxin-specific Fab antibodies. Cardioversion is less effective and may precipitate refractory arrhythmias; lidocaine and verapamil are not appropriate for digoxin-induced arrhythmias.",
     "type": "single_select"
   },
@@ -9958,7 +10046,9 @@
       "Hyperkalemia",
       "Early repolarization"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "Diffuse concave ST elevation with PR depression is the classic ECG for acute pericarditis. Unlike STEMI, changes are widespread (not in a coronary distribution), and there are no reciprocal depressions (except aVR shows PR elevation).",
     "type": "single_select"
   },
@@ -9973,7 +10063,9 @@
       "IV corticosteroids",
       "Urgent pericardiocentesis"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "First-line treatment for idiopathic/viral pericarditis is NSAIDs (or aspirin) plus colchicine to reduce inflammation and recurrence. Antibiotics only for bacterial pericarditis. Steroids are second-line. Pericardiocentesis is for tamponade.",
     "type": "single_select"
   },
@@ -9988,7 +10080,9 @@
       "Hyperkalemia",
       "Pericarditis"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "Widespread mild ST elevation with J-point notching in a young asymptomatic patient is classic benign early repolarization (BER). STEMI would have more pronounced elevation with clinical symptoms. Hyperkalemia and pericarditis have different ECG features.",
     "type": "single_select"
   },
@@ -10003,7 +10097,9 @@
       "Reassure and clear for activity",
       "Holter monitor for 24 hours"
     ],
-    "correct": ["C"],
+    "correct": [
+      "C"
+    ],
     "rationale": "Benign early repolarization is a normal variant requiring no restriction in a healthy, asymptomatic person. No further workup is needed. It should not be confused with pathology.",
     "type": "single_select"
   },
@@ -10018,7 +10114,9 @@
       "Short QT syndrome",
       "Early repolarization"
     ],
-    "correct": ["B"],
+    "correct": [
+      "B"
+    ],
     "rationale": "A QTc >470 ms (men) or >480 ms (women) is prolonged. Here QTc ~520 ms is clearly prolonged, consistent with long QT syndrome, which predisposes to torsades de pointes and sudden cardiac death.",
     "type": "single_select"
   },
@@ -10033,7 +10131,9 @@
       "Magnesium sulfate infusion",
       "Dexmedetomidine"
     ],
-    "correct": ["A"],
+    "correct": [
+      "A"
+    ],
     "rationale": "Amiodarone prolongs the QT interval and can precipitate torsades in patients with LQTS. Beta-blockers (metoprolol) are actually protective in congenital LQTS. Magnesium is used to treat torsades. Dexmedetomidine does not significantly prolong QT.",
     "type": "single_select"
   }
