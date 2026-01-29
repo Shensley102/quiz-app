@@ -5,9 +5,10 @@
    - Network-first for API/dynamic content
    - Automatic cache refresh for new content
    - NCLEX Comprehensive System routes support
+   - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.2.0';
+const CACHE_VERSION = 'v2.3.0';
 const CACHE_NAME = `nurse-study-hub-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `nurse-study-hub-data-${CACHE_VERSION}`;
 
@@ -198,13 +199,26 @@ self.addEventListener('activate', (event) => {
 
 // Helper function to determine if a request is for a static asset
 function isStaticAsset(pathname) {
-  const staticExtensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2', '.ttf', '.eot'];
+  const staticExtensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2', '.ttf', '.eot', '.webp'];
   return pathname.startsWith('/static/') || staticExtensions.some(ext => pathname.endsWith(ext));
 }
 
 // Helper function to determine if a request is for JSON data
 function isJsonData(pathname) {
   return pathname.endsWith('.json') || pathname.startsWith('/modules/');
+}
+
+// Helper function to determine if a request is for a question image (NEW)
+function isQuestionImage(pathname) {
+  const imageExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp'];
+  // Check if it's in the question images directory
+  if (pathname.startsWith('/static/images/cfrn/') || 
+      pathname.startsWith('/static/images/ccrn/') ||
+      pathname.startsWith('/static/images/nclex/') ||
+      pathname.startsWith('/static/images/quiz/')) {
+    return imageExtensions.some(ext => pathname.toLowerCase().endsWith(ext));
+  }
+  return false;
 }
 
 // Network first strategy with cache fallback
@@ -300,6 +314,9 @@ self.addEventListener('fetch', (event) => {
   if (isStaticAsset(pathname)) {
     // Static assets: Cache first
     event.respondWith(cacheFirstWithNetwork(event.request, CACHE_NAME));
+  } else if (isQuestionImage(pathname)) {
+    // Question images: Cache first (they don't change often) (NEW)
+    event.respondWith(cacheFirstWithNetwork(event.request, CACHE_NAME));
   } else if (isJsonData(pathname)) {
     // JSON data: Cache first (quiz questions don't change often)
     event.respondWith(cacheFirstWithNetwork(event.request, DATA_CACHE_NAME));
@@ -324,6 +341,25 @@ self.addEventListener('message', (event) => {
       })
       .catch((err) => {
         console.error('[SW] Failed to cache additional URLs:', err);
+      });
+  }
+  
+  // NEW: Cache question images on demand
+  if (event.data && event.data.type === 'CACHE_IMAGES') {
+    const urls = event.data.urls || [];
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        return Promise.allSettled(
+          urls.map(url => 
+            cache.add(url).catch(err => console.log(`[SW] Could not cache image ${url}:`, err.message))
+          )
+        );
+      })
+      .then(() => {
+        console.log('[SW] Cached question images:', urls.length);
+      })
+      .catch((err) => {
+        console.error('[SW] Failed to cache question images:', err);
       });
   }
   
