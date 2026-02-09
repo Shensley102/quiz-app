@@ -7773,6 +7773,7 @@
       "type": "multi_fill_in_the_blank"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q483",
       "stem": "During the assessment of a patient with a thoracic aortic aneurysm, the nurse notes unequal blood pressure readings between the arms. Which action should the nurse take first?",
       "options": [
@@ -7785,10 +7786,10 @@
         "D"
       ],
       "rationale": "Unequal blood pressure readings between arms may indicate aortic dissection. The nurse's priority is to notify the healthcare provider immediately and prepare for further assessment and intervention to prevent potential complications associated with aortic dissection.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q484",
       "stem": "A 65-year-old patient presents to the emergency department with sudden, severe chest pain radiating to the back. The pain is described as tearing. On examination, there is a notable difference in blood pressure between the arms. What should be the nurse's immediate action based on these findings?",
       "options": [
@@ -7801,10 +7802,10 @@
         "C"
       ],
       "rationale": "Given the clinical presentation suggestive of aortic dissection, immediate notification of the healthcare provider is crucial to expedite diagnostic evaluation and initiate appropriate management.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q485",
       "stem": "A 58-year-old male patient presents to the emergency room with symptoms of chest pain radiating down his left arm, dyspnea, and profuse sweating. His blood pressure is 80/50 mm Hg, heart rate 110 bpm, and oxygen saturation 90% on room air. The nurse suspects cardiogenic shock due to:",
       "options": [
@@ -7817,10 +7818,10 @@
         "C"
       ],
       "rationale": "In cardiogenic shock, inadequate tissue perfusion occurs due to reduced cardiac output, as evidenced by low blood pressure and signs of poor tissue perfusion. This results from the heart's inability to pump enough blood to meet the body's needs, leading to compromised organ function and potentially fatal consequences.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Airway/Ventilation/Respiratory",
       "id": "Q486",
       "stem": "In the emergency department, a patient with suspected thoracic trauma is admitted with respiratory distress. Which conditions should the nurse suspect when upon assessment, the nurse notes decreased breath sounds on the left side and tracheal deviation to the right?",
       "options": [
@@ -7833,10 +7834,10 @@
         "A"
       ],
       "rationale": "Tracheal deviation and decreased breath sounds suggest tension pneumothorax. To relieve pressure on the affected lung and prevent cardiovascular collapse, a life-threatening condition requiring immediate intervention.",
-      "type": "single_select",
-      "category": "Airway/Ventilation/Respiratory"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q487",
       "stem": "Which intervention should the nurse prioritize, when a patient admitted with a suspected acute adrenal crisis presents with refractory hypotension despite volume resuscitation?",
       "options": [
@@ -7849,10 +7850,10 @@
         "C"
       ],
       "rationale": "In managing an acute adrenal crisis to address hypovolemia and correct refractory hypotension, stabilizing the patient's condition, rapid replacement of intravascular fluid volume with normal saline is crucial. This intervention aims to restore adequate tissue perfusion and prevent further deterioration.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q488",
       "stem": "The patient presents with altered mental status, extreme thirst, and polyuria, who has a history of type 2 diabetes. Vital signs reveal hypotension, tachycardia, and profound dehydration. Laboratory findings show blood glucose >600 mg/dL and serum osmolality >320 mOsm/kg. The nurse anticipates the need for which initial intervention, based on these findings?",
       "options": [
@@ -7865,10 +7866,10 @@
         "A"
       ],
       "rationale": "The nurse administers insulin intravenously and isotonic fluids rapidly to correct hyperglycemia and dehydration. Severe hyperglycemia, dehydration, and altered mental status suggest a hyperosmolar hyperglycemic state (HHS).",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q489",
       "stem": "A patient suddenly develops petechiae and ecchymoses after being admitted with septic shock. Laboratory findings reveal a platelet count of 30,000/mm\u00b3. The nurse recognizes this condition as indicative of:",
       "options": [
@@ -7881,10 +7882,10 @@
         "B"
       ],
       "rationale": "Thrombocytopenia coupled with bleeding manifestations like petechiae and ecchymoses suggests DIC, a condition characterized by widespread activation of coagulation leading to both thrombosis and hemorrhage.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q490",
       "stem": "A patient suddenly develops fever, back pain, and hypotension after receiving a blood transfusion. The nurse's initial action should be to:",
       "options": [
@@ -7897,10 +7898,10 @@
         "A"
       ],
       "rationale": "The nurse should stop the transfusion and notify the blood bank as these symptoms suggest an acute hemolytic transfusion reaction.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q491",
       "stem": "The nurse assesses the patient who underwent exploratory laparotomy for severe abdominal trauma. The patient develops progressively increasing abdominal distension and oliguria, with the nurse noting a tense, firm abdomen with absent bowel sounds. Vital signs show a blood pressure of: 90/60 mm Hg heart rate of 120 bpm respiratory rate of 24 breaths/min As a priority, which of the following interventions should the nurse anticipate?",
       "options": [
@@ -7913,10 +7914,10 @@
         "C"
       ],
       "rationale": "The nurse should perform an immediate abdominal decompression procedure as it is necessary in the presence of signs indicating abdominal compartment syndrome (ACS), such as a tense abdomen, oliguria, and hypotension.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q492",
       "stem": "A patient after a motor vehicle collision with suspected blunt abdominal trauma arrives at the emergency department. Which diagnostic test is most appropriate to confirm intra-abdominal bleeding when the assessment reveals hypotension, tachycardia, and diffuse abdominal tenderness?",
       "options": [
@@ -7929,10 +7930,10 @@
         "B"
       ],
       "rationale": "A CT scan is most appropriate to confirm intra-abdominal bleeding which aids in the prompt diagnosis and management of blunt abdominal trauma.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q493",
       "stem": "What complication should the nurse suspect if a 65-year-old female patient with a urinary catheter develops a high fever, hypotension, and altered mental status?",
       "options": [
@@ -7945,10 +7946,10 @@
         "C"
       ],
       "rationale": "Systemic signs of infection such as fever and altered mental status indicate the presence of urosepsis, a complication caused by the presence of a urinary catheter.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q494",
       "stem": "What is the priority action for the nurse after observing diminished pulses and paresthesia in a patient with a tibial shaft fracture experiencing severe pain, swelling, and tense muscles in the affected leg?",
       "options": [
@@ -7961,10 +7962,10 @@
         "B"
       ],
       "rationale": "When assessing signs of acute compartment syndrome, including diminished pulses and paresthesia, it is crucial to perform a thorough neurovascular assessment. Recognizing and intervening early is essential in preventing complications associated with compartment syndrome.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q495",
       "stem": "A patient presents to the emergency department with a suspected femur fracture following a fall. The nurse notices swelling and tenderness in the affected leg. The priority intervention for the nurse is to:",
       "options": [
@@ -7977,10 +7978,10 @@
         "D"
       ],
       "rationale": "To prevent further injury and alleviate pain while awaiting definitive treatment, immobilization is crucial in suspected femur fractures.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q496",
       "stem": "Following a motor vehicle accident, a patient with a suspected acute spinal cord injury is brought to the emergency department, experiencing difficulty breathing and weakened muscle movement in the chest area. The nurse should prioritize:",
       "options": [
@@ -7993,10 +7994,10 @@
         "A"
       ],
       "rationale": "Immediate intervention, such as administering oxygen and preparing to intubate, is necessary to maintain adequate ventilation due to potential respiratory impairment, as indicated by difficulty breathing and weakened chest muscles.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q497",
       "stem": "Which factor is not considered when determining eligibility for apnea testing in a patient being evaluated for brain death due to severe traumatic brain injury?",
       "options": [
@@ -8009,10 +8010,10 @@
         "D"
       ],
       "rationale": "Evaluating evidence of an etiology of coma, core temperature, and systolic blood pressure are essential criteria before proceeding with apnea testing, as the availability of ventilator support is not a factor considered in determining the eligibility for apnea testing.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q498",
       "stem": "After sustaining a traumatic brain injury (TBI), a patient displays agitation, restlessness, and aggression towards healthcare providers, and then admitted to the neurological intensive care unit (NICU). The patient's behavior fluctuates throughout the day, alternating between hyperactivity and lethargy. These symptoms are MOST indicative of:",
       "options": [
@@ -8025,10 +8026,10 @@
         "B"
       ],
       "rationale": "Mixed delirium, characterized by fluctuations between hyperactive and hypoactive states, is suggested by the patient's alternating symptoms of hyperactivity and lethargy. Delirium is common in patients with TBI, necessitating close monitoring and management, particularly during the acute phase.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q499",
       "stem": "When a patient admitted with intracranial hemorrhage (ICH) develops sudden severe headache, vomiting, and altered level of consciousness, alongside increased blood pressure and decreased heart rate in vital signs, the nurse's initial action should be to:",
       "options": [
@@ -8041,10 +8042,10 @@
         "D"
       ],
       "rationale": "The nurse must promptly notify the healthcare provider for a patient with intracranial hemorrhage (ICH) experiencing sudden severe headache, vomiting, altered consciousness, and vital sign changes to prevent worsening intracranial pressure and potential herniation.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q500",
       "stem": "The nurse notes unequal pupil size, sluggish response to light, and increasing drowsiness during assessment of a patient with traumatic brain injury (TBI). What does this indicate?",
       "options": [
@@ -8057,10 +8058,10 @@
         "B"
       ],
       "rationale": "Brainstem herniation in Traumatic brain injury (TBI) is indicated by unequal pupil size, a sluggish response to light, and increasing drowsiness. Urgent intervention is necessary to prevent further neurological damage.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q501",
       "stem": "A patient presents with sudden onset severe headache, neck stiffness, and vomiting following a fall from a ladder. Which radiographic feature is most indicative of a traumatic etiology, a CT scan reveals subarachnoid hemorrhage (SAH)?",
       "options": [
@@ -8073,10 +8074,10 @@
         "B"
       ],
       "rationale": "Small blood in the cerebral sulci is most indicative of a traumatic etiology. This finding is often adjacent to cerebral contusions, reflecting the underlying trauma.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q502",
       "stem": "A patient admitted with severe traumatic brain injury (TBI) begins to exhibit signs of increased intracranial pressure (ICP). This includes headache, vomiting, and blurred vision. Which action should the nurse prioritize?",
       "options": [
@@ -8089,10 +8090,10 @@
         "D"
       ],
       "rationale": "In detecting changes indicative of increased ICP, monitoring the patient's neurological status closely is crucial. Monitoring allows for prompt intervention, which can prevent further neurological deterioration.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q503",
       "stem": "A patient presents to the emergency department with a sudden onset of severe headache and vomiting. The patient has a history of chronic hypertension. The patient is found to have a Glasgow Coma Scale (GCS) score of 10 and signs of elevated intracranial pressure on assessment. Which intervention should the nurse prioritize?",
       "options": [
@@ -8105,10 +8106,10 @@
         "A"
       ],
       "rationale": "Administering antiemetics can alleviate nausea and vomiting. This helps in the diagnosis and management of hemorrhagic stroke and facilitates accurate neurological assessment and preparation for imaging studies.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q504",
       "stem": "A 56-year-old patient is admitted with severe burns. The patient requires a urinary catheter for fluid resuscitation. To prevent catheter-associated urinary tract infection (CAUTI), what is the most appropriate nursing action?",
       "options": [
@@ -8121,10 +8122,10 @@
         "C"
       ],
       "rationale": "To prevent CAUTI, regular assessment of catheter necessity and prompt removal, when no longer needed, is essential.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Pediatric Assessment/Management",
       "id": "Q505",
       "stem": "A pediatric burn patient has a central venous catheter placed for fluid resuscitation. What nursing intervention is recommended to reduce the risk of central line-associated bloodstream infection (CLABSI)?",
       "options": [
@@ -8137,10 +8138,10 @@
         "D"
       ],
       "rationale": "In pediatric burn patients, coating the catheter with minocycline and rifampin has been shown to reduce CLABSI risk.",
-      "type": "single_select",
-      "category": "Pediatric Assessment/Management"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q506",
       "stem": "Which action should the nurse take first, when a patient receiving dopamine infusion for hypotension develops tachycardia and dysrhythmias?",
       "options": [
@@ -8153,10 +8154,10 @@
         "A"
       ],
       "rationale": "The nurse should first notify the healthcare provider immediately when the patient receiving dopamine infusion for hypotension develops tachycardia and dysrhythmias.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q507",
       "stem": "In the ICU, a patient is diagnosed with septic shock secondary to a bloodstream infection with MRSA. To prevent the transmission of MRSA to other patients, what precautionary measures should the nursing staff prioritize?",
       "options": [
@@ -8169,10 +8170,10 @@
         "B"
       ],
       "rationale": "To prevent the transmission of MRSA, implementing contact precautions, including strict hand hygiene, is crucial, especially in critical care settings where patients are vulnerable to infections.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Obstetric/Neonatal/Pediatric",
       "id": "Q508",
       "stem": "At 34 weeks gestation, a pregnant patient presents with sudden-onset severe hypertension (BP 170/110 mm Hg), proteinuria, and epigastric pain. The nurse should prioritize assessment for signs of:",
       "options": [
@@ -8185,10 +8186,10 @@
         "D"
       ],
       "rationale": "Sudden-onset hypertension, proteinuria, and epigastric pain are classic signs of eclampsia that indicate the need for prompt assessment and intervention to prevent seizures and maternal complications.",
-      "type": "single_select",
-      "category": "Obstetric/Neonatal/Pediatric"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q509",
       "stem": "A 45-year-old male patient who was involved in a motor vehicle accident presents with multiple blunt trauma injuries, including rib fractures and bilateral pulmonary contusions. During the assessment, the nurse noted paradoxical chest movement and decreased breath sounds on the left side. The priority nursing intervention is to:",
       "options": [
@@ -8201,10 +8202,10 @@
         "D"
       ],
       "rationale": "Paradoxical chest movement and decreased breath sounds may suggest a pneumothorax or hemothorax. In such cases, emergent chest tube insertion is necessary to re-expand the lung and alleviate pressure.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q510",
       "stem": "Which of the following agents is preferred for first-line treatment if a patient with septic shock receives vasopressor therapy to maintain adequate mean arterial pressure (MAP)?",
       "options": [
@@ -8217,10 +8218,10 @@
         "A"
       ],
       "rationale": "",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q511",
       "stem": "When a patient with anaphylactic shock exhibits hypotension and tachycardia, which medication is the first-line treatment for this condition?",
       "options": [
@@ -8233,10 +8234,10 @@
         "C"
       ],
       "rationale": "Epinephrine is the first-line treatment for anaphylactic shock. It exerts bronchodilatory and vasoconstrictive effects to counteract the allergic response.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q512",
       "stem": "A patient is admitted to the critical care unit following a traumatic brain injury. He experiences fragmented sleep patterns and daytime drowsiness. To promote restorative sleep, which intervention should the nurse prioritize?",
       "options": [
@@ -8249,10 +8250,10 @@
         "C"
       ],
       "rationale": "In patients with traumatic brain injuries, dimming lights and reducing environmental noise are essential strategies to minimize sensory overload and promote restorative sleep.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Operations/Safety/Transport",
       "id": "Q513",
       "stem": "Due to religious beliefs, a patient is refusing a prescribed treatment. The nurse's initial action should be to:",
       "options": [
@@ -8265,10 +8266,10 @@
         "C"
       ],
       "rationale": "Consulting with the healthcare team ensures a comprehensive approach to addressing the patient's refusal while respecting their beliefs.",
-      "type": "single_select",
-      "category": "Operations/Safety/Transport"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q514",
       "stem": "In the critical care unit, a patient is experiencing significant pain despite receiving prescribed analgesics. Due to possible opioid tolerance, the nurse suspects inadequate pain relief. The nurse's next action should be to:",
       "options": [
@@ -8281,10 +8282,10 @@
         "B"
       ],
       "rationale": "Working collaboratively with the physician ensures comprehensive pain management strategies. This approach leads to effective care for the patient's pain management needs.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q515",
       "stem": "A patient admitted with acute pulmonary edema is prescribed intravenous furosemide (Lasix). In managing acute pulmonary edema, what is the primary purpose of this medication?",
       "options": [
@@ -8297,10 +8298,10 @@
         "A"
       ],
       "rationale": "In managing acute pulmonary edema, the primary purpose of intravenous furosemide is to reduce preload and afterload on the heart, helping alleviate pulmonary congestion and symptoms of acute pulmonary edema.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q516",
       "stem": "Which assessment finding requires immediate action by the nurse when a patient is admitted with a suspected thoracic aortic aneurysm?",
       "options": [
@@ -8313,10 +8314,10 @@
         "B"
       ],
       "rationale": "When a patient is admitted with a suspected thoracic aortic aneurysm, the absence of pedal pulses requires immediate action by the nurse to prevent further complications. It includes notifying the healthcare provider and initiating appropriate interventions.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q517",
       "stem": "Which intervention should the nurse prioritize, when a patient with suspected cardiac tamponade exhibits paradoxical pulse and distant heart sounds during assessment?",
       "options": [
@@ -8329,10 +8330,10 @@
         "C"
       ],
       "rationale": "When a patient with suspected cardiac tamponade exhibits paradoxical pulse and distant heart sounds during the assessment, the nurse should prepare for pericardiocentesis to remove the accumulated fluid around the heart. It relieves the pressure and restores cardiac function.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q518",
       "stem": "During the initial assessment of a patient in cardiogenic shock, the nurse prioritizes interventions aimed at:",
       "options": [
@@ -8345,10 +8346,10 @@
         "D"
       ],
       "rationale": "The nurse prioritizes interventions aimed at improving tissue oxygenation through optimized cardiac output during the initial assessment of a patient in cardiogenic shock. This includes measures to increase preload if necessary, enhance myocardial contractility, and ensure adequate oxygen delivery to tissues to prevent further deterioration and organ damage.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q519",
       "stem": "A 45-year-old female patient presents with a history of alcohol abuse and complains of increasing fatigue and shortness of breath upon exertion. Which factor should the nurse recognize as a likely contributor to the patient's condition, when the echocardiogram reveals dilation of the left ventricle with decreased contractility?",
       "options": [
@@ -8361,10 +8362,10 @@
         "C"
       ],
       "rationale": "Alcohol use disorder is the likely contributing factor to the development of the condition when the patient's history of alcohol abuse and echocardiogram findings are consistent with dilated cardiomyopathy.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q520",
       "stem": "What medication should the nurse anticipate being prescribed for managing acute symptoms in a 70-year-old female with heart failure who presents with sudden weight gain, edema, and increasing dyspnea?",
       "options": [
@@ -8377,10 +8378,10 @@
         "B"
       ],
       "rationale": "During acute heart failure exacerbations, Furosemide (Lasix), a loop diuretic, is often prescribed to reduce fluid overload and alleviate symptoms of dyspnea and edema by promoting diuresis.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q521",
       "stem": "After undergoing repair for an abdominal aortic aneurysm, a patient on mechanical ventilation suddenly exhibits altered mental status, tachycardia, and hypotension. The nurse suspects acute delirium due to:",
       "options": [
@@ -8393,10 +8394,10 @@
         "D"
       ],
       "rationale": "Hypoxic encephalopathy indicates the patient's altered mental status, tachycardia, and hypotension. These signs are commonly associated with acute respiratory compromise and necessitate prompt assessment and intervention.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q522",
       "stem": "A trauma patient presents with respiratory distress, hypotension, and tracheal deviation to the unaffected side. The nurse suspects:",
       "options": [
@@ -8409,10 +8410,10 @@
         "C"
       ],
       "rationale": "Hemothorax occurs due to blood accumulation in the pleural space following trauma, and respiratory distress, hypotension, and tracheal deviation are indicative symptoms.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Airway/Ventilation/Respiratory",
       "id": "Q523",
       "stem": "A patient undergoes video-assisted thoracic surgery (VATS) for diagnostic purposes. The nurse noted diminished breath sounds on the affected side on the first postoperative day. What should be the nurse's initial action?",
       "options": [
@@ -8425,10 +8426,10 @@
         "B"
       ],
       "rationale": "Notifying the healthcare provider promptly allows for timely assessment and intervention. Diminished breath sounds post-VATS may indicate a complication such as pneumothorax.",
-      "type": "single_select",
-      "category": "Airway/Ventilation/Respiratory"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q524",
       "stem": "Arterial blood gas analysis reveals respiratory alkalosis in a patient with a history of thoracic trauma and presents with sudden-onset dyspnea, tachypnea, and chest pain. Which of the following conditions most likely causes the patient's symptoms?",
       "options": [
@@ -8441,10 +8442,10 @@
         "B"
       ],
       "rationale": "Sudden dyspnea, tachypnea, and respiratory alkalosis, which can occur following thoracic trauma, necessitating prompt recognition and intervention, are classic signs of tracheal perforation.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q525",
       "stem": "After a motor vehicle accident, a patient is admitted to the intensive care unit (ICU). The patient presents with fractured ribs and a pulmonary contusion. During nursing care, the patient suddenly becomes agitated, disoriented, and combative despite receiving appropriate pain management and respiratory support. Based on these symptoms, which complications should the nurse suspect?",
       "options": [
@@ -8457,10 +8458,10 @@
         "B"
       ],
       "rationale": "In a patient with traumatic injuries such as fractured ribs and a pulmonary contusion, the sudden onset of agitation, disorientation, and combative behavior is indicative of acute delirium, which can occur due to pain, stress, or underlying medical conditions in critically ill patients.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q526",
       "stem": "If a patient with known primary adrenal insufficiency presents with severe hypotension and electrolyte imbalances, which electrolyte abnormality is commonly associated with this condition?",
       "options": [
@@ -8473,10 +8474,10 @@
         "B"
       ],
       "rationale": "Due to aldosterone deficiency, Patients with primary adrenal insufficiency commonly experience hyperkalemia, which impairs potassium excretion by the kidneys. This electrolyte imbalance contributes to cardiac dysrhythmias and exacerbates hemodynamic instability, which requires prompt intervention.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Pediatric Assessment/Management",
       "id": "Q527",
       "stem": "If a 6-month-old infant presents with thrush, severe Candida diaper dermatitis, and recurrent infections suggestive of immunodeficiency, which of the following disorders should the nurse suspect?",
       "options": [
@@ -8489,10 +8490,10 @@
         "D"
       ],
       "rationale": "SCID can often cause severe recurrent infections and can manifest with thrush and severe Candida diaper dermatitis.",
-      "type": "single_select",
-      "category": "Pediatric Assessment/Management"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q528",
       "stem": "The nurse observes decreased urine output, hypotension, and increasing respiratory distress in an acute pancreatitis patient who complains of worsening abdominal pain and distension. Which complication of acute pancreatitis is the patient most likely experiencing when laboratory results reveal elevated serum amylase and lipase levels?",
       "options": [
@@ -8505,10 +8506,10 @@
         "D"
       ],
       "rationale": "Abdominal compartment syndrome is a serious complication of severe acute pancreatitis due to increased intra-abdominal pressure. Symptoms of worsening abdominal pain, distension, oliguria, hypotension, and respiratory distress suggest the development of this syndrome.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q529",
       "stem": "After a motor vehicle collision, a 45-year-old man presents to the emergency department with severe abdominal pain and signs of hypovolemic shock. Vital signs: HR 130/min, BP 90/60 mm Hg, RR 28/min. He is pale and diaphoretic. After initiating resuscitation, which diagnostic test should be prioritized at the bedside to rapidly assess for intra-abdominal hemorrhage?",
       "options": [
@@ -8521,10 +8522,10 @@
         "C"
       ],
       "rationale": "In a hemodynamically unstable patient after blunt abdominal trauma, the priority is a rapid bedside test that can be performed during resuscitation to detect free intraperitoneal fluid (usually blood); the FAST exam is designed for this purpose and is typically completed within minutes. Because FAST has high specificity for clinically significant hemoperitoneum, an unstable patient with a positive FAST should proceed to urgent operative intervention (e.g., exploratory laparotomy) rather than being delayed for CT imaging, while CT (with IV contrast/CTA) is generally reserved for hemodynamically stable patients to better characterize injuries and guide nonoperative or interventional management.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q530",
       "stem": "A patient with acute gastrointestinal hemorrhage presents with coffee ground-like emesis and dark, tarry stools. The nurse identifies these symptoms as suggestive of:",
       "options": [
@@ -8537,10 +8538,10 @@
         "D"
       ],
       "rationale": "Coffee ground-like emesis and dark, tarry stools are signs of upper gastrointestinal bleeding, which is commonly associated with conditions like peptic ulcer disease.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q531",
       "stem": "Due to massive hematemesis and hypotension, a 45-year-old patient with history of liver cirrhosis presents to the emergency department. The patient stabilizes after initial resuscitation measures are initiated. The most appropriate next step in managing this patient's acute bleeding episode is:",
       "options": [
@@ -8553,10 +8554,10 @@
         "B"
       ],
       "rationale": "In managing acute bleeding episodes from esophageal varices, emergent endoscopic sclerotherapy is the standard of care for patients with liver cirrhosis.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q532",
       "stem": "Following a recent episode of severe vomiting and diarrhea, a 50-year-old female patient presents with acute onset oliguria, hypotension, and elevated serum creatinine. Physical examination shows decreased skin turgor and dry mucous membranes. Based on these findings, the nurse suspects that the patient is experiencing Acute Kidney Injury (AKI) due to:",
       "options": [
@@ -8569,10 +8570,10 @@
         "A"
       ],
       "rationale": "Based on the clinical presentation, the nurse suspects the patient is experiencing prerenal AKI due to reduced renal perfusion, suggested by hypotension, volume depletion, and recent fluid loss through vomiting and diarrhea.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q533",
       "stem": "Which diagnostic test would confirm the diagnosis of compartment syndrome when suspecting acute compartment syndrome in a patient with a closed tibial fracture admitted to the emergency department?",
       "options": [
@@ -8585,10 +8586,10 @@
         "C"
       ],
       "rationale": "To confirm acute compartment syndrome, measurement of intracompartmental pressure is used. Prompt intervention is crucial when an intracompartmental pressure exceeds 30 mmHg to prevent tissue damage and necrosis, indicating compartment syndrome.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q534",
       "stem": "A patient presents with severe pain sustained in a motor vehicle accident and associated with a pelvic fracture. Assessment reveals difficulty in bearing weight and ecchymosis over the pelvic region in the patient. The nurse's immediate action should be to:",
       "options": [
@@ -8601,10 +8602,10 @@
         "A"
       ],
       "rationale": "The nurse should promptly assess for signs of shock and initiate appropriate interventions to stabilize the patient's condition, as pelvic fractures can lead to significant hemorrhage and shock.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q535",
       "stem": "Which test is typically unnecessary for confirming brain death diagnosis in a patient admitted to the ICU, who exhibits coma, absence of brainstem reflexes, and cessation of respiratory effort?",
       "options": [
@@ -8617,10 +8618,10 @@
         "D"
       ],
       "rationale": "An MRI of the brain is typically unnecessary for confirming brain death, although it can provide useful insights. To support the diagnosis of brain death, other tests such as cerebral angiography, transcranial ultrasound, and SSEPs are commonly used as ancillary tests.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q536",
       "stem": "Confusion, tremors, and difficulty speaking are observed in a patient with a history of chronic liver disease. Lab results indicate elevated ammonia levels. The nurse anticipates the healthcare provider to prescribe:",
       "options": [
@@ -8633,10 +8634,10 @@
         "A"
       ],
       "rationale": "Hepatic encephalopathy with elevated ammonia levels is indicated by confusion, tremors, and difficulty speaking in chronic liver disease. Lactulose promotes bowel movement and reduces intestinal pH to decrease ammonia absorption, thus improving mental status.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q537",
       "stem": "What should the nurse prioritize when a patient admitted with intraventricular hemorrhage (IVH) experiences sudden severe headache, vomiting, and altered level of consciousness?",
       "options": [
@@ -8649,10 +8650,10 @@
         "D"
       ],
       "rationale": "Immediate notification of the healthcare provider for emergent intervention is necessary to prevent worsening neurological status in IVH with sudden onset of severe headache, vomiting, altered level of consciousness, and vital sign changes.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q538",
       "stem": "In the emergency department, a patient arrives with sudden-onset severe headache, neck pain, and photophobia. If a CT scan is indeterminate, what diagnosis of test should be prioritized to confirm the diagnosis of subarachnoid hemorrhage (SAH)?",
       "options": [
@@ -8665,10 +8666,10 @@
         "A"
       ],
       "rationale": "If the patient presents outside the 6-hour window or if a CT scan is inconclusive, to detect xanthochromia or elevated red blood cell count in the cerebrospinal fluid, a lumbar puncture is indicated, indicative of SAH.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q539",
       "stem": "A patient presents with a sudden onset of weakness on one side of the body and slurred speech. The patient has a history of atrial fibrillation. The nurse anticipates the provider to prescribe:",
       "options": [
@@ -8681,10 +8682,10 @@
         "D"
       ],
       "rationale": "For preventing further clot formation and reducing the risk of recurrent embolic strokes, anticoagulant therapy is essential, especially in patients with atrial fibrillation who are prone to clot formation in the heart.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q540",
       "stem": "A patient develops fever, hypotension, and increased white blood cell count with a central venous catheter (CVC). What is the most appropriate action when the nurse suspects catheterrelated bloodstream infection (CRBSI)?",
       "options": [
@@ -8697,10 +8698,10 @@
         "B"
       ],
       "rationale": "By differentiating catheter-related infection from systemic infection, obtaining blood cultures from peripheral sites helps confirm CRBSI.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Pediatric Assessment/Management",
       "id": "Q541",
       "stem": "A 16-year-old patient is receiving intravenous fluids via a central line with extensive burns. To prevent central line-associated bloodstream infection (CLABSIs) in this patient, what is the nurse's priority action?",
       "options": [
@@ -8713,10 +8714,10 @@
         "A"
       ],
       "rationale": "Using chlorhexidine-impregnated dressings is a recommended practice in preventing infections associated with central lines and has been shown to reduce CLABSI rates.",
-      "type": "single_select",
-      "category": "Pediatric Assessment/Management"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q542",
       "stem": "What education should the nurse provide to prevent further episodes, when a patient with postural hypotension reports feeling lightheaded upon standing?",
       "options": [
@@ -8729,10 +8730,10 @@
         "C"
       ],
       "rationale": "By preventing blood pooling in the legs, avoiding prolonged periods of standing or sitting can help minimize symptoms of postural hypotension.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q543",
       "stem": "What teaching should the nurse provide to the patient and family, if a patient with avian influenza is prescribed oseltamivir (Tamiflu)?",
       "options": [
@@ -8745,10 +8746,10 @@
         "C"
       ],
       "rationale": "To ensure effective treatment and prevent the development of antiviral resistance, completing the full course of oseltamivir is essential.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Obstetric/Neonatal/Pediatric",
       "id": "Q544",
       "stem": "A patient develops oliguria and elevated serum creatinine levels with severe preeclampsia. The nurse should anticipate interventions to address:",
       "options": [
@@ -8761,10 +8762,10 @@
         "B"
       ],
       "rationale": "Oliguria and elevated serum creatinine levels indicate renal impairment. To prevent renal failure, a common complication of severe preeclampsia, close monitoring and intervention are required.",
-      "type": "single_select",
-      "category": "Obstetric/Neonatal/Pediatric"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q545",
       "stem": "A patient who presents with altered mental status, hypotension, and oliguria is admitted. The laboratory results show elevated levels of creatinine, liver function tests, and lactate. The nurse suspects the development of:",
       "options": [
@@ -8777,10 +8778,10 @@
         "A"
       ],
       "rationale": "The nurse suspects the development of septic shock. Multiple organ dysfunction syndrome (MODS) often results from severe sepsis progressing to septic shock, causing dysfunction in multiple organ systems, including the liver, kidneys, and brain.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q546",
       "stem": "A 60-year-old female patient is admitted to the ICU with blunt abdominal trauma. The nurse observes abdominal distention, tenderness, and guarding on assessment. The patient's vital signs include tachycardia and hypotension. The nurse's immediate action should be to:",
       "options": [
@@ -8793,10 +8794,10 @@
         "A"
       ],
       "rationale": "Guarding, tenderness, hypotension, abdominal distention, and tachycardia indicate possible intra-abdominal hemorrhage or organ injury. This necessitates immediate surgical exploration with emergent laparotomy.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q547",
       "stem": "A patient with septic shock presents with signs of tissue hypoxia and multiorgan dysfunction. In this patient population, which intervention is not recommended for improving hemodynamics?",
       "options": [
@@ -8809,10 +8810,10 @@
         "C"
       ],
       "rationale": "In patients with hypoperfusion-induced lactic academia with pH \u22657.15, sodium bicarbonate",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q548",
       "stem": "Which finding requires immediate intervention during the assessment of a patient with suspected anaphylactic shock?",
       "options": [
@@ -8825,10 +8826,10 @@
         "D"
       ],
       "rationale": "Hypotension indicates severe anaphylactic shock. Preventing cardiovascular collapse requires immediate intervention.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q549",
       "stem": "In the emergency department, a patient involved in a motor vehicle accident arrives with tachycardia, hypotension, and cool, clammy skin. The nurse should suspect:",
       "options": [
@@ -8841,10 +8842,10 @@
         "D"
       ],
       "rationale": "These symptoms are consistent with hypovolemic shock, caused by inadequate circulating volume resulting from blood loss.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q550",
       "stem": "In the ICU, a patient admitted with a traumatic brain injury exhibits signs of fever, with a core body temperature of 38.8\u00b0C (101.8\u00b0F). Which intervention should the nurse implement to assess and manage fever in this patient?",
       "options": [
@@ -8857,10 +8858,10 @@
         "B"
       ],
       "rationale": "In a patient with a traumatic brain injury, obtaining blood cultures and initiating antibiotic therapy is essential to assess and manage fever, as fever may indicate an underlying infection requiring prompt treatment.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Operations/Safety/Transport",
       "id": "Q551",
       "stem": "A patient refuses to take prescribed medications, citing concerns about potential side effects. The nurse's initial action should be to:",
       "options": [
@@ -8873,10 +8874,10 @@
         "B"
       ],
       "rationale": "The nurse's initial action should be to explain the purpose and potential benefits of the medications. This approach promotes patient understanding and collaboration in the treatment plan and effectively addresses concerns.",
-      "type": "single_select",
-      "category": "Operations/Safety/Transport"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q552",
       "stem": "What should the nurse anticipate, when a patient with inferior STEMI develops sudden hypotension and bradycardia?",
       "options": [
@@ -8889,10 +8890,10 @@
         "A"
       ],
       "rationale": "In the context of inferior STEMI, sudden hypotension and bradycardia indicate symptomatic bradyarrhythmia, which requires transcutaneous pacing for hemodynamic support.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q553",
       "stem": "The nurse notes unequal blood pressure readings between the arms, during the assessment of a patient with a thoracic aortic aneurysm. Which action should the nurse take first?",
       "options": [
@@ -8905,10 +8906,10 @@
         "D"
       ],
       "rationale": "The nurse should notify the healthcare provider and prepare for immediate intervention to prevent potential complications associated with aortic dissection as unequal blood pressure readings between arms may indicate aortic dissection.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q554",
       "stem": "A patient presents with excruciating chest pain described as tearing in nature, radiating to the back. What should the nurse prioritize initially upon noting a difference in blood pressure readings between the arms, with the right arm measuring 160/90 mm Hg and the left arm measuring 130/70 mm Hg?",
       "options": [
@@ -8921,10 +8922,10 @@
         "C"
       ],
       "rationale": "The nurse should notify the healthcare provider immediately to facilitate prompt evaluation and initiation of appropriate management strategies, considering the high mortality associated with aortic dissection.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q555",
       "stem": "While assessing a patient suspected of having aortic dissection, the nurse notes a blood pressure difference of 20 mmHg between the arms, along with diminished peripheral pulses. What intervention should the nurse prioritize initially?",
       "options": [
@@ -8937,10 +8938,10 @@
         "C"
       ],
       "rationale": "Recognizing the characteristic clinical features of aortic dissection, immediate notification of the healthcare provider is essential for prompt evaluation and initiation of appropriate management strategies.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q556",
       "stem": "A patient who recently underwent cardiac surgery suddenly experiences increased shortness of breath, hypotension, and tachypnea. What complication should the nurse suspect when noting diminished heart sounds and jugular venous distension?",
       "options": [
@@ -8953,10 +8954,10 @@
         "C"
       ],
       "rationale": "The patient's sudden onset of shortness of breath, tachypnea, hypotension, diminished heart sounds, and jugular venous distension suggest cardiac tamponade, a serious complication of cardiac surgery where fluid accumulates around the heart, compressing it and impeding cardiac function, leading to hemodynamic instability.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q557",
       "stem": "During assessment, a patient in cardiogenic shock is found to have cool, clammy skin, weak pulses, and decreased urine output. The nurse understands these signs indicate:",
       "options": [
@@ -8969,10 +8970,10 @@
         "D"
       ],
       "rationale": "Signs such as cool, clammy skin, weak pulses, and decreased urine output in a patient with cardiogenic shock indicate impaired tissue perfusion. These manifestations reflect the body's response to inadequate blood flow and oxygen delivery to organs and tissues, highlighting the severity of the condition and the need for prompt intervention to improve perfusion and prevent organ dysfunction.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Airway/Ventilation/Respiratory",
       "id": "Q558",
       "stem": "A patient has a history of asthma, and he is prescribed montelukast (Singulair). The nurse teaches the patient that this medication works by:",
       "options": [
@@ -8985,10 +8986,10 @@
         "B"
       ],
       "rationale": "Montelukast is a leukotriene receptor antagonist. It reduces airway inflammation and constriction in asthma.",
-      "type": "single_select",
-      "category": "Airway/Ventilation/Respiratory"
+      "type": "single_select"
     },
     {
+      "category": "Airway/Ventilation/Respiratory",
       "id": "Q559",
       "stem": "A patient is prescribed patient-controlled analgesia (PCA) for pain management after a thoracotomy. When evaluating the effectiveness of pain management, which assessment finding should the nurse prioritize?",
       "options": [
@@ -9001,10 +9002,10 @@
         "A"
       ],
       "rationale": "Monitoring respiratory rate and depth post-thoracotomy is crucial for assessing the efficacy of pain management, as inadequate pain control can lead to respiratory complications such as hypoventilation and atelectasis.",
-      "type": "single_select",
-      "category": "Airway/Ventilation/Respiratory"
+      "type": "single_select"
     },
     {
+      "category": "Airway/Ventilation/Respiratory",
       "id": "Q560",
       "stem": "A patient develops acute onset of dyspnea, cyanosis, and chest pain after a thoracic surgery. Which complication should the nurse suspect when the nurse auscultates diminished breath sounds on the affected side?",
       "options": [
@@ -9017,10 +9018,10 @@
         "D"
       ],
       "rationale": "Bronchopleural fistula is a serious complication that requires immediate intervention. Acute onset dyspnea, cyanosis, chest pain, diminished breath sounds, and recent thoracic surgery are suggestive of a bronchopleural fistula.",
-      "type": "single_select",
-      "category": "Airway/Ventilation/Respiratory"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q561",
       "stem": "Which of the following nursing interventions is the most appropriate for managing the pain of a patient with multiple rib fractures who complains of severe chest pain exacerbated by deep breathing and coughing?",
       "options": [
@@ -9033,10 +9034,10 @@
         "A"
       ],
       "rationale": "Intravenous opioids are commonly used to manage severe pain associated with rib fractures, providing effective analgesia with reduced risk of respiratory depression.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q562",
       "stem": "After surgery for gastrointestinal bleeding, a 50-year-old male patient receives a blood transfusion. He develops acute respiratory distress, hypotension, and fever six hours later. Which diagnostic test is most likely to confirm the suspected diagnosis?",
       "options": [
@@ -9049,10 +9050,10 @@
         "A"
       ],
       "rationale": "Pulmonary edema and infiltrates are characteristic findings of transfusion-related acute lung injury (TRALI). Chest x-ray is the preferred diagnostic test to confirm the presence of these characteristics.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q563",
       "stem": "When evaluating a patient suspected of having Hyperosmolar Hyperglycemic State (HHS) and presenting with profound dehydration, tachycardia, and hypotension, which laboratory finding confirms the diagnosis?",
       "options": [
@@ -9065,10 +9066,10 @@
         "B"
       ],
       "rationale": "Severe hyperglycemia (>600 mg/dL), hyperosmolality (>320 mOsm/kg), and dehydration are indicative of Hyperosmolar Hyperglycemic State (HHS). Laboratory findings characteristic of HHS include elevated serum sodium and osmolality.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Obstetric/Neonatal/Pediatric",
       "id": "Q564",
       "stem": "A newborn is diagnosed with congenital hypothyroidism. The nurse anticipates the need for:",
       "options": [
@@ -9081,10 +9082,10 @@
         "A"
       ],
       "rationale": "To prevent irreversible neurological damage and promote average growth and development, prompt initiation of levothyroxine therapy is crucial in infants diagnosed with congenital hypothyroidism.",
-      "type": "single_select",
-      "category": "Obstetric/Neonatal/Pediatric"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q565",
       "stem": "Which assessment finding indicates a favorable response to the medication when a patient with SIADH is prescribed tolvaptan therapy?",
       "options": [
@@ -9097,10 +9098,10 @@
         "C"
       ],
       "rationale": "Improvement in neurological status suggests a positive response to tolvaptan therapy, as serum sodium levels stabilize and hyponatremia resolves.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Cardiac/Hemodynamic",
       "id": "Q566",
       "stem": "A patient admitted with a ruptured abdominal aortic aneurysm (Abdominal Aortic Aneurysm (AAA)) undergoes emergent surgical repair. The nurse monitors the patient closely for signs of abdominal compartment syndrome (ACS) after the operation. In this patient, which assessment finding is most indicative of ACS?",
       "options": [
@@ -9113,10 +9114,10 @@
         "D"
       ],
       "rationale": "Increased abdominal girth indicates increased intra-abdominal pressure, which can compromise organ perfusion. It is a crucial sign of abdominal compartment syndrome (ACS) in patients postoperatively after abdominal aortic aneurysm repair.",
-      "type": "single_select",
-      "category": "Cardiac/Hemodynamic"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q567",
       "stem": "A trauma patient with a suspected hollow viscus injury undergoes a diagnostic peritoneal lavage (DPL). What is the next appropriate step in management, when the lavage returns positive for blood, confirming intra-abdominal bleeding?",
       "options": [
@@ -9129,10 +9130,10 @@
         "C"
       ],
       "rationale": "To identify and manage the source of bleeding, a positive DPL indicating intra-abdominal bleeding necessitates immediate surgical exploration via laparotomy.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q568",
       "stem": "A patient exhibits hematochezia and bright red hematemesis with acute gastrointestinal hemorrhage. These symptoms are most consistent with bleeding from the:",
       "options": [
@@ -9145,10 +9146,10 @@
         "D"
       ],
       "rationale": "Bright red hematemesis and hematochezia symptoms are most consistent with bleeding from the stomach.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q569",
       "stem": "Which intervention is essential to prevent the development of acute compartment syndrome in a patient who sustains a traumatic injury resulting in a fractured femur?",
       "options": [
@@ -9161,10 +9162,10 @@
         "A"
       ],
       "rationale": "By restricting movement and minimizing further tissue damage, immobilizing the affected limb with a rigid splint helps prevent excessive swelling and compartment syndrome development.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q570",
       "stem": "When a patient is scheduled for surgery to repair the injury due to a femur fracture, the nurse educates the patient about postoperative care, emphasizing the importance of:",
       "options": [
@@ -9177,10 +9178,10 @@
         "D"
       ],
       "rationale": "To ensure proper healing of the fractured femur and to prevent displacement of the surgical hardware, avoiding weight-bearing activities is crucial in postoperative care.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q571",
       "stem": "Which of the following factors is essential to consider before proceeding with apnea testing in evaluating a patient with severe traumatic brain injury for brain death?",
       "options": [
@@ -9193,10 +9194,10 @@
         "C"
       ],
       "rationale": "Before conducting apnea testing, it is crucial to consider the absence of brainstem reflexes in assessing a patient for brain death. This includes absent pupillary, corneal, oculocephalic, and oculovestibular reflexes, among others. These reflexes indicate the integrity of the brainstem, which is crucial for confirming brain death.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q572",
       "stem": "Following traumatic brain injury, a patient presents with sudden-onset severe headache, projectile vomiting, and altered level of consciousness. Upon assessment, the nurse observes bilateral pinpoint pupils and decerebrate posturing. These symptoms are most indicative of:",
       "options": [
@@ -9209,10 +9210,10 @@
         "D"
       ],
       "rationale": "Brainstem herniation in a patient with traumatic brain injury is suggested by bilateral pinpoint pupils, decerebrate posturing, and other signs such as sudden severe headache and altered level of consciousness. This condition is life-threatening and requires immediate intervention to prevent further neurological deterioration.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q573",
       "stem": "A patient with a traumatic subarachnoid hemorrhage (tSAH) is admitted. What unique complication should the nurse monitor for this condition?",
       "options": [
@@ -9225,10 +9226,10 @@
         "B"
       ],
       "rationale": "Communicating hydrocephalus is a complication more commonly associated with traumatic subarachnoid hemorrhage, while both traumatic and aneurysmal SAH can lead to cerebral vasospasm.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q574",
       "stem": "A patient presents with severe headache and papilledema diagnosed with idiopathic intracranial hypertension (IIH). Which medication the nurse prepares to administer to help reduce intracranial pressure (ICP)?",
       "options": [
@@ -9241,10 +9242,10 @@
         "A"
       ],
       "rationale": "Acetazolamide is used to treat idiopathic intracranial hypertension (IIH), thus helping to lower ICP. It is a carbonic anhydrase inhibitor that decreases the production of cerebrospinal fluid (CSF).",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q575",
       "stem": "The nurse observes signs of increased intracranial pressure (ICP), including altered mental status and pupillary changes, during the evaluation of a patient with a hemorrhagic stroke. Which action should the nurse take first?",
       "options": [
@@ -9257,10 +9258,10 @@
         "C"
       ],
       "rationale": "For prompt intervention, signs of increased ICP warrant immediate notification of the healthcare provider, such as adjustment of medications or consideration of invasive interventions to manage intracranial pressure.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Operations/Safety/Transport",
       "id": "Q576",
       "stem": "A patient is receiving mechanical ventilation and is admitted with severe traumatic brain injury (TBI). The patient\u2019s family expresses uncertainty about the prognosis and decision-making process. The nurse's action should be prioritized:",
       "options": [
@@ -9273,10 +9274,10 @@
         "A"
       ],
       "rationale": "Providing emotional support and active listening to the family is essential to address their immediate needs and concerns in situations of uncertainty regarding prognosis and decision-making.",
-      "type": "single_select",
-      "category": "Operations/Safety/Transport"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q577",
       "stem": "In a house fire, a patient with severe burns sustained is intubated and mechanically ventilated. To prevent ventilator-associated pneumonia (VAP), which nursing intervention is essential?",
       "options": [
@@ -9289,10 +9290,10 @@
         "C"
       ],
       "rationale": "In ventilated patients, elevation of the head of the bed helps prevent aspiration and reduces the risk of VAP.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Pediatric Assessment/Management",
       "id": "Q578",
       "stem": "A 9-year-old patient with burns covering 30% of their body surface area has a central venous catheter (CVC) in place for antibiotic administration. To prevent central line-associated bloodstream infections (CLABSIs), what intervention should the nurse prioritize?",
       "options": [
@@ -9305,10 +9306,10 @@
         "D"
       ],
       "rationale": "In burn patients, inserting the CVC through unburned skin helps reduce the risk of CLABSIs.",
-      "type": "single_select",
-      "category": "Pediatric Assessment/Management"
+      "type": "single_select"
     },
     {
+      "category": "Obstetric/Neonatal/Pediatric",
       "id": "Q579",
       "stem": "A pregnant patient with a history of preeclampsia presents with epigastric pain, nausea, and malaise. The nurse should assess for signs of:",
       "options": [
@@ -9321,10 +9322,10 @@
         "B"
       ],
       "rationale": "HELLP syndrome is a severe complication of preeclampsia characterized by hemolysis, elevated liver enzymes, and low platelet count. Epigastric pain, nausea, and malaise are common symptoms of it.",
-      "type": "single_select",
-      "category": "Obstetric/Neonatal/Pediatric"
+      "type": "single_select"
     },
     {
+      "category": "Trauma/Burns/Transfusion",
       "id": "Q580",
       "stem": "What should be the nurse's priority action if a 50-year-old male patient sustains a gunshot wound to the abdomen and is hemodynamically unstable upon arrival at the trauma bay?",
       "options": [
@@ -9337,10 +9338,10 @@
         "B"
       ],
       "rationale": "In a trauma patient, hemodynamic instability mandates immediate assessment for possible intra-abdominal bleeding using a FAST exam to guide emergent interventions such as surgery or angiography.",
-      "type": "single_select",
-      "category": "Trauma/Burns/Transfusion"
+      "type": "single_select"
     },
     {
+      "category": "Medical Emergencies/Critical Care",
       "id": "Q581",
       "stem": "A patient with severe sepsis is suspected to have acute kidney injury (AKI). In hemodynamically unstable septic patients, which renal replacement therapy modality is recommended for managing fluid balance?",
       "options": [
@@ -9353,10 +9354,10 @@
         "C"
       ],
       "rationale": "According to current guidelines, continuous venovenous hemofiltration (CVVH) is recommended for managing fluid balance in hemodynamically unstable septic patients.",
-      "type": "single_select",
-      "category": "Medical Emergencies/Critical Care"
+      "type": "single_select"
     },
     {
+      "category": "Neurologic/Neurosurgical",
       "id": "Q582",
       "stem": "A patient with a history of spinal cord injury suddenly experiences bradycardia, hypotension, and warm, dry skin during a routine examination. The nurse should recognize these as signs of:",
       "options": [
@@ -9369,10 +9370,10 @@
         "A"
       ],
       "rationale": "These symptoms align with neurogenic shock, characterized by the loss of sympathetic tone, which leads to vasodilation and hypotension.",
-      "type": "single_select",
-      "category": "Neurologic/Neurosurgical"
+      "type": "single_select"
     },
     {
+      "category": "Operations/Safety/Transport",
       "id": "Q583",
       "stem": "About the potential side effects of a newly prescribed medication, a patient's family expresses concerns. The nurse's response should prioritize:",
       "options": [
@@ -9385,857 +9386,6 @@
         "A"
       ],
       "rationale": "Collaborating with the healthcare team ensures accurate information and supports shared decision-making with the family regarding medication management.",
-      "type": "single_select",
-      "category": "Operations/Safety/Transport"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q584",
-      "stem": "The ECG shows an irregularly irregular rhythm with absent P waves. What is the most likely diagnosis?",
-      "image": "cfrn/afib_rhythm.png",
-      "options": [
-        "Atrial flutter",
-        "Atrial fibrillation",
-        "Multifocal atrial tachycardia",
-        "Sinus arrhythmia"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Atrial fibrillation is characterized by an irregularly irregular rhythm with absent P waves and fibrillatory baseline. It is the most common sustained arrhythmia. Atrial flutter has regular 'sawtooth' waves; MAT has varying P-wave morphologies; sinus arrhythmia has normal P waves with respiratory variation.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q585",
-      "stem": "A patient with atrial fibrillation has a ventricular rate of 142 bpm and BP 100/70. He is alert but fatigued. What is the best initial treatment?",
-      "image": "cfrn/afib_rvr.png",
-      "options": [
-        "Immediate synchronized cardioversion",
-        "IV diltiazem for rate control",
-        "IV amiodarone bolus",
-        "IV adenosine"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "For stable AF with rapid ventricular response (RVR), rate control with IV diltiazem or beta-blockers is first-line. Cardioversion is reserved for unstable patients. Adenosine is ineffective in AF. Amiodarone is used for rhythm control but rate control is the priority in stable patients.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q586",
-      "stem": "The ECG shows regular 'sawtooth' flutter waves at approximately 300 bpm in leads II, III, and aVF, with a ventricular rate of 150 bpm. What is the diagnosis?",
-      "image": "cfrn/aflutter_sawtooth.png",
-      "options": [
-        "Atrial fibrillation",
-        "Atrial flutter with 2:1 block",
-        "Sinus tachycardia",
-        "SVT"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Atrial flutter classically shows 'sawtooth' flutter waves at ~300 bpm, best seen in inferior leads (II, III, aVF). With 2:1 AV block, the ventricular rate is ~150 bpm. AF is irregularly irregular without flutter waves; sinus tachycardia has normal P waves; SVT typically has hidden P waves.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q587",
-      "stem": "A patient with atrial flutter and 2:1 conduction is hemodynamically stable. Which intervention can help clarify the diagnosis by revealing flutter waves?",
-      "image": "cfrn/aflutter_block.png",
-      "options": [
-        "IV amiodarone",
-        "Carotid sinus massage or adenosine",
-        "Immediate defibrillation",
-        "IV lidocaine"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Vagal maneuvers (carotid massage) or adenosine transiently increase AV block, slowing ventricular response and unmasking flutter waves for diagnosis. Amiodarone and lidocaine do not help unmask flutter waves; defibrillation is for unstable rhythms.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q588",
-      "stem": "The ECG shows a regular narrow-complex tachycardia at 180 bpm. P waves are not clearly visible. What is the most likely rhythm?",
-      "image": "cfrn/svt_narrow.png",
-      "options": [
-        "Sinus tachycardia",
-        "Atrial fibrillation",
-        "Supraventricular tachycardia (SVT/AVNRT)",
-        "Ventricular tachycardia"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "A regular narrow-complex tachycardia (~150-250 bpm) with hidden or retrograde P waves is classic for SVT/AVNRT. Sinus tachycardia has visible P waves; AF is irregularly irregular; VT is wide-complex.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q589",
-      "stem": "A stable patient has SVT at 190 bpm. Vagal maneuvers have failed. What is the next best treatment?",
-      "image": "cfrn/svt_stable.png",
-      "options": [
-        "Synchronized cardioversion",
-        "IV adenosine",
-        "IV amiodarone",
-        "Oral metoprolol"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "For stable SVT/AVNRT, vagal maneuvers or IV adenosine are first-line. Adenosine will usually terminate AVNRT. Amiodarone and beta-blockers are slower; cardioversion is reserved for instability.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q590",
-      "stem": "The ECG shows a short PR interval and a slurred upstroke (delta wave) in the QRS complex. What is the diagnosis?",
-      "image": "cfrn/wpw_delta.png",
-      "options": [
-        "Left bundle branch block",
-        "Wolff-Parkinson-White syndrome",
-        "Hyperkalemia",
-        "Left anterior fascicular block"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "WPW is defined by a PR <120 ms and delta wave (slurred initial QRS) due to an accessory pathway. LBBB and fascicular block do not show delta waves, and hyperkalemia causes peaked T waves, not delta waves.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q591",
-      "stem": "A patient with WPW has rapid irregular tachycardia on ECG (likely AF with WPW) and is hypotensive. Which drug is CONTRAINDICATED?",
-      "image": "cfrn/wpw_afib.png",
-      "options": [
-        "IV procainamide",
-        "IV amiodarone",
-        "IV adenosine",
-        "IV verapamil"
-      ],
-      "correct": [
-        "D"
-      ],
-      "rationale": "In WPW with atrial fibrillation, AV nodal blockers like verapamil (and adenosine, diltiazem, digoxin) are contraindicated as they can precipitate ventricular fibrillation by allowing unopposed conduction through the accessory pathway. Procainamide is preferred; amiodarone is safer in this scenario.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q592",
-      "stem": "The ECG strip shows an early wide QRS complex without a preceding P wave, followed by a pause. What is this beat?",
-      "image": "cfrn/pvc_single.png",
-      "options": [
-        "Junctional escape beat",
-        "Premature atrial complex (PAC)",
-        "Premature ventricular complex (PVC)",
-        "Sinus block"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "A PVC is an early wide QRS (no P wave) with compensatory pause. Junctional escape occurs late (not early); PAC would have a P wave; sinus block would simply delay a sinus beat, not produce a wide complex.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q593",
-      "stem": "A trauma patient's monitor shows frequent PVCs. He is alert and normotensive. What is the best action?",
-      "image": "cfrn/pvc_frequent.png",
-      "options": [
-        "IV lidocaine",
-        "Immediate synchronized cardioversion",
-        "Observation and treat underlying cause",
-        "IV metoprolol"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "In a stable patient, isolated PVCs require no acute treatment; one should search for reversible causes (electrolytes, ischemia, hypoxia). Lidocaine or cardioversion is reserved for VT. Metoprolol is not needed if the patient is stable.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q594",
-      "stem": "The ECG shows a regular wide-complex tachycardia (rate 160 bpm) with fusion beats visible. What is the most likely rhythm?",
-      "image": "cfrn/vt_mono.png",
-      "options": [
-        "Ventricular tachycardia",
-        "Torsades de Pointes",
-        "SVT with aberrancy",
-        "Atrial flutter with 1:1 conduction"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "Regular wide QRS tachycardia with fusion beats is diagnostic for VT. Fusion beats prove ventricular origin. Torsades is irregular/polymorphic. SVT with aberrancy doesn't have fusion beats, and atrial flutter 1:1 would show atrial activity.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q595",
-      "stem": "A 62-year-old with chronic LV dysfunction has sustained VT (BP 85/50). What is the best immediate therapy?",
-      "image": "cfrn/vt_sustained.png",
-      "options": [
-        "IV amiodarone",
-        "Synchronized cardioversion",
-        "IV metoprolol",
-        "IV magnesium"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Hemodynamically unstable VT (hypotension) requires immediate synchronized cardioversion. Amiodarone is for stable VT. Beta-blocker or magnesium are not first-line in acute unstable VT.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q596",
-      "stem": "The ECG shows polymorphic ventricular complexes twisting around the baseline on a long QT interval. What is this rhythm?",
-      "image": "cfrn/torsades_twist.png",
-      "options": [
-        "Ventricular fibrillation",
-        "Torsades de Pointes",
-        "Polymorphic VT (not torsades)",
-        "Atrial fibrillation with aberrancy"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Twisting polymorphic VT on a prolonged QT is classic for Torsades de Pointes ('twisting of the points'). VF is totally chaotic without the twisting pattern; polymorphic VT without long QT is a different entity. AF has irregular narrow QRS typically.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q597",
-      "stem": "A patient on sotalol (a QT-prolonging drug) is found in Torsades with a pulse (BP 75/45). The monitor still shows twisting VT. What is the first-line treatment?",
-      "image": "cfrn/torsades_qt.png",
-      "options": [
-        "Defibrillation",
-        "IV procainamide",
-        "IV magnesium sulfate",
-        "IV epinephrine"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "In torsades with a pulse, IV magnesium is first-line therapy to stabilize the myocardium. Defibrillation is for pulseless VT/VF. Procainamide is contraindicated (can worsen QT); epinephrine is for cardiac arrest.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q598",
-      "stem": "The ECG shows wide-complex QRS beats at ~90 bpm without preceding P waves and occasional fusion beats. What is this rhythm?",
-      "image": "cfrn/aivr_wide.png",
-      "options": [
-        "Accelerated idioventricular rhythm (AIVR)",
-        "Ventricular tachycardia",
-        "Third-degree AV block with ventricular escape",
-        "Junctional tachycardia"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "AIVR is a ventricular rhythm of intermediate rate (50-120 bpm) often seen after reperfusion. VT is usually >120 bpm. AIVR has capture/fusion beats and coexists with atrial activity. Third-degree block shows AV dissociation with slower escape.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q599",
-      "stem": "After successful reperfusion therapy, a patient develops AIVR. He is asymptomatic with stable BP. What is the recommended management?",
-      "image": "cfrn/aivr_reperfusion.png",
-      "options": [
-        "IV atropine",
-        "Start amiodarone",
-        "No treatment; observe",
-        "External pacing"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "AIVR post-reperfusion is usually benign and a sign of successful reperfusion. No intervention is needed in a stable patient. Pacing or medications are not indicated unless it evolves into VT or causes instability.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q600",
-      "stem": "The ECG shows a PR interval of 260 ms on every beat with a 1:1 P-to-QRS relationship. What is the diagnosis?",
-      "image": "cfrn/first_degree_block.png",
-      "options": [
-        "First-degree AV block",
-        "Second-degree AV block (Mobitz I)",
-        "Third-degree AV block",
-        "Sinus bradycardia"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "First-degree AV block is defined by a constant PR >200 ms with all P waves conducted. There are no dropped beats (distinguishing it from second-degree). Third-degree has complete dissociation.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q601",
-      "stem": "A patient has first-degree AV block with PR 260 ms, on a beta-blocker for hypertension. He feels fine. What should you do?",
-      "image": "cfrn/first_degree_pr.png",
-      "options": [
-        "Discontinue beta-blocker",
-        "Observation only",
-        "Implant pacemaker",
-        "Give IV atropine"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Asymptomatic first-degree block requires no treatment. If due to medication, dose adjustment could be considered, but not mandatory if patient is stable. Pacemaker and atropine are unnecessary for asymptomatic first-degree block.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q602",
-      "stem": "On ECG, the PR interval progressively lengthens until a P wave is not followed by a QRS, then resets. Which block is this?",
-      "image": "cfrn/mobitz1_wenckebach.png",
-      "options": [
-        "Mobitz type I (Wenckebach)",
-        "Mobitz type II",
-        "Third-degree block",
-        "2:1 AV block"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "Mobitz I (Wenckebach) shows progressive PR prolongation culminating in a dropped beat, then the cycle resets. Mobitz II has sudden drops without PR changes. Complete block has no association between P and QRS.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q603",
-      "stem": "A patient with Lyme carditis has Mobitz I AV block at 3:2 conduction. He is well perfused. What is the best step?",
-      "image": "cfrn/mobitz1_lyme.png",
-      "options": [
-        "IV atropine and pacing",
-        "Give doxycycline and observe",
-        "Urgent pacemaker",
-        "IV magnesium"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "In Lyme disease, AV block is often reversible with antibiotic treatment. Antibiotics (doxycycline) and monitoring are appropriate. Pacing is only needed if patient becomes unstable. Lyme-associated Mobitz I often resolves with treatment.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q604",
-      "stem": "ECG shows several P waves that are not conducted (missing QRS), while conducted beats have a fixed PR interval. What block is this?",
-      "image": "cfrn/mobitz2_dropped.png",
-      "options": [
-        "Mobitz type I",
-        "Mobitz type II",
-        "First-degree AV block",
-        "Atrial flutter with block"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Mobitz II has dropped QRS without PR prolongation - the PR is constant on conducted beats with sudden non-conducted P waves. This contrasts with Mobitz I (progressive PR increase). It's a high-grade block requiring urgent attention.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q605",
-      "stem": "An inferior MI patient develops Mobitz II block with syncope. What is the immediate treatment?",
-      "image": "cfrn/mobitz2_syncope.png",
-      "options": [
-        "IV atropine",
-        "IV dopamine infusion",
-        "Transcutaneous pacing",
-        "IV adenosine"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "Mobitz II is unstable and can progress to complete block. Pacing (temporary transcutaneous) is indicated for symptomatic Mobitz II. Atropine may have limited effect in infranodal block. Adenosine is for SVT, not block management.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q606",
-      "stem": "ECG shows P waves at 75 bpm and QRS at 40 bpm with no consistent PR relationship. What is the rhythm?",
-      "image": "cfrn/complete_block.png",
-      "options": [
-        "Junctional escape",
-        "Third-degree AV block",
-        "Atrial fibrillation",
-        "Ventricular tachycardia"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Complete dissociation of atria and ventricles (P waves marching through at one rate, QRS at another with no relationship) indicates third-degree (complete) heart block. Each chamber beats independently.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q607",
-      "stem": "A patient is found lethargic with complete heart block (rate 30 bpm) and hypotensive. What is the best immediate action?",
-      "image": "cfrn/complete_block_slow.png",
-      "options": [
-        "IV atropine",
-        "IV epinephrine",
-        "Transcutaneous pacing",
-        "IV adenosine"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "Complete heart block with hypotension and altered mental status requires immediate pacing. Atropine might help transiently but is often ineffective in complete block. Adenosine would worsen heart block; pacing addresses the rhythm definitively.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q608",
-      "stem": "ECG shows a QRS duration of 140 ms, broad R waves in leads I and V6, and deep S waves in V1. What is this pattern?",
-      "image": "cfrn/lbbb_pattern.png",
-      "options": [
-        "Right bundle branch block",
-        "Left bundle branch block",
-        "Ventricular tachycardia",
-        "Hyperkalemia effect"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "LBBB features include QRS \u2265120 ms with broad R in lateral leads (I, aVL, V5-V6) and a QS or deep S in V1. RBBB has an rSR' ('bunny ears') pattern in V1, which is absent here.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q609",
-      "stem": "A patient with chest pain has a new LBBB on ECG. Which is the next step?",
-      "image": "cfrn/lbbb_new.png",
-      "options": [
-        "Treat as possible STEMI and get cardiology consult",
-        "Perform carotid massage",
-        "Start IV metoprolol",
-        "Reassure and observe"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "New LBBB with chest pain is treated as a 'STEMI equivalent' until proven otherwise. Urgent reperfusion evaluation is needed. Carotid massage (for SVT), beta-blockers alone, or reassurance would be inappropriate.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q610",
-      "stem": "The ECG shows a QRS of 130 ms with an RSR' (bunny ears) pattern in V1 and wide S waves in V6. What is this?",
-      "image": "cfrn/rbbb_pattern.png",
-      "options": [
-        "Left bundle branch block",
-        "Right bundle branch block",
-        "Ventricular tachycardia",
-        "Left anterior fascicular block"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "RBBB is diagnosed by QRS \u2265120 ms with RSR' ('bunny ears' or 'M-shaped') pattern in V1 and wide S in lateral leads (I, V6). LBBB has different morphology (broad R in V6, deep S in V1).",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q611",
-      "stem": "A patient with acute anterior MI develops new RBBB and transient AV block. Which artery is likely occluded?",
-      "image": "cfrn/rbbb_mi.png",
-      "options": [
-        "Left anterior descending (LAD)",
-        "Right coronary artery (RCA)",
-        "Left circumflex",
-        "Posterior descending artery (PDA)"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "New RBBB in the setting of anterior MI suggests proximal LAD occlusion involving the septal perforators that supply the right bundle branch. RCA occlusion causes inferior MI and AV nodal block but not usually RBBB.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q612",
-      "stem": "The ECG (obtained when patient is pain-free) shows deeply inverted T waves in leads V2 and V3. No ST elevation is present. What does this indicate?",
-      "image": "cfrn/wellens_twave.png",
-      "options": [
-        "Benign early repolarization",
-        "Wellens' syndrome (critical LAD stenosis)",
-        "Hypokalemia",
-        "Non-specific T-wave changes"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Wellens' syndrome is characterized by deeply inverted (Type A) or biphasic (Type B) T waves in V2-V3 during pain-free periods. It is highly specific for critical proximal LAD stenosis. This is not benign repolarization or hypokalemia.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q613",
-      "stem": "A patient with resolved chest pain shows Wellens' T-wave changes and normal cardiac enzymes. What is the next step?",
-      "image": "cfrn/wellens_painfree.png",
-      "options": [
-        "Exercise stress test",
-        "Urgent cardiac catheterization",
-        "Observation only",
-        "High-dose aspirin"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Wellens' syndrome predicts a critical LAD lesion with high risk of anterior MI. Stress testing is contraindicated (may precipitate infarction). The correct step is emergent angiography for possible revascularization.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q614",
-      "stem": "The ECG shows 2 mm upsloping ST depression at the J point in V3, with tall symmetric T waves in V3-V4 and slight ST elevation in aVR. This pattern suggests:",
-      "image": "cfrn/dewinter_pattern.png",
-      "options": [
-        "Early repolarization",
-        "Non-STEMI",
-        "de Winter's anterior STEMI equivalent",
-        "Wellens' syndrome"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "de Winter pattern has upsloping ST depression at the J-point with tall, prominent T waves in anterior leads - a STEMI equivalent for proximal LAD occlusion. It is NOT benign repolarization or Wellens' (which has inverted T waves without ST depression).",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q615",
-      "stem": "A patient's ECG shows the de Winter pattern and ongoing chest pain. What is the most appropriate management?",
-      "image": "cfrn/dewinter_chest.png",
-      "options": [
-        "Emergent reperfusion therapy (PCI or thrombolysis if PCI unavailable)",
-        "High-dose IV beta-blocker",
-        "IV nitroglycerin and observe",
-        "IV magnesium sulfate"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "The de Winter pattern is treated as an acute anterior STEMI. Immediate reperfusion (primary PCI) is indicated. If PCI isn't available, fibrinolysis would be used. Medical therapy alone is insufficient for this STEMI-equivalent.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q616",
-      "stem": "The ECG shows ST elevation in V2-V5 of 4-5 mm, with reciprocal ST depression in lead III. What is the infarct location?",
-      "image": "cfrn/anterior_stemi.png",
-      "options": [
-        "Inferior MI (RCA)",
-        "Anterior MI (LAD)",
-        "Lateral MI (circumflex)",
-        "Posterior MI (PDA)"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "ST elevation in the precordial leads (V1-V4/V5) indicates an anterior wall MI, classically due to LAD occlusion. Reciprocal depression in the inferior leads (II, III, aVF) confirms anterior distribution.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q617",
-      "stem": "A patient with anterior STEMI is hypotensive. PCI is 45 minutes away. What is the best acute intervention?",
-      "image": "cfrn/anterior_stemi_hypo.png",
-      "options": [
-        "IV epinephrine",
-        "Cautious IV fluids and prepare for transport to cath lab",
-        "IV metoprolol",
-        "IV nitrates"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "In anterior MI with hypotension, cautious IV fluids may help improve preload. The priority is urgent reperfusion (transport to cath lab). Nitrates are contraindicated in hypotension; beta-blocker could worsen shock. Epinephrine may be needed for cardiogenic shock but fluids and rapid PCI are the priority.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q618",
-      "stem": "The ECG displays ST elevation in leads II, III, aVF and ST depression in I and aVL. Which wall is infarcted?",
-      "image": "cfrn/inferior_stemi.png",
-      "options": [
-        "High lateral",
-        "Anterior",
-        "Inferior",
-        "Posterior"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "ST elevation in II, III, aVF indicates an inferior wall MI (often RCA, sometimes circumflex). Reciprocal changes in I, aVL support this. High lateral (I, aVL elevation) and anterior (V leads elevation) are not the pattern here.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q619",
-      "stem": "An inferior STEMI patient has bradycardia (40 bpm) and nausea. Atropine 0.5 mg IV is given with little effect. Next best step?",
-      "image": "cfrn/inferior_stemi_brady.png",
-      "options": [
-        "IV epinephrine infusion",
-        "Transcutaneous pacing",
-        "IV diltiazem",
-        "Oral metoprolol"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Inferior MI can cause AV block and vagally-mediated bradycardia. If atropine fails, external pacing is indicated for symptomatic bradycardia. Calcium channel blockers (diltiazem) and beta-blockers would worsen bradycardia.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q620",
-      "stem": "The ECG shows tall peaked T waves in multiple leads and a widened QRS. Which electrolyte abnormality is most likely?",
-      "image": "cfrn/hyperkalemia_peaked.png",
-      "options": [
-        "Hypokalemia",
-        "Hyperkalemia",
-        "Hypocalcemia",
-        "Hypermagnesemia"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Peaked ('tent-like') T waves and QRS widening are classic for hyperkalemia. Hypokalemia causes flattened T waves and U waves. Hypocalcemia prolongs QT; hypermagnesemia causes bradycardia and prolonged PR.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q621",
-      "stem": "A hyperkalemic patient (K+ 7.2 mEq/L) is hypotensive with ECG changes. What is the immediate next step?",
-      "image": "cfrn/hyperkalemia_wide.png",
-      "options": [
-        "IV calcium gluconate",
-        "IV insulin and glucose",
-        "IV furosemide",
-        "Emergent dialysis"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "IV calcium is given immediately to stabilize cardiac membranes in hyperkalemia with ECG changes, buying time for other measures. Insulin/glucose shifts K+ intracellularly, but calcium addresses the urgent arrhythmia risk first.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q622",
-      "stem": "The ECG shows down-sloping ST segments ('reverse tick' or 'scooped'), flattened T waves, and short QT. The patient is on digoxin. What does this represent?",
-      "image": "cfrn/digoxin_effect.png",
-      "options": [
-        "Myocardial ischemia",
-        "Digoxin effect (not toxicity)",
-        "Hypokalemia",
-        "Early repolarization"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Digoxin causes characteristic sagging ('scooped') ST depressions, flat T waves, and shortened QT - the benign 'digoxin effect.' This should not be mistaken for ischemia. Hypokalemia and early repolarization have different patterns.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q623",
-      "stem": "A patient on digoxin has ECG changes as shown but is asymptomatic. What is the next step?",
-      "image": "cfrn/digoxin_scooped.png",
-      "options": [
-        "Give IV digoxin immune Fab",
-        "Continue current dose and monitor digoxin levels",
-        "Urgent coronary angiography",
-        "Administer IV calcium"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "The ECG shows digoxin effect, not toxicity. If patient is asymptomatic, simply continue monitoring and ensure digoxin level is therapeutic. Digoxin Fab is only for severe toxicity. No indication for cath or calcium.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q624",
-      "stem": "The ECG shows beat-to-beat alternation in QRS amplitude. What is the likely cause?",
-      "image": "cfrn/electrical_alternans.png",
-      "options": [
-        "Pericardial effusion (tamponade)",
-        "Atrial fibrillation",
-        "Ventricular bigeminy",
-        "Pulmonary embolism"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "Electrical alternans (alternating QRS voltage beat-to-beat) is classic for a swinging heart in a large pericardial effusion/tamponade. The other options don't produce true electrical alternans.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q625",
-      "stem": "A hypotensive patient has tamponade and electrical alternans on ECG. What is the immediate action?",
-      "image": "cfrn/tamponade_ecg.png",
-      "options": [
-        "IV epinephrine",
-        "Urgent pericardiocentesis",
-        "High-dose IV steroids",
-        "IV furosemide"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Tamponade with hemodynamic compromise requires immediate drainage of the pericardial fluid via pericardiocentesis. Medications alone (pressors, diuretics, steroids) are insufficient to relieve the mechanical obstruction.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q626",
-      "stem": "The ECG shows a ventricular tachycardia with alternating QRS morphologies (180\u00b0 axis shift) every other beat. Which is this?",
-      "image": "cfrn/bidirectional_vt.png",
-      "options": [
-        "Torsades de Pointes",
-        "Bidirectional ventricular tachycardia",
-        "Ventricular fibrillation",
-        "Ventricular bigeminy"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "Bidirectional VT is characterized by alternating QRS axis/morphology every beat - a classic finding in digoxin toxicity or catecholaminergic polymorphic VT. Torsades has a gradual twisting pattern, not exact beat-to-beat alternation. VF is chaotic.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q627",
-      "stem": "A patient on digoxin has bidirectional VT but maintains a pulse. What is the recommended treatment?",
-      "image": "cfrn/bidirectional_vt_dig.png",
-      "options": [
-        "IV digoxin immune Fab (Digibind)",
-        "Synchronized cardioversion",
-        "IV lidocaine",
-        "IV verapamil"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "Bidirectional VT is strongly associated with digoxin toxicity. The antidote is digoxin-specific Fab antibodies. Cardioversion is less effective and may precipitate refractory arrhythmias; lidocaine and verapamil are not appropriate for digoxin-induced arrhythmias.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q628",
-      "stem": "The ECG shows diffuse ST elevation with PR depression in most leads and PR elevation in aVR. What is the likely diagnosis?",
-      "image": "cfrn/pericarditis_st.png",
-      "options": [
-        "Acute pericarditis",
-        "Anterior STEMI",
-        "Hyperkalemia",
-        "Early repolarization"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "Diffuse concave ST elevation with PR depression is the classic ECG for acute pericarditis. Unlike STEMI, changes are widespread (not in a coronary distribution), and there are no reciprocal depressions (except aVR shows PR elevation).",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q629",
-      "stem": "A stable patient is diagnosed with acute idiopathic pericarditis. What is first-line therapy?",
-      "image": "cfrn/pericarditis_pr.png",
-      "options": [
-        "High-dose NSAIDs (e.g., ibuprofen) plus colchicine",
-        "IV antibiotics",
-        "IV corticosteroids",
-        "Urgent pericardiocentesis"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "First-line treatment for idiopathic/viral pericarditis is NSAIDs (or aspirin) plus colchicine to reduce inflammation and recurrence. Antibiotics only for bacterial pericarditis. Steroids are second-line. Pericardiocentesis is for tamponade.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q630",
-      "stem": "The ECG shows mild ST elevation in the precordial leads with J-point notches ('fish-hook' pattern) in a healthy 25-year-old. Which interpretation is most likely?",
-      "image": "cfrn/early_repol.png",
-      "options": [
-        "Benign early repolarization (normal variant)",
-        "Anterior STEMI",
-        "Hyperkalemia",
-        "Pericarditis"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "Widespread mild ST elevation with J-point notching in a young asymptomatic patient is classic benign early repolarization (BER). STEMI would have more pronounced elevation with clinical symptoms. Hyperkalemia and pericarditis have different ECG features.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q631",
-      "stem": "A young athlete's pre-participation ECG shows early repolarization. He is asymptomatic with no cardiac history. What is the appropriate action?",
-      "image": "cfrn/early_repol_athlete.png",
-      "options": [
-        "Restrict from sports; arrange cardiac catheterization",
-        "Start aspirin",
-        "Reassure and clear for activity",
-        "Holter monitor for 24 hours"
-      ],
-      "correct": [
-        "C"
-      ],
-      "rationale": "Benign early repolarization is a normal variant requiring no restriction in a healthy, asymptomatic person. No further workup is needed. It should not be confused with pathology.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q632",
-      "stem": "The ECG shows a heart rate of 60 with a QT interval of 480 ms (QTc ~520 ms). What does this indicate?",
-      "image": "cfrn/long_qt.png",
-      "options": [
-        "Normal variant",
-        "Long QT syndrome",
-        "Short QT syndrome",
-        "Early repolarization"
-      ],
-      "correct": [
-        "B"
-      ],
-      "rationale": "A QTc >470 ms (men) or >480 ms (women) is prolonged. Here QTc ~520 ms is clearly prolonged, consistent with long QT syndrome, which predisposes to torsades de pointes and sudden cardiac death.",
-      "type": "single_select"
-    },
-    {
-      "category": "EKG Recognition",
-      "id": "Q633",
-      "stem": "A patient with congenital long QT syndrome comes to the ED for a minor procedure. Which medication should be AVOIDED due to QT prolongation risk?",
-      "image": "cfrn/long_qt_lqts.png",
-      "options": [
-        "Amiodarone",
-        "Metoprolol",
-        "Magnesium sulfate infusion",
-        "Dexmedetomidine"
-      ],
-      "correct": [
-        "A"
-      ],
-      "rationale": "Amiodarone prolongs the QT interval and can precipitate torsades in patients with LQTS. Beta-blockers (metoprolol) are actually protective in congenital LQTS. Magnesium is used to treat torsades. Dexmedetomidine does not significantly prolong QT.",
       "type": "single_select"
     }
   ]
