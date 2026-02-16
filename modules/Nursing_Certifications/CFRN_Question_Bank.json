@@ -6905,7 +6905,7 @@
     {
       "category": "Neurologic and Neurosurgical Care",
       "id": "Q426",
-      "stem": "Cushing\u2019s triad includes hypertension, ____cardia, and irregular respirations. Which heart-rate change completes the triad?",
+      "stem": "Cushing's triad includes hypertension, __________, and irregular respirations. Which heart-rate change completes the triad?",
       "options": [
         "Bradycardia",
         "Tachycardia",
@@ -6915,7 +6915,7 @@
       "correct": [
         "A"
       ],
-      "rationale": "Cushing\u2019s triad reflects brainstem compression from increased ICP: blood pressure rises, heart rate slows, and respirations become irregular.",
+      "rationale": "Cushing's triad reflects brainstem compression from increased ICP: blood pressure rises, heart rate slows, and respirations become irregular.",
       "type": "single_select"
     },
     {
