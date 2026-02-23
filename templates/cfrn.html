@@ -271,20 +271,56 @@
         }
 
         /* ============================================
+           Domain Group Headers (NEW)
+           ============================================ */
+
+        .domain-group {
+            margin-bottom: 28px;
+        }
+        .domain-group:last-child {
+            margin-bottom: 8px;
+        }
+
+        .domain-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        .domain-header h3 {
+            margin: 0;
+            font-size: 1.0em;
+            color: #1565c0;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            flex: 1;
+        }
+        .domain-exam-weight {
+            font-size: 0.8em;
+            color: #90a4ae;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .domain-icon {
+            font-size: 1.1em;
+        }
+
+        /* ============================================
            Category Quiz Launcher
            ============================================ */
         
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 14px;
         }
 
         .category-card {
             background: #f8f9fa;
             border-radius: 12px;
-            padding: 18px;
+            padding: 16px;
             border: 2px solid transparent;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -304,51 +340,52 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .category-card h4 {
             margin: 0;
-            font-size: 1.05em;
+            font-size: 0.95em;
             color: #333;
             flex: 1;
             padding-right: 10px;
+            line-height: 1.35;
         }
         .question-count-badge {
             background: #e3f2fd;
             color: #1976d2;
-            padding: 4px 10px;
+            padding: 3px 9px;
             border-radius: 12px;
-            font-size: 0.8em;
+            font-size: 0.78em;
             font-weight: 600;
             white-space: nowrap;
         }
 
         .category-card .question-count {
             color: #666;
-            font-size: 0.85em;
-            margin-bottom: 12px;
+            font-size: 0.82em;
+            margin-bottom: 10px;
         }
 
         /* Performance Bar */
         .performance-bar-container {
-            margin-top: 12px;
+            margin-top: 10px;
         }
         .performance-bar-label {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 6px;
-            font-size: 0.85em;
+            margin-bottom: 5px;
+            font-size: 0.82em;
         }
         .performance-bar-label .label-text {
             color: #666;
         }
         .performance-bar-label .percentage {
             font-weight: 700;
-            font-size: 1em;
+            font-size: 0.97em;
         }
         .performance-bar {
-            height: 10px;
+            height: 9px;
             background: #e0e0e0;
             border-radius: 5px;
             overflow: hidden;
@@ -374,10 +411,10 @@
         /* Selection indicator */
         .selection-indicator {
             position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 24px;
-            height: 24px;
+            top: 10px;
+            right: 10px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             border: 2px solid #ccc;
             background: white;
@@ -398,7 +435,7 @@
             content: '✓';
             display: block;
             color: white;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
         }
 
@@ -412,7 +449,7 @@
             padding: 20px;
             background: #f8f9fa;
             border-radius: 12px;
-            margin-top: 8px;
+            margin-top: 20px;
         }
 
         .length-selector {
@@ -482,6 +519,24 @@
             box-shadow: none;
         }
 
+        /* Reset button */
+        .reset-stats-btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 20px;
+            background: #f5f5f5;
+            color: #666;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+        }
+        .reset-stats-btn:hover {
+            background: #e0e0e0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .page-header h1 { font-size: 1.8em; }
@@ -535,24 +590,6 @@
                 font-size: 16px;
             }
         }
-
-        /* Reset button */
-        .reset-stats-btn {
-            display: inline-block;
-            margin-top: 16px;
-            padding: 10px 20px;
-            background: #f5f5f5;
-            color: #666;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.9em;
-            cursor: pointer;
-            transition: background 0.2s;
-            font-family: inherit;
-        }
-        .reset-stats-btn:hover {
-            background: #e0e0e0;
-        }
     </style>
 </head>
 <body>
@@ -583,7 +620,8 @@
                 <span class="header-icon">🚁</span>
                 <h1>CFRN Practice System</h1>
             </div>
-            <p>Certified Flight Registered Nurse exam preparation with performance tracking across all 10 content areas</p>
+            <!-- CHANGED: was "10 content areas", now reflects actual BCEN structure -->
+            <p>Certified Flight Registered Nurse exam preparation aligned with the BCEN Content Outline — 5 domains, 150 exam items</p>
         </div>
 
         <!-- Section 1: Comprehensive Quiz -->
@@ -594,16 +632,15 @@
             </div>
 
             <div class="comprehensive-card">
-                <h3>Master the CFRN</h3>
+                <h3>🚁 Master the CFRN</h3>
                 <p class="card-description">
-                    Take a comprehensive practice quiz covering all CFRN exam content areas. 
-                    Questions are selected using our adaptive system that prioritizes topics you haven't practiced recently.
+                    Take a comprehensive practice quiz covering all CFRN exam content areas.
+                    Questions are drawn from all 5 BCEN domains weighted to reflect the actual exam distribution.
                 </p>
+                <!-- CHANGED: Updated to show real BCEN distribution -->
                 <div class="info-box">
-                    <h4>📊 Content Coverage:</h4>
-                    <p>300 questions across 10 categories: Trauma & Burns, Airway & Respiratory, 
-                       Cardiac Care, Flight Physiology, Medical Emergencies, Neurologic Care, 
-                       OB/Neonatal/Pediatrics, Operations & Safety, and more.</p>
+                    <h4>📋 BCEN Exam Distribution (150 total items):</h4>
+                    <p>General Principles (28) · Resuscitation Principles (38) · Trauma (29) · Medical Emergencies (40) · Special Populations (15)</p>
                 </div>
                 
                 <!-- Quiz Controls -->
@@ -631,31 +668,211 @@
                 <h2>Practice by CFRN Category</h2>
             </div>
             <p class="section-description">
-                Select a category and quiz length to start focused practice. Your scores are tracked to help identify areas needing improvement.
+                Select a category and quiz length to start focused practice. Categories follow the official
+                BCEN CFRN Examination Content Outline. Your scores are tracked to help identify areas needing improvement.
             </p>
 
-            <!-- Category Grid - Selectable -->
-            <div class="category-grid" id="categoryGrid">
-                {% for category, count in category_stats.items() %}
-                <div class="category-card" data-category="{{ category }}" data-count="{{ count }}">
-                    <div class="selection-indicator"></div>
-                    <div class="category-card-header">
-                        <h4>{{ category }}</h4>
-                        <span class="question-count-badge">{{ count }} Q</span>
-                    </div>
-                    <p class="question-count">{{ count }} questions available</p>
-                    <div class="performance-bar-container no-data" data-category="{{ category }}">
-                        <div class="performance-bar-label">
-                            <span class="label-text">Performance</span>
-                            <span class="percentage">No Data</span>
-                        </div>
-                        <div class="performance-bar">
-                            <div class="performance-bar-fill" style="width: 0%;"></div>
-                        </div>
-                    </div>
+            <!-- ============================================================
+                 CHANGED: Category grid now split into 5 domain groups
+                 Each group filters category_stats by domain prefix.
+                 The category key format is "Domain; Subcategory" — matching
+                 exactly what CFRN_Question_Bank.json uses for filtering.
+                 ============================================================ -->
+
+            <!-- Domain 1: General Principles -->
+            {% set gp = namespace(items=[]) %}
+            {% for cat, cnt in category_stats.items() %}
+                {% if cat.startswith('General Principles') %}
+                    {% set gp.items = gp.items + [(cat, cnt)] %}
+                {% endif %}
+            {% endfor %}
+            {% if gp.items %}
+            <div class="domain-group">
+                <div class="domain-header">
+                    <span class="domain-icon">✈️</span>
+                    <h3>General Principles of Flight Transport Nursing Practice</h3>
+                    <span class="domain-exam-weight">28 exam items</span>
                 </div>
-                {% endfor %}
+                <div class="category-grid">
+                    {% for category, count in gp.items %}
+                    {% set subcat = category.split('; ')[1] if '; ' in category else category %}
+                    <div class="category-card" data-category="{{ category }}" data-count="{{ count }}">
+                        <div class="selection-indicator"></div>
+                        <div class="category-card-header">
+                            <h4>{{ subcat }}</h4>
+                            <span class="question-count-badge">{{ count }} Q</span>
+                        </div>
+                        <p class="question-count">{{ count }} questions available</p>
+                        <div class="performance-bar-container no-data" data-category="{{ category }}">
+                            <div class="performance-bar-label">
+                                <span class="label-text">Performance</span>
+                                <span class="percentage">No Data</span>
+                            </div>
+                            <div class="performance-bar">
+                                <div class="performance-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
+            {% endif %}
+
+            <!-- Domain 2: Resuscitation Principles -->
+            {% set rp = namespace(items=[]) %}
+            {% for cat, cnt in category_stats.items() %}
+                {% if cat.startswith('Resuscitation Principles') %}
+                    {% set rp.items = rp.items + [(cat, cnt)] %}
+                {% endif %}
+            {% endfor %}
+            {% if rp.items %}
+            <div class="domain-group">
+                <div class="domain-header">
+                    <span class="domain-icon">💉</span>
+                    <h3>Resuscitation Principles</h3>
+                    <span class="domain-exam-weight">38 exam items</span>
+                </div>
+                <div class="category-grid">
+                    {% for category, count in rp.items %}
+                    {% set subcat = category.split('; ')[1] if '; ' in category else category %}
+                    <div class="category-card" data-category="{{ category }}" data-count="{{ count }}">
+                        <div class="selection-indicator"></div>
+                        <div class="category-card-header">
+                            <h4>{{ subcat }}</h4>
+                            <span class="question-count-badge">{{ count }} Q</span>
+                        </div>
+                        <p class="question-count">{{ count }} questions available</p>
+                        <div class="performance-bar-container no-data" data-category="{{ category }}">
+                            <div class="performance-bar-label">
+                                <span class="label-text">Performance</span>
+                                <span class="percentage">No Data</span>
+                            </div>
+                            <div class="performance-bar">
+                                <div class="performance-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Domain 3: Trauma -->
+            {% set tr = namespace(items=[]) %}
+            {% for cat, cnt in category_stats.items() %}
+                {% if cat.startswith('Trauma') %}
+                    {% set tr.items = tr.items + [(cat, cnt)] %}
+                {% endif %}
+            {% endfor %}
+            {% if tr.items %}
+            <div class="domain-group">
+                <div class="domain-header">
+                    <span class="domain-icon">🩹</span>
+                    <h3>Trauma</h3>
+                    <span class="domain-exam-weight">29 exam items</span>
+                </div>
+                <div class="category-grid">
+                    {% for category, count in tr.items %}
+                    {% set subcat = category.split('; ')[1] if '; ' in category else category %}
+                    <div class="category-card" data-category="{{ category }}" data-count="{{ count }}">
+                        <div class="selection-indicator"></div>
+                        <div class="category-card-header">
+                            <h4>{{ subcat }}</h4>
+                            <span class="question-count-badge">{{ count }} Q</span>
+                        </div>
+                        <p class="question-count">{{ count }} questions available</p>
+                        <div class="performance-bar-container no-data" data-category="{{ category }}">
+                            <div class="performance-bar-label">
+                                <span class="label-text">Performance</span>
+                                <span class="percentage">No Data</span>
+                            </div>
+                            <div class="performance-bar">
+                                <div class="performance-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Domain 4: Medical Emergencies -->
+            {% set me = namespace(items=[]) %}
+            {% for cat, cnt in category_stats.items() %}
+                {% if cat.startswith('Medical Emergencies') %}
+                    {% set me.items = me.items + [(cat, cnt)] %}
+                {% endif %}
+            {% endfor %}
+            {% if me.items %}
+            <div class="domain-group">
+                <div class="domain-header">
+                    <span class="domain-icon">🏥</span>
+                    <h3>Medical Emergencies</h3>
+                    <span class="domain-exam-weight">40 exam items</span>
+                </div>
+                <div class="category-grid">
+                    {% for category, count in me.items %}
+                    {% set subcat = category.split('; ')[1] if '; ' in category else category %}
+                    <div class="category-card" data-category="{{ category }}" data-count="{{ count }}">
+                        <div class="selection-indicator"></div>
+                        <div class="category-card-header">
+                            <h4>{{ subcat }}</h4>
+                            <span class="question-count-badge">{{ count }} Q</span>
+                        </div>
+                        <p class="question-count">{{ count }} questions available</p>
+                        <div class="performance-bar-container no-data" data-category="{{ category }}">
+                            <div class="performance-bar-label">
+                                <span class="label-text">Performance</span>
+                                <span class="percentage">No Data</span>
+                            </div>
+                            <div class="performance-bar">
+                                <div class="performance-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Domain 5: Special Populations -->
+            {% set sp = namespace(items=[]) %}
+            {% for cat, cnt in category_stats.items() %}
+                {% if cat.startswith('Special Populations') %}
+                    {% set sp.items = sp.items + [(cat, cnt)] %}
+                {% endif %}
+            {% endfor %}
+            {% if sp.items %}
+            <div class="domain-group">
+                <div class="domain-header">
+                    <span class="domain-icon">👶</span>
+                    <h3>Special Populations</h3>
+                    <span class="domain-exam-weight">15 exam items</span>
+                </div>
+                <div class="category-grid">
+                    {% for category, count in sp.items %}
+                    {% set subcat = category.split('; ')[1] if '; ' in category else category %}
+                    <div class="category-card" data-category="{{ category }}" data-count="{{ count }}">
+                        <div class="selection-indicator"></div>
+                        <div class="category-card-header">
+                            <h4>{{ subcat }}</h4>
+                            <span class="question-count-badge">{{ count }} Q</span>
+                        </div>
+                        <p class="question-count">{{ count }} questions available</p>
+                        <div class="performance-bar-container no-data" data-category="{{ category }}">
+                            <div class="performance-bar-label">
+                                <span class="label-text">Performance</span>
+                                <span class="percentage">No Data</span>
+                            </div>
+                            <div class="performance-bar">
+                                <div class="performance-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
 
             <!-- Quiz Controls -->
             <div class="quiz-controls">
@@ -696,10 +913,7 @@
             }
         }
         
-        // Update on load
         document.addEventListener('DOMContentLoaded', updateWeeklyCount);
-        
-        // Update when storage changes (from other tabs)
         window.addEventListener('storage', (e) => {
             if (e.key && e.key.startsWith('sg:v1:')) {
                 updateWeeklyCount();
@@ -715,7 +929,6 @@
         const comprehensiveLengthBtns = document.querySelectorAll('.comprehensive-length-btn');
         const startComprehensiveBtn = document.getElementById('startComprehensiveBtn');
         
-        // Comprehensive length button selection
         comprehensiveLengthBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 comprehensiveLengthBtns.forEach(b => b.classList.remove('active'));
@@ -724,7 +937,6 @@
             });
         });
         
-        // Start comprehensive quiz
         startComprehensiveBtn.addEventListener('click', () => {
             const url = `/quiz/Nursing_Certifications/CFRN_Question_Bank?quiz_length=${comprehensiveLength}&autostart=true&back_url=/category/Nursing_Certifications/CFRN&back_label=CFRN Practice System`;
             window.location.href = url;
@@ -741,29 +953,20 @@
         const lengthBtns = document.querySelectorAll('.length-btn');
         const startBtn = document.getElementById('startCategoryQuizBtn');
 
-        // Category card selection (toggle behavior)
         categoryCards.forEach(card => {
             card.addEventListener('click', () => {
                 const wasSelected = card.classList.contains('selected');
-                
-                // Deselect all
                 categoryCards.forEach(c => c.classList.remove('selected'));
-                
                 if (wasSelected) {
-                    // Was already selected - deselect it (clear selection)
                     selectedCategory = null;
                 } else {
-                    // Wasn't selected - select it
                     card.classList.add('selected');
                     selectedCategory = card.dataset.category;
                 }
-                
-                // Update button state
                 updateStartButton();
             });
         });
 
-        // Length button selection
         lengthBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 lengthBtns.forEach(b => b.classList.remove('active'));
@@ -775,15 +978,21 @@
 
         function updateStartButton() {
             if (selectedCategory) {
-                const card = document.querySelector(`.category-card[data-category="${selectedCategory}"]`);
+                // Use CSS.escape to handle semicolons in the attribute selector
+                const escapedCat = CSS.escape(selectedCategory);
+                const card = document.querySelector(`.category-card[data-category="${escapedCat}"]`);
                 const availableCount = parseInt(card?.dataset.count || 0, 10);
                 
                 if (selectedLength > availableCount) {
                     startBtn.disabled = true;
                     startBtn.textContent = `Only ${availableCount} questions available`;
                 } else {
+                    // Show the subcategory name (after the "; ") in the button label
+                    const subcat = selectedCategory.includes('; ')
+                        ? selectedCategory.split('; ')[1]
+                        : selectedCategory;
                     startBtn.disabled = false;
-                    startBtn.textContent = `Start ${selectedCategory.split(' ')[0]}... Quiz (${selectedLength}Q) →`;
+                    startBtn.textContent = `Start "${subcat}" Quiz (${selectedLength}Q) →`;
                 }
             } else {
                 startBtn.disabled = true;
@@ -791,10 +1000,8 @@
             }
         }
 
-        // Start quiz button
         startBtn.addEventListener('click', () => {
             if (!selectedCategory || startBtn.disabled) return;
-            
             const url = `/category/Nursing_Certifications/CFRN/category/${encodeURIComponent(selectedCategory)}?quiz_length=${selectedLength}&autostart=true&back_url=/category/Nursing_Certifications/CFRN&back_label=CFRN Practice System`;
             window.location.href = url;
         });
@@ -803,27 +1010,20 @@
         // Performance Bars - Color Gradient
         // ============================================
         
-        /**
-         * Get color for performance percentage
-         * Red (0%) → Yellow (77%) → Green (100%)
-         */
         function getPerformanceColor(percentage) {
             if (percentage < 77) {
-                // Red to Yellow: 0-76%
                 const ratio = percentage / 76;
                 const r = Math.round(244 + (255 - 244) * ratio);
                 const g = Math.round(67 + (193 - 67) * ratio);
                 const b = Math.round(54 + (7 - 54) * ratio);
                 return `rgb(${r}, ${g}, ${b})`;
             } else if (percentage < 85) {
-                // Yellow to Light Green: 77-84%
                 const ratio = (percentage - 77) / 7;
                 const r = Math.round(255 + (139 - 255) * ratio);
                 const g = Math.round(193 + (195 - 193) * ratio);
                 const b = Math.round(7 + (74 - 7) * ratio);
                 return `rgb(${r}, ${g}, ${b})`;
             } else {
-                // Light Green to Green: 85-100%
                 const ratio = (percentage - 85) / 15;
                 const r = Math.round(139 + (76 - 139) * ratio);
                 const g = Math.round(195 + (175 - 195) * ratio);
@@ -834,17 +1034,13 @@
 
         function updatePerformanceBars() {
             if (!window.StudyGuruProgress) return;
-            
             const averages = window.StudyGuruProgress.getAllCategoryAverages();
-            
             document.querySelectorAll('.performance-bar-container').forEach(container => {
                 const category = container.dataset.category;
                 const average = averages[category];
                 const percentageEl = container.querySelector('.percentage');
                 const barFill = container.querySelector('.performance-bar-fill');
-                
                 if (average !== undefined && average !== null) {
-                    // Has data
                     container.classList.remove('no-data');
                     percentageEl.textContent = `${average}%`;
                     percentageEl.style.color = getPerformanceColor(average);
@@ -852,7 +1048,6 @@
                     barFill.style.backgroundColor = getPerformanceColor(average);
                     barFill.style.display = 'block';
                 } else {
-                    // No data
                     container.classList.add('no-data');
                     percentageEl.textContent = 'No Data';
                     percentageEl.style.color = '#999';
@@ -862,12 +1057,10 @@
             });
         }
 
-        // Initialize performance bars on load
         document.addEventListener('DOMContentLoaded', () => {
             updatePerformanceBars();
         });
 
-        // Update when storage changes (from other tabs)
         window.addEventListener('storage', (e) => {
             if (e.key && e.key.startsWith('sg:v1:')) {
                 updatePerformanceBars();
