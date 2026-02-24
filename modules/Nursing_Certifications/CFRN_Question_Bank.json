@@ -5191,15 +5191,15 @@
       "id": "Q325",
       "stem": "Which of the following laboratory findings is most indicative of Hyperosmolar Hyperglycemic Nonketotic Syndrome (HHNK)? acidosis",
       "options": [
-        "Blood glucose level \\>600 mg/dL with minimal ketonuria",
-        "Blood glucose level \\>250 mg/dL with significant ketonuria",
-        "Serum bicarbonate level \\<15 mEq/L with anion gap metabolic",
-        "Arterial pH \\<7.3 with serum ketones positive"
+        "Blood glucose level >600 mg/dL with minimal ketonuria",
+        "Blood glucose level >250 mg/dL with significant ketonuria",
+        "Serum bicarbonate level <15 mEq/L with anion gap metabolic",
+        "Arterial pH <7.3 with serum ketones positive"
       ],
       "correct": [
         "A"
       ],
-      "rationale": "HHNK is characterized by extremely high blood glucose levels (\\>600 mg/dL), significant dehydration, and minimal or absent ketonuria due to sufficient insulin levels preventing lipolysis and subsequent ketone production. Option B describes a scenario more typical of DKA, where there is significant ketonuria due to ketosis. Option C indicates metabolic acidosis and low bicarbonate levels, also more consistent with DKA rather than HHNK. Option D describes a low arterial pH with positive serum ketones, another hallmark of DKA but not HHNK. Thus, option A is correct as it accurately reflects the laboratory findings specific to HHNK.",
+      "rationale": "HHNK is characterized by extremely high blood glucose levels (>600 mg/dL), significant dehydration, and minimal or absent ketonuria due to sufficient insulin levels preventing lipolysis and subsequent ketone production. Option B describes a scenario more typical of DKA, where there is significant ketonuria due to ketosis. Option C indicates metabolic acidosis and low bicarbonate levels, also more consistent with DKA rather than HHNK. Option D describes a low arterial pH with positive serum ketones, another hallmark of DKA but not HHNK. Thus, option A is correct as it accurately reflects the laboratory findings specific to HHNK.",
       "type": "single_select"
     },
     {
@@ -5733,12 +5733,12 @@
     {
       "category": "General Principles; Professional Issues",
       "id": "Q359",
-      "stem": "During a flight transport, you receive a call from a rural hospital requesting the transfer of a patient named John Doe, who presents with severe chest pain. The hospital has performed an initial medical screening examination but lacks the capability to provide further necessary stabilizing treatment. Under EMTALA regulations, what is your primary responsibility as a flight nurse? examination before transfer. qualified personnel to treat John Doe. stabilizing treatment before transfer. facility.",
+      "stem": "During a flight transport, you receive a call from a rural hospital requesting the transfer of a patient named John Doe, who presents with severe chest pain. The hospital has performed an initial medical screening examination but lacks the capability to provide further necessary stabilizing treatment. Under EMTALA regulations, what is your primary responsibility as a flight nurse?",
       "options": [
-        "Ensure that the patient receives a complete medical screening",
-        "Verify that the receiving facility has available space and",
-        "Confirm that the transferring hospital has provided all necessary",
-        "Obtain informed consent from John Doe for the transfer to another"
+        "Ensure that the patient receives a complete medical screening examination before transfer.",
+        "Verify that the receiving facility has available space and qualified personnel to treat John Doe.",
+        "Confirm that the transferring hospital has provided all necessary stabilizing treatment before transfer.",
+        "Obtain informed consent from John Doe for the transfer to another facility."
       ],
       "correct": [
         "B"
@@ -7045,11 +7045,11 @@
     {
       "category": "Medical Emergencies; Environmental and Toxicological Emergencies",
       "id": "Q441",
-      "stem": "A patient is airlifted after being bitten by a rattlesnake. Upon assessment, you note significant swelling, bruising, and pain at the bite site. Which initial intervention is most appropriate for this patient? heart level. venom.",
+      "stem": "A patient is airlifted after being bitten by a rattlesnake. Upon assessment, you note significant swelling, bruising, and pain at the bite site. Which initial intervention is most appropriate for this patient?",
       "options": [
         "Apply a tourniquet above the bite site to prevent venom spread.",
-        "Immobilize the affected limb and keep it at or slightly below",
-        "Make an incision at the bite site and attempt to suck out the",
+        "Immobilize the affected limb and keep it at or slightly below heart level.",
+        "Make an incision at the bite site and attempt to suck out the venom.",
         "Apply ice packs to the bite site to reduce swelling."
       ],
       "correct": [
