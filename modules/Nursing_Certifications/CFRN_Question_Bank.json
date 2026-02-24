@@ -4999,10 +4999,10 @@
       "id": "Q313",
       "stem": "When conducting a risk assessment for a patient requiring aeromedical transport, which factor is most critical to evaluate in order to mitigate the risks associated with changes in altitude?",
       "options": [
-        "The patient\\'s current medication regimen",
-        "The patient\\'s baseline oxygen saturation levels",
-        "The patient\\'s medical history of barotrauma",
-        "The patient\\'s hydration status"
+        "The patient's current medication regimen",
+        "The patient's baseline oxygen saturation levels",
+        "The patient's medical history of barotrauma",
+        "The patient's hydration status"
       ],
       "correct": [
         "C"
