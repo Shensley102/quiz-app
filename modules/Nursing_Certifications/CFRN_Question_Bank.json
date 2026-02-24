@@ -6021,12 +6021,12 @@
     {
       "category": "Special Populations; Bariatric",
       "id": "Q377",
-      "stem": "John, a 45-year-old male with a BMI of 45, is being prepared for emergency intubation due to acute respiratory distress. Which of the following strategies is most appropriate for management in this bariatric patient? induction agents. with the sternal notch. resistance.",
+      "stem": "John, a 45-year-old male with a BMI of 45, is being prepared for emergency intubation due to acute respiratory distress. Which of the following strategies is most appropriate for management in this bariatric patient?",
       "options": [
-        "Utilize rapid sequence intubation (RSI) with standard doses of induction agents",
-        "Employ ramped positioning to align the external auditory meatus with the sternal notch",
-        "Use a smaller endotracheal tube due to increased airway resistance",
-        "Administer preoxygenation using a non-rebreather mask at 15 L/min"
+        "Utilize rapid sequence intubation (RSI) with standard doses of induction agents.",
+        "Employ ramped positioning to align the external auditory meatus with the sternal notch.",
+        "Use a smaller endotracheal tube due to increased airway resistance.",
+        "Administer preoxygenation using a non-rebreather mask at 15 L/min."
       ],
       "correct": [
         "B"
@@ -6111,7 +6111,7 @@
       "correct": [
         "B"
       ],
-      "rationale": "The jaw-thrust maneuver is the most reliable initial assessment technique to ensure airway patency in an unconscious patient because it helps to open the airway by moving the tongue away from the back of the throat without manipulating the cervical spine. Option A (Checking for breath sounds with a stethoscope) is important but not an initial step and does not directly address airway obstruction. Option C (Inspecting for chest rise and fall) can indicate breathing effort but doesn\\'t confirm an open airway. Option D (Placing a finger under the nose to feel for airflow) is less reliable and may miss partial obstructions. Each option relates closely to assessing breathing or airway patency but lacks the immediate effectiveness of Option B in ensuring an unobstructed airway during resuscitation.",
+      "rationale": "The jaw-thrust maneuver is the most reliable initial assessment technique to ensure airway patency in an unconscious patient because it helps to open the airway by moving the tongue away from the back of the throat without manipulating the cervical spine. Option A (Checking for breath sounds with a stethoscope) is important but not an initial step and does not directly address airway obstruction. Option C (Inspecting for chest rise and fall) can indicate breathing effort but doesn't confirm an open airway. Option D (Placing a finger under the nose to feel for airflow) is less reliable and may miss partial obstructions. Each option relates closely to assessing breathing or airway patency but lacks the immediate effectiveness of Option B in ensuring an unobstructed airway during resuscitation.",
       "type": "single_select"
     },
     {
@@ -6725,12 +6725,12 @@
     {
       "category": "General Principles; Communications",
       "id": "Q421",
-      "stem": "During an in-flight emergency, the flight nurse, Sarah, needs to administer medication to a critically ill patient, Mr. Johnson. However, she encounters difficulty reaching the medical control physician due to radio interference. What should Sarah do next? administering any medication. communication methods. assistance.",
+      "stem": "During an in-flight emergency, the flight nurse, Sarah, needs to administer medication to a critically ill patient, Mr. Johnson. However, she encounters difficulty reaching the medical control physician due to radio interference. What should Sarah do next?.",
       "options": [
         "Administer the medication based on standing orders and protocols.",
-        "Wait until radio communication is re-established before",
-        "Attempt to reach another medical control physician via alternative",
-        "Divert the flight to the nearest hospital for immediate"
+        "Wait until radio communication is re-established before  administering any medication",
+        "Attempt to reach another medical control physician via alternative communication methods.",
+        "Divert the flight to the nearest hospital for immediate assistance."
       ],
       "correct": [
         "A"
