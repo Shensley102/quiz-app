@@ -293,6 +293,43 @@ def get_cfrn_category_stats():
     return stats
 
 
+def get_cfrn_domain_totals():
+    """
+    Returns counts grouped by top-level BCEN domain, derived from the question bank.
+    Domain name is everything before the first '; ' in the category string.
+    Also returns the grand total.
+    """
+    questions = load_cfrn_questions()
+
+    DOMAIN_ORDER = [
+        'General Principles',
+        'Resuscitation Principles',
+        'Trauma',
+        'Medical Emergencies',
+        'Special Populations',
+    ]
+
+    counts = {}
+    for q in questions:
+        cat = q.get('category', '')
+        domain = cat.split('; ')[0].strip() if '; ' in cat else cat.strip()
+        if domain:
+            counts[domain] = counts.get(domain, 0) + 1
+
+    # Build ordered dict with all known domains (0 if none found)
+    domain_totals = OrderedDict()
+    for d in DOMAIN_ORDER:
+        domain_totals[d] = counts.get(d, 0)
+
+    # Catch any unexpected domains not in the canonical list
+    for d, c in counts.items():
+        if d not in domain_totals:
+            domain_totals[d] = c
+
+    grand_total = sum(domain_totals.values())
+    return domain_totals, grand_total
+
+
 def load_ccrn_comprehensive_questions():
     """Load the CCRN Comprehensive questions"""
     ccrn_path = MODULES_DIR / 'Nursing_Certifications' / 'CCRN_Comprehensive.json'
@@ -570,11 +607,19 @@ def cfrn_page():
     """CFRN certification practice system page"""
     try:
         category_stats = get_cfrn_category_stats()
-        total_questions = sum(category_stats.values())
-        return render_template('cfrn.html',
+        domain_totals, total_questions = get_cfrn_domain_totals()
+        response = render_template('cfrn.html',
                                category_stats=category_stats,
                                cfrn_categories=CFRN_CATEGORIES,
-                               total_questions=total_questions)
+                               total_questions=total_questions,
+                               domain_totals=domain_totals)
+        from flask import make_response
+        resp = make_response(response)
+        # Prevent edge/CDN caching so counts always reflect the current JSON
+        resp.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        resp.headers['Pragma'] = 'no-cache'
+        resp.headers['Expires'] = '0'
+        return resp
     except Exception as e:
         print(f"Error in cfrn_page route: {e}")
         return jsonify({'error': str(e)}), 500
