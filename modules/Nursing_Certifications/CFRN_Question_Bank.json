@@ -5898,7 +5898,7 @@
         "Documenting observations thoroughly and discussing concerns with",
         "Immediately contacting child protective services (CPS) to ensure",
         "Waiting until the flight is over to gather more information before",
-        "Discussing concerns with the patient\\'s family members to clarify"
+        "Discussing concerns with the patient's family members to clarify"
       ],
       "correct": [
         "B"
@@ -6245,11 +6245,11 @@
     {
       "category": "Resuscitation Principles; Airway",
       "id": "Q391",
-      "stem": "You are a flight nurse responding to an emergency call involving a 45-year-old male named John who collapsed at work. Upon arrival, you find John unresponsive with no pulse. As you prepare for resuscitation, what is your priority action during the initial assessment? prompts.",
+      "stem": "You are a flight nurse responding to an emergency call involving a 45-year-old male named John who collapsed at work. Upon arrival, you find John unresponsive with no pulse. As you prepare for resuscitation, what is your priority action during the initial assessment?.",
       "options": [
         "Begin chest compressions immediately.",
         "Open the airway using the head-tilt-chin-lift maneuver.",
-        "Attach an automated external defibrillator (AED) and follow its",
+        "Attach an automated external defibrillator (AED) and follow its prompts",
         "Administer high-flow oxygen via bag-valve mask."
       ],
       "correct": [
@@ -6645,12 +6645,12 @@
     {
       "category": "General Principles; Scene Operations Management",
       "id": "Q416",
-      "stem": "During a flight transport mission, Flight Nurse Emily arrives at an accident scene involving multiple vehicles. As she assesses the scene, she notices downed power lines near one of the vehicles with injured passengers inside. What is Emily\\'s most appropriate initial action to ensure scene safety? bystanders away. vehicle.",
+      "stem": "During a flight transport mission, Flight Nurse Emily arrives at an accident scene involving multiple vehicles. As she assesses the scene, she notices downed power lines near one of the vehicles with injured passengers inside. What is Emily's most appropriate initial action to ensure scene safety?",
       "options": [
         "Immediately approach the vehicle to provide urgent medical care.",
         "Contact local utility companies to report the downed power lines.",
-        "Establish a safe perimeter around the downed power lines and keep",
-        "Use non-conductive materials to move the power lines away from the"
+        "Establish a safe perimeter around the downed power lines and keep bystanders away.",
+        "Use non-conductive materials to move the power lines away from the vehicle."
       ],
       "correct": [
         "C"
