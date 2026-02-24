@@ -11,13 +11,17 @@
    - Mastery-based requeue system
    - Resume quiz support
    - Fill-in-the-blank question support
-   - Image question support (NEW)
+   - Image question support
    
    PATCH NOTES:
-   - Added image question support for questions with images
-   - Images display above question stem
-   - Supports all image formats (PNG, JPG, JPEG, GIF, WEBP, SVG)
-   - Works with both MCQ and FITB question types
+   - Percentage-based missed question requeue thresholds
+     10Q: unchanged (end-of-queue fallback only)
+     25Q: 20% = 5 missed → immediate front-of-queue injection
+     50Q: 16% = 8 missed → immediate front-of-queue injection
+     100Q: 10% = 10 missed → immediate front-of-queue injection
+   - Requeued questions are shuffled (randomized order)
+   - Answer positions re-randomized on each render (existing behavior)
+   - Requeue counter resets after each injection
    
 ------------------------------------------------------------ */
 
@@ -81,56 +85,52 @@
   }
 
   // -----------------------------------------------------------
-  // Dynamic Requeue Threshold
+  // Requeue Threshold
   // -----------------------------------------------------------
+  // Returns the number of missed questions that triggers an
+  // immediate front-of-queue injection.
+  // 10Q: returns Infinity — no threshold, fallback only
+  // 25Q: 20% = 5
+  // 50Q: 16% = 8
+  // 100Q: 10% = 10
   function getRequeueThreshold(quizLength) {
-    if (quizLength <= 10) return 2;
-    if (quizLength <= 25) return 5;
-    return 10;  // 50 and 100+
+    if (quizLength <= 10) return Infinity;   // 10Q: no mid-quiz requeue
+    if (quizLength <= 25) return Math.round(quizLength * 0.20);  // 25Q → 5
+    if (quizLength <= 50) return Math.round(quizLength * 0.16);  // 50Q → 8
+    return Math.round(quizLength * 0.10);                        // 100Q → 10
   }
 
   // -----------------------------------------------------------
   // Question Field Helpers
   // -----------------------------------------------------------
   
-  // Get question text (handles multiple field names)
   function getQuestionText(q) {
     return q.stem || q.question || q.prompt || q.text || q.content || '(No question text)';
   }
 
-  // Get choices array (handles multiple field names)
-  // Also handles object-format options like {A: "text", B: "text", C: "text", D: "text"}
   function getChoices(q) {
     const raw = q.options || q.choices || q.answers || [];
     
-    // If already an array, return as-is
     if (Array.isArray(raw)) {
       return raw;
     }
     
-    // If it's an object like {A: "text", B: "text"}, convert to array in letter order
     if (raw && typeof raw === 'object') {
-      // Get keys and sort by letter order (A, B, C, D, ...)
       const keys = Object.keys(raw).sort((a, b) => {
         const idxA = LETTERS.indexOf(a.toUpperCase());
         const idxB = LETTERS.indexOf(b.toUpperCase());
         if (idxA !== -1 && idxB !== -1) return idxA - idxB;
         return a.localeCompare(b);
       });
-      
-      // Return values in sorted key order
       return keys.map(k => raw[k]);
     }
     
     return [];
   }
 
-  // Get correct answer index from question
-  // Handles: ["C"], "C", 2, "Answer text"
   function getCorrectIndex(q) {
     const choices = getChoices(q);
 
-    // Check for choice object with correct: true
     for (let i = 0; i < choices.length; i++) {
       const c = choices[i];
       if (typeof c === 'object' && c.correct === true) {
@@ -138,28 +138,23 @@
       }
     }
 
-    // Check correct field (NCLEX format: ["C"] or "C")
     if (q.correct !== undefined) {
       const correctVal = q.correct;
 
-      // Array of letters: ["C"]
       if (Array.isArray(correctVal) && correctVal.length > 0) {
         const letter = correctVal[0].toUpperCase();
         return LETTERS.indexOf(letter);
       }
       
-      // Single letter: "C"
       if (typeof correctVal === 'string' && correctVal.length === 1) {
         return LETTERS.indexOf(correctVal.toUpperCase());
       }
       
-      // Number index
       if (typeof correctVal === 'number') {
         return correctVal;
       }
     }
 
-    // Check answer field
     if (q.answer !== undefined) {
       const answer = q.answer;
 
@@ -172,7 +167,6 @@
       }
     }
 
-    // Check correctAnswer field
     if (q.correctAnswer !== undefined) {
       const ca = q.correctAnswer;
       if (typeof ca === 'number') return ca;
@@ -184,18 +178,15 @@
     return -1;
   }
 
-  // Check if selected answer is correct
   function isCorrectAnswer(q, selectedOriginalIndex) {
     const correctIdx = getCorrectIndex(q);
     return correctIdx === selectedOriginalIndex;
   }
 
-  // Get correct answer text for display (uses display letters after shuffle)
   function getCorrectAnswerText(q) {
     const choices = getChoices(q);
     const correctIndices = getCorrectIndices(q);
     
-    // Build array of {displayLetter, text}
     const answers = correctIndices.map(origIdx => {
       const displayLetter = run?.shuffleMap?.[origIdx] || LETTERS[origIdx];
       const c = choices[origIdx];
@@ -203,35 +194,28 @@
       return { displayLetter, text };
     });
     
-    // Sort by display letter (A, B, C...)
     answers.sort((a, b) => a.displayLetter.localeCompare(b.displayLetter));
     
-    // For multi-select, format vertically
     if (isMultiSelect(q)) {
       return answers.map(a => `${a.displayLetter}: ${a.text}`).join('\n');
     }
     
-    // For single-select, format inline
     return answers.map(a => `${a.displayLetter}. ${a.text}`).join('');
   }
 
-  // Check if question is multi-select
   function isMultiSelect(q) {
     if (q.type === 'multi_select' || q.type === 'multiple_select' || q.type === 'multi-select') {
       return true;
     }
-    // Also check if correct has multiple answers
     if (Array.isArray(q.correct) && q.correct.length > 1) {
       return true;
     }
     return false;
   }
 
-  // Get all correct answer indices for multi-select
   function getCorrectIndices(q) {
     const indices = [];
     
-    // Check correct field (NCLEX format: ["A", "C"])
     if (q.correct !== undefined && Array.isArray(q.correct)) {
       q.correct.forEach(val => {
         if (typeof val === 'string' && val.length === 1) {
@@ -243,7 +227,6 @@
       });
     }
     
-    // If no indices found, fall back to single correct
     if (indices.length === 0) {
       const single = getCorrectIndex(q);
       if (single !== -1) indices.push(single);
@@ -252,14 +235,11 @@
     return indices;
   }
 
-  // Check if selected answers are correct (handles both single and multi-select)
   function checkAnswerCorrect(q, selectedIndices) {
     const correctIndices = getCorrectIndices(q);
     
-    // Must have same number of selections as correct answers
     if (selectedIndices.length !== correctIndices.length) return false;
     
-    // All selected must be in correct, and all correct must be selected
     const selectedSet = new Set(selectedIndices);
     const correctSet = new Set(correctIndices);
     
@@ -274,55 +254,43 @@
   }
 
   // -----------------------------------------------------------
-  // Image Question Helpers (NEW)
+  // Image Question Helpers
   // -----------------------------------------------------------
 
-  // Check if question has an image
   function hasQuestionImage(q) {
     return !!(q.image && typeof q.image === 'string' && q.image.trim().length > 0);
   }
 
-  // Get full image URL from question image field
-  // Handles: "cfrn/vfib_rhythm.png" -> "/static/images/cfrn/vfib_rhythm.png"
-  // Also handles full paths if provided: "/static/images/..." -> as-is
   function getQuestionImageUrl(q) {
     if (!hasQuestionImage(q)) return null;
     
     const imagePath = q.image.trim();
     
-    // If already a full path, return as-is
     if (imagePath.startsWith('/') || imagePath.startsWith('http')) {
       return imagePath;
     }
     
-    // Otherwise, prepend the images directory
     return `/static/images/${imagePath}`;
   }
 
-  // Render question image if present
-  // Returns the image container element or null if no image
   function renderQuestionImage(q) {
     if (!hasQuestionImage(q)) return null;
     
     const imageUrl = getQuestionImageUrl(q);
     if (!imageUrl) return null;
     
-    // Create image container
     const container = document.createElement('div');
     container.className = 'question-image-container';
     
-    // Create image element
     const img = document.createElement('img');
     img.src = imageUrl;
     img.alt = 'Question image';
     img.className = 'question-image';
     
-    // Add loading state
     img.addEventListener('load', () => {
       container.classList.add('loaded');
     });
     
-    // Handle image load errors gracefully
     img.addEventListener('error', () => {
       console.warn('[Quiz] Failed to load question image:', imageUrl);
       container.classList.add('error');
@@ -337,7 +305,6 @@
   // Fill-in-the-Blank Helpers
   // -----------------------------------------------------------
 
-  // Detect if question is fill-in-the-blank
   function isFitbQuestion(q) {
     return q.type === 'fill_in_the_blank' || 
            q.type === 'fitb' || 
@@ -347,20 +314,15 @@
            getChoices(q).length === 0;
   }
 
-  // Normalize answer for comparison (lowercase, trim whitespace, remove extra spaces)
   function normalizeAnswer(text) {
-    // Convert to string if needed, handle null/undefined
     if (text === null || text === undefined) return '';
-    const str = String(text);  // Convert to string first
+    const str = String(text);
     return str
       .toLowerCase()
       .trim()
-      .replace(/\s+/g, ' ');  // Collapse multiple spaces to single space
+      .replace(/\s+/g, ' ');
   }
 
-  // Get correct answer(s) from FITB question
-  // Handles both flat arrays: ["1.6", "1.6 mEq", "1.6 mEq/L"]
-  // AND nested arrays: [["ampicillin", "Ampicillin"], ["gentamicin", "Gentamicin"]]
   function getFitbCorrectAnswers(q) {
     let answers = [];
 
@@ -376,17 +338,13 @@
       answers = Array.isArray(q.correct) ? q.correct : [q.correct];
     }
 
-    // Flatten nested arrays: [["ampicillin", "Ampicillin"], ["gentamicin", "Gentamicin"]]
-    // becomes: ["ampicillin", "Ampicillin", "gentamicin", "Gentamicin"]
     const flattened = [];
     answers.forEach(item => {
       if (Array.isArray(item)) {
-        // Nested array - add all items
         item.forEach(subItem => {
           flattened.push(String(subItem));
         });
       } else {
-        // Single item - add directly
         flattened.push(String(item));
       }
     });
@@ -394,7 +352,6 @@
     return flattened;
   }
 
-  // Check if user answer matches any correct answer (case-insensitive, whitespace-tolerant)
   function isFitbAnswerCorrect(userAnswer, q) {
     const correctAnswers = getFitbCorrectAnswers(q);
     if (correctAnswers.length === 0) return false;
@@ -410,7 +367,6 @@
     return false;
   }
 
-  // Get display text for all correct answers (handles multi-blank)
   function getFitbCorrectAnswerText(q) {
     if (!q.correct) {
       if (q.correctAnswer) {
@@ -426,11 +382,9 @@
 
     const rawCorrect = Array.isArray(q.correct) ? q.correct : [q.correct];
     
-    // Check if this is a multi-blank question (nested arrays like [["alveolar"], ["30"]])
     const isMultiBlank = rawCorrect.length > 0 && Array.isArray(rawCorrect[0]);
     
     if (isMultiBlank) {
-      // Multi-blank: show each blank's answer(s)
       const blankAnswers = rawCorrect.map((blankOptions, idx) => {
         const opts = Array.isArray(blankOptions) ? blankOptions : [blankOptions];
         const options = opts.map(o => String(o)).join(' or ');
@@ -439,29 +393,17 @@
       return blankAnswers.join(' | ');
     }
 
-    // Single-blank or flat array: show all as comma-separated
     const answers = rawCorrect.map(c => String(c));
     return answers.length > 0 ? answers.join(', ') : '(No correct answer defined)';
   }
 
-  // Count blanks in question stem (number of ____ patterns)
   function countBlanks(stem) {
     if (!stem) return 0;
     const matches = stem.match(/____/g);
     return matches ? matches.length : 0;
   }
 
-  // Get correct answers for specific blank position (for multi-blank questions)
-  // Returns array of acceptable variations for that blank
-  // 
-  // Handles these JSON structures for any number of blanks:
-  // - Single blank with variations: [["800", "eight hundred"]] → Blank 0 accepts "800" or "eight hundred"
-  // - Two blanks: [["800"], ["3"]] → Blank 0 accepts "800", Blank 1 accepts "3"
-  // - Two blanks with variations: [["800", "eight hundred"], ["3", "three"]]
-  // - Three+ blanks: [["10"], ["12"], ["4"], ["5"]] → Four blanks
-  // - Legacy flat format (single blank): ["1.6", "1.6 mEq/L"] → Single blank accepts any of these
   function getFitbCorrectAnswersForBlank(q, blankIndex) {
-    // Get raw correct value directly from question (not the flattened version)
     let rawCorrect = null;
     
     if (q.correct) {
@@ -472,41 +414,31 @@
       rawCorrect = q.answer;
     }
     
-    // If no correct answers defined, return empty
     if (!rawCorrect) {
       return [];
     }
     
-    // Ensure it's an array
     if (!Array.isArray(rawCorrect)) {
       rawCorrect = [rawCorrect];
     }
     
-    // Check if this is nested arrays (multi-blank format)
-    // e.g., [["800"], ["3"]] or [["800", "eight hundred"], ["3", "three"]]
     const isNestedFormat = rawCorrect.length > 0 && Array.isArray(rawCorrect[0]);
     
     if (isNestedFormat) {
-      // Multi-blank format: rawCorrect[blankIndex] is the array of acceptable answers for that blank
       const blankAnswers = rawCorrect[blankIndex];
       if (!blankAnswers) {
         return [];
       }
-      // Ensure we return an array of strings
       if (Array.isArray(blankAnswers)) {
         return blankAnswers.map(a => String(a));
       }
       return [String(blankAnswers)];
     }
     
-    // Flat format (legacy single-blank): all items are acceptable answers for blank 0
-    // e.g., ["1.6", "1.6 mEq/L", "1.6 mEq"]
     if (blankIndex === 0) {
       return rawCorrect.map(a => String(a));
     }
     
-    // Flat format but asking for blank > 0: this shouldn't happen with well-formed data
-    // Return empty as a fallback
     return [];
   }
 
@@ -538,7 +470,6 @@
       if (questions.length <= count) return shuffle([...questions]);
 
       const sorted = sortByLeastAttempts(questions);
-      // 2:1 ratio - 2 least-asked : 1 random (67% least-asked)
       const twoThirdsCount = Math.ceil((count * 2) / 3);
       const leastAsked = sorted.slice(0, twoThirdsCount);
       const remainder = sorted.slice(twoThirdsCount);
@@ -547,27 +478,22 @@
       return shuffle([...leastAsked, ...randomPick]);
     }
 
-    // 10Q comprehensive: 100% least-asked
     if (isComprehensive && quizLength === 10) {
       console.log('[Quiz] Using 100% least-asked selection for 10Q');
       const sorted = sortByLeastAttempts(allQuestions);
       return sorted.slice(0, Math.min(quizLength, allQuestions.length));
     }
 
-    // Category quiz (e.g., Adult Health modules, NCLEX categories)
     if (isCategoryQuiz) {
-      // 10Q category quiz: 100% least-asked
       if (quizLength <= 10) {
         console.log('[Quiz] Using 100% least-asked selection for 10Q category quiz');
         const sorted = sortByLeastAttempts(allQuestions);
         return sorted.slice(0, Math.min(quizLength, allQuestions.length));
       }
-      // Other lengths (25, 50, 100): 2:1 ratio (2 least-asked : 1 random)
       console.log('[Quiz] Using 2:1 ratio for category quiz with', quizLength, 'questions');
       return selectWithRatio(allQuestions, quizLength);
     }
 
-    // Comprehensive 25/50/100Q: NCLEX weighted
     if (isComprehensive && quizLength > 10) {
       console.log('[Quiz] Using NCLEX weighted selection for', quizLength, 'questions');
 
@@ -592,7 +518,6 @@
         console.log(`[Quiz] ${category}: target=${targetCount}, selected=${categorySelected.length}`);
       }
 
-      // Fill if needed
       if (selected.length < quizLength) {
         const selectedIds = new Set(selected.map(q => q.id));
         const remaining = allQuestions.filter(q => !selectedIds.has(q.id));
@@ -603,7 +528,6 @@
       return shuffle(selected).slice(0, quizLength);
     }
 
-    // Default: 2:1 ratio (2 least-asked : 1 random)
     return selectWithRatio(allQuestions, quizLength);
   }
 
@@ -686,6 +610,9 @@
       selected = shuffle(normalized).slice(0, Math.min(requested, normalized.length));
     }
 
+    const threshold = getRequeueThreshold(selected.length);
+    console.log(`[Quiz] Requeue threshold: ${threshold === Infinity ? 'disabled (10Q)' : threshold + ' missed questions'}`);
+
     return {
       isRetry: !!opts.isRetry,
       isComprehensive,
@@ -693,6 +620,7 @@
       quizLength: selected.length,
       queue: selected.slice(),
       missedQueue: [],
+      missedSinceLastRequeue: 0,   // ← counter that resets after each injection
       mastered: new Set(),
       correctFirstTry: 0,
       incorrectFirstTry: 0,
@@ -701,7 +629,7 @@
       current: null,
       answered: false,
       perQuestion: [],
-      requeueThreshold: getRequeueThreshold(selected.length)
+      requeueThreshold: threshold
     };
   }
 
@@ -728,7 +656,6 @@
     if (els.resetBtn) els.resetBtn.classList.remove('hidden');
     nextQuestion();
     
-    // Center quiz card after first question loads
     setTimeout(() => {
       const quizCard = document.getElementById('quiz');
       if (quizCard) {
@@ -742,7 +669,6 @@
 
     console.log('[Quiz] Resetting quiz...');
     
-    // Rebuild run with same configuration
     run = buildRun(state.questions, {
       count: state.quizLength,
       isComprehensive: state.isComprehensive,
@@ -753,11 +679,9 @@
     console.log('[Quiz] Quiz reset with', run.quizLength, 'new questions');
     clearResumeData();
     
-    // Reset to first question
     run.questionNumber = 0;
     nextQuestion();
     
-    // Center quiz card after reset
     setTimeout(() => {
       const quizCard = document.getElementById('quiz');
       if (quizCard) {
@@ -789,7 +713,6 @@
     if (els.countersBox) els.countersBox.classList.remove('hidden');
     nextQuestion();
     
-    // Center quiz card after first question loads
     setTimeout(() => {
       const quizCard = document.getElementById('quiz');
       if (quizCard) {
@@ -801,18 +724,19 @@
   function nextQuestion() {
     if (!run) return;
 
-    // Check if all questions are mastered - quiz complete!
+    // Quiz complete when all questions mastered
     if (run.mastered.size === run.quizLength) {
       finishQuiz();
       return;
     }
 
-    // If queue is empty but still have missed questions, move them back
+    // Fallback: if queue is empty but missed questions remain, move them all back
     if (run.queue.length === 0 && run.missedQueue.length > 0) {
-      run.queue = run.missedQueue.splice(0);  // Move all missed to queue
+      run.queue = shuffle(run.missedQueue.splice(0));
+      run.missedSinceLastRequeue = 0;
+      console.log('[Quiz] Fallback requeue: moved all missed to front of queue');
     }
 
-    // If still no questions (shouldn't happen), end quiz
     if (run.queue.length === 0) {
       finishQuiz();
       return;
@@ -831,7 +755,7 @@
   function updateProgress() {
     const total = run.quizLength;
     const mastered = run.mastered.size;
-    const remaining = total - mastered;  // Questions still need to be answered correctly
+    const remaining = total - mastered;
     const pct = total > 0 ? Math.round((mastered / total) * 100) : 0;
 
     if (els.progressFill) els.progressFill.style.width = `${pct}%`;
@@ -841,23 +765,16 @@
   }
 
   // -----------------------------------------------------------
-  // Render Question - DETECTS MCQ vs FITB
+  // Render Question
   // -----------------------------------------------------------
   function renderQuestion(q) {
-    // Check if this is a fill-in-the-blank question
     if (isFitbQuestion(q)) {
       return renderFitbQuestion(q);
     }
-
-    // MCQ rendering below
     renderMcqQuestion(q);
   }
 
-  // -----------------------------------------------------------
-  // Clear and Render Question Image (NEW)
-  // -----------------------------------------------------------
   function clearQuestionImage() {
-    // Remove any existing question image container
     const existingContainer = document.querySelector('.question-image-container');
     if (existingContainer) {
       existingContainer.remove();
@@ -868,7 +785,6 @@
   // Render Fill-in-the-Blank Question
   // -----------------------------------------------------------
   function renderFitbQuestion(q) {
-    // Clear feedback
     if (els.feedback) {
       els.feedback.classList.add('hidden');
       els.feedback.textContent = '';
@@ -883,43 +799,31 @@
       els.answerLine.textContent = '';
     }
 
-    // Clear any previous question image
     clearQuestionImage();
 
-    // Render question image if present (NEW)
     if (hasQuestionImage(q) && els.questionText) {
       const imageContainer = renderQuestionImage(q);
       if (imageContainer) {
-        // Insert image before the question text
         els.questionText.parentNode.insertBefore(imageContainer, els.questionText);
       }
     }
 
-    // Show question text
     if (els.questionText) {
       els.questionText.textContent = getQuestionText(q);
     }
 
-    // Count blanks in the question
     const blankCount = countBlanks(getQuestionText(q));
     
     if (blankCount > 1) {
-      // Multi-blank question
       return renderMultiBlankFitbQuestion(q, blankCount);
     }
 
-    // Single-blank question (existing logic)
     return renderSingleBlankFitbQuestion(q);
   }
 
-  // -----------------------------------------------------------
-  // Render Single-Blank FITB Question
-  // -----------------------------------------------------------
   function renderSingleBlankFitbQuestion(q) {
-    // Get blank label (or use default)
     const blankLabel = q.blank_label || 'Your answer';
 
-    // Render fill-in-the-blank input
     if (els.optionsForm) {
       els.optionsForm.innerHTML = '';
       els.optionsForm.className = 'fitb-container';
@@ -946,15 +850,12 @@
       wrapper.appendChild(input);
       els.optionsForm.appendChild(wrapper);
 
-      // Focus on input
       input.focus();
 
-      // Enable submit button when input has text
       input.addEventListener('input', () => {
         updateFitbSubmitButtonState();
       });
 
-      // Allow Enter key to submit
       input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && input.value.trim().length > 0 && els.submitBtn && !els.submitBtn.disabled) {
           e.preventDefault();
@@ -963,7 +864,6 @@
       });
     }
 
-    // Reset submit button
     if (els.submitBtn) {
       els.submitBtn.disabled = true;
       els.submitBtn.textContent = 'Submit';
@@ -971,9 +871,6 @@
     }
   }
 
-  // -----------------------------------------------------------
-  // Render Multi-Blank FITB Question
-  // -----------------------------------------------------------
   function renderMultiBlankFitbQuestion(q, blankCount) {
     if (els.optionsForm) {
       els.optionsForm.innerHTML = '';
@@ -981,7 +878,6 @@
       els.optionsForm.dataset.questionType = 'fitb';
       els.optionsForm.dataset.blankCount = String(blankCount);
 
-      // Create input field for each blank
       for (let i = 0; i < blankCount; i++) {
         const wrapper = document.createElement('div');
         wrapper.className = 'fitb-input-wrapper';
@@ -1003,17 +899,14 @@
         wrapper.appendChild(input);
         els.optionsForm.appendChild(wrapper);
 
-        // Focus on first input
         if (i === 0) {
           input.focus();
         }
 
-        // Enable submit button when all inputs have text
         input.addEventListener('input', () => {
           updateFitbSubmitButtonState();
         });
 
-        // Allow Enter key to submit only if all blanks filled
         input.addEventListener('keypress', (e) => {
           if (e.key === 'Enter' && els.submitBtn && !els.submitBtn.disabled) {
             e.preventDefault();
@@ -1023,7 +916,6 @@
       }
     }
 
-    // Reset submit button
     if (els.submitBtn) {
       els.submitBtn.disabled = true;
       els.submitBtn.textContent = 'Submit';
@@ -1031,7 +923,6 @@
     }
   }
 
-  // Update submit button state for FITB (handles both single and multi-blank)
   function updateFitbSubmitButtonState() {
     if (!els.optionsForm || !els.submitBtn) return;
 
@@ -1053,7 +944,6 @@
   // Render MCQ Question
   // -----------------------------------------------------------
   function renderMcqQuestion(q) {
-    // Clear feedback
     if (els.feedback) {
       els.feedback.classList.add('hidden');
       els.feedback.textContent = '';
@@ -1068,28 +958,22 @@
       els.answerLine.textContent = '';
     }
 
-    // Clear any previous question image
     clearQuestionImage();
 
-    // Render question image if present (NEW)
     if (hasQuestionImage(q) && els.questionText) {
       const imageContainer = renderQuestionImage(q);
       if (imageContainer) {
-        // Insert image before the question text
         els.questionText.parentNode.insertBefore(imageContainer, els.questionText);
       }
     }
 
-    // Show question text - NOW USING getQuestionText() which checks 'stem'
     if (els.questionText) {
       els.questionText.textContent = getQuestionText(q);
     }
 
-    // Determine if multi-select
     const multiSelect = isMultiSelect(q);
     const inputType = multiSelect ? 'checkbox' : 'radio';
 
-    // Render options with CORRECT HTML structure
     if (els.optionsForm) {
       els.optionsForm.innerHTML = '';
       els.optionsForm.className = 'options';
@@ -1100,16 +984,14 @@
 
       const choices = getChoices(q);
       
-      // Build choice objects with original indices
       const choiceObjects = choices.map((c, i) => ({
         text: typeof c === 'string' ? c : (c.text || c.label || String(c)),
         originalIndex: i
       }));
       
-      // Shuffle choices
+      // Shuffle answer positions — re-randomized on every render including requeues
       const shuffledChoices = shuffle(choiceObjects);
 
-      // Store mapping: originalIndex -> displayLetter for correct answer display
       run.shuffleMap = {};
       shuffledChoices.forEach((choice, displayIdx) => {
         run.shuffleMap[choice.originalIndex] = LETTERS[displayIdx];
@@ -1118,13 +1000,11 @@
       shuffledChoices.forEach((choice, displayIdx) => {
         const displayLetter = LETTERS[displayIdx];
         
-        // Create .opt wrapper div
         const optDiv = document.createElement('div');
         optDiv.className = 'opt';
         optDiv.dataset.originalIndex = choice.originalIndex;
         optDiv.dataset.displayIndex = displayIdx;
 
-        // Create input (radio or checkbox based on question type)
         const input = document.createElement('input');
         input.type = inputType;
         input.name = 'answer';
@@ -1133,38 +1013,31 @@
         input.dataset.originalIndex = choice.originalIndex;
         input.dataset.text = choice.text;
 
-        // Create label
         const label = document.createElement('label');
         label.htmlFor = `opt${displayIdx}`;
 
-        // Create .k letter badge span
         const letterSpan = document.createElement('span');
         letterSpan.className = 'k';
         letterSpan.textContent = displayLetter;
 
-        // Create .ans answer text span
         const ansSpan = document.createElement('span');
         ansSpan.className = 'ans';
         ansSpan.textContent = choice.text;
 
-        // Assemble: label contains letter badge + answer text
         label.appendChild(letterSpan);
         label.appendChild(ansSpan);
         
-        // opt contains input + label
         optDiv.appendChild(input);
         optDiv.appendChild(label);
         
         els.optionsForm.appendChild(optDiv);
 
-        // Enable submit when selected + add has-selection class
         input.addEventListener('change', () => {
           updateSubmitButtonState();
         });
       });
     }
 
-    // Reset submit button
     if (els.submitBtn) {
       els.submitBtn.disabled = true;
       els.submitBtn.textContent = 'Submit';
@@ -1172,7 +1045,6 @@
     }
   }
 
-  // Update submit button state based on selections
   function updateSubmitButtonState() {
     if (!els.optionsForm || !els.submitBtn) return;
     
@@ -1200,10 +1072,8 @@
 
     // ===== FITB SUBMISSION =====
     if (isFitb) {
-      const q = run.current;
       const blankCount = countBlanks(getQuestionText(q));
       
-      // Get all user inputs
       const userAnswers = [];
       let allAnswered = true;
       
@@ -1230,15 +1100,13 @@
         run.answered = true;
         run.totalAttempts++;
 
-        // Check if all blanks are correct
         let isCorrect = true;
-        const blankResults = []; // Track individual blank correctness for styling
+        const blankResults = [];
         
         for (let i = 0; i < blankCount; i++) {
           const correctAnswersForBlank = getFitbCorrectAnswersForBlank(q, i);
           const userAnswer = userAnswers[i];
           
-          // Check if this blank's answer matches any of its correct variations
           let blankCorrect = false;
           for (const correctAns of correctAnswersForBlank) {
             if (normalizeAnswer(userAnswer) === normalizeAnswer(correctAns)) {
@@ -1254,7 +1122,6 @@
           }
         }
 
-        // Record attempt
         let rec = run.perQuestion.find(p => p.id === q.id);
         if (!rec) {
           rec = { id: q.id, correct: null, attempts: 0, questionObj: q };
@@ -1262,13 +1129,11 @@
         }
         rec.attempts++;
 
-        // Disable all inputs and show result styling per blank
         for (let i = 0; i < blankCount; i++) {
           const input = document.getElementById(`fitbInput${i}`) || document.getElementById('fitbInput');
           if (input) {
             input.disabled = true;
             input.classList.remove('wrong', 'correct');
-            // Style each blank based on its individual correctness
             if (blankResults[i]) {
               input.classList.add('correct');
             } else {
@@ -1288,10 +1153,12 @@
             rec.correct = false;
             run.incorrectFirstTry++;
           }
+          // Add to missedQueue and check threshold
           run.missedQueue.push(q);
+          run.missedSinceLastRequeue++;
+          checkAndInjectMissedQuestions();
         }
 
-        // Add result icons for all blanks
         const wrappers = els.optionsForm.querySelectorAll('.fitb-input-wrapper');
         wrappers.forEach((wrapper, idx) => {
           const existingIcon = wrapper.querySelector('.fitb-result-icon');
@@ -1303,17 +1170,14 @@
           wrapper.appendChild(icon);
         });
 
-        // Show feedback
         showFeedback(isCorrect, q, true);
 
-        // Change button to Next
         if (els.submitBtn) {
           els.submitBtn.textContent = 'Next →';
           els.submitBtn.dataset.mode = 'next';
           els.submitBtn.disabled = false;
         }
 
-        // Scroll to show feedback
         setTimeout(() => {
           if (els.answerLine && !els.answerLine.classList.contains('hidden')) {
             els.answerLine.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1337,7 +1201,7 @@
       return;
     }
 
-    // ===== MCQ SUBMISSION (EXISTING) =====
+    // ===== MCQ SUBMISSION =====
 
     if (mode === 'submit') {
       const checkedInputs = els.optionsForm?.querySelectorAll('input[name="answer"]:checked');
@@ -1348,15 +1212,12 @@
 
       const multiSelect = isMultiSelect(q);
       
-      // Get all selected original indices
       const selectedIndices = Array.from(checkedInputs).map(inp => 
         parseInt(inp.dataset.originalIndex, 10)
       );
       
-      // Check if answer is correct
       const isCorrect = checkAnswerCorrect(q, selectedIndices);
 
-      // Record attempt
       let rec = run.perQuestion.find(p => p.id === q.id);
       if (!rec) {
         rec = { id: q.id, correct: null, attempts: 0, questionObj: q };
@@ -1364,11 +1225,9 @@
       }
       rec.attempts++;
 
-      // Get all .opt elements and correct indices
       const allOpts = els.optionsForm.querySelectorAll('.opt');
       const correctIndices = getCorrectIndices(q);
 
-      // Add submitted class to form - removes all highlighting
       els.optionsForm.classList.add('submitted');
 
       if (isCorrect) {
@@ -1379,7 +1238,6 @@
         run.mastered.add(q.id);
         showFeedback(true, q, false);
 
-        // Add checkmark icons to all correct answers (which user selected correctly)
         allOpts.forEach(opt => {
           const origIdx = parseInt(opt.dataset.originalIndex, 10);
           if (selectedIndices.includes(origIdx)) {
@@ -1391,45 +1249,38 @@
           rec.correct = false;
           run.incorrectFirstTry++;
         }
-        run.missedQueue.push(q);
 
-        // When threshold reached, move all missed questions back to queue
-        if (run.missedQueue.length >= run.requeueThreshold) {
-          run.queue = run.queue.concat(run.missedQueue.splice(0));
-        }
+        // Add to missedQueue, increment counter, then check threshold
+        run.missedQueue.push(q);
+        run.missedSinceLastRequeue++;
+        checkAndInjectMissedQuestions();
 
         showFeedback(false, q, false);
 
-        // Add icons: X for wrong selections, checkmark for correct answers
         allOpts.forEach(opt => {
           const origIdx = parseInt(opt.dataset.originalIndex, 10);
           const wasSelected = selectedIndices.includes(origIdx);
           const isCorrectAnswer = correctIndices.includes(origIdx);
           
           if (wasSelected && !isCorrectAnswer) {
-            // User selected a wrong answer - show X
             addResultIcon(opt, 'wrong');
           }
           if (isCorrectAnswer) {
-            // This is a correct answer - show checkmark
             addResultIcon(opt, 'correct');
           }
         });
       }
 
-      // Change button to Next
       if (els.submitBtn) {
         els.submitBtn.textContent = 'Next →';
         els.submitBtn.dataset.mode = 'next';
         els.submitBtn.disabled = false;
       }
 
-      // Disable all inputs
       els.optionsForm?.querySelectorAll('input').forEach(inp => {
         inp.disabled = true;
       });
 
-      // Scroll to show rationale/feedback
       setTimeout(() => {
         if (els.rationale && !els.rationale.classList.contains('hidden')) {
           els.rationale.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1442,9 +1293,7 @@
       saveResumeData();
 
     } else if (mode === 'next') {
-      // Center quiz card in viewport for new question
       nextQuestion();
-      // Small delay to ensure DOM is updated before scrolling
       setTimeout(() => {
         const quizCard = document.getElementById('quiz');
         if (quizCard) {
@@ -1454,24 +1303,44 @@
     }
   }
 
-  /**
-   * Add a result icon (✓ or ✗) to an option
-   * @param {HTMLElement} optElement - The .opt div element
-   * @param {string} type - 'correct' or 'wrong'
-   */
+  // -----------------------------------------------------------
+  // Percentage-Based Missed Question Injection  (NEW)
+  // -----------------------------------------------------------
+  // Called every time a question is answered incorrectly.
+  // When missedSinceLastRequeue hits the threshold:
+  //   1. Shuffle the accumulated missed questions
+  //   2. Inject them at the FRONT of the queue (next to be asked)
+  //   3. Remove them from missedQueue
+  //   4. Reset the counter
+  // 10Q quizzes: threshold is Infinity, so this never fires.
+  // The end-of-queue fallback in nextQuestion() catches any
+  // remaining missed questions regardless.
+  function checkAndInjectMissedQuestions() {
+    if (run.requeueThreshold === Infinity) return;  // 10Q: skip
+    if (run.missedSinceLastRequeue < run.requeueThreshold) return;
+
+    // Grab and shuffle the questions that have accumulated since last injection
+    const toInject = shuffle(run.missedQueue.splice(0));
+
+    // Inject at front of queue so they're asked immediately after current question
+    run.queue = toInject.concat(run.queue);
+
+    // Reset the per-cycle counter
+    run.missedSinceLastRequeue = 0;
+
+    console.log(`[Quiz] Threshold hit (${run.requeueThreshold}): injected ${toInject.length} missed questions at front of queue`);
+  }
+
   function addResultIcon(optElement, type) {
     const label = optElement.querySelector('label');
     if (!label) return;
     
-    // Check if icon already exists
     if (label.querySelector('.result-icon')) return;
     
-    // Create the icon span
     const iconSpan = document.createElement('span');
     iconSpan.className = `result-icon ${type}`;
     iconSpan.textContent = type === 'correct' ? '✓' : '✗';
     
-    // Insert at the beginning of the label (before the letter badge)
     label.insertBefore(iconSpan, label.firstChild);
   }
 
@@ -1491,20 +1360,17 @@
       els.feedback.textContent = 'Incorrect';
     }
 
-    // Always show correct answer (for both correct and incorrect)
     const correctAnswer = isFitb ? getFitbCorrectAnswerText(q) : getCorrectAnswerText(q);
     if (els.answerLine && correctAnswer) {
       els.answerLine.classList.remove('hidden');
       if (isFitb) {
         els.answerLine.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}`;
       } else {
-        // Convert newlines to <br> for multi-select vertical display
         const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
         els.answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formattedAnswer}`;
       }
     }
 
-    // Show rationale if available
     if (els.rationale && q.rationale) {
       els.rationale.classList.remove('hidden');
       els.rationale.innerHTML = `<strong>Rationale:</strong> ${q.rationale}`;
@@ -1522,10 +1388,9 @@
     const correct = run.correctFirstTry;
     const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
 
-    // Determine color based on score
-    let scoreColor = '#f44336'; // Red < 60%
-    if (pct >= 77) scoreColor = '#4caf50'; // Green >= 77%
-    else if (pct >= 60) scoreColor = '#ff9800'; // Orange 60-76%
+    let scoreColor = '#f44336';
+    if (pct >= 77) scoreColor = '#4caf50';
+    else if (pct >= 60) scoreColor = '#ff9800';
 
     if (els.firstTrySummary) {
       els.firstTrySummary.innerHTML = `
@@ -1536,18 +1401,15 @@
       `;
     }
 
-    // Show/hide retry button and update missed count
     const missedCount = run.perQuestion.filter(p => !p.correct).length;
     if (els.retryMissedBtn) {
       els.retryMissedBtn.classList.toggle('hidden', missedCount === 0);
       
-      // Update the missed count display
       const missedCountDisplay = document.getElementById('missedCountDisplay');
       if (missedCountDisplay) {
         missedCountDisplay.textContent = `(${missedCount})`;
       }
       
-      // Adjust Start New Quiz width when Retry is hidden (takes 5/6 of space)
       if (missedCount === 0 && els.restartBtnSummary) {
         els.restartBtnSummary.style.flex = '5';
       } else if (els.restartBtnSummary) {
@@ -1555,7 +1417,6 @@
       }
     }
 
-    // Build review list
     if (els.reviewList) {
       els.reviewList.innerHTML = '';
 
@@ -1570,7 +1431,6 @@
         const correctAnswer = isFitb ? getFitbCorrectAnswerText(q) : getCorrectAnswerText(q);
         const questionText = getQuestionText(q);
         
-        // Format answer display
         let answerHtml;
         if (isFitb) {
           answerHtml = `<div class="review-correct-answer"><strong>Correct Answer:</strong> ${correctAnswer}</div>`;
@@ -1579,7 +1439,6 @@
           answerHtml = `<div class="review-correct-answer"><strong>Correct Answer:</strong><br>${formattedAnswer}</div>`;
         }
 
-        // Add image to review if question has one (NEW)
         let imageHtml = '';
         if (hasQuestionImage(q)) {
           const imageUrl = getQuestionImageUrl(q);
@@ -1597,7 +1456,6 @@
       });
     }
 
-    // Add return button with flex: 1 (same as Retry for 1:4:1 ratio)
     if (els.summaryActions && window.backUrl) {
       let returnBtn = els.summaryActions.querySelector('.return-btn');
       if (!returnBtn) {
@@ -1605,14 +1463,12 @@
         returnBtn.className = 'return-btn';
         returnBtn.style.cssText = 'flex: 1; min-width: 0;';
         returnBtn.href = window.backUrl;
-        // Use dynamic backLabel from window, fallback to default
         const label = window.backLabel || 'Learning Page';
         returnBtn.innerHTML = `<span>← Return to</span><span>${label}</span>`;
         els.summaryActions.appendChild(returnBtn);
       }
     }
 
-    // Record to progress store
     const store = getProgressStore();
     if (store) {
       if (!run.isRetry && store.recordCompletedQuiz) {
@@ -1661,6 +1517,7 @@
       quizLength: run.quizLength,
       queue: run.queue,
       missedQueue: run.missedQueue,
+      missedSinceLastRequeue: run.missedSinceLastRequeue,
       mastered: Array.from(run.mastered),
       correctFirstTry: run.correctFirstTry,
       incorrectFirstTry: run.incorrectFirstTry,
@@ -1707,6 +1564,7 @@
       quizLength: data.quizLength || 10,
       queue: data.queue || [],
       missedQueue: data.missedQueue || [],
+      missedSinceLastRequeue: data.missedSinceLastRequeue || 0,
       mastered: new Set(data.mastered || []),
       correctFirstTry: data.correctFirstTry || 0,
       incorrectFirstTry: data.incorrectFirstTry || 0,
@@ -1722,7 +1580,6 @@
     if (els.countersBox) els.countersBox.classList.remove('hidden');
     nextQuestion();
     
-    // Center quiz card after first question loads
     setTimeout(() => {
       const quizCard = document.getElementById('quiz');
       if (quizCard) {
@@ -1733,7 +1590,6 @@
 
   function checkResumeAvailable() {
     const data = loadResumeData();
-    // Resume available if there are questions in queue OR missedQueue, AND not all mastered
     const mastered = data?.mastered?.length || 0;
     const quizLength = data?.quizLength || 0;
     const hasQuestionsLeft = (data?.queue?.length > 0) || (data?.missedQueue?.length > 0);
@@ -1786,14 +1642,11 @@
       });
     }
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      // Don't handle if we're not in quiz mode or question is answered
       if (!run || !els.optionsForm) return;
       
       const key = e.key.toUpperCase();
       
-      // Letter keys A-H to select/deselect options (MCQ only)
       if (!isFitbQuestion(run.current)) {
         const letterIndex = LETTERS.indexOf(key);
         if (letterIndex !== -1 && !run.answered) {
@@ -1804,26 +1657,20 @@
             const multiSelect = isMultiSelect(run.current);
             
             if (multiSelect) {
-              // Multi-select: toggle the checkbox
               input.checked = !input.checked;
             } else {
-              // Single-select: toggle behavior
               if (input.checked) {
-                // Deselect if already selected
                 input.checked = false;
               } else {
-                // Select this one (radio buttons auto-deselect others)
                 input.checked = true;
               }
             }
             
-            // Update submit button state
             updateSubmitButtonState();
           }
         }
       }
       
-      // Enter key for Submit/Next
       if (e.key === 'Enter' && els.submitBtn && !els.submitBtn.disabled) {
         e.preventDefault();
         handleSubmit();
@@ -1884,13 +1731,10 @@
         });
       }
 
-      // AUTOSTART: Hide launcher immediately and start quiz
       if (state.autostart) {
         console.log('[Quiz] Auto-starting quiz...');
-        // Hide launcher immediately to prevent flash
         if (els.launcher) els.launcher.classList.add('hidden');
         if (els.launcher) els.launcher.style.display = 'none';
-        // Start quiz after brief delay for DOM readiness
         setTimeout(startQuiz, 50);
         return;
       }
