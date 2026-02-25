@@ -7153,8 +7153,7 @@
       ],
       "rationale": "Measurement of intracompartmental pressure is considered the gold standard for diagnosing compartment syndrome as it provides direct evidence of increased pressure within the muscle compartments. Clinical assessment (Option A), while important, is subjective and can be influenced by other factors. Doppler ultrasound (Option C) can help assess blood flow but does not measure compartment pressure directly. MRI (Option D) can show muscle damage but is not typically used for diagnosing acute compartment syndrome due to time constraints and lack of immediate availability in emergency settings.",
       "type": "single_select"
-    }
-  ],
+    },
   {
   "category": "Medical Emergencies; Cardiovascular",
   "id": "Q448",
