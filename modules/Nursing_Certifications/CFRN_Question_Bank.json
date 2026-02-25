@@ -7154,5 +7154,22 @@
       "rationale": "Measurement of intracompartmental pressure is considered the gold standard for diagnosing compartment syndrome as it provides direct evidence of increased pressure within the muscle compartments. Clinical assessment (Option A), while important, is subjective and can be influenced by other factors. Doppler ultrasound (Option C) can help assess blood flow but does not measure compartment pressure directly. MRI (Option D) can show muscle damage but is not typically used for diagnosing acute compartment syndrome due to time constraints and lack of immediate availability in emergency settings.",
       "type": "single_select"
     }
-  ]
+  ],
+  {
+  "category": "Medical Emergencies; Cardiovascular",
+  "id": "Q448",
+  "stem": "The flight team is transporting a patient for cardiac surgery evaluation. The patient had episodes of symptomatic bradycardia and complete heart block, which was treated with a temporary transvenous pacemaker. The patient is currently asymptomatic and pacemaker settings are:\n\nMode: VVI\nRate: 75 beats/min\nOutput: 2 mA\nSensitivity: 0.8mV\n\nBP was 100/65 mmHg on arrival; it is currently 80/50 mmHg. What is the NEXT action the flight team should take?",
+  "image": "cfrn/failed-paced.png",
+  "options": [
+    "Increase the rate to 90 beats/min.",
+    "Increase the output to 10mA.",
+    "Initiate a Dopamine infusion.",
+    "Place the pacemaker into asynchronous mode."
+  ],
+  "correct": [
+    "B"
+  ],
+  "rationale": "The pacemaker strip is demonstrating failure to capture. The output's mA setting is currently ineffective in achieving 100% ventricular capture and should be increased. Once full capture is achieved, the respective output should be noted, and the final mA setting should be documented and maintained throughout the remainder of the transport. The rate of 75 was previously effective in achieving sufficient blood pressure; however, in this situation, increasing the rate without adjusting the output will lead to increased frequency of failure to capture. Placing the pacemaker generator into asynchronous mode will place the patient at risk for R-on-T phenomenon and is not indicated as this is not an emergent situation. This is also not a situation where overdrive pacing by placing the patient into asynchronous mode/VOO is indicated. This patient is asymptomatic and still has a mean arterial pressure of 65 mmHg. The initiation of a vasopressor such as Dopamine will likely have the same effect of increasing the pacemaker rate, as well as increase blood pressure; however, this patient has multi-vessel coronary artery disease going for a surgical evaluation and increasing myocardial oxygen demand in this situation should not be taken lightly. The best and simplest approach is to increase the mA in order to achieve full ventricular capture in this VVI mode, as the pacemaker is already set to full demand and the sensitivity is in the mid-sensitive range at 0.8mV, which is among the lowest on most pacemaker generators. Reference: AACN Procedure Manual for High Acuity, Progressive and Critical Care, 7th Ed. (2016), p. 416-430; Medtronic 5392 Dual Chamber Temporary External Pacemaker, accessed October 19, 2023.",
+  "type": "single_select"
+}
 }
