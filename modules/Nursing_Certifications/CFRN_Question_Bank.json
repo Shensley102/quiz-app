@@ -7172,4 +7172,20 @@
   "rationale": "The pacemaker strip is demonstrating failure to capture. The output's mA setting is currently ineffective in achieving 100% ventricular capture and should be increased. Once full capture is achieved, the respective output should be noted, and the final mA setting should be documented and maintained throughout the remainder of the transport. The rate of 75 was previously effective in achieving sufficient blood pressure; however, in this situation, increasing the rate without adjusting the output will lead to increased frequency of failure to capture. Placing the pacemaker generator into asynchronous mode will place the patient at risk for R-on-T phenomenon and is not indicated as this is not an emergent situation. This is also not a situation where overdrive pacing by placing the patient into asynchronous mode/VOO is indicated. This patient is asymptomatic and still has a mean arterial pressure of 65 mmHg. The initiation of a vasopressor such as Dopamine will likely have the same effect of increasing the pacemaker rate, as well as increase blood pressure; however, this patient has multi-vessel coronary artery disease going for a surgical evaluation and increasing myocardial oxygen demand in this situation should not be taken lightly. The best and simplest approach is to increase the mA in order to achieve full ventricular capture in this VVI mode, as the pacemaker is already set to full demand and the sensitivity is in the mid-sensitive range at 0.8mV, which is among the lowest on most pacemaker generators. Reference: AACN Procedure Manual for High Acuity, Progressive and Critical Care, 7th Ed. (2016), p. 416-430; Medtronic 5392 Dual Chamber Temporary External Pacemaker, accessed October 19, 2023.",
   "type": "single_select"
 }
+{
+  "category": "Cardiovascular Emergencies",
+  "id": "Q449",
+  "image": "cfrn/Anterolateral_STEMI.png",
+  "stem": "During transport, a patient complains of chest pain rated 8 out of 10. The flight nurse administers sublingual nitroglycerin and obtains the following ECG.\n\nThe ECG indicates acute:",
+  "options": [
+    "anterolateral myocardial infarction.",
+    "pericarditis.",
+    "endocarditis.",
+    "posterior myocardial infarction."
+  ],
+  "correct": [
+    "A"
+  ],
+  "rationale": "Patients with infarction in the anterior and lateral surfaces of the heart will demonstrate elevation in leads V3-V6. Reference: Sheehy's Emergency Nursing: Principles and Practice, 7th Edition (2019), p. 241.",
+  "type": "single_select"
 }
