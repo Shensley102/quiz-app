@@ -7172,20 +7172,20 @@
   "type": "single_select"
 },
 {
-  "category": "Cardiovascular Emergencies",
-  "id": "Q449",
-  "image": "cfrn/Anterolateral_STEMI.png",
-  "stem": "During transport, a patient complains of chest pain rated 8 out of 10. The flight nurse administers sublingual nitroglycerin and obtains the following ECG.\n\nThe ECG indicates acute:",
-  "options": [
-    "anterolateral myocardial infarction.",
-    "pericarditis.",
-    "endocarditis.",
-    "posterior myocardial infarction."
-  ],
-  "correct": [
-    "A"
-  ],
-  "rationale": "Patients with infarction in the anterior and lateral surfaces of the heart will demonstrate elevation in leads V3-V6. Reference: Sheehy's Emergency Nursing: Principles and Practice, 7th Edition (2019), p. 241.",
-  "type": "single_select"
-}
-  ]    
+    "category": "Cardiovascular Emergencies",
+    "id": "Q449",
+    "image": "cfrn/Anterolateral_STEMI.png",
+    "stem": "During transport, a patient complains of chest pain rated 8 out of 10. The flight nurse administers sublingual nitroglycerin and obtains the following ECG.\n\nThe ECG indicates acute:",
+    "options": [
+      "anterolateral myocardial infarction.",
+      "pericarditis.",
+      "endocarditis.",
+      "posterior myocardial infarction."
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "Patients with infarction in the anterior and lateral surfaces of the heart will demonstrate elevation in leads V3-V6. Reference: Sheehy's Emergency Nursing: Principles and Practice, 7th Edition (2019), p. 241.",
+    "type": "single_select"
+  }
+]
