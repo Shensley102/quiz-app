@@ -7336,10 +7336,13 @@
       "D) Crush injury"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "Contraindications include: Malignant hyperthermia history, Burns >24 hours, Pre-existing hyperkalemia, Crush injuries. Hypotension is NOT a contraindication.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q460",
@@ -9077,13 +9080,16 @@
       "A) Hypotension refractory to fluids",
       "B) Hyperglycemia",
       "C) Hyperpigmentation",
-      "D) Hyponatremia"
+      "D) Hyponatremia",
+      "E) Hyperkalemia"
     ],
     "correct": [
-      "A"
+      "A",
+      "C",
+      "D"
     ],
     "rationale": "Addisonian crisis: Refractory hypotension, Hyperpigmentation (elevated ACTH), Hyponatremia, Hyperkalemia. Note: HYPOglycemia occurs, not hyperglycemia.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q569",
@@ -9173,13 +9179,17 @@
       "A) Air bubbles within the arterial line tubing",
       "B) A thrombus partially occluding the catheter tiph",
       "C) Using an excessively long, flexible pressure tubing with multiple stopcock connectors",
-      "D) An overly stiff, short tubing system with high natural frequency (very non-compliant setup)"
+      "D) An overly stiff, short tubing system with high natural frequency (very non-compliant setup)",
+      "E) Loose connections or low flush bag pressure leading to backflow in the line",
+      "F) Arterial vasospasm at the catheter insertion site"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "An overdamped arterial waveform looks flattened and slurred, often with a diminished or absent dicrotic notch and a narrowed pulse pressure. It occurs when the monitoring setup absorbs too much of the pressure wave, usually because of added compliance (something compressible/elastic in the system) or added resistance/obstruction between the artery and the transducer. Common causes include air bubbles (compressible, so they cushion and blunt the waveform), partial clots/fibrin at the catheter tip (creates obstruction and dampens transmission), kinked or occluded catheter/tubing or the catheter tip resting against the vessel wall (mechanical blockage), excessively long or overly compliant tubing and extra stopcocks (increases compliance and resistance), loose connections or small leaks (introduces compliance and can allow air entry), inadequate flush bag pressure/low flush flow (promotes backflow and clot formation and reduces system performance), and sometimes arterial vasospasm around the catheter (physiologic narrowing that mimics partial obstruction).",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q575",
@@ -10085,13 +10095,18 @@
       "A) Hypoxemia",
       "B) Excess body weight",
       "C) Aspiration risk",
-      "D) Ventilation problems"
+      "D) Ventilation problems",
+      "E) Elderly (>55)",
+      "F) No teeth/decreased muscle tone"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "ALL are part of HEAVEN for difficult BVM ventilation: Hypoxemia, Excess weight, Aspiration risk, Ventilation problems (asthma/COPD/pregnancy), Elderly >55, No teeth/decreased tone.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q632",
@@ -10328,10 +10343,13 @@
       "D) Mark the HLZ at night by having two vehicles cross their headlight beams"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "Safe HLZ operations emphasize communication, hazard reconnaissance, and clear markings. Two reconnaissance passes help identify wires/obstacles. Standing under the rotor disk is unsafe; ground personnel should remain clear of rotor arc and follow the pilot-in-command (PIC) direction.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q647",
@@ -10360,10 +10378,12 @@
       "D) Leave shoulder harness off to allow easier access"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "In rotor- or fixed-wing transport, patient and equipment restraint prevents secondary injury during turbulence or abrupt maneuvering. Three cross straps plus a shoulder harness (as tolerated) and padding voids reduce shear and fall risk. Leaving restraints off increases hazard during even minor movement.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q649",
@@ -10392,10 +10412,13 @@
       "D) Refueling"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "Sterile cockpit periods reduce nonessential conversation/distraction during high-workload and high-risk phases (taxi, takeoff, landing, refueling). It's not limited to a specific altitude; it's about task loading and risk.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q651",
@@ -10533,13 +10556,16 @@
       "A) Navigation and verifying GPS input",
       "B) Managing lights and sirens response",
       "C) Monitoring operator fatigue/impairment",
-      "D) Performing nonessential cell phone/computer use"
+      "D) Performing nonessential cell phone/computer use",
+      "E) Staying alert on all legs of the transport"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "A co-pilot supports safe transport by handling navigation, warning device operations, and crew risk monitoring (fatigue/impairment). Nonessential phone/computer use is typically prohibited because it increases distraction risk.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q660",
@@ -10728,10 +10754,13 @@
       "D) Critical (20,000+ ft)"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "Training frameworks often describe progressive hypoxia stages: Indifference, Compensatory, Disturbance, and Critical. Recognizing the stage helps anticipate cognitive/coordination decline and the need for immediate oxygen and descent.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q672",
@@ -10789,13 +10818,16 @@
       "A) GCS < 8",
       "B) Inhalational burns",
       "C) Anaphylaxis with threatened airway",
-      "D) Patient unable to protect their airway"
+      "D) Patient unable to protect their airway",
+      "E) Apnea"
     ],
     "correct": [
-      "B"
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "Indications focus on inability to oxygenate/ventilate or protect the airway, and anticipated deterioration (e.g., inhalation injury). A GCS of <8 is not an imediate indicatioin for intubation.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q676",
@@ -10920,10 +10952,13 @@
       "D) Trendelenburg positioning"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "Pplat rises with decreased compliance or increased distending volume: ARDS, edema, tension pneumothorax, higher tidal volumes, and external compression (Trendelenburg, obesity, pregnancy, ascites). Circuit kinks primarily increase PIP (resistance), not plateau pressure.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q684",
@@ -11029,13 +11064,17 @@
       "A) Look externally",
       "B) Evaluate 3-3-2 rule",
       "C) Mallampati",
-      "D) Obstruction/Obesity"
+      "D) Obstruction/Obesity",
+      "E) Neck mobility"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "LEMON summarizes bedside predictors of difficult laryngoscopy: Look, Evaluate 3‑3‑2, Mallampati, Obstruction/Obesity, and Neck mobility. It helps teams anticipate adjuncts, positioning, and backup plans.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q691",
@@ -11080,10 +11119,12 @@
       "D) Capillary refill time only"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "PAT is a rapid visual assessment of Appearance, Work of breathing, and Circulation to skin. It is designed for quick severity assessment before detailed vitals and directs urgency and immediate interventions.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q694",
@@ -11128,10 +11169,12 @@
       "D) Deflate cuff to reduce pressure"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "Post‑intubation safety requires ETCO2 confirmation, bilateral auscultation, and securement. Chest rise alone is unreliable. Cuff is inflated (not deflated) to maintain seal and prevent aspiration, with pressure monitored to avoid mucosal injury.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q697",
@@ -11304,10 +11347,13 @@
       "D) Worsening headache/vomiting"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "Rising ICP commonly presents with altered mental status, pupil abnormalities, abnormal posturing, and symptoms like headache/vomiting. Improvement in alertness would be inconsistent with worsening ICP.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q708",
@@ -11349,13 +11395,16 @@
       "A) Hypotension",
       "B) Bradycardia or absence of tachycardia",
       "C) Warm, flushed, dry skin below the lesion",
-      "D) High SVR with cool clammy skin"
+      "D) High SVR with cool clammy skin",
+      "E) SVR < 800 (low)"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "Neurogenic shock results from loss of sympathetic tone: vasodilation (low SVR) and relative bradycardia. Warm dry skin below the lesion reflects vasodilation. Cool clammy skin and high SVR are more typical of hypovolemia.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q711",
@@ -11416,10 +11465,12 @@
       "D) Painless bright red vaginal bleeding"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "Classic meningitis features include photophobia, headache/pressure, and nuchal rigidity, reflecting meningeal irritation and inflammation. The other options are unrelated findings (OB bleeding, retroperitoneal bleeding).",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q715",
@@ -11528,10 +11579,12 @@
       "D) Sepsis"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "SVR increases when the body vasoconstricts to preserve perfusion---seen in hypothermia, hypovolemia, and low CO states. Sepsis and anaphylaxis typically decrease SVR due to vasodilation.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q722",
@@ -11544,10 +11597,13 @@
       "D) Vasodilators"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "Distributive shock states (sepsis, neurogenic, anaphylaxis) and vasodilator medications reduce systemic tone, producing low SVR and relative hypotension. Hypothermia tends to increase SVR via vasoconstriction.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q723",
@@ -11560,10 +11616,13 @@
       "D) Atelectasis/ARDS"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "PVR rises with hypoxia, hypercapnia, and acidosis (hypoxic pulmonary vasoconstriction) and with alveolar collapse/ARDS. Alkalosis and hypocapnia generally decrease PVR.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q724",
@@ -11685,13 +11744,15 @@
       "A) Aortic insufficiency/regurgitation",
       "B) Significant peripheral vascular disease",
       "C) Septic shock",
-      "D) Stable angina"
+      "D) Stable angina",
+      "E) Aortic regurgitation"
     ],
     "correct": [
-      "A"
+      "A",
+      "B"
     ],
     "rationale": "IABP requires an effective aortic valve and adequate arterial access. Aortic insufficiency/regurgitation can worsen with balloon inflation, and peripheral vascular disease can complicate insertion/perfusion. Other conditions may be relative or indication-dependent.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q732",
@@ -11784,10 +11845,12 @@
       "D) Hyperglycemia"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "The trauma triad of death is hypothermia + acidosis + coagulopathy. Each worsens the others (cold impairs clotting, acidosis reduces coagulation factor function), creating a spiral that requires early prevention (warming, hemorrhage control, balanced resuscitation).",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q738",
@@ -11912,10 +11975,11 @@
       "D) 7th intercostal space, posterior axillary line"
     ],
     "correct": [
-      "A"
+      "A",
+      "B"
     ],
     "rationale": "this question bank lists 2nd ICS MCL and 5th ICS MAL as acceptable sites. Correct landmarking reduces risk of vascular injury and improves success, especially in larger patients where anterior chest wall thickness may be greater.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q746",
@@ -12024,10 +12088,12 @@
       "D) Wheezing"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "Beck's triad---hypotension, muffled heart sounds, and JVD---reflects impaired ventricular filling and reduced stroke volume. Wheezing/fever are not defining features.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q753",
@@ -12072,10 +12138,13 @@
       "D) Tachycardia"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "Common reaction clues include fever, pallor, hypotension, and tachycardia. Any suspected reaction should prompt stopping the transfusion and evaluating for hemolysis, overload, or lung injury.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q756",
@@ -12360,10 +12429,13 @@
       "D) WBC < 4,000 or > 12,000"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "this question bank lists common SIRS criteria: tachycardia, tachypnea/low ETCO2, fever, and abnormal WBC. SIRS can precede sepsis; trends and perfusion markers (lactate, mental status, urine output) guide escalation.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q774",
@@ -12440,10 +12512,12 @@
       "D) Hypothermia"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "Virchow's triad explains thrombosis risk: stasis, hypercoagulability, and endothelial injury. Recognizing these supports DVT/PE suspicion in immobilized or post-op patients.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q779",
@@ -12520,10 +12594,12 @@
       "D) High-dose aspirin"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "Management focuses on airway/ventilation, cautious warming, and replacing deficient hormones. Steroids are often given due to possible adrenal insufficiency and stress response; aspirin is avoided in thyroid storm frameworks and is not a primary treatment here.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q784",
@@ -12568,10 +12644,12 @@
       "D) Hypernatremia"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "SIADH causes inappropriate ADH effect → water retention, leading to dilutional hyponatremia and low serum osmolality, but urine remains concentrated. DI produces the opposite pattern (free water loss, hypernatremia, dilute urine).",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q787",
@@ -12581,13 +12659,16 @@
       "A) Hypernatremia",
       "B) Increased serum osmolality",
       "C) Low urine specific gravity (dilute urine)",
-      "D) Water retention with concentrated urine"
+      "D) Water retention with concentrated urine",
+      "E) Large free water loss"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "DI is low/ineffective ADH → free water loss, producing hypernatremia, high serum osmolality, and dilute urine with low specific gravity. SIADH is the opposite (water retention and dilutional hyponatremia).",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q788",
@@ -12616,10 +12697,12 @@
       "D) Hyponatremia only"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "DKA is defined by hyperglycemia + metabolic acidosis + ketonemia/ketonuria. Early management focuses on fluids, insulin, electrolyte monitoring (especially potassium), and identifying precipitating causes.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q790",
@@ -12773,13 +12856,16 @@
       "A) Crowning",
       "B) Strong contractions <10 minutes apart with increasing intensity",
       "C) An urgent need to have a bowel movement",
-      "D) Sudden painless bright red bleeding with a soft uterus"
+      "D) Sudden painless bright red bleeding with a soft uterus",
+      "E) Vaginal bleeding"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C"
     ],
     "rationale": "Imminent delivery is suggested by crowning, rapid intense contractions, and rectal pressure/urge to defecate, with possible vaginal bleeding. Painless bright red bleeding with a soft uterus suggests placenta previa and requires minimizing vaginal exams and movement.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q800",
@@ -13000,10 +13086,13 @@
       "D) Actively maintain body temperature"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "Gastroschisis care focuses on preventing fluid/heat loss, protecting exposed viscera, decompressing the stomach to reduce bowel distension, and avoiding enteral feeds (NPO) until definitive surgical management.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q814",
@@ -13112,10 +13201,11 @@
       "D) Naloxone"
     ],
     "correct": [
-      "A"
+      "A",
+      "B"
     ],
     "rationale": "Ductus closure is promoted by rising oxygen tension after birth and prostaglandin inhibition (e.g., indomethacin). Prostaglandin E1 is used therapeutically to keep the ductus open.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q821",
@@ -13128,10 +13218,13 @@
       "D) Right ventricular hypertrophy"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "Tetralogy is a four-lesion complex: VSD, pulmonary stenosis, overriding aorta, and RV hypertrophy. PDA may coexist but is not part of the classic tetrad.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q822",
@@ -13304,10 +13397,13 @@
       "D) Equipment failure"
     ],
     "correct": [
-      "A"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "rationale": "DOPES is a rapid troubleshooting framework: Displacement, Obstruction, Pneumothorax, Equipment failure, and sometimes Stacking (auto‑PEEP) in some versions. Sepsis can worsen ventilation but is not part of the immediate DOPES check.",
-    "type": "single_select"
+    "type": "multi_select"
   },
   {
     "id": "Q833",
