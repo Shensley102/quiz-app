@@ -108,6 +108,15 @@ CFRN_CATEGORIES = [
     'Special Populations; Bariatric',
 ]
 
+# Top-level CFRN domains (used for domain-level quiz filtering)
+CFRN_DOMAINS = [
+    'General Principles',
+    'Resuscitation Principles',
+    'Trauma',
+    'Medical Emergencies',
+    'Special Populations',
+]
+
 # CCRN Exam Content Categories (category names matching JSON "category" field)
 CCRN_CATEGORIES = [
     'Cardiovascular',
@@ -301,14 +310,6 @@ def get_cfrn_domain_totals():
     """
     questions = load_cfrn_questions()
 
-    DOMAIN_ORDER = [
-        'General Principles',
-        'Resuscitation Principles',
-        'Trauma',
-        'Medical Emergencies',
-        'Special Populations',
-    ]
-
     counts = {}
     for q in questions:
         cat = q.get('category', '')
@@ -318,7 +319,7 @@ def get_cfrn_domain_totals():
 
     # Build ordered dict with all known domains (0 if none found)
     domain_totals = OrderedDict()
-    for d in DOMAIN_ORDER:
+    for d in CFRN_DOMAINS:
         domain_totals[d] = counts.get(d, 0)
 
     # Catch any unexpected domains not in the canonical list
@@ -615,7 +616,6 @@ def cfrn_page():
                                domain_totals=domain_totals)
         from flask import make_response
         resp = make_response(response)
-        # Prevent edge/CDN caching so counts always reflect the current JSON
         resp.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
         resp.headers['Pragma'] = 'no-cache'
         resp.headers['Expires'] = '0'
@@ -625,13 +625,59 @@ def cfrn_page():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/category/Nursing_Certifications/CFRN/domain/<domain_name>')
+def cfrn_domain_quiz(domain_name):
+    """CFRN domain-level quiz — all questions whose category starts with the given domain."""
+    try:
+        domain_name = unquote(domain_name)
+
+        if domain_name not in CFRN_DOMAINS:
+            print(f"Invalid CFRN domain: {domain_name}")
+            return redirect(url_for('cfrn_page'))
+
+        questions = load_cfrn_questions()
+        # Match any question whose category begins with "DomainName; "
+        filtered_questions = [
+            q for q in questions
+            if q.get('category', '').startswith(domain_name + ';') or
+               q.get('category', '') == domain_name
+        ]
+
+        if not filtered_questions:
+            print(f"No questions found for CFRN domain: {domain_name}")
+            return redirect(url_for('cfrn_page'))
+
+        safe_name = domain_name.replace(' ', '_').replace('/', '_')
+        quiz_data = {
+            'module': f'CFRN_{safe_name}',
+            'questions': filtered_questions
+        }
+
+        quiz_length = request.args.get('quiz_length', 'full')
+        autostart = request.args.get('autostart', 'false').lower() == 'true'
+
+        return render_template('quiz.html',
+                               quiz_data=quiz_data,
+                               module_name=f'CFRN - {domain_name}',
+                               category='Nursing_Certifications',
+                               back_url='/category/Nursing_Certifications/CFRN',
+                               back_label='CFRN Practice System',
+                               autostart=autostart,
+                               is_category_quiz=True,
+                               quiz_length=quiz_length)
+    except Exception as e:
+        print(f"Error in cfrn_domain_quiz route: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/category/Nursing_Certifications/CFRN/category/<category_name>')
 def cfrn_category_quiz(category_name):
-    """CFRN category-specific quiz - filters questions by CFRN category"""
+    """CFRN subcategory-specific quiz - filters questions by exact CFRN category string"""
     try:
         category_name = unquote(category_name)
 
-        # Validate against real BCEN category strings
         if category_name not in CFRN_CATEGORIES:
             print(f"Invalid CFRN category: {category_name}")
             return redirect(url_for('cfrn_page'))
@@ -651,7 +697,6 @@ def cfrn_category_quiz(category_name):
         quiz_length = request.args.get('quiz_length', 'full')
         autostart = request.args.get('autostart', 'false').lower() == 'true'
 
-        # Show only the subcategory part (after "; ") as the quiz title
         subcat = category_name.split('; ')[1] if '; ' in category_name else category_name
 
         return render_template('quiz.html',
