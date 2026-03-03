@@ -125,7 +125,7 @@ CCRN_CATEGORIES = [
     'Hematologic/Immunologic',
     'Infection/Sepsis',
     'Neurological',
-    'Obstetric/Women\'s Health',
+    "Obstetric/Women's Health",
     'Professional Practice/Nursing',
     'Pulmonary/Respiratory',
     'Renal/Urinary',
@@ -177,6 +177,57 @@ ADULT_HEALTH_MODULES = {
     }
 }
 
+# ==================== QUESTION COUNT HELPERS ====================
+
+# Regex: "Q" followed by one or more digits, e.g. Q1, Q042, Q583
+_QNUM_RE = re.compile(r'^Q\d+$')
+
+
+def get_valid_question_count(json_path):
+    """
+    Count questions in a JSON file whose "id" field matches Q#### (Q + digits).
+
+    Falls back to the total array length when no Q#### IDs exist at all,
+    so the displayed count is never 0 when questions are present.
+
+    Args:
+        json_path (Path): Absolute path to the JSON question bank file.
+
+    Returns:
+        int: Count of Q####-ID questions, or total count as fallback.
+    """
+    if not json_path.exists():
+        return 0
+
+    try:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        questions = data if isinstance(data, list) else data.get('questions', [])
+        valid = [q for q in questions if _QNUM_RE.match(str(q.get('id', '')))]
+
+        # If every question uses Q#### IDs, return that exact count.
+        # If none do (older format without Q-IDs), fall back to total.
+        return len(valid) if valid else len(questions)
+
+    except Exception as e:
+        print(f"[get_valid_question_count] Error reading {json_path}: {e}")
+        return 0
+
+
+def get_cfrn_valid_count():
+    """Return the count of CFRN questions with Q#### IDs."""
+    path = MODULES_DIR / 'Nursing_Certifications' / 'CFRN_Question_Bank.json'
+    return get_valid_question_count(path)
+
+
+def get_ccrn_valid_count():
+    """Return the count of CCRN questions with Q#### IDs."""
+    path = MODULES_DIR / 'Nursing_Certifications' / 'CCRN_Comprehensive.json'
+    return get_valid_question_count(path)
+
+
+# ==================== EXISTING HELPERS ====================
 
 def get_categories():
     """Get all module categories (folder names)"""
@@ -306,7 +357,7 @@ def get_cfrn_domain_totals():
     """
     Returns counts grouped by top-level BCEN domain, derived from the question bank.
     Domain name is everything before the first '; ' in the category string.
-    Also returns the grand total.
+    Grand total uses the authoritative Q####-ID count.
     """
     questions = load_cfrn_questions()
 
@@ -317,17 +368,16 @@ def get_cfrn_domain_totals():
         if domain:
             counts[domain] = counts.get(domain, 0) + 1
 
-    # Build ordered dict with all known domains (0 if none found)
     domain_totals = OrderedDict()
     for d in CFRN_DOMAINS:
         domain_totals[d] = counts.get(d, 0)
 
-    # Catch any unexpected domains not in the canonical list
     for d, c in counts.items():
         if d not in domain_totals:
             domain_totals[d] = c
 
-    grand_total = sum(domain_totals.values())
+    # Authoritative total: questions with valid Q#### IDs
+    grand_total = get_cfrn_valid_count()
     return domain_totals, grand_total
 
 
@@ -377,16 +427,8 @@ def load_adult_health_questions():
 
 
 def extract_chapter_number(category_str):
-    """
-    Extract chapter/concept number from category string.
-    Examples:
-      "Chapter 47: Concepts of Care..." -> "47"
-      "Chapter 01: Introduction..." -> "01"
-      "Concept 26: Tissue Integrity" -> "26"
-    """
     if not category_str:
         return None
-
     match = re.match(r'^(?:Chapter|Concept)\s+(\d+)', category_str, re.IGNORECASE)
     if match:
         return match.group(1).zfill(2)
@@ -394,7 +436,6 @@ def extract_chapter_number(category_str):
 
 
 def filter_adult_health_questions(questions, module_num):
-    """Filter questions for a specific Adult Health module based on book and chapter/concept."""
     if module_num not in ADULT_HEALTH_MODULES:
         return []
 
@@ -421,17 +462,14 @@ def filter_adult_health_questions(questions, module_num):
 
 
 def get_adult_health_module_stats():
-    """Get question counts for each Adult Health module"""
     questions = load_adult_health_questions()
     stats = {}
-
     for module_num, module_def in ADULT_HEALTH_MODULES.items():
         filtered = filter_adult_health_questions(questions, module_num)
         stats[module_num] = {
             'name': module_def['name'],
             'count': len(filtered)
         }
-
     return stats
 
 
@@ -439,7 +477,6 @@ def get_adult_health_module_stats():
 
 @app.route('/')
 def home():
-    """Home page with all categories"""
     try:
         categories = get_categories()
         return render_template('home.html', categories=categories)
@@ -450,14 +487,12 @@ def home():
 
 @app.route('/category/<category>')
 def category(category):
-    """Category landing page - shows available quizzes"""
     try:
         category = unquote(category)
         categories = get_categories()
         category_exists = category in categories or category in CATEGORY_METADATA
 
         if not category_exists:
-            print(f"Category '{category}' not found. Available: {categories}")
             return redirect(url_for('home'))
 
         quizzes = get_category_quizzes(category)
@@ -470,15 +505,16 @@ def category(category):
             'modules': quizzes.get('multiple-choice', []) + quizzes.get('fill-in-the-blank', [])
         }
 
-        print(f"Category: {category}, Modules: {len(category_data['modules'])}")
-
         has_mc = len(quizzes.get('multiple-choice', [])) > 0
         has_fb = len(quizzes.get('fill-in-the-blank', [])) > 0
 
         if category == 'Adult_Health':
             module_stats = get_adult_health_module_stats()
             total_count = sum(m['count'] for m in module_stats.values() if m)
-            return render_template('adult-health.html', quizzes=quizzes, module_stats=module_stats, total_count=total_count)
+            return render_template('adult-health.html',
+                                   quizzes=quizzes,
+                                   module_stats=module_stats,
+                                   total_count=total_count)
 
         if category == 'NCLEX':
             category_stats = get_nclex_category_stats()
@@ -493,12 +529,21 @@ def category(category):
             return render_template('lab-values.html', quizzes=quizzes)
 
         if category == 'Nursing_Certifications':
-            return render_template('nursing-certifications.html', quizzes=quizzes)
+            # Live Q####-based counts sourced directly from the JSON files
+            cfrn_total = get_cfrn_valid_count()
+            ccrn_total = get_ccrn_valid_count()
+            return render_template('nursing-certifications.html',
+                                   quizzes=quizzes,
+                                   cfrn_total=cfrn_total,
+                                   ccrn_total=ccrn_total)
 
         if category == 'Pharmacology':
             return render_template('pharmacology.html', quizzes=quizzes)
 
-        return render_template('category.html', category=category, category_data=category_data, quizzes=quizzes)
+        return render_template('category.html',
+                               category=category,
+                               category_data=category_data,
+                               quizzes=quizzes)
     except Exception as e:
         print(f"Error in category route: {e}")
         import traceback
@@ -508,19 +553,16 @@ def category(category):
 
 @app.route('/category/NCLEX/category/<category_name>')
 def nclex_category_quiz(category_name):
-    """NCLEX category-specific quiz - filters questions by NCLEX category"""
     try:
         category_name = unquote(category_name)
 
         if category_name not in NCLEX_CATEGORIES:
-            print(f"Invalid NCLEX category: {category_name}")
             return redirect(url_for('category', category='NCLEX'))
 
         questions = load_nclex_master_questions()
         filtered_questions = [q for q in questions if q.get('category') == category_name]
 
         if not filtered_questions:
-            print(f"No questions found for category: {category_name}")
             return redirect(url_for('category', category='NCLEX'))
 
         quiz_data = {
@@ -549,10 +591,9 @@ def nclex_category_quiz(category_name):
 
 @app.route('/category/Nursing_Certifications/CCRN')
 def ccrn_page():
-    """CCRN certification practice system page"""
     try:
         category_stats = get_ccrn_category_stats()
-        total_questions = sum(category_stats.values())
+        total_questions = get_ccrn_valid_count()
         return render_template('ccrn.html',
                                category_stats=category_stats,
                                ccrn_categories=CCRN_CATEGORIES,
@@ -564,19 +605,16 @@ def ccrn_page():
 
 @app.route('/category/Nursing_Certifications/CCRN/category/<category_name>')
 def ccrn_category_quiz(category_name):
-    """CCRN category-specific quiz - filters questions by CCRN category"""
     try:
         category_name = unquote(category_name)
 
         if category_name not in CCRN_CATEGORIES:
-            print(f"Invalid CCRN category: {category_name}")
             return redirect(url_for('ccrn_page'))
 
         questions = load_ccrn_comprehensive_questions()
         filtered_questions = [q for q in questions if q.get('category') == category_name]
 
         if not filtered_questions:
-            print(f"No questions found for CCRN category: {category_name}")
             return redirect(url_for('ccrn_page'))
 
         quiz_data = {
@@ -605,15 +643,14 @@ def ccrn_category_quiz(category_name):
 
 @app.route('/category/Nursing_Certifications/CFRN')
 def cfrn_page():
-    """CFRN certification practice system page"""
     try:
         category_stats = get_cfrn_category_stats()
         domain_totals, total_questions = get_cfrn_domain_totals()
         response = render_template('cfrn.html',
-                               category_stats=category_stats,
-                               cfrn_categories=CFRN_CATEGORIES,
-                               total_questions=total_questions,
-                               domain_totals=domain_totals)
+                                   category_stats=category_stats,
+                                   cfrn_categories=CFRN_CATEGORIES,
+                                   total_questions=total_questions,
+                                   domain_totals=domain_totals)
         from flask import make_response
         resp = make_response(response)
         resp.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
@@ -632,11 +669,9 @@ def cfrn_domain_quiz(domain_name):
         domain_name = unquote(domain_name)
 
         if domain_name not in CFRN_DOMAINS:
-            print(f"Invalid CFRN domain: {domain_name}")
             return redirect(url_for('cfrn_page'))
 
         questions = load_cfrn_questions()
-        # Match any question whose category begins with "DomainName; "
         filtered_questions = [
             q for q in questions
             if q.get('category', '').startswith(domain_name + ';') or
@@ -644,7 +679,6 @@ def cfrn_domain_quiz(domain_name):
         ]
 
         if not filtered_questions:
-            print(f"No questions found for CFRN domain: {domain_name}")
             return redirect(url_for('cfrn_page'))
 
         safe_name = domain_name.replace(' ', '_').replace('/', '_')
@@ -674,19 +708,17 @@ def cfrn_domain_quiz(domain_name):
 
 @app.route('/category/Nursing_Certifications/CFRN/category/<category_name>')
 def cfrn_category_quiz(category_name):
-    """CFRN subcategory-specific quiz - filters questions by exact CFRN category string"""
+    """CFRN subcategory-specific quiz - filters by exact category string"""
     try:
         category_name = unquote(category_name)
 
         if category_name not in CFRN_CATEGORIES:
-            print(f"Invalid CFRN category: {category_name}")
             return redirect(url_for('cfrn_page'))
 
         questions = load_cfrn_questions()
         filtered_questions = [q for q in questions if q.get('category') == category_name]
 
         if not filtered_questions:
-            print(f"No questions found for CFRN category: {category_name}")
             return redirect(url_for('cfrn_page'))
 
         quiz_data = {
@@ -696,7 +728,6 @@ def cfrn_category_quiz(category_name):
 
         quiz_length = request.args.get('quiz_length', 'full')
         autostart = request.args.get('autostart', 'false').lower() == 'true'
-
         subcat = category_name.split('; ')[1] if '; ' in category_name else category_name
 
         return render_template('quiz.html',
@@ -717,10 +748,8 @@ def cfrn_category_quiz(category_name):
 
 @app.route('/category/Adult_Health/module/comprehensive')
 def adult_health_comprehensive_quiz():
-    """Adult Health comprehensive quiz - combines ALL questions from all 5 modules"""
     try:
         all_questions = load_adult_health_questions()
-
         combined_questions = []
         seen_ids = set()
 
@@ -733,14 +762,9 @@ def adult_health_comprehensive_quiz():
                     seen_ids.add(q_id)
 
         if not combined_questions:
-            print("No questions found for Adult Health Comprehensive")
             return redirect(url_for('category', category='Adult_Health'))
 
-        quiz_data = {
-            'module': 'Adult_Health_Comprehensive',
-            'questions': combined_questions
-        }
-
+        quiz_data = {'module': 'Adult_Health_Comprehensive', 'questions': combined_questions}
         quiz_length = request.args.get('quiz_length', '10')
         autostart = request.args.get('autostart', 'false').lower() == 'true'
 
@@ -762,26 +786,18 @@ def adult_health_comprehensive_quiz():
 
 @app.route('/category/Adult_Health/module/<int:module_num>')
 def adult_health_module_quiz(module_num):
-    """Adult Health module-specific quiz - filters questions by book and chapter/concept"""
     try:
         if module_num not in ADULT_HEALTH_MODULES:
-            print(f"Invalid Adult Health module: {module_num}")
             return redirect(url_for('category', category='Adult_Health'))
 
         questions = load_adult_health_questions()
         filtered_questions = filter_adult_health_questions(questions, module_num)
 
         if not filtered_questions:
-            print(f"No questions found for Adult Health module {module_num}")
             return redirect(url_for('category', category='Adult_Health'))
 
         module_def = ADULT_HEALTH_MODULES[module_num]
-
-        quiz_data = {
-            'module': f'Adult_Health_Module_{module_num}',
-            'questions': filtered_questions
-        }
-
+        quiz_data = {'module': f'Adult_Health_Module_{module_num}', 'questions': filtered_questions}
         quiz_length = request.args.get('quiz_length', '10')
         autostart = request.args.get('autostart', 'false').lower() == 'true'
 
@@ -803,27 +819,22 @@ def adult_health_module_quiz(module_num):
 
 @app.route('/category/Pharmacology/Comprehensive')
 def pharmacology_comprehensive():
-    """Comprehensive Pharmacology Quizzes page"""
     try:
         return render_template('pharmacology-comprehensive.html')
     except Exception as e:
-        print(f"Error in pharmacology_comprehensive route: {e}")
         return jsonify({'error': str(e)}), 500
 
 
 @app.route('/category/Pharmacology/Categories')
 def pharmacology_categories():
-    """Pharmacology by Category page"""
     try:
         return render_template('pharmacology-categories.html')
     except Exception as e:
-        print(f"Error in pharmacology_categories route: {e}")
         return jsonify({'error': str(e)}), 500
 
 
 @app.route('/quiz/<category>/<module>')
 def quiz(category, module):
-    """Quiz page for multiple choice"""
     try:
         category = unquote(category)
         module = unquote(module)
@@ -851,7 +862,6 @@ def quiz(category, module):
         autostart = request.args.get('autostart', 'false').lower() == 'true'
         is_comprehensive = request.args.get('is_comprehensive', 'false').lower() == 'true'
         quiz_length = request.args.get('quiz_length', 'full')
-
         metadata = CATEGORY_METADATA.get(category, {})
 
         if 'CCRN' in module and category == 'Nursing_Certifications':
@@ -889,11 +899,9 @@ def quiz(category, module):
 
 @app.route('/quiz-fill-blank/<category>/<module>')
 def quiz_fill_blank(category, module):
-    """Quiz page for fill-in-the-blank"""
     try:
         category = unquote(category)
         module = unquote(module)
-
         categories = get_categories()
 
         if category not in categories:
@@ -927,35 +935,28 @@ def quiz_fill_blank(category, module):
 
 @app.route('/quiz-fishbone-mcq')
 def quiz_fishbone_mcq():
-    """Fishbone MCQ quiz page"""
     try:
         return render_template('quiz-fishbone-mcq.html')
     except Exception as e:
-        print(f"Error in quiz_fishbone_mcq route: {e}")
         return jsonify({'error': str(e)}), 500
 
 
 @app.route('/quiz-fishbone-fill')
 def quiz_fishbone_fill():
-    """Fishbone fill-in-the-blank quiz page"""
     try:
         return render_template('quiz-fishbone-fill.html')
     except Exception as e:
-        print(f"Error in quiz_fishbone_fill route: {e}")
         return jsonify({'error': str(e)}), 500
 
 
 @app.route('/api/categories')
 def api_categories():
-    """API endpoint to get all categories with metadata"""
     try:
         categories_list = get_categories()
         result = {}
-
         for category in categories_list:
             modules = get_modules_in_category(category)
             metadata = CATEGORY_METADATA.get(category, {})
-
             result[category] = {
                 'display_name': metadata.get('display_name', category.replace('_', ' ')),
                 'icon': metadata.get('icon', '📚'),
@@ -963,23 +964,18 @@ def api_categories():
                 'description': metadata.get('description', ''),
                 'modules': modules
             }
-
         return jsonify(result)
     except Exception as e:
-        print(f"Error in api_categories: {e}")
         return jsonify({'error': str(e)}), 500
 
 
 @app.route('/api/category/<category>/quizzes')
 def api_category_quizzes(category):
-    """API endpoint to get quizzes for a category"""
     try:
         category = unquote(category)
         categories = get_categories()
-
         if category not in categories:
             return jsonify({'error': 'Category not found'}), 404
-
         quizzes = get_category_quizzes(category)
         return jsonify(quizzes)
     except Exception as e:
@@ -988,7 +984,6 @@ def api_category_quizzes(category):
 
 @app.route('/api/nclex/category-stats')
 def api_nclex_category_stats():
-    """API endpoint to get NCLEX category statistics"""
     try:
         stats = get_nclex_category_stats()
         return jsonify(stats)
@@ -996,16 +991,32 @@ def api_nclex_category_stats():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/api/cfrn/count')
+def api_cfrn_count():
+    """Returns Q####-validated CFRN question count. Useful for PWA cache-busting checks."""
+    try:
+        return jsonify({'count': get_cfrn_valid_count()})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/ccrn/count')
+def api_ccrn_count():
+    """Returns Q####-validated CCRN question count."""
+    try:
+        return jsonify({'count': get_ccrn_valid_count()})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/modules')
 def modules():
-    """Get all available modules (backward compatibility)"""
     try:
         all_modules = []
         for category in get_categories():
             modules_list = get_modules_in_category(category)
             regular_modules = [m for m in modules_list if 'Fill_In_The_Blank' not in m]
             all_modules.extend(regular_modules)
-
         return jsonify({'modules': sorted(all_modules)})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
