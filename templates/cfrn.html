@@ -27,12 +27,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
     
     <style>
-        /* Offline indicator */
         .offline-indicator {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             background: linear-gradient(135deg, #ff9800, #f57c00);
             color: white;
             padding: 12px 20px;
@@ -43,7 +40,6 @@
         }
         .offline-indicator.hidden { display: none; }
 
-        /* Weekly Progress Widget */
         .weekly-progress-widget {
             display: inline-flex;
             align-items: center;
@@ -67,12 +63,8 @@
             min-width: 24px;
             text-align: center;
         }
-        .widget-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+        .widget-container { text-align: center; margin-bottom: 20px; }
 
-        /* Navigation Links */
         .nav-links { margin-bottom: 20px; }
         .nav-links .home-link {
             display: inline-block;
@@ -92,19 +84,12 @@
         }
         .nav-links .back-link:hover { text-decoration: underline; }
 
-        /* Page Header */
         .page-header { margin-bottom: 30px; }
-        .page-header-top {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 8px;
-        }
+        .page-header-top { display: flex; align-items: center; gap: 15px; margin-bottom: 8px; }
         .page-header h1 { margin: 0; font-size: 2.2em; color: #333; }
         .page-header p { margin: 5px 0 0 0; color: #666; font-size: 1.05em; }
         .header-icon { font-size: 2.2em; }
 
-        /* Section styling */
         .section {
             background: white;
             border-radius: 16px;
@@ -112,22 +97,11 @@
             margin-bottom: 28px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
         }
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
         .section-header h2 { margin: 0; font-size: 1.4em; color: #333; }
         .section-icon { font-size: 1.6em; }
-        .section-description {
-            color: #666;
-            font-size: 0.95em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
+        .section-description { color: #666; font-size: 0.95em; line-height: 1.6; margin-bottom: 20px; }
 
-        /* Comprehensive Quiz Card */
         .comprehensive-card {
             background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
             border-radius: 16px;
@@ -148,22 +122,6 @@
             margin-bottom: 20px;
             opacity: 0.95;
         }
-        .comprehensive-card .info-box {
-            background: rgba(255,255,255,0.15);
-            border-radius: 10px;
-            padding: 16px;
-            margin-bottom: 20px;
-        }
-        .comprehensive-card .info-box h4 {
-            margin: 0 0 8px 0;
-            font-size: 1em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .comprehensive-card .info-box p { margin: 0; font-size: 0.9em; opacity: 0.9; }
-
-        /* Comprehensive Quiz Controls */
         .comprehensive-controls {
             display: flex;
             flex-wrap: wrap;
@@ -173,13 +131,8 @@
             padding: 20px;
             background: rgba(255,255,255,0.15);
             border-radius: 12px;
-            margin-top: 8px;
         }
-        .comprehensive-length-selector {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .comprehensive-length-selector { display: flex; align-items: center; gap: 12px; }
         .comprehensive-length-selector label { font-weight: 600; color: white; font-size: 0.95em; }
         .comprehensive-length-buttons { display: flex; gap: 0; }
         .comprehensive-length-btn {
@@ -196,10 +149,7 @@
         .comprehensive-length-btn:first-child { border-radius: 8px 0 0 8px; }
         .comprehensive-length-btn:last-child { border-radius: 0 8px 8px 0; }
         .comprehensive-length-btn:not(:last-child) { border-right: none; }
-        .comprehensive-length-btn:hover:not(.active) {
-            background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.6);
-        }
+        .comprehensive-length-btn:hover:not(.active) { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.6); }
         .comprehensive-length-btn.active { background: white; color: #1565c0; border-color: white; }
 
         .start-comprehensive-btn {
@@ -219,17 +169,12 @@
             box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
         }
 
-        /* ============================================
-           Domain Cards (5 top-level domains)
-           ============================================ */
-
         .domain-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 16px;
             margin-bottom: 24px;
         }
-
         .domain-card {
             background: #f8f9fa;
             border-radius: 14px;
@@ -254,51 +199,11 @@
             box-shadow: 0 4px 16px rgba(25, 118, 210, 0.25);
             transform: translateY(-2px);
         }
+        .domain-card-header { display: flex; align-items: center; gap: 12px; }
+        .domain-card-icon { font-size: 2em; line-height: 1; flex-shrink: 0; }
+        .domain-card h4 { margin: 0; font-size: 1.0em; color: #1a1a1a; line-height: 1.3; font-weight: 700; }
 
-        .domain-card-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        .domain-card-icon {
-            font-size: 2em;
-            line-height: 1;
-            flex-shrink: 0;
-        }
-        .domain-card-title-group {
-            flex: 1;
-        }
-        .domain-card h4 {
-            margin: 0 0 4px 0;
-            font-size: 1.0em;
-            color: #1a1a1a;
-            line-height: 1.3;
-            font-weight: 700;
-        }
-        .domain-exam-badge {
-            display: inline-block;
-            background: #e3f2fd;
-            color: #1565c0;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.75em;
-            font-weight: 600;
-        }
-        .domain-card.selected .domain-exam-badge {
-            background: rgba(25, 118, 210, 0.15);
-            color: #0d47a1;
-        }
-
-        .domain-question-count {
-            font-size: 0.85em;
-            color: #666;
-            font-weight: 500;
-        }
-
-        /* Performance Bar */
-        .performance-bar-container {
-            margin-top: 4px;
-        }
+        .performance-bar-container { margin-top: 4px; }
         .performance-bar-label {
             display: flex;
             justify-content: space-between;
@@ -308,27 +213,15 @@
         }
         .performance-bar-label .label-text { color: #666; }
         .performance-bar-label .percentage { font-weight: 700; font-size: 0.97em; }
-        .performance-bar {
-            height: 9px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        .performance-bar-fill {
-            height: 100%;
-            border-radius: 5px;
-            transition: width 0.3s ease, background-color 0.3s ease;
-        }
+        .performance-bar { height: 9px; background: #e0e0e0; border-radius: 5px; overflow: hidden; }
+        .performance-bar-fill { height: 100%; border-radius: 5px; transition: width 0.3s ease, background-color 0.3s ease; }
         .performance-bar-container.no-data .performance-bar-fill { display: none; }
         .performance-bar-container.no-data .percentage { color: #999; font-weight: 500; }
 
-        /* Selection checkmark */
         .selection-indicator {
             position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 24px;
-            height: 24px;
+            top: 12px; right: 12px;
+            width: 24px; height: 24px;
             border-radius: 50%;
             border: 2px solid #ccc;
             background: white;
@@ -346,7 +239,6 @@
             color: white;
         }
 
-        /* Quiz Controls */
         .quiz-controls {
             display: flex;
             flex-wrap: wrap;
@@ -358,11 +250,7 @@
             border-radius: 12px;
             margin-top: 4px;
         }
-        .length-selector {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .length-selector { display: flex; align-items: center; gap: 12px; }
         .length-selector label { font-weight: 600; color: #333; font-size: 0.95em; }
         .length-buttons { display: flex; gap: 0; }
         .length-btn {
@@ -398,14 +286,8 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
         }
-        .start-domain-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
+        .start-domain-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
 
-        /* Reset button */
         .reset-stats-btn {
             display: inline-block;
             margin-top: 16px;
@@ -421,32 +303,17 @@
         }
         .reset-stats-btn:hover { background: #e0e0e0; }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .page-header h1 { font-size: 1.8em; }
             .section { padding: 20px; }
             .domain-grid { grid-template-columns: 1fr; }
-            .quiz-controls {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 16px;
-            }
-            .length-selector {
-                flex-direction: column;
-                align-items: stretch;
-            }
+            .quiz-controls { flex-direction: column; align-items: stretch; gap: 16px; }
+            .length-selector { flex-direction: column; align-items: stretch; }
             .length-buttons { width: 100%; }
             .length-btn { flex: 1; padding: 12px 16px; }
             .start-domain-btn { width: 100%; }
-            .comprehensive-controls {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 16px;
-            }
-            .comprehensive-length-selector {
-                flex-direction: column;
-                align-items: stretch;
-            }
+            .comprehensive-controls { flex-direction: column; align-items: stretch; gap: 16px; }
+            .comprehensive-length-selector { flex-direction: column; align-items: stretch; }
             .comprehensive-length-buttons { width: 100%; }
             .comprehensive-length-btn { flex: 1; padding: 12px 16px; }
             .start-comprehensive-btn { width: 100%; }
@@ -454,19 +321,16 @@
     </style>
 </head>
 <body>
-    <!-- Offline Indicator -->
     <div id="offlineIndicator" class="offline-indicator hidden">
         📡 You're offline - Using cached content
     </div>
 
     <div class="container">
-        <!-- Navigation Links -->
         <div class="nav-links">
             <a href="/" class="home-link">🏠 Nurse Success Study Hub</a><br>
             <a href="/category/Nursing_Certifications" class="back-link">← Nursing Certifications</a>
         </div>
 
-        <!-- Weekly Progress Widget -->
         <div class="widget-container">
             <div class="weekly-progress-widget">
                 <span class="progress-icon">📊</span>
@@ -475,7 +339,6 @@
             </div>
         </div>
 
-        <!-- Page Header -->
         <div class="page-header">
             <div class="page-header-top">
                 <span class="header-icon">🚁</span>
@@ -497,11 +360,6 @@
                     Take a comprehensive practice quiz covering all CFRN exam content areas.
                     Questions are drawn from all 5 BCEN domains weighted to reflect the actual exam distribution.
                 </p>
-                <div class="info-box">
-                    <h4>📋 BCEN Exam Distribution (150 total items):</h4>
-                    <p>General Principles (28) · Resuscitation Principles (38) · Trauma (29) · Medical Emergencies (40) · Special Populations (15)</p>
-                </div>
-                
                 <div class="comprehensive-controls">
                     <div class="comprehensive-length-selector">
                         <label>Quiz Length:</label>
@@ -538,12 +396,8 @@
                     <div class="selection-indicator">✓</div>
                     <div class="domain-card-header">
                         <span class="domain-card-icon">✈️</span>
-                        <div class="domain-card-title-group">
-                            <h4>General Principles of Flight Transport Nursing Practice</h4>
-                            <span class="domain-exam-badge">28 exam items</span>
-                        </div>
+                        <h4>General Principles of Flight Transport Nursing Practice</h4>
                     </div>
-                    <div class="domain-question-count">{{ gp_count }} questions available</div>
                     <div class="performance-bar-container no-data" data-domain="General Principles">
                         <div class="performance-bar-label">
                             <span class="label-text">Performance</span>
@@ -561,12 +415,8 @@
                     <div class="selection-indicator">✓</div>
                     <div class="domain-card-header">
                         <span class="domain-card-icon">💉</span>
-                        <div class="domain-card-title-group">
-                            <h4>Resuscitation Principles</h4>
-                            <span class="domain-exam-badge">38 exam items</span>
-                        </div>
+                        <h4>Resuscitation Principles</h4>
                     </div>
-                    <div class="domain-question-count">{{ rp_count }} questions available</div>
                     <div class="performance-bar-container no-data" data-domain="Resuscitation Principles">
                         <div class="performance-bar-label">
                             <span class="label-text">Performance</span>
@@ -584,12 +434,8 @@
                     <div class="selection-indicator">✓</div>
                     <div class="domain-card-header">
                         <span class="domain-card-icon">🩹</span>
-                        <div class="domain-card-title-group">
-                            <h4>Trauma</h4>
-                            <span class="domain-exam-badge">29 exam items</span>
-                        </div>
+                        <h4>Trauma</h4>
                     </div>
-                    <div class="domain-question-count">{{ tr_count }} questions available</div>
                     <div class="performance-bar-container no-data" data-domain="Trauma">
                         <div class="performance-bar-label">
                             <span class="label-text">Performance</span>
@@ -607,12 +453,8 @@
                     <div class="selection-indicator">✓</div>
                     <div class="domain-card-header">
                         <span class="domain-card-icon">🏥</span>
-                        <div class="domain-card-title-group">
-                            <h4>Medical Emergencies</h4>
-                            <span class="domain-exam-badge">40 exam items</span>
-                        </div>
+                        <h4>Medical Emergencies</h4>
                     </div>
-                    <div class="domain-question-count">{{ me_count }} questions available</div>
                     <div class="performance-bar-container no-data" data-domain="Medical Emergencies">
                         <div class="performance-bar-label">
                             <span class="label-text">Performance</span>
@@ -630,12 +472,8 @@
                     <div class="selection-indicator">✓</div>
                     <div class="domain-card-header">
                         <span class="domain-card-icon">👶</span>
-                        <div class="domain-card-title-group">
-                            <h4>Special Populations</h4>
-                            <span class="domain-exam-badge">15 exam items</span>
-                        </div>
+                        <h4>Special Populations</h4>
                     </div>
-                    <div class="domain-question-count">{{ sp_count }} questions available</div>
                     <div class="performance-bar-container no-data" data-domain="Special Populations">
                         <div class="performance-bar-label">
                             <span class="label-text">Performance</span>
@@ -649,7 +487,6 @@
 
             </div><!-- /domain-grid -->
 
-            <!-- Quiz Controls -->
             <div class="quiz-controls">
                 <div class="length-selector">
                     <label>Quiz Length:</label>
@@ -670,16 +507,11 @@
         </div>
     </div>
 
-    <!-- Progress Store -->
     <script src="{{ url_for('static', filename='js/progress-store.js') }}"></script>
-    
-    <!-- PWA Utils -->
     <script src="{{ url_for('static', filename='js/pwa-utils.js') }}"></script>
 
     <script>
-        // ============================================
-        // Weekly Progress Counter
-        // ============================================
+        // Weekly Progress
         function updateWeeklyCount() {
             if (window.StudyGuruProgress) {
                 document.getElementById('weeklyCount').textContent =
@@ -691,9 +523,7 @@
             if (e.key && e.key.startsWith('sg:v1:')) updateWeeklyCount();
         });
 
-        // ============================================
-        // Comprehensive Quiz Launcher
-        // ============================================
+        // Comprehensive Quiz
         let comprehensiveLength = 25;
         const comprehensiveLengthBtns = document.querySelectorAll('.comprehensive-length-btn');
         const startComprehensiveBtn = document.getElementById('startComprehensiveBtn');
@@ -707,13 +537,10 @@
         });
 
         startComprehensiveBtn.addEventListener('click', () => {
-            const url = `/quiz/Nursing_Certifications/CFRN_Question_Bank?quiz_length=${comprehensiveLength}&autostart=true`;
-            window.location.href = url;
+            window.location.href = `/quiz/Nursing_Certifications/CFRN_Question_Bank?quiz_length=${comprehensiveLength}&autostart=true`;
         });
 
-        // ============================================
-        // Domain Card Selection & Quiz Launcher
-        // ============================================
+        // Domain Card Selection
         let selectedDomain = null;
         let selectedLength = 25;
 
@@ -750,16 +577,15 @@
                 startBtn.textContent = 'Select a Domain to Start';
                 return;
             }
-
             const card = document.querySelector(`.domain-card[data-domain="${CSS.escape(selectedDomain)}"]`);
             const availableCount = parseInt(card?.dataset.count || 0, 10);
 
-            if (selectedLength > availableCount && availableCount > 0) {
-                startBtn.disabled = true;
-                startBtn.textContent = `Only ${availableCount} questions available`;
-            } else if (availableCount === 0) {
+            if (availableCount === 0) {
                 startBtn.disabled = true;
                 startBtn.textContent = 'No questions available yet';
+            } else if (selectedLength > availableCount) {
+                startBtn.disabled = true;
+                startBtn.textContent = `Only ${availableCount} questions available`;
             } else {
                 startBtn.disabled = false;
                 startBtn.textContent = `Start "${selectedDomain}" Quiz (${selectedLength}Q) →`;
@@ -768,15 +594,10 @@
 
         startBtn.addEventListener('click', () => {
             if (!selectedDomain || startBtn.disabled) return;
-            const url = `/category/Nursing_Certifications/CFRN/domain/${encodeURIComponent(selectedDomain)}?quiz_length=${selectedLength}&autostart=true`;
-            window.location.href = url;
+            window.location.href = `/category/Nursing_Certifications/CFRN/domain/${encodeURIComponent(selectedDomain)}?quiz_length=${selectedLength}&autostart=true`;
         });
 
-        // ============================================
-        // Performance Bars — aggregate subcategory scores per domain
-        // ============================================
-
-        // Map each domain to the subcategory keys stored in progress-store
+        // Performance Bars
         const DOMAIN_SUBCATEGORIES = {
             'General Principles': [
                 'General Principles; Transport Physiology',
@@ -847,9 +668,7 @@
             if (!window.StudyGuruProgress) return null;
             const averages = window.StudyGuruProgress.getAllCategoryAverages();
             const subcats = DOMAIN_SUBCATEGORIES[domainName] || [];
-            const scores = subcats
-                .map(k => averages[k])
-                .filter(v => v !== undefined && v !== null);
+            const scores = subcats.map(k => averages[k]).filter(v => v !== undefined && v !== null);
             if (scores.length === 0) return null;
             return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
         }
@@ -858,8 +677,8 @@
             document.querySelectorAll('.performance-bar-container[data-domain]').forEach(container => {
                 const domain = container.dataset.domain;
                 const avg = getDomainAverage(domain);
-                const pctEl  = container.querySelector('.percentage');
-                const fill   = container.querySelector('.performance-bar-fill');
+                const pctEl = container.querySelector('.percentage');
+                const fill  = container.querySelector('.performance-bar-fill');
 
                 if (avg !== null) {
                     container.classList.remove('no-data');
@@ -883,9 +702,7 @@
             if (e.key && e.key.startsWith('sg:v1:')) updatePerformanceBars();
         });
 
-        // ============================================
         // Reset Stats
-        // ============================================
         document.getElementById('resetStatsBtn').addEventListener('click', () => {
             if (confirm('Reset all CFRN domain performance data? This cannot be undone.')) {
                 if (window.StudyGuruProgress) {
@@ -895,12 +712,9 @@
             }
         });
 
-        // ============================================
         // Offline Indicator
-        // ============================================
         function updateOfflineIndicator() {
-            const el = document.getElementById('offlineIndicator');
-            el.classList.toggle('hidden', navigator.onLine);
+            document.getElementById('offlineIndicator').classList.toggle('hidden', navigator.onLine);
         }
         window.addEventListener('online', updateOfflineIndicator);
         window.addEventListener('offline', updateOfflineIndicator);
