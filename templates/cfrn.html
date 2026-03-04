@@ -6,211 +6,208 @@
     <title>CFRN Practice System - Nurse Success Study Hub</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='category-style.css') }}">
-    
-    <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
-    
-    <!-- Theme Color -->
     <meta name="theme-color" content="#1e88e5">
-    
-    <!-- PWA Specific -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Nurse Study">
-    
-    <!-- Apple Touch Icons -->
     <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
     <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
-    
+
     <style>
         .offline-indicator {
-            position: fixed;
-            top: 0; left: 0; right: 0;
+            position: fixed; top: 0; left: 0; right: 0;
             background: linear-gradient(135deg, #ff9800, #f57c00);
-            color: white;
-            padding: 12px 20px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 14px;
-            z-index: 10000;
+            color: white; padding: 12px 20px; text-align: center;
+            font-weight: 600; font-size: 14px; z-index: 10000;
         }
         .offline-indicator.hidden { display: none; }
 
-        .weekly-progress-widget {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin: 0 auto 20px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(30, 136, 229, 0.2);
-            border-radius: 50px;
-            box-shadow: 0 2px 8px rgba(30, 136, 229, 0.1);
-            font-size: 14px;
-            color: #333;
+        /* ============================================================
+           Widget Container
+        ============================================================ */
+        .widget-container {
+            text-align: center; margin-bottom: 20px;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
         }
-        .weekly-progress-widget .progress-icon { font-size: 18px; }
-        .weekly-progress-widget .progress-label { color: #666; font-weight: 500; }
-        .weekly-progress-widget .progress-value {
-            font-weight: 800;
-            font-size: 18px;
-            color: #1e88e5;
-            min-width: 24px;
-            text-align: center;
-        }
-        .widget-container { text-align: center; margin-bottom: 20px; }
 
+        /* ============================================================
+           Mastery Counter Widget
+        ============================================================ */
+        .mastery-widget {
+            display: inline-flex; flex-direction: column; align-items: center; gap: 8px;
+            padding: 16px 28px;
+            background: rgba(255,255,255,0.97);
+            border: 1px solid rgba(30,136,229,0.3);
+            border-radius: 16px;
+            box-shadow: 0 3px 14px rgba(30,136,229,0.12);
+            min-width: 300px;
+        }
+        .mastery-widget-header { display: flex; align-items: center; gap: 8px; }
+        .mastery-widget-icon { font-size: 20px; }
+        .mastery-widget-label { font-weight: 700; font-size: 14px; color: #444; }
+        .mastery-widget-counts { display: flex; align-items: baseline; gap: 4px; }
+        .mastery-remaining { font-weight: 800; font-size: 28px; color: #1e88e5; min-width: 48px; text-align: right; }
+        .mastery-separator { font-size: 16px; color: #999; }
+        .mastery-total { font-size: 16px; color: #777; font-weight: 600; }
+        .mastery-suffix { font-size: 13px; color: #999; margin-left: 4px; }
+        .mastery-progress-bar { width: 100%; height: 8px; background: #e8f0fe; border-radius: 4px; overflow: hidden; }
+        .mastery-progress-fill {
+            height: 100%; background: linear-gradient(90deg, #1e88e5, #42a5f5);
+            border-radius: 4px; transition: width 0.4s ease;
+        }
+        .mastery-note { font-size: 11px; color: #aaa; font-style: italic; }
+        .mastery-widget.complete .mastery-remaining { color: #388e3c; }
+        .mastery-widget.complete .mastery-progress-fill { background: linear-gradient(90deg, #388e3c, #66bb6a); }
+
+        /* ============================================================
+           Target Date Widget
+        ============================================================ */
+        .target-widget {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 10px; padding: 10px 20px;
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(30,136,229,0.2);
+            border-radius: 50px;
+            box-shadow: 0 2px 8px rgba(30,136,229,0.08);
+            font-size: 13px; color: #444; flex-wrap: wrap;
+        }
+        .target-widget-icon { font-size: 16px; }
+        .target-widget label { font-weight: 600; color: #555; white-space: nowrap; }
+        .target-date-input {
+            padding: 5px 10px; border: 1px solid #ccc; border-radius: 6px;
+            font-size: 13px; font-family: inherit; color: #333; outline: none;
+            transition: border-color 0.2s;
+        }
+        .target-date-input:focus { border-color: #1e88e5; }
+        .target-set-btn {
+            padding: 5px 14px; background: #1e88e5; color: white; border: none;
+            border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
+            font-family: inherit; transition: background 0.2s;
+        }
+        .target-set-btn:hover { background: #1565c0; }
+        .target-active-text { font-weight: 500; color: #444; }
+        .target-active-text strong { color: #1e88e5; }
+        .target-days-remaining { color: #e65100; font-weight: 700; }
+        .target-days-remaining.ok { color: #388e3c; }
+        .target-clear-btn {
+            padding: 3px 10px; background: transparent; color: #999;
+            border: 1px solid #ddd; border-radius: 10px; font-size: 12px;
+            cursor: pointer; font-family: inherit; transition: all 0.2s;
+        }
+        .target-clear-btn:hover { background: #fee; color: #c62828; border-color: #c62828; }
+        .hidden { display: none !important; }
+
+        /* Cycle reset banner */
+        .cycle-reset-banner {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 10px 20px; background: #e8f5e9; border: 1px solid #a5d6a7;
+            border-radius: 10px; font-size: 13px; color: #2e7d32; font-weight: 600;
+        }
+
+        /* ============================================================
+           Weekly Progress Widget (smaller, below the others)
+        ============================================================ */
+        .weekly-progress-widget {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px; padding: 8px 18px;
+            background: rgba(255,255,255,0.85);
+            border: 1px solid rgba(30,136,229,0.15);
+            border-radius: 50px;
+            box-shadow: 0 1px 6px rgba(30,136,229,0.08);
+            font-size: 13px; color: #555;
+        }
+        .weekly-progress-widget .progress-icon { font-size: 16px; }
+        .weekly-progress-widget .progress-label { color: #777; font-weight: 500; }
+        .weekly-progress-widget .progress-value {
+            font-weight: 800; font-size: 16px; color: #1e88e5; min-width: 20px; text-align: center;
+        }
+
+        /* Navigation */
         .nav-links { margin-bottom: 20px; }
         .nav-links .home-link {
-            display: inline-block;
-            color: #666;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 500;
-            margin-bottom: 4px;
+            display: inline-block; color: #666; text-decoration: none;
+            font-size: 12px; font-weight: 500; margin-bottom: 4px;
         }
         .nav-links .home-link:hover { color: #333; text-decoration: underline; }
         .nav-links .back-link {
-            display: inline-block;
-            color: #0066cc;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
+            display: inline-block; color: #0066cc; text-decoration: none;
+            font-size: 14px; font-weight: 500;
         }
         .nav-links .back-link:hover { text-decoration: underline; }
 
+        /* Page Header */
         .page-header { margin-bottom: 30px; }
         .page-header-top { display: flex; align-items: center; gap: 15px; margin-bottom: 8px; }
         .page-header h1 { margin: 0; font-size: 2.2em; color: #333; }
         .page-header p { margin: 5px 0 0 0; color: #666; font-size: 1.05em; }
         .header-icon { font-size: 2.2em; }
 
+        /* Section */
         .section {
-            background: white;
-            border-radius: 16px;
-            padding: 28px;
-            margin-bottom: 28px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            background: white; border-radius: 16px; padding: 28px;
+            margin-bottom: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
         }
         .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
         .section-header h2 { margin: 0; font-size: 1.4em; color: #333; }
         .section-icon { font-size: 1.6em; }
         .section-description { color: #666; font-size: 0.95em; line-height: 1.6; margin-bottom: 20px; }
 
+        /* Comprehensive Card */
         .comprehensive-card {
             background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
-            border-radius: 16px;
-            padding: 28px;
-            color: white;
-            margin-bottom: 24px;
+            border-radius: 16px; padding: 28px; color: white; margin-bottom: 24px;
         }
-        .comprehensive-card h3 {
-            margin: 0 0 12px 0;
-            font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .comprehensive-card .card-description {
-            font-size: 1em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            opacity: 0.95;
-        }
+        .comprehensive-card h3 { margin: 0 0 12px 0; font-size: 1.5em; display: flex; align-items: center; gap: 12px; }
+        .comprehensive-card .card-description { font-size: 1em; line-height: 1.6; margin-bottom: 20px; opacity: 0.95; }
         .comprehensive-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 12px;
+            display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+            justify-content: space-between; padding: 20px;
+            background: rgba(255,255,255,0.15); border-radius: 12px; margin-top: 8px;
         }
         .comprehensive-length-selector { display: flex; align-items: center; gap: 12px; }
         .comprehensive-length-selector label { font-weight: 600; color: white; font-size: 0.95em; }
         .comprehensive-length-buttons { display: flex; gap: 0; }
         .comprehensive-length-btn {
-            padding: 10px 20px;
-            border: 2px solid rgba(255,255,255,0.4);
-            background: rgba(255,255,255,0.1);
-            color: white;
-            font-weight: 600;
-            font-size: 0.95em;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
+            padding: 10px 20px; border: 2px solid rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.1); color: white; font-weight: 600;
+            font-size: 0.95em; cursor: pointer; transition: all 0.2s; font-family: inherit;
         }
         .comprehensive-length-btn:first-child { border-radius: 8px 0 0 8px; }
-        .comprehensive-length-btn:last-child { border-radius: 0 8px 8px 0; }
+        .comprehensive-length-btn:last-child  { border-radius: 0 8px 8px 0; }
         .comprehensive-length-btn:not(:last-child) { border-right: none; }
         .comprehensive-length-btn:hover:not(.active) { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.6); }
         .comprehensive-length-btn.active { background: white; color: #1565c0; border-color: white; }
-
         .start-comprehensive-btn {
-            padding: 14px 32px;
-            background: linear-gradient(135deg, #4caf50, #388e3c);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.05em;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
+            padding: 14px 32px; background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white; border: none; border-radius: 10px; font-weight: 700;
+            font-size: 1.05em; cursor: pointer; transition: all 0.2s; font-family: inherit;
         }
-        .start-comprehensive-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
-        }
+        .start-comprehensive-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76,175,80,0.3); }
 
+        /* Domain Grid */
         .domain-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px; margin-bottom: 24px;
         }
         .domain-card {
-            background: #f8f9fa;
-            border-radius: 14px;
-            padding: 20px;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            background: #f8f9fa; border-radius: 14px; padding: 20px;
+            border: 2px solid transparent; cursor: pointer; transition: all 0.2s ease;
+            position: relative; display: flex; flex-direction: column; gap: 10px;
         }
-        .domain-card:hover {
-            background: #e3f2fd;
-            border-color: #90caf9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
-        }
-        .domain-card.selected {
-            background: #e3f2fd;
-            border-color: #1976d2;
-            box-shadow: 0 4px 16px rgba(25, 118, 210, 0.25);
-            transform: translateY(-2px);
-        }
-        .domain-card-header { display: flex; align-items: center; gap: 12px; }
+        .domain-card:hover { background: #e3f2fd; border-color: #90caf9; transform: translateY(-2px); box-shadow: 0 4px 16px rgba(25,118,210,0.15); }
+        .domain-card.selected { background: #e3f2fd; border-color: #1976d2; box-shadow: 0 4px 16px rgba(25,118,210,0.25); transform: translateY(-2px); }
+        .domain-card-header { display: flex; align-items: flex-start; gap: 12px; }
         .domain-card-icon { font-size: 2em; line-height: 1; flex-shrink: 0; }
         .domain-card h4 { margin: 0; font-size: 1.0em; color: #1a1a1a; line-height: 1.3; font-weight: 700; }
 
+        /* Performance Bar */
         .performance-bar-container { margin-top: 4px; }
-        .performance-bar-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px;
-            font-size: 0.82em;
-        }
+        .performance-bar-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-size: 0.82em; }
         .performance-bar-label .label-text { color: #666; }
         .performance-bar-label .percentage { font-weight: 700; font-size: 0.97em; }
         .performance-bar { height: 9px; background: #e0e0e0; border-radius: 5px; overflow: hidden; }
@@ -218,105 +215,68 @@
         .performance-bar-container.no-data .performance-bar-fill { display: none; }
         .performance-bar-container.no-data .percentage { color: #999; font-weight: 500; }
 
+        /* Selection checkmark */
         .selection-indicator {
-            position: absolute;
-            top: 12px; right: 12px;
-            width: 24px; height: 24px;
-            border-radius: 50%;
-            border: 2px solid #ccc;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            font-size: 13px;
-            font-weight: bold;
-            color: transparent;
+            position: absolute; top: 12px; right: 12px; width: 24px; height: 24px;
+            border-radius: 50%; border: 2px solid #ccc; background: white;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; font-size: 13px; font-weight: bold; color: transparent;
         }
-        .domain-card.selected .selection-indicator {
-            background: #1976d2;
-            border-color: #1976d2;
-            color: white;
-        }
+        .domain-card.selected .selection-indicator { background: #1976d2; border-color: #1976d2; color: white; }
 
+        /* Quiz Controls */
         .quiz-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            margin-top: 4px;
+            display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+            justify-content: space-between; padding: 20px;
+            background: #f8f9fa; border-radius: 12px; margin-top: 4px;
         }
         .length-selector { display: flex; align-items: center; gap: 12px; }
         .length-selector label { font-weight: 600; color: #333; font-size: 0.95em; }
         .length-buttons { display: flex; gap: 0; }
         .length-btn {
-            padding: 10px 20px;
-            border: 2px solid #ddd;
-            background: white;
-            color: #333;
-            font-weight: 600;
-            font-size: 0.95em;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
+            padding: 10px 20px; border: 2px solid #ddd; background: white;
+            color: #333; font-weight: 600; font-size: 0.95em; cursor: pointer;
+            transition: all 0.2s; font-family: inherit;
         }
         .length-btn:first-child { border-radius: 8px 0 0 8px; }
-        .length-btn:last-child { border-radius: 0 8px 8px 0; }
+        .length-btn:last-child  { border-radius: 0 8px 8px 0; }
         .length-btn:not(:last-child) { border-right: none; }
         .length-btn:hover:not(.active) { background: #f5f5f5; border-color: #1976d2; }
         .length-btn.active { background: #1976d2; color: white; border-color: #1976d2; }
-
         .start-domain-btn {
-            padding: 14px 32px;
-            background: linear-gradient(135deg, #4caf50, #388e3c);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.05em;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
+            padding: 14px 32px; background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white; border: none; border-radius: 10px; font-weight: 700;
+            font-size: 1.05em; cursor: pointer; transition: all 0.2s; font-family: inherit;
         }
-        .start-domain-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
-        }
+        .start-domain-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76,175,80,0.3); }
         .start-domain-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
 
+        /* Reset buttons */
+        .reset-actions { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
         .reset-stats-btn {
-            display: inline-block;
-            margin-top: 16px;
-            padding: 10px 20px;
-            background: #f5f5f5;
-            color: #666;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.9em;
-            cursor: pointer;
-            transition: background 0.2s;
-            font-family: inherit;
+            padding: 10px 20px; background: #f5f5f5; color: #666; border: none;
+            border-radius: 8px; font-size: 0.9em; cursor: pointer; transition: background 0.2s; font-family: inherit;
         }
         .reset-stats-btn:hover { background: #e0e0e0; }
+        .reset-cycle-btn {
+            padding: 10px 20px; background: #fff3e0; color: #e65100;
+            border: 1px solid #ffcc80; border-radius: 8px; font-size: 0.9em;
+            cursor: pointer; transition: all 0.2s; font-family: inherit;
+        }
+        .reset-cycle-btn:hover { background: #ffe0b2; }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .page-header h1 { font-size: 1.8em; }
             .section { padding: 20px; }
             .domain-grid { grid-template-columns: 1fr; }
-            .quiz-controls { flex-direction: column; align-items: stretch; gap: 16px; }
-            .length-selector { flex-direction: column; align-items: stretch; }
-            .length-buttons { width: 100%; }
-            .length-btn { flex: 1; padding: 12px 16px; }
-            .start-domain-btn { width: 100%; }
-            .comprehensive-controls { flex-direction: column; align-items: stretch; gap: 16px; }
-            .comprehensive-length-selector { flex-direction: column; align-items: stretch; }
-            .comprehensive-length-buttons { width: 100%; }
-            .comprehensive-length-btn { flex: 1; padding: 12px 16px; }
-            .start-comprehensive-btn { width: 100%; }
+            .mastery-widget { min-width: unset; width: 100%; max-width: 340px; }
+            .quiz-controls, .comprehensive-controls { flex-direction: column; align-items: stretch; gap: 16px; }
+            .length-selector, .comprehensive-length-selector { flex-direction: column; align-items: stretch; }
+            .length-buttons, .comprehensive-length-buttons { width: 100%; }
+            .length-btn, .comprehensive-length-btn { flex: 1; padding: 12px 16px; }
+            .start-domain-btn, .start-comprehensive-btn { width: 100%; }
+            .target-widget { padding: 10px 14px; }
         }
     </style>
 </head>
@@ -331,7 +291,52 @@
             <a href="/category/Nursing_Certifications" class="back-link">← Nursing Certifications</a>
         </div>
 
+        <!-- Widget Container -->
         <div class="widget-container">
+
+            <!-- Cycle Reset Banner -->
+            <div class="cycle-reset-banner hidden" id="cycleResetBanner">
+                🎉 Study cycle complete! Your target date passed. Set a new target to begin a fresh cycle.
+            </div>
+
+            <!-- Mastery Counter Widget -->
+            <div class="mastery-widget" id="masteryWidget">
+                <div class="mastery-widget-header">
+                    <span class="mastery-widget-icon">🎯</span>
+                    <span class="mastery-widget-label">Questions Left to Master</span>
+                </div>
+                <div class="mastery-widget-counts">
+                    <span class="mastery-remaining" id="masteryRemaining">—</span>
+                    <span class="mastery-separator"> of </span>
+                    <span class="mastery-total" id="masteryTotal">—</span>
+                    <span class="mastery-suffix">remaining</span>
+                </div>
+                <div class="mastery-progress-bar">
+                    <div class="mastery-progress-fill" id="masteryProgressFill" style="width: 0%"></div>
+                </div>
+                <div class="mastery-note">📍 Saved on this device only · Resets after target date</div>
+            </div>
+
+            <!-- Target Date Widget -->
+            <div class="target-widget">
+                <div id="targetInputMode">
+                    <span class="target-widget-icon">📅</span>
+                    <label for="targetDateInput">Study Target Date:</label>
+                    <input type="date" id="targetDateInput" class="target-date-input">
+                    <button id="setTargetBtn" class="target-set-btn">Set Target</button>
+                </div>
+                <div id="targetActiveMode" class="hidden">
+                    <span class="target-widget-icon">📅</span>
+                    <span class="target-active-text">
+                        Target: <strong id="targetDateDisplay"></strong>
+                        &nbsp;·&nbsp;
+                        <span class="target-days-remaining" id="targetDaysRemaining"></span>
+                    </span>
+                    <button id="clearTargetBtn" class="target-clear-btn">✕ Clear</button>
+                </div>
+            </div>
+
+            <!-- Weekly Counter -->
             <div class="weekly-progress-widget">
                 <span class="progress-icon">📊</span>
                 <span class="progress-label">Questions answered this week:</span>
@@ -339,6 +344,7 @@
             </div>
         </div>
 
+        <!-- Page Header -->
         <div class="page-header">
             <div class="page-header-top">
                 <span class="header-icon">🚁</span>
@@ -353,12 +359,12 @@
                 <span class="section-icon">🎯</span>
                 <h2>CFRN Comprehensive Quiz</h2>
             </div>
-
             <div class="comprehensive-card">
                 <h3>🚁 Master the CFRN</h3>
                 <p class="card-description">
                     Take a comprehensive practice quiz covering all CFRN exam content areas.
                     Questions are drawn from all 5 BCEN domains weighted to reflect the actual exam distribution.
+                    Quizzes of 25+ questions include 80% new questions toward your mastery goal and 20% review from previously mastered questions.
                 </p>
                 <div class="comprehensive-controls">
                     <div class="comprehensive-length-selector">
@@ -385,12 +391,11 @@
             </div>
             <p class="section-description">
                 Select a domain and quiz length to start focused practice. Categories follow the official
-                BCEN CFRN Examination Content Outline. Your scores are tracked to help identify areas needing improvement.
+                BCEN CFRN Examination Content Outline. Your scores are tracked across your study cycle to help identify areas needing improvement.
             </p>
 
             <div class="domain-grid">
 
-                <!-- Domain 1: General Principles -->
                 {% set gp_count = domain_totals.get('General Principles', 0) %}
                 <div class="domain-card" data-domain="General Principles" data-count="{{ gp_count }}">
                     <div class="selection-indicator">✓</div>
@@ -403,13 +408,10 @@
                             <span class="label-text">Performance</span>
                             <span class="percentage">No Data</span>
                         </div>
-                        <div class="performance-bar">
-                            <div class="performance-bar-fill" style="width: 0%;"></div>
-                        </div>
+                        <div class="performance-bar"><div class="performance-bar-fill" style="width:0%"></div></div>
                     </div>
                 </div>
 
-                <!-- Domain 2: Resuscitation Principles -->
                 {% set rp_count = domain_totals.get('Resuscitation Principles', 0) %}
                 <div class="domain-card" data-domain="Resuscitation Principles" data-count="{{ rp_count }}">
                     <div class="selection-indicator">✓</div>
@@ -422,13 +424,10 @@
                             <span class="label-text">Performance</span>
                             <span class="percentage">No Data</span>
                         </div>
-                        <div class="performance-bar">
-                            <div class="performance-bar-fill" style="width: 0%;"></div>
-                        </div>
+                        <div class="performance-bar"><div class="performance-bar-fill" style="width:0%"></div></div>
                     </div>
                 </div>
 
-                <!-- Domain 3: Trauma -->
                 {% set tr_count = domain_totals.get('Trauma', 0) %}
                 <div class="domain-card" data-domain="Trauma" data-count="{{ tr_count }}">
                     <div class="selection-indicator">✓</div>
@@ -441,13 +440,10 @@
                             <span class="label-text">Performance</span>
                             <span class="percentage">No Data</span>
                         </div>
-                        <div class="performance-bar">
-                            <div class="performance-bar-fill" style="width: 0%;"></div>
-                        </div>
+                        <div class="performance-bar"><div class="performance-bar-fill" style="width:0%"></div></div>
                     </div>
                 </div>
 
-                <!-- Domain 4: Medical Emergencies -->
                 {% set me_count = domain_totals.get('Medical Emergencies', 0) %}
                 <div class="domain-card" data-domain="Medical Emergencies" data-count="{{ me_count }}">
                     <div class="selection-indicator">✓</div>
@@ -460,13 +456,10 @@
                             <span class="label-text">Performance</span>
                             <span class="percentage">No Data</span>
                         </div>
-                        <div class="performance-bar">
-                            <div class="performance-bar-fill" style="width: 0%;"></div>
-                        </div>
+                        <div class="performance-bar"><div class="performance-bar-fill" style="width:0%"></div></div>
                     </div>
                 </div>
 
-                <!-- Domain 5: Special Populations -->
                 {% set sp_count = domain_totals.get('Special Populations', 0) %}
                 <div class="domain-card" data-domain="Special Populations" data-count="{{ sp_count }}">
                     <div class="selection-indicator">✓</div>
@@ -479,13 +472,11 @@
                             <span class="label-text">Performance</span>
                             <span class="percentage">No Data</span>
                         </div>
-                        <div class="performance-bar">
-                            <div class="performance-bar-fill" style="width: 0%;"></div>
-                        </div>
+                        <div class="performance-bar"><div class="performance-bar-fill" style="width:0%"></div></div>
                     </div>
                 </div>
 
-            </div><!-- /domain-grid -->
+            </div>
 
             <div class="quiz-controls">
                 <div class="length-selector">
@@ -501,9 +492,10 @@
                 </button>
             </div>
 
-            <button id="resetStatsBtn" class="reset-stats-btn">
-                🔄 Reset Domain Performance
-            </button>
+            <div class="reset-actions">
+                <button id="resetStatsBtn" class="reset-stats-btn">🔄 Reset Performance Bars</button>
+                <button id="resetCycleBtn" class="reset-cycle-btn">♻️ Reset Full Study Cycle</button>
+            </div>
         </div>
     </div>
 
@@ -511,22 +503,141 @@
     <script src="{{ url_for('static', filename='js/pwa-utils.js') }}"></script>
 
     <script>
-        // Weekly Progress
+        // ============================================================
+        // Constants
+        // ============================================================
+        const BANK = 'cfrn';
+
+        // Total question count derived from domain card data-count attributes
+        let CFRN_TOTAL = 0;
+        document.querySelectorAll('.domain-card[data-count]').forEach(c => {
+            CFRN_TOTAL += parseInt(c.dataset.count || 0, 10);
+        });
+
+        // ============================================================
+        // Cycle Reset Check — runs on every page load
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.StudyGuruProgress) {
+                const wasReset = window.StudyGuruProgress.checkAndResetCycle(BANK);
+                if (wasReset) {
+                    document.getElementById('cycleResetBanner').classList.remove('hidden');
+                }
+                updateMasteryWidget();
+                renderTargetWidget();
+                updateWeeklyCount();
+                updatePerformanceBars();
+            }
+        });
+
+        // ============================================================
+        // Mastery Widget
+        // ============================================================
+        function updateMasteryWidget() {
+            if (!window.StudyGuruProgress) return;
+            const masteredCount = window.StudyGuruProgress.getMasteredCount(BANK);
+            const remaining     = Math.max(0, CFRN_TOTAL - masteredCount);
+            const pct           = CFRN_TOTAL > 0 ? Math.round((masteredCount / CFRN_TOTAL) * 100) : 0;
+
+            document.getElementById('masteryRemaining').textContent    = remaining;
+            document.getElementById('masteryTotal').textContent        = '/ ' + CFRN_TOTAL;
+            document.getElementById('masteryProgressFill').style.width = pct + '%';
+
+            const widget = document.getElementById('masteryWidget');
+            widget.classList.toggle('complete', remaining === 0 && CFRN_TOTAL > 0);
+        }
+
+        window.addEventListener('storage', e => {
+            if (e.key && e.key.startsWith('sg:v1:')) {
+                updateMasteryWidget();
+                updateWeeklyCount();
+                updatePerformanceBars();
+            }
+        });
+        window.addEventListener('masteryUpdated', e => {
+            if (e.detail && e.detail.bank === BANK) updateMasteryWidget();
+        });
+
+        // ============================================================
+        // Target Date Widget
+        // ============================================================
+        function formatTargetDate(dateStr) {
+            const [year, month, day] = dateStr.split('-').map(Number);
+            return new Date(year, month - 1, day).toLocaleDateString('en-US', {
+                month: 'long', day: 'numeric', year: 'numeric'
+            });
+        }
+
+        function getDaysRemaining(dateStr) {
+            const today = new Date(); today.setHours(0, 0, 0, 0);
+            const [y, m, d] = dateStr.split('-').map(Number);
+            const target = new Date(y, m - 1, d);
+            const diff = Math.round((target - today) / 86400000);
+            if (diff < 0)  return { text: 'Expired',        ok: false };
+            if (diff === 0) return { text: 'Last day!',     ok: true  };
+            if (diff === 1) return { text: '1 day remaining', ok: true };
+            return { text: diff + ' days remaining',         ok: diff > 7 };
+        }
+
+        function renderTargetWidget() {
+            const store = window.StudyGuruProgress;
+            if (!store) return;
+            const targetDate = store.getTargetDate(BANK);
+            const inputMode  = document.getElementById('targetInputMode');
+            const activeMode = document.getElementById('targetActiveMode');
+
+            if (targetDate) {
+                inputMode.classList.add('hidden');
+                activeMode.classList.remove('hidden');
+                document.getElementById('targetDateDisplay').textContent = formatTargetDate(targetDate);
+                const days  = getDaysRemaining(targetDate);
+                const daysEl = document.getElementById('targetDaysRemaining');
+                daysEl.textContent = days.text;
+                daysEl.classList.toggle('ok', days.ok);
+            } else {
+                inputMode.classList.remove('hidden');
+                activeMode.classList.add('hidden');
+                const today = new Date();
+                document.getElementById('targetDateInput').min = today.toISOString().split('T')[0];
+            }
+        }
+
+        document.getElementById('setTargetBtn').addEventListener('click', () => {
+            const input   = document.getElementById('targetDateInput');
+            const dateStr = input.value;
+            if (!dateStr) { alert('Please select a target date.'); return; }
+            const today = new Date(); today.setHours(0, 0, 0, 0);
+            const [y, m, d] = dateStr.split('-').map(Number);
+            if (new Date(y, m - 1, d) <= today) {
+                alert('Please choose a future date.');
+                return;
+            }
+            window.StudyGuruProgress.setTargetDate(BANK, dateStr);
+            renderTargetWidget();
+        });
+
+        document.getElementById('clearTargetBtn').addEventListener('click', () => {
+            if (confirm('Clear the target date? Your mastered question count will not be affected.')) {
+                window.StudyGuruProgress.clearTargetDate(BANK);
+                renderTargetWidget();
+            }
+        });
+
+        // ============================================================
+        // Weekly Progress Counter
+        // ============================================================
         function updateWeeklyCount() {
             if (window.StudyGuruProgress) {
                 document.getElementById('weeklyCount').textContent =
                     window.StudyGuruProgress.answeredThisWeek();
             }
         }
-        document.addEventListener('DOMContentLoaded', updateWeeklyCount);
-        window.addEventListener('storage', (e) => {
-            if (e.key && e.key.startsWith('sg:v1:')) updateWeeklyCount();
-        });
 
-        // Comprehensive Quiz
+        // ============================================================
+        // Comprehensive Quiz Launcher
+        // ============================================================
         let comprehensiveLength = 25;
         const comprehensiveLengthBtns = document.querySelectorAll('.comprehensive-length-btn');
-        const startComprehensiveBtn = document.getElementById('startComprehensiveBtn');
 
         comprehensiveLengthBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -536,17 +647,19 @@
             });
         });
 
-        startComprehensiveBtn.addEventListener('click', () => {
+        document.getElementById('startComprehensiveBtn').addEventListener('click', () => {
             window.location.href = `/quiz/Nursing_Certifications/CFRN_Question_Bank?quiz_length=${comprehensiveLength}&autostart=true`;
         });
 
-        // Domain Card Selection
+        // ============================================================
+        // Domain Card Selection & Quiz Launcher
+        // ============================================================
         let selectedDomain = null;
         let selectedLength = 25;
 
         const domainCards = document.querySelectorAll('.domain-card');
-        const lengthBtns = document.querySelectorAll('.length-btn');
-        const startBtn = document.getElementById('startDomainQuizBtn');
+        const lengthBtns  = document.querySelectorAll('.length-btn');
+        const startBtn    = document.getElementById('startDomainQuizBtn');
 
         domainCards.forEach(card => {
             card.addEventListener('click', () => {
@@ -577,9 +690,8 @@
                 startBtn.textContent = 'Select a Domain to Start';
                 return;
             }
-            const card = document.querySelector(`.domain-card[data-domain="${CSS.escape(selectedDomain)}"]`);
+            const card           = document.querySelector(`.domain-card[data-domain="${CSS.escape(selectedDomain)}"]`);
             const availableCount = parseInt(card?.dataset.count || 0, 10);
-
             if (availableCount === 0) {
                 startBtn.disabled = true;
                 startBtn.textContent = 'No questions available yet';
@@ -597,7 +709,9 @@
             window.location.href = `/category/Nursing_Certifications/CFRN/domain/${encodeURIComponent(selectedDomain)}?quiz_length=${selectedLength}&autostart=true`;
         });
 
-        // Performance Bars
+        // ============================================================
+        // Performance Bars — reads from CFRN cycle performance
+        // ============================================================
         const DOMAIN_SUBCATEGORIES = {
             'General Principles': [
                 'General Principles; Transport Physiology',
@@ -651,24 +765,19 @@
                 return `rgb(${r},${g},${b})`;
             } else if (pct < 85) {
                 const ratio = (pct - 77) / 7;
-                const r = Math.round(255 + (139 - 255) * ratio);
-                const g = Math.round(193 + (195 - 193) * ratio);
-                const b = Math.round(7   + (74  - 7)   * ratio);
-                return `rgb(${r},${g},${b})`;
+                return `rgb(${Math.round(255 + (139-255)*ratio)},${Math.round(193 + (195-193)*ratio)},${Math.round(7 + (74-7)*ratio)})`;
             } else {
                 const ratio = (pct - 85) / 15;
-                const r = Math.round(139 + (76  - 139) * ratio);
-                const g = Math.round(195 + (175 - 195) * ratio);
-                const b = Math.round(74  + (80  - 74)  * ratio);
-                return `rgb(${r},${g},${b})`;
+                return `rgb(${Math.round(139 + (76-139)*ratio)},${Math.round(195 + (175-195)*ratio)},${Math.round(74 + (80-74)*ratio)})`;
             }
         }
 
         function getDomainAverage(domainName) {
             if (!window.StudyGuruProgress) return null;
-            const averages = window.StudyGuruProgress.getAllCategoryAverages();
-            const subcats = DOMAIN_SUBCATEGORIES[domainName] || [];
-            const scores = subcats.map(k => averages[k]).filter(v => v !== undefined && v !== null);
+            // Read from CFRN cycle performance (tied to target date / resets with cycle)
+            const averages = window.StudyGuruProgress.getAllCycleCategoryAverages(BANK);
+            const subcats  = DOMAIN_SUBCATEGORIES[domainName] || [];
+            const scores   = subcats.map(k => averages[k]).filter(v => v !== undefined && v !== null);
             if (scores.length === 0) return null;
             return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
         }
@@ -676,47 +785,60 @@
         function updatePerformanceBars() {
             document.querySelectorAll('.performance-bar-container[data-domain]').forEach(container => {
                 const domain = container.dataset.domain;
-                const avg = getDomainAverage(domain);
-                const pctEl = container.querySelector('.percentage');
-                const fill  = container.querySelector('.performance-bar-fill');
+                const avg    = getDomainAverage(domain);
+                const pctEl  = container.querySelector('.percentage');
+                const fill   = container.querySelector('.performance-bar-fill');
 
                 if (avg !== null) {
                     container.classList.remove('no-data');
                     pctEl.textContent = `${avg}%`;
                     pctEl.style.color = getPerformanceColor(avg);
-                    fill.style.width = `${avg}%`;
+                    fill.style.width  = `${avg}%`;
                     fill.style.backgroundColor = getPerformanceColor(avg);
                     fill.style.display = 'block';
                 } else {
                     container.classList.add('no-data');
                     pctEl.textContent = 'No Data';
                     pctEl.style.color = '#999';
-                    fill.style.width = '0%';
+                    fill.style.width  = '0%';
                     fill.style.display = 'none';
                 }
             });
         }
 
-        document.addEventListener('DOMContentLoaded', updatePerformanceBars);
-        window.addEventListener('storage', (e) => {
-            if (e.key && e.key.startsWith('sg:v1:')) updatePerformanceBars();
-        });
-
-        // Reset Stats
+        // ============================================================
+        // Reset Buttons
+        // ============================================================
         document.getElementById('resetStatsBtn').addEventListener('click', () => {
-            if (confirm('Reset all CFRN domain performance data? This cannot be undone.')) {
+            if (confirm('Reset CFRN performance bar data? Your mastered question count will not be affected.')) {
                 if (window.StudyGuruProgress) {
-                    window.StudyGuruProgress.clearCategoryPerformance();
+                    window.StudyGuruProgress.clearCyclePerf(BANK);
                     updatePerformanceBars();
                 }
             }
         });
 
+        document.getElementById('resetCycleBtn').addEventListener('click', () => {
+            if (confirm('⚠️ Reset your FULL CFRN study cycle?\n\nThis will clear:\n• All mastered question IDs\n• All performance bar data\n• Your target date\n\nThis cannot be undone.')) {
+                if (window.StudyGuruProgress) {
+                    window.StudyGuruProgress.clearMasteredIds(BANK);
+                    window.StudyGuruProgress.clearCyclePerf(BANK);
+                    window.StudyGuruProgress.clearTargetDate(BANK);
+                    updateMasteryWidget();
+                    updatePerformanceBars();
+                    renderTargetWidget();
+                    document.getElementById('cycleResetBanner').classList.add('hidden');
+                }
+            }
+        });
+
+        // ============================================================
         // Offline Indicator
+        // ============================================================
         function updateOfflineIndicator() {
             document.getElementById('offlineIndicator').classList.toggle('hidden', navigator.onLine);
         }
-        window.addEventListener('online', updateOfflineIndicator);
+        window.addEventListener('online',  updateOfflineIndicator);
         window.addEventListener('offline', updateOfflineIndicator);
         updateOfflineIndicator();
     </script>
