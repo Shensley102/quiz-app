@@ -2834,7 +2834,7 @@
   {
     "id": "Q178",
     "category": "Resuscitation Principles",
-    "stem": "The crew is transporting a patient with a potassium level of",
+    "stem": "The crew is transporting a patient with a potassium level of 6.7, as indicated by the portable blood analysis system (commonly known as epoc or I-STAT). The most appropriate prehospital treatment is:",
     "options": [
       "Sodium bicarbonate bolus",
       "Potassium infusion",
@@ -2850,7 +2850,7 @@
   {
     "id": "Q179",
     "category": "Medical Emergencies",
-    "stem": "The flight paramedic would anticipate the patient with",
+    "stem": "The flight paramedic would anticipate the patient with decompensated septic shock to have which hemodynamic profile?",
     "options": [
       "Low CVP, cardiac output and index, high SVR",
       "Low CVP, SVR, cardiac output and index",
