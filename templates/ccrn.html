@@ -474,13 +474,29 @@
         // Constants
         // ============================================================
         const BANK = 'ccrn';
-        const CCRN_TOTAL = {{ total_questions }};
+        // Total resolved in priority order:
+        // 1. Flask-rendered Jinja value
+        // 2. Live /api/ccrn/count fetch (bypasses SW cache)
+        let CCRN_TOTAL = {{ total_questions | default(0) }};
 
         // ============================================================
         // Init — cycle check + all widget renders
         // ============================================================
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             if (!window.StudyGuruProgress) return;
+
+            // If Flask gave us 0, try the API — excluded from SW cache
+            if (CCRN_TOTAL === 0) {
+                try {
+                    const res = await fetch('/api/ccrn/count');
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.count > 0) CCRN_TOTAL = data.count;
+                    }
+                } catch (e) {
+                    console.warn('[CCRN] Could not fetch count from API:', e);
+                }
+            }
 
             const wasReset = window.StudyGuruProgress.checkAndResetCycle(BANK);
             if (wasReset) {
