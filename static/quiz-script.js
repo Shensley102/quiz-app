@@ -12,8 +12,15 @@
    - Resume quiz support
    - Fill-in-the-blank question support
    - Image question support
+   - CFRN/CCRN 80/20 new/recycled question split
+   - Mastery ID recording on quiz completion
    
    PATCH NOTES:
+   - Bank detection for CFRN / CCRN modules
+   - 80/20 new/recycled split: 10Q = 100% new, 25/50/100Q = 80% new / 20% recycled
+   - New questions tagged _isNew on the question object
+   - finishQuiz() writes mastered IDs and cycle category scores for CFRN/CCRN
+   - Non-CFRN/CCRN quizzes continue to use global category performance
    - Percentage-based missed question requeue thresholds
      10Q: unchanged (end-of-queue fallback only)
      25Q: 20% = 5 missed → immediate front-of-queue injection
@@ -85,19 +92,23 @@
   }
 
   // -----------------------------------------------------------
+  // Bank Detection — determines mastery tracking for CFRN/CCRN
+  // -----------------------------------------------------------
+  function detectBank() {
+    const name = ((state.moduleName || '') + ' ' + (state.category || '')).toUpperCase();
+    if (name.includes('CFRN')) return 'cfrn';
+    if (name.includes('CCRN')) return 'ccrn';
+    return null;
+  }
+
+  // -----------------------------------------------------------
   // Requeue Threshold
   // -----------------------------------------------------------
-  // Returns the number of missed questions that triggers an
-  // immediate front-of-queue injection.
-  // 10Q: returns Infinity — no threshold, fallback only
-  // 25Q: 20% = 5
-  // 50Q: 16% = 8
-  // 100Q: 10% = 10
   function getRequeueThreshold(quizLength) {
-    if (quizLength <= 10) return Infinity;   // 10Q: no mid-quiz requeue
-    if (quizLength <= 25) return Math.round(quizLength * 0.20);  // 25Q → 5
-    if (quizLength <= 50) return Math.round(quizLength * 0.16);  // 50Q → 8
-    return Math.round(quizLength * 0.10);                        // 100Q → 10
+    if (quizLength <= 10) return Infinity;
+    if (quizLength <= 25) return Math.round(quizLength * 0.20);
+    if (quizLength <= 50) return Math.round(quizLength * 0.16);
+    return Math.round(quizLength * 0.10);
   }
 
   // -----------------------------------------------------------
@@ -111,9 +122,7 @@
   function getChoices(q) {
     const raw = q.options || q.choices || q.answers || [];
     
-    if (Array.isArray(raw)) {
-      return raw;
-    }
+    if (Array.isArray(raw)) return raw;
     
     if (raw && typeof raw === 'object') {
       const keys = Object.keys(raw).sort((a, b) => {
@@ -133,54 +142,39 @@
 
     for (let i = 0; i < choices.length; i++) {
       const c = choices[i];
-      if (typeof c === 'object' && c.correct === true) {
-        return i;
-      }
+      if (typeof c === 'object' && c.correct === true) return i;
     }
 
     if (q.correct !== undefined) {
       const correctVal = q.correct;
-
       if (Array.isArray(correctVal) && correctVal.length > 0) {
         const letter = correctVal[0].toUpperCase();
         return LETTERS.indexOf(letter);
       }
-      
-      if (typeof correctVal === 'string' && correctVal.length === 1) {
+      if (typeof correctVal === 'string' && correctVal.length === 1)
         return LETTERS.indexOf(correctVal.toUpperCase());
-      }
-      
-      if (typeof correctVal === 'number') {
-        return correctVal;
-      }
+      if (typeof correctVal === 'number') return correctVal;
     }
 
     if (q.answer !== undefined) {
       const answer = q.answer;
-
-      if (typeof answer === 'number') {
-        return answer;
-      }
-      
-      if (typeof answer === 'string' && answer.length === 1) {
+      if (typeof answer === 'number') return answer;
+      if (typeof answer === 'string' && answer.length === 1)
         return LETTERS.indexOf(answer.toUpperCase());
-      }
     }
 
     if (q.correctAnswer !== undefined) {
       const ca = q.correctAnswer;
       if (typeof ca === 'number') return ca;
-      if (typeof ca === 'string' && ca.length === 1) {
+      if (typeof ca === 'string' && ca.length === 1)
         return LETTERS.indexOf(ca.toUpperCase());
-      }
     }
 
     return -1;
   }
 
   function isCorrectAnswer(q, selectedOriginalIndex) {
-    const correctIdx = getCorrectIndex(q);
-    return correctIdx === selectedOriginalIndex;
+    return getCorrectIndex(q) === selectedOriginalIndex;
   }
 
   function getCorrectAnswerText(q) {
@@ -196,20 +190,16 @@
     
     answers.sort((a, b) => a.displayLetter.localeCompare(b.displayLetter));
     
-    if (isMultiSelect(q)) {
+    if (isMultiSelect(q))
       return answers.map(a => `${a.displayLetter}: ${a.text}`).join('\n');
-    }
     
     return answers.map(a => `${a.displayLetter}. ${a.text}`).join('');
   }
 
   function isMultiSelect(q) {
-    if (q.type === 'multi_select' || q.type === 'multiple_select' || q.type === 'multi-select') {
+    if (q.type === 'multi_select' || q.type === 'multiple_select' || q.type === 'multi-select')
       return true;
-    }
-    if (Array.isArray(q.correct) && q.correct.length > 1) {
-      return true;
-    }
+    if (Array.isArray(q.correct) && q.correct.length > 1) return true;
     return false;
   }
 
@@ -237,19 +227,11 @@
 
   function checkAnswerCorrect(q, selectedIndices) {
     const correctIndices = getCorrectIndices(q);
-    
     if (selectedIndices.length !== correctIndices.length) return false;
-    
-    const selectedSet = new Set(selectedIndices);
     const correctSet = new Set(correctIndices);
-    
     for (const idx of selectedIndices) {
       if (!correctSet.has(idx)) return false;
     }
-    for (const idx of correctIndices) {
-      if (!selectedSet.has(idx)) return false;
-    }
-    
     return true;
   }
 
@@ -263,19 +245,13 @@
 
   function getQuestionImageUrl(q) {
     if (!hasQuestionImage(q)) return null;
-    
     const imagePath = q.image.trim();
-    
-    if (imagePath.startsWith('/') || imagePath.startsWith('http')) {
-      return imagePath;
-    }
-    
+    if (imagePath.startsWith('/') || imagePath.startsWith('http')) return imagePath;
     return `/static/images/${imagePath}`;
   }
 
   function renderQuestionImage(q) {
     if (!hasQuestionImage(q)) return null;
-    
     const imageUrl = getQuestionImageUrl(q);
     if (!imageUrl) return null;
     
@@ -287,10 +263,7 @@
     img.alt = 'Question image';
     img.className = 'question-image';
     
-    img.addEventListener('load', () => {
-      container.classList.add('loaded');
-    });
-    
+    img.addEventListener('load', () => container.classList.add('loaded'));
     img.addEventListener('error', () => {
       console.warn('[Quiz] Failed to load question image:', imageUrl);
       container.classList.add('error');
@@ -316,53 +289,34 @@
 
   function normalizeAnswer(text) {
     if (text === null || text === undefined) return '';
-    const str = String(text);
-    return str
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, ' ');
+    return String(text).toLowerCase().trim().replace(/\s+/g, ' ');
   }
 
   function getFitbCorrectAnswers(q) {
     let answers = [];
-
     if (!q.correct) {
-      if (q.correctAnswer) {
-        answers = Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
-      } else if (q.answer) {
-        answers = Array.isArray(q.answer) ? q.answer : [q.answer];
-      } else {
-        return [];
-      }
+      if (q.correctAnswer) answers = Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
+      else if (q.answer) answers = Array.isArray(q.answer) ? q.answer : [q.answer];
+      else return [];
     } else {
       answers = Array.isArray(q.correct) ? q.correct : [q.correct];
     }
 
     const flattened = [];
     answers.forEach(item => {
-      if (Array.isArray(item)) {
-        item.forEach(subItem => {
-          flattened.push(String(subItem));
-        });
-      } else {
-        flattened.push(String(item));
-      }
+      if (Array.isArray(item)) item.forEach(subItem => flattened.push(String(subItem)));
+      else flattened.push(String(item));
     });
-
     return flattened;
   }
 
   function isFitbAnswerCorrect(userAnswer, q) {
     const correctAnswers = getFitbCorrectAnswers(q);
     if (correctAnswers.length === 0) return false;
-
     const normalized = normalizeAnswer(userAnswer);
     if (!normalized) return false;
-
     for (const correct of correctAnswers) {
-      if (normalizeAnswer(correct) === normalized) {
-        return true;
-      }
+      if (normalizeAnswer(correct) === normalized) return true;
     }
     return false;
   }
@@ -381,20 +335,16 @@
     }
 
     const rawCorrect = Array.isArray(q.correct) ? q.correct : [q.correct];
-    
     const isMultiBlank = rawCorrect.length > 0 && Array.isArray(rawCorrect[0]);
     
     if (isMultiBlank) {
-      const blankAnswers = rawCorrect.map((blankOptions, idx) => {
+      return rawCorrect.map((blankOptions, idx) => {
         const opts = Array.isArray(blankOptions) ? blankOptions : [blankOptions];
-        const options = opts.map(o => String(o)).join(' or ');
-        return `Blank ${idx + 1}: ${options}`;
-      });
-      return blankAnswers.join(' | ');
+        return `Blank ${idx + 1}: ${opts.map(o => String(o)).join(' or ')}`;
+      }).join(' | ');
     }
 
-    const answers = rawCorrect.map(c => String(c));
-    return answers.length > 0 ? answers.join(', ') : '(No correct answer defined)';
+    return rawCorrect.map(c => String(c)).join(', ') || '(No correct answer defined)';
   }
 
   function countBlanks(stem) {
@@ -404,53 +354,87 @@
   }
 
   function getFitbCorrectAnswersForBlank(q, blankIndex) {
-    let rawCorrect = null;
-    
-    if (q.correct) {
-      rawCorrect = q.correct;
-    } else if (q.correctAnswer) {
-      rawCorrect = q.correctAnswer;
-    } else if (q.answer) {
-      rawCorrect = q.answer;
-    }
-    
-    if (!rawCorrect) {
-      return [];
-    }
-    
-    if (!Array.isArray(rawCorrect)) {
-      rawCorrect = [rawCorrect];
-    }
+    let rawCorrect = q.correct || q.correctAnswer || q.answer || null;
+    if (!rawCorrect) return [];
+    if (!Array.isArray(rawCorrect)) rawCorrect = [rawCorrect];
     
     const isNestedFormat = rawCorrect.length > 0 && Array.isArray(rawCorrect[0]);
-    
     if (isNestedFormat) {
       const blankAnswers = rawCorrect[blankIndex];
-      if (!blankAnswers) {
-        return [];
-      }
-      if (Array.isArray(blankAnswers)) {
-        return blankAnswers.map(a => String(a));
-      }
-      return [String(blankAnswers)];
+      if (!blankAnswers) return [];
+      return Array.isArray(blankAnswers) ? blankAnswers.map(a => String(a)) : [String(blankAnswers)];
     }
     
-    if (blankIndex === 0) {
-      return rawCorrect.map(a => String(a));
-    }
-    
+    if (blankIndex === 0) return rawCorrect.map(a => String(a));
     return [];
   }
 
   // -----------------------------------------------------------
-  // Weighted Question Selection
+  // MASTERY-AWARE Question Selection
+  // Handles the 80/20 new/recycled split for CFRN and CCRN banks.
+  // For other banks, falls through to standard weighted selection.
+  // -----------------------------------------------------------
+
+  /**
+   * Split a question pool into new (unseen this cycle) and recycled
+   * (already mastered) pools, then select and tag with _isNew.
+   * Returns the final shuffled array ready for the quiz queue.
+   */
+  function selectWithMasterySplit(normalized, requested, isComprehensive, isCategoryQuiz, bank) {
+    const store = getProgressStore();
+    const masteredIds = store ? store.getMasteredIds(bank) : new Set();
+
+    const newPool      = normalized.filter(q => !masteredIds.has(q.id));
+    const recycledPool = normalized.filter(q =>  masteredIds.has(q.id));
+
+    // Determine targets
+    let newTarget, recycledTarget;
+    if (requested <= 10) {
+      newTarget      = requested;
+      recycledTarget = 0;
+    } else {
+      newTarget      = Math.round(requested * 0.80);
+      recycledTarget = requested - newTarget;
+    }
+
+    // Handle edge cases
+    const actualNew      = Math.min(newTarget, newPool.length);
+    const actualRecycled = Math.min(requested - actualNew, recycledPool.length);
+
+    // Select — new pool uses least-attempted ordering; recycled is shuffled
+    const sortedNew = sortByAttemptsLocal(newPool, store);
+    const selectedNew = sortedNew
+      .slice(0, actualNew)
+      .map(q => ({ ...q, _isNew: true }));
+
+    const selectedRecycled = shuffle([...recycledPool])
+      .slice(0, actualRecycled)
+      .map(q => ({ ...q, _isNew: false }));
+
+    console.log(`[Quiz] ${bank.toUpperCase()} mastery split: ${actualNew} new, ${actualRecycled} recycled of ${requested} requested`);
+    console.log(`[Quiz] New pool: ${newPool.length}, Recycled pool: ${recycledPool.length}`);
+
+    return shuffle([...selectedNew, ...selectedRecycled]);
+  }
+
+  function sortByAttemptsLocal(questions, store) {
+    if (!store || !store.getAttemptsMap) return shuffle([...questions]);
+    const attemptsMap = store.getAttemptsMap();
+    return [...questions].sort((a, b) => {
+      const attA = attemptsMap[a.id] || 0;
+      const attB = attemptsMap[b.id] || 0;
+      if (attA !== attB) return attA - attB;
+      return Math.random() - 0.5;
+    });
+  }
+
+  // -----------------------------------------------------------
+  // Weighted Question Selection (standard NCLEX path)
   // -----------------------------------------------------------
   function selectQuestionsWithWeighting(allQuestions, quizLength, isComprehensive, isCategoryQuiz) {
     console.log('[Quiz] selectQuestionsWithWeighting:', {
       totalQuestions: allQuestions.length,
-      quizLength,
-      isComprehensive,
-      isCategoryQuiz
+      quizLength, isComprehensive, isCategoryQuiz
     });
 
     const store = getProgressStore();
@@ -468,35 +452,28 @@
     function selectWithRatio(questions, count) {
       if (count <= 0 || questions.length === 0) return [];
       if (questions.length <= count) return shuffle([...questions]);
-
       const sorted = sortByLeastAttempts(questions);
       const twoThirdsCount = Math.ceil((count * 2) / 3);
-      const leastAsked = sorted.slice(0, twoThirdsCount);
-      const remainder = sorted.slice(twoThirdsCount);
-      const randomPick = shuffle(remainder).slice(0, count - twoThirdsCount);
-
+      const leastAsked  = sorted.slice(0, twoThirdsCount);
+      const remainder   = sorted.slice(twoThirdsCount);
+      const randomPick  = shuffle(remainder).slice(0, count - twoThirdsCount);
       return shuffle([...leastAsked, ...randomPick]);
     }
 
     if (isComprehensive && quizLength === 10) {
-      console.log('[Quiz] Using 100% least-asked selection for 10Q');
       const sorted = sortByLeastAttempts(allQuestions);
       return sorted.slice(0, Math.min(quizLength, allQuestions.length));
     }
 
     if (isCategoryQuiz) {
       if (quizLength <= 10) {
-        console.log('[Quiz] Using 100% least-asked selection for 10Q category quiz');
         const sorted = sortByLeastAttempts(allQuestions);
         return sorted.slice(0, Math.min(quizLength, allQuestions.length));
       }
-      console.log('[Quiz] Using 2:1 ratio for category quiz with', quizLength, 'questions');
       return selectWithRatio(allQuestions, quizLength);
     }
 
     if (isComprehensive && quizLength > 10) {
-      console.log('[Quiz] Using NCLEX weighted selection for', quizLength, 'questions');
-
       const byCategory = {};
       allQuestions.forEach(q => {
         const cat = q.category || 'Uncategorized';
@@ -505,17 +482,13 @@
       });
 
       const selected = [];
-
       for (const [category, weight] of Object.entries(NCLEX_CATEGORY_WEIGHTS)) {
         const categoryQuestions = byCategory[category] || [];
         if (categoryQuestions.length === 0) continue;
-
         const targetCount = Math.round(quizLength * weight);
         if (targetCount === 0) continue;
-
         const categorySelected = selectWithRatio(categoryQuestions, targetCount);
         selected.push(...categorySelected);
-        console.log(`[Quiz] ${category}: target=${targetCount}, selected=${categorySelected.length}`);
       }
 
       if (selected.length < quizLength) {
@@ -551,34 +524,34 @@
   // Element Caching
   // -----------------------------------------------------------
   function cacheElements() {
-    els.launcher = $('#launcher');
-    els.quiz = $('#quiz');
-    els.summary = $('#summary');
+    els.launcher  = $('#launcher');
+    els.quiz      = $('#quiz');
+    els.summary   = $('#summary');
 
     els.moduleSel = $('#moduleSel');
     els.lengthBtns = $('#lengthBtns');
-    els.startBtn = $('#startBtn');
+    els.startBtn  = $('#startBtn');
     els.resumeBtn = $('#resumeBtn');
 
-    els.questionText = $('#questionText');
-    els.optionsForm = $('#optionsForm');
-    els.submitBtn = $('#submitBtn');
-    els.feedback = $('#feedback');
-    els.rationale = $('#rationale');
-    els.answerLine = $('#answerLine');
+    els.questionText  = $('#questionText');
+    els.optionsForm   = $('#optionsForm');
+    els.submitBtn     = $('#submitBtn');
+    els.feedback      = $('#feedback');
+    els.rationale     = $('#rationale');
+    els.answerLine    = $('#answerLine');
 
-    els.progressFill = $('#progressFill');
-    els.progressLabel = $('#progressLabel');
-    els.runCounter = $('#runCounter');
+    els.progressFill    = $('#progressFill');
+    els.progressLabel   = $('#progressLabel');
+    els.runCounter      = $('#runCounter');
     els.remainingCounter = $('#remainingCounter');
-    els.countersBox = $('#countersBox');
+    els.countersBox     = $('#countersBox');
 
-    els.firstTrySummary = $('#firstTrySummary');
-    els.reviewList = $('#reviewList');
-    els.retryMissedBtn = $('#retryMissedBtn');
-    els.restartBtnSummary = $('#restartBtnSummary');
-    els.summaryActions = $('#summaryActions');
-    els.resetBtn = $('#resetBtn');
+    els.firstTrySummary    = $('#firstTrySummary');
+    els.reviewList         = $('#reviewList');
+    els.retryMissedBtn     = $('#retryMissedBtn');
+    els.restartBtnSummary  = $('#restartBtnSummary');
+    els.summaryActions     = $('#summaryActions');
+    els.resetBtn           = $('#resetBtn');
   }
 
   // -----------------------------------------------------------
@@ -586,8 +559,8 @@
   // -----------------------------------------------------------
   function showView(viewName) {
     if (els.launcher) els.launcher.classList.toggle('hidden', viewName !== 'launcher');
-    if (els.quiz) els.quiz.classList.toggle('hidden', viewName !== 'quiz');
-    if (els.summary) els.summary.classList.toggle('hidden', viewName !== 'summary');
+    if (els.quiz)     els.quiz.classList.toggle('hidden', viewName !== 'quiz');
+    if (els.summary)  els.summary.classList.toggle('hidden', viewName !== 'summary');
     if (els.resetBtn) els.resetBtn.classList.toggle('hidden', viewName !== 'quiz');
   }
 
@@ -597,30 +570,46 @@
   function buildRun(questions, opts = {}) {
     const normalized = questions.map((q, i) => ensureQuestionId({ ...q }, i));
 
-    const requested = opts.count || 10;
+    const requested      = opts.count || 10;
     const isComprehensive = opts.isComprehensive || state.isComprehensive;
-    const isCategoryQuiz = opts.isCategoryQuiz || state.isCategoryQuiz;
+    const isCategoryQuiz  = opts.isCategoryQuiz  || state.isCategoryQuiz;
+
+    // Bank detection for mastery tracking
+    const bank = detectBank();
 
     let selected;
+
     if (opts.isRetry) {
+      // Retry missed questions — preserve _isNew flags already on objects
       selected = shuffle(normalized);
+
+    } else if (bank) {
+      // CFRN / CCRN — apply 80/20 mastery split
+      selected = selectWithMasterySplit(normalized, requested, isComprehensive, isCategoryQuiz, bank);
+
     } else if (isComprehensive || isCategoryQuiz) {
-      selected = selectQuestionsWithWeighting(normalized, requested, isComprehensive, isCategoryQuiz);
+      // Standard weighted selection — tag all as _isNew: false (no mastery tracking)
+      selected = selectQuestionsWithWeighting(normalized, requested, isComprehensive, isCategoryQuiz)
+        .map(q => ({ ...q, _isNew: false }));
+
     } else {
-      selected = shuffle(normalized).slice(0, Math.min(requested, normalized.length));
+      selected = shuffle(normalized)
+        .slice(0, Math.min(requested, normalized.length))
+        .map(q => ({ ...q, _isNew: false }));
     }
 
     const threshold = getRequeueThreshold(selected.length);
-    console.log(`[Quiz] Requeue threshold: ${threshold === Infinity ? 'disabled (10Q)' : threshold + ' missed questions'}`);
+    console.log(`[Quiz] Bank: ${bank || 'none'} | Requeue threshold: ${threshold === Infinity ? 'disabled (10Q)' : threshold}`);
 
     return {
       isRetry: !!opts.isRetry,
       isComprehensive,
       isCategoryQuiz,
+      bank,                         // 'cfrn' | 'ccrn' | null
       quizLength: selected.length,
       queue: selected.slice(),
       missedQueue: [],
-      missedSinceLastRequeue: 0,   // ← counter that resets after each injection
+      missedSinceLastRequeue: 0,
       mastered: new Set(),
       correctFirstTry: 0,
       incorrectFirstTry: 0,
@@ -658,35 +647,24 @@
     
     setTimeout(() => {
       const quizCard = document.getElementById('quiz');
-      if (quizCard) {
-        quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      if (quizCard) quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 50);
   }
 
   function resetQuiz() {
     if (!run || !state.questions) return;
-
-    console.log('[Quiz] Resetting quiz...');
-    
     run = buildRun(state.questions, {
       count: state.quizLength,
       isComprehensive: state.isComprehensive,
       isCategoryQuiz: state.isCategoryQuiz,
       isRetry: false
     });
-
-    console.log('[Quiz] Quiz reset with', run.quizLength, 'new questions');
     clearResumeData();
-    
     run.questionNumber = 0;
     nextQuestion();
-    
     setTimeout(() => {
       const quizCard = document.getElementById('quiz');
-      if (quizCard) {
-        quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      if (quizCard) quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 50);
   }
 
@@ -703,38 +681,29 @@
       return;
     }
 
-    run = buildRun(missed, {
-      count: missed.length,
-      isRetry: true
-    });
+    run = buildRun(missed, { count: missed.length, isRetry: true });
 
     console.log('[Quiz] Starting retry with', run.quizLength, 'questions');
     showView('quiz');
     if (els.countersBox) els.countersBox.classList.remove('hidden');
     nextQuestion();
-    
     setTimeout(() => {
       const quizCard = document.getElementById('quiz');
-      if (quizCard) {
-        quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      if (quizCard) quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 50);
   }
 
   function nextQuestion() {
     if (!run) return;
 
-    // Quiz complete when all questions mastered
     if (run.mastered.size === run.quizLength) {
       finishQuiz();
       return;
     }
 
-    // Fallback: if queue is empty but missed questions remain, move them all back
     if (run.queue.length === 0 && run.missedQueue.length > 0) {
       run.queue = shuffle(run.missedQueue.splice(0));
       run.missedSinceLastRequeue = 0;
-      console.log('[Quiz] Fallback requeue: moved all missed to front of queue');
     }
 
     if (run.queue.length === 0) {
@@ -753,14 +722,14 @@
   }
 
   function updateProgress() {
-    const total = run.quizLength;
-    const mastered = run.mastered.size;
+    const total     = run.quizLength;
+    const mastered  = run.mastered.size;
     const remaining = total - mastered;
-    const pct = total > 0 ? Math.round((mastered / total) * 100) : 0;
+    const pct       = total > 0 ? Math.round((mastered / total) * 100) : 0;
 
-    if (els.progressFill) els.progressFill.style.width = `${pct}%`;
-    if (els.progressLabel) els.progressLabel.textContent = `${pct}% mastered`;
-    if (els.runCounter) els.runCounter.textContent = `Question: ${run.questionNumber}`;
+    if (els.progressFill)     els.progressFill.style.width = `${pct}%`;
+    if (els.progressLabel)    els.progressLabel.textContent = `${pct}% mastered`;
+    if (els.runCounter)       els.runCounter.textContent = `Question: ${run.questionNumber}`;
     if (els.remainingCounter) els.remainingCounter.textContent = `Questions Remaining: ${remaining}`;
   }
 
@@ -768,17 +737,13 @@
   // Render Question
   // -----------------------------------------------------------
   function renderQuestion(q) {
-    if (isFitbQuestion(q)) {
-      return renderFitbQuestion(q);
-    }
+    if (isFitbQuestion(q)) return renderFitbQuestion(q);
     renderMcqQuestion(q);
   }
 
   function clearQuestionImage() {
     const existingContainer = document.querySelector('.question-image-container');
-    if (existingContainer) {
-      existingContainer.remove();
-    }
+    if (existingContainer) existingContainer.remove();
   }
 
   // -----------------------------------------------------------
@@ -790,34 +755,20 @@
       els.feedback.textContent = '';
       els.feedback.className = 'feedback hidden';
     }
-    if (els.rationale) {
-      els.rationale.classList.add('hidden');
-      els.rationale.textContent = '';
-    }
-    if (els.answerLine) {
-      els.answerLine.classList.add('hidden');
-      els.answerLine.textContent = '';
-    }
+    if (els.rationale) { els.rationale.classList.add('hidden'); els.rationale.textContent = ''; }
+    if (els.answerLine) { els.answerLine.classList.add('hidden'); els.answerLine.textContent = ''; }
 
     clearQuestionImage();
 
     if (hasQuestionImage(q) && els.questionText) {
       const imageContainer = renderQuestionImage(q);
-      if (imageContainer) {
-        els.questionText.parentNode.insertBefore(imageContainer, els.questionText);
-      }
+      if (imageContainer) els.questionText.parentNode.insertBefore(imageContainer, els.questionText);
     }
 
-    if (els.questionText) {
-      els.questionText.textContent = getQuestionText(q);
-    }
+    if (els.questionText) els.questionText.textContent = getQuestionText(q);
 
     const blankCount = countBlanks(getQuestionText(q));
-    
-    if (blankCount > 1) {
-      return renderMultiBlankFitbQuestion(q, blankCount);
-    }
-
+    if (blankCount > 1) return renderMultiBlankFitbQuestion(q, blankCount);
     return renderSingleBlankFitbQuestion(q);
   }
 
@@ -851,11 +802,7 @@
       els.optionsForm.appendChild(wrapper);
 
       input.focus();
-
-      input.addEventListener('input', () => {
-        updateFitbSubmitButtonState();
-      });
-
+      input.addEventListener('input', () => updateFitbSubmitButtonState());
       input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && input.value.trim().length > 0 && els.submitBtn && !els.submitBtn.disabled) {
           e.preventDefault();
@@ -899,14 +846,8 @@
         wrapper.appendChild(input);
         els.optionsForm.appendChild(wrapper);
 
-        if (i === 0) {
-          input.focus();
-        }
-
-        input.addEventListener('input', () => {
-          updateFitbSubmitButtonState();
-        });
-
+        if (i === 0) input.focus();
+        input.addEventListener('input', () => updateFitbSubmitButtonState());
         input.addEventListener('keypress', (e) => {
           if (e.key === 'Enter' && els.submitBtn && !els.submitBtn.disabled) {
             e.preventDefault();
@@ -925,18 +866,12 @@
 
   function updateFitbSubmitButtonState() {
     if (!els.optionsForm || !els.submitBtn) return;
-
     const blankCount = parseInt(els.optionsForm.dataset.blankCount || '1', 10);
     let allFilled = true;
-
     for (let i = 0; i < blankCount; i++) {
       const input = document.getElementById(`fitbInput${i}`) || document.getElementById('fitbInput');
-      if (!input || !input.value.trim()) {
-        allFilled = false;
-        break;
-      }
+      if (!input || !input.value.trim()) { allFilled = false; break; }
     }
-
     els.submitBtn.disabled = !allFilled;
   }
 
@@ -949,47 +884,33 @@
       els.feedback.textContent = '';
       els.feedback.className = 'feedback hidden';
     }
-    if (els.rationale) {
-      els.rationale.classList.add('hidden');
-      els.rationale.textContent = '';
-    }
-    if (els.answerLine) {
-      els.answerLine.classList.add('hidden');
-      els.answerLine.textContent = '';
-    }
+    if (els.rationale) { els.rationale.classList.add('hidden'); els.rationale.textContent = ''; }
+    if (els.answerLine) { els.answerLine.classList.add('hidden'); els.answerLine.textContent = ''; }
 
     clearQuestionImage();
 
     if (hasQuestionImage(q) && els.questionText) {
       const imageContainer = renderQuestionImage(q);
-      if (imageContainer) {
-        els.questionText.parentNode.insertBefore(imageContainer, els.questionText);
-      }
+      if (imageContainer) els.questionText.parentNode.insertBefore(imageContainer, els.questionText);
     }
 
-    if (els.questionText) {
-      els.questionText.textContent = getQuestionText(q);
-    }
+    if (els.questionText) els.questionText.textContent = getQuestionText(q);
 
     const multiSelect = isMultiSelect(q);
-    const inputType = multiSelect ? 'checkbox' : 'radio';
+    const inputType   = multiSelect ? 'checkbox' : 'radio';
 
     if (els.optionsForm) {
       els.optionsForm.innerHTML = '';
       els.optionsForm.className = 'options';
       els.optionsForm.dataset.questionType = 'mcq';
-      if (multiSelect) {
-        els.optionsForm.classList.add('is-multi-select');
-      }
+      if (multiSelect) els.optionsForm.classList.add('is-multi-select');
 
       const choices = getChoices(q);
-      
       const choiceObjects = choices.map((c, i) => ({
         text: typeof c === 'string' ? c : (c.text || c.label || String(c)),
         originalIndex: i
       }));
       
-      // Shuffle answer positions — re-randomized on every render including requeues
       const shuffledChoices = shuffle(choiceObjects);
 
       run.shuffleMap = {};
@@ -1003,12 +924,12 @@
         const optDiv = document.createElement('div');
         optDiv.className = 'opt';
         optDiv.dataset.originalIndex = choice.originalIndex;
-        optDiv.dataset.displayIndex = displayIdx;
+        optDiv.dataset.displayIndex  = displayIdx;
 
         const input = document.createElement('input');
         input.type = inputType;
         input.name = 'answer';
-        input.id = `opt${displayIdx}`;
+        input.id   = `opt${displayIdx}`;
         input.value = displayIdx;
         input.dataset.originalIndex = choice.originalIndex;
         input.dataset.text = choice.text;
@@ -1026,15 +947,11 @@
 
         label.appendChild(letterSpan);
         label.appendChild(ansSpan);
-        
         optDiv.appendChild(input);
         optDiv.appendChild(label);
-        
         els.optionsForm.appendChild(optDiv);
 
-        input.addEventListener('change', () => {
-          updateSubmitButtonState();
-        });
+        input.addEventListener('change', () => updateSubmitButtonState());
       });
     }
 
@@ -1047,17 +964,10 @@
 
   function updateSubmitButtonState() {
     if (!els.optionsForm || !els.submitBtn) return;
-    
     const checked = els.optionsForm.querySelectorAll('input[name="answer"]:checked');
     const hasSelection = checked.length > 0;
-    
     els.submitBtn.disabled = !hasSelection;
-    
-    if (hasSelection) {
-      els.optionsForm.classList.add('has-selection');
-    } else {
-      els.optionsForm.classList.remove('has-selection');
-    }
+    els.optionsForm.classList.toggle('has-selection', hasSelection);
   }
 
   // -----------------------------------------------------------
@@ -1066,35 +976,25 @@
   function handleSubmit() {
     if (!run || !run.current) return;
 
-    const mode = els.submitBtn?.dataset.mode;
-    const q = run.current;
+    const mode  = els.submitBtn?.dataset.mode;
+    const q     = run.current;
     const isFitb = isFitbQuestion(q);
 
     // ===== FITB SUBMISSION =====
     if (isFitb) {
       const blankCount = countBlanks(getQuestionText(q));
-      
       const userAnswers = [];
       let allAnswered = true;
       
       for (let i = 0; i < blankCount; i++) {
         const input = document.getElementById(`fitbInput${i}`) || document.getElementById('fitbInput');
-        if (!input) {
-          allAnswered = false;
-          break;
-        }
+        if (!input) { allAnswered = false; break; }
         const answer = input.value.trim();
-        if (!answer) {
-          allAnswered = false;
-          break;
-        }
+        if (!answer) { allAnswered = false; break; }
         userAnswers.push(answer);
       }
 
-      if (!allAnswered) {
-        alert('Please fill in all blanks');
-        return;
-      }
+      if (!allAnswered) { alert('Please fill in all blanks'); return; }
 
       if (mode === 'submit') {
         run.answered = true;
@@ -1105,28 +1005,19 @@
         
         for (let i = 0; i < blankCount; i++) {
           const correctAnswersForBlank = getFitbCorrectAnswersForBlank(q, i);
-          const userAnswer = userAnswers[i];
-          
           let blankCorrect = false;
           for (const correctAns of correctAnswersForBlank) {
-            if (normalizeAnswer(userAnswer) === normalizeAnswer(correctAns)) {
+            if (normalizeAnswer(userAnswers[i]) === normalizeAnswer(correctAns)) {
               blankCorrect = true;
               break;
             }
           }
-          
           blankResults.push(blankCorrect);
-          
-          if (!blankCorrect) {
-            isCorrect = false;
-          }
+          if (!blankCorrect) isCorrect = false;
         }
 
         let rec = run.perQuestion.find(p => p.id === q.id);
-        if (!rec) {
-          rec = { id: q.id, correct: null, attempts: 0, questionObj: q };
-          run.perQuestion.push(rec);
-        }
+        if (!rec) { rec = { id: q.id, correct: null, attempts: 0, questionObj: q }; run.perQuestion.push(rec); }
         rec.attempts++;
 
         for (let i = 0; i < blankCount; i++) {
@@ -1134,26 +1025,15 @@
           if (input) {
             input.disabled = true;
             input.classList.remove('wrong', 'correct');
-            if (blankResults[i]) {
-              input.classList.add('correct');
-            } else {
-              input.classList.add('wrong');
-            }
+            input.classList.add(blankResults[i] ? 'correct' : 'wrong');
           }
         }
 
         if (isCorrect) {
-          if (rec.correct === null) {
-            rec.correct = true;
-            run.correctFirstTry++;
-          }
+          if (rec.correct === null) { rec.correct = true; run.correctFirstTry++; }
           run.mastered.add(q.id);
         } else {
-          if (rec.correct === null) {
-            rec.correct = false;
-            run.incorrectFirstTry++;
-          }
-          // Add to missedQueue and check threshold
+          if (rec.correct === null) { rec.correct = false; run.incorrectFirstTry++; }
           run.missedQueue.push(q);
           run.missedSinceLastRequeue++;
           checkAndInjectMissedQuestions();
@@ -1163,7 +1043,6 @@
         wrappers.forEach((wrapper, idx) => {
           const existingIcon = wrapper.querySelector('.fitb-result-icon');
           if (existingIcon) existingIcon.remove();
-
           const icon = document.createElement('span');
           icon.className = `fitb-result-icon ${blankResults[idx] ? 'correct' : 'wrong'}`;
           icon.textContent = blankResults[idx] ? '✓' : '✗';
@@ -1179,11 +1058,9 @@
         }
 
         setTimeout(() => {
-          if (els.answerLine && !els.answerLine.classList.contains('hidden')) {
-            els.answerLine.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          } else if (els.feedback && !els.feedback.classList.contains('hidden')) {
-            els.feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
+          const target = els.answerLine?.classList.contains('hidden') ? els.feedback : els.answerLine;
+          if (target && !target.classList.contains('hidden'))
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 100);
 
         updateProgress();
@@ -1193,9 +1070,7 @@
         nextQuestion();
         setTimeout(() => {
           const quizCard = document.getElementById('quiz');
-          if (quizCard) {
-            quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
+          if (quizCard) quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 50);
       }
       return;
@@ -1210,19 +1085,14 @@
       run.answered = true;
       run.totalAttempts++;
 
-      const multiSelect = isMultiSelect(q);
-      
-      const selectedIndices = Array.from(checkedInputs).map(inp => 
+      const selectedIndices = Array.from(checkedInputs).map(inp =>
         parseInt(inp.dataset.originalIndex, 10)
       );
       
       const isCorrect = checkAnswerCorrect(q, selectedIndices);
 
       let rec = run.perQuestion.find(p => p.id === q.id);
-      if (!rec) {
-        rec = { id: q.id, correct: null, attempts: 0, questionObj: q };
-        run.perQuestion.push(rec);
-      }
+      if (!rec) { rec = { id: q.id, correct: null, attempts: 0, questionObj: q }; run.perQuestion.push(rec); }
       rec.attempts++;
 
       const allOpts = els.optionsForm.querySelectorAll('.opt');
@@ -1231,43 +1101,25 @@
       els.optionsForm.classList.add('submitted');
 
       if (isCorrect) {
-        if (rec.correct === null) {
-          rec.correct = true;
-          run.correctFirstTry++;
-        }
+        if (rec.correct === null) { rec.correct = true; run.correctFirstTry++; }
         run.mastered.add(q.id);
         showFeedback(true, q, false);
-
         allOpts.forEach(opt => {
           const origIdx = parseInt(opt.dataset.originalIndex, 10);
-          if (selectedIndices.includes(origIdx)) {
-            addResultIcon(opt, 'correct');
-          }
+          if (selectedIndices.includes(origIdx)) addResultIcon(opt, 'correct');
         });
       } else {
-        if (rec.correct === null) {
-          rec.correct = false;
-          run.incorrectFirstTry++;
-        }
-
-        // Add to missedQueue, increment counter, then check threshold
+        if (rec.correct === null) { rec.correct = false; run.incorrectFirstTry++; }
         run.missedQueue.push(q);
         run.missedSinceLastRequeue++;
         checkAndInjectMissedQuestions();
-
         showFeedback(false, q, false);
-
         allOpts.forEach(opt => {
           const origIdx = parseInt(opt.dataset.originalIndex, 10);
-          const wasSelected = selectedIndices.includes(origIdx);
-          const isCorrectAnswer = correctIndices.includes(origIdx);
-          
-          if (wasSelected && !isCorrectAnswer) {
+          if (selectedIndices.includes(origIdx) && !correctIndices.includes(origIdx))
             addResultIcon(opt, 'wrong');
-          }
-          if (isCorrectAnswer) {
+          if (correctIndices.includes(origIdx))
             addResultIcon(opt, 'correct');
-          }
         });
       }
 
@@ -1277,16 +1129,12 @@
         els.submitBtn.disabled = false;
       }
 
-      els.optionsForm?.querySelectorAll('input').forEach(inp => {
-        inp.disabled = true;
-      });
+      els.optionsForm?.querySelectorAll('input').forEach(inp => { inp.disabled = true; });
 
       setTimeout(() => {
-        if (els.rationale && !els.rationale.classList.contains('hidden')) {
-          els.rationale.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else if (els.feedback && !els.feedback.classList.contains('hidden')) {
-          els.feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+        const target = els.rationale?.classList.contains('hidden') ? els.feedback : els.rationale;
+        if (target && !target.classList.contains('hidden'))
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 100);
 
       updateProgress();
@@ -1296,36 +1144,20 @@
       nextQuestion();
       setTimeout(() => {
         const quizCard = document.getElementById('quiz');
-        if (quizCard) {
-          quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+        if (quizCard) quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 50);
     }
   }
 
   // -----------------------------------------------------------
-  // Percentage-Based Missed Question Injection  (NEW)
+  // Missed Question Injection
   // -----------------------------------------------------------
-  // Called every time a question is answered incorrectly.
-  // When missedSinceLastRequeue hits the threshold:
-  //   1. Shuffle the accumulated missed questions
-  //   2. Inject them at the FRONT of the queue (next to be asked)
-  //   3. Remove them from missedQueue
-  //   4. Reset the counter
-  // 10Q quizzes: threshold is Infinity, so this never fires.
-  // The end-of-queue fallback in nextQuestion() catches any
-  // remaining missed questions regardless.
   function checkAndInjectMissedQuestions() {
-    if (run.requeueThreshold === Infinity) return;  // 10Q: skip
+    if (run.requeueThreshold === Infinity) return;
     if (run.missedSinceLastRequeue < run.requeueThreshold) return;
 
-    // Grab and shuffle the questions that have accumulated since last injection
     const toInject = shuffle(run.missedQueue.splice(0));
-
-    // Inject at front of queue so they're asked immediately after current question
     run.queue = toInject.concat(run.queue);
-
-    // Reset the per-cycle counter
     run.missedSinceLastRequeue = 0;
 
     console.log(`[Quiz] Threshold hit (${run.requeueThreshold}): injected ${toInject.length} missed questions at front of queue`);
@@ -1333,14 +1165,10 @@
 
   function addResultIcon(optElement, type) {
     const label = optElement.querySelector('label');
-    if (!label) return;
-    
-    if (label.querySelector('.result-icon')) return;
-    
+    if (!label || label.querySelector('.result-icon')) return;
     const iconSpan = document.createElement('span');
     iconSpan.className = `result-icon ${type}`;
     iconSpan.textContent = type === 'correct' ? '✓' : '✗';
-    
     label.insertBefore(iconSpan, label.firstChild);
   }
 
@@ -1349,16 +1177,9 @@
   // -----------------------------------------------------------
   function showFeedback(isCorrect, q, isFitb = false) {
     if (!els.feedback) return;
-
     els.feedback.classList.remove('hidden');
-
-    if (isCorrect) {
-      els.feedback.className = 'feedback ok';
-      els.feedback.textContent = 'Correct!';
-    } else {
-      els.feedback.className = 'feedback bad';
-      els.feedback.textContent = 'Incorrect';
-    }
+    els.feedback.className = isCorrect ? 'feedback ok' : 'feedback bad';
+    els.feedback.textContent = isCorrect ? 'Correct!' : 'Incorrect';
 
     const correctAnswer = isFitb ? getFitbCorrectAnswerText(q) : getCorrectAnswerText(q);
     if (els.answerLine && correctAnswer) {
@@ -1366,8 +1187,7 @@
       if (isFitb) {
         els.answerLine.innerHTML = `<strong>Correct Answer:</strong> ${correctAnswer}`;
       } else {
-        const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
-        els.answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${formattedAnswer}`;
+        els.answerLine.innerHTML = `<strong>Correct Answer:</strong><br>${correctAnswer.replace(/\n/g, '<br>')}`;
       }
     }
 
@@ -1384,9 +1204,9 @@
     console.log('[Quiz] Quiz complete');
     showView('summary');
 
-    const total = run.quizLength;
+    const total   = run.quizLength;
     const correct = run.correctFirstTry;
-    const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+    const pct     = total > 0 ? Math.round((correct / total) * 100) : 0;
 
     let scoreColor = '#f44336';
     if (pct >= 77) scoreColor = '#4caf50';
@@ -1404,22 +1224,14 @@
     const missedCount = run.perQuestion.filter(p => !p.correct).length;
     if (els.retryMissedBtn) {
       els.retryMissedBtn.classList.toggle('hidden', missedCount === 0);
-      
       const missedCountDisplay = document.getElementById('missedCountDisplay');
-      if (missedCountDisplay) {
-        missedCountDisplay.textContent = `(${missedCount})`;
-      }
-      
-      if (missedCount === 0 && els.restartBtnSummary) {
-        els.restartBtnSummary.style.flex = '5';
-      } else if (els.restartBtnSummary) {
-        els.restartBtnSummary.style.flex = '4';
-      }
+      if (missedCountDisplay) missedCountDisplay.textContent = `(${missedCount})`;
+      if (els.restartBtnSummary)
+        els.restartBtnSummary.style.flex = missedCount === 0 ? '5' : '4';
     }
 
     if (els.reviewList) {
       els.reviewList.innerHTML = '';
-
       run.perQuestion.forEach(p => {
         const q = p.questionObj;
         if (!q) return;
@@ -1429,20 +1241,18 @@
 
         const isFitb = isFitbQuestion(q);
         const correctAnswer = isFitb ? getFitbCorrectAnswerText(q) : getCorrectAnswerText(q);
-        const questionText = getQuestionText(q);
+        const questionText  = getQuestionText(q);
         
         let answerHtml;
         if (isFitb) {
           answerHtml = `<div class="review-correct-answer"><strong>Correct Answer:</strong> ${correctAnswer}</div>`;
         } else {
-          const formattedAnswer = correctAnswer.replace(/\n/g, '<br>');
-          answerHtml = `<div class="review-correct-answer"><strong>Correct Answer:</strong><br>${formattedAnswer}</div>`;
+          answerHtml = `<div class="review-correct-answer"><strong>Correct Answer:</strong><br>${correctAnswer.replace(/\n/g, '<br>')}</div>`;
         }
 
         let imageHtml = '';
         if (hasQuestionImage(q)) {
-          const imageUrl = getQuestionImageUrl(q);
-          imageHtml = `<div class="review-image"><img src="${imageUrl}" alt="Question image" /></div>`;
+          imageHtml = `<div class="review-image"><img src="${getQuestionImageUrl(q)}" alt="Question image" /></div>`;
         }
 
         div.innerHTML = `
@@ -1451,7 +1261,6 @@
           ${answerHtml}
           ${q.rationale ? `<div class="review-rationale"><strong>Rationale:</strong> ${q.rationale}</div>` : ''}
         `;
-
         els.reviewList.appendChild(div);
       });
     }
@@ -1469,31 +1278,61 @@
       }
     }
 
+    // -----------------------------------------------------------
+    // Progress Recording
+    // -----------------------------------------------------------
     const store = getProgressStore();
     if (store) {
+      // Weekly count — always recorded for all quizzes
       if (!run.isRetry && store.recordCompletedQuiz) {
         store.recordCompletedQuiz(total);
-        console.log(`[Quiz] Recorded ${total} questions to weekly count`);
       }
 
+      // Attempt tracking
       if (store.recordQuizAttempts) {
         const ids = run.perQuestion.map(p => p.id).filter(Boolean);
         store.recordQuizAttempts(ids);
       }
 
-      if (store.recordCategoryScore) {
-        const categoryResults = {};
-        run.perQuestion.forEach(p => {
-          const cat = p.questionObj?.category;
-          if (!cat) return;
-          if (!categoryResults[cat]) categoryResults[cat] = { correct: 0, total: 0 };
-          categoryResults[cat].total++;
-          if (p.correct) categoryResults[cat].correct++;
-        });
+      // Category score recording
+      const categoryResults = {};
+      run.perQuestion.forEach(p => {
+        const cat = p.questionObj?.category;
+        if (!cat) return;
+        if (!categoryResults[cat]) categoryResults[cat] = { correct: 0, total: 0 };
+        categoryResults[cat].total++;
+        if (p.correct) categoryResults[cat].correct++;
+      });
 
+      if (run.bank && !run.isRetry && store.recordCycleCategoryScore) {
+        // CFRN / CCRN → record to cycle performance (resets with target date)
+        for (const [cat, res] of Object.entries(categoryResults)) {
+          const catPct = Math.round((res.correct / res.total) * 100);
+          store.recordCycleCategoryScore(run.bank, cat, catPct);
+        }
+      } else if (!run.bank && store.recordCategoryScore) {
+        // All other quizzes → record to global performance
         for (const [cat, res] of Object.entries(categoryResults)) {
           const catPct = Math.round((res.correct / res.total) * 100);
           store.recordCategoryScore(cat, catPct);
+        }
+      }
+
+      // Mastery ID recording — CFRN / CCRN only, non-retry only
+      // All _isNew questions are guaranteed mastered (quiz never ends until all correct)
+      if (run.bank && !run.isRetry && store.addMasteredIds) {
+        const newIds = run.perQuestion
+          .map(p => p.questionObj)
+          .filter(q => q && q._isNew)
+          .map(q => q.id)
+          .filter(Boolean);
+
+        if (newIds.length > 0) {
+          store.addMasteredIds(run.bank, newIds);
+          console.log(`[Quiz] Recorded ${newIds.length} mastered IDs to ${run.bank} bank`);
+
+          // Dispatch event so CFRN/CCRN pages can update their mastery widget
+          window.dispatchEvent(new CustomEvent('masteryUpdated', { detail: { bank: run.bank } }));
         }
       }
     }
@@ -1514,6 +1353,7 @@
       isComprehensive: run.isComprehensive,
       isCategoryQuiz: run.isCategoryQuiz,
       isRetry: run.isRetry,
+      bank: run.bank,
       quizLength: run.quizLength,
       queue: run.queue,
       missedQueue: run.missedQueue,
@@ -1524,17 +1364,11 @@
       totalAttempts: run.totalAttempts,
       questionNumber: run.questionNumber,
       perQuestion: run.perQuestion.map(p => ({
-        id: p.id,
-        correct: p.correct,
-        attempts: p.attempts,
-        questionObj: p.questionObj
+        id: p.id, correct: p.correct, attempts: p.attempts, questionObj: p.questionObj
       }))
     };
-    try {
-      localStorage.setItem(RESUME_KEY, JSON.stringify(data));
-    } catch (e) {
-      console.warn('[Quiz] Failed to save resume data:', e);
-    }
+    try { localStorage.setItem(RESUME_KEY, JSON.stringify(data)); }
+    catch (e) { console.warn('[Quiz] Failed to save resume data:', e); }
   }
 
   function loadResumeData() {
@@ -1542,15 +1376,11 @@
       const raw = localStorage.getItem(RESUME_KEY);
       if (!raw) return null;
       return JSON.parse(raw);
-    } catch (e) {
-      return null;
-    }
+    } catch (e) { return null; }
   }
 
   function clearResumeData() {
-    try {
-      localStorage.removeItem(RESUME_KEY);
-    } catch (e) {}
+    try { localStorage.removeItem(RESUME_KEY); } catch (e) {}
   }
 
   function resumeQuiz() {
@@ -1561,6 +1391,7 @@
       isRetry: data.isRetry || false,
       isComprehensive: data.isComprehensive || false,
       isCategoryQuiz: data.isCategoryQuiz || false,
+      bank: data.bank || null,
       quizLength: data.quizLength || 10,
       queue: data.queue || [],
       missedQueue: data.missedQueue || [],
@@ -1579,12 +1410,9 @@
     showView('quiz');
     if (els.countersBox) els.countersBox.classList.remove('hidden');
     nextQuestion();
-    
     setTimeout(() => {
       const quizCard = document.getElementById('quiz');
-      if (quizCard) {
-        quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      if (quizCard) quizCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 50);
   }
 
@@ -1595,9 +1423,7 @@
     const hasQuestionsLeft = (data?.queue?.length > 0) || (data?.missedQueue?.length > 0);
     const notComplete = mastered < quizLength;
     const available = !!(data && hasQuestionsLeft && notComplete);
-    if (els.resumeBtn) {
-      els.resumeBtn.classList.toggle('hidden', !available);
-    }
+    if (els.resumeBtn) els.resumeBtn.classList.toggle('hidden', !available);
     return available;
   }
 
@@ -1605,31 +1431,12 @@
   // Event Setup
   // -----------------------------------------------------------
   function setupEvents() {
-    if (els.startBtn) {
-      els.startBtn.addEventListener('click', startQuiz);
-    }
-
-    if (els.resetBtn) {
-      els.resetBtn.addEventListener('click', resetQuiz);
-    }
-
-    if (els.resumeBtn) {
-      els.resumeBtn.addEventListener('click', resumeQuiz);
-    }
-
-    if (els.submitBtn) {
-      els.submitBtn.addEventListener('click', handleSubmit);
-    }
-
-    if (els.retryMissedBtn) {
-      els.retryMissedBtn.addEventListener('click', startRetryQuiz);
-    }
-
-    if (els.restartBtnSummary) {
-      els.restartBtnSummary.addEventListener('click', () => {
-        showView('launcher');
-      });
-    }
+    if (els.startBtn)           els.startBtn.addEventListener('click', startQuiz);
+    if (els.resetBtn)           els.resetBtn.addEventListener('click', resetQuiz);
+    if (els.resumeBtn)          els.resumeBtn.addEventListener('click', resumeQuiz);
+    if (els.submitBtn)          els.submitBtn.addEventListener('click', handleSubmit);
+    if (els.retryMissedBtn)     els.retryMissedBtn.addEventListener('click', startRetryQuiz);
+    if (els.restartBtnSummary)  els.restartBtnSummary.addEventListener('click', () => showView('launcher'));
 
     if (els.lengthBtns) {
       els.lengthBtns.querySelectorAll('.seg-btn').forEach(btn => {
@@ -1644,7 +1451,6 @@
 
     document.addEventListener('keydown', (e) => {
       if (!run || !els.optionsForm) return;
-      
       const key = e.key.toUpperCase();
       
       if (!isFitbQuestion(run.current)) {
@@ -1653,19 +1459,11 @@
           const input = els.optionsForm.querySelector(`#opt${letterIndex}`);
           if (input && !input.disabled) {
             e.preventDefault();
-            
-            const multiSelect = isMultiSelect(run.current);
-            
-            if (multiSelect) {
+            if (isMultiSelect(run.current)) {
               input.checked = !input.checked;
             } else {
-              if (input.checked) {
-                input.checked = false;
-              } else {
-                input.checked = true;
-              }
+              input.checked = true;
             }
-            
             updateSubmitButtonState();
           }
         }
@@ -1683,26 +1481,23 @@
   // -----------------------------------------------------------
   function init() {
     console.log('[Quiz] Initializing...');
-
     cacheElements();
     setupEvents();
 
     if (window.preloadedQuizData && window.preloadedQuizData.questions) {
       const pd = window.preloadedQuizData;
 
-      state.questions = pd.questions;
-      state.moduleName = pd.moduleName || '';
-      state.category = pd.category || '';
+      state.questions     = pd.questions;
+      state.moduleName    = pd.moduleName || '';
+      state.category      = pd.category  || '';
       state.isComprehensive = pd.isComprehensive || false;
-      state.isCategoryQuiz = pd.isCategoryQuiz || false;
-      state.autostart = pd.autostart || false;
+      state.isCategoryQuiz  = pd.isCategoryQuiz  || false;
+      state.autostart       = pd.autostart        || false;
 
       const len = pd.quizLength;
-      if (len === 'full' || !len) {
-        state.quizLength = state.questions.length;
-      } else {
-        state.quizLength = parseInt(len, 10) || 10;
-      }
+      state.quizLength = (len === 'full' || !len)
+        ? state.questions.length
+        : parseInt(len, 10) || 10;
 
       console.log('[Quiz] Loaded preloaded data:', {
         questionCount: state.questions.length,
@@ -1710,7 +1505,8 @@
         isComprehensive: state.isComprehensive,
         isCategoryQuiz: state.isCategoryQuiz,
         autostart: state.autostart,
-        quizLength: state.quizLength
+        quizLength: state.quizLength,
+        bank: detectBank()
       });
 
       if (els.startBtn) els.startBtn.disabled = false;
@@ -1733,8 +1529,7 @@
 
       if (state.autostart) {
         console.log('[Quiz] Auto-starting quiz...');
-        if (els.launcher) els.launcher.classList.add('hidden');
-        if (els.launcher) els.launcher.style.display = 'none';
+        if (els.launcher) { els.launcher.classList.add('hidden'); els.launcher.style.display = 'none'; }
         setTimeout(startQuiz, 50);
         return;
       }
