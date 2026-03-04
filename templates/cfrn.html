@@ -509,9 +509,11 @@
         const BANK = 'cfrn';
 
         // Total question count derived from domain card data-count attributes
-        // Primary source: total_questions from Flask route.
-        // Fallback: sum domain card data-count attributes (requires domain_totals populated in route).
-        const CFRN_TOTAL = ({{ total_questions | default(0) }} > 0)
+        // Total question count — resolved in priority order:
+        // 1. Flask-rendered value (fastest, works when backend loads JSON)
+        // 2. Live API fetch from /api/cfrn/count (always fresh, bypasses SW cache)
+        // 3. DOM fallback — sum data-count on domain cards
+        let CFRN_TOTAL = ({{ total_questions | default(0) }} > 0)
             ? {{ total_questions | default(0) }}
             : Array.from(document.querySelectorAll('.domain-card[data-count]'))
                   .reduce((sum, c) => sum + parseInt(c.dataset.count || 0, 10), 0);
@@ -519,7 +521,20 @@
         // ============================================================
         // Cycle Reset Check — runs on every page load
         // ============================================================
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            // If Flask gave us 0, try the API — it is excluded from SW cache
+            if (CFRN_TOTAL === 0) {
+                try {
+                    const res = await fetch('/api/cfrn/count');
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.count > 0) CFRN_TOTAL = data.count;
+                    }
+                } catch (e) {
+                    console.warn('[CFRN] Could not fetch count from API:', e);
+                }
+            }
+
             if (window.StudyGuruProgress) {
                 const wasReset = window.StudyGuruProgress.checkAndResetCycle(BANK);
                 if (wasReset) {
