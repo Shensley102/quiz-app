@@ -5,6 +5,8 @@
    - Tracks questions answered this week
    - Tracks per-question attempt counts
    - Tracks category performance (scores over time)
+   - Tracks CFRN/CCRN mastery IDs with target-date cycles
+   - Tracks CFRN/CCRN cycle-specific category performance
    - All data stored on-device only (localStorage)
    - Persists across sessions
    - Updates across tabs via storage event
@@ -15,10 +17,24 @@
 
   // Storage key prefix (versioned for future migrations)
   const PREFIX = 'sg:v1:';
-  const ATTEMPTS_KEY = PREFIX + 'attemptsByQuestion';
-  const DAILY_KEY = PREFIX + 'dailyAnsweredCounts';
+  const ATTEMPTS_KEY     = PREFIX + 'attemptsByQuestion';
+  const DAILY_KEY        = PREFIX + 'dailyAnsweredCounts';
   const CATEGORY_PERF_KEY = PREFIX + 'categoryPerformance';
-  
+
+  // Mastery / Cycle keys per bank
+  const MASTERED_KEYS = {
+    cfrn: PREFIX + 'cfrnMasteredIds',
+    ccrn: PREFIX + 'ccrnMasteredIds'
+  };
+  const TARGET_KEYS = {
+    cfrn: PREFIX + 'cfrnTargetDate',
+    ccrn: PREFIX + 'ccrnTargetDate'
+  };
+  const CYCLE_PERF_KEYS = {
+    cfrn: PREFIX + 'cfrnCyclePerf',
+    ccrn: PREFIX + 'ccrnCyclePerf'
+  };
+
   // How many days of daily counts to keep
   const DAILY_RETENTION_DAYS = 21;
 
@@ -26,345 +42,340 @@
   // HELPER FUNCTIONS
   // ============================================================
 
-  /**
-   * Safe JSON parse with fallback
-   * @param {string} str - JSON string to parse
-   * @param {*} fallback - Value to return if parse fails
-   * @returns {*} Parsed value or fallback
-   */
   function safeJsonParse(str, fallback) {
     if (!str) return fallback;
-    try {
-      return JSON.parse(str);
-    } catch (e) {
+    try { return JSON.parse(str); }
+    catch (e) {
       console.warn('[ProgressStore] JSON parse error:', e);
       return fallback;
     }
   }
 
-  /**
-   * Get today's date as YYYY-MM-DD in local time
-   * @returns {string} ISO date string
-   */
   function getTodayISO() {
     const now = new Date();
-    const year = now.getFullYear();
+    const year  = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
+    const day   = String(now.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
 
-  /**
-   * Parse a YYYY-MM-DD string into a Date object (local time, midnight)
-   * @param {string} isoDate - Date string in YYYY-MM-DD format
-   * @returns {Date} Date object
-   */
   function parseISODate(isoDate) {
     const [year, month, day] = isoDate.split('-').map(Number);
     return new Date(year, month - 1, day);
   }
 
-  /**
-   * Get the Monday of the week containing the given date
-   * @param {Date} date - Any date
-   * @returns {Date} Monday of that week (midnight local time)
-   */
   function getWeekStartMonday(date) {
     const d = new Date(date);
     const day = d.getDay();
-    // getDay() returns 0 for Sunday, 1 for Monday, etc.
-    // We want Monday as start, so:
-    // If Sunday (0), go back 6 days
-    // If Monday (1), go back 0 days
-    // If Tuesday (2), go back 1 day, etc.
     const diff = day === 0 ? 6 : day - 1;
     d.setDate(d.getDate() - diff);
     d.setHours(0, 0, 0, 0);
     return d;
   }
 
-  /**
-   * Check if two dates are in the same Monday-start week
-   * @param {Date} date1 
-   * @param {Date} date2 
-   * @returns {boolean}
-   */
   function isSameWeek(date1, date2) {
-    const monday1 = getWeekStartMonday(date1);
-    const monday2 = getWeekStartMonday(date2);
-    return monday1.getTime() === monday2.getTime();
+    return getWeekStartMonday(date1).getTime() === getWeekStartMonday(date2).getTime();
   }
 
-  /**
-   * Check if a date string (YYYY-MM-DD) is in the current week
-   * @param {string} isoDate - Date string
-   * @returns {boolean}
-   */
   function isInCurrentWeek(isoDate) {
-    const date = parseISODate(isoDate);
-    const today = new Date();
-    return isSameWeek(date, today);
+    return isSameWeek(parseISODate(isoDate), new Date());
   }
 
   // ============================================================
-  // STORAGE FUNCTIONS
+  // CORE STORAGE FUNCTIONS
   // ============================================================
 
-  /**
-   * Load attempts by question from localStorage
-   * @returns {Object} Map of stableId -> attempt count
-   */
   function loadAttempts() {
     return safeJsonParse(localStorage.getItem(ATTEMPTS_KEY), {});
   }
 
-  /**
-   * Save attempts by question to localStorage
-   * @param {Object} attempts - Map of stableId -> attempt count
-   */
   function saveAttempts(attempts) {
-    try {
-      localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(attempts));
-    } catch (e) {
-      console.error('[ProgressStore] Failed to save attempts:', e);
-    }
+    try { localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(attempts)); }
+    catch (e) { console.error('[ProgressStore] Failed to save attempts:', e); }
   }
 
-  /**
-   * Load daily answered counts from localStorage
-   * @returns {Object} Map of YYYY-MM-DD -> count
-   */
   function loadDailyCounts() {
     return safeJsonParse(localStorage.getItem(DAILY_KEY), {});
   }
 
-  /**
-   * Save daily answered counts to localStorage
-   * @param {Object} counts - Map of YYYY-MM-DD -> count
-   */
   function saveDailyCounts(counts) {
-    try {
-      localStorage.setItem(DAILY_KEY, JSON.stringify(counts));
-    } catch (e) {
-      console.error('[ProgressStore] Failed to save daily counts:', e);
-    }
+    try { localStorage.setItem(DAILY_KEY, JSON.stringify(counts)); }
+    catch (e) { console.error('[ProgressStore] Failed to save daily counts:', e); }
   }
 
-  /**
-   * Prune daily counts to keep only the last N days
-   * @param {Object} counts - Map of YYYY-MM-DD -> count
-   * @returns {Object} Pruned counts
-   */
   function pruneDailyCounts(counts) {
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - DAILY_RETENTION_DAYS);
     cutoffDate.setHours(0, 0, 0, 0);
-
     const pruned = {};
     for (const [dateStr, count] of Object.entries(counts)) {
-      const date = parseISODate(dateStr);
-      if (date >= cutoffDate) {
-        pruned[dateStr] = count;
-      }
+      if (parseISODate(dateStr) >= cutoffDate) pruned[dateStr] = count;
     }
     return pruned;
   }
 
   // ============================================================
-  // CATEGORY PERFORMANCE FUNCTIONS
+  // GLOBAL CATEGORY PERFORMANCE FUNCTIONS
   // ============================================================
 
-  /**
-   * Load category performance data from localStorage
-   * @returns {Object} Map of categoryName -> { scores: number[] }
-   */
   function loadCategoryPerformance() {
     return safeJsonParse(localStorage.getItem(CATEGORY_PERF_KEY), {});
   }
 
-  /**
-   * Save category performance data to localStorage
-   * @param {Object} data - Map of categoryName -> { scores: number[] }
-   */
   function saveCategoryPerformance(data) {
-    try {
-      localStorage.setItem(CATEGORY_PERF_KEY, JSON.stringify(data));
-    } catch (e) {
-      console.error('[ProgressStore] Failed to save category performance:', e);
-    }
+    try { localStorage.setItem(CATEGORY_PERF_KEY, JSON.stringify(data)); }
+    catch (e) { console.error('[ProgressStore] Failed to save category performance:', e); }
   }
 
-  /**
-   * Record a quiz score for a specific category
-   * @param {string} categoryName - The NCLEX category name
-   * @param {number} percentage - The score as a percentage (0-100)
-   */
   function recordCategoryScore(categoryName, percentage) {
-    if (!categoryName) {
-      console.warn('[ProgressStore] recordCategoryScore called without categoryName');
-      return;
-    }
-
+    if (!categoryName) return;
     const perfData = loadCategoryPerformance();
-    
-    if (!perfData[categoryName]) {
-      perfData[categoryName] = { scores: [] };
-    }
-    
-    // Add the new score
+    if (!perfData[categoryName]) perfData[categoryName] = { scores: [] };
     perfData[categoryName].scores.push(Math.round(percentage));
-    
-    // Keep only last 50 scores per category to prevent unlimited growth
-    if (perfData[categoryName].scores.length > 50) {
+    if (perfData[categoryName].scores.length > 50)
       perfData[categoryName].scores = perfData[categoryName].scores.slice(-50);
-    }
-    
     saveCategoryPerformance(perfData);
-    
-    console.log(`[ProgressStore] Recorded ${categoryName} score: ${percentage}%. Average now: ${getCategoryAverage(categoryName)}%`);
   }
 
-  /**
-   * Get the average score for a specific category
-   * @param {string} categoryName - The NCLEX category name
-   * @returns {number|null} Average percentage or null if no data
-   */
   function getCategoryAverage(categoryName) {
     if (!categoryName) return null;
-    
     const perfData = loadCategoryPerformance();
-    const catData = perfData[categoryName];
-    
-    if (!catData || !catData.scores || catData.scores.length === 0) {
-      return null;
-    }
-    
+    const catData  = perfData[categoryName];
+    if (!catData || !catData.scores || catData.scores.length === 0) return null;
     const sum = catData.scores.reduce((a, b) => a + b, 0);
     return Math.round(sum / catData.scores.length);
   }
 
-  /**
-   * Get average scores for all categories
-   * @returns {Object} Map of categoryName -> average percentage (or null if no data)
-   */
   function getAllCategoryAverages() {
     const perfData = loadCategoryPerformance();
     const averages = {};
-    
-    for (const [categoryName, catData] of Object.entries(perfData)) {
+    for (const [cat, catData] of Object.entries(perfData)) {
       if (catData.scores && catData.scores.length > 0) {
         const sum = catData.scores.reduce((a, b) => a + b, 0);
-        averages[categoryName] = Math.round(sum / catData.scores.length);
+        averages[cat] = Math.round(sum / catData.scores.length);
       }
     }
-    
+    return averages;
+  }
+
+  function getCategoryAttemptCount(categoryName) {
+    if (!categoryName) return 0;
+    const perfData = loadCategoryPerformance();
+    return perfData[categoryName]?.scores?.length || 0;
+  }
+
+  function clearCategoryPerformance() {
+    try { localStorage.removeItem(CATEGORY_PERF_KEY); }
+    catch (e) { console.error('[ProgressStore] Failed to clear category performance:', e); }
+  }
+
+  // ============================================================
+  // MASTERY ID TRACKING  (per bank: 'cfrn' | 'ccrn')
+  // ============================================================
+
+  /**
+   * Returns a Set of question IDs that have been mastered this cycle.
+   * @param {'cfrn'|'ccrn'} bank
+   * @returns {Set<string>}
+   */
+  function getMasteredIds(bank) {
+    const key = MASTERED_KEYS[bank];
+    if (!key) return new Set();
+    const arr = safeJsonParse(localStorage.getItem(key), []);
+    return new Set(arr);
+  }
+
+  /**
+   * Add question IDs to the mastered set for this bank.
+   * @param {'cfrn'|'ccrn'} bank
+   * @param {string[]} ids
+   */
+  function addMasteredIds(bank, ids) {
+    const key = MASTERED_KEYS[bank];
+    if (!key || !ids || !ids.length) return;
+    const existing = getMasteredIds(bank);
+    ids.forEach(id => { if (id) existing.add(id); });
+    try { localStorage.setItem(key, JSON.stringify(Array.from(existing))); }
+    catch (e) { console.error('[ProgressStore] Failed to save mastered IDs:', e); }
+    console.log(`[ProgressStore] ${bank.toUpperCase()} mastered IDs: ${existing.size} total`);
+  }
+
+  /**
+   * Number of mastered questions for this bank.
+   * @param {'cfrn'|'ccrn'} bank
+   * @returns {number}
+   */
+  function getMasteredCount(bank) {
+    return getMasteredIds(bank).size;
+  }
+
+  /**
+   * Clear all mastered IDs for a bank (cycle reset).
+   * @param {'cfrn'|'ccrn'} bank
+   */
+  function clearMasteredIds(bank) {
+    const key = MASTERED_KEYS[bank];
+    if (!key) return;
+    try { localStorage.removeItem(key); }
+    catch (e) { console.error('[ProgressStore] Failed to clear mastered IDs:', e); }
+  }
+
+  // ============================================================
+  // TARGET DATE  (per bank)
+  // ============================================================
+
+  /**
+   * Get the stored target date for a bank.
+   * @param {'cfrn'|'ccrn'} bank
+   * @returns {string|null} YYYY-MM-DD or null
+   */
+  function getTargetDate(bank) {
+    const key = TARGET_KEYS[bank];
+    if (!key) return null;
+    return localStorage.getItem(key) || null;
+  }
+
+  /**
+   * Set the target date for a bank.
+   * @param {'cfrn'|'ccrn'} bank
+   * @param {string} dateStr YYYY-MM-DD
+   */
+  function setTargetDate(bank, dateStr) {
+    const key = TARGET_KEYS[bank];
+    if (!key || !dateStr) return;
+    try { localStorage.setItem(key, dateStr); }
+    catch (e) { console.error('[ProgressStore] Failed to save target date:', e); }
+  }
+
+  /**
+   * Clear the target date for a bank.
+   * @param {'cfrn'|'ccrn'} bank
+   */
+  function clearTargetDate(bank) {
+    const key = TARGET_KEYS[bank];
+    if (!key) return;
+    try { localStorage.removeItem(key); }
+    catch (e) {}
+  }
+
+  /**
+   * Check if today is AFTER the target date and reset the cycle if so.
+   * Should be called on page load.
+   * @param {'cfrn'|'ccrn'} bank
+   * @returns {boolean} true if a reset occurred
+   */
+  function checkAndResetCycle(bank) {
+    const targetDate = getTargetDate(bank);
+    if (!targetDate) return false;
+
+    const today = getTodayISO();
+    // Reset the day AFTER the target date (today > targetDate)
+    if (today > targetDate) {
+      clearMasteredIds(bank);
+      clearTargetDate(bank);
+      clearCyclePerf(bank);
+      console.log(`[ProgressStore] ${bank.toUpperCase()} study cycle reset — target date has passed`);
+      return true;
+    }
+    return false;
+  }
+
+  // ============================================================
+  // CYCLE CATEGORY PERFORMANCE  (per bank, resets with cycle)
+  // ============================================================
+
+  function loadCyclePerf(bank) {
+    const key = CYCLE_PERF_KEYS[bank];
+    if (!key) return {};
+    return safeJsonParse(localStorage.getItem(key), {});
+  }
+
+  function saveCyclePerf(bank, data) {
+    const key = CYCLE_PERF_KEYS[bank];
+    if (!key) return;
+    try { localStorage.setItem(key, JSON.stringify(data)); }
+    catch (e) { console.error('[ProgressStore] Failed to save cycle performance:', e); }
+  }
+
+  /**
+   * Record a category quiz score for a specific bank's cycle.
+   * @param {'cfrn'|'ccrn'} bank
+   * @param {string} categoryName
+   * @param {number} percentage 0-100
+   */
+  function recordCycleCategoryScore(bank, categoryName, percentage) {
+    if (!bank || !categoryName) return;
+    const data = loadCyclePerf(bank);
+    if (!data[categoryName]) data[categoryName] = { scores: [] };
+    data[categoryName].scores.push(Math.round(percentage));
+    if (data[categoryName].scores.length > 50)
+      data[categoryName].scores = data[categoryName].scores.slice(-50);
+    saveCyclePerf(bank, data);
+  }
+
+  /**
+   * Get average scores for all categories in this bank's cycle.
+   * @param {'cfrn'|'ccrn'} bank
+   * @returns {Object} Map of categoryName -> average percentage
+   */
+  function getAllCycleCategoryAverages(bank) {
+    const data = loadCyclePerf(bank);
+    const averages = {};
+    for (const [cat, catData] of Object.entries(data)) {
+      if (catData.scores && catData.scores.length > 0) {
+        const sum = catData.scores.reduce((a, b) => a + b, 0);
+        averages[cat] = Math.round(sum / catData.scores.length);
+      }
+    }
     return averages;
   }
 
   /**
-   * Get the number of quiz attempts for a category
-   * @param {string} categoryName - The NCLEX category name
-   * @returns {number} Number of recorded scores
+   * Clear all cycle performance data for a bank.
+   * @param {'cfrn'|'ccrn'} bank
    */
-  function getCategoryAttemptCount(categoryName) {
-    if (!categoryName) return 0;
-    
-    const perfData = loadCategoryPerformance();
-    const catData = perfData[categoryName];
-    
-    return catData?.scores?.length || 0;
-  }
-
-  /**
-   * Clear all category performance data
-   */
-  function clearCategoryPerformance() {
-    try {
-      localStorage.removeItem(CATEGORY_PERF_KEY);
-      console.log('[ProgressStore] Category performance data cleared');
-    } catch (e) {
-      console.error('[ProgressStore] Failed to clear category performance:', e);
-    }
+  function clearCyclePerf(bank) {
+    const key = CYCLE_PERF_KEYS[bank];
+    if (!key) return;
+    try { localStorage.removeItem(key); }
+    catch (e) {}
   }
 
   // ============================================================
   // PUBLIC API - QUESTION TRACKING
   // ============================================================
 
-  /**
-   * Record a completed quiz - adds quiz length to daily/weekly count
-   * Called once when a quiz is finished, not per-answer
-   * @param {number} questionCount - Number of questions in the completed quiz
-   */
   function recordCompletedQuiz(questionCount) {
-    if (!questionCount || questionCount <= 0) {
-      console.warn('[ProgressStore] recordCompletedQuiz called with invalid count');
-      return;
-    }
-
-    // Update daily count
+    if (!questionCount || questionCount <= 0) return;
     const today = getTodayISO();
     let dailyCounts = loadDailyCounts();
     dailyCounts[today] = (dailyCounts[today] || 0) + questionCount;
-    
-    // Prune old entries
     dailyCounts = pruneDailyCounts(dailyCounts);
     saveDailyCounts(dailyCounts);
-
-    console.log(`[ProgressStore] Recorded ${questionCount} completed questions. Today total: ${dailyCounts[today]}`);
+    console.log(`[ProgressStore] Recorded ${questionCount} completed questions. Today: ${dailyCounts[today]}`);
   }
 
-  /**
-   * Record attempts for a batch of questions at quiz completion
-   * Increments attempt count for each question ID
-   * @param {Array<string>} questionIds - Array of question IDs (e.g., ["Q1", "Q15", "Q203"])
-   */
   function recordQuizAttempts(questionIds) {
-    if (!questionIds || !Array.isArray(questionIds) || questionIds.length === 0) {
-      console.warn('[ProgressStore] recordQuizAttempts called with invalid questionIds');
-      return;
-    }
-
+    if (!questionIds || !Array.isArray(questionIds) || questionIds.length === 0) return;
     const attempts = loadAttempts();
-    
     for (const qId of questionIds) {
-      if (qId) {
-        attempts[qId] = (attempts[qId] || 0) + 1;
-      }
+      if (qId) attempts[qId] = (attempts[qId] || 0) + 1;
     }
-    
     saveAttempts(attempts);
     console.log(`[ProgressStore] Recorded attempts for ${questionIds.length} questions`);
   }
 
-  /**
-   * Get attempt counts for multiple questions at once
-   * @param {Array<string>} questionIds - Array of question IDs
-   * @returns {Object} Map of questionId -> attempt count
-   */
   function getAttemptsForQuestions(questionIds) {
     if (!questionIds || !Array.isArray(questionIds)) return {};
-    
     const allAttempts = loadAttempts();
     const result = {};
-    
-    for (const qId of questionIds) {
-      result[qId] = allAttempts[qId] || 0;
-    }
-    
+    for (const qId of questionIds) result[qId] = allAttempts[qId] || 0;
     return result;
   }
 
-  /**
-   * Sort questions by attempt count (least attempted first)
-   * @param {Array<Object>} questions - Array of question objects with 'id' property
-   * @returns {Array<Object>} Sorted array (least attempted first)
-   */
   function sortByLeastAttempted(questions) {
     if (!questions || !Array.isArray(questions)) return [];
-    
     const attempts = loadAttempts();
-    
     return [...questions].sort((a, b) => {
       const attemptsA = attempts[a.id] || 0;
       const attemptsB = attempts[b.id] || 0;
@@ -372,120 +383,66 @@
     });
   }
 
-  /**
-   * Record that a question was answered (DEPRECATED - use recordCompletedQuiz instead)
-   * Kept for backward compatibility but no longer called by quiz-script
-   * @param {string} stableId - Stable identifier for the question
-   */
+  // Deprecated — kept for backward compatibility
   function recordAnswered(stableId) {
-    if (!stableId) {
-      console.warn('[ProgressStore] recordAnswered called without stableId');
-      return;
-    }
-
-    // Update attempts by question
+    if (!stableId) return;
     const attempts = loadAttempts();
     attempts[stableId] = (attempts[stableId] || 0) + 1;
     saveAttempts(attempts);
-
-    // Note: No longer updating daily counts here - use recordCompletedQuiz instead
-    console.log(`[ProgressStore] Recorded attempt for ${stableId}. Total attempts: ${attempts[stableId]}`);
   }
 
-  /**
-   * Get the total number of questions answered this week (Monday-start)
-   * @returns {number} Total answers this week
-   */
   function answeredThisWeek() {
     const dailyCounts = loadDailyCounts();
     let total = 0;
-
     for (const [dateStr, count] of Object.entries(dailyCounts)) {
-      if (isInCurrentWeek(dateStr)) {
-        total += count;
-      }
+      if (isInCurrentWeek(dateStr)) total += count;
     }
-
     return total;
   }
 
-  /**
-   * Get the attempt count for a specific question
-   * @param {string} stableId - Stable identifier for the question
-   * @returns {number} Number of times this question was answered
-   */
   function getAttempts(stableId) {
     if (!stableId) return 0;
-    const attempts = loadAttempts();
-    return attempts[stableId] || 0;
+    return loadAttempts()[stableId] || 0;
   }
 
-  /**
-   * Get the full attempts map (for "least answered first" selection)
-   * @returns {Object} Map of stableId -> attempt count
-   */
   function getAttemptsMap() {
     return loadAttempts();
   }
 
-  /**
-   * Get today's answer count
-   * @returns {number} Answers today
-   */
   function answeredToday() {
-    const dailyCounts = loadDailyCounts();
-    const today = getTodayISO();
-    return dailyCounts[today] || 0;
+    return loadDailyCounts()[getTodayISO()] || 0;
   }
 
-  /**
-   * Get daily counts for a date range (useful for stats display)
-   * @param {number} days - Number of days to include (default 7)
-   * @returns {Array} Array of { date, count } objects
-   */
   function getDailyHistory(days = 7) {
     const dailyCounts = loadDailyCounts();
     const result = [];
     const today = new Date();
-
     for (let i = days - 1; i >= 0; i--) {
       const d = new Date(today);
       d.setDate(d.getDate() - i);
       const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-      result.push({
-        date: dateStr,
-        count: dailyCounts[dateStr] || 0
-      });
+      result.push({ date: dateStr, count: dailyCounts[dateStr] || 0 });
     }
-
     return result;
   }
 
-  /**
-   * Clear all progress data (for testing/reset)
-   */
   function clearAll() {
     try {
       localStorage.removeItem(ATTEMPTS_KEY);
       localStorage.removeItem(DAILY_KEY);
       localStorage.removeItem(CATEGORY_PERF_KEY);
+      Object.values(MASTERED_KEYS).forEach(k => localStorage.removeItem(k));
+      Object.values(TARGET_KEYS).forEach(k => localStorage.removeItem(k));
+      Object.values(CYCLE_PERF_KEYS).forEach(k => localStorage.removeItem(k));
       console.log('[ProgressStore] All progress data cleared');
     } catch (e) {
       console.error('[ProgressStore] Failed to clear data:', e);
     }
   }
 
-  /**
-   * Get a stable ID for a question object
-   * @param {Object} question - Question object
-   * @param {string} moduleName - Module name (fallback)
-   * @param {number} index - Question index (fallback)
-   * @returns {string} Stable identifier
-   */
   function getStableId(question, moduleName, index) {
     if (question.stable_id) return question.stable_id;
     if (question.id) return String(question.id);
-    // Fallback to deterministic value
     return `${moduleName || 'unknown'}::${index}`;
   }
 
@@ -497,7 +454,7 @@
     // Question tracking
     recordCompletedQuiz,
     recordQuizAttempts,
-    recordAnswered,  // Deprecated but kept for compatibility
+    recordAnswered,        // Deprecated but kept for compatibility
     answeredThisWeek,
     answeredToday,
     getAttempts,
@@ -506,19 +463,36 @@
     sortByLeastAttempted,
     getDailyHistory,
     getStableId,
-    
-    // Category performance tracking
+
+    // Global category performance tracking
     recordCategoryScore,
     getCategoryAverage,
     getAllCategoryAverages,
     getCategoryAttemptCount,
     clearCategoryPerformance,
-    
+
+    // Mastery ID tracking (CFRN / CCRN)
+    getMasteredIds,
+    getMasteredCount,
+    addMasteredIds,
+    clearMasteredIds,
+
+    // Target date
+    getTargetDate,
+    setTargetDate,
+    clearTargetDate,
+    checkAndResetCycle,
+
+    // Cycle category performance (CFRN / CCRN)
+    recordCycleCategoryScore,
+    getAllCycleCategoryAverages,
+    clearCyclePerf,
+
     // Utility
     clearAll,
-    
-    // Constants for external reference
-    PREFIX: PREFIX
+
+    // Constants
+    PREFIX
   };
 
   console.log('[ProgressStore] Initialized. Weekly count:', answeredThisWeek());
