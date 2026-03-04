@@ -509,10 +509,12 @@
         const BANK = 'cfrn';
 
         // Total question count derived from domain card data-count attributes
-        let CFRN_TOTAL = 0;
-        document.querySelectorAll('.domain-card[data-count]').forEach(c => {
-            CFRN_TOTAL += parseInt(c.dataset.count || 0, 10);
-        });
+        // Primary source: total_questions from Flask route.
+        // Fallback: sum domain card data-count attributes (requires domain_totals populated in route).
+        const CFRN_TOTAL = ({{ total_questions | default(0) }} > 0)
+            ? {{ total_questions | default(0) }}
+            : Array.from(document.querySelectorAll('.domain-card[data-count]'))
+                  .reduce((sum, c) => sum + parseInt(c.dataset.count || 0, 10), 0);
 
         // ============================================================
         // Cycle Reset Check — runs on every page load
