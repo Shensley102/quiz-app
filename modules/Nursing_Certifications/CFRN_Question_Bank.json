@@ -3266,12 +3266,12 @@
   {
     "id": "Q205",
     "category": "Medical Emergencies",
-    "stem": "The rotor crew is caring for a patient they picked up in a",
+    "stem": "The rotor crew is caring for a patient they picked up in a heavily wooded area after the patient fell 30 feet from a deer stand.The patient is awake, alert, and reports a severe aching sensation inhis back and dizziness. His vital signs are 37.1° C, HR 48, NIBP 94/54,RR 22, SpO₂ 94%, ETCO₂ 31. The crew",
     "options": [
-      "Dministers 10mg morphine",
-      "Recognizes this as a normal response to a neurologic injury and",
-      "Suspects increasing intracranial pressure and administers 3% saline",
-      "Initiates a norepinephrine drip at 5mcg/min"
+      "Gives a single dose of push dose epinepherine.",
+      "Recognizes this as a normal response to a neurologic injury and administers 10mg morphine.",
+      "Suspects increasing intracranial pressure and administers 3% saline.",
+      "Initiates a norepinephrine drip at 5mcg/min."
     ],
     "correct": [
       "D"
@@ -3298,7 +3298,7 @@
   {
     "id": "Q207",
     "category": "Medical Emergencies",
-    "stem": "The patient's pulmonary artery catheter shows: CVP 11, RV 27/3,",
+    "stem": "The patient's pulmonary artery catheter shows: CVP 11, RV 27/3, PA 26/17, PCWP 14, CO 3.9, CI 1.8. What intervention is most appropriate?",
     "options": [
       "Negative chronotrope",
       "Fluid bolus",
@@ -3314,7 +3314,7 @@
   {
     "id": "Q208",
     "category": "Medical Emergencies",
-    "stem": "The transport crew is called for a 54-year-old male patient who",
+    "stem": "The transport crew is called for a 54-year-old male patient who is known to the EMS community for frequent transports to the local ER urgent care department for public intoxication and is generally well-liked by the crews. The patient is chronically homeless and presents today, pale, tachycardic, with acute left flank pain. He is usually agreeable to transport and enjoys riding in the patient on undergments. When EMS makes contact, the patient is refusing to go to the hospital. The crew anticipates administering the patient to the hospital. The transport crew is calling for the crew, they notice myxedema and patient is unable to walk to the cot, which is also outside the room for this __________. What is the norm for this",
     "options": [
       "Naloxone",
       "Dextrose",
@@ -3324,7 +3324,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "This patient is exhibiting signs of Wernicke's encephalopathy, caused by \\*\\*Thiamine\\*\\* deficiency. This is a common pathology in chronic alcohol users and presents with confusion, ataxia, and nystagmus. These symptoms are easily mistaken for intoxication, but it should always be a red flag when there is a significant change in a patient's pattern of behavior. There is no indication for the use of \\*\\*Naloxone\\*\\* or \\*\\*Thrombolytics\\*\\* for this patient, and the symptoms are incongruent with hypoglycemia.",
+    "rationale": "This patient is exhibiting signs of Wernicke's encephalopathy, caused by Thiamine deficiency. This is a common pathology in chronic alcohol users and presents with confusion, ataxia, and nystagmus. These symptoms are easily mistaken for intoxication, but it should always be a red flag when there is a significant change in a patient's pattern of behavior. There is no indication for the use of \\*\\*Naloxone\\*\\* or \\*\\*Thrombolytics\\*\\* for this patient, and the symptoms are incongruent with hypoglycemia.",
     "type": "single_select"
   },
   {
