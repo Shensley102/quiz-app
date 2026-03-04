@@ -3899,7 +3899,7 @@
       "Manual displacement of the presenting part",
       "Discontinuing tocolytic administration",
       "Attempted replacement of the umbilical cord",
-      ""
+      "Lay the patient supine"
     ],
     "correct": [
       "A"
@@ -4502,17 +4502,17 @@
   {
     "id": "Q283",
     "category": "Special Populations",
-    "stem": "During an aeromedical evacuation, you are tasked with transporting Mr. Smith, a 45-year-old male weighing 180 kg (396 lbs) who has recently undergone bariatric surgery. Considering the unique needs of bariatric patients during air transport, which of the following is the most critical consideration? immobility",
+    "stem": "During an aeromedical evacuation, you are tasked with transporting a 45-year-old male weighing 180 kg (396 lbs) who has recently undergone bariatric surgery. Considering the unique needs of bariatric patients during air transport, which of the following is the most critical consideration?",
     "options": [
       "Ensuring adequate oxygen supply due to increased metabolic demands",
       "Using specialized stretchers to accommodate weight and size",
-      "Monitoring for deep vein thrombosis (DVT) due to prolonged",
+      "Monitoring for deep vein thrombosis (DVT) due to prolonged immobility",
       "Adjusting medication dosages based on altered pharmacokinetics"
     ],
     "correct": [
       "B"
     ],
-    "rationale": "The most critical consideration in this scenario is using specialized stretchers to accommodate Mr. Smith's weight and size. Bariatric patients require equipment that can safely support their body mass and ensure proper weight distribution during transport. While ensuring adequate oxygen supply , monitoring for DVT , and adjusting medication dosages are also important, they do not pose immediate logistical challenges as significant as safely securing and transporting the patient with appropriate equipment.",
+    "rationale": "The most critical consideration in this scenario is using specialized stretchers to accommodate the patients weight and size. Bariatric patients require equipment that can safely support their body mass and ensure proper weight distribution during transport. While ensuring adequate oxygen supply , monitoring for DVT , and adjusting medication dosages are also important, they do not pose immediate logistical challenges as significant as safely securing and transporting the patient with appropriate equipment.",
     "type": "single_select"
   },
   {
@@ -5254,12 +5254,12 @@
   {
     "id": "Q330",
     "category": "Trauma",
-    "stem": "The flight nurse recognizes the patient most likely to be",
+    "stem": "The flight nurse recognizes the patient most likely to be affected by altitude changes in flight is",
     "options": [
-      "Ssault",
+      "A 4-year-old who had two febrile seizures in the last 90 minutes",
       "The 57-year-old burn patient",
       "The 22-year-old patient with a femur fracture after an ATV rollover",
-      "The 33-year-old patient with an open skull fracture after an"
+      "The 33-year-old patient with an open skull fracture after an assault"
     ],
     "correct": [
       "D"
@@ -16580,7 +16580,7 @@
   {
     "id": "Q1038",
     "category": "Resuscitation Principles",
-    "stem": "During a medical evacuation flight, you are responsible for managing a 45-year-old male patient named John who is intubated and mechanically ventilated due to acute respiratory distress syndrome (ARDS). Mid-flight, you notice increasing peak inspiratory pressures. What is the most appropriate immediate action to take?",
+    "stem": "During a medical evacuation flight, you are responsible for managing a 45-year-old male patient who is intubated and mechanically ventilated due to acute respiratory distress syndrome (ARDS). Mid-flight, you notice increasing peak inspiratory pressures. What is the most appropriate immediate action to take?",
     "options": [
       "Increase the tidal volume.",
       "Decrease the positive end-expiratory pressure (PEEP).",
