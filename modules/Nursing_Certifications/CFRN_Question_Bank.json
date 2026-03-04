@@ -1506,7 +1506,7 @@
   {
     "id": "Q095",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a patient handoff using the SBAR method in a flight transport scenario, which of the following statements best represents the 'Assessment' component?",
+    "stem": "During a patient handoff using the SBAR method in a flight transport scenario, which of the following statements best represents the Assessment component?",
     "options": [
       ""The patient is currently stable but has a history of myocardial infarction."",
       ""The patient was admitted with chest pain and shortness of breath."",
@@ -1516,7 +1516,7 @@
     "correct": [
       "C"
     ],
-    "rationale": ""Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air." is correct because it provides an objective assessment of the patient's current vital signs, which is essential for understanding their present condition. This aligns with the 'Assessment' component of SBAR where clinical data and findings are communicated. "The patient is currently stable but has a history of myocardial infarction." is incorrect because it blends elements of both 'Situation' (current stability) and 'Background' (history of myocardial infarction), thus not solely focusing on current clinical assessment. "The patient was admitted with chest pain and shortness of breath." is incorrect as it pertains to the 'Background' component by describing why the patient was admitted rather than providing current clinical data. "I believe the patient needs continuous cardiac monitoring." is incorrect as it fits into the 'Recommendation' part where suggestions for future care or actions are made based on assessment findings. The critical difference lies in recognizing that 'Assessment' should convey current clinical status through objective data rather than historical information or recommendations.",
+    "rationale": ""Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air." is correct because it provides an objective assessment of the patient's current vital signs, which is essential for understanding their present condition. This aligns with the Assessment component of SBAR where clinical data and findings are communicated. "The patient is currently stable but has a history of myocardial infarction." is incorrect because it blends elements of both 'Situation' (current stability) and 'Background' (history of myocardial infarction), thus not solely focusing on current clinical assessment. "The patient was admitted with chest pain and shortness of breath." is incorrect as it pertains to the 'Background' component by describing why the patient was admitted rather than providing current clinical data. "I believe the patient needs continuous cardiac monitoring." is incorrect as it fits into the 'Recommendation' part where suggestions for future care or actions are made based on assessment findings. The critical difference lies in recognizing that 'Assessment' should convey current clinical status through objective data rather than historical information or recommendations.",
     "type": "single_select"
   },
   {
