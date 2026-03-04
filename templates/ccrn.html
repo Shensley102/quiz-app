@@ -6,552 +6,292 @@
     <title>CCRN Practice System - Nurse Success Study Hub</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='category-style.css') }}">
-    
-    <!-- PWA Manifest -->
     <link rel="manifest" href="/static/manifest.json">
-    
-    <!-- Theme Color -->
     <meta name="theme-color" content="#e53935">
-    
-    <!-- PWA Specific -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Nurse Study">
-    
-    <!-- Apple Touch Icons -->
     <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
     <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
-    
+
     <style>
-        /* Offline indicator */
         .offline-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            position: fixed; top: 0; left: 0; right: 0;
             background: linear-gradient(135deg, #ff9800, #f57c00);
-            color: white;
-            padding: 12px 20px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 14px;
-            z-index: 10000;
+            color: white; padding: 12px 20px; text-align: center;
+            font-weight: 600; font-size: 14px; z-index: 10000;
         }
         .offline-indicator.hidden { display: none; }
 
-        /* Weekly Progress Widget */
-        .weekly-progress-widget {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin: 0 auto 20px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(229, 57, 53, 0.2);
-            border-radius: 50px;
-            box-shadow: 0 2px 8px rgba(229, 57, 53, 0.1);
-            font-size: 14px;
-            color: #333;
-        }
-        .weekly-progress-widget .progress-icon {
-            font-size: 18px;
-        }
-        .weekly-progress-widget .progress-label {
-            color: #666;
-            font-weight: 500;
-        }
-        .weekly-progress-widget .progress-value {
-            font-weight: 800;
-            font-size: 18px;
-            color: #e53935;
-            min-width: 24px;
-            text-align: center;
-        }
         .widget-container {
-            text-align: center;
-            margin-bottom: 20px;
+            text-align: center; margin-bottom: 20px;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
         }
 
-        /* Navigation Links - Differentiated Styling */
-        .nav-links {
-            margin-bottom: 20px;
+        /* Mastery Widget — CCRN red */
+        .mastery-widget {
+            display: inline-flex; flex-direction: column; align-items: center; gap: 8px;
+            padding: 16px 28px;
+            background: rgba(255,255,255,0.97);
+            border: 1px solid rgba(229,57,53,0.3);
+            border-radius: 16px;
+            box-shadow: 0 3px 14px rgba(229,57,53,0.1);
+            min-width: 300px;
+        }
+        .mastery-widget-header { display: flex; align-items: center; gap: 8px; }
+        .mastery-widget-icon { font-size: 20px; }
+        .mastery-widget-label { font-weight: 700; font-size: 14px; color: #444; }
+        .mastery-widget-counts { display: flex; align-items: baseline; gap: 4px; }
+        .mastery-remaining { font-weight: 800; font-size: 28px; color: #e53935; min-width: 48px; text-align: right; }
+        .mastery-separator { font-size: 16px; color: #999; }
+        .mastery-total { font-size: 16px; color: #777; font-weight: 600; }
+        .mastery-suffix { font-size: 13px; color: #999; margin-left: 4px; }
+        .mastery-progress-bar { width: 100%; height: 8px; background: #ffebee; border-radius: 4px; overflow: hidden; }
+        .mastery-progress-fill {
+            height: 100%; background: linear-gradient(90deg, #e53935, #ef9a9a);
+            border-radius: 4px; transition: width 0.4s ease;
+        }
+        .mastery-note { font-size: 11px; color: #aaa; font-style: italic; }
+        .mastery-widget.complete .mastery-remaining { color: #388e3c; }
+        .mastery-widget.complete .mastery-progress-fill { background: linear-gradient(90deg, #388e3c, #66bb6a); }
+
+        /* Target Date Widget */
+        .target-widget {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 10px; padding: 10px 20px;
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(229,57,53,0.2);
+            border-radius: 50px;
+            box-shadow: 0 2px 8px rgba(229,57,53,0.08);
+            font-size: 13px; color: #444; flex-wrap: wrap;
+        }
+        .target-widget-icon { font-size: 16px; }
+        .target-widget label { font-weight: 600; color: #555; white-space: nowrap; }
+        .target-date-input {
+            padding: 5px 10px; border: 1px solid #ccc; border-radius: 6px;
+            font-size: 13px; font-family: inherit; color: #333; outline: none;
+            transition: border-color 0.2s;
+        }
+        .target-date-input:focus { border-color: #e53935; }
+        .target-set-btn {
+            padding: 5px 14px; background: #e53935; color: white; border: none;
+            border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
+            font-family: inherit; transition: background 0.2s;
+        }
+        .target-set-btn:hover { background: #c62828; }
+        .target-active-text { font-weight: 500; color: #444; }
+        .target-active-text strong { color: #e53935; }
+        .target-days-remaining { color: #e65100; font-weight: 700; }
+        .target-days-remaining.ok { color: #388e3c; }
+        .target-clear-btn {
+            padding: 3px 10px; background: transparent; color: #999;
+            border: 1px solid #ddd; border-radius: 10px; font-size: 12px;
+            cursor: pointer; font-family: inherit; transition: all 0.2s;
+        }
+        .target-clear-btn:hover { background: #fee; color: #c62828; border-color: #c62828; }
+        .hidden { display: none !important; }
+
+        /* Cycle reset banner */
+        .cycle-reset-banner {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 10px 20px; background: #e8f5e9; border: 1px solid #a5d6a7;
+            border-radius: 10px; font-size: 13px; color: #2e7d32; font-weight: 600;
         }
 
+        /* Weekly Counter */
+        .weekly-progress-widget {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px; padding: 8px 18px;
+            background: rgba(255,255,255,0.85);
+            border: 1px solid rgba(229,57,53,0.15);
+            border-radius: 50px;
+            box-shadow: 0 1px 6px rgba(229,57,53,0.08);
+            font-size: 13px; color: #555;
+        }
+        .weekly-progress-widget .progress-icon { font-size: 16px; }
+        .weekly-progress-widget .progress-label { color: #777; font-weight: 500; }
+        .weekly-progress-widget .progress-value {
+            font-weight: 800; font-size: 16px; color: #e53935; min-width: 20px; text-align: center;
+        }
+
+        /* Navigation */
+        .nav-links { margin-bottom: 20px; }
         .nav-links .home-link {
-            display: inline-block;
-            color: #666;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 500;
-            margin-bottom: 4px;
+            display: inline-block; color: #666; text-decoration: none;
+            font-size: 12px; font-weight: 500; margin-bottom: 4px;
         }
-
-        .nav-links .home-link:hover {
-            color: #333;
-            text-decoration: underline;
-        }
-
+        .nav-links .home-link:hover { color: #333; text-decoration: underline; }
         .nav-links .back-link {
-            display: inline-block;
-            color: #0066cc;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
+            display: inline-block; color: #0066cc; text-decoration: none; font-size: 14px; font-weight: 500;
         }
+        .nav-links .back-link:hover { text-decoration: underline; }
 
-        .nav-links .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .page-header {
-            margin-bottom: 30px;
-        }
-        .page-header-top {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 8px;
-        }
-        .page-header h1 {
-            margin: 0;
-            font-size: 2.2em;
-            color: #333;
-        }
-        .page-header p {
-            margin: 5px 0 0 0;
-            color: #666;
-            font-size: 1.05em;
-        }
+        /* Page Header */
+        .page-header { margin-bottom: 30px; }
+        .page-header-top { display: flex; align-items: center; gap: 15px; margin-bottom: 8px; }
+        .page-header h1 { margin: 0; font-size: 2.2em; color: #333; }
+        .page-header p { margin: 5px 0 0 0; color: #666; font-size: 1.05em; }
         .header-icon { font-size: 2.2em; }
 
-        /* Section styling */
+        /* Section */
         .section {
-            background: white;
-            border-radius: 16px;
-            padding: 28px;
-            margin-bottom: 28px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            background: white; border-radius: 16px; padding: 28px;
+            margin-bottom: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
         }
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-        .section-header h2 {
-            margin: 0;
-            font-size: 1.4em;
-            color: #333;
-        }
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .section-header h2 { margin: 0; font-size: 1.4em; color: #333; }
         .section-icon { font-size: 1.6em; }
-        .section-description {
-            color: #666;
-            font-size: 0.95em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
+        .section-description { color: #666; font-size: 0.95em; line-height: 1.6; margin-bottom: 20px; }
 
-        /* Comprehensive Quiz Card - CCRN Red Theme */
+        /* Comprehensive Card */
         .comprehensive-card {
             background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
-            border-radius: 16px;
-            padding: 28px;
-            color: white;
-            margin-bottom: 24px;
+            border-radius: 16px; padding: 28px; color: white; margin-bottom: 24px;
         }
-        .comprehensive-card h3 {
-            margin: 0 0 12px 0;
-            font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .comprehensive-card .card-description {
-            font-size: 1em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            opacity: 0.95;
-        }
+        .comprehensive-card h3 { margin: 0 0 12px 0; font-size: 1.5em; display: flex; align-items: center; gap: 12px; }
+        .comprehensive-card .card-description { font-size: 1em; line-height: 1.6; margin-bottom: 20px; opacity: 0.95; }
         .comprehensive-card .info-box {
-            background: rgba(255,255,255,0.15);
-            border-radius: 10px;
-            padding: 16px;
-            margin-bottom: 20px;
+            background: rgba(255,255,255,0.15); border-radius: 10px;
+            padding: 16px; margin-bottom: 20px;
         }
-        .comprehensive-card .info-box h4 {
-            margin: 0 0 8px 0;
-            font-size: 1em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .comprehensive-card .info-box p {
-            margin: 0;
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
-        /* Comprehensive Quiz Controls */
+        .comprehensive-card .info-box h4 { margin: 0 0 8px 0; font-size: 1em; display: flex; align-items: center; gap: 8px; }
+        .comprehensive-card .info-box p { margin: 0; font-size: 0.9em; opacity: 0.9; }
         .comprehensive-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 12px;
-            margin-top: 8px;
+            display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+            justify-content: space-between; padding: 20px;
+            background: rgba(255,255,255,0.15); border-radius: 12px;
         }
-
-        .comprehensive-length-selector {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .comprehensive-length-selector label {
-            font-weight: 600;
-            color: white;
-            font-size: 0.95em;
-        }
-        .comprehensive-length-buttons {
-            display: flex;
-            gap: 0;
-        }
+        .comprehensive-length-selector { display: flex; align-items: center; gap: 12px; }
+        .comprehensive-length-selector label { font-weight: 600; color: white; font-size: 0.95em; }
+        .comprehensive-length-buttons { display: flex; }
         .comprehensive-length-btn {
-            padding: 10px 20px;
-            border: 2px solid rgba(255,255,255,0.4);
-            background: rgba(255,255,255,0.1);
-            color: white;
-            font-weight: 600;
-            font-size: 0.95em;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
+            padding: 10px 20px; border: 2px solid rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.1); color: white;
+            font-weight: 600; font-size: 0.95em; cursor: pointer;
+            transition: all 0.2s; font-family: inherit;
         }
-        .comprehensive-length-btn:first-child {
-            border-radius: 8px 0 0 8px;
-        }
-        .comprehensive-length-btn:last-child {
-            border-radius: 0 8px 8px 0;
-        }
-        .comprehensive-length-btn:not(:last-child) {
-            border-right: none;
-        }
-        .comprehensive-length-btn:hover:not(.active) {
-            background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.6);
-        }
-        .comprehensive-length-btn.active {
-            background: white;
-            color: #c62828;
-            border-color: white;
-        }
-
+        .comprehensive-length-btn:first-child { border-radius: 8px 0 0 8px; }
+        .comprehensive-length-btn:last-child  { border-radius: 0 8px 8px 0; }
+        .comprehensive-length-btn:not(:last-child) { border-right: none; }
+        .comprehensive-length-btn:hover:not(.active) { background: rgba(255,255,255,0.2); }
+        .comprehensive-length-btn.active { background: white; color: #c62828; border-color: white; }
         .start-comprehensive-btn {
-            padding: 14px 32px;
-            background: linear-gradient(135deg, #4caf50, #388e3c);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.05em;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
+            padding: 14px 32px; background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white; border: none; border-radius: 10px; font-weight: 700;
+            font-size: 1.05em; cursor: pointer; transition: all 0.2s; font-family: inherit;
         }
-        .start-comprehensive-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
-        }
+        .start-comprehensive-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76,175,80,0.3); }
 
         /* Category Grid */
         .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px; margin-bottom: 24px;
         }
-
         .category-card {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 18px;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
+            background: #f8f9fa; border-radius: 12px; padding: 18px;
+            border: 2px solid transparent; cursor: pointer;
+            transition: all 0.2s ease; position: relative;
         }
-        .category-card:hover {
-            background: #ffebee;
-            border-color: #ef9a9a;
-        }
+        .category-card:hover { background: #ffebee; border-color: #ef9a9a; }
         .category-card.selected {
-            background: #ffebee;
-            border-color: #e53935;
-            box-shadow: 0 4px 12px rgba(229, 57, 53, 0.2);
+            background: #ffebee; border-color: #e53935;
+            box-shadow: 0 4px 12px rgba(229,57,53,0.2);
         }
-
         .category-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
+            display: flex; justify-content: space-between;
+            align-items: flex-start; margin-bottom: 8px;
         }
-        .category-card h4 {
-            margin: 0;
-            font-size: 1.05em;
-            color: #333;
-            flex: 1;
-            padding-right: 10px;
-        }
+        .category-card h4 { margin: 0; font-size: 1.05em; color: #333; flex: 1; padding-right: 10px; }
         .question-count-badge {
-            background: #ffebee;
-            color: #e53935;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            font-weight: 600;
-            white-space: nowrap;
+            background: #ffebee; color: #e53935; padding: 4px 10px;
+            border-radius: 12px; font-size: 0.8em; font-weight: 600; white-space: nowrap;
         }
-
-        .category-card .question-count {
-            color: #666;
-            font-size: 0.85em;
-            margin-bottom: 12px;
-        }
+        .category-card .question-count { color: #666; font-size: 0.85em; margin-bottom: 12px; }
 
         /* Performance Bar */
-        .performance-bar-container {
-            margin-top: 12px;
-        }
+        .performance-bar-container { margin-top: 12px; }
         .performance-bar-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-            font-size: 0.85em;
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 6px; font-size: 0.85em;
         }
-        .performance-bar-label .label-text {
-            color: #666;
-        }
-        .performance-bar-label .percentage {
-            font-weight: 700;
-            font-size: 1em;
-        }
-        .performance-bar {
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        .performance-bar-fill {
-            height: 100%;
-            border-radius: 5px;
-            transition: width 0.3s ease, background-color 0.3s ease;
-        }
-        
-        /* No data state */
-        .performance-bar-container.no-data .performance-bar {
-            background: #e8e8e8;
-        }
-        .performance-bar-container.no-data .performance-bar-fill {
-            display: none;
-        }
-        .performance-bar-container.no-data .percentage {
-            color: #999;
-            font-weight: 500;
-        }
+        .performance-bar-label .label-text { color: #666; }
+        .performance-bar-label .percentage { font-weight: 700; font-size: 1em; }
+        .performance-bar { height: 10px; background: #e0e0e0; border-radius: 5px; overflow: hidden; }
+        .performance-bar-fill { height: 100%; border-radius: 5px; transition: width 0.3s ease, background-color 0.3s ease; }
+        .performance-bar-container.no-data .performance-bar-fill { display: none; }
+        .performance-bar-container.no-data .percentage { color: #999; font-weight: 500; }
 
         /* Selection indicator */
         .selection-indicator {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 2px solid #ccc;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
+            position: absolute; top: 12px; right: 12px;
+            width: 24px; height: 24px; border-radius: 50%;
+            border: 2px solid #ccc; background: white;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
         }
-        .category-card.selected .selection-indicator {
-            background: #e53935;
-            border-color: #e53935;
-        }
-        .selection-indicator::after {
-            content: '';
-            display: none;
-        }
+        .category-card.selected .selection-indicator { background: #e53935; border-color: #e53935; }
+        .selection-indicator::after { content: ''; display: none; }
         .category-card.selected .selection-indicator::after {
-            content: '✓';
-            display: block;
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
+            content: '✓'; display: block; color: white; font-size: 14px; font-weight: bold;
         }
 
-        /* Quiz Length Selector */
+        /* Quiz Controls */
         .quiz-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            margin-top: 8px;
+            display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+            justify-content: space-between; padding: 20px;
+            background: #f8f9fa; border-radius: 12px; margin-top: 8px;
         }
-
-        .length-selector {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .length-selector label {
-            font-weight: 600;
-            color: #333;
-            font-size: 0.95em;
-        }
-        .length-buttons {
-            display: flex;
-            gap: 0;
-        }
+        .length-selector { display: flex; align-items: center; gap: 12px; }
+        .length-selector label { font-weight: 600; color: #333; font-size: 0.95em; }
+        .length-buttons { display: flex; }
         .length-btn {
-            padding: 10px 20px;
-            border: 2px solid #ddd;
-            background: white;
-            color: #333;
-            font-weight: 600;
-            font-size: 0.95em;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
+            padding: 10px 20px; border: 2px solid #ddd; background: white;
+            color: #333; font-weight: 600; font-size: 0.95em; cursor: pointer;
+            transition: all 0.2s; font-family: inherit;
         }
-        .length-btn:first-child {
-            border-radius: 8px 0 0 8px;
-        }
-        .length-btn:last-child {
-            border-radius: 0 8px 8px 0;
-        }
-        .length-btn:not(:last-child) {
-            border-right: none;
-        }
-        .length-btn:hover:not(.active) {
-            background: #f5f5f5;
-            border-color: #e53935;
-        }
-        .length-btn.active {
-            background: #e53935;
-            color: white;
-            border-color: #e53935;
-        }
-
+        .length-btn:first-child { border-radius: 8px 0 0 8px; }
+        .length-btn:last-child  { border-radius: 0 8px 8px 0; }
+        .length-btn:not(:last-child) { border-right: none; }
+        .length-btn:hover:not(.active) { background: #f5f5f5; border-color: #e53935; }
+        .length-btn.active { background: #e53935; color: white; border-color: #e53935; }
         .start-category-btn {
-            padding: 14px 32px;
-            background: linear-gradient(135deg, #4caf50, #388e3c);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.05em;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
+            padding: 14px 32px; background: linear-gradient(135deg, #4caf50, #388e3c);
+            color: white; border: none; border-radius: 10px; font-weight: 700;
+            font-size: 1.05em; cursor: pointer; transition: all 0.2s; font-family: inherit;
         }
-        .start-category-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
-        }
-        .start-category-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
+        .start-category-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76,175,80,0.3); }
+        .start-category-btn:disabled { background: #ccc; cursor: not-allowed; }
 
-        /* Responsive */
+        /* Reset buttons */
+        .reset-actions { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .reset-stats-btn {
+            padding: 10px 20px; background: #f5f5f5; color: #666; border: none;
+            border-radius: 8px; font-size: 0.9em; cursor: pointer; transition: background 0.2s; font-family: inherit;
+        }
+        .reset-stats-btn:hover { background: #e0e0e0; }
+        .reset-cycle-btn {
+            padding: 10px 20px; background: #fff3e0; color: #e65100;
+            border: 1px solid #ffcc80; border-radius: 8px; font-size: 0.9em;
+            cursor: pointer; transition: all 0.2s; font-family: inherit;
+        }
+        .reset-cycle-btn:hover { background: #ffe0b2; }
+
         @media (max-width: 768px) {
             .page-header h1 { font-size: 1.8em; }
             .section { padding: 20px; }
-            .category-grid {
-                grid-template-columns: 1fr;
-            }
-            .quiz-controls {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 16px;
-            }
-            .length-selector {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .length-buttons {
-                width: 100%;
-            }
-            .length-btn {
-                flex: 1;
-                padding: 12px 16px;
-            }
-            .start-category-btn {
-                width: 100%;
-            }
-            .comprehensive-controls {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 16px;
-            }
-            .comprehensive-length-selector {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .comprehensive-length-buttons {
-                width: 100%;
-            }
-            .comprehensive-length-btn {
-                flex: 1;
-                padding: 12px 16px;
-            }
-            .start-comprehensive-btn {
-                width: 100%;
-            }
-            .weekly-progress-widget {
-                padding: 8px 16px;
-                font-size: 13px;
-            }
-            .weekly-progress-widget .progress-value {
-                font-size: 16px;
-            }
+            .category-grid { grid-template-columns: 1fr; }
+            .mastery-widget { min-width: unset; width: 100%; max-width: 340px; }
+            .quiz-controls, .comprehensive-controls { flex-direction: column; align-items: stretch; gap: 16px; }
+            .length-selector, .comprehensive-length-selector { flex-direction: column; align-items: stretch; }
+            .length-buttons, .comprehensive-length-buttons { width: 100%; }
+            .length-btn, .comprehensive-length-btn { flex: 1; padding: 12px 16px; }
+            .start-category-btn, .start-comprehensive-btn { width: 100%; }
+            .target-widget { padding: 10px 14px; }
         }
 
-        /* Reset button */
-        .reset-stats-btn {
-            display: inline-block;
-            margin-top: 16px;
-            padding: 10px 20px;
-            background: #f5f5f5;
-            color: #666;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.9em;
-            cursor: pointer;
-            transition: background 0.2s;
-            font-family: inherit;
-        }
-        .reset-stats-btn:hover {
-            background: #e0e0e0;
-        }
-
-        /* Safe area insets for iOS PWA */
         @supports (padding-top: env(safe-area-inset-top)) {
             body {
                 padding-top: env(safe-area-inset-top);
@@ -563,26 +303,69 @@
     </style>
 </head>
 <body>
-    <!-- Offline Indicator -->
     <div id="offlineIndicator" class="offline-indicator hidden">
         📡 You're offline - Using cached content
     </div>
 
     <div class="container">
-        <!-- Navigation Links -->
         <div class="nav-links">
             <a href="/" class="home-link">🏠 Nurse Success Study Hub</a><br>
             <a href="/category/Nursing_Certifications" class="back-link">← Nursing Certifications</a>
         </div>
 
-        <!-- Weekly Progress Widget -->
+        <!-- Widget Container -->
         <div class="widget-container">
+
+            <!-- Cycle Reset Banner (hidden until auto-reset fires) -->
+            <div class="cycle-reset-banner hidden" id="cycleResetBanner">
+                🎉 Study cycle complete! Your target date passed. Set a new target to begin a fresh cycle.
+            </div>
+
+            <!-- Mastery Counter Widget -->
+            <div class="mastery-widget" id="masteryWidget">
+                <div class="mastery-widget-header">
+                    <span class="mastery-widget-icon">🎯</span>
+                    <span class="mastery-widget-label">Questions Left to Master</span>
+                </div>
+                <div class="mastery-widget-counts">
+                    <span class="mastery-remaining" id="masteryRemaining">—</span>
+                    <span class="mastery-separator"> of </span>
+                    <span class="mastery-total" id="masteryTotal">—</span>
+                    <span class="mastery-suffix">remaining</span>
+                </div>
+                <div class="mastery-progress-bar">
+                    <div class="mastery-progress-fill" id="masteryProgressFill" style="width: 0%"></div>
+                </div>
+                <div class="mastery-note">📍 Saved on this device only · Resets after target date</div>
+            </div>
+
+            <!-- Target Date Widget -->
+            <div class="target-widget">
+                <div id="targetInputMode">
+                    <span class="target-widget-icon">📅</span>
+                    <label for="targetDateInput">Study Target Date:</label>
+                    <input type="date" id="targetDateInput" class="target-date-input">
+                    <button id="setTargetBtn" class="target-set-btn">Set Target</button>
+                </div>
+                <div id="targetActiveMode" class="hidden">
+                    <span class="target-widget-icon">📅</span>
+                    <span class="target-active-text">
+                        Target: <strong id="targetDateDisplay"></strong>
+                        &nbsp;·&nbsp;
+                        <span class="target-days-remaining" id="targetDaysRemaining"></span>
+                    </span>
+                    <button id="clearTargetBtn" class="target-clear-btn">✕ Clear</button>
+                </div>
+            </div>
+
+            <!-- Weekly Counter -->
             <div class="weekly-progress-widget">
                 <span class="progress-icon">📊</span>
                 <span class="progress-label">Questions answered this week:</span>
                 <span class="progress-value" id="weeklyCount">0</span>
             </div>
-        </div>
+
+        </div><!-- /widget-container -->
 
         <!-- Page Header -->
         <div class="page-header">
@@ -590,7 +373,7 @@
                 <span class="header-icon">🏅</span>
                 <h1>CCRN Practice System</h1>
             </div>
-            <p>Critical Care Registered Nurse exam preparation with performance tracking across all 12 content areas</p>
+            <p>Critical Care Registered Nurse exam preparation with performance tracking across all content areas</p>
         </div>
 
         <!-- Section 1: Comprehensive Quiz -->
@@ -599,21 +382,19 @@
                 <span class="section-icon">🎯</span>
                 <h2>CCRN Comprehensive Quiz</h2>
             </div>
-
             <div class="comprehensive-card">
                 <h3>Master the CCRN</h3>
                 <p class="card-description">
-                    Take a comprehensive practice quiz covering all CCRN exam content areas. 
-                    Questions are selected from our complete {{ total_questions }}-question bank spanning all 12 categories.
+                    Take a comprehensive practice quiz covering all CCRN exam content areas.
+                    Questions are selected from our complete {{ total_questions }}-question bank spanning all categories.
+                    Quizzes of 25+ questions include 80% new questions toward your mastery goal and 20% review from previously mastered questions.
                 </p>
                 <div class="info-box">
-                    <h4>📊 Content Coverage:</h4>
-                    <p>{{ total_questions }} questions across 12 categories: Cardiovascular, Pulmonary/Respiratory, 
-                       Neurological, Renal/Urinary, Gastrointestinal/Hepatic, Endocrine, Hematologic/Immunologic, 
-                       Infection/Sepsis, Trauma/Shock, Vascular, and more.</p>
+                    <h4>📊 Content Coverage</h4>
+                    <p>{{ total_questions }} questions across all CCRN content categories including Cardiovascular,
+                    Pulmonary, Neurological, Renal, Gastrointestinal, Endocrine, Hematologic, Infection/Sepsis,
+                    Trauma/Shock, and more.</p>
                 </div>
-                
-                <!-- Quiz Controls -->
                 <div class="comprehensive-controls">
                     <div class="comprehensive-length-selector">
                         <label>Quiz Length:</label>
@@ -638,10 +419,10 @@
                 <h2>Practice by CCRN Category</h2>
             </div>
             <p class="section-description">
-                Select a category and quiz length to start focused practice. Your scores are tracked to help identify areas needing improvement.
+                Select a category and quiz length to start focused practice. Your scores are tracked across
+                your study cycle to help identify areas needing improvement.
             </p>
 
-            <!-- Category Grid - Selectable -->
             <div class="category-grid" id="categoryGrid">
                 {% for category, count in category_stats.items() %}
                 <div class="category-card" data-category="{{ category }}" data-count="{{ count }}">
@@ -664,7 +445,6 @@
                 {% endfor %}
             </div>
 
-            <!-- Quiz Controls -->
             <div class="quiz-controls">
                 <div class="length-selector">
                     <label>Quiz Length:</label>
@@ -679,101 +459,176 @@
                 </button>
             </div>
 
-            <button id="resetStatsBtn" class="reset-stats-btn">
-                🔄 Reset Category Performance
-            </button>
+            <div class="reset-actions">
+                <button id="resetStatsBtn" class="reset-stats-btn">🔄 Reset Performance Bars</button>
+                <button id="resetCycleBtn" class="reset-cycle-btn">♻️ Reset Full Study Cycle</button>
+            </div>
         </div>
     </div>
 
-    <!-- Progress Store -->
     <script src="{{ url_for('static', filename='js/progress-store.js') }}"></script>
-    
-    <!-- PWA Utils -->
     <script src="{{ url_for('static', filename='js/pwa-utils.js') }}"></script>
 
     <script>
-        // ============================================
-        // Weekly Progress Counter
-        // ============================================
-        
-        function updateWeeklyCount() {
-            if (window.StudyGuruProgress) {
-                const count = window.StudyGuruProgress.answeredThisWeek();
-                document.getElementById('weeklyCount').textContent = count;
+        // ============================================================
+        // Constants
+        // ============================================================
+        const BANK = 'ccrn';
+        const CCRN_TOTAL = {{ total_questions }};
+
+        // ============================================================
+        // Init — cycle check + all widget renders
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.StudyGuruProgress) return;
+
+            const wasReset = window.StudyGuruProgress.checkAndResetCycle(BANK);
+            if (wasReset) {
+                document.getElementById('cycleResetBanner').classList.remove('hidden');
+            }
+
+            updateMasteryWidget();
+            renderTargetWidget();
+            updateWeeklyCount();
+            updatePerformanceBars();
+        });
+
+        // ============================================================
+        // Mastery Widget
+        // ============================================================
+        function updateMasteryWidget() {
+            if (!window.StudyGuruProgress) return;
+            const masteredCount = window.StudyGuruProgress.getMasteredCount(BANK);
+            const remaining     = Math.max(0, CCRN_TOTAL - masteredCount);
+            const pct           = CCRN_TOTAL > 0 ? Math.round((masteredCount / CCRN_TOTAL) * 100) : 0;
+
+            document.getElementById('masteryRemaining').textContent    = remaining;
+            document.getElementById('masteryTotal').textContent        = '/ ' + CCRN_TOTAL;
+            document.getElementById('masteryProgressFill').style.width = pct + '%';
+
+            document.getElementById('masteryWidget')
+                .classList.toggle('complete', remaining === 0 && CCRN_TOTAL > 0);
+        }
+
+        // Cross-tab / cross-quiz sync
+        window.addEventListener('storage', e => {
+            if (e.key && e.key.startsWith('sg:v1:')) {
+                updateMasteryWidget();
+                updateWeeklyCount();
+                updatePerformanceBars();
+            }
+        });
+        window.addEventListener('masteryUpdated', e => {
+            if (e.detail && e.detail.bank === BANK) updateMasteryWidget();
+        });
+
+        // ============================================================
+        // Target Date Widget
+        // ============================================================
+        function formatTargetDate(dateStr) {
+            const [y, m, d] = dateStr.split('-').map(Number);
+            return new Date(y, m - 1, d).toLocaleDateString('en-US', {
+                month: 'long', day: 'numeric', year: 'numeric'
+            });
+        }
+
+        function getDaysRemaining(dateStr) {
+            const today = new Date(); today.setHours(0, 0, 0, 0);
+            const [y, m, d] = dateStr.split('-').map(Number);
+            const diff = Math.round((new Date(y, m - 1, d) - today) / 86400000);
+            if (diff < 0)   return { text: 'Expired',           ok: false };
+            if (diff === 0) return { text: 'Last day!',         ok: true  };
+            if (diff === 1) return { text: '1 day remaining',   ok: true  };
+            return           { text: diff + ' days remaining',  ok: diff > 7 };
+        }
+
+        function renderTargetWidget() {
+            const store = window.StudyGuruProgress;
+            if (!store) return;
+            const targetDate = store.getTargetDate(BANK);
+            const inputMode  = document.getElementById('targetInputMode');
+            const activeMode = document.getElementById('targetActiveMode');
+
+            if (targetDate) {
+                inputMode.classList.add('hidden');
+                activeMode.classList.remove('hidden');
+                document.getElementById('targetDateDisplay').textContent = formatTargetDate(targetDate);
+                const days   = getDaysRemaining(targetDate);
+                const daysEl = document.getElementById('targetDaysRemaining');
+                daysEl.textContent = days.text;
+                daysEl.classList.toggle('ok', days.ok);
+            } else {
+                inputMode.classList.remove('hidden');
+                activeMode.classList.add('hidden');
+                document.getElementById('targetDateInput').min = new Date().toISOString().split('T')[0];
             }
         }
-        
-        // Update on load
-        document.addEventListener('DOMContentLoaded', updateWeeklyCount);
-        
-        // Update when storage changes (from other tabs)
-        window.addEventListener('storage', (e) => {
-            if (e.key && e.key.startsWith('sg:v1:')) {
-                updateWeeklyCount();
+
+        document.getElementById('setTargetBtn').addEventListener('click', () => {
+            const dateStr = document.getElementById('targetDateInput').value;
+            if (!dateStr) { alert('Please select a target date.'); return; }
+            const today = new Date(); today.setHours(0, 0, 0, 0);
+            const [y, m, d] = dateStr.split('-').map(Number);
+            if (new Date(y, m - 1, d) <= today) { alert('Please choose a future date.'); return; }
+            window.StudyGuruProgress.setTargetDate(BANK, dateStr);
+            renderTargetWidget();
+        });
+
+        document.getElementById('clearTargetBtn').addEventListener('click', () => {
+            if (confirm('Clear the target date? Your mastered question count will not be affected.')) {
+                window.StudyGuruProgress.clearTargetDate(BANK);
+                renderTargetWidget();
             }
         });
 
-        // ============================================
+        // ============================================================
+        // Weekly Counter
+        // ============================================================
+        function updateWeeklyCount() {
+            if (window.StudyGuruProgress)
+                document.getElementById('weeklyCount').textContent =
+                    window.StudyGuruProgress.answeredThisWeek();
+        }
+
+        // ============================================================
         // Comprehensive Quiz Launcher
-        // ============================================
-        
+        // ============================================================
         let comprehensiveLength = 25;
-        
-        const comprehensiveLengthBtns = document.querySelectorAll('.comprehensive-length-btn');
-        const startComprehensiveBtn = document.getElementById('startComprehensiveBtn');
-        
-        // Comprehensive length button selection
-        comprehensiveLengthBtns.forEach(btn => {
+        document.querySelectorAll('.comprehensive-length-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                comprehensiveLengthBtns.forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.comprehensive-length-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 comprehensiveLength = parseInt(btn.dataset.length, 10);
             });
         });
-        
-        // Start comprehensive quiz
-        startComprehensiveBtn.addEventListener('click', () => {
-            const url = `/quiz/Nursing_Certifications/CCRN_Comprehensive?quiz_length=${comprehensiveLength}&autostart=true&back_url=/category/Nursing_Certifications/CCRN&back_label=CCRN Practice System`;
-            window.location.href = url;
+
+        document.getElementById('startComprehensiveBtn').addEventListener('click', () => {
+            window.location.href =
+                `/quiz/Nursing_Certifications/CCRN_Comprehensive?quiz_length=${comprehensiveLength}&autostart=true` +
+                `&back_url=/category/Nursing_Certifications/CCRN&back_label=CCRN Practice System`;
         });
 
-        // ============================================
+        // ============================================================
         // Category Selection & Quiz Launcher
-        // ============================================
-        
+        // ============================================================
         let selectedCategory = null;
-        let selectedLength = 25;
+        let selectedLength   = 25;
 
-        const categoryCards = document.querySelectorAll('.category-card');
-        const lengthBtns = document.querySelectorAll('.length-btn');
         const startBtn = document.getElementById('startCategoryQuizBtn');
 
-        // Category card selection (toggle behavior)
-        categoryCards.forEach(card => {
+        document.querySelectorAll('.category-card').forEach(card => {
             card.addEventListener('click', () => {
                 const wasSelected = card.classList.contains('selected');
-                
-                // Deselect all
-                categoryCards.forEach(c => c.classList.remove('selected'));
-                
-                if (wasSelected) {
-                    // Was already selected - deselect it (clear selection)
-                    selectedCategory = null;
-                } else {
-                    // Wasn't selected - select it
-                    card.classList.add('selected');
-                    selectedCategory = card.dataset.category;
-                }
-                
-                // Update button state
+                document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
+                selectedCategory = wasSelected ? null : card.dataset.category;
+                if (!wasSelected) card.classList.add('selected');
                 updateStartButton();
             });
         });
 
-        // Length button selection
-        lengthBtns.forEach(btn => {
+        document.querySelectorAll('.length-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                lengthBtns.forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.length-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 selectedLength = parseInt(btn.dataset.length, 10);
                 updateStartButton();
@@ -781,133 +636,108 @@
         });
 
         function updateStartButton() {
-            if (selectedCategory) {
-                const card = document.querySelector(`.category-card[data-category="${selectedCategory}"]`);
-                const availableCount = parseInt(card?.dataset.count || 0, 10);
-                
-                if (selectedLength > availableCount) {
-                    startBtn.disabled = true;
-                    startBtn.textContent = `Only ${availableCount} questions available`;
-                } else {
-                    startBtn.disabled = false;
-                    startBtn.textContent = `Start ${selectedCategory.split('/')[0]}... Quiz (${selectedLength}Q) →`;
-                }
-            } else {
+            if (!selectedCategory) {
                 startBtn.disabled = true;
                 startBtn.textContent = 'Select a Category to Start';
+                return;
+            }
+            const card  = document.querySelector(`.category-card[data-category="${CSS.escape(selectedCategory)}"]`);
+            const avail = parseInt(card?.dataset.count || 0, 10);
+            if (avail === 0) {
+                startBtn.disabled = true;
+                startBtn.textContent = 'No questions available yet';
+            } else if (selectedLength > avail) {
+                startBtn.disabled = true;
+                startBtn.textContent = `Only ${avail} questions available`;
+            } else {
+                startBtn.disabled = false;
+                // Truncate long category names for the button
+                const label = selectedCategory.length > 30
+                    ? selectedCategory.substring(0, 28) + '…'
+                    : selectedCategory;
+                startBtn.textContent = `Start "${label}" Quiz (${selectedLength}Q) →`;
             }
         }
 
-        // Start quiz button
         startBtn.addEventListener('click', () => {
             if (!selectedCategory || startBtn.disabled) return;
-            
-            const url = `/category/Nursing_Certifications/CCRN/category/${encodeURIComponent(selectedCategory)}?quiz_length=${selectedLength}&autostart=true&back_url=/category/Nursing_Certifications/CCRN&back_label=CCRN Practice System`;
-            window.location.href = url;
+            window.location.href =
+                `/category/Nursing_Certifications/CCRN/category/${encodeURIComponent(selectedCategory)}` +
+                `?quiz_length=${selectedLength}&autostart=true` +
+                `&back_url=/category/Nursing_Certifications/CCRN&back_label=CCRN Practice System`;
         });
 
-        // ============================================
-        // Performance Bars - Color Gradient
-        // ============================================
-        
-        /**
-         * Get color for performance percentage
-         * Red (0%) → Yellow (77%) → Green (100%)
-         */
-        function getPerformanceColor(percentage) {
-            if (percentage < 77) {
-                // Red to Yellow: 0-76%
-                const ratio = percentage / 76;
-                const r = Math.round(244 + (255 - 244) * ratio);
-                const g = Math.round(67 + (193 - 67) * ratio);
-                const b = Math.round(54 + (7 - 54) * ratio);
-                return `rgb(${r}, ${g}, ${b})`;
-            } else if (percentage < 85) {
-                // Yellow to Light Green: 77-84%
-                const ratio = (percentage - 77) / 7;
-                const r = Math.round(255 + (139 - 255) * ratio);
-                const g = Math.round(193 + (195 - 193) * ratio);
-                const b = Math.round(7 + (74 - 7) * ratio);
-                return `rgb(${r}, ${g}, ${b})`;
+        // ============================================================
+        // Performance Bars — reads from CCRN cycle performance
+        // ============================================================
+        function getPerformanceColor(pct) {
+            if (pct < 77) {
+                return `rgb(${Math.round(244+(255-244)*(pct/76))},${Math.round(67+(193-67)*(pct/76))},${Math.round(54+(7-54)*(pct/76))})`;
+            } else if (pct < 85) {
+                const r = (pct - 77) / 7;
+                return `rgb(${Math.round(255+(139-255)*r)},${Math.round(193+(195-193)*r)},${Math.round(7+(74-7)*r)})`;
             } else {
-                // Light Green to Green: 85-100%
-                const ratio = (percentage - 85) / 15;
-                const r = Math.round(139 + (76 - 139) * ratio);
-                const g = Math.round(195 + (175 - 195) * ratio);
-                const b = Math.round(74 + (80 - 74) * ratio);
-                return `rgb(${r}, ${g}, ${b})`;
+                const r = (pct - 85) / 15;
+                return `rgb(${Math.round(139+(76-139)*r)},${Math.round(195+(175-195)*r)},${Math.round(74+(80-74)*r)})`;
             }
         }
 
         function updatePerformanceBars() {
             if (!window.StudyGuruProgress) return;
-            
-            const averages = window.StudyGuruProgress.getAllCategoryAverages();
-            
-            document.querySelectorAll('.performance-bar-container').forEach(container => {
-                const category = container.dataset.category;
-                const average = averages[category];
-                const percentageEl = container.querySelector('.percentage');
-                const barFill = container.querySelector('.performance-bar-fill');
-                
-                if (average !== undefined && average !== null) {
-                    // Has data
+            const averages = window.StudyGuruProgress.getAllCycleCategoryAverages(BANK);
+
+            document.querySelectorAll('.performance-bar-container[data-category]').forEach(container => {
+                const cat   = container.dataset.category;
+                const avg   = averages[cat];
+                const pctEl = container.querySelector('.percentage');
+                const fill  = container.querySelector('.performance-bar-fill');
+
+                if (avg !== undefined && avg !== null) {
                     container.classList.remove('no-data');
-                    percentageEl.textContent = `${average}%`;
-                    percentageEl.style.color = getPerformanceColor(average);
-                    barFill.style.width = `${average}%`;
-                    barFill.style.backgroundColor = getPerformanceColor(average);
-                    barFill.style.display = 'block';
+                    pctEl.textContent = `${avg}%`;
+                    pctEl.style.color = getPerformanceColor(avg);
+                    fill.style.width  = `${avg}%`;
+                    fill.style.backgroundColor = getPerformanceColor(avg);
+                    fill.style.display = 'block';
                 } else {
-                    // No data
                     container.classList.add('no-data');
-                    percentageEl.textContent = 'No Data';
-                    percentageEl.style.color = '#999';
-                    barFill.style.width = '0%';
-                    barFill.style.display = 'none';
+                    pctEl.textContent = 'No Data';
+                    pctEl.style.color = '#999';
+                    fill.style.width  = '0%';
+                    fill.style.display = 'none';
                 }
             });
         }
 
-        // Initialize performance bars on load
-        document.addEventListener('DOMContentLoaded', () => {
-            updatePerformanceBars();
-        });
-
-        // Update when storage changes (from other tabs)
-        window.addEventListener('storage', (e) => {
-            if (e.key && e.key.startsWith('sg:v1:')) {
+        // ============================================================
+        // Reset Buttons
+        // ============================================================
+        document.getElementById('resetStatsBtn').addEventListener('click', () => {
+            if (confirm('Reset CCRN performance bar data? Your mastered question count will not be affected.')) {
+                window.StudyGuruProgress.clearCyclePerf(BANK);
                 updatePerformanceBars();
             }
         });
 
-        // ============================================
-        // Reset Stats
-        // ============================================
-        
-        document.getElementById('resetStatsBtn').addEventListener('click', () => {
-            if (confirm('Are you sure you want to reset all category performance data? This cannot be undone.')) {
-                if (window.StudyGuruProgress) {
-                    window.StudyGuruProgress.clearCategoryPerformance();
-                    updatePerformanceBars();
-                }
+        document.getElementById('resetCycleBtn').addEventListener('click', () => {
+            if (confirm('⚠️ Reset your FULL CCRN study cycle?\n\nThis will clear:\n• All mastered question IDs\n• All performance bar data\n• Your target date\n\nThis cannot be undone.')) {
+                window.StudyGuruProgress.clearMasteredIds(BANK);
+                window.StudyGuruProgress.clearCyclePerf(BANK);
+                window.StudyGuruProgress.clearTargetDate(BANK);
+                updateMasteryWidget();
+                updatePerformanceBars();
+                renderTargetWidget();
+                document.getElementById('cycleResetBanner').classList.add('hidden');
             }
         });
 
-        // ============================================
+        // ============================================================
         // Offline Indicator
-        // ============================================
-        
+        // ============================================================
         function updateOfflineIndicator() {
-            const indicator = document.getElementById('offlineIndicator');
-            if (navigator.onLine) {
-                indicator.classList.add('hidden');
-            } else {
-                indicator.classList.remove('hidden');
-            }
+            document.getElementById('offlineIndicator').classList.toggle('hidden', navigator.onLine);
         }
-
-        window.addEventListener('online', updateOfflineIndicator);
+        window.addEventListener('online',  updateOfflineIndicator);
         window.addEventListener('offline', updateOfflineIndicator);
         updateOfflineIndicator();
     </script>
