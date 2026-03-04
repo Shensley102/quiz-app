@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.3.0';
+const CACHE_VERSION = 'v2.4.0';
 const CACHE_NAME = `nurse-study-hub-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `nurse-study-hub-data-${CACHE_VERSION}`;
 
@@ -208,10 +208,9 @@ function isJsonData(pathname) {
   return pathname.endsWith('.json') || pathname.startsWith('/modules/');
 }
 
-// Helper function to determine if a request is for a question image (NEW)
+// Helper function to determine if a request is for a question image
 function isQuestionImage(pathname) {
   const imageExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp'];
-  // Check if it's in the question images directory
   if (pathname.startsWith('/static/images/cfrn/') || 
       pathname.startsWith('/static/images/ccrn/') ||
       pathname.startsWith('/static/images/nclex/') ||
@@ -315,7 +314,7 @@ self.addEventListener('fetch', (event) => {
     // Static assets: Cache first
     event.respondWith(cacheFirstWithNetwork(event.request, CACHE_NAME));
   } else if (isQuestionImage(pathname)) {
-    // Question images: Cache first (they don't change often) (NEW)
+    // Question images: Cache first (they don't change often)
     event.respondWith(cacheFirstWithNetwork(event.request, CACHE_NAME));
   } else if (isJsonData(pathname)) {
     // JSON data: Cache first (quiz questions don't change often)
@@ -344,7 +343,7 @@ self.addEventListener('message', (event) => {
       });
   }
   
-  // NEW: Cache question images on demand
+  // Cache question images on demand
   if (event.data && event.data.type === 'CACHE_IMAGES') {
     const urls = event.data.urls || [];
     caches.open(CACHE_NAME)
@@ -403,7 +402,6 @@ self.addEventListener('notificationclick', (event) => {
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true })
       .then((clientList) => {
-        // Focus existing window or open new one
         for (const client of clientList) {
           if (client.url === event.notification.data && 'focus' in client) {
             return client.focus();
