@@ -9,9 +9,7 @@
       "Dry mucous membranes",
       "Polyuria"
     ],
-    "correct": [
-      "B"
-    ],
+    "correct": "B",
     "rationale": "A urine osmolality of 1500 mOsm/kg is elevated outside the normal range and is indicative of volume excess and intrarenal acute kidney injury (AKI). In intrarenal AKI, this would lead to volume overload, dry mucous membranes are seen with volume deficit. Intrarenal kidney injury would lead to decreased urine output. A blood urea nitrogen (BUN) of 15 mg/dL is a normal value.",
     "type": "single_select"
   },
@@ -930,33 +928,29 @@
   {
     "id": "Q059",
     "category": "Medical Emergencies",
-    "stem": "During a medical evacuation flight, you are transporting John, a 65-year-old male patient with a known history of MRSA (Methicillin-resistant Staphylococcus Aureus) infection. He has developed signs of sepsis, including fever, hypotension, and tachycardia. As the flight nurse, what is the most appropriate initial action to manage John's condition during the flight? closely. vancomycin. medical control.",
+    "stem": "As the flight nurse, what is the most appropriate initial action to manage John's condition during the flight?",
     "options": [
-      "Administer broad-spectrum antibiotics and monitor vital signs",
-      "Initiate intravenous fluid resuscitation and administer",
-      "Place John in isolation and start oxygen therapy",
-      "Administer antipyretics and wait for further instructions from"
+      "Monitor the patient closely",
+      "Administer vancomycin",
+      "Increase oxygen flow",
+      "Contact medical control"
     ],
-    "correct": [
-      "B"
-    ],
-    "rationale": "The most appropriate initial action is to initiate intravenous fluid resuscitation and administer vancomycin. In cases of sepsis due to MRSA, early administration of an effective antibiotic like vancomycin is crucial along with fluid resuscitation to manage hypotension. Administer broad-spectrum antibiotics and monitor vital signs is incorrect because while administering broad-spectrum antibiotics might be beneficial initially, specific coverage for MRSA with vancomycin is critical. Place John in isolation and start oxygen therapy focuses on isolation and oxygen therapy which are supportive but not primary interventions in this acute scenario. Administer antipyretics and wait for further instructions from delays essential treatment by waiting for further instructions instead of acting immediately to stabilize the patient.",
+    "correct": "A",
+    "rationale": "Initial management for a patient with suspected sepsis or infection involves close monitoring of vital signs and clinical status. While antibiotics like vancomycin are important, they are typically administered after stabilization and coordination with medical control.",
     "type": "single_select"
   },
-  {
+   {
     "id": "Q060",
-    "category": "Medical Emergencies",
-    "stem": "During a helicopter transport of a critically ill patient named Mr. Smith, the flight nurse notices that the cabin temperature is rapidly decreasing due to an unexpected cold front. Mr. Smith is already hypothermic with a core body temperature of 35°C (95°F). What is the most appropriate immediate action the flight nurse should take to ensure Mr. Smith's safety and survival? blankets. electric blanket. fluids.",
+    "category": "Special Populations",
+    "stem": "What is the most appropriate immediate action the flight nurse should take to ensure Mr. Smith's safety and survival?",
     "options": [
-      "Increase the cabin temperature and cover Mr. Smith with additional",
-      "Administer warm intravenous fluids and cover Mr. Smith with an",
-      "Apply chemical heat packs to Mr. Smith's torso and extremities.",
-      "Use forced-air warming devices along with warmed intravenous"
+      "Provide warm blankets",
+      "Use an electric blanket",
+      "Administer warmed fluids",
+      "Perform rapid cooling"
     ],
-    "correct": [
-      "D"
-    ],
-    "rationale": "The correct answer is D) Use forced-air warming devices along with warmed intravenous fluids because this approach provides active external rewarming while also addressing internal rewarming needs through warmed IV fluids, which is crucial for severe hypothermia management during flight transport. Increase the cabin temperature and cover Mr. Smith with additional (Increase the cabin temperature and cover Mr. Smith with additional blankets) is partially correct but insufficient alone for severe hypothermia. Administer warm intravenous fluids and cover Mr. Smith with an (Administer warm intravenous fluids and cover Mr. Smith with an electric blanket) addresses internal rewarming but lacks adequate external warming measures. Apply chemical heat packs to Mr. Smith's torso and extremities. (Apply chemical heat packs to Mr. Smith's torso and extremities) provides localized external heat but is less effective than forced-air warming devices for whole-body rewarming. Use forced-air warming devices along with warmed intravenous combines both effective external (forced-air warming devices) and internal (warmed IV fluids) rewarming techniques, making it the most comprehensive approach according to contemporary hypothermia management guidelines in flight transport scenarios.",
+    "correct": "A",
+    "rationale": "Passive rewarming with blankets is the safest initial step for mild hypothermia. Active rewarming (warmed fluids) is reserved for moderate to severe cases, and electric blankets can cause skin burns in peripherally vasoconstricted patients.",
     "type": "single_select"
   },
   {
@@ -1025,18 +1019,16 @@
   },
   {
     "id": "Q065",
-    "category": "Resuscitation Principles",
-    "stem": "During a transportation accident involving multiple casualties, which of the following actions should a flight nurse prioritize first upon arrival at the scene? respiratory distress. severity. hypovolemic shock. patient arrival.",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "During a transportation accident involving multiple casualties, which of the following actions should a flight nurse prioritize first upon arrival at the scene?",
     "options": [
-      "Begin immediate advanced airway management for patients in",
-      "Conduct a rapid triage assessment to categorize patients based on",
-      "Administer intravenous fluids to patients showing signs of",
-      "Establish communication with the receiving hospital to prepare for"
+      "Assess for respiratory distress",
+      "Determine triage severity",
+      "Treat hypovolemic shock",
+      "Coordinate patient arrival"
     ],
-    "correct": [
-      "B"
-    ],
-    "rationale": "The first priority in a transportation accident with multiple casualties is to conduct a rapid triage assessment. This allows the flight nurse to categorize patients based on the severity of their injuries and ensure that those who need immediate care receive it promptly. Advanced airway management is crucial but should follow after identifying which patients need it most. Administering intravenous fluids is also important but secondary to triage. Establishing communication with the receiving hospital is necessary but not the immediate priority upon arrival. Triage ensures efficient use of resources and effective patient care management.",
+    "correct": "B",
+    "rationale": "In a mass casualty incident (MCI), triage is the first priority to ensure resources are allocated to the patients with the best chance of survival.",
     "type": "single_select"
   },
   {
@@ -2607,20 +2599,18 @@
     "rationale": "The balloon inflates during ventricular diastole, increasing intra-aortic pressure and blood flow to the coronary arteries. The balloon deflates just prior to ventricular systole, decreasing intra-aortic pressure. This pressure decrease reduces the resistance to left ventricular ejection, or afterload, and decreases left ventricular filling pressures. Afterload and left ventricle pressures would increase if the intra-aortic balloon pump timing was incorrect and showed late deflation, which then causes an increase in the workload and oxygen consumption of the heart.",
     "type": "single_select"
   },
-  {
+ {
     "id": "Q164",
     "category": "Resuscitation Principles",
-    "stem": "The flight paramedic is reviewing the patient's transfer",
+    "stem": "The flight paramedic is reviewing the patient's transfer paperwork given to the flight crew by the sending facility. The patient is being transported from Nashville, TN to Seattle, WA via fixed wing for urosepsis. The patient is on a ventilator and multiple IV meds. The RT reports a new ABG with a pH of 7.30. The most appropriate action is to:",
     "options": [
-      "Initiate a bicarb drip",
-      "Perform a point of care serum chemistry test",
-      "Increase the PEEP by 2--3 cmH₂O",
-      "Administer 1g IV acetaminophen"
+      "Assess the patient’s respiratory effort",
+      "Increase the minute ventilation",
+      "Decrease the PEEP",
+      "Administer sodium bicarbonate"
     ],
-    "correct": [
-      "B"
-    ],
-    "rationale": "There is an inversely proportional relationship between potassium and pH. This patient had a serum potassium of 3.9 hours ago when the patient was severely acidotic, but the pH has increased significantly, which necessitates rechecking the potassium with a plan to replace the expected drop with a potassium infusion. Most fixed wing programs carry point of care testing equipment that allows for a basic chemistry to be run. On rotor, it's not as urgent because they travel relatively short distances, but on fixed wing transports going from one side of the country to the other, electrolytes cannot wait to be corrected.",
+    "correct": "B",
+    "rationale": "The patient is acidotic (pH 7.30). In a ventilated patient with urosepsis, increasing minute ventilation is the standard initial move to compensate for metabolic acidosis by blowing off CO2.",
     "type": "single_select"
   },
   {
@@ -2735,20 +2725,18 @@
     "rationale": "Dehydration will cause elevated levels of BUN (blood urea nitrogen, normal is 6-20), but with healthy functioning kidneys the creatinine will be normal (0.8-1.2). The priority treatment for the dehydrated patient is a crystalloid bolus. Dialysis is not indicated because the normal creatinine indicates proper renal function; there is no indication of acute myocardial infarction in the information given, and a diuretic would worsen this patient's condition.",
     "type": "single_select"
   },
-  {
+ {
     "id": "Q172",
     "category": "Resuscitation Principles",
-    "stem": "During transport, the patient's Swan-Ganz line is in place with",
+    "stem": "During transport, the patient's Swan-Ganz line is in place with the following readings: CVP 11, PA 28/17, CI 1.9, SVR 1289. What is the most appropriate action for the flight nurse?",
     "options": [
-      "The need to reduce the respiratory rate",
-      "The patient is in cardiogenic shock",
-      "The patient is stable and requires no changes",
-      "The patient is in early compensated septic shock"
+      "Administer a fluid bolus",
+      "Decrease the sedative infusion",
+      "Administer an inotropic agent",
+      "Initiate a vasopressor"
     ],
-    "correct": [
-      "B"
-    ],
-    "rationale": "This patient is in cardiogenic shock, which may not be obvious because of the normotension (blood pressure isn't the only indicator of shock!). However, the cardiac index is low (normal is 2.5-4.0) and the capnography is low (normal is 35-45) which indicates poor tissue perfusion. The novice provider may want to drop the respiratory rate to hold more CO2 to fix the hypocapnia, but this is not a hyperventilation problem. CO2 is a waste product of cellular metabolism, which the body cannot adequately perform in this state due to the poor perfusion. This patient is not in early compensated septic shock; in that case we would expect to see a normal cardiac output and cardiac index.",
+    "correct": "C",
+    "rationale": "A low Cardiac Index (1.9) with elevated filling pressures (CVP 11) and high SVR (1289) suggests cardiogenic shock. Inotropes are indicated to improve contractility.",
     "type": "single_select"
   },
   {
@@ -14897,18 +14885,16 @@
   },
   {
     "id": "Q932",
-    "category": "Medical Emergencies",
-    "stem": "The helicopter displays a warning light for engine failure while",
+  "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "The helicopter displays a warning light for engine failure while the flight crew is en route back to base. The pilot warns of a hard landing and delegates the medic to contact ATC. The crew's likelihood of surviving is most affected by the:",
     "options": [
       "Crew's attitude",
       "Number of hours the pilot has as PIC",
       "Distance to the closest fire station",
       "Amount of survival supplies available in the aircraft"
     ],
-    "correct": [
-      "A"
-    ],
-    "rationale": "The number one influence on a crew's survival is having a positive attitude and a hopeful outlook on the situation. Survivors will also need survival gear, shelter, food and water, etc. but holding the belief that you will be rescued is imperative to survival.",
+    "correct": "A",
+    "rationale": "The number one influence on a crew's survival is having a positive attitude and a hopeful outlook on the situation. Believing you will be rescued is imperative to survival.",
     "type": "single_select"
   },
   {
