@@ -14532,10 +14532,10 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a flight transport, you are caring for an elderly patient named Mr. Johnson who has multiple bruises in various stages of healing. He is accompanied by his son, who appears anxious and evasive when questioned about his father\\'s injuries. As a flight nurse, what is your most appropriate action regarding mandatory reporting?",
     "options": [
-      "Document the findings in the patient's medical record and inform",
-      "Report the suspected elder abuse to the appropriate authorities",
-      "Wait until you have more concrete evidence before making any",
-      "Discuss your concerns with Mr. Johnson's son to get more"
+      "Document the findings in the patient's medical record and inform yournsupervisor.",
+      "Report the suspected elder abuse to the appropriate authorities immediately.",
+      "Wait until you have more concrete evidence before making any report.",
+      "Discuss your concerns with Mr. Johnson's son to get more information before deciding on reporting."
     ],
     "correct": [
       "B"
@@ -14549,8 +14549,8 @@
     "stem": "A flight nurse named Sarah is receiving a handoff report from an emergency department (ED) physician about a patient named John Doe, who has sustained multiple traumatic injuries in a motor vehicle accident. Which piece of information provided by the referring provider is most crucial for Sarah to clarify before transport?",
     "options": [
       "The exact time of the last dose of pain medication administered.",
-      "The patient's Glasgow Coma Scale (GCS) score upon arrival at the",
-      "The specific type and amount of intravenous fluids given in the",
+      "The patient's Glasgow Coma Scale (GCS) score upon arrival at the ED.",
+      "The specific type and amount of intravenous fluids given in the last hour.",
       "The presence of any known allergies, especially to medications."
     ],
     "correct": [
