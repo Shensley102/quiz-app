@@ -29,6 +29,8 @@
    - Requeued questions are shuffled (randomized order)
    - Answer positions re-randomized on each render (existing behavior)
    - Requeue counter resets after each injection
+   - FIX: showView('launcher') now clears inline style="display:none" set by
+     autostart so "Start New Quiz" correctly returns to the length-selector screen
    
 ------------------------------------------------------------ */
 
@@ -558,7 +560,12 @@
   // View Management
   // -----------------------------------------------------------
   function showView(viewName) {
-    if (els.launcher) els.launcher.classList.toggle('hidden', viewName !== 'launcher');
+    if (els.launcher) {
+      els.launcher.classList.toggle('hidden', viewName !== 'launcher');
+      // Clear any inline style="display:none" applied by the autostart template
+      // so the launcher is always visible when navigating back to it.
+      if (viewName === 'launcher') els.launcher.style.display = '';
+    }
     if (els.quiz)     els.quiz.classList.toggle('hidden', viewName !== 'quiz');
     if (els.summary)  els.summary.classList.toggle('hidden', viewName !== 'summary');
     if (els.resetBtn) els.resetBtn.classList.toggle('hidden', viewName !== 'quiz');
