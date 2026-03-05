@@ -9890,7 +9890,7 @@
   {
     "id": "Q0619",
     "category": "Resuscitation Principles",
-    "stem": "During a flight transport of a patient named John, who has sustained multiple traumatic injuries, you notice that he begins to exhibit signs of hypoxia. Considering the unique physiological stressors associated with flight transport, which intervention is most appropriate to address John's condition?",
+    "stem": "During a flight transport of a patient who has sustained multiple traumatic injuries, you notice that he begins to exhibit signs of hypoxia. Considering the unique physiological stressors associated with flight transport, which intervention is most appropriate to address John's condition?",
     "options": [
       "Increase the oxygen flow rate.",
       "Administer intravenous fluids.",
@@ -9900,7 +9900,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Increasing the oxygen flow rate is the most appropriate intervention to address hypoxia during flight transport. In-flight conditions such as reduced atmospheric pressure can lead to decreased partial pressure of oxygen, exacerbating hypoxia. Administering more oxygen helps counteract this effect. Correct: This directly addresses hypoxia by increasing available oxygen, which is crucial in low-pressure environments typical of flight. Incorrect: While intravenous fluids are important for maintaining hemodynamic stability, they do not directly address hypoxia caused by reduced atmospheric pressure. Incorrect: Adjusting cabin pressure is often not feasible in many aircraft types used for medical transport. Incorrect: Mechanical ventilation could be necessary in severe cases but is not the first-line intervention for initial hypoxia management in this context.",
+    "rationale": "Increasing the oxygen flow rate is the most appropriate intervention to address hypoxia during flight transport. In-flight conditions such as reduced atmospheric pressure can lead to decreased partial pressure of oxygen, exacerbating hypoxia. Administering more oxygen helps counteract this effect as it directly addresses hypoxia by increasing available oxygen, which is crucial in low-pressure environments typical of flight. Incorrect: While intravenous fluids are important for maintaining hemodynamic stability, they do not directly address hypoxia caused by reduced atmospheric pressure. Incorrect: Adjusting cabin pressure is often not feasible in many aircraft types used for medical transport. Incorrect: Mechanical ventilation could be necessary in severe cases but is not the first-line intervention for initial hypoxia management in this context.",
     "type": "single_select"
   },
   {
