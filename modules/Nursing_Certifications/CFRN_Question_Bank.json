@@ -172,13 +172,13 @@
     "correct": [
       "B"
     ],
-    "rationale": "Urinary tract infections classically present with confusion in the elderly. You may have been thrown off by the normal vital signs, but always consider what's "normal" vs. normal for THIS patient. This patient has a history of hypertension, so this is likely hypotensive for her. Why isn't she tachycardic? She is on a beta-blocker for her blood pressure, but that will also limit her ability to increase her heart rate, so she is unable to compensate with tachycardia. Suspect and further investigate for shock in non-tachycardic patients who are on a beta blocker when the rest of the clinical picture points to shock, even if it is weak evidence. This wasn't a question about urosepsis, this was a question to see if you can think outside the box to recognize sepsis when it is disguised by various circumstances.",
+    "rationale": "Urinary tract infections classically present with confusion in the elderly. You may have been thrown off by the normal vital signs, but always consider what's \"normal\" vs. normal for THIS patient. This patient has a history of hypertension, so this is likely hypotensive for her. Why isn't she tachycardic? She is on a beta-blocker for her blood pressure, but that will also limit her ability to increase her heart rate, so she is unable to compensate with tachycardia. Suspect and further investigate for shock in non-tachycardic patients who are on a beta blocker when the rest of the clinical picture points to shock, even if it is weak evidence. This wasn't a question about urosepsis, this was a question to see if you can think outside the box to recognize sepsis when it is disguised by various circumstances.",
     "type": "single_select"
   },
   {
     "id": "Q0012",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "The transport team is responding to a 911 call from a store owner for a man lounging on the sidewalk in front of her storefront. Police are on scene and speaking to the man whose speech is slurred, he has an empty bottle of hard liquor in his hand, and when he attempts to stand, he stumbles. He tells the crew "I'm fine, I don't need to go to the hospital! They are mean to me there!" The crew's priority is to:",
+    "stem": "The transport team is responding to a 911 call from a store owner for a man lounging on the sidewalk in front of her storefront. Police are on scene and speaking to the man whose speech is slurred, he has an empty bottle of hard liquor in his hand, and when he attempts to stand, he stumbles. He tells the crew \"I'm fine, I don't need to go to the hospital! They are mean to me there!\" The crew's priority is to:",
     "options": [
       "Respect his right to refuse care",
       "Administer an amp of D50",
@@ -306,7 +306,7 @@
   {
     "id": "Q0020",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "The pilot in command is briefing the medical crew at the start of the night shift at a rural base that does frequent flights into a large urban area. He states "As we approach the city, I want one of you off night vision goggles." The medical crew knows this is because",
+    "stem": "The pilot in command is briefing the medical crew at the start of the night shift at a rural base that does frequent flights into a large urban area. He states \"As we approach the city, I want one of you off night vision goggles.\" The medical crew knows this is because",
     "options": [
       "Not all light is visible through NVGs",
       "Fog will obstruct the view through the night vision goggles",
@@ -354,7 +354,7 @@
   {
     "id": "Q0023",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "The transport team arrives at the scene of a house fire in which the mother ran back into the house multiple times to get her children, pets, and a few family heirlooms out. She is refusing care and states "I'm fine, I need to stay here, I can't go to the hospital!" The paramedic should:",
+    "stem": "The transport team arrives at the scene of a house fire in which the mother ran back into the house multiple times to get her children, pets, and a few family heirlooms out. She is refusing care and states \"I'm fine, I need to stay here, I can't go to the hospital!\" The paramedic should:",
     "options": [
       "Prioritize assessing the children, as she is obviously not affected because she is able to speak clearly and in full sentences",
       "Allow her to sign a refusal as long as her vital signs are stable and she has no carbonaceous sputum",
@@ -508,7 +508,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Radios are not a secure line of communication and are often monitored by apps and the general public. Protected health information that could be used to identify the patient should never be communicated on radio channels. An acceptable radio report identifying the transfer using military alphabet might sound like "We are en route with patient Kilo Sierra, are you aware of this patient?" Of note, if calling report by satellite phone, it is acceptable to give the patient's identifiers, but not essential.",
+    "rationale": "Radios are not a secure line of communication and are often monitored by apps and the general public. Protected health information that could be used to identify the patient should never be communicated on radio channels. An acceptable radio report identifying the transfer using military alphabet might sound like \"We are en route with patient Kilo Sierra, are you aware of this patient?\" Of note, if calling report by satellite phone, it is acceptable to give the patient's identifiers, but not essential.",
     "type": "single_select"
   },
   {
@@ -578,7 +578,7 @@
   {
     "id": "Q0037",
     "category": "Resuscitation Principles",
-    "stem": "The transport crew arrives at the bedside of a patient on a non-rebreather at 15 liters per minute and vital signs of: HR 70 paced, NIBP 198/114, RR 40, SpO₂ 88%. The patient keeps saying "I can't breathe!" The transport nurse hears crackles on auscultation of lung sounds. The priority intervention is:",
+    "stem": "The transport crew arrives at the bedside of a patient on a non-rebreather at 15 liters per minute and vital signs of: HR 70 paced, NIBP 198/114, RR 40, SpO₂ 88%. The patient keeps saying \"I can't breathe!\" The transport nurse hears crackles on auscultation of lung sounds. The priority intervention is:",
     "options": [
       "Endotracheal intubation",
       "Administer an anxiolytic",
@@ -850,7 +850,7 @@
   {
     "id": "Q0054",
     "category": "Resuscitation Principles",
-    "stem": "The crew intubated a patient 15 minutes ago and had adequate feedback to confirm correct endotracheal tube placement. The ventilator is now alarming "Low pressure." All of the following are a possible cause EXCEPT:",
+    "stem": "The crew intubated a patient 15 minutes ago and had adequate feedback to confirm correct endotracheal tube placement. The ventilator is now alarming \"Low pressure.\" All of the following are a possible cause EXCEPT:",
     "options": [
       "The patient pulling a breath",
       "ETT cuff pressure <20cmH₂O",
@@ -892,7 +892,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "While you may have been tempted to choose the "normal baseline bradycardia because he's a runner" option, you should have been clued in by the red flag in the question about the crush injury. Due to cell lysis in crush-injured patients, there is a high incidence of hyperkalemia, which requires administration of calcium to stabilize the cardiac membrane until you can get the patient to the hospital for definitive care. Remember that potassium is the primary INTRACELLULAR ion, and if you bust open a bunch of cells (cell lysis), they'll spill their potassium out into the vasculature.",
+    "rationale": "While you may have been tempted to choose the \"normal baseline bradycardia because he's a runner\" option, you should have been clued in by the red flag in the question about the crush injury. Due to cell lysis in crush-injured patients, there is a high incidence of hyperkalemia, which requires administration of calcium to stabilize the cardiac membrane until you can get the patient to the hospital for definitive care. Remember that potassium is the primary INTRACELLULAR ion, and if you bust open a bunch of cells (cell lysis), they'll spill their potassium out into the vasculature.",
     "type": "single_select"
   },
   {
@@ -1004,7 +1004,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The patient in decompensated shock has lost the peripheral clamp down that is often present in early septic shock and now has low systemic vascular resistance (SVR, normal 800-1200), along with poor perfusion as evidenced by low cardiac output (CO, normal 4-8Lpm), cardiac index (CI, normal 2.5-4.0), and central venous pressure (CVP, or "preload" normal 2-8).",
+    "rationale": "The patient in decompensated shock has lost the peripheral clamp down that is often present in early septic shock and now has low systemic vascular resistance (SVR, normal 800-1200), along with poor perfusion as evidenced by low cardiac output (CO, normal 4-8Lpm), cardiac index (CI, normal 2.5-4.0), and central venous pressure (CVP, or \"preload\" normal 2-8).",
     "type": "single_select"
   },
   {
@@ -1260,7 +1260,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Caput medusae is Latin for "head of Medusa" and describes the Medusa-like appearance of the engorged veins that sprawl across the patient's abdomen in advanced liver disease due to prolonged portal hypertension. This should be an immediate red flag for the clinician to anticipate other dangers associated with liver failure such as esophageal varices (prevent nausea and vomiting which can cause esophageal rupture), bleeding (liver patients often present with coagulopathy), and hepatic encephalopathy (due to high ammonia levels).",
+    "rationale": "Caput medusae is Latin for \"head of Medusa\" and describes the Medusa-like appearance of the engorged veins that sprawl across the patient's abdomen in advanced liver disease due to prolonged portal hypertension. This should be an immediate red flag for the clinician to anticipate other dangers associated with liver failure such as esophageal varices (prevent nausea and vomiting which can cause esophageal rupture), bleeding (liver patients often present with coagulopathy), and hepatic encephalopathy (due to high ammonia levels).",
     "type": "single_select"
   },
   {
@@ -1548,7 +1548,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Per Neonatal Resuscitation Program, preterm infants under 35 weeks gestation should be ventilated with 21-30% FiO2 and full term infants should be ventilated using room air. This population requires ventilatory support, and not oxygenation help. Their primary problem is that they have never breathed before and they just need to be shown what to do. Typically, a couple minutes of assisted ventilations or some CPAP and they're like "Oh yeah, fam. I see what I'm supposed to be doing," and they're good to go.",
+    "rationale": "Per Neonatal Resuscitation Program, preterm infants under 35 weeks gestation should be ventilated with 21-30% FiO2 and full term infants should be ventilated using room air. This population requires ventilatory support, and not oxygenation help. Their primary problem is that they have never breathed before and they just need to be shown what to do. Typically, a couple minutes of assisted ventilations or some CPAP and they're like \"Oh yeah, fam. I see what I'm supposed to be doing,\" and they're good to go.",
     "type": "single_select"
   },
   {
@@ -1618,12 +1618,12 @@
   {
     "id": "Q0102",
     "category": "Trauma",
-    "stem": "The patient is an intoxicated driver with minor injuries that hit a car with a family of four in which all four occupants were killed. During the flight, one clinician says "I'm going to start bilateral 14 gauge IVs." The other partner",
+    "stem": "The patient is an intoxicated driver with minor injuries that hit a car with a family of four in which all four occupants were killed. During the flight, one clinician says \"I'm going to start bilateral 14 gauge IVs.\" The other partner",
     "options": [
       "Agrees with this approach, it is standard trauma care",
       "Disagrees and will discuss it with the partner during the post flight debrief",
       "Agrees with the plan of care, as this is an industry wide accepted practice given the circumstances",
-      "Disagrees and states "a single 18 gauge IV will suffice for this patient.""
+      "Disagrees and states \"a single 18 gauge IV will suffice for this patient.\""
     ],
     "correct": [
       "D"
@@ -1842,7 +1842,7 @@
   {
     "id": "Q0116",
     "category": "Resuscitation Principles",
-    "stem": "A 19-year-old patient was an unrestrained passenger in a vehicle that rolled. She had a loss of consciousness at the time of the accident and her boyfriend called EMS. A BLS crew arrived and the patient was alert and oriented, but the BLS crew requested an aircraft to transport to a level 1 trauma center based on mechanism. Upon the flight crew's arrival, the patient was lethargic but stated "I don't need a helicopter, I'm fine. I just have a little headache and I want to go home." The flight crew should:",
+    "stem": "A 19-year-old patient was an unrestrained passenger in a vehicle that rolled. She had a loss of consciousness at the time of the accident and her boyfriend called EMS. A BLS crew arrived and the patient was alert and oriented, but the BLS crew requested an aircraft to transport to a level 1 trauma center based on mechanism. Upon the flight crew's arrival, the patient was lethargic but stated \"I don't need a helicopter, I'm fine. I just have a little headache and I want to go home.\" The flight crew should:",
     "options": [
       "Discuss the severity of the patient’s injury with her and convince her to go to the hospital",
       "Get a signed refusal and let the patient go home with her boyfriend",
@@ -2290,7 +2290,7 @@
   {
     "id": "Q0144",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "The flight crew is returning to base after a patient transport and on descent the flight paramedic cries out in pain and says "My ear! My ear! It hurts so bad!" The pilot should",
+    "stem": "The flight crew is returning to base after a patient transport and on descent the flight paramedic cries out in pain and says \"My ear! My ear! It hurts so bad!\" The pilot should",
     "options": [
       "Isolate the med crew",
       "Climb to 10,000 MSL",
@@ -2354,7 +2354,7 @@
   {
     "id": "Q0148",
     "category": "Medical Emergencies",
-    "stem": "The flight crew responded to the LZ and assumed care of a patient from a BLS crew for transport to a stroke center 30 minutes away by rotor. The patient has a history of hypertension and states that she was sitting in the recliner watching TV when she suddenly developed severe head pain. The patient is alert, oriented, but refuses to open her eyes and repeats "This is the worst headache I have ever had!" The flight crew recognizes the likelihood of",
+    "stem": "The flight crew responded to the LZ and assumed care of a patient from a BLS crew for transport to a stroke center 30 minutes away by rotor. The patient has a history of hypertension and states that she was sitting in the recliner watching TV when she suddenly developed severe head pain. The patient is alert, oriented, but refuses to open her eyes and repeats \"This is the worst headache I have ever had!\" The flight crew recognizes the likelihood of",
     "options": [
       "New onset migraine",
       "A subdural hematoma",
@@ -3362,7 +3362,7 @@
   {
     "id": "Q0211",
     "category": "Medical Emergencies",
-    "stem": "The flight crew lands at a secure LZ to assume care of a 72-year-old male whose wife called 911 after the patient had become increasingly weaker over the last 24 hours. The crew performs an EKG and identifies peaked T-waves and bradycardia at a rate of 32, and the patient's blood pressure is 72/50. The patient takes atenolol and lisinopril "for his heart," but is still active in working on the family farm, and his wife cannot identify a provocative factor in his illness. The flight crew suspects",
+    "stem": "The flight crew lands at a secure LZ to assume care of a 72-year-old male whose wife called 911 after the patient had become increasingly weaker over the last 24 hours. The crew performs an EKG and identifies peaked T-waves and bradycardia at a rate of 32, and the patient's blood pressure is 72/50. The patient takes atenolol and lisinopril \"for his heart,\" but is still active in working on the family farm, and his wife cannot identify a provocative factor in his illness. The flight crew suspects",
     "options": [
       "ACE inhibitor-induced angioedema",
       "BRASH syndrome",
@@ -3458,7 +3458,7 @@
   {
     "id": "Q0217",
     "category": "Resuscitation Principles",
-    "stem": "A 5'1" female is being mechanically ventilated with the following settings: SIMV 18, 450mL, FiO2 80%, PEEP 7. What is abnormal about these settings?",
+    "stem": "A 5'1\" female is being mechanically ventilated with the following settings: SIMV 18, 450mL, FiO2 80%, PEEP 7. What is abnormal about these settings?",
     "options": [
       "The tidal volume is too high",
       "The PEEP is too high",
@@ -3618,7 +3618,7 @@
   {
     "id": "Q0227",
     "category": "Resuscitation Principles",
-    "stem": "For an adult male patient 6'0" tall, the normal minute ventilation is",
+    "stem": "For an adult male patient 6'0\" tall, the normal minute ventilation is",
     "options": [
       "7.0L",
       "7760mL",
@@ -3874,7 +3874,7 @@
   {
     "id": "Q0243",
     "category": "Medical Emergencies",
-    "stem": "The flight crew enters the ambulance to assume care of a 32-year-old female with altered mental status, tachycardia, hypotension, and fever. The EMT hands the medic the patient's driver's license and the paramedic notices that the patient has exophthalmos in her ID photo. The ground crew states that the patient woke up "acting crazy" today and was shattering dishes against the kitchen wall. The paramedic suspects",
+    "stem": "The flight crew enters the ambulance to assume care of a 32-year-old female with altered mental status, tachycardia, hypotension, and fever. The EMT hands the medic the patient's driver's license and the paramedic notices that the patient has exophthalmos in her ID photo. The ground crew states that the patient woke up \"acting crazy\" today and was shattering dishes against the kitchen wall. The paramedic suspects",
     "options": [
       "Acute psychosis",
       "Thyroid storm",
@@ -3970,7 +3970,7 @@
   {
     "id": "Q0249",
     "category": "Trauma",
-    "stem": "The multisystem trauma patient presents with open ankle dislocation with minimal bleeding, focal tenderness over the lower abdomen and hips, bruising and abrasions across the right chest, and the patient repeatedly states "I can't breathe! I can't breathe!" The patient is tachycardic, hypotensive, and hypoxic. Priority interventions are to",
+    "stem": "The multisystem trauma patient presents with open ankle dislocation with minimal bleeding, focal tenderness over the lower abdomen and hips, bruising and abrasions across the right chest, and the patient repeatedly states \"I can't breathe! I can't breathe!\" The patient is tachycardic, hypotensive, and hypoxic. Priority interventions are to",
     "options": [
       "Perform a finger thoracostomy and bind the pelvis",
       "Prepare to RSI",
@@ -4242,7 +4242,7 @@
   {
     "id": "Q0266",
     "category": "Special Populations",
-    "stem": "The patient is 36 weeks gestation and complains of bright red vaginal bleeding but denies trauma, contractions, or pain. The patient states that she has skipped some of her recent OB appointments but her doctor told her that her placenta is "low lying." The paramedic suspects:",
+    "stem": "The patient is 36 weeks gestation and complains of bright red vaginal bleeding but denies trauma, contractions, or pain. The patient states that she has skipped some of her recent OB appointments but her doctor told her that her placenta is \"low lying.\" The paramedic suspects:",
     "options": [
       "Placenta previa",
       "Placenta abruptio",
@@ -4274,7 +4274,7 @@
   {
     "id": "Q0268",
     "category": "Medical Emergencies",
-    "stem": "The flight crew assumes care of a 27-year-old male from the BLS crew that called for increasing shortness of air. The patient denies past medical history and endorses regular IV drug use, but states he hasn't injected heroin in 3 days because he's "too sick to use." The patient is ill appearing, with extremity mottling, tachypnea, and extreme lethargy. The flight crew suspects:",
+    "stem": "The flight crew assumes care of a 27-year-old male from the BLS crew that called for increasing shortness of air. The patient denies past medical history and endorses regular IV drug use, but states he hasn't injected heroin in 3 days because he's \"too sick to use.\" The patient is ill appearing, with extremity mottling, tachypnea, and extreme lethargy. The flight crew suspects:",
     "options": [
       "Encephalopathy",
       "Septic emboli",
@@ -4566,7 +4566,7 @@
     "options": [
       "Withhold details of the cause of death",
       "Keep the family members from seeing the body",
-      "Use clear language like "died" instead of "passed away"",
+      "Use clear language like \"died\" instead of \"passed away\"",
       "Leave as soon as safely possible to allow the family to begin grieving"
     ],
     "correct": [
@@ -4908,7 +4908,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Per the Joint Commission, 'Appropriate response for staff can be summarized as "see something, say something." At the institutional level, appropriate responses include: establishing a just culture in which reporting drug diversion is encouraged, assessing harm to patients, consulting with public health officials when tampering with injectable medication is suspected, and prompt reporting to enforcement agencies.' Reference: https://www.jointcommission.org/-/media/tjc/newsletters/quick_safety_drug_diversion_-final2.pdf",
+    "rationale": "Per the Joint Commission, 'Appropriate response for staff can be summarized as \"see something, say something.\" At the institutional level, appropriate responses include: establishing a just culture in which reporting drug diversion is encouraged, assessing harm to patients, consulting with public health officials when tampering with injectable medication is suspected, and prompt reporting to enforcement agencies.' Reference: https://www.jointcommission.org/-/media/tjc/newsletters/quick_safety_drug_diversion_-final2.pdf",
     "type": "single_select"
   },
   {
@@ -7060,15 +7060,15 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a flight transport, Nurse Alex is preparing to hand off patient John Doe, a 65-year-old male with acute respiratory distress, to the receiving hospital staff. Using the SBAR technique, which statement best represents the 'Assessment' component?",
     "options": [
-      ""John Doe is a 65-year-old male experiencing acute respiratory distress. His oxygen saturation has been fluctuating between 85-90% despite high-flow oxygen therapy."",
-      ""John Doe was admitted for acute respiratory distress and has been on high-flow oxygen therapy during transport. His medical history includes COPD and hypertension."",
-      ""John Doe's condition is critical due to fluctuating oxygen saturation levels. Immediate intervention may be required upon arrival at your facility."",
-      ""John Doe needs continuous monitoring of his oxygen saturation levels and may require mechanical ventilation if his condition does not stabilize.""
+      "\"John Doe is a 65-year-old male experiencing acute respiratory distress. His oxygen saturation has been fluctuating between 85-90% despite high-flow oxygen therapy.\"",
+      "\"John Doe was admitted for acute respiratory distress and has been on high-flow oxygen therapy during transport. His medical history includes COPD and hypertension.\"",
+      "\"John Doe's condition is critical due to fluctuating oxygen saturation levels. Immediate intervention may be required upon arrival at your facility.\"",
+      "\"John Doe needs continuous monitoring of his oxygen saturation levels and may require mechanical ventilation if his condition does not stabilize.\""
     ],
     "correct": [
       "A"
     ],
-    "rationale": ""John Doe is a 65-year-old male experiencing acute respiratory distress. His oxygen saturation has been fluctuating between 85-90% despite high-flow oxygen therapy." accurately describes the 'Assessment' component by providing specific clinical observations about the patient's current condition (fluctuating oxygen saturation despite high-flow oxygen therapy). "John Doe was admitted for acute respiratory distress and has been on high-flow oxygen therapy during transport. His medical history includes COPD and hypertension." focuses on 'Background' (past medical history). "John Doe's condition is critical due to fluctuating oxygen saturation levels. Immediate intervention may be required upon arrival at your facility." blends 'Assessment' and 'Recommendation'. "John Doe needs continuous monitoring of his oxygen saturation levels and may require mechanical ventilation if his condition does not stabilize." represents the 'Recommendation' component by suggesting future actions.",
+    "rationale": "\"John Doe is a 65-year-old male experiencing acute respiratory distress. His oxygen saturation has been fluctuating between 85-90% despite high-flow oxygen therapy.\" accurately describes the 'Assessment' component by providing specific clinical observations about the patient's current condition (fluctuating oxygen saturation despite high-flow oxygen therapy). \"John Doe was admitted for acute respiratory distress and has been on high-flow oxygen therapy during transport. His medical history includes COPD and hypertension.\" focuses on 'Background' (past medical history). \"John Doe's condition is critical due to fluctuating oxygen saturation levels. Immediate intervention may be required upon arrival at your facility.\" blends 'Assessment' and 'Recommendation'. \"John Doe needs continuous monitoring of his oxygen saturation levels and may require mechanical ventilation if his condition does not stabilize.\" represents the 'Recommendation' component by suggesting future actions.",
     "type": "single_select"
   },
   {
@@ -13172,15 +13172,15 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a patient handoff using the SBAR method in a flight transport scenario, which of the following statements best represents the 'Assessment' component?",
     "options": [
-      ""The patient is currently stable but has a history of myocardial infarction."",
-      ""The patient was admitted with chest pain and shortness of breath."",
-      ""Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air."",
-      ""I believe the patient needs continuous cardiac monitoring during transport.""
+      "\"The patient is currently stable but has a history of myocardial infarction.\"",
+      "\"The patient was admitted with chest pain and shortness of breath.\"",
+      "\"Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air.\"",
+      "\"I believe the patient needs continuous cardiac monitoring during transport.\""
     ],
     "correct": [
       "C"
     ],
-    "rationale": ""Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air." is correct because it provides an objective assessment of the patient's current vital signs, which is essential for understanding their present condition. This aligns with the 'Assessment' component of SBAR where clinical data and findings are communicated. "The patient is currently stable but has a history of myocardial infarction." is incorrect because it blends elements of both 'Situation' (current stability) and 'Background' (history of myocardial infarction), thus not solely focusing on current clinical assessment. "The patient was admitted with chest pain and shortness of breath." is incorrect as it pertains to the 'Background' component by describing why the patient was admitted rather than providing current clinical data. "I believe the patient needs continuous cardiac monitoring."** is incorrect as it fits into the 'Recommendation' part where suggestions for future care or actions are made based on assessment findings. The critical difference lies in recognizing that 'Assessment' should convey current clinical status through objective data rather than historical information or recommendations.",
+    "rationale": "\"Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air.\" is correct because it provides an objective assessment of the patient's current vital signs, which is essential for understanding their present condition. This aligns with the 'Assessment' component of SBAR where clinical data and findings are communicated. \"The patient is currently stable but has a history of myocardial infarction.\" is incorrect because it blends elements of both 'Situation' (current stability) and 'Background' (history of myocardial infarction), thus not solely focusing on current clinical assessment. \"The patient was admitted with chest pain and shortness of breath.\" is incorrect as it pertains to the 'Background' component by describing why the patient was admitted rather than providing current clinical data. \"I believe the patient needs continuous cardiac monitoring.\"** is incorrect as it fits into the 'Recommendation' part where suggestions for future care or actions are made based on assessment findings. The critical difference lies in recognizing that 'Assessment' should convey current clinical status through objective data rather than historical information or recommendations.",
     "type": "single_select"
   },
   {
@@ -15316,15 +15316,15 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "You are a Flight Nurse transporting a critical patient named John who requires constant monitoring. During the flight, you notice a sudden drop in John's oxygen saturation levels. You need to communicate this information to the receiving hospital's emergency department immediately. Which is the most appropriate radio communication protocol to follow?",
     "options": [
-      ""Base, this is Flight Nurse with patient John. We have an urgent",
-      ""Base, this is Flight Nurse. Patient John's O2 saturation has",
-      ""Base, this is Flight Nurse with patient John experiencing a",
-      ""Base, urgent update on patient John: O2 saturation critically"
+      "\"Base, this is Flight Nurse with patient John. We have an urgent",
+      "\"Base, this is Flight Nurse. Patient John's O2 saturation has",
+      "\"Base, this is Flight Nurse with patient John experiencing a",
+      "\"Base, urgent update on patient John: O2 saturation critically"
     ],
     "correct": [
       "C"
     ],
-    "rationale": ""Base, this is Flight Nurse with patient John experiencing a is the correct answer because it follows the proper radio communication protocol by identifying the sender ('Flight Nurse'), specifying the patient's condition clearly ('critical drop in O2 saturation'), providing precise data ('current reading at 82%'), and using the term 'Over' to indicate the end of the transmission and await response. This ensures clarity and efficiency in communication. "Base, this is Flight Nurse with patient John. We have an urgent lacks specific data about the patient's current condition and ends abruptly without indicating that you are awaiting further instructions. "Base, this is Flight Nurse. Patient John's O2 saturation has provides significant information but does not include specific data (the exact oxygen saturation level), which is crucial for assessing urgency. "Base, urgent update on patient John: O2 saturation critically gives detailed information but fails to use standard radio terminology like 'Over,' which can lead to confusion or miscommunication. Each option is closely related but varies slightly in adherence to protocol and detail provided, making "Base, this is Flight Nurse with patient John experiencing a stand out as following best practices comprehensively.",
+    "rationale": "\"Base, this is Flight Nurse with patient John experiencing a is the correct answer because it follows the proper radio communication protocol by identifying the sender ('Flight Nurse'), specifying the patient's condition clearly ('critical drop in O2 saturation'), providing precise data ('current reading at 82%'), and using the term 'Over' to indicate the end of the transmission and await response. This ensures clarity and efficiency in communication. \"Base, this is Flight Nurse with patient John. We have an urgent lacks specific data about the patient's current condition and ends abruptly without indicating that you are awaiting further instructions. \"Base, this is Flight Nurse. Patient John's O2 saturation has provides significant information but does not include specific data (the exact oxygen saturation level), which is crucial for assessing urgency. \"Base, urgent update on patient John: O2 saturation critically gives detailed information but fails to use standard radio terminology like 'Over,' which can lead to confusion or miscommunication. Each option is closely related but varies slightly in adherence to protocol and detail provided, making \"Base, this is Flight Nurse with patient John experiencing a stand out as following best practices comprehensively.",
     "type": "single_select"
   },
   {
@@ -16722,7 +16722,7 @@
   {
     "id": "Q1046",
     "category": "Trauma",
-    "stem": "Following a high-speed motor vehicle collision, a comatose patient undergoes CT of the head. The radiologist report states "no acute findings." What is the MOST likely cause of the patient's condition?",
+    "stem": "Following a high-speed motor vehicle collision, a comatose patient undergoes CT of the head. The radiologist report states \"no acute findings.\" What is the MOST likely cause of the patient's condition?",
     "options": [
       "Cerebral edema",
       "Diffuse axonal injury",
@@ -18404,10 +18404,10 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "A helicopter is landing at an accident scene. The pilot has conducted both high and low reconnaissance flights. While on the final approach, the flight nurse notices wires in the flight path at the two o'clock position. How should the flight nurse report this finding?",
     "options": [
-      "Ask the partner "Are there wires at two o'clock?"",
-      "State "Wires, pull up."",
+      "Ask the partner \"Are there wires at two o'clock?\"",
+      "State \"Wires, pull up.\"",
       "Request an alternate landing zone",
-      "State "I think I see wires.""
+      "State \"I think I see wires.\""
     ],
     "correct": [
       "B"
