@@ -110,7 +110,7 @@
         }
 
         /* ============================================================
-           Weekly Progress Widget (smaller, below the others)
+           Weekly Progress Widget
         ============================================================ */
         .weekly-progress-widget {
             display: inline-flex; align-items: center; justify-content: center;
@@ -396,14 +396,14 @@
 
             <div class="domain-grid">
 
-                {% set gp_count = domain_totals.get('General Principles', 0) %}
-                <div class="domain-card" data-domain="General Principles" data-count="{{ gp_count }}">
+                {% set gp_count = domain_totals.get('General Principles of Flight Transport Nursing Practice', 0) %}
+                <div class="domain-card" data-domain="General Principles of Flight Transport Nursing Practice" data-count="{{ gp_count }}">
                     <div class="selection-indicator">✓</div>
                     <div class="domain-card-header">
                         <span class="domain-card-icon">✈️</span>
                         <h4>General Principles of Flight Transport Nursing Practice</h4>
                     </div>
-                    <div class="performance-bar-container no-data" data-domain="General Principles">
+                    <div class="performance-bar-container no-data" data-domain="General Principles of Flight Transport Nursing Practice">
                         <div class="performance-bar-label">
                             <span class="label-text">Performance</span>
                             <span class="percentage">No Data</span>
@@ -508,11 +508,6 @@
         // ============================================================
         const BANK = 'cfrn';
 
-        // Total question count derived from domain card data-count attributes
-        // Total question count — resolved in priority order:
-        // 1. Flask-rendered value (fastest, works when backend loads JSON)
-        // 2. Live API fetch from /api/cfrn/count (always fresh, bypasses SW cache)
-        // 3. DOM fallback — sum data-count on domain cards
         let CFRN_TOTAL = ({{ total_questions | default(0) }} > 0)
             ? {{ total_questions | default(0) }}
             : Array.from(document.querySelectorAll('.domain-card[data-count]'))
@@ -522,7 +517,6 @@
         // Cycle Reset Check — runs on every page load
         // ============================================================
         document.addEventListener('DOMContentLoaded', async () => {
-            // If Flask gave us 0, try the API — it is excluded from SW cache
             if (CFRN_TOTAL === 0) {
                 try {
                     const res = await fetch('/api/cfrn/count');
@@ -717,7 +711,10 @@
                 startBtn.textContent = `Only ${availableCount} questions available`;
             } else {
                 startBtn.disabled = false;
-                startBtn.textContent = `Start "${selectedDomain}" Quiz (${selectedLength}Q) →`;
+                // Show a shortened label for the long domain name
+                const shortLabel = selectedDomain === 'General Principles of Flight Transport Nursing Practice'
+                    ? 'General Principles' : selectedDomain;
+                startBtn.textContent = `Start "${shortLabel}" Quiz (${selectedLength}Q) →`;
             }
         }
 
@@ -730,14 +727,14 @@
         // Performance Bars — reads from CFRN cycle performance
         // ============================================================
         const DOMAIN_SUBCATEGORIES = {
-            'General Principles': [
-                'General Principles; Transport Physiology',
-                'General Principles; Scene Operations Management',
-                'General Principles; Communications',
-                'General Principles; Safety and Survival',
-                'General Principles; Disaster Management',
-                'General Principles; Professional Issues',
-                'General Principles; Systems Management',
+            'General Principles of Flight Transport Nursing Practice': [
+                'General Principles of Flight Transport Nursing Practice; Transport Physiology',
+                'General Principles of Flight Transport Nursing Practice; Scene Operations Management',
+                'General Principles of Flight Transport Nursing Practice; Communications',
+                'General Principles of Flight Transport Nursing Practice; Safety and Survival',
+                'General Principles of Flight Transport Nursing Practice; Disaster Management',
+                'General Principles of Flight Transport Nursing Practice; Professional Issues',
+                'General Principles of Flight Transport Nursing Practice; Systems Management',
             ],
             'Resuscitation Principles': [
                 'Resuscitation Principles; Principles of Assessment and Patient Preparation',
@@ -791,7 +788,6 @@
 
         function getDomainAverage(domainName) {
             if (!window.StudyGuruProgress) return null;
-            // Read from CFRN cycle performance (tied to target date / resets with cycle)
             const averages = window.StudyGuruProgress.getAllCycleCategoryAverages(BANK);
             const subcats  = DOMAIN_SUBCATEGORIES[domainName] || [];
             const scores   = subcats.map(k => averages[k]).filter(v => v !== undefined && v !== null);
