@@ -140,7 +140,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The Swiss Cheese Model creates multiple layers of protection that by themselves are imperfect, but when they are combined, the theory is that the "holes" in the cheese will not align, thus creating full safety coverage.",
+    "rationale": "The Swiss Cheese Model creates multiple layers of protection that by themselves are imperfect, but when they are combined, the theory is that the holes in the cheese will not align, thus creating full safety coverage.",
     "type": "single_select"
   },
   {
