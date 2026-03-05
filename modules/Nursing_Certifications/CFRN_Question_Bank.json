@@ -10164,10 +10164,10 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a flight transport, Nurse Sarah administers medication to an unconscious patient, Mr. Johnson, without obtaining consent from his family or legal guardian. Which of the following actions could legally constitute battery? unconscious. patient's family. care. patient's critical condition.",
     "options": [
-      "Administering medication without consent when the patient is",
-      "Administering medication after obtaining verbal consent from the",
-      "Administering medication as per standing orders for emergency",
-      "Administering medication with implied consent due to the"
+      "Administering medication without consent when the patient is unconcsious.",
+      "Administering medication after obtaining verbal consent from the patient's family.",
+      "Administering medication as per standing orders for emergency care.",
+      "Administering medication with implied consent due to the patient's critical condition."
     ],
     "correct": [
       "A"
@@ -10196,10 +10196,10 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a patient handoff in a flight transport scenario, Nurse Alex needs to communicate effectively using the SBAR technique. The patient, Mr. Johnson, is being transferred for emergency surgery due to a ruptured abdominal aneurysm. Which of the following statements best represents the 'Assessment' component of SBAR? and diabetes.' is exhibiting signs of shock.' pain.'",
     "options": [
-      "'Mr. Johnson is a 65-year-old male with a history of hypertension",
-      "'Mr. Johnson's blood pressure has dropped significantly, and he",
+      "'Mr. Johnson is a 65-year-old male with a history of hypertension and diabetes.",
+      "'Mr. Johnson's blood pressure has dropped significantly, and he exhibiting signs of shock.",
       "'We need to ensure that surgical team is ready upon arrival.'",
-      "'Mr. Johnson was admitted two hours ago with severe abdominal"
+      "'Mr. Johnson was admitted two hours ago with severe abdominal pain."
     ],
     "correct": [
       "B"
@@ -10210,17 +10210,17 @@
   {
     "id": "Q0639",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "You are a flight nurse named Sarah responding to a scene where a tanker truck has overturned, leaking an unknown chemical substance. Several bystanders are experiencing symptoms of dizziness and nausea. What is your first priority upon arrival at the scene? assistance.",
+    "stem": "You are a flight nurse responding to a scene where a tanker truck has overturned, leaking an unknown chemical substance. Several bystanders are experiencing symptoms of dizziness and nausea. What is your first priority upon arrival at the scene? assistance.",
     "options": [
       "Assess the bystanders for immediate medical intervention.",
       "Establish a safe perimeter around the spill area.",
       "Identify the chemical substance involved in the spill.",
-      "Communicate with local hazardous materials (hazmat) teams for"
+      "Communicate with local hazardous materials (hazmat) teams for assitance."
     ],
     "correct": [
       "B"
     ],
-    "rationale": "Establishing a safe perimeter around the spill area is crucial to prevent further exposure and ensure safety. This step minimizes risk to both responders and bystanders. assessing bystanders for immediate medical intervention is important but secondary to ensuring scene safety. identifying the chemical substance involved in the spill is essential but can only be done safely after securing the area. communicating with local hazmat teams for assistance is also critical but should follow establishing a safe perimeter. The primary goal is always safety first, making option B the correct answer.",
+    "rationale": "Establishing a safe perimeter around the spill area is crucial to prevent further exposure and ensure safety. This step minimizes risk to both responders and bystanders. assessing bystanders for immediate medical intervention is important but secondary to ensuring scene safety. identifying the chemical substance involved in the spill is essential but can only be done safely after securing the area. communicating with local hazmat teams for assistance is also critical but should follow establishing a safe perimeter. The primary goal is always safety first.",
     "type": "single_select"
   },
   {
