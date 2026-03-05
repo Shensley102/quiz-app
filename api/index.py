@@ -70,13 +70,13 @@ NCLEX_CATEGORIES = {
 # Format: "Domain; Subcategory" matching the "category" field in CFRN_Question_Bank.json
 CFRN_CATEGORIES = [
     # Domain 1: General Principles of Flight Transport Nursing Practice (28 items)
-    'General Principles; Transport Physiology',
-    'General Principles; Scene Operations Management',
-    'General Principles; Communications',
-    'General Principles; Safety and Survival',
-    'General Principles; Disaster Management',
-    'General Principles; Professional Issues',
-    'General Principles; Systems Management',
+    'General Principles of Flight Transport Nursing Practice; Transport Physiology',
+    'General Principles of Flight Transport Nursing Practice; Scene Operations Management',
+    'General Principles of Flight Transport Nursing Practice; Communications',
+    'General Principles of Flight Transport Nursing Practice; Safety and Survival',
+    'General Principles of Flight Transport Nursing Practice; Disaster Management',
+    'General Principles of Flight Transport Nursing Practice; Professional Issues',
+    'General Principles of Flight Transport Nursing Practice; Systems Management',
     # Domain 2: Resuscitation Principles (38 items)
     'Resuscitation Principles; Principles of Assessment and Patient Preparation',
     'Resuscitation Principles; Airway',
@@ -108,9 +108,9 @@ CFRN_CATEGORIES = [
     'Special Populations; Bariatric',
 ]
 
-# Top-level CFRN domains (used for domain-level quiz filtering)
+# Top-level CFRN domains — must exactly match the portion before '; ' in each category string
 CFRN_DOMAINS = [
-    'General Principles',
+    'General Principles of Flight Transport Nursing Practice',
     'Resuscitation Principles',
     'Trauma',
     'Medical Emergencies',
@@ -189,12 +189,6 @@ def get_valid_question_count(json_path):
 
     Falls back to the total array length when no Q#### IDs exist at all,
     so the displayed count is never 0 when questions are present.
-
-    Args:
-        json_path (Path): Absolute path to the JSON question bank file.
-
-    Returns:
-        int: Count of Q####-ID questions, or total count as fallback.
     """
     if not json_path.exists():
         return 0
@@ -206,8 +200,6 @@ def get_valid_question_count(json_path):
         questions = data if isinstance(data, list) else data.get('questions', [])
         valid = [q for q in questions if _QNUM_RE.match(str(q.get('id', '')))]
 
-        # If every question uses Q#### IDs, return that exact count.
-        # If none do (older format without Q-IDs), fall back to total.
         return len(valid) if valid else len(questions)
 
     except Exception as e:
@@ -529,7 +521,6 @@ def category(category):
             return render_template('lab-values.html', quizzes=quizzes)
 
         if category == 'Nursing_Certifications':
-            # Live Q####-based counts sourced directly from the JSON files
             cfrn_total = get_cfrn_valid_count()
             ccrn_total = get_ccrn_valid_count()
             return render_template('nursing-certifications.html',
