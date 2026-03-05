@@ -4668,7 +4668,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "A urine osmolality of 1500 mOsm/kg is elevated outside the normal range and is indicative of volume excess and intrarenal acute kidney injury (AKI). In intrarenal AKI, this would lead to volume overload, dry mucous membranes are seen with volume deficit. Intrarenal kidney injury would lead to decreased urine output. A blood urea nitrogen (BUN) of 15 mg/dL is a normal value. Reference: Critical Care Nursing: Diagnosis & Management, 8th Ed. (2018), p. 625",
+    "rationale": "A urine osmolality of 1500 mOsm/kg is elevated outside the normal range and is indicative of volume excess and intrarenal acute kidney injury (AKI). In intrarenal AKI, this would lead to volume overload, dry mucous membranes are seen with volume deficit. Intrarenal kidney injury would lead to decreased urine output. A blood urea nitrogen (BUN) of 15 mg/dL is a normal value.",
     "type": "single_select"
   },
   {
@@ -4684,7 +4684,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Although this preeclamptic patient's blood pressure is elevated, it is not above the treatment threshold of systolic blood pressure ≥160 mmHg or diastolic blood pressure ≥110 mmHg. A therapeutic intervention for patients with preeclampsia receiving magnesium is to administer oxygen to maintain oxygen saturation above 95%. Reference: Sheehy's Manual of Emergency Care, 8th Edition (2024), p. 284; Advanced Critical Care for the Transport Professional, 1st Ed. (2024), p. 162-163.",
+    "rationale": "Although this preeclamptic patient's blood pressure is elevated, it is not above the treatment threshold of systolic blood pressure ≥160 mmHg or diastolic blood pressure ≥110 mmHg. A therapeutic intervention for patients with preeclampsia receiving magnesium is to administer oxygen to maintain oxygen saturation above 95%.",
     "type": "single_select"
   },
   {
@@ -4700,7 +4700,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Rezeroing the arterial line is essential. Checking for a hematoma at the insertion site and reassessing distal pulses are components of the ongoing assessment of a balloon pump. They are not specific to altitude changes. These should be assessed at regular intervals and after the patient is moved. For example, after loading and unloading. Adjusting the timing is not affected by altitude. Timing would only be adjusted if there was an issue. Pressure measure lines will be affected by changes in barometric pressure and should always be rezeroed after ascent and descent or after pressurization and depressurization of an aircraft. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 314-318; 327",
+    "rationale": "Rezeroing the arterial line is essential. Checking for a hematoma at the insertion site and reassessing distal pulses are components of the ongoing assessment of a balloon pump. They are not specific to altitude changes. These should be assessed at regular intervals and after the patient is moved. For example, after loading and unloading. Adjusting the timing is not affected by altitude. Timing would only be adjusted if there was an issue. Pressure measure lines will be affected by changes in barometric pressure and should always be rezeroed after ascent and descent or after pressurization and depressurization of an aircraft.",
     "type": "single_select"
   },
   {
@@ -4716,7 +4716,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The nurse should anticipate other sources of bleeding. Hypotension is rarely seen in isolated head injuries. When hypotension is seen in multi-system trauma patient, hypotension/hemorrhage should always be ruled out and treated. Hypotension is most often a result of secondary acute hemorrhage from: impaired autonomic nervous system control, iatrogenically from medication use, or less commonly from spinal cord injury or acute diabetes insipidus. If euvolemia does not correct hypotension, infusions of norepinephrine or phenylephrine should be initiated to maintain adequate mean arterial pressure and cerebral perfusion pressure. Anxiousness and tachycardia are natural responses of a child in this situation. However, the critical nurse should have a deeper understanding and suspicion of hypovolemia related to secondary acute hemorrhage. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 240",
+    "rationale": "The nurse should anticipate other sources of bleeding. Hypotension is rarely seen in isolated head injuries. When hypotension is seen in multi-system trauma patient, hypotension/hemorrhage should always be ruled out and treated. Hypotension is most often a result of secondary acute hemorrhage from: impaired autonomic nervous system control, iatrogenically from medication use, or less commonly from spinal cord injury or acute diabetes insipidus. If euvolemia does not correct hypotension, infusions of norepinephrine or phenylephrine should be initiated to maintain adequate mean arterial pressure and cerebral perfusion pressure. Anxiousness and tachycardia are natural responses of a child in this situation. However, the critical nurse should have a deeper understanding and suspicion of hypovolemia related to secondary acute hemorrhage.",
     "type": "single_select"
   },
   {
@@ -4732,7 +4732,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Circumferential burns to the chest wall can cause eschar tissue that will impede chest wall movement. Escharotomy will allow for movement of the chest wall and will improve ventilation. Increasing PEEP with increasing peak inspiratory pressures. Suctioning the airway may improve ventilation, but is not a definitive fix for poor chest movement. Performing a needle decompression will not improve chest wall movement. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 282",
+    "rationale": "Circumferential burns to the chest wall can cause eschar tissue that will impede chest wall movement. Escharotomy will allow for movement of the chest wall and will improve ventilation. Increasing PEEP with increasing peak inspiratory pressures. Suctioning the airway may improve ventilation, but is not a definitive fix for poor chest movement. Performing a needle decompression will not improve chest wall movement.",
     "type": "single_select"
   },
   {
@@ -4748,7 +4748,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "As the rewarming of areas of first-degree frostbite, the tissue becomes mottled, cyanotic and painful due to superficial thawing of tissues. During the rewarming of first-degree frostbite, skin becomes deep red, hot and dry to touch. First-degree frostbite does not develop blisters. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 408",
+    "rationale": "As the rewarming of areas of first-degree frostbite, the tissue becomes mottled, cyanotic and painful due to superficial thawing of tissues. During the rewarming of first-degree frostbite, skin becomes deep red, hot and dry to touch. First-degree frostbite does not develop blisters.",
     "type": "single_select"
   },
   {
@@ -4764,7 +4764,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The dental pulp of a tooth can cause severe dental pain called barotrauma. Waiting 48-72 hours after invasive procedures will allow enough time for the tooth to equalize or prevent pain. The other options are either too much or too little time. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 34",
+    "rationale": "The dental pulp of a tooth can cause severe dental pain called barotrauma. Waiting 48-72 hours after invasive procedures will allow enough time for the tooth to equalize or prevent pain. The other options are either too much or too little time.",
     "type": "single_select"
   },
   {
@@ -4780,7 +4780,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Cyanosis is a late finding of hypoxia due to thoracic trauma, and its absence is not a reliable indicator of adequate oxygenation. Low SaO2 is the defining characteristic of hypoxia. Rapid respiratory rate and accessory muscle use are early signs of hypoxia. Reference: Trauma Nursing: From Resuscitation Through Rehabilitation, 5th Ed. (2013), p. 504",
+    "rationale": "Cyanosis is a late finding of hypoxia due to thoracic trauma, and its absence is not a reliable indicator of adequate oxygenation. Low SaO2 is the defining characteristic of hypoxia. Rapid respiratory rate and accessory muscle use are early signs of hypoxia.",
     "type": "single_select"
   },
   {
@@ -4796,7 +4796,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "In large-scale incidents, transport teams generally will be assigned to the Operations section. Logistics supports the Operations group by providing additional resources such as equipment, personnel, and more. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 303",
+    "rationale": "In large-scale incidents, transport teams generally will be assigned to the Operations section. Logistics supports the Operations group by providing additional resources such as equipment, personnel, and more.",
     "type": "single_select"
   },
   {
@@ -4812,7 +4812,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "When the engine starts up, the patient experiences vibration, a normal flight stressor. The patient might require more sedation with the increased sensory input. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 67",
+    "rationale": "When the engine starts up, the patient experiences vibration, a normal flight stressor. The patient might require more sedation with the increased sensory input.",
     "type": "single_select"
   },
   {
@@ -4828,7 +4828,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "This patient is likely suffering from a pulmonary embolism. The classic vital signs include tachycardia, hypoxia, and tachypnea. There are no obvious signs of trauma and a hemothorax without trauma and pneumothorax without trauma is unlikely to be a hemothorax without trauma. Pulmonary hypertension is unlikely based on the presentation. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 337",
+    "rationale": "This patient is likely suffering from a pulmonary embolism. The classic vital signs include tachycardia, hypoxia, and tachypnea. There are no obvious signs of trauma and a hemothorax without trauma and pneumothorax without trauma is unlikely to be a hemothorax without trauma. Pulmonary hypertension is unlikely based on the presentation.",
     "type": "single_select"
   },
   {
@@ -4844,7 +4844,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Administering fentanyl (Sublimaze) would be appropriate for this patient as the patient demonstrates all the classic physiological signs of pain, such as hypertension, tachycardia, restlessness and tachypnea. Adequate sedation and analgesia are paramount for any mechanically ventilated patient. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 190",
+    "rationale": "Administering fentanyl (Sublimaze) would be appropriate for this patient as the patient demonstrates all the classic physiological signs of pain, such as hypertension, tachycardia, restlessness and tachypnea. Adequate sedation and analgesia are paramount for any mechanically ventilated patient.",
     "type": "single_select"
   },
   {
@@ -4860,7 +4860,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "A study by the National Transportation Safety Board revealed that the most frequent factors in HEMS accidents were also pilot error and nighttime operations. This has been validated by subsequent studies. While the other factors are likely contributors, they have not been verified as the most common factors. Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 125",
+    "rationale": "A study by the National Transportation Safety Board revealed that the most frequent factors in HEMS accidents were also pilot error and nighttime operations. This has been validated by subsequent studies. While the other factors are likely contributors, they have not been verified as the most common factors.",
     "type": "single_select"
   },
   {
@@ -4876,7 +4876,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "An unresponsive patient with unequal pupils should alert the flight nurse to the potential of new intracranial hemorrhage post Alteplase administration. The patient should have a repeat head CT to assess for hemorrhage, as well as shift. Sedating the patient with ketamine could cause an inaccurate neuro exam. Repeat blood glucose may be necessary but is not a priority intervention over CT. Immobilizing the head and preparing for transport are not appropriate interventions for an unresponsive patient. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 292",
+    "rationale": "An unresponsive patient with unequal pupils should alert the flight nurse to the potential of new intracranial hemorrhage post Alteplase administration. The patient should have a repeat head CT to assess for hemorrhage, as well as shift. Sedating the patient with ketamine could cause an inaccurate neuro exam. Repeat blood glucose may be necessary but is not a priority intervention over CT. Immobilizing the head and preparing for transport are not appropriate interventions for an unresponsive patient.",
     "type": "single_select"
   },
   {
@@ -4892,7 +4892,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The universal emergency frequency is 121.5 MHz. The emergency location transmitter (ELT) operates on 406 MHz. The squawk code for emergency is 7700, however this is not a speaking frequency. 243 MHz is no longer utilized as an emergency frequency. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 116",
+    "rationale": "The universal emergency frequency is 121.5 MHz. The emergency location transmitter (ELT) operates on 406 MHz. The squawk code for emergency is 7700, however this is not a speaking frequency. 243 MHz is no longer utilized as an emergency frequency.",
     "type": "single_select"
   },
   {
@@ -4908,7 +4908,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Per the Joint Commission, 'Appropriate response for staff can be summarized as \"see something, say something.\" At the institutional level, appropriate responses include: establishing a just culture in which reporting drug diversion is encouraged, assessing harm to patients, consulting with public health officials when tampering with injectable medication is suspected, and prompt reporting to enforcement agencies.' Reference: https://www.jointcommission.org/-/media/tjc/newsletters/quick_safety_drug_diversion_-final2.pdf",
+    "rationale": "Per the Joint Commission, 'Appropriate response for staff can be summarized as \"see something, say something.\" At the institutional level, appropriate responses include: establishing a just culture in which reporting drug diversion is encouraged, assessing harm to patients, consulting with public health officials when tampering with injectable medication is suspected, and prompt reporting to enforcement agencies.'",
     "type": "single_select"
   },
   {
@@ -4924,7 +4924,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The nurse should suspect a Le Fort III craniofacial disjunction. Complete separation of the cranial attachments from the facial bones which causes the face to be free floating when assessed. Le Fort III: pyramidal fracture involving the mid face. It involves a triangular segment of the mid-portion of the face and nasal bones. It does not cause free floating of the face. Mandible fracture is a fracture of the jaw bone. It can be unilateral or bilateral. It does not cause free floating of the face. Maxilla fracture is a fracture of the upper jaw bones, as well as part of the nasal bone and eye socket. It is very similar to a Le Fort II fracture. However, a Le Fort III is bilateral whereas a maxilla fracture is unilateral. Reference: Emergency Nursing Core Curriculum, 7th Ed. (2018), p. 561-562",
+    "rationale": "The nurse should suspect a Le Fort III craniofacial disjunction. Complete separation of the cranial attachments from the facial bones which causes the face to be free floating when assessed. Le Fort III: pyramidal fracture involving the mid face. It involves a triangular segment of the mid-portion of the face and nasal bones. It does not cause free floating of the face. Mandible fracture is a fracture of the jaw bone. It can be unilateral or bilateral. It does not cause free floating of the face. Maxilla fracture is a fracture of the upper jaw bones, as well as part of the nasal bone and eye socket. It is very similar to a Le Fort II fracture. However, a Le Fort III is bilateral whereas a maxilla fracture is unilateral.",
     "type": "single_select"
   },
   {
@@ -4940,7 +4940,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The patient has had a PROM (Premature Rupture of Membranes) and the fetus is at risk for neonatal sepsis. There is no need at this point for magnesium. Sterile vaginal exam is contraindicated in the presence of PROM. While rapid transport is indicated, antibiotics should not be delayed. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 463",
+    "rationale": "The patient has had a PROM (Premature Rupture of Membranes) and the fetus is at risk for neonatal sepsis. There is no need at this point for magnesium. Sterile vaginal exam is contraindicated in the presence of PROM. While rapid transport is indicated, antibiotics should not be delayed.",
     "type": "single_select"
   },
   {
@@ -4956,7 +4956,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The transport nurse should first administer packed red blood cells. Restoring intravascular volume by carrying capacity is the highest priority. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 134",
+    "rationale": "The transport nurse should first administer packed red blood cells. Restoring intravascular volume by carrying capacity is the highest priority.",
     "type": "single_select"
   },
   {
@@ -4972,7 +4972,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Vicarious liability is an employer's obligation to ensure an employee performs duties safely and competently. Product liability involves the safe use of a manufactured product, collective liability involves when multiple manufacturers collaborate in the production of a faulty product, and alternative liability involves when manufacturers have faulty production in two separate phases of production. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 75",
+    "rationale": "Vicarious liability is an employer's obligation to ensure an employee performs duties safely and competently. Product liability involves the safe use of a manufactured product, collective liability involves when multiple manufacturers collaborate in the production of a faulty product, and alternative liability involves when manufacturers have faulty production in two separate phases of production.",
     "type": "single_select"
   },
   {
@@ -4988,7 +4988,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The 21-year-old has decreased respirations, making them the priority patient. The 32-year-old with the injured leg would be the second priority. The 1-year-old would be triaged as 'black', last priority, as the patient is unlikely to survive. The 54-year-old would be triaged as 'green' because they are a walking wounded. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 227",
+    "rationale": "The 21-year-old has decreased respirations, making them the priority patient. The 32-year-old with the injured leg would be the second priority. The 1-year-old would be triaged as 'black', last priority, as the patient is unlikely to survive. The 54-year-old would be triaged as 'green' because they are a walking wounded.",
     "type": "single_select"
   },
   {
@@ -5004,7 +5004,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "This patient is hyperkalemic secondary to acute renal failure. While administering a fluid bolus may benefit this patient, calcium chloride administration will provide the most benefit. Calcium stabilizes the resting membrane potential, thereby stabilizing cardiac tissue and preventing fatal dysrhythmias. Cooling measures may be indicated for elevated body temperature, but will not treat hyperkalemia. Amiodarone will not provide any benefit for a wide complex rhythm resulting from hyperkalemia. There is no indication that the patient requires hypertonic fluid administration. Reference: ASTNA Patient Transport: Medical Critical Care (2026), p. 20-24.",
+    "rationale": "This patient is hyperkalemic secondary to acute renal failure. While administering a fluid bolus may benefit this patient, calcium chloride administration will provide the most benefit. Calcium stabilizes the resting membrane potential, thereby stabilizing cardiac tissue and preventing fatal dysrhythmias. Cooling measures may be indicated for elevated body temperature, but will not treat hyperkalemia. Amiodarone will not provide any benefit for a wide complex rhythm resulting from hyperkalemia. There is no indication that the patient requires hypertonic fluid administration.",
     "type": "single_select"
   },
   {
@@ -5020,7 +5020,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The primary role of the transport team during an in-flight emergency is to serve as a resource to the pilot. The first action is to maintain a sterile cockpit so the pilot may aviate, navigate and finally communicate with the med crew. Once the aircraft is under control, the flight team may request a land zone contact dispatch, set the transponder or make emergency radio calls per individual program's policies. Reference: ASTNA Patient Transport: Principles and Practice, 8th Ed. (2024), p. 98",
+    "rationale": "The primary role of the transport team during an in-flight emergency is to serve as a resource to the pilot. The first action is to maintain a sterile cockpit so the pilot may aviate, navigate and finally communicate with the med crew. Once the aircraft is under control, the flight team may request a land zone contact dispatch, set the transponder or make emergency radio calls per individual program's policies.",
     "type": "single_select"
   },
   {
@@ -5036,7 +5036,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Neurogenic shock causes the loss of sympathetic tone from a high thoracic or cervical spinal cord injury. This results in vasodilation (pooling of blood in the venous system), decreased systemic vascular resistance, and decreased blood pressure without compensatory tachycardia. Reference: Trauma Nursing Core Course, 8th ed. (2018), p. 4/11",
+    "rationale": "Neurogenic shock causes the loss of sympathetic tone from a high thoracic or cervical spinal cord injury. This results in vasodilation (pooling of blood in the venous system), decreased systemic vascular resistance, and decreased blood pressure without compensatory tachycardia.",
     "type": "single_select"
   },
   {
@@ -5052,7 +5052,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The patient may have compartment syndrome. The 5 P's of compartment syndrome are pain out of proportion to the injury, paresthesia, pulselessness, paralysis, and pallor. If caused by a splint or device, it should be loosened. Pain medication can be given after the splint is loosened. If not treated, compartment syndrome could result in the loss of the limb. Reference: Sheehy's Emergency Nursing: Principles and Practice, 7th Edition (2019), p. 482.",
+    "rationale": "The patient may have compartment syndrome. The 5 P's of compartment syndrome are pain out of proportion to the injury, paresthesia, pulselessness, paralysis, and pallor. If caused by a splint or device, it should be loosened. Pain medication can be given after the splint is loosened. If not treated, compartment syndrome could result in the loss of the limb.",
     "type": "single_select"
   },
   {
@@ -5068,7 +5068,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "A patient with decision-making capacity can always refuse transport. The nurse should explain the risks and benefits of refusing transport and obtain a refusal form if the patient wishes to decline. Another option is to contact the patient advocate at your flight program, if available, to provide information on costs and billing so the patient can make an informed decision about their care. Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 335.",
+    "rationale": "A patient with decision-making capacity can always refuse transport. The nurse should explain the risks and benefits of refusing transport and obtain a refusal form if the patient wishes to decline. Another option is to contact the patient advocate at your flight program, if available, to provide information on costs and billing so the patient can make an informed decision about their care.",
     "type": "single_select"
   },
   {
@@ -5084,7 +5084,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "During rapid ascent from depth, expanding gas may form a bubble that travels to the brain causing paralysis, focal seizures, disorientation and unconsciousness. The definitive treatment is a hyperbaric chamber. CPR should be performed along with other interventions including ACLS procedures. The nurse should also inform the pilot to fly at the lowest safe altitude to avoid aggravating the result. Reference: https://dan.org/health-medicine/health-resource/diseases-conditions/decompression-illness-what-is-it-and-what-is-the-treatment/",
+    "rationale": "During rapid ascent from depth, expanding gas may form a bubble that travels to the brain causing paralysis, focal seizures, disorientation and unconsciousness. The definitive treatment is a hyperbaric chamber. CPR should be performed along with other interventions including ACLS procedures. The nurse should also inform the pilot to fly at the lowest safe altitude to avoid aggravating the result.",
     "type": "single_select"
   },
   {
@@ -5100,7 +5100,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "With a descent in altitude, air filled spaces such as the ETT balloon might change in volume. If the cuff is no longer the proper size, a large leak can occur causing decreased exhaled tidal volumes. This is explained by Boyle's law. The ventilator is giving you valuable feedback, using the BMV is not the correct first troubleshooting step. The same is true for reseating the ventilation. While placement might be the cause, the cuff pressure is the more likely culprit. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2024), p. 52",
+    "rationale": "With a descent in altitude, air filled spaces such as the ETT balloon might change in volume. If the cuff is no longer the proper size, a large leak can occur causing decreased exhaled tidal volumes. This is explained by Boyle's law. The ventilator is giving you valuable feedback, using the BMV is not the correct first troubleshooting step. The same is true for reseating the ventilation. While placement might be the cause, the cuff pressure is the more likely culprit.",
     "type": "single_select"
   },
   {
@@ -5116,7 +5116,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "This patient is in hemorrhagic shock. Controlling bleeding is the immediate life-saving measure. Additional tourniquets can be applied to the extremity until the bleeding stops. Reference: https://www.naemt.org/docs/default-source/education-documents/tccc/bleeding_control_lesson_01_handout.pdf?sfvrsn=2, p. 9.",
+    "rationale": "This patient is in hemorrhagic shock. Controlling bleeding is the immediate life-saving measure. Additional tourniquets can be applied to the extremity until the bleeding stops.",
     "type": "single_select"
   },
   {
@@ -5132,7 +5132,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Retroperitoneal injuries can form hematomas that can eventually tamponade with adequate resuscitation. The movement of a patient can dislodge these hematomas and massive hemorrhage will occur. The acute change in vital signs related to movement in a patient with open book pelvic injury should prompt the flight nurse to suspect bleeding and additional resuscitation should occur. Acute pain would likely cause an increase in blood pressure. Vasovagal response would likely be related to the massive blood loss. Inadequate pain management will likely lead to an increase in blood pressure. Reference: Trauma Nursing: From Resuscitation through Rehabilitation, 5th Ed. (2019), p. 611",
+    "rationale": "Retroperitoneal injuries can form hematomas that can eventually tamponade with adequate resuscitation. The movement of a patient can dislodge these hematomas and massive hemorrhage will occur. The acute change in vital signs related to movement in a patient with open book pelvic injury should prompt the flight nurse to suspect bleeding and additional resuscitation should occur. Acute pain would likely cause an increase in blood pressure. Vasovagal response would likely be related to the massive blood loss. Inadequate pain management will likely lead to an increase in blood pressure.",
     "type": "single_select"
   },
   {
@@ -5148,7 +5148,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Dalton's Law is most likely responsible. Dalton's Law refers to the partial pressure of oxygen. At altitude increases, the partial pressure decreases meaning less oxygen is available. Graham's Law refers to the principle that lower molecular weight molecules diffuse at a faster rate than higher molecular weight molecules. This law does not have a direct impact on patients' care or equipment management in the air medical environment. Charles' Law refers to changes in volume as it relates to temperature. Higher temperatures will cause gases to expand. Boyle's Law refers to the change in volume as it relates to altitude. Higher altitudes will cause gas to expand. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 26",
+    "rationale": "Dalton's Law is most likely responsible. Dalton's Law refers to the partial pressure of oxygen. At altitude increases, the partial pressure decreases meaning less oxygen is available. Graham's Law refers to the principle that lower molecular weight molecules diffuse at a faster rate than higher molecular weight molecules. This law does not have a direct impact on patients' care or equipment management in the air medical environment. Charles' Law refers to changes in volume as it relates to temperature. Higher temperatures will cause gases to expand. Boyle's Law refers to the change in volume as it relates to altitude. Higher altitudes will cause gas to expand.",
     "type": "single_select"
   },
   {
@@ -5164,7 +5164,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "A patient who is breathing spontaneously on assist control is able to trigger a breath prior to the ventilator delivering a set breath above the volume set on the ventilator. If the patient hasn't fully exhaled the previous breath, they are at risk for breath stacking. This can lead to increased peak airway pressures and decreased ventilation. Hyperventilation is a long-term concern associated with breath stacking if the breath stacking is not addressed. Atelectasis is not a complication of breath stacking. Reference: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6621156/",
+    "rationale": "A patient who is breathing spontaneously on assist control is able to trigger a breath prior to the ventilator delivering a set breath above the volume set on the ventilator. If the patient hasn't fully exhaled the previous breath, they are at risk for breath stacking. This can lead to increased peak airway pressures and decreased ventilation. Hyperventilation is a long-term concern associated with breath stacking if the breath stacking is not addressed. Atelectasis is not a complication of breath stacking.",
     "type": "single_select"
   },
   {
@@ -5180,7 +5180,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Patients with penetrating trauma to the torso are at risk for open pneumothorax. Positive pressure ventilation can convert a pneumothorax into a tension pneumothorax. This patient's suddenly increased Peak Inspiratory Pressure, tachycardia, hypotension, and hypoxia suggest possible tension pneumothorax. Removing the three-sided dressing and performing needle decompression will temporarily relieve the tension pneumothorax; tube thoracostomy is the definitive treatment, followed by applying an occlusive dressing to the wound. Reference: Trauma Nursing Core Course, 9th ed. (2024), p. 154-152.",
+    "rationale": "Patients with penetrating trauma to the torso are at risk for open pneumothorax. Positive pressure ventilation can convert a pneumothorax into a tension pneumothorax. This patient's suddenly increased Peak Inspiratory Pressure, tachycardia, hypotension, and hypoxia suggest possible tension pneumothorax. Removing the three-sided dressing and performing needle decompression will temporarily relieve the tension pneumothorax; tube thoracostomy is the definitive treatment, followed by applying an occlusive dressing to the wound.",
     "type": "single_select"
   },
   {
@@ -5196,7 +5196,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Implied consent is operational in emergency situations. Most consent states allow for treatment of life-threatening emergencies if the patient is unable to consent because it is the reasonable thing to do. The other terms do not apply. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 5/75",
+    "rationale": "Implied consent is operational in emergency situations. Most consent states allow for treatment of life-threatening emergencies if the patient is unable to consent because it is the reasonable thing to do. The other terms do not apply.",
     "type": "single_select"
   },
   {
@@ -5212,7 +5212,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The 7Ps of RSI are: preparation, preoxygenation, pretreatment, paralysis, protection and positioning, placement with proof and postintubation management. The other choices are not applicable. Reference: Emergency Nursing Core Curriculum, 7th Ed. (2018), p. 8",
+    "rationale": "The 7Ps of RSI are: preparation, preoxygenation, pretreatment, paralysis, protection and positioning, placement with proof and postintubation management. The other choices are not applicable.",
     "type": "single_select"
   },
   {
@@ -5228,7 +5228,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "BLS airways in this patient population may lead to coughing and gagging which can increase intracranial pressures. They should be avoided until the patient is adequately sedated. Paralytics should not be confused with sedation. Smaller doses of medications are not indicated. Cervical spine immobilization should be maintained in this patient population regardless of injury, until definitive spine movement has been ruled out. Reference: Trauma Nursing: from Resuscitation through Rehabilitation, 5th Ed. (2019), p. 3/12",
+    "rationale": "BLS airways in this patient population may lead to coughing and gagging which can increase intracranial pressures. They should be avoided until the patient is adequately sedated. Paralytics should not be confused with sedation. Smaller doses of medications are not indicated. Cervical spine immobilization should be maintained in this patient population regardless of injury, until definitive spine movement has been ruled out.",
     "type": "single_select"
   },
   {
@@ -5244,7 +5244,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The patient with a non-functioning chest tube needs this resolved prior to departure and ascending to altitude; further blood accumulation in the chest can potentiate hemodynamic collapse. While the ED resident might be responsible for the patient, there is a chain of command within the ED and getting an attending physician involved, in this instance, should help in getting another set of hands to assist. If the attending physician declined, calling the Trauma Center's accepting MD may be warranted, and/or medical directors. Transporting this patient without a functioning chest tube, on a long duration transport, could exacerbate the situation further. Boyle's law should be considered. A needle decompression will only help remove the air, not the blood accumulating in the chest. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p.27; 130-134",
+    "rationale": "The patient with a non-functioning chest tube needs this resolved prior to departure and ascending to altitude; further blood accumulation in the chest can potentiate hemodynamic collapse. While the ED resident might be responsible for the patient, there is a chain of command within the ED and getting an attending physician involved, in this instance, should help in getting another set of hands to assist. If the attending physician declined, calling the Trauma Center's accepting MD may be warranted, and/or medical directors. Transporting this patient without a functioning chest tube, on a long duration transport, could exacerbate the situation further. Boyle's law should be considered. A needle decompression will only help remove the air, not the blood accumulating in the chest.",
     "type": "single_select"
   },
   {
@@ -5260,7 +5260,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The low ETCO2 value coupled with vital signs consistent with shock are indicative of a patient in anaerobic metabolism. Neurogenic shock is incorrect because in neurogenic shock bradycardia would be expected. Permissive hypotension is incorrect because there is no indication of an intentional choice to not resuscitate the patient. Pulmonary contusion is incorrect because with a pulmonary contusion it is unlikely the oxygen saturation would be 100% on 6 L. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 198-203",
+    "rationale": "The low ETCO2 value coupled with vital signs consistent with shock are indicative of a patient in anaerobic metabolism. Neurogenic shock is incorrect because in neurogenic shock bradycardia would be expected. Permissive hypotension is incorrect because there is no indication of an intentional choice to not resuscitate the patient. Pulmonary contusion is incorrect because with a pulmonary contusion it is unlikely the oxygen saturation would be 100% on 6 L.",
     "type": "single_select"
   },
   {
@@ -5276,7 +5276,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "This patient is showing signs and symptoms of preeclampsia, which increases her risk of seizures. Although magnesium can be used as a tocolytic to prevent preterm labor, in this case, it is being used to prevent seizures because it raises the seizure threshold. Reference: Advanced Critical Care for the Transport Professional, 1st Ed. (2024), p. 162.",
+    "rationale": "This patient is showing signs and symptoms of preeclampsia, which increases her risk of seizures. Although magnesium can be used as a tocolytic to prevent preterm labor, in this case, it is being used to prevent seizures because it raises the seizure threshold.",
     "type": "single_select"
   },
   {
@@ -5292,7 +5292,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The flight nurse should suspect foreign body aspiration in this child. Magill forceps should be available during the RSI procedure to remove the foreign object once it is visualized, before placing the endotracheal tube. A supraglottic airway may not be used until the foreign body has been removed to avoid further migration into the airway. Humidified oxygen and succinic oxygenation are used to treat croup, but are not appropriate in this situation as the foreign body takes priority. Reference: Wong's Nursing Care of Infants and Children, 12th Ed. (2024), p. 685",
+    "rationale": "The flight nurse should suspect foreign body aspiration in this child. Magill forceps should be available during the RSI procedure to remove the foreign object once it is visualized, before placing the endotracheal tube. A supraglottic airway may not be used until the foreign body has been removed to avoid further migration into the airway. Humidified oxygen and succinic oxygenation are used to treat croup, but are not appropriate in this situation as the foreign body takes priority.",
     "type": "single_select"
   },
   {
@@ -5308,7 +5308,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Boyle's law states that the volume of gas is inversely related to atmospheric pressure. As altitude increases, air expands and small portions of air grow larger. In crew members, this may occur following recent dental surgery. Graham's Law states that the diffusion rate of a gas is inversely proportional to the square root of the mass of its particles. Charles's Law states that gases expand when temperature increases. Gay-Lussac's Law states that pressure of a given mass is directly related to the absolute temperature. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 27",
+    "rationale": "Boyle's law states that the volume of gas is inversely related to atmospheric pressure. As altitude increases, air expands and small portions of air grow larger. In crew members, this may occur following recent dental surgery. Graham's Law states that the diffusion rate of a gas is inversely proportional to the square root of the mass of its particles. Charles's Law states that gases expand when temperature increases. Gay-Lussac's Law states that pressure of a given mass is directly related to the absolute temperature.",
     "type": "single_select"
   },
   {
@@ -5324,7 +5324,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Being upwind prevents the wind from bringing chemicals towards the team; being uphill is necessary because some chemicals accumulate in low-lying areas. Being upwind and uphill prevents rotor wash from spreading chemicals around the area. The landing zone will need to be away from patient care areas to prevent rotor wash from spreading chemicals. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 47",
+    "rationale": "Being upwind prevents the wind from bringing chemicals towards the team; being uphill is necessary because some chemicals accumulate in low-lying areas. Being upwind and uphill prevents rotor wash from spreading chemicals around the area. The landing zone will need to be away from patient care areas to prevent rotor wash from spreading chemicals.",
     "type": "single_select"
   },
   {
@@ -5340,7 +5340,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The Monroe-Kellie doctrine states that cranial vault is composed of brain, blood, and CSF. When a condition changes volume in one area it decreases the others and results in an increase in intracranial pressure (ICP). Boyle's law describes the relationship of volume and pressure when temperature is constant. Cushing's syndrome describes the physiologic effects of increased ICP. Cerebral autoregulation is the mechanism by which the brain maintains perfusion by varying pressure. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 287",
+    "rationale": "The Monroe-Kellie doctrine states that cranial vault is composed of brain, blood, and CSF. When a condition changes volume in one area it decreases the others and results in an increase in intracranial pressure (ICP). Boyle's law describes the relationship of volume and pressure when temperature is constant. Cushing's syndrome describes the physiologic effects of increased ICP. Cerebral autoregulation is the mechanism by which the brain maintains perfusion by varying pressure.",
     "type": "single_select"
   },
   {
@@ -5356,7 +5356,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Initiating a normal saline bolus of 20 mL/kg is correct because this patient is in uncompensated septic shock. Restoring an adequate circulating volume is the highest priority. Administering adenosine and performing synchronized cardioversion is incorrect because the heart rate is due to profound shock, not SVT. Administering a broad spectrum of antibiotics is incorrect because resuscitation to correct the fluid deficit comes before antibiotic administration. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 551",
+    "rationale": "Initiating a normal saline bolus of 20 mL/kg is correct because this patient is in uncompensated septic shock. Restoring an adequate circulating volume is the highest priority. Administering adenosine and performing synchronized cardioversion is incorrect because the heart rate is due to profound shock, not SVT. Administering a broad spectrum of antibiotics is incorrect because resuscitation to correct the fluid deficit comes before antibiotic administration.",
     "type": "single_select"
   },
   {
@@ -5372,7 +5372,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "It is recommended to wrap the extremity in wet gauze or a clean sheet, then place in a bag on ice. It is not recommended to use dry ice. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 265",
+    "rationale": "It is recommended to wrap the extremity in wet gauze or a clean sheet, then place in a bag on ice. It is not recommended to use dry ice.",
     "type": "single_select"
   },
   {
@@ -5388,7 +5388,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "A post accident incident plan is a program policy that outlines the responsibilities of the communications specialist and program administration of a transport program during and immediately after an accident or incident. A disaster plan is developed for a group of people at a facility that details what needs to be done, how, when, and by whom before and after the time an anticipated disastrous event is expected to occur. There is no such thing as an unscheduled event plan. Incident command plan is a management concept designed to clarify command relationships from different responding agencies during a disaster or mass casualty event requiring a multi-jurisdictional response. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 85, 112",
+    "rationale": "A post accident incident plan is a program policy that outlines the responsibilities of the communications specialist and program administration of a transport program during and immediately after an accident or incident. A disaster plan is developed for a group of people at a facility that details what needs to be done, how, when, and by whom before and after the time an anticipated disastrous event is expected to occur. There is no such thing as an unscheduled event plan. Incident command plan is a management concept designed to clarify command relationships from different responding agencies during a disaster or mass casualty event requiring a multi-jurisdictional response.",
     "type": "single_select"
   },
   {
@@ -5404,7 +5404,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Although the child's respiratory condition requires close monitoring over the next few days, their alertness and wakefulness are reassuring signs despite the drowning incident. A cervical collar should be placed in case a fall or diving injury caused the drowning incident. If vital signs are stable, a fluid bolus can be withheld unless the patient shows signs of decompensation. Reference: Nelson's Essentials of Pediatrics, 6th ed., p. 1044.",
+    "rationale": "Although the child's respiratory condition requires close monitoring over the next few days, their alertness and wakefulness are reassuring signs despite the drowning incident. A cervical collar should be placed in case a fall or diving injury caused the drowning incident. If vital signs are stable, a fluid bolus can be withheld unless the patient shows signs of decompensation.",
     "type": "single_select"
   },
   {
@@ -5420,7 +5420,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Informed consent includes all of the following essential components: description of procedure to be performed; available alternatives to procedure; risks and benefits of procedure and alternatives; patient understanding of procedure, alternatives, and associated risks/benefits of all; practitioner or physician presence during consent administration. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 124-125",
+    "rationale": "Informed consent includes all of the following essential components: description of procedure to be performed; available alternatives to procedure; risks and benefits of procedure and alternatives; patient understanding of procedure, alternatives, and associated risks/benefits of all; practitioner or physician presence during consent administration.",
     "type": "single_select"
   },
   {
@@ -5436,7 +5436,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Malpractice is committed when all of the required elements are present: presence of duty, breach of duty, foreseeability, causation, injury and damages. Foreseeability and causation are elements that must be present for malpractice to occur, but are not the actual violation. Malfeasance is a type of breach of duty caused by an act of commission. The question describes nonfeasance, or an act of omission. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 5/74",
+    "rationale": "Malpractice is committed when all of the required elements are present: presence of duty, breach of duty, foreseeability, causation, injury and damages. Foreseeability and causation are elements that must be present for malpractice to occur, but are not the actual violation. Malfeasance is a type of breach of duty caused by an act of commission. The question describes nonfeasance, or an act of omission.",
     "type": "single_select"
   },
   {
@@ -5452,7 +5452,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Presence of a Q-wave has been associated with transmural AMI; however, studies now demonstrate that both Q-wave (STEMI) and non-Q-wave (non-STEMI) infarcts can be transmural or subendocardial. In general, Q-wave infarctions are associated with a larger region of myocardial necrosis, higher enzyme levels, fresh coronary thrombosis, frequent vomiting, congestive HF, conduction defects, dysrhythmias, and loss collateral circulation. Reference: Sheehy's Manual of Emergency Care, 8th Edition (2024), p. 241",
+    "rationale": "Presence of a Q-wave has been associated with transmural AMI; however, studies now demonstrate that both Q-wave (STEMI) and non-Q-wave (non-STEMI) infarcts can be transmural or subendocardial. In general, Q-wave infarctions are associated with a larger region of myocardial necrosis, higher enzyme levels, fresh coronary thrombosis, frequent vomiting, congestive HF, conduction defects, dysrhythmias, and loss collateral circulation.",
     "type": "single_select"
   },
   {
@@ -5468,7 +5468,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Electrical burns pose a risk of compartment syndrome. This patient reports extreme pain, even though their contact burns are full-thickness and treatable. The abnormal appearance of their forearm needs careful monitoring. The arm should be elevated to heart level to enhance blood flow. While electrical burns also carry a risk of cardiac instability and arrhythmias, the PVCs currently do not require intervention. If conservative management does not improve the condition of the right arm, a fasciotomy should be considered as the next step. An escharotomy is only necessary in cases of full-thickness circumferential burns. Applying a cold compress is contraindicated for this injury. Reference: Trauma Nursing: From Resuscitation Through Rehabilitation, 5th Ed. (2019), p. 620.",
+    "rationale": "Electrical burns pose a risk of compartment syndrome. This patient reports extreme pain, even though their contact burns are full-thickness and treatable. The abnormal appearance of their forearm needs careful monitoring. The arm should be elevated to heart level to enhance blood flow. While electrical burns also carry a risk of cardiac instability and arrhythmias, the PVCs currently do not require intervention. If conservative management does not improve the condition of the right arm, a fasciotomy should be considered as the next step. An escharotomy is only necessary in cases of full-thickness circumferential burns. Applying a cold compress is contraindicated for this injury.",
     "type": "single_select"
   },
   {
@@ -5484,7 +5484,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "HAPS can occur at altitudes between 8000-10000 feet and is usually associated with rate of ascent to altitude and typically occurs 2 days after arrival at altitude. Presentation is dyspnea at rest, a dry cough, rales, tachypnea and tachycardia. The treatment is oxygen and descent to increase the partial pressure of oxygen. If there is a change in the level of consciousness or development of seizures then HACE must be ruled out. Reference: Rosen's Emergency Medicine: Concepts & Clinical Practice, 9th edition (2018), p. 1793",
+    "rationale": "HAPS can occur at altitudes between 8000-10000 feet and is usually associated with rate of ascent to altitude and typically occurs 2 days after arrival at altitude. Presentation is dyspnea at rest, a dry cough, rales, tachypnea and tachycardia. The treatment is oxygen and descent to increase the partial pressure of oxygen. If there is a change in the level of consciousness or development of seizures then HACE must be ruled out.",
     "type": "single_select"
   },
   {
@@ -5500,7 +5500,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Safety is the flight crew's chief priority. When evaluating a potential landing zone, identifying obstructions is one of the steps to ensure the scene is safe. Ensuring ground personnel contact, communicating with dispatch, and monitoring wind direction are each important but not the highest priority in evaluating the landing zone from the air. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 108",
+    "rationale": "Safety is the flight crew's chief priority. When evaluating a potential landing zone, identifying obstructions is one of the steps to ensure the scene is safe. Ensuring ground personnel contact, communicating with dispatch, and monitoring wind direction are each important but not the highest priority in evaluating the landing zone from the air.",
     "type": "single_select"
   },
   {
@@ -5516,7 +5516,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Due to the loss of elasticity of the tissue following a burn, it may become difficult to ventilate a patient. Performing escharotomies will enable effective ventilation. Although suctioning the patient may help with oxygenation, it will not change the lung compliance. As this is a burn patient with bilateral breath sounds, a tube thoracostomy is not indicated at this point. Changing the mode to pressure control will not change the decreased lung compliance caused by the circumferential burns to the chest. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 282",
+    "rationale": "Due to the loss of elasticity of the tissue following a burn, it may become difficult to ventilate a patient. Performing escharotomies will enable effective ventilation. Although suctioning the patient may help with oxygenation, it will not change the lung compliance. As this is a burn patient with bilateral breath sounds, a tube thoracostomy is not indicated at this point. Changing the mode to pressure control will not change the decreased lung compliance caused by the circumferential burns to the chest.",
     "type": "single_select"
   },
   {
@@ -5532,7 +5532,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Preterm newborns are prone to hypoglycemia due to impaired glycogen storage. This child may not have enough glycogen stored to maintain a normal blood glucose level, as most glycogen storage occurs during the third trimester. Lactate, sodium, and PaCO2 are not the priority labs used to identify the immediate life threat. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 4/73",
+    "rationale": "Preterm newborns are prone to hypoglycemia due to impaired glycogen storage. This child may not have enough glycogen stored to maintain a normal blood glucose level, as most glycogen storage occurs during the third trimester. Lactate, sodium, and PaCO2 are not the priority labs used to identify the immediate life threat.",
     "type": "single_select"
   },
   {
@@ -5548,7 +5548,7 @@
     "correct": [
       "?"
     ],
-    "rationale": "Cervical dilation exceeding 4 cm indicates impending labor, regardless of previous pregnancies. A -3 fetal station indicates the presenting part is situated 3 cm above the ischial spines and has not yet entered the true pelvis. A cervical effacement of 20% is considered mild and usually does not indicate significant progression toward labor. Normal moderate variability in fetal heart rate is expected and does not imply that labor is imminent. The flight nurse can expect preterm infants to deliver at less than 10 cm dilation. Reference: Advanced Critical Care for the Transport Professional, 1st Ed. (2024), p. 155.",
+    "rationale": "Cervical dilation exceeding 4 cm indicates impending labor, regardless of previous pregnancies. A -3 fetal station indicates the presenting part is situated 3 cm above the ischial spines and has not yet entered the true pelvis. A cervical effacement of 20% is considered mild and usually does not indicate significant progression toward labor. Normal moderate variability in fetal heart rate is expected and does not imply that labor is imminent. The flight nurse can expect preterm infants to deliver at less than 10 cm dilation.",
     "type": "single_select"
   },
   {
@@ -5564,7 +5564,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Noxious chemicals from combustion adhere to the surface of the smoke particles and cause direct damage to the airway epithelium, especially in the smaller airways and terminal bronchi which impairs oxygen exchange. Inhalation injuries do not usually cause spontaneous pneumothorax although aggressive positive pressure ventilation could cause a pneumothorax. Pneumonia would be a more delayed concern. Inhalation injuries cause hypoxia versus hypercarbia. Reference: Transport Professional Advanced Trauma Course, 6th Ed. (2018), p. 107",
+    "rationale": "Noxious chemicals from combustion adhere to the surface of the smoke particles and cause direct damage to the airway epithelium, especially in the smaller airways and terminal bronchi which impairs oxygen exchange. Inhalation injuries do not usually cause spontaneous pneumothorax although aggressive positive pressure ventilation could cause a pneumothorax. Pneumonia would be a more delayed concern. Inhalation injuries cause hypoxia versus hypercarbia.",
     "type": "single_select"
   },
   {
@@ -5580,7 +5580,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Patients in the cold zone have already been decontaminated, thus universal PPE is appropriate. The warm zone is where decontamination takes place; as such, the flight suit, which is a form of Level D PPE, is not adequate protection. Level A PPE is the highest level protection with a fully encapsulated suit and self-contained air supply; these are reserved for the highest trained hazardous materials technicians. Identifying the hazardous materials is important, but treatment can begin as soon as decontamination takes place. Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 71-72",
+    "rationale": "Patients in the cold zone have already been decontaminated, thus universal PPE is appropriate. The warm zone is where decontamination takes place; as such, the flight suit, which is a form of Level D PPE, is not adequate protection. Level A PPE is the highest level protection with a fully encapsulated suit and self-contained air supply; these are reserved for the highest trained hazardous materials technicians. Identifying the hazardous materials is important, but treatment can begin as soon as decontamination takes place.",
     "type": "single_select"
   },
   {
@@ -5596,7 +5596,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "During a water landing in a helicopter, it is important to wait for the craft to fully invert and all but fill with water prior to attempting egress. Trying to exit prior to this can lead to the helicopter capsizing on top of you or getting obstructed by the blades and debris. Kicking is to be avoided during egress as you could inadvertently become tangled or injure a coworker. You should not release your seat belt prior to impact to avoid being ejected or thrown about the cabin. Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 144",
+    "rationale": "During a water landing in a helicopter, it is important to wait for the craft to fully invert and all but fill with water prior to attempting egress. Trying to exit prior to this can lead to the helicopter capsizing on top of you or getting obstructed by the blades and debris. Kicking is to be avoided during egress as you could inadvertently become tangled or injure a coworker. You should not release your seat belt prior to impact to avoid being ejected or thrown about the cabin.",
     "type": "single_select"
   },
   {
@@ -5612,7 +5612,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The elderly patient usually is on many medications and may take them incorrectly. This patient took too much Lasix causing a dangerous drop in Potassium. The patient can have fatal arrhythmias due to QT prolongation and is not the priority. Calcium is within the normal range, therefore calcium gluconate is not the priority. Reference: Sheehy's Emergency Nursing: Principles and Practice, 7th Edition (2019), p. 5/78",
+    "rationale": "The elderly patient usually is on many medications and may take them incorrectly. This patient took too much Lasix causing a dangerous drop in Potassium. The patient can have fatal arrhythmias due to QT prolongation and is not the priority. Calcium is within the normal range, therefore calcium gluconate is not the priority.",
     "type": "single_select"
   },
   {
@@ -5628,7 +5628,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Eustress is a type of stress that is nonthreatening and generally makes humans perform better. Distress involves noxious stimuli. Somatization and cognitive are not types of stress. Reference: AACN Core Curriculum for High Acuity, Progressive, and Critical Care Nursing (2016), p. 703",
+    "rationale": "Eustress is a type of stress that is nonthreatening and generally makes humans perform better. Distress involves noxious stimuli. Somatization and cognitive are not types of stress.",
     "type": "single_select"
   },
   {
@@ -5644,7 +5644,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Elevated lactate (greater than 4 mmol/L) is indicative of increased anaerobic metabolism and indicative of oxygen deficit within the tissues, which shows a decrease in perfusion. Potassium and sodium are not indicative of poor perfusion. Base excess of -2 is within a normal range. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 208",
+    "rationale": "Elevated lactate (greater than 4 mmol/L) is indicative of increased anaerobic metabolism and indicative of oxygen deficit within the tissues, which shows a decrease in perfusion. Potassium and sodium are not indicative of poor perfusion. Base excess of -2 is within a normal range.",
     "type": "single_select"
   },
   {
@@ -5660,7 +5660,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Elevation of the presenting part with a hand in the vagina is done to prevent further cord compression. Positioning in Trendelenburg or the knee-chest position can also be attempted. Supine maternal positioning will not help and may additionally cause maternal hypotension due to supine hypotension syndrome. Attempted replacement of the umbilical cord would be dangerous. Although the cord may spontaneously retract, the cord should never be manually replaced because severe compression may occur. Tocolysis is indicated to slow contractions and reduce the pressure on the cord. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 449",
+    "rationale": "Elevation of the presenting part with a hand in the vagina is done to prevent further cord compression. Positioning in Trendelenburg or the knee-chest position can also be attempted. Supine maternal positioning will not help and may additionally cause maternal hypotension due to supine hypotension syndrome. Attempted replacement of the umbilical cord would be dangerous. Although the cord may spontaneously retract, the cord should never be manually replaced because severe compression may occur. Tocolysis is indicated to slow contractions and reduce the pressure on the cord.",
     "type": "single_select"
   },
   {
@@ -5676,7 +5676,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The older adult generally has lower function of end organs and increased fat reserves. Medications should be given carefully as they will not be metabolized as quickly as in the younger adult population. Reference: Critical Care Nursing: Diagnosis & Management, 8th Ed. (2018), p. 1005",
+    "rationale": "The older adult generally has lower function of end organs and increased fat reserves. Medications should be given carefully as they will not be metabolized as quickly as in the younger adult population.",
     "type": "single_select"
   },
   {
@@ -5692,7 +5692,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Classic signs of uterine rupture are an asymmetric uterus, suprapubic pain, and palpable fetal parts. Ovarian lacerations typically present with signs and symptoms of retroperitoneal bleeding. Classic signs and symptoms of abruptio placenta are dark red vaginal bleeding, a board-like uterus, and a rising fundal height. Preterm labor does not fit this clinical picture. Reference: Trauma Nursing Core Course, 9th ed. (2024), p. 336.",
+    "rationale": "Classic signs of uterine rupture are an asymmetric uterus, suprapubic pain, and palpable fetal parts. Ovarian lacerations typically present with signs and symptoms of retroperitoneal bleeding. Classic signs and symptoms of abruptio placenta are dark red vaginal bleeding, a board-like uterus, and a rising fundal height. Preterm labor does not fit this clinical picture.",
     "type": "single_select"
   },
   {
@@ -5708,7 +5708,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "This infant is likely suffering from a transposition of the great arteries. The ductus arteriosus needs to be kept open until surgical correction can be performed. Prostaglandins should be administered cautiously, as it can cause apnea. These patients usually require intubation. The other medications would not be indicated in this case. Reference: Nelson's Essentials of Pediatrics, p. 569.",
+    "rationale": "This infant is likely suffering from a transposition of the great arteries. The ductus arteriosus needs to be kept open until surgical correction can be performed. Prostaglandins should be administered cautiously, as it can cause apnea. These patients usually require intubation. The other medications would not be indicated in this case.",
     "type": "single_select"
   },
   {
@@ -5724,7 +5724,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The patients are exhibiting signs and symptoms of exposure to organophosphate pesticides or nerve agent chemicals, thus they need to be decontaminated prior to treatment. Atropine is used as an antidote to organophosphates and nerve agents, the transport team cannot begin treating patients until they are decontaminated. Identifying the source of the contaminant is necessary, but is a lower priority than protecting the transport team's safety. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 47-49",
+    "rationale": "The patients are exhibiting signs and symptoms of exposure to organophosphate pesticides or nerve agent chemicals, thus they need to be decontaminated prior to treatment. Atropine is used as an antidote to organophosphates and nerve agents, the transport team cannot begin treating patients until they are decontaminated. Identifying the source of the contaminant is necessary, but is a lower priority than protecting the transport team's safety.",
     "type": "single_select"
   },
   {
@@ -5740,7 +5740,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "This is not normal stress because it is interfering with daily living. Removing the nurse from duty and having the nurse tested for substance abuse would be punitive in nature and should be avoided. Arranging for individual counseling for the nurse to work through the issue with a professional counselor fits with current practices of CISM. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 802",
+    "rationale": "This is not normal stress because it is interfering with daily living. Removing the nurse from duty and having the nurse tested for substance abuse would be punitive in nature and should be avoided. Arranging for individual counseling for the nurse to work through the issue with a professional counselor fits with current practices of CISM.",
     "type": "single_select"
   },
   {
@@ -5756,7 +5756,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Proper ETCO2 waveform is the best method of assessment. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 1/6",
+    "rationale": "Proper ETCO2 waveform is the best method of assessment.",
     "type": "single_select"
   },
   {
@@ -5772,7 +5772,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "A patient who is suicidal and in police custody or under a physician's emergency commitment can not refuse life-saving treatments. This self-inflicted wound may be fatal without immediate treatment. Patients that are suicidal, homicidal, delusional, or experiencing other psychiatric emergencies may not be able to think rationally and the flight nurse can legally treat the patient, even if resisting care, when acting in good faith. Reference: Sheehy's Manual of Emergency Care, 8th Edition (2024), p. 7",
+    "rationale": "A patient who is suicidal and in police custody or under a physician's emergency commitment can not refuse life-saving treatments. This self-inflicted wound may be fatal without immediate treatment. Patients that are suicidal, homicidal, delusional, or experiencing other psychiatric emergencies may not be able to think rationally and the flight nurse can legally treat the patient, even if resisting care, when acting in good faith.",
     "type": "single_select"
   },
   {
@@ -5788,7 +5788,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The nurse should suspect arterial thrombosis. Arterial thrombosis is a common complication of atrial fibrillation. An embolus which mobilizes into the upper extremities would manifest itself with these findings. Venous insufficiency is most commonly associated with the lower extremities and is a chronic condition. Classic findings include venous ulcers, skin discoloration, and enlarged or varicose veins. Compartment syndrome is an acute finding, generally associated with trauma. Long bone fractures are present in as much as 20% of all patients presenting with compartment syndrome. Other causes such as drug abuse, anticoagulant use, and other chronic medical conditions have also been associated with compartment syndrome. Myocardial ischemia is commonly manifested with pain radiating to the left arm and neck, and does not usually cause vascular changes to the upper extremities. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 303",
+    "rationale": "The nurse should suspect arterial thrombosis. Arterial thrombosis is a common complication of atrial fibrillation. An embolus which mobilizes into the upper extremities would manifest itself with these findings. Venous insufficiency is most commonly associated with the lower extremities and is a chronic condition. Classic findings include venous ulcers, skin discoloration, and enlarged or varicose veins. Compartment syndrome is an acute finding, generally associated with trauma. Long bone fractures are present in as much as 20% of all patients presenting with compartment syndrome. Other causes such as drug abuse, anticoagulant use, and other chronic medical conditions have also been associated with compartment syndrome. Myocardial ischemia is commonly manifested with pain radiating to the left arm and neck, and does not usually cause vascular changes to the upper extremities.",
     "type": "single_select"
   },
   {
@@ -5804,7 +5804,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The presence of blood in the catheter connection tubing is the hallmark of balloon rupture. It requires immediate cessation of pumping and removal of the IABP. Continued use of a ruptured balloon can lead to helium gas embolization, a potentially fatal event. The balloon is most likely ruptured. Although intact balloons that are not actively pumping should be intermittently, manually inflated according to the manufacturer's directions to prevent clot formation, manual inflation of a ruptured balloon will inject gas into the aorta through the defect in the balloon. Flushing and re-zeroing of the arterial line are appropriate only if the balloon is intact. These measures will not clear blood in the catheter tubing. Although the desired action in the presence of balloon rupture is to prevent gas pumping into the balloon, the correct course of action is to cease pumping, not merely clamp the connection tubing. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 331",
+    "rationale": "The presence of blood in the catheter connection tubing is the hallmark of balloon rupture. It requires immediate cessation of pumping and removal of the IABP. Continued use of a ruptured balloon can lead to helium gas embolization, a potentially fatal event. The balloon is most likely ruptured. Although intact balloons that are not actively pumping should be intermittently, manually inflated according to the manufacturer's directions to prevent clot formation, manual inflation of a ruptured balloon will inject gas into the aorta through the defect in the balloon. Flushing and re-zeroing of the arterial line are appropriate only if the balloon is intact. These measures will not clear blood in the catheter tubing. Although the desired action in the presence of balloon rupture is to prevent gas pumping into the balloon, the correct course of action is to cease pumping, not merely clamp the connection tubing.",
     "type": "single_select"
   },
   {
@@ -5820,7 +5820,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The nurse should first begin breathing supplemental oxygen. Mist or 'fog' within the aircraft's cabin at altitude most likely indicates decompression. The nurse should first ensure that he or she is protected from hypoxia as a result of exposure to reduced barometric pressure. Administering oxygen to the patient is a secondary action. Time of useful consciousness at 40,000 feet is 15 seconds or less. If the nurse is disabled by hypoxia, then further helpful actions would not be possible. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 40",
+    "rationale": "The nurse should first begin breathing supplemental oxygen. Mist or 'fog' within the aircraft's cabin at altitude most likely indicates decompression. The nurse should first ensure that he or she is protected from hypoxia as a result of exposure to reduced barometric pressure. Administering oxygen to the patient is a secondary action. Time of useful consciousness at 40,000 feet is 15 seconds or less. If the nurse is disabled by hypoxia, then further helpful actions would not be possible.",
     "type": "single_select"
   },
   {
@@ -5836,7 +5836,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The scene call environment is one of the most potentially hazardous aspects of air medical operations. Safety is of paramount importance and situational awareness must be maintained when working around an aircraft. Ground personnel should only be allowed to approach the aircraft when directed to do so by the pilot or a flight crew member. The pilot in command of the aircraft must be able to see personnel approaching. Mitigating the hazard from air medical operations on ground personnel is the most important instruction. The LZ can be a minimum of 75' x 75' during the day and 125' x 125' at night. While some situations may require lighting the landing zone, the MOST important instruction for EMS personnel should be to approach only when directed. Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 142",
+    "rationale": "The scene call environment is one of the most potentially hazardous aspects of air medical operations. Safety is of paramount importance and situational awareness must be maintained when working around an aircraft. Ground personnel should only be allowed to approach the aircraft when directed to do so by the pilot or a flight crew member. The pilot in command of the aircraft must be able to see personnel approaching. Mitigating the hazard from air medical operations on ground personnel is the most important instruction. The LZ can be a minimum of 75' x 75' during the day and 125' x 125' at night. While some situations may require lighting the landing zone, the MOST important instruction for EMS personnel should be to approach only when directed.",
     "type": "single_select"
   },
   {
@@ -5852,7 +5852,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Oculomotor is correct. Oculomotor (CN III) is responsible for pupillary response. Optic Nerve (CN II) is visual acuity, visual fields, reading printed material, and seeing light. Trigeminal is responsible for corneal reflex and facial sensation. Abducens (CN VI) is responsible for extraocular eye movement. Reference: Emergency Nursing Core Curriculum, 7th Ed. (2018), p. 634",
+    "rationale": "Oculomotor is correct. Oculomotor (CN III) is responsible for pupillary response. Optic Nerve (CN II) is visual acuity, visual fields, reading printed material, and seeing light. Trigeminal is responsible for corneal reflex and facial sensation. Abducens (CN VI) is responsible for extraocular eye movement.",
     "type": "single_select"
   },
   {
@@ -5868,7 +5868,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "This child is presenting with shock, elevated HR and low BP. It is pertinent to obtain access on this child to initiate fluid resuscitation. Intraosseous access can be obtained quickly, and fluid resuscitation can be started without further delay. The other three options would delay fluid administration and therefore could be harmful to the patient outcome. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 2/15",
+    "rationale": "This child is presenting with shock, elevated HR and low BP. It is pertinent to obtain access on this child to initiate fluid resuscitation. Intraosseous access can be obtained quickly, and fluid resuscitation can be started without further delay. The other three options would delay fluid administration and therefore could be harmful to the patient outcome.",
     "type": "single_select"
   },
   {
@@ -5884,7 +5884,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Crush injuries can cause a large release of potassium. Calcium gluconate is used to neutralize the effects of hyperkalemia. Fentanyl can be given after or before for pain control but is not the priority. Normal saline can be given for volume replacement but is again not the priority. Magnesium chloride would not be a correct choice for this patient. Reference: Sheehy's Emergency Nursing: Principles and Practice, 7th Edition (2019), p. 199",
+    "rationale": "Crush injuries can cause a large release of potassium. Calcium gluconate is used to neutralize the effects of hyperkalemia. Fentanyl can be given after or before for pain control but is not the priority. Normal saline can be given for volume replacement but is again not the priority. Magnesium chloride would not be a correct choice for this patient.",
     "type": "single_select"
   },
   {
@@ -5900,7 +5900,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The decision to transport a family member is based on multiple factors, and while all of the choices may weigh in the decision, safety of the entire team must be the primary factor. Family members should be instructed that safety regulations require all passengers to wear approved restraint devices (Commercial Flight Rule 135.128). Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 340",
+    "rationale": "The decision to transport a family member is based on multiple factors, and while all of the choices may weigh in the decision, safety of the entire team must be the primary factor. Family members should be instructed that safety regulations require all passengers to wear approved restraint devices (Commercial Flight Rule 135.128).",
     "type": "single_select"
   },
   {
@@ -5916,7 +5916,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Children have flexible ribs that are not fully formed, and therefore may not fracture with blunt injuries. Blunt cardiac injuries cannot be ruled out in a pediatric patient with known chest trauma. Cardiac arrhythmias (ventricular tachycardia/fibrillation) are likely in the patient with blunt chest trauma. Because the pediatric patient cannot compensate with stroke volume changes, a decreased blood pressure is a concerning sign following thoracic trauma. Reference: Trauma Nursing: From Resuscitation Through Rehabilitation, 5th Ed. (2019), p. 687; Wong's Nursing Care of Infants and Children, 12th Ed. (2024), p. 749",
+    "rationale": "Children have flexible ribs that are not fully formed, and therefore may not fracture with blunt injuries. Blunt cardiac injuries cannot be ruled out in a pediatric patient with known chest trauma. Cardiac arrhythmias (ventricular tachycardia/fibrillation) are likely in the patient with blunt chest trauma. Because the pediatric patient cannot compensate with stroke volume changes, a decreased blood pressure is a concerning sign following thoracic trauma.",
     "type": "single_select"
   },
   {
@@ -5932,7 +5932,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The patient is demonstrating signs and symptoms of smoke inhalation and younger patients are at greater risk for airway obstruction. Oxygen saturation may be inaccurate due to carbon monoxide exposure from an enclosed area. The priority intervention is to protect the airway and initiate early intubation. IV fluids, dressings, and wound debridement are all indicated for burn resuscitation, but they are not the priority. Reference: Advanced Trauma Life Support Student Course Manual, 10th Ed. (2018), p. 171",
+    "rationale": "The patient is demonstrating signs and symptoms of smoke inhalation and younger patients are at greater risk for airway obstruction. Oxygen saturation may be inaccurate due to carbon monoxide exposure from an enclosed area. The priority intervention is to protect the airway and initiate early intubation. IV fluids, dressings, and wound debridement are all indicated for burn resuscitation, but they are not the priority.",
     "type": "single_select"
   },
   {
@@ -5948,7 +5948,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "When assessing the patient with a neurologic injury, level of consciousness is the best indication of changes in ICP. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 253",
+    "rationale": "When assessing the patient with a neurologic injury, level of consciousness is the best indication of changes in ICP.",
     "type": "single_select"
   },
   {
@@ -5964,7 +5964,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Critically ill hypoglycemic neonates require IV glucose infusions of 4-6 mg/kg/min of D10W. The other doses and concentrations are not appropriate for this age group. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 4/74",
+    "rationale": "Critically ill hypoglycemic neonates require IV glucose infusions of 4-6 mg/kg/min of D10W. The other doses and concentrations are not appropriate for this age group.",
     "type": "single_select"
   },
   {
@@ -5980,7 +5980,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The nurse should anticipate hemodialysis. Ingestion of more than 1 mL/kg of ethylene glycol can often be fatal. Metabolism of ethylene glycol deposit in the kidney, causing renal failure. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 424",
+    "rationale": "The nurse should anticipate hemodialysis. Ingestion of more than 1 mL/kg of ethylene glycol can often be fatal. Metabolism of ethylene glycol deposit in the kidney, causing renal failure.",
     "type": "single_select"
   },
   {
@@ -5996,7 +5996,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Soot on the face and raspy voice are indicative of heavy inhalation burns. This patient should be closely monitored for airway compromise and transported to the nearest burns center. IV fluids important, but not the most important intervention. A BLS ambulance is not recommended due to the potential for airway compromise. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 281",
+    "rationale": "Soot on the face and raspy voice are indicative of heavy inhalation burns. This patient should be closely monitored for airway compromise and transported to the nearest burns center. IV fluids important, but not the most important intervention. A BLS ambulance is not recommended due to the potential for airway compromise.",
     "type": "single_select"
   },
   {
@@ -6012,7 +6012,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "An extremity with compartment syndrome has reduced blood flow and elevation could further decrease circulation. Immobilization and splinting are appropriate, but caution should be taken not to apply excessive pressure that might impair blood flow. Regular reassessment is necessary to detect any worsening of the condition. The patient may also need analgesics for pain management. Reference: Prehospital Trauma Life Support 10th ed., p. 419",
+    "rationale": "An extremity with compartment syndrome has reduced blood flow and elevation could further decrease circulation. Immobilization and splinting are appropriate, but caution should be taken not to apply excessive pressure that might impair blood flow. Regular reassessment is necessary to detect any worsening of the condition. The patient may also need analgesics for pain management.",
     "type": "single_select"
   },
   {
@@ -6028,7 +6028,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Blunt trauma can cause massive hemothorax as a result of rapid accumulation of >1500 ml of blood in the chest cavity. Rapid accumulation of blood results in severe hypotension and hypoxia. The information from the assessment does not provide mechanism of injury for a cardiac tamponade or assessment findings, such as muffled heart tones. Cardiac tamponade patients are not usually hypoxic. The patient could have a pneumothorax but simple pneumothorax patients are not usually pale and hypotensive. The assessment does not demonstrate a floating segment or inward movement of the chest wall during inspiration and outward movement during expiration. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 252",
+    "rationale": "Blunt trauma can cause massive hemothorax as a result of rapid accumulation of >1500 ml of blood in the chest cavity. Rapid accumulation of blood results in severe hypotension and hypoxia. The information from the assessment does not provide mechanism of injury for a cardiac tamponade or assessment findings, such as muffled heart tones. Cardiac tamponade patients are not usually hypoxic. The patient could have a pneumothorax but simple pneumothorax patients are not usually pale and hypotensive. The assessment does not demonstrate a floating segment or inward movement of the chest wall during inspiration and outward movement during expiration.",
     "type": "single_select"
   },
   {
@@ -6044,7 +6044,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Attempting to lower the plateau pressure is the most appropriate intervention. Maintaining a plateau pressure less than or equal to 35 cm H2O is desired. The other interventions are not the most appropriate interventions. Initiating permissive hypocapnia strategies would mean increasing the tidal volume or the respiratory rate. Both actions may further the barotrauma. Decreasing expiration time is not appropriate, because decreasing the inspiration time will increase the peak inspiratory pressure. Increasing the fraction of inspired oxygen will have no effect on barotrauma. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 191",
+    "rationale": "Attempting to lower the plateau pressure is the most appropriate intervention. Maintaining a plateau pressure less than or equal to 35 cm H2O is desired. The other interventions are not the most appropriate interventions. Initiating permissive hypocapnia strategies would mean increasing the tidal volume or the respiratory rate. Both actions may further the barotrauma. Decreasing expiration time is not appropriate, because decreasing the inspiration time will increase the peak inspiratory pressure. Increasing the fraction of inspired oxygen will have no effect on barotrauma.",
     "type": "single_select"
   },
   {
@@ -6060,7 +6060,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Crush syndrome is a serious condition that can threaten both life and limbs following crush injuries. It is characterized by reperfusion injury, which occurs when the trapped limb is released, causing myoglobin and potassium to enter the bloodstream. This causes traumatic rhabdomyolysis, damaging the kidneys and increasing the risk of hyperkalemia. Patients with crush syndrome also develop hypocalcemia because calcium is absorbed by injured muscle cells. Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 304",
+    "rationale": "Crush syndrome is a serious condition that can threaten both life and limbs following crush injuries. It is characterized by reperfusion injury, which occurs when the trapped limb is released, causing myoglobin and potassium to enter the bloodstream. This causes traumatic rhabdomyolysis, damaging the kidneys and increasing the risk of hyperkalemia. Patients with crush syndrome also develop hypocalcemia because calcium is absorbed by injured muscle cells.",
     "type": "single_select"
   },
   {
@@ -6076,7 +6076,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The flight nurse's first action is to assess ET tube placement. Administering 1 mg of atropine is incorrect because bradycardia is hypoxia related. Adding PEEP to the resuscitator bag or manually overriding the pop-off valve will not improve the heart rate if the tube is not in the correct location. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 5/18",
+    "rationale": "The flight nurse's first action is to assess ET tube placement. Administering 1 mg of atropine is incorrect because bradycardia is hypoxia related. Adding PEEP to the resuscitator bag or manually overriding the pop-off valve will not improve the heart rate if the tube is not in the correct location.",
     "type": "single_select"
   },
   {
@@ -6092,7 +6092,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Succinylcholine is a depolarizing medication. It can cause an increase in potassium. The patient is already likely to have an increased potassium level due to having kidney failure. The other medications would not cause this increase in potassium. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 179",
+    "rationale": "Succinylcholine is a depolarizing medication. It can cause an increase in potassium. The patient is already likely to have an increased potassium level due to having kidney failure. The other medications would not cause this increase in potassium.",
     "type": "single_select"
   },
   {
@@ -6108,7 +6108,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The most important management for patients with aortic injury is blood pressure management, with a goal of 90-120mmHg. Nicardipine will decrease blood pressure without affecting heart rate. Esmolol is contraindicated for this patient due to low heart rate. Epinephrine will increase blood pressure. Fentanyl is important for pain control, but will not affect blood pressure effectively for this patient. Reference: Sheehy's Emergency Nursing: Principles and Practice, 7th Edition (2019), pp. 247",
+    "rationale": "The most important management for patients with aortic injury is blood pressure management, with a goal of 90-120mmHg. Nicardipine will decrease blood pressure without affecting heart rate. Esmolol is contraindicated for this patient due to low heart rate. Epinephrine will increase blood pressure. Fentanyl is important for pain control, but will not affect blood pressure effectively for this patient.",
     "type": "single_select"
   },
   {
@@ -6124,7 +6124,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Alteplase (Activase) is correct because it will actively dissolve a clot. The other medications do not dissolve existing clots. Reference: Rosen's Emergency Medicine: Concepts & Clinical Practice, 10th edition (2018), p. 1063",
+    "rationale": "Alteplase (Activase) is correct because it will actively dissolve a clot. The other medications do not dissolve existing clots.",
     "type": "single_select"
   },
   {
@@ -6140,7 +6140,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Although the patient received a neuromuscular blocker (NMB) or paralytic, the NMB will not alter the patient's level of consciousness. Sedation must accompany the NMB or the patient will be chemically paralyzed with the potential of being fully awake. Administration of a short-acting paralytic drug is not appropriate. The change in vital signs is not related to neuromuscular blockade, but is likely due to awareness, beta blockade will manage the symptoms, but not the cause of the tachycardia and hypertension. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 128",
+    "rationale": "Although the patient received a neuromuscular blocker (NMB) or paralytic, the NMB will not alter the patient's level of consciousness. Sedation must accompany the NMB or the patient will be chemically paralyzed with the potential of being fully awake. Administration of a short-acting paralytic drug is not appropriate. The change in vital signs is not related to neuromuscular blockade, but is likely due to awareness, beta blockade will manage the symptoms, but not the cause of the tachycardia and hypertension.",
     "type": "single_select"
   },
   {
@@ -6156,7 +6156,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "A diagnostic peritoneal lavage (DPL) may be indicated in hemodynamically unstable patients with suspected retroperitoneal bleeding. Due to the patient's vital signs, a CT should not be indicated upon arrival. Clarity of the FAST exam may be limited by body habitus. A KUB x-ray may not reveal bleeding and is less diagnostic in the obese patient. Reference: Advanced Trauma Life Support Student Course Manual, 10th Ed. (2018), p. 90",
+    "rationale": "A diagnostic peritoneal lavage (DPL) may be indicated in hemodynamically unstable patients with suspected retroperitoneal bleeding. Due to the patient's vital signs, a CT should not be indicated upon arrival. Clarity of the FAST exam may be limited by body habitus. A KUB x-ray may not reveal bleeding and is less diagnostic in the obese patient.",
     "type": "single_select"
   },
   {
@@ -6172,7 +6172,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "An immediate surgical cricothyrotomy is required when the nurse is unable to intubate and unable to oxygenate. In patients with edema of the airways, a surgical cricothyrotomy should be performed early before the patient develops a hypoxic cardiac arrest. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 170/1-71",
+    "rationale": "An immediate surgical cricothyrotomy is required when the nurse is unable to intubate and unable to oxygenate. In patients with edema of the airways, a surgical cricothyrotomy should be performed early before the patient develops a hypoxic cardiac arrest.",
     "type": "single_select"
   },
   {
@@ -6188,7 +6188,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "This situation is multi-factorial. The patient is on Assist Control for mechanical ventilation. When a patient is over-breathing, if they spontaneously breath, they will get the pre-determined volume, every time, from the ventilator. If the patient is now breathing 28 extra breaths over the set rate of 12, they are getting a total of 40 breaths at the same tidal volume, with each breath, leading to a dangerous situation whereby the patient is unable to fully exhale causing air to remain in the alveoli. This results in a negative feedback loop whereby the extra volume that is unable to be exhaled leads to increased intrathoracic pressure, resulting in decreased venous return and subsequently, further hypotension. Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 212-216",
+    "rationale": "This situation is multi-factorial. The patient is on Assist Control for mechanical ventilation. When a patient is over-breathing, if they spontaneously breath, they will get the pre-determined volume, every time, from the ventilator. If the patient is now breathing 28 extra breaths over the set rate of 12, they are getting a total of 40 breaths at the same tidal volume, with each breath, leading to a dangerous situation whereby the patient is unable to fully exhale causing air to remain in the alveoli. This results in a negative feedback loop whereby the extra volume that is unable to be exhaled leads to increased intrathoracic pressure, resulting in decreased venous return and subsequently, further hypotension.",
     "type": "single_select"
   },
   {
@@ -6204,7 +6204,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Patients with Le Fort III fractures may present with massive edema, ecchymosis, epistaxis, malocclusion, and a spoon-shaped appearance of the face seen from the side profile. Reference: Sheehy's Manual of Emergency Care, 8th Edition (2024), p. 421.",
+    "rationale": "Patients with Le Fort III fractures may present with massive edema, ecchymosis, epistaxis, malocclusion, and a spoon-shaped appearance of the face seen from the side profile.",
     "type": "single_select"
   },
   {
@@ -6220,7 +6220,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Succinylcholine causes potassium to shift out of the cells and into the bloodstream during depolarization. Patients with neuromuscular disorders (such as muscular dystrophy, multiple sclerosis, and amyotrophic lateral sclerosis) have an absolute contraindication for succinylcholine because permanent alterations in their acetylcholine receptors increase their sensitivity to succinylcholine during depolarization, predisposing them to hyperkalemia. During the initial days to months after injury, burns and spinal cord injuries can cause an increased sensitivity of acetylcholine receptors to succinylcholine, leading to an exaggerated shift of potassium during depolarization. Dialysis-dependent renal failure patients that have missed dialysis are potentially hyperkalemic, which could be exacerbated by succinylcholine; stage 3 renal failure patients are not dialysis-dependent. Reference: Rosen's Emergency Medicine: Concepts & Clinical Practice, 10th Edition (2023), p. 14-15",
+    "rationale": "Succinylcholine causes potassium to shift out of the cells and into the bloodstream during depolarization. Patients with neuromuscular disorders (such as muscular dystrophy, multiple sclerosis, and amyotrophic lateral sclerosis) have an absolute contraindication for succinylcholine because permanent alterations in their acetylcholine receptors increase their sensitivity to succinylcholine during depolarization, predisposing them to hyperkalemia. During the initial days to months after injury, burns and spinal cord injuries can cause an increased sensitivity of acetylcholine receptors to succinylcholine, leading to an exaggerated shift of potassium during depolarization. Dialysis-dependent renal failure patients that have missed dialysis are potentially hyperkalemic, which could be exacerbated by succinylcholine; stage 3 renal failure patients are not dialysis-dependent.",
     "type": "single_select"
   },
   {
@@ -6236,7 +6236,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Le Fort III fractures involve complete craniofacial separation leading to massive facial edema, mobility and depression of the zygomatic bones, periorbital ecchymosis, and diplopia. On assessment, patients with mandibular fractures may have malocclusion of the jaw, facial asymmetry, palpable step off deformity, and drooling. Assessment findings following a linear skull fracture may include headache, soft tissue injury, and possible decreased loss of consciousness. Assessment findings following a basilar skull fracture may include raccoon eyes, Battle's sign, hemotympanum, and facial nerve palsy. Reference: Trauma Nursing Core Course, 8th edition, Chapter 6",
+    "rationale": "Le Fort III fractures involve complete craniofacial separation leading to massive facial edema, mobility and depression of the zygomatic bones, periorbital ecchymosis, and diplopia. On assessment, patients with mandibular fractures may have malocclusion of the jaw, facial asymmetry, palpable step off deformity, and drooling. Assessment findings following a linear skull fracture may include headache, soft tissue injury, and possible decreased loss of consciousness. Assessment findings following a basilar skull fracture may include raccoon eyes, Battle's sign, hemotympanum, and facial nerve palsy.",
     "type": "single_select"
   },
   {
@@ -6252,7 +6252,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The required PPE for an aerosolized respiratory pathogen should be an N-95 mask, gown, gloves and eye protection. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 391",
+    "rationale": "The required PPE for an aerosolized respiratory pathogen should be an N-95 mask, gown, gloves and eye protection.",
     "type": "single_select"
   },
   {
@@ -6268,7 +6268,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Massive transfusion exposes patients to significant amounts of citrate, a preservative used in blood products. Citrate binds calcium, rendering it inactive. This can lead to hypocalcemia, which causes hypotension from insufficient vasoconstriction, as well as prolonged QT interval, tetany, arrhythmias, and increased bleeding. Calcium chloride and calcium gluconate are both suitable options to replace the calcium that citrate has inactivated. Reference: Trauma Nursing Core Course, 9th ed. (2024), p. 99.",
+    "rationale": "Massive transfusion exposes patients to significant amounts of citrate, a preservative used in blood products. Citrate binds calcium, rendering it inactive. This can lead to hypocalcemia, which causes hypotension from insufficient vasoconstriction, as well as prolonged QT interval, tetany, arrhythmias, and increased bleeding. Calcium chloride and calcium gluconate are both suitable options to replace the calcium that citrate has inactivated.",
     "type": "single_select"
   },
   {
@@ -6284,7 +6284,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "While hemothorax, cardiac tamponade, and pulmonary contusions can be the result of blunt chest trauma, the presence of subcutaneous emphysema indicates a disruption of the trachea or bronchial tree. These injuries are often the result of a clothesline mechanism. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 255",
+    "rationale": "While hemothorax, cardiac tamponade, and pulmonary contusions can be the result of blunt chest trauma, the presence of subcutaneous emphysema indicates a disruption of the trachea or bronchial tree. These injuries are often the result of a clothesline mechanism.",
     "type": "single_select"
   },
   {
@@ -6300,7 +6300,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Large shifts in glucose and fluid levels can lead to cerebral edema and can alter neurological status. Lung sounds, electrolyte levels and urine output are important, but do not take priority over the neurological exam. Reference: Critical Care Nursing: Diagnosis & Management, 8th Ed. (2018), p. 1040",
+    "rationale": "Large shifts in glucose and fluid levels can lead to cerebral edema and can alter neurological status. Lung sounds, electrolyte levels and urine output are important, but do not take priority over the neurological exam.",
     "type": "single_select"
   },
   {
@@ -6316,7 +6316,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The patient is experiencing a retrobulbar hematoma. Signs and symptoms include severe pain, decrease or loss of vision, reduced eye movement, double vision, and IOP greater than 40mmHg. Emergent treatment is required to prevent permanent loss of vision; emergent treatment includes lateral canthotomy as an emergency decompression via the lateral canthotomy and/or medication administration that reduces IOP. The application of an eye shield will not decrease IOP. Placing the patient supine will result in increased IOP. Atropine does not affect IOP. Reference: Trauma Nursing Core Course, 9th ed. (2024), p. 133",
+    "rationale": "The patient is experiencing a retrobulbar hematoma. Signs and symptoms include severe pain, decrease or loss of vision, reduced eye movement, double vision, and IOP greater than 40mmHg. Emergent treatment is required to prevent permanent loss of vision; emergent treatment includes lateral canthotomy as an emergency decompression via the lateral canthotomy and/or medication administration that reduces IOP. The application of an eye shield will not decrease IOP. Placing the patient supine will result in increased IOP. Atropine does not affect IOP.",
     "type": "single_select"
   },
   {
@@ -6332,7 +6332,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Vasodilation best describes this result. Vasodilation is the result of interruption of sympathetic outflow below the level of the injury and loss of auto-regulation. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 243",
+    "rationale": "Vasodilation best describes this result. Vasodilation is the result of interruption of sympathetic outflow below the level of the injury and loss of auto-regulation.",
     "type": "single_select"
   },
   {
@@ -6348,7 +6348,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Young children can have spinal/neurological trauma without any findings on the CT/x-rays. This is called SCIWORA, Spinal Cord Injury without radiological findings. The immobilization should not be removed until instructed to do so by a physician who specializes in pediatric trauma. Reference: Wong's Nursing Care of Infants and Children, 12th Ed. (2024), p. 1,389",
+    "rationale": "Young children can have spinal/neurological trauma without any findings on the CT/x-rays. This is called SCIWORA, Spinal Cord Injury without radiological findings. The immobilization should not be removed until instructed to do so by a physician who specializes in pediatric trauma.",
     "type": "single_select"
   },
   {
@@ -6364,7 +6364,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Patients with suspected infection who are likely to have a prolonged ICU stay or to die in the hospital can be promptly identified at the bedside with a validated scoring tool called Quick Sequential Organ Failure Assessment (qSOFA). These high-risk adult patients have two or more of the following: alteration in mental status (Glasgow Coma Scale <15), systolic blood pressure less than or equal to 100 mm Hg, or respiratory rate greater than or equal to 22 breaths per minute. Positive qSOFA criteria should also prompt consideration of possible infection in patients not previously recognized as infected. Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 239",
+    "rationale": "Patients with suspected infection who are likely to have a prolonged ICU stay or to die in the hospital can be promptly identified at the bedside with a validated scoring tool called Quick Sequential Organ Failure Assessment (qSOFA). These high-risk adult patients have two or more of the following: alteration in mental status (Glasgow Coma Scale <15), systolic blood pressure less than or equal to 100 mm Hg, or respiratory rate greater than or equal to 22 breaths per minute. Positive qSOFA criteria should also prompt consideration of possible infection in patients not previously recognized as infected.",
     "type": "single_select"
   },
   {
@@ -6380,7 +6380,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Blood at the meatus is indicative of a urethral injury or bladder rupture and a foley catheter should not be inserted without performing a urethrogram to confirm the urethra is intact. Bladder injuries can cause life-threatening bleeding into the pelvis, which may require surgery. A fluid bolus may be ordered for a patient expected to undergo surgery; however, a fluid bolus would not be appropriate. Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 202",
+    "rationale": "Blood at the meatus is indicative of a urethral injury or bladder rupture and a foley catheter should not be inserted without performing a urethrogram to confirm the urethra is intact. Bladder injuries can cause life-threatening bleeding into the pelvis, which may require surgery. A fluid bolus may be ordered for a patient expected to undergo surgery; however, a fluid bolus would not be appropriate.",
     "type": "single_select"
   },
   {
@@ -6396,7 +6396,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The patient is exhibiting signs of an unstable pelvis with a narrow pulse pressure. Control of bleeding is a top priority. All patients with an unstable pelvis, and those with a significant mechanism of injury and pelvic pain on palpation, should be immobilized with a commercial pelvic binder. Placing the patient on oxygen and administering analgesia are not priority interventions. Administering small amounts of IV crystalloids could support their blood pressure, but the patient is in need of a blood transfusion. Large amounts of crystalloids could dislodge blood clot formation and lead to hemodilution. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 271",
+    "rationale": "The patient is exhibiting signs of an unstable pelvis with a narrow pulse pressure. Control of bleeding is a top priority. All patients with an unstable pelvis, and those with a significant mechanism of injury and pelvic pain on palpation, should be immobilized with a commercial pelvic binder. Placing the patient on oxygen and administering analgesia are not priority interventions. Administering small amounts of IV crystalloids could support their blood pressure, but the patient is in need of a blood transfusion. Large amounts of crystalloids could dislodge blood clot formation and lead to hemodilution.",
     "type": "single_select"
   },
   {
@@ -6412,7 +6412,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Initial management would include providing 100% O2 through a nonrebreathing mask. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 358",
+    "rationale": "Initial management would include providing 100% O2 through a nonrebreathing mask.",
     "type": "single_select"
   },
   {
@@ -6428,7 +6428,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Lightning strikes have voltage exposures as high as 1 billion volts. As a result of such high voltage, victims are commonly found with blunt force trauma related to being thrown. Electrical current passing through the chest will cause dysrhythmias, increased pressure from abdominal compartment syndrome will not manifest right away. While patients may sustain third degree burns from a lightning strike, this is not directly related to development of a pneumothorax. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 279",
+    "rationale": "Lightning strikes have voltage exposures as high as 1 billion volts. As a result of such high voltage, victims are commonly found with blunt force trauma related to being thrown. Electrical current passing through the chest will cause dysrhythmias, increased pressure from abdominal compartment syndrome will not manifest right away. While patients may sustain third degree burns from a lightning strike, this is not directly related to development of a pneumothorax.",
     "type": "single_select"
   },
   {
@@ -6444,7 +6444,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "A lumbar distraction fracture (Chance fracture) is often associated with intestinal injuries. To assess for intestinal injury, the nurse should frequently assess the patient's abdominal pain. Glasgow Coma Scale, upper extremity pulses, and depth of respirations would not be reliable exams to evaluate for intestinal injuries associated with Chance fractures. Reference: Trauma Nursing: From Resuscitation Through Rehabilitation, 5th Ed. (2019), p. 461",
+    "rationale": "A lumbar distraction fracture (Chance fracture) is often associated with intestinal injuries. To assess for intestinal injury, the nurse should frequently assess the patient's abdominal pain. Glasgow Coma Scale, upper extremity pulses, and depth of respirations would not be reliable exams to evaluate for intestinal injuries associated with Chance fractures.",
     "type": "single_select"
   },
   {
@@ -6460,7 +6460,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The exposed bowel should be covered with a sterile solution in order to protect it before surgical intervention. The bowel should never be manipulated back into the abdomen, and should not be compressed unless to stop active bleeding. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 257",
+    "rationale": "The exposed bowel should be covered with a sterile solution in order to protect it before surgical intervention. The bowel should never be manipulated back into the abdomen, and should not be compressed unless to stop active bleeding.",
     "type": "single_select"
   },
   {
@@ -6476,7 +6476,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The patient is exhibiting signs and symptoms of compartment syndrome. The extremity should be placed at the level of the heart (elevating too high can constrict arterial inflow and leaving in a dependent position can cause venous congestion, both of which worsen limb ischemia). Elastic bandages will increase compression and exacerbate the problem. Warm compresses will increase blood flow to the extremity and increase the internal pressure. IV fluids should be increased to maintain peripheral perfusion. Reference: Critical Care Transport, 2nd Edition (2018), p. 157 and https://www.uptodate.com/contents/acute-compartment-syndrome-of-the-extremities",
+    "rationale": "The patient is exhibiting signs and symptoms of compartment syndrome. The extremity should be placed at the level of the heart (elevating too high can constrict arterial inflow and leaving in a dependent position can cause venous congestion, both of which worsen limb ischemia). Elastic bandages will increase compression and exacerbate the problem. Warm compresses will increase blood flow to the extremity and increase the internal pressure. IV fluids should be increased to maintain peripheral perfusion.",
     "type": "single_select"
   },
   {
@@ -6492,7 +6492,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Cautious alkalization with sodium bicarbonate is both helps acidosis and enhance salicylate excretion. N-acetylcysteine is for acetaminophen. Activated charcoal is given for charcoal toxicity. Activated charcoal is appropriate within 3 hours of ingestion, should not be given unless extended release tablets are suspected. Reference: Sheehy's Emergency Nursing: Principles and Practice, 7th Edition (2019), p. 524; Magdelaine, Bruno et al. 'Management of pharmaceutical and recreational drug poisoning.' Annals of Intensive Care vol. 10, 1 15; 23 Nov. 2020, doi:10.1186/s13613-020-00782-9.",
+    "rationale": "Cautious alkalization with sodium bicarbonate is both helps acidosis and enhance salicylate excretion. N-acetylcysteine is for acetaminophen. Activated charcoal is given for charcoal toxicity. Activated charcoal is appropriate within 3 hours of ingestion, should not be given unless extended release tablets are suspected.",
     "type": "single_select"
   },
   {
@@ -6508,7 +6508,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The clinical findings described are consistent with a pericardial tamponade, for which the immediate treatment is a pericardiocentesis. A pericardial window is the definitive treatment for a pericardial tamponade; however, this is performed by a cardiothoracic surgeon. Tube thoracostomy and needle decompression are treatments for a pneumothorax/tension pneumothorax, not a pericardial tamponade. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 253",
+    "rationale": "The clinical findings described are consistent with a pericardial tamponade, for which the immediate treatment is a pericardiocentesis. A pericardial window is the definitive treatment for a pericardial tamponade; however, this is performed by a cardiothoracic surgeon. Tube thoracostomy and needle decompression are treatments for a pneumothorax/tension pneumothorax, not a pericardial tamponade.",
     "type": "single_select"
   },
   {
@@ -6524,7 +6524,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The patient is likely in disseminated intravascular coagulation (DIC) and requires additional clotting factors. The ideal ratio of blood products is 1:1:1. DIC happens where there is a depletion of clotting factors and hemostasis is impaired. Packed red blood cells, warmed normal saline and calcium chloride may be used but will not reverse DIC. Reference: Emergency Nursing Core Curriculum, 7th Ed. (2018), p. 293",
+    "rationale": "The patient is likely in disseminated intravascular coagulation (DIC) and requires additional clotting factors. The ideal ratio of blood products is 1:1:1. DIC happens where there is a depletion of clotting factors and hemostasis is impaired. Packed red blood cells, warmed normal saline and calcium chloride may be used but will not reverse DIC.",
     "type": "single_select"
   },
   {
@@ -6540,7 +6540,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Second-degree frostbite produces blistering or peeling of the skin and is characterized by hyperemia and vesicle or bleb formations. First-degree frostbite appears as hyperemia and edema but there is no blister formation. Third and fourth degree frostbite is indicated by hemorrhagic blisters on the digits (3rd degree) and carpals or tarsals (4th degree). Reference: Burn Nursing: Injury Prevention to Rehabilitation and Aftercare, 1st Ed. (2023), p. 602",
+    "rationale": "Second-degree frostbite produces blistering or peeling of the skin and is characterized by hyperemia and vesicle or bleb formations. First-degree frostbite appears as hyperemia and edema but there is no blister formation. Third and fourth degree frostbite is indicated by hemorrhagic blisters on the digits (3rd degree) and carpals or tarsals (4th degree).",
     "type": "single_select"
   },
   {
@@ -6556,7 +6556,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Hypoglycemia is a common side effect of acute liver failure due to impaired glucose synthesis. The complications are most likely to cause seizures. Reference: https://emcrit.org/ibccualf/endocrine, p. 1.",
+    "rationale": "Hypoglycemia is a common side effect of acute liver failure due to impaired glucose synthesis. The complications are most likely to cause seizures.",
     "type": "single_select"
   },
   {
@@ -6572,7 +6572,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "QRS >100ms is most often the indication for serum alkalization in TCA toxicity. However, about 88% of the poison control directors in the United States use a QRS of 100 milliseconds or greater as the cut-off for intravenous sodium bicarbonate. Arterial blood gases of pH 7.42, PCO2 25 mm Hg, HCO3- 28 mEq/L, PaO2 220 mm Hg do not warrant sodium bicarbonate administration. For hypotension refractory to intravenous saline, vasopressors with alpha-agonist effect (e.g., Neo-Synephrine, norepinephrine) may be used. Protracted vomiting is not an indication for sodium bicarbonate. Reference: Rosen's Emergency Medicine: Concepts & Clinical Practice, 9th Edition (2018), p. 1869-1870",
+    "rationale": "QRS >100ms is most often the indication for serum alkalization in TCA toxicity. However, about 88% of the poison control directors in the United States use a QRS of 100 milliseconds or greater as the cut-off for intravenous sodium bicarbonate. Arterial blood gases of pH 7.42, PCO2 25 mm Hg, HCO3- 28 mEq/L, PaO2 220 mm Hg do not warrant sodium bicarbonate administration. For hypotension refractory to intravenous saline, vasopressors with alpha-agonist effect (e.g., Neo-Synephrine, norepinephrine) may be used. Protracted vomiting is not an indication for sodium bicarbonate.",
     "type": "single_select"
   },
   {
@@ -6588,7 +6588,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Spinal shock typically presents with hypotension and bradycardia, but it can conceal hemorrhagic shock. All patients involved in polytrauma should be suspected of hemorrhagic shock based on injury mechanism and assessment. Treatment should include blood products whenever possible. Although the other answers are plausible, hemorrhagic shock remains the top priority. Reference: Trauma Nursing: From Resuscitation Through Rehabilitation, 5th Ed. (2019), p. 468.",
+    "rationale": "Spinal shock typically presents with hypotension and bradycardia, but it can conceal hemorrhagic shock. All patients involved in polytrauma should be suspected of hemorrhagic shock based on injury mechanism and assessment. Treatment should include blood products whenever possible. Although the other answers are plausible, hemorrhagic shock remains the top priority.",
     "type": "single_select"
   },
   {
@@ -6604,7 +6604,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Decreasing pH leads to a right shift in the oxyhemoglobin dissociation curve. This decreases hemoglobin's affinity for oxygen, leading to elevated delivery at the tissue level. The SpO2 would read lower with a right shift. The respiratory rate should increase to compensate for the acidosis. Clotting factors are less active in the presence of acidosis, so the risk for PE is decreased. Reference: Critical Care Nursing: Diagnosis & Management, 8th Ed. (2018), p. 438",
+    "rationale": "Decreasing pH leads to a right shift in the oxyhemoglobin dissociation curve. This decreases hemoglobin's affinity for oxygen, leading to elevated delivery at the tissue level. The SpO2 would read lower with a right shift. The respiratory rate should increase to compensate for the acidosis. Clotting factors are less active in the presence of acidosis, so the risk for PE is decreased.",
     "type": "single_select"
   },
   {
@@ -6620,7 +6620,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Hypemic hypoxia is correct. Hypemic hypoxia is due a decrease in the oxygen-carrying capacity of red blood cells through blood loss or dysfunction of the red blood cells. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 30",
+    "rationale": "Hypemic hypoxia is correct. Hypemic hypoxia is due a decrease in the oxygen-carrying capacity of red blood cells through blood loss or dysfunction of the red blood cells.",
     "type": "single_select"
   },
   {
@@ -6636,7 +6636,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Norepinephrine will cause vasoconstriction to assist in shunting blood to vital organs in the patient in hemorrhagic shock. The patient has stated they do not want blood products and therefore PRBCs should not be initiated without consent. Additional normal saline can cause cellular swelling and death, leading to worsening outcomes, and perfusion. Sodium bicarb is not indicated in the patient with hemorrhagic shock. Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 238",
+    "rationale": "Norepinephrine will cause vasoconstriction to assist in shunting blood to vital organs in the patient in hemorrhagic shock. The patient has stated they do not want blood products and therefore PRBCs should not be initiated without consent. Additional normal saline can cause cellular swelling and death, leading to worsening outcomes, and perfusion. Sodium bicarb is not indicated in the patient with hemorrhagic shock.",
     "type": "single_select"
   },
   {
@@ -6652,7 +6652,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Norepinephrine (Levophed) would be most effective. Norepinephrine (Levophed) is a non-selective adrenergic agonist that is used to increase peripheral vascular tone and blood pressure. Dobutamine (Dobutrex) is a beta-1 adrenergic agonist that increases the force of cardiac contraction in congestive heart failure. Nicardipine (Cardene) is a calcium channel blocker used to lower blood pressure by decreasing vascular tone. Nitroprusside sodium (Nitropress) is a vasodilator used to lower blood pressure by decreasing vascular tone. Reference: Critical Care Nursing: Diagnosis & Management, 8th Ed. (2018), p. 402",
+    "rationale": "Norepinephrine (Levophed) would be most effective. Norepinephrine (Levophed) is a non-selective adrenergic agonist that is used to increase peripheral vascular tone and blood pressure. Dobutamine (Dobutrex) is a beta-1 adrenergic agonist that increases the force of cardiac contraction in congestive heart failure. Nicardipine (Cardene) is a calcium channel blocker used to lower blood pressure by decreasing vascular tone. Nitroprusside sodium (Nitropress) is a vasodilator used to lower blood pressure by decreasing vascular tone.",
     "type": "single_select"
   },
   {
@@ -6668,7 +6668,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Norepinephrine is the preferred medication for supporting patients in cardiogenic shock related to endocarditis. Reference: Critical Care Nursing: Diagnosis & Management, 9th Ed. (2022), p. 397.",
+    "rationale": "Norepinephrine is the preferred medication for supporting patients in cardiogenic shock related to endocarditis.",
     "type": "single_select"
   },
   {
@@ -6684,7 +6684,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The patient with a dive injury should be kept at as close to sea level as possible to avoid further injury. The nitrogen dissolved in the tissue will form bubbles in the patient's blood, possibly causing an embolism the further above sea level the patient goes. The patient should be provided with a high percentage of oxygen to breathe as well. If in doubt, contact the DAN (Diver Alert Network) emergency line for help with dive injury care. The definitive treatment is a hyperbaric chamber as soon as possible. Reference: Rosen's Emergency Medicine: Concepts & Clinical Practice, 9th Edition (2018), p. 1787",
+    "rationale": "The patient with a dive injury should be kept at as close to sea level as possible to avoid further injury. The nitrogen dissolved in the tissue will form bubbles in the patient's blood, possibly causing an embolism the further above sea level the patient goes. The patient should be provided with a high percentage of oxygen to breathe as well. If in doubt, contact the DAN (Diver Alert Network) emergency line for help with dive injury care. The definitive treatment is a hyperbaric chamber as soon as possible.",
     "type": "single_select"
   },
   {
@@ -6700,7 +6700,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The patient is experiencing a thyroid storm. The priority is to decrease the heart rate and temperature. Steroids are used the reduce thyroid hormone and prevent adrenal insufficiency. Aspirin is contraindicated because it is associated with thyroid hormone displacement. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 3/78",
+    "rationale": "The patient is experiencing a thyroid storm. The priority is to decrease the heart rate and temperature. Steroids are used the reduce thyroid hormone and prevent adrenal insufficiency. Aspirin is contraindicated because it is associated with thyroid hormone displacement.",
     "type": "single_select"
   },
   {
@@ -6716,7 +6716,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "If the nurse is unable to safely transport a patient due to size, then they should refuse the transport. The safety of the patient is the responsibility of the medical crew. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 135",
+    "rationale": "If the nurse is unable to safely transport a patient due to size, then they should refuse the transport. The safety of the patient is the responsibility of the medical crew.",
     "type": "single_select"
   },
   {
@@ -6732,7 +6732,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "A small illness often precedes pericarditis and leads to widespread ST segment changes on an electrocardiogram (ECG). Unlike acute coronary syndrome, the pain from pericarditis is reproducible and can be relieved by rest and repositioning. Treatment options may include cardiac catheterization, but the condition is not caused by coronary artery occlusion. Reference: https://www.ncbi.nlm.nih.gov/books/NBK431081/, p. 1",
+    "rationale": "A small illness often precedes pericarditis and leads to widespread ST segment changes on an electrocardiogram (ECG). Unlike acute coronary syndrome, the pain from pericarditis is reproducible and can be relieved by rest and repositioning. Treatment options may include cardiac catheterization, but the condition is not caused by coronary artery occlusion.",
     "type": "single_select"
   },
   {
@@ -6748,7 +6748,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Pericarditis typically presents with anterior chest pain with radiation to the neck, arms, or shoulders; pain may be intensified by deep inspiration. Associated symptoms of pericarditis are fever (i.e., 101°-102° or 38.3°-38.9°C), pericardial friction rub. ECG often reveals ST-segment elevation in all leads except V1 and aVR. Reference: Sheehy's Emergency Nursing: Principles and Practice, 7th Edition (2019), p. 239",
+    "rationale": "Pericarditis typically presents with anterior chest pain with radiation to the neck, arms, or shoulders; pain may be intensified by deep inspiration. Associated symptoms of pericarditis are fever (i.e., 101°-102° or 38.3°-38.9°C), pericardial friction rub. ECG often reveals ST-segment elevation in all leads except V1 and aVR.",
     "type": "single_select"
   },
   {
@@ -6764,7 +6764,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The accepting interventional neuroradiologist needs to be advised prior to departure from the sending facility. The treatment plan for this patient will change. Hemorrhage, herniation after IV thrombolysis can be a severe, life-threatening situation. Neurosurgical consultation, airway protection, additional CT scans and correction of coagulopathy will be needed for and treated. Based off of this finding, the transport destination of the patient could potentially change. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 287-297.",
+    "rationale": "The accepting interventional neuroradiologist needs to be advised prior to departure from the sending facility. The treatment plan for this patient will change. Hemorrhage, herniation after IV thrombolysis can be a severe, life-threatening situation. Neurosurgical consultation, airway protection, additional CT scans and correction of coagulopathy will be needed for and treated. Based off of this finding, the transport destination of the patient could potentially change.",
     "type": "single_select"
   },
   {
@@ -6780,7 +6780,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Rapid sequence intubation (RSI) is indicated at this point in the patient's hospitalization due to prolonged hypoxia to tissue cells related to multiple seizures, unresponsive presentation, and inability to maintain a patient airway. Maintaining a patent airway is the main intervention for this patient during transport. This patient should be treated aggressively with benzodiazepines and anti-epileptic medications, however, RSI is the primary intervention. Administering flumazenil is contraindicated and could induce seizures. Inserting an OPA could cause the patient to gag and does not provide a definitive airway. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 205",
+    "rationale": "Rapid sequence intubation (RSI) is indicated at this point in the patient's hospitalization due to prolonged hypoxia to tissue cells related to multiple seizures, unresponsive presentation, and inability to maintain a patient airway. Maintaining a patent airway is the main intervention for this patient during transport. This patient should be treated aggressively with benzodiazepines and anti-epileptic medications, however, RSI is the primary intervention. Administering flumazenil is contraindicated and could induce seizures. Inserting an OPA could cause the patient to gag and does not provide a definitive airway.",
     "type": "single_select"
   },
   {
@@ -6796,7 +6796,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "All patients with a knee injury should be considered high risk for popliteal artery injury. Distal pulses, skin color, and capillary refill should be checked frequently. The ankle brachial index (ABI) can be measured by obtaining an upper extremity blood pressure, followed by a second blood pressure on the calf of the injured extremity just above the ankle. To determine the ABI, divide the lower extremity systolic blood pressure by the upper extremity systolic blood pressure. An ABI greater than 0.90 has been associated with low risk of popliteal artery injury. A normal compartment pressure is between 0 and 8 mmHg. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 270",
+    "rationale": "All patients with a knee injury should be considered high risk for popliteal artery injury. Distal pulses, skin color, and capillary refill should be checked frequently. The ankle brachial index (ABI) can be measured by obtaining an upper extremity blood pressure, followed by a second blood pressure on the calf of the injured extremity just above the ankle. To determine the ABI, divide the lower extremity systolic blood pressure by the upper extremity systolic blood pressure. An ABI greater than 0.90 has been associated with low risk of popliteal artery injury. A normal compartment pressure is between 0 and 8 mmHg.",
     "type": "single_select"
   },
   {
@@ -6812,7 +6812,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Serum sickness can affect patients receiving antivenin therapy. Symptoms include fever, joint pain, rash, nausea, and vomiting. Fasciculations, compartment syndrome and hypotension can be complications of the envenomation, but are not the result of serum sickness. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 425",
+    "rationale": "Serum sickness can affect patients receiving antivenin therapy. Symptoms include fever, joint pain, rash, nausea, and vomiting. Fasciculations, compartment syndrome and hypotension can be complications of the envenomation, but are not the result of serum sickness.",
     "type": "single_select"
   },
   {
@@ -6828,7 +6828,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The nurse should increase the rate on the ventilator. The patient is showing signs of herniation. It is appropriate to increase the rate on the ventilator to hyperventilate to ultimately decrease intracranial pressure. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 195",
+    "rationale": "The nurse should increase the rate on the ventilator. The patient is showing signs of herniation. It is appropriate to increase the rate on the ventilator to hyperventilate to ultimately decrease intracranial pressure.",
     "type": "single_select"
   },
   {
@@ -6844,7 +6844,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The administration of hydroxocobalamin is the next step as this is the preferred antidote for cyanide toxicity. Glucagon is the antidote for beta blocker overdose. Chelating agents are utilized in iron poisoning. Benzodiazepine antagonists are utilized in benzodiazepine overdose. Reference: Rosen's Emergency Medicine: Concepts & Clinical Practice, 9th Edition (2018), p. 1929-1931",
+    "rationale": "The administration of hydroxocobalamin is the next step as this is the preferred antidote for cyanide toxicity. Glucagon is the antidote for beta blocker overdose. Chelating agents are utilized in iron poisoning. Benzodiazepine antagonists are utilized in benzodiazepine overdose.",
     "type": "single_select"
   },
   {
@@ -6860,7 +6860,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "In the setting of acute heart failure, signs and symptoms of respiratory failure should be treated with noninvasive positive pressure ventilation (NPPV) unless contraindicated. It has been shown to decrease both in-hospital mortality and need for intubation. Intubation should be a last resort and only considered when NPPV has failed or is contraindicated. BVM ventilation is not indicated in this case. A non-rebreathing mask does not provide the pressure within the lungs needed to assist with oxygenation like NPPV does. Reference: Rosen's Emergency Medicine: Concepts & Clinical Practice, 9th Edition (2018), p. 1048",
+    "rationale": "In the setting of acute heart failure, signs and symptoms of respiratory failure should be treated with noninvasive positive pressure ventilation (NPPV) unless contraindicated. It has been shown to decrease both in-hospital mortality and need for intubation. Intubation should be a last resort and only considered when NPPV has failed or is contraindicated. BVM ventilation is not indicated in this case. A non-rebreathing mask does not provide the pressure within the lungs needed to assist with oxygenation like NPPV does.",
     "type": "single_select"
   },
   {
@@ -6876,7 +6876,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Deflating the cuff slightly is correct because the recommended ETT cuff pressure is 20-30 cm H2O. Higher pressures may cause complications such as mucosal damage and tracheal ischemia. Replacing the end of the endotracheal tube is incorrect because there is no indication that the ETT is not functioning properly. Inflating the cuff slightly is incorrect because the current cuff pressure already exceeds what is recommended. No intervention is incorrect because the current cuff pressure exceeds what is recommended. Therefore, the cuff should be deflated slightly to avoid complications. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 185",
+    "rationale": "Deflating the cuff slightly is correct because the recommended ETT cuff pressure is 20-30 cm H2O. Higher pressures may cause complications such as mucosal damage and tracheal ischemia. Replacing the end of the endotracheal tube is incorrect because there is no indication that the ETT is not functioning properly. Inflating the cuff slightly is incorrect because the current cuff pressure already exceeds what is recommended. No intervention is incorrect because the current cuff pressure exceeds what is recommended. Therefore, the cuff should be deflated slightly to avoid complications.",
     "type": "single_select"
   },
   {
@@ -6892,7 +6892,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The signs and symptoms that the patient is experiencing are consistent with diabetic ketoacidosis. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 211",
+    "rationale": "The signs and symptoms that the patient is experiencing are consistent with diabetic ketoacidosis.",
     "type": "single_select"
   },
   {
@@ -6908,7 +6908,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Having an ETT tube that is too small for the patient can cause a high pressure alarm. All the other options would cause a low pressure alarm. The cuff pressure should be 20-30 mmHg. Lower cuff pressure could cause air leakage, leading to a lower pressure. Reference: ASTNA Patient Transport: Principles and Practice, 6th Ed. (2024), p. 227",
+    "rationale": "Having an ETT tube that is too small for the patient can cause a high pressure alarm. All the other options would cause a low pressure alarm. The cuff pressure should be 20-30 mmHg. Lower cuff pressure could cause air leakage, leading to a lower pressure.",
     "type": "single_select"
   },
   {
@@ -6924,7 +6924,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The patient is likely progressing to HELLP syndrome and disseminated intravascular coagulation (DIC). The patient is at risk for continued bleeding as clotting factors are utilized and blood products should be readily available to administer. The other options are blood pressure mitigation actions, but blood products should be the priority. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 46/7",
+    "rationale": "The patient is likely progressing to HELLP syndrome and disseminated intravascular coagulation (DIC). The patient is at risk for continued bleeding as clotting factors are utilized and blood products should be readily available to administer. The other options are blood pressure mitigation actions, but blood products should be the priority.",
     "type": "single_select"
   },
   {
@@ -6940,7 +6940,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Recent studies have shown that tourniquets are not effective in preventing spread of venom and may clinically worsen outcomes due to limiting blood flow to the extremity. Ice has also been shown to worsen clinical outcomes. The extremity should be positioned at the level of the heart. Pain management is a crucial part of patient management following snake bites and should be prioritized. Narcotic medication is not contraindicated and should be considered for pain control. Reference: Sheehy's Emergency Nursing: Principles and Practice, 7th Edition (2019), P. 565",
+    "rationale": "Recent studies have shown that tourniquets are not effective in preventing spread of venom and may clinically worsen outcomes due to limiting blood flow to the extremity. Ice has also been shown to worsen clinical outcomes. The extremity should be positioned at the level of the heart. Pain management is a crucial part of patient management following snake bites and should be prioritized. Narcotic medication is not contraindicated and should be considered for pain control.",
     "type": "single_select"
   },
   {
@@ -6956,7 +6956,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Patients with acute pancreatitis should receive 5-10mL/kg/hr for fluid resuscitation. The appropriate amount of IVF for this patient would be 1200 mL- 2400 mL during the first 3 hours. Excessive resuscitation can contribute to third spacing, which can seriously lead to abdominal compartment syndrome. This patient has received more than the recommended dose of IVF resuscitation (3000mL). 15-20mL/kg would be too much IVF resuscitation and can cause harm. Reference: Critical Care Nursing Diagnosis & Management, 8th Ed. (2018), p. 711",
+    "rationale": "Patients with acute pancreatitis should receive 5-10mL/kg/hr for fluid resuscitation. The appropriate amount of IVF for this patient would be 1200 mL- 2400 mL during the first 3 hours. Excessive resuscitation can contribute to third spacing, which can seriously lead to abdominal compartment syndrome. This patient has received more than the recommended dose of IVF resuscitation (3000mL). 15-20mL/kg would be too much IVF resuscitation and can cause harm.",
     "type": "single_select"
   },
   {
@@ -6972,7 +6972,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "In patients with bronchospasm, you must decrease their respiratory rate to allow for a longer expiration time to allow blow off of CO2. This increases the I:E ratio. The patient's tidal volume is too high and could be causing ventilation-induced lung injury. Increasing the respiratory rate would cause a shorter exhalation time, causing the PaCO2 to acutely rise. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 247",
+    "rationale": "In patients with bronchospasm, you must decrease their respiratory rate to allow for a longer expiration time to allow blow off of CO2. This increases the I:E ratio. The patient's tidal volume is too high and could be causing ventilation-induced lung injury. Increasing the respiratory rate would cause a shorter exhalation time, causing the PaCO2 to acutely rise.",
     "type": "single_select"
   },
   {
@@ -6988,7 +6988,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "While all forms of shock will cause hypotension, the scenario describes a patient who has the signs of an allergic reaction: urticaria and wheezing. Therefore, it is likely this patient is in anaphylactic shock, a form of distributive shock. There are no indications that this is cardiogenic or obstructive shock. Hypovolemic shock will present with hypotension and tachycardia; however, it is unlikely that there will be any cutaneous manifestations and wheezing as described in this scenario. These are findings consistent with anaphylaxis. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 208",
+    "rationale": "While all forms of shock will cause hypotension, the scenario describes a patient who has the signs of an allergic reaction: urticaria and wheezing. Therefore, it is likely this patient is in anaphylactic shock, a form of distributive shock. There are no indications that this is cardiogenic or obstructive shock. Hypovolemic shock will present with hypotension and tachycardia; however, it is unlikely that there will be any cutaneous manifestations and wheezing as described in this scenario. These are findings consistent with anaphylaxis.",
     "type": "single_select"
   },
   {
@@ -7004,7 +7004,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "PIP would best indicate the procedure resulted in the desired effect. Gastric insufflation is an expected byproduct of prolonged bag-mask ventilation of the pediatric patient. If the patient is being volume ventilated, the PIP will decrease with gastric decompression due to the inflated stomach not allowing full diaphragm expansion during the inhalation phase. Normal pulse oximetry can occur in the presence of an insufflated stomach. ETCO2 is related to ventilation not gastric tube placement. Reference: ASTNA Patient Transport: Principles and Practice, 5th Ed. (2018), p. 498",
+    "rationale": "PIP would best indicate the procedure resulted in the desired effect. Gastric insufflation is an expected byproduct of prolonged bag-mask ventilation of the pediatric patient. If the patient is being volume ventilated, the PIP will decrease with gastric decompression due to the inflated stomach not allowing full diaphragm expansion during the inhalation phase. Normal pulse oximetry can occur in the presence of an insufflated stomach. ETCO2 is related to ventilation not gastric tube placement.",
     "type": "single_select"
   },
   {
