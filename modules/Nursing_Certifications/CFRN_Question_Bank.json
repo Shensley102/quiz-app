@@ -92,7 +92,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The patient is exhibiting signs of impending brain herniation (unilateral blown pupil and Cushing's Triad). Administering a bolus of hypertonic saline will temporarily reduce cerebral edema and buy the patient time to get to definitive care. The way this works is by using peer pressure in your favor. The brain cells like to match the tonicity of the vasculature around it and if we introduce a hypertonic solution (3% saline) the brain cells will say "Oooo, I want to be super salty just like the blood is!" But they can't bring on additional sodium, but they can shift water out of the cell to concentrate the intracellular solutes, thus making the cell smaller. This only lasts a couple of hours, and the kidneys will fix the serum osmolality and the brain cells will go right back to swelling, so prioritize rapid transport to definitive care.",
+    "rationale": "The patient is exhibiting signs of impending brain herniation (unilateral blown pupil and Cushing's Triad). Administering a bolus of hypertonic saline will temporarily reduce cerebral edema and buy the patient time to get to definitive care. The way this works is by using peer pressure in your favor. The brain cells like to match the tonicity of the vasculature around it and if we introduce a hypertonic solution (3% saline) it will shift water out of the cell to concentrate the intracellular solutes, thus making the cell smaller. This only lasts a couple of hours, and the kidneys will fix the serum osmolality and the brain cells will go right back to swelling, so prioritize rapid transport to definitive care.",
     "type": "single_select"
   },
   {
