@@ -100,15 +100,15 @@
     "category": "Medical Emergencies",
     "stem": "A normal potassium level is:",
     "options": [
-      "135--145",
-      "0.8--1.2",
-      "3.5--5.0",
-      "7.35--7.45"
+      "135-145",
+      "8.5-10.2",
+      "3.5-5.0",
+      "7.35-7.45"
     ],
     "correct": [
       "C"
     ],
-    "rationale": "I'll ask you to memorize very little in this book, but normal lab values are one of those things you just have to repeat over and over until you get to the point of sitting up in the middle of REM sleep and shout "POTASSIUM: 3.5 TO 5.0!" and scare the dog awake. The nurses reading this are going to want to slap me with this book, but care plans got us nurses really good at lab values. We know these numbers backwards, forward, upside down, and inside out because we were tortured, er, I mean...educated by writing care plans for every patient we saw in clinicals. The hundreds of repetitions we got in on seeing normal and abnormal labs seared these numbers in our heads like tattoos on our sulci.",
+    "rationale": "Normal potassium: 3.5-5.0 meq/L. Normal sodium: 135-145 meq/L, Normaal Ph: 7.35-7.45. Normal Calcium:8.5-10.2 mg/dL. ",
     "type": "single_select"
   },
   {
