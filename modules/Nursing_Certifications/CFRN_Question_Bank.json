@@ -12,7 +12,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The number one influence on a crew's survival is having a positive attitude and a hopeful outlook on the situation. Survivors will also need survival gear, shelter, food and water, etc. but holding the belief that you will be rescued is imperative to survival.",
+    "rationale": "The number one influence on a crew's survival is having a positive attitude and a hopeful outlook on the situation. Survivors will also need survival gear, shelter, food and water, etc. but holding the belief that you will be rescued is imperative to survival. If you apply this concept to your desire to pass your advanced certification exam, you have to believe in yourself. Yes, you still need to study, you still need to work on practice questions and learn from your mentors, but believing that you can and will pass the test will help you so much! Don't get me wrong, this is a difficult exam, but YOU ARE CAPABLE!",
     "type": "single_select"
   },
   {
@@ -28,7 +28,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Two causes of traumatic arrest that can be quickly treated are a tension pneumothorax and a pelvic fracture. Decompressing the chest bilaterally via needle or finger thoracostomy will allow for full lung expansion and reduction in intrathoracic pressure, which will facilitate venous return to the heart and improve cardiac output. Placing a pelvic binder can tamponade the vascular compromise and reduce bleeding in the pelvis caused by an open book pelvic fracture, which can account for >1 liter of blood loss. All of the other options are necessary interventions, but not the *top* priority.",
+    "rationale": "Two causes of traumatic arrest that can be quickly treated are a tension pneumothorax and a pelvic fracture. Decompressing the chest bilaterally via needle or finger thoracostomy will allow for full lung expansion and reduction in intrathoracic pressure, which will facilitate venous return to the heart and improve cardiac output. Placing a pelvic binder can tamponade the vascular compromise and reduce bleeding in the pelvis caused by an open book pelvic fracture, which can account for >1 liter of blood loss. All of the other options are necessary interventions, but not the top priority.",
     "type": "single_select"
   },
   {
@@ -81,7 +81,7 @@
   },
   {
     "id": "Q0006",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "The flight crew arrives at the bedside of a patient with a head injury after a ground level fall. The patient has a history of heavy alcohol use, untreated hypertension, hyperlipidemia, and cirrhosis of the liver. On assessment, the crew observes a unilateral fixed and dilated pupil and the vitals are: HR 54, NIBP 149/51, SpO₂ 92%, ETCO₂ 34. The flight nurse:",
     "options": [
       "Administers hypertonic saline",
@@ -97,7 +97,7 @@
   },
   {
     "id": "Q0007",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "A normal potassium level is:",
     "options": [
       "135--145",
@@ -145,7 +145,7 @@
   },
   {
     "id": "Q0010",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew arrives at the bedside in the ICU and finds the patient has a Swan-Ganz line in place with the following readings: CVP 11, PA 28/17, CI 1.9, SVR 1289. What is the most appropriate action?",
     "options": [
       "Initiate a milrinone infusion",
@@ -209,7 +209,7 @@
   },
   {
     "id": "Q0014",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The patient's nurse at the sending facility tells the transport team that the patient's lab work revealed hyaline casts. The transport anticipates the need for:",
     "options": [
       "Antipyretic",
@@ -225,7 +225,7 @@
   },
   {
     "id": "Q0015",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight nurse notices that the patient's fingers become rigid and straight with flexed wrists when the blood pressure cuff inflates, and prepares to give:",
     "options": [
       "Calcium gluconate",
@@ -241,7 +241,7 @@
   },
   {
     "id": "Q0016",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "A fixed wing crew is requested to transport a patient diagnosed with severe malnutrition secondary to anorexia nervosa to a specialty center 4 hours away. The crew prioritizes:",
     "options": [
       "Bringing finger foods for the patient to eat in flight",
@@ -641,7 +641,7 @@
   },
   {
     "id": "Q0041",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The patient with acute pancreatitis will require all of the following EXCEPT:",
     "options": [
       "IV antibiotics",
@@ -785,7 +785,7 @@
   },
   {
     "id": "Q0050",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew sees the chest x-ray of the patient in an asthma exacerbation and identifies hyperinflation. They recognize this is caused by:",
     "options": [
       "Hypoxia",
@@ -817,7 +817,7 @@
   },
   {
     "id": "Q0052",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight nurse is watching a documentary on the soccer team stuck in a cave in Taiwan in the summer of 2018. The young boys ventured into the cave and monsoon rains began while they were in the cave, forcing them deeper into the cave system by rising water. The boys were discovered a week later, and it took another week to safely extricate them. Upon rescue, the boys were found to be mildly hypoxic. What type of hypoxia were they experiencing?",
     "options": [
       "Hypoxic hypoxia",
@@ -1025,7 +1025,7 @@
   },
   {
     "id": "Q0065",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew is at the bedside of a patient with septic shock and an arterial line in place to optimize titration of multiple pressors. The crew knows:",
     "options": [
       "Due to changes associated with flight physiology, it is not recommended to fly patients with an arterial line",
@@ -1089,7 +1089,7 @@
   },
   {
     "id": "Q0069",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Special Populations",
     "stem": "A paramedic inadvertently administers the wrong dose of a medication after typing in the pediatric patient's weight wrong on the duty phone app. According to Just Culture:",
     "options": [
       "The paramedic should be educated on the proper use of the pediatric medication application",
@@ -1361,7 +1361,7 @@
   },
   {
     "id": "Q0086",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "The intubated patient has a RASS score of +1 before leaving the ER room at the sending facility for the rotor transport to higher care. The flight crew recognizes",
     "options": [
       "The need to reverse the chemical sedation given by the sending facility",
@@ -1393,7 +1393,7 @@
   },
   {
     "id": "Q0088",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "The transport team is assisting ventilations to preoxygenate a patient in preparation to intubate the patient. While placing the commercial tube securement device under the patient's neck, the flight nurse palpates crepitus. The flight nurse suspects",
     "options": [
       "Pneumothorax",
@@ -1473,7 +1473,7 @@
   },
   {
     "id": "Q0093",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "What will a clinician observe on a chest radiography of a patient in an asthma exacerbation?",
     "options": [
       "Bilateral infiltrates",
@@ -1697,7 +1697,7 @@
   },
   {
     "id": "Q0107",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Special Populations",
     "stem": "The flight crew is assessing a 9-month-old infant whose mother brought her to the emergency department for vomiting. The baby's history includes ventriculoperitoneal shunt placement at one month of age for hydrocephalus. What symptoms would be concerning for shunt malfunction?",
     "options": [
       "Bulging fontanels, nystagmus, vomiting, pulling at ears",
@@ -1841,7 +1841,7 @@
   },
   {
     "id": "Q0116",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "A 19-year-old patient was an unrestrained passenger in a vehicle that rolled. She had a loss of consciousness at the time of the accident and her boyfriend called EMS. A BLS crew arrived and the patient was alert and oriented, but the BLS crew requested an aircraft to transport to a level 1 trauma center based on mechanism. Upon the flight crew's arrival, the patient was lethargic but stated \"I don't need a helicopter, I'm fine. I just have a little headache and I want to go home.\" The flight crew should:",
     "options": [
       "Discuss the severity of the patient’s injury with her and convince her to go to the hospital",
@@ -1953,7 +1953,7 @@
   },
   {
     "id": "Q0123",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Special Populations",
     "stem": "The flight crew is caring for a 3-year-old boy whose mother brought him to the local urgent care center for vomiting, hematochezia, abdominal pain, and lethargy for one week. His serum lab values revealed anemia, thrombocytopenia, and acute kidney injury. The crew suspects",
     "options": [
       "Testicular torsion",
@@ -2049,7 +2049,7 @@
   },
   {
     "id": "Q0129",
-    "category": "Trauma",
+    "category": "Medical Emergencies",
     "stem": "The intra aortic balloon pump failed while the ground critical care transport crew was transferring a patient 150 miles. The crew knows to",
     "options": [
       "Pull the balloon and sheath and apply pressure at the insertion site for 20 minutes",
@@ -2193,7 +2193,7 @@
   },
   {
     "id": "Q0138",
-    "category": "Trauma",
+    "category": "Medical Emergencies",
     "stem": "Helium is the gas used in an intra aortic balloon pump because of",
     "options": [
       "The size of gas molecules",
@@ -2257,7 +2257,7 @@
   },
   {
     "id": "Q0142",
-    "category": "Trauma",
+    "category": "Medical Emergencies",
     "stem": "The paramedic notices rust colored flakes in the intra aortic balloon pump tubing and recognizes that",
     "options": [
       "This is a faulty balloon pump",
@@ -2465,7 +2465,7 @@
   },
   {
     "id": "Q0155",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "The critical care transport crew performed an RSI and the tube was inadvertently placed in the esophagus, but immediately recognized by the crew and corrected. The patient did not suffer any complications such as hypoxia or an oropharyngeal injury. What is the best approach to documenting the incident?",
     "options": [
       "The first failed attempt should be documented, along with the successful attempt",
@@ -2673,7 +2673,7 @@
   },
   {
     "id": "Q0168",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "All of the following are findings consistent with ARDS except:",
     "options": [
       "Increased driving pressure",
@@ -3041,7 +3041,7 @@
   },
   {
     "id": "Q0191",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew is transporting a patient with a diagnosis of high altitude pulmonary edema. What action should the flight crew take before transporting the patient?",
     "options": [
       "Intubating the patient",
@@ -3137,7 +3137,7 @@
   },
   {
     "id": "Q0197",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "As the flight crew rolls the patient to get him off the long spine board, the flight paramedic notices flank ecchymosis. She recognizes this is",
     "options": [
       "Cullen's sign",
@@ -3169,7 +3169,7 @@
   },
   {
     "id": "Q0199",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The patient's pulmonary artery catheter shows: CVP 11, RV 27/3, PA 26/17, PCWP 14, CO 3.9, CI 1.8. What intervention is most appropriate?",
     "options": [
       "Negative chronotrope",
@@ -3217,7 +3217,7 @@
   },
   {
     "id": "Q0202",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The tip of a Swan-Ganz catheter should be positioned in the",
     "options": [
       "Right atrium",
@@ -3505,7 +3505,7 @@
   },
   {
     "id": "Q0220",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The critical care transport truck is requested to take a patient from a suburban free-standing ER to the large stroke center 38 miles away. The patient presented to the sending facility with unilateral motor and sensory deficits, complaint of a severe headache, and visual changes. The sending facility performed a head CT and NIH assessment and the patient scored 15. When the critical care transport crew arrives at the bedside, the patient reports that her headache has resolved and she is feeling much better. The sending nurse comes in with the fibrinolytic that the physician ordered and is preparing to administer it before the transport crew takes the patient. The transport crew should:",
     "options": [
       "Place the patient on the transport monitor while the sending nurse gives the medication so they can take the patient as soon as it has been given",
@@ -3633,7 +3633,7 @@
   },
   {
     "id": "Q0228",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "The rotor crew is transporting a 36-year-old woman who presented to a rural emergency department with a report of loss of voice for the last 24 hours, non-productive cough for the few days, generalized weakness, and exertion intolerance. Her vital signs are as follows: 37.1° C, HR 98, NIBP 110/69, RR 25, SpO₂ 84% on room air, improves to 91% on 4L per nasal cannula, ETCO₂ 34 and is dyspneic with accessory muscle use. Chest CT reveals diffuse infiltrates throughout bilateral lung fields. The patient is a healthy, active woman and states that she was fine and worked outdoors all weekend, including mixing and pouring a concrete pad behind her garage. The crew anticipates which of the following interventions?",
     "options": [
       "Bronchodilators, inhaled corticosteroids, and non-invasive ventilation",
@@ -3681,7 +3681,7 @@
   },
   {
     "id": "Q0231",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "Interpret the following arterial blood gas: pH 7.27, CO₂ 31, HCO₃ 14, PaO₂ 212, Lactate 4.1",
     "options": [
       "Fully compensated metabolic acidosis with hyperoxia",
@@ -3729,7 +3729,7 @@
   },
   {
     "id": "Q0234",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "The flight nurse checks the patient's temperature at bedside before transferring the patient to the trauma center following a motorcycle collision. The patient is intubated, mechanically ventilated, and has mannitol infusing. She finds that the patient's temperature is 39.9°C. The flight nurse anticipates",
     "options": [
       "Administering a benzodiazepine",
@@ -3921,7 +3921,7 @@
   },
   {
     "id": "Q0246",
-    "category": "Trauma",
+    "category": "Special Populations",
     "stem": "The injury pattern often seen in pediatric patients struck by a car includes",
     "options": [
       "Coup-contrecoup head injury, cervical spinal fractures, intrathoracic injuries",
@@ -4177,7 +4177,7 @@
   },
   {
     "id": "Q0262",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew recognizes the importance of administering _____ along with blood component therapy during resuscitative blood transfusions.",
     "options": [
       "Potassium",
@@ -4257,7 +4257,7 @@
   },
   {
     "id": "Q0267",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The body's thermostat is the",
     "options": [
       "Pituitary gland",
@@ -4273,7 +4273,7 @@
   },
   {
     "id": "Q0268",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew assumes care of a 27-year-old male from the BLS crew that called for increasing shortness of air. The patient denies past medical history and endorses regular IV drug use, but states he hasn't injected heroin in 3 days because he's \"too sick to use.\" The patient is ill appearing, with extremity mottling, tachypnea, and extreme lethargy. The flight crew suspects:",
     "options": [
       "Encephalopathy",
@@ -4353,7 +4353,7 @@
   },
   {
     "id": "Q0273",
-    "category": "Trauma",
+    "category": "Special Populations",
     "stem": "The crew is caring for a patient involved in a high speed MVC that requires chest tube placement to decompress a tension pneumothorax. She is 37 weeks pregnant; what considerations should the crew take?",
     "options": [
       "Chest tube placement is contraindicated in the gravid patient",
@@ -4529,7 +4529,7 @@
   },
   {
     "id": "Q0284",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "The transport team is caring for a patient with an LVAD. The patient is pulseless, unresponsive, and the crew cannot find a MAP using the doppler. The next step is to:",
     "options": [
       "Call the VAD coordinator",
@@ -4801,7 +4801,7 @@
   },
   {
     "id": "Q0301",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "A patient receiving mechanical ventilation is noted to have an increased respiratory rate after engine start. The flight nurse recognizes the PRIORITY intervention is to administer",
     "options": [
       "Analgesics",
@@ -4897,7 +4897,7 @@
   },
   {
     "id": "Q0307",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "The flight crew is transporting a patient with a femur fracture via interfacility transfer. The flight nurse has received report from the nurse that the patient was treated with two doses of IV narcotics and one dose IV benzodiazepines, which are documented appropriately on the MAR. The patient is alert and oriented, reporting pain at 10 out 10 and is adamant that no pain medications have been administered. The flight nurse should treat the assessed pain level and:",
     "options": [
       "Assess the patient for a history of substance abuse",
@@ -5041,7 +5041,7 @@
   },
   {
     "id": "Q0316",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "The flight nurse arrives at the scene of a patient who was found after falling the day before. EMS has applied a splint to the obvious left femur fracture. The patient reports that his pain is worse after the splint and his toes are now pale. The nurse's NEXT action should be to:",
     "options": [
       "Administer lorazepam (Ativan)",
@@ -5057,7 +5057,7 @@
   },
   {
     "id": "Q0317",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "The flight nurse responds to an outlying facility to transport a patient with a femur fracture to a larger hospital. The patient is alert and oriented and states they do not want to go due to uncertainty about the cost of transport. The sending nurse insists they must go by helicopter since the physician ordered the transport. The flight nurse should:",
     "options": [
       "Assure them insurance will cover the transport",
@@ -5121,7 +5121,7 @@
   },
   {
     "id": "Q0321",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "The flight nurse is called to transport a patient diagnosed with an open book pelvic fracture. The patient has received multiple blood products and vital signs are stable upon arrival. Upon loading the patient into the helicopter, the nurse notes a significant decrease in blood pressure. The MOST likely cause is:",
     "options": [
       "Dislodging of tamponade in the retroperitoneal space",
@@ -5249,7 +5249,7 @@
   },
   {
     "id": "Q0329",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "A patient with an unstable pelvis was found 6 hours after falling down a ravine and is being evacuated from the scene via helicopter. They were placed on oxygen at 6 L/min via nasal cannula and have the following vital signs: BP 80/45 mm Hg HR 98 beats/min RR 32 breaths/min O2 Sat 100% ETCO2 22 mm Hg The flight nurse recognizes this patient is MOST likely suffering from:",
     "options": [
       "Neurogenic shock",
@@ -5281,7 +5281,7 @@
   },
   {
     "id": "Q0331",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Special Populations",
     "stem": "The flight nurse is called to transport a 3-year-old child who became unresponsive after playing with an older sibling. According to the mother, a barking sound was heard from the room where the child was playing with small building blocks, and she suspects the child may have swallowed one. Upon arrival, a ground crew is manually ventilating the child. While preparing for rapid sequence induction, the flight crew should have which item available?",
     "options": [
       "Magill forceps",
@@ -5345,7 +5345,7 @@
   },
   {
     "id": "Q0335",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Special Populations",
     "stem": "The transport team is transporting a 2-year-old child who has a suspected bacterial infection. The child is responsive to painful stimuli, and has mottled skin. The patient's vital signs are as follows: BP 60/30 mm Hg HR 180 beats/min RR 10 breaths/min T 94.1°F (34.5°C) Which of the following interventions would be the highest priority",
     "options": [
       "Administer adenosine 0.1 mg/kg",
@@ -5441,7 +5441,7 @@
   },
   {
     "id": "Q0341",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew is transporting a patient with a diagnosis of MI to a specialty resource hospital. When comparing the patient's presenting ECG to the flight crew's ECG, the crew interprets the presence of Q-waves greater than 1 mm wide with a deflection half the height and depth of the entire complex. The flight crew recognizes the ECG changes as",
     "options": [
       "Myocardial necrosis",
@@ -5457,7 +5457,7 @@
   },
   {
     "id": "Q0342",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "A tree trimmer, who was electrocuted after making contact with an overhead power line, has full-thickness burns on the right hand and foot and a painful, tight right forearm. During transport, the patient is screaming and writhing in pain despite several doses of analgesics. The cardiac monitor shows sinus rhythm with frequent multifocal PVCs. The flight nurse PRIORITIZES which intervention:",
     "options": [
       "Amiodarone 150mg IV over 10 minutes",
@@ -5473,7 +5473,7 @@
   },
   {
     "id": "Q0343",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight nurse responds to a patient from Florida who arrived at a mountain resort area two days prior. The patient complains of severe headache, fatigue and dyspnea at rest. Vital signs are: HR 115 beats/min RR 28 breaths/min with dry cough BP 142/88 mmHg SpO2 68% (2L nasal cannula) What disorder is this patient likely suffering from and what (apart from oxygen administration) is the most beneficial treatment for this patient?",
     "options": [
       "HACE (High Altitude Cerebral Edema), Descent",
@@ -5553,7 +5553,7 @@
   },
   {
     "id": "Q0348",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight nurse has responded to a patient who was trapped in a burning house. On initial assessment, singed facial hair, erythema of the oropharynx and carbonaceous sputum is noted. Which pathophysiologic change should be INITIALLY anticipated when managing the ventilation of this patient?",
     "options": [
       "Hyponaemia",
@@ -5777,7 +5777,7 @@
   },
   {
     "id": "Q0362",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "A patient with atrial fibrillation complains of a sudden onset of pain and numbness in the right forearm. The arm is cool to the touch and has a thready radial pulse. The transport nurse should suspect which of the following?",
     "options": [
       "Arterial thrombus",
@@ -5873,7 +5873,7 @@
   },
   {
     "id": "Q0368",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "The flight nurse is called to an accident scene where a patient has been trapped under a fallen tree for several hours and has a crushed leg. IV access has been established. As the patient is extracted, the nurse should prepare to administer",
     "options": [
       "Fentanyl (Duragesic)",
@@ -5905,7 +5905,7 @@
   },
   {
     "id": "Q0370",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Special Populations",
     "stem": "The flight crew is called to transport a 6-year-old child who was hit in the chest with a baseball. The patient has had a chest x-ray that shows no fractures to the sternum or ribs. The flight nurse is MOST concerned about which of the following vital signs?",
     "options": [
       "BP 75/40mmHg",
@@ -6049,7 +6049,7 @@
   },
   {
     "id": "Q0379",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew is called to the scene of a patient whose right lower extremity is still entrapped by a trash compactor. The flight crew should be aware of which of the following metabolic changes when the extremity is released?",
     "options": [
       "Decreased calcium",
@@ -6097,7 +6097,7 @@
   },
   {
     "id": "Q0382",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew is called to transport a patient with aortic dissection. Current vital signs are: HR 52 beats/min BP 135/70 mmHg RR 18 breaths/min SpO2 100% (2L nasal cannula) The MOST appropriate medication to initiate for this patient is:",
     "options": [
       "Esmolol (Brevibloc)",
@@ -6193,7 +6193,7 @@
   },
   {
     "id": "Q0388",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "The flight crew is responding to a high-speed motorcycle crash where the patient is not wearing a helmet. Approaching the patient from the left side, the flight crew noted massive facial edema, epistaxis, and a spoon-shaped deformity of the face. What condition should the crew be MOST concerned about?",
     "options": [
       "Depressed Skull Fracture",
@@ -6241,7 +6241,7 @@
   },
   {
     "id": "Q0391",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "The flight nurse is transporting a patient from the sending hospital to the airport in an ambulance. The EMT asks what PPE they should wear for the patient. The patient is diagnosed with Influenza and is receiving mechanical ventilation. The EMT should wear:",
     "options": [
       "N-95 mask, gown, gloves, eye protection",
@@ -6305,7 +6305,7 @@
   },
   {
     "id": "Q0395",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "The flight crew responds to an interfacility transfer of a patient struck in the face with a high-speed baseball. The patient was diagnosed with a small subdural hematoma and a zygomatic fracture. On assessment, the patient is neurologically intact with normal vital signs but complains of severe pain, loss of vision, and reduced eye movement on the affected side. Intraocular pressure is documented at 46 mmHg; the flight crew knows the MOST appropriate intervention prior to transport is:",
     "options": [
       "Apply an eye shield",
@@ -6353,7 +6353,7 @@
   },
   {
     "id": "Q0398",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew is called for an interfacility transfer of a patient with reported hypotension. The patient is awake with a GCS of 15, blood pressure of 100/50 (66) mmHg, and a respiratory rate of 24 breaths/min. The flight crew recognizes this as a positive Quick Sequential Organ Failure Assessment (qSOFA). With this positive finding, the flight crew is MOST concerned for:",
     "options": [
       "Undiagnosed infection",
@@ -6593,7 +6593,7 @@
   },
   {
     "id": "Q0413",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "While taking report on a patient in a metabolic acidosis, the referring nurse mentions that the patient's pH is 7.15. The flight nurse recognizes that this indicates that:",
     "options": [
       "Oxygen delivery at the tissue level is increased",
@@ -6609,7 +6609,7 @@
   },
   {
     "id": "Q0414",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "A patient who has an upper gastrointestinal bleed presents with clear lung sounds, a blood pressure of 110/80 mm Hg, a respiratory rate of 30 breaths/min and an oxygen saturation of 95%. The hemoglobin is 7.0 g/dL. Which of the following conditions could cause hypoxia?",
     "options": [
       "Histotoxic hypoxia",
@@ -6641,7 +6641,7 @@
   },
   {
     "id": "Q0416",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "Which medication would work MOST effectively to increase peripheral vascular tone?",
     "options": [
       "Dobutamine (Dobutrex)",
@@ -6657,7 +6657,7 @@
   },
   {
     "id": "Q0417",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew is called to transport a patient diagnosed with endocarditis. Upon assessment, the patient exhibits jugular vein distention, edema, and shortness of breath. The patient has received 500 mL of IV fluid. Vital signs: HR: 90 beats/min BP: 95/60 mmHg RR: 25 breaths/min O2 Sat: 94% on 4L nasal cannula The nurse should consider administering which medication?",
     "options": [
       "Phenylephrine (Neosynephrine)",
@@ -6673,7 +6673,7 @@
   },
   {
     "id": "Q0418",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The nurse is called to transport a patient with a SCUBA diving related injury. The patient requires transport to a decompression chamber. The nurse recognizes that the flight plan should include:",
     "options": [
       "Maintaining a low FiO2 level",
@@ -6689,7 +6689,7 @@
   },
   {
     "id": "Q0419",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight nurse is called to the scene at a rural house. The patient is agitated and has tremors. Upon assessment, a goiter is noted. Vital signs are as follows: BP 140/86 mm Hg HR 130 beats/min, irregular RR 30 breaths/min T (oral) 102.2°F (39°C) O2 sat 98% (room air) The PRIORITY medications for the nurse to administer are:",
     "options": [
       "Calcium channel blockers and aspirin",
@@ -6705,7 +6705,7 @@
   },
   {
     "id": "Q0420",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Special Populations",
     "stem": "The flight nurse is called to transport a 5 kg patient from an outlying hospital. The nurse has an infant securement device rated from 10-20kg. The nurse's NEXT action should be to:",
     "options": [
       "Put the infant with blankets",
@@ -6753,7 +6753,7 @@
   },
   {
     "id": "Q0423",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight team is requested to transport a patient with an ischemic stroke directly to an interventional neuroradiology lab. Report to the crew includes right sided deficits that remained after full dose thrombolysis was administered; GCS 15. Upon arrival, the patient is found in a fetal position with progressively worsening respirations are noted. The patient is now flexing both arms and legs towards their chest. Based on this finding, the flight nurse should:",
     "options": [
       "Notify the accepting physician prior to transfer",
@@ -6801,7 +6801,7 @@
   },
   {
     "id": "Q0426",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight nurse is preparing to transport a patient who has been treated for a pit viper envenomation with crotalidae polyvalent immune fab (CroFab). The nurse should observe for which potential complication of antivenin administration?",
     "options": [
       "Joint pain",
@@ -6833,7 +6833,7 @@
   },
   {
     "id": "Q0428",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "An air-medical team responds to a hazardous materials incident at a chemical plant where a worker has been exposed to hydrogen cyanide gas. The patient has been removed from the contaminated atmosphere, and skin decontamination has occurred. The patient has been intubated and hyperventilated with 100% O2. The NEXT step in the therapy for this patient is the administration of",
     "options": [
       "Glucagon",
@@ -6929,7 +6929,7 @@
   },
   {
     "id": "Q0434",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight nurse arrives to transport a patient who sustained a venomous snake bite. The referring facility has cleansed the wound, immobilized the extremity, and placed a tourniquet to prevent the spread of venom. The nurse knows continued treatment of this patient should include:",
     "options": [
       "Applying more wound care",
@@ -6945,7 +6945,7 @@
   },
   {
     "id": "Q0435",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew is transporting a patient who has been diagnosed with acute pancreatitis. The patient weighs 80kg and has received 3 liters of intravenous fluids (IV) over the past 3 hours. The referring facility has installed a 4th liter of isotonic fluid for transport. Based on the diagnosis, the flight nurse recognizes that the patient:",
     "options": [
       "Should receive 5-10mL/kg/hr for fluid resuscitation",
@@ -7553,7 +7553,7 @@
   },
   {
     "id": "Q0473",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "During an in-flight medical emergency, you are called to assess a 45-year-old male patient who suddenly became unresponsive. After ensuring scene safety and applying standard precautions, what is your immediate next step?",
     "options": [
       "Check for a pulse.",
@@ -7745,7 +7745,7 @@
   },
   {
     "id": "Q0485",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "A 45-year-old male patient presents with sudden onset oliguria and elevated serum creatinine following a severe hypotensive episode during a flight. Which intervention is most appropriate to improve renal perfusion?",
     "options": [
       "Administering intravenous fluids cautiously to maintain euvolemia",
@@ -7873,7 +7873,7 @@
   },
   {
     "id": "Q0493",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "During a mass casualty incident, you encounter John, a 45-year-old male with an open femur fracture, severe bleeding, and signs of shock. According to the START triage system, what is the most appropriate triage category?",
     "options": [
       "Immediate (Red)",
@@ -7937,7 +7937,7 @@
   },
   {
     "id": "Q0497",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "John, a 56-year-old male with COPD, is in acute respiratory distress. His O2 saturation is 85% on room air. Which non-invasive ventilation strategy should be initiated to improve oxygenation while minimizing risk of hypercapnia?",
     "options": [
       "Continuous Positive Airway Pressure (CPAP)",
@@ -8289,7 +8289,7 @@
   },
   {
     "id": "Q0519",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "James, a 35-year-old male with extensive burns from a house fire, shows signs of respiratory distress. Which clinical finding most strongly suggests an inhalation injury requiring immediate intubation?",
     "options": [
       "Hoarseness and stridor",
@@ -8481,7 +8481,7 @@
   },
   {
     "id": "Q0531",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "You are responsible for the care of Mr. Johnson, a 65-year-old patient with severe respiratory distress and a family-provided advance directive indicating he does not wish to be intubated. His condition deteriorates rapidly during the flight. What should you do?",
     "options": [
       "Intubate the patient because saving his life takes precedence over the advance directive.",
@@ -8513,7 +8513,7 @@
   },
   {
     "id": "Q0533",
-    "category": "Trauma",
+    "category": "Special Populations",
     "stem": "During a flight transport, you assess a 4-year-old child with multiple bruises of varying ages and a spiral fracture of the humerus. The child's mother states the child fell off a swing. What is your most appropriate immediate action?",
     "options": [
       "Document the mother's explanation and continue monitoring the child during transport.",
@@ -8769,7 +8769,7 @@
   },
   {
     "id": "Q0549",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "John, a 35-year-old male with TBI, is intubated and sedated. As a flight nurse preparing John for transport to a tertiary care center, which intervention is most critical to prevent secondary brain injury?",
     "options": [
       "Administering prophylactic anticonvulsants",
@@ -9665,7 +9665,7 @@
   },
   {
     "id": "Q0605",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "During a medical evacuation flight, you are transporting John, a 65-year-old male patient with a known history of MRSA (Methicillin-resistant Staphylococcus Aureus) infection. He has developed signs of sepsis, including fever, hypotension, and tachycardia. As the flight nurse, what is the most appropriate initial action to manage John\\'s condition during the flight? closely. vancomycin. medical control.",
     "options": [
       "Administer broad-spectrum antibiotics and monitor vital signs",
@@ -9793,7 +9793,7 @@
   },
   {
     "id": "Q0613",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "John, a flight nurse, receives a call about a patient exposed to high levels of radiation during an industrial accident. The patient presents with erythema and blistering on the skin, but these symptoms appeared several hours after the exposure. What is the most appropriate initial management step for this patient?",
     "options": [
       "Immediate irrigation with copious amounts of water",
@@ -9889,7 +9889,7 @@
   },
   {
     "id": "Q0619",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "During a flight transport of a patient named John, who has sustained multiple traumatic injuries, you notice that he begins to exhibit signs of hypoxia. Considering the unique physiological stressors associated with flight transport, which intervention is most appropriate to address John\\'s condition?",
     "options": [
       "Increase the oxygen flow rate.",
@@ -9937,7 +9937,7 @@
   },
   {
     "id": "Q0622",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "In the context of flight transport nursing, which of the following scenarios most accurately represents an act of battery? consent from a conscious patient. consent. themselves or others. medical record.",
     "options": [
       "A nurse administering medication without obtaining informed",
@@ -10401,7 +10401,7 @@
   },
   {
     "id": "Q0651",
-    "category": "Trauma",
+    "category": "Special Populations",
     "stem": "In managing a pediatric patient with traumatic brain injury (TBI), which of the following interventions is most critical to prevent secondary brain injury? complications",
     "options": [
       "Administering hypertonic saline to reduce intracranial pressure",
@@ -10481,7 +10481,7 @@
   },
   {
     "id": "Q0656",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "During a mass casualty incident involving a multi-vehicle collision on a remote highway, Flight Nurse Sarah arrives on scene. She encounters multiple patients with varying degrees of injuries. One patient, John, has a compromised airway and severe respiratory distress. Another patient, Mary, has an open femur fracture with significant bleeding but is conscious and responsive. A third patient, Kevin, has minor abrasions and is walking around the scene. Which patient should Sarah prioritize for immediate transport?",
     "options": [
       "John with compromised airway and severe respiratory distress",
@@ -10545,7 +10545,7 @@
   },
   {
     "id": "Q0660",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Special Populations",
     "stem": "In the context of flight transport nursing, which of the following actions is most appropriate when a flight nurse suspects that a pediatric patient is a victim of neglect? the attending physician upon arrival at the receiving facility. timely intervention. making any reports. suspicions before taking any action.",
     "options": [
       "Documenting observations thoroughly and discussing concerns with",
@@ -10737,7 +10737,7 @@
   },
   {
     "id": "Q0672",
-    "category": "Trauma",
+    "category": "Special Populations",
     "stem": "A 5-year-old child named Emily is involved in a high-speed motor vehicle collision and presents with signs of hypovolemic shock. As a flight nurse, which initial intervention is most appropriate for managing her condition? mL/kg) mL/kg over 30 minutes)",
     "options": [
       "Administering a rapid bolus of isotonic crystalloid solution (20",
@@ -10865,7 +10865,7 @@
   },
   {
     "id": "Q0680",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "During a flight transport at an altitude of 10,000 feet, your patient, Mr. Johnson, who has a history of chronic obstructive pulmonary disease (COPD), begins to exhibit signs of increased respiratory distress. Which physiological change is most likely contributing to his symptoms?",
     "options": [
       "Decreased partial pressure of oxygen",
@@ -11185,7 +11185,7 @@
   },
   {
     "id": "Q0700",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "A 45-year-old male named John presents with jaundice, fatigue, and abdominal pain. His liver function tests reveal elevated AST and ALT levels. He mentions recent travel to an area with poor sanitation and denies any history of intravenous drug use or alcohol abuse. As a flight nurse preparing for transport, what is the most likely type of hepatitis affecting John?",
     "options": [
       "Hepatitis A",
@@ -11361,7 +11361,7 @@
   },
   {
     "id": "Q0711",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "During a pre-flight briefing, the referring provider informs you that Mr. John Smith, a 58-year-old male with a history of chronic obstructive pulmonary disease (COPD), has been experiencing increased shortness of breath and was recently started on a new medication regimen. Which piece of information from the referring provider is most critical for ensuring Mr. Smith\\'s safe transport?",
     "options": [
       "The specific medications Mr. Smith was prescribed.",
@@ -11409,7 +11409,7 @@
   },
   {
     "id": "Q0714",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "John, a 35-year-old flight nurse, is caring for a patient who was recently diagnosed with Addison\\'s disease. During a long-haul flight, the patient suddenly becomes hypotensive, weak, and confused. John suspects an adrenal crisis. What is the most appropriate initial intervention?",
     "options": [
       "Administer intravenous hydrocortisone.",
@@ -11457,7 +11457,7 @@
   },
   {
     "id": "Q0717",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "A 35-year-old male is brought in by helicopter after being found unconscious in his garage with a running car. He presents with headache, dizziness, and cherry-red skin color. What is the most appropriate initial treatment?",
     "options": [
       "Administering high-flow oxygen",
@@ -11489,7 +11489,7 @@
   },
   {
     "id": "Q0719",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "During a flight transport, you are caring for Mr. Johnson, a 65-year-old patient with chronic obstructive pulmonary disease (COPD). You notice he is becoming increasingly agitated and dyspneic as the aircraft ascends. Considering the physiologic stressors of altitude changes, what is the most appropriate initial intervention?",
     "options": [
       "Administering high-flow oxygen via non-rebreather mask.",
@@ -11537,7 +11537,7 @@
   },
   {
     "id": "Q0722",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "You are attending to a patient named John, who is experiencing acute respiratory distress during a flight. His hemoglobin level is 14 g/dL, his SaO2 is 95%, and his cardiac output is measured at 5 L/min. Considering the components of oxygen delivery, which factor would most significantly impact John\\'s overall oxygen delivery if it were to change?",
     "options": [
       "Hemoglobin concentration",
@@ -11649,7 +11649,7 @@
   },
   {
     "id": "Q0729",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "A flight nurse is caring for a patient diagnosed with SIADH. Which of the following is the most appropriate initial intervention to manage this condition?",
     "options": [
       "Administer hypertonic saline",
@@ -11852,7 +11852,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Implementing standardized handoff protocols using SBAR (Situation-Background-Assessment-Recommendation) is a well-recognized strategy for improving communication during patient transfers. This method ensures that critical information is conveyed clearly and consistently, reducing the risk of miscommunication and enhancing patient safety. While conducting a root cause analysis can help identify issues, it does not directly address immediate improvements in communication practices. Regular training sessions are beneficial but may not specifically target handoff communications. Increasing staffing levels might alleviate workload but does not directly improve communication processes. Therefore, Implementing standardized handoff protocols using SBAR** is the most effective action for improving handoff communication in this scenario. Explanation for Incorrect Options: Conducting a root cause analysis is important for identifying underlying issues but does not provide an immediate solution for improving handoff communications. General communication training sessions can enhance overall skills but may not address specific needs related to patient handoffs. Increasing staffing levels could help manage workload but does not tackle the core issue of poor communication during handoffs. By comparing these options, it becomes clear that implementing standardized protocols like SBAR directly targets and improves the quality of handoff communications, making it the best choice in this context.",
+    "rationale": "Implementing standardized handoff protocols using SBAR (Situation-Background-Assessment-Recommendation) is a well-recognized strategy for improving communication during patient transfers. This method ensures that critical information is conveyed clearly and consistently, reducing the risk of miscommunication and enhancing patient safety. While conducting a root cause analysis can help identify issues, it does not directly address immediate improvements in communication practices. Regular training sessions are beneficial but may not specifically target handoff communications. Increasing staffing levels might alleviate workload but does not directly improve communication processes. Therefore, Implementing standardized handoff protocols using SBAR is the most effective action for improving handoff communication in this scenario. Explanation for Incorrect Options: Conducting a root cause analysis is important for identifying underlying issues but does not provide an immediate solution for improving handoff communications. General communication training sessions can enhance overall skills but may not address specific needs related to patient handoffs. Increasing staffing levels could help manage workload but does not tackle the core issue of poor communication during handoffs. By comparing these options, it becomes clear that implementing standardized protocols like SBAR directly targets and improves the quality of handoff communications, making it the best choice in this context.",
     "type": "single_select"
   },
   {
@@ -11900,7 +11900,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Hemostatic gauze is specifically designed for rapid action in controlling severe external bleeding, making it ideal for emergency situations like those encountered during helicopter transport. It works by accelerating the body's natural clotting process. While Tranexamic Acid (TXA) is effective for systemic bleeding control and reducing overall blood loss, it does not act as quickly on localized severe bleeding as hemostatic gauze does. Fibrin sealant is useful in surgical settings but is not as practical or immediate for trauma care in the field. Recombinant Factor VIIa** is used for uncontrolled bleeding in patients with hemophilia or other coagulopathies but is not typically first-line for trauma-induced external bleeding.",
+    "rationale": "Hemostatic gauze is specifically designed for rapid action in controlling severe external bleeding, making it ideal for emergency situations like those encountered during helicopter transport. It works by accelerating the body's natural clotting process. While Tranexamic Acid (TXA) is effective for systemic bleeding control and reducing overall blood loss, it does not act as quickly on localized severe bleeding as hemostatic gauze does. Fibrin sealant is useful in surgical settings but is not as practical or immediate for trauma care in the field. Recombinant Factor VIIa is used for uncontrolled bleeding in patients with hemophilia or other coagulopathies but is not typically first-line for trauma-induced external bleeding.",
     "type": "single_select"
   },
   {
@@ -11948,7 +11948,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Hemoglobin concentration is the most significant determinant of oxygen delivery because it directly affects the amount of oxygen that can be carried by the blood. While cardiac output, SaO2, and PaO2 are also important, they do not have as substantial an impact as hemoglobin levels. Cardiac output determines how much blood is being pumped but not necessarily how much oxygen it carries. SaO2 indicates how saturated hemoglobin is with oxygen but does not account for hemoglobin quantity. PaO2 reflects the amount of dissolved oxygen in plasma, which is minimal compared to what is bound to hemoglobin. - Hemoglobin concentration (Correct): Essential for carrying the majority of oxygen in the blood; low levels significantly reduce total oxygen delivery. - Cardiac output (Incorrect): Important for overall blood flow but does not directly increase the amount of carried oxygen if hemoglobin is low. - Arterial oxygen saturation (SaO2) (Incorrect): Indicates percentage saturation but not absolute quantity; high saturation with low hemoglobin still means poor oxygen delivery. - Partial pressure of oxygen in arterial blood (PaO2)** (Incorrect): Represents dissolved oxygen, which is a minor component compared to that bound to hemoglobin.",
+    "rationale": "Hemoglobin concentration is the most significant determinant of oxygen delivery because it directly affects the amount of oxygen that can be carried by the blood. While cardiac output, SaO2, and PaO2 are also important, they do not have as substantial an impact as hemoglobin levels. Cardiac output determines how much blood is being pumped but not necessarily how much oxygen it carries. SaO2 indicates how saturated hemoglobin is with oxygen but does not account for hemoglobin quantity. PaO2 reflects the amount of dissolved oxygen in plasma, which is minimal compared to what is bound to hemoglobin. - Hemoglobin concentration (Correct): Essential for carrying the majority of oxygen in the blood; low levels significantly reduce total oxygen delivery. - Cardiac output (Incorrect): Important for overall blood flow but does not directly increase the amount of carried oxygen if hemoglobin is low. - Arterial oxygen saturation (SaO2) (Incorrect): Indicates percentage saturation but not absolute quantity; high saturation with low hemoglobin still means poor oxygen delivery. - Partial pressure of oxygen in arterial blood (PaO2) (Incorrect): Represents dissolved oxygen, which is a minor component compared to that bound to hemoglobin.",
     "type": "single_select"
   },
   {
@@ -12028,7 +12028,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Administering medication without confirming the patient's identity is a significant breach of standard nursing practice and can lead to severe legal consequences. This action directly violates patient safety protocols and can result in harm, making it a clear cause for legal liability. Documenting all patient interactions and interventions thoroughly is incorrect because thorough documentation is a crucial aspect of nursing practice that helps protect against legal issues. Ensuring informed consent is obtained before initiating treatment is also incorrect as obtaining informed consent is necessary to respect patient autonomy and avoid legal repercussions. Maintaining patient confidentiality** throughout the transport is incorrect because maintaining confidentiality is essential to comply with HIPAA regulations and avoid legal issues. The key difference lies in the direct impact on patient safety; failing to confirm identity before administering medication poses an immediate risk, whereas other options involve upholding best practices.",
+    "rationale": "Administering medication without confirming the patient's identity is a significant breach of standard nursing practice and can lead to severe legal consequences. This action directly violates patient safety protocols and can result in harm, making it a clear cause for legal liability. Documenting all patient interactions and interventions thoroughly is incorrect because thorough documentation is a crucial aspect of nursing practice that helps protect against legal issues. Ensuring informed consent is obtained before initiating treatment is also incorrect as obtaining informed consent is necessary to respect patient autonomy and avoid legal repercussions. Maintaining patient confidentiality throughout the transport is incorrect because maintaining confidentiality is essential to comply with HIPAA regulations and avoid legal issues. The key difference lies in the direct impact on patient safety; failing to confirm identity before administering medication poses an immediate risk, whereas other options involve upholding best practices.",
     "type": "single_select"
   },
   {
@@ -12060,7 +12060,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "A nurse administers medication without checking allergies, resulting in a reaction is correct because it includes all elements of negligence: duty of care (the nurse's responsibility), breach of duty (failure to check allergies), causation (direct link between breach and harm), and damages (allergic reaction). A nurse fails to document vitals accurately but no harm occurs involves a breach of duty but lacks harm or damages. A nurse delays treatment due to equipment malfunction includes a delay caused by equipment malfunction rather than direct negligence by the nurse. A nurse provides incorrect dosage instructions over radio, but it is caught before administration involves potential harm that was prevented by another team member, thus lacking causation and damages directly attributable to the nurse's actions. Therefore, A nurse administers medication without checking allergies, resulting in a reaction** most accurately exemplifies negligence in this context.",
+    "rationale": "A nurse administers medication without checking allergies, resulting in a reaction is correct because it includes all elements of negligence: duty of care (the nurse's responsibility), breach of duty (failure to check allergies), causation (direct link between breach and harm), and damages (allergic reaction). A nurse fails to document vitals accurately but no harm occurs involves a breach of duty but lacks harm or damages. A nurse delays treatment due to equipment malfunction includes a delay caused by equipment malfunction rather than direct negligence by the nurse. A nurse provides incorrect dosage instructions over radio, but it is caught before administration involves potential harm that was prevented by another team member, thus lacking causation and damages directly attributable to the nurse's actions. Therefore, A nurse administers medication without checking allergies, resulting in a reaction most accurately exemplifies negligence in this context.",
     "type": "single_select"
   },
   {
@@ -12081,7 +12081,7 @@
   },
   {
     "id": "Q0756",
-    "category": "Trauma",
+    "category": "Special Populations",
     "stem": "During a flight transport of a 6-year-old child named Emily, you observe multiple bruises in different stages of healing on her body, along with a spiral fracture of her arm. The child's caregiver provides inconsistent explanations for these injuries. As a Certified Flight Registered Nurse (CFRN), what is your immediate responsibility in this situation?",
     "options": [
       "Document the injuries and continue with the transport without further action.",
@@ -12252,7 +12252,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Administering warmed intravenous fluids is a critical first step in managing the Trauma Triad because it directly addresses hypothermia, which can exacerbate acidosis and coagulopathies. Warmed fluids help maintain core body temperature, improving enzymatic function and coagulation processes. - Initiating aggressive ventilation support is important but secondary; it addresses respiratory acidosis but does not directly counteract hypothermia. - Providing high-dose corticosteroids is not typically indicated for immediate trauma triad management as it does not address hypothermia or acidosis directly. - Immediate surgical intervention might be necessary depending on the injury but addressing hypothermia first can stabilize the patient for surgery. By comparing these options, administering warmed intravenous fluids** emerges as the most immediate and critical intervention to stabilize core body temperature and prevent further complications from the trauma triad.",
+    "rationale": "Administering warmed intravenous fluids is a critical first step in managing the Trauma Triad because it directly addresses hypothermia, which can exacerbate acidosis and coagulopathies. Warmed fluids help maintain core body temperature, improving enzymatic function and coagulation processes. - Initiating aggressive ventilation support is important but secondary; it addresses respiratory acidosis but does not directly counteract hypothermia. - Providing high-dose corticosteroids is not typically indicated for immediate trauma triad management as it does not address hypothermia or acidosis directly. - Immediate surgical intervention might be necessary depending on the injury but addressing hypothermia first can stabilize the patient for surgery. By comparing these options, administering warmed intravenous fluids emerges as the most immediate and critical intervention to stabilize core body temperature and prevent further complications from the trauma triad.",
     "type": "single_select"
   },
   {
@@ -12380,7 +12380,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Communication is the backbone of effective crew coordination, especially during high-stress emergency situations. It ensures that all team members are aware of the current situation, understand their roles, and can make informed decisions quickly. While situational awareness is crucial for understanding the environment, it relies heavily on effective communication to be shared among team members. Decision-making is essential but cannot occur efficiently without clear communication channels. Teamwork is fundamental to AMRM, but it is built upon robust communication practices. Therefore, while all these elements are interrelated and important, communication** stands out as the most critical for ensuring effective crew coordination during emergencies.",
+    "rationale": "Communication is the backbone of effective crew coordination, especially during high-stress emergency situations. It ensures that all team members are aware of the current situation, understand their roles, and can make informed decisions quickly. While situational awareness is crucial for understanding the environment, it relies heavily on effective communication to be shared among team members. Decision-making is essential but cannot occur efficiently without clear communication channels. Teamwork is fundamental to AMRM, but it is built upon robust communication practices. Therefore, while all these elements are interrelated and important, communication stands out as the most critical for ensuring effective crew coordination during emergencies.",
     "type": "single_select"
   },
   {
@@ -12396,7 +12396,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Establishing a telehealth service** provides continuous access to medical support, which is crucial for rural communities with limited healthcare services. This approach leverages technology to bridge the gap between patients and healthcare providers, ensuring timely and consistent care. While conducting health fairs and organizing workshops are beneficial, they do not offer continuous support. Distributing pamphlets raises awareness but lacks the interactive component needed for effective healthcare delivery. Telehealth addresses both accessibility and continuity of care, aligning with contemporary research on improving rural healthcare outcomes.",
+    "rationale": "Establishing a telehealth service provides continuous access to medical support, which is crucial for rural communities with limited healthcare services. This approach leverages technology to bridge the gap between patients and healthcare providers, ensuring timely and consistent care. While conducting health fairs and organizing workshops are beneficial, they do not offer continuous support. Distributing pamphlets raises awareness but lacks the interactive component needed for effective healthcare delivery. Telehealth addresses both accessibility and continuity of care, aligning with contemporary research on improving rural healthcare outcomes.",
     "type": "single_select"
   },
   {
@@ -12460,7 +12460,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Hypocalcemia is a well-documented complication of severe acute pancreatitis due to fat saponification in necrotic tissue binding calcium ions. Acute renal failure, hyperglycemia, and pleural effusion are also potential complications but are less directly linked to the pathophysiological mechanisms specific to severe acute pancreatitis compared to hypocalcemia. Acute renal failure can occur due to hypovolemia or systemic inflammatory response syndrome (SIRS), hyperglycemia can result from pancreatic endocrine dysfunction, and pleural effusion can develop from inflammation spreading to adjacent structures. However, hypocalcemia** is more specifically tied to the biochemical disturbances in severe cases of this condition.",
+    "rationale": "Hypocalcemia is a well-documented complication of severe acute pancreatitis due to fat saponification in necrotic tissue binding calcium ions. Acute renal failure, hyperglycemia, and pleural effusion are also potential complications but are less directly linked to the pathophysiological mechanisms specific to severe acute pancreatitis compared to hypocalcemia. Acute renal failure can occur due to hypovolemia or systemic inflammatory response syndrome (SIRS), hyperglycemia can result from pancreatic endocrine dysfunction, and pleural effusion can develop from inflammation spreading to adjacent structures. However, hypocalcemia is more specifically tied to the biochemical disturbances in severe cases of this condition.",
     "type": "single_select"
   },
   {
@@ -12497,7 +12497,7 @@
   },
   {
     "id": "Q0782",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "During a flight transport, John, a 45-year-old patient with chronic obstructive pulmonary disease (COPD), begins to experience increased respiratory distress. As a flight nurse, which intervention is most appropriate to address his symptoms in relation to altitude changes?",
     "options": [
       "Increase the flow rate of supplemental oxygen.",
@@ -12556,7 +12556,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Elevated serum creatine kinase (CK) is the most indicative laboratory finding for rhabdomyolysis. CK levels rise significantly due to muscle breakdown and are considered a primary marker for diagnosing this condition. While elevated serum myoglobin** can also indicate muscle damage, it is less specific than CK due to its rapid clearance from the bloodstream. Elevated LDH and ALT can be seen in various conditions involving tissue damage but are not as specific or sensitive as CK for diagnosing rhabdomyolysis. Thus, CK remains the gold standard in identifying this condition.",
+    "rationale": "Elevated serum creatine kinase (CK) is the most indicative laboratory finding for rhabdomyolysis. CK levels rise significantly due to muscle breakdown and are considered a primary marker for diagnosing this condition. While elevated serum myoglobin can also indicate muscle damage, it is less specific than CK due to its rapid clearance from the bloodstream. Elevated LDH and ALT can be seen in various conditions involving tissue damage but are not as specific or sensitive as CK for diagnosing rhabdomyolysis. Thus, CK remains the gold standard in identifying this condition.",
     "type": "single_select"
   },
   {
@@ -12572,7 +12572,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Hypoxia is the most significant physiologic stressor during aeromedical transport that can exacerbate pre-existing cardiovascular conditions. At higher altitudes, the partial pressure of oxygen decreases, leading to reduced oxygen saturation in the blood. This can strain the cardiovascular system, particularly in patients with existing heart conditions. - Barometric pressure changes is incorrect because while it affects gas volumes and can cause discomfort or barotrauma, it does not directly exacerbate cardiovascular conditions as significantly as hypoxia. - Thermal stress can impact patient comfort and metabolic demands but is less critical than hypoxia in worsening cardiovascular issues. - Vibration may cause discomfort and fatigue but does not have a direct impact on oxygen delivery like hypoxia does. Hypoxia**'s direct effect on oxygen delivery makes it particularly dangerous for patients with compromised cardiovascular systems, emphasizing its critical importance in flight transport nursing.",
+    "rationale": "Hypoxia is the most significant physiologic stressor during aeromedical transport that can exacerbate pre-existing cardiovascular conditions. At higher altitudes, the partial pressure of oxygen decreases, leading to reduced oxygen saturation in the blood. This can strain the cardiovascular system, particularly in patients with existing heart conditions. - Barometric pressure changes is incorrect because while it affects gas volumes and can cause discomfort or barotrauma, it does not directly exacerbate cardiovascular conditions as significantly as hypoxia. - Thermal stress can impact patient comfort and metabolic demands but is less critical than hypoxia in worsening cardiovascular issues. - Vibration may cause discomfort and fatigue but does not have a direct impact on oxygen delivery like hypoxia does. Hypoxia's direct effect on oxygen delivery makes it particularly dangerous for patients with compromised cardiovascular systems, emphasizing its critical importance in flight transport nursing.",
     "type": "single_select"
   },
   {
@@ -12588,7 +12588,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Securing the airway is the most critical step in the initial assessment of a critically ill patient during flight transport. Ensuring a patent airway takes precedence because it directly impacts oxygenation and ventilation, which are vital for patient survival. Establishing IV access is important but secondary to airway management. Administering oxygen is also crucial but cannot be effectively delivered if the airway is compromised. Assessing blood pressure** is necessary for evaluating hemodynamic stability but comes after ensuring that the patient can breathe adequately. The priority order aligns with contemporary resuscitation guidelines emphasizing ABCs---Airway, Breathing, Circulation.",
+    "rationale": "Securing the airway is the most critical step in the initial assessment of a critically ill patient during flight transport. Ensuring a patent airway takes precedence because it directly impacts oxygenation and ventilation, which are vital for patient survival. Establishing IV access is important but secondary to airway management. Administering oxygen is also crucial but cannot be effectively delivered if the airway is compromised. Assessing blood pressure is necessary for evaluating hemodynamic stability but comes after ensuring that the patient can breathe adequately. The priority order aligns with contemporary resuscitation guidelines emphasizing ABCs---Airway, Breathing, Circulation.",
     "type": "single_select"
   },
   {
@@ -12673,7 +12673,7 @@
   },
   {
     "id": "Q0793",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "John, a 35-year-old male, was involved in a motorcycle accident resulting in a closed tibial fracture. Six hours post-injury, he reports increasing pain that is unrelieved by opioids and experiences numbness in his foot. Upon examination, his leg appears swollen and tense with pain on passive stretch of his toes. What is the most appropriate initial action?",
     "options": [
       "Administer additional opioids for pain control.",
@@ -12737,7 +12737,7 @@
   },
   {
     "id": "Q0797",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "During a flight transport of a 45-year-old male patient with chronic obstructive pulmonary disease (COPD), which physiologic stressor is most likely to exacerbate his condition?",
     "options": [
       "Decreased partial pressure of oxygen",
@@ -12748,7 +12748,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Decreased partial pressure of oxygen at higher altitudes can significantly impact patients with respiratory conditions like COPD. As altitude increases, the atmospheric pressure drops, leading to a decrease in the amount of available oxygen. This can exacerbate hypoxemia in COPD patients. - Decreased partial pressure of oxygen is correct because it directly affects the patient's ability to maintain adequate oxygenation. - Increased noise levels can cause discomfort and stress but does not directly exacerbate respiratory conditions. - Vibration from the aircraft may cause discomfort but does not significantly impact respiratory function. - Temperature fluctuations** can cause thermal stress but is less critical than hypoxia for a COPD patient. Understanding these nuances ensures that flight nurses prioritize interventions that mitigate hypoxia over other stressors.",
+    "rationale": "Decreased partial pressure of oxygen at higher altitudes can significantly impact patients with respiratory conditions like COPD. As altitude increases, the atmospheric pressure drops, leading to a decrease in the amount of available oxygen. This can exacerbate hypoxemia in COPD patients. - Decreased partial pressure of oxygen is correct because it directly affects the patient's ability to maintain adequate oxygenation. - Increased noise levels can cause discomfort and stress but does not directly exacerbate respiratory conditions. - Vibration from the aircraft may cause discomfort but does not significantly impact respiratory function. - Temperature fluctuations can cause thermal stress but is less critical than hypoxia for a COPD patient. Understanding these nuances ensures that flight nurses prioritize interventions that mitigate hypoxia over other stressors.",
     "type": "single_select"
   },
   {
@@ -12780,7 +12780,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Closed-loop communication is a critical component of CRM as it ensures that information conveyed is received and understood correctly. This technique involves sending a message, receiving feedback from the receiver confirming the message was understood, and then closing the loop with acknowledgment. This reduces misunderstandings and errors, which are crucial in high-stakes environments like flight transport nursing. Assertiveness: While assertiveness is important for clear communication and ensuring one's voice is heard, it does not inherently ensure that messages are received and understood correctly. Situational Awareness: Situational awareness is vital for recognizing and responding to changes in the environment but does not directly address the clarity and confirmation of communication. Decision-making: Effective decision-making relies on good communication but does not specifically address the process of ensuring messages are correctly received and acknowledged. By focusing on closed-loop communication**, we emphasize a method that directly addresses potential breakdowns in communication channels, thereby enhancing overall safety and efficiency in flight transport nursing.",
+    "rationale": "Closed-loop communication is a critical component of CRM as it ensures that information conveyed is received and understood correctly. This technique involves sending a message, receiving feedback from the receiver confirming the message was understood, and then closing the loop with acknowledgment. This reduces misunderstandings and errors, which are crucial in high-stakes environments like flight transport nursing. Assertiveness: While assertiveness is important for clear communication and ensuring one's voice is heard, it does not inherently ensure that messages are received and understood correctly. Situational Awareness: Situational awareness is vital for recognizing and responding to changes in the environment but does not directly address the clarity and confirmation of communication. Decision-making: Effective decision-making relies on good communication but does not specifically address the process of ensuring messages are correctly received and acknowledged. By focusing on closed-loop communication, we emphasize a method that directly addresses potential breakdowns in communication channels, thereby enhancing overall safety and efficiency in flight transport nursing.",
     "type": "single_select"
   },
   {
@@ -12796,7 +12796,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Contour lines are essential on a map for determining elevation changes. They represent lines of equal elevation and help identify the topography of an area, which is crucial for flight planning to avoid obstacles and ensure safe navigation. - Grid Lines refers to the reference system used to locate points on the map but does not provide elevation information. - Scale Bar helps in measuring real-world distances but does not indicate elevation changes. - Latitude and Longitude provides geographic coordinates for location identification but does not convey information about elevation. Contour lines** are unique in their ability to show changes in terrain height, making them indispensable for flight navigation over varied landscapes.",
+    "rationale": "Contour lines are essential on a map for determining elevation changes. They represent lines of equal elevation and help identify the topography of an area, which is crucial for flight planning to avoid obstacles and ensure safe navigation. - Grid Lines refers to the reference system used to locate points on the map but does not provide elevation information. - Scale Bar helps in measuring real-world distances but does not indicate elevation changes. - Latitude and Longitude provides geographic coordinates for location identification but does not convey information about elevation. Contour lines are unique in their ability to show changes in terrain height, making them indispensable for flight navigation over varied landscapes.",
     "type": "single_select"
   },
   {
@@ -12812,7 +12812,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Magnesium sulfate is the drug of choice for preventing eclamptic seizures in patients with severe pre-eclampsia. It acts as a central nervous system depressant and stabilizes neuronal membranes. While labetalol, nifedipine, and hydralazine** are antihypertensive agents that can be used to manage blood pressure in pre-eclampsia, they do not have anticonvulsant properties. Therefore, they are not suitable for preventing seizures, which is a critical aspect of managing severe pre-eclampsia during flight transport.",
+    "rationale": "Magnesium sulfate is the drug of choice for preventing eclamptic seizures in patients with severe pre-eclampsia. It acts as a central nervous system depressant and stabilizes neuronal membranes. While labetalol, nifedipine, and hydralazine are antihypertensive agents that can be used to manage blood pressure in pre-eclampsia, they do not have anticonvulsant properties. Therefore, they are not suitable for preventing seizures, which is a critical aspect of managing severe pre-eclampsia during flight transport.",
     "type": "single_select"
   },
   {
@@ -12876,7 +12876,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Norepinephrine is the preferred agent for managing hypotension in post-intubation patients due to its potent vasoconstrictive properties and ability to increase cardiac output without significantly increasing heart rate. Epinephrine, while also a potent vasoconstrictor, can cause significant tachycardia and arrhythmias. Phenylephrine primarily acts on alpha-adrenergic receptors causing vasoconstriction but lacks significant beta-adrenergic effects, making it less effective in increasing cardiac output. Dopamine can be used but may lead to unpredictable effects on heart rate and blood pressure depending on the dose, making it less ideal compared to norepinephrine. - Epinephrine: Incorrect due to risk of tachycardia and arrhythmias. - Norepinephrine: Correct due to balanced vasoconstriction and cardiac output enhancement without excessive heart rate increase. - Phenylephrine: Incorrect as it lacks beta-adrenergic effects necessary for optimal cardiac output. - Dopamine**: Incorrect due to variable effects based on dosage which can complicate management.",
+    "rationale": "Norepinephrine is the preferred agent for managing hypotension in post-intubation patients due to its potent vasoconstrictive properties and ability to increase cardiac output without significantly increasing heart rate. Epinephrine, while also a potent vasoconstrictor, can cause significant tachycardia and arrhythmias. Phenylephrine primarily acts on alpha-adrenergic receptors causing vasoconstriction but lacks significant beta-adrenergic effects, making it less effective in increasing cardiac output. Dopamine can be used but may lead to unpredictable effects on heart rate and blood pressure depending on the dose, making it less ideal compared to norepinephrine. - Epinephrine: Incorrect due to risk of tachycardia and arrhythmias. - Norepinephrine: Correct due to balanced vasoconstriction and cardiac output enhancement without excessive heart rate increase. - Phenylephrine: Incorrect as it lacks beta-adrenergic effects necessary for optimal cardiac output. - Dopamine: Incorrect due to variable effects based on dosage which can complicate management.",
     "type": "single_select"
   },
   {
@@ -12961,7 +12961,7 @@
   },
   {
     "id": "Q0811",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "A 45-year-old male presents with jaundice, fatigue, and elevated liver enzymes. His serology results show positive HBsAg and anti-HBc IgM. What is the most likely diagnosis?",
     "options": [
       "Acute Hepatitis B",
@@ -12988,7 +12988,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "DIC is characterized by widespread activation of the clotting cascade leading to the formation of blood clots in small vessels throughout the body. This can result in both thrombosis and hemorrhage, explaining John's symptoms of petechiae, bleeding gums, and prolonged bleeding from IV sites. Hemophilia A typically presents with spontaneous joint or muscle bleeding but not with widespread petechiae or mucosal bleeding. ITP involves isolated low platelet counts leading to petechiae but lacks the systemic clotting seen in DIC. Von Willebrand Disease usually causes mucosal bleeding but does not typically lead to the acute systemic presentation observed here. - Hemophilia A: Incorrect because it primarily causes deep tissue bleeding (e.g., joints and muscles), not the widespread petechiae or mucosal bleeding seen in this case. - Immune Thrombocytopenic Purpura: Incorrect because while ITP can cause petechiae due to low platelet counts, it does not involve the systemic clotting abnormalities characteristic of DIC. - Von Willebrand Disease: Incorrect because although it can cause mucosal bleeding, it generally does not present with such an acute onset of widespread hemorrhagic symptoms as seen in DIC**.",
+    "rationale": "DIC is characterized by widespread activation of the clotting cascade leading to the formation of blood clots in small vessels throughout the body. This can result in both thrombosis and hemorrhage, explaining John's symptoms of petechiae, bleeding gums, and prolonged bleeding from IV sites. Hemophilia A typically presents with spontaneous joint or muscle bleeding but not with widespread petechiae or mucosal bleeding. ITP involves isolated low platelet counts leading to petechiae but lacks the systemic clotting seen in DIC. Von Willebrand Disease usually causes mucosal bleeding but does not typically lead to the acute systemic presentation observed here. - Hemophilia A: Incorrect because it primarily causes deep tissue bleeding (e.g., joints and muscles), not the widespread petechiae or mucosal bleeding seen in this case. - Immune Thrombocytopenic Purpura: Incorrect because while ITP can cause petechiae due to low platelet counts, it does not involve the systemic clotting abnormalities characteristic of DIC. - Von Willebrand Disease: Incorrect because although it can cause mucosal bleeding, it generally does not present with such an acute onset of widespread hemorrhagic symptoms as seen in DIC.",
     "type": "single_select"
   },
   {
@@ -13132,7 +13132,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "End-tidal CO2 detection is considered the most reliable method for confirming endotracheal tube placement during RSI. This method provides continuous real-time monitoring and confirms ventilation by detecting carbon dioxide in exhaled air, which is a definitive indicator of proper tube placement in the trachea. - Auscultation of bilateral breath sounds: While auscultation can help assess tube placement, it can be misleading due to factors like ambient noise or improper technique. - Visualization of tube passing through vocal cords: Though seeing the tube pass through the vocal cords is crucial during intubation, it does not confirm ongoing correct placement. - Observation of chest rise: Chest rise indicates ventilation but does not confirm tracheal versus esophageal placement. End-tidal CO2 detection** stands out because it directly measures a physiological parameter indicative of effective ventilation and tracheal intubation.",
+    "rationale": "End-tidal CO2 detection is considered the most reliable method for confirming endotracheal tube placement during RSI. This method provides continuous real-time monitoring and confirms ventilation by detecting carbon dioxide in exhaled air, which is a definitive indicator of proper tube placement in the trachea. - Auscultation of bilateral breath sounds: While auscultation can help assess tube placement, it can be misleading due to factors like ambient noise or improper technique. - Visualization of tube passing through vocal cords: Though seeing the tube pass through the vocal cords is crucial during intubation, it does not confirm ongoing correct placement. - Observation of chest rise: Chest rise indicates ventilation but does not confirm tracheal versus esophageal placement. End-tidal CO2 detection stands out because it directly measures a physiological parameter indicative of effective ventilation and tracheal intubation.",
     "type": "single_select"
   },
   {
@@ -13180,7 +13180,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "\"Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air.\" is correct because it provides an objective assessment of the patient's current vital signs, which is essential for understanding their present condition. This aligns with the 'Assessment' component of SBAR where clinical data and findings are communicated. \"The patient is currently stable but has a history of myocardial infarction.\" is incorrect because it blends elements of both 'Situation' (current stability) and 'Background' (history of myocardial infarction), thus not solely focusing on current clinical assessment. \"The patient was admitted with chest pain and shortness of breath.\" is incorrect as it pertains to the 'Background' component by describing why the patient was admitted rather than providing current clinical data. \"I believe the patient needs continuous cardiac monitoring.\"** is incorrect as it fits into the 'Recommendation' part where suggestions for future care or actions are made based on assessment findings. The critical difference lies in recognizing that 'Assessment' should convey current clinical status through objective data rather than historical information or recommendations.",
+    "rationale": "\"Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air.\" is correct because it provides an objective assessment of the patient's current vital signs, which is essential for understanding their present condition. This aligns with the 'Assessment' component of SBAR where clinical data and findings are communicated. \"The patient is currently stable but has a history of myocardial infarction.\" is incorrect because it blends elements of both 'Situation' (current stability) and 'Background' (history of myocardial infarction), thus not solely focusing on current clinical assessment. \"The patient was admitted with chest pain and shortness of breath.\" is incorrect as it pertains to the 'Background' component by describing why the patient was admitted rather than providing current clinical data. \"I believe the patient needs continuous cardiac monitoring.\" is incorrect as it fits into the 'Recommendation' part where suggestions for future care or actions are made based on assessment findings. The critical difference lies in recognizing that 'Assessment' should convey current clinical status through objective data rather than historical information or recommendations.",
     "type": "single_select"
   },
   {
@@ -13212,7 +13212,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Sharing details with family members without patient consent is correct because HIPAA Privacy Rule mandates that patient information cannot be shared with family members without explicit consent from the patient, unless it falls under certain exceptions such as emergencies. Discussing patient info with a healthcare provider involved in care is incorrect as discussing patient information with another healthcare provider involved in the patient's care is allowed under HIPAA. Using encrypted communication devices is incorrect because using encrypted communication devices ensures secure transmission of data, aligning with HIPAA requirements. Accessing records only when necessary for treatment is incorrect since accessing patient records when necessary for treatment purposes is permitted under HIPAA. The key difference lies in the requirement for explicit consent before sharing information with family members, which makes Sharing details with family members without patient consent** the correct answer.",
+    "rationale": "Sharing details with family members without patient consent is correct because HIPAA Privacy Rule mandates that patient information cannot be shared with family members without explicit consent from the patient, unless it falls under certain exceptions such as emergencies. Discussing patient info with a healthcare provider involved in care is incorrect as discussing patient information with another healthcare provider involved in the patient's care is allowed under HIPAA. Using encrypted communication devices is incorrect because using encrypted communication devices ensures secure transmission of data, aligning with HIPAA requirements. Accessing records only when necessary for treatment is incorrect since accessing patient records when necessary for treatment purposes is permitted under HIPAA. The key difference lies in the requirement for explicit consent before sharing information with family members, which makes Sharing details with family members without patient consent the correct answer.",
     "type": "single_select"
   },
   {
@@ -13233,7 +13233,7 @@
   },
   {
     "id": "Q0828",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "John, a 45-year-old male patient, arrives at the emergency department via helicopter after a severe car accident. He presents with hypotension (BP 80/50 mmHg), tachycardia (HR 120 bpm), and signs of hypovolemic shock. As a flight nurse, which initial fluid resuscitation strategy is most appropriate for John?",
     "options": [
       "Administer 1-2 liters of normal saline rapidly.",
@@ -13292,7 +13292,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Establishing a clear chain of command for decision-making is crucial during pre-mission crew briefings as it ensures that all team members know who is responsible for making critical decisions during the flight. This enhances coordination and reduces confusion in high-pressure situations. While discussing individual roles, reviewing the patient's medical history, and confirming equipment availability are important, they do not directly address the need for a structured decision-making process. A clear chain of command helps maintain order and efficiency, particularly in emergencies, making it the most critical action. - Discussing individual roles and responsibilities in detail is important but does not ensure that decisions will be made efficiently. - Reviewing patient medical history comprehensively provides essential patient information but does not address team dynamics. - Confirming availability of equipment ensures preparedness but does not facilitate real-time decision-making. - Establishing a clear chain of command** directly impacts team coordination and effectiveness during the mission.",
+    "rationale": "Establishing a clear chain of command for decision-making is crucial during pre-mission crew briefings as it ensures that all team members know who is responsible for making critical decisions during the flight. This enhances coordination and reduces confusion in high-pressure situations. While discussing individual roles, reviewing the patient's medical history, and confirming equipment availability are important, they do not directly address the need for a structured decision-making process. A clear chain of command helps maintain order and efficiency, particularly in emergencies, making it the most critical action. - Discussing individual roles and responsibilities in detail is important but does not ensure that decisions will be made efficiently. - Reviewing patient medical history comprehensively provides essential patient information but does not address team dynamics. - Confirming availability of equipment ensures preparedness but does not facilitate real-time decision-making. - Establishing a clear chain of command directly impacts team coordination and effectiveness during the mission.",
     "type": "single_select"
   },
   {
@@ -13372,12 +13372,12 @@
     "correct": [
       "D"
     ],
-    "rationale": "Glanzmann Thrombasthenia is characterized by a defect in platelet aggregation due to the absence or dysfunction of glycoprotein IIb/IIIa on the platelet surface. This condition presents with normal PT, aPTT, and platelet count but prolonged bleeding time, which fits the clinical scenario described. - Von Willebrand Disease: While it also presents with mucosal bleeding and can have a prolonged bleeding time, it typically shows abnormalities in PT or aPTT due to factor VIII complex issues. - Immune Thrombocytopenic Purpura: This condition usually presents with a low platelet count, which is not seen in this case. - Hemophilia A: Hemophilia A generally presents with prolonged aPTT due to factor VIII deficiency, which is not consistent with the normal aPTT in this patient. Thus, the subtle differences in laboratory findings help distinguish Glanzmann Thrombasthenia** from other coagulopathies and platelet disorders.",
+    "rationale": "Glanzmann Thrombasthenia is characterized by a defect in platelet aggregation due to the absence or dysfunction of glycoprotein IIb/IIIa on the platelet surface. This condition presents with normal PT, aPTT, and platelet count but prolonged bleeding time, which fits the clinical scenario described. - Von Willebrand Disease: While it also presents with mucosal bleeding and can have a prolonged bleeding time, it typically shows abnormalities in PT or aPTT due to factor VIII complex issues. - Immune Thrombocytopenic Purpura: This condition usually presents with a low platelet count, which is not seen in this case. - Hemophilia A: Hemophilia A generally presents with prolonged aPTT due to factor VIII deficiency, which is not consistent with the normal aPTT in this patient. Thus, the subtle differences in laboratory findings help distinguish Glanzmann Thrombasthenia from other coagulopathies and platelet disorders.",
     "type": "single_select"
   },
   {
     "id": "Q0837",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "A patient presents with fatigue, pallor, and shortness of breath. Laboratory findings reveal microcytic hypochromic anemia. Which of the following is the most likely cause?",
     "options": [
       "Iron deficiency anemia",
@@ -13388,7 +13388,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Iron deficiency anemia is characterized by microcytic hypochromic red blood cells, which are small (microcytic) and pale (hypochromic). This type of anemia is often due to chronic blood loss or insufficient dietary iron intake. Vitamin B12 deficiency anemia typically presents as macrocytic (large cell size), not microcytic. Anemia of chronic disease can present with normocytic or slightly microcytic cells but usually does not show marked hypochromia. Sideroblastic anemia also shows microcytic cells but is less common and often associated with ringed sideroblasts in the bone marrow, which was not mentioned in this case. - Iron deficiency anemia: Correct because it aligns with the described laboratory findings of microcytic hypochromic anemia. - Vitamin B12 deficiency anemia: Incorrect because Vitamin B12 deficiency results in macrocytic, not microcytic, red blood cells. - Anemia of chronic disease: Incorrect since it typically presents with normocytic or slightly microcytic cells without significant hypochromia. - Sideroblastic anemia**: Incorrect although it is microcytic, it involves ringed sideroblasts which were not indicated in this scenario.",
+    "rationale": "Iron deficiency anemia is characterized by microcytic hypochromic red blood cells, which are small (microcytic) and pale (hypochromic). This type of anemia is often due to chronic blood loss or insufficient dietary iron intake. Vitamin B12 deficiency anemia typically presents as macrocytic (large cell size), not microcytic. Anemia of chronic disease can present with normocytic or slightly microcytic cells but usually does not show marked hypochromia. Sideroblastic anemia also shows microcytic cells but is less common and often associated with ringed sideroblasts in the bone marrow, which was not mentioned in this case. - Iron deficiency anemia: Correct because it aligns with the described laboratory findings of microcytic hypochromic anemia. - Vitamin B12 deficiency anemia: Incorrect because Vitamin B12 deficiency results in macrocytic, not microcytic, red blood cells. - Anemia of chronic disease: Incorrect since it typically presents with normocytic or slightly microcytic cells without significant hypochromia. - Sideroblastic anemia: Incorrect although it is microcytic, it involves ringed sideroblasts which were not indicated in this scenario.",
     "type": "single_select"
   },
   {
@@ -13404,7 +13404,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Elevating the head of the bed to 30 degrees is prioritized because it helps decrease ICP by promoting venous drainage from the brain. Administering hypertonic saline** can also reduce ICP but is typically used when initial measures like positioning are ineffective. Therapeutic hypothermia may reduce ICP but carries risks and is not first-line. Corticosteroids are not recommended for TBI-related ICP management due to lack of evidence supporting their efficacy and potential adverse effects. Proper positioning remains a fundamental and immediate intervention for managing increased ICP in trauma patients.",
+    "rationale": "Elevating the head of the bed to 30 degrees is prioritized because it helps decrease ICP by promoting venous drainage from the brain. Administering hypertonic saline can also reduce ICP but is typically used when initial measures like positioning are ineffective. Therapeutic hypothermia may reduce ICP but carries risks and is not first-line. Corticosteroids are not recommended for TBI-related ICP management due to lack of evidence supporting their efficacy and potential adverse effects. Proper positioning remains a fundamental and immediate intervention for managing increased ICP in trauma patients.",
     "type": "single_select"
   },
   {
@@ -13436,7 +13436,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Conducting a debriefing session immediately after the mission is crucial in addressing stress and communication breakdowns. It allows team members to reflect on their performance, share experiences, and identify areas for improvement collectively. This approach fosters open communication, teamwork, and continuous learning---key components of a healthy work environment. Scheduling individual counseling sessions suggests scheduling individual counseling sessions, which can be beneficial but does not address immediate team dynamics or collective learning opportunities. Implementing a new communication protocol without consulting the team involves implementing a new protocol without team input, which could exacerbate communication issues rather than resolve them. Assigning roles based on seniority suggests assigning roles based on seniority** rather than skill set, potentially leading to inefficiencies and further stress. By prioritizing debriefing sessions, Alex promotes an inclusive and reflective practice that enhances overall team performance and well-being.",
+    "rationale": "Conducting a debriefing session immediately after the mission is crucial in addressing stress and communication breakdowns. It allows team members to reflect on their performance, share experiences, and identify areas for improvement collectively. This approach fosters open communication, teamwork, and continuous learning---key components of a healthy work environment. Scheduling individual counseling sessions suggests scheduling individual counseling sessions, which can be beneficial but does not address immediate team dynamics or collective learning opportunities. Implementing a new communication protocol without consulting the team involves implementing a new protocol without team input, which could exacerbate communication issues rather than resolve them. Assigning roles based on seniority suggests assigning roles based on seniority rather than skill set, potentially leading to inefficiencies and further stress. By prioritizing debriefing sessions, Alex promotes an inclusive and reflective practice that enhances overall team performance and well-being.",
     "type": "single_select"
   },
   {
@@ -13452,7 +13452,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Cross-referencing GPS coordinates with sectional charts is the most accurate method for verifying an aircraft's current location, especially during night-time missions when visual cues are limited. Sectional charts provide detailed information about terrain, airspace boundaries, and other critical navigational data that can be used in conjunction with GPS coordinates for precise navigation. Using VOR signals is incorrect because while VOR signals are useful for navigation, they are not as precise as GPS coordinates cross-referenced with sectional charts. Relying solely on the aircraft's onboard radar is also incorrect as radar primarily provides weather and obstacle information rather than precise location data. Checking position against known landmarks** is impractical at night when visibility is poor. By comparing these options, it becomes clear that using GPS coordinates in conjunction with sectional charts provides a comprehensive and accurate method for navigation verification during flight transport missions.",
+    "rationale": "Cross-referencing GPS coordinates with sectional charts is the most accurate method for verifying an aircraft's current location, especially during night-time missions when visual cues are limited. Sectional charts provide detailed information about terrain, airspace boundaries, and other critical navigational data that can be used in conjunction with GPS coordinates for precise navigation. Using VOR signals is incorrect because while VOR signals are useful for navigation, they are not as precise as GPS coordinates cross-referenced with sectional charts. Relying solely on the aircraft's onboard radar is also incorrect as radar primarily provides weather and obstacle information rather than precise location data. Checking position against known landmarks is impractical at night when visibility is poor. By comparing these options, it becomes clear that using GPS coordinates in conjunction with sectional charts provides a comprehensive and accurate method for navigation verification during flight transport missions.",
     "type": "single_select"
   },
   {
@@ -13484,7 +13484,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Splenic rupture is most consistent with John's presentation of left upper quadrant pain, hypotension, and referred pain to the left shoulder (Kehr's sign). These symptoms are classic for splenic injury due to its anatomical location and blood supply. - Liver laceration typically presents with right upper quadrant pain and signs of hemorrhagic shock but not specifically with Kehr's sign. - Renal trauma may present with flank pain and hematuria but does not commonly cause referred shoulder pain or peritoneal irritation. - Pancreatitis** usually presents with epigastric pain radiating to the back and is associated with elevated pancreatic enzymes rather than blunt trauma history.",
+    "rationale": "Splenic rupture is most consistent with John's presentation of left upper quadrant pain, hypotension, and referred pain to the left shoulder (Kehr's sign). These symptoms are classic for splenic injury due to its anatomical location and blood supply. - Liver laceration typically presents with right upper quadrant pain and signs of hemorrhagic shock but not specifically with Kehr's sign. - Renal trauma may present with flank pain and hematuria but does not commonly cause referred shoulder pain or peritoneal irritation. - Pancreatitis usually presents with epigastric pain radiating to the back and is associated with elevated pancreatic enzymes rather than blunt trauma history.",
     "type": "single_select"
   },
   {
@@ -13521,7 +13521,7 @@
   },
   {
     "id": "Q0846",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "During a flight at high altitude, a patient with a pneumothorax is at increased risk due to which physiological principle?",
     "options": [
       "Dalton's Law",
@@ -13532,7 +13532,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Boyle's Law states that the pressure of a gas is inversely proportional to its volume at a constant temperature. As altitude increases, atmospheric pressure decreases, causing any trapped gas (such as in a pneumothorax) to expand. This expansion can worsen the pneumothorax. Dalton's Law relates to partial pressures of gases, Henry's Law pertains to gas solubility in liquids, and Charles's Law involves the direct relationship between temperature and volume of gases. While all these laws are important in understanding physiological changes during flight, Boyle's Law specifically explains the expansion of trapped gases like those in a pneumothorax. - Dalton's Law: Incorrect because it deals with the partial pressures of gases in a mixture but does not explain the volume expansion of trapped gases. - Henry's Law: Incorrect because it explains how gases dissolve in liquids under pressure but does not relate directly to the volume change of trapped gases. - Charles's Law: Incorrect because it describes how gas volume increases with temperature; however, it does not apply directly to changes caused by decreasing pressure at higher altitudes. Each option is related to gas laws and their physiological implications during flight but only Boyle's Law** directly explains the critical issue for patients with pneumothorax at high altitudes.",
+    "rationale": "Boyle's Law states that the pressure of a gas is inversely proportional to its volume at a constant temperature. As altitude increases, atmospheric pressure decreases, causing any trapped gas (such as in a pneumothorax) to expand. This expansion can worsen the pneumothorax. Dalton's Law relates to partial pressures of gases, Henry's Law pertains to gas solubility in liquids, and Charles's Law involves the direct relationship between temperature and volume of gases. While all these laws are important in understanding physiological changes during flight, Boyle's Law specifically explains the expansion of trapped gases like those in a pneumothorax. - Dalton's Law: Incorrect because it deals with the partial pressures of gases in a mixture but does not explain the volume expansion of trapped gases. - Henry's Law: Incorrect because it explains how gases dissolve in liquids under pressure but does not relate directly to the volume change of trapped gases. - Charles's Law: Incorrect because it describes how gas volume increases with temperature; however, it does not apply directly to changes caused by decreasing pressure at higher altitudes. Each option is related to gas laws and their physiological implications during flight but only Boyle's Law directly explains the critical issue for patients with pneumothorax at high altitudes.",
     "type": "single_select"
   },
   {
@@ -13580,7 +13580,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Hyperkalemia is a common and life-threatening complication of chronic renal failure due to the kidneys' inability to excrete potassium efficiently. Elevated potassium levels can lead to severe cardiac arrhythmias, making it critical to address immediately. - Hypocalcemia is also associated with chronic renal failure but does not typically require as urgent intervention as hyperkalemia. - Hypernatremia is less common in chronic renal failure and usually results from excessive sodium intake or dehydration rather than renal dysfunction. - Hypomagnesemia can occur but is not as immediately life-threatening as hyperkalemia**.",
+    "rationale": "Hyperkalemia is a common and life-threatening complication of chronic renal failure due to the kidneys' inability to excrete potassium efficiently. Elevated potassium levels can lead to severe cardiac arrhythmias, making it critical to address immediately. - Hypocalcemia is also associated with chronic renal failure but does not typically require as urgent intervention as hyperkalemia. - Hypernatremia is less common in chronic renal failure and usually results from excessive sodium intake or dehydration rather than renal dysfunction. - Hypomagnesemia can occur but is not as immediately life-threatening as hyperkalemia.",
     "type": "single_select"
   },
   {
@@ -13644,7 +13644,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Autonomy is the legal and ethical principle that emphasizes the patient's right to make informed decisions about their own healthcare. It ensures that a flight nurse must obtain voluntary and informed consent before any treatment or procedure. Beneficence refers to acting in the best interest of the patient, nonmaleficence means doing no harm, and veracity involves being truthful. While all these principles are crucial in patient care, autonomy specifically addresses the requirement for informed consent, making it the correct answer. - Autonomy is correct because it directly pertains to the patient's right to make an informed decision regarding their care. - Beneficence is incorrect but closely related as it involves acting in the patient's best interest, which can sometimes overlap with respecting their autonomy. - Nonmaleficence is also incorrect but tricky because it involves avoiding harm to patients, which is a fundamental aspect of obtaining informed consent. - Veracity** is incorrect yet relevant since being truthful is essential for informed consent but does not encompass the full scope of ensuring voluntary and informed decision-making by the patient.",
+    "rationale": "Autonomy is the legal and ethical principle that emphasizes the patient's right to make informed decisions about their own healthcare. It ensures that a flight nurse must obtain voluntary and informed consent before any treatment or procedure. Beneficence refers to acting in the best interest of the patient, nonmaleficence means doing no harm, and veracity involves being truthful. While all these principles are crucial in patient care, autonomy specifically addresses the requirement for informed consent, making it the correct answer. - Autonomy is correct because it directly pertains to the patient's right to make an informed decision regarding their care. - Beneficence is incorrect but closely related as it involves acting in the patient's best interest, which can sometimes overlap with respecting their autonomy. - Nonmaleficence is also incorrect but tricky because it involves avoiding harm to patients, which is a fundamental aspect of obtaining informed consent. - Veracity is incorrect yet relevant since being truthful is essential for informed consent but does not encompass the full scope of ensuring voluntary and informed decision-making by the patient.",
     "type": "single_select"
   },
   {
@@ -13692,7 +13692,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Hypoxia is the most critical physiological stressor for a patient with TBI during high-altitude flight. Reduced oxygen levels can lead to cerebral hypoxia, exacerbating brain injury symptoms and increasing intracranial pressure. Barometric pressure changes can also affect intracranial pressure but are less immediate in their impact compared to hypoxia. Thermal variations can cause discomfort and secondary complications but are not directly linked to worsening TBI symptoms. Vibration may contribute to general discomfort and agitation but does not have the same direct impact on cerebral oxygenation as hypoxia does. - Hypoxia: At higher altitudes, the partial pressure of oxygen decreases, leading to reduced oxygen availability in the bloodstream. This is particularly dangerous for patients with TBI as their brains are already compromised. - Barometric Pressure Changes: While these changes can affect gas expansion and potentially intracranial pressure, they do not have the immediate and severe impact on oxygenation that hypoxia does. - Thermal Variations: Although important for overall patient comfort and homeostasis, temperature changes do not directly worsen TBI symptoms. - Vibration: This can cause discomfort and potential agitation but does not critically affect the brain's oxygen supply like hypoxia. The rationale behind selecting hypoxia** lies in its direct impact on cerebral function and its potential to rapidly exacerbate symptoms of TBI due to decreased oxygen delivery to an already vulnerable brain.",
+    "rationale": "Hypoxia is the most critical physiological stressor for a patient with TBI during high-altitude flight. Reduced oxygen levels can lead to cerebral hypoxia, exacerbating brain injury symptoms and increasing intracranial pressure. Barometric pressure changes can also affect intracranial pressure but are less immediate in their impact compared to hypoxia. Thermal variations can cause discomfort and secondary complications but are not directly linked to worsening TBI symptoms. Vibration may contribute to general discomfort and agitation but does not have the same direct impact on cerebral oxygenation as hypoxia does. - Hypoxia: At higher altitudes, the partial pressure of oxygen decreases, leading to reduced oxygen availability in the bloodstream. This is particularly dangerous for patients with TBI as their brains are already compromised. - Barometric Pressure Changes: While these changes can affect gas expansion and potentially intracranial pressure, they do not have the immediate and severe impact on oxygenation that hypoxia does. - Thermal Variations: Although important for overall patient comfort and homeostasis, temperature changes do not directly worsen TBI symptoms. - Vibration: This can cause discomfort and potential agitation but does not critically affect the brain's oxygen supply like hypoxia. The rationale behind selecting hypoxia lies in its direct impact on cerebral function and its potential to rapidly exacerbate symptoms of TBI due to decreased oxygen delivery to an already vulnerable brain.",
     "type": "single_select"
   },
   {
@@ -13724,7 +13724,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Reporting the suspected neglect to child protective services as per state regulations is correct because mandatory reporting laws require healthcare professionals, including flight nurses, to report any suspected cases of child neglect directly to child protective services according to state regulations. This ensures immediate intervention and protection for the child. Documenting findings and notifying the receiving facility is incorrect despite being partially correct because while documenting findings and notifying the receiving facility are important steps, they do not fulfill the mandatory reporting obligation required by law. Conducting a physical assessment and waiting for instructions is incorrect because conducting a physical assessment and waiting for further instructions delays necessary intervention and does not meet mandatory reporting requirements. Discussing concerns with colleagues is incorrect because discussing concerns with colleagues** may be part of a collaborative approach but does not replace the legal obligation of reporting suspected neglect directly to child protective services.",
+    "rationale": "Reporting the suspected neglect to child protective services as per state regulations is correct because mandatory reporting laws require healthcare professionals, including flight nurses, to report any suspected cases of child neglect directly to child protective services according to state regulations. This ensures immediate intervention and protection for the child. Documenting findings and notifying the receiving facility is incorrect despite being partially correct because while documenting findings and notifying the receiving facility are important steps, they do not fulfill the mandatory reporting obligation required by law. Conducting a physical assessment and waiting for instructions is incorrect because conducting a physical assessment and waiting for further instructions delays necessary intervention and does not meet mandatory reporting requirements. Discussing concerns with colleagues is incorrect because discussing concerns with colleagues may be part of a collaborative approach but does not replace the legal obligation of reporting suspected neglect directly to child protective services.",
     "type": "single_select"
   },
   {
@@ -13756,7 +13756,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "GPS is the most commonly used navigation system in aeromedical transport due to its high accuracy and global coverage. It allows flight nurses to track precise locations in real-time, which is crucial for timely patient care. - VOR, VOR, provides radio-based navigation aids but lacks the global coverage and precision of GPS. - INS, INS, uses gyroscopes and accelerometers for navigation without external signals but can accumulate errors over time. - DME, DME, measures distance from a ground station but does not provide comprehensive location tracking like GPS. The key difference lies in GPS**'s ability to offer real-time global positioning with high accuracy compared to other systems that either lack precision or comprehensive coverage.",
+    "rationale": "GPS is the most commonly used navigation system in aeromedical transport due to its high accuracy and global coverage. It allows flight nurses to track precise locations in real-time, which is crucial for timely patient care. - VOR, VOR, provides radio-based navigation aids but lacks the global coverage and precision of GPS. - INS, INS, uses gyroscopes and accelerometers for navigation without external signals but can accumulate errors over time. - DME, DME, measures distance from a ground station but does not provide comprehensive location tracking like GPS. The key difference lies in GPS's ability to offer real-time global positioning with high accuracy compared to other systems that either lack precision or comprehensive coverage.",
     "type": "single_select"
   },
   {
@@ -13788,7 +13788,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Monitoring for signs of infection and ensuring sterile dressing changes are critical in the immediate post-operative care of an airspace patient. This intervention helps prevent one of the most common and serious complications---post-surgical infection. While elevating the stump can help reduce swelling, continuous elevation for 24 hours is not recommended due to potential circulatory issues. Applying a tourniquet loosely is incorrect as it can cause further damage or ischemia. Administering prophylactic antibiotics and pain management** are important but secondary to preventing infection through proper wound care practices. Proper sterile technique is paramount in reducing morbidity associated with infections in amputation patients.",
+    "rationale": "Monitoring for signs of infection and ensuring sterile dressing changes are critical in the immediate post-operative care of an airspace patient. This intervention helps prevent one of the most common and serious complications---post-surgical infection. While elevating the stump can help reduce swelling, continuous elevation for 24 hours is not recommended due to potential circulatory issues. Applying a tourniquet loosely is incorrect as it can cause further damage or ischemia. Administering prophylactic antibiotics and pain management are important but secondary to preventing infection through proper wound care practices. Proper sterile technique is paramount in reducing morbidity associated with infections in amputation patients.",
     "type": "single_select"
   },
   {
@@ -13836,7 +13836,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Propofol is the most appropriate sedative for John because it provides rapid onset and easy titration, which is crucial in managing patients with TBI. Additionally, propofol has been shown to reduce ICP effectively. Midazolam and Lorazepam are benzodiazepines that can cause prolonged sedation and may increase ICP. Ketamine**, although useful in some trauma cases due to its analgesic properties, can potentially increase ICP and is thus less suitable for TBI patients. This selection requires understanding both pharmacodynamics and specific patient needs in post-intubation care.",
+    "rationale": "Propofol is the most appropriate sedative for John because it provides rapid onset and easy titration, which is crucial in managing patients with TBI. Additionally, propofol has been shown to reduce ICP effectively. Midazolam and Lorazepam are benzodiazepines that can cause prolonged sedation and may increase ICP. Ketamine, although useful in some trauma cases due to its analgesic properties, can potentially increase ICP and is thus less suitable for TBI patients. This selection requires understanding both pharmacodynamics and specific patient needs in post-intubation care.",
     "type": "single_select"
   },
   {
@@ -13852,7 +13852,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Battery is defined as intentional physical contact with another person without their consent that results in harm or offense. In this scenario, Nurse Alex's act of physically holding down Mr. Johnson constitutes battery because it involved intentional contact without the patient's consent, even if done for safety reasons. - Assault: Assault involves creating an apprehension of imminent harmful or offensive contact but does not require actual physical contact. Since there was physical contact in this scenario, assault is not the correct answer. - False imprisonment: False imprisonment refers to unlawfully restraining someone's freedom of movement without their consent. While related, this concept involves restriction of movement rather than physical contact. - Informed consent: Informed consent pertains to obtaining permission before conducting any medical intervention or treatment after explaining the risks and benefits. It does not apply directly to the act of physical restraint described here. The key difference lies in understanding that battery** specifically involves non-consensual physical contact, which aligns precisely with Nurse Alex's actions toward Mr. Johnson in this scenario.",
+    "rationale": "Battery is defined as intentional physical contact with another person without their consent that results in harm or offense. In this scenario, Nurse Alex's act of physically holding down Mr. Johnson constitutes battery because it involved intentional contact without the patient's consent, even if done for safety reasons. - Assault: Assault involves creating an apprehension of imminent harmful or offensive contact but does not require actual physical contact. Since there was physical contact in this scenario, assault is not the correct answer. - False imprisonment: False imprisonment refers to unlawfully restraining someone's freedom of movement without their consent. While related, this concept involves restriction of movement rather than physical contact. - Informed consent: Informed consent pertains to obtaining permission before conducting any medical intervention or treatment after explaining the risks and benefits. It does not apply directly to the act of physical restraint described here. The key difference lies in understanding that battery specifically involves non-consensual physical contact, which aligns precisely with Nurse Alex's actions toward Mr. Johnson in this scenario.",
     "type": "single_select"
   },
   {
@@ -13868,7 +13868,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Preeclampsia is characterized by hypertension (BP ≥140/90 mmHg), proteinuria (≥300 mg in a 24-hour urine sample), and often includes symptoms like severe headache, visual disturbances, and edema. Eclampsia involves seizures in addition to preeclampsia symptoms but was not mentioned here. HELLP syndrome includes hemolysis, elevated liver enzymes, and low platelet count, which were not indicated. Gestational hypertension involves high blood pressure without proteinuria or severe systemic symptoms. Therefore, the correct diagnosis given the symptoms described is preeclampsia. - Eclampsia: This would be correct if seizures were present along with the other symptoms. - HELLP Syndrome: This condition would be correct if there were signs of hemolysis, elevated liver enzymes, and low platelet count. - Gestational Hypertension: This option would be correct if there was high blood pressure without proteinuria or severe systemic symptoms. - Preeclampsia**: Correct due to the combination of hypertension, significant proteinuria, and systemic symptoms like headache and visual disturbances.",
+    "rationale": "Preeclampsia is characterized by hypertension (BP ≥140/90 mmHg), proteinuria (≥300 mg in a 24-hour urine sample), and often includes symptoms like severe headache, visual disturbances, and edema. Eclampsia involves seizures in addition to preeclampsia symptoms but was not mentioned here. HELLP syndrome includes hemolysis, elevated liver enzymes, and low platelet count, which were not indicated. Gestational hypertension involves high blood pressure without proteinuria or severe systemic symptoms. Therefore, the correct diagnosis given the symptoms described is preeclampsia. - Eclampsia: This would be correct if seizures were present along with the other symptoms. - HELLP Syndrome: This condition would be correct if there were signs of hemolysis, elevated liver enzymes, and low platelet count. - Gestational Hypertension: This option would be correct if there was high blood pressure without proteinuria or severe systemic symptoms. - Preeclampsia: Correct due to the combination of hypertension, significant proteinuria, and systemic symptoms like headache and visual disturbances.",
     "type": "single_select"
   },
   {
@@ -13884,7 +13884,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Plasma free metanephrines are the most sensitive and specific test for diagnosing pheochromocytoma, as these metabolites are produced continuously by the tumor. Serum cortisol levels are used to diagnose conditions like Cushing's syndrome, which can also cause hypertension but do not present with episodic symptoms typical of pheochromocytoma. Thyroid function tests help in diagnosing thyroid disorders such as hyperthyroidism or hypothyroidism, which can cause systemic symptoms but are not specific for pheochromocytoma. Serum aldosterone concentration** is relevant for diagnosing primary hyperaldosteronism, another cause of secondary hypertension but lacks the episodic nature of symptoms seen in pheochromocytoma.",
+    "rationale": "Plasma free metanephrines are the most sensitive and specific test for diagnosing pheochromocytoma, as these metabolites are produced continuously by the tumor. Serum cortisol levels are used to diagnose conditions like Cushing's syndrome, which can also cause hypertension but do not present with episodic symptoms typical of pheochromocytoma. Thyroid function tests help in diagnosing thyroid disorders such as hyperthyroidism or hypothyroidism, which can cause systemic symptoms but are not specific for pheochromocytoma. Serum aldosterone concentration is relevant for diagnosing primary hyperaldosteronism, another cause of secondary hypertension but lacks the episodic nature of symptoms seen in pheochromocytoma.",
     "type": "single_select"
   },
   {
@@ -13916,7 +13916,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Implementing standardized communication protocols** is most critical for ensuring seamless communication and coordination among multidisciplinary team members during a patient transfer. Standardized protocols such as SBAR (Situation-Background-Assessment-Recommendation) ensure that all team members have a clear and consistent understanding of the patient's status and needs, reducing the risk of miscommunication and errors. Utilizing advanced patient monitoring systems, while important for tracking patient vitals, does not directly address the need for effective team communication. Ensuring availability of specialized medical equipment is crucial for patient care but does not impact team coordination. Conducting regular interdisciplinary team meetings supports overall team cohesion but does not provide immediate benefits during actual patient transfers. Therefore, A is the correct answer as it directly addresses real-time communication needs essential for safe and effective patient transfers.",
+    "rationale": "Implementing standardized communication protocols is most critical for ensuring seamless communication and coordination among multidisciplinary team members during a patient transfer. Standardized protocols such as SBAR (Situation-Background-Assessment-Recommendation) ensure that all team members have a clear and consistent understanding of the patient's status and needs, reducing the risk of miscommunication and errors. Utilizing advanced patient monitoring systems, while important for tracking patient vitals, does not directly address the need for effective team communication. Ensuring availability of specialized medical equipment is crucial for patient care but does not impact team coordination. Conducting regular interdisciplinary team meetings supports overall team cohesion but does not provide immediate benefits during actual patient transfers. Therefore, A is the correct answer as it directly addresses real-time communication needs essential for safe and effective patient transfers.",
     "type": "single_select"
   },
   {
@@ -13985,7 +13985,7 @@
   },
   {
     "id": "Q0875",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "A 32-year-old male patient is brought to your care after a motorcycle accident. He presents with an open fracture of the tibia with significant soft tissue damage. What is the most appropriate initial management step for this extremity injury in a pre-hospital setting?",
     "options": [
       "Apply a tourniquet above the injury site.",
@@ -14028,7 +14028,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Providing positive pressure ventilation** is crucial in managing a patient with flail chest because it stabilizes the chest wall and improves oxygenation. High-flow oxygen is important but does not address the mechanical instability of the chest wall. Needle decompression is used for tension pneumothorax, which may not be present in all flail chest cases. Fluid resuscitation is vital in trauma patients but does not directly stabilize the chest wall or improve ventilation. Therefore, positive pressure ventilation is the most critical initial intervention as it directly addresses both respiratory function and chest wall stability.",
+    "rationale": "Providing positive pressure ventilation is crucial in managing a patient with flail chest because it stabilizes the chest wall and improves oxygenation. High-flow oxygen is important but does not address the mechanical instability of the chest wall. Needle decompression is used for tension pneumothorax, which may not be present in all flail chest cases. Fluid resuscitation is vital in trauma patients but does not directly stabilize the chest wall or improve ventilation. Therefore, positive pressure ventilation is the most critical initial intervention as it directly addresses both respiratory function and chest wall stability.",
     "type": "single_select"
   },
   {
@@ -14140,7 +14140,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Succinylcholine is the most appropriate paralytic agent for rapid sequence intubation (RSI) due to its rapid onset and short duration of action. Etomidate is an induction agent used for its hemodynamic stability but not a paralytic. Midazolam is a sedative and anxiolytic, not suitable as a paralytic. Fentanyl is an analgesic and also does not have paralytic properties. The correct choice of succinylcholine** ensures effective muscle paralysis quickly, which is crucial for successful intubation in emergency situations. Understanding the specific roles and properties of these medications is essential for effective airway management in critical care scenarios.",
+    "rationale": "Succinylcholine is the most appropriate paralytic agent for rapid sequence intubation (RSI) due to its rapid onset and short duration of action. Etomidate is an induction agent used for its hemodynamic stability but not a paralytic. Midazolam is a sedative and anxiolytic, not suitable as a paralytic. Fentanyl is an analgesic and also does not have paralytic properties. The correct choice of succinylcholine ensures effective muscle paralysis quickly, which is crucial for successful intubation in emergency situations. Understanding the specific roles and properties of these medications is essential for effective airway management in critical care scenarios.",
     "type": "single_select"
   },
   {
@@ -14188,7 +14188,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Establishing a decontamination zone is critical in incidents involving chemical agents to prevent further contamination and ensure the safety of both victims and healthcare providers. While initiating triage, administering antidotes, and communicating with incident command are essential steps, they must follow proper decontamination procedures. Without establishing a decontamination zone first, other interventions could lead to secondary contamination and exacerbate the situation. This prioritization aligns with contemporary disaster management protocols and ensures an organized response to chemical terrorism incidents. Comparative Rationale: - Initiating triage based on severity: Triage is crucial but secondary to ensuring no further contamination occurs. - Administering antidotes: Antidotes are vital but should only be administered after confirming that patients are decontaminated. - Communicating with incident command**: Effective communication is necessary but must follow immediate essential actions but fails to prioritize decontamination, highlighting why A is the correct choice.",
+    "rationale": "Establishing a decontamination zone is critical in incidents involving chemical agents to prevent further contamination and ensure the safety of both victims and healthcare providers. While initiating triage, administering antidotes, and communicating with incident command are essential steps, they must follow proper decontamination procedures. Without establishing a decontamination zone first, other interventions could lead to secondary contamination and exacerbate the situation. This prioritization aligns with contemporary disaster management protocols and ensures an organized response to chemical terrorism incidents. Comparative Rationale: - Initiating triage based on severity: Triage is crucial but secondary to ensuring no further contamination occurs. - Administering antidotes: Antidotes are vital but should only be administered after confirming that patients are decontaminated. - Communicating with incident command: Effective communication is necessary but must follow immediate essential actions but fails to prioritize decontamination, highlighting why A is the correct choice.",
     "type": "single_select"
   },
   {
@@ -14689,7 +14689,7 @@
   },
   {
     "id": "Q0919",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "During a critical flight transport, Flight Nurse Emily is responsible for monitoring a patient named John, who is on mechanical ventilation. Emily notices an alarm indicating low oxygen saturation but decides to wait until the next scheduled check-in to address it. As a result, John\\'s condition deteriorates significantly. Which element of negligence is most clearly demonstrated by Emily\\'s actions?",
     "options": [
       "Duty of Care",
@@ -14993,7 +14993,7 @@
   },
   {
     "id": "Q0938",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "During a helicopter transport, Flight Nurse Sarah encounters a patient named John with severe arterial bleeding from his lower leg due to a motorcycle accident. After applying a tourniquet, what is the most critical next step she should take to ensure effective hemostasis and minimize complications?",
     "options": [
       "Loosen the tourniquet every 15 minutes to allow some blood flow.",
@@ -15041,7 +15041,7 @@
   },
   {
     "id": "Q0941",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "During a flight transport of a patient named John who has been exposed to an unknown chemical substance, he begins to exhibit symptoms of respiratory distress and altered mental status. As the flight nurse, which immediate intervention is most appropriate?",
     "options": [
       "Administer high-flow oxygen and prepare for intubation.",
@@ -15057,7 +15057,7 @@
   },
   {
     "id": "Q0942",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "John, a 45-year-old male patient, is being transported by air after suffering from a severe myocardial infarction. As a flight nurse, you need to prepare for potential complications during the flight. Which of the following actions is MOST crucial in ensuring John\\'s stability during transport?",
     "options": [
       "Administering high-flow oxygen via non-rebreather mask.",
@@ -15201,7 +15201,7 @@
   },
   {
     "id": "Q0951",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "During a medical emergency flight, you are attending to a 45-year-old male patient named John who presents with fatigue, pallor, and shortness of breath. His laboratory results show low hemoglobin levels, elevated mean corpuscular volume (MCV), and hypersegmented neutrophils. Based on these findings, what is the most likely type of anemia John is experiencing?",
     "options": [
       "Iron deficiency anemia",
@@ -15345,7 +15345,7 @@
   },
   {
     "id": "Q0960",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "During a mass transportation accident involving multiple vehicles on a remote highway, Flight Nurse Emma arrives on the scene to assist with triage and patient care. Among the injured is John, a 45-year-old male who is unconscious with shallow breathing and a weak pulse. There are several other victims with varying degrees of injuries. What should be Emma\\'s immediate priority?",
     "options": [
       "Administering high-flow oxygen to John.",
@@ -15521,7 +15521,7 @@
   },
   {
     "id": "Q0971",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "During a flight transport, patient John is exposed to an unknown chemical substance. He begins to exhibit symptoms of respiratory distress, skin irritation, and altered mental status. As the flight nurse, what is your immediate priority action?",
     "options": [
       "Administer high-flow oxygen and prepare for possible intubation.",
@@ -15665,7 +15665,7 @@
   },
   {
     "id": "Q0980",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "Sarah, a 45-year-old female flight nurse, presents with palpitations, weight loss, heat intolerance, and tremors. She is also experiencing anxiety and insomnia. On examination, her thyroid gland appears enlarged and tender. What is the most likely diagnosis?",
     "options": [
       "Graves' disease",
@@ -16145,7 +16145,7 @@
   },
   {
     "id": "Q1010",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "During an emergency air transport, John Doe, a 67-year-old male with advanced heart disease, suddenly becomes unresponsive. The flight nurse finds an advanced directive in John\\'s belongings stating he does not wish to be resuscitated (DNR). However, his family members on board are insisting that you perform CPR. What should be the flight nurse\\'s immediate course of action?",
     "options": [
       "Perform CPR because the family members are requesting it.",
@@ -16241,7 +16241,7 @@
   },
   {
     "id": "Q1016",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "Which of the following is the most appropriate initial treatment for a patient presenting with acute radiological burns?",
     "options": [
       "Immediate debridement of necrotic tissue",
@@ -16785,7 +16785,7 @@
   },
   {
     "id": "Q1050",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew is transporting a patient with necrotizing pancreatitis. The flight nurse recognizes that an ominous sign during the assessment would be:",
     "options": [
       "Bruising behind the ears",
@@ -16849,7 +16849,7 @@
   },
   {
     "id": "Q1054",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "An adult patient who fell from a third-floor balcony and landed on their feet is drowsy, confused, with obvious lower extremity deformities. They report severe lower back pain. Which of these signs would lead the flight nurse to suspect a complete spinal cord injury?",
     "options": [
       "Tachycardia",
@@ -17169,7 +17169,7 @@
   },
   {
     "id": "Q1074",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "A worker has been exposed to hydrogen cyanide gas. Skin decontamination has occurred and the patient has been intubated and hyperventilated with 100% O2. The NEXT step in therapy is the administration of:",
     "options": [
       "Glucagon",
@@ -17409,7 +17409,7 @@
   },
   {
     "id": "Q1089",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "A septic shock patient has received two 30 mL/kg NS boluses and norepinephrine at 10 mcg/min with normotensive BP. Lactate was 8 mmol/L and now 7.5 mmol/L. The flight nurse should consider initiating:",
     "options": [
       "Phenylephrine 11.5 mcg/kg/min IV",
@@ -17633,7 +17633,7 @@
   },
   {
     "id": "Q1103",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "Which value would be MOST useful to the flight nurse in evaluating oxygenation of a patient with carbon monoxide poisoning?",
     "options": [
       "ETCO2",
@@ -18337,7 +18337,7 @@
   },
   {
     "id": "Q1147",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Trauma",
     "stem": "The flight crew arrives at a facility to transport a patient involved in a high-velocity T-bone collision. The patient was intubated for respiratory distress, and a chest tube was placed at the fifth intercostal space, midaxillary line. The nurse notes fecal matter in the drainage system. What does the flight nurse suspect to be the cause?",
     "options": [
       "Biological perforation",
@@ -18417,7 +18417,7 @@
   },
   {
     "id": "Q1152",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "The flight crew is called for an interfacility transfer of a 3-year-old patient involved in a high-speed MVA with partial ejection. The patient was reported to have a declining mental status on arrival to the ED and required intubation. Radiographs and CT scans were negative for head or spinal injuries. During transport, the flight crew knows that a PRIORITY intervention is to:",
     "options": [
       "Remove the cervical collar",
@@ -18465,7 +18465,7 @@
   },
   {
     "id": "Q1155",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "The flight nurse is transporting a patient from the sending hospital to the airport in an ambulance. The EMT asks what PPE they should wear for the patient. The patient is diagnosed with Influenza and is receiving mechanical ventilation. The EMT should wear:",
     "options": [
       "N-95 mask, gown, gloves, eye protection",
@@ -18513,7 +18513,7 @@
   },
   {
     "id": "Q1158",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Special Populations",
     "stem": "The transport team is transporting a 2-year-old child who has a suspected bacterial infection. The child is responsive to painful stimuli, and has mottled skin. The patient's vital signs are as follows: BP: 60/30 mm Hg HR: 180 beats/min RR: 10 breaths/min T: 94.1°F (34.5°C) Which of the following interventions would be the highest priority?",
     "options": [
       "Initiate a normal saline bolus of 20 mL/kg",
@@ -18641,7 +18641,7 @@
   },
   {
     "id": "Q1166",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Special Populations",
     "stem": "The flight nurse is called to transport a 5 kg patient from an outlying hospital. The nurse has an infant securement device rated from 10-20 kg. The nurse's NEXT action should be to:",
     "options": [
       "Pad the infant with blankets",
@@ -18721,7 +18721,7 @@
   },
   {
     "id": "Q1171",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight crew is transporting a patient diagnosed with a new onset seizure disorder. What is the MOST important intervention during the start-up and shutdown of the aircraft to prevent triggering repeated seizure-like activity?",
     "options": [
       "Applying oxygen via face mask",
@@ -18737,7 +18737,7 @@
   },
   {
     "id": "Q1172",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Medical Emergencies",
     "stem": "The flight team has been requested to transfer a patient diagnosed with syndrome of inappropriate secretion of antidiuretic hormone. The flight nurse knows that frequent neuro checks are required, as cerebral edema can result from:",
     "options": [
       "Pulmonary edema",
@@ -18769,7 +18769,7 @@
   },
   {
     "id": "Q1174",
-    "category": "General Principles of Flight Transport Nursing Practice",
+    "category": "Resuscitation Principles",
     "stem": "The flight nurse is transfusing one unit of whole blood to a mechanically ventilated patient during transport. During the transfusion, the nurse notes that the patient's plateau pressure has increased to 35 cmH2O, their systolic blood pressure has dropped 30 mmHg, and their temperature has increased by 2° Celsius. The patient's neck veins are flat. In addition to stopping the transfusion, the flight nurse knows that the NEXT best treatment is:",
     "options": [
       "Initiate a dobutamine drip",
