@@ -92,7 +92,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The patient is exhibiting signs of impending brain herniation (unilateral blown pupil and Cushing's Triad). Administering a bolus of hypertonic saline will temporarily reduce cerebral edema and buy the patient time to get to definitive care. The way this works is by using peer pressure in your favor. The brain cells like to match the tonicity of the vasculature around it and if we introduce a hypertonic solution (3% saline) the brain cells will say \"Oooo, I want to be super salty just like the blood is!\" But they can't bring on additional sodium, but they can shift water out of the cell to concentrate the intracellular solutes, thus making the cell smaller. This only lasts a couple of hours, and the kidneys will fix the serum osmolality and the brain cells will go right back to swelling, so prioritize rapid transport to definitive care.",
+    "rationale": "The patient is exhibiting signs of impending brain herniation (unilateral blown pupil and Cushing's Triad). Administering a bolus of hypertonic saline will temporarily reduce cerebral edema and buy the patient time to get to definitive care. The way this works is by using peer pressure in your favor. The brain cells like to match the tonicity of the vasculature around it and if we introduce a hypertonic solution (3% saline) the brain cells will say "Oooo, I want to be super salty just like the blood is!" But they can't bring on additional sodium, but they can shift water out of the cell to concentrate the intracellular solutes, thus making the cell smaller. This only lasts a couple of hours, and the kidneys will fix the serum osmolality and the brain cells will go right back to swelling, so prioritize rapid transport to definitive care.",
     "type": "single_select"
   },
   {
@@ -108,7 +108,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "I'll ask you to memorize very little in this book, but normal lab values are one of those things you just have to repeat over and over until you get to the point of sitting up in the middle of REM sleep and shout \"POTASSIUM: 3.5 TO 5.0!\" and scare the dog awake. The nurses reading this are going to want to slap me with this book, but care plans got us nurses really good at lab values. We know these numbers backwards, forward, upside down, and inside out because we were tortured, er, I mean...educated by writing care plans for every patient we saw in clinicals. The hundreds of repetitions we got in on seeing normal and abnormal labs seared these numbers in our heads like tattoos on our sulci.",
+    "rationale": "I'll ask you to memorize very little in this book, but normal lab values are one of those things you just have to repeat over and over until you get to the point of sitting up in the middle of REM sleep and shout "POTASSIUM: 3.5 TO 5.0!" and scare the dog awake. The nurses reading this are going to want to slap me with this book, but care plans got us nurses really good at lab values. We know these numbers backwards, forward, upside down, and inside out because we were tortured, er, I mean...educated by writing care plans for every patient we saw in clinicals. The hundreds of repetitions we got in on seeing normal and abnormal labs seared these numbers in our heads like tattoos on our sulci.",
     "type": "single_select"
   },
   {
@@ -140,7 +140,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The Swiss Cheese Model creates multiple layers of protection that by themselves are imperfect, but when they are combined, the theory is that the \"holes\" in the cheese will not align, thus creating full safety coverage.",
+    "rationale": "The Swiss Cheese Model creates multiple layers of protection that by themselves are imperfect, but when they are combined, the theory is that the "holes" in the cheese will not align, thus creating full safety coverage.",
     "type": "single_select"
   },
   {
@@ -172,13 +172,13 @@
     "correct": [
       "B"
     ],
-    "rationale": "Urinary tract infections classically present with confusion in the elderly. You may have been thrown off by the normal vital signs, but always consider what's \"normal\" vs. normal for THIS patient. This patient has a history of hypertension, so this is likely hypotensive for her. Why isn't she tachycardic? She is on a beta-blocker for her blood pressure, but that will also limit her ability to increase her heart rate, so she is unable to compensate with tachycardia. Suspect and further investigate for shock in non-tachycardic patients who are on a beta blocker when the rest of the clinical picture points to shock, even if it is weak evidence. This wasn't a question about urosepsis, this was a question to see if you can think outside the box to recognize sepsis when it is disguised by various circumstances.",
+    "rationale": "Urinary tract infections classically present with confusion in the elderly. You may have been thrown off by the normal vital signs, but always consider what's "normal" vs. normal for THIS patient. This patient has a history of hypertension, so this is likely hypotensive for her. Why isn't she tachycardic? She is on a beta-blocker for her blood pressure, but that will also limit her ability to increase her heart rate, so she is unable to compensate with tachycardia. Suspect and further investigate for shock in non-tachycardic patients who are on a beta blocker when the rest of the clinical picture points to shock, even if it is weak evidence. This wasn't a question about urosepsis, this was a question to see if you can think outside the box to recognize sepsis when it is disguised by various circumstances.",
     "type": "single_select"
   },
   {
     "id": "Q0012",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "The transport team is responding to a 911 call from a store owner for a man lounging on the sidewalk in front of her storefront. Police are on scene and speaking to the man whose speech is slurred, he has an empty bottle of hard liquor in his hand, and when he attempts to stand, he stumbles. He tells the crew \"I'm fine, I don't need to go to the hospital! They are mean to me there!\" The crew's priority is to:",
+    "stem": "The transport team is responding to a 911 call from a store owner for a man lounging on the sidewalk in front of her storefront. Police are on scene and speaking to the man whose speech is slurred, he has an empty bottle of hard liquor in his hand, and when he attempts to stand, he stumbles. He tells the crew "I'm fine, I don't need to go to the hospital! They are mean to me there!" The crew's priority is to:",
     "options": [
       "Respect his right to refuse care",
       "Administer an amp of D50",
@@ -306,7 +306,7 @@
   {
     "id": "Q0020",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "The pilot in command is briefing the medical crew at the start of the night shift at a rural base that does frequent flights into a large urban area. He states \"As we approach the city, I want one of you off night vision goggles.\" The medical crew knows this is because",
+    "stem": "The pilot in command is briefing the medical crew at the start of the night shift at a rural base that does frequent flights into a large urban area. He states "As we approach the city, I want one of you off night vision goggles." The medical crew knows this is because",
     "options": [
       "Not all light is visible through NVGs",
       "Fog will obstruct the view through the night vision goggles",
@@ -354,7 +354,7 @@
   {
     "id": "Q0023",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "The transport team arrives at the scene of a house fire in which the mother ran back into the house multiple times to get her children, pets, and a few family heirlooms out. She is refusing care and states \"I'm fine, I need to stay here, I can't go to the hospital!\" The paramedic should:",
+    "stem": "The transport team arrives at the scene of a house fire in which the mother ran back into the house multiple times to get her children, pets, and a few family heirlooms out. She is refusing care and states "I'm fine, I need to stay here, I can't go to the hospital!" The paramedic should:",
     "options": [
       "Prioritize assessing the children, as she is obviously not affected because she is able to speak clearly and in full sentences",
       "Allow her to sign a refusal as long as her vital signs are stable and she has no carbonaceous sputum",
@@ -508,7 +508,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Radios are not a secure line of communication and are often monitored by apps and the general public. Protected health information that could be used to identify the patient should never be communicated on radio channels. An acceptable radio report identifying the transfer using military alphabet might sound like \"We are en route with patient Kilo Sierra, are you aware of this patient?\" Of note, if calling report by satellite phone, it is acceptable to give the patient's identifiers, but not essential.",
+    "rationale": "Radios are not a secure line of communication and are often monitored by apps and the general public. Protected health information that could be used to identify the patient should never be communicated on radio channels. An acceptable radio report identifying the transfer using military alphabet might sound like "We are en route with patient Kilo Sierra, are you aware of this patient?" Of note, if calling report by satellite phone, it is acceptable to give the patient's identifiers, but not essential.",
     "type": "single_select"
   },
   {
@@ -578,7 +578,7 @@
   {
     "id": "Q0037",
     "category": "Resuscitation Principles",
-    "stem": "The transport crew arrives at the bedside of a patient on a non-rebreather at 15 liters per minute and vital signs of: HR 70 paced, NIBP 198/114, RR 40, SpO₂ 88%. The patient keeps saying \"I can't breathe!\" The transport nurse hears crackles on auscultation of lung sounds. The priority intervention is:",
+    "stem": "The transport crew arrives at the bedside of a patient on a non-rebreather at 15 liters per minute and vital signs of: HR 70 paced, NIBP 198/114, RR 40, SpO₂ 88%. The patient keeps saying "I can't breathe!" The transport nurse hears crackles on auscultation of lung sounds. The priority intervention is:",
     "options": [
       "Endotracheal intubation",
       "Administer an anxiolytic",
@@ -850,7 +850,7 @@
   {
     "id": "Q0054",
     "category": "Resuscitation Principles",
-    "stem": "The crew intubated a patient 15 minutes ago and had adequate feedback to confirm correct endotracheal tube placement. The ventilator is now alarming \"Low pressure.\" All of the following are a possible cause EXCEPT:",
+    "stem": "The crew intubated a patient 15 minutes ago and had adequate feedback to confirm correct endotracheal tube placement. The ventilator is now alarming "Low pressure." All of the following are a possible cause EXCEPT:",
     "options": [
       "The patient pulling a breath",
       "ETT cuff pressure <20cmH₂O",
@@ -892,7 +892,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "While you may have been tempted to choose the \"normal baseline bradycardia because he's a runner\" option, you should have been clued in by the red flag in the question about the crush injury. Due to cell lysis in crush-injured patients, there is a high incidence of hyperkalemia, which requires administration of calcium to stabilize the cardiac membrane until you can get the patient to the hospital for definitive care. Remember that potassium is the primary INTRACELLULAR ion, and if you bust open a bunch of cells (cell lysis), they'll spill their potassium out into the vasculature.",
+    "rationale": "While you may have been tempted to choose the "normal baseline bradycardia because he's a runner" option, you should have been clued in by the red flag in the question about the crush injury. Due to cell lysis in crush-injured patients, there is a high incidence of hyperkalemia, which requires administration of calcium to stabilize the cardiac membrane until you can get the patient to the hospital for definitive care. Remember that potassium is the primary INTRACELLULAR ion, and if you bust open a bunch of cells (cell lysis), they'll spill their potassium out into the vasculature.",
     "type": "single_select"
   },
   {
@@ -1004,7 +1004,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The patient in decompensated shock has lost the peripheral clamp down that is often present in early septic shock and now has low systemic vascular resistance (SVR, normal 800-1200), along with poor perfusion as evidenced by low cardiac output (CO, normal 4-8Lpm), cardiac index (CI, normal 2.5-4.0), and central venous pressure (CVP, or \"preload\" normal 2-8).",
+    "rationale": "The patient in decompensated shock has lost the peripheral clamp down that is often present in early septic shock and now has low systemic vascular resistance (SVR, normal 800-1200), along with poor perfusion as evidenced by low cardiac output (CO, normal 4-8Lpm), cardiac index (CI, normal 2.5-4.0), and central venous pressure (CVP, or "preload" normal 2-8).",
     "type": "single_select"
   },
   {
@@ -1260,7 +1260,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Caput medusae is Latin for \"head of Medusa\" and describes the Medusa-like appearance of the engorged veins that sprawl across the patient's abdomen in advanced liver disease due to prolonged portal hypertension. This should be an immediate red flag for the clinician to anticipate other dangers associated with liver failure such as esophageal varices (prevent nausea and vomiting which can cause esophageal rupture), bleeding (liver patients often present with coagulopathy), and hepatic encephalopathy (due to high ammonia levels).",
+    "rationale": "Caput medusae is Latin for "head of Medusa" and describes the Medusa-like appearance of the engorged veins that sprawl across the patient's abdomen in advanced liver disease due to prolonged portal hypertension. This should be an immediate red flag for the clinician to anticipate other dangers associated with liver failure such as esophageal varices (prevent nausea and vomiting which can cause esophageal rupture), bleeding (liver patients often present with coagulopathy), and hepatic encephalopathy (due to high ammonia levels).",
     "type": "single_select"
   },
   {
@@ -1548,7 +1548,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Per Neonatal Resuscitation Program, preterm infants under 35 weeks gestation should be ventilated with 21-30% FiO2 and full term infants should be ventilated using room air. This population requires ventilatory support, and not oxygenation help. Their primary problem is that they have never breathed before and they just need to be shown what to do. Typically, a couple minutes of assisted ventilations or some CPAP and they're like \"Oh yeah, fam. I see what I'm supposed to be doing,\" and they're good to go.",
+    "rationale": "Per Neonatal Resuscitation Program, preterm infants under 35 weeks gestation should be ventilated with 21-30% FiO2 and full term infants should be ventilated using room air. This population requires ventilatory support, and not oxygenation help. Their primary problem is that they have never breathed before and they just need to be shown what to do. Typically, a couple minutes of assisted ventilations or some CPAP and they're like "Oh yeah, fam. I see what I'm supposed to be doing," and they're good to go.",
     "type": "single_select"
   },
   {
@@ -1618,12 +1618,12 @@
   {
     "id": "Q0102",
     "category": "Trauma",
-    "stem": "The patient is an intoxicated driver with minor injuries that hit a car with a family of four in which all four occupants were killed. During the flight, one clinician says \"I'm going to start bilateral 14 gauge IVs.\" The other partner",
+    "stem": "The patient is an intoxicated driver with minor injuries that hit a car with a family of four in which all four occupants were killed. During the flight, one clinician says "I'm going to start bilateral 14 gauge IVs." The other partner",
     "options": [
       "Agrees with this approach, it is standard trauma care",
       "Disagrees and will discuss it with the partner during the post flight debrief",
       "Agrees with the plan of care, as this is an industry wide accepted practice given the circumstances",
-      "Disagrees and states \"a single 18 gauge IV will suffice for this patient.\""
+      "Disagrees and states "a single 18 gauge IV will suffice for this patient.""
     ],
     "correct": [
       "D"
@@ -1842,7 +1842,7 @@
   {
     "id": "Q0116",
     "category": "Resuscitation Principles",
-    "stem": "A 19-year-old patient was an unrestrained passenger in a vehicle that rolled. She had a loss of consciousness at the time of the accident and her boyfriend called EMS. A BLS crew arrived and the patient was alert and oriented, but the BLS crew requested an aircraft to transport to a level 1 trauma center based on mechanism. Upon the flight crew's arrival, the patient was lethargic but stated \"I don't need a helicopter, I'm fine. I just have a little headache and I want to go home.\" The flight crew should:",
+    "stem": "A 19-year-old patient was an unrestrained passenger in a vehicle that rolled. She had a loss of consciousness at the time of the accident and her boyfriend called EMS. A BLS crew arrived and the patient was alert and oriented, but the BLS crew requested an aircraft to transport to a level 1 trauma center based on mechanism. Upon the flight crew's arrival, the patient was lethargic but stated "I don't need a helicopter, I'm fine. I just have a little headache and I want to go home." The flight crew should:",
     "options": [
       "Discuss the severity of the patient’s injury with her and convince her to go to the hospital",
       "Get a signed refusal and let the patient go home with her boyfriend",
@@ -2290,7 +2290,7 @@
   {
     "id": "Q0144",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "The flight crew is returning to base after a patient transport and on descent the flight paramedic cries out in pain and says \"My ear! My ear! It hurts so bad!\" The pilot should",
+    "stem": "The flight crew is returning to base after a patient transport and on descent the flight paramedic cries out in pain and says "My ear! My ear! It hurts so bad!" The pilot should",
     "options": [
       "Isolate the med crew",
       "Climb to 10,000 MSL",
@@ -2354,7 +2354,7 @@
   {
     "id": "Q0148",
     "category": "Medical Emergencies",
-    "stem": "The flight crew responded to the LZ and assumed care of a patient from a BLS crew for transport to a stroke center 30 minutes away by rotor. The patient has a history of hypertension and states that she was sitting in the recliner watching TV when she suddenly developed severe head pain. The patient is alert, oriented, but refuses to open her eyes and repeats \"This is the worst headache I have ever had!\" The flight crew recognizes the likelihood of",
+    "stem": "The flight crew responded to the LZ and assumed care of a patient from a BLS crew for transport to a stroke center 30 minutes away by rotor. The patient has a history of hypertension and states that she was sitting in the recliner watching TV when she suddenly developed severe head pain. The patient is alert, oriented, but refuses to open her eyes and repeats "This is the worst headache I have ever had!" The flight crew recognizes the likelihood of",
     "options": [
       "New onset migraine",
       "A subdural hematoma",
@@ -3362,7 +3362,7 @@
   {
     "id": "Q0211",
     "category": "Medical Emergencies",
-    "stem": "The flight crew lands at a secure LZ to assume care of a 72-year-old male whose wife called 911 after the patient had become increasingly weaker over the last 24 hours. The crew performs an EKG and identifies peaked T-waves and bradycardia at a rate of 32, and the patient's blood pressure is 72/50. The patient takes atenolol and lisinopril \"for his heart,\" but is still active in working on the family farm, and his wife cannot identify a provocative factor in his illness. The flight crew suspects",
+    "stem": "The flight crew lands at a secure LZ to assume care of a 72-year-old male whose wife called 911 after the patient had become increasingly weaker over the last 24 hours. The crew performs an EKG and identifies peaked T-waves and bradycardia at a rate of 32, and the patient's blood pressure is 72/50. The patient takes atenolol and lisinopril "for his heart," but is still active in working on the family farm, and his wife cannot identify a provocative factor in his illness. The flight crew suspects",
     "options": [
       "ACE inhibitor-induced angioedema",
       "BRASH syndrome",
@@ -3458,7 +3458,7 @@
   {
     "id": "Q0217",
     "category": "Resuscitation Principles",
-    "stem": "A 5'1\" female is being mechanically ventilated with the following settings: SIMV 18, 450mL, FiO2 80%, PEEP 7. What is abnormal about these settings?",
+    "stem": "A 5'1" female is being mechanically ventilated with the following settings: SIMV 18, 450mL, FiO2 80%, PEEP 7. What is abnormal about these settings?",
     "options": [
       "The tidal volume is too high",
       "The PEEP is too high",
@@ -3618,7 +3618,7 @@
   {
     "id": "Q0227",
     "category": "Resuscitation Principles",
-    "stem": "For an adult male patient 6'0\" tall, the normal minute ventilation is",
+    "stem": "For an adult male patient 6'0" tall, the normal minute ventilation is",
     "options": [
       "7.0L",
       "7760mL",
@@ -3874,7 +3874,7 @@
   {
     "id": "Q0243",
     "category": "Medical Emergencies",
-    "stem": "The flight crew enters the ambulance to assume care of a 32-year-old female with altered mental status, tachycardia, hypotension, and fever. The EMT hands the medic the patient's driver's license and the paramedic notices that the patient has exophthalmos in her ID photo. The ground crew states that the patient woke up \"acting crazy\" today and was shattering dishes against the kitchen wall. The paramedic suspects",
+    "stem": "The flight crew enters the ambulance to assume care of a 32-year-old female with altered mental status, tachycardia, hypotension, and fever. The EMT hands the medic the patient's driver's license and the paramedic notices that the patient has exophthalmos in her ID photo. The ground crew states that the patient woke up "acting crazy" today and was shattering dishes against the kitchen wall. The paramedic suspects",
     "options": [
       "Acute psychosis",
       "Thyroid storm",
@@ -3970,7 +3970,7 @@
   {
     "id": "Q0249",
     "category": "Trauma",
-    "stem": "The multisystem trauma patient presents with open ankle dislocation with minimal bleeding, focal tenderness over the lower abdomen and hips, bruising and abrasions across the right chest, and the patient repeatedly states \"I can't breathe! I can't breathe!\" The patient is tachycardic, hypotensive, and hypoxic. Priority interventions are to",
+    "stem": "The multisystem trauma patient presents with open ankle dislocation with minimal bleeding, focal tenderness over the lower abdomen and hips, bruising and abrasions across the right chest, and the patient repeatedly states "I can't breathe! I can't breathe!" The patient is tachycardic, hypotensive, and hypoxic. Priority interventions are to",
     "options": [
       "Perform a finger thoracostomy and bind the pelvis",
       "Prepare to RSI",
@@ -4242,7 +4242,7 @@
   {
     "id": "Q0266",
     "category": "Special Populations",
-    "stem": "The patient is 36 weeks gestation and complains of bright red vaginal bleeding but denies trauma, contractions, or pain. The patient states that she has skipped some of her recent OB appointments but her doctor told her that her placenta is \"low lying.\" The paramedic suspects:",
+    "stem": "The patient is 36 weeks gestation and complains of bright red vaginal bleeding but denies trauma, contractions, or pain. The patient states that she has skipped some of her recent OB appointments but her doctor told her that her placenta is "low lying." The paramedic suspects:",
     "options": [
       "Placenta previa",
       "Placenta abruptio",
@@ -4274,7 +4274,7 @@
   {
     "id": "Q0268",
     "category": "Medical Emergencies",
-    "stem": "The flight crew assumes care of a 27-year-old male from the BLS crew that called for increasing shortness of air. The patient denies past medical history and endorses regular IV drug use, but states he hasn't injected heroin in 3 days because he's \"too sick to use.\" The patient is ill appearing, with extremity mottling, tachypnea, and extreme lethargy. The flight crew suspects:",
+    "stem": "The flight crew assumes care of a 27-year-old male from the BLS crew that called for increasing shortness of air. The patient denies past medical history and endorses regular IV drug use, but states he hasn't injected heroin in 3 days because he's "too sick to use." The patient is ill appearing, with extremity mottling, tachypnea, and extreme lethargy. The flight crew suspects:",
     "options": [
       "Encephalopathy",
       "Septic emboli",
@@ -4566,7 +4566,7 @@
     "options": [
       "Withhold details of the cause of death",
       "Keep the family members from seeing the body",
-      "Use clear language like \"died\" instead of \"passed away\"",
+      "Use clear language like "died" instead of "passed away"",
       "Leave as soon as safely possible to allow the family to begin grieving"
     ],
     "correct": [
@@ -4908,7 +4908,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Per the Joint Commission, 'Appropriate response for staff can be summarized as \"see something, say something.\" At the institutional level, appropriate responses include: establishing a just culture in which reporting drug diversion is encouraged, assessing harm to patients, consulting with public health officials when tampering with injectable medication is suspected, and prompt reporting to enforcement agencies.' Reference: https://www.jointcommission.org/-/media/tjc/newsletters/quick_safety_drug_diversion_-final2.pdf",
+    "rationale": "Per the Joint Commission, 'Appropriate response for staff can be summarized as "see something, say something." At the institutional level, appropriate responses include: establishing a just culture in which reporting drug diversion is encouraged, assessing harm to patients, consulting with public health officials when tampering with injectable medication is suspected, and prompt reporting to enforcement agencies.' Reference: https://www.jointcommission.org/-/media/tjc/newsletters/quick_safety_drug_diversion_-final2.pdf",
     "type": "single_select"
   },
   {
@@ -7060,15 +7060,15 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a flight transport, Nurse Alex is preparing to hand off patient John Doe, a 65-year-old male with acute respiratory distress, to the receiving hospital staff. Using the SBAR technique, which statement best represents the 'Assessment' component?",
     "options": [
-      "\"John Doe is a 65-year-old male experiencing acute respiratory distress. His oxygen saturation has been fluctuating between 85-90% despite high-flow oxygen therapy.\"",
-      "\"John Doe was admitted for acute respiratory distress and has been on high-flow oxygen therapy during transport. His medical history includes COPD and hypertension.\"",
-      "\"John Doe's condition is critical due to fluctuating oxygen saturation levels. Immediate intervention may be required upon arrival at your facility.\"",
-      "\"John Doe needs continuous monitoring of his oxygen saturation levels and may require mechanical ventilation if his condition does not stabilize.\""
+      ""John Doe is a 65-year-old male experiencing acute respiratory distress. His oxygen saturation has been fluctuating between 85-90% despite high-flow oxygen therapy."",
+      ""John Doe was admitted for acute respiratory distress and has been on high-flow oxygen therapy during transport. His medical history includes COPD and hypertension."",
+      ""John Doe's condition is critical due to fluctuating oxygen saturation levels. Immediate intervention may be required upon arrival at your facility."",
+      ""John Doe needs continuous monitoring of his oxygen saturation levels and may require mechanical ventilation if his condition does not stabilize.""
     ],
     "correct": [
       "A"
     ],
-    "rationale": "\"John Doe is a 65-year-old male experiencing acute respiratory distress. His oxygen saturation has been fluctuating between 85-90% despite high-flow oxygen therapy.\" accurately describes the 'Assessment' component by providing specific clinical observations about the patient's current condition (fluctuating oxygen saturation despite high-flow oxygen therapy). \"John Doe was admitted for acute respiratory distress and has been on high-flow oxygen therapy during transport. His medical history includes COPD and hypertension.\" focuses on 'Background' (past medical history). \"John Doe's condition is critical due to fluctuating oxygen saturation levels. Immediate intervention may be required upon arrival at your facility.\" blends 'Assessment' and 'Recommendation'. \"John Doe needs continuous monitoring of his oxygen saturation levels and may require mechanical ventilation if his condition does not stabilize.\" represents the 'Recommendation' component by suggesting future actions.",
+    "rationale": ""John Doe is a 65-year-old male experiencing acute respiratory distress. His oxygen saturation has been fluctuating between 85-90% despite high-flow oxygen therapy." accurately describes the 'Assessment' component by providing specific clinical observations about the patient's current condition (fluctuating oxygen saturation despite high-flow oxygen therapy). "John Doe was admitted for acute respiratory distress and has been on high-flow oxygen therapy during transport. His medical history includes COPD and hypertension." focuses on 'Background' (past medical history). "John Doe's condition is critical due to fluctuating oxygen saturation levels. Immediate intervention may be required upon arrival at your facility." blends 'Assessment' and 'Recommendation'. "John Doe needs continuous monitoring of his oxygen saturation levels and may require mechanical ventilation if his condition does not stabilize." represents the 'Recommendation' component by suggesting future actions.",
     "type": "single_select"
   },
   {
@@ -9493,14 +9493,14 @@
     "stem": "During an emergency air transport, 45-year-old patient John Doe, who sustained multiple fractures in a motor vehicle accident, reports severe pain despite receiving an initial dose of IV morphine. As a Flight Nurse, what is your most appropriate next step to assess and manage his pain? alternative analgesics. management. pain.",
     "options": [
       "Administer an additional dose of IV morphine immediately.",
-      "Reassess John\\'s pain using a validated pain scale and consider",
+      "Reassess John's pain using a validated pain scale and consider",
       "Increase the infusion rate of IV fluids to help with pain",
       "Apply ice packs to the fracture sites to reduce inflammation and"
     ],
     "correct": [
       "B"
     ],
-    "rationale": "The correct answer is Reassess John\\'s pain using a validated pain scale and consider alternative analgesics. In the context of resuscitation principles and patient preparation during flight transport, it is crucial first to reassess the patient\\'s pain level using a validated tool like the Numeric Rating Scale (NRS) or Visual Analog Scale (VAS). This allows for an accurate assessment of the current pain level. If the initial analgesic is ineffective, considering alternative analgesics or multimodal analgesia may provide better relief. Administer an additional dose of IV morphine immediately might seem logical but could lead to overdose without reassessment. Increase the infusion rate of IV fluids does not directly address pain management. Apply ice packs can be part of non-pharmacological interventions but is not sufficient alone in managing severe acute pain from multiple fractures. Hence, option B aligns best with contemporary practices and ensures safe and effective pain management.",
+    "rationale": "The correct answer is Reassess John's pain using a validated pain scale and consider alternative analgesics. In the context of resuscitation principles and patient preparation during flight transport, it is crucial first to reassess the patient's pain level using a validated tool like the Numeric Rating Scale (NRS) or Visual Analog Scale (VAS). This allows for an accurate assessment of the current pain level. If the initial analgesic is ineffective, considering alternative analgesics or multimodal analgesia may provide better relief. Administer an additional dose of IV morphine immediately might seem logical but could lead to overdose without reassessment. Increase the infusion rate of IV fluids does not directly address pain management. Apply ice packs can be part of non-pharmacological interventions but is not sufficient alone in managing severe acute pain from multiple fractures. Hence, option B aligns best with contemporary practices and ensures safe and effective pain management.",
     "type": "single_select"
   },
   {
@@ -9580,7 +9580,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The satellite phone is the most appropriate equipment for ensuring clear and reliable communication during a medical evacuation flight. Unlike VFR (Very High Frequency) and UHF (Ultra High Frequency) radios, which can be limited by range and obstacles such as terrain, a satellite phone provides global coverage by communicating directly with satellites orbiting the Earth. This ensures that Flight Nurse Sarah can maintain consistent communication with the receiving hospital regardless of her location. While cellular phones are useful in many situations, they rely on terrestrial cell towers, which may not be available during certain segments of the flight. VHF Radio: VHF radios are commonly used for line-of-sight communication but are limited by range and obstacles like buildings or mountains. UHF Radio: UHF radios offer better penetration through buildings than VHF but still face similar limitations regarding range and terrain. Cellular Phone: Cellular phones depend on terrestrial cell towers, which may not provide coverage during all parts of a flight, especially in remote areas. The satellite phone\\'s ability to bypass these limitations makes it the superior choice for ensuring uninterrupted communication during emergency medical evacuations.",
+    "rationale": "The satellite phone is the most appropriate equipment for ensuring clear and reliable communication during a medical evacuation flight. Unlike VFR (Very High Frequency) and UHF (Ultra High Frequency) radios, which can be limited by range and obstacles such as terrain, a satellite phone provides global coverage by communicating directly with satellites orbiting the Earth. This ensures that Flight Nurse Sarah can maintain consistent communication with the receiving hospital regardless of her location. While cellular phones are useful in many situations, they rely on terrestrial cell towers, which may not be available during certain segments of the flight. VHF Radio: VHF radios are commonly used for line-of-sight communication but are limited by range and obstacles like buildings or mountains. UHF Radio: UHF radios offer better penetration through buildings than VHF but still face similar limitations regarding range and terrain. Cellular Phone: Cellular phones depend on terrestrial cell towers, which may not provide coverage during all parts of a flight, especially in remote areas. The satellite phone's ability to bypass these limitations makes it the superior choice for ensuring uninterrupted communication during emergency medical evacuations.",
     "type": "single_select"
   },
   {
@@ -9628,7 +9628,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The patient\\'s presentation of hypotension, jugular venous distention, and muffled heart sounds is indicative of cardiac tamponade, which can occur with great vessel injuries. Immediate pericardiocentesis is crucial to relieve the pressure on the heart and improve cardiac output. Administer intravenous fluids rapidly is incorrect because while fluid resuscitation is important in trauma, it does not address the underlying issue of tamponade. Initiate positive pressure ventilation could potentially worsen the tamponade by increasing intrathoracic pressure. Obtain a chest X-ray would delay necessary treatment; imaging can be performed after stabilization.",
+    "rationale": "The patient's presentation of hypotension, jugular venous distention, and muffled heart sounds is indicative of cardiac tamponade, which can occur with great vessel injuries. Immediate pericardiocentesis is crucial to relieve the pressure on the heart and improve cardiac output. Administer intravenous fluids rapidly is incorrect because while fluid resuscitation is important in trauma, it does not address the underlying issue of tamponade. Initiate positive pressure ventilation could potentially worsen the tamponade by increasing intrathoracic pressure. Obtain a chest X-ray would delay necessary treatment; imaging can be performed after stabilization.",
     "type": "single_select"
   },
   {
@@ -9652,21 +9652,21 @@
     "category": "Trauma",
     "stem": "When conducting a risk assessment for a patient requiring aeromedical transport, which factor is most critical to evaluate in order to mitigate the risks associated with changes in altitude?",
     "options": [
-      "The patient\\'s current medication regimen",
-      "The patient\\'s baseline oxygen saturation levels",
-      "The patient\\'s medical history of barotrauma",
-      "The patient\\'s hydration status"
+      "The patient's current medication regimen",
+      "The patient's baseline oxygen saturation levels",
+      "The patient's medical history of barotrauma",
+      "The patient's hydration status"
     ],
     "correct": [
       "C"
     ],
-    "rationale": "Evaluating a patient\\'s medical history of barotrauma is crucial because changes in altitude can significantly affect air pressure and gas volumes within body cavities, potentially exacerbating any pre-existing conditions related to barotrauma. While options A, B, and D are important aspects of patient evaluation, they do not directly address the specific risks associated with altitude changes as effectively as option C. For instance, the current medication regimen (option A) may influence overall health but does not specifically target altitude-related complications. Baseline oxygen saturation levels (option B) are important for assessing respiratory function but do not account for pressure changes. Hydration status (option D) is essential for general well-being but is less critical in the context of altitude-induced barotrauma compared to option C.",
+    "rationale": "Evaluating a patient's medical history of barotrauma is crucial because changes in altitude can significantly affect air pressure and gas volumes within body cavities, potentially exacerbating any pre-existing conditions related to barotrauma. While options A, B, and D are important aspects of patient evaluation, they do not directly address the specific risks associated with altitude changes as effectively as option C. For instance, the current medication regimen (option A) may influence overall health but does not specifically target altitude-related complications. Baseline oxygen saturation levels (option B) are important for assessing respiratory function but do not account for pressure changes. Hydration status (option D) is essential for general well-being but is less critical in the context of altitude-induced barotrauma compared to option C.",
     "type": "single_select"
   },
   {
     "id": "Q0605",
     "category": "Medical Emergencies",
-    "stem": "During a medical evacuation flight, you are transporting John, a 65-year-old male patient with a known history of MRSA (Methicillin-resistant Staphylococcus Aureus) infection. He has developed signs of sepsis, including fever, hypotension, and tachycardia. As the flight nurse, what is the most appropriate initial action to manage John\\'s condition during the flight? closely. vancomycin. medical control.",
+    "stem": "During a medical evacuation flight, you are transporting John, a 65-year-old male patient with a known history of MRSA (Methicillin-resistant Staphylococcus Aureus) infection. He has developed signs of sepsis, including fever, hypotension, and tachycardia. As the flight nurse, what is the most appropriate initial action to manage John's condition during the flight? closely. vancomycin. medical control.",
     "options": [
       "Administer broad-spectrum antibiotics and monitor vital signs",
       "Initiate intravenous fluid resuscitation and administer",
@@ -9708,7 +9708,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The most appropriate initial action is to position Sarah in the left lateral decubitus position and administer oxygen. This helps improve placental perfusion by relieving pressure on the inferior vena cava and enhancing maternal-fetal oxygenation, which is critical in cases of severe abdominal pain and vaginal bleeding suggestive of placental abruption or other obstetric emergencies. Administer intravenous fluids and monitor vital signs is important but secondary; initial stabilization with positioning and oxygen takes precedence. Perform a cervical exam to check for dilation may exacerbate bleeding if there\\'s placenta previa or abruption. Prepare for immediate delivery in-flight might be necessary later but isn\\'t the first step without further assessment.",
+    "rationale": "The most appropriate initial action is to position Sarah in the left lateral decubitus position and administer oxygen. This helps improve placental perfusion by relieving pressure on the inferior vena cava and enhancing maternal-fetal oxygenation, which is critical in cases of severe abdominal pain and vaginal bleeding suggestive of placental abruption or other obstetric emergencies. Administer intravenous fluids and monitor vital signs is important but secondary; initial stabilization with positioning and oxygen takes precedence. Perform a cervical exam to check for dilation may exacerbate bleeding if there's placenta previa or abruption. Prepare for immediate delivery in-flight might be necessary later but isn't the first step without further assessment.",
     "type": "single_select"
   },
   {
@@ -9724,7 +9724,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Vibration during air medical transport can lead to increased cardiac workload due to the body\\'s compensatory mechanisms responding to continuous oscillatory motion. This response involves heightened sympathetic nervous system activity, which increases heart rate and myocardial oxygen demand. Increased intracranial pressure is incorrect because while vibration can influence ICP, it is not the most common effect compared to increased cardiac workload. Altered proprioception is plausible as vibration affects sensory perception, but its impact is less critical than cardiovascular changes in this context. Decreased oxygen saturation could occur due to other flight-related factors like hypoxia but is not directly linked to vibration as prominently as increased cardiac workload. The correct answer, D, focuses on the primary cardiovascular response elicited by sustained vibration exposure during transport.",
+    "rationale": "Vibration during air medical transport can lead to increased cardiac workload due to the body's compensatory mechanisms responding to continuous oscillatory motion. This response involves heightened sympathetic nervous system activity, which increases heart rate and myocardial oxygen demand. Increased intracranial pressure is incorrect because while vibration can influence ICP, it is not the most common effect compared to increased cardiac workload. Altered proprioception is plausible as vibration affects sensory perception, but its impact is less critical than cardiovascular changes in this context. Decreased oxygen saturation could occur due to other flight-related factors like hypoxia but is not directly linked to vibration as prominently as increased cardiac workload. The correct answer, D, focuses on the primary cardiovascular response elicited by sustained vibration exposure during transport.",
     "type": "single_select"
   },
   {
@@ -9772,7 +9772,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The patient\\'s symptoms and ECG findings indicate hypokalemia (low potassium levels). The most appropriate initial treatment is to administer intravenous potassium chloride to correct the potassium deficiency. Administer calcium gluconate is incorrect because calcium gluconate is typically used in hyperkalemia to stabilize the cardiac membrane but does not address hypokalemia. Administer sodium bicarbonate is also incorrect as it is used in cases of metabolic acidosis or also indicating hyperkalemia. Administer magnesium sulfate might seem plausible since magnesium can affect potassium levels; however, it is primarily used for hypomagnesemia or torsades de pointes. The correct treatment focuses directly on replenishing the deficient electrolyte, which in this case is potassium.",
+    "rationale": "The patient's symptoms and ECG findings indicate hypokalemia (low potassium levels). The most appropriate initial treatment is to administer intravenous potassium chloride to correct the potassium deficiency. Administer calcium gluconate is incorrect because calcium gluconate is typically used in hyperkalemia to stabilize the cardiac membrane but does not address hypokalemia. Administer sodium bicarbonate is also incorrect as it is used in cases of metabolic acidosis or also indicating hyperkalemia. Administer magnesium sulfate might seem plausible since magnesium can affect potassium levels; however, it is primarily used for hypomagnesemia or torsades de pointes. The correct treatment focuses directly on replenishing the deficient electrolyte, which in this case is potassium.",
     "type": "single_select"
   },
   {
@@ -9788,7 +9788,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The most critical intervention in breaking the cycle of the trauma triad is rapid infusion of warmed intravenous fluids. Hypothermia exacerbates both coagulopathy and acidosis; thus, addressing hypothermia by warming fluids can help stabilize the patient\\'s condition. Administration of sodium bicarbonate focuses on correcting acidosis but does not address hypothermia or coagulopathy directly. Immediate transfusion with fresh frozen plasma targets coagulopathy but does not address hypothermia or acidosis directly. Intubation and mechanical ventilation may be necessary for airway management but does not directly impact hypothermia or coagulopathy. Each option addresses one component of the trauma triad but fails to break the cycle as effectively as warming fluids, which impacts all three aspects indirectly by stabilizing core temperature.",
+    "rationale": "The most critical intervention in breaking the cycle of the trauma triad is rapid infusion of warmed intravenous fluids. Hypothermia exacerbates both coagulopathy and acidosis; thus, addressing hypothermia by warming fluids can help stabilize the patient's condition. Administration of sodium bicarbonate focuses on correcting acidosis but does not address hypothermia or coagulopathy directly. Immediate transfusion with fresh frozen plasma targets coagulopathy but does not address hypothermia or acidosis directly. Intubation and mechanical ventilation may be necessary for airway management but does not directly impact hypothermia or coagulopathy. Each option addresses one component of the trauma triad but fails to break the cycle as effectively as warming fluids, which impacts all three aspects indirectly by stabilizing core temperature.",
     "type": "single_select"
   },
   {
@@ -9810,17 +9810,17 @@
   {
     "id": "Q0614",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a helicopter transport of a critically ill patient named Mr. Smith, the flight nurse notices that the cabin temperature is rapidly decreasing due to an unexpected cold front. Mr. Smith is already hypothermic with a core body temperature of 35°C (95°F). What is the most appropriate immediate action the flight nurse should take to ensure Mr. Smith\\'s safety and survival? blankets. electric blanket. fluids.",
+    "stem": "During a helicopter transport of a critically ill patient named Mr. Smith, the flight nurse notices that the cabin temperature is rapidly decreasing due to an unexpected cold front. Mr. Smith is already hypothermic with a core body temperature of 35°C (95°F). What is the most appropriate immediate action the flight nurse should take to ensure Mr. Smith's safety and survival? blankets. electric blanket. fluids.",
     "options": [
       "Increase the cabin temperature and cover Mr. Smith with additional",
       "Administer warm intravenous fluids and cover Mr. Smith with an",
-      "Apply chemical heat packs to Mr. Smith\\'s torso and extremities.",
+      "Apply chemical heat packs to Mr. Smith's torso and extremities.",
       "Use forced-air warming devices along with warmed intravenous"
     ],
     "correct": [
       "D"
     ],
-    "rationale": "The correct answer is Use forced-air warming devices along with warmed intravenous fluids because this approach provides active external rewarming while also addressing internal rewarming needs through warmed IV fluids, which is crucial for severe hypothermia management during flight transport. Increase the cabin temperature and cover Mr. Smith with additional blankets is partially correct but insufficient alone for severe hypothermia. Administer warm intravenous fluids and cover Mr. Smith with an electric blanket addresses internal rewarming but lacks adequate external warming measures. Apply chemical heat packs to Mr. Smith\\'s torso and extremities provides localized external heat but is less effective than forced-air warming devices for whole-body rewarming. Use forced-air warming devices along with warmed intravenous combines both effective external (forced-air warming devices) and internal (warmed IV fluids) rewarming techniques, making it the most comprehensive approach according to contemporary hypothermia management guidelines in flight transport scenarios.",
+    "rationale": "The correct answer is Use forced-air warming devices along with warmed intravenous fluids because this approach provides active external rewarming while also addressing internal rewarming needs through warmed IV fluids, which is crucial for severe hypothermia management during flight transport. Increase the cabin temperature and cover Mr. Smith with additional blankets is partially correct but insufficient alone for severe hypothermia. Administer warm intravenous fluids and cover Mr. Smith with an electric blanket addresses internal rewarming but lacks adequate external warming measures. Apply chemical heat packs to Mr. Smith's torso and extremities provides localized external heat but is less effective than forced-air warming devices for whole-body rewarming. Use forced-air warming devices along with warmed intravenous combines both effective external (forced-air warming devices) and internal (warmed IV fluids) rewarming techniques, making it the most comprehensive approach according to contemporary hypothermia management guidelines in flight transport scenarios.",
     "type": "single_select"
   },
   {
@@ -9844,21 +9844,21 @@
     "category": "Medical Emergencies",
     "stem": "Which of the following laboratory findings is most indicative of Hyperosmolar Hyperglycemic Nonketotic Syndrome (HHNK)? acidosis",
     "options": [
-      "Blood glucose level \\>600 mg/dL with minimal ketonuria",
-      "Blood glucose level \\>250 mg/dL with significant ketonuria",
-      "Serum bicarbonate level \\<15 mEq/L with anion gap metabolic",
-      "Arterial pH \\<7.3 with serum ketones positive"
+      "Blood glucose level >600 mg/dL with minimal ketonuria",
+      "Blood glucose level >250 mg/dL with significant ketonuria",
+      "Serum bicarbonate level <15 mEq/L with anion gap metabolic",
+      "Arterial pH <7.3 with serum ketones positive"
     ],
     "correct": [
       "A"
     ],
-    "rationale": "HHNK is characterized by extremely high blood glucose levels (\\>600 mg/dL), significant dehydration, and minimal or absent ketonuria due to sufficient insulin levels preventing lipolysis and subsequent ketone production. Blood glucose level \\>250 mg/dL with significant ketonuria describes a scenario more typical of DKA, where there is significant ketonuria due to ketosis. Serum bicarbonate level \\<15 mEq/L with anion gap metabolic indicates metabolic acidosis and low bicarbonate levels, also more consistent with DKA rather than HHNK. Arterial pH \\<7.3 with serum ketones positive describes a low arterial pH with positive serum ketones, another hallmark of DKA but not HHNK. Thus, option A is correct as it accurately reflects the laboratory findings specific to HHNK.",
+    "rationale": "HHNK is characterized by extremely high blood glucose levels (>600 mg/dL), significant dehydration, and minimal or absent ketonuria due to sufficient insulin levels preventing lipolysis and subsequent ketone production. Blood glucose level >250 mg/dL with significant ketonuria describes a scenario more typical of DKA, where there is significant ketonuria due to ketosis. Serum bicarbonate level <15 mEq/L with anion gap metabolic indicates metabolic acidosis and low bicarbonate levels, also more consistent with DKA rather than HHNK. Arterial pH <7.3 with serum ketones positive describes a low arterial pH with positive serum ketones, another hallmark of DKA but not HHNK. Thus, option A is correct as it accurately reflects the laboratory findings specific to HHNK.",
     "type": "single_select"
   },
   {
     "id": "Q0617",
     "category": "Medical Emergencies",
-    "stem": "During the transport of a patient with severe hypothermia (core temperature \\<28°C), which of the following is the most appropriate initial rewarming method? materials peritoneal lavage the transport vehicle",
+    "stem": "During the transport of a patient with severe hypothermia (core temperature <28°C), which of the following is the most appropriate initial rewarming method? materials peritoneal lavage the transport vehicle",
     "options": [
       "Active external rewarming using warm blankets and heated IV fluids",
       "Passive external rewarming using warm blankets and insulating",
@@ -9868,29 +9868,29 @@
     "correct": [
       "C"
     ],
-    "rationale": "Active internal rewarming is crucial for patients with severe hypothermia (core temperature \\<28°C) as it rapidly increases core body temperature. Heated humidified oxygen and peritoneal lavage are effective methods for this purpose. Active external rewarming using warm blankets and heated IV fluids, while useful, is insufficient alone for severe cases. Passive external rewarming using warm blankets and insulating is more appropriate for mild hypothermia. Passive internal rewarming by increasing ambient temperature in does not provide adequate heat transfer to raise core body temperature quickly enough in severe cases. Therefore, C is the correct choice due to its effectiveness in severe hypothermia management.",
+    "rationale": "Active internal rewarming is crucial for patients with severe hypothermia (core temperature <28°C) as it rapidly increases core body temperature. Heated humidified oxygen and peritoneal lavage are effective methods for this purpose. Active external rewarming using warm blankets and heated IV fluids, while useful, is insufficient alone for severe cases. Passive external rewarming using warm blankets and insulating is more appropriate for mild hypothermia. Passive internal rewarming by increasing ambient temperature in does not provide adequate heat transfer to raise core body temperature quickly enough in severe cases. Therefore, C is the correct choice due to its effectiveness in severe hypothermia management.",
     "type": "single_select"
   },
   {
     "id": "Q0618",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a patient handoff from the flight transport team to the receiving hospital staff, which of the following actions is most critical to ensure continuity of care and patient safety for Mr. Smith, a trauma patient with multiple injuries? current status, treatment given during transport, and any changes in condition. history and treatment provided during transport without a verbal report. along with a brief summary of the patient\\'s condition. concerns and deferring detailed information until later.",
+    "stem": "During a patient handoff from the flight transport team to the receiving hospital staff, which of the following actions is most critical to ensure continuity of care and patient safety for Mr. Smith, a trauma patient with multiple injuries? current status, treatment given during transport, and any changes in condition. history and treatment provided during transport without a verbal report. along with a brief summary of the patient's condition. concerns and deferring detailed information until later.",
     "options": [
-      "Providing a detailed verbal report including the patient\\'s",
-      "Handing over written documentation of the patient\\'s medical",
+      "Providing a detailed verbal report including the patient's",
+      "Handing over written documentation of the patient's medical",
       "Ensuring that all equipment used during transport is handed over",
       "Conducting a quick verbal report focusing only on immediate"
     ],
     "correct": [
       "A"
     ],
-    "rationale": "Providing a detailed verbal report including the patient\\'s current status, treatment given during transport, and any changes in condition is crucial for ensuring continuity of care and patient safety. This comprehensive communication allows receiving staff to understand the full context of the patient\\'s situation, which is essential for making informed decisions about ongoing care. Handing over written documentation of the patient\\'s medical is incorrect because while written documentation is important, it should complement rather than replace a thorough verbal report. Ensuring that all equipment used during transport is handed over focuses on equipment handoff but lacks emphasis on comprehensive patient information. Conducting a quick verbal report focusing only on immediate suggests deferring detailed information, which can lead to gaps in care and potential errors.",
+    "rationale": "Providing a detailed verbal report including the patient's current status, treatment given during transport, and any changes in condition is crucial for ensuring continuity of care and patient safety. This comprehensive communication allows receiving staff to understand the full context of the patient's situation, which is essential for making informed decisions about ongoing care. Handing over written documentation of the patient's medical is incorrect because while written documentation is important, it should complement rather than replace a thorough verbal report. Ensuring that all equipment used during transport is handed over focuses on equipment handoff but lacks emphasis on comprehensive patient information. Conducting a quick verbal report focusing only on immediate suggests deferring detailed information, which can lead to gaps in care and potential errors.",
     "type": "single_select"
   },
   {
     "id": "Q0619",
     "category": "Resuscitation Principles",
-    "stem": "During a flight transport of a patient named John, who has sustained multiple traumatic injuries, you notice that he begins to exhibit signs of hypoxia. Considering the unique physiological stressors associated with flight transport, which intervention is most appropriate to address John\\'s condition?",
+    "stem": "During a flight transport of a patient named John, who has sustained multiple traumatic injuries, you notice that he begins to exhibit signs of hypoxia. Considering the unique physiological stressors associated with flight transport, which intervention is most appropriate to address John's condition?",
     "options": [
       "Increase the oxygen flow rate.",
       "Administer intravenous fluids.",
@@ -9916,7 +9916,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Providing a clear guideline on when to call for air medical transport (Provide a clear guideline on when to call for air medical) is crucial as it directly addresses the community\\'s need to understand specific scenarios requiring such services. While statistical data (Emphasize statistical data on survival rates with air transport.) and personal stories (Focus on personal stories and testimonials from past patients.) can be compelling, they do not offer actionable information. Highlighting advanced medical equipment (Highlight the advanced medical equipment available on flight), although important, does not help in decision-making during emergencies. Clear guidelines empower individuals with precise knowledge, ensuring timely and appropriate use of air medical services, which is essential for improving patient outcomes.",
+    "rationale": "Providing a clear guideline on when to call for air medical transport (Provide a clear guideline on when to call for air medical) is crucial as it directly addresses the community's need to understand specific scenarios requiring such services. While statistical data (Emphasize statistical data on survival rates with air transport.) and personal stories (Focus on personal stories and testimonials from past patients.) can be compelling, they do not offer actionable information. Highlighting advanced medical equipment (Highlight the advanced medical equipment available on flight), although important, does not help in decision-making during emergencies. Clear guidelines empower individuals with precise knowledge, ensuring timely and appropriate use of air medical services, which is essential for improving patient outcomes.",
     "type": "single_select"
   },
   {
@@ -9943,12 +9943,12 @@
       "A nurse administering medication without obtaining informed",
       "A nurse performing CPR on an unconscious patient without prior",
       "A nurse restraining a combative patient to prevent harm to",
-      "A nurse documenting a patient\\'s refusal of treatment in their"
+      "A nurse documenting a patient's refusal of treatment in their"
     ],
     "correct": [
       "A"
     ],
-    "rationale": "Battery in a clinical setting involves intentional and unauthorized physical contact with a patient. A nurse administering medication without obtaining informed is correct because administering medication without informed consent constitutes unauthorized physical contact. A nurse performing CPR on an unconscious patient without prior is incorrect because performing CPR on an unconscious patient typically falls under implied consent, especially in emergency situations. A nurse restraining a combative patient to prevent harm to is incorrect as restraining a combative patient can be legally justified under certain circumstances to prevent harm. A nurse documenting a patient\\'s refusal of treatment in their is incorrect as documenting refusal does not involve physical contact and thus does not constitute battery. Understanding these distinctions requires knowledge of legal principles and patient rights in healthcare settings.",
+    "rationale": "Battery in a clinical setting involves intentional and unauthorized physical contact with a patient. A nurse administering medication without obtaining informed is correct because administering medication without informed consent constitutes unauthorized physical contact. A nurse performing CPR on an unconscious patient without prior is incorrect because performing CPR on an unconscious patient typically falls under implied consent, especially in emergency situations. A nurse restraining a combative patient to prevent harm to is incorrect as restraining a combative patient can be legally justified under certain circumstances to prevent harm. A nurse documenting a patient's refusal of treatment in their is incorrect as documenting refusal does not involve physical contact and thus does not constitute battery. Understanding these distinctions requires knowledge of legal principles and patient rights in healthcare settings.",
     "type": "single_select"
   },
   {
@@ -9973,14 +9973,14 @@
     "stem": "In the context of trauma care for bariatric patients, which of the following is the most critical consideration for airway management during transport? mass breathing",
     "options": [
       "Using a larger endotracheal tube to accommodate increased tissue",
-      "Positioning the patient in a semi-Fowler\\'s position to optimize",
+      "Positioning the patient in a semi-Fowler's position to optimize",
       "Ensuring rapid sequence intubation (RSI) with pre-oxygenation",
       "Utilizing a video laryngoscope for improved visualization"
     ],
     "correct": [
       "C"
     ],
-    "rationale": "Ensuring rapid sequence intubation (RSI) with pre-oxygenation is critical in managing the airway of bariatric trauma patients due to their increased risk of hypoxia and difficult airway. Pre-oxygenation maximizes oxygen reserves and RSI minimizes aspiration risk while securing the airway quickly. Using a larger endotracheal tube to accommodate increased tissue is incorrect because while a larger endotracheal tube might sometimes be necessary, it is not the primary concern compared to ensuring effective pre-oxygenation and securing the airway rapidly. Positioning the patient in a semi-Fowler\\'s position to optimize is incorrect as positioning alone does not address the immediate need for securing an airway in an emergency situation. Utilizing a video laryngoscope for improved visualization, although helpful, is secondary to ensuring proper pre-oxygenation and RSI in terms of priority for airway management. Ensuring RSI with pre-oxygenation directly addresses both hypoxia prevention and rapid securement of the airway, making it the most critical consideration.",
+    "rationale": "Ensuring rapid sequence intubation (RSI) with pre-oxygenation is critical in managing the airway of bariatric trauma patients due to their increased risk of hypoxia and difficult airway. Pre-oxygenation maximizes oxygen reserves and RSI minimizes aspiration risk while securing the airway quickly. Using a larger endotracheal tube to accommodate increased tissue is incorrect because while a larger endotracheal tube might sometimes be necessary, it is not the primary concern compared to ensuring effective pre-oxygenation and securing the airway rapidly. Positioning the patient in a semi-Fowler's position to optimize is incorrect as positioning alone does not address the immediate need for securing an airway in an emergency situation. Utilizing a video laryngoscope for improved visualization, although helpful, is secondary to ensuring proper pre-oxygenation and RSI in terms of priority for airway management. Ensuring RSI with pre-oxygenation directly addresses both hypoxia prevention and rapid securement of the airway, making it the most critical consideration.",
     "type": "single_select"
   },
   {
@@ -9996,7 +9996,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The patient\\'s symptoms and lab findings are indicative of metabolic acidosis with an elevated anion gap. Kussmaul respirations are a compensatory mechanism for metabolic acidosis, where the body attempts to blow off excess CO2 to counteract the decreased pH. An anion gap greater than 12 mEq/L suggests the presence of unmeasured acids in the blood, commonly seen in conditions like diabetic ketoacidosis or lactic acidosis. Respiratory Acidosis is incorrect because respiratory acidosis is characterized by hypoventilation leading to increased CO2 levels, not hyperventilation as seen here. Metabolic Alkalosis is incorrect as it involves elevated bicarbonate levels and typically results in hypoventilation as a compensatory mechanism. Non-Anion Gap Metabolic Acidosis is incorrect because non-anion gap metabolic acidosis would present with a normal anion gap (8-12 mEq/L), not an elevated one.",
+    "rationale": "The patient's symptoms and lab findings are indicative of metabolic acidosis with an elevated anion gap. Kussmaul respirations are a compensatory mechanism for metabolic acidosis, where the body attempts to blow off excess CO2 to counteract the decreased pH. An anion gap greater than 12 mEq/L suggests the presence of unmeasured acids in the blood, commonly seen in conditions like diabetic ketoacidosis or lactic acidosis. Respiratory Acidosis is incorrect because respiratory acidosis is characterized by hypoventilation leading to increased CO2 levels, not hyperventilation as seen here. Metabolic Alkalosis is incorrect as it involves elevated bicarbonate levels and typically results in hypoventilation as a compensatory mechanism. Non-Anion Gap Metabolic Acidosis is incorrect because non-anion gap metabolic acidosis would present with a normal anion gap (8-12 mEq/L), not an elevated one.",
     "type": "single_select"
   },
   {
@@ -10098,7 +10098,7 @@
   {
     "id": "Q0632",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a patient transport, Flight Nurse Emily encounters a situation where the patient, Mr. Johnson, becomes unresponsive and requires immediate intervention. Emily performs an emergency procedure without obtaining prior consent from the patient or family members. Which legal principle justifies Emily\\'s actions in this scenario?",
+    "stem": "During a patient transport, Flight Nurse Emily encounters a situation where the patient, Mr. Johnson, becomes unresponsive and requires immediate intervention. Emily performs an emergency procedure without obtaining prior consent from the patient or family members. Which legal principle justifies Emily's actions in this scenario?",
     "options": [
       "Implied Consent",
       "Informed Consent",
@@ -10124,7 +10124,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Hyperkalemia is characterized by elevated potassium levels in the blood, which can lead to severe muscle weakness and characteristic ECG changes such as peaked T waves. Hypokalemia also affects muscle function but typically presents with flattened T waves or U waves on an ECG. Hypercalcemia can cause muscle weakness but does not produce peaked T waves; it usually presents with shortened QT intervals. Hypocalcemia leads to prolonged QT intervals and neuromuscular irritability (e.g., tetany), not peaked T waves. Therefore, hyperkalemia is the most accurate diagnosis based on the patient\\'s symptoms and ECG findings.",
+    "rationale": "Hyperkalemia is characterized by elevated potassium levels in the blood, which can lead to severe muscle weakness and characteristic ECG changes such as peaked T waves. Hypokalemia also affects muscle function but typically presents with flattened T waves or U waves on an ECG. Hypercalcemia can cause muscle weakness but does not produce peaked T waves; it usually presents with shortened QT intervals. Hypocalcemia leads to prolonged QT intervals and neuromuscular irritability (e.g., tetany), not peaked T waves. Therefore, hyperkalemia is the most accurate diagnosis based on the patient's symptoms and ECG findings.",
     "type": "single_select"
   },
   {
@@ -10146,7 +10146,7 @@
   {
     "id": "Q0635",
     "category": "Resuscitation Principles",
-    "stem": "During a flight, you are called to assist with a 45-year-old male patient, Mr. Johnson, who has collapsed and is unresponsive. Upon assessment, you find that he is not breathing adequately and has an obstructed airway. What is the most appropriate initial intervention for managing Mr. Johnson\\'s airway?",
+    "stem": "During a flight, you are called to assist with a 45-year-old male patient, Mr. Johnson, who has collapsed and is unresponsive. Upon assessment, you find that he is not breathing adequately and has an obstructed airway. What is the most appropriate initial intervention for managing Mr. Johnson's airway?",
     "options": [
       "Perform a needle cricothyrotomy.",
       "Use a bag-valve mask (BVM) with supplemental oxygen.",
@@ -10156,13 +10156,13 @@
     "correct": [
       "B"
     ],
-    "rationale": "In this scenario, using a bag-valve mask (BVM) with supplemental oxygen is the most appropriate initial intervention for managing Mr. Johnson\\'s airway. This provides immediate ventilation and oxygenation while preparing for more definitive airway management if needed. Perform a needle cricothyrotomy: Although this is an advanced airway technique, it is typically reserved for situations where other methods have failed or are not possible. Insert an oropharyngeal airway: This can help maintain an open airway but does not address ventilation and oxygenation needs directly. Initiate endotracheal intubation: While definitive, it requires more time and skill; immediate ventilation with BVM is often prioritized initially in emergency settings. Using BVM provides rapid intervention to ensure adequate oxygenation while other advanced procedures are being prepared.",
+    "rationale": "In this scenario, using a bag-valve mask (BVM) with supplemental oxygen is the most appropriate initial intervention for managing Mr. Johnson's airway. This provides immediate ventilation and oxygenation while preparing for more definitive airway management if needed. Perform a needle cricothyrotomy: Although this is an advanced airway technique, it is typically reserved for situations where other methods have failed or are not possible. Insert an oropharyngeal airway: This can help maintain an open airway but does not address ventilation and oxygenation needs directly. Initiate endotracheal intubation: While definitive, it requires more time and skill; immediate ventilation with BVM is often prioritized initially in emergency settings. Using BVM provides rapid intervention to ensure adequate oxygenation while other advanced procedures are being prepared.",
     "type": "single_select"
   },
   {
     "id": "Q0636",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport, Nurse Sarah administers medication to an unconscious patient, Mr. Johnson, without obtaining consent from his family or legal guardian. Which of the following actions could legally constitute battery? unconscious. patient\\'s family. care. patient\\'s critical condition.",
+    "stem": "During a flight transport, Nurse Sarah administers medication to an unconscious patient, Mr. Johnson, without obtaining consent from his family or legal guardian. Which of the following actions could legally constitute battery? unconscious. patient's family. care. patient's critical condition.",
     "options": [
       "Administering medication without consent when the patient is",
       "Administering medication after obtaining verbal consent from the",
@@ -10172,7 +10172,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Battery in a medical context refers to any unauthorized physical contact or treatment that occurs without the patient\\'s consent. In this scenario, administering medication to an unconscious patient without any form of consent constitutes battery because there was no explicit or implied permission granted. Administering medication after obtaining verbal consent from the is incorrect because verbal consent from a family member typically provides legal protection against battery claims. Administering medication as per standing orders for emergency is also incorrect as administering medication according to standing orders for emergency care usually implies prior authorization and does not constitute battery. Administering medication with implied consent due to the is incorrect because implied consent in critical situations generally protects healthcare providers from battery claims, provided that immediate action is necessary for the patient\\'s survival. By analyzing each option, we see that options B, C, and D involve some form of consent or standard procedure that legally justifies administering treatment, whereas option A lacks any form of authorization, making it a clear instance of battery.",
+    "rationale": "Battery in a medical context refers to any unauthorized physical contact or treatment that occurs without the patient's consent. In this scenario, administering medication to an unconscious patient without any form of consent constitutes battery because there was no explicit or implied permission granted. Administering medication after obtaining verbal consent from the is incorrect because verbal consent from a family member typically provides legal protection against battery claims. Administering medication as per standing orders for emergency is also incorrect as administering medication according to standing orders for emergency care usually implies prior authorization and does not constitute battery. Administering medication with implied consent due to the is incorrect because implied consent in critical situations generally protects healthcare providers from battery claims, provided that immediate action is necessary for the patient's survival. By analyzing each option, we see that options B, C, and D involve some form of consent or standard procedure that legally justifies administering treatment, whereas option A lacks any form of authorization, making it a clear instance of battery.",
     "type": "single_select"
   },
   {
@@ -10181,30 +10181,30 @@
     "stem": "What is the most appropriate initial step in managing a bariatric patient with suspected obstructive sleep apnea (OSA) during an emergency flight?",
     "options": [
       "Administering high-flow oxygen via non-rebreather mask.",
-      "Positioning the patient in a semi-Fowler\\'s position.",
+      "Positioning the patient in a semi-Fowler's position.",
       "Performing rapid sequence intubation (RSI).",
       "Applying continuous positive airway pressure (CPAP)."
     ],
     "correct": [
       "B"
     ],
-    "rationale": "The semi-Fowler\\'s position helps to alleviate upper airway obstruction by using gravity to reduce pressure on the diaphragm and improve respiratory mechanics, which is crucial in managing suspected OSA in bariatric patients. Administering high-flow oxygen via non-rebreather mask: While this may improve oxygenation temporarily, it does not address the underlying issue of airway obstruction. Performing rapid sequence intubation: This is more invasive and should be reserved for cases where non-invasive methods fail or if there is imminent respiratory failure. Applying CPAP: Though CPAP is effective for OSA, it requires proper fitting and monitoring, which might not be immediately feasible during an emergency flight.",
+    "rationale": "The semi-Fowler's position helps to alleviate upper airway obstruction by using gravity to reduce pressure on the diaphragm and improve respiratory mechanics, which is crucial in managing suspected OSA in bariatric patients. Administering high-flow oxygen via non-rebreather mask: While this may improve oxygenation temporarily, it does not address the underlying issue of airway obstruction. Performing rapid sequence intubation: This is more invasive and should be reserved for cases where non-invasive methods fail or if there is imminent respiratory failure. Applying CPAP: Though CPAP is effective for OSA, it requires proper fitting and monitoring, which might not be immediately feasible during an emergency flight.",
     "type": "single_select"
   },
   {
     "id": "Q0638",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a patient handoff in a flight transport scenario, Nurse Alex needs to communicate effectively using the SBAR technique. The patient, Mr. Johnson, is being transferred for emergency surgery due to a ruptured abdominal aneurysm. Which of the following statements best represents the \\'Assessment\\' component of SBAR? and diabetes.\\' is exhibiting signs of shock.\\' pain.\\'",
+    "stem": "During a patient handoff in a flight transport scenario, Nurse Alex needs to communicate effectively using the SBAR technique. The patient, Mr. Johnson, is being transferred for emergency surgery due to a ruptured abdominal aneurysm. Which of the following statements best represents the 'Assessment' component of SBAR? and diabetes.' is exhibiting signs of shock.' pain.'",
     "options": [
-      "\\'Mr. Johnson is a 65-year-old male with a history of hypertension",
-      "\\'Mr. Johnson\\'s blood pressure has dropped significantly, and he",
-      "\\'We need to ensure that surgical team is ready upon arrival.\\'",
-      "\\'Mr. Johnson was admitted two hours ago with severe abdominal"
+      "'Mr. Johnson is a 65-year-old male with a history of hypertension",
+      "'Mr. Johnson's blood pressure has dropped significantly, and he",
+      "'We need to ensure that surgical team is ready upon arrival.'",
+      "'Mr. Johnson was admitted two hours ago with severe abdominal"
     ],
     "correct": [
       "B"
     ],
-    "rationale": "The \\'Assessment\\' component of SBAR involves providing an analysis or interpretation of the current situation based on clinical findings. \\'Mr. Johnson\\'s blood pressure has dropped significantly, and he correctly identifies the patient\\'s current critical condition by highlighting significant changes in vital signs and symptoms indicative of shock. \\'Mr. Johnson is a 65-year-old male with a history of hypertension represents the \\'Background\\' component as it provides relevant medical history. \\'We need to ensure that surgical team is ready upon arrival.\\' represents the \\'Recommendation\\' component by suggesting an action plan. \\'Mr. Johnson was admitted two hours ago with severe abdominal also falls under \\'Background,\\' detailing recent events leading up to the current situation. The key difference lies in accurately identifying and interpreting clinical data pertinent to immediate patient care needs, which is critical for effective communication during patient handoff in high-stakes environments like flight transport nursing.",
+    "rationale": "The 'Assessment' component of SBAR involves providing an analysis or interpretation of the current situation based on clinical findings. 'Mr. Johnson's blood pressure has dropped significantly, and he correctly identifies the patient's current critical condition by highlighting significant changes in vital signs and symptoms indicative of shock. 'Mr. Johnson is a 65-year-old male with a history of hypertension represents the 'Background' component as it provides relevant medical history. 'We need to ensure that surgical team is ready upon arrival.' represents the 'Recommendation' component by suggesting an action plan. 'Mr. Johnson was admitted two hours ago with severe abdominal also falls under 'Background,' detailing recent events leading up to the current situation. The key difference lies in accurately identifying and interpreting clinical data pertinent to immediate patient care needs, which is critical for effective communication during patient handoff in high-stakes environments like flight transport nursing.",
     "type": "single_select"
   },
   {
@@ -10322,7 +10322,7 @@
   {
     "id": "Q0646",
     "category": "Trauma",
-    "stem": "During a high-altitude medical evacuation, Flight Nurse Jessica is monitoring a patient named John who has sustained multiple traumatic injuries. Despite supplemental oxygen administration, John\\'s oxygen saturation remains low. What is the most critical factor affecting his oxygen delivery in this scenario?",
+    "stem": "During a high-altitude medical evacuation, Flight Nurse Jessica is monitoring a patient named John who has sustained multiple traumatic injuries. Despite supplemental oxygen administration, John's oxygen saturation remains low. What is the most critical factor affecting his oxygen delivery in this scenario?",
     "options": [
       "Cardiac output",
       "Hemoglobin concentration",
@@ -10332,7 +10332,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Cardiac output is the most critical factor affecting oxygen delivery in this scenario because it determines the volume of blood---and thus the amount of oxygen---that reaches tissues per minute. While hemoglobin concentration and arterial oxygen saturation are important components, they are secondary to cardiac output in ensuring adequate tissue perfusion. Respiratory rate, although relevant to ventilation, does not directly impact the volume of blood being circulated. Cardiac output: Correct because it directly influences how much oxygenated blood is delivered to tissues. Hemoglobin concentration: Incorrect but tricky because while hemoglobin is crucial for carrying oxygen, its impact is secondary if cardiac output is compromised. Arterial oxygen saturation: Incorrect since SaO2 measures how well hemoglobin is saturated with oxygen; however, without sufficient cardiac output, high SaO2 alone won\\'t ensure adequate tissue perfusion. Respiratory rate: Incorrect as it primarily affects ventilation rather than directly the amount of blood delivered to tissues.",
+    "rationale": "Cardiac output is the most critical factor affecting oxygen delivery in this scenario because it determines the volume of blood---and thus the amount of oxygen---that reaches tissues per minute. While hemoglobin concentration and arterial oxygen saturation are important components, they are secondary to cardiac output in ensuring adequate tissue perfusion. Respiratory rate, although relevant to ventilation, does not directly impact the volume of blood being circulated. Cardiac output: Correct because it directly influences how much oxygenated blood is delivered to tissues. Hemoglobin concentration: Incorrect but tricky because while hemoglobin is crucial for carrying oxygen, its impact is secondary if cardiac output is compromised. Arterial oxygen saturation: Incorrect since SaO2 measures how well hemoglobin is saturated with oxygen; however, without sufficient cardiac output, high SaO2 alone won't ensure adequate tissue perfusion. Respiratory rate: Incorrect as it primarily affects ventilation rather than directly the amount of blood delivered to tissues.",
     "type": "single_select"
   },
   {
@@ -10370,7 +10370,7 @@
   {
     "id": "Q0649",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "A 45-year-old male patient named John is being transported via air ambulance after being found unconscious at home. Upon assessment, John presents with warm, flushed skin, hypotension, and a rapid heart rate. His medical history includes a recent upper respiratory infection. As the flight nurse, what is the most appropriate initial intervention for John\\'s condition?",
+    "stem": "A 45-year-old male patient named John is being transported via air ambulance after being found unconscious at home. Upon assessment, John presents with warm, flushed skin, hypotension, and a rapid heart rate. His medical history includes a recent upper respiratory infection. As the flight nurse, what is the most appropriate initial intervention for John's condition?",
     "options": [
       "Administer intravenous fluids and start norepinephrine infusion.",
       "Administer intravenous fluids and start dopamine infusion.",
@@ -10396,7 +10396,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Under EMTALA, one of the critical responsibilities during an inter-facility transfer is to ensure that the receiving facility has both available space and that qualified personnel to provide necessary care for the patient. This ensures continuity of care and compliance with federal regulations. Ensure that the patient receives a complete medical screening examination before transfer. is incorrect because while an initial medical screening examination is required under EMTALA, it must be completed before considering a transfer. Confirm that the transferring hospital has provided all necessary stabilizing treatment before transfer. is misleading because if the transferring hospital lacks stabilizing capabilities, they are not required to stabilize but must ensure appropriate transfer conditions are met. Obtain informed consent from John Doe for the transfer to another facility. is partially correct as obtaining informed consent is important; however, it does not address EMTALA\\'s specific requirements for ensuring proper transfer conditions.",
+    "rationale": "Under EMTALA, one of the critical responsibilities during an inter-facility transfer is to ensure that the receiving facility has both available space and that qualified personnel to provide necessary care for the patient. This ensures continuity of care and compliance with federal regulations. Ensure that the patient receives a complete medical screening examination before transfer. is incorrect because while an initial medical screening examination is required under EMTALA, it must be completed before considering a transfer. Confirm that the transferring hospital has provided all necessary stabilizing treatment before transfer. is misleading because if the transferring hospital lacks stabilizing capabilities, they are not required to stabilize but must ensure appropriate transfer conditions are met. Obtain informed consent from John Doe for the transfer to another facility. is partially correct as obtaining informed consent is important; however, it does not address EMTALA's specific requirements for ensuring proper transfer conditions.",
     "type": "single_select"
   },
   {
@@ -10460,13 +10460,13 @@
     "correct": [
       "B"
     ],
-    "rationale": "In trauma patients presenting with left upper quadrant abdominal pain and signs of hypovolemic shock, splenic rupture is highly suspected due to its anatomical location and vascularity. The spleen is particularly vulnerable in blunt abdominal trauma, and free fluid on a FAST exam strongly suggests intra-abdominal bleeding from a solid organ like the spleen. Liver laceration: While liver injuries are common in blunt trauma, they typically present with right upper quadrant pain. Kidney contusion: Kidney injuries usually present with flank pain and hematuria rather than left upper quadrant pain. Pancreatic injury: Pancreatic injuries are less common and often present with epigastric pain radiating to the back. Thus, although all options involve solid organs that can bleed into the abdomen, splenic rupture aligns best with John\\'s specific clinical presentation.",
+    "rationale": "In trauma patients presenting with left upper quadrant abdominal pain and signs of hypovolemic shock, splenic rupture is highly suspected due to its anatomical location and vascularity. The spleen is particularly vulnerable in blunt abdominal trauma, and free fluid on a FAST exam strongly suggests intra-abdominal bleeding from a solid organ like the spleen. Liver laceration: While liver injuries are common in blunt trauma, they typically present with right upper quadrant pain. Kidney contusion: Kidney injuries usually present with flank pain and hematuria rather than left upper quadrant pain. Pancreatic injury: Pancreatic injuries are less common and often present with epigastric pain radiating to the back. Thus, although all options involve solid organs that can bleed into the abdomen, splenic rupture aligns best with John's specific clinical presentation.",
     "type": "single_select"
   },
   {
     "id": "Q0655",
     "category": "Trauma",
-    "stem": "John, a 35-year-old male construction worker, fell from a height of approximately 20 feet while working on scaffolding. Upon arrival at the emergency department, he is conscious but complains of severe back pain and numbness in his legs. Which mechanism of injury is most likely responsible for John\\'s symptoms?",
+    "stem": "John, a 35-year-old male construction worker, fell from a height of approximately 20 feet while working on scaffolding. Upon arrival at the emergency department, he is conscious but complains of severe back pain and numbness in his legs. Which mechanism of injury is most likely responsible for John's symptoms?",
     "options": [
       "Axial loading",
       "Hyperflexion",
@@ -10476,7 +10476,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Axial loading is the correct answer because it occurs when force is applied along the axis of the spine, such as in falls from heights where the individual lands on their feet or buttocks. This mechanism can cause compression fractures or burst fractures leading to spinal cord injury, which explains John\\'s back pain and numbness in his legs. Hyperflexion involves excessive forward bending and is more commonly associated with head-on collisions rather than falls. Hyperextension involves excessive backward bending and is typically seen in rear-end collisions or whiplash injuries. Lateral bending refers to side-to-side motion, which may cause different types of spinal injuries but is less likely given the described fall mechanism.",
+    "rationale": "Axial loading is the correct answer because it occurs when force is applied along the axis of the spine, such as in falls from heights where the individual lands on their feet or buttocks. This mechanism can cause compression fractures or burst fractures leading to spinal cord injury, which explains John's back pain and numbness in his legs. Hyperflexion involves excessive forward bending and is more commonly associated with head-on collisions rather than falls. Hyperextension involves excessive backward bending and is typically seen in rear-end collisions or whiplash injuries. Lateral bending refers to side-to-side motion, which may cause different types of spinal injuries but is less likely given the described fall mechanism.",
     "type": "single_select"
   },
   {
@@ -10492,7 +10492,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "In mass casualty incidents, prioritization follows the principles of triage where life-threatening conditions that can be rapidly treated are addressed first. John\\'s compromised airway and severe respiratory distress pose an immediate threat to life and require urgent intervention. While Mary\\'s open femur fracture is serious, her condition is not immediately life-threatening if she is conscious and responsive. Kevin\\'s minor abrasions do not necessitate immediate transport. All patients should be transported simultaneously is impractical in a mass casualty scenario due to limited resources. Mary with an open femur fracture: Although serious, this injury does not take precedence over an airway compromise. Kevin with minor abrasions: This option tests understanding that less critical injuries are deprioritized. All patients should be transported simultaneously: This option challenges the candidate\\'s grasp of practical resource limitations in mass casualty situations.",
+    "rationale": "In mass casualty incidents, prioritization follows the principles of triage where life-threatening conditions that can be rapidly treated are addressed first. John's compromised airway and severe respiratory distress pose an immediate threat to life and require urgent intervention. While Mary's open femur fracture is serious, her condition is not immediately life-threatening if she is conscious and responsive. Kevin's minor abrasions do not necessitate immediate transport. All patients should be transported simultaneously is impractical in a mass casualty scenario due to limited resources. Mary with an open femur fracture: Although serious, this injury does not take precedence over an airway compromise. Kevin with minor abrasions: This option tests understanding that less critical injuries are deprioritized. All patients should be transported simultaneously: This option challenges the candidate's grasp of practical resource limitations in mass casualty situations.",
     "type": "single_select"
   },
   {
@@ -10524,7 +10524,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "High-intensity noise exposure during air medical transport can lead to increased heart rate and blood pressure due to the body\\'s stress response. Noise acts as a stressor that activates the sympathetic nervous system, leading to these physiological changes. Improved oxygen saturation levels is incorrect because noise does not directly improve oxygenation; in fact, it can cause respiratory distress. Enhanced cognitive function is incorrect as noise generally impairs cognitive functions rather than enhancing them. Decreased stress hormone levels is incorrect because high-intensity noise typically increases stress hormones like cortisol, not decreases them.",
+    "rationale": "High-intensity noise exposure during air medical transport can lead to increased heart rate and blood pressure due to the body's stress response. Noise acts as a stressor that activates the sympathetic nervous system, leading to these physiological changes. Improved oxygen saturation levels is incorrect because noise does not directly improve oxygenation; in fact, it can cause respiratory distress. Enhanced cognitive function is incorrect as noise generally impairs cognitive functions rather than enhancing them. Decreased stress hormone levels is incorrect because high-intensity noise typically increases stress hormones like cortisol, not decreases them.",
     "type": "single_select"
   },
   {
@@ -10551,12 +10551,12 @@
       "Documenting observations thoroughly and discussing concerns with",
       "Immediately contacting child protective services (CPS) to ensure",
       "Waiting until the flight is over to gather more information before",
-      "Discussing concerns with the patient\\'s family members to clarify"
+      "Discussing concerns with the patient's family members to clarify"
     ],
     "correct": [
       "B"
     ],
-    "rationale": "In cases of suspected neglect, immediate reporting to child protective services (CPS) is crucial. Immediately contacting child protective services (CPS) to ensure is correct because it ensures timely intervention, which can be critical for the safety and well-being of the pediatric patient. Documenting observations thoroughly and discussing concerns with, while important for documentation purposes, delays necessary action. Waiting until the flight is over to gather more information before also delays intervention by waiting until after the flight. Discussing concerns with the patient\\'s family members to clarify involves discussing concerns with family members, which could compromise the safety of the child if neglect is occurring. Flight nurses must prioritize immediate reporting to protect vulnerable patients as mandated by legal and professional standards.",
+    "rationale": "In cases of suspected neglect, immediate reporting to child protective services (CPS) is crucial. Immediately contacting child protective services (CPS) to ensure is correct because it ensures timely intervention, which can be critical for the safety and well-being of the pediatric patient. Documenting observations thoroughly and discussing concerns with, while important for documentation purposes, delays necessary action. Waiting until the flight is over to gather more information before also delays intervention by waiting until after the flight. Discussing concerns with the patient's family members to clarify involves discussing concerns with family members, which could compromise the safety of the child if neglect is occurring. Flight nurses must prioritize immediate reporting to protect vulnerable patients as mandated by legal and professional standards.",
     "type": "single_select"
   },
   {
@@ -10572,7 +10572,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "In the context of trauma management, especially in a flight setting where resources and time are limited, immediate airway management and ventilation are paramount. Ensuring that the patient\\'s airway is clear and that they are adequately ventilated is critical to prevent hypoxia and subsequent complications. Correct: Immediate airway management and ventilation are essential because securing the airway ensures oxygen delivery to vital organs, preventing hypoxia---a leading cause of secondary injury in trauma patients. Incorrect: While rapid fluid resuscitation with crystalloids is important, it comes after ensuring the airway is secure. Over-resuscitation can also lead to complications such as pulmonary edema. Incorrect: Early administration of broad-spectrum antibiotics is crucial for preventing infections but is not as immediately critical as securing the airway. Incorrect: Continuous monitoring of vital signs is necessary but secondary to ensuring that the patient has a patent airway and adequate ventilation.",
+    "rationale": "In the context of trauma management, especially in a flight setting where resources and time are limited, immediate airway management and ventilation are paramount. Ensuring that the patient's airway is clear and that they are adequately ventilated is critical to prevent hypoxia and subsequent complications. Correct: Immediate airway management and ventilation are essential because securing the airway ensures oxygen delivery to vital organs, preventing hypoxia---a leading cause of secondary injury in trauma patients. Incorrect: While rapid fluid resuscitation with crystalloids is important, it comes after ensuring the airway is secure. Over-resuscitation can also lead to complications such as pulmonary edema. Incorrect: Early administration of broad-spectrum antibiotics is crucial for preventing infections but is not as immediately critical as securing the airway. Incorrect: Continuous monitoring of vital signs is necessary but secondary to ensuring that the patient has a patent airway and adequate ventilation.",
     "type": "single_select"
   },
   {
@@ -10620,7 +10620,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Cardiopulmonary bypass is the most critical intervention in severe hypothermia (core temperature \\<28°C), especially if the patient is hemodynamically unstable or experiencing cardiac arrest. It provides rapid rewarming and circulatory support. Active external rewarming with heated blankets: While helpful, this method is slower and less effective for severe hypothermia compared to cardiopulmonary bypass. Administration of warm intravenous fluids: This supports rewarming but is not as effective as cardiopulmonary bypass. Endotracheal intubation and mechanical ventilation: Important for airway management but does not address core temperature rapidly.",
+    "rationale": "Cardiopulmonary bypass is the most critical intervention in severe hypothermia (core temperature <28°C), especially if the patient is hemodynamically unstable or experiencing cardiac arrest. It provides rapid rewarming and circulatory support. Active external rewarming with heated blankets: While helpful, this method is slower and less effective for severe hypothermia compared to cardiopulmonary bypass. Administration of warm intravenous fluids: This supports rewarming but is not as effective as cardiopulmonary bypass. Endotracheal intubation and mechanical ventilation: Important for airway management but does not address core temperature rapidly.",
     "type": "single_select"
   },
   {
@@ -10642,7 +10642,7 @@
   {
     "id": "Q0666",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "Which physiologic stressor is most likely to exacerbate a patient\\'s pre-existing respiratory condition during air medical transport?",
+    "stem": "Which physiologic stressor is most likely to exacerbate a patient's pre-existing respiratory condition during air medical transport?",
     "options": [
       "Hypoxia",
       "Vibration",
@@ -10660,7 +10660,7 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "When arriving at an emergency scene, what is the first priority for a flight nurse?",
     "options": [
-      "Assessing the patient\\'s vital signs.",
+      "Assessing the patient's vital signs.",
       "Ensuring personal and team safety.",
       "Establishing communication with dispatch.",
       "Initiating patient triage."
@@ -10668,7 +10668,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Ensuring personal and team safety is paramount upon arriving at an emergency scene. Without a secure environment, further actions such as assessing vital signs (Assessing the patient\\'s vital signs.), establishing communication with dispatch (Establishing communication with dispatch.), or initiating patient triage (Initiating patient triage.) cannot be safely performed. While all options are essential steps in managing an emergency scene, prioritizing safety ensures that healthcare providers can effectively and securely perform their duties. This principle is grounded in contemporary research emphasizing the importance of a safe operational environment in emergency medical services.",
+    "rationale": "Ensuring personal and team safety is paramount upon arriving at an emergency scene. Without a secure environment, further actions such as assessing vital signs (Assessing the patient's vital signs.), establishing communication with dispatch (Establishing communication with dispatch.), or initiating patient triage (Initiating patient triage.) cannot be safely performed. While all options are essential steps in managing an emergency scene, prioritizing safety ensures that healthcare providers can effectively and securely perform their duties. This principle is grounded in contemporary research emphasizing the importance of a safe operational environment in emergency medical services.",
     "type": "single_select"
   },
   {
@@ -10716,7 +10716,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The correct answer is Conduct a rapid assessment of all patients to prioritize care. In a multi-casualty incident, it is crucial to quickly assess and triage all patients to determine who needs immediate attention and resources. This ensures that those with life-threatening conditions are identified and treated first, while also managing available resources effectively. Immediately begin treatment on Mr. Smith due to his severe is incorrect because although Mr. Smith\\'s severe injuries are concerning, immediately treating one patient without assessing others could result in overlooking other critical cases that also need urgent intervention. Establish communication with other emergency responders for is incorrect because establishing communication with other responders is important but secondary to assessing patient conditions first. Secure the scene to ensure safety for all personnel and patients. is incorrect because securing the scene for safety is essential but should be done simultaneously with or immediately after conducting an initial rapid assessment.",
+    "rationale": "The correct answer is Conduct a rapid assessment of all patients to prioritize care. In a multi-casualty incident, it is crucial to quickly assess and triage all patients to determine who needs immediate attention and resources. This ensures that those with life-threatening conditions are identified and treated first, while also managing available resources effectively. Immediately begin treatment on Mr. Smith due to his severe is incorrect because although Mr. Smith's severe injuries are concerning, immediately treating one patient without assessing others could result in overlooking other critical cases that also need urgent intervention. Establish communication with other emergency responders for is incorrect because establishing communication with other responders is important but secondary to assessing patient conditions first. Secure the scene to ensure safety for all personnel and patients. is incorrect because securing the scene for safety is essential but should be done simultaneously with or immediately after conducting an initial rapid assessment.",
     "type": "single_select"
   },
   {
@@ -10725,14 +10725,14 @@
     "stem": "In an emergency situation during a flight, what is the most critical factor to ensure successful communication using a satellite phone?",
     "options": [
       "Ensuring the satellite phone has a clear line of sight to the sky",
-      "Verifying that the satellite phone\\'s battery is fully charged",
+      "Verifying that the satellite phone's battery is fully charged",
       "Confirming that the satellite phone is in airplane mode",
       "Checking that the satellite phone has an active SIM card"
     ],
     "correct": [
       "A"
     ],
-    "rationale": "The most critical factor for successful communication using a satellite phone is ensuring it has a clear line of sight to the sky. Satellite phones rely on direct signals from satellites orbiting Earth, which can be obstructed by buildings, mountains, or even dense foliage. While having a fully charged battery (Verifying that the satellite phone\\'s battery is fully charged), an active SIM card (Checking that the satellite phone has an active SIM card), and not being in airplane mode (Confirming that the satellite phone is in airplane mode) are all important for proper functionality, they are secondary considerations compared to maintaining an unobstructed signal path. Ensuring a clear line of sight maximizes signal strength and reliability, which is crucial during emergency communications.",
+    "rationale": "The most critical factor for successful communication using a satellite phone is ensuring it has a clear line of sight to the sky. Satellite phones rely on direct signals from satellites orbiting Earth, which can be obstructed by buildings, mountains, or even dense foliage. While having a fully charged battery (Verifying that the satellite phone's battery is fully charged), an active SIM card (Checking that the satellite phone has an active SIM card), and not being in airplane mode (Confirming that the satellite phone is in airplane mode) are all important for proper functionality, they are secondary considerations compared to maintaining an unobstructed signal path. Ensuring a clear line of sight maximizes signal strength and reliability, which is crucial during emergency communications.",
     "type": "single_select"
   },
   {
@@ -10748,7 +10748,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "In pediatric trauma patients presenting with hypovolemic shock, the initial intervention should be the administration of an isotonic crystalloid solution, such as normal saline or lactated Ringer\\'s, at 20 mL/kg rapidly. This approach helps to quickly restore intravascular volume and improve perfusion. Starting an infusion of hypertonic saline (3% NaCl) at 5 mL/kg, hypertonic saline, is not typically used as an initial resuscitation fluid in pediatric trauma due to potential complications like hypernatremia.",
+    "rationale": "In pediatric trauma patients presenting with hypovolemic shock, the initial intervention should be the administration of an isotonic crystalloid solution, such as normal saline or lactated Ringer's, at 20 mL/kg rapidly. This approach helps to quickly restore intravascular volume and improve perfusion. Starting an infusion of hypertonic saline (3% NaCl) at 5 mL/kg, hypertonic saline, is not typically used as an initial resuscitation fluid in pediatric trauma due to potential complications like hypernatremia.",
     "type": "single_select"
   },
   {
@@ -10764,7 +10764,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The jaw-thrust maneuver is the most reliable initial assessment technique to ensure airway patency in an unconscious patient because it helps to open the airway by moving the tongue away from the back of the throat without manipulating the cervical spine. Checking for breath sounds with a stethoscope is important but not an initial step and does not directly address airway obstruction. Inspecting for chest rise and fall can indicate breathing effort but doesn\\'t confirm an open airway. Placing a finger under the nose to feel for airflow is less reliable and may miss partial obstructions. Each option relates closely to assessing breathing or airway patency but lacks the immediate effectiveness of Performing a jaw-thrust maneuver in ensuring an unobstructed airway during resuscitation.",
+    "rationale": "The jaw-thrust maneuver is the most reliable initial assessment technique to ensure airway patency in an unconscious patient because it helps to open the airway by moving the tongue away from the back of the throat without manipulating the cervical spine. Checking for breath sounds with a stethoscope is important but not an initial step and does not directly address airway obstruction. Inspecting for chest rise and fall can indicate breathing effort but doesn't confirm an open airway. Placing a finger under the nose to feel for airflow is less reliable and may miss partial obstructions. Each option relates closely to assessing breathing or airway patency but lacks the immediate effectiveness of Performing a jaw-thrust maneuver in ensuring an unobstructed airway during resuscitation.",
     "type": "single_select"
   },
   {
@@ -10796,7 +10796,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The Logistics Section Chief is responsible for providing facilities, services, and material support for the incident, which includes coordinating patient transport logistics. This role ensures that all logistical needs are met efficiently. Operations Section Chief: This role focuses on tactical operations and executing the Incident Action Plan but does not primarily handle logistics. Planning Section Chief: This role is responsible for collecting, evaluating, and disseminating information about the incident but does not manage logistical support directly. Incident Commander: The Incident Commander oversees all incident activities but delegates specific responsibilities like logistics to other section chiefs. The key difference lies in understanding each role\\'s primary responsibilities within ICS. The Logistics Section Chief specifically addresses logistical needs such as transportation, making it the correct answer.",
+    "rationale": "The Logistics Section Chief is responsible for providing facilities, services, and material support for the incident, which includes coordinating patient transport logistics. This role ensures that all logistical needs are met efficiently. Operations Section Chief: This role focuses on tactical operations and executing the Incident Action Plan but does not primarily handle logistics. Planning Section Chief: This role is responsible for collecting, evaluating, and disseminating information about the incident but does not manage logistical support directly. Incident Commander: The Incident Commander oversees all incident activities but delegates specific responsibilities like logistics to other section chiefs. The key difference lies in understanding each role's primary responsibilities within ICS. The Logistics Section Chief specifically addresses logistical needs such as transportation, making it the correct answer.",
     "type": "single_select"
   },
   {
@@ -10930,7 +10930,7 @@
   {
     "id": "Q0684",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a critical patient transport, Flight Nurse Sarah needs to communicate with the receiving hospital about the patient\\'s deteriorating condition. Which of the following actions should she prioritize to ensure effective communication? condition. patient\\'s current status. completely.",
+    "stem": "During a critical patient transport, Flight Nurse Sarah needs to communicate with the receiving hospital about the patient's deteriorating condition. Which of the following actions should she prioritize to ensure effective communication? condition. patient's current status. completely.",
     "options": [
       "Use plain language and avoid medical jargon to ensure clarity.",
       "Provide detailed medical history first before stating the current",
@@ -10940,7 +10940,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "The correct answer is C. In emergency situations, it is crucial for flight nurses to use standard radio terminology to avoid misunderstandings and ensure that information is conveyed quickly and accurately. Providing a concise report on the patient\\'s current status allows the receiving hospital to prepare for immediate intervention upon arrival. Use plain language and avoid medical jargon to ensure clarity., while important for general communication, may not be sufficient in an emergency where standardized terms are necessary for clarity and brevity. Provide detailed medical history first before stating the current can delay critical interventions needed based on the current condition rather than historical data. Contact the receiving hospital only after stabilizing the patient is incorrect because waiting until complete stabilization may result in delayed care; ongoing communication during stabilization efforts is essential.",
+    "rationale": "The correct answer is C. In emergency situations, it is crucial for flight nurses to use standard radio terminology to avoid misunderstandings and ensure that information is conveyed quickly and accurately. Providing a concise report on the patient's current status allows the receiving hospital to prepare for immediate intervention upon arrival. Use plain language and avoid medical jargon to ensure clarity., while important for general communication, may not be sufficient in an emergency where standardized terms are necessary for clarity and brevity. Provide detailed medical history first before stating the current can delay critical interventions needed based on the current condition rather than historical data. Contact the receiving hospital only after stabilizing the patient is incorrect because waiting until complete stabilization may result in delayed care; ongoing communication during stabilization efforts is essential.",
     "type": "single_select"
   },
   {
@@ -10949,14 +10949,14 @@
     "stem": "Which of the following is considered the first-line fluid for resuscitation in a patient with hypovolemic shock due to trauma?",
     "options": [
       "Normal Saline",
-      "Lactated Ringer\\'s Solution",
+      "Lactated Ringer's Solution",
       "Hypertonic Saline",
       "Albumin"
     ],
     "correct": [
       "B"
     ],
-    "rationale": "Lactated Ringer\\'s Solution is typically preferred as the first-line fluid for resuscitation in hypovolemic shock due to trauma because it closely mimics the electrolyte composition of blood plasma. Normal Saline (Normal Saline) can be used but may lead to hyperchloremic acidosis with large volumes. Hypertonic Saline (Hypertonic Saline) is useful in specific cases like head injury but not generally first-line for all trauma-related hypovolemia. Albumin (Albumin), a colloid, is not typically first-line due to cost and limited evidence supporting its superiority over crystalloids in initial resuscitation.",
+    "rationale": "Lactated Ringer's Solution is typically preferred as the first-line fluid for resuscitation in hypovolemic shock due to trauma because it closely mimics the electrolyte composition of blood plasma. Normal Saline (Normal Saline) can be used but may lead to hyperchloremic acidosis with large volumes. Hypertonic Saline (Hypertonic Saline) is useful in specific cases like head injury but not generally first-line for all trauma-related hypovolemia. Albumin (Albumin), a colloid, is not typically first-line due to cost and limited evidence supporting its superiority over crystalloids in initial resuscitation.",
     "type": "single_select"
   },
   {
@@ -10999,12 +10999,12 @@
       "Threatening to administer medication without patient consent",
       "Administering medication without patient consent",
       "Physically restraining a patient without proper authorization",
-      "Documenting false information about a patient\\'s condition"
+      "Documenting false information about a patient's condition"
     ],
     "correct": [
       "A"
     ],
-    "rationale": "Assault in the legal context is defined as an intentional act that creates a reasonable apprehension of imminent harmful or offensive contact. Threatening to administer medication without patient consent is correct because threatening to administer medication without the patient\\'s consent can create such apprehension. Administering medication without patient consent describes battery, which involves actual physical contact. Physically restraining a patient without proper authorization involves unauthorized restraint, which could be considered false imprisonment rather than assault. Documenting false information about a patient\\'s condition concerns falsifying records, which is unethical and illegal but does not meet the criteria for assault. The key difference lies in understanding that assault does not require physical contact but rather the threat or attempt thereof.",
+    "rationale": "Assault in the legal context is defined as an intentional act that creates a reasonable apprehension of imminent harmful or offensive contact. Threatening to administer medication without patient consent is correct because threatening to administer medication without the patient's consent can create such apprehension. Administering medication without patient consent describes battery, which involves actual physical contact. Physically restraining a patient without proper authorization involves unauthorized restraint, which could be considered false imprisonment rather than assault. Documenting false information about a patient's condition concerns falsifying records, which is unethical and illegal but does not meet the criteria for assault. The key difference lies in understanding that assault does not require physical contact but rather the threat or attempt thereof.",
     "type": "single_select"
   },
   {
@@ -11013,14 +11013,14 @@
     "stem": "John, a 45-year-old male patient, is being transported via air ambulance following a severe motor vehicle accident. He presents with signs of hypovolemic shock including tachycardia, hypotension, and altered mental status. As the flight nurse, you need to initiate fluid resuscitation. Considering current best practices in fluid resuscitation for trauma patients, which type of fluid should you administer first?",
     "options": [
       "Normal Saline",
-      "Lactated Ringer\\'s Solution",
+      "Lactated Ringer's Solution",
       "5% Dextrose in Water (D5W)",
       "Hypertonic Saline"
     ],
     "correct": [
       "B"
     ],
-    "rationale": "Lactated Ringer\\'s Solution is preferred for initial fluid resuscitation in trauma patients because it closely mimics the body\\'s plasma composition and helps in correcting metabolic acidosis often seen in hypovolemic shock. Normal Saline (Normal Saline) can lead to hyperchloremic acidosis if used in large volumes. 5% Dextrose in Water (5% Dextrose in Water (D5W)) is not suitable for initial resuscitation as it does not provide adequate intravascular volume expansion. Hypertonic Saline (Hypertonic Saline), while beneficial in certain cases like traumatic brain injury due to its ability to reduce intracranial pressure, is not typically the first choice for general trauma resuscitation.",
+    "rationale": "Lactated Ringer's Solution is preferred for initial fluid resuscitation in trauma patients because it closely mimics the body's plasma composition and helps in correcting metabolic acidosis often seen in hypovolemic shock. Normal Saline (Normal Saline) can lead to hyperchloremic acidosis if used in large volumes. 5% Dextrose in Water (5% Dextrose in Water (D5W)) is not suitable for initial resuscitation as it does not provide adequate intravascular volume expansion. Hypertonic Saline (Hypertonic Saline), while beneficial in certain cases like traumatic brain injury due to its ability to reduce intracranial pressure, is not typically the first choice for general trauma resuscitation.",
     "type": "single_select"
   },
   {
@@ -11052,7 +11052,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The presence of gurgling sounds indicates that there may be fluid or secretions causing John\\'s airway. The most appropriate immediate action is to suction the airway to remove these obstructions and ensure patency. Perform a jaw-thrust maneuver is incorrect because while it helps in opening the airway, it does not address the immediate need to clear fluids causing gurgling sounds. Insert an oropharyngeal airway is also incorrect as inserting an OPA without first clearing secretions can push fluids further into the respiratory tract. Administer high-flow oxygen via a non-rebreather mask is incorrect because oxygen administration without clearing the obstruction will not improve ventilation and may exacerbate hypoxia.",
+    "rationale": "The presence of gurgling sounds indicates that there may be fluid or secretions causing John's airway. The most appropriate immediate action is to suction the airway to remove these obstructions and ensure patency. Perform a jaw-thrust maneuver is incorrect because while it helps in opening the airway, it does not address the immediate need to clear fluids causing gurgling sounds. Insert an oropharyngeal airway is also incorrect as inserting an OPA without first clearing secretions can push fluids further into the respiratory tract. Administer high-flow oxygen via a non-rebreather mask is incorrect because oxygen administration without clearing the obstruction will not improve ventilation and may exacerbate hypoxia.",
     "type": "single_select"
   },
   {
@@ -11074,9 +11074,9 @@
   {
     "id": "Q0693",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport of a critically ill patient named John, you encounter a situation where the patient\\'s condition deteriorates rapidly. You have to make an immediate decision about administering a medication that is not typically within your scope of practice but could potentially save the patient\\'s life. What should be your primary course of action? life. medication. experienced. protocols.",
+    "stem": "During a flight transport of a critically ill patient named John, you encounter a situation where the patient's condition deteriorates rapidly. You have to make an immediate decision about administering a medication that is not typically within your scope of practice but could potentially save the patient's life. What should be your primary course of action? life. medication. experienced. protocols.",
     "options": [
-      "Administer the medication immediately since it could save John\\'s",
+      "Administer the medication immediately since it could save John's",
       "Contact medical control for authorization before administering the",
       "Delegate the task to another team member who might be more",
       "Document the situation thoroughly and proceed with standard"
@@ -11084,7 +11084,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The correct course of action is to contact medical control for authorization before administering any medication that falls outside your typical scope of practice. This ensures adherence to legal and professional standards while addressing the patient\\'s immediate needs. Administer the medication immediately since it could save John\\'s, while addressing the patient\\'s necessary authorization and potentially life-saving, bypasses necessary authorization and could lead to legal repercussions. Delegate the task to another team member who might be more assumes another team member may be more experienced without verifying their qualifications or authority. Document the situation thoroughly and proceed with standard focuses on documentation and standard protocols but fails to address the urgency of obtaining proper authorization for an out-of-scope intervention.",
+    "rationale": "The correct course of action is to contact medical control for authorization before administering any medication that falls outside your typical scope of practice. This ensures adherence to legal and professional standards while addressing the patient's immediate needs. Administer the medication immediately since it could save John's, while addressing the patient's necessary authorization and potentially life-saving, bypasses necessary authorization and could lead to legal repercussions. Delegate the task to another team member who might be more assumes another team member may be more experienced without verifying their qualifications or authority. Document the situation thoroughly and proceed with standard focuses on documentation and standard protocols but fails to address the urgency of obtaining proper authorization for an out-of-scope intervention.",
     "type": "single_select"
   },
   {
@@ -11154,7 +11154,7 @@
   {
     "id": "Q0698",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "John, a 35-year-old hiker, is brought to your flight nursing unit after being exposed to extreme cold temperatures for several hours. He presents with pale, hard, and numb fingers. You suspect he has severe frostbite. What is the most appropriate initial treatment for John\\'s frostbite?",
+    "stem": "John, a 35-year-old hiker, is brought to your flight nursing unit after being exposed to extreme cold temperatures for several hours. He presents with pale, hard, and numb fingers. You suspect he has severe frostbite. What is the most appropriate initial treatment for John's frostbite?",
     "options": [
       "Rapid rewarming in hot water (above 104°F)",
       "Immersion in warm water (98.6-102.2°F)",
@@ -11180,7 +11180,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Electrical burns can cause severe cardiac arrhythmias due to direct electrical injury to the heart or secondary electrolyte imbalances. ACLS protocols provide a systematic approach for managing arrhythmias and are crucial in stabilizing the patient during transport. Administer intravenous calcium gluconate may be considered if hyperkalemia is suspected but is not the first step in managing acute arrhythmias. Administer intravenous sodium bicarbonate is used in severe cases of acidosis or hyperkalemia but again is not the initial intervention for arrhythmias. Perform synchronized cardioversion may be necessary if John\\'s arrhythmia is hemodynamically unstable, but ACLS protocols should guide this decision-making process.",
+    "rationale": "Electrical burns can cause severe cardiac arrhythmias due to direct electrical injury to the heart or secondary electrolyte imbalances. ACLS protocols provide a systematic approach for managing arrhythmias and are crucial in stabilizing the patient during transport. Administer intravenous calcium gluconate may be considered if hyperkalemia is suspected but is not the first step in managing acute arrhythmias. Administer intravenous sodium bicarbonate is used in severe cases of acidosis or hyperkalemia but again is not the initial intervention for arrhythmias. Perform synchronized cardioversion may be necessary if John's arrhythmia is hemodynamically unstable, but ACLS protocols should guide this decision-making process.",
     "type": "single_select"
   },
   {
@@ -11196,23 +11196,23 @@
     "correct": [
       "A"
     ],
-    "rationale": "Hepatitis A is the most likely diagnosis given John\\'s recent travel to an area with poor sanitation, which is a common risk factor for Hepatitis A transmission through contaminated food or water. Elevated AST and ALT levels are indicative of liver inflammation, consistent with hepatitis. Hepatitis B: Typically spread through blood or bodily fluids, not aligning with John\\'s lack of IV drug use or sexual transmission risks. Hepatitis C: Primarily spread through blood-to-blood contact; again, no history of IV drug use makes this less likely. Alcoholic Hepatitis: John\\'s denial of alcohol abuse rules this out as a probable cause. Therefore, based on the patient\\'s travel history and symptomatology, Hepatitis A is the most plausible diagnosis.",
+    "rationale": "Hepatitis A is the most likely diagnosis given John's recent travel to an area with poor sanitation, which is a common risk factor for Hepatitis A transmission through contaminated food or water. Elevated AST and ALT levels are indicative of liver inflammation, consistent with hepatitis. Hepatitis B: Typically spread through blood or bodily fluids, not aligning with John's lack of IV drug use or sexual transmission risks. Hepatitis C: Primarily spread through blood-to-blood contact; again, no history of IV drug use makes this less likely. Alcoholic Hepatitis: John's denial of alcohol abuse rules this out as a probable cause. Therefore, based on the patient's travel history and symptomatology, Hepatitis A is the most plausible diagnosis.",
     "type": "single_select"
   },
   {
     "id": "Q0701",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a critical patient transport, what is the most appropriate initial action for a flight nurse when experiencing a sudden change in the patient\\'s condition? orders. any action. medical control. limited resources.",
+    "stem": "During a critical patient transport, what is the most appropriate initial action for a flight nurse when experiencing a sudden change in the patient's condition? orders. any action. medical control. limited resources.",
     "options": [
       "Initiate immediate life-saving interventions as per standing",
       "Contact medical control for specific instructions before taking",
       "Utilize onboard protocols to stabilize the patient and then inform",
-      "Wait until landing to address the patient\\'s condition due to"
+      "Wait until landing to address the patient's condition due to"
     ],
     "correct": [
       "A"
     ],
-    "rationale": "The correct answer is Initiate immediate life-saving interventions as per standing orders. In-flight nurses must act promptly during critical situations using pre-approved standing orders because delays can jeopardize patient outcomes. Contact medical control for specific instructions before taking is incorrect because contacting medical control first may waste precious time in an emergency. Utilize onboard protocols to stabilize the patient and then inform is tricky but incorrect; while using onboard protocols is essential, informing medical control should follow immediate stabilization efforts. Wait until landing to address the patient\\'s condition due to is also incorrect as waiting until landing can lead to deterioration of the patient\\'s condition due to delays in necessary care. The key difference lies in understanding that immediate intervention based on standing orders takes precedence over other actions during emergencies.",
+    "rationale": "The correct answer is Initiate immediate life-saving interventions as per standing orders. In-flight nurses must act promptly during critical situations using pre-approved standing orders because delays can jeopardize patient outcomes. Contact medical control for specific instructions before taking is incorrect because contacting medical control first may waste precious time in an emergency. Utilize onboard protocols to stabilize the patient and then inform is tricky but incorrect; while using onboard protocols is essential, informing medical control should follow immediate stabilization efforts. Wait until landing to address the patient's condition due to is also incorrect as waiting until landing can lead to deterioration of the patient's condition due to delays in necessary care. The key difference lies in understanding that immediate intervention based on standing orders takes precedence over other actions during emergencies.",
     "type": "single_select"
   },
   {
@@ -11244,7 +11244,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The most critical consideration in this scenario is using specialized stretchers to accommodate Mr. Smith\\'s weight and size. Bariatric patients require equipment that can safely support their body mass and ensure proper weight distribution during transport. While ensuring adequate oxygen supply , monitoring for DVT , and adjusting medication dosages are also important, they do not pose immediate logistical challenges as significant as safely securing and transporting the patient with appropriate equipment.",
+    "rationale": "The most critical consideration in this scenario is using specialized stretchers to accommodate Mr. Smith's weight and size. Bariatric patients require equipment that can safely support their body mass and ensure proper weight distribution during transport. While ensuring adequate oxygen supply , monitoring for DVT , and adjusting medication dosages are also important, they do not pose immediate logistical challenges as significant as safely securing and transporting the patient with appropriate equipment.",
     "type": "single_select"
   },
   {
@@ -11284,21 +11284,21 @@
     "category": "Trauma",
     "stem": "Which of the following clinical signs is most indicative of a retroperitoneal injury following blunt abdominal trauma?",
     "options": [
-      "Cullen\\'s sign",
-      "Grey Turner\\'s sign",
-      "Kehr\\'s sign",
-      "Murphy\\'s sign"
+      "Cullen's sign",
+      "Grey Turner's sign",
+      "Kehr's sign",
+      "Murphy's sign"
     ],
     "correct": [
       "B"
     ],
-    "rationale": "Grey Turner\\'s sign, which involves bruising of the flanks, is most indicative of retroperitoneal hemorrhage, often associated with injuries such as renal trauma or pancreatic injury. Cullen\\'s sign , which is periumbilical bruising, can indicate intraperitoneal bleeding but is less specific for retroperitoneal injuries. Kehr\\'s sign , referred pain to the left shoulder due to diaphragmatic irritation from splenic rupture, pertains more to intraperitoneal rather than retroperitoneal injuries. Murphy\\'s sign , pain on palpation of the right upper quadrant during inspiration, suggests gallbladder inflammation and is unrelated to retroperitoneal trauma.",
+    "rationale": "Grey Turner's sign, which involves bruising of the flanks, is most indicative of retroperitoneal hemorrhage, often associated with injuries such as renal trauma or pancreatic injury. Cullen's sign , which is periumbilical bruising, can indicate intraperitoneal bleeding but is less specific for retroperitoneal injuries. Kehr's sign , referred pain to the left shoulder due to diaphragmatic irritation from splenic rupture, pertains more to intraperitoneal rather than retroperitoneal injuries. Murphy's sign , pain on palpation of the right upper quadrant during inspiration, suggests gallbladder inflammation and is unrelated to retroperitoneal trauma.",
     "type": "single_select"
   },
   {
     "id": "Q0707",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport mission, Flight Nurse Emily arrives at an accident scene involving multiple vehicles. As she assesses the scene, she notices downed power lines near one of the vehicles with injured passengers inside. What is Emily\\'s most appropriate initial action to ensure scene safety? bystanders away. vehicle.",
+    "stem": "During a flight transport mission, Flight Nurse Emily arrives at an accident scene involving multiple vehicles. As she assesses the scene, she notices downed power lines near one of the vehicles with injured passengers inside. What is Emily's most appropriate initial action to ensure scene safety? bystanders away. vehicle.",
     "options": [
       "Immediately approach the vehicle to provide urgent medical care.",
       "Contact local utility companies to report the downed power lines.",
@@ -11356,23 +11356,23 @@
     "correct": [
       "B"
     ],
-    "rationale": "The correct answer is Tension pneumothorax. This diagnosis is supported by John\\'s symptoms of severe chest pain, difficulty breathing, diminished breath sounds on one side, hypotension (BP 90/60 mmHg), tachycardia (HR 120 bpm), and tracheal deviation to the opposite side (right). These are classic signs of tension pneumothorax, where air accumulates in the pleural space under pressure, compressing the lung and shifting mediastinal structures. Hemothorax) Hemothorax could present with similar symptoms but typically includes signs of significant blood loss without tracheal deviation. Pulmonary contusion) Pulmonary contusion involves lung parenchymal injury leading to alveolar hemorrhage but does not usually cause tracheal deviation or subcutaneous emphysema. Flail chest) Flail chest involves multiple rib fractures leading to paradoxical chest wall movement but lacks the hallmark signs of tension pneumothorax such as tracheal deviation and subcutaneous emphysema.",
+    "rationale": "The correct answer is Tension pneumothorax. This diagnosis is supported by John's symptoms of severe chest pain, difficulty breathing, diminished breath sounds on one side, hypotension (BP 90/60 mmHg), tachycardia (HR 120 bpm), and tracheal deviation to the opposite side (right). These are classic signs of tension pneumothorax, where air accumulates in the pleural space under pressure, compressing the lung and shifting mediastinal structures. Hemothorax) Hemothorax could present with similar symptoms but typically includes signs of significant blood loss without tracheal deviation. Pulmonary contusion) Pulmonary contusion involves lung parenchymal injury leading to alveolar hemorrhage but does not usually cause tracheal deviation or subcutaneous emphysema. Flail chest) Flail chest involves multiple rib fractures leading to paradoxical chest wall movement but lacks the hallmark signs of tension pneumothorax such as tracheal deviation and subcutaneous emphysema.",
     "type": "single_select"
   },
   {
     "id": "Q0711",
     "category": "Medical Emergencies",
-    "stem": "During a pre-flight briefing, the referring provider informs you that Mr. John Smith, a 58-year-old male with a history of chronic obstructive pulmonary disease (COPD), has been experiencing increased shortness of breath and was recently started on a new medication regimen. Which piece of information from the referring provider is most critical for ensuring Mr. Smith\\'s safe transport?",
+    "stem": "During a pre-flight briefing, the referring provider informs you that Mr. John Smith, a 58-year-old male with a history of chronic obstructive pulmonary disease (COPD), has been experiencing increased shortness of breath and was recently started on a new medication regimen. Which piece of information from the referring provider is most critical for ensuring Mr. Smith's safe transport?",
     "options": [
       "The specific medications Mr. Smith was prescribed.",
       "The exact dosage of each medication.",
-      "Any recent changes in Mr. Smith\\'s respiratory status.",
+      "Any recent changes in Mr. Smith's respiratory status.",
       "The timeline of when the new medications were started."
     ],
     "correct": [
       "C"
     ],
-    "rationale": "The most critical piece of information for ensuring Mr. Smith\\'s safe transport is any recent changes in his respiratory status. This directly impacts his stability and potential need for interventions during flight. While knowing the specific medications , their dosages , and the timeline of medication initiation are important, they are secondary to understanding his current respiratory condition, which could rapidly deteriorate during transport if not adequately monitored and managed.",
+    "rationale": "The most critical piece of information for ensuring Mr. Smith's safe transport is any recent changes in his respiratory status. This directly impacts his stability and potential need for interventions during flight. While knowing the specific medications , their dosages , and the timeline of medication initiation are important, they are secondary to understanding his current respiratory condition, which could rapidly deteriorate during transport if not adequately monitored and managed.",
     "type": "single_select"
   },
   {
@@ -11388,7 +11388,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "In situations where immediate communication with medical control is compromised, flight nurses are trained to follow standing orders and established protocols to ensure timely care. This approach allows them to act decisively in emergencies without unnecessary delays. Wait until radio communication is re-established before might endanger the patient due to delays in treatment. Attempt to reach another medical control physician via alternative could waste critical time if alternative methods are not immediately available. Divert the flight to the nearest hospital for immediate is generally considered only if the patient\\'s condition cannot be managed with existing protocols or if diversion significantly shortens time to definitive care. Therefore, adhering to standing orders ensures prompt and effective patient management.",
+    "rationale": "In situations where immediate communication with medical control is compromised, flight nurses are trained to follow standing orders and established protocols to ensure timely care. This approach allows them to act decisively in emergencies without unnecessary delays. Wait until radio communication is re-established before might endanger the patient due to delays in treatment. Attempt to reach another medical control physician via alternative could waste critical time if alternative methods are not immediately available. Divert the flight to the nearest hospital for immediate is generally considered only if the patient's condition cannot be managed with existing protocols or if diversion significantly shortens time to definitive care. Therefore, adhering to standing orders ensures prompt and effective patient management.",
     "type": "single_select"
   },
   {
@@ -11410,7 +11410,7 @@
   {
     "id": "Q0714",
     "category": "Medical Emergencies",
-    "stem": "John, a 35-year-old flight nurse, is caring for a patient who was recently diagnosed with Addison\\'s disease. During a long-haul flight, the patient suddenly becomes hypotensive, weak, and confused. John suspects an adrenal crisis. What is the most appropriate initial intervention?",
+    "stem": "John, a 35-year-old flight nurse, is caring for a patient who was recently diagnosed with Addison's disease. During a long-haul flight, the patient suddenly becomes hypotensive, weak, and confused. John suspects an adrenal crisis. What is the most appropriate initial intervention?",
     "options": [
       "Administer intravenous hydrocortisone.",
       "Provide oral fludrocortisone.",
@@ -11468,7 +11468,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "The patient\\'s symptoms and context strongly suggest carbon monoxide (CO) poisoning. Administering high-flow oxygen is the most appropriate initial treatment because it helps displace CO from hemoglobin, thereby improving oxygen delivery to tissues. Administering intravenous sodium bicarbonate might be considered in cases of severe metabolic acidosis but is not the primary treatment for CO poisoning. Administering intravenous methylene blue is used for methemoglobinemia, which presents differently. Administering activated charcoal is used for ingested toxins and would not be effective in this inhalation case.",
+    "rationale": "The patient's symptoms and context strongly suggest carbon monoxide (CO) poisoning. Administering high-flow oxygen is the most appropriate initial treatment because it helps displace CO from hemoglobin, thereby improving oxygen delivery to tissues. Administering intravenous sodium bicarbonate might be considered in cases of severe metabolic acidosis but is not the primary treatment for CO poisoning. Administering intravenous methylene blue is used for methemoglobinemia, which presents differently. Administering activated charcoal is used for ingested toxins and would not be effective in this inhalation case.",
     "type": "single_select"
   },
   {
@@ -11500,7 +11500,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The primary issue in this scenario is hypoxia due to reduced partial pressure of oxygen at higher altitudes, which can exacerbate COPD symptoms. Increasing cabin pressure by descending to a lower altitude directly addresses the root cause by improving oxygen availability. Administering high-flow oxygen (Administering high-flow oxygen via non-rebreather mask.) may help temporarily but does not address the underlying issue of reduced atmospheric pressure. Administering a bronchodilator (Administering a bronchodilator via nebulizer.) could assist with bronchospasm but is not as immediately effective in addressing hypoxia due to altitude. Providing reassurance and monitoring (Providing reassurance and monitoring vital signs closely.) is supportive but does not resolve the physiological problem causing Mr. Johnson\\'s distress.",
+    "rationale": "The primary issue in this scenario is hypoxia due to reduced partial pressure of oxygen at higher altitudes, which can exacerbate COPD symptoms. Increasing cabin pressure by descending to a lower altitude directly addresses the root cause by improving oxygen availability. Administering high-flow oxygen (Administering high-flow oxygen via non-rebreather mask.) may help temporarily but does not address the underlying issue of reduced atmospheric pressure. Administering a bronchodilator (Administering a bronchodilator via nebulizer.) could assist with bronchospasm but is not as immediately effective in addressing hypoxia due to altitude. Providing reassurance and monitoring (Providing reassurance and monitoring vital signs closely.) is supportive but does not resolve the physiological problem causing Mr. Johnson's distress.",
     "type": "single_select"
   },
   {
@@ -11538,7 +11538,7 @@
   {
     "id": "Q0722",
     "category": "Medical Emergencies",
-    "stem": "You are attending to a patient named John, who is experiencing acute respiratory distress during a flight. His hemoglobin level is 14 g/dL, his SaO2 is 95%, and his cardiac output is measured at 5 L/min. Considering the components of oxygen delivery, which factor would most significantly impact John\\'s overall oxygen delivery if it were to change?",
+    "stem": "You are attending to a patient named John, who is experiencing acute respiratory distress during a flight. His hemoglobin level is 14 g/dL, his SaO2 is 95%, and his cardiac output is measured at 5 L/min. Considering the components of oxygen delivery, which factor would most significantly impact John's overall oxygen delivery if it were to change?",
     "options": [
       "Hemoglobin concentration",
       "Arterial oxygen saturation (SaO2)",
@@ -11564,7 +11564,7 @@
     "correct": [
       "A"
     ],
-    "rationale": "Splenic rupture is a common cause of hemodynamic instability following blunt abdominal trauma due to its high vascularity. It often results in significant intra-abdominal hemorrhage, leading to hypotension and tachycardia. Hepatic laceration (Hepatic laceration) can also cause severe bleeding but is less common than splenic injury in blunt trauma cases. Renal contusion (Renal contusion) typically causes hematuria rather than profound hemodynamic changes. Pancreatic injury (Pancreatic injury) usually presents with delayed symptoms and does not typically cause immediate hemodynamic instability. Therefore, splenic rupture is the most likely diagnosis given the patient\\'s presentation.",
+    "rationale": "Splenic rupture is a common cause of hemodynamic instability following blunt abdominal trauma due to its high vascularity. It often results in significant intra-abdominal hemorrhage, leading to hypotension and tachycardia. Hepatic laceration (Hepatic laceration) can also cause severe bleeding but is less common than splenic injury in blunt trauma cases. Renal contusion (Renal contusion) typically causes hematuria rather than profound hemodynamic changes. Pancreatic injury (Pancreatic injury) usually presents with delayed symptoms and does not typically cause immediate hemodynamic instability. Therefore, splenic rupture is the most likely diagnosis given the patient's presentation.",
     "type": "single_select"
   },
   {
@@ -11580,7 +11580,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "The correct answer is Perform an urgent decompressive laparotomy. Abdominal Compartment Syndrome (ACS) occurs when increased intra-abdominal pressure leads to organ dysfunction. In this scenario, John\\'s persistent hypotension despite fluid resuscitation and signs of increased abdominal distension suggest ACS. Decompressive laparotomy is the definitive treatment to relieve intra-abdominal pressure and prevent further organ damage. Increase fluid resuscitation: Although fluid resuscitation is critical in trauma patients, it can exacerbate ACS by increasing intra-abdominal pressure further. Administer vasopressors: Vasopressors may temporarily improve blood pressure but do not address the underlying issue of elevated intra-abdominal pressure causing organ dysfunction. Initiate mechanical ventilation: While mechanical ventilation can help manage respiratory distress, it does not treat the root cause of ACS and may even worsen intra-abdominal pressure due to positive pressure ventilation.",
+    "rationale": "The correct answer is Perform an urgent decompressive laparotomy. Abdominal Compartment Syndrome (ACS) occurs when increased intra-abdominal pressure leads to organ dysfunction. In this scenario, John's persistent hypotension despite fluid resuscitation and signs of increased abdominal distension suggest ACS. Decompressive laparotomy is the definitive treatment to relieve intra-abdominal pressure and prevent further organ damage. Increase fluid resuscitation: Although fluid resuscitation is critical in trauma patients, it can exacerbate ACS by increasing intra-abdominal pressure further. Administer vasopressors: Vasopressors may temporarily improve blood pressure but do not address the underlying issue of elevated intra-abdominal pressure causing organ dysfunction. Initiate mechanical ventilation: While mechanical ventilation can help manage respiratory distress, it does not treat the root cause of ACS and may even worsen intra-abdominal pressure due to positive pressure ventilation.",
     "type": "single_select"
   },
   {
@@ -11618,9 +11618,9 @@
   {
     "id": "Q0727",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a critical care transport, which approach is most effective in addressing the psychosocial needs of the patient\\'s family?",
+    "stem": "During a critical care transport, which approach is most effective in addressing the psychosocial needs of the patient's family?",
     "options": [
-      "Providing continuous updates on the patient\\'s condition.",
+      "Providing continuous updates on the patient's condition.",
       "Encouraging family members to express their emotions.",
       "Offering reassurance and maintaining a calm demeanor.",
       "Allowing family members to accompany the patient during transport."
@@ -11628,7 +11628,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "Offering reassurance and maintaining a calm demeanor (Offering reassurance and maintaining a calm demeanor.) is crucial because it helps stabilize the emotional state of the family members, providing them with a sense of security and trust in the medical team. Continuous updates (Providing continuous updates on the patient\\'s condition.) are important but can sometimes overwhelm or confuse family members if not done thoughtfully. Encouraging emotional expression (Encouraging family members to express their emotions.) is beneficial but may not be as immediately calming as providing reassurance. Allowing family members to accompany the patient (Allowing family members to accompany the patient during transport.) is generally not feasible due to safety protocols and space constraints during transport. Therefore, Offering reassurance and maintaining a calm demeanor. is the most effective approach in this context.",
+    "rationale": "Offering reassurance and maintaining a calm demeanor (Offering reassurance and maintaining a calm demeanor.) is crucial because it helps stabilize the emotional state of the family members, providing them with a sense of security and trust in the medical team. Continuous updates (Providing continuous updates on the patient's condition.) are important but can sometimes overwhelm or confuse family members if not done thoughtfully. Encouraging emotional expression (Encouraging family members to express their emotions.) is beneficial but may not be as immediately calming as providing reassurance. Allowing family members to accompany the patient (Allowing family members to accompany the patient during transport.) is generally not feasible due to safety protocols and space constraints during transport. Therefore, Offering reassurance and maintaining a calm demeanor. is the most effective approach in this context.",
     "type": "single_select"
   },
   {
@@ -11756,7 +11756,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "In the Incident Command System, the Triage Unit Leader is responsible for overseeing the triage process, ensuring that patients are sorted based on severity of their injuries and prioritized for transport accordingly. This role is critical in managing multiple trauma patients effectively. The other options, while closely related, have distinct responsibilities: Incident Commander) Incident Commander oversees all incident operations but does not specifically manage triage. Operations Section Chief) Operations Section Chief manages overall tactical operations but delegates specific tasks like triage. Medical Branch Director) Medical Branch Director oversees medical care within the incident but does not directly handle triage. Therefore, Emily\\'s role aligns most accurately with that of the Triage Unit Leader .",
+    "rationale": "In the Incident Command System, the Triage Unit Leader is responsible for overseeing the triage process, ensuring that patients are sorted based on severity of their injuries and prioritized for transport accordingly. This role is critical in managing multiple trauma patients effectively. The other options, while closely related, have distinct responsibilities: Incident Commander) Incident Commander oversees all incident operations but does not specifically manage triage. Operations Section Chief) Operations Section Chief manages overall tactical operations but delegates specific tasks like triage. Medical Branch Director) Medical Branch Director oversees medical care within the incident but does not directly handle triage. Therefore, Emily's role aligns most accurately with that of the Triage Unit Leader .",
     "type": "single_select"
   },
   {
@@ -11780,15 +11780,15 @@
     "category": "Trauma",
     "stem": "In the context of trauma management during a flight, which principle is most critical when immobilizing a patient with a suspected spinal injury? spine board. securing them to the spine board.",
     "options": [
-      "Ensuring the patient\\'s head is elevated at a 30-degree angle.",
+      "Ensuring the patient's head is elevated at a 30-degree angle.",
       "Applying a cervical collar and securing the patient to a long",
-      "Using sandbags on either side of the patient\\'s head without",
+      "Using sandbags on either side of the patient's head without",
       "Allowing slight movements to ensure patient comfort."
     ],
     "correct": [
       "B"
     ],
-    "rationale": "The correct answer is Applying a cervical collar and securing the patient to a long spine board. This approach is crucial for stabilizing the spine and preventing further injury during transport. Ensuring the patient\\'s head is elevated at a 30-degree angle. is incorrect because elevating the head can cause additional spinal movement, potentially worsening injuries. Using sandbags on either side of the patient\\'s head without is incorrect as sandbags alone do not provide adequate stabilization without securing them properly. Allowing slight movements to ensure patient comfort. is incorrect because allowing any movement can exacerbate spinal injuries. Proper immobilization using both a cervical collar and spine board ensures maximum stability, aligning with current best practices in trauma care.",
+    "rationale": "The correct answer is Applying a cervical collar and securing the patient to a long spine board. This approach is crucial for stabilizing the spine and preventing further injury during transport. Ensuring the patient's head is elevated at a 30-degree angle. is incorrect because elevating the head can cause additional spinal movement, potentially worsening injuries. Using sandbags on either side of the patient's head without is incorrect as sandbags alone do not provide adequate stabilization without securing them properly. Allowing slight movements to ensure patient comfort. is incorrect because allowing any movement can exacerbate spinal injuries. Proper immobilization using both a cervical collar and spine board ensures maximum stability, aligning with current best practices in trauma care.",
     "type": "single_select"
   },
   {
@@ -13172,15 +13172,15 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a patient handoff using the SBAR method in a flight transport scenario, which of the following statements best represents the 'Assessment' component?",
     "options": [
-      "\"The patient is currently stable but has a history of myocardial infarction.\"",
-      "\"The patient was admitted with chest pain and shortness of breath.\"",
-      "\"Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air.\"",
-      "\"I believe the patient needs continuous cardiac monitoring during transport.\""
+      ""The patient is currently stable but has a history of myocardial infarction."",
+      ""The patient was admitted with chest pain and shortness of breath."",
+      ""Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air."",
+      ""I believe the patient needs continuous cardiac monitoring during transport.""
     ],
     "correct": [
       "C"
     ],
-    "rationale": "\"Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air.\" is correct because it provides an objective assessment of the patient's current vital signs, which is essential for understanding their present condition. This aligns with the 'Assessment' component of SBAR where clinical data and findings are communicated. \"The patient is currently stable but has a history of myocardial infarction.\" is incorrect because it blends elements of both 'Situation' (current stability) and 'Background' (history of myocardial infarction), thus not solely focusing on current clinical assessment. \"The patient was admitted with chest pain and shortness of breath.\" is incorrect as it pertains to the 'Background' component by describing why the patient was admitted rather than providing current clinical data. \"I believe the patient needs continuous cardiac monitoring.\"** is incorrect as it fits into the 'Recommendation' part where suggestions for future care or actions are made based on assessment findings. The critical difference lies in recognizing that 'Assessment' should convey current clinical status through objective data rather than historical information or recommendations.",
+    "rationale": ""Vital signs are BP 140/90, HR 110, RR 22, SpO2 95% on room air." is correct because it provides an objective assessment of the patient's current vital signs, which is essential for understanding their present condition. This aligns with the 'Assessment' component of SBAR where clinical data and findings are communicated. "The patient is currently stable but has a history of myocardial infarction." is incorrect because it blends elements of both 'Situation' (current stability) and 'Background' (history of myocardial infarction), thus not solely focusing on current clinical assessment. "The patient was admitted with chest pain and shortness of breath." is incorrect as it pertains to the 'Background' component by describing why the patient was admitted rather than providing current clinical data. "I believe the patient needs continuous cardiac monitoring."** is incorrect as it fits into the 'Recommendation' part where suggestions for future care or actions are made based on assessment findings. The critical difference lies in recognizing that 'Assessment' should convey current clinical status through objective data rather than historical information or recommendations.",
     "type": "single_select"
   },
   {
@@ -14530,7 +14530,7 @@
   {
     "id": "Q0909",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport, you are caring for an elderly patient named Mr. Johnson who has multiple bruises in various stages of healing. He is accompanied by his son, who appears anxious and evasive when questioned about his father\\'s injuries. As a flight nurse, what is your most appropriate action regarding mandatory reporting?",
+    "stem": "During a flight transport, you are caring for an elderly patient named Mr. Johnson who has multiple bruises in various stages of healing. He is accompanied by his son, who appears anxious and evasive when questioned about his father's injuries. As a flight nurse, what is your most appropriate action regarding mandatory reporting?",
     "options": [
       "Document the findings in the patient's medical record and inform yournsupervisor.",
       "Report the suspected elder abuse to the appropriate authorities immediately.",
@@ -14690,7 +14690,7 @@
   {
     "id": "Q0919",
     "category": "Resuscitation Principles",
-    "stem": "During a critical flight transport, Flight Nurse Emily is responsible for monitoring a patient named John, who is on mechanical ventilation. Emily notices an alarm indicating low oxygen saturation but decides to wait until the next scheduled check-in to address it. As a result, John\\'s condition deteriorates significantly. Which element of negligence is most clearly demonstrated by Emily\\'s actions?",
+    "stem": "During a critical flight transport, Flight Nurse Emily is responsible for monitoring a patient named John, who is on mechanical ventilation. Emily notices an alarm indicating low oxygen saturation but decides to wait until the next scheduled check-in to address it. As a result, John's condition deteriorates significantly. Which element of negligence is most clearly demonstrated by Emily's actions?",
     "options": [
       "Duty of Care",
       "Breach of Duty",
@@ -14706,7 +14706,7 @@
   {
     "id": "Q0920",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a high-altitude medical evacuation, Flight Nurse Sarah notices that her patient, Mr. Johnson, is experiencing increased agitation and confusion. Considering the physiologic stressors of transport, which immediate action should Sarah take to best address Mr. Johnson\\'s condition?",
+    "stem": "During a high-altitude medical evacuation, Flight Nurse Sarah notices that her patient, Mr. Johnson, is experiencing increased agitation and confusion. Considering the physiologic stressors of transport, which immediate action should Sarah take to best address Mr. Johnson's condition?",
     "options": [
       "Increase the flow rate of oxygen delivery.",
       "Administer an anxiolytic medication.",
@@ -14834,7 +14834,7 @@
   {
     "id": "Q0928",
     "category": "Resuscitation Principles",
-    "stem": "John, a 45-year-old male patient with septic shock, is being managed in a flight transport setting. Despite adequate fluid resuscitation, his mean arterial pressure (MAP) remains critically low. Which vasopressor would be most appropriate to initiate first to improve John\\'s MAP?",
+    "stem": "John, a 45-year-old male patient with septic shock, is being managed in a flight transport setting. Despite adequate fluid resuscitation, his mean arterial pressure (MAP) remains critically low. Which vasopressor would be most appropriate to initiate first to improve John's MAP?",
     "options": [
       "Dopamine",
       "Norepinephrine",
@@ -14850,7 +14850,7 @@
   {
     "id": "Q0929",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a critical air transport of a patient named John Doe who has suffered severe trauma, the Flight Nurse must communicate with the receiving hospital about John\\'s condition. Which action best aligns with HIPAA regulations regarding the disclosure of protected health information (PHI)?",
+    "stem": "During a critical air transport of a patient named John Doe who has suffered severe trauma, the Flight Nurse must communicate with the receiving hospital about John's condition. Which action best aligns with HIPAA regulations regarding the disclosure of protected health information (PHI)?",
     "options": [
       "The Flight Nurse can disclose all details of John's medical",
       "The Flight Nurse can share only the minimum necessary information",
@@ -14978,7 +14978,7 @@
   {
     "id": "Q0937",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport of a critically ill patient named John, the flight nurse notices that the ventilator settings are incorrect and immediately adjusts them without consulting the medical control physician. Later, it is discovered that the adjustments were not in line with the medical control\\'s protocol. What legal issue does this scenario primarily illustrate?",
+    "stem": "During a flight transport of a critically ill patient named John, the flight nurse notices that the ventilator settings are incorrect and immediately adjusts them without consulting the medical control physician. Later, it is discovered that the adjustments were not in line with the medical control's protocol. What legal issue does this scenario primarily illustrate?",
     "options": [
       "Battery",
       "Negligence",
@@ -15020,13 +15020,13 @@
     "correct": [
       "B"
     ],
-    "rationale": "In cases of moderate to severe hypothermia (core temperature 28-32°C), active internal rewarming is essential. Heated humidified oxygen helps increase core temperature effectively while supporting respiratory function. Administer warm intravenous fluids and apply external warming is partially correct but does not address the need for internal warming methods which are crucial in severe cases. Perform rapid rewarming using extracorporeal blood warming, while effective for profound hypothermia (\\<28°C), may be too aggressive initially for this scenario. Provide passive rewarming with blankets and monitor vital signs. is suitable for mild hypothermia but inadequate for John's condition given his core temperature and significant symptoms. Administer warm intravenous fluids and apply external warming: Administering warm IV fluids and external warming devices is beneficial but insufficient alone in moderate to severe hypothermia as it primarily addresses peripheral warming. Initiate active internal rewarming with heated humidified oxygen.: Heated humidified oxygen provides both warmth directly to the core and respiratory support, making it the most appropriate initial intervention here. Perform rapid rewarming using extracorporeal blood warming: Extracorporeal blood warming is typically reserved for profound hypothermia due to its invasive nature. Provide passive rewarming with blankets and monitor vital signs.: Passive rewarming with blankets is suitable for mild cases but inadequate for John's moderate to severe condition given his low core temperature and significant symptoms.",
+    "rationale": "In cases of moderate to severe hypothermia (core temperature 28-32°C), active internal rewarming is essential. Heated humidified oxygen helps increase core temperature effectively while supporting respiratory function. Administer warm intravenous fluids and apply external warming is partially correct but does not address the need for internal warming methods which are crucial in severe cases. Perform rapid rewarming using extracorporeal blood warming, while effective for profound hypothermia (<28°C), may be too aggressive initially for this scenario. Provide passive rewarming with blankets and monitor vital signs. is suitable for mild hypothermia but inadequate for John's condition given his core temperature and significant symptoms. Administer warm intravenous fluids and apply external warming: Administering warm IV fluids and external warming devices is beneficial but insufficient alone in moderate to severe hypothermia as it primarily addresses peripheral warming. Initiate active internal rewarming with heated humidified oxygen.: Heated humidified oxygen provides both warmth directly to the core and respiratory support, making it the most appropriate initial intervention here. Perform rapid rewarming using extracorporeal blood warming: Extracorporeal blood warming is typically reserved for profound hypothermia due to its invasive nature. Provide passive rewarming with blankets and monitor vital signs.: Passive rewarming with blankets is suitable for mild cases but inadequate for John's moderate to severe condition given his low core temperature and significant symptoms.",
     "type": "single_select"
   },
   {
     "id": "Q0940",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport, Flight Nurse Sarah receives a call from medical control regarding a critically ill patient, Mr. Johnson, who requires immediate intervention due to severe hypotension and bradycardia. Medical control instructs Sarah to administer medications and adjust ventilator settings. What is the most appropriate action for Sarah to take in response to medical control\\'s instructions?",
+    "stem": "During a flight transport, Flight Nurse Sarah receives a call from medical control regarding a critically ill patient, Mr. Johnson, who requires immediate intervention due to severe hypotension and bradycardia. Medical control instructs Sarah to administer medications and adjust ventilator settings. What is the most appropriate action for Sarah to take in response to medical control's instructions?",
     "options": [
       "Confirm the instructions with medical control, administer",
       "Administer medications immediately as instructed by medical",
@@ -15058,7 +15058,7 @@
   {
     "id": "Q0942",
     "category": "Medical Emergencies",
-    "stem": "John, a 45-year-old male patient, is being transported by air after suffering from a severe myocardial infarction. As a flight nurse, you need to prepare for potential complications during the flight. Which of the following actions is MOST crucial in ensuring John\\'s stability during transport?",
+    "stem": "John, a 45-year-old male patient, is being transported by air after suffering from a severe myocardial infarction. As a flight nurse, you need to prepare for potential complications during the flight. Which of the following actions is MOST crucial in ensuring John's stability during transport?",
     "options": [
       "Administering high-flow oxygen via non-rebreather mask.",
       "Continuously monitoring cardiac rhythm and vital signs.",
@@ -15138,7 +15138,7 @@
   {
     "id": "Q0947",
     "category": "Trauma",
-    "stem": "A 35-year-old male patient presents with partial-thickness burns covering 30% of his total body surface area (TBSA). According to the Parkland formula, what is the appropriate amount of lactated Ringer\\'s solution to administer in the first 24 hours?",
+    "stem": "A 35-year-old male patient presents with partial-thickness burns covering 30% of his total body surface area (TBSA). According to the Parkland formula, what is the appropriate amount of lactated Ringer's solution to administer in the first 24 hours?",
     "options": [
       "4 mL/kg/% TBSA",
       "2 mL/kg/% TBSA",
@@ -15314,23 +15314,23 @@
   {
     "id": "Q0958",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "You are a Flight Nurse transporting a critical patient named John who requires constant monitoring. During the flight, you notice a sudden drop in John\\'s oxygen saturation levels. You need to communicate this information to the receiving hospital\\'s emergency department immediately. Which is the most appropriate radio communication protocol to follow?",
+    "stem": "You are a Flight Nurse transporting a critical patient named John who requires constant monitoring. During the flight, you notice a sudden drop in John's oxygen saturation levels. You need to communicate this information to the receiving hospital's emergency department immediately. Which is the most appropriate radio communication protocol to follow?",
     "options": [
-      "\"Base, this is Flight Nurse with patient John. We have an urgent",
-      "\"Base, this is Flight Nurse. Patient John's O2 saturation has",
-      "\"Base, this is Flight Nurse with patient John experiencing a",
-      "\"Base, urgent update on patient John: O2 saturation critically"
+      ""Base, this is Flight Nurse with patient John. We have an urgent",
+      ""Base, this is Flight Nurse. Patient John's O2 saturation has",
+      ""Base, this is Flight Nurse with patient John experiencing a",
+      ""Base, urgent update on patient John: O2 saturation critically"
     ],
     "correct": [
       "C"
     ],
-    "rationale": "\"Base, this is Flight Nurse with patient John experiencing a is the correct answer because it follows the proper radio communication protocol by identifying the sender ('Flight Nurse'), specifying the patient's condition clearly ('critical drop in O2 saturation'), providing precise data ('current reading at 82%'), and using the term 'Over' to indicate the end of the transmission and await response. This ensures clarity and efficiency in communication. \"Base, this is Flight Nurse with patient John. We have an urgent lacks specific data about the patient's current condition and ends abruptly without indicating that you are awaiting further instructions. \"Base, this is Flight Nurse. Patient John's O2 saturation has provides significant information but does not include specific data (the exact oxygen saturation level), which is crucial for assessing urgency. \"Base, urgent update on patient John: O2 saturation critically gives detailed information but fails to use standard radio terminology like 'Over,' which can lead to confusion or miscommunication. Each option is closely related but varies slightly in adherence to protocol and detail provided, making \"Base, this is Flight Nurse with patient John experiencing a stand out as following best practices comprehensively.",
+    "rationale": ""Base, this is Flight Nurse with patient John experiencing a is the correct answer because it follows the proper radio communication protocol by identifying the sender ('Flight Nurse'), specifying the patient's condition clearly ('critical drop in O2 saturation'), providing precise data ('current reading at 82%'), and using the term 'Over' to indicate the end of the transmission and await response. This ensures clarity and efficiency in communication. "Base, this is Flight Nurse with patient John. We have an urgent lacks specific data about the patient's current condition and ends abruptly without indicating that you are awaiting further instructions. "Base, this is Flight Nurse. Patient John's O2 saturation has provides significant information but does not include specific data (the exact oxygen saturation level), which is crucial for assessing urgency. "Base, urgent update on patient John: O2 saturation critically gives detailed information but fails to use standard radio terminology like 'Over,' which can lead to confusion or miscommunication. Each option is closely related but varies slightly in adherence to protocol and detail provided, making "Base, this is Flight Nurse with patient John experiencing a stand out as following best practices comprehensively.",
     "type": "single_select"
   },
   {
     "id": "Q0959",
     "category": "Medical Emergencies",
-    "stem": "A 45-year-old male patient named John with chronic obstructive pulmonary disease (COPD) is being transported via air ambulance from a rural hospital to a tertiary care center. During the flight at an altitude of 10,000 feet, John begins to exhibit signs of hypoxia. What is the most likely physiological reason for John\\'s hypoxia during this flight?",
+    "stem": "A 45-year-old male patient named John with chronic obstructive pulmonary disease (COPD) is being transported via air ambulance from a rural hospital to a tertiary care center. During the flight at an altitude of 10,000 feet, John begins to exhibit signs of hypoxia. What is the most likely physiological reason for John's hypoxia during this flight?",
     "options": [
       "Decreased barometric pressure leading to reduced partial pressure",
       "Increased barometric pressure leading to reduced partial pressure",
@@ -15346,7 +15346,7 @@
   {
     "id": "Q0960",
     "category": "Resuscitation Principles",
-    "stem": "During a mass transportation accident involving multiple vehicles on a remote highway, Flight Nurse Emma arrives on the scene to assist with triage and patient care. Among the injured is John, a 45-year-old male who is unconscious with shallow breathing and a weak pulse. There are several other victims with varying degrees of injuries. What should be Emma\\'s immediate priority?",
+    "stem": "During a mass transportation accident involving multiple vehicles on a remote highway, Flight Nurse Emma arrives on the scene to assist with triage and patient care. Among the injured is John, a 45-year-old male who is unconscious with shallow breathing and a weak pulse. There are several other victims with varying degrees of injuries. What should be Emma's immediate priority?",
     "options": [
       "Administering high-flow oxygen to John.",
       "Initiating CPR on John immediately.",
@@ -15474,7 +15474,7 @@
   {
     "id": "Q0968",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport, Nurse Alex notices that an elderly patient, Mr. Smith, has multiple untreated pressure ulcers and appears malnourished. Upon questioning, Mr. Smith reveals he has been living in a poorly maintained nursing home with inadequate care. What is Nurse Alex\\'s most appropriate action according to mandatory reporting laws?",
+    "stem": "During a flight transport, Nurse Alex notices that an elderly patient, Mr. Smith, has multiple untreated pressure ulcers and appears malnourished. Upon questioning, Mr. Smith reveals he has been living in a poorly maintained nursing home with inadequate care. What is Nurse Alex's most appropriate action according to mandatory reporting laws?",
     "options": [
       "Document the findings in the patient's medical record and inform",
       "Report the suspected neglect to adult protective services (APS)",
@@ -15650,7 +15650,7 @@
   {
     "id": "Q0979",
     "category": "Medical Emergencies",
-    "stem": "John, a 35-year-old hiker, is brought to your emergency department after being found unconscious in his tent. His friends report that he had been using a portable propane heater inside the tent overnight. On examination, John is unresponsive with cherry-red skin coloration and a pulse oximetry reading of 100%. What is the most appropriate initial treatment for John\\'s condition?",
+    "stem": "John, a 35-year-old hiker, is brought to your emergency department after being found unconscious in his tent. His friends report that he had been using a portable propane heater inside the tent overnight. On examination, John is unresponsive with cherry-red skin coloration and a pulse oximetry reading of 100%. What is the most appropriate initial treatment for John's condition?",
     "options": [
       "Administer 100% oxygen via non-rebreather mask.",
       "Initiate hyperbaric oxygen therapy immediately.",
@@ -15746,7 +15746,7 @@
   {
     "id": "Q0985",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "You are a flight nurse preparing to transfer John, a 45-year-old male with acute chest pain, from a small rural hospital to a larger tertiary care center. The rural hospital has limited diagnostic capabilities and cannot provide definitive treatment for John\\'s condition. Before initiating the transfer, which of the following actions must be ensured in compliance with EMTALA regulations?",
+    "stem": "You are a flight nurse preparing to transfer John, a 45-year-old male with acute chest pain, from a small rural hospital to a larger tertiary care center. The rural hospital has limited diagnostic capabilities and cannot provide definitive treatment for John's condition. Before initiating the transfer, which of the following actions must be ensured in compliance with EMTALA regulations?",
     "options": [
       "Confirm that the receiving facility has agreed to accept the",
       "Ensure that John has been stabilized to the maximum extent",
@@ -15858,7 +15858,7 @@
   {
     "id": "Q0992",
     "category": "Trauma",
-    "stem": "John, a 35-year-old male, is brought to your flight nursing team after a motor vehicle accident. He is hypotensive, tachycardic, and has cool, clammy skin. Despite fluid resuscitation with crystalloids, his blood pressure remains low. Which of the following is the most appropriate next step in managing John\\'s shock?",
+    "stem": "John, a 35-year-old male, is brought to your flight nursing team after a motor vehicle accident. He is hypotensive, tachycardic, and has cool, clammy skin. Despite fluid resuscitation with crystalloids, his blood pressure remains low. Which of the following is the most appropriate next step in managing John's shock?",
     "options": [
       "Administer norepinephrine",
       "Administer additional crystalloid fluids",
@@ -15874,7 +15874,7 @@
   {
     "id": "Q0993",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "You are a flight nurse named Alex who has just survived a helicopter crash in a remote area with three other crew members. The weather is deteriorating rapidly, and nightfall is approaching. What should be your first priority to ensure everyone\\'s survival?",
+    "stem": "You are a flight nurse named Alex who has just survived a helicopter crash in a remote area with three other crew members. The weather is deteriorating rapidly, and nightfall is approaching. What should be your first priority to ensure everyone's survival?",
     "options": [
       "Assess each crew member for injuries and provide necessary first",
       "Establish a shelter to protect against the elements.",
@@ -16114,7 +16114,7 @@
   {
     "id": "Q1008",
     "category": "Resuscitation Principles",
-    "stem": "You are a flight nurse transporting John, a 35-year-old male who sustained multiple fractures and internal bleeding from a car accident. Upon mid-flight, John\\'s blood pressure drops significantly. What is your immediate priority?",
+    "stem": "You are a flight nurse transporting John, a 35-year-old male who sustained multiple fractures and internal bleeding from a car accident. Upon mid-flight, John's blood pressure drops significantly. What is your immediate priority?",
     "options": [
       "Administering intravenous fluids to stabilize blood pressure.",
       "Contacting the receiving hospital for further instructions.",
@@ -16146,7 +16146,7 @@
   {
     "id": "Q1010",
     "category": "Resuscitation Principles",
-    "stem": "During an emergency air transport, John Doe, a 67-year-old male with advanced heart disease, suddenly becomes unresponsive. The flight nurse finds an advanced directive in John\\'s belongings stating he does not wish to be resuscitated (DNR). However, his family members on board are insisting that you perform CPR. What should be the flight nurse\\'s immediate course of action?",
+    "stem": "During an emergency air transport, John Doe, a 67-year-old male with advanced heart disease, suddenly becomes unresponsive. The flight nurse finds an advanced directive in John's belongings stating he does not wish to be resuscitated (DNR). However, his family members on board are insisting that you perform CPR. What should be the flight nurse's immediate course of action?",
     "options": [
       "Perform CPR because the family members are requesting it.",
       "Follow the advanced directive and do not perform CPR.",
@@ -16194,7 +16194,7 @@
   {
     "id": "Q1013",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a high-stress transport of a critically ill child named Emily, her parents are visibly anxious and distressed. As a flight nurse, what is the most appropriate action to support Emily\\'s family during this time?",
+    "stem": "During a high-stress transport of a critically ill child named Emily, her parents are visibly anxious and distressed. As a flight nurse, what is the most appropriate action to support Emily's family during this time?",
     "options": [
       "Provide detailed medical information about Emily's condition to",
       "Encourage the parents to focus on positive outcomes and maintain",
@@ -16514,7 +16514,7 @@
   {
     "id": "Q1033",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During an air medical transport at high altitude, a patient named John starts experiencing acute shortness of breath, chest pain, and confusion. As a flight nurse, what is the most likely physiological cause of John\\'s symptoms?",
+    "stem": "During an air medical transport at high altitude, a patient named John starts experiencing acute shortness of breath, chest pain, and confusion. As a flight nurse, what is the most likely physiological cause of John's symptoms?",
     "options": [
       "Hypoxia due to decreased partial pressure of oxygen at high",
       "Hypercapnia due to increased carbon dioxide retention at high",
@@ -16722,7 +16722,7 @@
   {
     "id": "Q1046",
     "category": "Trauma",
-    "stem": "Following a high-speed motor vehicle collision, a comatose patient undergoes CT of the head. The radiologist report states \"no acute findings.\" What is the MOST likely cause of the patient's condition?",
+    "stem": "Following a high-speed motor vehicle collision, a comatose patient undergoes CT of the head. The radiologist report states "no acute findings." What is the MOST likely cause of the patient's condition?",
     "options": [
       "Cerebral edema",
       "Diffuse axonal injury",
@@ -18404,10 +18404,10 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "A helicopter is landing at an accident scene. The pilot has conducted both high and low reconnaissance flights. While on the final approach, the flight nurse notices wires in the flight path at the two o'clock position. How should the flight nurse report this finding?",
     "options": [
-      "Ask the partner \"Are there wires at two o'clock?\"",
-      "State \"Wires, pull up.\"",
+      "Ask the partner "Are there wires at two o'clock?"",
+      "State "Wires, pull up."",
       "Request an alternate landing zone",
-      "State \"I think I see wires.\""
+      "State "I think I see wires.""
     ],
     "correct": [
       "B"
