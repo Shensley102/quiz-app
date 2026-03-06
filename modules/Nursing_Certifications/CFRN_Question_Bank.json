@@ -9202,17 +9202,17 @@
   {
     "id": "Q0576",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a medical flight transport, a family member calls the flight nurse's personal phone asking for details about patient the patient's condition. How should the flight nurse respond to comply with HIPAA regulations?",
+    "stem": "During a medical flight transport, a family member calls a flight clinician's personal phone asking for details about a patient's condition. How should the clinician respond to comply with HIPAA regulations?",
     "options": [
       "Provide general information without revealing specific health details.",
-      "Confirm that Sarah is on board but avoid discussing her condition.",
+      "Confirm that the patient is on board but avoid discussing the clinical condition.",
       "Inform the family member that they must contact the hospital directly for any information.",
-      "Share detailed health information since it is a critical situation."
+      "Share detailed health information since it is a critical and time-sensitive situation."
     ],
     "correct": [
       "C"
     ],
-    "rationale": "According to HIPAA, patient health information must be protected at all times. The flight nurse should not disclose any health information over personal communication channels. Directing the family member to contact the hospital ensures any disclosure complies with institutional protocols and privacy safeguards. Options A and B involve sharing some level of information that could breach confidentiality. Share detailed health information since it is a critical situation. incorrectly assumes that critical situations allow for bypassing HIPAA rules.",
+    "rationale": "According to HIPAA regulations, patient health information must be protected at all times, and clinicians should never disclose any health data over personal communication channels. Directing the family member to contact the hospital is the only correct action, as it ensures that any disclosure complies with institutional privacy protocols and verified identity safeguards. Providing \"general information"\ or confirming a patient is on board is incorrect because even minimal details can constitute a breach of confidentiality. Finally, sharing detailed information due to the \"critical situation"\ is wrong because HIPAA rules do not allow for the bypassing of privacy standards based on the severity of a patient's condition.",
     "type": "single_select"
   },
   {
@@ -9634,17 +9634,17 @@
   {
     "id": "Q0603",
     "category": "Special Populations",
-    "stem": "During an aeromedical evacuation, you are caring for the patient, a 32-year-old pregnant woman at 28 weeks gestation who suddenly develops severe abdominal pain and vaginal bleeding. What is the most appropriate initial action to take? oxygen.",
+    "stem": "During an aeromedical evacuation, you are caring for the patient, a 32-year-old pregnant woman at 28 weeks gestation who suddenly develops severe abdominal pain and vaginal bleeding. What is the most appropriate initial action to take?",
     "options": [
       "Administer intravenous fluids and monitor vital signs.",
-      "Position Sarah in left lateral decubitus position and administer",
+      "Position the patient in left lateral recumbent position and administer oxygen.",
       "Perform a cervical exam to check for dilation.",
       "Prepare for immediate delivery in-flight."
     ],
     "correct": [
       "B"
     ],
-    "rationale": "The most appropriate initial action is to position the patient in the left lateral decubitus position and administer oxygen. This helps improve placental perfusion by relieving pressure on the inferior vena cava and enhancing maternal-fetal oxygenation, which is critical in cases of severe abdominal pain and vaginal bleeding suggestive of placental abruption or other obstetric emergencies. Administer intravenous fluids and monitor vital signs is important but secondary; initial stabilization with positioning and oxygen takes precedence. Perform a cervical exam to check for dilation may exacerbate bleeding if there's placenta previa or abruption. Prepare for immediate delivery in-flight might be necessary later but isn't the first step without further assessment.",
+    "rationale": "The most appropriate initial action is to position the patient in the left lateral recumbent position and administer oxygen. This helps improve placental perfusion by relieving pressure on the inferior vena cava and enhancing maternal-fetal oxygenation, which is critical in cases of severe abdominal pain and vaginal bleeding suggestive of placental abruption or other obstetric emergencies. Administer intravenous fluids and monitor vital signs is important but secondary; initial stabilization with positioning and oxygen takes precedence. Perform a cervical exam to check for dilation may exacerbate bleeding if there's placenta previa or abruption. Prepare for immediate delivery in-flight might be necessary later but isn't the first step without further assessment.",
     "type": "single_select"
   },
   {
@@ -12438,13 +12438,13 @@
     "options": [
       "Monitoring maternal blood pressure closely due to increased risk of preeclampsia.",
       "Administering supplemental oxygen routinely to prevent fetal hypoxia.",
-      "Positioning the patient in a left lateral tilt to prevent supine hypotensive syndrome.",
+      "Positioning the patient in a left lateral recumbant position to prevent supine hypotensive syndrome.",
       "Avoiding turbulence by flying at lower altitudes to minimize stress on the fetus."
     ],
     "correct": [
       "C"
     ],
-    "rationale": "Positioning a pregnant patient in a left lateral tilt is crucial during air transport to prevent supine hypotensive syndrome, which occurs when the gravid uterus compresses the inferior vena cava, reducing venous return and cardiac output. This positioning helps maintain adequate blood flow and oxygenation for both mother and fetus. - Monitoring maternal blood pressure closely is important but not as critical as positioning because while monitoring blood pressure is essential due to risks like preeclampsia, it does not directly address immediate circulatory compromise caused by improper positioning. - Administering supplemental oxygen routinely suggests routine supplemental oxygen, which may not always be necessary unless there are specific indications of hypoxia. - Flying at lower altitudes to avoid turbulence implies avoiding turbulence by flying at lower altitudes; however, this is less controllable and secondary compared to ensuring proper maternal positioning. The key difference lies in immediate physiological impacts---correct positioning directly prevents significant hemodynamic compromise, making it the most critical consideration.",
+    "rationale": "Positioning a pregnant patient in a left lateral recumbent position is crucial during air transport to prevent supine hypotensive syndrome, which occurs when the gravid uterus compresses the inferior vena cava, reducing venous return and cardiac output. This positioning helps maintain adequate blood flow and oxygenation for both mother and fetus. - Monitoring maternal blood pressure closely is important but not as critical as positioning because while monitoring blood pressure is essential due to risks like preeclampsia, it does not directly address immediate circulatory compromise caused by improper positioning. - Administering supplemental oxygen routinely suggests routine supplemental oxygen, which may not always be necessary unless there are specific indications of hypoxia. - Flying at lower altitudes to avoid turbulence implies avoiding turbulence by flying at lower altitudes; however, this is less controllable and secondary compared to ensuring proper maternal positioning. The key difference lies in immediate physiological impacts---correct positioning directly prevents significant hemodynamic compromise, making it the most critical consideration.",
     "type": "single_select"
   },
   {
@@ -13557,14 +13557,14 @@
     "stem": "The patient, a 28-year-old pregnant woman at 30 weeks gestation, has been involved in a motor vehicle accident and is being transported via helicopter to a trauma center. During the flight, she becomes hypotensive. What is the most appropriate initial intervention?",
     "options": [
       "Administer intravenous fluids rapidly.",
-      "Place Sarah in a left lateral tilt position.",
+      "Place the patient in a left lateral recumbent position.",
       "Administer oxygen via non-rebreather mask.",
       "Perform an emergency cesarean section."
     ],
     "correct": [
       "B"
     ],
-    "rationale": "Placing the patient in a left lateral tilt position helps relieve pressure from the gravid uterus on the inferior vena cava, which can improve venous return and cardiac output, thereby addressing hypotension. - Administer intravenous fluids rapidly is important but not the initial intervention; fluid resuscitation should follow after positioning. - Administer oxygen via non-rebreather mask ensures adequate oxygenation but does not directly address the underlying cause of hypotension due to vena cava compression. - Perform an emergency cesarean section is only indicated if there are signs of fetal distress or maternal decompensation that cannot be managed otherwise and is not an initial intervention during transport. Each option reflects critical aspects of managing pregnant trauma patients, but only positioning addresses the immediate cause of hypotension due to uterine compression.",
+    "rationale": "Placing the patient in a left lateral recumbent position helps relieve pressure from the gravid uterus on the inferior vena cava, which can improve venous return and cardiac output, thereby addressing hypotension. - Administer intravenous fluids rapidly is important but not the initial intervention; fluid resuscitation should follow after positioning. - Administer oxygen via non-rebreather mask ensures adequate oxygenation but does not directly address the underlying cause of hypotension due to vena cava compression. - Perform an emergency cesarean section is only indicated if there are signs of fetal distress or maternal decompensation that cannot be managed otherwise and is not an initial intervention during transport. Each option reflects critical aspects of managing pregnant trauma patients, but only positioning addresses the immediate cause of hypotension due to uterine compression.",
     "type": "single_select"
   },
   {
@@ -14194,17 +14194,17 @@
   {
     "id": "Q0888",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a critical patient transport, the flight nurse administers the wrong medication due to a labeling error on the medication vial. In line with Just Culture principles, what is the most appropriate action for the healthcare organization to take?",
+    "stem": "During a critical patient transport, a flight nurse administers the wrong medication due to a labeling error on the medication vial. In line with /"Just Culture"/ principles, what is the most appropriate action for the healthcare organization to take?",
     "options": [
-      "Terminate Sarah's employment immediately for her mistake.",
-      "Conduct a thorough investigation to understand the root cause of",
-      "Implement mandatory retraining for all flight nurses without",
-      "Place Sarah on probation while reviewing her past performance."
+      "Terminate the clinician's employment immediately for the mistake.",
+      "Conduct a thorough investigation to understand the root cause of the error.",
+      "Implement mandatory retraining for all flight clinicians without investigating further.",
+      "Place the clinician on probation while reviewing their past performance."
     ],
     "correct": [
       "B"
     ],
-    "rationale": "Just Culture promotes understanding and addressing system flaws rather than punishing individuals for honest mistakes. Conduct a thorough investigation to understand the root cause of aligns with this by advocating for an investigation to uncover systemic issues that led to the error. Terminate the patient's employment immediately for her mistake. contradicts Just Culture by focusing solely on individual punishment without considering systemic factors. Implement mandatory retraining for all flight nurses without skips crucial investigative steps, assuming retraining is necessary without identifying specific causes. Place the patient on probation while reviewing her past performance. partially aligns with Just Culture but prematurely takes punitive action before understanding all contributing factors. Thus, option B is correct as it seeks comprehensive understanding and systemic improvement.",
+    "rationale": "\"Just Culture"\ promotes understanding and addressing system flaws rather than punishing individuals for honest mistakes, seeking comprehensive understanding and systemic improvement. Conducting a thorough investigation is correct because it seeks to uncover systemic issues, such as the labeling error, that led to the mistake. Immediate termination is incorrect because it focuses solely on individual punishment without considering systemic factors. Implementing mandatory retraining without an investigation is wrong as it skips crucial steps and assumes retraining is the solution without identifying specific causes. Finally, placing the nurse on probation prematurely takes punitive action before all contributing factors are understood, which only partially aligns with the principles of a just culture.",
     "type": "single_select"
   },
   {
