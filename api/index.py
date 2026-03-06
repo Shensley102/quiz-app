@@ -356,7 +356,7 @@ def get_cfrn_domain_totals():
     counts = {}
     for q in questions:
         cat = q.get('category', '')
-        domain = cat.split('; ')[0].strip() if '; ' in cat else cat.strip()
+        domain = cat.split(';')[0].strip()
         if domain:
             counts[domain] = counts.get(domain, 0) + 1
 
