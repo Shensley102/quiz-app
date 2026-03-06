@@ -4640,22 +4640,6 @@
     "type": "single_select"
   },
   {
-    "id": "Q0291",
-    "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "Are you capable of passing your advanced certification exam?",
-    "options": [
-      "Yes",
-      "YES",
-      "HELL YES",
-      "ABSOLUTELY, QUEEN LET'S DO THISSSSSSS!"
-    ],
-    "correct": [
-      "D"
-    ],
-    "rationale": "A successful career in critical care is a choose your own adventure kind of deal; you'll get out of it what you put into it. If you study adequately, using multiple resources, and start applying to your clinical practice what you're learning from the books, you'll do great! Be coachable, be willing to listen, and be open to the idea that you might have been wrong in the past. Put in the elbow grease, and you'll be reaching your career goals in due time!",
-    "type": "single_select"
-  },
-  {
     "id": "Q0292",
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "The flight nurse is transporting a patient with an intrarenal acute kidney injury. A finding consistent with this diagnosis is",
