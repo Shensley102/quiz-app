@@ -789,8 +789,12 @@
         function getDomainAverage(domainName) {
             if (!window.StudyGuruProgress) return null;
             const averages = window.StudyGuruProgress.getAllCycleCategoryAverages(BANK);
-            const subcats  = DOMAIN_SUBCATEGORIES[domainName] || [];
-            const scores   = subcats.map(k => averages[k]).filter(v => v !== undefined && v !== null);
+            // Match any category that IS the domain or starts with "domainName;"
+            // This is robust to any subcategory format variation in the JSON.
+            const scores = Object.entries(averages)
+                .filter(([k]) => k === domainName || k.startsWith(domainName + ';'))
+                .map(([, v]) => v)
+                .filter(v => v !== undefined && v !== null);
             if (scores.length === 0) return null;
             return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
         }
