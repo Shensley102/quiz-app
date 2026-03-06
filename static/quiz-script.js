@@ -29,8 +29,9 @@
    - Requeued questions are shuffled (randomized order)
    - Answer positions re-randomized on each render (existing behavior)
    - Requeue counter resets after each injection
-   - FIX: showView('launcher') now clears inline style="display:none" set by
+   - FIX: showView('launcher') clears inline style="display:none" set by
      autostart so "Start New Quiz" correctly returns to the length-selector screen
+   - Review list sorted: incorrect answers first, correct answers last
    
 ------------------------------------------------------------ */
 
@@ -373,15 +374,8 @@
 
   // -----------------------------------------------------------
   // MASTERY-AWARE Question Selection
-  // Handles the 80/20 new/recycled split for CFRN and CCRN banks.
-  // For other banks, falls through to standard weighted selection.
   // -----------------------------------------------------------
 
-  /**
-   * Split a question pool into new (unseen this cycle) and recycled
-   * (already mastered) pools, then select and tag with _isNew.
-   * Returns the final shuffled array ready for the quiz queue.
-   */
   function selectWithMasterySplit(normalized, requested, isComprehensive, isCategoryQuiz, bank) {
     const store = getProgressStore();
     const masteredIds = store ? store.getMasteredIds(bank) : new Set();
@@ -389,7 +383,6 @@
     const newPool      = normalized.filter(q => !masteredIds.has(q.id));
     const recycledPool = normalized.filter(q =>  masteredIds.has(q.id));
 
-    // Determine targets
     let newTarget, recycledTarget;
     if (requested <= 10) {
       newTarget      = requested;
@@ -399,11 +392,9 @@
       recycledTarget = requested - newTarget;
     }
 
-    // Handle edge cases
     const actualNew      = Math.min(newTarget, newPool.length);
     const actualRecycled = Math.min(requested - actualNew, recycledPool.length);
 
-    // Select — new pool uses least-attempted ordering; recycled is shuffled
     const sortedNew = sortByAttemptsLocal(newPool, store);
     const selectedNew = sortedNew
       .slice(0, actualNew)
@@ -581,21 +572,17 @@
     const isComprehensive = opts.isComprehensive || state.isComprehensive;
     const isCategoryQuiz  = opts.isCategoryQuiz  || state.isCategoryQuiz;
 
-    // Bank detection for mastery tracking
     const bank = detectBank();
 
     let selected;
 
     if (opts.isRetry) {
-      // Retry missed questions — preserve _isNew flags already on objects
       selected = shuffle(normalized);
 
     } else if (bank) {
-      // CFRN / CCRN — apply 80/20 mastery split
       selected = selectWithMasterySplit(normalized, requested, isComprehensive, isCategoryQuiz, bank);
 
     } else if (isComprehensive || isCategoryQuiz) {
-      // Standard weighted selection — tag all as _isNew: false (no mastery tracking)
       selected = selectQuestionsWithWeighting(normalized, requested, isComprehensive, isCategoryQuiz)
         .map(q => ({ ...q, _isNew: false }));
 
@@ -612,7 +599,7 @@
       isRetry: !!opts.isRetry,
       isComprehensive,
       isCategoryQuiz,
-      bank,                         // 'cfrn' | 'ccrn' | null
+      bank,
       quizLength: selected.length,
       queue: selected.slice(),
       missedQueue: [],
@@ -1237,9 +1224,19 @@
         els.restartBtnSummary.style.flex = missedCount === 0 ? '5' : '4';
     }
 
+    // -----------------------------------------------------------
+    // Build review list — incorrect answers first, correct last
+    // run.perQuestion is NOT mutated so retry/mastery logic is unaffected
+    // -----------------------------------------------------------
     if (els.reviewList) {
       els.reviewList.innerHTML = '';
-      run.perQuestion.forEach(p => {
+
+      const sortedForReview = [...run.perQuestion].sort((a, b) => {
+        if (a.correct === b.correct) return 0;
+        return a.correct ? 1 : -1; // false/null → top, true → bottom
+      });
+
+      sortedForReview.forEach(p => {
         const q = p.questionObj;
         if (!q) return;
 
@@ -1290,18 +1287,15 @@
     // -----------------------------------------------------------
     const store = getProgressStore();
     if (store) {
-      // Weekly count — always recorded for all quizzes
       if (!run.isRetry && store.recordCompletedQuiz) {
         store.recordCompletedQuiz(total);
       }
 
-      // Attempt tracking
       if (store.recordQuizAttempts) {
         const ids = run.perQuestion.map(p => p.id).filter(Boolean);
         store.recordQuizAttempts(ids);
       }
 
-      // Category score recording
       const categoryResults = {};
       run.perQuestion.forEach(p => {
         const cat = p.questionObj?.category;
@@ -1312,21 +1306,17 @@
       });
 
       if (run.bank && !run.isRetry && store.recordCycleCategoryScore) {
-        // CFRN / CCRN → record to cycle performance (resets with target date)
         for (const [cat, res] of Object.entries(categoryResults)) {
           const catPct = Math.round((res.correct / res.total) * 100);
           store.recordCycleCategoryScore(run.bank, cat, catPct);
         }
       } else if (!run.bank && store.recordCategoryScore) {
-        // All other quizzes → record to global performance
         for (const [cat, res] of Object.entries(categoryResults)) {
           const catPct = Math.round((res.correct / res.total) * 100);
           store.recordCategoryScore(cat, catPct);
         }
       }
 
-      // Mastery ID recording — CFRN / CCRN only, non-retry only
-      // All _isNew questions are guaranteed mastered (quiz never ends until all correct)
       if (run.bank && !run.isRetry && store.addMasteredIds) {
         const newIds = run.perQuestion
           .map(p => p.questionObj)
@@ -1337,8 +1327,6 @@
         if (newIds.length > 0) {
           store.addMasteredIds(run.bank, newIds);
           console.log(`[Quiz] Recorded ${newIds.length} mastered IDs to ${run.bank} bank`);
-
-          // Dispatch event so CFRN/CCRN pages can update their mastery widget
           window.dispatchEvent(new CustomEvent('masteryUpdated', { detail: { bank: run.bank } }));
         }
       }
