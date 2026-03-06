@@ -10306,17 +10306,17 @@
   {
     "id": "Q0645",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport, you receive a call from a rural hospital requesting the transfer of the patient, who presents with severe chest pain. The hospital has performed an initial medical screening examination but lacks the capability to provide further necessary stabilizing treatment. Under EMTALA regulations, what is your primary responsibility as a flight nurse?",
+    "stem": "A patient's plateau pressure is 22 and the PEEP is 5. The flight clinician recognizes that the driving pressure is:",
     "options": [
-      "Ensure that the patient receives a complete medical screening examination before transfer.",
-      "Verify that the receiving facility has available space and qualified personnel to treat John Doe.",
-      "Confirm that the transferring hospital has provided all necessary stabilizing treatment before transfer.",
-      "Obtain informed consent from John Doe for the transfer to another facility."
+      "27",
+      "22",
+      "13.5",
+      "17"
     ],
     "correct": [
-      "B"
+      "D"
     ],
-    "rationale": "Under EMTALA, one of the critical responsibilities during an inter-facility transfer is to ensure that the receiving facility has both available space and that qualified personnel to provide necessary care for the patient. This ensures continuity of care and compliance with federal regulations. Ensure that the patient receives a complete medical screening examination before transfer. is incorrect because while an initial medical screening examination is required under EMTALA, it must be completed before considering a transfer. Confirm that the transferring hospital has provided all necessary stabilizing treatment before transfer. is misleading because if the transferring hospital lacks stabilizing capabilities, they are not required to stabilize but must ensure appropriate transfer conditions are met. Obtain informed consent from the patient Doe for the transfer to another facility. is partially correct as obtaining informed consent is important; however, it does not address EMTALA's specific requirements for ensuring proper transfer conditions.",
+    "rationale": "Driving pressure is the pressure gradient experienced by the alveoli during mechanically delivered ventilation and is calculated using the formula  DRIVING PRESSIRE = PLATEAU PRESSURE - PEEP. In this scenario, subtracting the PEEP of 5 from the plateau of 22 results in a driving pressure of 17, which is the correct answer. A driving pressure of 27 is incorrect as it represents the sum of the two values rather than the difference. Selecting 22 is wrong as it only accounts for the plateau pressure and ignores the baseline pressure maintained by PEEP. Choosing 13.5 is incorrect as there is no clinical formula in this context that would yield that result. Maintaining a driving pressure below 14 is critical in lung-protective ventilation, as values above this threshold are associated with higher morbidity and increased ICU stays.",
     "type": "single_select"
   },
   {
