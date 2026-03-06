@@ -32,6 +32,14 @@
    - FIX: showView('launcher') clears inline style="display:none" set by
      autostart so "Start New Quiz" correctly returns to the length-selector screen
    - Review list sorted: incorrect answers first, correct answers last
+   - CFRN domain-weighted question selection aligned to BCEN exam blueprint:
+     Principles of Flight Transport Nursing 18.7%
+     Resuscitation Principles 25.3%
+     Trauma 19.3%
+     Medical Emergencies 26.7%
+     Special Populations 10.0%
+     Weighting applied to new-pool only; least-asked-first preserved within each domain bucket.
+     Recycled pool remains unweighted (shuffled). Backfill handles domain shortfalls.
    
 ------------------------------------------------------------ */
 
@@ -50,6 +58,19 @@
     'Pharmacological and Parenteral Therapies': 0.16,
     'Reduction of Risk Potential': 0.12,
     'Physiological Adaptation': 0.14
+  };
+
+  // -----------------------------------------------------------
+  // CFRN Domain Weights (BCEN Exam Blueprint)
+  // Keys are domain prefixes — matched via startsWith() against
+  // full category strings like "Trauma; Subcategory: Thoracic"
+  // -----------------------------------------------------------
+  const CFRN_DOMAIN_WEIGHTS = {
+    'General Principles of Flight Transport Nursing Practice': 0.187,
+    'Resuscitation Principles':                                0.253,
+    'Trauma':                                                  0.193,
+    'Medical Emergencies':                                     0.267,
+    'Special Populations':                                     0.100
   };
 
   // Letter labels for options
@@ -383,28 +404,96 @@
     const newPool      = normalized.filter(q => !masteredIds.has(q.id));
     const recycledPool = normalized.filter(q =>  masteredIds.has(q.id));
 
-    let newTarget, recycledTarget;
+    let newTarget;
     if (requested <= 10) {
-      newTarget      = requested;
-      recycledTarget = 0;
+      newTarget = requested;
     } else {
-      newTarget      = Math.round(requested * 0.80);
-      recycledTarget = requested - newTarget;
+      newTarget = Math.round(requested * 0.80);
     }
-
     const actualNew      = Math.min(newTarget, newPool.length);
     const actualRecycled = Math.min(requested - actualNew, recycledPool.length);
 
-    const sortedNew = sortByAttemptsLocal(newPool, store);
-    const selectedNew = sortedNew
-      .slice(0, actualNew)
-      .map(q => ({ ...q, _isNew: true }));
+    // -----------------------------------------------------------
+    // Domain-weighted selection from the new pool (CFRN only)
+    // Falls back to flat least-asked sort for CCRN or unknown banks
+    // -----------------------------------------------------------
+    let selectedNew;
+
+    const domainWeights = bank === 'cfrn' ? CFRN_DOMAIN_WEIGHTS : null;
+
+    if (domainWeights) {
+      // Bucket new-pool questions by domain prefix
+      const domainKeys   = Object.keys(domainWeights);
+      const buckets      = {};
+      const uncategorized = [];
+
+      domainKeys.forEach(k => { buckets[k] = []; });
+
+      newPool.forEach(q => {
+        const cat = q.category || '';
+        const matched = domainKeys.find(k => cat.startsWith(k));
+        if (matched) buckets[matched].push(q);
+        else uncategorized.push(q);
+      });
+
+      // Calculate per-domain targets
+      const targets = {};
+      let totalAssigned = 0;
+      domainKeys.forEach(k => {
+        targets[k] = Math.round(actualNew * domainWeights[k]);
+        totalAssigned += targets[k];
+      });
+
+      // Fix rounding drift — add/subtract from the largest domain
+      const drift = actualNew - totalAssigned;
+      if (drift !== 0) {
+        const largest = domainKeys.reduce((a, b) => targets[a] >= targets[b] ? a : b);
+        targets[largest] += drift;
+      }
+
+      // Select least-asked-first within each domain bucket
+      const picked = [];
+      const shortfall = { count: 0 };
+
+      domainKeys.forEach(k => {
+        const sorted  = sortByAttemptsLocal(buckets[k], store);
+        const want    = targets[k];
+        const canTake = Math.min(want, sorted.length);
+        sorted.slice(0, canTake).forEach(q => picked.push({ ...q, _isNew: true }));
+        shortfall.count += (want - canTake);
+      });
+
+      // Backfill shortfall from uncategorized + leftovers, least-asked-first
+      if (shortfall.count > 0) {
+        const pickedIds  = new Set(picked.map(q => q.id));
+        const backfillPool = sortByAttemptsLocal(
+          [...uncategorized, ...newPool].filter(q => !pickedIds.has(q.id)),
+          store
+        );
+        backfillPool.slice(0, shortfall.count).forEach(q => picked.push({ ...q, _isNew: true }));
+      }
+
+      selectedNew = picked;
+
+      // Domain distribution log
+      const dist = {};
+      domainKeys.forEach(k => {
+        dist[k.split(';')[0].trim()] = `${targets[k]} target / ${buckets[k].length} avail`;
+      });
+      console.log(`[Quiz] CFRN domain-weighted new pool distribution:`, dist);
+
+    } else {
+      // Non-CFRN bank — flat least-asked-first (original behaviour)
+      selectedNew = sortByAttemptsLocal(newPool, store)
+        .slice(0, actualNew)
+        .map(q => ({ ...q, _isNew: true }));
+    }
 
     const selectedRecycled = shuffle([...recycledPool])
       .slice(0, actualRecycled)
       .map(q => ({ ...q, _isNew: false }));
 
-    console.log(`[Quiz] ${bank.toUpperCase()} mastery split: ${actualNew} new, ${actualRecycled} recycled of ${requested} requested`);
+    console.log(`[Quiz] ${bank.toUpperCase()} mastery split: ${selectedNew.length} new, ${selectedRecycled.length} recycled of ${requested} requested`);
     console.log(`[Quiz] New pool: ${newPool.length}, Recycled pool: ${recycledPool.length}`);
 
     return shuffle([...selectedNew, ...selectedRecycled]);
