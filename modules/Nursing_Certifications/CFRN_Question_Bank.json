@@ -7060,7 +7060,7 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a flight transport, the flight nurse notices that their patient, the patient, is showing signs of increased agitation and confusion during significant turbulence and noise. What should the flight nurse prioritize to stabilize the patient?",
     "options": [
-      "Administering additional sedation to calm Mr. Johnson.",
+      "Administering additional sedation to calm the patient.",
       "Increasing oxygen flow rate to counteract potential hypoxia.",
       "Adjusting cabin pressure settings to reduce altitude effects.",
       "Communicating with the pilot to decrease engine noise levels."
@@ -7284,10 +7284,10 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a medical flight transport, the patient's wife insists on sitting next to him throughout the journey. How should you address her concerns while ensuring the patient's safety and effective medical care?",
     "options": [
-      "Allow her to sit next to John but instruct her not to interfere with medical procedures.",
+      "Allow her to sit next to the patient but instruct her not to interfere with medical procedures.",
       "Explain the importance of her emotional support but emphasize that she must sit in a designated safe area.",
-      "Reassure her that John is in good hands and suggest she waits at the destination hospital.",
-      "Provide her with detailed information about John's condition to alleviate her anxiety."
+      "Reassure her that the patient is in good hands and suggest she waits at the destination hospital.",
+      "Provide her with detailed information about the patients's condition to alleviate her anxiety."
     ],
     "correct": [
       "B"
@@ -7476,10 +7476,10 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "You notice that high noise levels inside the aircraft are causing the patient significant distress. Which action is most appropriate to mitigate the impact of noise?",
     "options": [
-      "Increase communication with John using hand signals and written notes.",
-      "Administer additional sedatives to keep John calm throughout the flight.",
-      "Use noise-canceling headphones to reduce John's exposure to ambient noise.",
-      "Reposition John closer to the cockpit where noise levels are generally lower."
+      "Increase communication using hand signals and written notes.",
+      "Administer additional sedatives throughout the flight.",
+      "Use noise-canceling headphones to reduce exposure to ambient noise.",
+      "Reposition the patient closer to the cockpit where noise levels are generally lower."
     ],
     "correct": [
       "C"
@@ -8324,10 +8324,10 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "The flight nurse is responsible for transporting critically ill the patient. If the flight nurse leaves the patient unattended to attend to another patient, which action would most likely constitute abandonment?",
     "options": [
-      "Leaving Mr. Johnson unattended for a brief period while responding to the other call.",
-      "Ensuring that another qualified medical professional takes over Mr. Johnson's care before leaving.",
-      "Briefly stepping away from Mr. Johnson but remaining within earshot and visual contact.",
-      "Informing the pilot about the situation and seeking guidance without leaving Mr. Johnson's side."
+      "Leaving the patient unattended for a brief period while responding to the other call.",
+      "Ensuring that another qualified medical professional takes over care before leaving.",
+      "Briefly stepping away from the patient but remaining within earshot and visual contact.",
+      "Informing the pilot about the situation and seeking guidance without leaving the patient's side."
     ],
     "correct": [
       "A"
@@ -8389,9 +8389,9 @@
     "stem": "The flight nurse is caring for the patient, a conscious patient with severe chest pain who has refused a specific medication due to past adverse reactions. The attending physician insists on administering it. What should the patient do?",
     "options": [
       "Administer the medication as per the physician's order to ensure immediate treatment.",
-      "Respect Mr. Johnson's decision and inform the physician of his refusal.",
+      "Respect the patients' and inform the physician of his refusal.",
       "Administer a reduced dose of the medication to mitigate potential adverse reactions.",
-      "Seek consent from Mr. Johnson's family members before proceeding with the medication."
+      "Seek consent from the patients' family members before proceeding with the medication."
     ],
     "correct": [
       "B"
@@ -9426,12 +9426,12 @@
   {
     "id": "Q0590",
     "category": "Trauma",
-    "stem": "During an emergency air transport, 45-year-old the patient, who sustained multiple fractures in a motor vehicle accident, reports severe pain despite receiving an initial dose of IV morphine. As a Flight Nurse, what is your most appropriate next step to assess and manage his pain? alternative analgesics. management. pain.",
+    "stem": "During an emergency air transport, 45-year-old the patient, who sustained multiple fractures in a motor vehicle accident, reports severe pain despite receiving an initial dose of IV morphine. As a Flight Nurse, what is your most appropriate next step to assess and manage his pain?.",
     "options": [
       "Administer an additional dose of IV morphine immediately.",
-      "Reassess John's pain using a validated pain scale and consider",
-      "Increase the infusion rate of IV fluids to help with pain",
-      "Apply ice packs to the fracture sites to reduce inflammation and"
+      "Reassess his pain using a validated pain scale and consider alternative analgesics.",
+      "Increase the infusion rate of IV fluids to help with pain management.",
+      "Apply ice packs to the fracture sites to reduce inflammation and pain."
     ],
     "correct": [
       "B"
@@ -9461,7 +9461,7 @@
     "stem": "During a flight transport, you are caring for the patient who has sustained multiple fractures from a car accident. You notice that he is experiencing increased pain and agitation. Considering the physiologic stressors of transport, particularly vibration, what is the most appropriate intervention to alleviate his symptoms?",
     "options": [
       "Administering additional analgesics to manage pain",
-      "Repositioning John frequently to reduce discomfort from vibration",
+      "Repositioning the patient frequently to reduce discomfort from vibration",
       "Utilizing vibration-dampening equipment to minimize exposure",
       "Increasing cabin pressure to stabilize vital signs"
     ],
@@ -9602,12 +9602,12 @@
   {
     "id": "Q0601",
     "category": "Medical Emergencies",
-    "stem": "During a medical evacuation flight, you are transporting the patient, a 65-year-old male patient with a known history of MRSA (Methicillin-resistant Staphylococcus Aureus) infection. He has developed signs of sepsis, including fever, hypotension, and tachycardia. As the flight nurse, what is the most appropriate initial action to manage the patient's condition during the flight? closely. vancomycin. medical control.",
+    "stem": "During a medical evacuation flight, you are transporting the patient, a 65-year-old male patient with a known history of MRSA (Methicillin-resistant Staphylococcus Aureus) infection. He has developed signs of sepsis, including fever, hypotension, and tachycardia. As the flight nurse, what is the most appropriate initial action to manage the patient's condition during the flight?",
     "options": [
-      "Administer broad-spectrum antibiotics and monitor vital signs",
-      "Initiate intravenous fluid resuscitation and administer",
-      "Place John in isolation and start oxygen therapy",
-      "Administer antipyretics and wait for further instructions from"
+      "Administer broad-spectrum antibiotics and monitor vital signs closely.",
+      "Initiate intravenous fluid resuscitation and administer vancomycin.",
+      "Place him in isolation and start oxygen therapy.",
+      "Administer antipyretics and wait for further instructions from medical control."
     ],
     "correct": [
       "B"
@@ -10116,10 +10116,10 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a patient handoff in a flight transport scenario, the flight nurse needs to communicate effectively using the SBAR technique. The patient, the patient, is being transferred for emergency surgery due to a ruptured abdominal aneurysm. Which of the following statements best represents the 'Assessment' component of SBAR? and diabetes.' is exhibiting signs of shock.' pain.'",
     "options": [
-      "'Mr. Johnson is a 65-year-old male with a history of hypertension and diabetes.",
-      "'Mr. Johnson's blood pressure has dropped significantly, and he exhibiting signs of shock.",
+      "'The patient is a 65-year-old male with a history of hypertension and diabetes.",
+      "'The patients' blood pressure has dropped significantly, and he exhibiting signs of shock.",
       "'We need to ensure that surgical team is ready upon arrival.'",
-      "'Mr. Johnson was admitted two hours ago with severe abdominal pain."
+      "'The patient was admitted two hours ago with severe abdominal pain."
     ],
     "correct": [
       "B"
@@ -10404,10 +10404,10 @@
     "category": "Trauma",
     "stem": "During a mass casualty incident involving a multi-vehicle collision on a remote highway, the flight nurse arrives on scene. The flight nurse encounters multiple patients with varying degrees of injuries. Patient A has a compromised airway and severe respiratory distress. Patient B has an open femur fracture with significant bleeding but is conscious and responsive. Patient C has minor abrasions and is walking around the scene. Which patient should the patient prioritize for immediate transport?",
     "options": [
-      "John with compromised airway and severe respiratory distress",
-      "Mary with an open femur fracture and significant bleeding",
-      "Kevin with minor abrasions who is ambulatory",
-      "All patients should be transported simultaneously"
+      "Patient A with compromised airway and severe respiratory distress.",
+      "Patient B with an open femur fracture and significant bleeding.",
+      "Patient C with minor abrasions who is ambulatory.",
+      "All patients should be transported simultaneously."
     ],
     "correct": [
       "A"
@@ -10994,12 +10994,12 @@
   {
     "id": "Q0688",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport of a critically ill the patient, you encounter a situation where the patient's condition deteriorates rapidly. You have to make an immediate decision about administering a medication that is not typically within your scope of practice but could potentially save the patient's life. What should be your primary course of action? life. medication. experienced. protocols.",
+    "stem": "During a flight transport of a critically ill the patient, you encounter a situation where the patient's condition deteriorates rapidly. You have to make an immediate decision about administering a medication that is not typically within your scope of practice but could potentially save the patient's life. What should be your primary course of action?",
     "options": [
-      "Administer the medication immediately since it could save John's",
-      "Contact medical control for authorization before administering the",
-      "Delegate the task to another team member who might be more",
-      "Document the situation thoroughly and proceed with standard"
+      "Administer the medication immediately since it could save the patient's life.",
+      "Contact medical control for authorization before administering the medication.",
+      "Delegate the task to another team member who might be more experienced.",
+      "Document the situation thoroughly and proceed with standard protocols."
     ],
     "correct": [
       "B"
@@ -11506,12 +11506,12 @@
   {
     "id": "Q0720",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport, you are caring for the patient who is suspected of having tuberculosis (TB). Which of the following infection control measures is most appropriate to prevent the spread of TB during the flight? frequently. standard surgical mask. respirator mask.",
+    "stem": "During a flight transport, you are caring for the patient who is suspected of having tuberculosis (TB). Which of the following infection control measures is most appropriate to prevent the spread of TB during the flight?",
     "options": [
-      "Place John in a standard surgical mask and use hand hygiene",
-      "Use an N95 respirator mask for yourself and place John in a",
-      "Use an N95 respirator mask for yourself and place John in an N95",
-      "Place John in an isolation chamber within the aircraft."
+      "Place the patient in a standard surgical mask and use hand hygiene frequently.",
+      "Use an N95 respirator mask for yourself and place the patient in a standard surgical mask.",
+      "Use an N95 respirator mask for yourself and place the patient in an N95 respirator mask.",
+      "Place the patient in an isolation chamber within the aircraft."
     ],
     "correct": [
       "B"
@@ -11522,10 +11522,10 @@
   {
     "id": "Q0721",
     "category": "Resuscitation Principles",
-    "stem": "When managing a patient with acute respiratory distress syndrome (ARDS) on mechanical ventilation, which of the following strategies is most appropriate to optimize oxygenation while minimizing ventilator-induced lung injury? weight.",
+    "stem": "When managing a patient with acute respiratory distress syndrome (ARDS) on mechanical ventilation, which of the following strategies is most appropriate to optimize oxygenation while minimizing ventilator-induced lung injury?",
     "options": [
       "Increase tidal volume to 10-12 mL/kg of predicted body weight.",
-      "Utilize a low tidal volume strategy of 4-6 mL/kg of predicted body",
+      "Utilize a low tidal volume strategy of 4-6 mL/kg of predicted body weight.",
       "Set positive end-expiratory pressure (PEEP) to minimal levels.",
       "Maximize inspiratory time to improve oxygenation."
     ],
@@ -12838,7 +12838,7 @@
     "options": [
       "Administer warm intravenous fluids.",
       "Apply external heat sources such as heating pads directly to the skin.",
-      "Move John to a warm environment and remove any wet clothing.",
+      "Move the patient to a warm environment and remove any wet clothing.",
       "Provide hot beverages to increase internal body temperature."
     ],
     "correct": [
@@ -13460,9 +13460,9 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a flight transport of a critically ill the patient, who is experiencing severe hypotension and tachycardia, which of the following actions should be prioritized by the flight nurse to ensure optimal systems management?",
     "options": [
-      "Initiate intravenous fluid resuscitation while communicating with the receiving hospital about John's condition.",
+      "Initiate intravenous fluid resuscitation while communicating with the receiving hospital about the patients's condition.",
       "Administer vasopressors immediately without contacting medical control for further instructions.",
-      "Focus solely on monitoring vital signs and documenting changes in John's condition during transport.",
+      "Focus solely on monitoring vital signs and documenting changes in the patients's condition during transport.",
       "Coordinate with the pilot to ensure an expedited flight path while delaying immediate medical interventions."
     ],
     "correct": [
@@ -13972,10 +13972,10 @@
     "category": "Trauma",
     "stem": "During a critical flight transport, you are responsible for transporting the patient who has severe traumatic brain injury and is currently intubated. Mid-flight, you receive a call from the patient's spouse, who insists on speaking with the patient immediately despite his critical condition. Considering professional ethics and legal responsibilities, what should be your most appropriate response?",
     "options": [
-      "Allow the spouse to speak with John immediately as requested.",
-      "Explain John's condition to the spouse and assure them that you will relay any messages once you land.",
+      "Allow the spouse to speak with the patient immediately as requested.",
+      "Explain the patient's condition to the spouse and assure them that you will relay any messages once you land.",
       "Refuse the spouse's request and provide no further information due to privacy concerns.",
-      "Hand over the phone to another crew member while you continue monitoring John."
+      "Hand over the phone to another crew member while you continue monitoring the patient."
     ],
     "correct": [
       "B"
@@ -14037,9 +14037,9 @@
     "stem": "During a flight, you receive a call about a 45-year-old marathon runner named the patient who has collapsed after running in extreme heat. He is disoriented, has a body temperature of 105°F (40.5°C), dry skin, and rapid breathing. What is the most appropriate initial intervention to stabilize the patient's condition?",
     "options": [
       "Administer IV fluids and apply ice packs to the groin and axillae.",
-      "Administer antipyretics and cover John with a cooling blanket.",
-      "Perform rapid cooling by immersing John in cold water.",
-      "Provide cool oral fluids and fan John vigorously."
+      "Administer antipyretics and covering with a cooling blanket.",
+      "Perform rapid cooling by immersiion in cold water.",
+      "Provide cool oral fluids and fan vigorously."
     ],
     "correct": [
       "C"
@@ -14407,7 +14407,7 @@
       "Document the findings in the patient's medical record and inform yournsupervisor.",
       "Report the suspected elder abuse to the appropriate authorities immediately.",
       "Wait until you have more concrete evidence before making any report.",
-      "Discuss your concerns with Mr. Johnson's son to get more information before deciding on reporting."
+      "Discuss your concerns with the patients' son to get more information before deciding on reporting."
     ],
     "correct": [
       "B"
@@ -14724,15 +14724,15 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a critical air transport of the patient who has suffered severe trauma, the Flight Nurse must communicate with the receiving hospital about the patient's condition. Which action best aligns with HIPAA regulations regarding the disclosure of protected health information (PHI)?",
     "options": [
-      "The Flight Nurse can disclose all details of John's medical",
-      "The Flight Nurse can share only the minimum necessary information",
-      "The Flight Nurse must obtain written consent from John before",
-      "The Flight Nurse can disclose PHI only if John is conscious and"
+      "The Flight Nurse can disclose all details of the patient's medical history to the receiving hospital without any consent.",
+      "The Flight Nurse can share only the minimum necessary information required for the patient's immediate treatment.",
+      "The Flight Nurse must obtain written consent from the patient before sharing any information with the receiving hospital.",
+      "The Flight Nurse can disclose PHI only if the patient is conscious and verbally consents during transport."
     ],
     "correct": [
       "B"
     ],
-    "rationale": "Under HIPAA regulations, healthcare providers are permitted to disclose PHI without patient authorization when it is necessary for treatment purposes. However, they must limit the disclosure to the minimum necessary information needed for that purpose. This ensures that while essential care coordination occurs, patient privacy is still protected. The Flight Nurse can disclose all details of the patient's medical is incorrect because disclosing all details without consent violates HIPAA's minimum necessary rule. The Flight Nurse must obtain written consent from the patient before is incorrect as obtaining written consent in an emergency situation is not feasible and not required under HIPAA for treatment purposes. The Flight Nurse can disclose PHI only if the patient is conscious and is incorrect because verbal consent is not always possible or required in emergencies; instead, professional judgment on necessity suffices under HIPAA guidelines.",
+    "rationale": "Under HIPAA regulations, healthcare providers are permitted to disclose PHI without patient authorization when it is necessary for treatment purposes. However, they must limit the disclosure to the minimum necessary information needed for that purpose. This ensures that while essential care coordination occurs, patient privacy is still protected. Disclosing all details without consent violates HIPAA’s minimum necessary rule. Furthermore, obtaining written consent in an emergency situation is not feasible and not required under HIPAA for treatment purposes. Verbal consent is also not always possible or required in emergencies; instead, professional judgment on necessity suffices under HIPAA guidelines.",
     "type": "single_select"
   },
   {
