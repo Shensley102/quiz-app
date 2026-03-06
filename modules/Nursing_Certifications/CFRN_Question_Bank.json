@@ -14758,7 +14758,7 @@
     "options": [
       "Ensure all medical equipment is secured and prepare for an",
       "Communicate with ground control to update them on the situation.",
-      "Administer sedation to John to prevent panic during the emergency",
+      "Administer sedation to prevent panic during the emergency",
       "Don your personal protective equipment (PPE) in case of a crash."
     ],
     "correct": [
@@ -15044,15 +15044,15 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "During a mid-flight medical emergency involving the patient who is experiencing severe respiratory distress, the flight nurse notices that the pilot seems preoccupied with an unexpected weather change. What should the flight nurse do to ensure effective Crew Resource Management?",
     "options": [
-      "Continue managing John's respiratory distress independently to",
-      "Communicate John's condition clearly and assertively to the",
-      "Wait until the pilot addresses the weather change before",
-      "Use non-verbal cues to signal the co-pilot about John's"
+      "Continue managing the patient's respiratory distress independently to avoid distracting the pilot.",
+      "Communicate the patient's condition clearly and assertively to the pilot, emphasizing the urgency.",
+      "Wait until the pilot addresses the weather change before discussing the patient's condition.",
+      "Use non-verbal cues to signal the co-pilot about the patient's deteriorating condition."
     ],
     "correct": [
       "B"
     ],
-    "rationale": "Effective Crew Resource Management (CRM) requires clear and assertive communication, especially during emergencies. Communicate the patient's condition clearly and assertively to the correctly emphasizes this principle by ensuring that critical information about the patient's condition is conveyed promptly and effectively. This approach helps prioritize tasks and resources appropriately. Continue managing the patient's respiratory distress independently to is incorrect because it isolates situational awareness and may lead to inadequate situational awareness for the entire crew. Wait until the pilot addresses the weather change before delays critical communication, which can exacerbate the patient's condition. Use non-verbal cues to signal the co-pilot about the patient's relies on non-verbal cues, which may not be sufficient in conveying the urgency of the situation compared to direct verbal communication.",
+    "rationale": "Effective Crew Resource Management (CRM) requires clear and assertive communication, especially during emergencies. Communicating the condition clearly and assertively ensures that critical information about the patient is conveyed promptly and effectively. This approach helps prioritize tasks and resources appropriately. Isolating responsibilities is incorrect because it may lead to inadequate situational awareness for the entire crew. Delaying critical communication can exacerbate the patient's condition. Finally, relying on non-verbal cues may not be sufficient in conveying the urgency of the situation compared to direct verbal communication.",
     "type": "single_select"
   },
   {
@@ -15186,17 +15186,17 @@
   {
     "id": "Q0950",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "You are the flight nurse transporting a critical patient who requires constant monitoring. During the flight, you notice a sudden drop in the patient's oxygen saturation levels. You need to communicate this information to the receiving hospital's emergency department immediately. Which is the most appropriate radio communication protocol to follow?",
+    "stem": "You are part of the medical crew on Air 1 and provided an initial patient report to the receiving ER 10 minutes ago. While you are two minutes out from landing, you notice a sudden, critical drop in the patient's oxygen saturation levels from 94% to 82%. Which is the most appropriate radio communication protocol for providing this urgent status update?",
     "options": [
-      "\"Base, this is Flight Nurse with patient John. We have an urgent",
-      "\"Base, this is Flight Nurse. Patient John's O2 saturation has",
-      "\"Base, this is Flight Nurse with patient John experiencing a",
-      "\"Base, urgent update on patient John: O2 saturation critically"
+      "\"Regional ER, this is Air 1 with an update. The patient's condition is worsening significantly. Please have respiratory therapy standby. Over."\",
+      "\"Regional ER, this is Air 1 with a patient status update. Oxygen saturation has dropped from 94% to 82%. We are two minutes out. Over."\",
+      "\"Regional ER, urgent update. Patient's O2 is now 82%. Need immediate assistance upon landing"\",
+      "\"Regional ER, this is Air 1. Just wanted to let you know the O2 saturation is dropping. We will update you again on the helipad"\"
     ],
     "correct": [
-      "C"
+      "B"
     ],
-    "rationale": "\"Base, this is Flight Nurse with the patient experiencing a is the correct answer because it follows the proper radio communication protocol by identifying the sender ('Flight Nurse'), specifying the patient's condition clearly ('critical drop in O2 saturation'), providing precise data ('current reading at 82%'), and using the term 'Over' to indicate the end of the transmission and await response. This ensures clarity and efficiency in communication. \"Base, this is Flight Nurse with the patient. We have an urgent lacks specific data about the patient's current condition and ends abruptly without indicating that you are awaiting further instructions. \"Base, this is Flight Nurse. Patient the patient's O2 saturation has provides significant information but does not include specific data (the exact oxygen saturation level), which is crucial for assessing urgency. \"Base, urgent update on the patient: O2 saturation critically gives detailed information but fails to use standard radio terminology like 'Over,' which can lead to confusion or miscommunication. Each option is closely related but varies slightly in adherence to protocol and detail provided, making \"Base, this is Flight Nurse with the patient experiencing a stand out as following best practices comprehensively.",
+    "rationale": "In air medical transport, status updates must be brief, objective, and follow established radio etiquette to ensure the receiving team is prepared for immediate intervention upon arrival. This specific transmission is correct because it identifies the sender (Air 1) and the receiver (Regional ER), labels the call as a \"status update,"\ provides precise quantitative data (82%), includes an updated ETA, and uses the standard pro-word \"Over"\ to close the communication loop. In contrast, using subjective language like \"worsening significantly"\ is incorrect because it fails to provide the specific numerical data clinicians need to prioritize resources. Providing data without identifying the unit (e.g., \"urgent update..."\) is wrong because it causes confusion in busy departments receiving multiple reports, while informal phrases like \"just wanted to let you know"\ waste valuable airtime during a critical flight phase. Finally, delaying a full update until the helipad is inappropriate because it removes the ER's two-minute window to prepare necessary equipment or staff for the patient's arrival.",
     "type": "single_select"
   },
   {
@@ -15217,18 +15217,18 @@
   },
   {
     "id": "Q0952",
-    "category": "Resuscitation Principles",
-    "stem": "During a mass transportation accident involving multiple vehicles on a remote highway, the flight nurse arrives on the scene to assist with triage and patient care. Among the injured is the patient, a 45-year-old male who is unconscious with shallow breathing and a weak pulse. There are several other victims with varying degrees of injuries. What should be the patient's immediate priority?",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "You are a Flight Nurse waiting at a designated landing zone (LZ) for a scene response. Ground EMS is arriving to the LZ with a 45-year-old male who was found unconscious near an overturned industrial tanker and is exhibiting respiratory distress, skin irritation, and an altered mental status. As the flight clinician, what is your immediate priority before initiating treatment or moving the patient to the aircraft?",
     "options": [
-      "Administering high-flow oxygen to John.",
-      "Initiating CPR on John immediately.",
-      "Conducting a rapid assessment to identify life-threatening",
-      "Stabilizing John's airway using advanced airway management"
+      "Administer high-flow oxygen and prepare for immediate RSI (Rapid Sequence Intubation).",
+      "Confirm that the patient has undergone thorough decontamination by ground providers before treatment and transport by helicopter.",
+      "Administer intravenous antihistamines and corticosteroids to manage a suspected severe allergic reaction.",
+      "Immediately load the patient into the aircraft to begin rapid transport to a Level 1 Trauma Center."
     ],
     "correct": [
-      "D"
+      "B"
     ],
-    "rationale": "In a mass casualty incident, ensuring an open airway is the highest priority for any unconscious patient with compromised breathing. Advanced airway management techniques are crucial for stabilizing the patient's condition before addressing other victims or interventions. While administering high-flow oxygen is important, it cannot be effectively delivered without securing the airway first. Initiating CPR is not indicated as the patient has a pulse. Conducting a rapid assessment is essential but secondary to immediate life-saving interventions such as airway stabilization. Administering high-flow oxygen to the patient: This option seems plausible but overlooks the necessity of securing the airway first. Without an open airway, oxygen administration would be ineffective. Initiating CPR on the patient immediately: While this might seem like an urgent intervention, it is not appropriate here because the patient still has a pulse. CPR is reserved for patients in cardiac arrest. Conducting a rapid assessment to identify life-threatening injuries in all victims: Although important in disaster management, this step comes after ensuring immediate life-saving measures for those in critical condition. Stabilizing the patient's airway using advanced airway management techniques: This is the correct answer because it addresses the most immediate threat to the patient's survival - ensuring he can breathe adequately by securing his airway.",
+    "rationale": "In any hazardous materials (Hazmat) incident, the absolute priority for a flight crew is scene safety and the prevention of secondary contamination, as bringing a contaminated patient into the confined, recirculated air environment of an aircraft would quickly incapacitate the entire crew. According to TNCC and PHTLS guidelines, medical interventions—including high-flow oxygen and advanced airway management—must be deferred until the patient is decontaminated, as the crew cannot safely provide care while wearing the specialized Level A or B PPE required for the \"Hot Zone"\. While the patient’s symptoms of respiratory distress and altered mental status are critical, they cannot be addressed inside the helicopter until the chemical threat is neutralized; otherwise, the aircraft itself becomes a \"hot zone"\, leading to a catastrophic mission failure. Furthermore, administering antihistamines is inappropriate without a confirmed allergic etiology, and \"immediate loading"\ without decontamination is a direct violation of all air medical safety protocols because it endangers the pilot's ability to fly the aircraft safely.",
     "type": "single_select"
   },
   {
@@ -15394,17 +15394,17 @@
   {
     "id": "Q0963",
     "category": "Resuscitation Principles",
-    "stem": "During a flight transport, the patient is exposed to an unknown chemical substance. He begins to exhibit symptoms of respiratory distress, skin irritation, and altered mental status. As the flight nurse, what is your immediate priority action?",
+    "stem": "During a mass transportation accident involving multiple vehicles on a remote highway, a flight crew arrives on the scene to assist with triage. One patient is a 45-year-old male who is unconscious with shallow breathing and a weak pulse. There are several other victims with varying degrees of injuries still requiring assessment. According to modern mass casualty triage protocols, what is the immediate priority for this patient?",
     "options": [
-      "Administer high-flow oxygen and prepare for possible intubation.",
-      "Remove John from the contaminated environment and initiate decontamination.",
-      "Administer antihistamines to manage potential allergic reactions.",
-      "Start intravenous fluids to prevent shock."
+      "Administering high-flow oxygen to the patient.",
+      "Initiating CPR on the patient immediately.",
+      "Performing a rapid life-saving intervention (opening the airway) and moving to the next patient.",
+      "Stabilizing the patient's airway using advanced airway management (e.g., endotracheal intubation)."
     ],
     "correct": [
-      "B"
+      "C"
     ],
-    "rationale": "The immediate priority action in cases of chemical exposure is to remove the patient from the contaminated environment and initiate decontamination to prevent further absorption of the substance. While administering high-flow oxygen is important for respiratory distress, it should follow decontamination. Antihistamines are not appropriate unless an allergic reaction is confirmed. Starting IV fluids can be necessary but is secondary to removing the contaminant. The correct approach ensures that further harm from the chemical exposure is minimized before addressing other symptoms.",
+    "rationale": "In a Mass Casualty Incident (MCI), the goal transitions from individual clinical optimization to doing the most good for the greatest number of people, which is a core principle of SALT and START triage models utilized in PHTLS and TNCC. This response is correct because performing a rapid life-saving intervention, such as a manual airway maneuver or basic adjunct (OPA/NPA), allows the triager to categorize the patient (likely as Red/Immediate) and instantly move to the next victim to prevent un-triaged salvageable deaths. Conversely, the original answer of \"Advanced Airway Management"\ is considered incorrect under ATLS and PHTLS standards for triage because intubation is a resource-intensive procedure that leads to \"tunnel vision,"\ delaying the assessment of other victims. Administering high-flow oxygen is wrong as it is a secondary treatment that cannot be prioritized over identifying immediate life-threats in multiple patients. Finally, initiating CPR is contraindicated here because the patient still has a pulse; furthermore, in most MCI protocols, pulseless and breathless patients are triaged as Black/Deceased to preserve limited resources for those with a higher probability of survival.",
     "type": "single_select"
   },
   {
@@ -15604,10 +15604,10 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "You are a flight nurse preparing to transfer the patient, a 45-year-old male with acute chest pain, from a small rural hospital to a larger tertiary care center. The rural hospital has limited diagnostic capabilities and cannot provide definitive treatment for the patient's condition. Before initiating the transfer, which of the following actions must be ensured in compliance with EMTALA regulations?",
     "options": [
-      "Confirm that the receiving facility has agreed to accept the",
-      "Ensure that John has been stabilized to the maximum extent",
-      "Obtain written consent from John for the transfer after explaining",
-      "Verify that an appropriate medical screening examination was"
+      "Confirm that the receiving facility has agreed to accept the patient and has the available and qualified personnel for his care.",
+      "Ensure that the patient has been stabilized to the maximum extent possible given the resources available at the rural hospital. ",
+      "Obtain written consent from the patient for the transfer after explaining the risks and benefits.",
+      "Verify that an appropriate medical screening examination was performed at the rural hospital. "
     ],
     "correct": [
       "A"
@@ -16034,17 +16034,17 @@
   {
     "id": "Q1003",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport, you notice that your patient, the patient, has multiple bruises in various stages of healing and appears fearful when her husband speaks to her. She also has a history of frequent hospital visits for vague complaints. What is your primary responsibility as a flight nurse in this situation?",
+    "stem": "During a flight transport, you notice that your patient has multiple bruises in various stages of healing and appears fearful when her husband speaks to her. She also has a history of frequent hospital visits for vague complaints. What is your primary responsibility as a flight nurse in this situation?",
     "options": [
-      "Document your observations in the patient's medical record and",
-      "Confront Mrs. Johnson's husband about your suspicions of abuse",
-      "Report your suspicions to law enforcement immediately upon",
-      "Provide Mrs. Johnson with resources for domestic violence support"
+      "Document your observations in the patient's medical record and discussing your findings with the receiving healthcare team.",
+      "Confront the patient’s husband about your suspicions of abuse.",
+      "Report your suspicions to law enforcement immediately upon landing.",
+      "Provide the patient with resources for domestic violence support discreetly."
     ],
     "correct": [
       "A"
     ],
-    "rationale": "As a flight nurse, your primary responsibility is to document any observations suggestive of abuse and communicate these findings to the receiving healthcare team. This ensures continuity of care and allows for further investigation by appropriate professionals. Confronting the husband could escalate the situation and endanger both you and the patient. Reporting directly to law enforcement may not be within your immediate scope without first following proper protocol. Providing resources is helpful but secondary to ensuring thorough documentation and communication with healthcare providers who can take appropriate steps. Document your observations in the patient's medical record and is correct because it aligns with protocols for ensuring patient safety through proper documentation and communication. Confront the patient's husband about your suspicions of abuse is incorrect as it could lead to potential harm without evidence or proper authority. Report your suspicions to law enforcement immediately upon is incorrect since immediate reporting without following protocol can disrupt coordinated care efforts. Provide the patient with resources for domestic violence support is crucial but secondary to ensuring the documentation and professional communication with healthcare providers.",
+    "rationale": "As a flight nurse, your primary responsibility is to document any observations suggestive of abuse and communicate these findings to the receiving healthcare team. This ensures continuity of care and allows for further investigation by appropriate professionals. Confronting the husband could escalate the situation and endanger both you and the patient. Reporting directly to law enforcement may not be within your immediate scope without first following proper protocol. Providing resources is helpful but secondary to ensuring thorough documentation and communication with healthcare providers who can take appropriate steps. Document your observations in the patient's medical record and discussing your findings with the receiving healthcare team is correct because it aligns with protocols for ensuring patient safety through proper documentation and communication. Confront the patient's husband about your suspicions of abuse is incorrect as it could lead to potential harm without evidence or proper authority. Report your suspicions to law enforcement immediately upon is incorrect since immediate reporting without following protocol can disrupt coordinated care efforts. Provide the patient with resources for domestic violence support is crucial but secondary to ensuring the documentation and professional communication with healthcare providers.",
     "type": "single_select"
   },
   {
