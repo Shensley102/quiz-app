@@ -27,12 +27,17 @@
         }
         .offline-indicator.hidden { display: none; }
 
+        /* ============================================================
+           Widget Container
+        ============================================================ */
         .widget-container {
             text-align: center; margin-bottom: 20px;
             display: flex; flex-direction: column; align-items: center; gap: 10px;
         }
 
-        /* Mastery Widget — CCRN red */
+        /* ============================================================
+           Combined Mastery + Target Date Widget — CCRN red
+        ============================================================ */
         .mastery-widget {
             display: inline-flex; flex-direction: column; align-items: center; gap: 8px;
             padding: 16px 28px;
@@ -40,7 +45,7 @@
             border: 1px solid rgba(229,57,53,0.3);
             border-radius: 16px;
             box-shadow: 0 3px 14px rgba(229,57,53,0.1);
-            min-width: 300px;
+            min-width: 320px;
         }
         .mastery-widget-header { display: flex; align-items: center; gap: 8px; }
         .mastery-widget-icon { font-size: 20px; }
@@ -59,26 +64,26 @@
         .mastery-widget.complete .mastery-remaining { color: #388e3c; }
         .mastery-widget.complete .mastery-progress-fill { background: linear-gradient(90deg, #388e3c, #66bb6a); }
 
-        /* Target Date Widget */
-        .target-widget {
-            display: inline-flex; align-items: center; justify-content: center;
-            gap: 10px; padding: 10px 20px;
-            background: rgba(255,255,255,0.9);
-            border: 1px solid rgba(229,57,53,0.2);
-            border-radius: 50px;
-            box-shadow: 0 2px 8px rgba(229,57,53,0.08);
-            font-size: 13px; color: #444; flex-wrap: wrap;
+        /* Divider inside the combined card */
+        .mastery-divider {
+            width: 100%; height: 1px; background: rgba(229,57,53,0.15); margin: 4px 0;
         }
-        .target-widget-icon { font-size: 16px; }
-        .target-widget label { font-weight: 600; color: #555; white-space: nowrap; }
+
+        /* Target date section — lives inside the mastery card */
+        .target-section {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; font-size: 13px; color: #444; flex-wrap: wrap; width: 100%;
+        }
+        .target-widget-icon { font-size: 15px; }
+        .target-section label { font-weight: 600; color: #555; white-space: nowrap; }
         .target-date-input {
-            padding: 5px 10px; border: 1px solid #ccc; border-radius: 6px;
+            padding: 4px 9px; border: 1px solid #ccc; border-radius: 6px;
             font-size: 13px; font-family: inherit; color: #333; outline: none;
             transition: border-color 0.2s;
         }
         .target-date-input:focus { border-color: #e53935; }
         .target-set-btn {
-            padding: 5px 14px; background: #e53935; color: white; border: none;
+            padding: 4px 13px; background: #e53935; color: white; border: none;
             border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
             font-family: inherit; transition: background 0.2s;
         }
@@ -102,7 +107,10 @@
             border-radius: 10px; font-size: 13px; color: #2e7d32; font-weight: 600;
         }
 
-        /* Weekly Counter */
+        /* ============================================================
+           Daily + Weekly Progress Widgets
+        ============================================================ */
+        .daily-progress-widget,
         .weekly-progress-widget {
             display: inline-flex; align-items: center; justify-content: center;
             gap: 8px; padding: 8px 18px;
@@ -112,8 +120,11 @@
             box-shadow: 0 1px 6px rgba(229,57,53,0.08);
             font-size: 13px; color: #555;
         }
+        .daily-progress-widget .progress-icon,
         .weekly-progress-widget .progress-icon { font-size: 16px; }
+        .daily-progress-widget .progress-label,
         .weekly-progress-widget .progress-label { color: #777; font-weight: 500; }
+        .daily-progress-widget .progress-value,
         .weekly-progress-widget .progress-value {
             font-weight: 800; font-size: 16px; color: #e53935; min-width: 20px; text-align: center;
         }
@@ -283,13 +294,13 @@
             .page-header h1 { font-size: 1.8em; }
             .section { padding: 20px; }
             .category-grid { grid-template-columns: 1fr; }
-            .mastery-widget { min-width: unset; width: 100%; max-width: 340px; }
+            .mastery-widget { min-width: unset; width: 100%; max-width: 360px; }
             .quiz-controls, .comprehensive-controls { flex-direction: column; align-items: stretch; gap: 16px; }
             .length-selector, .comprehensive-length-selector { flex-direction: column; align-items: stretch; }
             .length-buttons, .comprehensive-length-buttons { width: 100%; }
             .length-btn, .comprehensive-length-btn { flex: 1; padding: 12px 16px; }
             .start-category-btn, .start-comprehensive-btn { width: 100%; }
-            .target-widget { padding: 10px 14px; }
+            .target-section { flex-direction: column; align-items: center; gap: 6px; }
         }
 
         @supports (padding-top: env(safe-area-inset-top)) {
@@ -321,8 +332,9 @@
                 🎉 Study cycle complete! Your target date passed. Set a new target to begin a fresh cycle.
             </div>
 
-            <!-- Mastery Counter Widget -->
+            <!-- Combined Mastery + Target Date Card -->
             <div class="mastery-widget" id="masteryWidget">
+                <!-- Mastery Counter -->
                 <div class="mastery-widget-header">
                     <span class="mastery-widget-icon">🎯</span>
                     <span class="mastery-widget-label">Questions Left to Master</span>
@@ -337,25 +349,35 @@
                     <div class="mastery-progress-fill" id="masteryProgressFill" style="width: 0%"></div>
                 </div>
                 <div class="mastery-note">📍 Saved on this device only · Resets after target date</div>
+
+                <!-- Divider -->
+                <div class="mastery-divider"></div>
+
+                <!-- Target Date Section -->
+                <div class="target-section">
+                    <div id="targetInputMode">
+                        <span class="target-widget-icon">📅</span>
+                        <label for="targetDateInput">Study Target Date:</label>
+                        <input type="date" id="targetDateInput" class="target-date-input">
+                        <button id="setTargetBtn" class="target-set-btn">Set Target</button>
+                    </div>
+                    <div id="targetActiveMode" class="hidden">
+                        <span class="target-widget-icon">📅</span>
+                        <span class="target-active-text">
+                            Target: <strong id="targetDateDisplay"></strong>
+                            &nbsp;·&nbsp;
+                            <span class="target-days-remaining" id="targetDaysRemaining"></span>
+                        </span>
+                        <button id="clearTargetBtn" class="target-clear-btn">✕ Clear</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Target Date Widget -->
-            <div class="target-widget">
-                <div id="targetInputMode">
-                    <span class="target-widget-icon">📅</span>
-                    <label for="targetDateInput">Study Target Date:</label>
-                    <input type="date" id="targetDateInput" class="target-date-input">
-                    <button id="setTargetBtn" class="target-set-btn">Set Target</button>
-                </div>
-                <div id="targetActiveMode" class="hidden">
-                    <span class="target-widget-icon">📅</span>
-                    <span class="target-active-text">
-                        Target: <strong id="targetDateDisplay"></strong>
-                        &nbsp;·&nbsp;
-                        <span class="target-days-remaining" id="targetDaysRemaining"></span>
-                    </span>
-                    <button id="clearTargetBtn" class="target-clear-btn">✕ Clear</button>
-                </div>
+            <!-- Daily Counter -->
+            <div class="daily-progress-widget">
+                <span class="progress-icon">☀️</span>
+                <span class="progress-label">Questions answered today:</span>
+                <span class="progress-value" id="dailyCount">0</span>
             </div>
 
             <!-- Weekly Counter -->
@@ -474,9 +496,6 @@
         // Constants
         // ============================================================
         const BANK = 'ccrn';
-        // Total resolved in priority order:
-        // 1. Flask-rendered Jinja value
-        // 2. Live /api/ccrn/count fetch (bypasses SW cache)
         let CCRN_TOTAL = {{ total_questions | default(0) }};
 
         // ============================================================
@@ -485,7 +504,6 @@
         document.addEventListener('DOMContentLoaded', async () => {
             if (!window.StudyGuruProgress) return;
 
-            // If Flask gave us 0, try the API — excluded from SW cache
             if (CCRN_TOTAL === 0) {
                 try {
                     const res = await fetch('/api/ccrn/count');
@@ -505,6 +523,7 @@
 
             updateMasteryWidget();
             renderTargetWidget();
+            updateDailyCount();
             updateWeeklyCount();
             updatePerformanceBars();
         });
@@ -530,6 +549,7 @@
         window.addEventListener('storage', e => {
             if (e.key && e.key.startsWith('sg:v1:')) {
                 updateMasteryWidget();
+                updateDailyCount();
                 updateWeeklyCount();
                 updatePerformanceBars();
             }
@@ -598,8 +618,14 @@
         });
 
         // ============================================================
-        // Weekly Counter
+        // Daily + Weekly Counters
         // ============================================================
+        function updateDailyCount() {
+            if (window.StudyGuruProgress)
+                document.getElementById('dailyCount').textContent =
+                    window.StudyGuruProgress.answeredToday();
+        }
+
         function updateWeeklyCount() {
             if (window.StudyGuruProgress)
                 document.getElementById('weeklyCount').textContent =
@@ -667,7 +693,6 @@
                 startBtn.textContent = `Only ${avail} questions available`;
             } else {
                 startBtn.disabled = false;
-                // Truncate long category names for the button
                 const label = selectedCategory.length > 30
                     ? selectedCategory.substring(0, 28) + '…'
                     : selectedCategory;
