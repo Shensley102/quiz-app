@@ -1788,7 +1788,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "Tube lumen is the greatest factor affecting flow (if you're a math nerd, look up Poiseuille's law), which impacts our fluid/blood/medication infusion rates with IV gauge choice and airflow through ETT tube insertion. We should use an endotracheal tube that is large enough to facilitate airflow but not so large that it damages the patient's airway structures.",
+    "rationale": "Tube lumen is the greatest factor affecting flow, which impacts our fluid/blood/medication infusion rates with IV gauge choice and airflow through ETT tube insertion. We should use an endotracheal tube that is large enough to facilitate airflow but not so large that it damages the patient's airway structures.",
     "type": "single_select"
   },
   {
