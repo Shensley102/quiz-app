@@ -18806,13 +18806,13 @@
     "options": [
       "Multiple petechial lesions",
       "Loss of gray-white matter",
-      \Crescent-shape\\",
-      "Convex lenticular \\Lens-shaped\\"
+      "Crescent-shape",
+      "Convex lenticular Lens-shaped"
     ],
     "correct": [
       "D"
     ],
-    "rationale": "A convex \\lens-shaped\\ or \\lenticular\\ abnormality is seen on the head CT in an epidural bleed (often a tear of the middle meningeal artery). A \\crescent-shape\\ is seen in subdural hematoma. Multiple petechial lesions are seen in diffuse axonal injury (DAI), and loss of gray-white matter may be seen in ischemic stroke. Exam may show a CT scan visual to identify the \\Lens-shape\\ in EDH or \\Crescent-shape\\ in SDH.",
+    "rationale": "A convex lens-shaped or lenticular abnormality is seen on the head CT in an epidural bleed (often a tear of the middle meningeal artery). A crescent-shape is seen in subdural hematoma. Multiple petechial lesions are seen in diffuse axonal injury (DAI), and loss of gray-white matter may be seen in ischemic stroke. Exam may show a CT scan visual to identify the Lens-shape in EDH or Crescent-shape in SDH.",
     "type": "single_select"
   },
   {
