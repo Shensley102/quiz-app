@@ -19140,15 +19140,15 @@
     "category": "Special Populations",
     "stem": "An anticipated radiographic finding in an unvaccinated 3-year-old child with severe respiratory distress and drooling is:",
     "options": [
-      \Thumb\\ sign",
-      \Steeple\\ sign",
+      "Thumb sign",
+      "Steeple sign",
       "Flattened diaphragm.",
-      \Ground-glass\\ appearance"
+      "Ground-glass appearance"
     ],
     "correct": [
       "A"
     ],
-    "rationale": \Thumb\\ or \\thumbprint\\ sign on lateral neck film may be seen in epiglottitis due to swollen epiglottis. Croup is associated with tracheal narrowing producing \\steeple sign\\ on AP chest film. Flattened diaphragm is seen in emphysema from hyperinflation of lungs, and a ground-glass appearance is seen in ARDS. May be x-ray visuals on exam.",
+    "rationale": "Thumb or thumbprint sign on lateral neck film may be seen in epiglottitis due to swollen epiglottis. Croup is associated with tracheal narrowing producing steeple sign on AP chest film. Flattened diaphragm is seen in emphysema from hyperinflation of lungs, and a ground-glass appearance is seen in ARDS. May be x-ray visuals on exam.",
     "type": "single_select"
   },
   {
@@ -20212,10 +20212,10 @@
     "category": "Resuscitation Principles",
     "stem": "You are assessing a patient in respiratory failure and determine that the patient requires intubation. Respiratory failure is defined as:",
     "options": [
-      "PaO2 < 60 mm Hg and PaCO2 \\> 50 mm Hg",
-      "PaO2 < 80 mm Hg and PaCO2 \\> 60 mm Hg",
-      "PaO2 < 60 mm Hg and PaCO2 \\> 30 mm Hg",
-      "PaO2 < 90 mm Hg and PaCO2 \\> 50 mm Hg"
+      "PaO2 < 60 mm Hg and PaCO2 > 50 mm Hg",
+      "PaO2 < 80 mm Hg and PaCO2 > 60 mm Hg",
+      "PaO2 < 60 mm Hg and PaCO2 > 30 mm Hg",
+      "PaO2 < 90 mm Hg and PaCO2 > 50 mm Hg"
     ],
     "correct": [
       "A"
@@ -21588,9 +21588,9 @@
     "category": "Medical Emergencies",
     "stem": "The following are true concerning intra-abdominal pressure, EXCEPT:",
     "options": [
-      "Intra-abdominal hypertension (IAH) is defined as an IAP \\> 12-15 mm Hg.",
+      "Intra-abdominal hypertension (IAH) is defined as an IAP > 12-15 mm Hg.",
       "Abdominal perfusion pressure (APP) is SBP- IAP.",
-      "Abdominal compartment syndrome (ACS) is a sustained IAP \\> 20 mm Hg, associated with new organ dysfunction.",
+      "Abdominal compartment syndrome (ACS) is a sustained IAP > 20 mm Hg, associated with new organ dysfunction.",
       "Bladder pressure most closely approximates intraperitoneal pressure."
     ],
     "correct": [
