@@ -7648,22 +7648,6 @@
     "type": "single_select"
   },
   {
-    "id": "Q0480",
-    "category": "Trauma",
-    "stem": "The patient, a 45-year-old male with signs of hypovolemic shock (BP 80/50 mmHg, HR 130 bpm, cool clammy skin), presents following a high-speed motor vehicle accident. Which intervention is most appropriate for initial fluid resuscitation?",
-    "options": [
-      "Administering 500 mL of normal saline over 30 minutes.",
-      "Administering 1 liter of lactated Ringer's solution rapidly.",
-      "Administering 250 mL of hypertonic saline solution over 15 minutes.",
-      "Administering 1 unit of packed red blood cells."
-    ],
-    "correct": [
-      "B"
-    ],
-    "rationale": "Lactated Ringer's solution is preferred for initial resuscitation of hypovolemic shock due to its balanced electrolyte composition and ability to buffer acidosis. Normal saline administered slowly may not adequately address severe hypovolemia. Hypertonic saline is not typically used for initial resuscitation due to potential complications like hypernatremia. Blood transfusion may be necessary later but immediate volume expansion with crystalloid solutions is prioritized.",
-    "type": "single_select"
-  },
-  {
     "id": "Q0481",
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "When assessing a critically ill patient for air medical transport, which is the most critical initial step?",
@@ -8882,17 +8866,17 @@
   {
     "id": "Q0557",
     "category": "Trauma",
-    "stem": "The patient, a 45-year-old male with signs of hypovolemic shock (tachycardia, hypotension, altered mental status) following a motor vehicle accident, presents to the emergency department. What is the most appropriate initial intervention?",
+    "stem": "A 28-year-old male is being transported via helicopter following a severe motor vehicle accident. The patient exhibits signs of Class III hemorrhagic shock, including a BP of 80/50 mmHg, HR of 130 bpm, and cool, clammy skin. Which initial fluid resuscitation strategy is most consistent with current trauma guidelines?",
     "options": [
-      "Administer 1 liter of normal saline bolus.",
-      "Administer 1 unit of packed red blood cells.",
-      "Initiate norepinephrine infusion.",
-      "Administer tranexamic acid."
+      "Rapid administration of 1-2 liters of Lactated Ringer's (LR).",
+      "Rapid administration of 2 liters of Normal Saline (NS).",
+      "Slow infusion of 500 mL of Hypertonic Saline.",
+      "Administration of 5% Albumin (Colloid)."
     ],
     "correct": [
       "A"
     ],
-    "rationale": "Normal saline bolus rapidly expands intravascular volume, crucial in early hypovolemic shock management. PRBCs are essential in hemorrhagic shock but follow initial crystalloid resuscitation. Norepinephrine infusion is used for vasopressor support post-fluid resuscitation if hypotension persists. Tranexamic acid helps control bleeding but does not address immediate volume replacement needs.",
+    "rationale": "Lactated Ringer’s is generally the preferred isotonic crystalloid for large-volume resuscitation in trauma because it is more balanced and closer to physiological pH than Normal Saline, which can lead to hyperchloremic metabolic acidosis in large quantities. Current ATLS guidelines emphasize an initial bolus of 1–2 liters for adults while transitioning to whole blood or blood products (PRBCs/FFP/Platelets) as soon as possible, guided by the class of hemorrhagic shock: Class I (<15% loss) involves minimal physiological changes (HR <100, normal BP/RR) where crystalloid is often not required; Class II (15–30% loss) presents with tachycardia (HR 100–120), increased RR (20–30), and narrowed pulse pressure, making crystalloid appropriate; Class III (30–40% loss) involves significant tachycardia (HR 120–140), hypotension, and decreased urine output, requiring both crystalloid and blood; and Class IV (>40% loss) presents with severe tachycardia (HR >140), profound hypotension, and negligible urine output, necessitating immediate massive transfusion protocols.",
     "type": "single_select"
   },
   {
@@ -9021,22 +9005,6 @@
       "A"
     ],
     "rationale": "The patient's current vital signs and any changes during transport offer real-time data about his condition, allowing for immediate and appropriate medical response upon arrival. Time of departure provides relevant context but not critical clinical information. Past medical history can influence treatment decisions but does not reflect real-time changes. Medications administered prior are important but secondary to understanding how interventions have affected his current vital signs.",
-    "type": "single_select"
-  },
-  {
-    "id": "Q0566",
-    "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "Which navigation system provides the most accurate real-time positioning information for a flight nurse during aeromedical transport?",
-    "options": [
-      "VOR (VHF Omnidirectional Range)",
-      "NDB (Non-Directional Beacon)",
-      "Inertial Navigation System",
-      "GPS (Global Positioning System)"
-    ],
-    "correct": [
-      "D"
-    ],
-    "rationale": "GPS provides the most accurate real-time positioning information through satellite signals to determine precise locations with global coverage and high accuracy. VOR relies on ground-based stations and can be less accurate over long distances. NDB is generally less accurate than VOR. The Inertial Navigation System is independent of external signals but tends to drift over time without corrections from other systems.",
     "type": "single_select"
   },
   {
@@ -11680,22 +11648,6 @@
     "type": "single_select"
   },
   {
-    "id": "Q0732",
-    "category": "Trauma",
-    "stem": "In the context of trauma management during a flight, which principle is most critical when immobilizing a patient with a suspected spinal injury? spine board. securing them to the spine board.",
-    "options": [
-      "Ensuring the patient's head is elevated at a 30-degree angle.",
-      "Applying a cervical collar and securing the patient to a long",
-      "Using sandbags on either side of the patient's head without",
-      "Allowing slight movements to ensure patient comfort."
-    ],
-    "correct": [
-      "B"
-    ],
-    "rationale": "The correct answer is Applying a cervical collar and securing the patient to a long spine board. This approach is crucial for stabilizing the spine and preventing further injury during transport. Ensuring the patient's head is elevated at a 30-degree angle. is incorrect because elevating the head can cause additional spinal movement, potentially worsening injuries. Using sandbags on either side of the patient's head without is incorrect as sandbags alone do not provide adequate stabilization without securing them properly. Allowing slight movements to ensure patient comfort. is incorrect because allowing any movement can exacerbate spinal injuries. Proper immobilization using both a cervical collar and spine board ensures maximum stability, aligning with current best practices in trauma care.",
-    "type": "single_select"
-  },
-  {
     "id": "Q0733",
     "category": "Trauma",
     "stem": "A 35-year-old male patient presents with severe pain in his lower leg following a motorcycle accident. Despite adequate analgesia, his pain is worsening and is out of proportion to the injury. On examination, you note swelling and tightness of the affected area. Which of the following is the most definitive diagnostic method for confirming compartment syndrome?",
@@ -13120,22 +13072,6 @@
     "type": "single_select"
   },
   {
-    "id": "Q0822",
-    "category": "Medical Emergencies",
-    "stem": "The patient, a 45-year-old male patient, arrives at the emergency department via helicopter after a severe car accident. He presents with hypotension (BP 80/50 mmHg), tachycardia (HR 120 bpm), and signs of hypovolemic shock. As a flight nurse, which initial fluid resuscitation strategy is most appropriate for the patient?",
-    "options": [
-      "Administer 1-2 liters of normal saline rapidly.",
-      "Administer 1-2 liters of lactated Ringer's solution rapidly.",
-      "Administer 500 mL of hypertonic saline slowly.",
-      "Administer 500 mL of colloid solution rapidly."
-    ],
-    "correct": [
-      "B"
-    ],
-    "rationale": "In cases of hypovolemic shock due to trauma, rapid administration of isotonic crystalloids like lactated Ringer's solution is recommended as an initial resuscitation fluid. Lactated Ringer's has an electrolyte composition that is more physiologically balanced compared to normal saline, reducing the risk of hyperchloremic acidosis. - Normal saline: While normal saline is also an isotonic crystalloid and can be used for fluid resuscitation, it can lead to hyperchloremic acidosis if administered in large volumes. - Hypertonic saline: Hypertonic saline can be used in specific scenarios such as head injury with raised intracranial pressure but is not typically the first choice for general hypovolemic shock due to its potential complications. - Colloid solution: Colloids are less commonly used for initial resuscitation due to their cost and risk of anaphylaxis or coagulopathy; crystalloids are preferred initially. Thus, lactated Ringer's solution provides a balanced approach for initial volume expansion without significant side effects associated with other options.",
-    "type": "single_select"
-  },
-  {
     "id": "Q0823",
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "The patient, a 35-year-old construction worker, is airlifted to your unit after collapsing on a hot day. He presents with heavy sweating, weakness, dizziness, nausea, and a body temperature of 38.5°C (101.3°F). His skin is cool and moist. What is the most appropriate initial intervention for the patient?",
@@ -13634,17 +13570,17 @@
   {
     "id": "Q0854",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "Which navigation system is most commonly used by flight nurses to ensure precise location tracking during aeromedical transport missions?",
+    "stem": "Which navigation system provides the most accurate, continuous, real-time positioning information for aeromedical transport aircraft operating in both urban and remote environments?",
     "options": [
       "VOR (VHF Omnidirectional Range)",
-      "INS (Inertial Navigation System)",
+      "NDB (Non-Directional Beacon)",
       "GPS (Global Positioning System)",
-      "DME (Distance Measuring Equipment)"
+      "LORAN-C (Long Range Navigation)"
     ],
     "correct": [
       "C"
     ],
-    "rationale": "GPS is the most commonly used navigation system in aeromedical transport due to its high accuracy and global coverage. It allows flight nurses to track precise locations in real-time, which is crucial for timely patient care. - VOR, VOR, provides radio-based navigation aids but lacks the global coverage and precision of GPS. - INS, INS, uses gyroscopes and accelerometers for navigation without external signals but can accumulate errors over time. - DME, DME, measures distance from a ground station but does not provide comprehensive location tracking like GPS. The key difference lies in GPS's ability to offer real-time global positioning with high accuracy compared to other systems that either lack precision or comprehensive coverage.",
+    "rationale": "GPS (Global Positioning System) is a satellite-based navigation system that provides highly accurate three-dimensional position, velocity, and time information. Unlike ground-based systems like VOR or NDB, which are limited by "line-of-sight" and distance from the transmitter, GPS provides global coverage and is not affected by terrain or weather to the same degree, making it the gold standard for modern aeromedical navigation and "point-to-point" scene responses.",
     "type": "single_select"
   },
   {
@@ -16242,17 +16178,17 @@
   {
     "id": "Q1017",
     "category": "Trauma",
-    "stem": "The patient, a 35-year-old male, was involved in a high-speed motor vehicle collision and is suspected to have sustained a spinal cord injury. Upon arrival at the scene, what is the most appropriate initial intervention to prevent further neurological damage?",
+    "stem": "What is the most critical initial intervention for a patient with a suspected spinal cord injury following a high-speed motor vehicle collision during the primary survey phase of transport?",
     "options": [
-      "Immobilize the cervical spine using a rigid collar and backboard.",
-      "Administer high-dose corticosteroids immediately.",
-      "Perform a rapid sequence intubation without immobilization.",
-      "Apply traction to the cervical spine to realign any potential"
+      "Administration of high-dose Methylprednisolone.",
+      "Immediate log-rolling to assess the posterior spine.",
+      "Application of a cervical collar and securing the patient to a long spine board.",
+      "Obtaining a portable cross-table lateral X-ray."
     ],
     "correct": [
       "A"
     ],
-    "rationale": "The correct answer is Immobilize the cervical spine using a rigid collar and backboard. This intervention is crucial to prevent further neurological damage by stabilizing the spine until definitive imaging can be performed. Administer high-dose corticosteroids immediately was previously recommended but recent studies have shown that it may not be beneficial and can lead to adverse effects. Perform a rapid sequence intubation without immobilization risks exacerbating spinal injury due to lack of stabilization. Apply traction to the cervical spine is not recommended pre-hospital as improper application can worsen injuries; it should only be done under controlled conditions with imaging guidance. Therefore, option A is the most appropriate initial intervention based on current best practices for managing suspected spinal cord injuries at the scene of an accident.",
+    "rationale": "The priority in suspected spinal cord injury (SCI) is preventing secondary injury through strict immobilization. This is achieved by maintaining neutral alignment of the cervical spine with a properly fitted collar and stabilizing the entire spinal column on a rigid long spine board (LSB). While the use of LSBs for long-duration transport is becoming more selective to prevent pressure sores, it remains the standard for initial extrication and stabilization in high-kinetic energy trauma.",
     "type": "single_select"
   },
   {
