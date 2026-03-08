@@ -2000,22 +2000,6 @@
     "type": "single_select"
   },
   {
-    "id": "Q0126",
-    "category": "Trauma",
-    "stem": "The patient fell from a ladder onto the sidewalk while attempting to hang Christmas lights and is being flown from the scene to a comprehensive trauma center 40 minutes by rotorcraft. The flight nurse notices the patient's breathing pattern becomes irregular, the heart rate is trending downward and the systolic blood pressure is trending up. The nurse knows this is",
-    "options": [
-      "Is an unconcerning compensatory mechanism",
-      "Cushing's Triad",
-      "Beck's Triad",
-      "Brudzinski's Sign"
-    ],
-    "correct": [
-      "B"
-    ],
-    "rationale": "Cushing's Triad is a sign of increasing intracranial pressure and includes widening pulse pressure (systolic goes up, diastolic goes down), bradycardia, and altered breathing pattern (progressing in that order). These three phenomena occur because the increasing intracranial pressure is pushing down on the brain stem, which is the HQ for survival function and thus, affects respiratory and hemodynamic status.",
-    "type": "single_select"
-  },
-  {
     "id": "Q0127",
     "category": "Resuscitation Principles",
     "stem": "The transport nurse is caring for a septic patient that presented to the stand-alone ER 90 minutes ago. The sending nurse states that she obtained a serum lactate, blood cultures, and gave a round of broad spectrum antibiotics. The patient is hypotensive, tachycardic, tachypneic, hypothermic, hypocapnic, but without hypoxemia. The priority interventions are to:",
@@ -13058,17 +13042,17 @@
   {
     "id": "Q0821",
     "category": "Trauma",
-    "stem": "A 32-year-old male patient is being transported via helicopter after a motor vehicle collision. He presents with signs of increased intracranial pressure (ICP). Which of the following clinical findings is most indicative of Cushing's triad?",
+    "stem": "A 19-year-old female is being transported following a traumatic brain injury (TBI). Initially, her vitals were BP 110/70, HR 88, RR 18. Thirty minutes into the flight, her BP is 160/60, HR is 48, and her breathing pattern has become irregular with periods of apnea. Which physiological event do these findings most likely represent?",
     "options": [
-      "Bradycardia, hypertension, irregular respirations",
-      "Tachycardia, hypotension, irregular respirations",
-      "Bradycardia, hypotension, regular respirations",
-      "Tachycardia, hypertension, regular respirations"
+      "Sympathetic surge from pain.",
+      "Impending brainstem herniation.",
+      "Decompensating hemorrhagic shock.",
+      "Autonomic dysreflexia."
     ],
     "correct": [
-      "A"
+      "B"
     ],
-    "rationale": "Cushing's triad is a clinical syndrome signifying increased intracranial pressure (ICP), characterized by bradycardia, hypertension (with widening pulse pressure), and irregular respirations. This response is due to the body's attempt to maintain cerebral perfusion despite rising ICP. - Bradycardia, hypertension, irregular respirations correctly identifies all three components of Cushing's triad. - Tachycardia, hypertension, irregular respirations includes tachycardia and hypotension; these are more indicative of hypovolemic shock rather than increased ICP. - Bradycardia, hypotension, regular respirations mentions bradycardia and hypotension but fails to include irregular respirations and does not reflect the hypertensive component. - Tachycardia, hypertension, regular respirations lists tachycardia and hypertension with regular respirations; while hypertension may be present in increased ICP, tachycardia and regular breathing patterns are not characteristic of Cushing's triad. This detailed explanation clarifies why Bradycardia, hypertension, irregular respirations is correct by contrasting it with each incorrect option based on their deviation from the classic presentation of Cushing's triad.",
+    "rationale": "Cushing's Triad (hypertension with a widened pulse pressure, bradycardia, and irregular respirations) is a late sign of significantly increased intracranial pressure (ICP) and impending brainstem herniation. The body increases systemic blood pressure to maintain cerebral perfusion pressure (CPP) against the rising ICP; the baroreceptors respond to this hypertension by triggering bradycardia. Irregular respirations occur due to pressure on the respiratory centers in the brainstem.",
     "type": "single_select"
   },
   {
@@ -16658,7 +16642,7 @@
   {
     "id": "Q1047",
     "category": "Resuscitation Principles",
-    "stem": "The flight crew transports a patient who fell from approximately 20 feet. The patient is intubated with ventilator settings: Mode: SIMV, FiO2: 50%, TV: 350 mL, RR: 14 breaths/min BP: 195/90 mmHg, HR: 43 beats/min, O2 sat: 95%, ETCO2: 40 mm Hg The flight nurse's IMMEDIATE intervention should be to change the:",
+    "stem": "The flight crew transports a patient who fell from approximately 20 feet. The patient is intubated with ventilator settings: Mode: SIMV, FiO2: 50%, TV: 350 mL, RR: 14 breaths/min BP: 195/90 mmHg, HR: 43 beats/min, O2 sat: 95%, ETCO2: 40 mm Hg The flight nurse's IMMEDIATE intervention should be to change the _________?:",
     "options": [
       "FiO2 to 100%",
       "Total volume to 500 mL",
@@ -22399,8 +22383,24 @@
     "rationale": "Insert a gastric tube to decompress stomach since ventilations cause gastric distension. Gastric distension may increase risk of vomiting and impair adequate ventilation by impeding downward movement of the diaphragm.",
     "type": "single_select"
   },
-  {
+    {
     "id": "Q1406",
+    "category": "Trauma",
+    "stem": "In the context of traumatic brain injury, which of the following describes the components of Cushing’s Triad and its underlying mechanism?",
+    "options": [
+      "Hypotension, tachycardia, and tachypnea; due to hypovolemia.",
+      "Hypertension, tachycardia, and Cheyne-Stokes respirations; due to hypercapnia.",
+      "Widening pulse pressure, bradycardia, and irregular respirations; due to increased ICP.",
+      "Narrowing pulse pressure, bradycardia, and apnea; due to spinal shock."
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Cushing's Triad consists of three primary signs: 1) Widening pulse pressure (rising systolic BP), 2) Bradycardia (reflexive to high BP), and 3) Irregular respirations (such as Cheyne-Stokes). This occurs when ICP rises to the point where it restricts blood flow to the brain, triggering a massive sympathetic response to force blood into the cranium, followed by a parasympathetic response to the high systemic pressure.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1407",
     "category": "Special Populations",
     "stem": "You are treating a child in cardiac arrest. CPR is initiated, and the cardiac monitor reveals ventricular fibrillation (VFib). Which of the following should be performed immediately?",
     "options": [
