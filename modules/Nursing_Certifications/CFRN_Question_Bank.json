@@ -7552,22 +7552,6 @@
     "type": "single_select"
   },
   {
-    "id": "Q0473",
-    "category": "Trauma",
-    "stem": "The patient was involved in a high-speed motor vehicle collision and presents with severe chest pain, difficulty breathing, and diminished breath sounds on the right side. His trachea is deviated to the left and he has distended neck veins. What is the most likely diagnosis?",
-    "options": [
-      "Tension Pneumothorax",
-      "Massive Hemothorax",
-      "Cardiac Tamponade",
-      "Flail Chest"
-    ],
-    "correct": [
-      "A"
-    ],
-    "rationale": "Tension pneumothorax is characterized by tracheal deviation away from the affected side, absent breath sounds on the affected side, respiratory distress, and hypotension due to impaired venous return. Hemothorax presents with dullness to percussion rather than hyperresonance and does not typically cause tracheal deviation. Cardiac tamponade has muffled heart sounds and distended neck veins but no tracheal deviation. Flail chest involves multiple rib fractures causing paradoxical movement.",
-    "type": "single_select"
-  },
-  {
     "id": "Q0474",
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "Which principle of Air Medical Resource Management (AMRM) is primarily aimed at ensuring that all team members have a shared understanding of the mission objectives and potential hazards?",
@@ -9122,17 +9106,17 @@
   {
     "id": "Q0571",
     "category": "Trauma",
-    "stem": "The patient presents with severe chest pain, respiratory distress, and hypotension after a high-speed motor vehicle collision. You notice tracheal deviation to the left side and absent breath sounds on the right side. What is the most likely diagnosis?",
+    "stem": "A patient presents with sudden onset of severe chest pain, respiratory distress, and hypotension following a high-speed motor vehicle collision. On assessment, the flight nurse notes absent breath sounds on the right side, resonant percussion, and visible tracheal deviation to the left. What is the most likely diagnosis?",
     "options": [
-      "Tension pneumothorax",
-      "Hemothorax",
-      "Pulmonary contusion",
-      "Flail chest"
+      "Simple Pneumothorax",
+      "Tension Pneumothorax",
+      "Massive Hemothorax",
+      "Cardiac Tamponade"
     ],
     "correct": [
-      "A"
+      "B"
     ],
-    "rationale": "Tension pneumothorax is characterized by tracheal deviation away from the affected side (in this case, to the left), absent breath sounds on the affected side (right), severe chest pain, respiratory distress, and hypotension. Hemothorax presents with dullness to percussion rather than hyperresonance and does not cause tracheal deviation. Pulmonary contusion involves lung parenchyma injury without significant air trapping or tracheal deviation. Flail chest causes paradoxical chest wall movement but not tracheal deviation.",
+    "rationale": "Tension pneumothorax is a life-threatening condition where air enters the pleural space but cannot escape, causing a shift in mediastinal structures. Key clinical indicators: respiratory distress (absent breath sounds on the affected side), cardiovascular collapse (hypotension/obstructive shock), and late-stage tracheal deviation away from the affected side. While a hemothorax also presents with absent breath sounds and shock, it typically results in dullness to percussion rather than the hyper-resonance seen in tension pneumothorax.",
     "type": "single_select"
   },
   {
