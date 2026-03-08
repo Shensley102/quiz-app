@@ -548,10 +548,10 @@
     "category": "General Principles of Flight Transport Nursing Practice",
     "stem": "The usual concentration of ketamine is on backorder, so the airway bag is stocked with a different concentration of ketamine than is typically used at a base. The flight paramedic inadvertently administers twice the dose he intended to give the patient. In a system of Just Culture, the fault:",
     "options": [
-      "Is placed on the paramedic and he should be held accountable for the error",
-      "Is shared; the organization should evaluate any processes that may have contributed to the error",
-      "Is on the medication supplier for not sending the usual concentration of ketamine",
-      "Belongs to no one, this was an honest mistake"
+      "Is placed on the paramedic and he should be held accountable for the error.",
+      "Is shared; the organization should evaluate any processes that may have contributed to the error.",
+      "Is on the medication supplier for not sending the usual concentration of ketamine.",
+      "Belongs to no one, this was an honest mistake."
     ],
     "correct": [
       "B"
@@ -1073,18 +1073,18 @@
   },
   {
     "id": "Q0068",
-    "category": "Special Populations",
-    "stem": "A paramedic inadvertently administers the wrong dose of a medication after typing in the pediatric patient's weight wrong on the duty phone app. According to Just Culture:",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "During an interfacility transport at 2:00 AM on the back half of a 24-hour shift, a flight team member mishears the patient's weight while transferring a medication titration from the hospital’s infusion pump to the transport team’s pump. Upon arrival at the receiving facility, it is discovered that the medication was dosed incorrectly due to the weight discrepancy. No harm occurred to the patient. In a "Just Culture" environment, how should the leadership respond?",
     "options": [
-      "The paramedic should be educated on the proper use of the pediatric medication application",
-      "The paramedic should be placed on a performance improvement plan",
-      "The paramedic should be supported",
-      "Nothing should be done, this was a human error"
+      "Issue a formal written warning to the team member for failing to verify the weight.",
+      "Conduct a root cause analysis to evaluate the communication process and handoff environment.",
+      "Require the team member to complete a mandatory pharmacology course.",
+      "Document the error but take no further action since the patient was not harmed."
     ],
     "correct": [
-      "C"
+      "B"
     ],
-    "rationale": "Just Culture states that mistakes not caused by reckless behavior or by being careless should be supported. We are all human beings and are subject to honest mistakes. When corners are being cut, the clinician should be trained or educated on the importance of always choosing the right course of action. When errors are made due to recklessness, the offender should be held accountable and face punitive action.",
+    "rationale": "Just Culture distinguishes between human error, at-risk behavior, and reckless behavior. Mishearing a weight during a high-stress transfer at 2:00 AM while fatigued on a 24-hour shift is considered a "human error." The organizational response focuses on shared accountability, analyzing system-level factors (like fatigue management, handoff environment noise, or lack of double-check protocols) to prevent recurrence rather than punishing the individual for an unintentional mistake influenced by exhaustion.",
     "type": "single_select"
   },
   {
@@ -4132,10 +4132,10 @@
     "category": "Trauma",
     "stem": "A patient arrives with a penetrating stab wound to the right side of the spinal column at the T6 level. Assessment reveals a loss of motor function and touch sensation on the right side below the injury, but a loss of pain and temperature sensation on the left side. This clinical picture is consistent with:",
     "options": [
-      "Anterior cord syndrome.",
-      "Central cord syndrome.",
-      "Cauda Equina Syndrome.",
-      "Brown Sequard syndrome."
+      "Anterior-Cord Syndrome.",
+      "Central-Cord Syndrome.",
+      "Cauda-Equina Syndrome.",
+      "Brown-Sequard Syndrome."
     ],
     "correct": [
       "D"
