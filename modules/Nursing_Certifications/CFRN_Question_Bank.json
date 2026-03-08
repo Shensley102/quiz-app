@@ -1634,17 +1634,17 @@
   {
     "id": "Q0103",
     "category": "Special Populations",
-    "stem": "The pregnant patient is attempting to deliver; the fetal head protrudes with each contraction, but shrugs back in between contractions. The flight crew",
+    "stem": "During an unplanned delivery in the back of an ambulance, the infant's head delivers, but then appears to pull back tightly against the maternal perineum. Which maneuver should the crew perform immediately?",
     "options": [
-      "Recognizes the cervix is not fully dilated",
-      "Immediately performs a McRoberts Maneuver",
-      "Initiates a pitocin infusion",
-      "Administers 4g IV magnesium"
+      "Fundal Pressure.",
+      "McRoberts maneuver.",
+      "Mauriceau-Smellie-Veit maneuve.",
+      "Leopold’s maneuver."
     ],
     "correct": [
       "B"
     ],
-    "rationale": "This is called a turtle sign and is indicative of a shoulder dystocia and means that the baby's shoulder is hung up on mother's pubic symphysis and it requires immediate intervention. The providers should assist mother (and use her support person) to pulling her knees up to her shoulders and apply firm pressure on the superior edge of her pubic symphysis (this is NOT fundal pressure). The goal of the suprapubic pressure is to adduct baby's shoulder inward (imagine pulling your shoulders in like you're giving yourself a hug) and allow the shoulders to pass through the pelvic opening. By combining the knee-to-shoulder flexion with the suprapubic pressure, 90% of shoulder dystocias are resolved and the baby can deliver. However, some of these cases require an emergency cesarean section.",
+    "rationale": "The turtle sign (head retracting against the perineum) indicates shoulder dystocia. The first-line intervention is the McRoberts maneuver, which involves hyper-flexing the mother's legs to her abdomen. This widens the pelvic outlet and flattens the sacrum, often allowing the anterior shoulder to pass under the symphysis pubis. Fundal pressure is strictly contraindicated as it can worsen the impaction and cause uterine rupture. The Mauriceau-Smellie-Veit maneuver is used for the delivery of the aftercoming head in breech presentations, not shoulder dystocia. Leopold’s maneuvers  are palpation techniques used before delivery to determine fetal position and have no therapeutic role in an active dystocia emergency.",
     "type": "single_select"
   },
   {
@@ -3380,10 +3380,10 @@
     "category": "Special Populations",
     "stem": "During the uterine contraction the head begins to deliver normally, but when the uterus relaxes, the baby's head pulls back into the vagina. The flight nurse recognizes that this is:",
     "options": [
-      "A normal occurrence, the baby will likely deliver with the next contraction",
-      "Breech presentation",
-      "HELLP syndrome",
-      "Shoulder dystocia"
+      "A normal occurrence.",
+      "Breech presentation.",
+      "HELLP syndrome.",
+      "Shoulder dystocia."
     ],
     "correct": [
       "D"
@@ -22130,17 +22130,17 @@
   {
     "id": "Q1390",
     "category": "Special Populations",
-    "stem": "How can the nurse assist in a precipitate delivery with shoulder dystocia?",
+    "stem": "When managing a shoulder dystocia, the flight nurse should combine the McRoberts maneuver with which of the following to assist in delivery?",
     "options": [
-      "Position the patient in the left lateral recumbent position.",
-      "Administer magnesium sulfate to slow the contractions.",
-      "Use McRoberts maneuver of positioning the patient in knee-chest position.",
-      "Position the patient in trendelenburg position."
+      "Firm fundal pressure.",
+      "Suprapubic pressure.",
+      "Traction on the fetal neck.",
+      "Internal rotation of the fetal head."
     ],
     "correct": [
-      "C"
+      "B"
     ],
-    "rationale": "The McRoberts maneuver increases the diameter of the pelvis until an episiotomy can be performed.",
+    "rationale": "Suprapubic pressure helps by pushing the fetal shoulder down and under the pubic bone. Traction on the fetal neck is dangerous and can cause brachial plexus injuries (Erb's palsy). Internal rotation (Woods' Screw maneuver) is a secondary step if McRoberts and suprapubic pressure fail.",
     "type": "single_select"
   },
   {
