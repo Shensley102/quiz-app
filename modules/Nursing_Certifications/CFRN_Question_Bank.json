@@ -18466,17 +18466,17 @@
   {
     "id": "Q1161",
     "category": "Trauma",
-    "stem": "An 8-year-old crashed his bicycle yesterday. He complains of LUQ abdominal pain radiating to the left shoulder and neck. You notice ecchymosis over the left lower chest to upper abdomen and abdominal distention. He has rebound tenderness upon palpation. You suspect an injury to the:",
+    "stem": "A 12-year-old boy was struck by a handlebar in the left upper quadrant during a bicycle accident. He complains of severe abdominal pain and persistent, sharp pain in his left shoulder that worsens when he lies flat. This referred shoulder pain is known as:",
     "options": [
-      "Liver",
-      "Spleen",
-      "Small bowel",
-      "Great vessels"
+      "Murphy’s Sign.",
+      "Cullen’s Sign.",
+      "Kehr’s Sig.",
+      "Grey Turner’s Sign."
     ],
     "correct": [
       "B"
     ],
-    "rationale": "LUQ pain radiating to the shoulder (Kehr's Sign) is consistent with a spleen injury.",
+    "rationale": "Kehr's sign is referred pain to the left shoulder caused by irritation of the diaphragm, typically from a ruptured spleen or intra-abdominal blood. The phrenic nerve (C3-C5) innervates the diaphragm and shares pathways with the nerves supplying the shoulder, leading the brain to misinterpret the abdominal irritation as shoulder pain.",
     "type": "single_select"
   },
   {
