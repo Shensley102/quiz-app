@@ -4130,12 +4130,12 @@
   {
     "id": "Q0260",
     "category": "Trauma",
-    "stem": "The patient fell from a ladder while hanging Christmas lights on the house and presents with unilateral loss of motor function and unilateral sensation loss on the opposite side of the body. The flight crew recognizes that this is",
+    "stem": "A patient arrives with a penetrating stab wound to the right side of the spinal column at the T6 level. Assessment reveals a loss of motor function and touch sensation on the right side below the injury, but a loss of pain and temperature sensation on the left side. This clinical picture is consistent with:",
     "options": [
-      "Anterior cord syndrome",
-      "Central cord syndrome",
-      "Complete spinal cord transection",
-      "Brown Sequard syndrome"
+      "Anterior cord syndrome.",
+      "Central cord syndrome.",
+      "Cauda Equina Syndrome.",
+      "Brown Sequard syndrome."
     ],
     "correct": [
       "D"
