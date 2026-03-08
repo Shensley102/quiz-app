@@ -6946,7 +6946,7 @@
   {
     "id": "Q0436",
     "category": "Resuscitation Principles",
-    "stem": "During a medical evacuation flight, you are responsible for managing a 45-year-old male the patient who is intubated and mechanically ventilated due to acute respiratory distress syndrome (ARDS). Mid-flight, you notice increasing peak inspiratory pressures. What is the most appropriate immediate action to take?",
+    "stem": "During an interfacility flight, you are responsible for managing a 24-year-old male who is intubated and mechanically ventilated due to acute respiratory distress syndrome (ARDS). Mid-flight, you notice increasing peak inspiratory pressures. What is the most appropriate immediate action to take?",
     "options": [
       "Increase the tidal volume.",
       "Decrease the positive end-expiratory pressure (PEEP).",
@@ -7218,7 +7218,7 @@
   {
     "id": "Q0453",
     "category": "Medical Emergencies",
-    "stem": "During a critical flight transport, a 45-year-old male presents with signs of hypoperfusion including hypotension and altered mental status. Which intervention is most appropriate to enhance tissue perfusion?",
+    "stem": "During a rotor-wing transport, the patient presents with signs of hypoperfusion including hypotension and altered mental status. Which intervention is most appropriate to enhance tissue perfusion?",
     "options": [
       "Administering a vasopressor like norepinephrine",
       "Increasing the intravenous fluid infusion rate",
@@ -7346,7 +7346,7 @@
   {
     "id": "Q0461",
     "category": "Trauma",
-    "stem": "You are attending to the patient, a 45-year-old male who was involved in a motor vehicle accident and presents with polyuria, polydipsia, and signs of dehydration. Lab results show hypernatremia and low urine osmolality. Which intervention is most appropriate?",
+    "stem": "You are attending a patient who was involved in a motor vehicle accident and presents with polyuria, polydipsia, and signs of dehydration. Lab results show hypernatremia and low urine osmolality. Which intervention is most appropriate?",
     "options": [
       "Administering intravenous hypotonic saline",
       "Administering intravenous hypertonic saline",
@@ -7378,7 +7378,7 @@
   {
     "id": "Q0463",
     "category": "Medical Emergencies",
-    "stem": "The patient, a 45-year-old male, presents with sudden onset of severe epigastric pain that radiates to his back, nausea, vomiting, and a rigid abdomen with guarding. His history reveals chronic NSAID use. What is the most likely diagnosis?",
+    "stem": "A male patient, presents with sudden onset of severe epigastric pain that radiates to his back, nausea, vomiting, and a rigid abdomen with guarding. His history reveals chronic NSAID use. What is the most likely diagnosis?",
     "options": [
       "Acute Appendicitis",
       "Perforated Peptic Ulcer",
@@ -7394,7 +7394,7 @@
   {
     "id": "Q0464",
     "category": "Medical Emergencies",
-    "stem": "The patient, a 45-year-old male patient, presents with confusion, headache, and seizures. His recent history includes small cell lung cancer. Serum sodium is 120 mEq/L and serum osmolality is 260 mOsm/kg. Which initial intervention is most appropriate?",
+    "stem": "Your patient presents with confusion, headache, and seizures. His recent history includes small cell lung cancer. Serum sodium is 120 mEq/L and serum osmolality is 260 mOsm/kg. Which initial intervention is most appropriate?",
     "options": [
       "Administer hypertonic saline.",
       "Restrict fluid intake.",
@@ -7485,22 +7485,6 @@
       "A"
     ],
     "rationale": "Labetalol has combined alpha and beta-blocking properties that effectively lower blood pressure without compromising uteroplacental blood flow. Enalapril and Losartan are contraindicated during pregnancy because they can cause fetal renal impairment and other teratogenic effects. Atenolol is less preferred due to potential adverse effects on fetal growth compared to labetalol.",
-    "type": "single_select"
-  },
-  {
-    "id": "Q0470",
-    "category": "Resuscitation Principles",
-    "stem": "During an in-flight medical emergency, you are called to assess a 45-year-old male patient who suddenly became unresponsive. After ensuring scene safety and applying standard precautions, what is your immediate next step?",
-    "options": [
-      "Check for a pulse.",
-      "Open the airway using the head-tilt-chin-lift maneuver.",
-      "Initiate chest compressions.",
-      "Assess for normal breathing."
-    ],
-    "correct": [
-      "B"
-    ],
-    "rationale": "Opening the airway using the head-tilt-chin-lift maneuver is the immediate next step, ensuring that any obstruction in the upper airway is relieved. Checking for a pulse and assessing for normal breathing come after securing the airway. Initiating chest compressions would only be appropriate if there is no pulse and no breathing detected after opening the airway.",
     "type": "single_select"
   },
   {
@@ -7650,7 +7634,7 @@
   {
     "id": "Q0482",
     "category": "Medical Emergencies",
-    "stem": "A 45-year-old male patient presents with sudden onset oliguria and elevated serum creatinine following a severe hypotensive episode during a flight. Which intervention is most appropriate to improve renal perfusion?",
+    "stem": "A patient presents with sudden onset oliguria and elevated serum creatinine following a severe hypotensive episode during a flight. Which intervention is most appropriate to improve renal perfusion?",
     "options": [
       "Administering intravenous fluids cautiously to maintain euvolemia",
       "Starting high-dose diuretics immediately",
@@ -7778,7 +7762,7 @@
   {
     "id": "Q0490",
     "category": "Trauma",
-    "stem": "During a mass casualty incident, you encounter the patient, a 45-year-old male with an open femur fracture, severe bleeding, and signs of shock. According to the START triage system, what is the most appropriate triage category?",
+    "stem": "During a mass casualty incident, you encounter the patient with an open femur fracture, severe bleeding, and signs of shock. According to the START triage system, what is the most appropriate triage category?",
     "options": [
       "Immediate (Red)",
       "Delayed (Yellow)",
@@ -8114,7 +8098,7 @@
   {
     "id": "Q0511",
     "category": "Resuscitation Principles",
-    "stem": "The patient, a 45-year-old male, presents with severe chest pain and difficulty breathing after a high-speed collision. He has diminished breath sounds on the left side and significant subcutaneous emphysema. What is the most appropriate initial intervention?",
+    "stem": "A patient presents with severe chest pain and difficulty breathing after a high-speed collision. He has diminished breath sounds on the left side and significant subcutaneous emphysema. What is the most appropriate initial intervention?",
     "options": [
       "Needle decompression of the left chest",
       "Chest tube insertion on the left side",
@@ -8226,7 +8210,7 @@
   {
     "id": "Q0518",
     "category": "Medical Emergencies",
-    "stem": "The patient, a 45-year-old male with AMI history, becomes hypotensive (BP 80/50 mmHg) with signs of poor perfusion including altered mental status and cool extremities. Which intervention is most critical?",
+    "stem": "You encounter a patient with AMI history, becomes hypotensive (BP 80/50 mmHg) with signs of poor perfusion including altered mental status and cool extremities. Which intervention is most critical?",
     "options": [
       "Administering intravenous fluids rapidly",
       "Initiating vasopressor therapy immediately",
@@ -8322,7 +8306,7 @@
   {
     "id": "Q0524",
     "category": "Resuscitation Principles",
-    "stem": "The patient, a 45-year-old male with ARDS, is mechanically ventilated on FiO2 0.7, PEEP 10 cm H2O, and tidal volume 6 mL/kg IBW. Despite these settings, oxygenation remains inadequate. What is the most appropriate next step?",
+    "stem": "A patient with ARDS, is mechanically ventilated on FiO2 0.7, PEEP 10 cm H2O, and tidal volume 6 mL/kg IBW. Despite these settings, oxygenation remains inadequate. What is the most appropriate next step?",
     "options": [
       "Increase FiO2 to 0.8",
       "Increase PEEP to 15 cm H2O",
@@ -8562,7 +8546,7 @@
   {
     "id": "Q0539",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "A 45-year-old male named the patient presents with confusion, hot and dry skin, a core body temperature of 104°F (40°C), and tachycardia after working outdoors in high temperatures. Which intervention should the nurse prioritize?",
+    "stem": "A patient presents with confusion, hot and dry skin, a core body temperature of 104°F (40°C), and tachycardia after working outdoors in high temperatures. Which intervention should the nurse prioritize?",
     "options": [
       "Administering intravenous (IV) fluids rapidly",
       "Initiating active cooling measures such as ice packs and cold water immersion",
@@ -8610,7 +8594,7 @@
   {
     "id": "Q0542",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "You are caring for a 45-year-old male the patient who presents with severe epigastric pain radiating to his back, nausea, and vomiting, with elevated serum lipase and amylase levels. What is the most appropriate initial management step?",
+    "stem": "You are caring for a patient who presents with severe epigastric pain radiating to his back, nausea, and vomiting, with elevated serum lipase and amylase levels. What is the most appropriate initial management step?",
     "options": [
       "Administer intravenous fluids and analgesics",
       "Start broad-spectrum antibiotics immediately",
@@ -8674,7 +8658,7 @@
   {
     "id": "Q0546",
     "category": "Trauma",
-    "stem": "During a flight transport, you attend to a 45-year-old male patient with chest trauma who presents with hypotension, distended neck veins, and decreased breath sounds on the right side. What is the most appropriate initial intervention?",
+    "stem": "During a flight transport, your team is attending to a patient with chest trauma who presents with hypotension, distended neck veins, and decreased breath sounds on the right side. What is the most appropriate initial intervention?",
     "options": [
       "Administer intravenous fluids rapidly.",
       "Perform needle decompression.",
@@ -8866,7 +8850,7 @@
   {
     "id": "Q0558",
     "category": "Resuscitation Principles",
-    "stem": "The patient, a 45-year-old male patient, has been intubated following a cardiac arrest. Which medication combination is most appropriate for achieving both sedation and analgesia during transport?",
+    "stem": "The patient thats in your teams care has been intubated following a cardiac arrest. Which medication combination is most appropriate for achieving both sedation and analgesia during transport?",
     "options": [
       "Midazolam and Fentanyl",
       "Propofol and Morphine",
@@ -9186,7 +9170,7 @@
   {
     "id": "Q0579",
     "category": "Resuscitation Principles",
-    "stem": "The patient, a 45-year-old male, sustained multiple injuries including a suspected spinal injury, severe lacerations, and possible internal bleeding. As a flight nurse preparing for his air transport, what is the priority intervention before initiating transport?",
+    "stem": "You encounter a patient from a scene call who sustained multiple injuries including a suspected spinal injury, severe lacerations, and possible internal bleeding. As a flight nurse preparing for his air transport, what is the priority intervention before initiating transport?",
     "options": [
       "Secure the airway using endotracheal intubation.",
       "Immobilize the spine using a cervical collar and backboard.",
@@ -9986,7 +9970,7 @@
   {
     "id": "Q0629",
     "category": "Medical Emergencies",
-    "stem": "A 45-year-old male patient is being transported via air ambulance after experiencing severe muscle weakness and palpitations. An ECG shows peaked T waves. Which of the following electrolyte disturbances is most likely responsible for these symptoms?",
+    "stem": "You have a patient is being transported via rotor-wing after experiencing severe muscle weakness and palpitations. An ECG shows peaked T waves. Which of the following electrolyte disturbances is most likely responsible for these symptoms?",
     "options": [
       "Hyperkalemia",
       "Hypokalemia",
@@ -10018,7 +10002,7 @@
   {
     "id": "Q0631",
     "category": "Resuscitation Principles",
-    "stem": "During a flight, you are called to assist with a 45-year-old male patient who has collapsed and is unresponsive. Upon assessment, you find that he is not breathing adequately and has an obstructed airway. What is the most appropriate initial intervention for managing the patient's airway?",
+    "stem": "Your team arrives to the back of an ambulance for a scene call. Upon patient assessment, you find that he is not breathing adequately and has an obstructed airway. What is the most appropriate initial intervention for managing the patient's airway?",
     "options": [
       "Perform a needle cricothyrotomy.",
       "Use a bag-valve mask (BVM) with supplemental oxygen.",
@@ -10081,8 +10065,8 @@
   },
   {
     "id": "Q0635",
-    "category": "Special Populations",
-    "stem": "A 45-year-old male presents with sudden onset of severe abdominal pain radiating to his back, hypotension, and a pulsatile abdominal mass. What is the most likely diagnosis?",
+    "category": "Medical Emergencies",
+    "stem": "A -year-old male presents with sudden onset of severe abdominal pain radiating to his back, hypotension, and a pulsatile abdominal mass. What is the most likely diagnosis?",
     "options": [
       "Ruptured abdominal aortic aneurysm",
       "Gastrointestinal perforation",
@@ -10226,7 +10210,7 @@
   {
     "id": "Q0644",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "A 45-year-old male the patient is being transported via air ambulance after being found unconscious at home. Upon assessment, the patient presents with warm, flushed skin, hypotension, and a rapid heart rate. His medical history includes a recent upper respiratory infection. As the flight nurse, what is the most appropriate initial intervention for the patient's condition?",
+    "stem": "Your teams is called for a patient transport from a remote location in your service area. EMS transported the patient from the scene to the L.Z. Upon EMS's arrive they state that the family found the patiernt unconscious at home. Upon the flight crews assessment, the patient presents with warm, flushed skin, hypotension, and a rapid heart rate. His medical history includes a recent upper respiratory infection. As the flight nurse, what is the most appropriate initial intervention for the patient's condition?",
     "options": [
       "Administer intravenous fluids and start norepinephrine infusion.",
       "Administer intravenous fluids and start dopamine infusion.",
@@ -10274,7 +10258,7 @@
   {
     "id": "Q0647",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport, a 45-year-old male the patient presents with severe abdominal pain, vomiting, and abdominal distension. His medical history includes previous abdominal surgeries. As a flight nurse, which initial intervention is most appropriate to manage his suspected bowel obstruction?",
+    "stem": "Your team is presented with a 51-year-old male with complaints of severe abdominal pain, vomiting, and abdominal distension. His medical history includes previous abdominal surgeries. As a flight nurse, which initial intervention is most appropriate to manage his suspected bowel obstruction?",
     "options": [
       "Administer antiemetics to control vomiting.",
       "Insert a nasogastric tube for decompression.",
@@ -10450,7 +10434,7 @@
   {
     "id": "Q0658",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "A 45-year-old male is brought to your care after collapsing during a marathon on a hot day. He presents with confusion, hot dry skin, and a core temperature of 40°C (104°F). Which initial intervention is most appropriate for this patient? groin and axilla. temperature.",
+    "stem": "A 24-year-old male is brought to your care after collapsing during a marathon on a hot day. He presents with confusion, hot dry skin, and a core temperature of 40°C (104°F). Which initial intervention is most appropriate for this patient? groin and axilla. temperature.",
     "options": [
       "Administer intravenous normal saline and apply ice packs to the",
       "Immerse the patient in cold water while monitoring core",
@@ -10530,11 +10514,11 @@
   {
     "id": "Q0663",
     "category": "Special Populations",
-    "stem": "The patient, a 45-year-old male with a BMI of 45, is being prepared for emergency intubation due to acute respiratory distress. Which of the following strategies is most appropriate for management in this bariatric patient? induction agents. with the sternal notch. resistance.",
+    "stem": "A 38-year-old male with a BMI of 45, is being prepared for emergency intubation due to acute respiratory distress. Which of the following strategies is most appropriate for management in this bariatric patient?",
     "options": [
-      "Utilize rapid sequence intubation (RSI) with standard doses of",
-      "Employ ramped positioning to align the external auditory meatus",
-      "Use a smaller endotracheal tube due to increased airway",
+      "Utilize rapid sequence intubation (RSI) with standard doses of induction agents.",
+      "Employ ramped positioning to align the external auditory meatus with the sternal notch.",
+      "Use a smaller endotracheal tube due to increased airway resistance.",
       "Administer preoxygenation using a non-rebreather mask at 15 L/min."
     ],
     "correct": [
@@ -10752,25 +10736,9 @@
     "type": "single_select"
   },
   {
-    "id": "Q0677",
-    "category": "Resuscitation Principles",
-    "stem": "You are a flight nurse responding to an emergency call involving a 45-year-old male named the patient who collapsed at work. Upon arrival, you find the patient unresponsive with no pulse. As you prepare for resuscitation, what is your priority action during the initial assessment? prompts.",
-    "options": [
-      "Begin chest compressions immediately.",
-      "Open the airway using the head-tilt-chin-lift maneuver.",
-      "Attach an automated external defibrillator (AED) and follow its",
-      "Administer high-flow oxygen via bag-valve mask."
-    ],
-    "correct": [
-      "C"
-    ],
-    "rationale": "The priority action during initial assessment in a cardiac arrest situation is to attach an AED and follow its prompts. This step ensures that any potentially shockable rhythm is identified and treated promptly. While beginning chest compressions (Begin chest compressions immediately.) is crucial, it should be done immediately after ensuring that an AED is being attached or if there is no AED available. Opening the airway (Open the airway using the head-tilt-chin-lift maneuver.) and administering high-flow oxygen (Administer high-flow oxygen via bag-valve mask.) are important steps but are secondary to ensuring that defibrillation can occur as soon as possible if needed. Therefore, Attach an automated external defibrillator (AED) and follow its correctly prioritizes immediate defibrillation readiness in line with current resuscitation guidelines.",
-    "type": "single_select"
-  },
-  {
     "id": "Q0678",
     "category": "Medical Emergencies",
-    "stem": "During a flight transport, you are caring for the patient, a 45-year-old male with a history of chronic kidney disease (CKD) who has suddenly developed altered mental status and hypotension. His recent lab results show a potassium level of 6.5 mEq/L. Which immediate intervention is most appropriate to stabilize his condition?",
+    "stem": "During a flight transport, you are caring for a patient with a history of chronic kidney disease (CKD) who has suddenly developed altered mental status and hypotension. His recent lab results show a potassium level of 6.5 mEq/L. Which immediate intervention is most appropriate to stabilize his condition?",
     "options": [
       "Administer calcium gluconate intravenously.",
       "Administer sodium bicarbonate intravenously.",
@@ -10866,7 +10834,7 @@
   {
     "id": "Q0684",
     "category": "Trauma",
-    "stem": "The patient, a 45-year-old male patient, is being transported via air ambulance following a severe motor vehicle accident. He presents with signs of hypovolemic shock including tachycardia, hypotension, and altered mental status. As the flight nurse, you need to initiate fluid resuscitation. Considering current best practices in fluid resuscitation for trauma patients, which type of fluid should you administer first?",
+    "stem": "Your patient is being transported via helicopter following a severe motor vehicle accident. The patient presents with signs of hypovolemic shock including tachycardia, hypotension, and altered mental status. As the flight nurse, you need to initiate fluid resuscitation. Considering current best practices in fluid resuscitation for trauma patients, which type of fluid should you administer first?",
     "options": [
       "Normal Saline",
       "Lactated Ringer's Solution",
@@ -10880,25 +10848,9 @@
     "type": "single_select"
   },
   {
-    "id": "Q0685",
-    "category": "Resuscitation Principles",
-    "stem": "The patient, a 45-year-old male patient, is being transported via air ambulance after a severe motor vehicle accident. He is unresponsive with shallow respirations and an SpO2 of 85% despite high-flow oxygen via non-rebreather mask. Given his condition and the limited resources available in-flight, what is the most appropriate next step in airway management?",
-    "options": [
-      "Perform endotracheal intubation immediately.",
-      "Insert a supraglottic airway device.",
-      "Initiate bag-valve-mask ventilation with supplemental oxygen.",
-      "Administer nebulized bronchodilators."
-    ],
-    "correct": [
-      "B"
-    ],
-    "rationale": "In an air ambulance setting with limited resources, inserting a supraglottic airway device (Insert a supraglottic airway device.) is often the most appropriate next step for securing an airway quickly and effectively. This option provides better ventilation than a non-rebreather mask and can be performed rapidly without the need for advanced skills required for endotracheal intubation (Perform endotracheal intubation immediately.), which might not be feasible due to resource constraints. Bag-valve-mask ventilation (Initiate bag-valve-mask ventilation with supplemental oxygen.) is less effective in maintaining stable oxygenation over time compared to a supraglottic device. Endotracheal intubation requires significant skill and may not be practical in-flight due to space constraints.",
-    "type": "single_select"
-  },
-  {
     "id": "Q0686",
     "category": "Trauma",
-    "stem": "You are assessing a 45-year-old male the patient who was involved in a high-speed motor vehicle collision. He is unconscious and has sustained multiple injuries, including facial trauma. During your initial airway assessment, you notice gurgling sounds upon auscultation. What is the most appropriate immediate action?",
+    "stem": "You are assessing a patient who was involved in a high-speed motor vehicle collision. The patient is unconscious and has sustained multiple injuries, including facial trauma. During your initial airway assessment, you notice gurgling sounds upon auscultation. What is the most appropriate immediate action?",
     "options": [
       "Perform a jaw-thrust maneuver to open the airway.",
       "Suction the airway to clear any obstructions.",
@@ -11042,7 +10994,7 @@
   {
     "id": "Q0695",
     "category": "Medical Emergencies",
-    "stem": "A 45-year-old male named the patient presents with jaundice, fatigue, and abdominal pain. His liver function tests reveal elevated AST and ALT levels. He mentions recent travel to an area with poor sanitation and denies any history of intravenous drug use or alcohol abuse. As a flight nurse preparing for transport, what is the most likely type of hepatitis affecting the patient?",
+    "stem": "A male patient presents with jaundice, fatigue, and abdominal pain. His liver function tests reveal elevated AST and ALT levels. He mentions recent travel to an area with poor sanitation and denies any history of intravenous drug use or alcohol abuse. As a flight nurse preparing for transport, what is the most likely type of hepatitis affecting the patient?",
     "options": [
       "Hepatitis A",
       "Hepatitis B",
@@ -11085,22 +11037,6 @@
       "B"
     ],
     "rationale": "Continuous positive airway pressure (CPAP) is crucial in managing neonatal RDS during air transport as it helps keep the alveoli open, improving oxygenation and reducing the work of breathing. Administration of surfactant therapy: While surfactant therapy is essential in treating RDS, its administration is typically done in a hospital setting rather than during transport. Mechanical ventilation with SIMV: Mechanical ventilation may be necessary for severe cases, but CPAP is often preferred initially due to its less invasive nature and effectiveness in many neonates. High-flow nasal cannula: HFNC can provide some respiratory support but is generally less effective than CPAP in maintaining alveolar stability and oxygenation in neonates with RDS.",
-    "type": "single_select"
-  },
-  {
-    "id": "Q0698",
-    "category": "Special Populations",
-    "stem": "During an aeromedical evacuation, you are tasked with transporting the patient, a 45-year-old male weighing 180 kg (396 lbs) who has recently undergone bariatric surgery. Considering the unique needs of bariatric patients during air transport, which of the following is the most critical consideration? immobility",
-    "options": [
-      "Ensuring adequate oxygen supply due to increased metabolic demands",
-      "Using specialized stretchers to accommodate weight and size",
-      "Monitoring for deep vein thrombosis (DVT) due to prolonged",
-      "Adjusting medication dosages based on altered pharmacokinetics"
-    ],
-    "correct": [
-      "B"
-    ],
-    "rationale": "The most critical consideration in this scenario is using specialized stretchers to accommodate the patient's weight and size. Bariatric patients require equipment that can safely support their body mass and ensure proper weight distribution during transport. While ensuring adequate oxygen supply , monitoring for DVT , and adjusting medication dosages are also important, they do not pose immediate logistical challenges as significant as safely securing and transporting the patient with appropriate equipment.",
     "type": "single_select"
   },
   {
@@ -11330,7 +11266,7 @@
   {
     "id": "Q0713",
     "category": "Trauma",
-    "stem": "During a flight transport, you are caring for the patient, a 45-year-old male patient with severe trauma and ongoing hemorrhage. You have limited access to blood products. Which blood product would be most appropriate to administer first to improve oxygen delivery and hemostasis?",
+    "stem": "During a flight transport, you are caring for the patient, a patient with severe trauma and ongoing hemorrhage. You have limited access to blood products. Which blood product would be most appropriate to administer first to improve oxygen delivery and hemostasis?",
     "options": [
       "Fresh Frozen Plasma (FFP)",
       "Packed Red Blood Cells (PRBCs)",
@@ -11538,7 +11474,7 @@
   {
     "id": "Q0726",
     "category": "Trauma",
-    "stem": "You are preparing the patient, a 45-year-old male involved in a severe motor vehicle accident, for air medical transport. He has multiple fractures and potential internal bleeding. Which of the following is the most critical step in ensuring his safe transport?",
+    "stem": "You are preparing a patient involved in a severe motor vehicle accident, for air medical transport. Your patient has multiple fractures and potential internal bleeding. Which of the following is the most critical step in ensuring his safe transport?",
     "options": [
       "Secure all IV lines and ensure they are patent.",
       "Immobilize the cervical spine using a rigid collar.",
@@ -11810,7 +11746,7 @@
   {
     "id": "Q0744",
     "category": "Resuscitation Principles",
-    "stem": "During an in-flight resuscitation of a 45-year-old male the patient who has experienced a traumatic injury, you encounter significant difficulty in ventilating him using a bag-valve mask (BVM). Despite repositioning his head and ensuring a proper seal, ventilation remains inadequate. What should be your next step?",
+    "stem": "During an in-flight resuscitation of a 38-year-old male who has experienced a traumatic injury, you encounter significant difficulty in ventilating him using a bag-valve mask (BVM). Despite repositioning his head and ensuring a proper seal, ventilation remains inadequate. What should be your next step?",
     "options": [
       "Perform a needle cricothyrotomy.",
       "Insert an oropharyngeal airway (OPA).",
@@ -11869,22 +11805,6 @@
       "B"
     ],
     "rationale": "Administering medication without confirming the patient's identity is a significant breach of standard nursing practice and can lead to severe legal consequences. This action directly violates patient safety protocols and can result in harm, making it a clear cause for legal liability. Documenting all patient interactions and interventions thoroughly is incorrect because thorough documentation is a crucial aspect of nursing practice that helps protect against legal issues. Ensuring informed consent is obtained before initiating treatment is also incorrect as obtaining informed consent is necessary to respect patient autonomy and avoid legal repercussions. Maintaining patient confidentiality throughout the transport is incorrect because maintaining confidentiality is essential to comply with HIPAA regulations and avoid legal issues. The key difference lies in the direct impact on patient safety; failing to confirm identity before administering medication poses an immediate risk, whereas other options involve upholding best practices.",
-    "type": "single_select"
-  },
-  {
-    "id": "Q0748",
-    "category": "Resuscitation Principles",
-    "stem": "During a flight, you are called to assess the patient, a 45-year-old male who is unresponsive after a suspected overdose. Upon arrival, you notice that the patient has shallow breathing and his oxygen saturation is dropping rapidly. What is your immediate priority in managing his airway?",
-    "options": [
-      "Perform a head-tilt chin-lift maneuver.",
-      "Insert an oropharyngeal airway (OPA).",
-      "Administer high-flow oxygen via non-rebreather mask.",
-      "Prepare for endotracheal intubation."
-    ],
-    "correct": [
-      "A"
-    ],
-    "rationale": "The immediate priority in managing an unresponsive patient with shallow breathing and dropping oxygen saturation is to ensure that the airway is open. The head-tilt chin-lift maneuver is a fundamental technique used to open the airway by repositioning the head and neck, which can often relieve obstruction caused by the tongue or soft tissues. - Correct: The head-tilt chin-lift maneuver is essential for initially opening the airway in an unresponsive patient without suspected cervical spine injury. - Incorrect but close: While inserting an oropharyngeal airway can help maintain patency once the airway is opened, it should follow basic maneuvers like head-tilt chin-lift. - Incorrect but close: Administering high-flow oxygen is crucial but secondary to ensuring that the airway is patent first. - Incorrect but close: Preparing for endotracheal intubation may be necessary if basic maneuvers fail, but it is not the immediate first step. The distinction lies in prioritizing basic life-saving steps before advancing to more invasive procedures.",
     "type": "single_select"
   },
   {
@@ -11986,7 +11906,7 @@
   {
     "id": "Q0755",
     "category": "Resuscitation Principles",
-    "stem": "The patient, a 45-year-old male patient, has been admitted to the emergency department following a severe traumatic brain injury. He is currently on mechanical ventilation. During your assessment, you notice that his PaCO2 levels are elevated, indicating hypercapnia. Which ventilator adjustment is most appropriate to reduce his PaCO2 levels?",
+    "stem": "A patient, has been admitted to the emergency department following a severe traumatic brain injury. The patient is currently on mechanical ventilation. During your assessment, you notice that his PaCO2 levels are elevated, indicating hypercapnia. Which ventilator adjustment is most appropriate to reduce his PaCO2 levels?",
     "options": [
       "Increase the tidal volume",
       "Decrease the respiratory rate",
@@ -12098,7 +12018,7 @@
   {
     "id": "Q0762",
     "category": "Resuscitation Principles",
-    "stem": "You are a flight nurse responding to a call involving a 45-year-old male the patient, who has been found unresponsive with agonal breathing after a suspected opioid overdose. Upon arrival, you note that the patient has a decreased level of consciousness and his respiratory rate is severely depressed. What is the most appropriate initial airway management step for the patient?",
+    "stem": "You are a flight nurse responding to a call involving a 28-year-old male, who has been found unresponsive with agonal breathing after a suspected opioid overdose. Upon arrival, you note that the patient has a decreased level of consciousness and his respiratory rate is severely depressed. What is the most appropriate initial airway management step for the patient?",
     "options": [
       "Perform a needle cricothyrotomy",
       "Insert an oropharyngeal airway (OPA)",
@@ -12290,7 +12210,7 @@
   {
     "id": "Q0774",
     "category": "Medical Emergencies",
-    "stem": "A 45-year-old male patient presents with severe epigastric pain radiating to his back, nausea, and vomiting. Laboratory tests reveal elevated serum amylase and lipase levels. Which of the following complications is most likely associated with severe acute pancreatitis?",
+    "stem": "A patient presents with severe epigastric pain radiating to his back, nausea, and vomiting. Laboratory tests reveal elevated serum amylase and lipase levels. Which of the following complications is most likely associated with severe acute pancreatitis?",
     "options": [
       "Acute renal failure",
       "Hypocalcemia",
@@ -12306,7 +12226,7 @@
   {
     "id": "Q0775",
     "category": "Resuscitation Principles",
-    "stem": "You are the flight nurse attending to a 45-year-old male the patient who has sustained multiple traumatic injuries following a motor vehicle accident. He requires rapid sequence intubation due to compromised airway and decreasing oxygen saturation. Which of the following drug combinations is most appropriate for inducing anesthesia and providing neuromuscular blockade in this emergency scenario?",
+    "stem": "You are the flight nurse attending to a 32-year-old male who has sustained multiple traumatic injuries following a motor vehicle accident. He requires rapid sequence intubation due to compromised airway and decreasing oxygen saturation. Which of the following drug combinations is most appropriate for inducing anesthesia and providing neuromuscular blockade in this emergency scenario?",
     "options": [
       "Etomidate and Succinylcholine",
       "Midazolam and Rocuronium",
@@ -12450,7 +12370,7 @@
   {
     "id": "Q0784",
     "category": "Resuscitation Principles",
-    "stem": "During a flight transport, the patient, a 45-year-old male patient with a history of chronic obstructive pulmonary disease (COPD), suddenly develops severe hypotension and jugular venous distension. As a Certified Flight Registered Nurse (CFRN), what is the most appropriate initial intervention?",
+    "stem": "During a flight transport, the patient, your patient patient with a history of chronic obstructive pulmonary disease (COPD), suddenly develops severe hypotension and jugular venous distension. What is the most appropriate initial intervention?",
     "options": [
       "Administer intravenous fluids rapidly.",
       "Perform needle decompression.",
@@ -12562,7 +12482,7 @@
   {
     "id": "Q0791",
     "category": "Medical Emergencies",
-    "stem": "During a flight transport of a 45-year-old male patient with chronic obstructive pulmonary disease (COPD), which physiologic stressor is most likely to exacerbate his condition?",
+    "stem": "During a fixed-wing transport of a patient with chronic obstructive pulmonary disease (COPD), which physiologic stressor is most likely to exacerbate the patients condition?",
     "options": [
       "Decreased partial pressure of oxygen",
       "Increased noise levels",
@@ -12706,7 +12626,7 @@
   {
     "id": "Q0800",
     "category": "Trauma",
-    "stem": "The patient, a 45-year-old male, is brought to the emergency department after a high-speed motor vehicle collision. He presents with severe chest pain, difficulty breathing, and visible deformity over the right side of his chest. On examination, there is crepitus and paradoxical movement of the chest wall. What is the most likely complication associated with the patient's injury?",
+    "stem": "A patient, is brought to the emergency department after a high-speed motor vehicle collision. The patient presents with severe chest pain, difficulty breathing, and visible deformity over the right side of tje chest. On examination, there is crepitus and paradoxical movement of the chest wall. What is the most likely complication associated with the patient's injury?",
     "options": [
       "Hemothorax",
       "Pulmonary contusion",
@@ -12786,7 +12706,7 @@
   {
     "id": "Q0805",
     "category": "Medical Emergencies",
-    "stem": "A 45-year-old male presents with jaundice, fatigue, and elevated liver enzymes. His serology results show positive HBsAg and anti-HBc IgM. What is the most likely diagnosis?",
+    "stem": "A patient presents with jaundice, fatigue, and elevated liver enzymes. His serology results show positive HBsAg and anti-HBc IgM. What is the most likely diagnosis?",
     "options": [
       "Acute Hepatitis B",
       "Chronic Hepatitis B",
@@ -12802,7 +12722,7 @@
   {
     "id": "Q0806",
     "category": "Trauma",
-    "stem": "A 45-year-old male named the patient is being transported by air ambulance after sustaining multiple fractures from a motor vehicle accident. During the flight, he suddenly develops petechiae, bleeding gums, and prolonged bleeding from his IV sites. Considering the acute presentation, which condition is most likely responsible for the patient's symptoms?",
+    "stem": "A patient suddenly develops petechiae, bleeding gums, and prolonged bleeding from his IV sites. Considering the acute presentation, which condition is most likely responsible for the patient's symptoms?",
     "options": [
       "Hemophilia A",
       "Disseminated Intravascular Coagulation (DIC)",
@@ -12962,7 +12882,7 @@
   {
     "id": "Q0816",
     "category": "Medical Emergencies",
-    "stem": "The patient, a 45-year-old male, presents with confusion, headache, and cherry-red skin coloration after being found unconscious in his garage with the car running. As a Flight Nurse preparing for transport, what is the most appropriate initial intervention?",
+    "stem": "A patient, presents with confusion, headache, and cherry-red skin coloration after being found unconscious in the garage with the car running. When preparing for transport, what is the most appropriate initial intervention?",
     "options": [
       "Administer high-flow oxygen via non-rebreather mask.",
       "Initiate intravenous fluids and monitor electrolytes.",
@@ -13346,7 +13266,7 @@
   {
     "id": "Q0841",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "The patient, a 45-year-old male patient with a history of hypertension, presents with sudden onset of high fever, chills, myalgia, and a dry cough. As a flight nurse preparing for an aeromedical evacuation, which initial intervention is most appropriate to manage the patient's suspected influenza while ensuring infection control during transport?",
+    "stem": "A patient with a history of hypertension, presents with sudden onset of high fever, chills, myalgia, and a dry cough. As your preparing for transport, which initial intervention is most appropriate to manage the patient's suspected influenza while ensuring infection control during transport?",
     "options": [
       "Administer oseltamivir and provide supportive care.",
       "Initiate IV fluids and administer broad-spectrum antibiotics.",
@@ -13394,7 +13314,7 @@
   {
     "id": "Q0844",
     "category": "Special Populations",
-    "stem": "A 45-year-old male the patient, weighing 350 pounds, has been involved in a motor vehicle accident and presents with respiratory distress. As a flight nurse, you need to manage his airway before transporting him to a trauma center. Which of the following is the most appropriate initial step in managing his airway?",
+    "stem": "A 52-year-old male, weighing 350 pounds, has been involved in a motor vehicle accident and presents with respiratory distress. As a flight nurse, you need to manage his airway before transporting him to a trauma center. Which of the following is the most appropriate initial step in managing his airway?",
     "options": [
       "Perform a cricothyrotomy immediately due to anticipated difficult intubation.",
       "Utilize a video laryngoscope for intubation considering his bariatric status.",
@@ -13618,7 +13538,7 @@
   {
     "id": "Q0858",
     "category": "Resuscitation Principles",
-    "stem": "The patient, a 45-year-old male patient, has been intubated following a traumatic brain injury (TBI). As part of his post-intubation management, it is crucial to select an appropriate sedative to maintain adequate sedation while minimizing intracranial pressure (ICP). Which of the following sedatives is most appropriate for the patient?",
+    "stem": "The patient has been intubated following a traumatic brain injury (TBI). As part of his post-intubation management, it is crucial to select an appropriate sedative to maintain adequate sedation while minimizing intracranial pressure (ICP). Which of the following sedatives is most appropriate for the patient?",
     "options": [
       "Midazolam",
       "Propofol",
@@ -13826,7 +13746,7 @@
   {
     "id": "Q0871",
     "category": "Trauma",
-    "stem": "A 45-year-old male the patient is being transported via helicopter after a severe motor vehicle accident. He has multiple fractures and suspected internal bleeding. During the flight, he begins to show signs of hypoxia. As the flight nurse, what is your priority intervention to manage this patient's condition?",
+    "stem": "A 28-year-old male is being transported via helicopter after a severe motor vehicle accident. He has multiple fractures and suspected internal bleeding. During the flight, he begins to show signs of hypoxia. As the flight nurse, what is your priority intervention to manage this patient's condition?",
     "options": [
       "Increase the oxygen flow rate.",
       "Administer intravenous fluids.",
@@ -13954,7 +13874,7 @@
   {
     "id": "Q0879",
     "category": "Resuscitation Principles",
-    "stem": "During a flight, you are called to assist with a 45-year-old male the patient who is experiencing severe respiratory distress and has a history of chronic obstructive pulmonary disease (COPD). After initial assessment, you decide to perform endotracheal intubation. Which of the following is the most appropriate initial step in managing the patient's airway?",
+    "stem": "During a flight, you are called to assist with a 62-year-old male who is experiencing severe respiratory distress and has a history of chronic obstructive pulmonary disease (COPD). After initial assessment, you decide to perform endotracheal intubation. Which of the following is the most appropriate initial step in managing the patient's airway?",
     "options": [
       "Pre-oxygenate the patient with 100% oxygen for 3-5 minutes.",
       "Administer rapid-sequence induction (RSI) medications immediately.",
@@ -13986,7 +13906,7 @@
   {
     "id": "Q0881",
     "category": "Medical Emergencies",
-    "stem": "During a flight transport, you are called to assist a 45-year-old male the patient who is experiencing sudden onset of dyspnea, chest pain, and hypotension. His history reveals recent long-haul travel. Which hematological condition should you most urgently consider?",
+    "stem": "During a flight transport, you are called to assist a 54-year-old male who is experiencing sudden onset of dyspnea, chest pain, and hypotension. His history reveals recent long-haul travel. Which hematological condition should you most urgently consider?",
     "options": [
       "Acute Myocardial Infarction (AMI)",
       "Pulmonary Embolism (PE)",
@@ -14258,7 +14178,7 @@
   {
     "id": "Q0898",
     "category": "Medical Emergencies",
-    "stem": "During a flight transport, a 45-year-old male the patient, who has a history of chronic obstructive pulmonary disease (COPD), presents with rapid breathing, confusion, and muscle twitching. Arterial blood gas (ABG) results show pH 7.30, PaCO2 60 mmHg, and HCO3- 26 mEq/L. Based on these findings, what is the most likely acid-base imbalance?",
+    "stem": "During a flight transport, a 61-year-old male, who has a history of chronic obstructive pulmonary disease (COPD), presents with rapid breathing, confusion, and muscle twitching. Arterial blood gas (ABG) results show pH 7.30, PaCO2 60 mmHg, and HCO3- 26 mEq/L. Based on these findings, what is the most likely acid-base imbalance?",
     "options": [
       "Metabolic acidosis",
       "Respiratory acidosis",
@@ -14514,7 +14434,7 @@
   {
     "id": "Q0914",
     "category": "Medical Emergencies",
-    "stem": "During a flight, a 45-year-old male the patient presents with acute confusion, sweating, tachycardia, and tremors. His medical history includes Type 1 Diabetes Mellitus. What is the most appropriate initial management for this patient?",
+    "stem": "During a flight, a 65-year-old male presents with acute confusion, sweating, tachycardia, and tremors. His medical history includes Type 1 Diabetes Mellitus. What is the most appropriate initial management for this patient?",
     "options": [
       "Administer intravenous insulin",
       "Provide an oral glucose solution",
@@ -14578,7 +14498,7 @@
   {
     "id": "Q0918",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "A 45-year-old male named the patient is brought to the emergency department after being found unconscious at home. His arterial blood gas (ABG) results show pH 7.30, PaCO2 50 mmHg, HCO3- 24 mEq/L. Based on these findings, what is the most likely diagnosis?",
+    "stem": "A patient is brought to the emergency department after being found unconscious at home. The arterial blood gas (ABG) results show pH 7.30, PaCO2 50 mmHg, HCO3- 24 mEq/L. Based on these findings, what is the most likely diagnosis?",
     "options": [
       "Respiratory acidosis",
       "Metabolic acidosis",
@@ -14610,7 +14530,7 @@
   {
     "id": "Q0920",
     "category": "Resuscitation Principles",
-    "stem": "The patient, a 45-year-old male patient with septic shock, is being managed in a flight transport setting. Despite adequate fluid resuscitation, his mean arterial pressure (MAP) remains critically low. Which vasopressor would be most appropriate to initiate first to improve the patient's MAP?",
+    "stem": "A patient with septic shock, is being managed in a flight transport setting. Despite adequate fluid resuscitation, the mean arterial pressure (MAP) remains critically low. Which vasopressor would be most appropriate to initiate first to improve the patient's MAP?",
     "options": [
       "Dopamine",
       "Norepinephrine",
@@ -14674,7 +14594,7 @@
   {
     "id": "Q0924",
     "category": "Medical Emergencies",
-    "stem": "The patient, a 45-year-old male with Type 1 Diabetes Mellitus, is found unconscious at home by his wife. Upon arrival, you find that he has rapid, deep breathing (Kussmaul respirations), fruity breath odor, and his blood glucose level is 450 mg/dL. What is the most appropriate initial treatment for the patient?",
+    "stem": "A male with Type 1 Diabetes Mellitus, is found unconscious at home by his wife. Upon arrival, you find that he has rapid, deep breathing (Kussmaul respirations), fruity breath odor, and his blood glucose level is 450 mg/dL. What is the most appropriate initial treatment for the patient?",
     "options": [
       "Administering an IV bolus of regular insulin",
       "Starting an IV infusion of normal saline",
@@ -14786,7 +14706,7 @@
   {
     "id": "Q0931",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "While on a medical evacuation flight, you encounter the patient, a 45-year-old male who was found unconscious in a snowstorm. His core body temperature is 30°C (86°F), he has a slow heart rate, shallow breathing, and diminished reflexes. Which of the following is the most appropriate initial intervention?",
+    "stem": "You are transporting a patient who was found unconscious in a snowstorm. The patients core body temperature is 30°C (86°F), slow heart rate, shallow breathing, and diminished reflexes. Which of the following is the most appropriate initial intervention?",
     "options": [
       "Administer warm intravenous fluids and apply external warming",
       "Initiate active internal rewarming with heated humidified oxygen.",
@@ -14834,7 +14754,7 @@
   {
     "id": "Q0934",
     "category": "Medical Emergencies",
-    "stem": "The patient, a 45-year-old male patient, is being transported by air after suffering from a severe myocardial infarction. As a flight nurse, you need to prepare for potential complications during the flight. Which of the following actions is MOST crucial in ensuring the patient's stability during transport?",
+    "stem": "The patient is being transported by air after suffering from a severe myocardial infarction. As a flight nurse, you need to prepare for potential complications during the flight. Which of the following actions is MOST crucial in ensuring the patient's stability during transport?",
     "options": [
       "Administering high-flow oxygen via non-rebreather mask.",
       "Continuously monitoring cardiac rhythm and vital signs.",
@@ -14978,7 +14898,7 @@
   {
     "id": "Q0943",
     "category": "Medical Emergencies",
-    "stem": "During a medical emergency flight, you are attending to a 45-year-old male the patient who presents with fatigue, pallor, and shortness of breath. His laboratory results show low hemoglobin levels, elevated mean corpuscular volume (MCV), and hypersegmented neutrophils. Based on these findings, what is the most likely type of anemia the patient is experiencing?",
+    "stem": "During a medical emergency flight, you are attending to a 48-year-old male who presents with fatigue, pallor, and shortness of breath. His laboratory results show low hemoglobin levels, elevated mean corpuscular volume (MCV), and hypersegmented neutrophils. Based on these findings, what is the most likely type of anemia the patient is experiencing?",
     "options": [
       "Iron deficiency anemia",
       "Vitamin B12 deficiency anemia",
@@ -15106,7 +15026,7 @@
   {
     "id": "Q0951",
     "category": "Medical Emergencies",
-    "stem": "A 45-year-old male the patient with chronic obstructive pulmonary disease (COPD) is being transported via air ambulance from a rural hospital to a tertiary care center. During the flight at an altitude of 10,000 feet, the patient begins to exhibit signs of hypoxia. What is the most likely physiological reason for the patient's hypoxia during this flight?",
+    "stem": "A 60-year-old male with chronic obstructive pulmonary disease (COPD) is being transported via air ambulance from a rural hospital to a tertiary care center. During the flight at an altitude of 10,000 feet, the patient begins to exhibit signs of hypoxia. What is the most likely physiological reason for the patient's hypoxia during this flight?",
     "options": [
       "Decreased barometric pressure leading to reduced partial pressure",
       "Increased barometric pressure leading to reduced partial pressure",
@@ -15122,7 +15042,7 @@
   {
     "id": "Q0952",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "You are a Flight Nurse waiting at a designated landing zone (LZ) for a scene response. Ground EMS is arriving to the LZ with a 45-year-old male who was found unconscious near an overturned industrial tanker and is exhibiting respiratory distress, skin irritation, and an altered mental status. As the flight clinician, what is your immediate priority before initiating treatment or moving the patient to the aircraft?",
+    "stem": "You are a Flight Nurse waiting at a designated landing zone (LZ) for a scene response. Ground EMS is arriving to the LZ with a male patient who was found unconscious near an overturned industrial tanker and is exhibiting respiratory distress, skin irritation, and an altered mental status. As the flight clinician, what is your immediate priority before initiating treatment or moving the patient to the aircraft?",
     "options": [
       "Administer high-flow oxygen and prepare for immediate RSI (Rapid Sequence Intubation).",
       "Confirm that the patient has undergone thorough decontamination by ground providers before treatment and transport by helicopter.",
@@ -15138,7 +15058,7 @@
   {
     "id": "Q0953",
     "category": "Medical Emergencies",
-    "stem": "A 45-year-old male patient with Type 1 Diabetes Mellitus is found unconscious with rapid, deep breathing (Kussmaul respirations) and a fruity odor on his breath. His blood glucose level is 450 mg/dL. Which of the following is the most likely diagnosis?",
+    "stem": "A patient with Type 1 Diabetes Mellitus is found unconscious with rapid, deep breathing (Kussmaul respirations) and a fruity odor on his breath. The blood glucose level is 450 mg/dL. Which of the following is the most likely diagnosis?",
     "options": [
       "Hypoglycemia",
       "Hyperosmolar Hyperglycemic State (HHS)",
@@ -15298,7 +15218,7 @@
   {
     "id": "Q0963",
     "category": "Resuscitation Principles",
-    "stem": "During a mass transportation accident involving multiple vehicles on a remote highway, a flight crew arrives on the scene to assist with triage. One patient is a 45-year-old male who is unconscious with shallow breathing and a weak pulse. There are several other victims with varying degrees of injuries still requiring assessment. According to modern mass casualty triage protocols, what is the immediate priority for this patient?",
+    "stem": "During a mass casuality incident involving multiple vehicles on a remote highway, a flight crew arrives on the scene to assist with triage. One patient arrive to a patient who is unconscious with shallow breathing and a weak pulse. There are several other victims with varying degrees of injuries still requiring assessment. According to modern mass casualty triage protocols, what is the immediate priority for this patient?",
     "options": [
       "Administering high-flow oxygen to the patient.",
       "Initiating CPR on the patient immediately.",
@@ -15346,7 +15266,7 @@
   {
     "id": "Q0966",
     "category": "Resuscitation Principles",
-    "stem": "The patient, a 45-year-old male, was involved in a house fire and sustained burns covering 40% of his total body surface area (TBSA). Upon assessment, you observe that the patient has full-thickness burns on his chest and partial-thickness burns on his arms and legs. He is experiencing severe pain and shows signs of respiratory distress. What is the most critical initial intervention for the patient?",
+    "stem": "You are called for a male patient who was involved in a house fire and sustained burns covering 40% of his total body surface area (TBSA). Upon assessment, you observe that the patient has full-thickness burns on his chest and partial-thickness burns on his arms and legs. He is experiencing severe pain and shows signs of respiratory distress. What is the most critical initial intervention for the patient?",
     "options": [
       "Administering high-flow oxygen via non-rebreather mask",
       "Initiating aggressive fluid resuscitation with lactated Ringer's",
@@ -15362,7 +15282,7 @@
   {
     "id": "Q0967",
     "category": "Trauma",
-    "stem": "During a resuscitation scenario, you are assessing the pain and comfort level of the patient, a 45-year-old male who has been in a motor vehicle accident. Despite being stabilized he is experiencing significant pain. Which of the following methods is most appropriate for accurately assessing his pain level in this critical situation?",
+    "stem": "During a resuscitation scenario, you are assessing the pain and comfort level of the a patient who has been in a motor vehicle accident. Despite being stabilized he is experiencing significant pain. Which of the following methods is most appropriate for accurately assessing his pain level in this critical situation?",
     "options": [
       "Visual Analog Scale (VAS)",
       "Numerical Rating Scale (NRS)",
@@ -15506,7 +15426,7 @@
   {
     "id": "Q0976",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "You are a flight nurse preparing to transfer the patient, a 45-year-old male with acute chest pain, from a small rural hospital to a larger tertiary care center. The rural hospital has limited diagnostic capabilities and cannot provide definitive treatment for the patient's condition. Before initiating the transfer, which of the following actions must be ensured in compliance with EMTALA regulations?",
+    "stem": "You are a flight nurse preparing to transfer a patient with acute chest pain, from a small rural hospital to a larger tertiary care center. The rural hospital has limited diagnostic capabilities and cannot provide definitive treatment for the patient's condition. Before initiating the transfer, which of the following actions must be ensured in compliance with EMTALA regulations?",
     "options": [
       "Confirm that the receiving facility has agreed to accept the patient and has the available and qualified personnel for his care.",
       "Ensure that the patient has been stabilized to the maximum extent possible given the resources available at the rural hospital. ",
@@ -15522,7 +15442,7 @@
   {
     "id": "Q0977",
     "category": "Medical Emergencies",
-    "stem": "A 45-year-old male presents with sudden onset of severe, colicky abdominal pain radiating to the back, accompanied by nausea and vomiting. On physical examination, he has a distended abdomen and hypoactive bowel sounds. Which of the following is the most likely diagnosis?",
+    "stem": "A patient presents with sudden onset of severe, colicky abdominal pain radiating to the back, accompanied by nausea and vomiting. On physical examination, the patient has a distended abdomen and hypoactive bowel sounds. Which of the following is the most likely diagnosis?",
     "options": [
       "Acute pancreatitis",
       "Small bowel obstruction",
@@ -15650,7 +15570,7 @@
   {
     "id": "Q0985",
     "category": "Trauma",
-    "stem": "During a flight transport, you are caring for the patient, a 45-year-old male who was involved in a high-speed motor vehicle collision. He presents with hypotension, distended neck veins, and muffled heart sounds. What is the most likely diagnosis?",
+    "stem": "During a flight transport, you are caring for a patient who was involved in a high-speed motor vehicle collision. The patient presents with hypotension, distended neck veins, and muffled heart sounds. What is the most likely diagnosis?",
     "options": [
       "Myocardial contusion",
       "Cardiac tamponade",
@@ -15762,7 +15682,7 @@
   {
     "id": "Q0992",
     "category": "Resuscitation Principles",
-    "stem": "During a rapid sequence induction for intubation in a 45-year-old male the patient, who is experiencing severe respiratory distress due to acute pulmonary edema, which medication would be most appropriate to use as an induction agent?",
+    "stem": "During a rapid sequence induction for intubation in a 49-year-old male, who is experiencing severe respiratory distress due to acute pulmonary edema, which medication would be most appropriate to use as an induction agent?",
     "options": [
       "Etomidate",
       "Propofol",
@@ -15970,7 +15890,7 @@
   {
     "id": "Q1005",
     "category": "Resuscitation Principles",
-    "stem": "The patient, a 45-year-old male patient, is being transported by air after suffering from septic shock. Despite initial fluid resuscitation, his mean arterial pressure (MAP) remains critically low. Which vasopressor should be administered first to increase his MAP effectively?",
+    "stem": "A male patient, is being transported by air after suffering from septic shock. Despite initial fluid resuscitation, his mean arterial pressure (MAP) remains critically low. Which vasopressor should be administered first to increase his MAP effectively?",
     "options": [
       "Dopamine",
       "Norepinephrine",
@@ -16338,7 +16258,7 @@
   {
     "id": "Q1028",
     "category": "Trauma",
-    "stem": "The patient, a 45-year-old male patient, presents with severe abdominal pain, hypotension, and signs of shock during an air medical transport. His history includes chronic alcohol use and cirrhosis. Upon assessment, you suspect an acute abdominal condition. Which of the following is the most likely diagnosis?",
+    "stem": "A male patient, presents with severe abdominal pain, hypotension, and signs of shock during an air medical transport. His history includes chronic alcohol use and cirrhosis. Upon assessment, you suspect an acute abdominal condition. Which of the following is the most likely diagnosis?",
     "options": [
       "Ruptured Abdominal Aortic Aneurysm (AAA)",
       "Ruptured Esophageal Varices",
