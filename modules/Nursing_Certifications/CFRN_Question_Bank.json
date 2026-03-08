@@ -5842,7 +5842,7 @@
   {
     "id": "Q0366",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a rotor scene call for a 4-year-old patient, the patient's mother requests to ride along with the patient to the hospital. Which of the following statements by the mother would MOST concern the flight crew?",
+    "stem": "During a rotor scene call for a 4-year-old, the patient's mother requests to ride along with the patient to the hospital. Which of the following statements by the mother would MOST concern the flight crew?",
     "options": [
       "'I would like to speak to the pilot about safety of the flight'",
       "'I get motion sickness easily'",
@@ -7058,7 +7058,7 @@
   {
     "id": "Q0442",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport, the flight nurse notices that their patient, the patient, is showing signs of increased agitation and confusion during significant turbulence and noise. What should the flight nurse prioritize to stabilize the patient?",
+    "stem": "During a flight transport, the flight nurse notices that their patient is showing signs of increased agitation and confusion during significant turbulence and noise. What should the flight nurse prioritize to stabilize the patient?",
     "options": [
       "Administering additional sedation to calm the patient.",
       "Increasing oxygen flow rate to counteract potential hypoxia.",
@@ -10082,7 +10082,7 @@
   {
     "id": "Q0631",
     "category": "Resuscitation Principles",
-    "stem": "During a flight, you are called to assist with a 45-year-old male patient, the patient, who has collapsed and is unresponsive. Upon assessment, you find that he is not breathing adequately and has an obstructed airway. What is the most appropriate initial intervention for managing the patient's airway?",
+    "stem": "During a flight, you are called to assist with a 45-year-old male patient who has collapsed and is unresponsive. Upon assessment, you find that he is not breathing adequately and has an obstructed airway. What is the most appropriate initial intervention for managing the patient's airway?",
     "options": [
       "Perform a needle cricothyrotomy.",
       "Use a bag-valve mask (BVM) with supplemental oxygen.",
@@ -10114,7 +10114,7 @@
   {
     "id": "Q0633",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a patient handoff in a flight transport scenario, the flight nurse needs to communicate effectively using the SBAR technique. The patient, the patient, is being transferred for emergency surgery due to a ruptured abdominal aneurysm. Which of the following statements best represents the 'Assessment' component of SBAR? and diabetes.' is exhibiting signs of shock.' pain.'",
+    "stem": "During a patient handoff in a flight transport scenario, the flight nurse needs to communicate effectively using the SBAR technique. The patient is being transferred for emergency surgery due to a ruptured abdominal aneurysm. Which of the following statements best represents the 'Assessment' component of SBAR? and diabetes.' is exhibiting signs of shock.' pain.'",
     "options": [
       "'The patient is a 65-year-old male with a history of hypertension and diabetes.",
       "'The patients' blood pressure has dropped significantly, and he exhibiting signs of shock.",
@@ -10226,11 +10226,11 @@
   {
     "id": "Q0640",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a mid-flight emergency, the helicopter transporting a critically ill patient, the patient, experiences sudden engine failure. As the flight nurse, you need to take immediate action to ensure the safety and survival of both the patient and crew. What is your first priority? restrained. for potential impact.",
+    "stem": "During a rotor-wing patient transport the helicopter experiences sudden engine failure. As the flight nurse, you need to take immediate action to ensure the safety and survival of both the patient and crew. What is your first priority?",
     "options": [
       "Administer additional oxygen to the patient.",
-      "Secure all loose equipment and ensure the patient is properly",
-      "Communicate with the pilot to understand the situation and prepare",
+      "Secure all loose equipment and ensure the patient is properly restrained.",
+      "Communicate with the pilot to understand the situation and prepare for potential impact.",
       "Initiate emergency medical protocols for patient care."
     ],
     "correct": [
@@ -10626,7 +10626,7 @@
   {
     "id": "Q0665",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "You arrive at a multi-casualty incident involving a bus accident with numerous injured individuals. As the lead flight nurse, your primary responsibility is to manage the scene efficiently. One patient, the patient, has severe injuries requiring immediate attention, while others have varying degrees of minor to moderate injuries. What should be your first action upon arriving at the scene? injuries. coordinated efforts.",
+    "stem": "You arrive at a multi-casualty incident involving a bus accident with numerous injured individuals. As the lead flight nurse, your primary responsibility is to manage the scene efficiently. One patient has severe injuries requiring immediate attention, while others have varying degrees of minor to moderate injuries. What should be your first action upon arriving at the scene? injuries. coordinated efforts.",
     "options": [
       "Immediately begin treatment on Mr. Smith due to his severe",
       "Conduct a rapid assessment of all patients to prioritize care.",
@@ -10738,7 +10738,7 @@
   {
     "id": "Q0672",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a medical evacuation flight, the flight nurse notices that the patient, the patient, is becoming increasingly agitated and hypertensive. Considering the potential impact of noise as a stressor during flight transport, what is the most appropriate initial intervention to mitigate this issue?",
+    "stem": "During a medical evacuation flight, the flight nurse notices that the patient is becoming increasingly agitated and hypertensive. Considering the potential impact of noise as a stressor during flight transport, what is the most appropriate initial intervention to mitigate this issue?",
     "options": [
       "Administer an anxiolytic medication to reduce agitation.",
       "Increase cabin pressurization to decrease environmental stressors.",
@@ -10786,7 +10786,7 @@
   {
     "id": "Q0675",
     "category": "Medical Emergencies",
-    "stem": "During a flight transport at an altitude of 10,000 feet, your patient, the patient, who has a history of chronic obstructive pulmonary disease (COPD), begins to exhibit signs of increased respiratory distress. Which physiological change is most likely contributing to his symptoms?",
+    "stem": "During a flight transport at an altitude of 10,000 feet, your patient who has a history of chronic obstructive pulmonary disease (COPD), begins to exhibit signs of increased respiratory distress. Which physiological change is most likely contributing to his symptoms?",
     "options": [
       "Decreased partial pressure of oxygen",
       "Increased carbon dioxide retention",
@@ -11298,17 +11298,17 @@
   {
     "id": "Q0707",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During an in-flight emergency, the flight nurse, the patient, needs to administer medication to a critically ill patient, the patient. However, she encounters difficulty reaching the medical control physician due to radio interference. What should the patient do next? administering any medication. communication methods. assistance.",
+    "stem": "During a rotor-wing interfacility transport, a flight nurse determines that a critically ill patient may benefit from initiating a medication that is not included in the program’s transport protocols and would be considered off-label in this setting. Due to radio interference, the crew is temporarily unable to reach medical control. What is the most appropriate action by the flight nurse?",
     "options": [
-      "Administer the medication based on standing orders and protocols.",
-      "Wait until radio communication is re-established before",
-      "Attempt to reach another medical control physician via alternative",
-      "Divert the flight to the nearest hospital for immediate"
+      "Initiate the medication based on clinical judgment despite it being outside protocol.",
+      "Continue patient management within existing protocols while attempting to re-establish contact with medical control.",
+      "Administer the medication at a reduced dose until communication is restored.",
+      "Immediately divert to the nearest hospital to obtain physician orders."
     ],
     "correct": [
-      "A"
+      "B"
     ],
-    "rationale": "In situations where immediate communication with medical control is compromised, flight nurses are trained to follow standing orders and established protocols to ensure timely care. This approach allows them to act decisively in emergencies without unnecessary delays. Wait until radio communication is re-established before might endanger the patient due to delays in treatment. Attempt to reach another medical control physician via alternative could waste critical time if alternative methods are not immediately available. Divert the flight to the nearest hospital for immediate is generally considered only if the patient's condition cannot be managed with existing protocols or if diversion significantly shortens time to definitive care. Therefore, adhering to standing orders ensures prompt and effective patient management.",
+    "rationale": "Critical care transport clinicians operate primarily under standing orders and medical director–approved protocols, which define the medications and interventions that may be independently initiated during transport. These protocols represent offline medical direction, allowing providers to deliver timely, evidence-based care without requiring immediate physician orders for routine treatments. When a proposed intervention falls outside established protocols or requires deviation from guidelines, consultation with online medical direction is typically required before initiating therapy. If communication with medical control is temporarily unavailable, the flight nurse should continue managing the patient within existing protocols while attempting to re-establish contact through alternative methods such as radio relay, satellite phone, dispatch, or the receiving facility. Initiating therapies outside protocol without authorization may exceed the provider’s scope of practice and violate program policy, and diversion is generally considered only if the patient cannot be safely managed with available resources or protocols.",
     "type": "single_select"
   },
   {
@@ -11986,7 +11986,7 @@
   {
     "id": "Q0750",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "You are preparing for a mission to transport a critically ill patient, the patient, who has a history of severe respiratory distress and requires continuous monitoring. During the pre-mission risk assessment, which of the following factors is most critical to ensure patient safety during transport?",
+    "stem": "You are preparing for a mission to transport a critically ill patient who has a history of severe respiratory distress and requires continuous monitoring. During the pre-mission risk assessment, which of the following factors is most critical to ensure patient safety during transport?",
     "options": [
       "Ensuring that all medical equipment is securely fastened and functioning properly.",
       "Verifying that weather conditions are stable and do not pose a threat to flight safety.",
@@ -12098,7 +12098,7 @@
   {
     "id": "Q0757",
     "category": "Special Populations",
-    "stem": "During a flight transport, the flight nurse notices that her pediatric patient, the patient, has multiple unexplained bruises and appears fearful of his guardian. Considering mandatory reporting requirements, what should the patient do next?",
+    "stem": "During a flight transport, the flight nurse notices that her pediatric patient has multiple unexplained bruises and appears fearful of his guardian. Considering mandatory reporting requirements, what should the patient do next?",
     "options": [
       "Document her observations in James' medical record and discuss her concerns with the receiving hospital staff.",
       "Report her suspicions immediately to child protective services (CPS) as required by law.",
@@ -13698,7 +13698,7 @@
   {
     "id": "Q0857",
     "category": "Special Populations",
-    "stem": "During a flight transport, the flight nurse notices multiple bruises in various stages of healing on her pediatric patient, the patient. The parents provide inconsistent explanations for the injuries. What is the flight nurse's most appropriate action according to mandatory reporting guidelines?",
+    "stem": "During a flight transport, the flight nurse notices multiple bruises in various stages of healing on her pediatric patient. The parents provide inconsistent explanations for the injuries. What is the flight nurse's most appropriate action according to mandatory reporting guidelines?",
     "options": [
       "Document the observations and inform the receiving medical team upon arrival.",
       "Confront the parents about the inconsistencies in their explanations.",
@@ -13730,7 +13730,7 @@
   {
     "id": "Q0859",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport, the flight nurse had to restrain a patient, the patient, who was becoming increasingly aggressive and attempting to remove his IV line. Despite repeated verbal warnings, the patient continued his behavior, leading the flight nurse to physically hold him down until he calmed. Which legal concept best describes this situation?",
+    "stem": "During a flight transport, the flight nurse had to restrain a patient who was becoming increasingly aggressive and attempting to remove his IV line. Despite repeated verbal warnings, the patient continued his behavior, leading the flight nurse to physically hold him down until he calmed. Which legal concept best describes this situation?",
     "options": [
       "Battery",
       "Assault",
