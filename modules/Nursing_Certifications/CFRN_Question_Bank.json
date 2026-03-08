@@ -1084,7 +1084,7 @@
     "correct": [
       "B"
     ],
-    "rationale": "Just Culture distinguishes between human error, at-risk behavior, and reckless behavior. Mishearing a weight during a high-stress transfer at 2:00 AM while fatigued on a 24-hour shift is considered a "human error." The organizational response focuses on shared accountability, analyzing system-level factors (like fatigue management, handoff environment noise, or lack of double-check protocols) to prevent recurrence rather than punishing the individual for an unintentional mistake influenced by exhaustion.",
+    "rationale": "Just Culture distinguishes between human error, at-risk behavior, and reckless behavior. Mishearing a weight during a high-stress transfer at 2:00 AM while fatigued on a 24-hour shift is considered a human error. The organizational response focuses on shared accountability, analyzing system-level factors (like fatigue management, handoff environment noise, or lack of double-check protocols) to prevent recurrence rather than punishing the individual for an unintentional mistake influenced by exhaustion.",
     "type": "single_select"
   },
   {
