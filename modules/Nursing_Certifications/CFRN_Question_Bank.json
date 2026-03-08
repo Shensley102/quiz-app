@@ -13564,7 +13564,7 @@
     "correct": [
       "C"
     ],
-    "rationale": "GPS (Global Positioning System) is a satellite-based navigation system that provides highly accurate three-dimensional position, velocity, and time information. Unlike ground-based systems like VOR or NDB, which are limited by "line-of-sight" and distance from the transmitter, GPS provides global coverage and is not affected by terrain or weather to the same degree, making it the gold standard for modern aeromedical navigation and "point-to-point" scene responses.",
+    "rationale": "GPS (Global Positioning System) is a satellite-based navigation system that provides highly accurate three-dimensional position, velocity, and time information. Unlike ground-based systems like VOR or NDB, which are limited by line-of-sight and distance from the transmitter, GPS provides global coverage and is not affected by terrain or weather to the same degree, making it the gold standard for modern aeromedical navigation and point-to-point scene responses.",
     "type": "single_select"
   },
   {
