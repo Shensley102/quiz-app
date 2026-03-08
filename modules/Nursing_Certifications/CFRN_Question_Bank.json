@@ -10402,12 +10402,12 @@
   {
     "id": "Q0655",
     "category": "Special Populations",
-    "stem": "In the context of flight transport nursing, which of the following actions is most appropriate when a flight nurse suspects that a pediatric patient is a victim of neglect? the attending physician upon arrival at the receiving facility. timely intervention. making any reports. suspicions before taking any action.",
+    "stem": "In the context of flight transport nursing, which of the following actions is most appropriate when a flight nurse suspects that a pediatric patient is a victim of neglect?",
     "options": [
-      "Documenting observations thoroughly and discussing concerns with",
-      "Immediately contacting child protective services (CPS) to ensure",
-      "Waiting until the flight is over to gather more information before",
-      "Discussing concerns with the patient's family members to clarify"
+      "Documenting observations thoroughly and discussing concerns with the attending physician upon arrival at the receiving facility.",
+      "Immediately contacting child protective services (CPS) to ensure timely intervention.",
+      "Waiting until the flight is over to gather more information before making any reports.",
+      "Discussing concerns with the patient's family members to clarify suspicions before taking any action."
     ],
     "correct": [
       "B"
@@ -11922,7 +11922,7 @@
   {
     "id": "Q0751",
     "category": "Special Populations",
-    "stem": "During a flight transport of a 6-year-old child named the patient, you observe multiple bruises in different stages of healing on her body, along with a spiral fracture of her arm. The child's caregiver provides inconsistent explanations for these injuries. As a Certified Flight Registered Nurse (CFRN), what is your immediate responsibility in this situation?",
+    "stem": "During a flight transport of a 6-year-old child, you observe multiple bruises in different stages of healing on her body, along with a spiral fracture of her arm. The child's caregiver provides inconsistent explanations for these injuries. What is your immediate responsibility in this situation?",
     "options": [
       "Document the injuries and continue with the transport without further action.",
       "Report your observations and suspicions to the receiving hospital's social worker upon arrival.",
@@ -12914,7 +12914,7 @@
   {
     "id": "Q0813",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport of an elderly patient named the patient, you observe multiple pressure ulcers, poor hygiene, and signs of malnutrition. The patient is non-verbal due to advanced dementia. As a Certified Flight Registered Nurse (CFRN), what is your immediate priority action?",
+    "stem": "During a flight transport of an elderly patient, you observe multiple pressure ulcers, poor hygiene, and signs of malnutrition. The patient is non-verbal due to advanced dementia. What is your immediate priority action?",
     "options": [
       "Document your findings thoroughly in the patient's medical record.",
       "Report your observations to the receiving facility upon arrival.",
@@ -12924,7 +12924,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The correct answer is Initiate mandatory reporting procedures for suspected elder abuse/neglect. As a Certified Flight Registered Nurse (CFRN), it is crucial to prioritize mandatory reporting when there are clear signs of neglect, especially in vulnerable populations like elderly patients with dementia. This action ensures that appropriate investigations and interventions can be initiated promptly to protect the patient. - Document your findings thoroughly in the patient's medical record: While documentation is essential, it is not the immediate priority action in this scenario. - Report your observations to the receiving facility upon arrival: Reporting to the receiving facility is necessary but should follow after initiating mandatory reporting procedures. - Notify the pilot-in-command immediately and request an emergency landing: This option is not appropriate unless there is an immediate threat to the patient's life that requires urgent medical intervention beyond what can be provided during transport. By comparing these options, it becomes clear that initiating mandatory reporting procedures directly addresses the legal and ethical responsibilities of a flight nurse in cases of suspected neglect.",
+    "rationale": "The correct answer is Initiate mandatory reporting procedures for suspected elder abuse/neglect. It is crucial to prioritize mandatory reporting when there are clear signs of neglect, especially in vulnerable populations like elderly patients with dementia. This action ensures that appropriate investigations and interventions can be initiated promptly to protect the patient. - Document your findings thoroughly in the patient's medical record: While documentation is essential, it is not the immediate priority action in this scenario. - Report your observations to the receiving facility upon arrival: Reporting to the receiving facility is necessary but should follow after initiating mandatory reporting procedures. - Notify the pilot-in-command immediately and request an emergency landing: This option is not appropriate unless there is an immediate threat to the patient's life that requires urgent medical intervention beyond what can be provided during transport. By comparing these options, it becomes clear that initiating mandatory reporting procedures directly addresses the legal and ethical responsibilities of a flight nurse in cases of suspected neglect.",
     "type": "single_select"
   },
   {
