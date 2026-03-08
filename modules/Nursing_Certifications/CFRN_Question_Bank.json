@@ -9730,17 +9730,17 @@
   {
     "id": "Q0613",
     "category": "Medical Emergencies",
-    "stem": "During the transport of a patient with severe hypothermia (core temperature <28°C), which of the following is the most appropriate initial rewarming method? materials peritoneal lavage the transport vehicle",
+    "stem": "During the transport of a patient with severe hypothermia (core temperature <28°C), which of the following is the most appropriate initial rewarming method?",
     "options": [
-      "Active external rewarming using warm blankets and heated IV fluids",
-      "Passive external rewarming using warm blankets and insulating",
-      "Active internal rewarming using heated humidified oxygen and",
-      "Passive internal rewarming by increasing ambient temperature in"
+      "Active external rewarming using warm blankets and heated IV fluids.",
+      "Passive external rewarming using warm blankets and insulating materials.",
+      "Active internal rewarming using heated humidified oxygen andperitoneal lavage.",
+      "Passive internal rewarming by increasing ambient temperature in the vehicle."
     ],
     "correct": [
       "C"
     ],
-    "rationale": "Active internal rewarming is crucial for patients with severe hypothermia (core temperature <28°as it rapidly increases core body temperature. Heated humidified oxygen and peritoneal lavage are effective methods for this purpose. Active external rewarming using warm blankets and heated IV fluids, while useful, is insufficient alone for severe cases. Passive external rewarming using warm blankets and insulating is more appropriate for mild hypothermia. Passive internal rewarming by increasing ambient temperature in does not provide adequate heat transfer to raise core body temperature quickly enough in severe cases. Therefore, C is the correct choice due to its effectiveness in severe hypothermia management.",
+    "rationale": "Active internal rewarming is crucial for patients with severe hypothermia (core temperature <28°as it rapidly increases core body temperature. Heated humidified oxygen and peritoneal lavage are effective methods for this purpose. Active external rewarming using warm blankets and heated IV fluids, while useful, is insufficient alone for severe cases. Passive external rewarming using warm blankets and insulating is more appropriate for mild hypothermia. Passive internal rewarming by increasing ambient temperature in does not provide adequate heat transfer to raise core body temperature quickly enough in severe cases.",
     "type": "single_select"
   },
   {
@@ -10466,17 +10466,17 @@
   {
     "id": "Q0659",
     "category": "Resuscitation Principles",
-    "stem": "Which of the following interventions is most critical in the initial management of a patient with severe hypothermia?",
+    "stem": "A patient is found outdoors with altered mental status and a core temperature of 27 C (80.6 F). During initial management by the critical care transport team, which intervention is most important to implement first?",
     "options": [
-      "Active external rewarming with heated blankets",
-      "Administration of warm intravenous fluids",
-      "Endotracheal intubation and mechanical ventilation",
-      "Cardiopulmonary bypass"
+      "Initiate active external rewarming with heated blankets.",
+      "Administer warmed intravenous fluids.",
+      "Prevent further heat loss and handle the patient gently.",
+      "Perform endotracheal intubation and mechanical ventilation."
     ],
     "correct": [
-      "D"
+      "C"
     ],
-    "rationale": "Cardiopulmonary bypass is the most critical intervention in severe hypothermia (core temperature <28°C), especially if the patient is hemodynamically unstable or experiencing cardiac arrest. It provides rapid rewarming and circulatory support. Active external rewarming with heated blankets: While helpful, this method is slower and less effective for severe hypothermia compared to cardiopulmonary bypass. Administration of warm intravenous fluids: This supports rewarming but is not as effective as cardiopulmonary bypass. Endotracheal intubation and mechanical ventilation: Important for airway management but does not address core temperature rapidly.",
+    "rationale": "The most important initial intervention in severe hypothermia is preventing further heat loss while minimizing patient movement. Hypothermic patients have an extremely irritable myocardium, and rough handling or unnecessary movement can precipitate ventricular fibrillation. Immediate management should focus on insulating the patient, removing wet clothing, and protecting them from additional environmental exposure. Once further heat loss is prevented, additional therapies such as warmed intravenous fluids, airway management, and active rewarming techniques may be implemented based on the patient’s clinical condition. Active external rewarming with heated blankets may be used after insulation and stabilization but is not the first priority in initial field management. Administration of warm intravenous fluids supports rewarming and volume status but remains secondary to preventing ongoing heat loss. Endotracheal intubation and mechanical ventilation may be necessary for airway management in some patients but do not address the primary immediate threat of continued heat loss and cardiac instability.",
     "type": "single_select"
   },
   {
