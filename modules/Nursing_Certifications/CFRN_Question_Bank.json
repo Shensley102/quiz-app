@@ -3266,17 +3266,17 @@
   {
     "id": "Q0206",
     "category": "Medical Emergencies",
-    "stem": "The critical care transport nurse noticed during the last two blood pressure cuff inflations that the patient had carpopedal spasms. She recognizes the need to",
+    "stem": "A patient presents with confirmed hypocalcemia following a surgical complication. The flight nurse is assessing for a positive Trousseau’s sign. Which finding would confirm this clinical indicator?",
     "options": [
-      "Administer calcium gluconate",
-      "Prepare the patient for and transport to PCI",
-      "Administer albuterol, dextrose, and insulin",
-      "Administer magnesium sulfate"
+      "Spasmodic twitching of the facial muscles when the facial nerve is tapped.",
+      "Carpopedal spasm occurring within three minutes of inflating a blood pressure cuff.",
+      "Hyperactive deep tendon reflexes in the lower extremities.",
+      " Prolongation of the QT interval on the cardiac monitor."
     ],
     "correct": [
-      "A"
+      "B"
     ],
-    "rationale": "Trousseau's sign is when the patient demonstrates carpopedal spasms (T-Rex hands) during inflation of the blood pressure cuff and occurs in the setting of hypocalcemia.",
+    "rationale": "Trousseau's sign is a specific clinical indicator for hypocalcemia and latent tetany. It is elicited by inflating a blood pressure cuff above the patient's systolic pressure for approximately three minutes; the resulting ischemia increases neuromuscular irritability, causing a characteristic carpopedal spasm (flexion of the wrist and adduction of the thumb/fingers). Twitching of the facial muscles describes Chvostek's sign (another sign of hypocalcemia), and while a prolonged QT interval is associated with hypocalcemia, it is an ECG finding rather than Trousseau's sign.",
     "type": "single_select"
   },
   {
