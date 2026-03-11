@@ -191,6 +191,66 @@
         }
         .start-comprehensive-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76,175,80,0.3); }
 
+        /* ============================================================
+           Question Filter Panel
+        ============================================================ */
+        .quiz-filter-panel {
+            background: rgba(0,0,0,0.18);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+        }
+        .filter-panel-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 10px;
+        }
+        .filter-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 2px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.15s;
+        }
+        .filter-row:last-child { border-bottom: none; }
+        .filter-row:hover { opacity: 0.85; }
+        .filter-checkbox {
+            width: 17px;
+            height: 17px;
+            accent-color: #4caf50;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .filter-row-label {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.92);
+            cursor: pointer;
+        }
+        .filter-count {
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            min-width: 36px;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+        /* Dim the count badge when checkbox is unchecked */
+        .filter-row:has(.filter-checkbox:not(:checked)) .filter-count {
+            opacity: 0.4;
+        }
+        .filter-row:has(.filter-checkbox:not(:checked)) .filter-row-label {
+            opacity: 0.55;
+        }
+
         /* Domain Grid */
         .domain-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -389,6 +449,27 @@
                     Questions are drawn from all 5 BCEN domains weighted to reflect the actual exam distribution.
                     Quizzes of 25+ questions include 80% new questions toward your mastery goal and 20% review from previously mastered questions.
                 </p>
+
+                <!-- Question Filter Panel -->
+                <div class="quiz-filter-panel">
+                    <div class="filter-panel-label">Include:</div>
+                    <label class="filter-row">
+                        <input type="checkbox" class="filter-checkbox" id="filterNew" checked>
+                        <span class="filter-row-label">New Questions</span>
+                        <span class="filter-count" id="filterNewCount">—</span>
+                    </label>
+                    <label class="filter-row">
+                        <input type="checkbox" class="filter-checkbox" id="filterAnswered" checked>
+                        <span class="filter-row-label">Answered Questions</span>
+                        <span class="filter-count" id="filterAnsweredCount">—</span>
+                    </label>
+                    <label class="filter-row">
+                        <input type="checkbox" class="filter-checkbox" id="filterMissed" checked>
+                        <span class="filter-row-label">Missed Questions</span>
+                        <span class="filter-count" id="filterMissedCount">0</span>
+                    </label>
+                </div>
+
                 <div class="comprehensive-controls">
                     <div class="comprehensive-length-selector">
                         <label>Quiz Length:</label>
@@ -562,6 +643,7 @@
                 updateDailyCount();
                 updateWeeklyCount();
                 updatePerformanceBars();
+                updateFilterCounts();
             }
         });
 
@@ -588,10 +670,14 @@
                 updateDailyCount();
                 updateWeeklyCount();
                 updatePerformanceBars();
+                updateFilterCounts();
             }
         });
         window.addEventListener('masteryUpdated', e => {
-            if (e.detail && e.detail.bank === BANK) updateMasteryWidget();
+            if (e.detail && e.detail.bank === BANK) {
+                updateMasteryWidget();
+                updateFilterCounts();
+            }
         });
 
         // ============================================================
@@ -675,6 +761,56 @@
         }
 
         // ============================================================
+        // Filter Panel — counts + URL param builder
+        // ============================================================
+
+        /**
+         * Compute question counts for each filter category.
+         * "Answered" and "New" are approximated from the global attemptsMap
+         * (may include IDs from other banks if user has used multiple modules).
+         * "Missed" is exact and bank-specific.
+         */
+        function updateFilterCounts() {
+            const store = window.StudyGuruProgress;
+            if (!store) return;
+
+            const attemptsMap  = store.getAttemptsMap();
+            const missedCount  = store.getMissedCount(BANK);
+
+            // Count all IDs in the attemptsMap that have been attempted at least once.
+            // Cap at CFRN_TOTAL so we never show more answered than exist.
+            const totalAttempted = Object.values(attemptsMap).filter(v => v > 0).length;
+            const answeredCount  = Math.min(totalAttempted, CFRN_TOTAL);
+            const newCount       = Math.max(0, CFRN_TOTAL - answeredCount);
+
+            document.getElementById('filterNewCount').textContent      = newCount;
+            document.getElementById('filterAnsweredCount').textContent = answeredCount;
+            document.getElementById('filterMissedCount').textContent   = missedCount;
+        }
+
+        /**
+         * Build the &filter= URL param string based on checkbox state.
+         * Returns '' when all are checked or none are checked (default behavior).
+         */
+        function getFilterParam() {
+            const newChecked      = document.getElementById('filterNew').checked;
+            const answeredChecked = document.getElementById('filterAnswered').checked;
+            const missedChecked   = document.getElementById('filterMissed').checked;
+
+            const allChecked  = newChecked && answeredChecked && missedChecked;
+            const noneChecked = !newChecked && !answeredChecked && !missedChecked;
+
+            // Both all-checked and none-checked fall through to default (unfiltered) behavior
+            if (allChecked || noneChecked) return '';
+
+            const parts = [];
+            if (newChecked)      parts.push('new');
+            if (answeredChecked) parts.push('answered');
+            if (missedChecked)   parts.push('missed');
+            return '&filter=' + parts.join(',');
+        }
+
+        // ============================================================
         // Comprehensive Quiz Launcher
         // ============================================================
         let comprehensiveLength = 25;
@@ -689,7 +825,9 @@
         });
 
         document.getElementById('startComprehensiveBtn').addEventListener('click', () => {
-            window.location.href = `/quiz/Nursing_Certifications/CFRN_Question_Bank?quiz_length=${comprehensiveLength}&autostart=true`;
+            const filterParam = getFilterParam();
+            window.location.href =
+                `/quiz/Nursing_Certifications/CFRN_Question_Bank?quiz_length=${comprehensiveLength}&autostart=true${filterParam}`;
         });
 
         // ============================================================
@@ -818,14 +956,16 @@
         });
 
         document.getElementById('resetCycleBtn').addEventListener('click', () => {
-            if (confirm('⚠️ Reset your FULL CFRN study cycle?\n\nThis will clear:\n• All mastered question IDs\n• All performance bar data\n• Your target date\n\nThis cannot be undone.')) {
+            if (confirm('⚠️ Reset your FULL CFRN study cycle?\n\nThis will clear:\n• All mastered question IDs\n• All performance bar data\n• Your target date\n• All missed question history\n\nThis cannot be undone.')) {
                 if (window.StudyGuruProgress) {
                     window.StudyGuruProgress.clearMasteredIds(BANK);
                     window.StudyGuruProgress.clearCyclePerf(BANK);
                     window.StudyGuruProgress.clearTargetDate(BANK);
+                    window.StudyGuruProgress.clearMissedIds(BANK);
                     updateMasteryWidget();
                     updatePerformanceBars();
                     renderTargetWidget();
+                    updateFilterCounts();
                     document.getElementById('cycleResetBanner').classList.add('hidden');
                 }
             }
