@@ -21790,5 +21790,1298 @@
     ],
     "rationale": "CPR and defibrillation are the priorities in VF, along with finding the cause of the arrest and epinephrine IV. The initial defibrillation wattage is 2-4 joules/kg, escalating up to a maximum of 10 joules/kg.",
     "type": "single_select"
+  },
+  {
+    "id": "Q1363",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "In a forward facing seat without shoulder belts, which position is BEST in an emergency landing?",
+    "options": [
+      "A) Sitting upright with the head held against the seat head rest and the arms across the chest",
+      "B) Holding the arms across the chest, forming an X with the forearms and grasping the shoulder harness",
+      "C) Bending forward at the waist and encircling the knees with the arms",
+      "D) Sitting upright with knees together and feet approximately 6 inches apart"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "In an emergency or precautionary landing situation, in which a hard landing may be anticipated, flight crew members should assume the survival position before impact. They should sit upright with the knees together and feet approximately 6 inches apart. In forward-facing seats equipped with shoulder belts, one should hold the arms across the chest, forming an X with the forearms and grasping the shoulder harness. In forward-facing seats without shoulder belts, one should bend forward at the waist and encircle the knees with the arms. In all-facing seats, one should sit upright with the head against the seat head rest and the arms in an X across the chest.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1364",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "While en route to retrieve a patient, a loud thud is heard, and the pilot informs the crew that a bird has come through the windscreen. What is the PRIORITY action by the flight nurse?",
+    "options": [
+      "A) Ensure sterile cockpit and help navigate",
+      "B) Radio for fire department to establish a landing zone",
+      "C) Raise the helmet visor for a damage assessment",
+      "D) Complete the flight plan as filed"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "During any aircraft emergency, the first steps are to cease all non-essential communication and aid the pilot in navigating safely. If an emergency landing becomes necessary, there may not be enough time to establish a landing zone with the fire department. Even if the aircraft shows no obvious damage, it must be inspected before continuing the mission. Always keep the helmet visor lowered and the chin strap fastened for safety.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1365",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "The flight crew has been requested for an interfacility transport of an elderly patient who is awake, alert, and alone. After assessment, there are no life-threatening conditions, and the patient insists on not being transported. The patient states their child manages their finances and only allows them a certain amount of money each month. The appropriate action for the flight crew is to:",
+    "options": [
+      "A) Question the patient about abuse and transport the patient without consent",
+      "B) Report suspected elderly abuse and honor the patient's wishes",
+      "C) Reassure the patient that Medicare will cover the cost for transport",
+      "D) Contact family for consent and provide information on social services"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Consent is required prior to transport. It is estimated that 1 in 10 older adults experience abuse or neglect. Health care providers are mandated reporters. In this case, the patient is describing the potential for financial abuse and requires further intervention by the flight crew.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1366",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "The flight team is requested to transport a 43-year-old patient to a referral center 60 minutes away. Upon arrival bedside, the RN reports no urine output for four hours. Creatinine has increased from 1.3mg/dL to 2.3 mg/dL. Ventilator FiO2 is being increased to 100%. Final expiratory pressure (PEEP) is 10 cm H2O.\n\nBP 85/70 mmHg\nIntra-aortic balloon pump (IABP) 1:1 ratio\nAugmented IABP pressure 100 mmHg\nMean arterial pressure 82 mmHg\n\nABG:\npH 7.15\nPaO2 94 mmHg\nPaO2 58 mmHg\nHCO3 16 mmol/L\nO2 Saturation 88%\n\nWhat should the flight nurse do PRIOR to transporting this patient?",
+    "options": [
+      "A) Decrease the PEEP to 5 cm H2O",
+      "B) Consider an alternate mode of ventilation",
+      "C) Contact the sending physician",
+      "D) Request a milrinone (Primacor) infusion"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "The patient is declining into multi-system organ failure. The patient's oxygenation status is deteriorating. Ventilator FiO2 is now at 100%. A call to the sending and accepting MD is warranted. Treatment plans discussed originally may be changed based on this new data. The patient's oxygenation status is paramount, and the MDs need to be made aware.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1367",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "The transport team arrives to pick up a patient when they are informed that a family member would like to ride along to the receiving facility. What is the next plan of action?",
+    "options": [
+      "A) Allow family member to travel",
+      "B) Consult with the pilot",
+      "C) Consult with the sending physician",
+      "D) Inform the family member they cannot travel"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "The final decision on air transport lies with the pilot and any air transport of passengers should be discussed by the entire flight team rather than an individual member making a decision.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1368",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "Which of the following should be done during slow decompression?",
+    "options": [
+      "A) Ensure passenger seatbelts are properly fastened",
+      "B) Use supplemental oxygen until descent",
+      "C) Maintain hydration status",
+      "D) Secure all equipment"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "The biggest concern with a slow decompression is insidious onset of hypoxia. Using supplemental oxygen is the most important action to take. Maintaining hydration status is incorrect because hydration is a secondary concern. Ensuring seatbelts and securing equipment are incorrect because slow decompression does not cause the sudden loss of cabin pressure seen with explosive decompression.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1369",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "In completing a post accident incident plan (PAIP), the flight nurse recognizes that the plan should include:",
+    "options": [
+      "A) Plan for requesting additional resources to accomplish the transport",
+      "B) Method to ensure accurate information dissemination",
+      "C) Policy for administering fluids to bystanders",
+      "D) Method for requesting data externally for research"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "CAMTS recommends that a transport program's PAIP should include a method to ensure accurate dissemination of information. Data reporting is typically internal only.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1370",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "The flight team is requested to transport a patient with multiple gun shot wounds to a trauma center 48 miles away. Bilateral chest tubes have been placed due to hemopneumothorax. The nurse assesses that the chest tubes do not demonstrate any bubbling in the water chamber and have minimal blood in the collection chamber. When the flight nurse questions the ED physician, the ED resident declares the patient is stable for transport and tells the flight team to notify the receiving trauma center that they will have to correct the placement of the chest tube. The flight crew should:",
+    "options": [
+      "A) Request two more experienced providers to evaluate",
+      "B) Perform pleural decompression on the affected side",
+      "C) Pull the chest tube back to the pleural space",
+      "D) Request the attending ED physician to evaluate"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Due to the patient suffering multiple gun shot wounds to the chest, air and blood are entrapped leading to the bilateral chest tube placement. If not permitted to exit, the intrathoracic pressure increases further, blood further accumulates, resulting in a worsening hemodynamic compromise or a tension hemopneumothorax. Since the patient is being managed by a resident ED physician, an attending physician is present within the ED. The attending physician may be unaware of every detail, as well as the functioning of tubes and devices previously placed. As per EMTALA, it is the sending facility's responsibility to address all issues to the best of their ability prior to transfer. The attending physician should be made aware of the situation and should lead their respective team in corrective action making both chest tubes functional.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1371",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "The flight team transported a patient who had been severely assaulted and required intubation. After the transport, the flight team is approached by a law enforcement officer who asks about the patient. Which of the following questions could the flight team answer without obtaining the patient's permission?",
+    "options": [
+      "A) \"Did the patient have any contraband in their possession?\"",
+      "B) \"Does the patient have a history of mental illness?\"",
+      "C) \"What medical treatment did you provide?\"",
+      "D) \"Can you describe the injuries you observed?\""
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "The Health Insurance Portability and Accountability Act (HIPAA) protects patient privacy in nearly all areas of healthcare. An exception applies during active law enforcement investigations. When a patient is a crime victim, healthcare providers may share information with law enforcement, preferably after obtaining the patient's consent.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1372",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "A transport nurse is preparing a pediatric trauma patient for a 45-minute fixed-wing flight to a tertiary care hospital. The patient's mother has requested that she be allowed to accompany her child on the flight. Which of the following is the MOST important factor the transport nurse must consider when evaluating the request?",
+    "options": [
+      "A) The weather for my flight is predicted to be marginal",
+      "B) The aircraft does not have another passenger seat available",
+      "C) The mother states she has a history of motion sickness",
+      "D) The mother appears to be extremely anxious"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Safety for the entire team is the primary factor on which to base the decision regarding family members accompanying patients on transports. If the aircraft does not have a passenger seat with a seat belt for the mother, she may not accompany the patient in the aircraft.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1373",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "The flight nurse is preparing to transport a patient with a suspected arterial gas embolism. The nurse should arrange to transport the patient",
+    "options": [
+      "A) Using an inspired helium and oxygen mixture",
+      "B) With endotracheal intubation and on 100% oxygen",
+      "C) In a manner that requires under 1,000 feet of altitude change",
+      "D) After the administration of 0.1 g/mg of methylene blue"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Transporting a patient with an arterial gas embolism requires that the minimum safe altitude rule be applied and an altitude change of less than 1000 ft would be applicable. This principle follows Boyle's Law where an increase in altitude results in a decrease in atmospheric barometric pressure and the subsequent increase/expansion of air within an enclosed body.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1374",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "A family member accompanying a patient in transport should receive a safety briefing that includes",
+    "options": [
+      "A) Seatbelt regulations",
+      "B) Team medical team members",
+      "C) Function of medical equipment",
+      "D) Signed and witnessed consent"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "Once the determination has been made to take a family member, a safety briefing should be provided by the pilot (air) or driver (ground). The safety briefing should include the use of seatbelts, egress procedures, fire extinguishers, flotation devices, use of cell phones and portable computers, smoking/tobacco products, sterile cockpit, and emergency procedures.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1375",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "A formalized method used for communicating with other healthcare professionals at hand-off is known as",
+    "options": [
+      "A) SBAR (situation, background, assessment, recommendation)",
+      "B) SAMPLE (symptoms, allergies, medications, past medical history, last meal consumed, events)",
+      "C) CAMDAR (circumstances, assessments, machines, drugs, allergies, pain)",
+      "D) SOFIER (subjective, objective, planning, interventions, evaluations, repeat back)"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "SBAR (situation, background, assessment, recommendation) is a standardized patient handoff pneumonic that is used to improve communication and continuity of care.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1376",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "In management of a motor vehicle accident, who should be in charge of the scene?",
+    "options": [
+      "A) Logistics",
+      "B) Operations",
+      "C) Administration",
+      "D) Planning"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Operations will oversee the staging manager, EMS, fire and law branches. Logistics, planning, and administration report to the operations liaison.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1377",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "After transporting a patient who was shot during an attempted carjacking, the flight team is approached by a police officer inquiring about the patient. What information can the flight team share if the officer lacks a warrant?",
+    "options": [
+      "A) Name and unique physical characteristics",
+      "B) Statements the patient made during transport",
+      "C) Nothing, due to patient privacy laws",
+      "D) Treatments and medications provided during transport"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "Although HIPAA generally safeguards patient privacy, active law enforcement investigations are among the few scenarios where healthcare providers can share limited information without the patient's consent.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1378",
+    "category": "Resuscitation Principles",
+    "stem": "Following a motor vehicle collision, the flight team is transporting an intubated, sedated patient that is 37 weeks gestation. The nurse recognizes that which of the following would be expected for this patient?",
+    "options": [
+      "A) Decreased minute ventilation",
+      "B) Increased PEEP",
+      "C) Increased tidal volume",
+      "D) Intrathoracic lung capacity"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "During pregnancy, increased progesterone levels lead to a rise in tidal volume. Total lung capacity refers to the maximum volume of air the lungs can hold, while tidal volume is the air exchanged per breath. Spirometry results remain mostly unchanged, with only slight rises in peak expiratory flow. Oxygen consumption increases by 20% to 30%, while functional residual capacity decreases, which results in a higher baseline work of breathing. This decrease in functional residual capacity also reduces pulmonary reserve, causes a faster onset of hypoxia, and increases the risk of desaturation during intubation. Pregnant patients do not require low PEEP.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1379",
+    "category": "Resuscitation Principles",
+    "stem": "The flight crew is called for an interfacility transfer of a patient with gastrointestinal bleeding. The patient has been transfused with 4 units of packed red blood cells, 2 units of fresh frozen plasma, and 1 unit of platelets. Vital signs are as follows:\n\nBP 55/50 mmHg\nHR 100 beats/min\nRR 18 breaths/min\nSPO2 100% (2L nasal cannula)\n\nThe NEXT appropriate action would be to administer:",
+    "options": [
+      "A) Epinephrine 10mcg IV push",
+      "B) Norepinephrine 0.03mcg/kg/min",
+      "C) 2 grams magnesium sulfate",
+      "D) 1 gram calcium chloride"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Units of blood products are preserved with citrate, which binds to calcium and causes a depletion of ionized calcium. Calcium should be replaced in any patient receiving large amounts of transfusion, in a recommendation of 1G to 3 units. The other options are not appropriate for this patient.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1380",
+    "category": "Resuscitation Principles",
+    "stem": "The flight nurse arrives at a sending facility to pick up a recently intubated patient. Rocuronium and Propofol were administered for induction 20 minutes ago. The patient has a GCS of 3. Vital signs are:\n\nBP: 165/96 mmHg\nHR: 148 beats/min\nRR: 14 breaths/min\nO2 Sat: 94% (FiO2 70%)\nETCO2: 48 mmHg\n\nThe nurse's NEXT action is to:",
+    "options": [
+      "A) Increase FiO2",
+      "B) Initiate an antiarrhythmic",
+      "C) Initiate a sedative",
+      "D) Provide respiratory hint"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Often pain and sedation medication can be forgotten after intubating a patient. Induction agents often last for 10 minutes or less. A continuous infusion of sedation and pain medications should be initiated. The patient's abnormal vital signs are likely related to being awake but paralyzed and intubated. The vitals should improve with sedation.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1381",
+    "category": "Resuscitation Principles",
+    "stem": "The flight crew is called to transport a patient with acute respiratory distress syndrome. When placed on a ventilator, the patient will be managed with lower",
+    "options": [
+      "A) PEEP and higher respiratory times",
+      "B) Inspiratory rates and higher pressures",
+      "C) Tidal volumes and higher respiratory rates",
+      "D) PEEP and higher oxygen levels"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "ARDS is characterized by poor lung compliance, where lower tidal volumes will be better achieved from higher tidal volumes. The use of higher respiratory rates will counteract the lower tidal volume by maintaining a consistent minute ventilation.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1382",
+    "category": "Resuscitation Principles",
+    "stem": "The flight crew is called to transport a patient diagnosed with respiratory failure secondary to aspiration pneumonitis to the right lobes. On arrival to the emergency department, the patient is found to be in the supine position. The flight crew recognizes the BEST position to transport the patient to promote ventilation is:",
+    "options": [
+      "A) Supine",
+      "B) Right lateral recumbent",
+      "C) Prone",
+      "D) Left lateral recumbent"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Because gravity normally facilitates preferential ventilation and perfusion to the dependent areas of the lungs, the best gas exchange would take place in the dependent areas of the lungs. Patients with unilateral lung disease are positioned with the healthy lung in a dependent position.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1383",
+    "category": "Resuscitation Principles",
+    "stem": "Oral airways should be used with caution in patients with traumatic brain injury because they",
+    "options": [
+      "A) Cause a drop in mean arterial pressure",
+      "B) Decrease intracranial pressure",
+      "C) Obstruct a patient airway",
+      "D) Increase intracranial hypertension"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Oral airways may stimulate coughing and gagging, which can exacerbate intracranial hypertension. An oversized oral airway may obstruct the patient's airway but this is not specific to traumatic brain injury.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1384",
+    "category": "Resuscitation Principles",
+    "stem": "The flight crew is transporting a trauma patient that is undergoing the transfusion of his fourth unit of PRBCs. The patient suddenly becomes hypotensive and complains of severe muscle contractions in his legs. The flight nurse knows that the most appropriate intervention is:",
+    "options": [
+      "A) Initiate Levophed (Norepinephrine) 5 mcg/minute IV",
+      "B) Administer Tylenol (acetaminophen) 1 gram PO",
+      "C) Immediately discontinue the transfusion",
+      "D) Administer calcium gluconate 2 grams IV"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "The most common cause of symptomatic hypocalcemia is from massive transfusion. Symptoms include tetanic contractions and hemodynamic collapse. The treatment is to administer supplemental calcium for replacement. Muscle spasm alone is not indicative of a transfusion reaction. The hypotension is a direct result of the hypocalcemia and will not respond to vasopressors.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1385",
+    "category": "Resuscitation Principles",
+    "stem": "While looking at the chest radiograph of an adult patient, a transport nurse notes that the tip of the ETT is 3 cm above the carina. The MOST appropriate action is to",
+    "options": [
+      "A) Pull tube back 5 cm",
+      "B) Intubate the patient",
+      "C) Maintain current position",
+      "D) Advance tube 2 cm"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Maintaining current position of the endotracheal tube in this situation is indicated as the ETT is optimally positioned when at 3-5 cm above the carina (bifurcation of the trachea to the left and right main bronchi).",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1386",
+    "category": "Resuscitation Principles",
+    "stem": "The flight nurse arrives on the scene of an unbelted driver in a high-speed motor vehicle collision. While conducting the trauma assessment, the nurse observes extensive facial trauma. While preparing for RSI, the nurse knows:",
+    "options": [
+      "A) A nasopharyngeal airway should be placed to pre-oxygenate the patient",
+      "B) A surgical cricothyrotomy kit should be prepared",
+      "C) Nasal intubation is the preferred definitive airway in this situation",
+      "D) A supraglottic airway should be used for this patient"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Patients with facial trauma may require surgical airways due to disruptions in the upper airway anatomy or massive swelling. While an attempt to intubate orally can be made, surgical airway equipment should be prepared.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1387",
+    "category": "Resuscitation Principles",
+    "stem": "The flight team is transporting a 70kg patient in cardiogenic shock who is mechanically ventilated on multiple high-dose vasopressors and inotropes. Mean arterial pressure is 57 mmHg. Oxygen saturations are consistently 100%.\n\nArterial blood gas results:\npH 7.39\npCO2 40 mmHg\npO2 238 mmHg\nHCO3 24 mmol/L\nBase excess +2 mmol/L\n\nVentilator settings are:\nAssist Control Mode\nRespiratory Rate 20\nFiO2 50%\nTidal Volume 450ml\nPEEP 18 cm H2O\n\nWhat adjustment should the transport team consider?",
+    "options": [
+      "A) Decrease PEEP",
+      "B) Decrease Tidal Volume",
+      "C) Increase inotropic support",
+      "D) Increase FiO2"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "PEEP has the potential to increase intrathoracic pressure. The team should consider decreasing the PEEP as this should also decrease intrathoracic pressure, which in turn should help increase venous return and preload, resulting in a higher blood pressure/mean arterial pressure.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1388",
+    "category": "Resuscitation Principles",
+    "stem": "The flight crew is transporting a patient receiving blood products via a mass transfusion protocol. The patient begins to exhibit carpopedal spasms while collecting a noninvasive blood pressure measurement. The MOST appropriate action for the flight crew is to administer:",
+    "options": [
+      "A) N-acetylcysteine (Actemra)",
+      "B) High flow oxygen",
+      "C) Lorazepam (Ativan)",
+      "D) Calcium chloride"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Hypocalcemia is a concern with massive transfusion due to the preservative citrate added to banked blood. The citrate binds with serum calcium leading to hypocalcemia. Signs and symptoms of hypocalcemia include cardiac dysrhythmias, muscle tremors, seizures, Chvostek and Trousseau signs.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1389",
+    "category": "Resuscitation Principles",
+    "stem": "The flight nurse is preparing to intubate a patient with a history of malignant hyperthermia. The nurse should avoid using:",
+    "options": [
+      "A) Midazolam (Versed)",
+      "B) Succinylcholine (Scoline)",
+      "C) Rocuronium (Zemuron)",
+      "D) Ketamine (Watson)"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Succinylcholine is a depolarizing agent that can trigger malignant hyperthermia. Rocuronium, Midazolam, Ketamine do not trigger this condition.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1390",
+    "category": "Resuscitation Principles",
+    "stem": "An intubated, morbidly obese patient with acute respiratory distress syndrome is being transported from a community hospital to a tertiary care facility. Ventilator settings are as follows:\n\nMode: Assist control\nRate: 12 breaths/min\nTidal volume: 800 mL\nFiO2: 100%\nPEEP: 5 cm H2O\n\nDuring transport, the patient's blood pressure steadily declines from 120/80 mm Hg to 96/45 mm Hg, and the patient appears restless. The patient has a respiratory rate of 26 breaths/min, plateau pressure of 39 mm Hg, and an auto-PEEP of 8 cm H2O. The nurse should FIRST:",
+    "options": [
+      "A) Decrease the PEEP",
+      "B) Start IV dobutamine 5 mcg/kg/min",
+      "C) Administer 1000 mL fluid bolus",
+      "D) Disconnect the ventilator tubing from the patient"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "The nurse should first disconnect the ventilator tubing from the patient because the patient is not dependent on PEEP. Administering a 1000mL fluid bolus or starting IV dobutamine is incorrect because these are secondary interventions. Decreasing the PEEP is incorrect because it does not resolve the increasing auto-PEEP.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1391",
+    "category": "Resuscitation Principles",
+    "stem": "The flight team is called to transport a patient who is diagnosed with acute respiratory distress syndrome. The bedside nurse reports that the patient has just been switched to a volume-control mode and was previously on Airway Pressure Release Ventilation (APRV). The flight nurse knows what about this patient's ventilator assessment:",
+    "options": [
+      "A) Higher PEEP may be required to maintain adequate oxygenation",
+      "B) Higher tidal volumes will allow for this patient to recruit lung tissue faster",
+      "C) Higher alarm limits will be needed to maintain adequate ventilation",
+      "D) Volume Control will deliver set volumes despite a restrictive lung disease"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "APRV is a high-pressure mode of ventilation that focuses on an extended inhalation period followed by a short exhalation period. Because of this, alveoli stay open longer, and improved oxygenation can be achieved. By switching to a volume control mode, the high pressures are lost, and PEEP is used to maintain alveolar recruitment.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1392",
+    "category": "Trauma",
+    "stem": "A patient with a head injury is being transported to the trauma center. The transport nurse notices that the patient's gaze is focused upwards and to the right, and the patient is no longer responding to verbal stimuli. The nurse should suspect which of the following?",
+    "options": [
+      "A) Ocular muscle entrapment",
+      "B) Optic nerve involvement",
+      "C) Seizure activity",
+      "D) Brainstem herniation"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Seizure activity following blunt head trauma presents most commonly as focal or partial complex seizures. The signs are not consistent with brainstem herniation presentation. With inferior rectus muscle entrapment, the eye is unable to look upwards. The optic nerve is sensory only and has nothing to do with ocular movement.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1393",
+    "category": "Trauma",
+    "stem": "A nurse is transporting a patient who sustained an isolated femur fracture from a motorcycle crash. The nurse should expect to see which of the following on assessment?",
+    "options": [
+      "A) Lateral pelvic instability present on injured side",
+      "B) Injured leg is shorter than uninjured leg",
+      "C) Injured leg is internally rotated",
+      "D) Hip on the injured side is displaced anteriorly"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "The nurse should expect to see that the injured leg is shorter than the uninjured leg. Shortening of the injured extremity is common with a femur fracture due to muscle spasm and body displacement. The leg is typically externally rotated with a femur fracture. There is no hip displacement with an isolated femur fracture. The acetabular joint is intact. With an isolated femur fracture, there should not be any pelvic instability.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1394",
+    "category": "Trauma",
+    "stem": "The flight team is transporting a patient involved in a motor vehicle collision. During the accident, the patient suffered blunt force trauma to the chest. Assessment reveals absent breath sounds on the left side, tachycardia, hypoxia, and hypotension with distended jugular veins. The flight nurse recognizes that the patient's shock state is likely a result of:",
+    "options": [
+      "A) Obstruction to cardiac filling and return",
+      "B) Structural or functional cardiac failure",
+      "C) Systemic vasodilation",
+      "D) Intravascular volume depletion"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "The patient is likely suffering from a tension pneumothorax given the mechanism and assessment provided. Tension pneumothorax physiology results in tamponade of the venae cavae and obstruction to cardiac filling. The other choices are also mechanisms of shock but are not the most likely causes in this scenario.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1395",
+    "category": "Trauma",
+    "stem": "The flight nurse is transporting a patient who was involved in a motor vehicle collision that resulted in a left nephrectomy due to trauma. Current vital signs and lab tests are as follows:\n\nBP: 85/45 mm Hg\nHR: 125 beats/min\nRR: 24 breaths/min\nO2 Sat 94% (4L nasal cannula)\n\nBlood urea nitrogen: 65 mg/dL\nCreatinine level: 3.4 mg/dL\nSerum potassium: 4.8 mEq/L\nSerum sodium: 125 mEq/L\n\nThe PRIORITY intervention should include administration of",
+    "options": [
+      "A) Furosemide (Lasix)",
+      "B) Norepinephrine (Levophed)"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Perfusion to the kidney is significantly altered due to hypotension, and the single kidney is unable to maintain adequate function in the presence of a nephrectomy. Initiating levophed will increase blood pressure and increase perfusion to the kidney. A 3% saline bolus is not indicated as the hyponatremia is related to fluid overload. Albumin is not an appropriate intervention.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1396",
+    "category": "Trauma",
+    "stem": "A nurse is transporting a patient with a ruptured globe from an industrial explosion. During transport, the nurse should",
+    "options": [
+      "A) Administer mydriatic drugs",
+      "B) Evaluate pupil response at least every 30 minutes",
+      "C) Apply topical anesthetic",
+      "D) Lightly patch both eyes"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Treatment in the emergency department for a known globe rupture includes avoidance of further examination or manipulation and the placement of a protective metal eye shield to prevent accidental pressure on the globe. Patching of the opposite eye precludes consensual movement.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1397",
+    "category": "Trauma",
+    "stem": "The flight nurse is preparing a patient who has circumferential burns on the abdomen for a long distance transport in a fixed-wing aircraft. The nurse should recognize that the PRIORITY intervention is to",
+    "options": [
+      "A) Infuse pain medications",
+      "B) Place a nasogastric tube",
+      "C) Obtain blood products",
+      "D) Intubate the patient"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "During transport the stomach and other hollow organs will expand. With the burns around the abdominal compartment, abdominal compartment syndrome could occur. This can be prevented with a nasogastric tube. It is not necessary to intubate the patient or obtain blood products. Pain medications are not the priority but should be considered.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1398",
+    "category": "Trauma",
+    "stem": "The flight nurse responds to a high-speed motor vehicle collision on the highway. The patient is an 80-year-old male presenting with bruising on the abdomen and upper chest consistent with a seat belt outline. The patient's vital signs are:\n\nBP: 100/50 mmHg\nHR: 63 beats/min\nRR: 14 breaths/min\nSPO2: 95% (room air)\n\nThe PRIORITY historical question is:",
+    "options": [
+      "A) Have you had any recent surgeries?",
+      "B) Have you had a tetanus shot in the past ten years?",
+      "C) When did you last eat?",
+      "D) Do you take any medications?"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "The elderly patient often takes medications that can cause abnormal presentations of shock. Medications can often interfere with vital signs, masking abnormalities in the presentation of trauma.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1399",
+    "category": "Trauma",
+    "stem": "The flight crew responds to a patient who jumped from a third-floor balcony, landing flat on their feet. The patient sustained significant injuries to the bilateral lower extremities. On assessment, the nurse assesses diffuse ecchymosis to the bilateral flanks. Based on the mechanism of injury, the nurse suspects which of the following?",
+    "options": [
+      "A) Renal injury",
+      "B) Gall bladder injury",
+      "C) Splenic injury",
+      "D) Descending colon injury"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "Kidneys are highly susceptible to deceleration injuries and are in the retroperitoneal space. Bleeding into the retroperitoneal space results in ecchymosis to the flanks (Grey-Turner's sign).",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1400",
+    "category": "Trauma",
+    "stem": "The flight crew responds to an interfacility transfer of a patient who suffered a reported gun shot wound to the right anterior chest at the 5th intercostal space. The wound is identified as a hemothorax. The sending facility reports all uncrossed blood products have been exhausted, and the patient remains in hemorrhagic shock. The sending physician requests the flight crew to auto-transfuse blood collected from the chest drainage system. The nurse questions this order due to:",
+    "options": [
+      "A) Blood sitting in the chest drainage system for one hour",
+      "B) Risk of gastric contents in the collected blood",
+      "C) High levels of coagulation factors",
+      "D) Increased risk of hypotension"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Penetrating trauma below the 4th intercostal space increases the risk for gastric contamination. Wounds older than 3 hours are contraindicated.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1401",
+    "category": "Trauma",
+    "stem": "The flight crew is transporting a burn patient that is 7 hours post burn with a 65% TBSA. During transport the patient becomes progressively hypotensive and tachycardic. The nurse knows that the decompensating trend is likely due to:",
+    "options": [
+      "A) Decreased hydrogen ion consumption",
+      "B) Increased oxygen fraction",
+      "C) Intrinsic systemic vascular resistance",
+      "D) Decreased venous return"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Burn patients suffer from a decrease in venous return as a result of third spacing from capillary leak syndrome. Decreased blood pressure and tachycardia are signs and symptoms of decompensated shock, in which SVR would be low.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1402",
+    "category": "Trauma",
+    "stem": "The flight nurse is called for an interfacility transfer of a patient who was assaulted and suffered blunt trauma to the face, head, and chest. The patient is alert, oriented, and reports a brief loss of consciousness. The patient reports severe pain behind the right eye and double vision. Intraocular pressure is measured at 30 mmHg. The flight nurse should be concerned about which of the following emergent conditions?",
+    "options": [
+      "A) Le Fort II fracture",
+      "B) Le Fort I fracture",
+      "C) Intraorbital hematoma",
+      "D) Retrobulbar hematoma"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Retrobulbar hematomas can occur from blunt trauma that causes bleeding in the retrobulbar space, leading to increased pressure behind the globe.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1403",
+    "category": "Trauma",
+    "stem": "An adult patient presented to the referring facility after suffering an electrical injury. Initial fluid resuscitation has started, and will be continued during transport. The goal for fluid resuscitation for this patient is:",
+    "options": [
+      "A) Urine output 100 mL/hr",
+      "B) 2 mL x TBSA (%) x body weight (kg)",
+      "C) Urine output 30 mL/hr",
+      "D) 1 mL x TBSA (%) x body weight (kg)"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "Patient's suffering from electrical burns require higher levels of fluid resuscitation due to the risk of hemoglobinuria and myoglobinuria. The goals of resuscitation are reflected by urine output, not volume given.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1404",
+    "category": "Trauma",
+    "stem": "A patient sustained multiple traumatic injuries to the lower extremities and the pelvis 48 hours ago and is now being transported to another facility. Vital signs are as follows:\n\nBP: 100/60 mm Hg\nHR: 100 beats/min\nT: 99\u00b0F (37.2\u00b0C)\n\nThe nurse notes that the patient is restless and has petechiae developing over the neck, chest, and shoulders. The nurse suspects",
+    "options": [
+      "A) Septic shock",
+      "B) Hypovolemia",
+      "C) A fat embolism",
+      "D) Intestinal strangulation injury"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Given the information provided, the nurse can only suspect a fat embolism. It can be neither septic shock nor hypovolemia because the patient is not hypotensive. A bowel strangulation injury can also not be accurate because the patient is febrile.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1405",
+    "category": "Trauma",
+    "stem": "The flight crew is called to transfer a patient involved in an industrial accident at a concrete plant who received initial care at a rural emergency department. The sending facility reports that the patient underwent eye irrigation upon arrival, but continues to complain of pain in both eyes. Which finding is MOST concerning to the flight crew?",
+    "options": [
+      "A) An ocular pH of 7.1",
+      "B) Ongoing blurred vision",
+      "C) Previously administered intramuscular antibiotics",
+      "D) The presence of concrete dust on the eyelashes"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "The presence of concrete dust on the lashes suggests that the substance may still be entering the eyes, even after prior ocular irrigation. Both alkali and acid burns can cause corneal opacification, resulting in blurred vision.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1406",
+    "category": "Trauma",
+    "stem": "A patient has sustained a traumatic brain injury. After rapid sequence intubation, the patient's vital signs are as follows:\n\nBP: 112/30 mm Hg\nHR: 42 beats/min\nRR: Irregular depth and quality\n\nIn addition, the patient has right pupillary dilation with sluggish response and extensor motor posturing. Which of the following is the next most important intervention?",
+    "options": [
+      "A) Administer 0.5 mg of atropine",
+      "B) Temporarily target ETCO2 levels between 30-35 mm Hg",
+      "C) Set the ventilation rate to 12 breaths/min",
+      "D) Maintain pulse oximetry at 100%"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "The patient is exhibiting signs of a closed head injury with worsening symptoms consistent with Cushing's Triad (systolic hypertension/widening pulse pressure, irregular respirations, and bradycardia). While current recommendations are to maintain ETCO2 levels between 35-45 mmHg, controlled hyperventilation may be warranted when evidence of herniation is present.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1407",
+    "category": "Trauma",
+    "stem": "The flight nurse is called to transport a patient with a splenic laceration. Vital signs are as follows:\n\nHeart rate: 90 beats/min\nBlood pressure: 112/75 mmHg\nRespiratory Rate: 16 breaths/min\nSPO2 100% (4 LPM nasal cannula)\n\nThe flight nurse recognizes the following vital sign change BEST indicates a decompensation in patient status:",
+    "options": [
+      "A) SPO2 99%",
+      "B) Heart rate 115 beats/min",
+      "C) Blood pressure 135/96 mmHg",
+      "D) Respiratory rate 22 breaths/min"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Tachycardia is an indication of hypovolemia. In a patient with splenic rupture, hypoxemia is caused by a rapid loss of blood from the injury to the spleen. Increase in heart rate is a key indicator in the potential for shock development.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1408",
+    "category": "Medical Emergencies",
+    "stem": "The flight nurse has rendezvoused with EMS at a ranch in a rural area to transport a 70-year-old female who was kicked in the torso by a horse. The family is unsure of her medical history and medications. The vitals are:\n\nHR: 70 beats/min\nBP: 85/40 mmHg\nRR: 14 breaths/min\nO2 sat: 94% (room air)\nHeart Rhythm: atrial fibrillation\n\nThe patient is oriented to self and time and is noted to have shallow, equal respirations. There is no obvious external bleeding. The nurse PRIORITY is to:",
+    "options": [
+      "A) Administer 1 unit of packed red blood cells",
+      "B) Administer 1 unit of Lactated Ringer's solution",
+      "C) Place a pelvic binder",
+      "D) Perform rapid sequence intubation"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "The airway is currently patent, and although RSI should be performed before transport, it is not the priority intervention. The patient should first receive blood products, not isotonic fluids, for resuscitation, as they are likely to have a poor outcome from RSI with their current vital signs. A pelvic binder might need to be applied, but this is not the priority.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1409",
+    "category": "Medical Emergencies",
+    "stem": "The flight team is called for a previously healthy 53-year-old who had stents placed today. The patient is alert and oriented x4; skin is pink, cool & clammy. Respirations are labored and crackles are auscultated throughout all lung fields.\n\nVital signs:\nBP 95/75 mmHg\nHR 120 beats/min (sinus tachycardia)\nRR 32 breaths/min\nSpO2 Sat 94% (FiO2 70%)\nETCO2 48 mmHg\n\nWhat is the PRIORITY for this patient?",
+    "options": [
+      "A) Apply non-invasive positive pressure ventilation",
+      "B) Administer intramuscular epinephrine",
+      "C) Perform endotracheal intubation",
+      "D) Administer an epinephrine/aminophylline infusion"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "The best choice at this moment is to apply non-invasive positive pressure ventilation (NiPPV) as early as possible to improve oxygenation, as well as reduce the patient's respiratory distress. The patient has a severely reduced ejection fraction, and the respiratory distress is being caused by the poor forward cardiac output, which is resulting in the patient's presumed pulmonary edema. NiPPV should ideally be attempted first, before endotracheal intubation in this instance, as induction and sedation agents could potentiate a hemodynamic compromise.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1410",
+    "category": "Medical Emergencies",
+    "stem": "The flight team is bedside to transfer a patient that underwent coronary artery bypass grafting two days ago and is now receiving cardiac support by Impella at P8. The patient is intubated on multiple vasopressor and inotropic infusions. Urine output < 30mL/hr. Impella placement is verified. The ICU nurse advises of a diagnosis of Poor Community Cardiogenic Shock and notes, \"no matter what we do, they are not improving.\" Vital signs are as follows:\n\nBP 68/63 mm Hg\nHR 126 beats/min (sinus tachycardia)\nRR 28 breaths/min\nTemp 101 F (indwelling catheter temp probe)\n\nThe flight nurse suspects which clinical condition is complicating this patient's hospital course?",
+    "options": [
+      "A) Septic shock",
+      "B) Obstructive shock",
+      "C) Anaphylactic shock",
+      "D) Hypovolemic shock"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "The patient's situation is multifactorial. The patient is complicated with Post Cardiotomy Shock. The patient is at high risk for an infectious process due to multiple procedures, invasive support devices and lines that have been introduced in order to perform the aforementioned procedure. The predominating type of shock for this patient is cardiogenic shock (Impella support with multiple vasopressor and inotropic infusions). The patient is also in multiple system organ failure with low urine output. 'Warm' Septic Shock data is noted throughout by the Temp 101 and tachycardia.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1411",
+    "category": "Medical Emergencies",
+    "stem": "The flight crew is transporting a patient with acute stroke who presented to the ED with one hour of the following symptoms: aphasia, right sided hemisensory loss, and a left sided gaze deviation. The flight nurse recognizes that the thrombus can be localized to which area of the brain?",
+    "options": [
+      "A) Brainstem",
+      "B) Right hemisphere",
+      "C) Cerebellum",
+      "D) Left hemisphere"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "The left hemisphere of the brain controls movement and sensation to the right side of the body. It also controls language in most people. Right side hemispheric strokes are associated with left hemisphere inattention or neglect, left hemiparesis, left hemisensation loss, and a right sided gaze deviation. Patients with brain stem strokes will present with crossed signs of hemiparesis/hemisensory loss or quadriparesis. Cerebellum strokes are associated with ipsilateral hemispheric symptoms and ataxia.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1412",
+    "category": "Medical Emergencies",
+    "stem": "The flight crew is transporting a patient with a diving injury after the patient was reported to have struck their face on the shallow end of the pool. Upon arrival, the patient was combative, with epistaxis, edema to the nasal bridge, and ecchymosis around the eyes. The patient was intubated and sedated with spinal precautions. During transport, the flight crew is MOST concerned about the development of which of the following conditions?",
+    "options": [
+      "A) Le Fort III fracture",
+      "B) Epidural hematoma",
+      "C) Le Fort II fracture",
+      "D) Subdural hematoma"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Signs and symptoms of a basilar skull fracture include agitation or combative behavior, periorbital ecchymosis from extracranial bleeding, and CSF leaks observable from the nose (rhinorrhea) or ear (otorrhea), indicating dura mater injury. Battle's sign may appear 12 to 24 hours after the injury. If the fracture damages the middle meningeal artery, it can lead to an epidural hematoma.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1413",
+    "category": "Medical Emergencies",
+    "stem": "The nurse responds to the scene of a sporting event. The patient is abnormally tall, has long arms and is complaining of burning chest pain. Lung sounds are clear and there is no jugular vein distension. Vital signs are as follows:\n\nBP: 230/140 mmHg\nHR: 109 beats/min\nRR: 30 breaths/min\nO2 sat: 96% (room air)\n\nThe PRIORITY action for the nurse is to",
+    "options": [
+      "A) Start an esmolol (Brevibloc) infusion",
+      "B) Place nitroglycerin paste (Nitro-Bid)",
+      "C) Administer fentanyl (Duragesic)",
+      "D) Inject a fluid bolus"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "The patient likely has Marfan syndrome and is experiencing an aortic dissection. The treatment is aggressive blood pressure and heart rate management with a beta-blocker and rapid transport to a surgical center. Nitroglycerin (Nitro-Bid) is not the first-line agent for aortic dissection.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1414",
+    "category": "Medical Emergencies",
+    "stem": "The flight crew is transporting a patient who suffered a snake bite to the right lower leg eight hours prior to arrival. The patient complains of intense burning pain after administration of analgesics. On assessment, the nurse notes the affected area to appear taut and shiny and feels tight on palpation. The PRIORITY intervention is to:",
+    "options": [
+      "A) Apply a compression dressing to the affected area",
+      "B) Apply ice to the affected area",
+      "C) Elevate the extremity above the level of the heart",
+      "D) Elevate the extremity to the level of the heart"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "The patient is showing signs and symptoms of compartment syndrome. The priority intervention for compartment syndrome is to elevate the extremity to the level of the heart to promote blood flow to the cells.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1415",
+    "category": "Medical Emergencies",
+    "stem": "The flight team is preparing to transport a patient in septic shock who is receiving high-dose norepinephrine (Levophed). The flight nurse understands that, at higher doses, norepinephrine can:",
+    "options": [
+      "A) Improve preload",
+      "B) Decrease cardiac output",
+      "C) Dilate peripheral arterioles",
+      "D) Increase bronchodilation"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "High dosages of norepinephrine result in marked vasoconstriction which can decrease cardiac output in a heart unable to pump against the increased afterload. Norepinephrine has no effect on bronchial dilation or preload and it constricts peripheral arterioles rather than dilating them.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1416",
+    "category": "Medical Emergencies",
+    "stem": "The transport team responds to the scene of a patient with suspected stroke. On arrival, the patient reports a sudden onset of severe headache, photophobia, and neck stiffness. Although imaging is required for a definitive diagnosis, the flight crew recognizes the signs and symptoms are consistent with which of the following neurological emergencies?",
+    "options": [
+      "A) Cerebellum infarction",
+      "B) Intracerebral hemorrhage",
+      "C) Brainstem infarction",
+      "D) Subarachnoid hemorrhage"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Signs and symptoms suggestive of subarachnoid hemorrhage are intolerance to light, neck stiffness and pain, and sudden onset of severe headache.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1417",
+    "category": "Medical Emergencies",
+    "stem": "A patient with a fractured tibia/fibula and multiple rib fractures sustained in a motor vehicle crash 3 days prior is being transported. Upon assessment, the patient has a new onset of confusion, crackles, skin warm and dry and vital signs are as follows:\n\nBP 64/35 mmHg\nHR 100 beats/min\nRR 25 breaths/min\nTemp 101.6\u00b0F (38.7\u00b0C)\n\nThe nurse should suspect the patient has:",
+    "options": [
+      "A) Internal bleeding",
+      "B) Heart failure",
+      "C) Septic shock",
+      "D) Compartment syndrome"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Systemic Inflammatory Response Syndrome (SIRS) may be triggered by trauma, which causes exposure of damaged endothelial surfaces.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1418",
+    "category": "Medical Emergencies",
+    "stem": "A patient with a history of atrial fibrillation is being transported for sepsis. During transport, the patient develops hypotension that is unresponsive to IV fluids and has a heart rate of 120 beats/min. What intervention should be performed NEXT?",
+    "options": [
+      "A) Administer diltiazem (Cardizem)",
+      "B) Administer aspirin",
+      "C) Perform synchronized cardioversion",
+      "D) Initiate a Norepinephrine (Levophed) infusion"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "In sepsis patients, atrial fibrillation with rapid ventricular response is a compensatory mechanism for poor perfusion, not the primary cause of hemodynamic instability. Treatment should target the underlying cause rather than the arrhythmia itself.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1419",
+    "category": "Medical Emergencies",
+    "stem": "The flight crew arrives at the referring facility to transport a marathon runner who collapsed at the finish line. The patient is agitated, hot to touch, dry, and is breathing rapidly. The priority interventions for this patient are:",
+    "options": [
+      "A) Passive cooling and expediting transport",
+      "B) Verbal instruction and airway management",
+      "C) Rapid cooling and ECG monitoring",
+      "D) High flow nasal cannula and IV fluid bolus"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Patients who are experiencing heat stroke need to be rapidly cooled and ECG monitoring should be initiated to monitor for arrhythmias related to electrolyte imbalances.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1420",
+    "category": "Medical Emergencies",
+    "stem": "A nurse is transporting a patient with an intraventricular catheter in place. The intracranial pressure reads 30 mm Hg and the patient has a decreasing level of consciousness, but there is no cerebrospinal fluid drainage. After ensuring that the drainage system is open and at the ordered level above the tragus, the nurse should understand that the absence of drainage is MOST likely related to which of the following?",
+    "options": [
+      "A) The monitoring system needs to be recalibrated",
+      "B) The intraventricular catheter is obstructed",
+      "C) The drainage system is incompatible with the catheter"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "If the drainage system is open and at the prescribed level, the absence of cerebrospinal fluid drainage is most likely related to an obstruction of the drainage portion of the system.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1421",
+    "category": "Medical Emergencies",
+    "stem": "The flight crew is transporting a patient diagnosed with a saddle pulmonary embolism. The nurse knows that which is true about mechanical ventilation and perfusion for this patient?",
+    "options": [
+      "A) ETCO2 will be unpredictably lower than PaCO2 due to decreased perfusion of alveoli",
+      "B) ETCO2 will be higher than PaCO2 due to decreased dead space",
+      "C) ETCO2 is a reliable indicator of perfusion status in this patient",
+      "D) ETCO2 should be solely utilized to make ventilator mechanics"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "Due to increased dead space and decreased perfusion to the alveoli, ETCO2 will be lower than PaCO2 and as perfusion worsens, this gradient will widen.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1422",
+    "category": "Medical Emergencies",
+    "stem": "The flight crew is transporting a snow skier who tripped over another skier and sustained a femur fracture. The patient reports being on the snow-covered mountain for most of the day. During transport, the patient complains of decreased visual acuity, photophobia, and irritation to the bilateral eyes. The patient reports not wearing eye or facial protection during the fall. The flight crew recognizes these symptoms are related to",
+    "options": [
+      "A) Angle closure glaucoma",
+      "B) Ultraviolet keratitis",
+      "C) Fat embolism syndrome",
+      "D) Ocular altitude syndrome"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Ultraviolet (UV) keratitis occurs when exposed to UV light waves. This condition is common among welders, snow skiers, ice climbers, and users of tanning beds. The cornea absorbs most UV radiation, leading to keratitis, conjunctivitis, or both.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1423",
+    "category": "Medical Emergencies",
+    "stem": "The flight nurse is transporting a 73-year-old patient who is intubated following an acute hemorrhagic stroke. The induction medications were etomidate (Amidate) and rocuronium (Zemuron). The patient was placed on a fentanyl drip (Sublimaze) for sedation and analgesia post intubation. The flight team should request prior to transport is",
+    "options": [
+      "A) Sodium nitroprusside (Nitropress)",
+      "B) Metoclopramide (Reglan)",
+      "C) Lorazatumil (Nimtob)",
+      "D) Levetiracetam (Keppra)"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Central tissue hypoxia occurs because the intense motor activity of the seizure interferes with adequate respiration. The risk for seizures greatly increases following a hemorrhagic bleed.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1424",
+    "category": "Medical Emergencies",
+    "stem": "The flight team is called to transport an adult patient who suffered a ruptured ascending aortic dissection that was repaired on the day of admission. Today is post-operative day 15. The patient was cannulated for venovenous (VV) ECMO 6 hours ago. The team is told in report \"The patient required progressively higher ventilator settings, as well as higher levels of sedation and neuromuscular blockades. Chest x-ray reveals diffuse interstitial infiltrates. Heart function is normal.\" What is the likely causal factor leading to ECMO placement?",
+    "options": [
+      "A) Saddle pulmonary embolism",
+      "B) Acute Respiratory Distress Syndrome",
+      "C) Cardiogenic shock",
+      "D) Congestive heart failure"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "The patient is demonstrating progressively higher oxygen requirements leading to higher sedation levels, as well as eventual neuromuscular blockade. The patient was also requiring escalating modes of ventilation, which when combined with the diffuse interstitial infiltrates, is typically found in ARDS.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1425",
+    "category": "Medical Emergencies",
+    "stem": "The flight crew is transporting a patient who is intubated, has an arterial line, and a temporary transvenous pacemaker that was inserted two days ago due to complete heart block. The bedside nurse notes decreasing blood pressure, 60/40 mmHg. Rhythm is noted to be complete heart block with a ventricular rate of 18. No pacemaker spikes are noted. Pacemaker settings are as follows:\n\nRate 60 beats/min\nOutput: 10 mA\nSensitivity: 0.5 mV\n\nThe flight team's BEST course of action is to:",
+    "options": [
+      "A) Atropine dissipated",
+      "B) Administer atropine",
+      "C) Initiate transcutaneous pacing",
+      "D) Check the battery and connections"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "For any type of transvenous pacemaker malfunction, part of the basic care is to know and understand the operation of the pacemaker generator. Knowing which type of batteries are utilized, knowing the connections from the patient-lead to the pacemaker is essential.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1426",
+    "category": "Medical Emergencies",
+    "stem": "The flight nurse is called to transport a patient who has a type B aortic dissection. Current vital signs are:\n\nBP 168/75 mmHg\nHR 110 beats/min\nRR 16 breaths/min\nO2 sat: 95% on 2L nasal cannula\n\nThe FIRST intervention the flight nurse should perform is to initiate an infusion of:",
+    "options": [
+      "A) Clevidipine (Cleviprex)",
+      "B) Nicardipine (Cardene)",
+      "C) Nitroprusside (Nipride)",
+      "D) Esmolol (Brevibloc)"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Esmolol is the antihypertensive infusion that will offer both blood pressure and heart rate control, which is the goal of aortic dissection management. Nicardipine, Nitroprusside, and Clevidipine will only affect blood pressure.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1427",
+    "category": "Medical Emergencies",
+    "stem": "During transport of a 68-year-old patient with an intraaortic balloon pump, the patient goes into atrial fibrillation. The dicrotic notch can no longer be seen on the balloon pump tracing. The patient's pulmonary capillary wedge pressures increase. The transport nurse recognizes this is most likely due to",
+    "options": [
+      "A) Early deflation",
+      "B) Late inflation",
+      "C) Early inflation",
+      "D) Late deflation"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Early inflation or premature inflation of the balloon before the dicrotic notch results in potential premature closure of the aortic valve and can result in increased left ventricular end-diastolic volume and pulmonary capillary wedge pressure.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1428",
+    "category": "Medical Emergencies",
+    "stem": "The flight team is called to transport a patient who presented to the referring facility with high fever, confusion, and potential rash. A spinal tap was performed and cerebral spinal fluid was positive for white blood cells, bacteria, and noted to be hazy in appearance. The flight nurse recognizes what type of precautions should be taken when transporting this patient?",
+    "options": [
+      "A) Droplet precautions",
+      "B) Enhanced precautions",
+      "C) Contact precautions",
+      "D) Standard precautions"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "The patient is likely suffering from bacterial meningitis, which is highly transmissible. The flight team should make droplet precautions a priority to include eye protection, when transporting this patient.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1429",
+    "category": "Medical Emergencies",
+    "stem": "The flight team is called to transport a patient who was found unresponsive in the basement of their home next to a furnace. The patient is drowsy, but awakens to verbal stimuli and states they are dizzy. Current vital signs:\n\nHR 110 beats/min\nBP 125/74 mmHg\nRR 26 breaths/min\nSPO2 100% on 4L nasal cannula\n\nThe patient's skin is flushed, dry, and warm. The NEXT appropriate action would be:",
+    "options": [
+      "A) Initiate 15L oxygen via non-rebreather mask",
+      "B) Initiate maintenance IV fluid and continue transport",
+      "C) Decrease oxygen to 4L via nasal cannula",
+      "D) Increase oxygen to 4L via nasal cannula"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "A patient who is found unresponsive, in an enclosed space with a furnace, should be suspected of having carbon monoxide poisoning. Additional symptoms of CO poisoning include cherry red skin, tachycardia, and dizziness. The treatment for suspected CO poisoning is high flow oxygen.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1430",
+    "category": "Medical Emergencies",
+    "stem": "A transport nurse is caring for a patient with symptoms suggesting pertussis. Which of the following isolation precautions is the MOST appropriate for the nurse to implement?",
+    "options": [
+      "A) Standard",
+      "B) Airborne",
+      "C) Droplet",
+      "D) Contact"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Pertussis is transmitted by droplets. The other recognized classes of isolation are not appropriate for the disease.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1431",
+    "category": "Medical Emergencies",
+    "stem": "The transport nurse is preparing to transfer a patient with left ventricular heart failure. Preload reduction is BEST accomplished with morphine, diuretics, and which of the following medications?",
+    "options": [
+      "A) Metoprolol (Lopressor)",
+      "B) Nitroprusside (Nipride)",
+      "C) Nicardipine (Cardene)",
+      "D) Nitroglycerin (Tridil)"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Nitroglycerin produces a vasodilator effect on the peripheral veins and arteries with more prominent effects on the veins. It primarily reduces cardiac oxygen demand by decreasing preload (left ventricular end-diastolic pressure).",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1432",
+    "category": "Medical Emergencies",
+    "stem": "The flight nurse is preparing to transfer a patient from an acute care hospital to rehab in another state. The patient was initially admitted four days prior due to an ischemic stroke and now complains of a headache that started this morning. Vital signs are as follows:\n\nBP: 160/90 mmHg\nHR: 80 beats/min\nRR: 18 breaths/min\nSPO2: 97% (room air)\n\nThe nurse's NEXT action should be to ask for an order for:",
+    "options": [
+      "A) Toradol (ketorolac)",
+      "B) MRI",
+      "C) Apixaban (hydralazine)",
+      "D) Head CT"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "The nurse should rule out the possibility of a hemorrhagic conversion. This is when the ischemic stroke converts into a hemorrhagic stroke at the site of the original insult. A CT would be the exam to look for blood in the head.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1433",
+    "category": "Medical Emergencies",
+    "stem": "A transport team is transporting an adult patient with type 1 diabetes mellitus who presents to the emergency department with a one day history of polydipsia, polyuria, vomiting, and generalized weakness. Laboratory results are as follows:\n\nSerum sodium 128 mEq/L\nSerum potassium 3.2 mEq/L\nSerum chloride 94 mEq/L\nSerum glucose 550 mg/dL\nSerum calcium 8.8 mg/dL\nBlood urea nitrogen (BUN) 40 mg/dL\nCreatinine level 1.3 mg/dL\nCO2 1.4 mEq/L\n\nThe flight nurse should prepare to administer which medication FIRST?",
+    "options": [
+      "A) Regular insulin",
+      "B) Calcium chloride",
+      "C) Sodium bicarbonate",
+      "D) Potassium chloride"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Low serum potassium occurs as insulin promotes the return of potassium and glucose into the cell and metabolic acidosis is reversed. The potassium level must be 3.3 mEq or greater before insulin therapy is initiated. The potassium level must be checked frequently as insulin drives potassium into the cell, and serum potassium can drop precipitously.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1434",
+    "category": "Special Populations",
+    "stem": "The flight crew is on scene for a 911 EMS request. The basic life support unit on scene leads the nurse to a tall, 19-year-old male who has sudden shortness of breath and decreased breath sounds on the left side. Vital signs are as follows:\n\nBP 134/70 mmHg\nHR 134 beats/min\nRR 30 breaths/min\nT (oral) 94.4\u00b0F (36.8\u00b0C)\nO2 Sat 80% on room air.\n\nThe NEXT procedure the nurse should prepare for is:",
+    "options": [
+      "A) Needle decompression",
+      "B) Rapid sequence intubation",
+      "C) Oxygen administration at 4L/min via nasal cannula",
+      "D) Intravenous access"
+    ],
+    "correct": [
+      "A"
+    ],
+    "rationale": "The patient is having a spontaneous pneumothorax. Tall, thin, adolescent males are most at risk. Because of the patient's oxygen saturation, needle decompression should be the first action to correct the issue.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1435",
+    "category": "Special Populations",
+    "stem": "When intubating a pediatric patient, BEST practice is to use which type of endotracheal tube and place the child in which position?",
+    "options": [
+      "A) Cuffed, flexed",
+      "B) Uncuffed, neutral",
+      "C) Cuffed, neutral",
+      "D) Uncuffed, flexed"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "The standard of care is a cuffed tube for all ages if available for intubation. Because of the large size of the child's head, a towel should be placed under the shoulders to allow for a neutral position. Having the neck flexed can obstruct the airway.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1436",
+    "category": "Special Populations",
+    "stem": "The flight crew responds to a scene call of a mother in a remote location who has given birth to a full-term infant. The delivery was uncomplicated and facilitated by local EMS. The neonate is demonstrating rapidly increasing work of breathing and increased oxygen requirements. The flight nurse suspects neonatal respiratory distress syndrome. The initial treatment should be:",
+    "options": [
+      "A) Terbutaline (Broncyl) 0.01 g/kg intrag (IO)",
+      "B) Rapid sequence intubation",
+      "C) Continuous positive airway pressure",
+      "D) Albuterol (Proventil) 0.3 mg/kg inhaled"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Continuous positive airway pressure is the preferred initial approach to neonatal respiratory distress syndrome (RDS) as it can reduce the need for intubation, mechanical ventilation and surfactant administration. Intubation should be used if oxygen requirements exceed 60-70% and CPAP is ineffective. Albuterol and terbutaline are not used to treat neonatal RDS.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1437",
+    "category": "Special Populations",
+    "stem": "The nurse is called to transport a pediatric patient with seizures who is currently post-ictal. During transport, the nurse observes him becoming confused, diaphoretic, and jittery. The nurse should FIRST consider",
+    "options": [
+      "A) Preparing to intubate",
+      "B) Checking the patient's blood glucose level",
+      "C) Applying soft restraints",
+      "D) Administering lorazepam (Ativan) IV push"
+    ],
+    "correct": [
+      "B"
+    ],
+    "rationale": "Checking the patient's blood glucose level is what the nurse should consider first. Seizures can cause an increase in energy and burn glucose; hypoglycemia can produce seizures in pediatric patients.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1438",
+    "category": "Special Populations",
+    "stem": "A 330-lb (150-kg) patient is being transported. Upon initiation of mechanical ventilation, high-pressure alarm sounds. Peak inspiratory pressure is 45 cm H2O, plateau pressure is 36 mm Hg, I:E ratio is 1:2.3 and oxygen saturation is 92%. The ventilator is on the following settings:\n\nMode: Assist Control\nRate: 16 breaths/min\nTidal Volume 900 mL\nFiO2 60%\nPEEP 5 cm H2O\n\nWhich of the following ventilator settings should be decreased?",
+    "options": [
+      "A) Rate",
+      "B) PEEP",
+      "C) Tidal volume",
+      "D) Inspiratory time"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Decreasing tidal volume will decrease the peak inspiratory pressure. The rate does not affect peak and plateau pressure unless it is at a high enough rate to cause breath stacking. A PEEP of 5 cm H2O will not cause a significant increase in plateau pressure.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1439",
+    "category": "Special Populations",
+    "stem": "The flight nurse is transporting a 6-year-old child from a youth football game after \"being knocked out of him.\" Vital signs:\n\nBP 85/50 mmHg\nHR 120 beats/min\nRR 26 breaths/min\nSPO2 93% on room air\n\nThe nurse suspects:",
+    "options": [
+      "A) Splenic rupture",
+      "B) Pneumothorax",
+      "C) Pulmonary contusion",
+      "D) Cardiac contusion"
+    ],
+    "correct": [
+      "C"
+    ],
+    "rationale": "Because of the incomplete calcification of the pediatric skeleton, the bones are more pliable and therefore may not result in fracture after injury. This does not mean that the underlying structures may not still be affected by the injury. Hypotension may present with pneumothorax and splenic rupture; however, this patient is normotensive for their age (70-2x age). Cardiac contusion is likely to cause arrhythmias, not necessarily tachycardia.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1440",
+    "category": "Special Populations",
+    "stem": "The flight crew is called to transport a child who was involved in a motor vehicle collision and the child is diagnosed with massive hemothorax and a chest tube was placed. Upon reassessment the patient has flat neck veins, hypotension, tachypnea, and cyanosis. The flight nurse anticipates which PRIORITY intervention prior to departure?",
+    "options": [
+      "A) Endotracheal intubation",
+      "B) Exploratory laparotomy",
+      "C) Chest tube replacement",
+      "D) Pericardiocentesis"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Massive hemothorax can result in cardiac tamponade which presents with flat neck veins, hypotension, dyspnea, and cyanosis. Intervention should be pericardiocentesis and surgical drainage to relieve the tamponade and increase venous return.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1441",
+    "category": "Special Populations",
+    "stem": "Following initiation of bag mask ventilation of a preterm neonate, the oxygen saturation remains 88% and cyanosis persists. Auscultation reveals bowel sounds on the left side of the chest and a scaphoid abdomen. The nurse should suspect",
+    "options": [
+      "A) Umbilical hernia",
+      "B) An omphalocele",
+      "C) A perforated bowel",
+      "D) Diaphragmatic hernia"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "A diaphragmatic hernia is a defect in the diaphragm allowing herniation of the abdominal contents to migrate in to the thoracic cavity causing low oxygen saturations, auscultation of bowel sounds on the affected side of the chest, and a scaphoid abdomen.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1442",
+    "category": "Special Populations",
+    "stem": "The transport nurse arrives at a small facility lacking obstetrics services. When the team enters the room, they observe the patient crowning. There is no history of prenatal care and the gestational age is unknown. Following delivery and stimulation, the neonate's vital signs are:\n\nHR: 70 beats/min\nO2 sat: 66% (room air)\n\nThe infant is grunting and has poor tone with blue arms and legs noted. The nurse's NEXT action should be to:",
+    "options": [
+      "A) Administer a fluid bolus of 10 mL/kg",
+      "B) Administer IV epinephrine 0.01 mg/kg",
+      "C) Perform positive pressure ventilations on 40% oxygen",
+      "D) Perform positive pressure ventilations on room air"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "Positive pressure ventilation is the initial treatment for a neonate in distress. During the first few minutes of life, oxygen saturation levels are typically below the 'normal' range for older children and adults. Providing oxygen can be harmful to neonates and should only be provided if they are intubated.",
+    "type": "single_select"
+  },
+  {
+    "id": "Q1443",
+    "category": "Special Populations",
+    "stem": "On scene, a 2-year-old is reported to be unconscious secondary to foreign body aspiration. Using a laryngoscope, the transport nurse notes a coin just below the glottis. The nurse should",
+    "options": [
+      "A) Place an oropharyngeal airway and ventilate the patient",
+      "B) Use the ET tube to push the coin into a mainstream bronchus",
+      "C) Immediately perform cricothyrotomy",
+      "D) Use Magill forceps to remove the coin"
+    ],
+    "correct": [
+      "D"
+    ],
+    "rationale": "The nurse should use Magill forceps. If the foreign body can be visualized with a laryngoscope, then an attempt to remove it should be made. The other options are to be tried after this attempt.",
+    "type": "single_select"
   }
 ]
