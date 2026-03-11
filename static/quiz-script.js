@@ -14,6 +14,8 @@
    - Image question support
    - CFRN/CCRN 80/20 new/recycled question split
    - Mastery ID recording on quiz completion
+   - Missed ID recording on quiz completion (persistent, per bank)
+   - Question filter support: new / answered / missed (via &filter= URL param)
    
    PATCH NOTES:
    - Bank detection for CFRN / CCRN modules
@@ -40,6 +42,11 @@
      Special Populations 10.0%
      Weighting applied to new-pool only; least-asked-first preserved within each domain bucket.
      Recycled pool remains unweighted (shuffled). Backfill handles domain shortfalls.
+   - &filter=new,answered,missed URL param pre-filters pool before selection logic.
+     All checked or none checked → no filtering (full bank, existing behavior).
+     Filter reads StudyGuruProgress attemptsMap + missedIds for the detected bank.
+   - finishQuiz() records wrong-first-try question IDs to persistent missedIds store.
+     Questions answered correctly that were previously missed are removed from missedIds.
    
 ------------------------------------------------------------ */
 
@@ -72,6 +79,18 @@
     'Medical Emergencies':                                     0.267,
     'Special Populations':                                     0.100
   };
+
+  // -----------------------------------------------------------
+  // Quiz Filter — read &filter= URL param once at load time.
+  // filterModes is null when param is absent (no filtering applied).
+  // All-checked and none-checked both produce no param → null → full pool.
+  // -----------------------------------------------------------
+  const _filterRaw = new URLSearchParams(window.location.search).get('filter');
+  const filterModes = _filterRaw ? new Set(_filterRaw.split(',')) : null;
+
+  if (filterModes) {
+    console.log('[Quiz] Filter modes active:', Array.from(filterModes).join(', '));
+  }
 
   // Letter labels for options
   const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
@@ -394,6 +413,49 @@
   }
 
   // -----------------------------------------------------------
+  // Quiz Filter Application
+  // Pre-filters the question pool before mastery split / weighting.
+  // Only active when filterModes is non-null (specific param was sent).
+  // bank is required for missed ID lookup; falls back to no filter if absent.
+  // -----------------------------------------------------------
+  function applyQuizFilter(questions, bank) {
+    // No filter param → full pool (all-checked / none-checked both produce null)
+    if (!filterModes || !bank) return questions;
+
+    const store = getProgressStore();
+    if (!store) return questions;
+
+    const attemptsMap = store.getAttemptsMap();
+    const missedIds   = store.getMissedIds(bank);  // Set<string>
+
+    const wantNew      = filterModes.has('new');
+    const wantAnswered = filterModes.has('answered');
+    const wantMissed   = filterModes.has('missed');
+
+    const filtered = questions.filter(q => {
+      const id       = q.id || '';
+      const attempts = attemptsMap[id] || 0;
+      const isMissed = missedIds.has(id);
+
+      if (wantNew      && attempts === 0)  return true;
+      if (wantAnswered && attempts > 0)    return true;
+      if (wantMissed   && isMissed)        return true;
+      return false;
+    });
+
+    console.log(`[Quiz] Filter [${Array.from(filterModes).join(',')}]: ${filtered.length}/${questions.length} questions pass`);
+
+    // If filter produces an empty pool (e.g. "missed only" but no missed IDs yet),
+    // fall back to the full pool so the quiz doesn't silently fail.
+    if (filtered.length === 0) {
+      console.warn('[Quiz] Filter produced empty pool — falling back to full question bank');
+      return questions;
+    }
+
+    return filtered;
+  }
+
+  // -----------------------------------------------------------
   // MASTERY-AWARE Question Selection
   // -----------------------------------------------------------
 
@@ -663,21 +725,29 @@
 
     const bank = detectBank();
 
+    // -----------------------------------------------------------
+    // Apply question filter BEFORE mastery split / domain weighting.
+    // Retry runs bypass filtering (they already have the exact missed set).
+    // -----------------------------------------------------------
+    const poolToUse = (!opts.isRetry && filterModes)
+      ? applyQuizFilter(normalized, bank)
+      : normalized;
+
     let selected;
 
     if (opts.isRetry) {
       selected = shuffle(normalized);
 
     } else if (bank) {
-      selected = selectWithMasterySplit(normalized, requested, isComprehensive, isCategoryQuiz, bank);
+      selected = selectWithMasterySplit(poolToUse, requested, isComprehensive, isCategoryQuiz, bank);
 
     } else if (isComprehensive || isCategoryQuiz) {
-      selected = selectQuestionsWithWeighting(normalized, requested, isComprehensive, isCategoryQuiz)
+      selected = selectQuestionsWithWeighting(poolToUse, requested, isComprehensive, isCategoryQuiz)
         .map(q => ({ ...q, _isNew: false }));
 
     } else {
-      selected = shuffle(normalized)
-        .slice(0, Math.min(requested, normalized.length))
+      selected = shuffle(poolToUse)
+        .slice(0, Math.min(requested, poolToUse.length))
         .map(q => ({ ...q, _isNew: false }));
     }
 
@@ -1406,6 +1476,9 @@
         }
       }
 
+      // -----------------------------------------------------------
+      // Mastery IDs — record new questions answered this session
+      // -----------------------------------------------------------
       if (run.bank && !run.isRetry && store.addMasteredIds) {
         const newIds = run.perQuestion
           .map(p => p.questionObj)
@@ -1416,6 +1489,46 @@
         if (newIds.length > 0) {
           store.addMasteredIds(run.bank, newIds);
           console.log(`[Quiz] Recorded ${newIds.length} mastered IDs to ${run.bank} bank`);
+          window.dispatchEvent(new CustomEvent('masteryUpdated', { detail: { bank: run.bank } }));
+        }
+      }
+
+      // -----------------------------------------------------------
+      // Missed IDs — persist wrong-first-try questions; remove recovered ones.
+      // Applies to CFRN/CCRN comprehensive and category quizzes.
+      // Retry runs are excluded — they are already pulled from the missed pool
+      // and their outcome is already recorded from the original quiz attempt.
+      // -----------------------------------------------------------
+      if (run.bank && !run.isRetry && store.addMissedIds && store.removeMissedIds) {
+        const existingMissed = store.getMissedIds(run.bank);  // Set<string>
+
+        const nowMissedIds  = [];  // wrong on first try this session
+        const nowFixedIds   = [];  // was previously missed, answered correctly this time
+
+        run.perQuestion.forEach(p => {
+          const id = p.id;
+          if (!id) return;
+          const wasCorrect  = p.correct === true;
+          const wasMissed   = existingMissed.has(id);
+
+          if (!wasCorrect) {
+            nowMissedIds.push(id);
+          } else if (wasMissed && wasCorrect) {
+            nowFixedIds.push(id);
+          }
+        });
+
+        if (nowMissedIds.length > 0) {
+          store.addMissedIds(run.bank, nowMissedIds);
+          console.log(`[Quiz] Recorded ${nowMissedIds.length} missed IDs to ${run.bank} bank`);
+        }
+        if (nowFixedIds.length > 0) {
+          store.removeMissedIds(run.bank, nowFixedIds);
+          console.log(`[Quiz] Removed ${nowFixedIds.length} recovered IDs from ${run.bank} missed bank`);
+        }
+
+        // Fire a storage-style event so the landing page filter counts refresh
+        if (nowMissedIds.length > 0 || nowFixedIds.length > 0) {
           window.dispatchEvent(new CustomEvent('masteryUpdated', { detail: { bank: run.bank } }));
         }
       }
@@ -1590,7 +1703,8 @@
         isCategoryQuiz: state.isCategoryQuiz,
         autostart: state.autostart,
         quizLength: state.quizLength,
-        bank: detectBank()
+        bank: detectBank(),
+        filterModes: filterModes ? Array.from(filterModes) : null
       });
 
       if (els.startBtn) els.startBtn.disabled = false;
