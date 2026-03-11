@@ -6,6 +6,7 @@
    - Tracks per-question attempt counts
    - Tracks category performance (scores over time)
    - Tracks CFRN/CCRN mastery IDs with target-date cycles
+   - Tracks CFRN/CCRN missed question IDs (wrong on first try)
    - Tracks CFRN/CCRN cycle-specific category performance
    - All data stored on-device only (localStorage)
    - Persists across sessions
@@ -25,6 +26,10 @@
   const MASTERED_KEYS = {
     cfrn: PREFIX + 'cfrnMasteredIds',
     ccrn: PREFIX + 'ccrnMasteredIds'
+  };
+  const MISSED_KEYS = {
+    cfrn: PREFIX + 'missedIds:cfrn',
+    ccrn: PREFIX + 'missedIds:ccrn'
   };
   const TARGET_KEYS = {
     cfrn: PREFIX + 'cfrnTargetDate',
@@ -221,6 +226,75 @@
   }
 
   // ============================================================
+  // MISSED ID TRACKING  (per bank: 'cfrn' | 'ccrn')
+  // Persists across sessions. Cleared on full cycle reset.
+  // Questions are added when answered wrong on first try in a quiz,
+  // and removed when subsequently answered correctly.
+  // ============================================================
+
+  /**
+   * Returns a Set of question IDs answered incorrectly at some point.
+   * @param {'cfrn'|'ccrn'} bank
+   * @returns {Set<string>}
+   */
+  function getMissedIds(bank) {
+    const key = MISSED_KEYS[bank];
+    if (!key) return new Set();
+    const arr = safeJsonParse(localStorage.getItem(key), []);
+    return new Set(arr);
+  }
+
+  /**
+   * Add question IDs to the missed set (answered wrong on first try).
+   * @param {'cfrn'|'ccrn'} bank
+   * @param {string[]} ids
+   */
+  function addMissedIds(bank, ids) {
+    const key = MISSED_KEYS[bank];
+    if (!key || !ids || !ids.length) return;
+    const existing = getMissedIds(bank);
+    ids.forEach(id => { if (id) existing.add(id); });
+    try { localStorage.setItem(key, JSON.stringify(Array.from(existing))); }
+    catch (e) { console.error('[ProgressStore] Failed to save missed IDs:', e); }
+    console.log(`[ProgressStore] ${bank.toUpperCase()} missed IDs: ${existing.size} total`);
+  }
+
+  /**
+   * Number of missed questions for this bank.
+   * @param {'cfrn'|'ccrn'} bank
+   * @returns {number}
+   */
+  function getMissedCount(bank) {
+    return getMissedIds(bank).size;
+  }
+
+  /**
+   * Remove question IDs from the missed set (answered correctly on retry).
+   * @param {'cfrn'|'ccrn'} bank
+   * @param {string[]} ids
+   */
+  function removeMissedIds(bank, ids) {
+    const key = MISSED_KEYS[bank];
+    if (!key || !ids || !ids.length) return;
+    const existing = getMissedIds(bank);
+    ids.forEach(id => existing.delete(id));
+    try { localStorage.setItem(key, JSON.stringify(Array.from(existing))); }
+    catch (e) { console.error('[ProgressStore] Failed to update missed IDs:', e); }
+    console.log(`[ProgressStore] ${bank.toUpperCase()} missed IDs after removal: ${existing.size} total`);
+  }
+
+  /**
+   * Clear all missed IDs for a bank (cycle reset).
+   * @param {'cfrn'|'ccrn'} bank
+   */
+  function clearMissedIds(bank) {
+    const key = MISSED_KEYS[bank];
+    if (!key) return;
+    try { localStorage.removeItem(key); }
+    catch (e) { console.error('[ProgressStore] Failed to clear missed IDs:', e); }
+  }
+
+  // ============================================================
   // TARGET DATE  (per bank)
   // ============================================================
 
@@ -274,6 +348,7 @@
       clearMasteredIds(bank);
       clearTargetDate(bank);
       clearCyclePerf(bank);
+      clearMissedIds(bank);
       console.log(`[ProgressStore] ${bank.toUpperCase()} study cycle reset — target date has passed`);
       return true;
     }
@@ -432,6 +507,7 @@
       localStorage.removeItem(DAILY_KEY);
       localStorage.removeItem(CATEGORY_PERF_KEY);
       Object.values(MASTERED_KEYS).forEach(k => localStorage.removeItem(k));
+      Object.values(MISSED_KEYS).forEach(k => localStorage.removeItem(k));
       Object.values(TARGET_KEYS).forEach(k => localStorage.removeItem(k));
       Object.values(CYCLE_PERF_KEYS).forEach(k => localStorage.removeItem(k));
       console.log('[ProgressStore] All progress data cleared');
@@ -476,6 +552,13 @@
     getMasteredCount,
     addMasteredIds,
     clearMasteredIds,
+
+    // Missed ID tracking (CFRN / CCRN)
+    getMissedIds,
+    getMissedCount,
+    addMissedIds,
+    removeMissedIds,
+    clearMissedIds,
 
     // Target date
     getTargetDate,
