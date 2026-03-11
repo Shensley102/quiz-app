@@ -156,6 +156,7 @@
   font-weight: 700;
   line-height: 1.4;
   margin: 14px 0 14px 0;
+  white-space: pre-line; /* renders \n line breaks in stems (vitals, ABG, hemodynamics) */
 }
 
 /* Options Form */
