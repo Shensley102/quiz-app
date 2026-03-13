@@ -477,6 +477,11 @@
     }
     const actualNew      = Math.min(newTarget, newPool.length);
     const actualRecycled = Math.min(requested - actualNew, recycledPool.length);
+    // If recycled pool can't fill its quota (e.g. filter shows only new questions,
+    // leaving masteredPool empty), backfill the shortfall from the new pool so the
+    // total always equals `requested` (when enough questions exist).
+    const recycledShortfall = (requested - actualNew) - actualRecycled;
+    const finalActualNew    = actualNew + Math.min(recycledShortfall, newPool.length - actualNew);
 
     // -----------------------------------------------------------
     // Domain-weighted selection from the new pool (CFRN only)
@@ -505,12 +510,12 @@
       const targets = {};
       let totalAssigned = 0;
       domainKeys.forEach(k => {
-        targets[k] = Math.round(actualNew * domainWeights[k]);
+        targets[k] = Math.round(finalActualNew * domainWeights[k]);
         totalAssigned += targets[k];
       });
 
       // Fix rounding drift — add/subtract from the largest domain
-      const drift = actualNew - totalAssigned;
+      const drift = finalActualNew - totalAssigned;
       if (drift !== 0) {
         const largest = domainKeys.reduce((a, b) => targets[a] >= targets[b] ? a : b);
         targets[largest] += drift;
@@ -550,7 +555,7 @@
     } else {
       // Non-CFRN bank — flat least-asked-first (original behaviour)
       selectedNew = sortByAttemptsLocal(newPool, store)
-        .slice(0, actualNew)
+        .slice(0, finalActualNew)
         .map(q => ({ ...q, _isNew: true }));
     }
 
