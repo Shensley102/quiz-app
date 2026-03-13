@@ -47,6 +47,9 @@
      Filter reads StudyGuruProgress attemptsMap + missedIds for the detected bank.
    - finishQuiz() records wrong-first-try question IDs to persistent missedIds store.
      Questions answered correctly that were previously missed are removed from missedIds.
+   - FIX: For CFRN/CCRN banks, "Start New Quiz" navigates back to the full landing
+     page (backUrl) so the mastery widget + filter panel are always visible. For all
+     other quizzes the local launcher is shown as before.
    
 ------------------------------------------------------------ */
 
@@ -1628,12 +1631,29 @@
   // Event Setup
   // -----------------------------------------------------------
   function setupEvents() {
-    if (els.startBtn)           els.startBtn.addEventListener('click', startQuiz);
-    if (els.resetBtn)           els.resetBtn.addEventListener('click', resetQuiz);
-    if (els.resumeBtn)          els.resumeBtn.addEventListener('click', resumeQuiz);
-    if (els.submitBtn)          els.submitBtn.addEventListener('click', handleSubmit);
-    if (els.retryMissedBtn)     els.retryMissedBtn.addEventListener('click', startRetryQuiz);
-    if (els.restartBtnSummary)  els.restartBtnSummary.addEventListener('click', () => showView('launcher'));
+    if (els.startBtn)       els.startBtn.addEventListener('click', startQuiz);
+    if (els.resetBtn)       els.resetBtn.addEventListener('click', resetQuiz);
+    if (els.resumeBtn)      els.resumeBtn.addEventListener('click', resumeQuiz);
+    if (els.submitBtn)      els.submitBtn.addEventListener('click', handleSubmit);
+    if (els.retryMissedBtn) els.retryMissedBtn.addEventListener('click', startRetryQuiz);
+
+    // -----------------------------------------------------------
+    // "Start New Quiz" — for CFRN/CCRN, navigate back to the full
+    // landing page so the mastery widget + filter panel are shown.
+    // For all other quiz types, show the local launcher as before.
+    // -----------------------------------------------------------
+    if (els.restartBtnSummary) {
+      els.restartBtnSummary.addEventListener('click', () => {
+        const bank = detectBank();
+        if (bank && window.backUrl) {
+          // Return to CFRN/CCRN landing page (has widgets + filter panel)
+          window.location.href = window.backUrl;
+        } else {
+          // Non-CFRN/CCRN: show the local launcher
+          showView('launcher');
+        }
+      });
+    }
 
     if (els.lengthBtns) {
       els.lengthBtns.querySelectorAll('.seg-btn').forEach(btn => {
