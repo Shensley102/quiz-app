@@ -4674,7 +4674,7 @@
   {
     "id": "Q0293",
     "category": "Resuscitation Principles",
-    "stem": "The flight team is called to transport an intubated child who was found in a house fire. The child has suffered significant burns to their chest, back, bilateral arms, neck, and face. The child has been difficult to ventilate with limited chest wall movement. Ventilator settings:\n\nPressure Control Ventilation\nFiO2: 100%\nPEEP: 5 cm H2O\nPressure control: 10 cm H2O\nRespirations: 20 breaths/min\nPeak inspiratory pressure: 45 cm H2O Vitals signs:\nBP 95/55 mmHg\nHR 125 beats/min\nRR 20 breaths/min\nO2 Sat: 85% (ventilated)\n\nThe MOST appropriate intervention is:",
+    "stem": "The flight team is called to transport an intubated child who was found in a house fire. The child has suffered significant burns to their chest, back, bilateral arms, neck, and face. The child has been difficult to ventilate with limited chest wall movement. \n\nVentilator settings:\nPressure Control Ventilation\nFiO2: 100%\nPEEP: 5 cm H2O\nPressure control: 10 cm H2O\nRespirations: 20 breaths/min\nPeak inspiratory pressure: 45 cm H2O Vitals signs:\nBP 95/55 mmHg\nHR 125 beats/min\nRR 20 breaths/min\nO2 Sat: 85% (ventilated)\n\nThe MOST appropriate intervention is:",
     "options": [
       "Increase PEEP",
       "Sedate the airway",
