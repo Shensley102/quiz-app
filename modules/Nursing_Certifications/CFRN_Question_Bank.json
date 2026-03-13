@@ -11042,12 +11042,12 @@
   {
     "id": "Q0691",
     "category": "Trauma",
-    "stem": "The patient, a 35-year-old male, was involved in a high-speed motor vehicle accident and is suspected of having a cervical spine injury. As a flight nurse, what is the most appropriate method for immobilizing the patient during air transport? spine board. applied, then secure him to a long spine board. stabilization until advanced care is available.",
+    "stem": "The patient, a 35-year-old male, was involved in a high-speed motor vehicle accident and is suspected of having a cervical spine injury. As a flight nurse, what is the most appropriate method for immobilizing the patient during air transport?",
     "options": [
       "Apply a cervical collar and secure him to a vacuum mattress.",
-      "Use sandbags on either side of his head and secure him to a long",
-      "Apply manual in-line stabilization until a cervical collar can be",
-      "Place him in the recovery position with manual in-line"
+      "Use sandbags on either side of his head and secure him to a long spine board.",
+      "Apply manual in-line stabilization until a cervical collar can be applied, then secure him to a long spine board.",
+      "Place him in the recovery position with manual in-line stabilization until advanced care is available."
     ],
     "correct": [
       "C"
@@ -13340,7 +13340,7 @@
     "correct": [
       "D"
     ],
-    "rationale": "The most critical consideration when managing the airway of a bariatric patient is the increased risk of airway obstruction. Excessive adipose tissue can compress the upper airway, making it more prone to collapse, especially during sedation or anesthesia. - Increased risk of aspiration: While aspiration is a concern in all patients, it is not as immediately critical as airway obstruction in bariatric patients. - Difficult mask ventilation: Although mask ventilation can be challenging due to facial anatomy, it is secondary to the immediate threat posed by airway obstruction. - Rapid desaturation: Bariatric patients do experience rapid desaturation due to decreased functional residual capacity; however, this is a consequence rather than an immediate cause like airway obstruction. Thus, understanding these nuanced differences helps prioritize interventions effectively in this special population.",
+    "rationale": "The most critical consideration when managing the airway of a bariatric patient is the increased risk of airway obstruction. Excessive adipose tissue can compress the upper airway, making it more prone to collapse, especially during sedation or anesthesia. \n- Increased risk of aspiration: While aspiration is a concern in all patients, it is not as immediately critical as airway obstruction in bariatric patients. \n- Difficult mask ventilation: Although mask ventilation can be challenging due to facial anatomy, it is secondary to the immediate threat posed by airway obstruction. \n- Rapid desaturation: Bariatric patients do experience rapid desaturation due to decreased functional residual capacity; however, this is a consequence rather than an immediate cause like airway obstruction. Thus, understanding these nuanced differences helps prioritize interventions effectively in this special population.",
     "type": "single_select"
   },
   {
