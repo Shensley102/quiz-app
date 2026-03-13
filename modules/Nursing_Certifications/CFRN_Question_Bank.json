@@ -14900,10 +14900,10 @@
     "category": "Medical Emergencies",
     "stem": "Which of the following is a primary indication for initiating non-invasive ventilation (NIV) in a patient experiencing acute respiratory failure during flight?",
     "options": [
-      "Hypercapnic respiratory failure due to chronic obstructive",
-      "Hypoxemic respiratory failure due to pneumonia",
-      "Acute respiratory distress syndrome (ARDS)",
-      "Severe asthma exacerbation"
+      "Hypercapnic respiratory failure due to chronic obstructive pulmonary disease (COPD).",
+      "Hypoxemic respiratory failure due to pneumonia.",
+      "Acute respiratory distress syndrome (ARDS).",
+      "Severe asthma exacerbation."
     ],
     "correct": [
       "A"
