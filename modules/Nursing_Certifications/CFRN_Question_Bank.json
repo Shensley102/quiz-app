@@ -12324,15 +12324,15 @@
     "category": "Resuscitation Principles",
     "stem": "Which of the following medications is most appropriate for managing hypotension in a patient post-intubation?",
     "options": [
-      "Epinephrine",
-      "Norepinephrine",
-      "Phenylephrine",
-      "Dopamine"
+      "Epinephrine.",
+      "Norepinephrine.",
+      "Phenylephrine.",
+      "Dopamine."
     ],
     "correct": [
       "B"
     ],
-    "rationale": "Norepinephrine is the preferred agent for managing hypotension in post-intubation patients due to its potent vasoconstrictive properties and ability to increase cardiac output without significantly increasing heart rate. Epinephrine, while also a potent vasoconstrictor, can cause significant tachycardia and arrhythmias. Phenylephrine primarily acts on alpha-adrenergic receptors causing vasoconstriction but lacks significant beta-adrenergic effects, making it less effective in increasing cardiac output. Dopamine can be used but may lead to unpredictable effects on heart rate and blood pressure depending on the dose, making it less ideal compared to norepinephrine. - Epinephrine: Incorrect due to risk of tachycardia and arrhythmias. - Norepinephrine: Correct due to balanced vasoconstriction and cardiac output enhancement without excessive heart rate increase. - Phenylephrine: Incorrect as it lacks beta-adrenergic effects necessary for optimal cardiac output. - Dopamine: Incorrect due to variable effects based on dosage which can complicate management.",
+    "rationale": "Norepinephrine is the preferred agent for managing hypotension in post-intubation patients due to its potent vasoconstrictive properties and ability to increase cardiac output without significantly increasing heart rate. \n - Epinephrine, while also a potent vasoconstrictor, can cause significant tachycardia and arrhythmias. \n - Phenylephrine primarily acts on alpha-adrenergic receptors causing vasoconstriction but lacks significant beta-adrenergic effects, making it less effective in increasing cardiac output. \n - Dopamine can be used but may lead to unpredictable effects on heart rate and blood pressure depending on the dose, making it less ideal compared to norepinephrine. \n - Epinephrine: Incorrect due to risk of tachycardia and arrhythmias. \n - Norepinephrine: Correct due to balanced vasoconstriction and cardiac output enhancement without excessive heart rate increase. \n - Phenylephrine: Incorrect as it lacks beta-adrenergic effects necessary for optimal cardiac output. \n - Dopamine: Incorrect due to variable effects based on dosage which can complicate management.",
     "type": "single_select"
   },
   {
