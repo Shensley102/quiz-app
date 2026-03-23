@@ -986,23 +986,6 @@
     "type": "single_select"
   },
   {
-    "id": "Q0636",
-    "category": "Special Populations",
-    "stem": "In managing a pediatric patient with traumatic brain injury (TBI), which of the following interventions is most critical to prevent secondary brain injury?",
-    "options": [
-      "Administering hypertonic saline to reduce intracranial pressure",
-      "Providing high-flow oxygen to maintain adequate oxygenation",
-      "Ensuring normothermia to prevent hyperthermia-induced complications",
-      "Administering mannitol to decrease cerebral edema"
-    ],
-    "correct": [
-      "A"
-    ],
-    "answer": "Administering hypertonic saline to reduce intracranial pressure",
-    "rationale": "Administering hypertonic saline is crucial for reducing intracranial pressure in pediatric patients with TBI, as it helps draw fluid out of the brain tissue, decreasing cerebral edema. While providing high-flow oxygen (Providing high-flow oxygen to maintain adequate oxygenation) is essential for maintaining adequate oxygenation, it does not directly address intracranial pressure. Ensuring normothermia (Ensuring normothermia to prevent hyperthermia-induced) is important but secondary compared to immediate management of intracranial pressure. Mannitol (Administering mannitol to decrease cerebral edema) can also be used but has a slower onset and more potential side effects compared to hypertonic saline. Therefore, hypertonic saline is preferred for its rapid action in reducing intracranial pressure.",
-    "type": "single_select"
-  },
-  {
     "id": "Q0643",
     "category": "Special Populations",
     "stem": "In the context of flight transport nursing, which of the following actions is most appropriate when a flight nurse suspects that a pediatric patient is a victim of neglect?",
