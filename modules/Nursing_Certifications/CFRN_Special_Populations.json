@@ -1039,7 +1039,7 @@
   {
     "id": "Q0673",
     "category": "Special Populations",
-    "stem": "During an emergency flight transport, you are caring for a 2-month-old infant named the patient who requires administration of fentanyl for pain management. Considering the pharmacokinetic differences in neonates, which of the following is the most appropriate consideration when administering fentanyl to the patient?",
+    "stem": "During an emergency flight transport, you are caring for a 2-month-old infant patient who requires administration of fentanyl for pain management. Considering the pharmacokinetic differences in neonates, which of the following is the most appropriate consideration when administering fentanyl to the patient?",
     "options": [
       "Fentanyl should be administered at adult doses due to similar metabolism rates.",
       "Fentanyl should be administered at lower doses due to reduced hepatic enzyme activity.",
@@ -1935,23 +1935,6 @@
     ],
     "answer": "Perform Mauriceau's maneuver.",
     "rationale": "Mauriceau's maneuver is a method used in assisting a breech delivery in which the infant's body is supported by the right forearm while traction is made upon the shoulders by the left hand, maintaining the fetal head in a flexed position. The index and middle fingers are placed over the maxillary prominence on either side of the nose.",
-    "type": "single_select"
-  },
-  {
-    "id": "Q1333",
-    "category": "Special Populations",
-    "stem": "Which of the following fetal heart monitoring strips indicates fetal hypoxia and constitutes an emergency? (Visual question -- strip C shows late decelerations)",
-    "options": [
-      "Strip A -- reassuring pattern with FHR variability",
-      "Strip B -- early decelerations mirroring contractions",
-      "Strip C -- late decelerations occurring after peak of contraction",
-      "Strip D -- variable decelerations, V or W shaped"
-    ],
-    "correct": [
-      "C"
-    ],
-    "answer": "Strip C -- late decelerations occurring after peak of contraction",
-    "rationale": "Late decelerations are a transient decrease in heart rate occurring at or after the peak of a uterine contraction, which indicates uteroplacental insufficiency and fetal hypoxia. A depicts a reassuring pattern which shows FHR variability. B depicts early decelerations in which the decelerations mirror the contraction and are caused by vagal stimulation from head compression. D depicts variable decelerations which can occur at any time during the contraction, are often V or W shaped, and are often caused by umbilical cord compression.",
     "type": "single_select"
   },
   {
