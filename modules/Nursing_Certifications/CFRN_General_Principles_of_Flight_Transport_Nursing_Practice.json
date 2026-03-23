@@ -2518,35 +2518,35 @@
   {
     "id": "Q0623",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a patient handoff in a flight transport scenario, the flight nurse needs to communicate effectively using the SBAR technique. The patient is being transferred for emergency surgery due to a ruptured abdominal aneurysm. Which of the following statements best represents the 'Assessment' component of SBAR?",
+    "stem": "During a patient handoff in a flight transport scenario, the flight nurse needs to communicate effectively using the SBAR technique. The patient is being transferred for emergency surgery due to a ruptured abdominal aneurysm. Which of the following statements best represents the \"Assessment\" component of SBAR?",
     "options": [
-      "'The patient is a 65-year-old male with a history of hypertension and diabetes.'",
-      "'The patients' blood pressure has dropped significantly, and he exhibiting signs of shock.'",
-      "'We need to ensure that surgical team is ready upon arrival.'",
-      "'The patient was admitted two hours ago with severe abdominal pain.'"
+      "\"The patient is a 65-year-old male with a history of hypertension and diabetes.\"",
+      "\"The patients' blood pressure has dropped significantly, and he exhibiting signs of shock.\"",
+      "\"We need to ensure that surgical team is ready upon arrival.\"",
+      "\"The patient was admitted two hours ago with severe abdominal pain.\""
     ],
     "correct": [
       "B"
     ],
-    "answer": "'The patients' blood pressure has dropped significantly, and he exhibiting signs of shock.'",
-    "rationale": "The 'Assessment' component of SBAR involves providing an analysis or interpretation of the current situation based on clinical findings. 'the patient's blood pressure has dropped significantly, and he correctly identifies the patient's current critical condition by highlighting significant changes in vital signs and symptoms indicative of shock. 'the patient is a 65-year-old male with a history of hypertension represents the 'Background' component as it provides relevant medical history. 'We need to ensure that surgical team is ready upon arrival.' represents the 'Recommendation' component by suggesting an action plan. 'the patient was admitted two hours ago with severe abdominal also falls under 'Background,' detailing recent events leading up to the current situation. The key difference lies in accurately identifying and interpreting clinical data pertinent to immediate patient care needs, which is critical for effective communication during patient handoff in high-stakes environments like flight transport nursing.",
+    "answer": "\"The patients' blood pressure has dropped significantly, and he exhibiting signs of shock.\"",
+    "rationale": "The \"Assessment\" component of SBAR involves providing an analysis or interpretation of the current situation based on clinical findings. 'the patient's blood pressure has dropped significantly, and he correctly identifies the patient's current critical condition by highlighting significant changes in vital signs and symptoms indicative of shock. 'the patient is a 65-year-old male with a history of hypertension represents the 'Background' component as it provides relevant medical history. 'We need to ensure that surgical team is ready upon arrival.' represents the 'Recommendation' component by suggesting an action plan. 'the patient was admitted two hours ago with severe abdominal also falls under 'Background,' detailing recent events leading up to the current situation. The key difference lies in accurately identifying and interpreting clinical data pertinent to immediate patient care needs, which is critical for effective communication during patient handoff in high-stakes environments like flight transport nursing.",
     "type": "single_select"
   },
   {
     "id": "Q0624",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "You are a flight nurse responding to a scene where a tanker truck has overturned, leaking an unknown chemical substance. Several bystanders are experiencing symptoms of dizziness and nausea. What is your first priority upon arrival at the scene?",
+    "stem": "You are a flight nurse responding to a scene where a tanker truck has overturned, leaking an unknown chemical substance. As your aircraft approaches, you observe several bystanders near the wreckage experiencing dizziness and nausea. What is your immediate priority?",
     "options": [
-      "Assess the bystanders for immediate medical intervention.",
-      "Establish a safe perimeter around the spill area.",
-      "Identify the chemical substance involved in the spill.",
-      "Communicate with local hazardous materials (hazmat) teams for assitance."
+      "Identify the UN number on the tanker’s placard to determine the evacuation radius.",
+      "Coordinate with LZ Command to ensure the landing site is upwind and uphill from the spill.",
+      "Instruct the ground crew to begin immediate decontamination of the symptomatic bystanders.",
+      "Request the pilot perform a low-level orbit to assess the extent of the chemical plume."
     ],
     "correct": [
       "B"
     ],
-    "answer": "Establish a safe perimeter around the spill area.",
-    "rationale": "Establishing a safe perimeter around the spill area is crucial to prevent further exposure and ensure safety. This step minimizes risk to both responders and bystanders. assessing bystanders for immediate medical intervention is important but secondary to ensuring scene safety. identifying the chemical substance involved in the spill is essential but can only be done safely after securing the area. communicating with local hazmat teams for assistance is also critical but should follow establishing a safe perimeter. The primary goal is always safety first.",
+    "answer": "Coordinate with LZ Command to ensure the landing site is upwind and uphill from the spill.",
+    "rationale": "In a Hazardous Materials incident, the flight crew’s first priority is to avoid becoming part of the incident. Because the substance is unknown and people are already symptomatic, the crew must verify that the Landing Zone (LZ) is located in the Cold Zone. By coordinating with the LZ Coordinator/Command on the ground, the flight nurse ensures the aircraft is positioned upwind and uphill to prevent exposure to toxic vapors or runoff.",
     "type": "single_select"
   },
   {
@@ -2926,18 +2926,18 @@
   {
     "id": "Q0683",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "During a flight transport mission, the flight nurse arrives at an accident scene involving multiple vehicles. As she assesses the scene, she notices downed power lines near one of the vehicles with injured passengers inside. What is the patient's most appropriate initial action to ensure scene safety?",
+    "stem": "You have just landed at a multi-vehicle accident scene. As you and your partner offload the stretcher, you observe downed power lines draped across one of the vehicles containing critically injured patients. Local fire department personnel are currently busy with a separate extraction. What is your most appropriate initial action?",
     "options": [
-      "Immediately approach the vehicle to provide urgent medical care.",
-      "Contact local utility companies to report the downed power lines.",
-      "Establish a safe perimeter around the downed power lines and keep bystanders away.",
-      "Use non-conductive materials to move the power lines away from the vehicle."
+      "Carefully approach the vehicle from the side opposite the power lines to begin triage.",
+      "Confirm with the Scene Commander that the power grid has been de-energized before approaching.",
+      "Use a non-conductive rescue hook from the aircraft to move the lines away from the patient.",
+      "Direct bystanders to move at least 50 feet away from the energized vehicle."
     ],
     "correct": [
-      "C"
+      "B"
     ],
-    "answer": "Establish a safe perimeter around the downed power lines and keep bystanders away.",
-    "rationale": "The correct answer is Establish a safe perimeter around the downed power lines and keep bystanders away. This action prioritizes overall scene safety by preventing further injuries from electrical hazards. Approaching the vehicle (Immediately approach the vehicle to provide urgent medical care.) without ensuring electrical safety could endanger both the patient and the victims. While contacting utility companies (Contact local utility companies to report the downed power lines.) is necessary, it is not an immediate action that ensures immediate scene safety. Using non-conductive materials (Use non-conductive materials to move the power lines away from the) can be hazardous if not done correctly and is not recommended as an initial step. Establishing a safe perimeter is aligned with contemporary research and recognized theories on scene safety in flight transport nursing.",
+    "answer": "Confirm with the Scene Commander that the power grid has been de-energized before approaching.",
+    "rationale": "Scene safety is the absolute priority in transport nursing, but the flight nurse must operate within the established Incident Command System (ICS). Approaching a vehicle with downed power lines is lethal regardless of the patient’s clinical status. The flight nurse must wait for a definitive \"all clear\" from the Scene Commander or the utility company verifying that the lines are de-energized.",
     "type": "single_select"
   },
   {
@@ -2994,18 +2994,18 @@
   {
     "id": "Q0697",
     "category": "General Principles of Flight Transport Nursing Practice",
-    "stem": "When selecting a landing zone (LZ) for a medical helicopter in an emergency scene, which of the following considerations is MOST critical to ensure a safe landing?",
+    "stem": "When selecting or coordinating an emergency Landing Zone (LZ) for a medical helicopter, which of the following criteria is most critical for ensuring the safety of the aircraft and crew?",
     "options": [
-      "Ensuring the LZ is at least 50 feet away from any obstacles.",
-      "Selecting an LZ with a minimum size of 100 feet by 100 feet.",
-      "Confirming that the ground surface is firm and level.",
-      "Verifying that there are no overhead wires within 200 feet of the LZ."
+      "Identifying an LZ with a minimum size of 100 feet by 100 feet that is free of overhead wires.",
+      "Ensuring the landing surface is composed of concrete or asphalt to prevent brown-out conditions.",
+      "Marking the four corners of the LZ with high-intensity flares or strobe lights.",
+      "Ensuring the landing site is at least 50 feet away from the primary incident wreckage."
     ],
     "correct": [
-      "C"
+      "A"
     ],
-    "answer": "Confirming that the ground surface is firm and level.",
-    "rationale": "Ensuring that the ground surface is firm and level (Confirming that the ground surface is firm and level.) is critical because an uneven or unstable surface can cause helicopter instability during landing or takeoff, potentially leading to accidents. Ensuring the LZ is at least 50 feet away from any obstacles., while important, does not address the primary concern of ground stability. Selecting an LZ with a minimum size of 100 feet by 100 feet. mentions the size requirement but neglects other essential factors like ground firmness. Verifying that there are no overhead wires within 200 feet of the addresses overhead wires but fails to consider ground conditions. Therefore, confirming that the ground surface is firm and level is paramount for safe landing operations.",
+    "answer": "Identifying an LZ with a minimum size of 100 feet by 100 feet that is free of overhead wires.",
+    "rationale": "The standard dimension for a safe, unsecured landing zone at an emergency scene is 100 feet by 100 feet. Overhead wires represent the single most significant hazard to helicopter operations because they are nearly invisible from the cockpit, especially during high-stress scene responses. Ensuring the LZ meets these minimum size requirements and is clear of obstructions is the primary factor in preventing a wire strike or ground strike during approach and departure.",
     "type": "single_select"
   },
   {
