@@ -153,23 +153,6 @@
     "type": "single_select"
   },
   {
-    "id": "Q0036",
-    "category": "Resuscitation Principles",
-    "stem": "The flight crew intubates a patient in acute respiratory distress; the waveform capnography is as follows. What is the priority intervention? \\[IMAGE DESCRIPTION: Capnography waveform showing ETCO₂ reading of 9 with a flat/near-zero waveform, indicating the ETT may be misplaced (esophageal intubation) or no pulmonary blood flow\\]",
-    "options": [
-      "Pull the tube and re-attempt the intubation",
-      "Place the patient on the mechanical ventilator",
-      "Increase the respiratory rate",
-      "Decrease the minute ventilation"
-    ],
-    "correct": [
-      "A"
-    ],
-    "answer": "Pull the tube and re-attempt the intubation",
-    "rationale": "Waveform capnography is the gold standard for endotracheal tube placement. This waveform and low quantitative value indicate that the tube is not in the trachea. Don't yeet your supplies during an intubation - it's poor form to launch your bougie dramatically through the air when pulling it out of the ETT and it does not add razzle dazzle to your intubation. Additionally, you'll wish your bougie was right there on the patient's chest instead of in the wheel well when you need it to fix your goosed tube.",
-    "type": "single_select"
-  },
-  {
     "id": "Q0037",
     "category": "Resuscitation Principles",
     "stem": "The transport crew arrives at the bedside of a patient on a non-rebreather at 15 liters per minute\n\nVitals are as follows:\nHR: 70 paced\nNIBP: 198/114\nRR: 40\nSpO₂: 88%\n\nThe patient keeps saying I can't breathe! The transport nurse hears crackles on auscultation of lung sounds. The priority intervention is:",
