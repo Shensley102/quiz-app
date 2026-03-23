@@ -5270,6 +5270,23 @@
     "type": "single_select"
   },
   {
+    "id": "Q2200",
+    "category": "Resuscitation Principles",
+    "stem": "Which of the following answers best describes the following ABG? \\npH: 7.49 \nCO2: 33 \nHCO3: 21 \nPaO2: 80 \nSaO2: 80 \nBE: +1",
+    "options": [
+      "Partially compensated respiratory acidosis",
+      "Partially compensated metabolic alkalosis",
+      "Fully compensated respiratory alkalosis",
+      "Partially compensated respiratory alkalosis"
+    ],
+    "correct": [
+      "D"
+    ],
+    "answer": "Partially compensated respiratory alkalosis",
+    "rationale": "First look at the pH. Here we see a pH of 7.49 telling us the patient is alkalotic. Immediately, we can eliminate any answer choice stating acidosis. Moving on to the cause of the alkalosis we see a low CO2 and a low bicarbonate. Remember the inverse relationship between CO2 and pH; if the alkalosis was respiratory in nature, we would see a low CO2 with a high pH. This is what we see in our ABG, so we can determine the cause is respiratory, and we can now eliminate choices stating metabolic. Now, determine compensation state. The compensatory mechanism for the respiratory system is the metabolic system. In the ABG, we see a low bicarbonate, telling us the metabolic system is attempting to compensate for the high pH. Therefore, it is partially compensated. Reference: Flight Medical Provider Study Guide: Current Concepts in Critical Care Transport (IA MED) (ISBN 978-1659090062). Pg 2-7.",
+    "type": "single_select"
+  },
+  {
     "id": "Q2055",
     "category": "Resuscitation Principles",
     "stem": "Which of the following mnemonic devices can be used to help the medical transport provider who is completing the primary assessment on a trauma patient who was injured when he fell from the top of a building while attempting to participate in parkour?",
