@@ -2333,15 +2333,15 @@
     "category": "Resuscitation Principles",
     "stem": "In the context of trauma care for bariatric patients, which of the following is the most critical consideration for airway management during transport?",
     "options": [
-      "Using a larger endotracheal tube to accommodate increased tissue mass",
-      "Positioning the patient in a semi-Fowler's position to optimize breathing",
-      "Ensuring rapid sequence intubation (RSI) with pre-oxygenation",
-      "Utilizing a video laryngoscope for improved visualization"
+      "Using a larger endotracheal tube to accommodate increased tissue mass.",
+      "Positioning the patient in a semi-Fowler's position to optimize breathing.",
+      "Ensuring rapid sequence intubation (RSI) with pre-oxygenation.",
+      "Utilizing a video laryngoscope for improved visualization."
     ],
     "correct": [
       "C"
     ],
-    "answer": "Ensuring rapid sequence intubation (RSI) with pre-oxygenation",
+    "answer": "Ensuring rapid sequence intubation (RSI) with pre-oxygenation.",
     "rationale": "Ensuring rapid sequence intubation (RSI) with pre-oxygenation is critical in managing the airway of bariatric trauma patients due to their increased risk of hypoxia and difficult airway. Pre-oxygenation maximizes oxygen reserves and RSI minimizes aspiration risk while securing the airway quickly. Using a larger endotracheal tube to accommodate increased tissue is incorrect because while a larger endotracheal tube might sometimes be necessary, it is not the primary concern compared to ensuring effective pre-oxygenation and securing the airway rapidly. Positioning the patient in a semi-Fowler's position to optimize is incorrect as positioning alone does not address the immediate need for securing an airway in an emergency situation. Utilizing a video laryngoscope for improved visualization, although helpful, is secondary to ensuring proper pre-oxygenation and RSI in terms of priority for airway management. Ensuring RSI with pre-oxygenation directly addresses both hypoxia prevention and rapid securement of the airway, making it the most critical consideration.",
     "type": "single_select"
   },
@@ -3147,7 +3147,7 @@
   {
     "id": "Q1002",
     "category": "Resuscitation Principles",
-    "stem": "The flight crew transports a patient who fell from approximately 20 feet. The patient is intubated with ventilator settings: Mode: SIMV FiO2: 50% TV: 350 mL RR: 14 breaths/min BP: 195/90 mmHg HR: 43 beats/min O2 sat: 95% ETCO2: 40 mm Hg The flight nurse's IMMEDIATE intervention should be to change the \\_\\_\\_\\_\\_\\_\\_\\_\\_?:",
+    "stem": "The flight crew transports a patient who fell from approximately 20 feet. The patient is subsequently intubated and placed on the ventilatory. \n\nVentilator settings: \nMode: SIMV \nFiO2: 50% \nTV: 350 mL \nRR: 14 breaths/min \n\n Vital Signs: \nBP: 195/90 mmHg \nHR: 43 beats/min \nO2 sat: 95% \nETCO2: 40 mm Hg \n\nThe flight nurse's IMMEDIATE intervention should be to change the ________?:",
     "options": [
       "FiO2 to 100%",
       "Total volume to 500 mL",
@@ -5833,7 +5833,7 @@
   {
     "id": "Q2244",
     "category": "Resuscitation Principles",
-    "stem": "Which of the following answers best describes the following ABG? pH- 7.49, CO2- 33, HCO3- 21, PaO2- 80, SaO2- 80, BE +1",
+    "stem": "Which of the following answers best describes the following ABG? \n\npH: 7.49 \nCO2: 33 \nHCO3: 21 \nPaO2: 80 \nSaO2: 80 \nBE: +1",
     "options": [
       "Partially compensated respiratory acidosis",
       "Partially compensated metabolic alkalosis",
