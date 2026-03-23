@@ -2226,7 +2226,7 @@
     "rationale": "Acute Compartment Syndrome (ACS) is characterized by severe pain out of proportion to the injury, especially with passive stretching of muscles within the compartment. Swelling and tightness are also key features, along with diminished pulses due to increased intracompartmental pressure compromising blood flow. Deep Vein Thrombosis: DVT can present with swelling and pain but lacks the characteristic severe pain on passive stretching and typically does not cause diminished pulses. Fracture-related Hematoma: While hematomas can cause swelling and pain, they do not usually lead to the significant increase in intracompartmental pressure seen in ACS. Muscle Contusion: A contusion may cause localized swelling and pain but would not present with the severe pain on passive stretching or diminished pulses typical of ACS.",
     "type": "single_select"
   },
-  }
+  {
     "id": "Q0636",
     "category": "Trauma",
     "stem": "In managing a pediatric patient with traumatic brain injury (TBI), which of the following interventions is most critical to prevent secondary brain injury?",
