@@ -2384,15 +2384,15 @@
     "category": "Medical Emergencies",
     "stem": "Which of the following laboratory findings is most indicative of Hyperosmolar Hyperglycemic Nonketotic Syndrome (HHNK)?",
     "options": [
-      "Blood glucose level >600 mg/dL with minimal ketonuria",
-      "Blood glucose level >250 mg/dL with significant ketonuria",
-      "Serum bicarbonate level \\<15 mEq/L with anion gap metabolic acidosis",
-      "Arterial pH \\<7.3 with serum ketones positive"
+      "Blood glucose level >600 mg/dL with minimal ketonuria.",
+      "Blood glucose level >250 mg/dL with significant ketonuria.",
+      "Serum bicarbonate level \\<15 mEq/L with anion gap metabolic acidosis.",
+      "Arterial pH \\<7.3 with serum ketones positive."
     ],
     "correct": [
       "A"
     ],
-    "answer": "Blood glucose level >600 mg/dL with minimal ketonuria",
+    "answer": "Blood glucose level >600 mg/dL with minimal ketonuria.",
     "rationale": "HHNK is characterized by extremely high blood glucose levels (>600 mg/dL), significant dehydration, and minimal or absent ketonuria due to sufficient insulin levels preventing lipolysis and subsequent ketone production. Blood glucose level >250 mg/dL with significant ketonuria describes a scenario more typical of DKA, where there is significant ketonuria due to ketosis. Serum bicarbonate level \\<15 mEq/L with anion gap metabolic indicates metabolic acidosis and low bicarbonate levels, also more consistent with DKA rather than HHNK. Arterial pH \\<7.3 with serum ketones positive describes a low arterial pH with positive serum ketones, another hallmark of DKA but not HHNK. Thus, option A is correct as it accurately reflects the laboratory findings specific to HHNK.",
     "type": "single_select"
   },
