@@ -2447,6 +2447,23 @@
     "rationale": "Providing a clear guideline on when to call for air medical transport (Provide a clear guideline on when to call for air medical) is crucial as it directly addresses the community's need to understand specific scenarios requiring such services. While statistical data (Emphasize statistical data on survival rates with air transport.) and personal stories (Focus on personal stories and testimonials from past patients.) can be compelling, they do not offer actionable information. Highlighting advanced medical equipment (Highlight the advanced medical equipment available on flight), although important, does not help in decision-making during emergencies. Clear guidelines empower individuals with precise knowledge, ensuring timely and appropriate use of air medical services, which is essential for improving patient outcomes.",
     "type": "single_select"
   },
+   {
+    "id": "Q0608",
+    "category": "General Principles of Flight Transport Nursing Practice",
+    "stem": "In the context of flight transport nursing, which of the following scenarios most accurately represents an act of battery?",
+    "options": [
+      "A nurse administering medication without obtaining informed consent from a conscious patient.",
+      "A nurse performing CPR on an unconscious patient without prior consent.",
+      "A nurse restraining a combative patient to prevent harm to themselves or others.",
+      "A nurse documenting a patient's refusal of treatment in their medical record."
+    ],
+    "correct": [
+      "A"
+    ],
+    "answer": "A nurse administering medication without obtaining informed consent from a conscious patient.",
+    "rationale": "Battery in a clinical setting involves intentional and unauthorized physical contact with a patient. A nurse administering medication without obtaining informed is correct because administering medication without informed consent constitutes unauthorized physical contact. A nurse performing CPR on an unconscious patient without prior is incorrect because performing CPR on an unconscious patient typically falls under implied consent, especially in emergency situations. A nurse restraining a combative patient to prevent harm to is incorrect as restraining a combative patient can be legally justified under certain circumstances to prevent harm. A nurse documenting a patient's refusal of treatment in their is incorrect as documenting refusal does not involve physical contact and thus does not constitute battery. Understanding these distinctions requires knowledge of legal principles and patient rights in healthcare settings.",
+    "type": "single_select"
+  },
   {
     "id": "Q0613",
     "category": "General Principles of Flight Transport Nursing Practice",
