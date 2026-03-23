@@ -2282,10 +2282,10 @@
     "category": "Trauma",
     "stem": "When applying a tourniquet in a pre-hospital trauma setting, what is the most critical factor to ensure effective hemostasis while minimizing potential complications?",
     "options": [
-      "Applying the tourniquet as proximal as possible to the injury",
-      "Ensuring the tourniquet is tightened until distal pulses are no longer palpable",
-      "Using a wide band tourniquet to distribute pressure evenly",
-      "Leaving the tourniquet in place for no more than two hours"
+      "Applying the tourniquet as proximal as possible to the injury.",
+      "Ensuring the tourniquet is tightened until distal pulses are no longer palpable.",
+      "Using a wide band tourniquet to distribute pressure evenly.",
+      "Leaving the tourniquet in place for no more than two hours."
     ],
     "correct": [
       "B"
@@ -2299,10 +2299,10 @@
     "category": "Trauma",
     "stem": "Your patient was involved in a high-speed motor vehicle accident. On arrival at the emergency department, he is hemodynamically unstable with signs of peritonitis. A FAST (Focused Assessment with Sonography for Trauma) exam shows free fluid in the abdomen. Which of the following is the most likely hollow organ injury?",
     "options": [
-      "Gastric perforation",
-      "Small bowel perforation",
-      "Bladder rupture",
-      "Colonic perforation"
+      "Gastric perforation.",
+      "Small bowel perforation.",
+      "Bladder rupture.",
+      "Colonic perforation."
     ],
     "correct": [
       "B"
