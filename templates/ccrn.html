@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>CCRN Practice System - Nurse Success Study Hub</title>
+
+    <!-- Captcha Gate -->
+    <meta name="turnstile-site-key" content="{{ turnstile_site_key }}">
+    <script src="/static/js/captcha-gate.js" defer></script>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='category-style.css') }}">
     <link rel="manifest" href="/static/manifest.json">
@@ -27,17 +32,11 @@
         }
         .offline-indicator.hidden { display: none; }
 
-        /* ============================================================
-           Widget Container
-        ============================================================ */
         .widget-container {
             text-align: center; margin-bottom: 20px;
             display: flex; flex-direction: column; align-items: center; gap: 10px;
         }
 
-        /* ============================================================
-           Combined Mastery + Target Date Widget — CCRN red
-        ============================================================ */
         .mastery-widget {
             display: inline-flex; flex-direction: column; align-items: center; gap: 8px;
             padding: 16px 28px;
@@ -64,12 +63,10 @@
         .mastery-widget.complete .mastery-remaining { color: #388e3c; }
         .mastery-widget.complete .mastery-progress-fill { background: linear-gradient(90deg, #388e3c, #66bb6a); }
 
-        /* Divider inside the combined card */
         .mastery-divider {
             width: 100%; height: 1px; background: rgba(229,57,53,0.15); margin: 4px 0;
         }
 
-        /* Target date section — lives inside the mastery card */
         .target-section {
             display: flex; align-items: center; justify-content: center;
             gap: 8px; font-size: 13px; color: #444; flex-wrap: wrap; width: 100%;
@@ -100,16 +97,12 @@
         .target-clear-btn:hover { background: #fee; color: #c62828; border-color: #c62828; }
         .hidden { display: none !important; }
 
-        /* Cycle reset banner */
         .cycle-reset-banner {
             display: inline-flex; align-items: center; gap: 10px;
             padding: 10px 20px; background: #e8f5e9; border: 1px solid #a5d6a7;
             border-radius: 10px; font-size: 13px; color: #2e7d32; font-weight: 600;
         }
 
-        /* ============================================================
-           Daily + Weekly Progress Widgets
-        ============================================================ */
         .daily-progress-widget,
         .weekly-progress-widget {
             display: inline-flex; align-items: center; justify-content: center;
@@ -129,7 +122,6 @@
             font-weight: 800; font-size: 16px; color: #e53935; min-width: 20px; text-align: center;
         }
 
-        /* Navigation */
         .nav-links { margin-bottom: 20px; }
         .nav-links .home-link {
             display: inline-block; color: #666; text-decoration: none;
@@ -141,14 +133,12 @@
         }
         .nav-links .back-link:hover { text-decoration: underline; }
 
-        /* Page Header */
         .page-header { margin-bottom: 30px; }
         .page-header-top { display: flex; align-items: center; gap: 15px; margin-bottom: 8px; }
         .page-header h1 { margin: 0; font-size: 2.2em; color: #333; }
         .page-header p { margin: 5px 0 0 0; color: #666; font-size: 1.05em; }
         .header-icon { font-size: 2.2em; }
 
-        /* Section */
         .section {
             background: white; border-radius: 16px; padding: 28px;
             margin-bottom: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
@@ -158,7 +148,6 @@
         .section-icon { font-size: 1.6em; }
         .section-description { color: #666; font-size: 0.95em; line-height: 1.6; margin-bottom: 20px; }
 
-        /* Comprehensive Card */
         .comprehensive-card {
             background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
             border-radius: 16px; padding: 28px; color: white; margin-bottom: 24px;
@@ -197,9 +186,6 @@
         }
         .start-comprehensive-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76,175,80,0.3); }
 
-        /* ============================================================
-           Question Filter Panel — CCRN red tint
-        ============================================================ */
         .quiz-filter-panel {
             background: rgba(0,0,0,0.18);
             border: 1px solid rgba(255,255,255,0.2);
@@ -249,7 +235,6 @@
             text-align: right;
             font-variant-numeric: tabular-nums;
         }
-        /* Dim when unchecked */
         .filter-row:has(.filter-checkbox:not(:checked)) .filter-count {
             opacity: 0.4;
         }
@@ -257,7 +242,6 @@
             opacity: 0.55;
         }
 
-        /* Category Grid */
         .category-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 16px; margin-bottom: 24px;
@@ -283,7 +267,6 @@
         }
         .category-card .question-count { color: #666; font-size: 0.85em; margin-bottom: 12px; }
 
-        /* Performance Bar */
         .performance-bar-container { margin-top: 12px; }
         .performance-bar-label {
             display: flex; justify-content: space-between;
@@ -296,7 +279,6 @@
         .performance-bar-container.no-data .performance-bar-fill { display: none; }
         .performance-bar-container.no-data .percentage { color: #999; font-weight: 500; }
 
-        /* Selection indicator */
         .selection-indicator {
             position: absolute; top: 12px; right: 12px;
             width: 24px; height: 24px; border-radius: 50%;
@@ -309,7 +291,6 @@
             content: '✓'; display: block; color: white; font-size: 14px; font-weight: bold;
         }
 
-        /* Quiz Controls */
         .quiz-controls {
             display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
             justify-content: space-between; padding: 20px;
@@ -336,7 +317,6 @@
         .start-category-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76,175,80,0.3); }
         .start-category-btn:disabled { background: #ccc; cursor: not-allowed; }
 
-        /* Reset buttons */
         .reset-actions { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
         .reset-stats-btn {
             padding: 10px 20px; background: #f5f5f5; color: #666; border: none;
@@ -384,17 +364,13 @@
             <a href="/category/Nursing_Certifications" class="back-link">← Nursing Certifications</a>
         </div>
 
-        <!-- Widget Container -->
         <div class="widget-container">
 
-            <!-- Cycle Reset Banner (hidden until auto-reset fires) -->
             <div class="cycle-reset-banner hidden" id="cycleResetBanner">
                 🎉 Study cycle complete! Your target date passed. Set a new target to begin a fresh cycle.
             </div>
 
-            <!-- Combined Mastery + Target Date Card -->
             <div class="mastery-widget" id="masteryWidget">
-                <!-- Mastery Counter -->
                 <div class="mastery-widget-header">
                     <span class="mastery-widget-icon">🎯</span>
                     <span class="mastery-widget-label">Questions Left to Master</span>
@@ -410,10 +386,8 @@
                 </div>
                 <div class="mastery-note">📍 Saved on this device only · Resets after target date</div>
 
-                <!-- Divider -->
                 <div class="mastery-divider"></div>
 
-                <!-- Target Date Section -->
                 <div class="target-section">
                     <div id="targetInputMode">
                         <span class="target-widget-icon">📅</span>
@@ -433,23 +407,20 @@
                 </div>
             </div>
 
-            <!-- Daily Counter -->
             <div class="daily-progress-widget">
                 <span class="progress-icon">☀️</span>
                 <span class="progress-label">Questions answered today:</span>
                 <span class="progress-value" id="dailyCount">0</span>
             </div>
 
-            <!-- Weekly Counter -->
             <div class="weekly-progress-widget">
                 <span class="progress-icon">📊</span>
                 <span class="progress-label">Questions answered this week:</span>
                 <span class="progress-value" id="weeklyCount">0</span>
             </div>
 
-        </div><!-- /widget-container -->
+        </div>
 
-        <!-- Page Header -->
         <div class="page-header">
             <div class="page-header-top">
                 <span class="header-icon">🏅</span>
@@ -458,7 +429,6 @@
             <p>Critical Care Registered Nurse exam preparation with performance tracking across all content areas</p>
         </div>
 
-        <!-- Section 1: Comprehensive Quiz -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">🎯</span>
@@ -478,7 +448,6 @@
                     Trauma/Shock, and more.</p>
                 </div>
 
-                <!-- Question Filter Panel -->
                 <div class="quiz-filter-panel">
                     <div class="filter-panel-label">Include:</div>
                     <label class="filter-row">
@@ -515,7 +484,6 @@
             </div>
         </div>
 
-        <!-- Section 2: Practice by Category -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">📚</span>
@@ -573,15 +541,9 @@
     <script src="{{ url_for('static', filename='js/pwa-utils.js') }}"></script>
 
     <script>
-        // ============================================================
-        // Constants
-        // ============================================================
         const BANK = 'ccrn';
         let CCRN_TOTAL = {{ total_questions | default(0) }};
 
-        // ============================================================
-        // Init — cycle check + all widget renders
-        // ============================================================
         document.addEventListener('DOMContentLoaded', async () => {
             if (!window.StudyGuruProgress) return;
 
@@ -610,9 +572,6 @@
             updateFilterCounts();
         });
 
-        // ============================================================
-        // Mastery Widget
-        // ============================================================
         function updateMasteryWidget() {
             if (!window.StudyGuruProgress) return;
             const masteredCount = window.StudyGuruProgress.getMasteredCount(BANK);
@@ -627,7 +586,6 @@
                 .classList.toggle('complete', remaining === 0 && CCRN_TOTAL > 0);
         }
 
-        // Cross-tab / cross-quiz sync
         window.addEventListener('storage', e => {
             if (e.key && e.key.startsWith('sg:v1:')) {
                 updateMasteryWidget();
@@ -644,9 +602,6 @@
             }
         });
 
-        // ============================================================
-        // Target Date Widget
-        // ============================================================
         function formatTargetDate(dateStr) {
             const [y, m, d] = dateStr.split('-').map(Number);
             return new Date(y, m - 1, d).toLocaleDateString('en-US', {
@@ -703,9 +658,6 @@
             }
         });
 
-        // ============================================================
-        // Daily + Weekly Counters
-        // ============================================================
         function updateDailyCount() {
             if (window.StudyGuruProgress)
                 document.getElementById('dailyCount').textContent =
@@ -718,15 +670,6 @@
                     window.StudyGuruProgress.answeredThisWeek();
         }
 
-        // ============================================================
-        // Filter Panel — counts + URL param builder
-        // ============================================================
-
-        /**
-         * Compute question counts for each filter category.
-         * "Answered" and "New" derived from global attemptsMap, capped at CCRN_TOTAL.
-         * "Missed" is exact and bank-specific.
-         */
         function updateFilterCounts() {
             const store = window.StudyGuruProgress;
             if (!store) return;
@@ -743,10 +686,6 @@
             document.getElementById('filterMissedCount').textContent   = missedCount;
         }
 
-        /**
-         * Build the &filter= URL param based on checkbox state.
-         * Returns '' when all or none are checked (default unfiltered behavior).
-         */
         function getFilterParam() {
             const newChecked      = document.getElementById('filterNew').checked;
             const answeredChecked = document.getElementById('filterAnswered').checked;
@@ -764,9 +703,6 @@
             return '&filter=' + parts.join(',');
         }
 
-        // ============================================================
-        // Comprehensive Quiz Launcher
-        // ============================================================
         let comprehensiveLength = 25;
         document.querySelectorAll('.comprehensive-length-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -783,9 +719,6 @@
                 `&back_url=/category/Nursing_Certifications/CCRN&back_label=CCRN Practice System${filterParam}`;
         });
 
-        // ============================================================
-        // Category Selection & Quiz Launcher
-        // ============================================================
         let selectedCategory = null;
         let selectedLength   = 25;
 
@@ -841,9 +774,6 @@
                 `&back_url=/category/Nursing_Certifications/CCRN&back_label=CCRN Practice System`;
         });
 
-        // ============================================================
-        // Performance Bars — reads from CCRN cycle performance
-        // ============================================================
         function getPerformanceColor(pct) {
             if (pct < 77) {
                 return `rgb(${Math.round(244+(255-244)*(pct/76))},${Math.round(67+(193-67)*(pct/76))},${Math.round(54+(7-54)*(pct/76))})`;
@@ -883,39 +813,6 @@
             });
         }
 
-        // ============================================================
-        // Reset Buttons
-        // ============================================================
         document.getElementById('resetStatsBtn').addEventListener('click', () => {
             if (confirm('Reset CCRN performance bar data? Your mastered question count will not be affected.')) {
-                window.StudyGuruProgress.clearCyclePerf(BANK);
-                updatePerformanceBars();
-            }
-        });
-
-        document.getElementById('resetCycleBtn').addEventListener('click', () => {
-            if (confirm('⚠️ Reset your FULL CCRN study cycle?\n\nThis will clear:\n• All mastered question IDs\n• All performance bar data\n• Your target date\n• All missed question history\n\nThis cannot be undone.')) {
-                window.StudyGuruProgress.clearMasteredIds(BANK);
-                window.StudyGuruProgress.clearCyclePerf(BANK);
-                window.StudyGuruProgress.clearTargetDate(BANK);
-                window.StudyGuruProgress.clearMissedIds(BANK);
-                updateMasteryWidget();
-                updatePerformanceBars();
-                renderTargetWidget();
-                updateFilterCounts();
-                document.getElementById('cycleResetBanner').classList.add('hidden');
-            }
-        });
-
-        // ============================================================
-        // Offline Indicator
-        // ============================================================
-        function updateOfflineIndicator() {
-            document.getElementById('offlineIndicator').classList.toggle('hidden', navigator.onLine);
-        }
-        window.addEventListener('online',  updateOfflineIndicator);
-        window.addEventListener('offline', updateOfflineIndicator);
-        updateOfflineIndicator();
-    </script>
-</body>
-</html>
+                window.
