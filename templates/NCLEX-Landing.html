@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>NCLEX Comprehensive System - Nurse Success Study Hub</title>
+
+    <!-- Captcha Gate -->
+    <meta name="turnstile-site-key" content="{{ turnstile_site_key }}">
+    <script src="/static/js/captcha-gate.js" defer></script>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='category-style.css') }}">
     
@@ -27,7 +32,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
     
     <style>
-        /* Offline indicator */
         .offline-indicator {
             position: fixed;
             top: 0;
@@ -43,7 +47,6 @@
         }
         .offline-indicator.hidden { display: none; }
 
-        /* Weekly Progress Widget */
         .weekly-progress-widget {
             display: inline-flex;
             align-items: center;
@@ -107,7 +110,6 @@
         }
         .header-icon { font-size: 2.2em; }
 
-        /* Section styling */
         .section {
             background: white;
             border-radius: 16px;
@@ -134,7 +136,6 @@
             margin-bottom: 20px;
         }
 
-        /* Comprehensive Quiz Card */
         .comprehensive-card {
             background: linear-gradient(135deg, #0099cc 0%, #006699 100%);
             border-radius: 16px;
@@ -174,7 +175,6 @@
             opacity: 0.9;
         }
 
-        /* Comprehensive Quiz Controls */
         .comprehensive-controls {
             display: flex;
             flex-wrap: wrap;
@@ -248,10 +248,6 @@
             box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
         }
 
-        /* ============================================
-           Category Quiz Launcher - One Stop Shop
-           ============================================ */
-        
         .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -307,7 +303,6 @@
             margin-bottom: 12px;
         }
 
-        /* Performance Bar */
         .performance-bar-container {
             margin-top: 12px;
         }
@@ -337,7 +332,6 @@
             transition: width 0.3s ease, background-color 0.3s ease;
         }
         
-        /* No data state */
         .performance-bar-container.no-data .performance-bar {
             background: #e8e8e8;
         }
@@ -349,7 +343,6 @@
             font-weight: 500;
         }
 
-        /* Selection indicator */
         .selection-indicator {
             position: absolute;
             top: 12px;
@@ -380,7 +373,6 @@
             font-weight: bold;
         }
 
-        /* Quiz Length Selector */
         .quiz-controls {
             display: flex;
             flex-wrap: wrap;
@@ -460,7 +452,6 @@
             box-shadow: none;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .page-header h1 { font-size: 1.8em; }
             .section { padding: 20px; }
@@ -514,7 +505,6 @@
             }
         }
 
-        /* Reset button */
         .reset-stats-btn {
             display: inline-block;
             margin-top: 16px;
@@ -534,16 +524,13 @@
     </style>
 </head>
 <body>
-    <!-- Offline Indicator -->
     <div id="offlineIndicator" class="offline-indicator hidden">
         📡 You're offline - Using cached content
     </div>
 
     <div class="container">
-        <!-- Back Link -->
         <a href="/" class="back-link">← Nurse Success Study Hub</a>
 
-        <!-- Weekly Progress Widget -->
         <div class="widget-container">
             <div class="weekly-progress-widget">
                 <span class="progress-icon">📊</span>
@@ -552,7 +539,6 @@
             </div>
         </div>
 
-        <!-- Page Header -->
         <div class="page-header">
             <div class="page-header-top">
                 <span class="header-icon">📋</span>
@@ -561,7 +547,6 @@
             <p>NCLEX-weighted practice with performance tracking across all 8 test plan categories</p>
         </div>
 
-        <!-- Section 1: Comprehensive Quiz -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">🎯</span>
@@ -581,7 +566,6 @@
                        Control (13%), Reduction of Risk (12%), and more.</p>
                 </div>
                 
-                <!-- Quiz Controls -->
                 <div class="comprehensive-controls">
                     <div class="comprehensive-length-selector">
                         <label>Quiz Length:</label>
@@ -599,7 +583,6 @@
             </div>
         </div>
 
-        <!-- Section 2: Practice by Category - ONE STOP SHOP -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">📚</span>
@@ -609,7 +592,6 @@
                 Select a category and quiz length to start focused practice. Your scores are tracked to help identify areas needing improvement.
             </p>
 
-            <!-- Category Grid - Selectable -->
             <div class="category-grid" id="categoryGrid">
                 {% for category, weight in nclex_categories.items() %}
                 <div class="category-card" data-category="{{ category }}" data-count="{{ category_stats[category].count if category_stats and category in category_stats else 0 }}">
@@ -638,7 +620,6 @@
                 {% endfor %}
             </div>
 
-            <!-- Quiz Controls -->
             <div class="quiz-controls">
                 <div class="length-selector">
                     <label>Quiz Length:</label>
@@ -659,17 +640,10 @@
         </div>
     </div>
 
-    <!-- Progress Store -->
     <script src="{{ url_for('static', filename='js/progress-store.js') }}"></script>
-    
-    <!-- PWA Utils -->
     <script src="{{ url_for('static', filename='js/pwa-utils.js') }}"></script>
 
     <script>
-        // ============================================
-        // Weekly Progress Counter
-        // ============================================
-        
         function updateWeeklyCount() {
             if (window.StudyGuruProgress) {
                 const count = window.StudyGuruProgress.answeredThisWeek();
@@ -677,26 +651,19 @@
             }
         }
         
-        // Update on load
         document.addEventListener('DOMContentLoaded', updateWeeklyCount);
         
-        // Update when storage changes (from other tabs)
         window.addEventListener('storage', (e) => {
             if (e.key && e.key.startsWith('sg:v1:')) {
                 updateWeeklyCount();
             }
         });
 
-        // ============================================
-        // Comprehensive Quiz Launcher
-        // ============================================
-        
         let comprehensiveLength = 25;
         
         const comprehensiveLengthBtns = document.querySelectorAll('.comprehensive-length-btn');
         const startComprehensiveBtn = document.getElementById('startComprehensiveBtn');
         
-        // Comprehensive length button selection
         comprehensiveLengthBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 comprehensiveLengthBtns.forEach(b => b.classList.remove('active'));
@@ -705,16 +672,11 @@
             });
         });
         
-        // Start comprehensive quiz
         startComprehensiveBtn.addEventListener('click', () => {
             const url = `/quiz/NCLEX/NCLEX_Comprehensive_Master_Categorized?is_comprehensive=true&quiz_length=${comprehensiveLength}&autostart=true&back_url=/category/NCLEX&back_label=NCLEX Learning Page`;
             window.location.href = url;
         });
 
-        // ============================================
-        // Category Selection & Quiz Launcher
-        // ============================================
-        
         let selectedCategory = null;
         let selectedLength = 25;
 
@@ -722,29 +684,23 @@
         const lengthBtns = document.querySelectorAll('.length-btn');
         const startBtn = document.getElementById('startCategoryQuizBtn');
 
-        // Category card selection (toggle behavior)
         categoryCards.forEach(card => {
             card.addEventListener('click', () => {
                 const wasSelected = card.classList.contains('selected');
                 
-                // Deselect all
                 categoryCards.forEach(c => c.classList.remove('selected'));
                 
                 if (wasSelected) {
-                    // Was already selected - deselect it (clear selection)
                     selectedCategory = null;
                 } else {
-                    // Wasn't selected - select it
                     card.classList.add('selected');
                     selectedCategory = card.dataset.category;
                 }
                 
-                // Update button state
                 updateStartButton();
             });
         });
 
-        // Length button selection
         lengthBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 lengthBtns.forEach(b => b.classList.remove('active'));
@@ -772,7 +728,6 @@
             }
         }
 
-        // Start quiz button
         startBtn.addEventListener('click', () => {
             if (!selectedCategory || startBtn.disabled) return;
             
@@ -780,37 +735,20 @@
             window.location.href = url;
         });
 
-        // ============================================
-        // Performance Bars - Color Gradient
-        // ============================================
-        
-        /**
-         * Get color for performance percentage
-         * Red (0%) → Yellow (77%) → Green (100%)
-         */
         function getPerformanceColor(percentage) {
             if (percentage < 77) {
-                // Red to Yellow: 0-76%
-                // Red: rgb(244, 67, 54) at 0%
-                // Yellow: rgb(255, 193, 7) at 76%
                 const ratio = percentage / 76;
                 const r = Math.round(244 + (255 - 244) * ratio);
                 const g = Math.round(67 + (193 - 67) * ratio);
                 const b = Math.round(54 + (7 - 54) * ratio);
                 return `rgb(${r}, ${g}, ${b})`;
             } else if (percentage < 85) {
-                // Yellow to Light Green: 77-84%
-                // Yellow: rgb(255, 193, 7) at 77%
-                // Light Green: rgb(139, 195, 74) at 84%
                 const ratio = (percentage - 77) / 7;
                 const r = Math.round(255 + (139 - 255) * ratio);
                 const g = Math.round(193 + (195 - 193) * ratio);
                 const b = Math.round(7 + (74 - 7) * ratio);
                 return `rgb(${r}, ${g}, ${b})`;
             } else {
-                // Light Green to Green: 85-100%
-                // Light Green: rgb(139, 195, 74) at 85%
-                // Green: rgb(76, 175, 80) at 100%
                 const ratio = (percentage - 85) / 15;
                 const r = Math.round(139 + (76 - 139) * ratio);
                 const g = Math.round(195 + (175 - 195) * ratio);
@@ -831,7 +769,6 @@
                 const barFill = container.querySelector('.performance-bar-fill');
                 
                 if (average !== undefined && average !== null) {
-                    // Has data
                     container.classList.remove('no-data');
                     percentageEl.textContent = `${average}%`;
                     percentageEl.style.color = getPerformanceColor(average);
@@ -839,7 +776,6 @@
                     barFill.style.backgroundColor = getPerformanceColor(average);
                     barFill.style.display = 'block';
                 } else {
-                    // No data
                     container.classList.add('no-data');
                     percentageEl.textContent = 'No Data';
                     percentageEl.style.color = '#999';
@@ -849,22 +785,16 @@
             });
         }
 
-        // Initialize performance bars on load
         document.addEventListener('DOMContentLoaded', () => {
             updatePerformanceBars();
         });
 
-        // Update when storage changes (from other tabs)
         window.addEventListener('storage', (e) => {
             if (e.key && e.key.startsWith('sg:v1:')) {
                 updatePerformanceBars();
             }
         });
 
-        // ============================================
-        // Reset Stats
-        // ============================================
-        
         document.getElementById('resetStatsBtn').addEventListener('click', () => {
             if (confirm('Are you sure you want to reset all category performance data? This cannot be undone.')) {
                 if (window.StudyGuruProgress) {
@@ -874,10 +804,6 @@
             }
         });
 
-        // ============================================
-        // Offline Indicator
-        // ============================================
-        
         function updateOfflineIndicator() {
             const indicator = document.getElementById('offlineIndicator');
             if (navigator.onLine) {
