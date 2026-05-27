@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="description" content="Adult Health Nursing - Nurse Success Study Hub">
   <title>Adult Health - Nurse Success Study Hub</title>
+
+  <!-- Captcha Gate -->
+  <meta name="turnstile-site-key" content="{{ turnstile_site_key }}">
+  <script src="/static/js/captcha-gate.js" defer></script>
   
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -55,7 +59,6 @@
       text-decoration: underline;
     }
 
-    /* Page Header Card */
     .page-header-card {
       background: white;
       border-radius: 16px;
@@ -78,7 +81,6 @@
       font-size: 28px;
     }
 
-    /* Practice by Module Section */
     .section-card {
       background: white;
       border-radius: 16px;
@@ -111,7 +113,6 @@
       margin: 0 0 20px 0;
     }
 
-    /* Module Grid */
     .module-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -119,7 +120,6 @@
       margin-bottom: 24px;
     }
 
-    /* Selectable Module Card */
     .module-card {
       background: white;
       border: 2px solid #e0e0e0;
@@ -184,7 +184,6 @@
       margin: 0;
     }
 
-    /* Quiz Controls */
     .quiz-controls {
       display: flex;
       align-items: center;
@@ -270,7 +269,6 @@
       box-shadow: none;
     }
 
-    /* Comprehensive Section */
     .comprehensive-section {
       background: #e8f5e9;
       border: 2px solid #4caf50;
@@ -346,7 +344,6 @@
       background: #f5f5f5;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .quiz-controls {
         flex-direction: column;
@@ -396,10 +393,8 @@
 </head>
 <body>
   <div class="container">
-    <!-- Back Link -->
     <a href="/" class="back-link">← Back to Study Hub</a>
 
-    <!-- Page Header -->
     <div class="page-header-card">
       <h1 class="page-title">
         <span class="page-title-icon">🏥</span>
@@ -410,7 +405,6 @@
       </p>
     </div>
 
-    <!-- Practice by Module Section -->
     <div class="section-card">
       <div class="section-header">
         <span class="section-icon">📚</span>
@@ -418,7 +412,6 @@
       </div>
       <p class="section-subtitle">Select a module and quiz length to start focused practice.</p>
 
-      <!-- Module Grid -->
       <div class="module-grid">
         {% for num in [1, 2, 3, 4, 5] %}
         {% set module = module_stats[num] if module_stats and module_stats[num] else {'name': 'Module ' ~ num, 'count': 0} %}
@@ -430,7 +423,6 @@
         {% endfor %}
       </div>
 
-      <!-- Quiz Controls -->
       <div class="quiz-controls">
         <div class="length-selector">
           <span class="length-label">Quiz Length:</span>
@@ -445,7 +437,6 @@
       </div>
     </div>
 
-    <!-- Comprehensive Section -->
     <div class="comprehensive-section">
       <div class="comprehensive-header">
         <span class="comprehensive-badge">COMPREHENSIVE</span>
@@ -469,32 +460,24 @@
     </div>
   </div>
 
-  <!-- Progress Store -->
   <script src="/static/js/progress-store.js"></script>
-  
-  <!-- PWA Utilities -->
   <script src="/static/js/pwa-utils.js"></script>
 
   <script>
     (function() {
-      // State
       let selectedModule = null;
       let selectedLength = 25;
       let comprehensiveLength = 25;
 
-      // Elements
       const moduleCards = document.querySelectorAll('.module-card');
       const lengthBtns = document.querySelectorAll('.length-btn');
       const startBtn = document.getElementById('startModuleBtn');
       const comprehensiveLengthBtns = document.querySelectorAll('.comprehensive-length-btn');
       const comprehensiveStartBtn = document.getElementById('startComprehensiveBtn');
 
-      // Module selection
       moduleCards.forEach(card => {
         card.addEventListener('click', () => {
-          // Deselect all
           moduleCards.forEach(c => c.classList.remove('selected'));
-          // Select this one
           card.classList.add('selected');
           
           selectedModule = {
@@ -508,7 +491,6 @@
         });
       });
 
-      // Length selection
       lengthBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           if (btn.classList.contains('disabled')) return;
@@ -521,7 +503,6 @@
         });
       });
 
-      // Update length button disabled states based on selected module
       function updateLengthButtons() {
         if (!selectedModule) return;
         
@@ -535,7 +516,6 @@
           }
         });
 
-        // If current selection is disabled, select highest available
         const activeBtn = document.querySelector('.length-btn.active:not(.disabled)');
         if (!activeBtn) {
           const availableBtns = Array.from(lengthBtns).filter(b => !b.classList.contains('disabled'));
@@ -547,7 +527,6 @@
         }
       }
 
-      // Update start button
       function updateStartButton() {
         if (!selectedModule) {
           startBtn.textContent = 'Select a Module to Start';
@@ -562,7 +541,6 @@
         startBtn.href = `/category/Adult_Health/module/${selectedModule.num}?quiz_length=${displayLength}&autostart=true`;
       }
 
-      // Comprehensive length selection
       comprehensiveLengthBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           if (btn.classList.contains('disabled')) return;
@@ -580,7 +558,6 @@
         comprehensiveStartBtn.href = `/category/Adult_Health/module/comprehensive?quiz_length=${comprehensiveLength}&autostart=true`;
       }
 
-      // Initialize
       updateStartButton();
     })();
   </script>
