@@ -9,20 +9,19 @@
    - Update notifications
    - Motivational quotes for home page
    - Content protection (copy/paste prevention)
+   - Captcha-gate reset on PWA update (clears sg:captcha-verified-at)
    ============================================================ */
 
 (function() {
   'use strict';
 
-  // Configuration
   const CONFIG = {
-    UPDATE_CHECK_INTERVAL: 30 * 60 * 1000, // 30 minutes
+    UPDATE_CHECK_INTERVAL: 30 * 60 * 1000,
     CACHE_REFRESH_ON_START: true,
     SHOW_UPDATE_BANNER: true,
     DEBUG: false
   };
 
-  // Debug logging
   function log(...args) {
     if (CONFIG.DEBUG) {
       console.log('[PWA Utils]', ...args);
@@ -34,15 +33,12 @@
   // ============================================================
 
   function setupContentProtection() {
-    // Disable right-click context menu
     document.addEventListener('contextmenu', function(e) {
       e.preventDefault();
       return false;
     });
 
-    // Disable text selection via selectstart
     document.addEventListener('selectstart', function(e) {
-      // Allow selection in input fields
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
         return true;
       }
@@ -50,9 +46,7 @@
       return false;
     });
 
-    // Disable copy
     document.addEventListener('copy', function(e) {
-      // Allow copy in input fields
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
         return true;
       }
@@ -60,9 +54,7 @@
       return false;
     });
 
-    // Disable cut
     document.addEventListener('cut', function(e) {
-      // Allow cut in input fields
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
         return true;
       }
@@ -70,51 +62,30 @@
       return false;
     });
 
-    // Disable paste (optional - uncomment if needed)
-    // document.addEventListener('paste', function(e) {
-    //   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-    //     return true;
-    //   }
-    //   e.preventDefault();
-    //   return false;
-    // });
-
-    // Disable drag
     document.addEventListener('dragstart', function(e) {
       e.preventDefault();
       return false;
     });
 
-    // Block keyboard shortcuts
     document.addEventListener('keydown', function(e) {
-      // Check for Ctrl/Cmd key combinations
       if (e.ctrlKey || e.metaKey) {
         switch (e.key.toLowerCase()) {
-          case 'c': // Copy
-          case 'x': // Cut
-          case 'a': // Select All
-          case 'p': // Print
-          case 's': // Save
-            // Allow in input fields for copy/cut/select all
+          case 'c':
+          case 'x':
+          case 'a':
+          case 'p':
+          case 's':
             if ((e.key.toLowerCase() === 'c' || e.key.toLowerCase() === 'x' || e.key.toLowerCase() === 'a') &&
                 (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) {
               return true;
             }
             e.preventDefault();
             return false;
-          case 'u': // View source
+          case 'u':
             e.preventDefault();
             return false;
         }
       }
-
-      // Block F12 (DevTools) - optional, can be commented out
-      // if (e.key === 'F12') {
-      //   e.preventDefault();
-      //   return false;
-      // }
-
-      // Block PrintScreen
       if (e.key === 'PrintScreen') {
         e.preventDefault();
         return false;
@@ -125,6 +96,22 @@
   }
 
   // ============================================================
+  // CAPTCHA GATE RESET ON PWA UPDATE
+  // ============================================================
+
+  function clearCaptchaVerification(reason) {
+    try {
+      var key = 'sg:captcha-verified-at';
+      if (localStorage.getItem(key) !== null) {
+        localStorage.removeItem(key);
+        log('Cleared captcha verification flag — reason:', reason);
+      }
+    } catch (e) {
+      log('Failed to clear captcha flag:', e);
+    }
+  }
+
+  // ============================================================
   // SERVICE WORKER MANAGEMENT
   // ============================================================
 
@@ -132,7 +119,6 @@
   let updateCheckInterval = null;
   let refreshing = false;
 
-  // Register service worker
   async function registerServiceWorker() {
     if (!('serviceWorker' in navigator)) {
       log('Service workers not supported');
@@ -140,23 +126,19 @@
     }
 
     try {
-      // Register service worker from root scope
       swRegistration = await navigator.serviceWorker.register('/service-worker.js', {
         scope: '/'
       });
 
       log('Service Worker registered:', swRegistration.scope);
 
-      // Check for updates on registration
       swRegistration.addEventListener('updatefound', () => {
         log('Service Worker update found');
         const newWorker = swRegistration.installing;
         
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            // New service worker available
             log('New Service Worker installed, prompting user');
-            // Use window.confirm for minimal, non-invasive update UX
             if (window.confirm('A new version is available. Reload to update?')) {
               newWorker.postMessage({ type: 'SKIP_WAITING' });
             }
@@ -164,25 +146,23 @@
         });
       });
 
-      // Listen for messages from service worker
       navigator.serviceWorker.addEventListener('message', handleSWMessage);
 
-      // Listen for controller change and reload once
       navigator.serviceWorker.addEventListener('controllerchange', () => {
+        clearCaptchaVerification('controllerchange');
+
         if (refreshing) return;
         refreshing = true;
         log('Controller changed, reloading page');
         window.location.reload();
       });
 
-      // Start periodic update checks
       startPeriodicUpdateChecks();
 
-      // Refresh cache on startup if configured
       if (CONFIG.CACHE_REFRESH_ON_START) {
         setTimeout(() => {
           refreshCacheOnStartup();
-        }, 2000); // Delay to let page load first
+        }, 2000);
       }
 
       return swRegistration;
@@ -192,7 +172,6 @@
     }
   }
 
-  // Handle messages from service worker
   function handleSWMessage(event) {
     const { data } = event;
     log('Message from SW:', data);
@@ -201,7 +180,7 @@
       case 'SW_ACTIVATED':
         log('Service Worker activated, version:', data.version);
         updatePWAStatus(`PWA v${data.version} active`);
-        // Refresh cache after new activation
+        clearCaptchaVerification('SW_ACTIVATED v' + data.version);
         setTimeout(refreshCacheOnStartup, 1000);
         break;
 
@@ -223,7 +202,6 @@
     }
   }
 
-  // Refresh cache on startup
   async function refreshCacheOnStartup() {
     if (!navigator.serviceWorker.controller) {
       log('No active service worker, skipping cache refresh');
@@ -243,7 +221,6 @@
     }
   }
 
-  // Start periodic update checks
   function startPeriodicUpdateChecks() {
     if (updateCheckInterval) {
       clearInterval(updateCheckInterval);
@@ -256,7 +233,6 @@
     log('Periodic update checks started');
   }
 
-  // Check for service worker updates
   async function checkForUpdates() {
     if (!swRegistration) return;
 
@@ -264,7 +240,6 @@
       log('Checking for updates...');
       await swRegistration.update();
       
-      // Also ask service worker to check
       if (navigator.serviceWorker.controller) {
         navigator.serviceWorker.controller.postMessage({
           type: 'CHECK_UPDATE'
@@ -275,10 +250,8 @@
     }
   }
 
-  // Force update the service worker
   function forceUpdate() {
     if (!swRegistration || !swRegistration.waiting) {
-      // No waiting worker, just reload
       window.location.reload();
       return;
     }
@@ -291,11 +264,9 @@
   // UI ELEMENTS
   // ============================================================
 
-  // Show update banner
   function showUpdateBanner(newVersion) {
     if (!CONFIG.SHOW_UPDATE_BANNER) return;
 
-    // Remove existing banner if any
     const existingBanner = document.querySelector('.update-banner');
     if (existingBanner) {
       existingBanner.remove();
@@ -312,13 +283,11 @@
 
     document.body.appendChild(banner);
 
-    // Show with animation
     requestAnimationFrame(() => {
       banner.classList.add('show');
     });
   }
 
-  // Show refreshing indicator
   function showRefreshingIndicator() {
     const status = document.getElementById('pwaStatus');
     if (status) {
@@ -327,7 +296,6 @@
     }
   }
 
-  // Hide refreshing indicator
   function hideRefreshingIndicator() {
     const status = document.getElementById('pwaStatus');
     if (status) {
@@ -337,7 +305,6 @@
     }
   }
 
-  // Update PWA status text
   function updatePWAStatus(text) {
     const status = document.getElementById('pwaStatus');
     if (status) {
@@ -359,7 +326,6 @@
         }
         log('Online');
         
-        // Refresh cache when coming back online
         if (CONFIG.CACHE_REFRESH_ON_START && navigator.serviceWorker.controller) {
           setTimeout(refreshCacheOnStartup, 1000);
         }
@@ -374,7 +340,6 @@
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
 
-    // Initial check
     updateOnlineStatus();
   }
 
@@ -422,21 +387,14 @@
   function init() {
     log('Initializing PWA Utils');
 
-    // Setup content protection first
     setupContentProtection();
-
-    // Register service worker
     registerServiceWorker();
-
-    // Setup offline detection
     setupOfflineDetection();
 
-    // Display quote on home page
     if (document.getElementById('quote-container')) {
       displayRandomQuote();
     }
 
-    // Handle visibility changes - check for updates when page becomes visible
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
         log('Page visible, checking for updates');
@@ -444,7 +402,6 @@
       }
     });
 
-    // Handle page show (including back/forward navigation)
     window.addEventListener('pageshow', (event) => {
       if (event.persisted) {
         log('Page restored from cache, refreshing');
@@ -455,15 +412,14 @@
     log('PWA Utils initialized');
   }
 
-  // Export public API
   window.PWAUtils = {
     forceUpdate,
     checkForUpdates,
     refreshCache: refreshCacheOnStartup,
-    getRegistration: () => swRegistration
+    getRegistration: () => swRegistration,
+    clearCaptchaVerification: clearCaptchaVerification
   };
 
-  // Initialize when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
