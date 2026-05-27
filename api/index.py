@@ -3,6 +3,8 @@
 import os
 import json
 import re
+import urllib.parse
+import urllib.request
 from flask import Flask, render_template, request, jsonify, redirect, url_for, send_from_directory
 from pathlib import Path
 from urllib.parse import unquote
@@ -13,6 +15,23 @@ app = Flask(__name__, template_folder='../templates', static_folder='../static')
 # Get the base directory
 BASE_DIR = Path(__file__).parent.parent
 MODULES_DIR = BASE_DIR / 'modules'
+
+# Cloudflare Turnstile
+TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
+
+# ==================== TEMPLATE GLOBALS ====================
+
+@app.context_processor
+def inject_turnstile_site_key():
+    """
+    Makes `turnstile_site_key` available in EVERY rendered template
+    so the site-wide captcha gate works without route-level changes.
+    Empty string disables the gate entirely (safe pre-deploy default).
+    """
+    return {
+        'turnstile_site_key': os.environ.get('TURNSTILE_SITE_KEY', '').strip()
+    }
+
 
 # Category metadata
 CATEGORY_METADATA = {
@@ -67,9 +86,7 @@ NCLEX_CATEGORIES = {
 }
 
 # CFRN Exam Content Categories - ordered by BCEN Examination Content Outline
-# Format: "Domain; Subcategory" matching the "category" field in each domain JSON file
 CFRN_CATEGORIES = [
-    # Domain 1: General Principles of Flight Transport Nursing Practice (28 items)
     'General Principles of Flight Transport Nursing Practice; Transport Physiology',
     'General Principles of Flight Transport Nursing Practice; Scene Operations Management',
     'General Principles of Flight Transport Nursing Practice; Communications',
@@ -77,12 +94,10 @@ CFRN_CATEGORIES = [
     'General Principles of Flight Transport Nursing Practice; Disaster Management',
     'General Principles of Flight Transport Nursing Practice; Professional Issues',
     'General Principles of Flight Transport Nursing Practice; Systems Management',
-    # Domain 2: Resuscitation Principles (38 items)
     'Resuscitation Principles; Principles of Assessment and Patient Preparation',
     'Resuscitation Principles; Airway',
     'Resuscitation Principles; Mechanical Ventilation',
     'Resuscitation Principles; Perfusion',
-    # Domain 3: Trauma (29 items)
     'Trauma; Principles of Management',
     'Trauma; Neurologic',
     'Trauma; Thoracic',
@@ -90,7 +105,6 @@ CFRN_CATEGORIES = [
     'Trauma; Musculoskeletal',
     'Trauma; Burn',
     'Trauma; Maxillofacial and Neck',
-    # Domain 4: Medical Emergencies (40 items)
     'Medical Emergencies; Neurologic',
     'Medical Emergencies; Cardiovascular',
     'Medical Emergencies; Pulmonary',
@@ -101,14 +115,12 @@ CFRN_CATEGORIES = [
     'Medical Emergencies; Renal',
     'Medical Emergencies; Infectious and Communicable Diseases',
     'Medical Emergencies; Environmental and Toxicological Emergencies',
-    # Domain 5: Special Populations (15 items)
     'Special Populations; Obstetrical Patients',
     'Special Populations; Neonatal / Pediatric',
     'Special Populations; Geriatric',
     'Special Populations; Bariatric',
 ]
 
-# Top-level CFRN domains - must exactly match the portion before '; ' in each category string
 CFRN_DOMAINS = [
     'General Principles of Flight Transport Nursing Practice',
     'Resuscitation Principles',
@@ -117,8 +129,6 @@ CFRN_DOMAINS = [
     'Special Populations',
 ]
 
-# Mapping of CFRN domain name to individual JSON filename.
-# Each file lives in modules/Nursing_Certifications/
 CFRN_DOMAIN_FILES = {
     'General Principles of Flight Transport Nursing Practice':
         'CFRN_General_Principles_of_Flight_Transport_Nursing_Practice.json',
@@ -132,7 +142,6 @@ CFRN_DOMAIN_FILES = {
         'CFRN_Special_Populations.json',
 }
 
-# CCRN Exam Content Categories (category names matching JSON "category" field)
 CCRN_CATEGORIES = [
     'Cardiovascular',
     'Endocrine',
@@ -148,7 +157,6 @@ CCRN_CATEGORIES = [
     'Vascular'
 ]
 
-# Adult Health Module Definitions
 ADULT_HEALTH_MODULES = {
     1: {
         'name': 'Tissue Integrity & Safety',
@@ -192,55 +200,70 @@ ADULT_HEALTH_MODULES = {
     }
 }
 
+# ==================== TURNSTILE VERIFICATION ====================
+
+def verify_turnstile_token(token, remoteip=None):
+    """
+    POSTs the token to Cloudflare's siteverify endpoint.
+    Returns (success: bool, detail: dict|str).
+    """
+    secret = os.environ.get('TURNSTILE_SECRET_KEY', '').strip()
+    if not secret:
+        return False, 'missing-secret'
+    if not token:
+        return False, 'missing-token'
+
+    payload = {'secret': secret, 'response': token}
+    if remoteip:
+        payload['remoteip'] = remoteip
+
+    encoded = urllib.parse.urlencode(payload).encode('utf-8')
+
+    try:
+        req = urllib.request.Request(
+            TURNSTILE_VERIFY_URL,
+            data=encoded,
+            headers={'Content-Type': 'application/x-www-form-urlencoded'}
+        )
+        with urllib.request.urlopen(req, timeout=10) as response:
+            result = json.loads(response.read().decode('utf-8'))
+        return bool(result.get('success')), result
+    except Exception as e:
+        print(f"[Turnstile] Verification error: {e}")
+        return False, {'error': str(e)}
+
+
 # ==================== QUESTION COUNT HELPERS ====================
 
-# Regex: "Q" followed by one or more digits, e.g. Q1, Q042, Q583
 _QNUM_RE = re.compile(r'^Q\d+$')
 
 
 def get_valid_question_count(json_path):
-    """
-    Count questions in a JSON file whose "id" field matches Q#### (Q + digits).
-    Falls back to the total array length when no Q#### IDs exist at all.
-    """
     if not json_path.exists():
         return 0
-
     try:
         with open(json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-
         questions = data if isinstance(data, list) else data.get('questions', [])
         valid = [q for q in questions if _QNUM_RE.match(str(q.get('id', '')))]
-
         return len(valid) if valid else len(questions)
-
     except Exception as e:
         print(f"[get_valid_question_count] Error reading {json_path}: {e}")
         return 0
 
 
 def get_cfrn_valid_count():
-    """
-    Return the total count of CFRN questions with Q#### IDs,
-    summed across all individual domain files.
-    Falls back to CFRN_Question_Bank.json if no domain files have content.
-    """
     total = 0
     for domain, filename in CFRN_DOMAIN_FILES.items():
         path = MODULES_DIR / 'Nursing_Certifications' / filename
         total += get_valid_question_count(path)
-
     if total == 0:
-        # Fallback to the legacy combined file
         fallback = MODULES_DIR / 'Nursing_Certifications' / 'CFRN_Question_Bank.json'
         total = get_valid_question_count(fallback)
-
     return total
 
 
 def get_ccrn_valid_count():
-    """Return the count of CCRN questions with Q#### IDs."""
     path = MODULES_DIR / 'Nursing_Certifications' / 'CCRN_Comprehensive.json'
     return get_valid_question_count(path)
 
@@ -248,7 +271,6 @@ def get_ccrn_valid_count():
 # ==================== EXISTING HELPERS ====================
 
 def get_categories():
-    """Get all module categories (folder names)"""
     if not MODULES_DIR.exists():
         return []
     try:
@@ -260,11 +282,9 @@ def get_categories():
 
 
 def get_modules_in_category(category):
-    """Get all modules (JSON files) in a specific category"""
     category_path = MODULES_DIR / category
     if not category_path.exists():
         return []
-
     try:
         modules = []
         for file in sorted(category_path.glob('*.json')):
@@ -276,18 +296,13 @@ def get_modules_in_category(category):
 
 
 def get_quiz_info(category, module):
-    """Get quiz information including type (standard or fill-in-the-blank)"""
     module_path = MODULES_DIR / category / f'{module}.json'
-
     if not module_path.exists():
         return None
-
     try:
         with open(module_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-
         is_fill_blank = 'Fill_In_The_Blank' in module
-
         return {
             'name': module,
             'type': 'fill-in-the-blank' if is_fill_blank else 'multiple-choice',
@@ -300,27 +315,19 @@ def get_quiz_info(category, module):
 
 
 def get_category_quizzes(category):
-    """Get all quizzes for a category, grouped by type"""
     modules = get_modules_in_category(category)
-    quizzes = {
-        'multiple-choice': [],
-        'fill-in-the-blank': []
-    }
-
+    quizzes = {'multiple-choice': [], 'fill-in-the-blank': []}
     for module in modules:
         info = get_quiz_info(category, module)
         if info:
             quizzes[info['type']].append(info)
-
     return quizzes
 
 
 def load_nclex_master_questions():
-    """Load the NCLEX Comprehensive Master Categorized questions"""
     master_path = MODULES_DIR / 'NCLEX' / 'NCLEX_Comprehensive_Master_Categorized.json'
     if not master_path.exists():
         return []
-
     try:
         with open(master_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
@@ -331,10 +338,8 @@ def load_nclex_master_questions():
 
 
 def get_nclex_category_stats():
-    """Get statistics about questions per NCLEX category from master file"""
     questions = load_nclex_master_questions()
     stats = {}
-
     for cat in NCLEX_CATEGORIES.keys():
         count = sum(1 for q in questions if q.get('category') == cat)
         stats[cat] = {
@@ -342,21 +347,15 @@ def get_nclex_category_stats():
             'weight': NCLEX_CATEGORIES[cat],
             'weight_pct': int(NCLEX_CATEGORIES[cat] * 100)
         }
-
     return stats
 
 
 def _load_questions_from_file(path):
-    """
-    Load a JSON file that is either a bare list or a dict with a 'questions' key.
-    Returns a plain list of question dicts. Returns [] on any error.
-    """
     if not path.exists():
         return []
     try:
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        # Handle both formats: bare list OR {"questions": [...]}
         if isinstance(data, list):
             return data
         return data.get('questions', [])
@@ -366,10 +365,6 @@ def _load_questions_from_file(path):
 
 
 def load_cfrn_domain_questions(domain_name):
-    """
-    Load CFRN questions for a specific domain from its dedicated file.
-    Falls back to filtering the legacy combined bank if the domain file is missing.
-    """
     filename = CFRN_DOMAIN_FILES.get(domain_name)
     if filename:
         path = MODULES_DIR / 'Nursing_Certifications' / filename
@@ -380,7 +375,6 @@ def load_cfrn_domain_questions(domain_name):
         else:
             print(f"[CFRN] Domain file not found: {filename} - falling back to combined bank")
 
-    # Fallback: filter the legacy combined bank
     all_questions = _load_cfrn_legacy()
     filtered = [
         q for q in all_questions
@@ -392,7 +386,6 @@ def load_cfrn_domain_questions(domain_name):
 
 
 def _load_cfrn_legacy():
-    """Load the legacy CFRN_Question_Bank.json (internal fallback only)."""
     path = MODULES_DIR / 'Nursing_Certifications' / 'CFRN_Question_Bank.json'
     questions = _load_questions_from_file(path)
     print(f"[CFRN] Legacy bank loaded: {len(questions)} questions")
@@ -400,10 +393,6 @@ def _load_cfrn_legacy():
 
 
 def load_cfrn_questions():
-    """
-    Load ALL CFRN questions by merging all individual domain files.
-    Falls back to CFRN_Question_Bank.json if no domain files have content.
-    """
     all_questions = []
     for domain, filename in CFRN_DOMAIN_FILES.items():
         path = MODULES_DIR / 'Nursing_Certifications' / filename
@@ -423,7 +412,6 @@ def load_cfrn_questions():
 
 
 def get_cfrn_category_stats():
-    """Get question counts per CFRN category, ordered by BCEN domain sequence."""
     questions = load_cfrn_questions()
     stats = OrderedDict()
     for cat in CFRN_CATEGORIES:
@@ -433,44 +421,33 @@ def get_cfrn_category_stats():
 
 
 def get_cfrn_domain_totals():
-    """
-    Returns counts grouped by top-level BCEN domain, sourced from individual domain files.
-    Grand total uses the authoritative Q####-ID count.
-    """
     domain_totals = OrderedDict()
     for domain in CFRN_DOMAINS:
         questions = load_cfrn_domain_questions(domain)
         domain_totals[domain] = len(questions)
-
     grand_total = get_cfrn_valid_count()
     return domain_totals, grand_total
 
 
 def load_ccrn_comprehensive_questions():
-    """Load the CCRN Comprehensive questions"""
     path = MODULES_DIR / 'Nursing_Certifications' / 'CCRN_Comprehensive.json'
     return _load_questions_from_file(path)
 
 
 def get_ccrn_category_stats():
-    """Get statistics about questions per CCRN category"""
     questions = load_ccrn_comprehensive_questions()
     stats = {}
-
     for cat in CCRN_CATEGORIES:
         count = sum(1 for q in questions if q.get('category') == cat)
         stats[cat] = count
-
     return stats
 
 
 def load_adult_health_questions():
-    """Load the Adult Health master question bank"""
     adult_health_path = MODULES_DIR / 'Adult_Health' / 'Adult_Health.json'
     if not adult_health_path.exists():
         print(f"[Adult Health] File not found: {adult_health_path}")
         return []
-
     try:
         with open(adult_health_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
@@ -492,16 +469,13 @@ def extract_chapter_number(category_str):
 def filter_adult_health_questions(questions, module_num):
     if module_num not in ADULT_HEALTH_MODULES:
         return []
-
     module_def = ADULT_HEALTH_MODULES[module_num]
     filters = module_def['filters']
-
     filtered = []
     for q in questions:
         q_book = q.get('book', '')
         q_category = q.get('category', '')
         q_chapter = extract_chapter_number(q_category)
-
         for f in filters:
             if q_book == f['book']:
                 for ch in f['chapters']:
@@ -511,7 +485,6 @@ def filter_adult_health_questions(questions, module_num):
                 else:
                     continue
                 break
-
     return filtered
 
 
@@ -537,6 +510,40 @@ def home():
     except Exception as e:
         print(f"Error in home route: {e}")
         return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/verify-captcha', methods=['POST'])
+def api_verify_captcha():
+    """
+    Verifies a Cloudflare Turnstile token. Called by the site-wide
+    captcha gate after the user completes the widget. Returns
+    {success: true} on pass; sets the 24h cooldown client-side.
+    """
+    try:
+        data = request.get_json(silent=True) or {}
+        token = (data.get('token') or '').strip()
+
+        # Best-effort client IP (Vercel sets X-Forwarded-For)
+        remoteip = (
+            request.headers.get('CF-Connecting-IP')
+            or (request.headers.get('X-Forwarded-For', '').split(',')[0].strip() if request.headers.get('X-Forwarded-For') else '')
+            or request.remote_addr
+            or None
+        )
+
+        success, detail = verify_turnstile_token(token, remoteip)
+        if success:
+            return jsonify({'success': True})
+
+        err = 'invalid-token'
+        if isinstance(detail, dict):
+            err = detail.get('error-codes') or detail.get('error') or err
+        elif isinstance(detail, str):
+            err = detail
+        return jsonify({'success': False, 'error': err}), 400
+    except Exception as e:
+        print(f"Error in api_verify_captcha: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 
 @app.route('/category/<category>')
@@ -717,7 +724,6 @@ def cfrn_page():
 
 @app.route('/category/Nursing_Certifications/CFRN/domain/<domain_name>')
 def cfrn_domain_quiz(domain_name):
-    """CFRN domain-level quiz - loads questions from the domain-specific JSON file."""
     try:
         domain_name = unquote(domain_name)
 
@@ -756,21 +762,14 @@ def cfrn_domain_quiz(domain_name):
 
 @app.route('/category/Nursing_Certifications/CFRN/category/<category_name>')
 def cfrn_category_quiz(category_name):
-    """
-    CFRN subcategory-specific quiz.
-    Loads only the domain file that owns this subcategory, then filters
-    to exact category match - avoids reading the entire combined bank.
-    """
     try:
         category_name = unquote(category_name)
 
         if category_name not in CFRN_CATEGORIES:
             return redirect(url_for('cfrn_page'))
 
-        # Derive the owning domain from the "Domain; Subcategory" format
         domain_name = category_name.split(';')[0].strip()
 
-        # Load from domain-specific file, then filter to exact subcategory
         domain_questions = load_cfrn_domain_questions(domain_name)
         filtered_questions = [q for q in domain_questions if q.get('category') == category_name]
 
@@ -1049,7 +1048,6 @@ def api_nclex_category_stats():
 
 @app.route('/api/cfrn/count')
 def api_cfrn_count():
-    """Returns Q####-validated CFRN question count across all domain files."""
     try:
         return jsonify({'count': get_cfrn_valid_count()})
     except Exception as e:
@@ -1058,7 +1056,6 @@ def api_cfrn_count():
 
 @app.route('/api/cfrn/domain-counts')
 def api_cfrn_domain_counts():
-    """Returns per-domain question counts loaded from individual domain files."""
     try:
         domain_totals, grand_total = get_cfrn_domain_totals()
         return jsonify({
@@ -1071,7 +1068,6 @@ def api_cfrn_domain_counts():
 
 @app.route('/api/ccrn/count')
 def api_ccrn_count():
-    """Returns Q####-validated CCRN question count."""
     try:
         return jsonify({'count': get_ccrn_valid_count()})
     except Exception as e:
