@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="description" content="Nurse Success Study Hub - Comprehensive study materials for nursing exams">
   <title>Nurse Success Study Hub</title>
+
+  <!-- Captcha Gate -->
+  <meta name="turnstile-site-key" content="{{ turnstile_site_key }}">
+  <script src="/static/js/captcha-gate.js" defer></script>
   
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -110,33 +114,27 @@
         const count = window.StudyGuruProgress.answeredThisWeek();
         countEl.textContent = count.toLocaleString();
         
-        // Add animation class on update
         countEl.classList.remove('updated');
-        void countEl.offsetWidth; // Trigger reflow
+        void countEl.offsetWidth;
         countEl.classList.add('updated');
       }
     }
 
-    // Update on page load
     document.addEventListener('DOMContentLoaded', updateWeeklyCount);
 
-    // Listen for storage events (updates from other tabs)
     window.addEventListener('storage', function(e) {
-      // Check if it's one of our keys
       if (e.key && e.key.startsWith('sg:v1:')) {
         console.log('[Home] Storage event detected, updating weekly count');
         updateWeeklyCount();
       }
     });
 
-    // Also update when page becomes visible (in case user answered in another tab)
     document.addEventListener('visibilitychange', function() {
       if (document.visibilityState === 'visible') {
         updateWeeklyCount();
       }
     });
 
-    // Offline indicator
     function updateOfflineIndicator() {
       const indicator = document.getElementById('offlineIndicator');
       if (navigator.onLine) {
