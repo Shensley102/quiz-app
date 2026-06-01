@@ -1,1103 +1,367 @@
-# api/index.py
+/* ============================
+   Home (Main Hub) Page Styles
+   ============================
+   Change requested:
+   - Reduce BOTH the component/card and image size by 25%
+   - Keep alignment and aspect ratio
+   - Keep image matching card (card wraps image)
+   - No overlay arrow badge
+*/
 
-import os
-import json
-import re
-import urllib.parse
-import urllib.request
-from flask import Flask, render_template, request, jsonify, redirect, url_for, send_from_directory
-from pathlib import Path
-from urllib.parse import unquote
-from collections import OrderedDict
-
-app = Flask(__name__, template_folder='../templates', static_folder='../static')
-
-# Get the base directory
-BASE_DIR = Path(__file__).parent.parent
-MODULES_DIR = BASE_DIR / 'modules'
-
-# Cloudflare Turnstile
-TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
-
-# ==================== TEMPLATE GLOBALS ====================
-
-@app.context_processor
-def inject_turnstile_site_key():
-    """
-    Makes `turnstile_site_key` available in EVERY rendered template
-    so the site-wide captcha gate works without route-level changes.
-    Empty string disables the gate entirely (safe pre-deploy default).
-    """
-    return {
-        'turnstile_site_key': os.environ.get('TURNSTILE_SITE_KEY', '').strip()
-    }
-
-
-# Category metadata
-CATEGORY_METADATA = {
-    'Adult_Health': {
-        'display_name': 'Adult Health',
-        'icon': '🏥',
-        'image': '/images/Adult_Health.png',
-        'description': 'Adult health nursing concepts and clinical care'
-    },
-    'NCLEX': {
-        'display_name': 'NCLEX',
-        'icon': '📋',
-        'image': '/images/Nursing_Nclex_Exam_Prep_Image.png',
-        'description': 'The Comprehensive Quiz 1, 2, and 3 are questions gathered from NCLEX Exit Exam and NCLEX Comprehensive study guides'
-    },
-    'Lab_Values': {
-        'display_name': 'Laboratory Values',
-        'icon': '🧪',
-        'image': '/images/Nursing_Lab_Values.png',
-        'description': 'Master critical laboratory values for NCLEX exams'
-    },
-    'Patient_Care_Management': {
-        'display_name': 'Patient Care Management',
-        'icon': '👥',
-        'image': '/images/Nursing_Leadership_Image.png',
-        'description': 'Patient care management and nursing leadership'
-    },
-    'Pharmacology': {
-        'display_name': 'Pharmacology',
-        'icon': '💊',
-        'image': '/images/Nursing_Pharmacology_Image.png',
-        'description': 'Comprehensive pharmacology study materials'
-    },
-    'Nursing_Certifications': {
-        'display_name': 'Nursing Certifications',
-        'icon': '🏆',
-        'image': '/images/Nursing_Advanced_Certifications.png',
-        'description': 'CCRN, CFRN, TCEN, and other certification prep'
-    }
+/* ---- Header ---- */
+.hub-header {
+  text-align: center;
+  padding: 24px 0 8px;
 }
 
-# NCLEX-RN Test Plan Categories with weights
-NCLEX_CATEGORIES = {
-    'Management of Care': 0.18,
-    'Safety and Infection Control': 0.13,
-    'Health Promotion and Maintenance': 0.09,
-    'Psychosocial Integrity': 0.09,
-    'Basic Care and Comfort': 0.09,
-    'Pharmacological and Parenteral Therapies': 0.16,
-    'Reduction of Risk Potential': 0.12,
-    'Physiological Adaptation': 0.14
+.hub-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 34px;
+  font-weight: 800;
 }
 
-# CFRN Exam Content Categories - ordered by BCEN Examination Content Outline
-CFRN_CATEGORIES = [
-    'General Principles of Flight Transport Nursing Practice; Transport Physiology',
-    'General Principles of Flight Transport Nursing Practice; Scene Operations Management',
-    'General Principles of Flight Transport Nursing Practice; Communications',
-    'General Principles of Flight Transport Nursing Practice; Safety and Survival',
-    'General Principles of Flight Transport Nursing Practice; Disaster Management',
-    'General Principles of Flight Transport Nursing Practice; Professional Issues',
-    'General Principles of Flight Transport Nursing Practice; Systems Management',
-    'Resuscitation Principles; Principles of Assessment and Patient Preparation',
-    'Resuscitation Principles; Airway',
-    'Resuscitation Principles; Mechanical Ventilation',
-    'Resuscitation Principles; Perfusion',
-    'Trauma; Principles of Management',
-    'Trauma; Neurologic',
-    'Trauma; Thoracic',
-    'Trauma; Abdominal',
-    'Trauma; Musculoskeletal',
-    'Trauma; Burn',
-    'Trauma; Maxillofacial and Neck',
-    'Medical Emergencies; Neurologic',
-    'Medical Emergencies; Cardiovascular',
-    'Medical Emergencies; Pulmonary',
-    'Medical Emergencies; Abdominal',
-    'Medical Emergencies; Electrolyte Disturbances',
-    'Medical Emergencies; Metabolic and Endocrine',
-    'Medical Emergencies; Hematology',
-    'Medical Emergencies; Renal',
-    'Medical Emergencies; Infectious and Communicable Diseases',
-    'Medical Emergencies; Environmental and Toxicological Emergencies',
-    'Special Populations; Obstetrical Patients',
-    'Special Populations; Neonatal / Pediatric',
-    'Special Populations; Geriatric',
-    'Special Populations; Bariatric',
-]
-
-CFRN_DOMAINS = [
-    'General Principles of Flight Transport Nursing Practice',
-    'Resuscitation Principles',
-    'Trauma',
-    'Medical Emergencies',
-    'Special Populations',
-]
-
-CFRN_DOMAIN_FILES = {
-    'General Principles of Flight Transport Nursing Practice':
-        'CFRN_General_Principles_of_Flight_Transport_Nursing_Practice.json',
-    'Resuscitation Principles':
-        'CFRN_Resuscitation_Principles.json',
-    'Trauma':
-        'CFRN_Trauma.json',
-    'Medical Emergencies':
-        'CFRN_Medical_Emergencies.json',
-    'Special Populations':
-        'CFRN_Special_Populations.json',
+.tagline {
+  margin: 0;
+  color: var(--ink-soft);
+  font-weight: 600;
 }
 
-CCRN_CATEGORIES = [
-    'Cardiovascular',
-    'Endocrine',
-    'Gastrointestinal/Hepatic',
-    'Hematologic/Immunologic',
-    'Infection/Sepsis',
-    'Neurological',
-    "Obstetric/Women's Health",
-    'Professional Practice/Nursing',
-    'Pulmonary/Respiratory',
-    'Renal/Urinary',
-    'Trauma/Shock',
-    'Vascular'
-]
-
-ADULT_HEALTH_MODULES = {
-    1: {
-        'name': 'Tissue Integrity & Safety',
-        'filters': [
-            {'book': 'Ignatavicus Medical-Surgical Nursing', 'chapters': ['01', '04', '10', '20', '21']},
-            {'book': 'Giddens Concepts for Nursing Practice', 'chapters': ['26', '45']},
-            {'book': 'McCuistion Pharmacology', 'chapters': ['09', '14']}
-        ]
-    },
-    2: {
-        'name': 'Perfusion',
-        'filters': [
-            {'book': 'Ignatavicus Medical-Surgical Nursing', 'chapters': ['27', '28', '29', '31']},
-            {'book': 'Giddens Concepts for Nursing Practice', 'chapters': ['18']},
-            {'book': 'McCuistion Pharmacology', 'chapters': ['40', '41', '43', '44', '58']}
-        ]
-    },
-    3: {
-        'name': 'Immunity & Infection',
-        'filters': [
-            {'book': 'Ignatavicus Medical-Surgical Nursing', 'chapters': ['03', '16', '17', '19']},
-            {'book': 'Giddens Concepts for Nursing Practice', 'chapters': ['22', '24']},
-            {'book': 'McCuistion Pharmacology', 'chapters': ['26', '30', '32', '34']}
-        ]
-    },
-    4: {
-        'name': 'Intracranial Regulation & Palliative Care',
-        'filters': [
-            {'book': 'Ignatavicus Medical-Surgical Nursing', 'chapters': ['08', '38']},
-            {'book': 'Giddens Concepts for Nursing Practice', 'chapters': ['13', '51']},
-            {'book': 'McCuistion Pharmacology', 'chapters': ['28', '38']}
-        ]
-    },
-    5: {
-        'name': 'Elimination',
-        'filters': [
-            {'book': 'Ignatavicus Medical-Surgical Nursing', 'chapters': ['57', '59', '60']},
-            {'book': 'Giddens Concepts for Nursing Practice', 'chapters': ['17']},
-            {'book': 'McCuistion Pharmacology', 'chapters': ['12']}
-        ]
-    }
+/* ---- Weekly Progress Widget ---- */
+.weekly-progress-widget {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px auto 0;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(47, 97, 243, 0.2);
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(47, 97, 243, 0.1);
+  font-size: 14px;
+  color: var(--ink);
 }
 
-# ==================== TURNSTILE VERIFICATION ====================
-
-def verify_turnstile_token(token, remoteip=None):
-    """
-    POSTs the token to Cloudflare's siteverify endpoint.
-    Returns (success: bool, detail: dict|str).
-    """
-    secret = os.environ.get('TURNSTILE_SECRET_KEY', '').strip()
-    if not secret:
-        return False, 'missing-secret'
-    if not token:
-        return False, 'missing-token'
-
-    payload = {'secret': secret, 'response': token}
-    if remoteip:
-        payload['remoteip'] = remoteip
-
-    encoded = urllib.parse.urlencode(payload).encode('utf-8')
-
-    try:
-        req = urllib.request.Request(
-            TURNSTILE_VERIFY_URL,
-            data=encoded,
-            headers={'Content-Type': 'application/x-www-form-urlencoded'}
-        )
-        with urllib.request.urlopen(req, timeout=10) as response:
-            result = json.loads(response.read().decode('utf-8'))
-        return bool(result.get('success')), result
-    except Exception as e:
-        print(f"[Turnstile] Verification error: {e}")
-        return False, {'error': str(e)}
-
-
-# ==================== QUESTION COUNT HELPERS ====================
-
-_QNUM_RE = re.compile(r'^Q\d+$')
-
-
-def get_valid_question_count(json_path):
-    if not json_path.exists():
-        return 0
-    try:
-        with open(json_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        questions = data if isinstance(data, list) else data.get('questions', [])
-        valid = [q for q in questions if _QNUM_RE.match(str(q.get('id', '')))]
-        return len(valid) if valid else len(questions)
-    except Exception as e:
-        print(f"[get_valid_question_count] Error reading {json_path}: {e}")
-        return 0
-
-
-def get_cfrn_valid_count():
-    total = 0
-    for domain, filename in CFRN_DOMAIN_FILES.items():
-        path = MODULES_DIR / 'Nursing_Certifications' / filename
-        total += get_valid_question_count(path)
-    if total == 0:
-        fallback = MODULES_DIR / 'Nursing_Certifications' / 'CFRN_Question_Bank.json'
-        total = get_valid_question_count(fallback)
-    return total
-
-
-def get_ccrn_valid_count():
-    path = MODULES_DIR / 'Nursing_Certifications' / 'CCRN_Comprehensive.json'
-    return get_valid_question_count(path)
-
-
-# ==================== EXISTING HELPERS ====================
-
-def get_categories():
-    if not MODULES_DIR.exists():
-        return []
-    try:
-        return sorted([d.name for d in MODULES_DIR.iterdir()
-                      if d.is_dir() and not d.name.startswith('.')])
-    except Exception as e:
-        print(f"Error reading categories: {e}")
-        return []
-
-
-def get_modules_in_category(category):
-    category_path = MODULES_DIR / category
-    if not category_path.exists():
-        return []
-    try:
-        modules = []
-        for file in sorted(category_path.glob('*.json')):
-            modules.append(file.stem)
-        return modules
-    except Exception as e:
-        print(f"Error reading modules: {e}")
-        return []
-
-
-def get_quiz_info(category, module):
-    module_path = MODULES_DIR / category / f'{module}.json'
-    if not module_path.exists():
-        return None
-    try:
-        with open(module_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        is_fill_blank = 'Fill_In_The_Blank' in module
-        return {
-            'name': module,
-            'type': 'fill-in-the-blank' if is_fill_blank else 'multiple-choice',
-            'count': len(data.get('questions', [])),
-            'description': data.get('description', '')
-        }
-    except Exception as e:
-        print(f"Error reading {module_path}: {e}")
-        return None
-
-
-def get_category_quizzes(category):
-    modules = get_modules_in_category(category)
-    quizzes = {'multiple-choice': [], 'fill-in-the-blank': []}
-    for module in modules:
-        info = get_quiz_info(category, module)
-        if info:
-            quizzes[info['type']].append(info)
-    return quizzes
-
-
-def load_nclex_master_questions():
-    master_path = MODULES_DIR / 'NCLEX' / 'NCLEX_Comprehensive_Master_Categorized.json'
-    if not master_path.exists():
-        return []
-    try:
-        with open(master_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        return data.get('questions', [])
-    except Exception as e:
-        print(f"Error loading NCLEX master questions: {e}")
-        return []
-
-
-def get_nclex_category_stats():
-    questions = load_nclex_master_questions()
-    stats = {}
-    for cat in NCLEX_CATEGORIES.keys():
-        count = sum(1 for q in questions if q.get('category') == cat)
-        stats[cat] = {
-            'count': count,
-            'weight': NCLEX_CATEGORIES[cat],
-            'weight_pct': int(NCLEX_CATEGORIES[cat] * 100)
-        }
-    return stats
-
-
-def _load_questions_from_file(path):
-    if not path.exists():
-        return []
-    try:
-        with open(path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        if isinstance(data, list):
-            return data
-        return data.get('questions', [])
-    except Exception as e:
-        print(f"[_load_questions_from_file] Error reading {path}: {e}")
-        return []
-
-
-def load_cfrn_domain_questions(domain_name):
-    filename = CFRN_DOMAIN_FILES.get(domain_name)
-    if filename:
-        path = MODULES_DIR / 'Nursing_Certifications' / filename
-        if path.exists():
-            questions = _load_questions_from_file(path)
-            print(f"[CFRN] Loaded {len(questions)} questions from {filename}")
-            return questions
-        else:
-            print(f"[CFRN] Domain file not found: {filename} - falling back to combined bank")
-
-    all_questions = _load_cfrn_legacy()
-    filtered = [
-        q for q in all_questions
-        if q.get('category', '').startswith(domain_name + ';') or
-           q.get('category', '') == domain_name
-    ]
-    print(f"[CFRN] Fallback: {len(filtered)} questions for domain '{domain_name}'")
-    return filtered
-
-
-def _load_cfrn_legacy():
-    path = MODULES_DIR / 'Nursing_Certifications' / 'CFRN_Question_Bank.json'
-    questions = _load_questions_from_file(path)
-    print(f"[CFRN] Legacy bank loaded: {len(questions)} questions")
-    return questions
-
-
-def load_cfrn_questions():
-    all_questions = []
-    for domain, filename in CFRN_DOMAIN_FILES.items():
-        path = MODULES_DIR / 'Nursing_Certifications' / filename
-        if not path.exists():
-            print(f"[CFRN] Domain file not found, skipping: {filename}")
-            continue
-        questions = _load_questions_from_file(path)
-        all_questions.extend(questions)
-        print(f"[CFRN] Merged {len(questions)} questions from {filename}")
-
-    if not all_questions:
-        print("[CFRN] No domain files found - falling back to CFRN_Question_Bank.json")
-        all_questions = _load_cfrn_legacy()
-
-    print(f"[CFRN] Total questions loaded: {len(all_questions)}")
-    return all_questions
-
-
-def get_cfrn_category_stats():
-    questions = load_cfrn_questions()
-    stats = OrderedDict()
-    for cat in CFRN_CATEGORIES:
-        count = sum(1 for q in questions if q.get('category') == cat)
-        stats[cat] = count
-    return stats
-
-
-def get_cfrn_domain_totals():
-    domain_totals = OrderedDict()
-    for domain in CFRN_DOMAINS:
-        questions = load_cfrn_domain_questions(domain)
-        domain_totals[domain] = len(questions)
-    grand_total = get_cfrn_valid_count()
-    return domain_totals, grand_total
-
-
-def load_ccrn_comprehensive_questions():
-    path = MODULES_DIR / 'Nursing_Certifications' / 'CCRN_Comprehensive.json'
-    return _load_questions_from_file(path)
-
-
-def get_ccrn_category_stats():
-    questions = load_ccrn_comprehensive_questions()
-    stats = {}
-    for cat in CCRN_CATEGORIES:
-        count = sum(1 for q in questions if q.get('category') == cat)
-        stats[cat] = count
-    return stats
-
-
-def load_adult_health_questions():
-    adult_health_path = MODULES_DIR / 'Adult_Health' / 'Adult_Health.json'
-    if not adult_health_path.exists():
-        print(f"[Adult Health] File not found: {adult_health_path}")
-        return []
-    try:
-        with open(adult_health_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        return data.get('questions', [])
-    except Exception as e:
-        print(f"Error loading Adult Health questions: {e}")
-        return []
-
-
-def extract_chapter_number(category_str):
-    if not category_str:
-        return None
-    match = re.match(r'^(?:Chapter|Concept)\s+(\d+)', category_str, re.IGNORECASE)
-    if match:
-        return match.group(1).zfill(2)
-    return None
-
-
-def filter_adult_health_questions(questions, module_num):
-    if module_num not in ADULT_HEALTH_MODULES:
-        return []
-    module_def = ADULT_HEALTH_MODULES[module_num]
-    filters = module_def['filters']
-    filtered = []
-    for q in questions:
-        q_book = q.get('book', '')
-        q_category = q.get('category', '')
-        q_chapter = extract_chapter_number(q_category)
-        for f in filters:
-            if q_book == f['book']:
-                for ch in f['chapters']:
-                    if q_chapter == ch or q_chapter == ch.zfill(2) or q_chapter == ch.lstrip('0'):
-                        filtered.append(q)
-                        break
-                else:
-                    continue
-                break
-    return filtered
-
-
-def get_adult_health_module_stats():
-    questions = load_adult_health_questions()
-    stats = {}
-    for module_num, module_def in ADULT_HEALTH_MODULES.items():
-        filtered = filter_adult_health_questions(questions, module_num)
-        stats[module_num] = {
-            'name': module_def['name'],
-            'count': len(filtered)
-        }
-    return stats
-
-
-# ==================== ROUTES ====================
-
-@app.route('/')
-def home():
-    try:
-        categories = get_categories()
-        return render_template('home.html', categories=categories)
-    except Exception as e:
-        print(f"Error in home route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-
-
-@app.route('/paper-prompt-builder')
-def paper_prompt_builder():
-    try:
-        return render_template('paper-prompt-builder.html')
-    except Exception as e:
-        print(f"Error in paper_prompt_builder route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/api/verify-captcha', methods=['POST'])
-def api_verify_captcha():
-    """
-    Verifies a Cloudflare Turnstile token. Called by the site-wide
-    captcha gate after the user completes the widget. Returns
-    {success: true} on pass; sets the 24h cooldown client-side.
-    """
-    try:
-        data = request.get_json(silent=True) or {}
-        token = (data.get('token') or '').strip()
-
-        # Best-effort client IP (Vercel sets X-Forwarded-For)
-        remoteip = (
-            request.headers.get('CF-Connecting-IP')
-            or (request.headers.get('X-Forwarded-For', '').split(',')[0].strip() if request.headers.get('X-Forwarded-For') else '')
-            or request.remote_addr
-            or None
-        )
-
-        success, detail = verify_turnstile_token(token, remoteip)
-        if success:
-            return jsonify({'success': True})
-
-        err = 'invalid-token'
-        if isinstance(detail, dict):
-            err = detail.get('error-codes') or detail.get('error') or err
-        elif isinstance(detail, str):
-            err = detail
-        return jsonify({'success': False, 'error': err}), 400
-    except Exception as e:
-        print(f"Error in api_verify_captcha: {e}")
-        return jsonify({'success': False, 'error': str(e)}), 500
-
-
-@app.route('/category/<category>')
-def category(category):
-    try:
-        category = unquote(category)
-        categories = get_categories()
-        category_exists = category in categories or category in CATEGORY_METADATA
-
-        if not category_exists:
-            return redirect(url_for('home'))
-
-        quizzes = get_category_quizzes(category)
-        metadata = CATEGORY_METADATA.get(category, {})
-        category_data = {
-            'display_name': metadata.get('display_name', category.replace('_', ' ')),
-            'icon': metadata.get('icon', '📚'),
-            'image': metadata.get('image', None),
-            'description': metadata.get('description', ''),
-            'modules': quizzes.get('multiple-choice', []) + quizzes.get('fill-in-the-blank', [])
-        }
-
-        has_mc = len(quizzes.get('multiple-choice', [])) > 0
-        has_fb = len(quizzes.get('fill-in-the-blank', [])) > 0
-
-        if category == 'Adult_Health':
-            module_stats = get_adult_health_module_stats()
-            total_count = sum(m['count'] for m in module_stats.values() if m)
-            return render_template('adult-health.html',
-                                   quizzes=quizzes,
-                                   module_stats=module_stats,
-                                   total_count=total_count)
-
-        if category == 'NCLEX':
-            category_stats = get_nclex_category_stats()
-            total_questions = sum(s['count'] for s in category_stats.values())
-            return render_template('NCLEX-Landing.html',
-                                   category_stats=category_stats,
-                                   nclex_categories=NCLEX_CATEGORIES,
-                                   total_questions=total_questions,
-                                   quizzes=quizzes)
-
-        if category == 'Lab_Values' and has_mc and has_fb:
-            return render_template('lab-values.html', quizzes=quizzes)
-
-        if category == 'Nursing_Certifications':
-            cfrn_total = get_cfrn_valid_count()
-            ccrn_total = get_ccrn_valid_count()
-            return render_template('nursing-certifications.html',
-                                   quizzes=quizzes,
-                                   cfrn_total=cfrn_total,
-                                   ccrn_total=ccrn_total)
-
-        if category == 'Pharmacology':
-            return render_template('pharmacology.html', quizzes=quizzes)
-
-        return render_template('category.html',
-                               category=category,
-                               category_data=category_data,
-                               quizzes=quizzes)
-    except Exception as e:
-        print(f"Error in category route: {e}")
-        import traceback
-        traceback.print_exc()
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/NCLEX/category/<category_name>')
-def nclex_category_quiz(category_name):
-    try:
-        category_name = unquote(category_name)
-
-        if category_name not in NCLEX_CATEGORIES:
-            return redirect(url_for('category', category='NCLEX'))
-
-        questions = load_nclex_master_questions()
-        filtered_questions = [q for q in questions if q.get('category') == category_name]
-
-        if not filtered_questions:
-            return redirect(url_for('category', category='NCLEX'))
-
-        quiz_data = {
-            'module': f'NCLEX_{category_name.replace(" ", "_")}',
-            'questions': filtered_questions
-        }
-
-        quiz_length = request.args.get('quiz_length', 'full')
-        autostart = request.args.get('autostart', 'false').lower() == 'true'
-
-        return render_template('quiz.html',
-                               quiz_data=quiz_data,
-                               module_name=f'NCLEX - {category_name}',
-                               category='NCLEX',
-                               back_url='/category/NCLEX',
-                               back_label='NCLEX Learning Page',
-                               autostart=autostart,
-                               is_category_quiz=True,
-                               quiz_length=quiz_length)
-    except Exception as e:
-        print(f"Error in nclex_category_quiz route: {e}")
-        import traceback
-        traceback.print_exc()
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Nursing_Certifications/CCRN')
-def ccrn_page():
-    try:
-        category_stats = get_ccrn_category_stats()
-        total_questions = get_ccrn_valid_count()
-        return render_template('ccrn.html',
-                               category_stats=category_stats,
-                               ccrn_categories=CCRN_CATEGORIES,
-                               total_questions=total_questions)
-    except Exception as e:
-        print(f"Error in ccrn_page route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Nursing_Certifications/CCRN/category/<category_name>')
-def ccrn_category_quiz(category_name):
-    try:
-        category_name = unquote(category_name)
-
-        if category_name not in CCRN_CATEGORIES:
-            return redirect(url_for('ccrn_page'))
-
-        questions = load_ccrn_comprehensive_questions()
-        filtered_questions = [q for q in questions if q.get('category') == category_name]
-
-        if not filtered_questions:
-            return redirect(url_for('ccrn_page'))
-
-        quiz_data = {
-            'module': f'CCRN_{category_name.replace(" ", "_").replace("/", "_")}',
-            'questions': filtered_questions
-        }
-
-        quiz_length = request.args.get('quiz_length', 'full')
-        autostart = request.args.get('autostart', 'false').lower() == 'true'
-
-        return render_template('quiz.html',
-                               quiz_data=quiz_data,
-                               module_name=f'CCRN - {category_name}',
-                               category='Nursing_Certifications',
-                               back_url='/category/Nursing_Certifications/CCRN',
-                               back_label='CCRN Practice System',
-                               autostart=autostart,
-                               is_category_quiz=True,
-                               quiz_length=quiz_length)
-    except Exception as e:
-        print(f"Error in ccrn_category_quiz route: {e}")
-        import traceback
-        traceback.print_exc()
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Nursing_Certifications/CFRN')
-def cfrn_page():
-    try:
-        category_stats = get_cfrn_category_stats()
-        domain_totals, total_questions = get_cfrn_domain_totals()
-        response = render_template('cfrn.html',
-                                   category_stats=category_stats,
-                                   cfrn_categories=CFRN_CATEGORIES,
-                                   total_questions=total_questions,
-                                   domain_totals=domain_totals)
-        from flask import make_response
-        resp = make_response(response)
-        resp.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-        resp.headers['Pragma'] = 'no-cache'
-        resp.headers['Expires'] = '0'
-        return resp
-    except Exception as e:
-        print(f"Error in cfrn_page route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Nursing_Certifications/CFRN/domain/<domain_name>')
-def cfrn_domain_quiz(domain_name):
-    try:
-        domain_name = unquote(domain_name)
-
-        if domain_name not in CFRN_DOMAINS:
-            return redirect(url_for('cfrn_page'))
-
-        filtered_questions = load_cfrn_domain_questions(domain_name)
-
-        if not filtered_questions:
-            return redirect(url_for('cfrn_page'))
-
-        safe_name = domain_name.replace(' ', '_').replace('/', '_')
-        quiz_data = {
-            'module': f'CFRN_{safe_name}',
-            'questions': filtered_questions
-        }
-
-        quiz_length = request.args.get('quiz_length', 'full')
-        autostart = request.args.get('autostart', 'false').lower() == 'true'
-
-        return render_template('quiz.html',
-                               quiz_data=quiz_data,
-                               module_name=f'CFRN - {domain_name}',
-                               category='Nursing_Certifications',
-                               back_url='/category/Nursing_Certifications/CFRN',
-                               back_label='CFRN Practice System',
-                               autostart=autostart,
-                               is_category_quiz=True,
-                               quiz_length=quiz_length)
-    except Exception as e:
-        print(f"Error in cfrn_domain_quiz route: {e}")
-        import traceback
-        traceback.print_exc()
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Nursing_Certifications/CFRN/category/<category_name>')
-def cfrn_category_quiz(category_name):
-    try:
-        category_name = unquote(category_name)
-
-        if category_name not in CFRN_CATEGORIES:
-            return redirect(url_for('cfrn_page'))
-
-        domain_name = category_name.split(';')[0].strip()
-
-        domain_questions = load_cfrn_domain_questions(domain_name)
-        filtered_questions = [q for q in domain_questions if q.get('category') == category_name]
-
-        if not filtered_questions:
-            return redirect(url_for('cfrn_page'))
-
-        quiz_data = {
-            'module': f'CFRN_{category_name.replace(" ", "_").replace(";", "").replace("/", "_")}',
-            'questions': filtered_questions
-        }
-
-        quiz_length = request.args.get('quiz_length', 'full')
-        autostart = request.args.get('autostart', 'false').lower() == 'true'
-        subcat = category_name.split('; ')[1] if '; ' in category_name else category_name
-
-        return render_template('quiz.html',
-                               quiz_data=quiz_data,
-                               module_name=f'CFRN - {subcat}',
-                               category='Nursing_Certifications',
-                               back_url='/category/Nursing_Certifications/CFRN',
-                               back_label='CFRN Practice System',
-                               autostart=autostart,
-                               is_category_quiz=True,
-                               quiz_length=quiz_length)
-    except Exception as e:
-        print(f"Error in cfrn_category_quiz route: {e}")
-        import traceback
-        traceback.print_exc()
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Adult_Health/module/comprehensive')
-def adult_health_comprehensive_quiz():
-    try:
-        all_questions = load_adult_health_questions()
-        combined_questions = []
-        seen_ids = set()
-
-        for module_num in ADULT_HEALTH_MODULES.keys():
-            filtered = filter_adult_health_questions(all_questions, module_num)
-            for q in filtered:
-                q_id = q.get('id', q.get('stem', ''))
-                if q_id not in seen_ids:
-                    combined_questions.append(q)
-                    seen_ids.add(q_id)
-
-        if not combined_questions:
-            return redirect(url_for('category', category='Adult_Health'))
-
-        quiz_data = {'module': 'Adult_Health_Comprehensive', 'questions': combined_questions}
-        quiz_length = request.args.get('quiz_length', '10')
-        autostart = request.args.get('autostart', 'false').lower() == 'true'
-
-        return render_template('quiz.html',
-                               quiz_data=quiz_data,
-                               module_name='Adult Health: All Modules Combined',
-                               category='Adult_Health',
-                               back_url='/category/Adult_Health',
-                               back_label='Adult Health',
-                               autostart=autostart,
-                               is_category_quiz=True,
-                               quiz_length=quiz_length)
-    except Exception as e:
-        print(f"Error in adult_health_comprehensive_quiz route: {e}")
-        import traceback
-        traceback.print_exc()
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Adult_Health/module/<int:module_num>')
-def adult_health_module_quiz(module_num):
-    try:
-        if module_num not in ADULT_HEALTH_MODULES:
-            return redirect(url_for('category', category='Adult_Health'))
-
-        questions = load_adult_health_questions()
-        filtered_questions = filter_adult_health_questions(questions, module_num)
-
-        if not filtered_questions:
-            return redirect(url_for('category', category='Adult_Health'))
-
-        module_def = ADULT_HEALTH_MODULES[module_num]
-        quiz_data = {'module': f'Adult_Health_Module_{module_num}', 'questions': filtered_questions}
-        quiz_length = request.args.get('quiz_length', '10')
-        autostart = request.args.get('autostart', 'false').lower() == 'true'
-
-        return render_template('quiz.html',
-                               quiz_data=quiz_data,
-                               module_name=f'Module {module_num}: {module_def["name"]}',
-                               category='Adult_Health',
-                               back_url='/category/Adult_Health',
-                               back_label='Adult Health',
-                               autostart=autostart,
-                               is_category_quiz=True,
-                               quiz_length=quiz_length)
-    except Exception as e:
-        print(f"Error in adult_health_module_quiz route: {e}")
-        import traceback
-        traceback.print_exc()
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Pharmacology/Comprehensive')
-def pharmacology_comprehensive():
-    try:
-        return render_template('pharmacology-comprehensive.html')
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/category/Pharmacology/Categories')
-def pharmacology_categories():
-    try:
-        return render_template('pharmacology-categories.html')
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/quiz/<category>/<module>')
-def quiz(category, module):
-    try:
-        category = unquote(category)
-        module = unquote(module)
-
-        categories = get_categories()
-        category_exists = category in categories or category in CATEGORY_METADATA
-
-        if not category_exists:
-            return redirect(url_for('home'))
-
-        if 'Fill_In_The_Blank' in module:
-            return redirect(url_for('quiz_fill_blank', category=category, module=module))
-
-        module_path = MODULES_DIR / category / f'{module}.json'
-
-        if not module_path.exists():
-            return redirect(url_for('category', category=category))
-
-        with open(module_path, 'r', encoding='utf-8') as f:
-            quiz_data = json.load(f)
-
-        if isinstance(quiz_data, list):
-            quiz_data = {'questions': quiz_data}
-
-        autostart = request.args.get('autostart', 'false').lower() == 'true'
-        is_comprehensive = request.args.get('is_comprehensive', 'false').lower() == 'true'
-        quiz_length = request.args.get('quiz_length', 'full')
-        metadata = CATEGORY_METADATA.get(category, {})
-
-        if 'CCRN' in module and category == 'Nursing_Certifications':
-            back_url = '/category/Nursing_Certifications/CCRN'
-            back_label = 'CCRN Practice System'
-        elif 'CFRN' in module and category == 'Nursing_Certifications':
-            back_url = '/category/Nursing_Certifications/CFRN'
-            back_label = 'CFRN Practice System'
-        elif module.startswith('Pharm_Quiz_') and category == 'Pharmacology':
-            back_url = '/category/Pharmacology/Comprehensive'
-            back_label = 'Comprehensive Pharmacology Quizzes'
-        elif category == 'Pharmacology' and module.endswith('_Pharm'):
-            back_url = '/category/Pharmacology/Categories'
-            back_label = 'Pharmacology by Category'
-        elif category == 'NCLEX' and module == 'NCLEX_Comprehensive_Master_Categorized':
-            back_url = '/category/NCLEX'
-            back_label = 'NCLEX Learning Page'
-        else:
-            back_url = f'/category/{category}'
-            back_label = metadata.get('display_name', category.replace('_', ' '))
-
-        return render_template('quiz.html',
-                               quiz_data=quiz_data,
-                               module_name=module,
-                               category=category,
-                               back_url=back_url,
-                               back_label=back_label,
-                               autostart=autostart,
-                               is_comprehensive=is_comprehensive,
-                               quiz_length=quiz_length)
-    except Exception as e:
-        print(f"Error in quiz route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/quiz-fill-blank/<category>/<module>')
-def quiz_fill_blank(category, module):
-    try:
-        category = unquote(category)
-        module = unquote(module)
-        categories = get_categories()
-
-        if category not in categories:
-            return redirect(url_for('home'))
-
-        if 'Fill_In_The_Blank' not in module:
-            module = f'{module}_Fill_In_The_Blank'
-
-        module_path = MODULES_DIR / category / f'{module}.json'
-
-        if not module_path.exists():
-            return redirect(url_for('category', category=category))
-
-        with open(module_path, 'r', encoding='utf-8') as f:
-            quiz_data = json.load(f)
-
-        metadata = CATEGORY_METADATA.get(category, {})
-        back_url = f'/category/{category}'
-        back_label = metadata.get('display_name', category.replace('_', ' '))
-
-        return render_template('quiz-fill-blank.html',
-                               quiz_data=quiz_data,
-                               module_name=module,
-                               category=category,
-                               back_url=back_url,
-                               back_label=back_label)
-    except Exception as e:
-        print(f"Error in quiz_fill_blank route: {e}")
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/quiz-fishbone-mcq')
-def quiz_fishbone_mcq():
-    try:
-        return render_template('quiz-fishbone-mcq.html')
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/quiz-fishbone-fill')
-def quiz_fishbone_fill():
-    try:
-        return render_template('quiz-fishbone-fill.html')
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/api/categories')
-def api_categories():
-    try:
-        categories_list = get_categories()
-        result = {}
-        for category in categories_list:
-            modules = get_modules_in_category(category)
-            metadata = CATEGORY_METADATA.get(category, {})
-            result[category] = {
-                'display_name': metadata.get('display_name', category.replace('_', ' ')),
-                'icon': metadata.get('icon', '📚'),
-                'image': metadata.get('image', None),
-                'description': metadata.get('description', ''),
-                'modules': modules
-            }
-        return jsonify(result)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/api/category/<category>/quizzes')
-def api_category_quizzes(category):
-    try:
-        category = unquote(category)
-        categories = get_categories()
-        if category not in categories:
-            return jsonify({'error': 'Category not found'}), 404
-        quizzes = get_category_quizzes(category)
-        return jsonify(quizzes)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/api/nclex/category-stats')
-def api_nclex_category_stats():
-    try:
-        stats = get_nclex_category_stats()
-        return jsonify(stats)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/api/cfrn/count')
-def api_cfrn_count():
-    try:
-        return jsonify({'count': get_cfrn_valid_count()})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/api/cfrn/domain-counts')
-def api_cfrn_domain_counts():
-    try:
-        domain_totals, grand_total = get_cfrn_domain_totals()
-        return jsonify({
-            'domains': dict(domain_totals),
-            'total': grand_total
-        })
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/api/ccrn/count')
-def api_ccrn_count():
-    try:
-        return jsonify({'count': get_ccrn_valid_count()})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/modules')
-def modules():
-    try:
-        all_modules = []
-        for category in get_categories():
-            modules_list = get_modules_in_category(category)
-            regular_modules = [m for m in modules_list if 'Fill_In_The_Blank' not in m]
-            all_modules.extend(regular_modules)
-        return jsonify({'modules': sorted(all_modules)})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@app.route('/images/<path:filename>')
-def serve_images(filename):
-    images_dir = BASE_DIR / 'images'
-    return send_from_directory(images_dir, filename)
+.weekly-progress-widget .progress-icon {
+  font-size: 18px;
+}
+
+.weekly-progress-widget .progress-label {
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.weekly-progress-widget .progress-value {
+  font-weight: 800;
+  font-size: 18px;
+  color: #2f61f3;
+  min-width: 24px;
+  text-align: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Animation when count updates */
+.weekly-progress-widget .progress-value.updated {
+  animation: countPulse 0.4s ease;
+}
+
+@keyframes countPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); color: #4caf50; }
+  100% { transform: scale(1); }
+}
+
+/* Offline indicator */
+.offline-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 10000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.offline-indicator.hidden {
+  display: none;
+}
+
+/* Quote container */
+.quote-container {
+  margin: 14px auto 0;
+  max-width: 900px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+/* ---- Search ---- */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 14px 0 6px;
+}
+
+.search-bar {
+  max-width: 680px;
+}
+
+/* ---- Category Grid ---- */
+.categories-grid {
+  display: grid;
+
+  /* 25% smaller than 260–340px -> 195–255px */
+  grid-template-columns: repeat(auto-fit, minmax(195px, 255px));
+  justify-content: center;
+  align-items: start;
+
+  /* 25% smaller than previous 3-up max width and smaller gaps */
+  max-width: calc(255px * 3 + 16px * 2);
+  margin: 0 auto;
+
+  gap: 16px;
+  padding: 18px 0 32px;
+}
+
+/* ---- Category Cards ---- */
+.category-card {
+  position: relative;
+  display: block;
+
+  /* ✅ Card height is defined by the image (wraps it) */
+  height: auto !important;
+
+  /* 25% smaller than 18px -> ~14px */
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
+
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+}
+
+.category-card:active {
+  transform: translateY(-1px);
+}
+
+.category-card:focus-visible {
+  outline: 3px solid rgba(47, 97, 243, 0.35);
+  outline-offset: 4px;
+}
+
+/* ---- Image Cards ---- */
+.category-card.image-card {
+  padding: 0 !important;
+  background: transparent;
+  display: block !important;
+}
+
+/* Image scales with card width while preserving aspect ratio */
+.category-card.image-card .category-image,
+.category-card.image-card img {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+
+  /* Ensure no legacy object-fit rules interfere */
+  object-fit: unset !important;
+
+  border-radius: inherit;
+}
+
+/* ---- Remove overlay arrow badge ---- */
+.card-arrow {
+  display: none !important;
+}
+
+/* ---- Text fallback cards (only used if an image fails) ---- */
+.category-card-content {
+  width: 100%;
+  /* 25% smaller than 240px -> 180px */
+  min-height: 180px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px;
+  text-align: center;
+  gap: 10px;
+}
+
+.category-icon {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.category-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.category-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+/* ---- AI Paper Prompt Builder home card ---- */
+/* Matches existing card sizing without forcing the whole grid row taller */
+.prompt-builder-card {
+  aspect-ratio: 1.35 / 1;
+  min-height: 0;
+  height: auto !important;
+
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.32), transparent 34%),
+    linear-gradient(135deg, #0f172a 0%, #17336f 48%, #2f61f3 100%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+.prompt-builder-card-inner {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 14px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  gap: 6px;
+}
+
+.prompt-builder-badge {
+  align-self: flex-start;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.prompt-builder-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  font-size: 25px;
+}
+
+.prompt-builder-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 22px;
+  line-height: 1.02;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.prompt-builder-subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.prompt-builder-mini-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.prompt-builder-mini-list span {
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* ---- Footer ---- */
+.hub-footer {
+  text-align: center;
+  padding: 16px 0 28px;
+  color: var(--ink-soft);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 520px) {
+  .hub-header h1 {
+    font-size: 28px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    max-width: 100%;
+  }
+
+  .category-card-content {
+    /* 25% smaller than 220px -> 165px */
+    min-height: 165px;
+  }
+
+  /* Responsive weekly progress widget */
+  .weekly-progress-widget {
+    flex-wrap: wrap;
+    padding: 8px 16px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .weekly-progress-widget .progress-value {
+    font-size: 16px;
+  }
+
+  .prompt-builder-card {
+    aspect-ratio: 1.35 / 1;
+  }
+
+  .prompt-builder-card-inner {
+    padding: 12px;
+    gap: 5px;
+  }
+
+  .prompt-builder-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 23px;
+  }
+
+  .prompt-builder-title {
+    font-size: 20px;
+  }
+}
