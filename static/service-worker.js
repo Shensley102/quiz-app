@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.4.0';
+const CACHE_VERSION = 'v2.4.1';
 const CACHE_NAME = `nurse-study-hub-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `nurse-study-hub-data-${CACHE_VERSION}`;
 
@@ -19,9 +19,11 @@ const STATIC_ASSETS = [
   '/static/category-style.css',
   '/static/quiz-style.css',
   '/static/home-style.css',
+  '/static/paper-prompt-builder.css',
   '/static/quiz-script.js',
   '/static/js/pwa-utils.js',
   '/static/js/progress-store.js',
+  '/static/js/paper-prompt-builder.js',
   '/static/manifest.json',
   '/static/icons/icon-192.png',
   '/static/icons/icon-512.png',
@@ -39,6 +41,7 @@ const STATIC_ASSETS = [
 // HTML pages to precache
 const HTML_PAGES = [
   '/',
+  '/paper-prompt-builder',
   '/category/NCLEX',
   '/category/Lab_Values',
   '/category/Patient_Care_Management',
