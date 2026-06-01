@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="AI-readable paper writing prompt builder for academic papers, citation formats, rubrics, and sources">
+  <title>Paper Prompt Builder | Nurse Success Study Hub</title>
+
+  <!-- Captcha Gate -->
+  <meta name="turnstile-site-key" content="{{ turnstile_site_key }}">
+  <script src="/static/js/captcha-gate.js" defer></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/paper-prompt-builder.css">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#2f61f3">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Nurse Study">
+  <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+  <div id="offlineIndicator" class="offline-indicator hidden">
+    📡 You're offline - Using cached content
+  </div>
+
+  <main class="prompt-page">
+    <a class="back-link" href="/">← Back to Study Hub</a>
+
+    <header class="prompt-tool-header">
+      <h1>✍️ AI Paper Prompt Builder</h1>
+      <p>Fill this out, check the boxes that apply, then copy the generated AI-readable prompt. The output is built with clear tags so an AI can understand the assignment, format, source rules, and missing documentation.</p>
+      <div class="prompt-tool-actions">
+        <button type="button" class="tool-btn" id="copyPromptBtn">Copy Prompt</button>
+        <button type="button" class="tool-btn secondary" id="downloadPromptBtn">Download .txt</button>
+        <button type="button" class="tool-btn warning" id="checkMissingBtn">Check Missing Info</button>
+      </div>
+    </header>
+
+    <div class="prompt-builder-layout">
+      <form id="paperPromptForm" class="prompt-panel" autocomplete="off">
+        <section class="prompt-section">
+          <h2>1. Paper Setup</h2>
+          <div class="field-grid">
+            <fieldset class="prompt-check-group full">
+              <legend>Paper type</legend>
+              <div class="checkbox-grid">
+                <label class="check-option"><input type="checkbox" name="paperType" value="Research paper"> Research paper</label>
+                <label class="check-option"><input type="checkbox" name="paperType" value="Argumentative essay"> Argumentative essay</label>
+                <label class="check-option"><input type="checkbox" name="paperType" value="Literature review"> Literature review</label>
+                <label class="check-option"><input type="checkbox" name="paperType" value="Case study"> Case study</label>
+                <label class="check-option"><input type="checkbox" name="paperType" value="Reflection paper"> Reflection paper</label>
+                <label class="check-option"><input type="checkbox" name="paperType" value="Discussion post / response"> Discussion post / response</label>
+              </div>
+            </fieldset>
+
+            <div class="prompt-field full">
+              <label for="topic">Topic</label>
+              <input id="topic" type="text" placeholder="Example: Effects of nurse staffing ratios on patient safety">
+            </div>
+
+            <div class="prompt-field">
+              <label for="course">Course / class</label>
+              <input id="course" type="text" placeholder="Example: Nursing Leadership">
+            </div>
+
+            <div class="prompt-field">
+              <label for="academicLevel">Academic level</label>
+              <select id="academicLevel">
+                <option value="">Select one</option>
+                <option>High school</option>
+                <option>College undergraduate</option>
+                <option>ADN / ASN nursing student</option>
+                <option>BSN nursing student</option>
+                <option>Graduate level</option>
+                <option>Professional / workplace</option>
+              </select>
+            </div>
+
+            <div class="prompt-field">
+              <label for="lengthRequirement">Required length</label>
+              <input id="lengthRequirement" type="text" placeholder="Example: 5 pages, 1500 words, 8 paragraphs">
+            </div>
+
+            <div class="prompt-field">
+              <label for="dueDate">Due date / timeline</label>
+              <input id="dueDate" type="text" placeholder="Example: due Friday; need outline first">
+            </div>
+
+            <div class="prompt-field full">
+              <label for="audience">Audience / instructor expectations</label>
+              <textarea id="audience" placeholder="Example: Instructor wants scholarly tone, nursing relevance, and source-supported claims."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="prompt-section">
+          <h2>2. Citation Style & Format</h2>
+          <div class="field-grid">
+            <div class="prompt-field">
+              <label for="citationStyle">Citation style</label>
+              <select id="citationStyle">
+                <option value="">Select one</option>
+                <option>APA 7</option>
+                <option>MLA 9</option>
+                <option>Chicago</option>
+                <option>AMA</option>
+                <option>IEEE</option>
+                <option>ASA</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="prompt-field">
+              <label for="otherCitationStyle">Other style / instructor-specific format</label>
+              <input id="otherCitationStyle" type="text" placeholder="Only needed if Other or custom">
+            </div>
+
+            <div class="prompt-field">
+              <label for="titlePage">Title page?</label>
+              <select id="titlePage">
+                <option value="unknown">Not sure / follow style rules</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+
+            <div class="prompt-field">
+              <label for="abstract">Abstract?</label>
+              <select id="abstract">
+                <option value="unknown">Not sure / follow assignment</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+
+            <div class="prompt-field">
+              <label for="referencePage">Reference / Works Cited page?</label>
+              <select id="referencePage">
+                <option value="unknown">Not sure / follow style rules</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+
+            <div class="prompt-field">
+              <label for="pageSetup">Font / spacing / page setup</label>
+              <input id="pageSetup" type="text" placeholder="Example: Times New Roman 12, double spaced">
+            </div>
+
+            <div class="prompt-field full">
+              <label for="requiredSections">Required sections/headings</label>
+              <textarea id="requiredSections" placeholder="Example: Introduction, Background, Evidence, Counterargument, Conclusion"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="prompt-section">
+          <h2>3. Source Rules</h2>
+          <p class="source-reminder">Reminder: Add source documentation before asking AI to write final citations. Include PDFs, article links, DOI, author/date/title info, page numbers, textbook excerpts, screenshots, or pasted source text.</p>
+          <fieldset class="prompt-check-group full">
+            <legend>Check all that apply</legend>
+            <div class="checkbox-grid">
+              <label class="check-option"><input type="checkbox" name="sourceRules" value="Use only the sources I provide"> Use only sources I provide</label>
+              <label class="check-option"><input type="checkbox" name="sourceRules" value="Use peer-reviewed sources only"> Peer-reviewed sources only</label>
+              <label class="check-option"><input type="checkbox" name="sourceRules" value="Use sources from the last 5 years unless a classic source is required"> Sources from last 5 years</label>
+              <label class="check-option"><input type="checkbox" name="sourceRules" value="Include in-text citations"> Include in-text citations</label>
+              <label class="check-option"><input type="checkbox" name="sourceRules" value="Include a References / Works Cited / Bibliography page"> Include reference page</label>
+              <label class="check-option"><input type="checkbox" name="sourceRules" value="Do not invent sources, citations, quotes, DOI numbers, or page numbers"> No invented citations</label>
+              <label class="check-option"><input type="checkbox" name="sourceRules" value="Ask for missing source documentation before writing final draft"> Ask if source info missing</label>
+              <label class="check-option"><input type="checkbox" name="sourceRules" value="Use direct quotes only when I provide exact source text and page numbers"> Direct quotes only with exact text/page</label>
+            </div>
+          </fieldset>
+
+          <div class="field-grid">
+            <div class="prompt-field full">
+              <label for="requiredSources">Required sources / source list</label>
+              <textarea id="requiredSources" placeholder="Paste source titles, links, DOI, textbook chapters, or instructor-required sources here."></textarea>
+            </div>
+            <div class="prompt-field full">
+              <label for="sourceDocumentation">Source documentation provided</label>
+              <textarea id="sourceDocumentation" placeholder="Paste excerpts, article details, citation info, page numbers, notes from PDFs, or say what files you uploaded."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="prompt-section">
+          <h2>4. Assignment Materials</h2>
+          <div class="field-grid">
+            <div class="prompt-field full">
+              <label for="assignmentInstructions">Assignment instructions</label>
+              <textarea id="assignmentInstructions" placeholder="Paste the full assignment instructions here."></textarea>
+            </div>
+            <div class="prompt-field full">
+              <label for="rubric">Rubric / grading criteria</label>
+              <textarea id="rubric" placeholder="Paste the rubric here. This helps AI target the grading requirements."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="prompt-section">
+          <h2>5. Thesis, Argument, and Content</h2>
+          <div class="field-grid">
+            <div class="prompt-field full">
+              <label for="thesis">Working thesis</label>
+              <textarea id="thesis" placeholder="Type your thesis idea, even if rough."></textarea>
+            </div>
+            <div class="prompt-field full">
+              <label for="argumentAngle">Main argument / angle</label>
+              <textarea id="argumentAngle" placeholder="What do you want the paper to prove, explain, compare, or argue?"></textarea>
+            </div>
+            <div class="prompt-field full">
+              <label for="keyPoints">Key points that must be included</label>
+              <textarea id="keyPoints" placeholder="List required topics, examples, patient population, nursing concepts, etc."></textarea>
+            </div>
+            <div class="prompt-field full">
+              <label for="counterargument">Counterargument / opposing view</label>
+              <textarea id="counterargument" placeholder="Optional: what opposing viewpoint should the paper address?"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="prompt-section">
+          <h2>6. What Should AI Create?</h2>
+          <fieldset class="prompt-check-group full">
+            <legend>Requested output</legend>
+            <div class="checkbox-grid">
+              <label class="check-option"><input type="checkbox" name="writingTasks" value="Check for missing information first"> Check missing info first</label>
+              <label class="check-option"><input type="checkbox" name="writingTasks" value="Create or improve my thesis"> Create/improve thesis</label>
+              <label class="check-option"><input type="checkbox" name="writingTasks" value="Create a detailed outline"> Detailed outline</label>
+              <label class="check-option"><input type="checkbox" name="writingTasks" value="Find places where citations are needed"> Identify citation needs</label>
+              <label class="check-option"><input type="checkbox" name="writingTasks" value="Draft one section at a time after approval"> Draft section-by-section</label>
+              <label class="check-option"><input type="checkbox" name="writingTasks" value="Write the full draft after confirming source documentation"> Full draft after source check</label>
+              <label class="check-option"><input type="checkbox" name="writingTasks" value="Revise my existing draft"> Revise existing draft</label>
+              <label class="check-option"><input type="checkbox" name="writingTasks" value="Format citations and reference entries using the selected style"> Format citations/references</label>
+            </div>
+          </fieldset>
+
+          <div class="bottom-actions">
+            <button type="button" class="tool-btn" id="copyPromptBtnBottom">Copy Prompt</button>
+            <button type="button" class="tool-btn secondary" id="resetPromptBtn">Reset Form</button>
+          </div>
+        </section>
+      </form>
+
+      <aside class="prompt-panel prompt-output-panel">
+        <div class="output-header">
+          <h2>Generated AI Prompt</h2>
+        </div>
+        <textarea id="generatedPrompt" class="prompt-output" spellcheck="false" aria-label="Generated AI-readable prompt"></textarea>
+        <div class="output-actions">
+          <button type="button" class="tool-btn" id="copyPromptBtnSide">Copy Prompt</button>
+          <button type="button" class="tool-btn secondary" id="downloadPromptBtnSide">Download .txt</button>
+        </div>
+        <div id="missingInfoBox" class="missing-info-box hidden"></div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/static/js/progress-store.js"></script>
+  <script src="/static/js/pwa-utils.js"></script>
+  <script src="/static/js/paper-prompt-builder.js"></script>
+  <script>
+    document.getElementById('copyPromptBtnBottom')?.addEventListener('click', function() {
+      document.getElementById('copyPromptBtn')?.click();
+    });
+    document.getElementById('copyPromptBtnSide')?.addEventListener('click', function() {
+      document.getElementById('copyPromptBtn')?.click();
+    });
+    document.getElementById('downloadPromptBtnSide')?.addEventListener('click', function() {
+      document.getElementById('downloadPromptBtn')?.click();
+    });
+  </script>
+</body>
+</html>
