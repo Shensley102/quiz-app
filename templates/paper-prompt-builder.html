@@ -89,7 +89,14 @@
 
             <div class="prompt-field">
               <label for="lengthRequirement">Required length</label>
-              <input id="lengthRequirement" type="text" placeholder="Example: 5 pages, 1500 words, 8 paragraphs">
+              <div class="length-control">
+                <input id="lengthRequirement" type="number" min="1" step="1" inputmode="numeric" placeholder="Example: 1000">
+                <select id="lengthUnit" aria-label="Required length unit">
+                  <option value="">Select unit</option>
+                  <option value="Words">Words</option>
+                  <option value="Pages">Pages</option>
+                </select>
+              </div>
             </div>
 
             <div class="prompt-field">
