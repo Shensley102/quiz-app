@@ -172,6 +172,23 @@
   accent-color: #2f61f3;
 }
 
+.content-help-callout {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(47, 97, 243, 0.2);
+  border-radius: 14px;
+  background: rgba(47, 97, 243, 0.06);
+}
+
+.content-help-callout legend {
+  padding: 0 6px;
+}
+
+.content-help-option {
+  border-color: rgba(47, 97, 243, 0.28);
+  background: #ffffff;
+}
+
 .prompt-output-panel {
   position: sticky;
   top: 16px;
