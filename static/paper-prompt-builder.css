@@ -124,6 +124,17 @@
   outline: none;
 }
 
+.length-control {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  gap: 8px;
+}
+
+.length-control input,
+.length-control select {
+  min-width: 0;
+}
+
 .prompt-field textarea {
   min-height: 92px;
   resize: vertical;
@@ -278,6 +289,10 @@
 @media (max-width: 560px) {
   .field-grid,
   .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .length-control {
     grid-template-columns: 1fr;
   }
 

@@ -6,9 +6,6 @@
   <meta name="description" content="AI-readable paper writing prompt builder for academic papers, citation formats, rubrics, and sources">
   <title>Paper Prompt Builder | Nurse Success Study Hub</title>
 
-  <!-- Captcha Gate -->
-  <meta name="turnstile-site-key" content="{{ turnstile_site_key }}">
-  <script src="/static/js/captcha-gate.js" defer></script>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -89,7 +86,14 @@
 
             <div class="prompt-field">
               <label for="lengthRequirement">Required length</label>
-              <input id="lengthRequirement" type="text" placeholder="Example: 5 pages, 1500 words, 8 paragraphs">
+              <div class="length-control">
+                <input id="lengthRequirement" type="number" min="1" step="1" inputmode="numeric" placeholder="Example: 1000">
+                <select id="lengthUnit" aria-label="Required length unit">
+                  <option value="">Select unit</option>
+                  <option value="Words">Words</option>
+                  <option value="Pages">Pages</option>
+                </select>
+              </div>
             </div>
 
             <div class="prompt-field">

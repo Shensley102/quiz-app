@@ -9,7 +9,6 @@
    - Update notifications
    - Motivational quotes for home page
    - Content protection (copy/paste prevention)
-   - Captcha-gate reset on PWA update (clears sg:captcha-verified-at)
    ============================================================ */
 
 (function() {
@@ -96,22 +95,6 @@
   }
 
   // ============================================================
-  // CAPTCHA GATE RESET ON PWA UPDATE
-  // ============================================================
-
-  function clearCaptchaVerification(reason) {
-    try {
-      var key = 'sg:captcha-verified-at';
-      if (localStorage.getItem(key) !== null) {
-        localStorage.removeItem(key);
-        log('Cleared captcha verification flag — reason:', reason);
-      }
-    } catch (e) {
-      log('Failed to clear captcha flag:', e);
-    }
-  }
-
-  // ============================================================
   // SERVICE WORKER MANAGEMENT
   // ============================================================
 
@@ -149,8 +132,6 @@
       navigator.serviceWorker.addEventListener('message', handleSWMessage);
 
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        clearCaptchaVerification('controllerchange');
-
         if (refreshing) return;
         refreshing = true;
         log('Controller changed, reloading page');
@@ -180,7 +161,6 @@
       case 'SW_ACTIVATED':
         log('Service Worker activated, version:', data.version);
         updatePWAStatus(`PWA v${data.version} active`);
-        clearCaptchaVerification('SW_ACTIVATED v' + data.version);
         setTimeout(refreshCacheOnStartup, 1000);
         break;
 
@@ -416,8 +396,7 @@
     forceUpdate,
     checkForUpdates,
     refreshCache: refreshCacheOnStartup,
-    getRegistration: () => swRegistration,
-    clearCaptchaVerification: clearCaptchaVerification
+    getRegistration: () => swRegistration
   };
 
   if (document.readyState === 'loading') {

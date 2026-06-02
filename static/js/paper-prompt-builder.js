@@ -40,6 +40,23 @@
     return `${label}: ${val || 'Not specified'}`;
   }
 
+  function requiredLengthText() {
+    const length = value('lengthRequirement');
+    const unit = value('lengthUnit');
+    return length && unit ? `${length} ${unit}` : '';
+  }
+
+  function requiredLengthMissingMessage() {
+    const length = value('lengthRequirement');
+    const unit = value('lengthUnit');
+
+    if (!length && !unit) return 'Enter the required length and select Words or Pages before copying the prompt.';
+    if (!length) return 'Enter the required length number before copying the prompt.';
+    if (!Number.isFinite(Number(length)) || Number(length) < 1) return 'Enter a required length of 1 or more before copying the prompt.';
+    if (!unit) return 'Select Words or Pages for the required length before copying the prompt.';
+    return '';
+  }
+
   function buildPrompt() {
     const paperTypes = checkedValues('paperType');
     const sourceRules = checkedValues('sourceRules');
@@ -71,7 +88,7 @@ ${fieldLine('Course / class', value('course'))}
 ${fieldLine('Academic level', value('academicLevel'))}
 ${fieldLine('Audience / instructor expectations', value('audience'))}
 ${fieldLine('Paper type', paperTypes.length ? paperTypes.join(', ') : 'Not specified')}
-${fieldLine('Required length', value('lengthRequirement'))}
+${fieldLine('Required length', requiredLengthText())}
 ${fieldLine('Due date / timeline', value('dueDate'))}
 </context>
 
@@ -197,6 +214,9 @@ Fourth, wait for my approval before writing the full paper unless I specifically
 
     if (!value('topic')) problems.push('Add the paper topic.');
     if (!checkedValues('paperType').length) problems.push('Select at least one paper type.');
+
+    const requiredLengthProblem = requiredLengthMissingMessage();
+    if (requiredLengthProblem) problems.push(requiredLengthProblem);
     if (!citationStyle) problems.push('Select a citation style, such as APA, MLA, Chicago, AMA, or IEEE.');
     if (citationStyle === 'Other' && !value('otherCitationStyle')) problems.push('Type the custom citation style.');
     if (!value('assignmentInstructions')) problems.push('Paste the assignment instructions if you have them.');
@@ -221,7 +241,25 @@ Fourth, wait for my approval before writing the full paper unless I specifically
     }
   }
 
+  function showRequiredLengthError(message) {
+    missingBox.classList.remove('hidden', 'good');
+    missingBox.innerHTML = `<strong>Required length needed:</strong> ${message}`;
+    window.alert(message);
+
+    if (!value('lengthRequirement')) {
+      $('lengthRequirement')?.focus();
+    } else {
+      $('lengthUnit')?.focus();
+    }
+  }
+
   async function copyPrompt() {
+    const requiredLengthProblem = requiredLengthMissingMessage();
+    if (requiredLengthProblem) {
+      showRequiredLengthError(requiredLengthProblem);
+      return;
+    }
+
     buildPrompt();
     try {
       await navigator.clipboard.writeText(output.value);
