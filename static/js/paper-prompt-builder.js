@@ -61,6 +61,8 @@
     const paperTypes = checkedValues('paperType');
     const sourceRules = checkedValues('sourceRules');
     const writingTasks = checkedValues('writingTasks');
+    const contentHelp = checkedValues('contentHelp');
+    const shouldWriteEntirePaper = writingTasks.some(task => task.includes('Write the entire paper'));
     const citationStyle = value('citationStyle');
     const otherCitationStyle = value('otherCitationStyle');
     const finalCitationStyle = citationStyle === 'Other' ? (otherCitationStyle || 'Other / custom') : citationStyle;
@@ -138,6 +140,8 @@ ${value('keyPoints') || 'Not provided'}
 
 Counterargument or opposing viewpoint to address:
 ${value('counterargument') || 'Not provided'}
+
+${yesNo(contentHelp.length)} If any thesis, argument, key point, or counterargument details are blank or weak, develop appropriate content for that part using the assignment instructions, rubric, topic, academic level, and source rules.
 </thesis_and_argument>
 
 <writing_tasks_requested>
@@ -159,7 +163,7 @@ ${listOrNone(writingTasks)}
 First, give me a missing-information checklist.
 Second, give me a recommended thesis improvement if needed.
 Third, create a detailed paper outline.
-Fourth, wait for my approval before writing the full paper unless I specifically ask you to draft immediately.
+${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish after completing the missing-information and source-documentation check. If critical assignment details or source documentation needed for citations are missing, ask for those first instead of inventing them.' : 'Fourth, wait for my approval before writing the full paper unless I specifically ask you to draft immediately.'}
 </output_format>`;
 
     output.value = prompt;
