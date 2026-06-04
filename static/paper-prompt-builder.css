@@ -172,6 +172,35 @@
   accent-color: #2f61f3;
 }
 
+
+.paper-type-picker select {
+  max-width: 100%;
+}
+
+.paper-type-criteria-preview {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px solid rgba(47, 97, 243, 0.16);
+  border-radius: 14px;
+  background: rgba(47, 97, 243, 0.05);
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  font-weight: 650;
+  line-height: 1.42;
+}
+
+.criteria-preview-row + .criteria-preview-row {
+  margin-top: 6px;
+}
+
+.criteria-preview-row strong {
+  color: var(--ink);
+}
+
+.criteria-empty {
+  margin: 0;
+}
+
 .content-help-callout {
   margin: 0 0 12px;
   padding: 12px;
