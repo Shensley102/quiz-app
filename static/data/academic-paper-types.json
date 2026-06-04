@@ -1,0 +1,2096 @@
+{
+  "metadata": {
+    "title": "Academic Paper Types Prompt Builder Criteria",
+    "version": "1.0.0",
+    "recommended_path": "static/data/academic-paper-types.json",
+    "description": "Structured paper-type profiles for generating academic writing prompts. Each profile supplies purpose, structure, evidence expectations, pitfalls, assessment criteria, and prompt instructions.",
+    "source_documents": [
+      "Combined AI Prompt Engineering Guide",
+      "Common Undergraduate and Graduate Academic Paper Types"
+    ]
+  },
+  "global_prompt_builder": {
+    "paper_type_options": [
+      {
+        "value": "narrative_essay",
+        "label": "Narrative Essay",
+        "category": "Essay and Response Genres"
+      },
+      {
+        "value": "descriptive_essay",
+        "label": "Descriptive Essay",
+        "category": "Essay and Response Genres"
+      },
+      {
+        "value": "expository_essay",
+        "label": "Expository Essay",
+        "category": "Essay and Response Genres"
+      },
+      {
+        "value": "compare_contrast_essay",
+        "label": "Compare-and-Contrast Essay",
+        "category": "Essay and Response Genres"
+      },
+      {
+        "value": "cause_effect_essay",
+        "label": "Cause-and-Effect Essay",
+        "category": "Essay and Response Genres"
+      },
+      {
+        "value": "argumentative_essay",
+        "label": "Argumentative Essay",
+        "category": "Essay and Response Genres"
+      },
+      {
+        "value": "analytical_paper",
+        "label": "Analytical Paper",
+        "category": "Essay and Response Genres"
+      },
+      {
+        "value": "rhetorical_analysis",
+        "label": "Rhetorical Analysis",
+        "category": "Essay and Response Genres"
+      },
+      {
+        "value": "reflection_paper",
+        "label": "Reflection Paper",
+        "category": "Essay and Response Genres"
+      },
+      {
+        "value": "research_paper",
+        "label": "Research Paper",
+        "category": "Research and Synthesis Genres"
+      },
+      {
+        "value": "literature_review",
+        "label": "Literature Review",
+        "category": "Research and Synthesis Genres"
+      },
+      {
+        "value": "annotated_bibliography",
+        "label": "Annotated Bibliography",
+        "category": "Research and Synthesis Genres"
+      },
+      {
+        "value": "article_critique",
+        "label": "Article Critique",
+        "category": "Research and Synthesis Genres"
+      },
+      {
+        "value": "research_proposal",
+        "label": "Research Proposal",
+        "category": "Research and Synthesis Genres"
+      },
+      {
+        "value": "empirical_research_article",
+        "label": "Empirical Research Article",
+        "category": "Research and Synthesis Genres"
+      },
+      {
+        "value": "systematic_review",
+        "label": "Systematic Review",
+        "category": "Research and Synthesis Genres"
+      },
+      {
+        "value": "scoping_review",
+        "label": "Scoping Review",
+        "category": "Research and Synthesis Genres"
+      },
+      {
+        "value": "meta_analysis",
+        "label": "Meta-Analysis",
+        "category": "Research and Synthesis Genres"
+      },
+      {
+        "value": "case_study_analysis",
+        "label": "Case Study Analysis",
+        "category": "Applied Professional and Scientific Genres"
+      },
+      {
+        "value": "lab_report_scientific_report",
+        "label": "Lab Report / Scientific Report",
+        "category": "Applied Professional and Scientific Genres"
+      },
+      {
+        "value": "technical_report",
+        "label": "Technical Report",
+        "category": "Applied Professional and Scientific Genres"
+      },
+      {
+        "value": "policy_memo",
+        "label": "Policy Memo",
+        "category": "Applied Professional and Scientific Genres"
+      },
+      {
+        "value": "policy_brief",
+        "label": "Policy Brief",
+        "category": "Applied Professional and Scientific Genres"
+      },
+      {
+        "value": "grant_proposal",
+        "label": "Grant Proposal",
+        "category": "Applied Professional and Scientific Genres"
+      },
+      {
+        "value": "capstone_report",
+        "label": "Capstone Report",
+        "category": "Applied Professional and Scientific Genres"
+      },
+      {
+        "value": "thesis",
+        "label": "Thesis",
+        "category": "Degree and Long-Form Research Genres"
+      },
+      {
+        "value": "dissertation",
+        "label": "Dissertation",
+        "category": "Degree and Long-Form Research Genres"
+      }
+    ],
+    "required_user_inputs": [
+      {
+        "id": "paper_type",
+        "label": "Paper Type",
+        "type": "select",
+        "required": true
+      },
+      {
+        "id": "academic_level",
+        "label": "Academic Level",
+        "type": "text",
+        "required": true,
+        "placeholder": "Undergraduate, graduate, doctoral"
+      },
+      {
+        "id": "discipline",
+        "label": "Course or Discipline",
+        "type": "text",
+        "required": true,
+        "placeholder": "Nursing, English, psychology, public health"
+      },
+      {
+        "id": "topic",
+        "label": "Topic",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "assignment_instructions",
+        "label": "Assignment Instructions",
+        "type": "textarea",
+        "required": false,
+        "placeholder": "Paste instructor instructions here"
+      },
+      {
+        "id": "length",
+        "label": "Required Length",
+        "type": "text",
+        "required": false,
+        "placeholder": "Example: 5 pages or 1,500 words"
+      },
+      {
+        "id": "citation_style",
+        "label": "Citation Style",
+        "type": "text",
+        "required": false,
+        "placeholder": "APA 7, MLA, Chicago, AMA"
+      },
+      {
+        "id": "source_requirements",
+        "label": "Source Requirements",
+        "type": "text",
+        "required": false,
+        "placeholder": "Example: 5 peer-reviewed sources from the last 5 years"
+      },
+      {
+        "id": "output_wanted",
+        "label": "What should the AI create?",
+        "type": "select",
+        "required": true
+      }
+    ],
+    "output_modes": {
+      "full_paper_prompt": "Generate a complete AI prompt the student can copy into ChatGPT or another AI assistant.",
+      "outline": "Generate a paper-specific outline.",
+      "thesis_help": "Generate thesis, research question, or central claim options.",
+      "section_by_section_draft_plan": "Generate a staged drafting plan by section.",
+      "revision_checklist": "Generate a checklist for revising an existing draft.",
+      "rubric": "Generate a grading rubric based on the paper type and assignment."
+    },
+    "default_final_prompt_template": [
+      "ROLE:",
+      "You are an academic writing assistant specializing in {academic_level}-level {discipline} writing.",
+      "",
+      "CONTEXT:",
+      "The student is writing a {paper_label}.",
+      "Topic: {topic}",
+      "Assignment instructions: {assignment_instructions}",
+      "Length requirement: {length}",
+      "Citation style: {citation_style}",
+      "Source requirements: {source_requirements}",
+      "",
+      "PAPER TYPE CRITERIA:",
+      "{prompt_instruction}",
+      "",
+      "Expected structure:",
+      "{required_sections}",
+      "",
+      "Evidence expectations:",
+      "{evidence_expectations}",
+      "",
+      "Common mistakes to avoid:",
+      "{common_pitfalls}",
+      "",
+      "Assessment focus:",
+      "{assessment_focus}",
+      "",
+      "TASK:",
+      "Create a {output_wanted} for this assignment.",
+      "",
+      "RULES:",
+      "- Follow the instructor instructions first.",
+      "- Match the academic level and discipline.",
+      "- Use the required citation style.",
+      "- Do not invent sources, quotations, page numbers, DOIs, or citations.",
+      "- Mark where citations are needed when source details are unavailable.",
+      "- If information is missing, state what is missing instead of guessing.",
+      "- Keep the output appropriate for academic writing.",
+      "",
+      "OUTPUT FORMAT:",
+      "1. Paper goal",
+      "2. Working thesis, research question, or central claim",
+      "3. Recommended outline",
+      "4. Section-by-section writing guidance",
+      "5. Evidence/source needs",
+      "6. Common mistakes to avoid",
+      "7. Final checklist before submission"
+    ],
+    "universal_rules": [
+      "Instructor directions override default genre guidance.",
+      "Genre expectations should be adapted to discipline and academic level.",
+      "Length ranges are planning ranges, not fixed rules.",
+      "For factual, medical, legal, financial, scientific, or current claims, require source grounding.",
+      "Do not fabricate citations or claim to have read sources that were not provided.",
+      "When the assignment asks for research, separate source-supported claims from placeholders requiring research."
+    ]
+  },
+  "paper_types": {
+    "narrative_essay": {
+      "id": "narrative_essay",
+      "label": "Narrative Essay",
+      "category": "Essay and Response Genres",
+      "purpose": "Tell a focused story from experience while developing a controlling point or insight.",
+      "usual_level": "Lower undergraduate, first-year composition, reflective/professional undergraduate courses",
+      "planning_length": "750–1,500 words",
+      "typical_citation_styles": [
+        "MLA",
+        "APA",
+        "Course style"
+      ],
+      "primary_audience": "Instructor",
+      "required_sections": [
+        "Introduction with scene and controlling insight",
+        "Early context",
+        "Key scene or turning point",
+        "Reflection on meaning",
+        "Conclusion explaining why it matters"
+      ],
+      "evidence_expectations": [
+        "Use vivid, specific scenes rather than general life summary",
+        "Connect experience to a clear purpose or insight",
+        "Use source material only if the assignment requires it",
+        "Maintain chronology while selecting only relevant moments"
+      ],
+      "common_pitfalls": [
+        "Diary-like chronology with no point",
+        "Too many events and no focus",
+        "Weak scene selection",
+        "No clear takeaway or reflection"
+      ],
+      "assessment_focus": [
+        "Clear controlling point",
+        "Narrative organization",
+        "Specific detail",
+        "Depth of reflection",
+        "Connection between experience and insight"
+      ],
+      "prompt_instruction": "This is a narrative essay. It should tell a focused story, but it must still make a clear point. The writing should use selected scenes, chronology, character, setting, and reflection to turn experience into insight.",
+      "aliases": [
+        "literacy narrative",
+        "clinical narrative",
+        "field-experience narrative"
+      ],
+      "template_outline": [
+        "Introduction [scene + controlling insight]",
+        "Early context [what led to the event]",
+        "Key scene [turning point]",
+        "Reflection [what the event revealed]",
+        "Conclusion [why it still matters]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "descriptive_essay": {
+      "id": "descriptive_essay",
+      "label": "Descriptive Essay",
+      "category": "Essay and Response Genres",
+      "purpose": "Create a clear, vivid, organized account of a person, place, object, event, or experience.",
+      "usual_level": "Lower undergraduate, introductory writing, creative nonfiction, observational writing",
+      "planning_length": "750–1,500 words",
+      "typical_citation_styles": [
+        "MLA",
+        "APA",
+        "Course style"
+      ],
+      "primary_audience": "Instructor",
+      "required_sections": [
+        "Introduction with subject and focus",
+        "Organized descriptive body",
+        "Sensory and spatial details",
+        "Significance or effect",
+        "Conclusion with final impression"
+      ],
+      "evidence_expectations": [
+        "Use sensory detail and precise word choice",
+        "Organize description by space, feature, sequence, or dominant impression",
+        "Make description serve a point",
+        "Avoid unsupported generalizations"
+      ],
+      "common_pitfalls": [
+        "Cliché language",
+        "Sensory overload without focus",
+        "List of adjectives instead of organized description",
+        "No larger significance"
+      ],
+      "assessment_focus": [
+        "Specificity",
+        "Clarity",
+        "Organization",
+        "Dominant impression",
+        "Connection between description and meaning"
+      ],
+      "prompt_instruction": "This is a descriptive essay. It should create a vivid and coherent impression using precise sensory detail and organization. Description should support a clear focus rather than becoming a list of details.",
+      "aliases": [
+        "observational sketch",
+        "formal description",
+        "ethnographic scene-setting"
+      ],
+      "template_outline": [
+        "Introduction [object/place + focus]",
+        "Body A [visual features]",
+        "Body B [other senses/atmosphere]",
+        "Body C [significance/effect]",
+        "Conclusion [final impression]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "expository_essay": {
+      "id": "expository_essay",
+      "label": "Expository Essay",
+      "category": "Essay and Response Genres",
+      "purpose": "Explain, define, investigate, or clarify an idea using logical organization and support.",
+      "usual_level": "Lower undergraduate and exam writing",
+      "planning_length": "750–1,500 words",
+      "typical_citation_styles": [
+        "MLA",
+        "APA",
+        "Chicago",
+        "Course style"
+      ],
+      "primary_audience": "Instructor",
+      "required_sections": [
+        "Introduction with focused thesis",
+        "Body point A",
+        "Body point B",
+        "Body point C",
+        "Conclusion with synthesized explanation"
+      ],
+      "evidence_expectations": [
+        "Use clear definitions, examples, evidence, or process explanation",
+        "Support each point logically",
+        "Keep the purpose explanatory rather than purely persuasive",
+        "Use sources when required by the assignment"
+      ],
+      "common_pitfalls": [
+        "Topic too broad",
+        "Unsupported generalizations",
+        "Paragraphs that do not connect to the thesis",
+        "Conclusion that only repeats the introduction"
+      ],
+      "assessment_focus": [
+        "Clarity of thesis",
+        "Logical organization",
+        "Sufficiency of explanation",
+        "Evidence use",
+        "Paragraph development"
+      ],
+      "prompt_instruction": "This is an expository essay. It should explain a focused idea clearly and concisely using logical organization, examples, definitions, comparison, process explanation, or evidence as appropriate.",
+      "aliases": [
+        "definition essay",
+        "process essay",
+        "explainer essay"
+      ],
+      "template_outline": [
+        "Introduction [topic + thesis]",
+        "Point A [concept]",
+        "Point B [evidence/example]",
+        "Point C [implication]",
+        "Conclusion [synthesized explanation]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "compare_contrast_essay": {
+      "id": "compare_contrast_essay",
+      "label": "Compare-and-Contrast Essay",
+      "category": "Essay and Response Genres",
+      "purpose": "Compare at least two subjects to generate insight about similarities, differences, and significance.",
+      "usual_level": "Undergraduate, humanities, social sciences",
+      "planning_length": "1,000–2,500 words",
+      "typical_citation_styles": [
+        "MLA",
+        "APA",
+        "Chicago"
+      ],
+      "primary_audience": "Instructor",
+      "required_sections": [
+        "Introduction with subjects, basis for comparison, and thesis",
+        "Point-by-point body or block body",
+        "Analysis of similarities",
+        "Analysis of differences",
+        "Conclusion explaining what the comparison reveals"
+      ],
+      "evidence_expectations": [
+        "Establish a clear basis for comparison",
+        "Compare the same criteria across both subjects",
+        "Move beyond listing to analysis",
+        "Use evidence for each comparison point"
+      ],
+      "common_pitfalls": [
+        "Two separate mini-essays stapled together",
+        "Arbitrary comparison criteria",
+        "Listing similarities/differences without analysis",
+        "Uneven treatment of the subjects"
+      ],
+      "assessment_focus": [
+        "Clear comparison basis",
+        "Organization",
+        "Analytical insight",
+        "Balanced evidence",
+        "Significance of comparison"
+      ],
+      "prompt_instruction": "This is a compare-and-contrast essay. It should compare subjects using a clear basis for comparison and should explain what the similarities and differences reveal.",
+      "aliases": [
+        "comparative literature essay",
+        "theory comparison",
+        "historical comparison"
+      ],
+      "template_outline": [
+        "Introduction [items + basis + thesis]",
+        "Point A across both cases",
+        "Point B across both cases",
+        "Point C across both cases",
+        "Conclusion [what comparison reveals]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "cause_effect_essay": {
+      "id": "cause_effect_essay",
+      "label": "Cause-and-Effect Essay",
+      "category": "Essay and Response Genres",
+      "purpose": "Explain why something happened, what resulted, or how causes and effects interact.",
+      "usual_level": "Undergraduate, writing across disciplines, business, nursing, public health, social sciences",
+      "planning_length": "1,000–2,500 words",
+      "typical_citation_styles": [
+        "MLA",
+        "APA",
+        "Chicago"
+      ],
+      "primary_audience": "Instructor",
+      "required_sections": [
+        "Introduction with issue and causal thesis",
+        "Causes section",
+        "Effects section",
+        "Complexity, limits, or counterfactors",
+        "Conclusion with most important takeaway"
+      ],
+      "evidence_expectations": [
+        "Distinguish chronology from causality",
+        "Explain causal links with evidence",
+        "Separate major and minor causes",
+        "Acknowledge complexity and multiple factors"
+      ],
+      "common_pitfalls": [
+        "Post hoc reasoning",
+        "Overly simple single-cause explanations",
+        "Weak evidence linking cause to effect",
+        "Confusing sequence with causation"
+      ],
+      "assessment_focus": [
+        "Causal logic",
+        "Evidence quality",
+        "Complexity of explanation",
+        "Organization",
+        "Clarity of thesis"
+      ],
+      "prompt_instruction": "This is a cause-and-effect essay. It should explain causes, effects, or causal chains with evidence and should avoid assuming that because one event happened before another, it caused it.",
+      "aliases": [
+        "problem-cause-effect essay",
+        "root-cause analysis",
+        "policy problem analysis"
+      ],
+      "template_outline": [
+        "Introduction [issue + causal thesis]",
+        "Causes [primary drivers]",
+        "Effects [consequences]",
+        "Complexity [limits/counterfactors]",
+        "Conclusion [takeaway]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "argumentative_essay": {
+      "id": "argumentative_essay",
+      "label": "Argumentative Essay",
+      "category": "Essay and Response Genres",
+      "purpose": "Defend a debatable position using evidence, reasoning, and fair treatment of counterarguments.",
+      "usual_level": "Undergraduate through graduate seminars",
+      "planning_length": "1,500–4,000 words",
+      "typical_citation_styles": [
+        "MLA",
+        "APA",
+        "Chicago"
+      ],
+      "primary_audience": "Instructor or scholarly reader",
+      "required_sections": [
+        "Introduction with issue, stakes, and claim",
+        "Evidence-based body paragraphs",
+        "Counterargument",
+        "Rebuttal",
+        "Conclusion with implications"
+      ],
+      "evidence_expectations": [
+        "Use credible sources and examples",
+        "Support each major claim with evidence",
+        "Represent opposing views fairly",
+        "Explain why evidence supports the thesis"
+      ],
+      "common_pitfalls": [
+        "Thesis too broad",
+        "Summary instead of argument",
+        "Weak or unsupported claims",
+        "Straw-man counterargument",
+        "Moral certainty without evidence"
+      ],
+      "assessment_focus": [
+        "Debatable thesis",
+        "Quality of evidence",
+        "Reasoning",
+        "Counterargument and rebuttal",
+        "Organization",
+        "Citation accuracy"
+      ],
+      "prompt_instruction": "This is an argumentative essay. It must make a clear, debatable claim, support that claim with evidence and reasoning, address serious counterarguments fairly, and explain the significance of the position.",
+      "aliases": [
+        "position paper",
+        "problem-solution argument",
+        "narrative argument"
+      ],
+      "template_outline": [
+        "Introduction [issue + stakes + thesis]",
+        "Reason 1 [claim + evidence]",
+        "Reason 2 [claim + evidence]",
+        "Counterargument and rebuttal",
+        "Conclusion [judgment + implications]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "analytical_paper": {
+      "id": "analytical_paper",
+      "label": "Analytical Paper",
+      "category": "Essay and Response Genres",
+      "purpose": "Break down evidence, concepts, texts, artifacts, or problems and explain how the parts work together.",
+      "usual_level": "Undergraduate through graduate seminars",
+      "planning_length": "1,200–3,000 words",
+      "typical_citation_styles": [
+        "MLA",
+        "Chicago",
+        "APA"
+      ],
+      "primary_audience": "Instructor",
+      "required_sections": [
+        "Context or object of analysis",
+        "Analytical thesis/problem",
+        "Analytical lens or criteria",
+        "Evidence and interpretation sections",
+        "Conclusion explaining what the analysis changes"
+      ],
+      "evidence_expectations": [
+        "Select evidence carefully",
+        "Interpret rather than summarize",
+        "Use concepts, patterns, or criteria to guide analysis",
+        "Connect observations to claims"
+      ],
+      "common_pitfalls": [
+        "Plot summary",
+        "Quote dumping",
+        "Observations that never become claims",
+        "No analytical lens",
+        "Weak connection between evidence and thesis"
+      ],
+      "assessment_focus": [
+        "Quality of question",
+        "Analytical thesis",
+        "Evidence selection",
+        "Interpretive depth",
+        "Organization"
+      ],
+      "prompt_instruction": "This is an analytical paper. It should break the topic into meaningful parts and interpret how those parts work together. The emphasis should be on analysis, not summary.",
+      "aliases": [
+        "close reading",
+        "formal analysis",
+        "conceptual analysis"
+      ],
+      "template_outline": [
+        "Introduction [object/problem + thesis]",
+        "Analytical lens [criteria/concepts]",
+        "Evidence section A",
+        "Evidence section B",
+        "Conclusion [what the analysis changes]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "rhetorical_analysis": {
+      "id": "rhetorical_analysis",
+      "label": "Rhetorical Analysis",
+      "category": "Essay and Response Genres",
+      "purpose": "Analyze how a text, speech, image, film, or other artifact uses rhetorical strategies to affect an audience.",
+      "usual_level": "Undergraduate, writing, communication, media, humanities",
+      "planning_length": "1,000–2,500 words",
+      "typical_citation_styles": [
+        "MLA",
+        "APA",
+        "Chicago"
+      ],
+      "primary_audience": "Instructor",
+      "required_sections": [
+        "Introduction with artifact, context, and rhetorical thesis",
+        "Audience and purpose",
+        "Strategy A",
+        "Strategy B",
+        "Strategy C",
+        "Conclusion with overall effectiveness"
+      ],
+      "evidence_expectations": [
+        "Analyze audience, purpose, context, style, voice, and rhetorical appeals",
+        "Use evidence from the artifact",
+        "Evaluate how strategies work, not just whether the writer agrees",
+        "Explain effectiveness"
+      ],
+      "common_pitfalls": [
+        "Summarizing content instead of analyzing strategy",
+        "Ignoring audience or context",
+        "Listing ethos/pathos/logos without explanation",
+        "No judgment of effectiveness"
+      ],
+      "assessment_focus": [
+        "Rhetorical vocabulary",
+        "Evidence from artifact",
+        "Audience awareness",
+        "Explanation of effectiveness",
+        "Organization"
+      ],
+      "prompt_instruction": "This is a rhetorical analysis. It should examine how the artifact works rhetorically for a specific audience and purpose. It should evaluate strategy and effectiveness rather than simply summarize the content.",
+      "aliases": [
+        "speech analysis",
+        "advertisement analysis",
+        "visual rhetoric",
+        "film rhetoric"
+      ],
+      "template_outline": [
+        "Introduction [artifact + context + rhetorical thesis]",
+        "Audience/purpose",
+        "Strategy A",
+        "Strategy B",
+        "Strategy C",
+        "Conclusion [overall effectiveness]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "reflection_paper": {
+      "id": "reflection_paper",
+      "label": "Reflection Paper",
+      "category": "Essay and Response Genres",
+      "purpose": "Explore a learning experience, event, or professional moment by connecting description, interpretation, evaluation, and future action.",
+      "usual_level": "Undergraduate, practica, clinical/professional programs, internships, service learning",
+      "planning_length": "750–2,000 words",
+      "typical_citation_styles": [
+        "APA",
+        "Harvard",
+        "Course style"
+      ],
+      "primary_audience": "Instructor or assessor",
+      "required_sections": [
+        "Description of incident or concept",
+        "Reflection model if required",
+        "Interpretation and analysis",
+        "Evaluation of learning",
+        "Future action plan",
+        "Conclusion with learning statement"
+      ],
+      "evidence_expectations": [
+        "Use first person appropriately when allowed",
+        "Move beyond narration to analysis",
+        "Connect experience to course concepts or professional standards",
+        "Identify future behavior changes"
+      ],
+      "common_pitfalls": [
+        "Confessional writing with no concepts",
+        "Uncritical self-congratulation",
+        "Description without interpretation",
+        "No future action plan"
+      ],
+      "assessment_focus": [
+        "Depth of reflection",
+        "Integration of theory or course concepts",
+        "Specificity",
+        "Evidence of learning",
+        "Actionable next steps"
+      ],
+      "prompt_instruction": "This is a reflection paper. It should move from description to interpretation, evaluation, and future action. First person may be appropriate, but the paper must connect experience to learning or professional development.",
+      "aliases": [
+        "practicum reflection",
+        "theory-to-practice reflection",
+        "reflective journal entry",
+        "clinical reflection"
+      ],
+      "template_outline": [
+        "Description [what happened]",
+        "Interpretation [why it mattered]",
+        "Evaluation [what went well/poorly]",
+        "Plan [what will change]",
+        "Conclusion [learning statement]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "research_paper": {
+      "id": "research_paper",
+      "label": "Research Paper",
+      "category": "Research and Synthesis Genres",
+      "purpose": "Develop a new argument or answer to a question using existing scholarship and evidence.",
+      "usual_level": "Undergraduate seminars and graduate coursework",
+      "planning_length": "2,000–5,000 words",
+      "typical_citation_styles": [
+        "MLA",
+        "APA",
+        "Chicago",
+        "Field style"
+      ],
+      "primary_audience": "Instructor",
+      "required_sections": [
+        "Introduction with question and thesis",
+        "Literature or background context",
+        "Evidence/analysis section A",
+        "Evidence/analysis section B",
+        "Counterevidence or limits",
+        "Conclusion with answer and implications"
+      ],
+      "evidence_expectations": [
+        "Use credible academic sources",
+        "Synthesize sources instead of stacking summaries",
+        "Support an original claim",
+        "Evaluate source relevance and quality",
+        "Cite accurately"
+      ],
+      "common_pitfalls": [
+        "Topic too broad",
+        "Weak source selection",
+        "Patchwriting",
+        "Report without argument",
+        "Poor citation accuracy"
+      ],
+      "assessment_focus": [
+        "Research question quality",
+        "Source quality",
+        "Synthesis",
+        "Originality of claim",
+        "Evidence use",
+        "Citation accuracy"
+      ],
+      "prompt_instruction": "This is a research paper. It should develop a focused claim or answer to a research question using credible sources. It should synthesize evidence rather than simply report source summaries.",
+      "aliases": [
+        "seminar paper",
+        "problem-based research paper",
+        "source-based humanities paper"
+      ],
+      "template_outline": [
+        "Introduction [question + thesis]",
+        "Literature context",
+        "Evidence section A",
+        "Evidence section B",
+        "Counterevidence/limits",
+        "Conclusion [answer + implications]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "literature_review": {
+      "id": "literature_review",
+      "label": "Literature Review",
+      "category": "Research and Synthesis Genres",
+      "purpose": "Synthesize published scholarship on a topic to identify themes, trends, debates, limitations, and gaps.",
+      "usual_level": "Upper undergraduate through graduate coursework; thesis and dissertation work",
+      "planning_length": "1,500–6,000 words for many class papers; longer in theses/dissertations",
+      "typical_citation_styles": [
+        "APA",
+        "Chicago Author-Date",
+        "Field style"
+      ],
+      "primary_audience": "Instructor or researchers",
+      "required_sections": [
+        "Introduction with topic, scope, and organizing question",
+        "Thematic synthesis sections",
+        "Discussion of agreements and disagreements",
+        "Gaps, limitations, or future research needs",
+        "Conclusion explaining the state of knowledge"
+      ],
+      "evidence_expectations": [
+        "Use scholarly sources",
+        "Organize by themes, not one source per paragraph",
+        "Compare findings across studies",
+        "Evaluate quality and relevance",
+        "Identify patterns, controversies, and gaps"
+      ],
+      "common_pitfalls": [
+        "One-source-per-paragraph structure",
+        "Too much summary and not enough synthesis",
+        "No organizing question",
+        "Failure to evaluate source quality",
+        "No clear gap or takeaway"
+      ],
+      "assessment_focus": [
+        "Breadth and relevance of sources",
+        "Synthesis",
+        "Critical appraisal",
+        "Thematic organization",
+        "Identification of gaps",
+        "Citation accuracy"
+      ],
+      "prompt_instruction": "This is a literature review, not a general research paper. It should synthesize scholarship by themes, debates, methods, findings, and gaps. Do not organize it as simple article summaries.",
+      "aliases": [
+        "standalone review",
+        "thesis literature review chapter",
+        "methodological review",
+        "policy review"
+      ],
+      "template_outline": [
+        "Introduction [scope + organizing question]",
+        "Theme A",
+        "Theme B",
+        "Theme C",
+        "Gaps/controversies",
+        "Conclusion [state of knowledge]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "annotated_bibliography": {
+      "id": "annotated_bibliography",
+      "label": "Annotated Bibliography",
+      "category": "Research and Synthesis Genres",
+      "purpose": "List sources with concise annotations that summarize, evaluate, and explain relevance.",
+      "usual_level": "Undergraduate through graduate research planning",
+      "planning_length": "100–300 words per source",
+      "typical_citation_styles": [
+        "MLA",
+        "APA",
+        "Chicago",
+        "Field style"
+      ],
+      "primary_audience": "Instructor or writer",
+      "required_sections": [
+        "Full style-compliant citation",
+        "Summary of source",
+        "Evaluation of credibility, method, or usefulness",
+        "Relevance to project or research question"
+      ],
+      "evidence_expectations": [
+        "Use high-quality sources",
+        "Summarize main claim/method/findings concisely",
+        "Evaluate credibility and limitations",
+        "Explain how each source will be used"
+      ],
+      "common_pitfalls": [
+        "Annotation is only summary",
+        "No evaluative comment",
+        "Inconsistent citation formatting",
+        "No relevance statement"
+      ],
+      "assessment_focus": [
+        "Source quality",
+        "Concise summary",
+        "Critical relevance statement",
+        "Citation accuracy",
+        "Consistency"
+      ],
+      "prompt_instruction": "This is an annotated bibliography. Each entry should include a correct citation, concise summary, source evaluation, and relevance statement. It should help narrow and plan research.",
+      "aliases": [
+        "descriptive annotation",
+        "evaluative annotation",
+        "research-preparatory annotation"
+      ],
+      "template_outline": [
+        "Citation [full style-compliant entry]",
+        "Summary [claim/method/findings]",
+        "Evaluation [strengths/limits/credibility]",
+        "Relevance [how source will be used]"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "article_critique": {
+      "id": "article_critique",
+      "label": "Article Critique",
+      "category": "Research and Synthesis Genres",
+      "purpose": "Evaluate a scholarly article or other work by analyzing its argument, method, evidence, assumptions, contribution, and limitations.",
+      "usual_level": "Undergraduate through graduate methods, theory, and journal-club settings",
+      "planning_length": "1,000–2,500 words",
+      "typical_citation_styles": [
+        "Field style",
+        "APA",
+        "MLA",
+        "Chicago"
+      ],
+      "primary_audience": "Instructor",
+      "required_sections": [
+        "Source identification and context",
+        "Thesis/argument summary",
+        "Method/evidence evaluation",
+        "Contribution and limitations",
+        "Overall judgment"
+      ],
+      "evidence_expectations": [
+        "Represent the source fairly before critiquing it",
+        "Evaluate method, evidence, assumptions, audience, and contribution",
+        "Connect judgments to disciplinary standards",
+        "Support praise or criticism with examples"
+      ],
+      "common_pitfalls": [
+        "Review as summary",
+        "Unsupported praise or blame",
+        "Ignoring method or evidence",
+        "Failure to connect critique to course or disciplinary criteria"
+      ],
+      "assessment_focus": [
+        "Fair representation",
+        "Analytical depth",
+        "Justified evaluation",
+        "Use of disciplinary standards",
+        "Organization"
+      ],
+      "prompt_instruction": "This is an article critique. It should not merely summarize the article; it should fairly represent the work and then evaluate its argument, method, evidence, assumptions, contribution, and limitations.",
+      "aliases": [
+        "journal article review",
+        "book review",
+        "peer-review-style manuscript critique"
+      ],
+      "template_outline": [
+        "Source/context",
+        "Thesis/argument summary",
+        "Method/evidence evaluation",
+        "Contribution and limits",
+        "Overall judgment"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "research_proposal": {
+      "id": "research_proposal",
+      "label": "Research Proposal",
+      "category": "Research and Synthesis Genres",
+      "purpose": "Convince a supervisor, committee, instructor, or funder that a research topic, question, and method are worthwhile and feasible.",
+      "usual_level": "Upper undergraduate, master's, doctoral",
+      "planning_length": "5–15+ pages; course proposals may be shorter and thesis/dissertation proposals may be longer",
+      "typical_citation_styles": [
+        "APA",
+        "Chicago",
+        "Field style",
+        "Funder style"
+      ],
+      "primary_audience": "Supervisor, committee, or funder",
+      "required_sections": [
+        "Title and problem",
+        "Rationale and significance",
+        "Literature context",
+        "Research questions or hypotheses",
+        "Methods",
+        "Timeline and feasibility",
+        "References"
+      ],
+      "evidence_expectations": [
+        "Establish a clear problem and rationale",
+        "Ground the project in existing literature",
+        "State research questions precisely",
+        "Explain feasible methods",
+        "Address scope and limitations"
+      ],
+      "common_pitfalls": [
+        "Oversized topic",
+        "Weak literature grounding",
+        "Unclear method",
+        "Promising more than can be delivered",
+        "No feasibility plan"
+      ],
+      "assessment_focus": [
+        "Rationale",
+        "Research question quality",
+        "Literature grounding",
+        "Method clarity",
+        "Feasibility",
+        "Alignment with requirements"
+      ],
+      "prompt_instruction": "This is a research proposal. It should justify a research project before it is completed by explaining the problem, significance, literature context, questions, methods, and feasibility.",
+      "aliases": [
+        "thesis proposal",
+        "dissertation prospectus",
+        "conference proposal",
+        "journal special-issue proposal"
+      ],
+      "template_outline": [
+        "Title and problem",
+        "Rationale/significance",
+        "Literature review",
+        "Questions/hypotheses",
+        "Methods",
+        "Timeline/feasibility",
+        "References"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "empirical_research_article": {
+      "id": "empirical_research_article",
+      "label": "Empirical Research Article",
+      "category": "Research and Synthesis Genres",
+      "purpose": "Report original research using transparent methods, results, and interpretation, often in journal-style format.",
+      "usual_level": "Graduate and publication-track undergraduate/graduate research",
+      "planning_length": "3,000–8,000+ words; journal instructions control",
+      "typical_citation_styles": [
+        "APA",
+        "AMA",
+        "IEEE",
+        "CSE",
+        "Journal style"
+      ],
+      "primary_audience": "Journal editors, reviewers, researchers",
+      "required_sections": [
+        "Title page",
+        "Abstract",
+        "Introduction",
+        "Methods",
+        "Results",
+        "Discussion",
+        "References",
+        "Tables/Figures",
+        "Required statements or appendices"
+      ],
+      "evidence_expectations": [
+        "Use transparent research design and reporting",
+        "Separate methods, results, and interpretation",
+        "Present data clearly",
+        "Discuss limitations and implications",
+        "Follow target journal or instructor reporting standards"
+      ],
+      "common_pitfalls": [
+        "Incomplete methods",
+        "Mixing results and discussion",
+        "Overclaiming beyond data",
+        "Weak tables/figures",
+        "Ignoring reporting guidelines"
+      ],
+      "assessment_focus": [
+        "Question significance",
+        "Research design",
+        "Transparent reporting",
+        "Data analysis",
+        "Interpretive discipline",
+        "Compliance with format"
+      ],
+      "prompt_instruction": "This is an empirical research article. It should report original data using a transparent structure, usually IMRaD or the required journal/course format. Methods, results, and discussion should be clearly separated.",
+      "aliases": [
+        "APA-style experimental report",
+        "medical IMRaD article",
+        "engineering article",
+        "papers-option thesis chapter"
+      ],
+      "template_outline": [
+        "Title page",
+        "Abstract",
+        "Introduction",
+        "Methods",
+        "Results",
+        "Discussion",
+        "References",
+        "Tables/Figures",
+        "Required statements"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "systematic_review": {
+      "id": "systematic_review",
+      "label": "Systematic Review",
+      "category": "Research and Synthesis Genres",
+      "purpose": "Answer a focused question through a reproducible search, explicit eligibility criteria, transparent screening, appraisal, and synthesis.",
+      "usual_level": "Graduate, research teams, evidence-based fields",
+      "planning_length": "Article-length; protocol and journal requirements control",
+      "typical_citation_styles": [
+        "PRISMA",
+        "Journal style",
+        "Field style"
+      ],
+      "primary_audience": "Journal readers and evidence users",
+      "required_sections": [
+        "Title/registration if applicable",
+        "Abstract",
+        "Rationale/objectives",
+        "Eligibility criteria",
+        "Information sources and search",
+        "Selection and data extraction",
+        "Risk of bias or quality appraisal",
+        "Synthesis/results",
+        "Discussion",
+        "Funding/conflicts"
+      ],
+      "evidence_expectations": [
+        "Use a focused question",
+        "Document reproducible search strategy",
+        "Apply explicit inclusion/exclusion criteria",
+        "Track screening and selection",
+        "Appraise quality or bias",
+        "Synthesize transparently"
+      ],
+      "common_pitfalls": [
+        "Narrative cherry-picking called a review",
+        "Incomplete search documentation",
+        "Weak screening transparency",
+        "No appraisal plan",
+        "Overclaiming findings"
+      ],
+      "assessment_focus": [
+        "Protocol logic",
+        "Reproducibility",
+        "Completeness of reporting",
+        "Quality appraisal",
+        "Transparency",
+        "Interpretive caution"
+      ],
+      "prompt_instruction": "This is a systematic review. It should use a focused question, reproducible search strategy, explicit eligibility criteria, transparent selection, quality appraisal, and systematic synthesis. It should not be a loose narrative review.",
+      "aliases": [
+        "intervention review",
+        "diagnostic review",
+        "qualitative evidence synthesis"
+      ],
+      "template_outline": [
+        "Title/registration",
+        "Abstract",
+        "Rationale/objectives",
+        "Eligibility criteria",
+        "Search strategy",
+        "Selection/data extraction",
+        "Risk of bias",
+        "Synthesis/results",
+        "Discussion",
+        "Funding/conflicts"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "scoping_review": {
+      "id": "scoping_review",
+      "label": "Scoping Review",
+      "category": "Research and Synthesis Genres",
+      "purpose": "Map the scope, range, concepts, methods, populations, and gaps in a broad or emerging body of literature.",
+      "usual_level": "Graduate, research teams, broad or emerging fields",
+      "planning_length": "Article-length; PRISMA-ScR and journal requirements control",
+      "typical_citation_styles": [
+        "PRISMA-ScR",
+        "JBI style",
+        "Journal style"
+      ],
+      "primary_audience": "Journal readers and evidence users",
+      "required_sections": [
+        "Title and abstract",
+        "Rationale and objectives",
+        "Scope framework such as PCC",
+        "Search and selection",
+        "Data charting",
+        "Results map",
+        "Discussion of gaps",
+        "Conclusion"
+      ],
+      "evidence_expectations": [
+        "Map what evidence exists",
+        "Clarify concepts and definitions",
+        "Chart populations, methods, contexts, and outcomes",
+        "Avoid effectiveness claims unless supported by the design",
+        "Document search and selection"
+      ],
+      "common_pitfalls": [
+        "Loose narrative survey labeled as scoping",
+        "Claiming effectiveness conclusions from mapped evidence",
+        "Poor charting framework",
+        "Unclear scope"
+      ],
+      "assessment_focus": [
+        "Transparency",
+        "Scope logic",
+        "Evidence mapping",
+        "Appropriate restraint in claims",
+        "Identification of gaps"
+      ],
+      "prompt_instruction": "This is a scoping review. It should map the available evidence, concepts, populations, contexts, methods, and gaps. It should be transparent and should avoid making strong effectiveness conclusions unless the evidence design supports them.",
+      "aliases": [
+        "concept map review",
+        "evidence-mapping review",
+        "exploratory scoping review"
+      ],
+      "template_outline": [
+        "Title/abstract",
+        "Rationale/objectives",
+        "PCC-style scope",
+        "Search and selection",
+        "Data charting",
+        "Results map",
+        "Discussion of gaps",
+        "Conclusion"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "meta_analysis": {
+      "id": "meta_analysis",
+      "label": "Meta-Analysis",
+      "category": "Research and Synthesis Genres",
+      "purpose": "Conduct a systematic review with quantitative synthesis of effect sizes, heterogeneity, and model choice.",
+      "usual_level": "Graduate, research teams, psychology, medicine, education, quantitative fields",
+      "planning_length": "Article-length; journal and reporting guidelines control",
+      "typical_citation_styles": [
+        "PRISMA",
+        "Journal style",
+        "Field style"
+      ],
+      "primary_audience": "Journal readers and evidence users",
+      "required_sections": [
+        "Systematic review sections",
+        "Effect-size coding",
+        "Statistical synthesis",
+        "Heterogeneity checks",
+        "Publication-bias or robustness checks",
+        "Discussion and limitations"
+      ],
+      "evidence_expectations": [
+        "Define inclusion criteria and effect measures",
+        "Code data transparently",
+        "Justify model choices",
+        "Assess heterogeneity and bias",
+        "Interpret pooled results cautiously"
+      ],
+      "common_pitfalls": [
+        "Pooling incomparable studies",
+        "Inadequate coding reliability",
+        "Overclaiming causal certainty",
+        "Ignoring heterogeneity",
+        "Weak publication-bias assessment"
+      ],
+      "assessment_focus": [
+        "Statistical transparency",
+        "Inclusion logic",
+        "Coding reliability",
+        "Model justification",
+        "Interpretive caution"
+      ],
+      "prompt_instruction": "This is a meta-analysis. It should follow systematic-review logic and add quantitative synthesis. It must specify effect measures, coding decisions, model choice, heterogeneity, robustness, and limitations.",
+      "aliases": [
+        "pairwise meta-analysis",
+        "network meta-analysis",
+        "meta-regression study"
+      ],
+      "template_outline": [
+        "Systematic-review sections",
+        "Effect-size coding",
+        "Statistical synthesis",
+        "Heterogeneity/publication-bias checks",
+        "Discussion and limits"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "case_study_analysis": {
+      "id": "case_study_analysis",
+      "label": "Case Study Analysis",
+      "category": "Applied Professional and Scientific Genres",
+      "purpose": "Analyze a real or realistic professional situation by identifying problems, applying theory, evaluating options, and recommending realistic action.",
+      "usual_level": "Undergraduate through professional master's programs",
+      "planning_length": "1,500–4,000 words",
+      "typical_citation_styles": [
+        "APA",
+        "Chicago",
+        "Field style"
+      ],
+      "primary_audience": "Instructor or client-like reader",
+      "required_sections": [
+        "Case overview",
+        "Problems and causes",
+        "Theoretical or disciplinary analysis",
+        "Options with pros and cons",
+        "Recommendation and implementation"
+      ],
+      "evidence_expectations": [
+        "Use case facts carefully",
+        "Identify deeper problems, not just symptoms",
+        "Apply theory or course concepts",
+        "Evaluate feasible options",
+        "Justify recommendations"
+      ],
+      "common_pitfalls": [
+        "Oversimplifying the case",
+        "Missing deeper issues",
+        "Unrealistic recommendations",
+        "Theory mentioned but not applied",
+        "Weak implementation plan"
+      ],
+      "assessment_focus": [
+        "Problem diagnosis",
+        "Use of theory",
+        "Feasibility of recommendations",
+        "Quality of justification",
+        "Professional clarity"
+      ],
+      "prompt_instruction": "This is a case study analysis. It should diagnose the case, connect facts to theory or course concepts, evaluate realistic options, and recommend a justified response plan.",
+      "aliases": [
+        "business case memo",
+        "nursing case analysis",
+        "legal case-note adaptation"
+      ],
+      "template_outline": [
+        "Case overview",
+        "Problems and causes",
+        "Theoretical analysis",
+        "Options with pros/cons",
+        "Recommendation and implementation"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "lab_report_scientific_report": {
+      "id": "lab_report_scientific_report",
+      "label": "Lab Report / Scientific Report",
+      "category": "Applied Professional and Scientific Genres",
+      "purpose": "Report a scientific or laboratory investigation using clear methods, results, interpretation, and connection to principles.",
+      "usual_level": "Undergraduate labs through graduate research",
+      "planning_length": "4–12+ pages; research reports may be longer",
+      "typical_citation_styles": [
+        "APA",
+        "CSE",
+        "AMA",
+        "ACS",
+        "IEEE"
+      ],
+      "primary_audience": "Instructor or scientific reader",
+      "required_sections": [
+        "Title page",
+        "Abstract",
+        "Introduction and hypothesis",
+        "Methods/materials",
+        "Results",
+        "Discussion",
+        "Conclusion",
+        "References",
+        "Appendices"
+      ],
+      "evidence_expectations": [
+        "State hypothesis or research question",
+        "Describe methods clearly enough to understand or reproduce",
+        "Present results in tables/figures when useful",
+        "Interpret results in relation to theory",
+        "Separate results from discussion unless instructed otherwise"
+      ],
+      "common_pitfalls": [
+        "Mixing results with discussion",
+        "Incomplete methods",
+        "Vague figures/tables",
+        "Only recording results without explaining principles",
+        "Overreliance on lab manual wording"
+      ],
+      "assessment_focus": [
+        "Methodological clarity",
+        "Data presentation",
+        "Interpretation",
+        "Connection to theory",
+        "Accuracy and formatting"
+      ],
+      "prompt_instruction": "This is a lab report or scientific report. It should document the investigation clearly, usually using IMRaD or department conventions. It should present data accurately and interpret what the results mean in relation to the scientific principle or hypothesis.",
+      "aliases": [
+        "chemistry lab report",
+        "engineering test report",
+        "psychology experimental report",
+        "field report"
+      ],
+      "template_outline": [
+        "Title page",
+        "Abstract",
+        "Introduction and hypothesis",
+        "Methods",
+        "Results",
+        "Discussion",
+        "Conclusion",
+        "References",
+        "Appendices"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "technical_report": {
+      "id": "technical_report",
+      "label": "Technical Report",
+      "category": "Applied Professional and Scientific Genres",
+      "purpose": "Convey technical information clearly for readers who need to understand, evaluate, or act on it.",
+      "usual_level": "Upper undergraduate, engineering, computer science, information systems, applied fields",
+      "planning_length": "5–30+ pages depending on project scope",
+      "typical_citation_styles": [
+        "IEEE",
+        "CSE",
+        "House style"
+      ],
+      "primary_audience": "Instructors, managers, clients, technical readers",
+      "required_sections": [
+        "Title page",
+        "Summary or executive overview",
+        "Table of contents if needed",
+        "Introduction",
+        "Background or requirements",
+        "Technical body/analysis",
+        "Conclusions and recommendations",
+        "References",
+        "Appendices"
+      ],
+      "evidence_expectations": [
+        "Adapt detail to audience needs",
+        "Use headings, summaries, tables, and visuals for navigation",
+        "Document methods, requirements, findings, or design decisions",
+        "Make conclusions easy to find"
+      ],
+      "common_pitfalls": [
+        "Weak summary",
+        "Poor navigation",
+        "Hiding conclusions",
+        "Too much unexplained technical detail",
+        "No audience awareness"
+      ],
+      "assessment_focus": [
+        "Usability",
+        "Documentation",
+        "Accuracy",
+        "Concision",
+        "Document design",
+        "Recommendation quality"
+      ],
+      "prompt_instruction": "This is a technical report. It should communicate technical information in a clear, navigable, audience-aware format. It should make findings, conclusions, and recommendations easy to locate.",
+      "aliases": [
+        "feasibility report",
+        "design report",
+        "test report",
+        "white paper"
+      ],
+      "template_outline": [
+        "Title page",
+        "Summary/executive overview",
+        "Contents",
+        "Introduction",
+        "Background/requirements",
+        "Analysis of options",
+        "Recommendation",
+        "Conclusions",
+        "References",
+        "Appendices"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "policy_memo": {
+      "id": "policy_memo",
+      "label": "Policy Memo",
+      "category": "Applied Professional and Scientific Genres",
+      "purpose": "Present policy analysis and a recommendation to a decision-maker in a concise, action-oriented format.",
+      "usual_level": "Upper undergraduate, MPP/MPA, public affairs, public health, applied social science",
+      "planning_length": "1–6 pages common; can be longer depending on context",
+      "typical_citation_styles": [
+        "APA",
+        "Chicago",
+        "House style"
+      ],
+      "primary_audience": "Decision-maker",
+      "required_sections": [
+        "Memo header",
+        "BLUF or executive paragraph",
+        "Background/problem",
+        "Criteria and options",
+        "Recommendation",
+        "Risks/counterarguments",
+        "Conclusion"
+      ],
+      "evidence_expectations": [
+        "Define the policy problem clearly",
+        "State the bottom line early",
+        "Analyze options against criteria",
+        "Explain trade-offs",
+        "Make a practical recommendation"
+      ],
+      "common_pitfalls": [
+        "Turning the memo into a mini research paper",
+        "Burying the recommendation",
+        "Failing to explain trade-offs",
+        "Too much background",
+        "No decision focus"
+      ],
+      "assessment_focus": [
+        "Relevance",
+        "Clarity",
+        "Option analysis",
+        "Recommendation quality",
+        "Audience fit",
+        "Conciseness"
+      ],
+      "prompt_instruction": "This is a policy memo. It should be concise, decision-oriented, and written for a specific reader. It should state the bottom line early, compare options, explain trade-offs, and recommend action.",
+      "aliases": [
+        "issue memo",
+        "briefing memo",
+        "decision memo"
+      ],
+      "template_outline": [
+        "Memo header",
+        "BLUF/executive paragraph",
+        "Background/problem",
+        "Criteria and options",
+        "Recommendation",
+        "Risks/counterarguments",
+        "Conclusion"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "policy_brief": {
+      "id": "policy_brief",
+      "label": "Policy Brief",
+      "category": "Applied Professional and Scientific Genres",
+      "purpose": "Summarize evidence and policy options for policymakers or non-specialist readers to support understanding and decision-making.",
+      "usual_level": "Undergraduate through graduate policy, public health, environmental studies, education, social work, international development",
+      "planning_length": "2–8 pages",
+      "typical_citation_styles": [
+        "APA",
+        "Chicago",
+        "House style"
+      ],
+      "primary_audience": "Policymakers or non-specialists",
+      "required_sections": [
+        "Title and key message",
+        "Problem/background",
+        "Evidence summary",
+        "Policy options",
+        "Recommendation",
+        "Implementation note"
+      ],
+      "evidence_expectations": [
+        "Use plain language",
+        "Focus on practical implications",
+        "Synthesize evidence concisely",
+        "Make recommendations actionable",
+        "Use visuals or headings when useful"
+      ],
+      "common_pitfalls": [
+        "Jargon",
+        "Too much methods discussion",
+        "Weak visual framing",
+        "Recommendations that are not actionable",
+        "Unclear audience"
+      ],
+      "assessment_focus": [
+        "Clarity",
+        "Audience adaptation",
+        "Evidence synthesis",
+        "Policy relevance",
+        "Actionability"
+      ],
+      "prompt_instruction": "This is a policy brief. It should explain a policy problem, synthesize the most relevant evidence, present options, and give actionable recommendations in plain language for a non-specialist or policymaker audience.",
+      "aliases": [
+        "advocacy brief",
+        "evidence brief",
+        "executive brief"
+      ],
+      "template_outline": [
+        "Title and key message",
+        "Problem/background",
+        "Evidence summary",
+        "Policy options",
+        "Recommendation",
+        "Implementation note"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "grant_proposal": {
+      "id": "grant_proposal",
+      "label": "Grant Proposal",
+      "category": "Applied Professional and Scientific Genres",
+      "purpose": "Request funding or support by demonstrating need, significance, feasibility, alignment, and a credible plan.",
+      "usual_level": "Upper undergraduate research, graduate students, faculty",
+      "planning_length": "5–15+ pages of narrative plus forms, budget, biosketches, and attachments",
+      "typical_citation_styles": [
+        "Funder style",
+        "APA",
+        "Field style"
+      ],
+      "primary_audience": "Review panel or funder",
+      "required_sections": [
+        "Project summary",
+        "Need/significance",
+        "Objectives or aims",
+        "Methods/approach",
+        "Timeline",
+        "Budget and justification",
+        "Qualifications",
+        "Assessment plan",
+        "Required forms or attachments"
+      ],
+      "evidence_expectations": [
+        "Follow sponsor instructions exactly",
+        "Match project to funder priorities",
+        "Show significance and feasibility",
+        "Explain methods and outcomes",
+        "Provide realistic timeline and budget"
+      ],
+      "common_pitfalls": [
+        "Funder misfit",
+        "Noncompliance",
+        "Vague significance",
+        "Unconvincing feasibility",
+        "Weak budget justification",
+        "Missing required forms"
+      ],
+      "assessment_focus": [
+        "Significance",
+        "Innovation or need",
+        "Design",
+        "Feasibility",
+        "Alignment with funder",
+        "Compliance",
+        "Budget logic"
+      ],
+      "prompt_instruction": "This is a grant proposal. It should persuade a funder that the project is significant, feasible, aligned with the funding opportunity, and supported by a clear plan, timeline, budget, and qualifications.",
+      "aliases": [
+        "NIH-style proposal",
+        "NSF-style proposal",
+        "foundation proposal",
+        "internal seed-grant application"
+      ],
+      "template_outline": [
+        "Project summary",
+        "Need/significance",
+        "Objectives or aims",
+        "Methods/approach",
+        "Timeline",
+        "Budget and justification",
+        "Qualifications",
+        "Assessment plan"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "capstone_report": {
+      "id": "capstone_report",
+      "label": "Capstone Report",
+      "category": "Applied Professional and Scientific Genres",
+      "purpose": "Demonstrate culminating learning through a substantial research-based, applied, design, or client-facing project.",
+      "usual_level": "Senior undergraduate and professional master's programs",
+      "planning_length": "20–60 pages or substantial project equivalent",
+      "typical_citation_styles": [
+        "Field style",
+        "Program style"
+      ],
+      "primary_audience": "Faculty panel, client, or program",
+      "required_sections": [
+        "Executive summary",
+        "Problem and goals",
+        "Background or literature",
+        "Design, methods, or approach",
+        "Findings or product",
+        "Recommendations",
+        "Reflection or next steps",
+        "References",
+        "Appendices"
+      ],
+      "evidence_expectations": [
+        "Synthesize coursework and applied methods",
+        "Define clear deliverables",
+        "Connect evidence to recommendations or product",
+        "Control scope",
+        "Communicate to academic and/or client audiences"
+      ],
+      "common_pitfalls": [
+        "Trying to imitate a dissertation",
+        "Unclear deliverables",
+        "Weak connection between evidence and recommendations",
+        "Scope too broad",
+        "No applied value"
+      ],
+      "assessment_focus": [
+        "Integration of learning",
+        "Scope control",
+        "Applied value",
+        "Quality of final product",
+        "Evidence-to-recommendation logic"
+      ],
+      "prompt_instruction": "This is a capstone report. It should show culminating learning through a manageable applied or research-based project with clear goals, methods/design, findings or product, recommendations, and next steps.",
+      "aliases": [
+        "client consultancy report",
+        "applied research capstone",
+        "design capstone dossier"
+      ],
+      "template_outline": [
+        "Executive summary",
+        "Problem and goals",
+        "Background/literature",
+        "Design or methods",
+        "Findings/product",
+        "Recommendations",
+        "Reflection/next steps",
+        "References",
+        "Appendices"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "thesis": {
+      "id": "thesis",
+      "label": "Thesis",
+      "category": "Degree and Long-Form Research Genres",
+      "purpose": "Present original or substantial scholarly work as the capstone of an honors undergraduate or master's research degree.",
+      "usual_level": "Honors undergraduate and master's programs",
+      "planning_length": "50–100+ pages; varies sharply by field and program",
+      "typical_citation_styles": [
+        "Field style",
+        "Program style"
+      ],
+      "primary_audience": "Committee and repository readers",
+      "required_sections": [
+        "Front matter",
+        "Introduction or chapter 1",
+        "Literature and/or methods chapter",
+        "Findings or analysis chapters",
+        "Conclusion",
+        "References",
+        "Appendices"
+      ],
+      "evidence_expectations": [
+        "Define a manageable research question",
+        "Show command of literature",
+        "Present original research, analysis, or creative-critical work as required",
+        "Follow program formatting rules",
+        "Plan for defense if applicable"
+      ],
+      "common_pitfalls": [
+        "Oversized project",
+        "Weak scheduling",
+        "Drifting away from research question",
+        "Poor chapter logic",
+        "Ignoring program formatting requirements"
+      ],
+      "assessment_focus": [
+        "Originality",
+        "Argument or research quality",
+        "Organization",
+        "Methodological adequacy",
+        "Formatting compliance",
+        "Defense readiness"
+      ],
+      "prompt_instruction": "This is a thesis. It should present a manageable but substantial scholarly project with a clear research question, original contribution or analysis, command of literature, coherent chapters, and strict compliance with program rules.",
+      "aliases": [
+        "honors thesis",
+        "master's thesis",
+        "papers-option thesis",
+        "creative thesis with critical introduction"
+      ],
+      "template_outline": [
+        "Front matter",
+        "Introduction/chapter 1",
+        "Literature/method chapter or integrated early chapters",
+        "Findings/analysis chapters",
+        "Conclusion",
+        "References",
+        "Appendices"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    },
+    "dissertation": {
+      "id": "dissertation",
+      "label": "Dissertation",
+      "category": "Degree and Long-Form Research Genres",
+      "purpose": "Make an original doctoral-level scholarly contribution and meet committee, field, and archival requirements.",
+      "usual_level": "Doctoral",
+      "planning_length": "100–300 pages common; varies by discipline and dissertation model",
+      "typical_citation_styles": [
+        "Field style",
+        "Program style"
+      ],
+      "primary_audience": "Committee and repository readers",
+      "required_sections": [
+        "Front matter",
+        "Introduction and contribution statement",
+        "Literature and/or theory chapters",
+        "Methods chapter",
+        "Results/analysis chapters or paper set",
+        "General discussion",
+        "References",
+        "Appendices"
+      ],
+      "evidence_expectations": [
+        "State original contribution clearly",
+        "Show command of literature and theory",
+        "Use adequate and transparent methods",
+        "Maintain chapter coherence",
+        "Follow committee and institutional formatting rules",
+        "Prepare defendable claims"
+      ],
+      "common_pitfalls": [
+        "Treating the dissertation as an unlimited life-work project",
+        "Weak project management",
+        "Inconsistent chapter logic",
+        "Misalignment with committee expectations",
+        "Unclear contribution"
+      ],
+      "assessment_focus": [
+        "Original contribution",
+        "Methodological adequacy",
+        "Coherence",
+        "Command of literature",
+        "Defendability",
+        "Formatting compliance"
+      ],
+      "prompt_instruction": "This is a dissertation. It should make an original doctoral-level contribution, use an appropriate method or scholarly approach, maintain coherence across chapters or papers, and satisfy committee and institutional requirements.",
+      "aliases": [
+        "monograph dissertation",
+        "three-paper dissertation",
+        "practice-based dissertation with exegesis"
+      ],
+      "template_outline": [
+        "Front matter",
+        "Introduction and contribution statement",
+        "Literature/theory chapters",
+        "Methods chapter",
+        "Results/analysis chapters or paper set",
+        "General discussion",
+        "References",
+        "Appendices"
+      ],
+      "default_output_format": [
+        "Paper goal",
+        "Working thesis, research question, or central claim",
+        "Genre-specific outline",
+        "Section-by-section writing guidance",
+        "Evidence/source needs",
+        "Common mistakes to avoid",
+        "Submission checklist"
+      ]
+    }
+  }
+}
