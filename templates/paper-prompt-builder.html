@@ -186,15 +186,15 @@
             </div>
           </fieldset>
 
-          <div class="field-grid">
-            <div class="prompt-field full">
-              <label for="requiredSources">Required sources / source list</label>
-              <textarea id="requiredSources" placeholder="Paste source titles, links, DOI, textbook chapters, or instructor-required sources here."></textarea>
+          <div class="prompt-field full source-pair-builder">
+            <div class="source-pair-header">
+              <div>
+                <label>Required sources and source documentation</label>
+                <p class="source-pair-note">Add each required source with its matching documentation so the AI can keep them paired correctly.</p>
+              </div>
+              <button type="button" class="tool-btn secondary source-add-btn" id="addSourcePairBtn">+ Add another source</button>
             </div>
-            <div class="prompt-field full">
-              <label for="sourceDocumentation">Source documentation provided</label>
-              <textarea id="sourceDocumentation" placeholder="Paste excerpts, article details, citation info, page numbers, notes from PDFs, or say what files you uploaded."></textarea>
-            </div>
+            <div id="sourcePairs" class="source-pairs" aria-live="polite"></div>
           </div>
         </section>
 
