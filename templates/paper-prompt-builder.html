@@ -6,9 +6,6 @@
   <meta name="description" content="AI-readable paper writing prompt builder for academic papers, citation formats, rubrics, and sources">
   <title>Paper Prompt Builder | Nurse Success Study Hub</title>
 
-  <!-- Captcha Gate -->
-  <meta name="turnstile-site-key" content="{{ turnstile_site_key }}">
-  <script src="/static/js/captcha-gate.js" defer></script>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -89,7 +86,14 @@
 
             <div class="prompt-field">
               <label for="lengthRequirement">Required length</label>
-              <input id="lengthRequirement" type="text" placeholder="Example: 5 pages, 1500 words, 8 paragraphs">
+              <div class="length-control">
+                <input id="lengthRequirement" type="number" min="1" step="1" inputmode="numeric" placeholder="Example: 1000">
+                <select id="lengthUnit" aria-label="Required length unit">
+                  <option value="">Select unit</option>
+                  <option value="Words">Words</option>
+                  <option value="Pages">Pages</option>
+                </select>
+              </div>
             </div>
 
             <div class="prompt-field">
@@ -182,15 +186,15 @@
             </div>
           </fieldset>
 
-          <div class="field-grid">
-            <div class="prompt-field full">
-              <label for="requiredSources">Required sources / source list</label>
-              <textarea id="requiredSources" placeholder="Paste source titles, links, DOI, textbook chapters, or instructor-required sources here."></textarea>
+          <div class="prompt-field full source-pair-builder">
+            <div class="source-pair-header">
+              <div>
+                <label>Required sources and source documentation</label>
+                <p class="source-pair-note">Add each required source with its matching documentation so the AI can keep them paired correctly.</p>
+              </div>
+              <button type="button" class="tool-btn secondary source-add-btn" id="addSourcePairBtn">+ Add another source</button>
             </div>
-            <div class="prompt-field full">
-              <label for="sourceDocumentation">Source documentation provided</label>
-              <textarea id="sourceDocumentation" placeholder="Paste excerpts, article details, citation info, page numbers, notes from PDFs, or say what files you uploaded."></textarea>
-            </div>
+            <div id="sourcePairs" class="source-pairs" aria-live="polite"></div>
           </div>
         </section>
 
@@ -210,6 +214,10 @@
 
         <section class="prompt-section">
           <h2>5. Thesis, Argument, and Content</h2>
+          <fieldset class="prompt-check-group full content-help-callout">
+            <legend>Let AI fill in Section 5</legend>
+            <label class="check-option content-help-option"><input type="checkbox" name="contentHelp" value="Have AI develop the thesis, argument, key points, and counterargument when I do not provide them"> AI should come up with the thesis, argument, key points, and counterargument if I leave these blank</label>
+          </fieldset>
           <div class="field-grid">
             <div class="prompt-field full">
               <label for="thesis">Working thesis</label>
@@ -241,6 +249,7 @@
               <label class="check-option"><input type="checkbox" name="writingTasks" value="Find places where citations are needed"> Identify citation needs</label>
               <label class="check-option"><input type="checkbox" name="writingTasks" value="Draft one section at a time after approval"> Draft section-by-section</label>
               <label class="check-option"><input type="checkbox" name="writingTasks" value="Write the full draft after confirming source documentation"> Full draft after source check</label>
+              <label class="check-option"><input type="checkbox" name="writingTasks" value="Write the entire paper from start to finish using the assignment requirements and verified source documentation"> Write entire paper</label>
               <label class="check-option"><input type="checkbox" name="writingTasks" value="Revise my existing draft"> Revise existing draft</label>
               <label class="check-option"><input type="checkbox" name="writingTasks" value="Format citations and reference entries using the selected style"> Format citations/references</label>
             </div>
