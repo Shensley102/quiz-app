@@ -5,31 +5,787 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="description" content="Fill-in-the-Blank Quiz - Nurse Success Study Hub">
   <title id="pageTitle">Fill-in-the-Blank Quiz - Nurse Success Study Hub</title>
-  <link rel="stylesheet" href="/static/style.css">
+    <style>
+    /* Inlined from static/style.css so this page's frontend code is editable in one template. */
+/* ===== Global Variables ===== */
+:root {
+  --primary: #2f61f3;
+  --success: #45B7D1;
+  --danger: #f44336;
+  --warning: #ff9800;
+  --ink: #1a1a1a;
+  --ink-soft: #666;
+  --card: #fff;
+  --border: #e0e0e0;
+  --radius: 12px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Content Protection ===== */
+/* Prevent text selection across the entire app */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Prevent image dragging */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
+/* Re-enable pointer events for clickable images (like category cards) */
+a img,
+button img,
+.category-card img {
+  pointer-events: auto;
+}
+
+/* Prevent text selection on all text elements */
+p, h1, h2, h3, h4, h5, h6, span, div, label, li, td, th {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow selection in form inputs (necessary for usability) */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea,
+.fitb-input {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* ===== Base Styles ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ink);
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+
+  /* ===== Rough Paper Texture Background ===== */
+  background-color: #e8e8e8;
+  background-image:
+    /* Paper grain texture - fine noise */
+    radial-gradient(circle at 13% 47%, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 67% 13%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 89% 82%, rgba(0, 0, 0, 0.015) 0%, transparent 50%),
+    radial-gradient(circle at 31% 91%, rgba(255, 255, 255, 0.025) 0%, transparent 50%),
+    radial-gradient(circle at 52% 24%, rgba(0, 0, 0, 0.018) 0%, transparent 50%),
+    radial-gradient(circle at 8% 68%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 94% 37%, rgba(0, 0, 0, 0.022) 0%, transparent 50%),
+    radial-gradient(circle at 43% 56%, rgba(255, 255, 255, 0.028) 0%, transparent 50%),
+    radial-gradient(circle at 78% 71%, rgba(0, 0, 0, 0.016) 0%, transparent 50%),
+    radial-gradient(circle at 22% 15%, rgba(255, 255, 255, 0.024) 0%, transparent 50%),
+
+    /* Medium grain texture */
+    radial-gradient(circle at 37% 62%, rgba(0, 0, 0, 0.025) 0%, transparent 40%),
+    radial-gradient(circle at 71% 28%, rgba(255, 255, 255, 0.035) 0%, transparent 40%),
+    radial-gradient(circle at 18% 84%, rgba(0, 0, 0, 0.02) 0%, transparent 40%),
+    radial-gradient(circle at 84% 51%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 56% 9%, rgba(0, 0, 0, 0.028) 0%, transparent 40%),
+    radial-gradient(circle at 4% 33%, rgba(255, 255, 255, 0.022) 0%, transparent 40%),
+    radial-gradient(circle at 91% 76%, rgba(0, 0, 0, 0.019) 0%, transparent 40%),
+    radial-gradient(circle at 47% 95%, rgba(255, 255, 255, 0.026) 0%, transparent 40%),
+
+    /* Larger variations for depth */
+    radial-gradient(circle at 63% 44%, rgba(0, 0, 0, 0.012) 0%, transparent 60%),
+    radial-gradient(circle at 26% 73%, rgba(255, 255, 255, 0.015) 0%, transparent 60%),
+    radial-gradient(circle at 88% 19%, rgba(0, 0, 0, 0.014) 0%, transparent 60%),
+    radial-gradient(circle at 11% 58%, rgba(255, 255, 255, 0.018) 0%, transparent 60%),
+    radial-gradient(circle at 74% 87%, rgba(0, 0, 0, 0.016) 0%, transparent 60%),
+    radial-gradient(circle at 39% 22%, rgba(255, 255, 255, 0.013) 0%, transparent 60%),
+
+    /* Subtle directional grain */
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.005) 50%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.008) 50%, transparent 100%),
+    linear-gradient(45deg, transparent 0%, rgba(0, 0, 0, 0.004) 50%, transparent 100%),
+    linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.006) 50%, transparent 100%);
+
+  background-size:
+    /* Fine noise patterns */
+    3px 3px, 4px 4px, 3.5px 3.5px, 4.2px 4.2px, 3.8px 3.8px,
+    4.5px 4.5px, 3.2px 3.2px, 4.8px 4.8px, 3.6px 3.6px, 4.1px 4.1px,
+    /* Medium grain */
+    8px 8px, 9px 9px, 7.5px 7.5px, 8.5px 8.5px, 9.2px 9.2px,
+    7.8px 7.8px, 8.8px 8.8px, 9.5px 9.5px,
+    /* Larger variations */
+    15px 15px, 16px 16px, 14.5px 14.5px, 15.5px 15.5px, 16.5px 16.5px, 14px 14px,
+    /* Directional grain */
+    100% 200px, 200px 100%, 100% 150px, 150px 100%;
+
+  background-position:
+    0 0, 2px 2px, 1px 3px, 3px 1px, 2px 4px,
+    4px 2px, 1px 1px, 3px 4px, 4px 3px, 2px 1px,
+    0 0, 4px 4px, 2px 5px, 5px 2px, 3px 6px,
+    6px 3px, 4px 1px, 5px 5px,
+    0 0, 8px 8px, 4px 10px, 10px 4px, 6px 12px, 12px 6px,
+    0 0, 0 0, 0 0, 0 0;
+
+  background-repeat: repeat;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 16px 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ===== Cards ===== */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: #5cb85c;
+  color: #fff;
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: #4cae4c;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn.danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+.btn.danger:hover:not(:disabled) {
+  background: #d32f2f;
+}
+
+.btn.btn-blue {
+  background: var(--success);
+  color: #fff;
+}
+
+.btn.btn-blue:hover:not(:disabled) {
+  background: #3a9fb8;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== Forms ===== */
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+select, input[type="text"], input[type="number"] {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+select:focus, input[type="text"]:focus, input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(47, 97, 243, 0.1);
+}
+
+/* ===== Segmented Control ===== */
+.seg {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.seg-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 12px 16px;
+  border: 2px solid var(--border);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.seg-btn:hover {
+  border-color: var(--primary);
+  background: rgba(47, 97, 243, 0.05);
+}
+
+.seg-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* ===== Actions ===== */
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: stretch;
+  margin-top: 16px;
+}
+
+.actions .btn {
+  flex: 1;
+  text-align: center;
+}
+
+/* ===== Quiz Specific Styles ===== */
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 12px 0;
+  border-bottom: 2px solid var(--border);
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px; /* Space for offline indicator */
+}
+
+.category-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.category-icon-large {
+  font-size: 26px;
+}
+
+.title-bar h1 {
+  margin: 0;
+  font-size: clamp(20px, 2.5vw, 26px);
+}
+
+.resume-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.resume-container.hidden {
+  display: none;
+}
+
+.remaining-count {
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+/* Question */
+.question {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+/* Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.opt {
+  position: relative;
+  cursor: pointer;
+}
+
+.opt input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.opt label {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 15px;
+}
+
+/* Default hover - green */
+.opt label:hover {
+  border-color: #4caf50;
+  background: rgba(76, 175, 80, 0.08);
+  transform: translateX(4px);
+}
+
+/* Selected state - green */
+.opt input:checked + label {
+  background: rgba(76, 175, 80, 0.15);
+  border-color: #4caf50;
+}
+
+.opt input:disabled + label {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.opt input:disabled + label:hover {
+  transform: none;
+  border-color: var(--border);
+  background: #fff;
+}
+
+/* Correct answer highlight after submission */
+.opt.correct-answer label {
+  background: rgba(76, 175, 80, 0.2) !important;
+  border-color: #4caf50 !important;
+  opacity: 1 !important;
+}
+
+.opt.correct-answer label .k {
+  background: #4caf50 !important;
+}
+
+/* Wrong answer highlight after submission */
+.opt.wrong-answer label {
+  background: rgba(244, 67, 54, 0.15) !important;
+  border-color: #f44336 !important;
+  opacity: 1 !important;
+}
+
+.opt.wrong-answer label .k {
+  background: #f44336 !important;
+}
+
+.opt .k {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 700;
+  margin-right: 10px;
+  font-size: 13px;
+}
+
+/* Selected key badge - green */
+.opt input:checked + label .k {
+  background: #4caf50;
+}
+
+.opt .ans {
+  flex: 1;
+  font-weight: 500;
+}
+
+/* Single-select: Remove hover from unselected options once something is selected */
+.options.has-selection .opt label:not(:has(input:checked)):hover {
+  border-color: var(--border);
+  background: #fff;
+  transform: none;
+}
+
+/* Multi-select: Keep green hover on all unselected options */
+.options.is-multi-select .opt label:not(:has(input:checked)):hover {
+  border-color: #4caf50;
+  background: rgba(76, 175, 80, 0.08);
+  transform: translateX(4px);
+}
+
+/* Feedback */
+.feedback {
+  padding: 16px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.feedback.hidden {
+  display: none;
+}
+
+.feedback.ok {
+  background: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+  border: 2px solid #4caf50;
+}
+
+.feedback.bad {
+  background: rgba(244, 67, 54, 0.1);
+  color: #c62828;
+  border: 2px solid #f44336;
+}
+
+.answer-line {
+  padding: 16px 20px;
+  background: rgba(47, 97, 243, 0.05);
+  border-left: 4px solid var(--primary);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.answer-line.hidden {
+  display: none;
+}
+
+.rationale {
+  padding: 16px 20px;
+  background: rgba(69, 183, 209, 0.05);
+  border-left: 4px solid var(--success);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+
+.rationale.hidden {
+  display: none;
+}
+
+/* Counters */
+.counters {
+  margin-bottom: 20px;
+}
+
+.count-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Progress Bar */
+.pbar-wrap {
+  position: relative;
+  margin-top: 16px;
+}
+
+.pbar {
+  width: 100%;
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pbar-fill {
+  height: 100%;
+  background: var(--primary);
+  transition: width 0.5s ease, background-color 0.5s ease;
+  border-radius: 10px;
+}
+
+.pbar-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--ink);
+  text-shadow: 0 0 4px #fff;
+  pointer-events: none;
+}
+
+/* Summary */
+.first-try {
+  padding: 20px;
+  background: rgba(69, 183, 209, 0.1);
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rev-item {
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  background: #fff;
+}
+
+.rev-item.ok {
+  border-color: #4caf50;
+  background: rgba(76, 175, 80, 0.05);
+}
+
+.rev-item.bad {
+  border-color: #f44336;
+  background: rgba(244, 67, 54, 0.05);
+}
+
+.rev-q {
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.rev-wrong-count {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--ink-soft);
+}
+
+.rev-wrong-count.yellow {
+  background: rgba(255, 193, 7, 0.2);
+  color: #f57c00;
+}
+
+.rev-wrong-count.orange {
+  background: rgba(255, 152, 0, 0.2);
+  color: #e65100;
+}
+
+.rev-wrong-count.red {
+  background: rgba(244, 67, 54, 0.2);
+  color: #c62828;
+}
+
+.rev-ans {
+  margin-bottom: 12px;
+  padding: 12px;
+  background: rgba(47, 97, 243, 0.05);
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.rev-rationale {
+  padding: 12px;
+  background: rgba(69, 183, 209, 0.05);
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+
+/* Help Section */
+.help {
+  margin-top: 32px;
+  padding: 24px;
+  background: rgba(69, 183, 209, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid var(--success);
+}
+
+.help h3 {
+  color: var(--ink);
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.help ul {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.help li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* Hidden utility */
+.hidden {
+  display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .title-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 100%;
+    margin-top: 50px;
+  }
+
+  .category-header-right {
+    width: 100%;
+  }
+
+  .resume-container {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .question {
+    font-size: 16px;
+  }
+
+  .opt label {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .seg {
+    flex-direction: column;
+  }
+
+  .seg-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .count-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .question {
+    font-size: 15px;
+  }
+
+  .opt label {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .opt .k {
+    min-width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+  </style>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  
+
   <!-- PWA Manifest -->
   <link rel="manifest" href="/static/manifest.json">
-  
+
   <!-- Theme Color -->
   <meta name="theme-color" content="#2f61f3">
-  
+
   <!-- PWA Specific -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Nurse Study">
-  
+
   <!-- Apple Touch Icons - All Sizes -->
   <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
   <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
   <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
-  
+
   <!-- Vercel Analytics -->
   <script defer src="https://cdn.vercel-analytics.com/v1/web.js"></script>
-  
+
   <style>
     /* Offline indicator */
     .offline-indicator {
@@ -84,20 +840,20 @@
       gap: 16px;
       margin-bottom: 20px;
     }
-    
+
     .input-wrapper {
       display: flex;
       flex-direction: column;
       gap: 8px;
       position: relative;
     }
-    
+
     .input-label {
       font-weight: 600;
       color: var(--ink);
       font-size: 14px;
     }
-    
+
     .fill-blank-input {
       width: 100%;
       padding: 14px 16px;
@@ -108,32 +864,32 @@
       background: #fff;
       transition: all 0.2s ease;
     }
-    
+
     .fill-blank-input:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(47, 97, 243, 0.15);
     }
-    
+
     .fill-blank-input::placeholder {
       color: #aaa;
     }
-    
+
     .fill-blank-input.correct {
       border-color: #4caf50 !important;
       background: rgba(76, 175, 80, 0.08);
     }
-    
+
     .fill-blank-input.incorrect {
       border-color: #f44336 !important;
       background: rgba(244, 67, 54, 0.08);
     }
-    
+
     .fill-blank-input:disabled {
       background: #f9f9f9;
       cursor: not-allowed;
     }
-    
+
     /* Question styling enhancements for fill-in-blank */
     .question {
       font-size: 20px;
@@ -144,7 +900,7 @@
       border-left: 4px solid #8B5CF6;
       margin-bottom: 24px;
     }
-    
+
     /* Hard mode badge */
     .hard-badge {
       display: inline-block;
@@ -251,7 +1007,7 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
-    
+
     /* Safe area insets for iOS PWA */
     @supports (padding-top: env(safe-area-inset-top)) {
       body {
@@ -320,7 +1076,7 @@
     <div class="card" id="setup">
       <h2>Fill-in-the-Blank Quiz</h2>
       <p style="color: var(--ink-soft); margin-bottom: 24px;">Test your recall of exact laboratory values. Type your answers - no multiple choice hints!</p>
-      
+
       <!-- Dynamic Length Selector -->
       <div class="length-selector-container" id="lengthSelectorContainer">
         <label class="length-selector-label">How many questions?</label>
@@ -367,11 +1123,11 @@
       </div>
 
       <div id="questionText" class="question"></div>
-      
+
       <div id="answerInputs" class="fill-blank-inputs">
         <!-- Input fields will be generated here -->
       </div>
-      
+
       <div id="feedback" class="feedback hidden"></div>
       <div id="answerLine" class="answer-line hidden"></div>
       <div id="rationale" class="rationale hidden"></div>
@@ -418,13 +1174,922 @@
     // Check if quiz data was passed from the server
     window.preloadedQuizData = null;
     window.preloadedModuleName = null;
-    
+
     {% if quiz_data %}
       window.preloadedQuizData = {{ quiz_data | tojson }};
       window.preloadedModuleName = "{{ module_name }}";
     {% endif %}
   </script>
 
-  <script src="/static/quiz-fill-blank.js"></script>
+    <script>
+    /* Inlined from static/quiz-fill-blank.js so this page's frontend code is editable in one template. */
+/* -----------------------------------------------------------
+   Fill-in-the-Blank Quiz - Lab Values
+   - Text input validation
+   - Exact answer matching with flexible spacing
+   - Case-insensitive comparison
+   - Two-part answer support (ranges)
+   - Color-coded input feedback
+   - Progress tracking
+   - LocalStorage persistence
+   - Dynamic length options based on question count
+   - Autostart support via URL parameters
+----------------------------------------------------------- */
+
+const $ = (id) => document.getElementById(id);
+
+// DOM elements
+const startBtn = $('startBtn');
+const setupCard = $('setup');
+const quizCard = $('quiz');
+const summaryCard = $('summary');
+const lengthBtns = $('lengthBtns');
+const lengthSelectorContainer = $('lengthSelectorContainer');
+
+const questionText = $('questionText');
+const answerInputs = $('answerInputs');
+const submitBtn = $('submitBtn');
+const feedback = $('feedback');
+const answerLine = $('answerLine');
+const rationale = $('rationale');
+
+const runCounter = $('runCounter');
+const remainingCounter = $('remainingCounter');
+const progressFill = $('progressFill');
+const progressLabel = $('progressLabel');
+
+const restartBtn = $('restartBtn');
+const resetAllBtn = $('resetAll');
+const retryMissedBtn = $('retryMissedBtn');
+const firstTrySummary = $('firstTrySummary');
+const reviewList = $('reviewList');
+
+/* ---------- State ---------- */
+let allQuestions = [];
+let run = {
+  order: [],
+  masterPool: [],
+  i: 0,
+  answered: new Map(),
+  uniqueSeen: new Set(),
+  wrongSinceLast: [],
+  totalQuestionsAnswered: 0,
+  isFullBank: false,
+  isRetry: false,
+};
+
+let lastQuizMissedQuestions = [];
+
+/* ---------- Persistence ---------- */
+const STORAGE_KEY = 'fillBlankRunState_v1';
+
+function serializeRun() {
+  if (!run || !run.order?.length) return null;
+  return JSON.stringify({
+    order: run.order.map(q => ({ id: q.id, question: q.question, answer: q.answer, display_answer: q.display_answer, rationale: q.rationale })),
+    masterPool: run.masterPool.map(q => q.id),
+    i: run.i,
+    answered: Array.from(run.answered.entries()),
+    uniqueSeen: Array.from(run.uniqueSeen),
+    wrongSinceLast: run.wrongSinceLast.map(q => q.id),
+    totalQuestionsAnswered: run.totalQuestionsAnswered,
+    isFullBank: run.isFullBank,
+    isRetry: run.isRetry,
+  });
+}
+
+function saveRunState() {
+  try {
+    const s = serializeRun();
+    if (s) localStorage.setItem(STORAGE_KEY, s);
+  } catch {}
+}
+
+function loadRunState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+
+    const qById = new Map();
+    const restoredOrder = (data.order || []).map(q => {
+      const qq = { id: q.id, question: q.question, answer: q.answer, display_answer: q.display_answer, rationale: q.rationale };
+      qById.set(qq.id, qq);
+      return qq;
+    });
+    const idToQ = (id) => qById.get(id) || null;
+
+    const restored = {
+      order: restoredOrder,
+      masterPool: (data.masterPool || []).map(idToQ).filter(Boolean),
+      i: Math.max(0, parseInt(data.i || 0, 10)),
+      answered: new Map(Array.isArray(data.answered) ? data.answered : []),
+      uniqueSeen: new Set(Array.isArray(data.uniqueSeen) ? data.uniqueSeen : []),
+      wrongSinceLast: (data.wrongSinceLast || []).map(idToQ).filter(Boolean),
+      totalQuestionsAnswered: Math.max(0, parseInt(data.totalQuestionsAnswered || 0, 10)),
+      isFullBank: Boolean(data.isFullBank),
+      isRetry: Boolean(data.isRetry),
+    };
+    return restored;
+  } catch {
+    return null;
+  }
+}
+
+function clearSavedState() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {}
+}
+
+/* ---------- URL Parameter Helpers ---------- */
+function getUrlParam(name) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(name);
+}
+
+/* ---------- Question Normalization ---------- */
+// Normalizes different JSON formats to a consistent internal structure
+function normalizeQuestion(q) {
+  // Get question text: prefer 'question', fall back to 'stem'
+  const question = q.question || q.stem || '';
+
+  // Get answer(s): prefer 'answer', fall back to 'correct'
+  let answer;
+  const rawAnswer = q.answer !== undefined ? q.answer : q.correct;
+
+  if (Array.isArray(rawAnswer)) {
+    // Check if it's an array of arrays (e.g., [["135"], ["145"]])
+    if (rawAnswer.length > 0 && Array.isArray(rawAnswer[0])) {
+      // Flatten: take first acceptable answer from each blank
+      answer = rawAnswer.map(arr => Array.isArray(arr) ? arr[0] : arr);
+    } else {
+      answer = rawAnswer;
+    }
+  } else {
+    answer = rawAnswer;
+  }
+
+  // Generate display_answer if not provided
+  let display_answer = q.display_answer;
+  if (!display_answer && answer) {
+    if (Array.isArray(answer)) {
+      // For ranges like ["135", "145"], display as "135 to 145"
+      display_answer = answer.join(' to ');
+    } else {
+      display_answer = String(answer);
+    }
+  }
+
+  return {
+    id: q.id,
+    question: question,
+    answer: answer,
+    display_answer: display_answer,
+    rationale: q.rationale || ''
+  };
+}
+
+// Normalize an array of questions
+function normalizeQuestions(questions) {
+  return questions.map(normalizeQuestion);
+}
+
+/* ---------- Utilities ---------- */
+const randomInt = (n) => Math.floor(Math.random() * n);
+
+function shuffleInPlace(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = randomInt(i + 1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function sampleQuestions(all, req) {
+  const a = all.slice();
+  if (req === 'full' || req >= a.length) return shuffleInPlace(a);
+  const k = Math.max(0, req | 0);
+  for (let i = 0; i < k; i++) {
+    const j = i + randomInt(a.length - i);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a.slice(0, k);
+}
+
+function escapeHTML(s = '') {
+  return String(s)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function scrollToBottomSmooth() {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+    });
+  });
+}
+
+function scrollToQuizTop() {
+  if (!quizCard) return;
+  quizCard.scrollIntoView({ behavior: 'auto', block: 'start' });
+}
+
+/* ---------- Dynamic Length Options ---------- */
+function updateLengthOptions(totalQuestions) {
+  if (!lengthBtns || !lengthSelectorContainer) return;
+
+  // If less than 30 questions, hide the length selector entirely
+  if (totalQuestions < 30) {
+    lengthSelectorContainer.classList.add('hidden');
+    // Set a hidden default to 'full'
+    lengthBtns.innerHTML = '<button class="length-btn active" data-len="full" style="display:none;">Full</button>';
+    return;
+  }
+
+  // Show the length selector
+  lengthSelectorContainer.classList.remove('hidden');
+
+  // Clear existing buttons
+  lengthBtns.innerHTML = '';
+
+  if (totalQuestions >= 100) {
+    // For 100+ questions: 10, 25, 50, Full Module Question Bank
+    const options = [
+      { len: '10', text: '10 Questions' },
+      { len: '25', text: '25 Questions' },
+      { len: '50', text: '50 Questions' },
+      { len: 'full', text: 'All ' + totalQuestions + ' Questions' }
+    ];
+
+    options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'length-btn' + (idx === 0 ? ' active' : '');
+      btn.setAttribute('data-len', opt.len);
+      btn.textContent = opt.text;
+      lengthBtns.appendChild(btn);
+    });
+  } else {
+    // For 30-99 questions: 10, Half (~50%), Full
+    const halfCount = Math.round(totalQuestions / 2);
+    const options = [
+      { len: '10', text: '10 Questions' },
+      { len: String(halfCount), text: halfCount + ' Questions' },
+      { len: 'full', text: 'All ' + totalQuestions + ' Questions' }
+    ];
+
+    options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'length-btn' + (idx === 0 ? ' active' : '');
+      btn.setAttribute('data-len', opt.len);
+      btn.textContent = opt.text;
+      lengthBtns.appendChild(btn);
+    });
+  }
+
+  // Re-attach click handlers
+  attachLengthButtonHandlers();
+}
+
+function attachLengthButtonHandlers() {
+  if (!lengthBtns) return;
+
+  lengthBtns.addEventListener('click', (e) => {
+    const btn = e.target.closest('.length-btn');
+    if (!btn) return;
+    lengthBtns.querySelectorAll('.length-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+}
+
+/* ---------- Answer validation ---------- */
+function normalizeAnswer(text) {
+  return String(text || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .replace(/[^\w\s.-]/g, '');
+}
+
+function isAnswerCorrect(userAnswers, correctAnswers) {
+  if (!Array.isArray(userAnswers) || !Array.isArray(correctAnswers)) return false;
+
+  if (userAnswers.length !== correctAnswers.length) return false;
+
+  const normalized = userAnswers.map(normalizeAnswer).sort();
+  const expectedNormalized = correctAnswers.map(normalizeAnswer).sort();
+
+  return normalized.every((ans, idx) => {
+    const expected = expectedNormalized[idx];
+    return ans === expected || ans.includes(expected) || expected.includes(ans);
+  });
+}
+
+/* ---------- Render question ---------- */
+function renderQuestion(q) {
+  if (!questionText || !answerInputs) return;
+
+  questionText.textContent = q.question;
+  answerInputs.innerHTML = '';
+
+  if (feedback) {
+    feedback.textContent = '';
+    feedback.className = 'feedback hidden';
+  }
+  if (answerLine) {
+    answerLine.innerHTML = '';
+    answerLine.classList.add('hidden');
+  }
+  if (rationale) {
+    rationale.textContent = '';
+    rationale.classList.add('hidden');
+  }
+
+  const answers = Array.isArray(q.answer) ? q.answer : [q.answer];
+  const inputCount = answers.length;
+
+  const inputsContainer = document.createElement('div');
+  inputsContainer.className = 'fill-blank-inputs';
+
+  answers.forEach((_, idx) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'input-wrapper';
+
+    const label = document.createElement('label');
+    label.textContent = inputCount > 1 ? `Blank ${idx + 1}:` : 'Answer:';
+    label.className = 'input-label';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'fill-blank-input';
+    input.id = `answer-${idx}`;
+    input.placeholder = 'Type your answer';
+    input.autocomplete = 'off';
+
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (submitBtn && !submitBtn.disabled) {
+          submitBtn.click();
+        }
+      }
+    });
+
+    wrapper.appendChild(label);
+    wrapper.appendChild(input);
+    inputsContainer.appendChild(wrapper);
+  });
+
+  answerInputs.appendChild(inputsContainer);
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submit Answer';
+    submitBtn.dataset.mode = 'submit';
+  }
+
+  // Focus first input for immediate typing
+  const firstInput = answerInputs.querySelector('.fill-blank-input');
+  if (firstInput) firstInput.focus();
+}
+
+function getUserAnswers() {
+  const inputs = answerInputs?.querySelectorAll('.fill-blank-input') || [];
+  return Array.from(inputs).map(inp => inp.value.trim()).filter(v => v.length > 0);
+}
+
+function getAllAnswerInputs() {
+  return answerInputs?.querySelectorAll('.fill-blank-input') || [];
+}
+
+function onInputChanged() {
+  if (!submitBtn) return;
+  const inputs = getAllAnswerInputs();
+  const allFilled = Array.from(inputs).every(inp => inp.value.trim().length > 0);
+  submitBtn.disabled = !allFilled;
+}
+
+/* ---------- Get current question ---------- */
+function currentQuestion() {
+  return run.order?.[run.i] || null;
+}
+
+/* ---------- Get not mastered ---------- */
+function getNotMastered() {
+  return run.masterPool.filter(q => !run.answered.get(q.id)?.correct);
+}
+
+/* ---------- Next index ---------- */
+function nextIndex() {
+  const nextIdx = (run.i ?? 0) + 1;
+  if (nextIdx < run.order.length) {
+    run.i = nextIdx;
+    return { fromBuffer: false, q: run.order[run.i] };
+  }
+
+  const allCorrect = run.masterPool.every(q => run.answered.get(q.id)?.correct);
+
+  if (!allCorrect) {
+    const notMastered = getNotMastered();
+    if (notMastered.length > 0) {
+      run.wrongSinceLast = [];
+      run.order.push(...notMastered);
+      run.i = nextIdx;
+      return { fromBuffer: true, q: run.order[run.i] };
+    }
+  }
+
+  return { fromBuffer: false, q: null };
+}
+
+/* ---------- Update counters ---------- */
+function updateCounters() {
+  const remaining = getNotMastered().length;
+  const total = run.masterPool.length;
+
+  if (runCounter) runCounter.textContent = `Question: ${run.totalQuestionsAnswered}`;
+  if (remainingCounter) remainingCounter.textContent = `Remaining to master: ${remaining}`;
+
+  const masteredCount = total - remaining;
+  const percentage = total ? Math.floor((masteredCount / total) * 100) : 0;
+
+  if (progressFill) progressFill.style.width = `${percentage}%`;
+  if (progressLabel) progressLabel.textContent = `${percentage}% mastered`;
+
+  const r = Math.round(47 + (76 - 47) * (percentage / 100));
+  const g = Math.round(97 + (175 - 97) * (percentage / 100));
+  const b = Math.round(243 + (80 - 243) * (percentage / 100));
+  if (progressFill) progressFill.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+  saveRunState();
+}
+
+/* ---------- Record answer ---------- */
+function recordAnswer(q, userAnswers, isCorrect) {
+  const firstTime = !run.answered.has(q.id);
+  const entry = run.answered.get(q.id) || { firstTryCorrect: null, correct: false, userAnswers: [] };
+  if (firstTime) entry.firstTryCorrect = !!isCorrect;
+  entry.correct = !!isCorrect;
+  entry.userAnswers = userAnswers.slice();
+  run.answered.set(q.id, entry);
+}
+
+/* ---------- Start quiz ---------- */
+async function startQuiz() {
+  if (!lengthBtns || !startBtn) return;
+
+  const lenBtn = lengthBtns.querySelector('.length-btn.active');
+  if (!lenBtn) {
+    alert('Pick Length Of Quiz Before Starting');
+    if (lengthSelectorContainer) lengthSelectorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const qty = lenBtn.dataset.len === 'full' ? 'full' : parseInt(lenBtn.dataset.len, 10);
+  const isFullBank = qty === 'full';
+
+  startBtn.disabled = true;
+
+  try {
+    let rawData;
+
+    if (window.storedPreloadedData && window.storedPreloadedData.moduleName === 'NCLEX_Lab_Values_Fill_In_The_Blank') {
+      rawData = window.storedPreloadedData.questions;
+    } else {
+      const moduleName = 'NCLEX_Lab_Values_Fill_In_The_Blank';
+      const jsonUrl = `/modules/Lab_Values/${moduleName}.json`;
+
+      const res = await fetch(jsonUrl, { cache: 'no-store' });
+      if (!res.ok) {
+        alert(`Could not load quiz data (${res.status})`);
+        startBtn.disabled = false;
+        return;
+      }
+      rawData = await res.json();
+    }
+
+    const rawQuestions = Array.isArray(rawData) ? rawData : (rawData.questions || []);
+    allQuestions = normalizeQuestions(rawQuestions);
+
+    const sampled = sampleQuestions(allQuestions, qty);
+
+    run = {
+      order: [...sampled],
+      masterPool: [...sampled],
+      i: 0,
+      answered: new Map(),
+      uniqueSeen: new Set(),
+      wrongSinceLast: [],
+      totalQuestionsAnswered: 1,
+      isFullBank: isFullBank,
+      isRetry: false,
+    };
+
+    if (setupCard) setupCard.classList.add('hidden');
+    if (summaryCard) summaryCard.classList.add('hidden');
+    if (quizCard) quizCard.classList.remove('hidden');
+
+    const q0 = run.order[0];
+    run.uniqueSeen.add(q0.id);
+    renderQuestion(q0);
+    updateCounters();
+
+    startBtn.disabled = false;
+  } catch (err) {
+    console.error('Error starting quiz:', err);
+    alert('Error loading quiz. Please try again.');
+    if (startBtn) startBtn.disabled = false;
+  }
+}
+
+/* ---------- Autostart Quiz (from URL parameters) ---------- */
+async function autostartQuiz(quizLength) {
+  if (!startBtn) return;
+
+  startBtn.disabled = true;
+
+  try {
+    let rawData;
+
+    if (window.storedPreloadedData && window.storedPreloadedData.moduleName === 'NCLEX_Lab_Values_Fill_In_The_Blank') {
+      rawData = window.storedPreloadedData.questions;
+    } else {
+      const moduleName = 'NCLEX_Lab_Values_Fill_In_The_Blank';
+      const jsonUrl = `/modules/Lab_Values/${moduleName}.json`;
+
+      const res = await fetch(jsonUrl, { cache: 'no-store' });
+      if (!res.ok) {
+        console.error(`Could not load quiz data (${res.status})`);
+        startBtn.disabled = false;
+        return;
+      }
+      rawData = await res.json();
+    }
+
+    const rawQuestions = Array.isArray(rawData) ? rawData : (rawData.questions || []);
+    allQuestions = normalizeQuestions(rawQuestions);
+
+    // Determine quantity from URL parameter
+    let qty;
+    if (quizLength === 'full' || quizLength === 'all') {
+      qty = 'full';
+    } else {
+      const parsed = parseInt(quizLength, 10);
+      qty = isNaN(parsed) ? 10 : parsed;
+    }
+
+    const isFullBank = qty === 'full';
+    const sampled = sampleQuestions(allQuestions, qty);
+
+    run = {
+      order: [...sampled],
+      masterPool: [...sampled],
+      i: 0,
+      answered: new Map(),
+      uniqueSeen: new Set(),
+      wrongSinceLast: [],
+      totalQuestionsAnswered: 1,
+      isFullBank: isFullBank,
+      isRetry: false,
+    };
+
+    if (setupCard) setupCard.classList.add('hidden');
+    if (summaryCard) summaryCard.classList.add('hidden');
+    if (quizCard) quizCard.classList.remove('hidden');
+
+    const q0 = run.order[0];
+    run.uniqueSeen.add(q0.id);
+    renderQuestion(q0);
+    updateCounters();
+
+    startBtn.disabled = false;
+  } catch (err) {
+    console.error('Error autostarting quiz:', err);
+    if (startBtn) startBtn.disabled = false;
+  }
+}
+
+/* ---------- Handle submit ---------- */
+function handleSubmit() {
+  if (!submitBtn) return;
+
+  if (submitBtn.dataset.mode === 'next') {
+    scrollToQuizTop();
+    const next = nextIndex();
+    const q = next.q;
+    if (!q) return endRun();
+    run.uniqueSeen.add(q.id);
+    run.totalQuestionsAnswered++;
+    renderQuestion(q);
+    updateCounters();
+    return;
+  }
+
+  const q = currentQuestion();
+  if (!q) return;
+
+  const userAnswers = getUserAnswers();
+  const correctAnswers = Array.isArray(q.answer) ? q.answer : [q.answer];
+  const isCorrect = isAnswerCorrect(userAnswers, correctAnswers);
+
+  recordAnswer(q, userAnswers, isCorrect);
+
+  if (!isCorrect) {
+    run.wrongSinceLast.push(q);
+  }
+
+  if (feedback) {
+    feedback.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
+    feedback.classList.remove('hidden');
+    feedback.classList.add(isCorrect ? 'ok' : 'bad');
+  }
+
+  if (answerLine) {
+    answerLine.innerHTML = `<strong>Correct Answer:</strong> ${escapeHTML(q.display_answer || String(q.answer))}`;
+    answerLine.classList.remove('hidden');
+  }
+
+  if (rationale) {
+    rationale.textContent = q.rationale || '';
+    rationale.classList.remove('hidden');
+  }
+
+  const inputs = getAllAnswerInputs();
+  inputs.forEach(inp => inp.disabled = true);
+
+  if (submitBtn) {
+    submitBtn.textContent = 'Next';
+    submitBtn.dataset.mode = 'next';
+    submitBtn.disabled = false;
+  }
+
+  scrollToBottomSmooth();
+  updateCounters();
+}
+
+/* ---------- End run ---------- */
+function endRun() {
+  if (quizCard) quizCard.classList.add('hidden');
+  if (summaryCard) summaryCard.classList.remove('hidden');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const uniq = [...run.answered.values()];
+  const ftCorrect = uniq.filter(x => x.firstTryCorrect).length;
+  const totalUnique = uniq.length;
+
+  lastQuizMissedQuestions = run.masterPool.filter(q => {
+    const ans = run.answered.get(q.id);
+    return ans && ans.firstTryCorrect === false;
+  });
+
+  if (retryMissedBtn) {
+    if (lastQuizMissedQuestions.length > 0 && !run.isRetry) {
+      retryMissedBtn.classList.remove('hidden');
+      const missedCount = document.getElementById('missedCount');
+      if (missedCount) {
+        missedCount.textContent = lastQuizMissedQuestions.length;
+      }
+    } else {
+      retryMissedBtn.classList.add('hidden');
+    }
+  }
+
+  if (firstTrySummary) {
+    if (totalUnique > 0) {
+      firstTrySummary.classList.remove('hidden');
+      const summaryHTML = `
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+          <div>
+            <strong>First-try mastery:</strong>
+            <span id="firstTryPct">0%</span>
+            (<span id="firstTryCount">0</span> / <span id="firstTryTotal">0</span>)
+          </div>
+          <div>
+            <strong>Total Questions Answered:</strong>
+            <span>${run.totalQuestionsAnswered}</span>
+          </div>
+        </div>
+      `;
+      firstTrySummary.innerHTML = summaryHTML;
+      const firstTryPct = document.getElementById('firstTryPct');
+      const firstTryCount = document.getElementById('firstTryCount');
+      const firstTryTotal = document.getElementById('firstTryTotal');
+      if (firstTryPct) firstTryPct.textContent = `${Math.round((ftCorrect / totalUnique) * 100)}%`;
+      if (firstTryCount) firstTryCount.textContent = ftCorrect;
+      if (firstTryTotal) firstTryTotal.textContent = totalUnique;
+    } else {
+      firstTrySummary.classList.add('hidden');
+    }
+  }
+
+  if (reviewList) {
+    reviewList.innerHTML = '';
+
+    const questionWrongCount = {};
+    run.order.forEach(q => {
+      questionWrongCount[q.id] = (questionWrongCount[q.id] || 0) + 1;
+    });
+
+    const maxWrong = Math.max(...Object.values(questionWrongCount), 1);
+
+    const sortedQuestions = [...run.order].sort((a, b) => {
+      const ansA = run.answered.get(a.id);
+      const ansB = run.answered.get(b.id);
+
+      if (ansA?.correct !== ansB?.correct) {
+        return ansA?.correct ? 1 : -1;
+      }
+
+      const countA = questionWrongCount[a.id] || 1;
+      const countB = questionWrongCount[b.id] || 1;
+      return countB - countA;
+    });
+
+    const displayedIds = new Set();
+
+    sortedQuestions.forEach(q => {
+      if (displayedIds.has(q.id)) return;
+      displayedIds.add(q.id);
+
+      const row = document.createElement('div');
+      const ans = run.answered.get(q.id);
+      row.className = 'rev-item ' + (ans?.correct ? 'ok' : 'bad');
+
+      const qEl = document.createElement('div');
+      qEl.className = 'rev-q';
+      qEl.textContent = q.question;
+
+      const wrongCountEl = document.createElement('div');
+      wrongCountEl.className = 'rev-wrong-count';
+      const wrongCount = Math.max(0, questionWrongCount[q.id] - 1);
+      wrongCountEl.textContent = `Times marked wrong: ${wrongCount}`;
+
+      const caEl = document.createElement('div');
+      caEl.className = 'rev-ans';
+      caEl.innerHTML = `<strong>Correct Answer:</strong> ${escapeHTML(q.display_answer || String(q.answer))}`;
+
+      const rEl = document.createElement('div');
+      rEl.className = 'rev-rationale';
+      rEl.innerHTML = `<strong>Rationale:</strong> ${escapeHTML(q.rationale || '')}`;
+
+      row.appendChild(qEl);
+      row.appendChild(wrongCountEl);
+      row.appendChild(caEl);
+      row.appendChild(rEl);
+      reviewList.appendChild(row);
+    });
+  }
+
+  clearSavedState();
+}
+
+/* ---------- Keyboard shortcuts ---------- */
+document.addEventListener('keydown', (e) => {
+  if (!quizCard || quizCard.classList.contains('hidden')) return;
+  if (e.altKey || e.ctrlKey || e.metaKey) return;
+
+  const key = e.key || '';
+
+  if (key === 'Enter') {
+    e.preventDefault();
+    if (submitBtn && !submitBtn.disabled) {
+      submitBtn.click();
+    }
+    return;
+  }
+});
+
+/* ---------- Event listeners ---------- */
+// Initial length button handlers
+attachLengthButtonHandlers();
+
+if (startBtn) {
+  startBtn.addEventListener('click', startQuiz);
+}
+
+if (answerInputs) {
+  answerInputs.addEventListener('input', onInputChanged);
+}
+
+if (submitBtn) {
+  submitBtn.addEventListener('click', handleSubmit);
+}
+
+if (restartBtn) {
+  restartBtn.addEventListener('click', () => {
+    location.reload();
+  });
+}
+
+if (resetAllBtn) {
+  resetAllBtn.addEventListener('click', () => {
+    clearSavedState();
+    location.reload();
+  });
+}
+
+if (retryMissedBtn) {
+  retryMissedBtn.addEventListener('click', () => {
+    if (!lastQuizMissedQuestions.length) return;
+
+    const shuffled = shuffleInPlace([...lastQuizMissedQuestions]);
+
+    run = {
+      order: [...shuffled],
+      masterPool: [...shuffled],
+      i: 0,
+      answered: new Map(),
+      uniqueSeen: new Set(),
+      wrongSinceLast: [],
+      totalQuestionsAnswered: 1,
+      isFullBank: false,
+      isRetry: true,
+    };
+
+    if (setupCard) setupCard.classList.add('hidden');
+    if (summaryCard) summaryCard.classList.add('hidden');
+    if (quizCard) quizCard.classList.remove('hidden');
+
+    const q0 = run.order[0];
+    run.uniqueSeen.add(q0.id);
+    renderQuestion(q0);
+    updateCounters();
+  });
+}
+
+/* ---------- Init ---------- */
+document.addEventListener('DOMContentLoaded', async () => {
+  // Fetch the quiz data to get question count and update length options
+  try {
+    let rawData;
+
+    if (window.preloadedQuizData && window.preloadedModuleName) {
+      rawData = window.preloadedQuizData;
+      window.storedPreloadedData = { questions: rawData, moduleName: window.preloadedModuleName };
+    } else {
+      const moduleName = 'NCLEX_Lab_Values_Fill_In_The_Blank';
+      const jsonUrl = `/modules/Lab_Values/${moduleName}.json`;
+      const res = await fetch(jsonUrl, { cache: 'no-store' });
+      if (res.ok) {
+        rawData = await res.json();
+      }
+    }
+
+    if (rawData) {
+      const questions = Array.isArray(rawData) ? rawData : (rawData.questions || []);
+      updateLengthOptions(questions.length);
+    }
+  } catch (err) {
+    console.warn('Could not fetch quiz data for length options:', err);
+    // Default to 100+ options
+    updateLengthOptions(100);
+  }
+
+  // Check for autostart parameter
+  const autostart = getUrlParam('autostart');
+  const quizLength = getUrlParam('quiz_length');
+
+  if (autostart === 'true' && quizLength) {
+    // Autostart the quiz with the specified length
+    autostartQuiz(quizLength);
+    return; // Skip saved state check when autostarting
+  }
+
+  // Check for saved state
+  const saved = loadRunState();
+  if (saved && saved.order?.length && saved.isFullBank && !saved.isRetry) {
+    run = saved;
+    const resumeContainer = document.getElementById('resumeContainer');
+    if (resumeContainer) {
+      resumeContainer.classList.remove('hidden');
+      const remainingQuestions = getNotMastered().length;
+      const remainingCountEl = document.getElementById('remainingQuestionsCount');
+      if (remainingCountEl) {
+        remainingCountEl.textContent = `${remainingQuestions} questions remaining`;
+      }
+      const resumeBtn = document.getElementById('resumeBtn');
+      if (resumeBtn) {
+        resumeBtn.onclick = () => {
+          if (setupCard) setupCard.classList.add('hidden');
+          if (summaryCard) summaryCard.classList.add('hidden');
+          if (quizCard) quizCard.classList.remove('hidden');
+
+          const q = currentQuestion();
+          if (q) {
+            run.uniqueSeen.add(q.id);
+            renderQuestion(q);
+            updateCounters();
+          }
+        };
+      }
+    }
+  }
+});
+  </script>
 </body>
 </html>
