@@ -3,8 +3,6 @@
 import os
 import json
 import re
-import urllib.parse
-import urllib.request
 from flask import Flask, render_template, request, jsonify, redirect, url_for, send_from_directory
 from pathlib import Path
 from urllib.parse import unquote
@@ -15,22 +13,6 @@ app = Flask(__name__, template_folder='../templates', static_folder='../static')
 # Get the base directory
 BASE_DIR = Path(__file__).parent.parent
 MODULES_DIR = BASE_DIR / 'modules'
-
-# Cloudflare Turnstile
-TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
-
-# ==================== TEMPLATE GLOBALS ====================
-
-@app.context_processor
-def inject_turnstile_site_key():
-    """
-    Makes `turnstile_site_key` available in EVERY rendered template
-    so the site-wide captcha gate works without route-level changes.
-    Empty string disables the gate entirely (safe pre-deploy default).
-    """
-    return {
-        'turnstile_site_key': os.environ.get('TURNSTILE_SITE_KEY', '').strip()
-    }
 
 
 # Category metadata
@@ -199,39 +181,6 @@ ADULT_HEALTH_MODULES = {
         ]
     }
 }
-
-# ==================== TURNSTILE VERIFICATION ====================
-
-def verify_turnstile_token(token, remoteip=None):
-    """
-    POSTs the token to Cloudflare's siteverify endpoint.
-    Returns (success: bool, detail: dict|str).
-    """
-    secret = os.environ.get('TURNSTILE_SECRET_KEY', '').strip()
-    if not secret:
-        return False, 'missing-secret'
-    if not token:
-        return False, 'missing-token'
-
-    payload = {'secret': secret, 'response': token}
-    if remoteip:
-        payload['remoteip'] = remoteip
-
-    encoded = urllib.parse.urlencode(payload).encode('utf-8')
-
-    try:
-        req = urllib.request.Request(
-            TURNSTILE_VERIFY_URL,
-            data=encoded,
-            headers={'Content-Type': 'application/x-www-form-urlencoded'}
-        )
-        with urllib.request.urlopen(req, timeout=10) as response:
-            result = json.loads(response.read().decode('utf-8'))
-        return bool(result.get('success')), result
-    except Exception as e:
-        print(f"[Turnstile] Verification error: {e}")
-        return False, {'error': str(e)}
-
 
 # ==================== QUESTION COUNT HELPERS ====================
 
@@ -521,40 +470,6 @@ def paper_prompt_builder():
     except Exception as e:
         print(f"Error in paper_prompt_builder route: {e}")
         return jsonify({'error': str(e)}), 500
-
-@app.route('/api/verify-captcha', methods=['POST'])
-def api_verify_captcha():
-    """
-    Verifies a Cloudflare Turnstile token. Called by the site-wide
-    captcha gate after the user completes the widget. Returns
-    {success: true} on pass; sets the 24h cooldown client-side.
-    """
-    try:
-        data = request.get_json(silent=True) or {}
-        token = (data.get('token') or '').strip()
-
-        # Best-effort client IP (Vercel sets X-Forwarded-For)
-        remoteip = (
-            request.headers.get('CF-Connecting-IP')
-            or (request.headers.get('X-Forwarded-For', '').split(',')[0].strip() if request.headers.get('X-Forwarded-For') else '')
-            or request.remote_addr
-            or None
-        )
-
-        success, detail = verify_turnstile_token(token, remoteip)
-        if success:
-            return jsonify({'success': True})
-
-        err = 'invalid-token'
-        if isinstance(detail, dict):
-            err = detail.get('error-codes') or detail.get('error') or err
-        elif isinstance(detail, str):
-            err = detail
-        return jsonify({'success': False, 'error': err}), 400
-    except Exception as e:
-        print(f"Error in api_verify_captcha: {e}")
-        return jsonify({'success': False, 'error': str(e)}), 500
-
 
 @app.route('/category/<category>')
 def category(category):
