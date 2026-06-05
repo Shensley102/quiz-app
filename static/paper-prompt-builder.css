@@ -173,6 +173,19 @@
 }
 
 
+
+#paperPromptForm.paper-type-unselected > .prompt-section:not(:first-of-type) {
+  display: none;
+}
+
+#paperPromptForm.paper-type-unselected > .prompt-section:first-of-type .prompt-field:not(.paper-type-picker) {
+  display: none;
+}
+
+.paper-field-hidden {
+  display: none !important;
+}
+
 .paper-type-picker select {
   max-width: 100%;
 }

@@ -20,6 +20,65 @@
   let paperTypeProfiles = {};
   let pendingPaperTypeValue = '';
 
+  const PAPER_TYPE_FORM_RULES = {
+    research_paper: {
+      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
+      citation: ['citationStyle', 'otherCitationStyle', 'titlePage', 'abstract', 'referencePage', 'pageSetup', 'requiredSections'],
+      source: true,
+      sourcePairs: true,
+      assignment: ['assignmentInstructions', 'rubric'],
+      content: ['contentHelp', 'thesis', 'argumentAngle', 'keyPoints'],
+      tasks: true
+    },
+    argumentative_essay: {
+      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
+      citation: ['citationStyle', 'otherCitationStyle', 'referencePage', 'pageSetup', 'requiredSections'],
+      source: true,
+      sourcePairs: true,
+      assignment: ['assignmentInstructions', 'rubric'],
+      content: ['contentHelp', 'thesis', 'argumentAngle', 'keyPoints', 'counterargument'],
+      tasks: true
+    },
+    literature_review: {
+      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
+      citation: ['citationStyle', 'otherCitationStyle', 'abstract', 'referencePage', 'pageSetup', 'requiredSections'],
+      source: true,
+      sourcePairs: true,
+      assignment: ['assignmentInstructions', 'rubric'],
+      content: ['contentHelp', 'thesis', 'argumentAngle', 'keyPoints'],
+      tasks: true
+    },
+    case_study: {
+      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
+      citation: ['citationStyle', 'otherCitationStyle', 'referencePage', 'pageSetup', 'requiredSections'],
+      source: true,
+      sourcePairs: true,
+      assignment: ['assignmentInstructions', 'rubric'],
+      content: ['contentHelp', 'argumentAngle', 'keyPoints'],
+      tasks: true
+    },
+    reflection_paper: {
+      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
+      citation: ['citationStyle', 'otherCitationStyle', 'pageSetup', 'requiredSections'],
+      source: true,
+      sourcePairs: false,
+      assignment: ['assignmentInstructions', 'rubric'],
+      content: ['contentHelp', 'thesis', 'argumentAngle', 'keyPoints'],
+      tasks: true
+    },
+    discussion_post_response: {
+      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
+      citation: ['citationStyle', 'otherCitationStyle', 'referencePage'],
+      source: true,
+      sourcePairs: false,
+      assignment: ['assignmentInstructions', 'rubric'],
+      content: ['contentHelp', 'argumentAngle', 'keyPoints'],
+      tasks: true
+    }
+  };
+
+  const DEFAULT_FORM_RULE = PAPER_TYPE_FORM_RULES.research_paper;
+
   if (!form || !output) return;
 
   function $(id) {
@@ -47,6 +106,129 @@
   function selectedPaperTypeLabel() {
     const profile = selectedPaperTypeProfile();
     return profile?.label || selectedPaperTypeValue() || 'Not specified';
+  }
+
+
+  function normalizedPaperTypeText() {
+    return `${selectedPaperTypeValue()} ${selectedPaperTypeLabel()}`.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+  }
+
+  function selectedPaperTypeRuleKey() {
+    const selected = selectedPaperTypeValue();
+    if (!selected) return '';
+    if (PAPER_TYPE_FORM_RULES[selected]) return selected;
+
+    const normalized = normalizedPaperTypeText();
+    if (normalized.includes('argument')) return 'argumentative_essay';
+    if (normalized.includes('literature') || normalized.includes('review')) return 'literature_review';
+    if (normalized.includes('case')) return 'case_study';
+    if (normalized.includes('reflection') || normalized.includes('reflective')) return 'reflection_paper';
+    if (normalized.includes('discussion') || normalized.includes('response') || normalized.includes('post')) return 'discussion_post_response';
+    if (normalized.includes('research')) return 'research_paper';
+    return 'research_paper';
+  }
+
+  function selectedPaperTypeRule() {
+    const ruleKey = selectedPaperTypeRuleKey();
+    return ruleKey ? PAPER_TYPE_FORM_RULES[ruleKey] || DEFAULT_FORM_RULE : null;
+  }
+
+  function fieldWrapper(id) {
+    const el = $(id);
+    return el ? el.closest('.prompt-field, .prompt-check-group, .source-pair-builder') : null;
+  }
+
+  function namedGroupWrapper(name) {
+    const el = form.querySelector(`input[name="${name}"]`);
+    return el ? el.closest('.prompt-check-group') : null;
+  }
+
+  function setFieldVisibility(id, visible) {
+    const wrapper = fieldWrapper(id);
+    if (wrapper) wrapper.classList.toggle('paper-field-hidden', !visible);
+  }
+
+  function setNamedGroupVisibility(name, visible) {
+    const wrapper = namedGroupWrapper(name);
+    if (wrapper) wrapper.classList.toggle('paper-field-hidden', !visible);
+  }
+
+  function sourcePairsWrapper() {
+    return sourcePairsContainer?.closest('.source-pair-builder') || null;
+  }
+
+  function setSourcePairsVisibility(visible) {
+    const wrapper = sourcePairsWrapper();
+    if (wrapper) wrapper.classList.toggle('paper-field-hidden', !visible);
+  }
+
+  function sourcePairsAreVisible() {
+    const wrapper = sourcePairsWrapper();
+    return Boolean(wrapper && !wrapper.classList.contains('paper-field-hidden') && !wrapper.closest('.prompt-section.paper-field-hidden'));
+  }
+
+  function setBottomActionsVisibility(visible) {
+    form.querySelectorAll('.bottom-actions').forEach(el => el.classList.toggle('paper-field-hidden', !visible));
+  }
+
+  function fieldIsVisible(id) {
+    const wrapper = fieldWrapper(id);
+    if (!wrapper) return false;
+    return !wrapper.classList.contains('paper-field-hidden') && !wrapper.closest('.prompt-section.paper-field-hidden');
+  }
+
+  function namedGroupIsVisible(name) {
+    const wrapper = namedGroupWrapper(name);
+    if (!wrapper) return false;
+    return !wrapper.classList.contains('paper-field-hidden') && !wrapper.closest('.prompt-section.paper-field-hidden');
+  }
+
+  function promptValue(id) {
+    return selectedPaperTypeValue() && fieldIsVisible(id) ? value(id) : '';
+  }
+
+  function checkedValuesForPrompt(name) {
+    return selectedPaperTypeValue() && namedGroupIsVisible(name) ? checkedValues(name) : [];
+  }
+
+  function updateSectionVisibility() {
+    form.querySelectorAll('.prompt-section').forEach((section, index) => {
+      if (index === 0) {
+        section.classList.remove('paper-field-hidden');
+        return;
+      }
+      const hasVisiblePromptField = Array.from(section.querySelectorAll('.prompt-field, .prompt-check-group, .bottom-actions')).some(el =>
+        !el.classList.contains('paper-field-hidden')
+      );
+      section.classList.toggle('paper-field-hidden', !hasVisiblePromptField);
+    });
+  }
+
+  function updatePaperTypeDependentFields() {
+    const rule = selectedPaperTypeRule();
+    const selected = Boolean(selectedPaperTypeValue());
+    form.classList.toggle('paper-type-unselected', !selected);
+
+    const visibleFields = new Set([
+      ...(rule?.setup || []),
+      ...(rule?.citation || []),
+      ...(rule?.assignment || []),
+      ...(rule?.content || [])
+    ]);
+
+    [
+      'topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience',
+      'citationStyle', 'otherCitationStyle', 'titlePage', 'abstract', 'referencePage', 'pageSetup', 'requiredSections',
+      'assignmentInstructions', 'rubric',
+      'thesis', 'argumentAngle', 'keyPoints', 'counterargument'
+    ].forEach(id => setFieldVisibility(id, selected && visibleFields.has(id)));
+
+    setNamedGroupVisibility('sourceRules', selected && Boolean(rule?.source));
+    setSourcePairsVisibility(selected && Boolean(rule?.sourcePairs));
+    setNamedGroupVisibility('contentHelp', selected && visibleFields.has('contentHelp'));
+    setNamedGroupVisibility('writingTasks', selected && Boolean(rule?.tasks));
+    setBottomActionsVisibility(selected && Boolean(rule?.tasks));
+    updateSectionVisibility();
   }
 
   function yesNo(condition) {
@@ -142,6 +324,7 @@ ${listOrNone(profileField(profile, 'assessment_focus'))}
   }
 
   function renderCriteriaPreview() {
+    updatePaperTypeDependentFields();
     if (!paperTypePreview) return;
     const profile = selectedPaperTypeProfile();
 
@@ -315,12 +498,14 @@ ${listOrNone(profileField(profile, 'assessment_focus'))}
   }
 
   function requiredLengthText() {
+    if (!selectedPaperTypeValue() || !fieldIsVisible('lengthRequirement')) return '';
     const length = value('lengthRequirement');
     const unit = value('lengthUnit');
     return length && unit ? `${length} ${unit}` : '';
   }
 
   function requiredLengthMissingMessage() {
+    if (!selectedPaperTypeValue() || !fieldIsVisible('lengthRequirement')) return '';
     const length = value('lengthRequirement');
     const unit = value('lengthUnit');
 
@@ -332,12 +517,13 @@ ${listOrNone(profileField(profile, 'assessment_focus'))}
   }
 
   function buildPrompt() {
-    const sourceRules = checkedValues('sourceRules');
-    const writingTasks = checkedValues('writingTasks');
-    const contentHelp = checkedValues('contentHelp');
+    updatePaperTypeDependentFields();
+    const sourceRules = checkedValuesForPrompt('sourceRules');
+    const writingTasks = checkedValuesForPrompt('writingTasks');
+    const contentHelp = checkedValuesForPrompt('contentHelp');
     const shouldWriteEntirePaper = writingTasks.some(task => task.includes('Write the entire paper'));
-    const citationStyle = value('citationStyle');
-    const otherCitationStyle = value('otherCitationStyle');
+    const citationStyle = promptValue('citationStyle');
+    const otherCitationStyle = promptValue('otherCitationStyle');
     const finalCitationStyle = citationStyle === 'Other' ? (otherCitationStyle || 'Other / custom') : citationStyle;
     const profile = selectedPaperTypeProfile();
     const paperTypeLabel = selectedPaperTypeLabel();
@@ -352,46 +538,46 @@ ${listOrNone(profileField(profile, 'assessment_focus'))}
       rule.includes('bibliography')
     );
 
-    const sourcePairsProvided = hasSourcePairInfo();
+    const sourcePairsProvided = sourcePairsAreVisible() && hasSourcePairInfo();
     const sourceRequirements = [
       listOrNone(sourceRules),
       '',
       'Required sources and source documentation:',
-      sourcePairsPromptText()
+      sourcePairsAreVisible() ? sourcePairsPromptText() : 'Not provided'
     ].join('\n');
     const additionalRequirements = [
-      value('pageSetup') ? `Font / spacing / page setup: ${value('pageSetup')}` : '',
-      value('requiredSections') ? `Instructor-required sections/headings: ${value('requiredSections')}` : '',
-      `Title page: ${value('titlePage') || 'Not specified'}`,
-      `Abstract: ${value('abstract') || 'Not specified'}`,
-      `Reference / Works Cited / Bibliography page: ${value('referencePage') || 'Not specified'}`,
-      value('rubric') ? `Rubric / grading criteria:\n${value('rubric')}` : '',
-      value('thesis') ? `Working thesis:\n${value('thesis')}` : '',
-      value('argumentAngle') ? `Main argument / angle:\n${value('argumentAngle')}` : '',
-      value('keyPoints') ? `Key points that must be included:\n${value('keyPoints')}` : '',
-      value('counterargument') ? `Counterargument or opposing viewpoint to address:\n${value('counterargument')}` : '',
+      promptValue('pageSetup') ? `Font / spacing / page setup: ${promptValue('pageSetup')}` : '',
+      promptValue('requiredSections') ? `Instructor-required sections/headings: ${promptValue('requiredSections')}` : '',
+      fieldIsVisible('titlePage') ? `Title page: ${promptValue('titlePage') || 'Not specified'}` : '',
+      fieldIsVisible('abstract') ? `Abstract: ${promptValue('abstract') || 'Not specified'}` : '',
+      fieldIsVisible('referencePage') ? `Reference / Works Cited / Bibliography page: ${promptValue('referencePage') || 'Not specified'}` : '',
+      promptValue('rubric') ? `Rubric / grading criteria:\n${promptValue('rubric')}` : '',
+      promptValue('thesis') ? `Working thesis:\n${promptValue('thesis')}` : '',
+      promptValue('argumentAngle') ? `Main argument / angle:\n${promptValue('argumentAngle')}` : '',
+      promptValue('keyPoints') ? `Key points that must be included:\n${promptValue('keyPoints')}` : '',
+      promptValue('counterargument') ? `Counterargument or opposing viewpoint to address:\n${promptValue('counterargument')}` : '',
       contentHelp.length ? 'If thesis, argument, key point, or counterargument details are blank or weak, develop appropriate content using the assignment instructions, rubric, topic, academic level, and source rules.' : '',
       writingTasks.length ? `Selected output options:\n${listOrNone(writingTasks)}` : ''
     ].filter(Boolean).join('\n\n');
 
     const prompt = `<role>
-You are an academic writing assistant and paper-planning coach specializing in ${value('academicLevel') || 'Not specified'} ${value('course') || 'Not specified'} writing.
+You are an academic writing assistant and paper-planning coach specializing in ${promptValue('academicLevel') || 'Not specified'} ${promptValue('course') || 'Not specified'} writing.
 </role>
 
 <context>
-${fieldLine('Paper topic', value('topic'))}
-${fieldLine('Course / class', value('course'))}
-${fieldLine('Academic level', value('academicLevel'))}
-${fieldLine('Audience / instructor expectations', value('audience'))}
+${fieldLine('Paper topic', promptValue('topic'))}
+${fieldLine('Course / class', promptValue('course'))}
+${fieldLine('Academic level', promptValue('academicLevel'))}
+${fieldLine('Audience / instructor expectations', promptValue('audience'))}
 ${fieldLine('Paper type', paperTypeLabel)}
 ${fieldLine('Required length', requiredLengthText())}
-${fieldLine('Due date / timeline', value('dueDate'))}
+${fieldLine('Due date / timeline', promptValue('dueDate'))}
 ${fieldLine('Citation style', finalCitationStyle)}
 Source requirements:
 ${sourceRequirements}
 
 Assignment instructions:
-${value('assignmentInstructions') || 'Not provided'}
+${promptValue('assignmentInstructions') || 'Not provided'}
 
 Additional requirements:
 ${additionalRequirements || 'Not provided'}
@@ -501,33 +687,36 @@ Return the response using these sections:
 
   function checkMissingInfo() {
     const problems = [];
-    const citationStyle = value('citationStyle');
-    const sourceRules = checkedValues('sourceRules');
+    updatePaperTypeDependentFields();
+    const citationStyle = promptValue('citationStyle');
+    const sourceRules = checkedValuesForPrompt('sourceRules');
 
-    if (!value('topic')) problems.push('Add the paper topic.');
     if (!selectedPaperTypeValue()) problems.push('Select a paper type.');
+    if (fieldIsVisible('topic') && !promptValue('topic')) problems.push('Add the paper topic.');
 
     const requiredLengthProblem = requiredLengthMissingMessage();
     if (requiredLengthProblem) problems.push(requiredLengthProblem);
-    if (!citationStyle) problems.push('Recommended: select a citation style, such as APA, MLA, Chicago, AMA, or IEEE.');
-    if (citationStyle === 'Other' && !value('otherCitationStyle')) problems.push('Type the custom citation style.');
-    if (!value('assignmentInstructions')) problems.push('Paste the assignment instructions if you have them.');
-    if (!value('rubric')) problems.push('Paste the rubric or grading criteria if you have it.');
+    if (fieldIsVisible('citationStyle') && !citationStyle) problems.push('Recommended: select a citation style, such as APA, MLA, Chicago, AMA, or IEEE.');
+    if (citationStyle === 'Other' && fieldIsVisible('otherCitationStyle') && !promptValue('otherCitationStyle')) problems.push('Type the custom citation style.');
+    if (fieldIsVisible('assignmentInstructions') && !promptValue('assignmentInstructions')) problems.push('Paste the assignment instructions if you have them.');
+    if (fieldIsVisible('rubric') && !promptValue('rubric')) problems.push('Recommended: paste the rubric or grading criteria if you have it.');
 
     const citationsWanted = sourceRules.some(rule =>
       rule.includes('sources') || rule.includes('citations') || rule.includes('References') || rule.includes('Works Cited') || rule.includes('bibliography')
     );
 
-    if (citationsWanted && !hasSourcePairInfo()) {
+    if (sourcePairsAreVisible() && citationsWanted && !hasSourcePairInfo()) {
       problems.push('Recommended: add at least one source pair with the required source and its matching documentation.');
     }
 
-    incompleteSourcePairs().forEach(pair => {
-      if (!pair.source) problems.push(`Add required source details for Source ${pair.number}.`);
-      if (!pair.documentation) problems.push(`Add matching source documentation for Source ${pair.number}.`);
-    });
+    if (sourcePairsAreVisible()) {
+      incompleteSourcePairs().forEach(pair => {
+        if (!pair.source) problems.push(`Add required source details for Source ${pair.number}.`);
+        if (!pair.documentation) problems.push(`Add matching source documentation for Source ${pair.number}.`);
+      });
+    }
 
-    if (!checkedValues('writingTasks').length) problems.push('Select what you want the AI to create: outline, thesis, draft, citations, revision, etc.');
+    if (namedGroupIsVisible('writingTasks') && !checkedValuesForPrompt('writingTasks').length) problems.push('Select what you want the AI to create: outline, thesis, draft, citations, revision, etc.');
 
     missingBox.classList.remove('hidden', 'good');
     if (!problems.length) {
@@ -594,11 +783,13 @@ Return the response using these sections:
   }
 
   form.addEventListener('input', () => {
+    updatePaperTypeDependentFields();
     buildPrompt();
     saveDraft();
   });
 
   form.addEventListener('change', () => {
+    updatePaperTypeDependentFields();
     buildPrompt();
     saveDraft();
   });
@@ -613,7 +804,11 @@ Return the response using these sections:
     saveDraft();
   });
 
-  paperTypeSelect?.addEventListener('change', renderCriteriaPreview);
+  paperTypeSelect?.addEventListener('change', () => {
+    renderCriteriaPreview();
+    buildPrompt();
+    saveDraft();
+  });
 
   loadDraft();
   loadPaperTypes();
