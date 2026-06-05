@@ -241,7 +241,6 @@
 .source-pair-header {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
   gap: 12px;
 }
 
@@ -257,6 +256,22 @@
 .source-remove-btn {
   flex: 0 0 auto;
   white-space: nowrap;
+}
+
+.source-add-action-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.tool-btn.source-add-btn {
+  background: #89F336;
+  color: #17310a;
+  box-shadow: 0 8px 18px rgba(137, 243, 54, 0.26);
+}
+
+.tool-btn.source-add-btn:hover {
+  filter: brightness(0.96);
 }
 
 .source-pairs {
@@ -423,6 +438,10 @@
   .source-pair-header,
   .source-pair-card-header {
     flex-direction: column;
+  }
+
+  .source-add-action-row {
+    justify-content: stretch;
   }
 
   .source-add-btn,

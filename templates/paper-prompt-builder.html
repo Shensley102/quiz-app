@@ -1013,7 +1013,6 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
 .source-pair-header {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
   gap: 12px;
 }
 
@@ -1029,6 +1028,22 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
 .source-remove-btn {
   flex: 0 0 auto;
   white-space: nowrap;
+}
+
+.source-add-action-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.tool-btn.source-add-btn {
+  background: #89F336;
+  color: #17310a;
+  box-shadow: 0 8px 18px rgba(137, 243, 54, 0.26);
+}
+
+.tool-btn.source-add-btn:hover {
+  filter: brightness(0.96);
 }
 
 .source-pairs {
@@ -1195,6 +1210,10 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
   .source-pair-header,
   .source-pair-card-header {
     flex-direction: column;
+  }
+
+  .source-add-action-row {
+    justify-content: stretch;
   }
 
   .source-add-btn,
@@ -1386,9 +1405,11 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
                 <label>Required sources and source documentation</label>
                 <p class="source-pair-note">Add each required source with its matching documentation so the AI can keep them paired correctly.</p>
               </div>
-              <button type="button" class="tool-btn secondary source-add-btn" id="addSourcePairBtn">+ Add another source</button>
             </div>
             <div id="sourcePairs" class="source-pairs" aria-live="polite"></div>
+            <div class="source-add-action-row">
+              <button type="button" class="tool-btn source-add-btn" id="addSourcePairBtn">+ Add another source</button>
+            </div>
           </div>
         </section>
 
