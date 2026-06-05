@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.4.4';
+const CACHE_VERSION = 'v2.4.3';
 const CACHE_NAME = `nurse-study-hub-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `nurse-study-hub-data-${CACHE_VERSION}`;
 
@@ -24,7 +24,6 @@ const STATIC_ASSETS = [
   '/static/js/pwa-utils.js',
   '/static/js/progress-store.js',
   '/static/js/paper-prompt-builder.js',
-  '/static/data/academic-paper-types.json',
   '/static/manifest.json',
   '/static/icons/icon-192.png',
   '/static/icons/icon-512.png',
