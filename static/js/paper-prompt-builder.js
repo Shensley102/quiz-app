@@ -8,76 +8,11 @@
   'use strict';
 
   const STORAGE_KEY = 'sg:v1:paperPromptBuilderDraft';
-  const PAPER_TYPES_URL = '/static/data/academic-paper-types.json';
 
   const form = document.getElementById('paperPromptForm');
   const output = document.getElementById('generatedPrompt');
   const missingBox = document.getElementById('missingInfoBox');
   const sourcePairsContainer = document.getElementById('sourcePairs');
-  const paperTypeSelect = document.getElementById('paperTypeSelect');
-  const paperTypePreview = document.getElementById('paperTypeCriteriaPreview');
-
-  let paperTypeProfiles = {};
-  let pendingPaperTypeValue = '';
-
-  const PAPER_TYPE_FORM_RULES = {
-    research_paper: {
-      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
-      citation: ['citationStyle', 'otherCitationStyle', 'titlePage', 'abstract', 'referencePage', 'pageSetup', 'requiredSections'],
-      source: true,
-      sourcePairs: true,
-      assignment: ['assignmentInstructions', 'rubric'],
-      content: ['contentHelp', 'thesis', 'argumentAngle', 'keyPoints'],
-      tasks: true
-    },
-    argumentative_essay: {
-      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
-      citation: ['citationStyle', 'otherCitationStyle', 'referencePage', 'pageSetup', 'requiredSections'],
-      source: true,
-      sourcePairs: true,
-      assignment: ['assignmentInstructions', 'rubric'],
-      content: ['contentHelp', 'thesis', 'argumentAngle', 'keyPoints', 'counterargument'],
-      tasks: true
-    },
-    literature_review: {
-      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
-      citation: ['citationStyle', 'otherCitationStyle', 'abstract', 'referencePage', 'pageSetup', 'requiredSections'],
-      source: true,
-      sourcePairs: true,
-      assignment: ['assignmentInstructions', 'rubric'],
-      content: ['contentHelp', 'thesis', 'argumentAngle', 'keyPoints'],
-      tasks: true
-    },
-    case_study: {
-      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
-      citation: ['citationStyle', 'otherCitationStyle', 'referencePage', 'pageSetup', 'requiredSections'],
-      source: true,
-      sourcePairs: true,
-      assignment: ['assignmentInstructions', 'rubric'],
-      content: ['contentHelp', 'argumentAngle', 'keyPoints'],
-      tasks: true
-    },
-    reflection_paper: {
-      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
-      citation: ['citationStyle', 'otherCitationStyle', 'pageSetup', 'requiredSections'],
-      source: true,
-      sourcePairs: false,
-      assignment: ['assignmentInstructions', 'rubric'],
-      content: ['contentHelp', 'thesis', 'argumentAngle', 'keyPoints'],
-      tasks: true
-    },
-    discussion_post_response: {
-      setup: ['topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience'],
-      citation: ['citationStyle', 'otherCitationStyle', 'referencePage'],
-      source: true,
-      sourcePairs: false,
-      assignment: ['assignmentInstructions', 'rubric'],
-      content: ['contentHelp', 'argumentAngle', 'keyPoints'],
-      tasks: true
-    }
-  };
-
-  const DEFAULT_FORM_RULE = PAPER_TYPE_FORM_RULES.research_paper;
 
   if (!form || !output) return;
 
@@ -94,315 +29,16 @@
     return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
   }
 
-  function selectedPaperTypeValue() {
-    return paperTypeSelect ? String(paperTypeSelect.value || '').trim() : checkedValues('paperType')[0] || '';
-  }
-
-  function selectedPaperTypeProfile() {
-    const key = selectedPaperTypeValue();
-    return key ? paperTypeProfiles[key] || null : null;
-  }
-
-  function selectedPaperTypeLabel() {
-    const profile = selectedPaperTypeProfile();
-    return profile?.label || selectedPaperTypeValue() || 'Not specified';
-  }
-
-
-  function normalizedPaperTypeText() {
-    return `${selectedPaperTypeValue()} ${selectedPaperTypeLabel()}`.toLowerCase().replace(/[^a-z0-9]+/g, '_');
-  }
-
-  function selectedPaperTypeRuleKey() {
-    const selected = selectedPaperTypeValue();
-    if (!selected) return '';
-    if (PAPER_TYPE_FORM_RULES[selected]) return selected;
-
-    const normalized = normalizedPaperTypeText();
-    if (normalized.includes('argument')) return 'argumentative_essay';
-    if (normalized.includes('literature') || normalized.includes('review')) return 'literature_review';
-    if (normalized.includes('case')) return 'case_study';
-    if (normalized.includes('reflection') || normalized.includes('reflective')) return 'reflection_paper';
-    if (normalized.includes('discussion') || normalized.includes('response') || normalized.includes('post')) return 'discussion_post_response';
-    if (normalized.includes('research')) return 'research_paper';
-    return 'research_paper';
-  }
-
-  function selectedPaperTypeRule() {
-    const ruleKey = selectedPaperTypeRuleKey();
-    return ruleKey ? PAPER_TYPE_FORM_RULES[ruleKey] || DEFAULT_FORM_RULE : null;
-  }
-
-  function fieldWrapper(id) {
-    const el = $(id);
-    return el ? el.closest('.prompt-field, .prompt-check-group, .source-pair-builder') : null;
-  }
-
-  function namedGroupWrapper(name) {
-    const el = form.querySelector(`input[name="${name}"]`);
-    return el ? el.closest('.prompt-check-group') : null;
-  }
-
-  function setFieldVisibility(id, visible) {
-    const wrapper = fieldWrapper(id);
-    if (wrapper) wrapper.classList.toggle('paper-field-hidden', !visible);
-  }
-
-  function setNamedGroupVisibility(name, visible) {
-    const wrapper = namedGroupWrapper(name);
-    if (wrapper) wrapper.classList.toggle('paper-field-hidden', !visible);
-  }
-
-  function sourcePairsWrapper() {
-    return sourcePairsContainer?.closest('.source-pair-builder') || null;
-  }
-
-  function setSourcePairsVisibility(visible) {
-    const wrapper = sourcePairsWrapper();
-    if (wrapper) wrapper.classList.toggle('paper-field-hidden', !visible);
-  }
-
-  function sourcePairsAreVisible() {
-    const wrapper = sourcePairsWrapper();
-    return Boolean(wrapper && !wrapper.classList.contains('paper-field-hidden') && !wrapper.closest('.prompt-section.paper-field-hidden'));
-  }
-
-  function setBottomActionsVisibility(visible) {
-    form.querySelectorAll('.bottom-actions').forEach(el => el.classList.toggle('paper-field-hidden', !visible));
-  }
-
-  function fieldIsVisible(id) {
-    const wrapper = fieldWrapper(id);
-    if (!wrapper) return false;
-    return !wrapper.classList.contains('paper-field-hidden') && !wrapper.closest('.prompt-section.paper-field-hidden');
-  }
-
-  function namedGroupIsVisible(name) {
-    const wrapper = namedGroupWrapper(name);
-    if (!wrapper) return false;
-    return !wrapper.classList.contains('paper-field-hidden') && !wrapper.closest('.prompt-section.paper-field-hidden');
-  }
-
-  function promptValue(id) {
-    return selectedPaperTypeValue() && fieldIsVisible(id) ? value(id) : '';
-  }
-
-  function checkedValuesForPrompt(name) {
-    return selectedPaperTypeValue() && namedGroupIsVisible(name) ? checkedValues(name) : [];
-  }
-
-  function updateSectionVisibility() {
-    form.querySelectorAll('.prompt-section').forEach((section, index) => {
-      if (index === 0) {
-        section.classList.remove('paper-field-hidden');
-        return;
-      }
-      const hasVisiblePromptField = Array.from(section.querySelectorAll('.prompt-field, .prompt-check-group, .bottom-actions')).some(el =>
-        !el.classList.contains('paper-field-hidden')
-      );
-      section.classList.toggle('paper-field-hidden', !hasVisiblePromptField);
-    });
-  }
-
-  function updatePaperTypeDependentFields() {
-    const rule = selectedPaperTypeRule();
-    const selected = Boolean(selectedPaperTypeValue());
-    form.classList.toggle('paper-type-unselected', !selected);
-
-    const visibleFields = new Set([
-      ...(rule?.setup || []),
-      ...(rule?.citation || []),
-      ...(rule?.assignment || []),
-      ...(rule?.content || [])
-    ]);
-
-    [
-      'topic', 'course', 'academicLevel', 'lengthRequirement', 'dueDate', 'audience',
-      'citationStyle', 'otherCitationStyle', 'titlePage', 'abstract', 'referencePage', 'pageSetup', 'requiredSections',
-      'assignmentInstructions', 'rubric',
-      'thesis', 'argumentAngle', 'keyPoints', 'counterargument'
-    ].forEach(id => setFieldVisibility(id, selected && visibleFields.has(id)));
-
-    setNamedGroupVisibility('sourceRules', selected && Boolean(rule?.source));
-    setSourcePairsVisibility(selected && Boolean(rule?.sourcePairs));
-    setNamedGroupVisibility('contentHelp', selected && visibleFields.has('contentHelp'));
-    setNamedGroupVisibility('writingTasks', selected && Boolean(rule?.tasks));
-    setBottomActionsVisibility(selected && Boolean(rule?.tasks));
-    updateSectionVisibility();
-  }
-
   function yesNo(condition) {
     return condition ? '[x]' : '[ ]';
   }
 
-  function normalizeList(items) {
-    if (Array.isArray(items)) return items.map(item => String(item || '').trim()).filter(Boolean);
-    if (typeof items === 'string' && items.trim()) return [items.trim()];
-    return [];
-  }
-
-  function textOrDefault(valueToCheck) {
-    if (Array.isArray(valueToCheck)) return normalizeList(valueToCheck).join('; ') || 'Not specified.';
-    const text = String(valueToCheck || '').trim();
-    return text || 'Not specified.';
-  }
-
   function listOrNone(items) {
-    const list = normalizeList(items);
-    return list.length ? list.map(item => `- ${item}`).join('\n') : '- Not specified.';
-  }
-
-  function compactListText(items) {
-    const list = normalizeList(items);
-    return list.length ? list.join('; ') : 'Not specified.';
-  }
-
-  function escapeHtml(text) {
-    return String(text || '').replace(/[&<>"']/g, char => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;'
-    }[char]));
+    return items && items.length ? items.map(item => `- ${item}`).join('\n') : '- Not specified';
   }
 
   function fieldLine(label, val) {
     return `${label}: ${val || 'Not specified'}`;
-  }
-
-
-  function profileField(profile, fieldName) {
-    return profile && Object.prototype.hasOwnProperty.call(profile, fieldName) ? profile[fieldName] : undefined;
-  }
-
-  function planningLength(profile) {
-    return textOrDefault(profileField(profile, 'planning_length') || profileField(profile, 'typical_length'));
-  }
-
-  function fallbackPromptInstruction(profile, label) {
-    const purpose = textOrDefault(profileField(profile, 'purpose'));
-    return `Help plan and shape this ${label} so it fulfills its academic purpose${purpose !== 'Not specified.' ? `: ${purpose}` : '.'}`;
-  }
-
-  function paperTypeCriteriaText(profile) {
-    const label = selectedPaperTypeLabel();
-    return `<paper_type_criteria>
-This is a ${label}.
-
-Purpose:
-${textOrDefault(profileField(profile, 'purpose'))}
-
-Usual academic level:
-${textOrDefault(profileField(profile, 'usual_level'))}
-
-Planning length:
-${planningLength(profile)}
-
-Typical citation styles:
-${listOrNone(profileField(profile, 'typical_citation_styles'))}
-
-Expected sections:
-${listOrNone(profileField(profile, 'required_sections'))}
-
-Evidence expectations:
-${listOrNone(profileField(profile, 'evidence_expectations'))}
-
-Common pitfalls to avoid:
-${listOrNone(profileField(profile, 'common_pitfalls'))}
-
-Assessment focus:
-${listOrNone(profileField(profile, 'assessment_focus'))}
-</paper_type_criteria>`;
-  }
-
-  function promptInstructionText(profile) {
-    const label = selectedPaperTypeLabel();
-    return textOrDefault(profileField(profile, 'prompt_instruction')) === 'Not specified.'
-      ? fallbackPromptInstruction(profile, label)
-      : textOrDefault(profileField(profile, 'prompt_instruction'));
-  }
-
-  function renderCriteriaPreview() {
-    updatePaperTypeDependentFields();
-    if (!paperTypePreview) return;
-    const profile = selectedPaperTypeProfile();
-
-    if (!selectedPaperTypeValue()) {
-      paperTypePreview.innerHTML = '<p class="criteria-empty">Select a paper type to preview the genre-specific criteria used in the generated prompt.</p>';
-      return;
-    }
-
-    if (!profile) {
-      paperTypePreview.innerHTML = '<p class="criteria-empty">Paper type criteria are loading or unavailable. The prompt will use safe “Not specified” fallbacks until the JSON loads.</p>';
-      return;
-    }
-
-    const previewItems = [
-      ['Purpose', textOrDefault(profileField(profile, 'purpose'))],
-      ['Expected structure', compactListText(profileField(profile, 'required_sections'))],
-      ['Evidence expectations', compactListText(profileField(profile, 'evidence_expectations'))],
-      ['Common pitfalls', compactListText(profileField(profile, 'common_pitfalls'))],
-      ['Assessment focus', compactListText(profileField(profile, 'assessment_focus'))]
-    ];
-
-    paperTypePreview.innerHTML = previewItems.map(([label, text]) => `
-      <div class="criteria-preview-row">
-        <strong>${escapeHtml(label)}:</strong>
-        <span>${escapeHtml(text)}</span>
-      </div>`).join('');
-  }
-
-  function normalizePaperTypesData(data) {
-    const rawTypes = data && typeof data === 'object' ? (data.paper_types || data) : {};
-    return Object.fromEntries(Object.entries(rawTypes || {}).filter(([, profile]) => profile && typeof profile === 'object'));
-  }
-
-  function findPaperTypeKeyByStoredValue(storedValue) {
-    const stored = String(storedValue || '').trim();
-    if (!stored) return '';
-    if (paperTypeProfiles[stored]) return stored;
-    const storedLower = stored.toLowerCase();
-    const match = Object.entries(paperTypeProfiles).find(([key, profile]) =>
-      key.toLowerCase() === storedLower || String(profile?.label || '').toLowerCase() === storedLower
-    );
-    return match ? match[0] : stored;
-  }
-
-  function populatePaperTypeOptions() {
-    if (!paperTypeSelect) return;
-    const current = pendingPaperTypeValue || paperTypeSelect.value;
-    paperTypeSelect.innerHTML = '<option value="">Select one</option>';
-
-    Object.entries(paperTypeProfiles).forEach(([key, profile]) => {
-      const option = document.createElement('option');
-      option.value = key;
-      option.textContent = profile?.label || key.replace(/_/g, ' ');
-      paperTypeSelect.appendChild(option);
-    });
-
-    const restoredValue = findPaperTypeKeyByStoredValue(current);
-    if (restoredValue && Array.from(paperTypeSelect.options).some(option => option.value === restoredValue)) {
-      paperTypeSelect.value = restoredValue;
-    }
-    pendingPaperTypeValue = '';
-    renderCriteriaPreview();
-    buildPrompt();
-  }
-
-  async function loadPaperTypes() {
-    if (!paperTypeSelect) return;
-    try {
-      const response = await fetch(PAPER_TYPES_URL, { cache: 'no-cache' });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
-      paperTypeProfiles = normalizePaperTypesData(data);
-      populatePaperTypeOptions();
-    } catch (e) {
-      console.warn('[PaperPromptBuilder] Could not load academic paper type criteria:', e);
-      renderCriteriaPreview();
-      buildPrompt();
-    }
   }
 
   function sourcePairCount() {
@@ -498,14 +134,12 @@ ${listOrNone(profileField(profile, 'assessment_focus'))}
   }
 
   function requiredLengthText() {
-    if (!selectedPaperTypeValue() || !fieldIsVisible('lengthRequirement')) return '';
     const length = value('lengthRequirement');
     const unit = value('lengthUnit');
     return length && unit ? `${length} ${unit}` : '';
   }
 
   function requiredLengthMissingMessage() {
-    if (!selectedPaperTypeValue() || !fieldIsVisible('lengthRequirement')) return '';
     const length = value('lengthRequirement');
     const unit = value('lengthUnit');
 
@@ -517,16 +151,14 @@ ${listOrNone(profileField(profile, 'assessment_focus'))}
   }
 
   function buildPrompt() {
-    updatePaperTypeDependentFields();
-    const sourceRules = checkedValuesForPrompt('sourceRules');
-    const writingTasks = checkedValuesForPrompt('writingTasks');
-    const contentHelp = checkedValuesForPrompt('contentHelp');
+    const paperTypes = checkedValues('paperType');
+    const sourceRules = checkedValues('sourceRules');
+    const writingTasks = checkedValues('writingTasks');
+    const contentHelp = checkedValues('contentHelp');
     const shouldWriteEntirePaper = writingTasks.some(task => task.includes('Write the entire paper'));
-    const citationStyle = promptValue('citationStyle');
-    const otherCitationStyle = promptValue('otherCitationStyle');
+    const citationStyle = value('citationStyle');
+    const otherCitationStyle = value('otherCitationStyle');
     const finalCitationStyle = citationStyle === 'Other' ? (otherCitationStyle || 'Other / custom') : citationStyle;
-    const profile = selectedPaperTypeProfile();
-    const paperTypeLabel = selectedPaperTypeLabel();
 
     const needsSources = sourceRules.some(rule =>
       rule.includes('Use only the sources I provide') ||
@@ -538,87 +170,89 @@ ${listOrNone(profileField(profile, 'assessment_focus'))}
       rule.includes('bibliography')
     );
 
-    const sourcePairsProvided = sourcePairsAreVisible() && hasSourcePairInfo();
-    const sourceRequirements = [
-      listOrNone(sourceRules),
-      '',
-      'Required sources and source documentation:',
-      sourcePairsAreVisible() ? sourcePairsPromptText() : 'Not provided'
-    ].join('\n');
-    const additionalRequirements = [
-      promptValue('pageSetup') ? `Font / spacing / page setup: ${promptValue('pageSetup')}` : '',
-      promptValue('requiredSections') ? `Instructor-required sections/headings: ${promptValue('requiredSections')}` : '',
-      fieldIsVisible('titlePage') ? `Title page: ${promptValue('titlePage') || 'Not specified'}` : '',
-      fieldIsVisible('abstract') ? `Abstract: ${promptValue('abstract') || 'Not specified'}` : '',
-      fieldIsVisible('referencePage') ? `Reference / Works Cited / Bibliography page: ${promptValue('referencePage') || 'Not specified'}` : '',
-      promptValue('rubric') ? `Rubric / grading criteria:\n${promptValue('rubric')}` : '',
-      promptValue('thesis') ? `Working thesis:\n${promptValue('thesis')}` : '',
-      promptValue('argumentAngle') ? `Main argument / angle:\n${promptValue('argumentAngle')}` : '',
-      promptValue('keyPoints') ? `Key points that must be included:\n${promptValue('keyPoints')}` : '',
-      promptValue('counterargument') ? `Counterargument or opposing viewpoint to address:\n${promptValue('counterargument')}` : '',
-      contentHelp.length ? 'If thesis, argument, key point, or counterargument details are blank or weak, develop appropriate content using the assignment instructions, rubric, topic, academic level, and source rules.' : '',
-      writingTasks.length ? `Selected output options:\n${listOrNone(writingTasks)}` : ''
-    ].filter(Boolean).join('\n\n');
+    const sourcePairsProvided = hasSourcePairInfo();
 
     const prompt = `<role>
-You are an academic writing assistant and paper-planning coach specializing in ${promptValue('academicLevel') || 'Not specified'} ${promptValue('course') || 'Not specified'} writing.
+You are an academic writing assistant and paper-planning coach. Help me create a strong, well-organized paper while following the assignment instructions, rubric, citation style, and source rules I provide.
 </role>
 
 <context>
-${fieldLine('Paper topic', promptValue('topic'))}
-${fieldLine('Course / class', promptValue('course'))}
-${fieldLine('Academic level', promptValue('academicLevel'))}
-${fieldLine('Audience / instructor expectations', promptValue('audience'))}
-${fieldLine('Paper type', paperTypeLabel)}
+${fieldLine('Paper topic', value('topic'))}
+${fieldLine('Course / class', value('course'))}
+${fieldLine('Academic level', value('academicLevel'))}
+${fieldLine('Audience / instructor expectations', value('audience'))}
+${fieldLine('Paper type', paperTypes.length ? paperTypes.join(', ') : 'Not specified')}
 ${fieldLine('Required length', requiredLengthText())}
-${fieldLine('Due date / timeline', promptValue('dueDate'))}
-${fieldLine('Citation style', finalCitationStyle)}
-Source requirements:
-${sourceRequirements}
-
-Assignment instructions:
-${promptValue('assignmentInstructions') || 'Not provided'}
-
-Additional requirements:
-${additionalRequirements || 'Not provided'}
+${fieldLine('Due date / timeline', value('dueDate'))}
 </context>
 
-${paperTypeCriteriaText(profile)}
+<citation_and_format_requirements>
+${fieldLine('Citation style', finalCitationStyle)}
+${fieldLine('Font / spacing / page setup', value('pageSetup'))}
+${fieldLine('Required sections', value('requiredSections'))}
+${yesNo(value('titlePage') === 'yes')} Include title page if required by the selected style or assignment.
+${yesNo(value('abstract') === 'yes')} Include abstract if required by the assignment or citation style.
+${yesNo(value('referencePage') === 'yes')} Include References / Works Cited / Bibliography page as appropriate.
+</citation_and_format_requirements>
 
-<prompt_instruction>
-${promptInstructionText(profile)}
-</prompt_instruction>
+<source_rules>
+${listOrNone(sourceRules)}
 
-<task>
-Create the requested academic writing support for this assignment based on the selected output options.
-</task>
+IMPORTANT SOURCE DOCUMENTATION NOTE:
+Before writing the paper, check whether I have provided enough source documentation. Source documentation may include PDFs, article links, DOI, author names, publication dates, page numbers, textbook excerpts, screenshots, or pasted source text.
 
-<rules>
-- Follow the instructor’s assignment instructions first.
-- Match the student’s academic level.
-- Follow the required citation style.
-- Do not invent sources, studies, quotes, statistics, page numbers, or references.
-- If sources are needed but not provided, mark where citations are needed.
-- If assignment details are missing, state what is missing instead of guessing.
-- Keep the work appropriate for academic use.
-- Do not write a final full paper unless the user specifically asks for a draft.
-- For research-heavy papers, prioritize structure, evidence planning, synthesis, and citation needs.
-- Use the selected paper type criteria to shape the outline, thesis, evidence expectations, and checklist.
+If source documentation is missing or incomplete, do not invent citations, quotes, authors, article titles, DOI numbers, page numbers, or reference entries. Ask me for the missing source documentation first.
+
 ${yesNo(needsSources && !sourcePairsProvided)} Source documentation may be missing and should be requested before final drafting.
-${shouldWriteEntirePaper ? '- The user selected a full-paper draft option; still confirm critical missing assignment details and source documentation before drafting.' : '- Wait for approval before writing the full paper unless the user specifically asks for a draft.'}
-</rules>
+</source_rules>
+
+<assignment_materials>
+Assignment instructions:
+${value('assignmentInstructions') || 'Not provided'}
+
+Rubric / grading criteria:
+${value('rubric') || 'Not provided'}
+
+Required sources and source documentation:
+${sourcePairsPromptText()}
+</assignment_materials>
+
+<thesis_and_argument>
+Working thesis:
+${value('thesis') || 'Not provided'}
+
+Main argument / angle:
+${value('argumentAngle') || 'Not provided'}
+
+Key points that must be included:
+${value('keyPoints') || 'Not provided'}
+
+Counterargument or opposing viewpoint to address:
+${value('counterargument') || 'Not provided'}
+
+${yesNo(contentHelp.length)} If any thesis, argument, key point, or counterargument details are blank or weak, develop appropriate content for that part using the assignment instructions, rubric, topic, academic level, and source rules.
+</thesis_and_argument>
+
+<writing_tasks_requested>
+${listOrNone(writingTasks)}
+</writing_tasks_requested>
+
+<style_and_quality_rules>
+- Use clear academic writing.
+- Match the requested academic level and audience.
+- Keep the paper organized with logical flow between sections.
+- Support claims with provided or verified sources.
+- Use in-text citations according to the selected citation style.
+- Do not fabricate citations, quotes, statistics, page numbers, article titles, or source details.
+- If the assignment instructions conflict with general citation-style rules, prioritize the assignment instructions and tell me about the conflict.
+- If any required information is missing, ask targeted follow-up questions before writing the final paper.
+</style_and_quality_rules>
 
 <output_format>
-Return the response using these sections:
-
-1. Assignment goal
-2. Paper type expectations
-3. Working thesis, research question, or central purpose
-4. Recommended outline
-5. Section-by-section writing guidance
-6. Evidence/source needs
-7. Common mistakes to avoid
-8. Final checklist before submission
+First, give me a missing-information checklist.
+Second, give me a recommended thesis improvement if needed.
+Third, create a detailed paper outline.
+${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish after completing the missing-information and source-documentation check. If critical assignment details or source documentation needed for citations are missing, ask for those first instead of inventing them.' : 'Fourth, wait for my approval before writing the full paper unless I specifically ask you to draft immediately.'}
 </output_format>`;
 
     output.value = prompt;
@@ -659,8 +293,6 @@ Return the response using these sections:
         : null;
 
       renderSourcePairs(Array.isArray(state.sourcePairs) ? state.sourcePairs : migratedSourcePair);
-      if (Array.isArray(state.paperType)) pendingPaperTypeValue = state.paperType[0] || '';
-      if (state.paperTypeSelect) pendingPaperTypeValue = state.paperTypeSelect;
 
       form.querySelectorAll('input, select, textarea').forEach(el => {
         if (el.dataset.sourcePairField) return;
@@ -668,15 +300,7 @@ Return the response using these sections:
           el.checked = Array.isArray(state[el.name]) && state[el.name].includes(el.value);
         } else {
           const key = el.id || el.name;
-          if (key === 'paperTypeSelect') {
-            const storedPaperType = state.paperTypeSelect || (Array.isArray(state.paperType) ? state.paperType[0] : state.paperType);
-            if (storedPaperType !== undefined) {
-              pendingPaperTypeValue = storedPaperType;
-              el.value = findPaperTypeKeyByStoredValue(storedPaperType);
-            }
-          } else if (state[key] !== undefined) {
-            el.value = state[key];
-          }
+          if (state[key] !== undefined) el.value = state[key];
         }
       });
     } catch (e) {
@@ -687,36 +311,33 @@ Return the response using these sections:
 
   function checkMissingInfo() {
     const problems = [];
-    updatePaperTypeDependentFields();
-    const citationStyle = promptValue('citationStyle');
-    const sourceRules = checkedValuesForPrompt('sourceRules');
+    const citationStyle = value('citationStyle');
+    const sourceRules = checkedValues('sourceRules');
 
-    if (!selectedPaperTypeValue()) problems.push('Select a paper type.');
-    if (fieldIsVisible('topic') && !promptValue('topic')) problems.push('Add the paper topic.');
+    if (!value('topic')) problems.push('Add the paper topic.');
+    if (!checkedValues('paperType').length) problems.push('Select at least one paper type.');
 
     const requiredLengthProblem = requiredLengthMissingMessage();
     if (requiredLengthProblem) problems.push(requiredLengthProblem);
-    if (fieldIsVisible('citationStyle') && !citationStyle) problems.push('Recommended: select a citation style, such as APA, MLA, Chicago, AMA, or IEEE.');
-    if (citationStyle === 'Other' && fieldIsVisible('otherCitationStyle') && !promptValue('otherCitationStyle')) problems.push('Type the custom citation style.');
-    if (fieldIsVisible('assignmentInstructions') && !promptValue('assignmentInstructions')) problems.push('Paste the assignment instructions if you have them.');
-    if (fieldIsVisible('rubric') && !promptValue('rubric')) problems.push('Recommended: paste the rubric or grading criteria if you have it.');
+    if (!citationStyle) problems.push('Select a citation style, such as APA, MLA, Chicago, AMA, or IEEE.');
+    if (citationStyle === 'Other' && !value('otherCitationStyle')) problems.push('Type the custom citation style.');
+    if (!value('assignmentInstructions')) problems.push('Paste the assignment instructions if you have them.');
+    if (!value('rubric')) problems.push('Paste the rubric or grading criteria if you have it.');
 
     const citationsWanted = sourceRules.some(rule =>
       rule.includes('sources') || rule.includes('citations') || rule.includes('References') || rule.includes('Works Cited') || rule.includes('bibliography')
     );
 
-    if (sourcePairsAreVisible() && citationsWanted && !hasSourcePairInfo()) {
-      problems.push('Recommended: add at least one source pair with the required source and its matching documentation.');
+    if (citationsWanted && !hasSourcePairInfo()) {
+      problems.push('Add at least one source pair with the required source and its matching documentation.');
     }
 
-    if (sourcePairsAreVisible()) {
-      incompleteSourcePairs().forEach(pair => {
-        if (!pair.source) problems.push(`Add required source details for Source ${pair.number}.`);
-        if (!pair.documentation) problems.push(`Add matching source documentation for Source ${pair.number}.`);
-      });
-    }
+    incompleteSourcePairs().forEach(pair => {
+      if (!pair.source) problems.push(`Add required source details for Source ${pair.number}.`);
+      if (!pair.documentation) problems.push(`Add matching source documentation for Source ${pair.number}.`);
+    });
 
-    if (namedGroupIsVisible('writingTasks') && !checkedValuesForPrompt('writingTasks').length) problems.push('Select what you want the AI to create: outline, thesis, draft, citations, revision, etc.');
+    if (!checkedValues('writingTasks').length) problems.push('Select what you want the AI to create: outline, thesis, draft, citations, revision, etc.');
 
     missingBox.classList.remove('hidden', 'good');
     if (!problems.length) {
@@ -779,17 +400,14 @@ Return the response using these sections:
     try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
     missingBox.classList.add('hidden');
     buildPrompt();
-    renderCriteriaPreview();
   }
 
   form.addEventListener('input', () => {
-    updatePaperTypeDependentFields();
     buildPrompt();
     saveDraft();
   });
 
   form.addEventListener('change', () => {
-    updatePaperTypeDependentFields();
     buildPrompt();
     saveDraft();
   });
@@ -804,14 +422,6 @@ Return the response using these sections:
     saveDraft();
   });
 
-  paperTypeSelect?.addEventListener('change', () => {
-    renderCriteriaPreview();
-    buildPrompt();
-    saveDraft();
-  });
-
   loadDraft();
-  loadPaperTypes();
-  renderCriteriaPreview();
   buildPrompt();
 })();
