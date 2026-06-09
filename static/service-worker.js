@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.4.4';
+const CACHE_VERSION = 'v2.4.5';
 const CACHE_NAME = `nurse-study-hub-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `nurse-study-hub-data-${CACHE_VERSION}`;
 

@@ -353,9 +353,53 @@ ${listOrNone(profileField(profile, 'assessment_focus'))}
       </div>`).join('');
   }
 
+  function normalizePaperTypeKey(value, fallback) {
+    const base = String(value || fallback || '').trim().toLowerCase();
+    return base
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_+|_+$/g, '') || String(fallback || '').trim();
+  }
+
+  function normalizePaperTypeProfile(profile, fallbackKey) {
+    if (!profile || typeof profile !== 'object') return null;
+    const label = profile.label || profile.name || profile.title || String(fallbackKey || '').replace(/_/g, ' ');
+    return {
+      ...profile,
+      label,
+      purpose: profile.purpose || profile.description || profile.goal,
+      usual_level: profile.usual_level || profile.academic_level || profile.typical_level,
+      planning_length: profile.planning_length || profile.typical_length,
+      typical_citation_styles: profile.typical_citation_styles || profile.citation_styles,
+      required_sections: profile.required_sections || profile.expected_sections || profile.sections,
+      evidence_expectations: profile.evidence_expectations || profile.source_expectations || profile.evidence,
+      common_pitfalls: profile.common_pitfalls || profile.pitfalls,
+      assessment_focus: profile.assessment_focus || profile.rubric_focus || profile.evaluation_focus,
+      prompt_instruction: profile.prompt_instruction || profile.ai_prompt_instruction
+    };
+  }
+
   function normalizePaperTypesData(data) {
-    const rawTypes = data && typeof data === 'object' ? (data.paper_types || data) : {};
-    return Object.fromEntries(Object.entries(rawTypes || {}).filter(([, profile]) => profile && typeof profile === 'object'));
+    if (!data || typeof data !== 'object') return {};
+
+    const rawTypes = data.paper_types
+      || data.paperTypes
+      || data.types
+      || data.global_prompt_builder?.paper_type_options
+      || data.globalPromptBuilder?.paperTypeOptions
+      || data;
+
+    if (Array.isArray(rawTypes)) {
+      return Object.fromEntries(rawTypes
+        .map((profile, index) => {
+          const key = normalizePaperTypeKey(profile?.key || profile?.id || profile?.value || profile?.slug || profile?.label || profile?.name, `paper_type_${index + 1}`);
+          return [key, normalizePaperTypeProfile(profile, key)];
+        })
+        .filter(([, profile]) => profile));
+    }
+
+    return Object.fromEntries(Object.entries(rawTypes || {})
+      .filter(([key, profile]) => profile && typeof profile === 'object' && key !== 'metadata' && key !== 'global_prompt_builder' && key !== 'globalPromptBuilder')
+      .map(([key, profile]) => [key, normalizePaperTypeProfile(profile, key)]));
   }
 
   function findPaperTypeKeyByStoredValue(storedValue) {
