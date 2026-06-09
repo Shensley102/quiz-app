@@ -919,6 +919,23 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
   box-shadow: 0 0 0 3px rgba(47, 97, 243, 0.12);
 }
 
+.field-help {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.paper-dependent-fields,
+.paper-dependent-content {
+  grid-column: 1 / -1;
+}
+
+.paper-type-select-field select {
+  max-width: 100%;
+}
+
 .checkbox-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1195,7 +1212,7 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
 
     <header class="prompt-tool-header">
       <h1>✍️ AI Paper Prompt Builder</h1>
-      <p>Fill this out, check the boxes that apply, then copy the generated AI-readable prompt. The output is built with clear tags so an AI can understand the assignment, format, source rules, and missing documentation.</p>
+      <p>Select a paper type first, then fill out the paper-specific fields that appear. The output is built with clear tags so an AI can understand the assignment, format, source rules, and missing documentation.</p>
       <div class="prompt-tool-actions">
         <button type="button" class="tool-btn" id="copyPromptBtn">Copy Prompt</button>
         <button type="button" class="tool-btn secondary" id="downloadPromptBtn">Download .txt</button>
@@ -1208,22 +1225,25 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
         <section class="prompt-section">
           <h2>1. Paper Setup</h2>
           <div class="field-grid">
-            <fieldset class="prompt-check-group full">
-              <legend>Paper type</legend>
-              <div class="checkbox-grid">
-                <label class="check-option"><input type="checkbox" name="paperType" value="Research paper"> Research paper</label>
-                <label class="check-option"><input type="checkbox" name="paperType" value="Argumentative essay"> Argumentative essay</label>
-                <label class="check-option"><input type="checkbox" name="paperType" value="Literature review"> Literature review</label>
-                <label class="check-option"><input type="checkbox" name="paperType" value="Case study"> Case study</label>
-                <label class="check-option"><input type="checkbox" name="paperType" value="Reflection paper"> Reflection paper</label>
-                <label class="check-option"><input type="checkbox" name="paperType" value="Discussion post / response"> Discussion post / response</label>
-              </div>
-            </fieldset>
-
-            <div class="prompt-field full">
-              <label for="topic">Topic</label>
-              <input id="topic" type="text" placeholder="Example: Effects of nurse staffing ratios on patient safety">
+            <div class="prompt-field full paper-type-select-field">
+              <label for="paperType">Paper type</label>
+              <select id="paperType" name="paperType" aria-describedby="paperTypeHelp">
+                <option value="">Select a paper type to begin</option>
+                <option>Research paper</option>
+                <option>Argumentative essay</option>
+                <option>Literature review</option>
+                <option>Case study</option>
+                <option>Reflection paper</option>
+                <option>Discussion post / response</option>
+              </select>
+              <p id="paperTypeHelp" class="field-help">Choose one paper type first. The rest of the builder will appear with paper-specific fields.</p>
             </div>
+
+            <div id="paperSetupDetails" class="paper-dependent-fields field-grid full hidden">
+              <div class="prompt-field full">
+                <label for="topic">Topic</label>
+                <input id="topic" type="text" placeholder="Example: Effects of nurse staffing ratios on patient safety">
+              </div>
 
             <div class="prompt-field">
               <label for="course">Course / class</label>
@@ -1264,11 +1284,32 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
               <label for="audience">Audience / instructor expectations</label>
               <textarea id="audience" placeholder="Example: Instructor wants scholarly tone, nursing relevance, and source-supported claims."></textarea>
             </div>
+            </div>
+          </div>
+        </section>
+
+        <div id="paperDependentContent" class="paper-dependent-content hidden">
+        <section class="prompt-section paper-type-detail-section">
+          <h2 id="paperTypeDetailsHeading">2. Paper Type Details</h2>
+          <p id="paperTypeDetailsIntro" class="prompt-section-note">Select a paper type to see targeted planning fields.</p>
+          <div class="field-grid">
+            <div class="prompt-field full">
+              <label id="paperFocusLabel" for="paperFocus">Paper focus</label>
+              <textarea id="paperFocus" data-paper-specific="true" placeholder="Select a paper type first."></textarea>
+            </div>
+            <div class="prompt-field full">
+              <label id="evidencePlanLabel" for="evidencePlan">Evidence / support plan</label>
+              <textarea id="evidencePlan" data-paper-specific="true" placeholder="Select a paper type first."></textarea>
+            </div>
+            <div class="prompt-field full">
+              <label id="structureNotesLabel" for="structureNotes">Required structure notes</label>
+              <textarea id="structureNotes" data-paper-specific="true" placeholder="Select a paper type first."></textarea>
+            </div>
           </div>
         </section>
 
         <section class="prompt-section">
-          <h2>2. Citation Style & Format</h2>
+          <h2>3. Citation Style & Format</h2>
           <div class="field-grid">
             <div class="prompt-field">
               <label for="citationStyle">Citation style</label>
@@ -1329,7 +1370,7 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
         </section>
 
         <section class="prompt-section">
-          <h2>3. Source Rules</h2>
+          <h2>4. Source Rules</h2>
           <p class="source-reminder">Reminder: Add source documentation before asking AI to write final citations. Include PDFs, article links, DOI, author/date/title info, page numbers, textbook excerpts, screenshots, or pasted source text.</p>
           <fieldset class="prompt-check-group full">
             <legend>Check all that apply</legend>
@@ -1360,7 +1401,7 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
         </section>
 
         <section class="prompt-section">
-          <h2>4. Assignment Materials</h2>
+          <h2>5. Assignment Materials</h2>
           <div class="field-grid">
             <div class="prompt-field full">
               <label for="assignmentInstructions">Assignment instructions</label>
@@ -1374,9 +1415,9 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
         </section>
 
         <section class="prompt-section">
-          <h2>5. Thesis, Argument, and Content</h2>
+          <h2>6. Thesis, Argument, and Content</h2>
           <fieldset class="prompt-check-group full content-help-callout">
-            <legend>Let AI fill in Section 5</legend>
+            <legend>Let AI fill in Section 6</legend>
             <label class="check-option content-help-option"><input type="checkbox" name="contentHelp" value="Have AI develop the thesis, argument, key points, and counterargument when I do not provide them"> AI should come up with the thesis, argument, key points, and counterargument if I leave these blank</label>
           </fieldset>
           <div class="field-grid">
@@ -1400,7 +1441,7 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
         </section>
 
         <section class="prompt-section">
-          <h2>6. What Should AI Create?</h2>
+          <h2>7. What Should AI Create?</h2>
           <fieldset class="prompt-check-group full">
             <legend>Requested output</legend>
             <div class="checkbox-grid">
@@ -1421,6 +1462,7 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
             <button type="button" class="tool-btn secondary" id="resetPromptBtn">Reset Form</button>
           </div>
         </section>
+        </div>
       </form>
 
       <aside class="prompt-panel prompt-output-panel">

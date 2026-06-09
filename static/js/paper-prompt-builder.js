@@ -13,6 +13,83 @@
   const output = document.getElementById('generatedPrompt');
   const missingBox = document.getElementById('missingInfoBox');
   const sourcePairsContainer = document.getElementById('sourcePairs');
+  const paperSetupDetails = document.getElementById('paperSetupDetails');
+  const paperDependentContent = document.getElementById('paperDependentContent');
+
+  const PAPER_TYPE_CONFIG = {
+    'Research paper': {
+      heading: '2. Research Paper Details',
+      intro: 'Use these fields to define the research question, evidence plan, and formal paper structure.',
+      focusLabel: 'Research question / narrowed focus',
+      focusPlaceholder: 'Example: How do nurse staffing ratios affect patient safety outcomes in adult acute-care units?',
+      evidenceLabel: 'Source strategy / evidence requirements',
+      evidencePlaceholder: 'Example: Peer-reviewed nursing studies from the last 5 years, one policy source, and statistics from provided articles.',
+      structureLabel: 'Research-paper sections or methodology notes',
+      structurePlaceholder: 'Example: Introduction, background, literature support, implications for practice, conclusion.',
+      roleFocus: 'research-focused academic paper',
+      promptGuidance: '- Develop a focused research question and thesis.\n- Organize evidence into clear themes and connect every claim to provided or verified sources.\n- Emphasize scholarly synthesis, background context, and implications.'
+    },
+    'Argumentative essay': {
+      heading: '2. Argumentative Essay Details',
+      intro: 'Use these fields to define the claim, supporting reasons, and counterargument plan.',
+      focusLabel: 'Position / claim to argue',
+      focusPlaceholder: 'Example: Hospitals should adopt minimum nurse staffing ratios because they improve patient safety.',
+      evidenceLabel: 'Supporting reasons / evidence plan',
+      evidencePlaceholder: 'Example: Patient outcomes, staff retention, cost-benefit evidence, and required class sources.',
+      structureLabel: 'Counterargument / rebuttal expectations',
+      structurePlaceholder: 'Example: Address concerns about cost and staffing shortages, then rebut with evidence.',
+      roleFocus: 'argumentative academic essay',
+      promptGuidance: '- State a debatable thesis and keep the paper centered on proving that claim.\n- Use topic sentences, evidence, analysis, and transitions to build the argument.\n- Include and rebut opposing viewpoints when appropriate.'
+    },
+    'Literature review': {
+      heading: '2. Literature Review Details',
+      intro: 'Use these fields to define the review purpose, source boundaries, and synthesis themes.',
+      focusLabel: 'Review purpose / research question',
+      focusPlaceholder: 'Example: What does recent evidence show about burnout interventions for ICU nurses?',
+      evidenceLabel: 'Source inclusion criteria',
+      evidencePlaceholder: 'Example: Peer-reviewed studies from 2020-2026, adult ICU settings, intervention-focused articles.',
+      structureLabel: 'Themes / synthesis categories',
+      structurePlaceholder: 'Example: Staffing interventions, resilience training, leadership support, gaps in research.',
+      roleFocus: 'literature review',
+      promptGuidance: '- Synthesize sources by theme instead of summarizing one article at a time.\n- Compare findings, methods, limitations, and gaps across the literature.\n- Avoid making unsupported practice recommendations unless the assignment asks for them.'
+    },
+    'Case study': {
+      heading: '2. Case Study Details',
+      intro: 'Use these fields to capture the case context, analysis framework, and recommended solution.',
+      focusLabel: 'Case background / scenario details',
+      focusPlaceholder: 'Example: Briefly describe the patient, organization, clinical situation, or problem scenario.',
+      evidenceLabel: 'Assessment criteria / theory / framework',
+      evidencePlaceholder: 'Example: Use ABCDE assessment, nursing process, leadership theory, ethical framework, or provided rubric criteria.',
+      structureLabel: 'Recommended intervention / outcome expectations',
+      structurePlaceholder: 'Example: Identify the problem, analyze causes, propose interventions, and evaluate expected outcomes.',
+      roleFocus: 'case study analysis',
+      promptGuidance: '- Keep the analysis anchored to the facts of the case.\n- Apply the required framework, theory, rubric, or clinical reasoning steps.\n- Separate assessment, analysis, recommendations, and evaluation clearly.'
+    },
+    'Reflection paper': {
+      heading: '2. Reflection Paper Details',
+      intro: 'Use these fields to connect the experience, course concepts, and personal/professional growth.',
+      focusLabel: 'Experience / event being reflected on',
+      focusPlaceholder: 'Example: A clinical interaction, class activity, ethical dilemma, or learning experience.',
+      evidenceLabel: 'Course concept / theory connection',
+      evidencePlaceholder: 'Example: Connect the reflection to communication, patient safety, leadership, ethics, or a required reading.',
+      structureLabel: 'Reflection model / learning outcome',
+      structurePlaceholder: 'Example: Gibbs cycle, what happened/so what/now what, lessons learned, future practice changes.',
+      roleFocus: 'reflection paper',
+      promptGuidance: '- Balance personal insight with academic connection to course concepts.\n- Use first person if the assignment allows it.\n- Move beyond description by explaining what was learned and how it changes future practice.'
+    },
+    'Discussion post / response': {
+      heading: '2. Discussion Post Details',
+      intro: 'Use these fields to define the prompt, post type, and response requirements.',
+      focusLabel: 'Discussion prompt / question to answer',
+      focusPlaceholder: 'Example: Paste the discussion board prompt or the peer post you need to respond to.',
+      evidenceLabel: 'Initial post or reply requirements',
+      evidencePlaceholder: 'Example: Initial post with one scholarly source, or two peer replies with one citation each.',
+      structureLabel: 'Tone / response structure notes',
+      structurePlaceholder: 'Example: Conversational but scholarly, 250 words, ask one follow-up question, cite APA 7.',
+      roleFocus: 'discussion post or peer response',
+      promptGuidance: '- Answer the discussion prompt directly and concisely.\n- Use a scholarly but natural discussion-board tone.\n- If it is a peer response, acknowledge the peer\'s point, add evidence or insight, and ask a meaningful follow-up question when appropriate.'
+    }
+  };
 
   if (!form || !output) return;
 
@@ -23,6 +100,14 @@
   function value(id) {
     const el = $(id);
     return el ? String(el.value || '').trim() : '';
+  }
+
+  function paperTypeValue() {
+    return value('paperType');
+  }
+
+  function selectedPaperConfig() {
+    return PAPER_TYPE_CONFIG[paperTypeValue()] || null;
   }
 
   function checkedValues(name) {
@@ -133,6 +218,16 @@
     return collectSourcePairs().map((pair, index) => ({ ...pair, number: index + 1 })).filter(pair => !pair.source || !pair.documentation);
   }
 
+  function paperSpecificPromptText(config) {
+    if (!config) return 'Not provided';
+
+    return [
+      fieldLine(config.focusLabel, value('paperFocus')),
+      fieldLine(config.evidenceLabel, value('evidencePlan')),
+      fieldLine(config.structureLabel, value('structureNotes'))
+    ].join('\n');
+  }
+
   function requiredLengthText() {
     const length = value('lengthRequirement');
     const unit = value('lengthUnit');
@@ -151,7 +246,16 @@
   }
 
   function buildPrompt() {
-    const paperTypes = checkedValues('paperType');
+    const paperType = paperTypeValue();
+    const paperConfig = selectedPaperConfig();
+
+    if (!paperType || !paperConfig) {
+      output.value = '';
+      output.placeholder = 'Select a paper type to begin building your AI prompt.';
+      return '';
+    }
+
+    output.placeholder = '';
     const sourceRules = checkedValues('sourceRules');
     const writingTasks = checkedValues('writingTasks');
     const contentHelp = checkedValues('contentHelp');
@@ -173,7 +277,7 @@
     const sourcePairsProvided = hasSourcePairInfo();
 
     const prompt = `<role>
-You are an academic writing assistant and paper-planning coach. Help me create a strong, well-organized paper while following the assignment instructions, rubric, citation style, and source rules I provide.
+You are an academic writing assistant and paper-planning coach. Help me create a strong, well-organized ${paperConfig.roleFocus} while following the assignment instructions, rubric, citation style, and source rules I provide.
 </role>
 
 <context>
@@ -181,10 +285,17 @@ ${fieldLine('Paper topic', value('topic'))}
 ${fieldLine('Course / class', value('course'))}
 ${fieldLine('Academic level', value('academicLevel'))}
 ${fieldLine('Audience / instructor expectations', value('audience'))}
-${fieldLine('Paper type', paperTypes.length ? paperTypes.join(', ') : 'Not specified')}
+${fieldLine('Paper type', paperType)}
 ${fieldLine('Required length', requiredLengthText())}
 ${fieldLine('Due date / timeline', value('dueDate'))}
 </context>
+
+<paper_type_specific_details>
+${paperSpecificPromptText(paperConfig)}
+
+Paper-type guidance:
+${paperConfig.promptGuidance}
+</paper_type_specific_details>
 
 <citation_and_format_requirements>
 ${fieldLine('Citation style', finalCitationStyle)}
@@ -288,6 +399,10 @@ ${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish 
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       const state = raw ? JSON.parse(raw) : {};
+      if (Array.isArray(state.paperType)) {
+        state.paperType = state.paperType[0] || '';
+      }
+
       const migratedSourcePair = state.requiredSources || state.sourceDocumentation
         ? [{ source: state.requiredSources || '', documentation: state.sourceDocumentation || '' }]
         : null;
@@ -314,8 +429,13 @@ ${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish 
     const citationStyle = value('citationStyle');
     const sourceRules = checkedValues('sourceRules');
 
+    if (!paperTypeValue()) {
+      missingBox.classList.remove('hidden', 'good');
+      missingBox.innerHTML = '<strong>Start here:</strong> Select a paper type to reveal the paper-specific fields.';
+      $('paperType')?.focus();
+      return;
+    }
     if (!value('topic')) problems.push('Add the paper topic.');
-    if (!checkedValues('paperType').length) problems.push('Select at least one paper type.');
 
     const requiredLengthProblem = requiredLengthMissingMessage();
     if (requiredLengthProblem) problems.push(requiredLengthProblem);
@@ -361,6 +481,13 @@ ${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish 
   }
 
   async function copyPrompt() {
+    if (!paperTypeValue()) {
+      missingBox.classList.remove('hidden', 'good');
+      missingBox.innerHTML = '<strong>Paper type needed:</strong> Select a paper type before copying the prompt.';
+      $('paperType')?.focus();
+      return;
+    }
+
     const requiredLengthProblem = requiredLengthMissingMessage();
     if (requiredLengthProblem) {
       showRequiredLengthError(requiredLengthProblem);
@@ -381,6 +508,13 @@ ${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish 
   }
 
   function downloadPrompt() {
+    if (!paperTypeValue()) {
+      missingBox.classList.remove('hidden', 'good');
+      missingBox.innerHTML = '<strong>Paper type needed:</strong> Select a paper type before downloading the prompt.';
+      $('paperType')?.focus();
+      return;
+    }
+
     buildPrompt();
     const blob = new Blob([output.value], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -393,21 +527,73 @@ ${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish 
     URL.revokeObjectURL(url);
   }
 
+
+  function updatePaperSpecificFields(clearValues) {
+    const config = selectedPaperConfig();
+    const hasPaperType = Boolean(config);
+
+    paperSetupDetails?.classList.toggle('hidden', !hasPaperType);
+    paperDependentContent?.classList.toggle('hidden', !hasPaperType);
+
+    if (clearValues) {
+      form.querySelectorAll('[data-paper-specific="true"]').forEach(el => {
+        el.value = '';
+      });
+    }
+
+    if (!hasPaperType) {
+      output.value = '';
+      output.placeholder = 'Select a paper type to begin building your AI prompt.';
+      missingBox?.classList.add('hidden');
+      return;
+    }
+
+    const heading = $('paperTypeDetailsHeading');
+    const intro = $('paperTypeDetailsIntro');
+    const focusLabel = $('paperFocusLabel');
+    const evidenceLabel = $('evidencePlanLabel');
+    const structureLabel = $('structureNotesLabel');
+    const focus = $('paperFocus');
+    const evidence = $('evidencePlan');
+    const structure = $('structureNotes');
+
+    if (heading) heading.textContent = config.heading;
+    if (intro) intro.textContent = config.intro;
+    if (focusLabel) focusLabel.textContent = config.focusLabel;
+    if (evidenceLabel) evidenceLabel.textContent = config.evidenceLabel;
+    if (structureLabel) structureLabel.textContent = config.structureLabel;
+    if (focus) focus.placeholder = config.focusPlaceholder;
+    if (evidence) evidence.placeholder = config.evidencePlaceholder;
+    if (structure) structure.placeholder = config.structurePlaceholder;
+
+  }
+
   function resetForm() {
     if (!window.confirm('Clear this paper prompt form?')) return;
     form.reset();
     renderSourcePairs([{}]);
     try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
     missingBox.classList.add('hidden');
+    updatePaperSpecificFields(false);
     buildPrompt();
   }
+
+  let previousPaperType = paperTypeValue();
 
   form.addEventListener('input', () => {
     buildPrompt();
     saveDraft();
   });
 
-  form.addEventListener('change', () => {
+  form.addEventListener('change', event => {
+    if (event.target?.id === 'paperType') {
+      const nextPaperType = paperTypeValue();
+      updatePaperSpecificFields(Boolean((previousPaperType || nextPaperType) && previousPaperType !== nextPaperType));
+      previousPaperType = nextPaperType;
+    } else {
+      updatePaperSpecificFields(false);
+    }
+
     buildPrompt();
     saveDraft();
   });
@@ -423,5 +609,7 @@ ${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish 
   });
 
   loadDraft();
+  updatePaperSpecificFields(false);
+  previousPaperType = paperTypeValue();
   buildPrompt();
 })();
