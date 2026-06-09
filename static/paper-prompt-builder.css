@@ -217,6 +217,12 @@
   white-space: nowrap;
 }
 
+.source-add-action-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
 .source-pairs {
   display: flex;
   flex-direction: column;
