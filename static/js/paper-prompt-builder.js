@@ -91,6 +91,260 @@
     }
   };
 
+
+  const REQUIRED_SECTION_PLACEHOLDERS = {
+    'Research paper': 'Example: introduction, background/context, body sections organized by argument/theme/evidence, implications or discussion, conclusion, final source section',
+    'Argumentative essay': 'Example: introduction with claim/thesis, supporting reasons, evidence, counterargument, rebuttal, conclusion, final source section if sources are used',
+    'Literature review': 'Example: introduction/review purpose, source scope or search criteria, thematic synthesis, patterns/gaps, conclusion, final source section',
+    'Case study': 'Example: case overview, problem/issue, assessment or analysis, evidence-based discussion, recommendation/intervention, evaluation, conclusion, final source section if sources are used',
+    'Reflection paper': 'Example: experience/context, reflection/analysis, course concept connection, learning/future application, final source section if sources are cited',
+    'Discussion post / response': 'Example: direct answer to prompt, evidence/course connection, application, peer response if required, final citations/references at end if sources are cited'
+  };
+
+  const CITATION_STYLE_CONFIG = {
+    'APA 7': {
+      label: 'APA 7 student paper format',
+      sourceUrls: ['https://apastyle.apa.org/instructional-aids/student-paper-setup-guide.pdf', 'https://apastyle.apa.org/instructional-aids/reference-examples.pdf', 'https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html'],
+      defaultPageSetup: 'APA 7 student paper format: 1-inch margins, double-spaced text, accessible and consistent font such as 12-point Times New Roman, 11-point Calibri, 11-point Arial, 11-point Georgia, or 10-point Lucida Sans Unicode; page number in the top-right corner on every page; student papers do not need a running head unless the instructor requires one; left-align text with ragged right edge; indent the first line of paragraphs 0.5 inch.',
+      referencePageLabel: 'References page',
+      inTextCitationType: 'Author-date in-text citations',
+      citationMarkerRules: ['Use narrative citations such as Author (Year) or parenthetical citations such as (Author, Year).'],
+      locatorRules: ['Page numbers are required for direct quotes and useful/required for specific paraphrases when the instructor asks for precise support.'],
+      referenceListRules: ['Use References, not Works Cited.', 'Use DOI links when available in https://doi.org/... format.'],
+      quoteRules: ['Include page numbers for direct quotations.'],
+      promptRules: ['Use author-date citations.', 'Use References page.', 'Use student-paper title page unless instructor says otherwise.', 'Abstract is included only if assignment/rubric requires it.', 'Student papers use page number in the top-right header and no running head unless required.', 'Use APA 7 page setup and source integrity rules.'],
+      sourceIntegrityRules: ['Do not invent authors, dates, titles, journals, DOI numbers, URLs, page numbers, or quotations.']
+    },
+    'MLA 9': {
+      label: 'MLA 9 paper format',
+      sourceUrls: ['https://style.mla.org/works-cited/works-cited-a-quick-guide/', 'https://style.mla.org/works-cited/citations-by-format/', 'https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_general_format.html', 'https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_in_text_citations_the_basics.html', 'https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_works_cited_page_basic_format.html', 'https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_formatting_quotations.html'],
+      defaultPageSetup: 'MLA 9 format: 1-inch margins; double-spaced text throughout; legible 12-point font, commonly Times New Roman unless instructor specifies otherwise; first-line paragraph indents of 0.5 inch; last name and page number in the upper-right header; no separate title page unless instructor requires it or it is a group project; first page should include student name, instructor name, course, and date in the upper-left, followed by a centered title in Title Case with no bold, underline, italics, quotation marks, or special styling unless referring to another work.',
+      referencePageLabel: 'Works Cited page',
+      inTextCitationType: 'Author-page in-text citations',
+      citationMarkerRules: ['Use parenthetical citations such as (Author page) or narrative citations where the author is named in the sentence and the page number appears in parentheses.', 'If no author exists, use a shortened title in the in-text citation.'],
+      locatorRules: ['If no page number exists, do not invent one.'],
+      referenceListRules: ['Use Works Cited, not References.', 'Works Cited uses MLA core elements and container model.', 'Alphabetize Works Cited entries.', 'Use hanging indents.'],
+      quoteRules: ['Use italics for larger standalone works and quotation marks for shorter works.', 'Short quotations use quotation marks; long prose quotations over four lines use MLA block quote formatting.'],
+      promptRules: ['Use author-page citations.', 'Use Works Cited.', 'Do not use a title page unless assigned.', 'Do not use an abstract unless assigned.', 'Use MLA first-page heading.', 'Use MLA core elements and container model.', 'Use MLA quote rules.'],
+      sourceIntegrityRules: ['Do not invent authors, dates, titles, publishers, page numbers, DOI numbers, URLs, or quotations.']
+    },
+    'Chicago': {
+      label: 'Chicago/Turabian student-paper format',
+      sourceUrls: ['https://owl.purdue.edu/owl/research_and_citation/chicago_manual_18th_edition/index.html', 'https://owl.purdue.edu/owl/research_and_citation/chicago_manual_18th_edition/cmos_formatting_and_style_guide/general_format.html', 'https://owl.purdue.edu/owl/research_and_citation/chicago_manual_18th_edition/cmos_formatting_and_style_guide/chicago_manual_of_style_18th_edition.html'],
+      defaultPageSetup: 'Chicago/Turabian student paper format: readable 12-point font preferred; margins no smaller than 1 inch; double-spaced main text unless instructor specifies otherwise; page numbers according to instructor requirements; class papers may use either a title page or title on the first page depending on instructor requirements; use Chicago Notes-Bibliography or Chicago Author-Date consistently.',
+      referencePageLabel: 'Bibliography / References',
+      inTextCitationType: 'Notes-Bibliography footnotes/endnotes or Author-Date parenthetical citations',
+      citationMarkerRules: ['Notes-Bibliography uses superscript note numbers with footnotes or endnotes.', 'Author-Date uses author-date parenthetical citations.'],
+      locatorRules: ['Use page numbers in notes or parenthetical citations for specific passages, direct quotations, and close paraphrases.'],
+      referenceListRules: ['Notes-Bibliography uses Bibliography unless the instructor says full notes are enough.', 'Author-Date uses References page.', 'Alphabetize Bibliography or References entries by author last name or first significant title word if no author exists.'],
+      quoteRules: ['Use Chicago quotation and block quotation formatting as required by the instructor.'],
+      promptRules: ['Chicago has two systems: Notes-Bibliography and Author-Date.', 'Use Chicago/Turabian student-paper guidance language for class papers.', 'Class papers may use a title page or title on the first page depending on instructor requirements.', 'Abstract is usually assignment-dependent and not automatically required for class papers.'],
+      sourceIntegrityRules: ['Do not invent authors, titles, publication facts, page numbers, URLs, DOI numbers, notes, or bibliography entries.']
+    },
+    'AMA': {
+      label: 'AMA Manual of Style guidance',
+      sourceUrls: ['https://owl.purdue.edu/owl/research_and_citation/ama_style/index.html', 'https://library.une.edu/research-help/help-with-citations/ama-style/', 'https://www.concordia.ca/library/guides/health/ama-11-citation.html'],
+      defaultPageSetup: 'AMA style student/manuscript format: use instructor-required font and spacing; if no instructions are given, use a readable 12-point font, 1-inch margins, and consistent spacing. Use superscript Arabic-number citations in the text and a numbered References list at the end in order of first citation. Title page and abstract are assignment-dependent for student work.',
+      referencePageLabel: 'References page',
+      inTextCitationType: 'Superscript Arabic-number citations',
+      citationMarkerRules: ['Use superscript Arabic-number citations.', 'Number sources in order of first appearance.', 'Use the same superscript number every time the same source is cited again.', 'Place superscript citation numbers outside periods and commas, but inside colons and semicolons.', 'Use hyphens for sequential multiple citations and commas for nonsequential citations.'],
+      locatorRules: ['Do not put a superscript citation immediately after a number if it could look like an exponent; revise the sentence.'],
+      referenceListRules: ['Use a numbered References page titled References.', 'List references numerically, not alphabetically.', 'Do not combine two sources under one reference number.', 'Use sentence case for article titles.', 'Use abbreviated journal titles when appropriate.', 'Include DOI when available.'],
+      quoteRules: ['Use quotation page numbers only when verified.'],
+      promptRules: ['Use AMA Manual of Style guidance.', 'Use superscript numbered citations.', 'Number sources by first appearance.', 'Use numbered References.', 'Use same number for repeated citations.', 'Follow AMA punctuation placement for superscripts.', 'Include DOI when available.'],
+      sourceIntegrityRules: ['Do not invent authors, titles, journal names, volume/issue data, page ranges, DOI numbers, URLs, or quotation page numbers.']
+    },
+    'IEEE': {
+      label: 'IEEE citation and technical paper guidance',
+      sourceUrls: ['https://journals.ieeeauthorcenter.ieee.org/your-role-in-article-production/ieee-editorial-style-manual/', 'https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE-Editorial-Style-Manual-for-Authors.pdf'],
+      defaultPageSetup: 'IEEE technical paper format: use instructor template if provided; otherwise use a clear technical-paper structure with title, author information if required, abstract for technical/research papers, index terms if required, introduction, body sections, conclusion, and References. Use numbered bracket citations such as [1] and list references numerically in order of citation.',
+      referencePageLabel: 'References section',
+      inTextCitationType: 'Numbered bracket citations such as [1]',
+      citationMarkerRules: ['Use IEEE numbered bracket citations such as [1], [2], and [3].', 'Number references in order of first citation.', 'Refer to sources as “in [1]” rather than “in reference [1].”'],
+      locatorRules: ['Use specific locators such as [1, Fig. 2], [1, Sec. IV], [1, Ch. 3], or [1, eq. (8)] when needed.'],
+      referenceListRules: ['Use a numbered References section.', 'Do not group multiple sources under one reference number.', 'Do not list the same source multiple times for different page numbers or sections.'],
+      quoteRules: ['Use IEEE locators when quoting specific figures, sections, chapters, equations, or tables.'],
+      promptRules: ['Use IEEE citation and technical paper guidance.', 'Use numbered bracket citations such as [1].', 'Number references by first appearance.', 'Use numbered References section.', 'Use abstract/index terms when required by paper type or template.', 'Use IEEE locators when citing specific figures, sections, chapters, equations, or tables.'],
+      sourceIntegrityRules: ['Do not invent authors, titles, conference names, journal names, volume/issue data, page ranges, DOI numbers, URLs, or technical source details.']
+    },
+    'ASA': {
+      label: 'ASA style guidance',
+      sourceUrls: ['https://owl.purdue.edu/owl/research_and_citation/asa_style/index.html', 'https://owl.purdue.edu/owl/research_and_citation/asa_style/in_text_citation_references.html', 'https://owl.purdue.edu/owl/research_and_citation/asa_style/references_page_formatting.html', 'https://owl.purdue.edu/owl/research_and_citation/asa_style/manuscript_writing_style.html'],
+      defaultPageSetup: 'ASA manuscript format: 12-point Arial font, double-spaced text including footnotes unless instructor specifies otherwise; margins at least 1.25 inches unless instructor specifies otherwise; separate title page for formal manuscripts when required; abstract if required; page numbers consecutive starting with the title page; references section headed REFERENCES.',
+      referencePageLabel: 'REFERENCES section',
+      inTextCitationType: 'Author-year in-text citations',
+      citationMarkerRules: ['Use ASA author-year in-text citations.', 'Cite author last name and year of publication, such as (Gouldner 1963).', 'If the author is named in the sentence, place the year immediately after the author name.', 'Use semicolons between multiple citations.'],
+      locatorRules: ['Include page numbers for direct quotes, paraphrases of specific passages, and references to specific passages.', 'Use ASA page format with a colon and no space, such as (Kuhn 1970:71).'],
+      referenceListRules: ['Use REFERENCES section.', 'Double-space references and use hanging indents.', 'Alphabetize references by first author last name.', 'Use title case for titles in references.', 'List all authors in the References section unless the work was authored by a committee.'],
+      quoteRules: ['Use footnotes/endnotes sparingly and do not mix them unless allowed by ASA guidance.'],
+      promptRules: ['Use ASA style guidance.', 'Use author-year citations.', 'Include page numbers for quotes and specific passages using Author Year:Page.', 'Use REFERENCES section.', 'Alphabetize references.', 'Double-space references and use hanging indents.'],
+      sourceIntegrityRules: ['Do not invent authors, titles, dates, publisher details, DOI numbers, URLs, page numbers, or quotations.']
+    },
+    'Vancouver / ICMJE': {
+      label: 'Vancouver/ICMJE medical-journal citation guidance',
+      sourceUrls: ['https://www.icmje.org/recommendations/browse/manuscript-preparation/preparing-for-submission.html'],
+      defaultPageSetup: 'Vancouver/ICMJE medical manuscript format: use instructor or journal template if provided; use numbered in-text citations in the order sources are first mentioned, normally Arabic numerals in parentheses such as (1); use a numbered References list in citation order; title page and abstract are assignment-dependent for student papers or journal-style manuscripts.',
+      referencePageLabel: 'References list',
+      inTextCitationType: 'Numbered citations in first-mentioned order',
+      citationMarkerRules: ['Use numbered citations in the order sources are first mentioned.', 'In-text citations should use Arabic numerals in parentheses, such as (1), unless instructor/journal specifies square brackets or superscripts.', 'Use the same number for repeated citations of the same source.'],
+      locatorRules: ['Verify medical references using original sources or PubMed/NLM when possible.'],
+      referenceListRules: ['Use a numbered References list in citation order.', 'Journal titles should be abbreviated according to MEDLINE/NLM style when possible.', 'Include DOI when available.'],
+      quoteRules: ['Use direct quotations only with verified source location details.'],
+      promptRules: ['Use Vancouver/ICMJE medical-journal citation guidance.', 'Use numbered citations in order first mentioned.', 'Use Arabic numerals in parentheses, such as (1), unless instructor/journal specifies otherwise.', 'Use the same number for repeated citations of the same source.', 'Use numbered References list.', 'Verify medical references using original sources or PubMed/NLM when possible.', 'Do not cite AI-generated material as the primary source for scholarly claims.'],
+      sourceIntegrityRules: ['Referencing AI-generated material as the primary source is not acceptable.', 'Authors are responsible for accurate citation support.', 'Do not invent authors, article titles, journal names, publication details, page ranges, DOI numbers, URLs, or quotations.']
+    },
+    'CSE': {
+      label: 'CSE scientific writing format',
+      sourceUrls: ['https://www.csemanual.org/Tools/CSE-Citation-Quick-Guide.html'],
+      defaultPageSetup: 'CSE scientific writing format: use instructor or journal template if provided; select the required CSE system—Citation-Sequence, Citation-Name, or Name-Year; use the matching in-text citation and reference-list order; use a References list unless instructor says otherwise; title page and abstract are assignment-dependent.',
+      referencePageLabel: 'References list',
+      inTextCitationType: 'CSE Citation-Sequence, Citation-Name, or Name-Year citations',
+      citationMarkerRules: ['Citation-Sequence: use numbered citations in the order sources first appear.', 'Citation-Name: alphabetize references first, then number them.', 'Name-Year: use author-year in-text citations.'],
+      locatorRules: ['Use the locator format required by the selected CSE system or instructor.'],
+      referenceListRules: ['Use References as the final source-section label unless instructor says otherwise.', 'Citation-Sequence references are listed numerically by first appearance.', 'Citation-Name references are alphabetized first, then numbered.', 'Name-Year references are alphabetized by author.'],
+      quoteRules: ['Use direct quotations only with verified source location details.'],
+      promptRules: ['Use CSE citation guidance.', 'CSE is appropriate for biology, natural sciences, environmental science, and lab/scientific writing.', 'Ask which CSE system is required before final citation formatting if not confirmed.'],
+      sourceIntegrityRules: ['Do not invent authors, titles, dates, journal names, publisher details, page numbers, DOI numbers, URLs, or quotations.']
+    }
+  };
+
+  const GENERIC_REQUIRED_SECTIONS_PLACEHOLDER = 'Example: Introduction, Background, Evidence, Counterargument, Conclusion';
+
+  const APA7_PAPER_TYPE_RULES = makeRules('APA 7', {
+    titleDefaults: { research: 'yes', argumentative: 'yes', literature: 'yes', caseStudy: 'yes', reflection: 'yes', discussion: 'no' },
+    abstractDefaults: { research: 'unknown', argumentative: 'no', literature: 'unknown', caseStudy: 'no', reflection: 'no', discussion: 'no' },
+    referenceDefaults: { reflection: 'unknown' },
+    lockTitle: ['discussion'],
+    lockAbstract: ['argumentative', 'caseStudy', 'reflection', 'discussion'],
+    helpers: {
+      title: 'APA student papers normally include a title page unless the instructor says otherwise.',
+      abstract: 'APA student-paper abstracts are assignment-dependent; include one only if required.',
+      reference: 'Use an APA References page for cited sources.'
+    }
+  });
+  const MLA9_PAPER_TYPE_RULES = makeRules('MLA 9', {
+    titleDefaults: { all: 'no' },
+    abstractDefaults: { all: 'no', literature: 'unknown' },
+    referenceDefaults: { reflection: 'unknown' },
+    lockTitle: ['research', 'argumentative', 'literature', 'caseStudy', 'reflection', 'discussion'],
+    lockAbstract: ['research', 'argumentative', 'caseStudy', 'reflection', 'discussion'],
+    helpers: {
+      title: 'MLA papers normally do not use a separate title page unless assigned or used for a group project; use the MLA first-page heading instead.',
+      abstract: 'MLA papers normally do not include an abstract unless specifically assigned.',
+      reference: 'Use Works Cited for sources quoted, paraphrased, summarized, or otherwise cited.'
+    }
+  });
+  const CHICAGO_PAPER_TYPE_RULES = makeRules('Chicago', {
+    titleDefaults: { all: 'unknown', discussion: 'no' },
+    abstractDefaults: { all: 'unknown', argumentative: 'no', caseStudy: 'no', reflection: 'no', discussion: 'no' },
+    referenceDefaults: { reflection: 'unknown' },
+    lockTitle: ['discussion'],
+    lockAbstract: ['argumentative', 'caseStudy', 'reflection', 'discussion'],
+    helpers: {
+      title: 'Chicago/Turabian class papers may use a title page or title on the first page depending on instructor requirements.',
+      abstract: 'Chicago class-paper abstracts are assignment-dependent and usually not automatic.',
+      reference: 'Use Bibliography for Notes-Bibliography or References for Author-Date unless the instructor says otherwise.'
+    }
+  });
+  const AMA_PAPER_TYPE_RULES = makeRules('AMA', {
+    titleDefaults: { all: 'unknown', discussion: 'no' },
+    abstractDefaults: { all: 'unknown', argumentative: 'no', reflection: 'no', discussion: 'no' },
+    referenceDefaults: { reflection: 'unknown' },
+    lockTitle: ['discussion'],
+    lockAbstract: ['argumentative', 'reflection', 'discussion'],
+    helpers: {
+      title: 'AMA title pages are assignment-dependent for student papers.',
+      abstract: 'AMA abstracts are assignment-dependent; clinical/medical reports may require one.',
+      reference: 'Use a numbered AMA References page in order of first citation.'
+    }
+  });
+  const IEEE_PAPER_TYPE_RULES = makeRules('IEEE', {
+    titleDefaults: { all: 'unknown', discussion: 'no' },
+    abstractDefaults: { research: 'yes', argumentative: 'no', literature: 'unknown', caseStudy: 'unknown', reflection: 'no', discussion: 'no' },
+    referenceDefaults: { reflection: 'unknown' },
+    lockTitle: ['discussion'],
+    lockAbstract: ['argumentative', 'reflection', 'discussion'],
+    helpers: {
+      title: 'IEEE title/byline format depends on the instructor template.',
+      abstract: 'IEEE technical/research papers normally include an abstract; other student assignments depend on the template.',
+      reference: 'Use a numbered IEEE References section.'
+    }
+  });
+  const ASA_PAPER_TYPE_RULES = makeRules('ASA', {
+    titleDefaults: { research: 'yes', all: 'unknown', discussion: 'no' },
+    abstractDefaults: { all: 'unknown', argumentative: 'no', caseStudy: 'no', reflection: 'no', discussion: 'no' },
+    referenceDefaults: { reflection: 'unknown' },
+    lockTitle: ['discussion'],
+    lockAbstract: ['argumentative', 'caseStudy', 'reflection', 'discussion'],
+    helpers: {
+      title: 'ASA formal manuscript-style research papers may use a title page; follow instructor requirements.',
+      abstract: 'ASA abstracts are assignment-dependent.',
+      reference: 'Use an ASA REFERENCES section for cited sources.'
+    }
+  });
+  const VANCOUVER_PAPER_TYPE_RULES = makeRules('Vancouver / ICMJE', {
+    titleDefaults: { all: 'unknown', discussion: 'no' },
+    abstractDefaults: { all: 'unknown', argumentative: 'no', reflection: 'no', discussion: 'no' },
+    referenceDefaults: { reflection: 'unknown' },
+    lockTitle: ['discussion'],
+    lockAbstract: ['argumentative', 'reflection', 'discussion'],
+    helpers: {
+      title: 'Vancouver/ICMJE title pages are assignment- or journal-template-dependent.',
+      abstract: 'Vancouver/ICMJE abstracts are assignment-dependent for student papers and journal-style manuscripts.',
+      reference: 'Use a numbered References list in citation order.'
+    }
+  });
+  const CSE_PAPER_TYPE_RULES = makeRules('CSE', {
+    titleDefaults: { all: 'unknown', discussion: 'no' },
+    abstractDefaults: { all: 'unknown', argumentative: 'no', reflection: 'no', discussion: 'no' },
+    referenceDefaults: { reflection: 'unknown' },
+    lockTitle: ['discussion'],
+    lockAbstract: ['argumentative', 'reflection', 'discussion'],
+    helpers: {
+      title: 'CSE title pages are assignment- or journal-template-dependent.',
+      abstract: 'CSE abstracts are assignment-dependent.',
+      reference: 'Use a CSE References list unless the instructor says otherwise.'
+    }
+  });
+
+  const PAPER_TYPE_FORMAT_RULES = {
+    'APA 7': APA7_PAPER_TYPE_RULES,
+    'MLA 9': MLA9_PAPER_TYPE_RULES,
+    'Chicago': CHICAGO_PAPER_TYPE_RULES,
+    'AMA': AMA_PAPER_TYPE_RULES,
+    'IEEE': IEEE_PAPER_TYPE_RULES,
+    'ASA': ASA_PAPER_TYPE_RULES,
+    'Vancouver / ICMJE': VANCOUVER_PAPER_TYPE_RULES,
+    'CSE': CSE_PAPER_TYPE_RULES
+  };
+
+  function makeRules(styleName, options) {
+    const keys = {
+      'Research paper': 'research',
+      'Argumentative essay': 'argumentative',
+      'Literature review': 'literature',
+      'Case study': 'caseStudy',
+      'Reflection paper': 'reflection',
+      'Discussion post / response': 'discussion'
+    };
+
+    const sourceLabel = styleName === 'MLA 9' ? 'Works Cited' : styleName === 'ASA' ? 'REFERENCES' : styleName === 'IEEE' ? 'References section' : styleName === 'Vancouver / ICMJE' || styleName === 'CSE' ? 'References list' : styleName === 'Chicago' ? 'Bibliography/References' : 'References';
+    return Object.fromEntries(Object.entries(keys).map(([paperType, key]) => {
+      const isDiscussion = key === 'discussion';
+      const valueFor = (map, fallback = 'yes') => map?.[key] ?? map?.all ?? fallback;
+      const titleEnabled = !isDiscussion && !(options.lockTitle || []).includes(key);
+      const abstractEnabled = !isDiscussion && !(options.lockAbstract || []).includes(key);
+      const referenceDefault = isDiscussion ? 'yes' : valueFor(options.referenceDefaults, 'yes');
+      return [paperType, {
+        titlePage: { enabled: titleEnabled, defaultValue: valueFor(options.titleDefaults, 'unknown'), helper: isDiscussion ? 'Discussion posts normally do not need a title page unless the instructor requires one.' : options.helpers.title },
+        abstract: { enabled: abstractEnabled, defaultValue: valueFor(options.abstractDefaults, 'unknown'), helper: isDiscussion ? 'Discussion posts do not normally include an abstract.' : options.helpers.abstract },
+        referencePage: { enabled: true, defaultValue: referenceDefault, helper: isDiscussion ? `Keep ${sourceLabel} entries or citations at the end of the post if sources are cited or required.` : options.helpers.reference },
+        requiredSectionsPlaceholder: REQUIRED_SECTION_PLACEHOLDERS[paperType],
+        formatNote: `${paperType} in ${styleName} should follow ${sourceLabel} expectations, ${CITATION_STYLE_CONFIG[styleName]?.inTextCitationType || 'the selected citation system'}, and the instructor/rubric.`
+      }];
+    }));
+  }
+
   if (!form || !output) return;
 
   function $(id) {
@@ -110,6 +364,21 @@
     return PAPER_TYPE_CONFIG[paperTypeValue()] || null;
   }
 
+  function getSelectedStyleConfig() {
+    return CITATION_STYLE_CONFIG[value('citationStyle')] || null;
+  }
+
+  function getSelectedPaperTypeRules() {
+    return PAPER_TYPE_FORMAT_RULES[value('citationStyle')]?.[paperTypeValue()] || null;
+  }
+
+  function getStyleSystemValue() {
+    const citationStyle = value('citationStyle');
+    if (citationStyle === 'Chicago') return value('chicagoSystem') || 'Not sure / follow instructor';
+    if (citationStyle === 'CSE') return value('cseSystem') || 'Not sure / follow instructor';
+    return '';
+  }
+
   function checkedValues(name) {
     return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
   }
@@ -124,6 +393,217 @@
 
   function fieldLine(label, val) {
     return `${label}: ${val || 'Not specified'}`;
+  }
+
+  function formatFieldLabel(fieldId) {
+    const label = document.querySelector(`label[for="${fieldId}"]`);
+    return label ? label.textContent.replace(/\?$/, '').trim() : fieldId;
+  }
+
+  function setFieldHelper(field, helperText, isLocked) {
+    const parent = field.closest('.prompt-field');
+    if (!parent) return;
+
+    let helper = parent.querySelector('[data-format-helper="true"]');
+    if (!helper && helperText) {
+      helper = document.createElement('p');
+      helper.className = 'field-help format-helper-text';
+      helper.dataset.formatHelper = 'true';
+      parent.appendChild(helper);
+    }
+
+    if (helper) {
+      helper.textContent = helperText || '';
+      helper.hidden = !helperText;
+      helper.classList.toggle('locked-helper', Boolean(isLocked));
+    }
+  }
+
+  function setAutofilledValue(fieldId, newValue) {
+    const field = $(fieldId);
+    if (!field || !newValue) return;
+    if (!String(field.value || '').trim() || field.dataset.autofilled === 'true') {
+      field.value = newValue;
+      field.dataset.autofilled = 'true';
+    }
+  }
+
+  function setFieldLock(fieldId, enabled, helperText, defaultValue) {
+    const field = $(fieldId);
+    if (!field) return;
+
+    const parent = field.closest('.prompt-field');
+    if (!enabled && defaultValue !== undefined) {
+      field.value = defaultValue;
+      field.dataset.formatAutofilled = 'true';
+    } else if (enabled && defaultValue && (!field.value || field.value === 'unknown' || field.dataset.formatWasLocked === 'true' || field.dataset.formatAutofilled === 'true')) {
+      field.value = defaultValue;
+      field.dataset.formatAutofilled = 'true';
+    }
+
+    field.disabled = !enabled;
+    field.dataset.formatLocked = String(!enabled);
+    field.dataset.formatDisabledReason = enabled ? '' : (helperText || 'This field is normally not used for the selected paper type and citation style.');
+    if (!enabled) field.dataset.formatWasLocked = 'true';
+    if (enabled) field.dataset.formatWasLocked = 'false';
+
+    if (parent) {
+      parent.classList.toggle('locked', !enabled);
+      parent.classList.toggle('format-field-disabled', !enabled);
+      parent.classList.toggle('format-field-locked', !enabled);
+    }
+
+    setFieldHelper(field, helperText, !enabled);
+  }
+
+  function updateStyleSystemVisibility() {
+    const citationStyle = value('citationStyle');
+    $('chicagoSystemField')?.classList.toggle('hidden', citationStyle !== 'Chicago');
+    $('cseSystemField')?.classList.toggle('hidden', citationStyle !== 'CSE');
+  }
+
+  function sourcePageLabel() {
+    const citationStyle = value('citationStyle');
+    const chicagoSystem = value('chicagoSystem');
+    if (citationStyle === 'Chicago') {
+      if (chicagoSystem === 'Notes-Bibliography') return 'Bibliography';
+      if (chicagoSystem === 'Author-Date') return 'References page';
+      return 'Bibliography / References';
+    }
+    if (citationStyle === 'Other') return 'Reference / Works Cited / Bibliography page';
+    return getSelectedStyleConfig()?.referencePageLabel || 'Reference / Works Cited / Bibliography page';
+  }
+
+  function updateReferencePageLabel() {
+    const label = document.querySelector('label[for="referencePage"]');
+    if (label) label.textContent = `${sourcePageLabel()}?`;
+  }
+
+  function resetFormatRules() {
+    ['titlePage', 'abstract', 'referencePage'].forEach(fieldId => {
+      const field = $(fieldId);
+      if (!field) return;
+      setFieldLock(fieldId, true, '', undefined);
+      delete field.dataset.formatDisabledReason;
+      delete field.dataset.formatLocked;
+    });
+
+    const pageSetup = $('pageSetup');
+    if (pageSetup) {
+      const styleDefaults = Object.values(CITATION_STYLE_CONFIG).map(config => config.defaultPageSetup).filter(Boolean);
+      if (pageSetup.dataset.autofilled === 'true' || styleDefaults.includes(pageSetup.value)) pageSetup.value = '';
+      pageSetup.placeholder = 'Example: Times New Roman 12, double spaced';
+      pageSetup.dataset.autofilled = 'false';
+    }
+
+    const requiredSections = $('requiredSections');
+    if (requiredSections) requiredSections.placeholder = GENERIC_REQUIRED_SECTIONS_PLACEHOLDER;
+  }
+
+  function applyFormatRules() {
+    const styleConfig = getSelectedStyleConfig();
+    const paperRules = getSelectedPaperTypeRules();
+
+    resetFormatRules();
+    updateStyleSystemVisibility();
+    updateReferencePageLabel();
+
+    if (!styleConfig) return;
+
+    setAutofilledValue('pageSetup', styleConfig.defaultPageSetup);
+    $('pageSetup').placeholder = styleConfig.defaultPageSetup;
+
+    if (!paperTypeValue() || !paperRules) return;
+
+    setFieldLock('titlePage', paperRules.titlePage.enabled, paperRules.titlePage.helper, paperRules.titlePage.defaultValue);
+    setFieldLock('abstract', paperRules.abstract.enabled, paperRules.abstract.helper, paperRules.abstract.defaultValue);
+    setFieldLock('referencePage', paperRules.referencePage.enabled, paperRules.referencePage.helper, paperRules.referencePage.defaultValue);
+
+    const requiredSections = $('requiredSections');
+    if (requiredSections) requiredSections.placeholder = paperRules.requiredSectionsPlaceholder;
+  }
+
+  function buildDisabledFieldNotes() {
+    return ['titlePage', 'abstract', 'referencePage'].map(fieldId => {
+      const field = $(fieldId);
+      if (!field || !field.disabled) return '';
+      return `${formatFieldLabel(fieldId)}: ${field.dataset.formatDisabledReason || 'Normally not used for this style/paper type unless the instructor requires it.'}`;
+    }).filter(Boolean);
+  }
+
+  function buildSourceIntegrityBlock() {
+    const styleConfig = getSelectedStyleConfig();
+    return `<source_integrity_rules>
+- Do not invent sources, authors, article titles, book titles, journal names, volume/issue numbers, page ranges, DOI numbers, URLs, publication dates, quotations, statistics, or citation entries.
+- If citation information is incomplete, ask for the missing source documentation before final citation formatting.
+- Match every in-text citation to a final reference entry.
+- Match every final reference entry to at least one in-text citation unless the selected style/instructor allows uncited bibliography entries.
+- For every source, check for author, title, date, publication/container, DOI/URL, page range, and any source-specific details required by the selected style.
+- Use direct quotes only when exact wording and page/paragraph/location information are provided.
+- If a source has no page number, do not invent one. Use the locator allowed by the selected style, or omit the locator if the style allows it.
+${styleConfig ? listOrNone(styleConfig.sourceIntegrityRules) : '- Follow the selected or custom citation style source-integrity rules.'}
+- If assignment instructions conflict with style defaults, follow the assignment instructions and identify the conflict.
+</source_integrity_rules>`;
+  }
+
+  function buildStyleSpecificTag(citationStyle, system) {
+    const tag = {
+      'APA 7': 'apa_7_requirements',
+      'MLA 9': 'mla_9_requirements',
+      'Chicago': 'chicago_requirements',
+      'AMA': 'ama_requirements',
+      'IEEE': 'ieee_requirements',
+      'ASA': 'asa_requirements',
+      'Vancouver / ICMJE': 'vancouver_icmje_requirements',
+      'CSE': 'cse_requirements',
+      'Other': 'custom_citation_requirements'
+    }[citationStyle] || 'custom_citation_requirements';
+    const lines = {
+      'APA 7': ['Use APA 7 formatting and citation rules.', ...CITATION_STYLE_CONFIG['APA 7'].promptRules],
+      'MLA 9': ['Use MLA 9 formatting and citation rules.', ...CITATION_STYLE_CONFIG['MLA 9'].promptRules],
+      'Chicago': ['Use Chicago/Turabian student-paper guidance.', `Chicago system selected: ${system}`, 'If Notes-Bibliography: use footnotes/endnotes and Bibliography.', 'If Author-Date: use author-date citations and References.', 'If Not sure: ask which system is required before final citation formatting.', 'Follow instructor/rubric over default Chicago assumptions.'],
+      'AMA': ['Use AMA Manual of Style guidance.', ...CITATION_STYLE_CONFIG.AMA.promptRules],
+      'IEEE': ['Use IEEE citation and technical paper guidance.', ...CITATION_STYLE_CONFIG.IEEE.promptRules],
+      'ASA': ['Use ASA style guidance.', ...CITATION_STYLE_CONFIG.ASA.promptRules],
+      'Vancouver / ICMJE': ['Use Vancouver/ICMJE medical-journal citation guidance.', ...CITATION_STYLE_CONFIG['Vancouver / ICMJE'].promptRules],
+      'CSE': ['Use CSE citation guidance.', `CSE system selected: ${system}`, 'If Citation-Sequence: number sources by first appearance and list references in that order.', 'If Citation-Name: alphabetize references first, assign numbers, and use those numbers in text.', 'If Name-Year: use author-year in-text citations and alphabetized references.', 'If Not sure: ask which CSE system is required before final citation formatting.'],
+      'Other': ['Use the custom/instructor-specific citation style exactly as provided.', 'If rules are unclear, ask for the instructor’s examples, style sheet, or citation guide before final formatting.']
+    }[citationStyle] || ['Use the selected citation style exactly as provided.'];
+    return `<${tag}>\n${listOrNone(lines)}\n</${tag}>`;
+  }
+
+  function buildStyleRequirementsBlock() {
+    const citationStyle = value('citationStyle');
+    const finalCitationStyle = citationStyle === 'Other' ? (value('otherCitationStyle') || 'Other / custom') : citationStyle;
+    const styleConfig = getSelectedStyleConfig();
+    const paperRules = getSelectedPaperTypeRules();
+    const system = getStyleSystemValue();
+    const disabledNotes = buildDisabledFieldNotes();
+    const systemWarning = citationStyle === 'Chicago' && system === 'Not sure / follow instructor'
+      ? '- Confirm whether Chicago Notes-Bibliography or Chicago Author-Date is required before final citation formatting.'
+      : citationStyle === 'CSE' && system === 'Not sure / follow instructor'
+        ? '- Confirm whether CSE Citation-Sequence, Citation-Name, or Name-Year is required before final citation formatting.'
+        : '';
+
+    return [
+      fieldLine('Citation style', finalCitationStyle),
+      system ? fieldLine(`${citationStyle} system`, system) : '',
+      fieldLine('Final source-section label', sourcePageLabel()),
+      paperRules ? fieldLine('Paper-type-specific interpretation', paperRules.formatNote) : 'Paper-type-specific interpretation: Select a paper type for paper-specific format rules.',
+      disabledNotes.length ? 'Disabled fields and why:\n' + listOrNone(disabledNotes) : 'Disabled fields and why:\n- None for the selected combination.',
+      fieldLine('Page setup rules', value('pageSetup') || styleConfig?.defaultPageSetup),
+      fieldLine('Title page rule', paperRules?.titlePage?.helper),
+      fieldLine('Abstract rule', paperRules?.abstract?.helper),
+      fieldLine('Final source section rule', paperRules?.referencePage?.helper),
+      styleConfig ? 'In-text citation rules:\n' + listOrNone([styleConfig.inTextCitationType, ...styleConfig.citationMarkerRules]) : '',
+      styleConfig ? 'Reference-list rules:\n' + listOrNone(styleConfig.referenceListRules) : '',
+      styleConfig ? 'Locator/page-number rules:\n' + listOrNone(styleConfig.locatorRules) : '',
+      styleConfig ? 'Quote rules:\n' + listOrNone(styleConfig.quoteRules) : '',
+      styleConfig ? 'Style-specific source-integrity rules:\n' + listOrNone(styleConfig.sourceIntegrityRules) : '',
+      systemWarning,
+      buildStyleSpecificTag(citationStyle || 'Other', system),
+      'Assignment/rubric/instructor rules override default style assumptions.'
+    ].filter(Boolean).join('\n');
   }
 
   function sourcePairCount() {
@@ -262,7 +742,11 @@
     const shouldWriteEntirePaper = writingTasks.some(task => task.includes('Write the entire paper'));
     const citationStyle = value('citationStyle');
     const otherCitationStyle = value('otherCitationStyle');
+    applyFormatRules();
+
     const finalCitationStyle = citationStyle === 'Other' ? (otherCitationStyle || 'Other / custom') : citationStyle;
+    const styleRequirementsBlock = buildStyleRequirementsBlock();
+    const finalSourcePageLabel = sourcePageLabel();
 
     const needsSources = sourceRules.some(rule =>
       rule.includes('Use only the sources I provide') ||
@@ -298,13 +782,14 @@ ${paperConfig.promptGuidance}
 </paper_type_specific_details>
 
 <citation_and_format_requirements>
-${fieldLine('Citation style', finalCitationStyle)}
-${fieldLine('Font / spacing / page setup', value('pageSetup'))}
+${styleRequirementsBlock}
 ${fieldLine('Required sections', value('requiredSections'))}
 ${yesNo(value('titlePage') === 'yes')} Include title page if required by the selected style or assignment.
 ${yesNo(value('abstract') === 'yes')} Include abstract if required by the assignment or citation style.
-${yesNo(value('referencePage') === 'yes')} Include References / Works Cited / Bibliography page as appropriate.
+${yesNo(value('referencePage') === 'yes')} Include ${finalSourcePageLabel} as appropriate.
 </citation_and_format_requirements>
+
+${buildSourceIntegrityBlock()}
 
 <source_rules>
 ${listOrNone(sourceRules)}
@@ -312,7 +797,7 @@ ${listOrNone(sourceRules)}
 IMPORTANT SOURCE DOCUMENTATION NOTE:
 Before writing the paper, check whether I have provided enough source documentation. Source documentation may include PDFs, article links, DOI, author names, publication dates, page numbers, textbook excerpts, screenshots, or pasted source text.
 
-If source documentation is missing or incomplete, do not invent citations, quotes, authors, article titles, DOI numbers, page numbers, or reference entries. Ask me for the missing source documentation first.
+If source documentation is missing or incomplete, do not invent citations, quotes, authors, article titles, DOI numbers, page numbers, or reference entries. For every source, check for author, title, date, publication/container, DOI/URL, page range, and any source-specific details required by the selected style. Ask me for missing source documentation before creating final citations.
 
 ${yesNo(needsSources && !sourcePairsProvided)} Source documentation may be missing and should be requested before final drafting.
 </source_rules>
@@ -439,8 +924,10 @@ ${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish 
 
     const requiredLengthProblem = requiredLengthMissingMessage();
     if (requiredLengthProblem) problems.push(requiredLengthProblem);
-    if (!citationStyle) problems.push('Select a citation style, such as APA, MLA, Chicago, AMA, or IEEE.');
+    if (!citationStyle) problems.push('Select a citation style, such as APA, MLA, Chicago, AMA, IEEE, ASA, Vancouver / ICMJE, or CSE.');
     if (citationStyle === 'Other' && !value('otherCitationStyle')) problems.push('Type the custom citation style.');
+    if (citationStyle === 'Chicago' && getStyleSystemValue() === 'Not sure / follow instructor') problems.push('Confirm whether Chicago Notes-Bibliography or Chicago Author-Date is required before final citation formatting.');
+    if (citationStyle === 'CSE' && getStyleSystemValue() === 'Not sure / follow instructor') problems.push('Confirm whether CSE Citation-Sequence, Citation-Name, or Name-Year is required before final citation formatting.');
     if (!value('assignmentInstructions')) problems.push('Paste the assignment instructions if you have them.');
     if (!value('rubric')) problems.push('Paste the rubric or grading criteria if you have it.');
 
@@ -494,12 +981,24 @@ ${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish 
       return;
     }
 
+    if (value('citationStyle') === 'Other' && !value('otherCitationStyle')) {
+      missingBox.classList.remove('hidden', 'good');
+      missingBox.innerHTML = '<strong>Custom citation style needed:</strong> Type the instructor-specific citation style before copying the prompt.';
+      $('otherCitationStyle')?.focus();
+      return;
+    }
+
     buildPrompt();
+    const systemWarning = value('citationStyle') === 'Chicago' && getStyleSystemValue() === 'Not sure / follow instructor'
+      ? ' Confirm whether Chicago Notes-Bibliography or Chicago Author-Date is required before final citation formatting.'
+      : value('citationStyle') === 'CSE' && getStyleSystemValue() === 'Not sure / follow instructor'
+        ? ' Confirm whether CSE Citation-Sequence, Citation-Name, or Name-Year is required before final citation formatting.'
+        : '';
     try {
       await navigator.clipboard.writeText(output.value);
       missingBox.classList.remove('hidden');
       missingBox.classList.add('good');
-      missingBox.innerHTML = '<strong>Copied.</strong> Paste this into ChatGPT, Claude, Gemini, or another AI tool.';
+      missingBox.innerHTML = '<strong>Copied.</strong> Paste this into ChatGPT, Claude, Gemini, or another AI tool.' + systemWarning;
     } catch (e) {
       output.focus();
       output.select();
@@ -575,17 +1074,27 @@ ${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish 
     try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
     missingBox.classList.add('hidden');
     updatePaperSpecificFields(false);
+    applyFormatRules();
     buildPrompt();
   }
 
   let previousPaperType = paperTypeValue();
 
-  form.addEventListener('input', () => {
+  form.addEventListener('input', event => {
+    if (event.target?.id === 'pageSetup') {
+      event.target.dataset.autofilled = 'false';
+    }
+    applyFormatRules();
     buildPrompt();
     saveDraft();
   });
 
   form.addEventListener('change', event => {
+    if (['titlePage', 'abstract', 'referencePage'].includes(event.target?.id)) {
+      event.target.dataset.formatAutofilled = 'false';
+      event.target.dataset.formatWasLocked = 'false';
+    }
+
     if (event.target?.id === 'paperType') {
       const nextPaperType = paperTypeValue();
       updatePaperSpecificFields(Boolean((previousPaperType || nextPaperType) && previousPaperType !== nextPaperType));
@@ -594,6 +1103,7 @@ ${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish 
       updatePaperSpecificFields(false);
     }
 
+    applyFormatRules();
     buildPrompt();
     saveDraft();
   });
@@ -604,12 +1114,14 @@ ${shouldWriteEntirePaper ? 'Fourth, write the entire paper from start to finish 
   $('resetPromptBtn')?.addEventListener('click', resetForm);
   $('addSourcePairBtn')?.addEventListener('click', () => {
     addSourcePair({});
+    applyFormatRules();
     buildPrompt();
     saveDraft();
   });
 
   loadDraft();
   updatePaperSpecificFields(false);
+  applyFormatRules();
   previousPaperType = paperTypeValue();
   buildPrompt();
 })();
