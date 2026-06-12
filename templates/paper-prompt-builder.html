@@ -927,6 +927,40 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
   line-height: 1.35;
 }
 
+.prompt-field.locked,
+.prompt-field.format-field-disabled,
+.prompt-field.format-field-locked {
+  opacity: 0.68;
+}
+
+.prompt-field.locked input,
+.prompt-field.locked select,
+.prompt-field.locked textarea,
+.prompt-field.format-field-disabled input,
+.prompt-field.format-field-disabled select,
+.prompt-field.format-field-disabled textarea,
+.prompt-field.format-field-locked input,
+.prompt-field.format-field-locked select,
+.prompt-field.format-field-locked textarea {
+  background: #f3f4f6;
+  border-color: #cbd5e1;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.format-helper-text {
+  color: #5f6b7a;
+}
+
+.style-system-field.hidden {
+  display: none;
+}
+
+.format-helper-text.locked-helper {
+  color: #6b7280;
+  font-style: italic;
+}
+
 .paper-dependent-fields,
 .paper-dependent-content {
   grid-column: 1 / -1;
@@ -1310,6 +1344,7 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
 
         <section class="prompt-section">
           <h2>3. Citation Style & Format</h2>
+          <p class="prompt-section-note">These fields update based on both paper type and citation style. Grayed-out fields are normally not used for the selected format unless your instructor requires them. If your instructor gives special directions, paste those directions in the assignment instructions or the instructor-specific format box.</p>
           <div class="field-grid">
             <div class="prompt-field">
               <label for="citationStyle">Citation style</label>
@@ -1321,6 +1356,8 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
                 <option>AMA</option>
                 <option>IEEE</option>
                 <option>ASA</option>
+                <option>Vancouver / ICMJE</option>
+                <option>CSE</option>
                 <option>Other</option>
               </select>
             </div>
@@ -1328,6 +1365,25 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
             <div class="prompt-field">
               <label for="otherCitationStyle">Other style / instructor-specific format</label>
               <input id="otherCitationStyle" type="text" placeholder="Only needed if Other or custom">
+            </div>
+
+            <div class="prompt-field style-system-field hidden" id="chicagoSystemField">
+              <label for="chicagoSystem">Chicago system</label>
+              <select id="chicagoSystem">
+                <option value="Not sure / follow instructor">Not sure / follow instructor</option>
+                <option value="Notes-Bibliography">Notes-Bibliography</option>
+                <option value="Author-Date">Author-Date</option>
+              </select>
+            </div>
+
+            <div class="prompt-field style-system-field hidden" id="cseSystemField">
+              <label for="cseSystem">CSE system</label>
+              <select id="cseSystem">
+                <option value="Not sure / follow instructor">Not sure / follow instructor</option>
+                <option value="Citation-Sequence">Citation-Sequence</option>
+                <option value="Citation-Name">Citation-Name</option>
+                <option value="Name-Year">Name-Year</option>
+              </select>
             </div>
 
             <div class="prompt-field">
