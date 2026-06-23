@@ -3,161 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="description" content="Nurse Success Study Hub - Comprehensive study materials for nursing exams">
-  <title>Nurse Success Study Hub</title>
+  <meta name="description" content="Study Guru landing page for nursing study tools, paper prompts, and ACT protocols">
+  <title>Study Guru</title>
 
-  
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/home-style.css">
-  
+
   <!-- PWA Manifest -->
-  <link rel="manifest" href="/static/manifest.json">
-  
+  <link rel="manifest" href="/static/manifest-study-guru.json">
+
   <!-- Theme Color -->
   <meta name="theme-color" content="#2f61f3">
-  
+
   <!-- PWA Specific -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Nurse Study">
-  
+  <meta name="apple-mobile-web-app-title" content="Study Guru">
+
   <!-- Apple Touch Icons -->
   <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
   <link rel="apple-touch-icon" sizes="120x120" href="/static/icons/icon-120.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/static/icons/icon-152.png">
   <link rel="apple-touch-icon" sizes="167x167" href="/static/icons/icon-167.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
-  
+
   <!-- Vercel Analytics -->
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body oncontextmenu="return false;" onselectstart="return false;" oncopy="return false;" oncut="return false;" ondragstart="return false;">
-  <!-- Offline Indicator -->
   <div id="offlineIndicator" class="offline-indicator hidden">
     📡 You're offline - Using cached content
   </div>
 
-  <div class="container">
-    <!-- Header -->
-    <header class="hub-header">
-      <h1>🩺 Nurse Success Study Hub</h1>
-      <p class="tagline">Your path to nursing excellence</p>
-      
-      <!-- Weekly Progress Widget -->
-      <div class="weekly-progress-widget" id="weeklyProgressWidget">
-        <span class="progress-icon">📊</span>
-        <span class="progress-label">Questions answered this week:</span>
-        <span class="progress-value" id="weeklyAnsweredCount">0</span>
-      </div>
+  <div class="container landing-container">
+    <header class="hub-header landing-header">
+      <p class="landing-kicker">study-guru.org</p>
+      <h1>Study Guru</h1>
+      <p class="tagline">One home for study tools, writing support, and offline protocol access.</p>
     </header>
 
-    <!-- Motivational Quote -->
-    <div class="quote-container" id="quote-container">
-      <!-- Populated by pwa-utils.js -->
-    </div>
+    <main aria-label="Study Guru app sections">
+      <div class="landing-grid">
+        <a href="/nurse-study-hub" class="landing-card nurse-card" aria-label="Open Nurse Study Hub">
+          <span class="landing-card-icon">🩺</span>
+          <span class="landing-card-label">Nurse Study Hub</span>
+          <span class="landing-card-copy">NCLEX, lab values, pharmacology, adult health, and certification review.</span>
+        </a>
 
-    <!-- Category Cards -->
-    <div class="categories-grid">
-      {% for cat in categories %}
-      <a href="/category/{{ cat }}" class="category-card image-card">
-        {% if cat == 'Adult_Health' %}
-        <img src="/images/Adult_Health.png" alt="Adult Health" class="category-image">
-        {% elif cat == 'NCLEX' %}
-        <img src="/images/Nursing_Nclex_Exam_Prep_Image.png" alt="NCLEX Comprehensive System" class="category-image">
-        {% elif cat == 'Lab_Values' %}
-        <img src="/images/Nursing_Lab_Values.png" alt="Laboratory Values" class="category-image">
-        {% elif cat == 'Patient_Care_Management' %}
-        <img src="/images/Nursing_Leadership_Image.png" alt="Patient Care Management" class="category-image">
-        {% elif cat == 'Pharmacology' %}
-        <img src="/images/Nursing_Pharmacology_Image.png" alt="Pharmacology" class="category-image">
-        {% elif cat == 'Nursing_Certifications' %}
-        <img src="/images/Nursing_Advanced_Certifications.png" alt="Nursing Certifications" class="category-image">
-        {% else %}
-        <div class="category-card-content">
-          <div class="category-icon">📚</div>
-          <h3 class="category-title">{{ cat.replace('_', ' ') }}</h3>
-        </div>
-        {% endif %}
-      </a>
-      {% endfor %}
-      <!-- AI Paper Prompt Builder Tool -->
-      <a href="/paper-prompt-builder" class="category-card prompt-builder-card" aria-label="Open AI Paper Prompt Builder">
-        <div class="prompt-builder-card-inner">
-          <div class="prompt-builder-badge">AI TOOL</div>
-          <div class="prompt-builder-icon">✍️</div>
-          <h3 class="prompt-builder-title">Paper Prompt<br>Builder</h3>
-          <p class="prompt-builder-subtitle">APA · MLA · Sources</p>
-          <div class="prompt-builder-mini-list">
-            <span>Format</span>
-            <span>Sources</span>
-            <span>Rubric</span>
-          </div>
-        </div>
-      </a>
-    </div>
+        <a href="/paper-prompt-builder" class="landing-card paper-card" aria-label="Open Paper Prompt Builder">
+          <span class="landing-card-icon">✍️</span>
+          <span class="landing-card-label">Paper Prompt Builder</span>
+          <span class="landing-card-copy">Build clear AI-ready prompts for papers, sources, rubrics, and citation formats.</span>
+        </a>
 
-    <!-- Footer -->
+        <a href="/act-protocols" class="landing-card protocols-card" aria-label="Open ACT Protocols">
+          <span class="landing-card-icon">📋</span>
+          <span class="landing-card-label">ACT Protocols</span>
+          <span class="landing-card-copy">A dedicated home for protocol access with offline PWA support.</span>
+        </a>
+      </div>
+    </main>
+
     <footer class="hub-footer">
-      <p>&copy; 2025 Nurse Success Study Hub. Study smarter, succeed faster.</p>
+      <p>&copy; 2025 Study Guru. Built for quick access on web and iPhone.</p>
       <p id="pwaStatus" style="font-size: 12px; opacity: 0.7;"></p>
     </footer>
   </div>
 
-  <!-- Progress Store (must load before pwa-utils) -->
   <script src="/static/js/progress-store.js"></script>
-  
-  <!-- PWA Utilities -->
   <script src="/static/js/pwa-utils.js"></script>
-
-  <script>
-    // ============================================================
-    // Weekly Progress Widget
-    // ============================================================
-    
-    function updateWeeklyCount() {
-      const countEl = document.getElementById('weeklyAnsweredCount');
-      if (countEl && window.StudyGuruProgress) {
-        const count = window.StudyGuruProgress.answeredThisWeek();
-        countEl.textContent = count.toLocaleString();
-        
-        countEl.classList.remove('updated');
-        void countEl.offsetWidth;
-        countEl.classList.add('updated');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', updateWeeklyCount);
-
-    window.addEventListener('storage', function(e) {
-      if (e.key && e.key.startsWith('sg:v1:')) {
-        console.log('[Home] Storage event detected, updating weekly count');
-        updateWeeklyCount();
-      }
-    });
-
-    document.addEventListener('visibilitychange', function() {
-      if (document.visibilityState === 'visible') {
-        updateWeeklyCount();
-      }
-    });
-
-    function updateOfflineIndicator() {
-      const indicator = document.getElementById('offlineIndicator');
-      if (navigator.onLine) {
-        indicator.classList.add('hidden');
-      } else {
-        indicator.classList.remove('hidden');
-      }
-    }
-
-    window.addEventListener('online', updateOfflineIndicator);
-    window.addEventListener('offline', updateOfflineIndicator);
-    updateOfflineIndicator();
-  </script>
 </body>
 </html>

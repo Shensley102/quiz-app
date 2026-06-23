@@ -8,9 +8,9 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.4.3';
-const CACHE_NAME = `nurse-study-hub-${CACHE_VERSION}`;
-const DATA_CACHE_NAME = `nurse-study-hub-data-${CACHE_VERSION}`;
+const CACHE_VERSION = 'v2.5.0';
+const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
+const DATA_CACHE_NAME = `study-guru-data-${CACHE_VERSION}`;
 
 // Static assets to precache
 const STATIC_ASSETS = [
@@ -25,6 +25,10 @@ const STATIC_ASSETS = [
   '/static/js/progress-store.js',
   '/static/js/paper-prompt-builder.js',
   '/static/manifest.json',
+  '/static/manifest-study-guru.json',
+  '/static/manifest-nurse-study.json',
+  '/static/manifest-paper-builder.json',
+  '/static/manifest-act-protocols.json',
   '/static/icons/icon-192.png',
   '/static/icons/icon-512.png',
   '/static/icons/icon-120.png',
@@ -41,7 +45,9 @@ const STATIC_ASSETS = [
 // HTML pages to precache
 const HTML_PAGES = [
   '/',
+  '/nurse-study-hub',
   '/paper-prompt-builder',
+  '/act-protocols',
   '/category/NCLEX',
   '/category/Lab_Values',
   '/category/Patient_Care_Management',
@@ -184,7 +190,7 @@ self.addEventListener('activate', (event) => {
       .then((cacheNames) => {
         return Promise.all(
           cacheNames
-            .filter((name) => name.startsWith('nurse-study-hub-') && 
+            .filter((name) => (name.startsWith('nurse-study-hub-') || name.startsWith('study-guru-')) && 
                              name !== CACHE_NAME && 
                              name !== DATA_CACHE_NAME)
             .map((name) => {
@@ -388,7 +394,7 @@ self.addEventListener('push', (event) => {
     console.log('[SW] Push received:', data);
     
     event.waitUntil(
-      self.registration.showNotification(data.title || 'Nurse Success Study Hub', {
+      self.registration.showNotification(data.title || 'Study Guru', {
         body: data.body || 'You have a new notification',
         icon: '/static/icons/icon-192.png',
         badge: '/static/icons/icon-192.png',

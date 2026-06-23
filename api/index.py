@@ -454,13 +454,29 @@ def get_adult_health_module_stats():
 @app.route('/')
 def home():
     try:
-        categories = get_categories()
-        return render_template('home.html', categories=categories)
+        return render_template('home.html')
     except Exception as e:
         print(f"Error in home route: {e}")
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/nurse-study-hub')
+def nurse_study_hub():
+    try:
+        categories = get_categories()
+        return render_template('nurse-study-hub.html', categories=categories)
+    except Exception as e:
+        print(f"Error in nurse_study_hub route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/act-protocols')
+def act_protocols():
+    try:
+        return render_template('act-protocols.html')
+    except Exception as e:
+        print(f"Error in act_protocols route: {e}")
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/paper-prompt-builder')
