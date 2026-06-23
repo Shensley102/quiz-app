@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="ACT Protocols offline-access protocol repository">
+  <title>ACT Protocols | Study Guru</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/home-style.css">
+
+  <link rel="manifest" href="/static/manifest-act-protocols.json">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ACT Protocols">
+  <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+  <div id="offlineIndicator" class="offline-indicator hidden">
+    📡 You're offline - Using cached content
+  </div>
+
+  <div class="container landing-container">
+    <a class="back-link" href="/">← Back to Study Guru</a>
+    <header class="hub-header landing-header">
+      <p class="landing-kicker">Protocol Repository</p>
+      <h1>📋 ACT Protocols</h1>
+      <p class="tagline">This section is ready for protocol content and offline PWA access.</p>
+    </header>
+
+    <section class="protocol-placeholder" aria-label="ACT Protocols status">
+      <h2>ACT Protocols Home</h2>
+      <p>The protocol library can be added here as individual protocol pages or data-driven protocol cards.</p>
+      <p>Once protocol content is added, the service worker can cache those pages so they remain available offline on iPhone.</p>
+    </section>
+
+    <footer class="hub-footer">
+      <p>&copy; 2025 Study Guru. ACT Protocols.</p>
+      <p id="pwaStatus" style="font-size: 12px; opacity: 0.7;"></p>
+    </footer>
+  </div>
+
+  <script src="/static/js/progress-store.js"></script>
+  <script src="/static/js/pwa-utils.js"></script>
+</body>
+</html>
