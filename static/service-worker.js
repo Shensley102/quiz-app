@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.5.0';
+const CACHE_VERSION = 'v2.5.1';
 const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `study-guru-data-${CACHE_VERSION}`;
 
@@ -29,12 +29,50 @@ const STATIC_ASSETS = [
   '/static/manifest-nurse-study.json',
   '/static/manifest-paper-builder.json',
   '/static/manifest-act-protocols.json',
-  '/static/icons/icon-192.png',
-  '/static/icons/icon-512.png',
-  '/static/icons/icon-120.png',
-  '/static/icons/icon-152.png',
-  '/static/icons/icon-167.png',
-  '/static/icons/icon-180.png',
+  '/static/icons/study-guru/icon-48.png',
+  '/static/icons/study-guru/icon-72.png',
+  '/static/icons/study-guru/icon-96.png',
+  '/static/icons/study-guru/icon-120.png',
+  '/static/icons/study-guru/icon-144.png',
+  '/static/icons/study-guru/icon-152.png',
+  '/static/icons/study-guru/icon-167.png',
+  '/static/icons/study-guru/icon-180.png',
+  '/static/icons/study-guru/icon-192.png',
+  '/static/icons/study-guru/icon-512.png',
+  '/static/icons/study-guru/icon-1024.png',
+  '/static/icons/nurse-study-guide/icon-48.png',
+  '/static/icons/nurse-study-guide/icon-72.png',
+  '/static/icons/nurse-study-guide/icon-96.png',
+  '/static/icons/nurse-study-guide/icon-120.png',
+  '/static/icons/nurse-study-guide/icon-144.png',
+  '/static/icons/nurse-study-guide/icon-152.png',
+  '/static/icons/nurse-study-guide/icon-167.png',
+  '/static/icons/nurse-study-guide/icon-180.png',
+  '/static/icons/nurse-study-guide/icon-192.png',
+  '/static/icons/nurse-study-guide/icon-512.png',
+  '/static/icons/nurse-study-guide/icon-1024.png',
+  '/static/icons/ai-prompt-builder/icon-48.png',
+  '/static/icons/ai-prompt-builder/icon-72.png',
+  '/static/icons/ai-prompt-builder/icon-96.png',
+  '/static/icons/ai-prompt-builder/icon-120.png',
+  '/static/icons/ai-prompt-builder/icon-144.png',
+  '/static/icons/ai-prompt-builder/icon-152.png',
+  '/static/icons/ai-prompt-builder/icon-167.png',
+  '/static/icons/ai-prompt-builder/icon-180.png',
+  '/static/icons/ai-prompt-builder/icon-192.png',
+  '/static/icons/ai-prompt-builder/icon-512.png',
+  '/static/icons/ai-prompt-builder/icon-1024.png',
+  '/static/icons/act-protocols/icon-48.png',
+  '/static/icons/act-protocols/icon-72.png',
+  '/static/icons/act-protocols/icon-96.png',
+  '/static/icons/act-protocols/icon-120.png',
+  '/static/icons/act-protocols/icon-144.png',
+  '/static/icons/act-protocols/icon-152.png',
+  '/static/icons/act-protocols/icon-167.png',
+  '/static/icons/act-protocols/icon-180.png',
+  '/static/icons/act-protocols/icon-192.png',
+  '/static/icons/act-protocols/icon-512.png',
+  '/static/icons/act-protocols/icon-1024.png',
   '/images/Nursing_Nclex_Exam_Prep_Image.png',
   '/images/Nursing_Lab_Values.png',
   '/images/Nursing_Leadership_Image.png',
@@ -396,8 +434,8 @@ self.addEventListener('push', (event) => {
     event.waitUntil(
       self.registration.showNotification(data.title || 'Study Guru', {
         body: data.body || 'You have a new notification',
-        icon: '/static/icons/icon-192.png',
-        badge: '/static/icons/icon-192.png',
+        icon: '/static/icons/nurse-study-guide/icon-192.png',
+        badge: '/static/icons/nurse-study-guide/icon-192.png',
         data: data.url || '/'
       })
     );
