@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/home-style.css">
+  <link rel="stylesheet" href="/static/act-protocols.css">
 
   <link rel="manifest" href="/static/manifest-act-protocols.json">
   <meta name="theme-color" content="#0f766e">
@@ -21,31 +22,49 @@
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-  <div id="offlineIndicator" class="offline-indicator hidden">
-    📡 You're offline - Using cached content
-  </div>
+  <div id="offlineIndicator" class="offline-indicator hidden">📡 You're offline - Using cached content</div>
 
-  <div class="container landing-container">
-    <a class="back-link" href="/">← Back to Study Guru</a>
-    <header class="hub-header landing-header">
-      <p class="landing-kicker">Protocol Repository</p>
+  <main class="act-shell">
+    <a class="back-link act-back" href="/">← Back to Study Guru</a>
+    <header class="act-hero">
+      <p class="act-kicker">Advanced Care Team</p>
       <h1>📋 ACT Protocols</h1>
-      <p class="tagline">This section is ready for protocol content and offline PWA access.</p>
+      <p>Search, open, and save individual ACT protocol PDFs for offline clinical reference.</p>
+      <div class="act-actions">
+        <button id="saveAllBtn" class="btn btn-primary" type="button">Save All Protocols Offline</button>
+        <span id="saveAllStatus" class="save-all-status" role="status" aria-live="polite"></span>
+      </div>
+      <p class="act-note">PDFs must be manually added under <code>static/protocols/act/</code> using the exact paths from the manifest before links and offline saves can succeed.</p>
     </header>
 
-    <section class="protocol-placeholder" aria-label="ACT Protocols status">
-      <h2>ACT Protocols Home</h2>
-      <p>The protocol library can be added here as individual protocol pages or data-driven protocol cards.</p>
-      <p>Once protocol content is added, the service worker can cache those pages so they remain available offline on iPhone.</p>
+    <section class="act-controls" aria-label="Protocol search and filters">
+      <label class="search-label" for="protocolSearch">Search protocols</label>
+      <input id="protocolSearch" class="protocol-search" type="search" placeholder="Search by title, ID, category, folder, or tags..." autocomplete="off">
+      <div id="categoryFilters" class="category-filters" aria-label="Filter by category">
+        <button class="filter-btn active" type="button" data-category="All">All</button>
+        <button class="filter-btn" type="button" data-category="Cardiac">Cardiac</button>
+        <button class="filter-btn" type="button" data-category="General">General</button>
+        <button class="filter-btn" type="button" data-category="Medical">Medical</button>
+        <button class="filter-btn" type="button" data-category="Pediatric">Pediatric</button>
+        <button class="filter-btn" type="button" data-category="Procedures">Procedures</button>
+        <button class="filter-btn" type="button" data-category="Trauma">Trauma</button>
+      </div>
     </section>
 
-    <footer class="hub-footer">
+    <section class="act-results-summary" aria-live="polite">
+      <span id="resultCount">Loading protocols...</span>
+    </section>
+
+    <section id="protocolGrid" class="protocol-grid" aria-label="ACT protocol PDF cards"></section>
+
+    <footer class="hub-footer act-footer">
       <p>&copy; 2025 Study Guru. ACT Protocols.</p>
       <p id="pwaStatus" style="font-size: 12px; opacity: 0.7;"></p>
     </footer>
-  </div>
+  </main>
 
   <script src="/static/js/progress-store.js"></script>
   <script src="/static/js/pwa-utils.js"></script>
+  <script src="/static/js/act-protocols.js"></script>
 </body>
 </html>
