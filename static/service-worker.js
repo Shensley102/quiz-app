@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.5.1';
+const CACHE_VERSION = 'v2.6.0';
 const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `study-guru-data-${CACHE_VERSION}`;
 
@@ -19,16 +19,19 @@ const STATIC_ASSETS = [
   '/static/category-style.css',
   '/static/quiz-style.css',
   '/static/home-style.css',
+  '/static/act-protocols.css',
   '/static/paper-prompt-builder.css',
   '/static/quiz-script.js',
   '/static/js/pwa-utils.js',
   '/static/js/progress-store.js',
   '/static/js/paper-prompt-builder.js',
+  '/static/js/act-protocols.js',
   '/static/manifest.json',
   '/static/manifest-study-guru.json',
   '/static/manifest-nurse-study.json',
   '/static/manifest-paper-builder.json',
   '/static/manifest-act-protocols.json',
+  '/static/data/act-protocols.json',
   '/static/icons/study-guru/icon-48.png',
   '/static/icons/study-guru/icon-72.png',
   '/static/icons/study-guru/icon-96.png',
@@ -246,8 +249,12 @@ self.addEventListener('activate', (event) => {
 
 // Helper function to determine if a request is for a static asset
 function isStaticAsset(pathname) {
-  const staticExtensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2', '.ttf', '.eot', '.webp'];
-  return pathname.startsWith('/static/') || staticExtensions.some(ext => pathname.endsWith(ext));
+  const staticExtensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2', '.ttf', '.eot', '.webp', '.pdf'];
+  return pathname.startsWith('/static/') || staticExtensions.some(ext => pathname.toLowerCase().endsWith(ext));
+}
+
+function isActProtocolPdf(pathname) {
+  return pathname.startsWith('/static/protocols/act/') && pathname.toLowerCase().endsWith('.pdf');
 }
 
 // Helper function to determine if a request is for JSON data
@@ -357,7 +364,10 @@ self.addEventListener('fetch', (event) => {
   const pathname = url.pathname;
   
   // Strategy based on resource type
-  if (isStaticAsset(pathname)) {
+  if (isActProtocolPdf(pathname)) {
+    // ACT protocol PDFs: cache first so saved protocols open offline.
+    event.respondWith(cacheFirstWithNetwork(event.request, DATA_CACHE_NAME));
+  } else if (isStaticAsset(pathname)) {
     // Static assets: Cache first
     event.respondWith(cacheFirstWithNetwork(event.request, CACHE_NAME));
   } else if (isQuestionImage(pathname)) {
@@ -381,9 +391,15 @@ self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'CACHE_URLS') {
     const urls = event.data.urls || [];
     caches.open(DATA_CACHE_NAME)
-      .then((cache) => cache.addAll(urls))
-      .then(() => {
-        console.log('[SW] Cached additional URLs:', urls);
+      .then((cache) => Promise.allSettled(
+        urls.map((url) => cache.add(url).catch((err) => {
+          console.warn(`[SW] Could not cache requested URL ${url}:`, err.message);
+          throw err;
+        }))
+      ))
+      .then((results) => {
+        const cachedCount = results.filter((result) => result.status === 'fulfilled').length;
+        console.log(`[SW] Cached ${cachedCount}/${urls.length} additional URLs`);
       })
       .catch((err) => {
         console.error('[SW] Failed to cache additional URLs:', err);
