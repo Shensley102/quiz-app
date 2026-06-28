@@ -479,6 +479,15 @@ def act_protocols():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/act-protocols/viewer')
+def act_protocol_viewer():
+    try:
+        return render_template('act-protocol-viewer.html')
+    except Exception as e:
+        print(f"Error in act_protocol_viewer route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/paper-prompt-builder')
 def paper_prompt_builder():
     try:
