@@ -37,6 +37,26 @@ body {
   text-decoration-thickness: 3px;
 }
 
+
+.act-pwa .act-back {
+  display: none;
+}
+
+.act-pwa .act-shell {
+  padding-top: calc(14px + env(safe-area-inset-top));
+}
+
+
+@media (display-mode: standalone) {
+  .act-back {
+    display: none;
+  }
+
+  .act-shell {
+    padding-top: calc(14px + env(safe-area-inset-top));
+  }
+}
+
 .act-hero {
   background:
     linear-gradient(135deg, rgba(7, 7, 7, 0.92), rgba(7, 7, 7, 0.42) 34%, rgba(201, 22, 42, 0.96) 35%, rgba(201, 22, 42, 0.96) 67%, rgba(7, 7, 7, 0.96) 68%),
@@ -422,6 +442,7 @@ body {
     width: min(100% - 18px, 1180px);
     padding-top: 14px;
   }
+
 
   .act-hero {
     padding: 22px;
