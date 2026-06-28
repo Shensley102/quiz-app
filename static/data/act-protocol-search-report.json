@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-28T03:32:08.029101+00:00",
+  "generatedAt": "2026-06-28T11:06:42.911026+00:00",
   "totalProtocolsInManifest": 108,
   "totalPdfsFound": 89,
   "totalPdfsMissing": 19,
@@ -12,17 +12,17 @@
     {
       "id": "3203-M003",
       "title": "Altered Mental Status",
-      "file": "/static/protocols/act/medical/3203-M003 Altered Mental Status.pdf"
+      "file": "/static/protocols/act/medical/3203-M003_Altered_Mental_Status.pdf"
     },
     {
       "id": "3203-M019",
       "title": "Overdose, Poisoning, Toxic Exposure",
-      "file": "/static/protocols/act/medical/3203-M019_Overdose_Poisoning_Toxic_Exposure.pdf"
+      "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf"
     },
     {
       "id": "3203-M021",
       "title": "Hypoglycemia",
-      "file": "/static/protocols/act/medical/3203-M021 Hypoglycemia.pdf"
+      "file": "/static/protocols/act/medical/3203-M021_Hypoglycemia.pdf"
     },
     {
       "id": "GUID-3203-PR019",

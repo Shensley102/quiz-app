@@ -370,7 +370,7 @@
     "title": "Altered Mental Status",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M003 Altered Mental Status.pdf",
+    "file": "/static/protocols/act/medical/3203-M003_Altered_Mental_Status.pdf",
     "tags": [
       "AMS",
       "altered mental status",
@@ -659,7 +659,7 @@
     "title": "Overdose, Poisoning, Toxic Exposure",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M019_Overdose_Poisoning_Toxic_Exposure.pdf",
+    "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
     "tags": [
       "overdose",
       "poisoning",
@@ -694,7 +694,7 @@
     "title": "Hypoglycemia",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M021 Hypoglycemia.pdf",
+    "file": "/static/protocols/act/medical/3203-M021_Hypoglycemia.pdf",
     "tags": [
       "hypoglycemia",
       "glucose",
