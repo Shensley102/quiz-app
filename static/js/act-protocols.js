@@ -8,6 +8,10 @@
     count: document.getElementById('resultCount'), saveAll: document.getElementById('saveAllBtn'), saveAllStatus: document.getElementById('saveAllStatus')
   };
   const encoded = (url) => encodeURI(url);
+  function applyDisplayModeClass() {
+    const isStandalone = window.matchMedia?.('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    document.body.classList.toggle('act-pwa', Boolean(isStandalone));
+  }
   const searchable = (p) => [p.id, p.title, p.category, p.folder, ...(p.tags || [])].join(' ').toLowerCase();
   async function cachePdf(protocol) {
     const url = encoded(protocol.file);
@@ -49,7 +53,10 @@
         </div>
       </article>`).join('');
   }
-  async function handleOpen(protocol) { window.open(encoded(protocol.file), '_blank', 'noopener'); }
+  async function handleOpen(protocol) {
+    const params = new URLSearchParams({ file: protocol.file, title: `${protocol.id} ${protocol.title}` });
+    window.location.href = `/act-protocols/viewer#${params.toString()}`;
+  }
   async function handleSave(protocol, button) {
     if (!('caches' in window)) { alert('Offline caching is not available in this browser.'); return; }
     button.disabled = true; button.textContent = 'Saving...';
@@ -75,6 +82,8 @@
     els.saveAll.addEventListener('click', saveAll);
   }
   async function init() {
+    applyDisplayModeClass();
+    window.matchMedia?.('(display-mode: standalone)').addEventListener?.('change', applyDisplayModeClass);
     bind();
     try {
       const response = await fetch(MANIFEST_URL, { cache: 'no-cache' });
