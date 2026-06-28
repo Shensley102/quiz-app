@@ -169,19 +169,6 @@ body {
   transform: none;
 }
 
-.act-note {
-  background: rgba(7, 7, 7, 0.72);
-  border: 2px solid var(--act-yellow);
-  border-radius: 16px;
-  padding: 12px 14px;
-  margin-bottom: 0;
-}
-
-.act-note code {
-  color: var(--act-yellow);
-  font-weight: 800;
-}
-
 .save-all-status {
   font-weight: 800;
   color: var(--act-white);
