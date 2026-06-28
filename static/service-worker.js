@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.6.1';
+const CACHE_VERSION = 'v2.6.2';
 const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `study-guru-data-${CACHE_VERSION}`;
 
@@ -26,6 +26,7 @@ const STATIC_ASSETS = [
   '/static/js/progress-store.js',
   '/static/js/paper-prompt-builder.js',
   '/static/js/act-protocols.js',
+  '/static/js/act-protocol-viewer.js',
   '/static/manifest.json',
   '/static/manifest-study-guru.json',
   '/static/manifest-nurse-study.json',
@@ -89,6 +90,7 @@ const HTML_PAGES = [
   '/nurse-study-hub',
   '/paper-prompt-builder',
   '/act-protocols',
+  '/act-protocols/viewer',
   '/category/NCLEX',
   '/category/Lab_Values',
   '/category/Patient_Care_Management',

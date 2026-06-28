@@ -49,7 +49,10 @@
         </div>
       </article>`).join('');
   }
-  async function handleOpen(protocol) { window.open(encoded(protocol.file), '_blank', 'noopener'); }
+  async function handleOpen(protocol) {
+    const params = new URLSearchParams({ file: protocol.file, title: `${protocol.id} ${protocol.title}` });
+    window.location.href = `/act-protocols/viewer#${params.toString()}`;
+  }
   async function handleSave(protocol, button) {
     if (!('caches' in window)) { alert('Offline caching is not available in this browser.'); return; }
     button.disabled = true; button.textContent = 'Saving...';
