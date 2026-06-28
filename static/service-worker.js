@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.6.0';
+const CACHE_VERSION = 'v2.6.1';
 const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `study-guru-data-${CACHE_VERSION}`;
 
@@ -177,7 +177,14 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('[SW] Caching static assets');
-        return cache.addAll(STATIC_ASSETS);
+        return Promise.allSettled(
+          STATIC_ASSETS.map((url) =>
+            cache.add(url).catch((err) => {
+              console.warn(`[SW] Could not cache static asset ${url}:`, err.message);
+              throw err;
+            })
+          )
+        );
       })
       .then(() => {
         return caches.open(CACHE_NAME);
