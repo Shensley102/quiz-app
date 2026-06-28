@@ -479,7 +479,7 @@
     "title": "Overdose, Poisoning, Toxic Exposure",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, Toxic Exposure.pdf",
+    "file": "/static/protocols/act/medical/3203-M019_Overdose_Poisoning_Toxic_Exposure.pdf",
     "tags": [
       "overdose",
       "poisoning",
@@ -1223,7 +1223,7 @@
     "title": "Intravenous Insertion \u2013 Peripheral",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR019 Intravenous Insertion - Peripheral.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR019_Intravenous_Insertion_Peripheral.pdf",
     "tags": [
       "IV insertion",
       "peripheral IV",
@@ -1235,7 +1235,7 @@
     "title": "Endotracheal Intubation",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR020 Endotracheal Intubation.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR020_Endotracheal_Intubation.pdf",
     "tags": [
       "intubation",
       "endotracheal tube",
@@ -1248,7 +1248,7 @@
     "title": "Restraints",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR021 Restraints.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR021_Restraints.pdf",
     "tags": [
       "restraints",
       "safety",
@@ -1261,7 +1261,7 @@
     "title": "Transcutaneous External Pacing",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR022 Transcutaneous External Pacing.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR022_Transcutaneous_External_Pacing.pdf",
     "tags": [
       "pacing",
       "transcutaneous pacing",
@@ -1274,7 +1274,7 @@
     "title": "Intra-Aortic Balloon Pump",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR023 Intra-Aortic Balloon Pump.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR023_Intra-Aortic_Balloon_Pump_Impella_Device.pdf",
     "tags": [
       "IABP",
       "intra-aortic balloon pump",
@@ -1287,7 +1287,7 @@
     "title": "Ventilation with a Mechanical Ventilator",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR024 Ventilation with a Mechanical Ventilator.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR024_Ventilation_with_Mechanical_Ventilator.pdf",
     "tags": [
       "ventilator",
       "mechanical ventilation",
@@ -1299,7 +1299,7 @@
     "title": "Emergency Blood Product Administration",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR025 Emergency Blood Product Administration.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR025_Emergency_Blood_Product_Administration.pdf",
     "tags": [
       "emergency blood",
       "transfusion",
@@ -1312,7 +1312,7 @@
     "title": "Emergency Whole Blood Product Administration",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR025B Emergency Whole Blood Product Administration.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR025b_Emergency_Whole_Blood_Product_Administration.pdf",
     "tags": [
       "whole blood",
       "emergency blood",
@@ -1325,7 +1325,7 @@
     "title": "Warming of Blood Products & Intravenous Fluids",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR026 Warming of Blood Products and Intravenous Fluids.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR026_Warming_of_Blood_Products_and_IV_Fluids.pdf",
     "tags": [
       "blood warmer",
       "fluid warmer",
@@ -1338,7 +1338,7 @@
     "title": "Pelvic Circumferential Compression Binder",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR027 Pelvic Circumferential Compression Binder.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR027_Pelvic_Circumferential_Compression_Binder.pdf",
     "tags": [
       "pelvic binder",
       "pelvic fracture",
@@ -1351,7 +1351,7 @@
     "title": "Hemostatic Dressing \u2013 QuickClot Gauze",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR028 Hemostatic Dressing - QuickClot Gauze.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR028_Hemostatic_Dressing_QuickClot_Gauze.pdf",
     "tags": [
       "hemostatic dressing",
       "QuickClot",
@@ -1364,7 +1364,7 @@
     "title": "Prone Positioning",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR029 Prone Positioning.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR029_Prone_Positioning.pdf",
     "tags": [
       "prone positioning",
       "respiratory",
@@ -1377,7 +1377,7 @@
     "title": "Impella (Abiomed)",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR030 Impella Abiomed.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR030_Impella_Abiomed.pdf",
     "tags": [
       "Impella",
       "Abiomed",
@@ -1390,7 +1390,7 @@
     "title": "Ventricular Assist Devices (VADs)",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR031 Ventricular Assist Devices VADs.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR031_Ventricular_Assist_Devices_VADs.pdf",
     "tags": [
       "VAD",
       "ventricular assist device",
@@ -1403,7 +1403,7 @@
     "title": "High Flow Nasal Cannula",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR032 High Flow Nasal Cannula.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR032_High_Flow_Nasal_Cannula.pdf",
     "tags": [
       "HFNC",
       "high flow nasal cannula",
