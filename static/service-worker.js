@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.6.6';
+const CACHE_VERSION = 'v2.7.0';
 const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `study-guru-data-${CACHE_VERSION}`;
 
@@ -33,6 +33,10 @@ const STATIC_ASSETS = [
   '/static/manifest-paper-builder.json',
   '/static/manifest-act-protocols.json',
   '/static/data/act-protocols.json',
+  '/static/data/act-protocol-search.json',
+  '/static/data/act-medication-aliases.json',
+  '/static/data/act-medication-alias-seed.json',
+  '/static/data/act-protocol-search-report.json',
   '/static/icons/study-guru/icon-48.png',
   '/static/icons/study-guru/icon-72.png',
   '/static/icons/study-guru/icon-96.png',
