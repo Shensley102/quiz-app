@@ -11,7 +11,12 @@
       "coronary",
       "chest pain",
       "STEMI"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-C002",
@@ -24,7 +29,12 @@
       "asystole",
       "PEA",
       "ACLS"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-C003",
@@ -37,7 +47,12 @@
       "atrial flutter",
       "dysrhythmia",
       "cardiac"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-C004",
@@ -50,7 +65,12 @@
       "cardiac",
       "rhythm",
       "pacing"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-C005",
@@ -64,7 +84,12 @@
       "heart failure",
       "cardiac",
       "respiratory"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-C006",
@@ -78,7 +103,12 @@
       "VT",
       "wide complex",
       "narrow complex"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-C007",
@@ -92,7 +122,12 @@
       "VF",
       "cardiac arrest",
       "defibrillation"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-C008",
@@ -105,7 +140,12 @@
       "cardiac",
       "perfusion",
       "oxygenation"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-C009",
@@ -118,7 +158,12 @@
       "hypothermia",
       "post arrest",
       "cardiac arrest"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-C010",
@@ -132,7 +177,12 @@
       "MI",
       "cardiac",
       "12 lead"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-G001",
@@ -145,7 +195,12 @@
       "oxygenation",
       "altitude",
       "transport"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-G002",
@@ -157,7 +212,12 @@
       "general care",
       "assessment",
       "transport"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-G003",
@@ -170,7 +230,12 @@
       "infusion",
       "medication",
       "drip"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-G004",
@@ -183,7 +248,12 @@
       "vomiting",
       "motion sickness",
       "antiemetic"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-G005",
@@ -197,7 +267,12 @@
       "pain",
       "ketamine",
       "fentanyl"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-G006",
@@ -211,7 +286,12 @@
       "agitation",
       "sedation",
       "behavioral"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-G007",
@@ -224,7 +304,12 @@
       "Diprivan",
       "sedation",
       "infusion"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-G008",
@@ -237,7 +322,12 @@
       "rapid sequence induction",
       "intubation",
       "airway"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M001",
@@ -250,7 +340,12 @@
       "aneurysm",
       "abdominal pain",
       "vascular"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M002",
@@ -263,7 +358,12 @@
       "diabetic ketoacidosis",
       "diabetes",
       "metabolic"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M003",
@@ -276,7 +376,12 @@
       "altered mental status",
       "neuro",
       "unconscious"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M004",
@@ -289,7 +394,12 @@
       "anaphylaxis",
       "epinephrine",
       "airway"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M005",
@@ -302,7 +412,12 @@
       "electrolyte",
       "hypomagnesemia",
       "hypermagnesemia"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M006",
@@ -315,7 +430,12 @@
       "electrolyte",
       "hyperkalemia",
       "hypokalemia"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M007",
@@ -328,7 +448,12 @@
       "gastrointestinal bleeding",
       "hemorrhage",
       "blood"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M008",
@@ -342,7 +467,12 @@
       "bronchospasm",
       "respiratory",
       "albuterol"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M009",
@@ -355,7 +485,12 @@
       "hyperthermia",
       "environmental",
       "temperature"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M010",
@@ -367,7 +502,12 @@
       "hypertension",
       "hypertensive emergency",
       "blood pressure"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M011",
@@ -380,7 +520,12 @@
       "shock",
       "blood pressure",
       "perfusion"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M012",
@@ -393,7 +538,12 @@
       "cold exposure",
       "temperature",
       "environmental"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M013",
@@ -407,7 +557,12 @@
       "neuro",
       "headache",
       "bleed"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M014",
@@ -420,7 +575,12 @@
       "PE",
       "respiratory",
       "clot"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M015",
@@ -433,7 +593,12 @@
       "status epilepticus",
       "neuro",
       "benzodiazepine"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M016",
@@ -446,7 +611,12 @@
       "infection",
       "shock",
       "hypotension"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M017",
@@ -459,7 +629,12 @@
       "TIA",
       "neuro",
       "CVA"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M018",
@@ -472,7 +647,12 @@
       "thoracic",
       "chest pain",
       "vascular"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M019",
@@ -485,7 +665,12 @@
       "poisoning",
       "toxic exposure",
       "toxicology"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M020",
@@ -497,7 +682,12 @@
       "malignant hyperthermia",
       "hyperthermia",
       "dantrolene"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M021",
@@ -510,7 +700,12 @@
       "glucose",
       "diabetes",
       "altered mental status"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-M022",
@@ -524,7 +719,12 @@
       "pregnancy",
       "assessment",
       "delivery"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T001",
@@ -537,7 +737,12 @@
       "GU trauma",
       "hemorrhage",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T002",
@@ -550,7 +755,12 @@
       "thermal burn",
       "chemical burn",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T003",
@@ -563,7 +773,12 @@
       "crush syndrome",
       "rhabdomyolysis",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T004",
@@ -576,7 +791,12 @@
       "arterial gas embolus",
       "dive",
       "AGE"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T005",
@@ -589,7 +809,12 @@
       "lightning injury",
       "burns",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T006",
@@ -601,7 +826,12 @@
       "eye injury",
       "ocular trauma",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T007",
@@ -614,7 +844,12 @@
       "facial trauma",
       "airway",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T008",
@@ -627,7 +862,12 @@
       "adult trauma",
       "pediatric trauma",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T009",
@@ -640,7 +880,12 @@
       "fracture",
       "orthopedic",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T010",
@@ -653,7 +898,12 @@
       "submersion",
       "hypoxia",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T011",
@@ -667,7 +917,12 @@
       "venom",
       "toxicology",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T012",
@@ -680,7 +935,12 @@
       "SCI",
       "neuro",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T013",
@@ -693,7 +953,12 @@
       "smoke inhalation",
       "toxicology",
       "burns"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T014",
@@ -707,7 +972,12 @@
       "head injury",
       "neuro",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T015",
@@ -720,7 +990,12 @@
       "chest trauma",
       "pneumothorax",
       "hemothorax"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-T016",
@@ -734,7 +1009,12 @@
       "hemorrhage",
       "trauma",
       "bleeding"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED001",
@@ -747,7 +1027,12 @@
       "general management",
       "child",
       "infant"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED002",
@@ -760,7 +1045,12 @@
       "allergic reaction",
       "anaphylaxis",
       "epinephrine"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED003",
@@ -773,7 +1063,12 @@
       "altered mental status",
       "AMS",
       "neuro"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED004",
@@ -786,7 +1081,12 @@
       "asystole",
       "cardiac arrest",
       "PALS"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED005",
@@ -799,7 +1099,12 @@
       "bradycardia",
       "cardiac",
       "PALS"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED006",
@@ -812,7 +1117,12 @@
       "cardiogenic shock",
       "cardiac",
       "shock"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED007",
@@ -825,7 +1135,12 @@
       "cyanotic heart disease",
       "congenital heart",
       "cardiac"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED008",
@@ -838,7 +1153,12 @@
       "DKA",
       "diabetes",
       "ketoacidosis"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED009",
@@ -851,7 +1171,12 @@
       "hypotension",
       "shock",
       "blood pressure"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED010",
@@ -864,7 +1189,12 @@
       "respiratory distress",
       "infection",
       "airway"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED011",
@@ -878,7 +1208,12 @@
       "foreign body",
       "aspiration",
       "airway"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED012",
@@ -891,7 +1226,12 @@
       "PEA",
       "cardiac arrest",
       "PALS"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED013",
@@ -905,7 +1245,12 @@
       "pulseless VT",
       "VF",
       "PALS"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED014",
@@ -918,7 +1263,12 @@
       "reactive airway",
       "asthma",
       "bronchospasm"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED015",
@@ -931,7 +1281,12 @@
       "seizures",
       "status epilepticus",
       "neuro"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED016",
@@ -944,7 +1299,12 @@
       "sepsis",
       "meningitis",
       "infection"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED017",
@@ -957,7 +1317,12 @@
       "SVT",
       "supraventricular tachycardia",
       "cardiac"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED018",
@@ -971,7 +1336,12 @@
       "VT",
       "pulse",
       "cardiac"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "3203-PED019",
@@ -984,7 +1354,12 @@
       "newborn",
       "resuscitation",
       "pediatric"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR001",
@@ -997,7 +1372,12 @@
       "ECG",
       "EKG",
       "cardiac"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR002",
@@ -1010,7 +1390,12 @@
       "transfusion",
       "PRBC",
       "FFP"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR003",
@@ -1023,7 +1408,12 @@
       "blood sugar",
       "BGL",
       "diabetes"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR004",
@@ -1036,7 +1426,12 @@
       "shock",
       "cardiac",
       "tachycardia"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR005",
@@ -1049,7 +1444,12 @@
       "pneumothorax",
       "hemothorax",
       "thoracic"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR006",
@@ -1062,7 +1462,12 @@
       "bleeding",
       "hemorrhage",
       "trauma"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR007",
@@ -1074,7 +1479,12 @@
       "cricothyrotomy",
       "surgical airway",
       "airway"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR008",
@@ -1088,7 +1498,12 @@
       "VF",
       "VT",
       "cardiac arrest"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR009",
@@ -1101,7 +1516,12 @@
       "capnography",
       "CO2",
       "ventilation"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR010",
@@ -1114,7 +1534,12 @@
       "NG",
       "OG",
       "decompression"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR011",
@@ -1126,7 +1551,12 @@
       "bougie",
       "airway",
       "intubation"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR012",
@@ -1139,7 +1569,12 @@
       "nebulizer",
       "respiratory",
       "albuterol"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR013",
@@ -1152,7 +1587,12 @@
       "intraosseous",
       "infusion",
       "vascular access"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR014",
@@ -1165,7 +1605,12 @@
       "intracranial pressure",
       "neuro",
       "monitoring"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR015",
@@ -1178,7 +1623,12 @@
       "fluids",
       "infusion",
       "vascular access"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR016",
@@ -1191,7 +1641,12 @@
       "LTS-D",
       "supraglottic airway",
       "airway"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR017",
@@ -1203,7 +1658,12 @@
       "needle thoracostomy",
       "needle decompression",
       "tension pneumothorax"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR018",
@@ -1216,7 +1676,12 @@
       "CPAP",
       "BiPAP",
       "ventilation"
-    ]
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR019",
@@ -1228,7 +1693,12 @@
       "IV insertion",
       "peripheral IV",
       "vascular access"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR020",
@@ -1241,7 +1711,12 @@
       "endotracheal tube",
       "airway",
       "ETT"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR021",
@@ -1254,7 +1729,12 @@
       "safety",
       "combative",
       "patient management"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR022",
@@ -1267,7 +1747,12 @@
       "transcutaneous pacing",
       "bradycardia",
       "cardiac"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR023",
@@ -1280,7 +1765,12 @@
       "intra-aortic balloon pump",
       "cardiac",
       "mechanical support"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR024",
@@ -1292,7 +1782,12 @@
       "ventilator",
       "mechanical ventilation",
       "respiratory"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR025",
@@ -1305,7 +1800,12 @@
       "transfusion",
       "blood product",
       "hemorrhage"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR025B",
@@ -1318,7 +1818,12 @@
       "emergency blood",
       "transfusion",
       "hemorrhage"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR026",
@@ -1331,7 +1836,12 @@
       "fluid warmer",
       "warming",
       "transfusion"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR027",
@@ -1344,7 +1854,12 @@
       "pelvic fracture",
       "trauma",
       "hemorrhage"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR028",
@@ -1357,7 +1872,12 @@
       "QuickClot",
       "gauze",
       "bleeding"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR029",
@@ -1370,7 +1890,12 @@
       "respiratory",
       "oxygenation",
       "ventilation"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR030",
@@ -1383,7 +1908,12 @@
       "Abiomed",
       "cardiac support",
       "mechanical support"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR031",
@@ -1396,7 +1926,12 @@
       "ventricular assist device",
       "LVAD",
       "cardiac support"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   },
   {
     "id": "GUID-3203-PR032",
@@ -1409,6 +1944,11 @@
       "high flow nasal cannula",
       "oxygenation",
       "respiratory"
-    ]
+    ],
+    "missingPdf": true,
+    "possibleScannedPdf": false,
+    "normalizedText": "",
+    "pages": [],
+    "detectedMedications": []
   }
 ]

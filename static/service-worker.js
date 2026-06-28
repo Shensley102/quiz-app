@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.6.0';
+const CACHE_VERSION = 'v2.7.1';
 const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `study-guru-data-${CACHE_VERSION}`;
 
@@ -26,12 +26,17 @@ const STATIC_ASSETS = [
   '/static/js/progress-store.js',
   '/static/js/paper-prompt-builder.js',
   '/static/js/act-protocols.js',
+  '/static/js/act-protocol-viewer.js',
   '/static/manifest.json',
   '/static/manifest-study-guru.json',
   '/static/manifest-nurse-study.json',
   '/static/manifest-paper-builder.json',
   '/static/manifest-act-protocols.json',
   '/static/data/act-protocols.json',
+  '/static/data/act-protocol-search.json',
+  '/static/data/act-medication-aliases.json',
+  '/static/data/act-medication-alias-seed.json',
+  '/static/data/act-protocol-search-report.json',
   '/static/icons/study-guru/icon-48.png',
   '/static/icons/study-guru/icon-72.png',
   '/static/icons/study-guru/icon-96.png',
@@ -89,6 +94,7 @@ const HTML_PAGES = [
   '/nurse-study-hub',
   '/paper-prompt-builder',
   '/act-protocols',
+  '/act-protocols/viewer',
   '/category/NCLEX',
   '/category/Lab_Values',
   '/category/Patient_Care_Management',
@@ -177,7 +183,14 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('[SW] Caching static assets');
-        return cache.addAll(STATIC_ASSETS);
+        return Promise.allSettled(
+          STATIC_ASSETS.map((url) =>
+            cache.add(url).catch((err) => {
+              console.warn(`[SW] Could not cache static asset ${url}:`, err.message);
+              throw err;
+            })
+          )
+        );
       })
       .then(() => {
         return caches.open(CACHE_NAME);
