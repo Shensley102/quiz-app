@@ -1395,6 +1395,21 @@
         ]
       },
       {
+        "id": "3203-M003",
+        "normalizedId": "3203-m003",
+        "title": "Altered Mental Status",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M003 Altered Mental Status.pdf",
+        "manifestId": "3203-M003",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
         "id": "3203-M006",
         "normalizedId": "3203-m006",
         "title": "Potassium Imbalance",
@@ -1515,6 +1530,24 @@
         ],
         "pageRanges": "1-2",
         "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-M021",
+        "normalizedId": "3203-m021",
+        "title": "Hypoglycemia",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M021 Hypoglycemia.pdf",
+        "manifestId": "3203-M021",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "d10",
+          "dextrose",
           "glucose"
         ]
       },
@@ -3287,6 +3320,22 @@
           2
         ],
         "pageRanges": "2",
+        "matchedAliases": [
+          "glucagon"
+        ]
+      },
+      {
+        "id": "3203-M021",
+        "normalizedId": "3203-m021",
+        "title": "Hypoglycemia",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M021 Hypoglycemia.pdf",
+        "manifestId": "3203-M021",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
         "matchedAliases": [
           "glucagon"
         ]

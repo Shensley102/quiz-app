@@ -1386,18 +1386,41 @@
     "title": "Altered Mental Status",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M003_Altered_Mental_Status.pdf",
+    "file": "/static/protocols/act/medical/3203-M003 Altered Mental Status.pdf",
     "tags": [
       "AMS",
       "altered mental status",
       "neuro",
       "unconscious"
     ],
-    "missingPdf": true,
+    "missingPdf": false,
     "possibleScannedPdf": false,
-    "normalizedText": "",
-    "pages": [],
-    "detectedMedications": []
+    "normalizedText": "guideline title: altered mental status guideline number: guid-3203-m003 page 1 of 2 \u00a9 orlando health 2017 1414 kuhl ave. orlando, fl 32806 department guideline issue date: 09/09/2014 replaces dept. policy: revision dates: 4/30/24 developed by: air care team approved by: dr. christopher hunter, md air care team medical director approved by: signature: signature: department numbers: 3203 i. purpose: to recognize the patient with altered mental status and to provide and maintain adequate oxygenation, ventilation, and tissue perfusion. to identify and treat possible etiologies and provide expeditious transport to the nearest appropriate medical facility. identify causes of ams that may change management (hypoglycemia, hypotension, hypoxia) or destination (traumatic injury, stroke). ii. definitions: iii. department guideline: a. establish care as defined by guid3203-g002 - general patient care. b. assess and manage airway, breathing, and circulation. c. if the patient has spontaneous respirations, administer supplemental oxygen to maintain saturation > 93%. d. connect patient to cardiac monitor, pulse oximetry, and etco2 as available. follow cardiac guidelines if arrhythmia present. e. establish intravenous access. f. perform a glucose check and if glucose is < 60 mg/dl, and the patient is symptomatic, administer medications per guid3203-m021 hypoglycemia. g. if a recent overdose, poisoning, or toxic exposure is suspected follow guidance per guid3203- m019 overdose, poisoning, & toxic exposure. h. if a seizure is suspected, follow guidance per guid3203-m015 - seizures. i. if a stroke is suspected, follow guidance per guid3203-m017 - stroke or transient ischemic attack. j. if sepsis is suspected, follow guidance per guid3203-m016 - sepsis. k. if necessary or if glasgow coma scale <8, secure an advanced airway per guid3203-g008 rapid sequence induction for endotracheal intubation and guid3203-pr020 endotracheal intubation and ventilate with a transport ventilator per guid3203-pr024 ventilation with a mechanical ventilator. l. if a patient is confused, combative, and does not respond to verbal reassurance follow guidance per guid3203-g006 - anxiety/combative patient management. guideline title: altered mental status guideline number: guid-3203-m003 page 2 of 2 \u00a9 orlando health 2017 1414 kuhl ave. orlando, fl 32806 department guideline iv. documentation: a. ems charts v. references:",
+    "pages": [
+      {
+        "page": 1,
+        "text": "guideline title: altered mental status guideline number: guid-3203-m003 page 1 of 2 \u00a9 orlando health 2017 1414 kuhl ave. orlando, fl 32806 department guideline issue date: 09/09/2014 replaces dept. policy: revision dates: 4/30/24 developed by: air care team approved by: dr. christopher hunter, md air care team medical director approved by: signature: signature: department numbers: 3203 i. purpose: to recognize the patient with altered mental status and to provide and maintain adequate oxygenation, ventilation, and tissue perfusion. to identify and treat possible etiologies and provide expeditious transport to the nearest appropriate medical facility. identify causes of ams that may change management (hypoglycemia, hypotension, hypoxia) or destination (traumatic injury, stroke). ii. definitions: iii. department guideline: a. establish care as defined by guid3203-g002 - general patient care. b. assess and manage airway, breathing, and circulation. c. if the patient has spontaneous respirations, administer supplemental oxygen to maintain saturation > 93%. d. connect patient to cardiac monitor, pulse oximetry, and etco2 as available. follow cardiac guidelines if arrhythmia present. e. establish intravenous access. f. perform a glucose check and if glucose is < 60 mg/dl, and the patient is symptomatic, administer medications per guid3203-m021 hypoglycemia. g. if a recent overdose, poisoning, or toxic exposure is suspected follow guidance per guid3203- m019 overdose, poisoning, & toxic exposure. h. if a seizure is suspected, follow guidance per guid3203-m015 - seizures. i. if a stroke is suspected, follow guidance per guid3203-m017 - stroke or transient ischemic attack. j. if sepsis is suspected, follow guidance per guid3203-m016 - sepsis. k. if necessary or if glasgow coma scale <8, secure an advanced airway per guid3203-g008 rapid sequence induction for endotracheal intubation and guid3203-pr020 endotracheal intubation and ventilate with a transport ventilator per guid3203-pr024 ventilation with a mechanical ventilator. l. if a patient is confused, combative, and does not respond to verbal reassurance follow guidance per guid3203-g006 - anxiety/combative patient management.",
+        "possibleScannedPage": false
+      },
+      {
+        "page": 2,
+        "text": "guideline title: altered mental status guideline number: guid-3203-m003 page 2 of 2 \u00a9 orlando health 2017 1414 kuhl ave. orlando, fl 32806 department guideline iv. documentation: a. ems charts v. references:",
+        "possibleScannedPage": false
+      }
+    ],
+    "detectedMedications": [
+      {
+        "canonical": "Dextrose",
+        "canonicalKey": "dextrose",
+        "matchedAliases": [
+          "glucose"
+        ],
+        "pages": [
+          1
+        ],
+        "pageRanges": "1"
+      }
+    ]
   },
   {
     "id": "3203-M004",
@@ -2788,18 +2811,56 @@
     "title": "Hypoglycemia",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M021_Hypoglycemia.pdf",
+    "file": "/static/protocols/act/medical/3203-M021 Hypoglycemia.pdf",
     "tags": [
       "hypoglycemia",
       "glucose",
       "diabetes",
       "altered mental status"
     ],
-    "missingPdf": true,
+    "missingPdf": false,
     "possibleScannedPdf": false,
-    "normalizedText": "",
-    "pages": [],
-    "detectedMedications": []
+    "normalizedText": "guideline title: hypoglycemia guideline number: guid-3203-m021 page 1 of 2 \u00a9 orlando health 2017 1414 kuhl ave. orlando, fl 32806 department guideline issue date: 09/09/2014 replaces dept. policy: revision dates: 4/30/24 developed by: air care team approved by: dr. christopher hunter, md air care team medical director approved by: signature: signature: department numbers: 3203 i. purpose: recognition of the patient who hypoglycemic and treat according to condition with goal to return blood glucose to a minimum of 60 mg/dl without complications. ii. definitions: iii. department guideline: a. establish care as defined by guid-g002 - general patient care. b. assess for - subjective signs: altered mental status, dizziness, fatigue, blurred vision, headache. physical assessment: seizure, drowsiness, unconsciousness, personality changes, sweating, staggering. c. check a blood glucose level per guid-pr003 - blood glucose monitoring. if patient is hypothermic, hypotensive, on multiple vasopressors, or is in shock, obtain blood via iv line. d. review all diabetes medication and last dose. review nutritional status. e. establish a peripheral intravenous catheter. f. if patient is symptomatic and i. adult 1. if glucose < 60 mg/dl: a. dextrose 50% 25 grams (1 amp) iv/io -or- b. dextrose 10% 10 grams (100 ml) iv/io every 5 minutes to a maximum dose of 250ml c. if no iv/io access, glucagon 1 mg sq/im -or- d. if the patient is a known diabetic with hypoglycemia, is allowed and able to drink, and is not being transferred for an interventional/surgical procedure or is an acute trauma or stroke patient give 15 grams of an oral glucose product: liquid dex-4. ii. pediatric with blood glucose level is < 60 mg/dl 1. dextrose 10% 0.2-1 g/kg iv/io (2-10 ml/kg) -or- 2. dextrose 25% 2 ml/kg iv/io -or- 3. glucagon < 20 kg: 0.5 mg sc/im or if > 20 kg: 1 mg sc/im guideline title: hypoglycemia guideline number: guid-3203-m021 page 2 of 2 \u00a9 orlando health 2017 1414 kuhl ave. orlando, fl 32806 department guideline iii. infant/neonate <3mo 1. dextrose 5% 0.5-1 g/kg iv (10-20 ml/kg) 2. d10 2-4 ml/kg iv 3. if < 5 kg: glucagon 0.25 mg im g. repeat blood glucose level 15 minutes after initial intervention and every 15 minutes thereafter until level is > 60 mg/dl. iv. documentation: a. ems charts v. references: a. orlando health patient care policy and procedure #5115: hypoglycemia treatment: adult and pediatric inpatients b. american diabetes association. (2019). standard of medical care in diabetes- 2019. diabetes care, 42(1).",
+    "pages": [
+      {
+        "page": 1,
+        "text": "guideline title: hypoglycemia guideline number: guid-3203-m021 page 1 of 2 \u00a9 orlando health 2017 1414 kuhl ave. orlando, fl 32806 department guideline issue date: 09/09/2014 replaces dept. policy: revision dates: 4/30/24 developed by: air care team approved by: dr. christopher hunter, md air care team medical director approved by: signature: signature: department numbers: 3203 i. purpose: recognition of the patient who hypoglycemic and treat according to condition with goal to return blood glucose to a minimum of 60 mg/dl without complications. ii. definitions: iii. department guideline: a. establish care as defined by guid-g002 - general patient care. b. assess for - subjective signs: altered mental status, dizziness, fatigue, blurred vision, headache. physical assessment: seizure, drowsiness, unconsciousness, personality changes, sweating, staggering. c. check a blood glucose level per guid-pr003 - blood glucose monitoring. if patient is hypothermic, hypotensive, on multiple vasopressors, or is in shock, obtain blood via iv line. d. review all diabetes medication and last dose. review nutritional status. e. establish a peripheral intravenous catheter. f. if patient is symptomatic and i. adult 1. if glucose < 60 mg/dl: a. dextrose 50% 25 grams (1 amp) iv/io -or- b. dextrose 10% 10 grams (100 ml) iv/io every 5 minutes to a maximum dose of 250ml c. if no iv/io access, glucagon 1 mg sq/im -or- d. if the patient is a known diabetic with hypoglycemia, is allowed and able to drink, and is not being transferred for an interventional/surgical procedure or is an acute trauma or stroke patient give 15 grams of an oral glucose product: liquid dex-4. ii. pediatric with blood glucose level is < 60 mg/dl 1. dextrose 10% 0.2-1 g/kg iv/io (2-10 ml/kg) -or- 2. dextrose 25% 2 ml/kg iv/io -or- 3. glucagon < 20 kg: 0.5 mg sc/im or if > 20 kg: 1 mg sc/im",
+        "possibleScannedPage": false
+      },
+      {
+        "page": 2,
+        "text": "guideline title: hypoglycemia guideline number: guid-3203-m021 page 2 of 2 \u00a9 orlando health 2017 1414 kuhl ave. orlando, fl 32806 department guideline iii. infant/neonate <3mo 1. dextrose 5% 0.5-1 g/kg iv (10-20 ml/kg) 2. d10 2-4 ml/kg iv 3. if < 5 kg: glucagon 0.25 mg im g. repeat blood glucose level 15 minutes after initial intervention and every 15 minutes thereafter until level is > 60 mg/dl. iv. documentation: a. ems charts v. references: a. orlando health patient care policy and procedure #5115: hypoglycemia treatment: adult and pediatric inpatients b. american diabetes association. (2019). standard of medical care in diabetes- 2019. diabetes care, 42(1).",
+        "possibleScannedPage": false
+      }
+    ],
+    "detectedMedications": [
+      {
+        "canonical": "Dextrose",
+        "canonicalKey": "dextrose",
+        "matchedAliases": [
+          "d10",
+          "dextrose",
+          "glucose"
+        ],
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2"
+      },
+      {
+        "canonical": "Glucagon",
+        "canonicalKey": "glucagon",
+        "matchedAliases": [
+          "glucagon"
+        ],
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2"
+      }
+    ]
   },
   {
     "id": "3203-M022",

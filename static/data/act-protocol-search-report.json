@@ -1,21 +1,10 @@
 {
-  "generatedAt": "2026-06-29T15:35:19.019959+00:00",
+  "generatedAt": "2026-06-29T19:54:18.920938+00:00",
   "totalProtocolsInManifest": 108,
-  "totalPdfsFound": 106,
-  "totalPdfsMissing": 2,
-  "missingPdfs": [
-    {
-      "id": "3203-M003",
-      "title": "Altered Mental Status",
-      "file": "/static/protocols/act/medical/3203-M003_Altered_Mental_Status.pdf"
-    },
-    {
-      "id": "3203-M021",
-      "title": "Hypoglycemia",
-      "file": "/static/protocols/act/medical/3203-M021_Hypoglycemia.pdf"
-    }
-  ],
-  "totalPagesScanned": 262,
+  "totalPdfsFound": 108,
+  "totalPdfsMissing": 0,
+  "missingPdfs": [],
+  "totalPagesScanned": 266,
   "pagesWithLittleOrNoText": [
     {
       "file": "/static/protocols/act/trauma/GUID-3203-T001 Abdominal and Genitourinary Trauma.pdf",
@@ -303,6 +292,7 @@
     "3203-G007",
     "3203-G008",
     "3203-M002",
+    "3203-M003",
     "3203-M004",
     "3203-M005",
     "3203-M006",
@@ -320,6 +310,7 @@
     "3203-M018",
     "3203-M019",
     "3203-M020",
+    "3203-M021",
     "3203-M022",
     "3203-PED002",
     "3203-PED003",
