@@ -1,206 +1,355 @@
 {
-  "generatedAt": "2026-06-28T11:06:42.911026+00:00",
+  "generatedAt": "2026-06-29T15:35:19.019959+00:00",
   "totalProtocolsInManifest": 108,
-  "totalPdfsFound": 89,
-  "totalPdfsMissing": 19,
+  "totalPdfsFound": 106,
+  "totalPdfsMissing": 2,
   "missingPdfs": [
-    {
-      "id": "3203-G002",
-      "title": "General Patient Care",
-      "file": "/static/protocols/act/general/3203-G002 General Patient Care.pdf"
-    },
     {
       "id": "3203-M003",
       "title": "Altered Mental Status",
       "file": "/static/protocols/act/medical/3203-M003_Altered_Mental_Status.pdf"
     },
     {
-      "id": "3203-M019",
-      "title": "Overdose, Poisoning, Toxic Exposure",
-      "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf"
-    },
-    {
       "id": "3203-M021",
       "title": "Hypoglycemia",
       "file": "/static/protocols/act/medical/3203-M021_Hypoglycemia.pdf"
-    },
-    {
-      "id": "GUID-3203-PR019",
-      "title": "Intravenous Insertion \u2013 Peripheral",
-      "file": "/static/protocols/act/procedures/3203-PR019_Intravenous_Insertion_Peripheral.pdf"
-    },
-    {
-      "id": "GUID-3203-PR020",
-      "title": "Endotracheal Intubation",
-      "file": "/static/protocols/act/procedures/3203-PR020_Endotracheal_Intubation.pdf"
-    },
-    {
-      "id": "GUID-3203-PR021",
-      "title": "Restraints",
-      "file": "/static/protocols/act/procedures/3203-PR021_Restraints.pdf"
-    },
-    {
-      "id": "GUID-3203-PR022",
-      "title": "Transcutaneous External Pacing",
-      "file": "/static/protocols/act/procedures/3203-PR022_Transcutaneous_External_Pacing.pdf"
-    },
-    {
-      "id": "GUID-3203-PR023",
-      "title": "Intra-Aortic Balloon Pump",
-      "file": "/static/protocols/act/procedures/3203-PR023_Intra-Aortic_Balloon_Pump_Impella_Device.pdf"
-    },
-    {
-      "id": "GUID-3203-PR024",
-      "title": "Ventilation with a Mechanical Ventilator",
-      "file": "/static/protocols/act/procedures/3203-PR024_Ventilation_with_Mechanical_Ventilator.pdf"
-    },
-    {
-      "id": "GUID-3203-PR025",
-      "title": "Emergency Blood Product Administration",
-      "file": "/static/protocols/act/procedures/3203-PR025_Emergency_Blood_Product_Administration.pdf"
-    },
-    {
-      "id": "GUID-3203-PR025B",
-      "title": "Emergency Whole Blood Product Administration",
-      "file": "/static/protocols/act/procedures/3203-PR025b_Emergency_Whole_Blood_Product_Administration.pdf"
-    },
-    {
-      "id": "GUID-3203-PR026",
-      "title": "Warming of Blood Products & Intravenous Fluids",
-      "file": "/static/protocols/act/procedures/3203-PR026_Warming_of_Blood_Products_and_IV_Fluids.pdf"
-    },
-    {
-      "id": "GUID-3203-PR027",
-      "title": "Pelvic Circumferential Compression Binder",
-      "file": "/static/protocols/act/procedures/3203-PR027_Pelvic_Circumferential_Compression_Binder.pdf"
-    },
-    {
-      "id": "GUID-3203-PR028",
-      "title": "Hemostatic Dressing \u2013 QuickClot Gauze",
-      "file": "/static/protocols/act/procedures/3203-PR028_Hemostatic_Dressing_QuickClot_Gauze.pdf"
-    },
-    {
-      "id": "GUID-3203-PR029",
-      "title": "Prone Positioning",
-      "file": "/static/protocols/act/procedures/3203-PR029_Prone_Positioning.pdf"
-    },
-    {
-      "id": "GUID-3203-PR030",
-      "title": "Impella (Abiomed)",
-      "file": "/static/protocols/act/procedures/3203-PR030_Impella_Abiomed.pdf"
-    },
-    {
-      "id": "GUID-3203-PR031",
-      "title": "Ventricular Assist Devices (VADs)",
-      "file": "/static/protocols/act/procedures/3203-PR031_Ventricular_Assist_Devices_VADs.pdf"
-    },
-    {
-      "id": "GUID-3203-PR032",
-      "title": "High Flow Nasal Cannula",
-      "file": "/static/protocols/act/procedures/3203-PR032_High_Flow_Nasal_Cannula.pdf"
     }
   ],
-  "totalPagesScanned": 0,
-  "pagesWithLittleOrNoText": [],
-  "possibleScannedPdfs": [],
-  "ocrAttemptedCount": 0,
-  "ocrSucceededCount": 0,
-  "ocrFailedCount": 0,
-  "totalMedicationAliasesLoaded": 132,
-  "totalMedicationsDetected": 0,
-  "medicationsDetected": [],
-  "protocolsWithMedicationMatches": [],
-  "possibleMedicationCandidatesNotMatched": [],
-  "warnings": [
-    "PyMuPDF import failed: No module named 'fitz'. Install requirements and rebuild for PDF text extraction.",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/cardiac/3203-C001_Acute_Coronary_Syndrome.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/cardiac/3203-C002_Asystole___Pulseless_Electrical_Activity.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/cardiac/3203-C003_Atrial_Fibrillation___Atrial_Flutter.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/cardiac/3203-C004_Bradycardia.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/cardiac/3203-C005_Congested_Heart_Failure_Pulmonary_Edema.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/cardiac/3203-C006_Narrow_and_Wide_Complex_Tachycardia.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/cardiac/3203-C007_Ventricular_Fibrillation_and_Pulseless_Ventricular_Tachycardia.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/cardiac/3203-C008_Extracorporeal_Membrane_Oxygenation_Therapy.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/cardiac/3203-C009_Targeted_Temperature_Management.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/cardiac/3203-C010_ST_Elevation_Myocardial_Infarction__STEMI.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/general/3203-G001_Flight_Physiology_and_Patient_Oxygenation.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/general/3203-G003_Management_of_Previously_Initiated___Continuous_IV_Medication.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/general/3203-G004_Nausea_Vomiting_Motion_Sickness.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/general/3203-G006_Anxiety-_Combative_Patient_Management.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/general/3203-G007_Propofol_Diprivan.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/general/3203-G008_Rapid_Sequence_Induction__RSI__for_Endotracheal__ET__Intubation.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M001_Abdominal_Aortic_Aneurysm.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M002_Adult_Diabetic_Ketoacidosis.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M004_Allergic_Reaction_Anaphylaxis.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M005_Electrolyte_Disorders_-_Magnesium.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M006_Electrolyte_Disorders_-_Potassium.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M007_Gastrointestinal_Bleeding.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M008_Bronchospasm_Asthma_COPD.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M009_Heat_Related_Illness.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M010_Hypertensive_Emergency.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M011_Hypotension.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M012_Hypothermia.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M013_Subarachnoid_Hemorrhage.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M014_Pulmonary_Embolism.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M015_Seizures.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M016_Sepsis.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M017_Stroke_or_Transient_Ischemic_Attack.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M018_Thoracic_Aortic_Dissection.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M020_Malignant_Hyperthermia.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/medical/3203-M022_General_Obstetric_Patient_Assessment.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T001 Abdominal and Genitourinary Trauma.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T003 Crush Injury and Crush Syndrome.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T004 Decompression Sickness and Arterial Gas Embolus.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T005 Burns - ElectricalLightning Injury.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T006 Eye Injuries.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T007 Maxillofacial Trauma.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T008 Multi-System Trauma - Adult and Pediatric.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T009 Musculoskeletal Trauma.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T010 Drowning and Submersion Injuries.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T011 Snake Bite - Envenomation.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T012 Spinal Cord Injury.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T013 Cyanide Toxicity.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T014 Traumatic Brain Injury (TBI).pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T015 Thoracic Trauma.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/trauma/GUID-3203-T016 Tranexamic Acid for Severe Hemorrhage in Trauma Patients.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED001_Pediatric_General_Management.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED002_Pediatric_Allergic_Reaction_Anaphylaxis.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED003_Pediatric_Altered_Mental_Status-Non-Traumatic.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED004_Pediatric_Asystole.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED005_Pediatric_Bradycardia.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED008_Pediatric_Diabetic_Ketoacidosis.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED009_Pediatric_Hypotension.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED010_Pediatric_Infectious_Respiratory_Distress.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED011_Pediatric_Obstructed_Airway_Foreign_Body_Aspiration.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED012_Pediatric_Pulseless_Electrical_Activity_PEA.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED013_Pediatric_Pediatric_Ventricular_Fibrillation_Pulseless_Ventricular_Tachycardia.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED014_Pediatric_Reactive_Airway_Disease.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED015_Pediatric_Seizures-Status_Epilepticus.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED016_Pediatric_Sepsis_or_Meningitis.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED017_Pediatric_Supraventricular_Tachycardia.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED018_Pediatric_Ventricular_Tachycardia_with_Pulse.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/pediatric/3203-PED019_Neonatal_Stabilization___Resuscitation.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR001_12-Lead_Electrocardiogram__ECG.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR002_Blood_Product_Administration.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR003_Capillary_Blood_Glucose_Monitoring.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR004_Cardioversion.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR005_Chest_Tube_Management.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR006_Tourniquet_Therapy.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR007_Cricothyrotomy_-_Surgical.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR008_Defibrillation.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR009_End-Tidal_CO2_Monitoring.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR010_Gastric_Tube_Insertion.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR011_Gum_Elastic_Bougie.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR012_Inhalation_Therapy.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR013_Intraosseous_Infusions.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR014_Intracranial_Pressure_Invasive_Monitoring.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR015_IV_Fluid_Therapy.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR016_i-gel_supraglottic_airway_device.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR017_NeedleSimple_Thoracostomy.pdf: No module named 'fitz'",
-    "PyMuPDF unavailable; could not extract text from /workspace/quiz-app/static/protocols/act/procedures/3203-PR018_Non-Invasive_Positive_Pressure_Ventilation.pdf: No module named 'fitz'"
-  ]
+  "totalPagesScanned": 262,
+  "pagesWithLittleOrNoText": [
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T001 Abdominal and Genitourinary Trauma.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T001 Abdominal and Genitourinary Trauma.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf",
+      "page": 3
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf",
+      "page": 4
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf",
+      "page": 5
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T003 Crush Injury and Crush Syndrome.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T003 Crush Injury and Crush Syndrome.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T004 Decompression Sickness and Arterial Gas Embolus.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T004 Decompression Sickness and Arterial Gas Embolus.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T005 Burns - ElectricalLightning Injury.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T005 Burns - ElectricalLightning Injury.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T006 Eye Injuries.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T007 Maxillofacial Trauma.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T007 Maxillofacial Trauma.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T008 Multi-System Trauma - Adult and Pediatric.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T008 Multi-System Trauma - Adult and Pediatric.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T008 Multi-System Trauma - Adult and Pediatric.pdf",
+      "page": 3
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T009 Musculoskeletal Trauma.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T009 Musculoskeletal Trauma.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T010 Drowning and Submersion Injuries.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T010 Drowning and Submersion Injuries.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T011 Snake Bite - Envenomation.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T011 Snake Bite - Envenomation.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T012 Spinal Cord Injury.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T012 Spinal Cord Injury.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T012 Spinal Cord Injury.pdf",
+      "page": 3
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T013 Cyanide Toxicity.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T013 Cyanide Toxicity.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T014 Traumatic Brain Injury (TBI).pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T014 Traumatic Brain Injury (TBI).pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T014 Traumatic Brain Injury (TBI).pdf",
+      "page": 3
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T015 Thoracic Trauma.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T015 Thoracic Trauma.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T016 Tranexamic Acid for Severe Hemorrhage in Trauma Patients.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T016 Tranexamic Acid for Severe Hemorrhage in Trauma Patients.pdf",
+      "page": 2
+    }
+  ],
+  "possibleScannedPdfs": [
+    {
+      "id": "GUID-3203-T001",
+      "file": "/static/protocols/act/trauma/GUID-3203-T001 Abdominal and Genitourinary Trauma.pdf"
+    },
+    {
+      "id": "GUID-3203-T002",
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf"
+    },
+    {
+      "id": "GUID-3203-T003",
+      "file": "/static/protocols/act/trauma/GUID-3203-T003 Crush Injury and Crush Syndrome.pdf"
+    },
+    {
+      "id": "GUID-3203-T004",
+      "file": "/static/protocols/act/trauma/GUID-3203-T004 Decompression Sickness and Arterial Gas Embolus.pdf"
+    },
+    {
+      "id": "GUID-3203-T005",
+      "file": "/static/protocols/act/trauma/GUID-3203-T005 Burns - ElectricalLightning Injury.pdf"
+    },
+    {
+      "id": "GUID-3203-T006",
+      "file": "/static/protocols/act/trauma/GUID-3203-T006 Eye Injuries.pdf"
+    },
+    {
+      "id": "GUID-3203-T007",
+      "file": "/static/protocols/act/trauma/GUID-3203-T007 Maxillofacial Trauma.pdf"
+    },
+    {
+      "id": "GUID-3203-T008",
+      "file": "/static/protocols/act/trauma/GUID-3203-T008 Multi-System Trauma - Adult and Pediatric.pdf"
+    },
+    {
+      "id": "GUID-3203-T009",
+      "file": "/static/protocols/act/trauma/GUID-3203-T009 Musculoskeletal Trauma.pdf"
+    },
+    {
+      "id": "GUID-3203-T010",
+      "file": "/static/protocols/act/trauma/GUID-3203-T010 Drowning and Submersion Injuries.pdf"
+    },
+    {
+      "id": "GUID-3203-T011",
+      "file": "/static/protocols/act/trauma/GUID-3203-T011 Snake Bite - Envenomation.pdf"
+    },
+    {
+      "id": "GUID-3203-T012",
+      "file": "/static/protocols/act/trauma/GUID-3203-T012 Spinal Cord Injury.pdf"
+    },
+    {
+      "id": "GUID-3203-T013",
+      "file": "/static/protocols/act/trauma/GUID-3203-T013 Cyanide Toxicity.pdf"
+    },
+    {
+      "id": "GUID-3203-T014",
+      "file": "/static/protocols/act/trauma/GUID-3203-T014 Traumatic Brain Injury (TBI).pdf"
+    },
+    {
+      "id": "GUID-3203-T015",
+      "file": "/static/protocols/act/trauma/GUID-3203-T015 Thoracic Trauma.pdf"
+    },
+    {
+      "id": "GUID-3203-T016",
+      "file": "/static/protocols/act/trauma/GUID-3203-T016 Tranexamic Acid for Severe Hemorrhage in Trauma Patients.pdf"
+    }
+  ],
+  "totalMedicationAliasesLoaded": 146,
+  "totalMedicationsDetected": 49,
+  "medicationsDetected": [
+    "Levetiracetam",
+    "Norepinephrine",
+    "Aspirin",
+    "Midazolam",
+    "Naloxone",
+    "Ondansetron",
+    "Tranexamic Acid",
+    "Nitroglycerin",
+    "Epinephrine",
+    "Ipratropium",
+    "Sodium Bicarbonate",
+    "Dextrose",
+    "Rocuronium",
+    "Succinylcholine",
+    "Methylprednisolone",
+    "Diphenhydramine",
+    "Furosemide",
+    "Diltiazem",
+    "Pantoprazole",
+    "Acetylcysteine",
+    "Rho(D) Immune Globulin",
+    "Albuterol",
+    "Lorazepam",
+    "Diazepam",
+    "Amiodarone",
+    "Adenosine",
+    "Ketamine",
+    "Fentanyl",
+    "Morphine",
+    "Hydromorphone",
+    "Calcium Chloride",
+    "Magnesium Sulfate",
+    "Glucagon",
+    "Dopamine",
+    "Dobutamine",
+    "Phenylephrine",
+    "Vasopressin",
+    "Lidocaine",
+    "Atropine",
+    "Etomidate",
+    "Propofol",
+    "Acetaminophen",
+    "Ibuprofen",
+    "Dexamethasone",
+    "Famotidine",
+    "Heparin",
+    "Insulin",
+    "Metoprolol",
+    "Verapamil"
+  ],
+  "protocolsWithMedicationMatches": [
+    "3203-C001",
+    "3203-C002",
+    "3203-C003",
+    "3203-C004",
+    "3203-C005",
+    "3203-C006",
+    "3203-C007",
+    "3203-C008",
+    "3203-C009",
+    "3203-C010",
+    "3203-G002",
+    "3203-G004",
+    "3203-G005",
+    "3203-G006",
+    "3203-G007",
+    "3203-G008",
+    "3203-M002",
+    "3203-M004",
+    "3203-M005",
+    "3203-M006",
+    "3203-M007",
+    "3203-M008",
+    "3203-M009",
+    "3203-M010",
+    "3203-M011",
+    "3203-M012",
+    "3203-M013",
+    "3203-M014",
+    "3203-M015",
+    "3203-M016",
+    "3203-M017",
+    "3203-M018",
+    "3203-M019",
+    "3203-M020",
+    "3203-M022",
+    "3203-PED002",
+    "3203-PED003",
+    "3203-PED004",
+    "3203-PED005",
+    "3203-PED006",
+    "3203-PED007",
+    "3203-PED008",
+    "3203-PED009",
+    "3203-PED010",
+    "3203-PED012",
+    "3203-PED013",
+    "3203-PED014",
+    "3203-PED015",
+    "3203-PED016",
+    "3203-PED017",
+    "3203-PED018",
+    "3203-PED019",
+    "GUID-3203-PR002",
+    "GUID-3203-PR003",
+    "GUID-3203-PR012",
+    "GUID-3203-PR013",
+    "GUID-3203-PR014",
+    "GUID-3203-PR015",
+    "GUID-3203-PR020",
+    "GUID-3203-PR025",
+    "GUID-3203-PR025B",
+    "GUID-3203-PR029",
+    "GUID-3203-PR030",
+    "GUID-3203-PR031"
+  ],
+  "warnings": []
 }

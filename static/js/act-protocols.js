@@ -2,6 +2,7 @@
   const MANIFEST_URL = '/static/data/act-protocols.json';
   const SEARCH_URL = '/static/data/act-protocol-search.json';
   const ALIAS_URL = '/static/data/act-medication-aliases.json';
+  const MEDICATION_MAP_URL = '/static/data/act-medication-protocol-map.json';
   const CACHE_NAME = 'act-protocol-pdfs-v1';
   const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false };
   const els = {
@@ -17,10 +18,11 @@
     document.body.classList.toggle('act-pwa', Boolean(isStandalone));
   }
   function metadataText(p) { return [p.id, p.title, p.category, p.folder, ...(p.tags || [])].join(' '); }
+  function normalizeProtocolId(id) { return normalize(id).replace(/^guid-/, ''); }
   function buildAliasLookup() {
     state.aliasLookup.clear();
     state.aliases.forEach((med) => {
-      const terms = [med.canonical, ...(med.aliases || []), ...(med.genericNames || []), ...(med.brandNames || []), ...(med.tradeNames || []), ...(med.activeIngredientNames || []), ...(med.substanceNames || []), ...(med.shorthand || [])];
+      const terms = [med.canonical, med.canonicalKey, ...(med.aliases || []), ...(med.normalizedAliases || []), ...(med.genericNames || []), ...(med.brandNames || []), ...(med.tradeNames || []), ...(med.activeIngredientNames || []), ...(med.substanceNames || []), ...(med.shorthand || [])];
       terms.forEach((term) => {
         const key = normalize(term); if (!key) return;
         const entry = state.aliasLookup.get(key) || [];
@@ -30,8 +32,23 @@
   }
   function termsForQuery(q) {
     const terms = new Set([q]);
-    (state.aliasLookup.get(q) || []).forEach((med) => [med.canonical, ...(med.aliases || []), ...(med.genericNames || []), ...(med.brandNames || []), ...(med.tradeNames || []), ...(med.activeIngredientNames || []), ...(med.substanceNames || []), ...(med.shorthand || [])].forEach(t => terms.add(normalize(t))));
+    (state.aliasLookup.get(q) || []).forEach((med) => [med.canonical, med.canonicalKey, ...(med.aliases || []), ...(med.normalizedAliases || []), ...(med.genericNames || []), ...(med.brandNames || []), ...(med.tradeNames || []), ...(med.activeIngredientNames || []), ...(med.substanceNames || []), ...(med.shorthand || [])].forEach(t => terms.add(normalize(t))));
     return [...terms].filter(Boolean);
+  }
+  function buildMedicationMap(records) {
+    state.medicationMap.clear();
+    Object.values(records || {}).forEach((record) => {
+      state.medicationMap.set(normalize(record.canonicalKey || record.canonical), record);
+    });
+  }
+  function buildProtocolIdLookup() {
+    state.protocolIdLookup.clear();
+    state.protocols.forEach((protocol) => state.protocolIdLookup.set(normalizeProtocolId(protocol.id), protocol.id));
+  }
+  function protocolsForMedication(med) {
+    const mapRecord = state.medicationMap.get(normalize(med.canonicalKey || med.canonical));
+    const protocols = mapRecord?.protocols?.length ? mapRecord.protocols : (med.foundInProtocols || []).map(id => ({ id, pages: med.foundPagesByProtocol?.[id] || [], matchedAliases: med.matchedAliases || [] }));
+    return protocols.map((entry) => ({ ...entry, manifestId: state.protocolIdLookup.get(normalizeProtocolId(entry.manifestId || entry.id)) || entry.manifestId || entry.id }));
   }
   function firstSnippet(record, terms) {
     const pages = record?.pages || [];
@@ -42,35 +59,34 @@
     return null;
   }
   function matchProtocol(protocol, q) {
-    const record = state.searchIndex.get(protocol.id);
+    const record = state.searchIndex.get(protocol.id) || state.searchIndex.get(normalizeProtocolId(protocol.id));
     const hayMeta = normalize(metadataText(protocol));
     if (!q) return { score: 0, reasons: [] };
     const knownAlias = state.aliasLookup.has(q);
     if (q.length < 2 && !knownAlias) return null;
     const terms = termsForQuery(q);
     const reasons = []; let score = -1;
-    const medicationMatches = [];
+    const aliasMeds = state.aliasLookup.get(q) || [];
+    aliasMeds.forEach((med) => {
+      const protocolMatch = protocolsForMedication(med).find((entry) => entry.manifestId === protocol.id || normalizeProtocolId(entry.id) === normalizeProtocolId(protocol.id));
+      if (!protocolMatch) return;
+      reasons.push({
+        type: 'Medication match',
+        text: `"${state.query.trim()}" → ${med.canonical}`,
+        pages: (protocolMatch.pages || []).slice(0, 4),
+        pageRanges: protocolMatch.pageRanges
+      });
+      score = Math.max(score, 110);
+    });
     (record?.detectedMedications || []).forEach((med) => {
       const aliases = (med.matchedAliases || []).map(normalize);
-      const canon = normalize(med.canonical);
-      const exactAlias = aliases.includes(q);
+      const canon = normalize(med.canonicalKey || med.canonical);
       const expanded = terms.includes(canon) || aliases.some(a => terms.includes(a));
-      if (exactAlias || expanded) {
-        medicationMatches.push(med);
-        reasons.push({ type: exactAlias ? 'Medication match' : 'Medication match', text: `${q} → ${med.canonical}`, pages: (med.pages || []).slice(0, 3) });
-        score = Math.max(score, exactAlias ? 100 : 92);
+      if (expanded && !reasons.some(r => r.type === 'Medication match' && normalize(r.text).includes(canon))) {
+        reasons.push({ type: 'Medication match', text: `"${state.query.trim()}" → ${med.canonical}`, pages: (med.pages || []).slice(0, 4), pageRanges: med.pageRanges });
+        score = Math.max(score, 100);
       }
     });
-    const aliasMeds = state.aliasLookup.get(q) || [];
-    if (!medicationMatches.length && aliasMeds.length) {
-      const medIds = new Set(aliasMeds.flatMap(m => m.foundInProtocols || []));
-      if (medIds.has(protocol.id)) {
-        const med = aliasMeds.find(m => (m.foundInProtocols || []).includes(protocol.id));
-        const pages = med?.foundPagesByProtocol?.[protocol.id] || [];
-        reasons.push({ type: 'Brand/trade match', text: `${q} → ${med.canonical}`, pages: pages.slice(0, 3) });
-        score = Math.max(score, 95);
-      }
-    }
     if (normalize(protocol.title).includes(q)) { reasons.push({ type: 'Title match', text: protocol.title }); score = Math.max(score, 80); }
     if ((protocol.tags || []).some(t => normalize(t).includes(q))) { reasons.push({ type: 'Tag match', text: q }); score = Math.max(score, 70); }
     if (hayMeta.includes(q)) score = Math.max(score, 55);
@@ -130,7 +146,7 @@
   }
   function renderReasons(p) {
     const meta = state.resultMeta.get(p.id); if (!meta?.reasons?.length) return '';
-    return `<div class="match-reasons">${meta.reasons.slice(0, 3).map(r => `<div class="match-reason"><strong>${escapeHtml(r.type)}:</strong> ${escapeHtml(r.text)}${r.pages?.length ? ` <span>Page: ${escapeHtml(r.pages.join(', '))}</span>` : ''}</div>`).join('')}</div>`;
+    return `<div class="match-reasons">${meta.reasons.slice(0, 3).map(r => `<div class="match-reason"><strong>${escapeHtml(r.type)}:</strong> ${escapeHtml(r.text)}${r.pageRanges ? ` <span>Pages: ${escapeHtml(r.pageRanges)}</span>` : r.pages?.length ? ` <span>Pages: ${escapeHtml(r.pages.join(', '))}</span>` : ''}</div>`).join('')}</div>`;
   }
   function render() {
     const list = filtered();
