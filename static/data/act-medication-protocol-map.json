@@ -1,0 +1,4539 @@
+{
+  "Levetiracetam": {
+    "canonical": "Levetiracetam",
+    "canonicalKey": "levetiracetam",
+    "aliases": [
+      "Levetiracetam",
+      "Keppra"
+    ],
+    "normalizedAliases": [
+      "levetiracetam",
+      "keppra"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M013",
+        "normalizedId": "3203-m013",
+        "title": "Subarachnoid Hemorrhage, Non-traumatic",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M013_Subarachnoid_Hemorrhage.pdf",
+        "manifestId": "3203-M013",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "levetiracetam"
+        ]
+      },
+      {
+        "id": "3203-M015",
+        "normalizedId": "3203-m015",
+        "title": "Seizures",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M015_Seizures.pdf",
+        "manifestId": "3203-M015",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "levetiracetam"
+        ]
+      },
+      {
+        "id": "3203-M017",
+        "normalizedId": "3203-m017",
+        "title": "Stroke or Transient Ischemic Attack",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M017_Stroke_or_Transient_Ischemic_Attack.pdf",
+        "manifestId": "3203-M017",
+        "pages": [
+          4
+        ],
+        "pageRanges": "4",
+        "matchedAliases": [
+          "levetiracetam"
+        ]
+      },
+      {
+        "id": "3203-PED015",
+        "normalizedId": "3203-ped015",
+        "title": "Pediatric Seizures/Status Epilepticus",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED015_Pediatric_Seizures-Status_Epilepticus.pdf",
+        "manifestId": "3203-PED015",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "levetiracetam"
+        ]
+      }
+    ]
+  },
+  "Norepinephrine": {
+    "canonical": "Norepinephrine",
+    "canonicalKey": "norepinephrine",
+    "aliases": [
+      "Norepinephrine",
+      "Levophed",
+      "norepi",
+      "nor-epi"
+    ],
+    "normalizedAliases": [
+      "norepinephrine",
+      "levophed",
+      "norepi",
+      "nor-epi"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C004",
+        "normalizedId": "3203-c004",
+        "title": "Bradycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C004_Bradycardia.pdf",
+        "manifestId": "3203-C004",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "norepinephrine"
+        ]
+      },
+      {
+        "id": "3203-M011",
+        "normalizedId": "3203-m011",
+        "title": "Hypotension",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "manifestId": "3203-M011",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "norepinephrine"
+        ]
+      },
+      {
+        "id": "3203-M016",
+        "normalizedId": "3203-m016",
+        "title": "Sepsis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
+        "manifestId": "3203-M016",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "norepinephrine"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "norepinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED009",
+        "normalizedId": "3203-ped009",
+        "title": "Pediatric Hypotension",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED009_Pediatric_Hypotension.pdf",
+        "manifestId": "3203-PED009",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "norepinephrine"
+        ]
+      }
+    ]
+  },
+  "Aspirin": {
+    "canonical": "Aspirin",
+    "canonicalKey": "aspirin",
+    "aliases": [
+      "Aspirin",
+      "ASA",
+      "acetylsalicylic acid"
+    ],
+    "normalizedAliases": [
+      "aspirin",
+      "asa",
+      "acetylsalicylic acid"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C001",
+        "normalizedId": "3203-c001",
+        "title": "Acute Coronary Syndrome",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C001_Acute_Coronary_Syndrome.pdf",
+        "manifestId": "3203-C001",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "aspirin"
+        ]
+      },
+      {
+        "id": "3203-C010",
+        "normalizedId": "3203-c010",
+        "title": "ST Elevation Myocardial Infarction (STEMI)",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C010_ST_Elevation_Myocardial_Infarction__STEMI.pdf",
+        "manifestId": "3203-C010",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "aspirin"
+        ]
+      },
+      {
+        "id": "3203-M007",
+        "normalizedId": "3203-m007",
+        "title": "Gastrointestinal Bleeding",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M007_Gastrointestinal_Bleeding.pdf",
+        "manifestId": "3203-M007",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "aspirin"
+        ]
+      },
+      {
+        "id": "3203-M018",
+        "normalizedId": "3203-m018",
+        "title": "Thoracic Aortic Dissection",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M018_Thoracic_Aortic_Dissection.pdf",
+        "manifestId": "3203-M018",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "aspirin"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "asa",
+          "aspirin"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR031",
+        "normalizedId": "3203-pr031",
+        "title": "Ventricular Assist Devices (VADs)",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR031_Ventricular_Assist_Devices_VADs.pdf",
+        "manifestId": "GUID-3203-PR031",
+        "pages": [
+          5
+        ],
+        "pageRanges": "5",
+        "matchedAliases": [
+          "aspirin"
+        ]
+      }
+    ]
+  },
+  "Midazolam": {
+    "canonical": "Midazolam",
+    "canonicalKey": "midazolam",
+    "aliases": [
+      "Midazolam",
+      "Versed"
+    ],
+    "normalizedAliases": [
+      "midazolam",
+      "versed"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C010",
+        "normalizedId": "3203-c010",
+        "title": "ST Elevation Myocardial Infarction (STEMI)",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C010_ST_Elevation_Myocardial_Infarction__STEMI.pdf",
+        "manifestId": "3203-C010",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "midazolam"
+        ]
+      },
+      {
+        "id": "3203-G005",
+        "normalizedId": "3203-g005",
+        "title": "Analgesia and Sedation Management",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "manifestId": "3203-G005",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "midazolam"
+        ]
+      },
+      {
+        "id": "3203-G006",
+        "normalizedId": "3203-g006",
+        "title": "Anxiety/Combative Patient Management",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G006_Anxiety-_Combative_Patient_Management.pdf",
+        "manifestId": "3203-G006",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "midazolam"
+        ]
+      },
+      {
+        "id": "3203-G008",
+        "normalizedId": "3203-g008",
+        "title": "Rapid Sequence Induction (RSI) for Endotracheal (ET) Intubation",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G008_Rapid_Sequence_Induction__RSI__for_Endotracheal__ET__Intubation.pdf",
+        "manifestId": "3203-G008",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "midazolam"
+        ]
+      },
+      {
+        "id": "3203-M009",
+        "normalizedId": "3203-m009",
+        "title": "Heat Related Illness/Hyperthermia",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M009_Heat_Related_Illness.pdf",
+        "manifestId": "3203-M009",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "midazolam"
+        ]
+      },
+      {
+        "id": "3203-M010",
+        "normalizedId": "3203-m010",
+        "title": "Hypertensive Emergency",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M010_Hypertensive_Emergency.pdf",
+        "manifestId": "3203-M010",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "midazolam"
+        ]
+      },
+      {
+        "id": "3203-M015",
+        "normalizedId": "3203-m015",
+        "title": "Seizures",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M015_Seizures.pdf",
+        "manifestId": "3203-M015",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "midazolam"
+        ]
+      },
+      {
+        "id": "3203-M022",
+        "normalizedId": "3203-m022",
+        "title": "General Obstetric Patient Assessment",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M022_General_Obstetric_Patient_Assessment.pdf",
+        "manifestId": "3203-M022",
+        "pages": [
+          5
+        ],
+        "pageRanges": "5",
+        "matchedAliases": [
+          "midazolam"
+        ]
+      },
+      {
+        "id": "3203-PED015",
+        "normalizedId": "3203-ped015",
+        "title": "Pediatric Seizures/Status Epilepticus",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED015_Pediatric_Seizures-Status_Epilepticus.pdf",
+        "manifestId": "3203-PED015",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "midazolam"
+        ]
+      }
+    ]
+  },
+  "Naloxone": {
+    "canonical": "Naloxone",
+    "canonicalKey": "naloxone",
+    "aliases": [
+      "Naloxone",
+      "Narcan"
+    ],
+    "normalizedAliases": [
+      "naloxone",
+      "narcan"
+    ],
+    "protocols": [
+      {
+        "id": "3203-G005",
+        "normalizedId": "3203-g005",
+        "title": "Analgesia and Sedation Management",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "manifestId": "3203-G005",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "naloxone"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          1,
+          3
+        ],
+        "pageRanges": "1, 3",
+        "matchedAliases": [
+          "naloxone",
+          "narcan"
+        ]
+      },
+      {
+        "id": "3203-PED003",
+        "normalizedId": "3203-ped003",
+        "title": "Pediatric Altered Mental Status (Non-traumatic)",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED003_Pediatric_Altered_Mental_Status-Non-Traumatic.pdf",
+        "manifestId": "3203-PED003",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "naloxone"
+        ]
+      },
+      {
+        "id": "3203-PED019",
+        "normalizedId": "3203-ped019",
+        "title": "Neonatal Stabilization & Resuscitation",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED019_Neonatal_Stabilization___Resuscitation.pdf",
+        "manifestId": "3203-PED019",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "naloxone"
+        ]
+      }
+    ]
+  },
+  "Ondansetron": {
+    "canonical": "Ondansetron",
+    "canonicalKey": "ondansetron",
+    "aliases": [
+      "Ondansetron",
+      "Zofran"
+    ],
+    "normalizedAliases": [
+      "ondansetron",
+      "zofran"
+    ],
+    "protocols": [
+      {
+        "id": "3203-G004",
+        "normalizedId": "3203-g004",
+        "title": "Nausea/Vomiting/Motion Sickness",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G004_Nausea_Vomiting_Motion_Sickness.pdf",
+        "manifestId": "3203-G004",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "ondansetron"
+        ]
+      },
+      {
+        "id": "3203-M007",
+        "normalizedId": "3203-m007",
+        "title": "Gastrointestinal Bleeding",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M007_Gastrointestinal_Bleeding.pdf",
+        "manifestId": "3203-M007",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "zofran"
+        ]
+      }
+    ]
+  },
+  "Tranexamic Acid": {
+    "canonical": "Tranexamic Acid",
+    "canonicalKey": "tranexamic acid",
+    "aliases": [
+      "Tranexamic Acid",
+      "TXA"
+    ],
+    "normalizedAliases": [
+      "tranexamic acid",
+      "txa"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M013",
+        "normalizedId": "3203-m013",
+        "title": "Subarachnoid Hemorrhage, Non-traumatic",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M013_Subarachnoid_Hemorrhage.pdf",
+        "manifestId": "3203-M013",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "tranexamic acid"
+        ]
+      },
+      {
+        "id": "3203-M017",
+        "normalizedId": "3203-m017",
+        "title": "Stroke or Transient Ischemic Attack",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M017_Stroke_or_Transient_Ischemic_Attack.pdf",
+        "manifestId": "3203-M017",
+        "pages": [
+          4
+        ],
+        "pageRanges": "4",
+        "matchedAliases": [
+          "tranexamic acid"
+        ]
+      },
+      {
+        "id": "3203-M022",
+        "normalizedId": "3203-m022",
+        "title": "General Obstetric Patient Assessment",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M022_General_Obstetric_Patient_Assessment.pdf",
+        "manifestId": "3203-M022",
+        "pages": [
+          5
+        ],
+        "pageRanges": "5",
+        "matchedAliases": [
+          "tranexamic acid",
+          "txa"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR025",
+        "normalizedId": "3203-pr025",
+        "title": "Emergency Blood Product Administration",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR025_Emergency_Blood_Product_Administration.pdf",
+        "manifestId": "GUID-3203-PR025",
+        "pages": [
+          2,
+          5
+        ],
+        "pageRanges": "2, 5",
+        "matchedAliases": [
+          "tranexamic acid",
+          "txa"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR025B",
+        "normalizedId": "3203-pr025b",
+        "title": "Emergency Whole Blood Product Administration",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR025b_Emergency_Whole_Blood_Product_Administration.pdf",
+        "manifestId": "GUID-3203-PR025B",
+        "pages": [
+          2,
+          5
+        ],
+        "pageRanges": "2, 5",
+        "matchedAliases": [
+          "tranexamic acid",
+          "txa"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR031",
+        "normalizedId": "3203-pr031",
+        "title": "Ventricular Assist Devices (VADs)",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR031_Ventricular_Assist_Devices_VADs.pdf",
+        "manifestId": "GUID-3203-PR031",
+        "pages": [
+          5
+        ],
+        "pageRanges": "5",
+        "matchedAliases": [
+          "txa"
+        ]
+      }
+    ]
+  },
+  "Nitroglycerin": {
+    "canonical": "Nitroglycerin",
+    "canonicalKey": "nitroglycerin",
+    "aliases": [
+      "Nitroglycerin",
+      "Nitro",
+      "NTG"
+    ],
+    "normalizedAliases": [
+      "nitroglycerin",
+      "nitro",
+      "ntg"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C001",
+        "normalizedId": "3203-c001",
+        "title": "Acute Coronary Syndrome",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C001_Acute_Coronary_Syndrome.pdf",
+        "manifestId": "3203-C001",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "nitroglycerin",
+          "ntg"
+        ]
+      },
+      {
+        "id": "3203-C005",
+        "normalizedId": "3203-c005",
+        "title": "Congested Heart Failure & Pulmonary Edema",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C005_Congested_Heart_Failure_Pulmonary_Edema.pdf",
+        "manifestId": "3203-C005",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "nitroglycerin",
+          "ntg"
+        ]
+      },
+      {
+        "id": "3203-C010",
+        "normalizedId": "3203-c010",
+        "title": "ST Elevation Myocardial Infarction (STEMI)",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C010_ST_Elevation_Myocardial_Infarction__STEMI.pdf",
+        "manifestId": "3203-C010",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "nitroglycerin",
+          "ntg"
+        ]
+      }
+    ]
+  },
+  "Epinephrine": {
+    "canonical": "Epinephrine",
+    "canonicalKey": "epinephrine",
+    "aliases": [
+      "Epinephrine",
+      "Epi",
+      "adrenaline",
+      "1:1000",
+      "1:1,000",
+      "1:10000",
+      "1:10,000"
+    ],
+    "normalizedAliases": [
+      "epinephrine",
+      "epi",
+      "adrenaline",
+      "1:1000",
+      "1:1,000",
+      "1:10000",
+      "1:10,000"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C002",
+        "normalizedId": "3203-c002",
+        "title": "Asystole & Pulseless Electrical Activity",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C002_Asystole___Pulseless_Electrical_Activity.pdf",
+        "manifestId": "3203-C002",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "1:10,000",
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-C004",
+        "normalizedId": "3203-c004",
+        "title": "Bradycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C004_Bradycardia.pdf",
+        "manifestId": "3203-C004",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-C007",
+        "normalizedId": "3203-c007",
+        "title": "Ventricular Fibrillation & Pulseless Ventricular Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C007_Ventricular_Fibrillation_and_Pulseless_Ventricular_Tachycardia.pdf",
+        "manifestId": "3203-C007",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "1:10,000",
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-M004",
+        "normalizedId": "3203-m004",
+        "title": "Allergic Reaction/Anaphylaxis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M004_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-M004",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "1:1,000",
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-M008",
+        "normalizedId": "3203-m008",
+        "title": "Bronchospasm (Asthma & COPD)",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M008_Bronchospasm_Asthma_COPD.pdf",
+        "manifestId": "3203-M008",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "1:1,000",
+          "epi",
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-M011",
+        "normalizedId": "3203-m011",
+        "title": "Hypotension",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "manifestId": "3203-M011",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-M016",
+        "normalizedId": "3203-m016",
+        "title": "Sepsis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
+        "manifestId": "3203-M016",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2,
+          3
+        ],
+        "pageRanges": "2-3",
+        "matchedAliases": [
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED002",
+        "normalizedId": "3203-ped002",
+        "title": "Pediatric Allergic Reaction/Anaphylaxis",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED002_Pediatric_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-PED002",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "1:1,000",
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED004",
+        "normalizedId": "3203-ped004",
+        "title": "Pediatric Asystole",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED004_Pediatric_Asystole.pdf",
+        "manifestId": "3203-PED004",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "1:1,000",
+          "1:10,000",
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED005",
+        "normalizedId": "3203-ped005",
+        "title": "Pediatric Bradycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED005_Pediatric_Bradycardia.pdf",
+        "manifestId": "3203-PED005",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "1:1,000",
+          "1:10,000",
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED006",
+        "normalizedId": "3203-ped006",
+        "title": "Pediatric Cardiogenic Shock",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
+        "manifestId": "3203-PED006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED007",
+        "normalizedId": "3203-ped007",
+        "title": "Pediatric Cyanotic Congenital Heart Disease",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
+        "manifestId": "3203-PED007",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED009",
+        "normalizedId": "3203-ped009",
+        "title": "Pediatric Hypotension",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED009_Pediatric_Hypotension.pdf",
+        "manifestId": "3203-PED009",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED010",
+        "normalizedId": "3203-ped010",
+        "title": "Pediatric Infectious Respiratory Distress",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED010_Pediatric_Infectious_Respiratory_Distress.pdf",
+        "manifestId": "3203-PED010",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED012",
+        "normalizedId": "3203-ped012",
+        "title": "Pediatric Pulseless Electrical Activity (PEA)",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED012_Pediatric_Pulseless_Electrical_Activity_PEA.pdf",
+        "manifestId": "3203-PED012",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "1:1,000",
+          "1:10,000",
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED013",
+        "normalizedId": "3203-ped013",
+        "title": "Pediatric Ventricular Fibrillation \u2013 Pulseless Ventricular Tachycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED013_Pediatric_Pediatric_Ventricular_Fibrillation_Pulseless_Ventricular_Tachycardia.pdf",
+        "manifestId": "3203-PED013",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "1:1,000",
+          "1:10,000",
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED014",
+        "normalizedId": "3203-ped014",
+        "title": "Pediatric Reactive Airway Disease",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED014_Pediatric_Reactive_Airway_Disease.pdf",
+        "manifestId": "3203-PED014",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "1:1,000",
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "3203-PED019",
+        "normalizedId": "3203-ped019",
+        "title": "Neonatal Stabilization & Resuscitation",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED019_Neonatal_Stabilization___Resuscitation.pdf",
+        "manifestId": "3203-PED019",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR012",
+        "normalizedId": "3203-pr012",
+        "title": "Inhalation Therapy",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR012_Inhalation_Therapy.pdf",
+        "manifestId": "GUID-3203-PR012",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR031",
+        "normalizedId": "3203-pr031",
+        "title": "Ventricular Assist Devices (VADs)",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR031_Ventricular_Assist_Devices_VADs.pdf",
+        "manifestId": "GUID-3203-PR031",
+        "pages": [
+          5
+        ],
+        "pageRanges": "5",
+        "matchedAliases": [
+          "epinephrine"
+        ]
+      }
+    ]
+  },
+  "Ipratropium": {
+    "canonical": "Ipratropium",
+    "canonicalKey": "ipratropium",
+    "aliases": [
+      "Ipratropium",
+      "Atrovent"
+    ],
+    "normalizedAliases": [
+      "ipratropium",
+      "atrovent"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M004",
+        "normalizedId": "3203-m004",
+        "title": "Allergic Reaction/Anaphylaxis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M004_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-M004",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "ipratropium"
+        ]
+      },
+      {
+        "id": "3203-M008",
+        "normalizedId": "3203-m008",
+        "title": "Bronchospasm (Asthma & COPD)",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M008_Bronchospasm_Asthma_COPD.pdf",
+        "manifestId": "3203-M008",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "ipratropium"
+        ]
+      },
+      {
+        "id": "3203-PED002",
+        "normalizedId": "3203-ped002",
+        "title": "Pediatric Allergic Reaction/Anaphylaxis",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED002_Pediatric_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-PED002",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "ipratropium"
+        ]
+      },
+      {
+        "id": "3203-PED014",
+        "normalizedId": "3203-ped014",
+        "title": "Pediatric Reactive Airway Disease",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED014_Pediatric_Reactive_Airway_Disease.pdf",
+        "manifestId": "3203-PED014",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "ipratropium"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR012",
+        "normalizedId": "3203-pr012",
+        "title": "Inhalation Therapy",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR012_Inhalation_Therapy.pdf",
+        "manifestId": "GUID-3203-PR012",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "atrovent",
+          "ipratropium"
+        ]
+      }
+    ]
+  },
+  "Sodium Bicarbonate": {
+    "canonical": "Sodium Bicarbonate",
+    "canonicalKey": "sodium bicarbonate",
+    "aliases": [
+      "Sodium Bicarbonate",
+      "Bicarb",
+      "sodium bicarb",
+      "NaHCO3"
+    ],
+    "normalizedAliases": [
+      "sodium bicarbonate",
+      "bicarb",
+      "sodium bicarb",
+      "nahco3"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C002",
+        "normalizedId": "3203-c002",
+        "title": "Asystole & Pulseless Electrical Activity",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C002_Asystole___Pulseless_Electrical_Activity.pdf",
+        "manifestId": "3203-C002",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "sodium bicarbonate"
+        ]
+      },
+      {
+        "id": "3203-C006",
+        "normalizedId": "3203-c006",
+        "title": "Narrow & Wide Complex Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C006_Narrow_and_Wide_Complex_Tachycardia.pdf",
+        "manifestId": "3203-C006",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "sodium bicarbonate"
+        ]
+      },
+      {
+        "id": "3203-C007",
+        "normalizedId": "3203-c007",
+        "title": "Ventricular Fibrillation & Pulseless Ventricular Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C007_Ventricular_Fibrillation_and_Pulseless_Ventricular_Tachycardia.pdf",
+        "manifestId": "3203-C007",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "sodium bicarbonate"
+        ]
+      },
+      {
+        "id": "3203-M002",
+        "normalizedId": "3203-m002",
+        "title": "Diabetic Ketoacidosis (Adult)",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M002_Adult_Diabetic_Ketoacidosis.pdf",
+        "manifestId": "3203-M002",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "sodium bicarbonate"
+        ]
+      },
+      {
+        "id": "3203-M006",
+        "normalizedId": "3203-m006",
+        "title": "Potassium Imbalance",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M006_Electrolyte_Disorders_-_Potassium.pdf",
+        "manifestId": "3203-M006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "sodium bicarbonate"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "bicarb",
+          "sodium bicarb"
+        ]
+      },
+      {
+        "id": "3203-PED005",
+        "normalizedId": "3203-ped005",
+        "title": "Pediatric Bradycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED005_Pediatric_Bradycardia.pdf",
+        "manifestId": "3203-PED005",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "bicarb",
+          "sodium bicarb"
+        ]
+      },
+      {
+        "id": "3203-PED008",
+        "normalizedId": "3203-ped008",
+        "title": "Pediatric Diabetic Ketoacidosis (DKA)",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED008_Pediatric_Diabetic_Ketoacidosis.pdf",
+        "manifestId": "3203-PED008",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "sodium bicarbonate"
+        ]
+      }
+    ]
+  },
+  "Dextrose": {
+    "canonical": "Dextrose",
+    "canonicalKey": "dextrose",
+    "aliases": [
+      "Dextrose",
+      "D10",
+      "D-10",
+      "D 10",
+      "D25",
+      "D-25",
+      "D 25",
+      "D50",
+      "D-50",
+      "D 50",
+      "glucose"
+    ],
+    "normalizedAliases": [
+      "dextrose",
+      "d10",
+      "d-10",
+      "d 10",
+      "d25",
+      "d-25",
+      "d 25",
+      "d50",
+      "d-50",
+      "d 50",
+      "glucose"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C009",
+        "normalizedId": "3203-c009",
+        "title": "Targeted Temperature Management",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C009_Targeted_Temperature_Management.pdf",
+        "manifestId": "3203-C009",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-G002",
+        "normalizedId": "3203-g002",
+        "title": "General Patient Care",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G002 General Patient Care.pdf",
+        "manifestId": "3203-G002",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-G005",
+        "normalizedId": "3203-g005",
+        "title": "Analgesia and Sedation Management",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "manifestId": "3203-G005",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-M002",
+        "normalizedId": "3203-m002",
+        "title": "Diabetic Ketoacidosis (Adult)",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M002_Adult_Diabetic_Ketoacidosis.pdf",
+        "manifestId": "3203-M002",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-M003",
+        "normalizedId": "3203-m003",
+        "title": "Altered Mental Status",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M003 Altered Mental Status.pdf",
+        "manifestId": "3203-M003",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-M006",
+        "normalizedId": "3203-m006",
+        "title": "Potassium Imbalance",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M006_Electrolyte_Disorders_-_Potassium.pdf",
+        "manifestId": "3203-M006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "dextrose",
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-M009",
+        "normalizedId": "3203-m009",
+        "title": "Heat Related Illness/Hyperthermia",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M009_Heat_Related_Illness.pdf",
+        "manifestId": "3203-M009",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-M010",
+        "normalizedId": "3203-m010",
+        "title": "Hypertensive Emergency",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M010_Hypertensive_Emergency.pdf",
+        "manifestId": "3203-M010",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "dextrose"
+        ]
+      },
+      {
+        "id": "3203-M012",
+        "normalizedId": "3203-m012",
+        "title": "Hypothermia",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M012_Hypothermia.pdf",
+        "manifestId": "3203-M012",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-M015",
+        "normalizedId": "3203-m015",
+        "title": "Seizures",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M015_Seizures.pdf",
+        "manifestId": "3203-M015",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-M016",
+        "normalizedId": "3203-m016",
+        "title": "Sepsis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
+        "manifestId": "3203-M016",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-M017",
+        "normalizedId": "3203-m017",
+        "title": "Stroke or Transient Ischemic Attack",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M017_Stroke_or_Transient_Ischemic_Attack.pdf",
+        "manifestId": "3203-M017",
+        "pages": [
+          2,
+          5
+        ],
+        "pageRanges": "2, 5",
+        "matchedAliases": [
+          "dextrose",
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-M021",
+        "normalizedId": "3203-m021",
+        "title": "Hypoglycemia",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M021 Hypoglycemia.pdf",
+        "manifestId": "3203-M021",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "d10",
+          "dextrose",
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-PED003",
+        "normalizedId": "3203-ped003",
+        "title": "Pediatric Altered Mental Status (Non-traumatic)",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED003_Pediatric_Altered_Mental_Status-Non-Traumatic.pdf",
+        "manifestId": "3203-PED003",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-PED005",
+        "normalizedId": "3203-ped005",
+        "title": "Pediatric Bradycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED005_Pediatric_Bradycardia.pdf",
+        "manifestId": "3203-PED005",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-PED006",
+        "normalizedId": "3203-ped006",
+        "title": "Pediatric Cardiogenic Shock",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
+        "manifestId": "3203-PED006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-PED007",
+        "normalizedId": "3203-ped007",
+        "title": "Pediatric Cyanotic Congenital Heart Disease",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
+        "manifestId": "3203-PED007",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-PED008",
+        "normalizedId": "3203-ped008",
+        "title": "Pediatric Diabetic Ketoacidosis (DKA)",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED008_Pediatric_Diabetic_Ketoacidosis.pdf",
+        "manifestId": "3203-PED008",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "dextrose",
+          "glucose"
+        ]
+      },
+      {
+        "id": "3203-PED016",
+        "normalizedId": "3203-ped016",
+        "title": "Pediatric Sepsis or Meningitis",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED016_Pediatric_Sepsis_or_Meningitis.pdf",
+        "manifestId": "3203-PED016",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR003",
+        "normalizedId": "3203-pr003",
+        "title": "Capillary Blood Glucose Monitoring",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR003_Capillary_Blood_Glucose_Monitoring.pdf",
+        "manifestId": "GUID-3203-PR003",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "glucose"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR015",
+        "normalizedId": "3203-pr015",
+        "title": "Intravenous (IV) Fluid Therapy",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR015_IV_Fluid_Therapy.pdf",
+        "manifestId": "GUID-3203-PR015",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "dextrose"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR030",
+        "normalizedId": "3203-pr030",
+        "title": "Impella (Abiomed)",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR030_Impella_Abiomed.pdf",
+        "manifestId": "GUID-3203-PR030",
+        "pages": [
+          2,
+          10
+        ],
+        "pageRanges": "2, 10",
+        "matchedAliases": [
+          "dextrose"
+        ]
+      }
+    ]
+  },
+  "Rocuronium": {
+    "canonical": "Rocuronium",
+    "canonicalKey": "rocuronium",
+    "aliases": [
+      "Rocuronium",
+      "Roc",
+      "Zemuron"
+    ],
+    "normalizedAliases": [
+      "rocuronium",
+      "roc",
+      "zemuron"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C009",
+        "normalizedId": "3203-c009",
+        "title": "Targeted Temperature Management",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C009_Targeted_Temperature_Management.pdf",
+        "manifestId": "3203-C009",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "rocuronium"
+        ]
+      },
+      {
+        "id": "3203-G007",
+        "normalizedId": "3203-g007",
+        "title": "Propofol (Diprivan)",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G007_Propofol_Diprivan.pdf",
+        "manifestId": "3203-G007",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "rocuronium"
+        ]
+      },
+      {
+        "id": "3203-G008",
+        "normalizedId": "3203-g008",
+        "title": "Rapid Sequence Induction (RSI) for Endotracheal (ET) Intubation",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G008_Rapid_Sequence_Induction__RSI__for_Endotracheal__ET__Intubation.pdf",
+        "manifestId": "3203-G008",
+        "pages": [
+          3,
+          4
+        ],
+        "pageRanges": "3-4",
+        "matchedAliases": [
+          "rocuronium"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR029",
+        "normalizedId": "3203-pr029",
+        "title": "Prone Positioning",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR029_Prone_Positioning.pdf",
+        "manifestId": "GUID-3203-PR029",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "rocuronium",
+          "zemuron"
+        ]
+      }
+    ]
+  },
+  "Succinylcholine": {
+    "canonical": "Succinylcholine",
+    "canonicalKey": "succinylcholine",
+    "aliases": [
+      "Succinylcholine",
+      "Sux",
+      "suxamethonium",
+      "Anectine"
+    ],
+    "normalizedAliases": [
+      "succinylcholine",
+      "sux",
+      "suxamethonium",
+      "anectine"
+    ],
+    "protocols": [
+      {
+        "id": "3203-G008",
+        "normalizedId": "3203-g008",
+        "title": "Rapid Sequence Induction (RSI) for Endotracheal (ET) Intubation",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G008_Rapid_Sequence_Induction__RSI__for_Endotracheal__ET__Intubation.pdf",
+        "manifestId": "3203-G008",
+        "pages": [
+          1,
+          3
+        ],
+        "pageRanges": "1, 3",
+        "matchedAliases": [
+          "succinylcholine"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "succinylcholine"
+        ]
+      },
+      {
+        "id": "3203-M020",
+        "normalizedId": "3203-m020",
+        "title": "Malignant Hyperthermia",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M020_Malignant_Hyperthermia.pdf",
+        "manifestId": "3203-M020",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "succinylcholine"
+        ]
+      }
+    ]
+  },
+  "Methylprednisolone": {
+    "canonical": "Methylprednisolone",
+    "canonicalKey": "methylprednisolone",
+    "aliases": [
+      "Methylprednisolone",
+      "Solu-Medrol",
+      "solumedrol"
+    ],
+    "normalizedAliases": [
+      "methylprednisolone",
+      "solu-medrol",
+      "solumedrol"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M004",
+        "normalizedId": "3203-m004",
+        "title": "Allergic Reaction/Anaphylaxis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M004_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-M004",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "methylprednisolone"
+        ]
+      },
+      {
+        "id": "3203-M008",
+        "normalizedId": "3203-m008",
+        "title": "Bronchospasm (Asthma & COPD)",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M008_Bronchospasm_Asthma_COPD.pdf",
+        "manifestId": "3203-M008",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "methylprednisolone"
+        ]
+      },
+      {
+        "id": "3203-PED002",
+        "normalizedId": "3203-ped002",
+        "title": "Pediatric Allergic Reaction/Anaphylaxis",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED002_Pediatric_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-PED002",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "methylprednisolone"
+        ]
+      },
+      {
+        "id": "3203-PED014",
+        "normalizedId": "3203-ped014",
+        "title": "Pediatric Reactive Airway Disease",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED014_Pediatric_Reactive_Airway_Disease.pdf",
+        "manifestId": "3203-PED014",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "methylprednisolone"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR002",
+        "normalizedId": "3203-pr002",
+        "title": "Blood Product Administration",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR002_Blood_Product_Administration.pdf",
+        "manifestId": "GUID-3203-PR002",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "solumedrol"
+        ]
+      }
+    ]
+  },
+  "Diphenhydramine": {
+    "canonical": "Diphenhydramine",
+    "canonicalKey": "diphenhydramine",
+    "aliases": [
+      "Diphenhydramine",
+      "Benadryl"
+    ],
+    "normalizedAliases": [
+      "diphenhydramine",
+      "benadryl"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M004",
+        "normalizedId": "3203-m004",
+        "title": "Allergic Reaction/Anaphylaxis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M004_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-M004",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "diphenhydramine"
+        ]
+      },
+      {
+        "id": "3203-PED002",
+        "normalizedId": "3203-ped002",
+        "title": "Pediatric Allergic Reaction/Anaphylaxis",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED002_Pediatric_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-PED002",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "diphenhydramine"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR002",
+        "normalizedId": "3203-pr002",
+        "title": "Blood Product Administration",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR002_Blood_Product_Administration.pdf",
+        "manifestId": "GUID-3203-PR002",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "benadryl"
+        ]
+      }
+    ]
+  },
+  "Furosemide": {
+    "canonical": "Furosemide",
+    "canonicalKey": "furosemide",
+    "aliases": [
+      "Furosemide",
+      "Lasix"
+    ],
+    "normalizedAliases": [
+      "furosemide",
+      "lasix"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C005",
+        "normalizedId": "3203-c005",
+        "title": "Congested Heart Failure & Pulmonary Edema",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C005_Congested_Heart_Failure_Pulmonary_Edema.pdf",
+        "manifestId": "3203-C005",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "furosemide"
+        ]
+      },
+      {
+        "id": "3203-PED006",
+        "normalizedId": "3203-ped006",
+        "title": "Pediatric Cardiogenic Shock",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
+        "manifestId": "3203-PED006",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "furosemide"
+        ]
+      },
+      {
+        "id": "3203-PED007",
+        "normalizedId": "3203-ped007",
+        "title": "Pediatric Cyanotic Congenital Heart Disease",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
+        "manifestId": "3203-PED007",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "furosemide"
+        ]
+      }
+    ]
+  },
+  "Diltiazem": {
+    "canonical": "Diltiazem",
+    "canonicalKey": "diltiazem",
+    "aliases": [
+      "Diltiazem",
+      "Cardizem"
+    ],
+    "normalizedAliases": [
+      "diltiazem",
+      "cardizem"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C003",
+        "normalizedId": "3203-c003",
+        "title": "Atrial Fibrillation & Atrial Flutter",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C003_Atrial_Fibrillation___Atrial_Flutter.pdf",
+        "manifestId": "3203-C003",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "diltiazem"
+        ]
+      },
+      {
+        "id": "3203-C006",
+        "normalizedId": "3203-c006",
+        "title": "Narrow & Wide Complex Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C006_Narrow_and_Wide_Complex_Tachycardia.pdf",
+        "manifestId": "3203-C006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "diltiazem"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "cardizem",
+          "diltiazem"
+        ]
+      }
+    ]
+  },
+  "Cefazolin": {
+    "canonical": "Cefazolin",
+    "canonicalKey": "cefazolin",
+    "aliases": [
+      "Cefazolin",
+      "Ancef"
+    ],
+    "normalizedAliases": [
+      "cefazolin",
+      "ancef"
+    ],
+    "protocols": []
+  },
+  "Pantoprazole": {
+    "canonical": "Pantoprazole",
+    "canonicalKey": "pantoprazole",
+    "aliases": [
+      "Pantoprazole",
+      "Protonix"
+    ],
+    "normalizedAliases": [
+      "pantoprazole",
+      "protonix"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M007",
+        "normalizedId": "3203-m007",
+        "title": "Gastrointestinal Bleeding",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M007_Gastrointestinal_Bleeding.pdf",
+        "manifestId": "3203-M007",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "pantoprazole"
+        ]
+      }
+    ]
+  },
+  "Acetylcysteine": {
+    "canonical": "Acetylcysteine",
+    "canonicalKey": "acetylcysteine",
+    "aliases": [
+      "Acetylcysteine",
+      "NAC",
+      "N-acetylcysteine"
+    ],
+    "normalizedAliases": [
+      "acetylcysteine",
+      "nac",
+      "n-acetylcysteine"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "acetylcysteine",
+          "n-acetylcysteine"
+        ]
+      }
+    ]
+  },
+  "Hydroxocobalamin": {
+    "canonical": "Hydroxocobalamin",
+    "canonicalKey": "hydroxocobalamin",
+    "aliases": [
+      "Hydroxocobalamin",
+      "Cyanokit"
+    ],
+    "normalizedAliases": [
+      "hydroxocobalamin",
+      "cyanokit"
+    ],
+    "protocols": []
+  },
+  "Crotalidae Immune Fab": {
+    "canonical": "Crotalidae Immune Fab",
+    "canonicalKey": "crotalidae immune fab",
+    "aliases": [
+      "Crotalidae Immune Fab",
+      "CroFab"
+    ],
+    "normalizedAliases": [
+      "crotalidae immune fab",
+      "crofab"
+    ],
+    "protocols": []
+  },
+  "Rho(D) Immune Globulin": {
+    "canonical": "Rho(D) Immune Globulin",
+    "canonicalKey": "rho(d) immune globulin",
+    "aliases": [
+      "Rho(D) Immune Globulin",
+      "RhoGAM",
+      "RhoGAM Ultra-Filtered PLUS"
+    ],
+    "normalizedAliases": [
+      "rho(d) immune globulin",
+      "rhogam",
+      "rhogam ultra-filtered plus"
+    ],
+    "protocols": [
+      {
+        "id": "GUID-3203-PR025",
+        "normalizedId": "3203-pr025",
+        "title": "Emergency Blood Product Administration",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR025_Emergency_Blood_Product_Administration.pdf",
+        "manifestId": "GUID-3203-PR025",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "rho(d) immune globulin",
+          "rhogam"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR025B",
+        "normalizedId": "3203-pr025b",
+        "title": "Emergency Whole Blood Product Administration",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR025b_Emergency_Whole_Blood_Product_Administration.pdf",
+        "manifestId": "GUID-3203-PR025B",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "rho(d) immune globulin",
+          "rhogam"
+        ]
+      }
+    ]
+  },
+  "Albuterol": {
+    "canonical": "Albuterol",
+    "canonicalKey": "albuterol",
+    "aliases": [
+      "Albuterol",
+      "salbutamol",
+      "Proventil",
+      "Ventolin"
+    ],
+    "normalizedAliases": [
+      "albuterol",
+      "salbutamol",
+      "proventil",
+      "ventolin"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M004",
+        "normalizedId": "3203-m004",
+        "title": "Allergic Reaction/Anaphylaxis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M004_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-M004",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "albuterol"
+        ]
+      },
+      {
+        "id": "3203-M006",
+        "normalizedId": "3203-m006",
+        "title": "Potassium Imbalance",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M006_Electrolyte_Disorders_-_Potassium.pdf",
+        "manifestId": "3203-M006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "albuterol"
+        ]
+      },
+      {
+        "id": "3203-M008",
+        "normalizedId": "3203-m008",
+        "title": "Bronchospasm (Asthma & COPD)",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M008_Bronchospasm_Asthma_COPD.pdf",
+        "manifestId": "3203-M008",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "albuterol"
+        ]
+      },
+      {
+        "id": "3203-PED002",
+        "normalizedId": "3203-ped002",
+        "title": "Pediatric Allergic Reaction/Anaphylaxis",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED002_Pediatric_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-PED002",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "albuterol"
+        ]
+      },
+      {
+        "id": "3203-PED005",
+        "normalizedId": "3203-ped005",
+        "title": "Pediatric Bradycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED005_Pediatric_Bradycardia.pdf",
+        "manifestId": "3203-PED005",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "albuterol"
+        ]
+      },
+      {
+        "id": "3203-PED014",
+        "normalizedId": "3203-ped014",
+        "title": "Pediatric Reactive Airway Disease",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED014_Pediatric_Reactive_Airway_Disease.pdf",
+        "manifestId": "3203-PED014",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "albuterol"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR012",
+        "normalizedId": "3203-pr012",
+        "title": "Inhalation Therapy",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR012_Inhalation_Therapy.pdf",
+        "manifestId": "GUID-3203-PR012",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "albuterol"
+        ]
+      }
+    ]
+  },
+  "Lorazepam": {
+    "canonical": "Lorazepam",
+    "canonicalKey": "lorazepam",
+    "aliases": [
+      "Lorazepam",
+      "Ativan"
+    ],
+    "normalizedAliases": [
+      "lorazepam",
+      "ativan"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C008",
+        "normalizedId": "3203-c008",
+        "title": "Extracorporeal Membrane Oxygenation Therapy (ECMO)",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C008_Extracorporeal_Membrane_Oxygenation_Therapy.pdf",
+        "manifestId": "3203-C008",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "ativan"
+        ]
+      },
+      {
+        "id": "3203-M015",
+        "normalizedId": "3203-m015",
+        "title": "Seizures",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M015_Seizures.pdf",
+        "manifestId": "3203-M015",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "lorazepam"
+        ]
+      },
+      {
+        "id": "3203-PED015",
+        "normalizedId": "3203-ped015",
+        "title": "Pediatric Seizures/Status Epilepticus",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED015_Pediatric_Seizures-Status_Epilepticus.pdf",
+        "manifestId": "3203-PED015",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "lorazepam"
+        ]
+      }
+    ]
+  },
+  "Diazepam": {
+    "canonical": "Diazepam",
+    "canonicalKey": "diazepam",
+    "aliases": [
+      "Diazepam",
+      "Valium"
+    ],
+    "normalizedAliases": [
+      "diazepam",
+      "valium"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "valium"
+        ]
+      },
+      {
+        "id": "3203-PED015",
+        "normalizedId": "3203-ped015",
+        "title": "Pediatric Seizures/Status Epilepticus",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED015_Pediatric_Seizures-Status_Epilepticus.pdf",
+        "manifestId": "3203-PED015",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "diazepam"
+        ]
+      }
+    ]
+  },
+  "Amiodarone": {
+    "canonical": "Amiodarone",
+    "canonicalKey": "amiodarone",
+    "aliases": [
+      "Amiodarone",
+      "Cordarone",
+      "Pacerone"
+    ],
+    "normalizedAliases": [
+      "amiodarone",
+      "cordarone",
+      "pacerone"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C003",
+        "normalizedId": "3203-c003",
+        "title": "Atrial Fibrillation & Atrial Flutter",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C003_Atrial_Fibrillation___Atrial_Flutter.pdf",
+        "manifestId": "3203-C003",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "amiodarone"
+        ]
+      },
+      {
+        "id": "3203-C006",
+        "normalizedId": "3203-c006",
+        "title": "Narrow & Wide Complex Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C006_Narrow_and_Wide_Complex_Tachycardia.pdf",
+        "manifestId": "3203-C006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "amiodarone"
+        ]
+      },
+      {
+        "id": "3203-C007",
+        "normalizedId": "3203-c007",
+        "title": "Ventricular Fibrillation & Pulseless Ventricular Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C007_Ventricular_Fibrillation_and_Pulseless_Ventricular_Tachycardia.pdf",
+        "manifestId": "3203-C007",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "amiodarone"
+        ]
+      },
+      {
+        "id": "3203-PED013",
+        "normalizedId": "3203-ped013",
+        "title": "Pediatric Ventricular Fibrillation \u2013 Pulseless Ventricular Tachycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED013_Pediatric_Pediatric_Ventricular_Fibrillation_Pulseless_Ventricular_Tachycardia.pdf",
+        "manifestId": "3203-PED013",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "amiodarone"
+        ]
+      },
+      {
+        "id": "3203-PED017",
+        "normalizedId": "3203-ped017",
+        "title": "Pediatric Supraventricular Tachycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED017_Pediatric_Supraventricular_Tachycardia.pdf",
+        "manifestId": "3203-PED017",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "amiodarone"
+        ]
+      },
+      {
+        "id": "3203-PED018",
+        "normalizedId": "3203-ped018",
+        "title": "Pediatric Ventricular Tachycardia with Pulse",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED018_Pediatric_Ventricular_Tachycardia_with_Pulse.pdf",
+        "manifestId": "3203-PED018",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "amiodarone"
+        ]
+      }
+    ]
+  },
+  "Adenosine": {
+    "canonical": "Adenosine",
+    "canonicalKey": "adenosine",
+    "aliases": [
+      "Adenosine",
+      "Adenocard"
+    ],
+    "normalizedAliases": [
+      "adenosine",
+      "adenocard"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C006",
+        "normalizedId": "3203-c006",
+        "title": "Narrow & Wide Complex Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C006_Narrow_and_Wide_Complex_Tachycardia.pdf",
+        "manifestId": "3203-C006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "adenosine"
+        ]
+      },
+      {
+        "id": "3203-PED017",
+        "normalizedId": "3203-ped017",
+        "title": "Pediatric Supraventricular Tachycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED017_Pediatric_Supraventricular_Tachycardia.pdf",
+        "manifestId": "3203-PED017",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "adenosine"
+        ]
+      }
+    ]
+  },
+  "Ketamine": {
+    "canonical": "Ketamine",
+    "canonicalKey": "ketamine",
+    "aliases": [
+      "Ketamine",
+      "Ketalar"
+    ],
+    "normalizedAliases": [
+      "ketamine",
+      "ketalar"
+    ],
+    "protocols": [
+      {
+        "id": "3203-G005",
+        "normalizedId": "3203-g005",
+        "title": "Analgesia and Sedation Management",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "manifestId": "3203-G005",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "ketamine"
+        ]
+      },
+      {
+        "id": "3203-G006",
+        "normalizedId": "3203-g006",
+        "title": "Anxiety/Combative Patient Management",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G006_Anxiety-_Combative_Patient_Management.pdf",
+        "manifestId": "3203-G006",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "ketamine"
+        ]
+      },
+      {
+        "id": "3203-G008",
+        "normalizedId": "3203-g008",
+        "title": "Rapid Sequence Induction (RSI) for Endotracheal (ET) Intubation",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G008_Rapid_Sequence_Induction__RSI__for_Endotracheal__ET__Intubation.pdf",
+        "manifestId": "3203-G008",
+        "pages": [
+          2,
+          3
+        ],
+        "pageRanges": "2-3",
+        "matchedAliases": [
+          "ketamine"
+        ]
+      },
+      {
+        "id": "3203-M008",
+        "normalizedId": "3203-m008",
+        "title": "Bronchospasm (Asthma & COPD)",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M008_Bronchospasm_Asthma_COPD.pdf",
+        "manifestId": "3203-M008",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "ketamine"
+        ]
+      },
+      {
+        "id": "3203-PED014",
+        "normalizedId": "3203-ped014",
+        "title": "Pediatric Reactive Airway Disease",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED014_Pediatric_Reactive_Airway_Disease.pdf",
+        "manifestId": "3203-PED014",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "ketamine"
+        ]
+      }
+    ]
+  },
+  "Fentanyl": {
+    "canonical": "Fentanyl",
+    "canonicalKey": "fentanyl",
+    "aliases": [
+      "Fentanyl",
+      "Sublimaze"
+    ],
+    "normalizedAliases": [
+      "fentanyl",
+      "sublimaze"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C001",
+        "normalizedId": "3203-c001",
+        "title": "Acute Coronary Syndrome",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C001_Acute_Coronary_Syndrome.pdf",
+        "manifestId": "3203-C001",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "fentanyl"
+        ]
+      },
+      {
+        "id": "3203-C005",
+        "normalizedId": "3203-c005",
+        "title": "Congested Heart Failure & Pulmonary Edema",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C005_Congested_Heart_Failure_Pulmonary_Edema.pdf",
+        "manifestId": "3203-C005",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "fentanyl"
+        ]
+      },
+      {
+        "id": "3203-C010",
+        "normalizedId": "3203-c010",
+        "title": "ST Elevation Myocardial Infarction (STEMI)",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C010_ST_Elevation_Myocardial_Infarction__STEMI.pdf",
+        "manifestId": "3203-C010",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "fentanyl"
+        ]
+      },
+      {
+        "id": "3203-G005",
+        "normalizedId": "3203-g005",
+        "title": "Analgesia and Sedation Management",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "manifestId": "3203-G005",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "fentanyl"
+        ]
+      },
+      {
+        "id": "3203-G007",
+        "normalizedId": "3203-g007",
+        "title": "Propofol (Diprivan)",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G007_Propofol_Diprivan.pdf",
+        "manifestId": "3203-G007",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "fentanyl"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          1,
+          3
+        ],
+        "pageRanges": "1, 3",
+        "matchedAliases": [
+          "fentanyl"
+        ]
+      }
+    ]
+  },
+  "Morphine": {
+    "canonical": "Morphine",
+    "canonicalKey": "morphine",
+    "aliases": [
+      "Morphine"
+    ],
+    "normalizedAliases": [
+      "morphine"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C001",
+        "normalizedId": "3203-c001",
+        "title": "Acute Coronary Syndrome",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C001_Acute_Coronary_Syndrome.pdf",
+        "manifestId": "3203-C001",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "morphine"
+        ]
+      },
+      {
+        "id": "3203-C005",
+        "normalizedId": "3203-c005",
+        "title": "Congested Heart Failure & Pulmonary Edema",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C005_Congested_Heart_Failure_Pulmonary_Edema.pdf",
+        "manifestId": "3203-C005",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "morphine"
+        ]
+      },
+      {
+        "id": "3203-C010",
+        "normalizedId": "3203-c010",
+        "title": "ST Elevation Myocardial Infarction (STEMI)",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C010_ST_Elevation_Myocardial_Infarction__STEMI.pdf",
+        "manifestId": "3203-C010",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "morphine"
+        ]
+      },
+      {
+        "id": "3203-G005",
+        "normalizedId": "3203-g005",
+        "title": "Analgesia and Sedation Management",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "manifestId": "3203-G005",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "morphine"
+        ]
+      }
+    ]
+  },
+  "Hydromorphone": {
+    "canonical": "Hydromorphone",
+    "canonicalKey": "hydromorphone",
+    "aliases": [
+      "Hydromorphone",
+      "Dilaudid"
+    ],
+    "normalizedAliases": [
+      "hydromorphone",
+      "dilaudid"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "dilaudid"
+        ]
+      }
+    ]
+  },
+  "Calcium Chloride": {
+    "canonical": "Calcium Chloride",
+    "canonicalKey": "calcium chloride",
+    "aliases": [
+      "Calcium Chloride",
+      "CaCl",
+      "CaCl2",
+      "calcium"
+    ],
+    "normalizedAliases": [
+      "calcium chloride",
+      "cacl",
+      "cacl2",
+      "calcium"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C004",
+        "normalizedId": "3203-c004",
+        "title": "Bradycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C004_Bradycardia.pdf",
+        "manifestId": "3203-C004",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "calcium"
+        ]
+      },
+      {
+        "id": "3203-C006",
+        "normalizedId": "3203-c006",
+        "title": "Narrow & Wide Complex Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C006_Narrow_and_Wide_Complex_Tachycardia.pdf",
+        "manifestId": "3203-C006",
+        "pages": [
+          2,
+          3
+        ],
+        "pageRanges": "2-3",
+        "matchedAliases": [
+          "calcium",
+          "calcium chloride"
+        ]
+      },
+      {
+        "id": "3203-M005",
+        "normalizedId": "3203-m005",
+        "title": "Magnesium Imbalance",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M005_Electrolyte_Disorders_-_Magnesium.pdf",
+        "manifestId": "3203-M005",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "calcium",
+          "calcium chloride"
+        ]
+      },
+      {
+        "id": "3203-M006",
+        "normalizedId": "3203-m006",
+        "title": "Potassium Imbalance",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M006_Electrolyte_Disorders_-_Potassium.pdf",
+        "manifestId": "3203-M006",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "calcium",
+          "calcium chloride"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2,
+          3
+        ],
+        "pageRanges": "2-3",
+        "matchedAliases": [
+          "calcium",
+          "calcium chloride"
+        ]
+      },
+      {
+        "id": "3203-M022",
+        "normalizedId": "3203-m022",
+        "title": "General Obstetric Patient Assessment",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M022_General_Obstetric_Patient_Assessment.pdf",
+        "manifestId": "3203-M022",
+        "pages": [
+          4,
+          5
+        ],
+        "pageRanges": "4-5",
+        "matchedAliases": [
+          "calcium"
+        ]
+      },
+      {
+        "id": "3203-PED005",
+        "normalizedId": "3203-ped005",
+        "title": "Pediatric Bradycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED005_Pediatric_Bradycardia.pdf",
+        "manifestId": "3203-PED005",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "calcium",
+          "calcium chloride"
+        ]
+      },
+      {
+        "id": "3203-PED006",
+        "normalizedId": "3203-ped006",
+        "title": "Pediatric Cardiogenic Shock",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
+        "manifestId": "3203-PED006",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "calcium"
+        ]
+      },
+      {
+        "id": "3203-PED018",
+        "normalizedId": "3203-ped018",
+        "title": "Pediatric Ventricular Tachycardia with Pulse",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED018_Pediatric_Ventricular_Tachycardia_with_Pulse.pdf",
+        "manifestId": "3203-PED018",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "calcium"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR002",
+        "normalizedId": "3203-pr002",
+        "title": "Blood Product Administration",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR002_Blood_Product_Administration.pdf",
+        "manifestId": "GUID-3203-PR002",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "calcium"
+        ]
+      }
+    ]
+  },
+  "Magnesium Sulfate": {
+    "canonical": "Magnesium Sulfate",
+    "canonicalKey": "magnesium sulfate",
+    "aliases": [
+      "Magnesium Sulfate",
+      "magnesium",
+      "mag sulfate",
+      "MgSO4"
+    ],
+    "normalizedAliases": [
+      "magnesium sulfate",
+      "magnesium",
+      "mag sulfate",
+      "mgso4"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C006",
+        "normalizedId": "3203-c006",
+        "title": "Narrow & Wide Complex Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C006_Narrow_and_Wide_Complex_Tachycardia.pdf",
+        "manifestId": "3203-C006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "magnesium",
+          "magnesium sulfate"
+        ]
+      },
+      {
+        "id": "3203-C007",
+        "normalizedId": "3203-c007",
+        "title": "Ventricular Fibrillation & Pulseless Ventricular Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C007_Ventricular_Fibrillation_and_Pulseless_Ventricular_Tachycardia.pdf",
+        "manifestId": "3203-C007",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "magnesium",
+          "magnesium sulfate"
+        ]
+      },
+      {
+        "id": "3203-M005",
+        "normalizedId": "3203-m005",
+        "title": "Magnesium Imbalance",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M005_Electrolyte_Disorders_-_Magnesium.pdf",
+        "manifestId": "3203-M005",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "magnesium",
+          "magnesium sulfate"
+        ]
+      },
+      {
+        "id": "3203-M006",
+        "normalizedId": "3203-m006",
+        "title": "Potassium Imbalance",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M006_Electrolyte_Disorders_-_Potassium.pdf",
+        "manifestId": "3203-M006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "magnesium"
+        ]
+      },
+      {
+        "id": "3203-M008",
+        "normalizedId": "3203-m008",
+        "title": "Bronchospasm (Asthma & COPD)",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M008_Bronchospasm_Asthma_COPD.pdf",
+        "manifestId": "3203-M008",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "magnesium",
+          "magnesium sulfate"
+        ]
+      },
+      {
+        "id": "3203-M022",
+        "normalizedId": "3203-m022",
+        "title": "General Obstetric Patient Assessment",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M022_General_Obstetric_Patient_Assessment.pdf",
+        "manifestId": "3203-M022",
+        "pages": [
+          4,
+          5
+        ],
+        "pageRanges": "4-5",
+        "matchedAliases": [
+          "magnesium",
+          "magnesium sulfate"
+        ]
+      },
+      {
+        "id": "3203-PED005",
+        "normalizedId": "3203-ped005",
+        "title": "Pediatric Bradycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED005_Pediatric_Bradycardia.pdf",
+        "manifestId": "3203-PED005",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "magnesium"
+        ]
+      },
+      {
+        "id": "3203-PED013",
+        "normalizedId": "3203-ped013",
+        "title": "Pediatric Ventricular Fibrillation \u2013 Pulseless Ventricular Tachycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED013_Pediatric_Pediatric_Ventricular_Fibrillation_Pulseless_Ventricular_Tachycardia.pdf",
+        "manifestId": "3203-PED013",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "magnesium",
+          "magnesium sulfate"
+        ]
+      },
+      {
+        "id": "3203-PED014",
+        "normalizedId": "3203-ped014",
+        "title": "Pediatric Reactive Airway Disease",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED014_Pediatric_Reactive_Airway_Disease.pdf",
+        "manifestId": "3203-PED014",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "magnesium",
+          "magnesium sulfate"
+        ]
+      },
+      {
+        "id": "3203-PED018",
+        "normalizedId": "3203-ped018",
+        "title": "Pediatric Ventricular Tachycardia with Pulse",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED018_Pediatric_Ventricular_Tachycardia_with_Pulse.pdf",
+        "manifestId": "3203-PED018",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "magnesium",
+          "magnesium sulfate"
+        ]
+      }
+    ]
+  },
+  "Glucagon": {
+    "canonical": "Glucagon",
+    "canonicalKey": "glucagon",
+    "aliases": [
+      "Glucagon"
+    ],
+    "normalizedAliases": [
+      "glucagon"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M004",
+        "normalizedId": "3203-m004",
+        "title": "Allergic Reaction/Anaphylaxis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M004_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-M004",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "glucagon"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "glucagon"
+        ]
+      },
+      {
+        "id": "3203-M021",
+        "normalizedId": "3203-m021",
+        "title": "Hypoglycemia",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M021 Hypoglycemia.pdf",
+        "manifestId": "3203-M021",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "glucagon"
+        ]
+      },
+      {
+        "id": "3203-PED002",
+        "normalizedId": "3203-ped002",
+        "title": "Pediatric Allergic Reaction/Anaphylaxis",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED002_Pediatric_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-PED002",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "glucagon"
+        ]
+      }
+    ]
+  },
+  "Dopamine": {
+    "canonical": "Dopamine",
+    "canonicalKey": "dopamine",
+    "aliases": [
+      "Dopamine",
+      "Intropin"
+    ],
+    "normalizedAliases": [
+      "dopamine",
+      "intropin"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C004",
+        "normalizedId": "3203-c004",
+        "title": "Bradycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C004_Bradycardia.pdf",
+        "manifestId": "3203-C004",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "dopamine"
+        ]
+      },
+      {
+        "id": "3203-M011",
+        "normalizedId": "3203-m011",
+        "title": "Hypotension",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "manifestId": "3203-M011",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "dopamine"
+        ]
+      },
+      {
+        "id": "3203-PED007",
+        "normalizedId": "3203-ped007",
+        "title": "Pediatric Cyanotic Congenital Heart Disease",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
+        "manifestId": "3203-PED007",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "dopamine"
+        ]
+      },
+      {
+        "id": "3203-PED009",
+        "normalizedId": "3203-ped009",
+        "title": "Pediatric Hypotension",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED009_Pediatric_Hypotension.pdf",
+        "manifestId": "3203-PED009",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "dopamine"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR031",
+        "normalizedId": "3203-pr031",
+        "title": "Ventricular Assist Devices (VADs)",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR031_Ventricular_Assist_Devices_VADs.pdf",
+        "manifestId": "GUID-3203-PR031",
+        "pages": [
+          5
+        ],
+        "pageRanges": "5",
+        "matchedAliases": [
+          "dopamine"
+        ]
+      }
+    ]
+  },
+  "Dobutamine": {
+    "canonical": "Dobutamine",
+    "canonicalKey": "dobutamine",
+    "aliases": [
+      "Dobutamine",
+      "Dobutrex"
+    ],
+    "normalizedAliases": [
+      "dobutamine",
+      "dobutrex"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M011",
+        "normalizedId": "3203-m011",
+        "title": "Hypotension",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "manifestId": "3203-M011",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "dobutamine"
+        ]
+      },
+      {
+        "id": "3203-PED006",
+        "normalizedId": "3203-ped006",
+        "title": "Pediatric Cardiogenic Shock",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
+        "manifestId": "3203-PED006",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "dobutamine"
+        ]
+      },
+      {
+        "id": "3203-PED007",
+        "normalizedId": "3203-ped007",
+        "title": "Pediatric Cyanotic Congenital Heart Disease",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
+        "manifestId": "3203-PED007",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "dobutamine"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR031",
+        "normalizedId": "3203-pr031",
+        "title": "Ventricular Assist Devices (VADs)",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR031_Ventricular_Assist_Devices_VADs.pdf",
+        "manifestId": "GUID-3203-PR031",
+        "pages": [
+          5
+        ],
+        "pageRanges": "5",
+        "matchedAliases": [
+          "dobutamine"
+        ]
+      }
+    ]
+  },
+  "Phenylephrine": {
+    "canonical": "Phenylephrine",
+    "canonicalKey": "phenylephrine",
+    "aliases": [
+      "Phenylephrine",
+      "Neo",
+      "Neosynephrine",
+      "Neo-Synephrine"
+    ],
+    "normalizedAliases": [
+      "phenylephrine",
+      "neo",
+      "neosynephrine",
+      "neo-synephrine"
+    ],
+    "protocols": [
+      {
+        "id": "3203-G008",
+        "normalizedId": "3203-g008",
+        "title": "Rapid Sequence Induction (RSI) for Endotracheal (ET) Intubation",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G008_Rapid_Sequence_Induction__RSI__for_Endotracheal__ET__Intubation.pdf",
+        "manifestId": "3203-G008",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "phenylephrine"
+        ]
+      },
+      {
+        "id": "3203-M011",
+        "normalizedId": "3203-m011",
+        "title": "Hypotension",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "manifestId": "3203-M011",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "phenylephrine"
+        ]
+      }
+    ]
+  },
+  "Vasopressin": {
+    "canonical": "Vasopressin",
+    "canonicalKey": "vasopressin",
+    "aliases": [
+      "Vasopressin",
+      "Pitressin"
+    ],
+    "normalizedAliases": [
+      "vasopressin",
+      "pitressin"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M007",
+        "normalizedId": "3203-m007",
+        "title": "Gastrointestinal Bleeding",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M007_Gastrointestinal_Bleeding.pdf",
+        "manifestId": "3203-M007",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "vasopressin"
+        ]
+      },
+      {
+        "id": "3203-M011",
+        "normalizedId": "3203-m011",
+        "title": "Hypotension",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "manifestId": "3203-M011",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "vasopressin"
+        ]
+      },
+      {
+        "id": "3203-M016",
+        "normalizedId": "3203-m016",
+        "title": "Sepsis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
+        "manifestId": "3203-M016",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "vasopressin"
+        ]
+      }
+    ]
+  },
+  "Lidocaine": {
+    "canonical": "Lidocaine",
+    "canonicalKey": "lidocaine",
+    "aliases": [
+      "Lidocaine",
+      "Xylocaine"
+    ],
+    "normalizedAliases": [
+      "lidocaine",
+      "xylocaine"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C006",
+        "normalizedId": "3203-c006",
+        "title": "Narrow & Wide Complex Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C006_Narrow_and_Wide_Complex_Tachycardia.pdf",
+        "manifestId": "3203-C006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "lidocaine"
+        ]
+      },
+      {
+        "id": "3203-C007",
+        "normalizedId": "3203-c007",
+        "title": "Ventricular Fibrillation & Pulseless Ventricular Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C007_Ventricular_Fibrillation_and_Pulseless_Ventricular_Tachycardia.pdf",
+        "manifestId": "3203-C007",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "lidocaine"
+        ]
+      },
+      {
+        "id": "3203-PED013",
+        "normalizedId": "3203-ped013",
+        "title": "Pediatric Ventricular Fibrillation \u2013 Pulseless Ventricular Tachycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED013_Pediatric_Pediatric_Ventricular_Fibrillation_Pulseless_Ventricular_Tachycardia.pdf",
+        "manifestId": "3203-PED013",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "lidocaine"
+        ]
+      },
+      {
+        "id": "3203-PED018",
+        "normalizedId": "3203-ped018",
+        "title": "Pediatric Ventricular Tachycardia with Pulse",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED018_Pediatric_Ventricular_Tachycardia_with_Pulse.pdf",
+        "manifestId": "3203-PED018",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "lidocaine"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR013",
+        "normalizedId": "3203-pr013",
+        "title": "Intraosseous (IO) Insertion & Infusions",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR013_Intraosseous_Infusions.pdf",
+        "manifestId": "GUID-3203-PR013",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "lidocaine"
+        ]
+      }
+    ]
+  },
+  "Atropine": {
+    "canonical": "Atropine",
+    "canonicalKey": "atropine",
+    "aliases": [
+      "Atropine"
+    ],
+    "normalizedAliases": [
+      "atropine"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C004",
+        "normalizedId": "3203-c004",
+        "title": "Bradycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C004_Bradycardia.pdf",
+        "manifestId": "3203-C004",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "atropine"
+        ]
+      },
+      {
+        "id": "3203-G008",
+        "normalizedId": "3203-g008",
+        "title": "Rapid Sequence Induction (RSI) for Endotracheal (ET) Intubation",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G008_Rapid_Sequence_Induction__RSI__for_Endotracheal__ET__Intubation.pdf",
+        "manifestId": "3203-G008",
+        "pages": [
+          2,
+          3
+        ],
+        "pageRanges": "2-3",
+        "matchedAliases": [
+          "atropine"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2,
+          3
+        ],
+        "pageRanges": "2-3",
+        "matchedAliases": [
+          "atropine"
+        ]
+      },
+      {
+        "id": "3203-PED005",
+        "normalizedId": "3203-ped005",
+        "title": "Pediatric Bradycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED005_Pediatric_Bradycardia.pdf",
+        "manifestId": "3203-PED005",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "atropine"
+        ]
+      }
+    ]
+  },
+  "Etomidate": {
+    "canonical": "Etomidate",
+    "canonicalKey": "etomidate",
+    "aliases": [
+      "Etomidate",
+      "Amidate"
+    ],
+    "normalizedAliases": [
+      "etomidate",
+      "amidate"
+    ],
+    "protocols": [
+      {
+        "id": "3203-G008",
+        "normalizedId": "3203-g008",
+        "title": "Rapid Sequence Induction (RSI) for Endotracheal (ET) Intubation",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G008_Rapid_Sequence_Induction__RSI__for_Endotracheal__ET__Intubation.pdf",
+        "manifestId": "3203-G008",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "etomidate"
+        ]
+      },
+      {
+        "id": "3203-M008",
+        "normalizedId": "3203-m008",
+        "title": "Bronchospasm (Asthma & COPD)",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M008_Bronchospasm_Asthma_COPD.pdf",
+        "manifestId": "3203-M008",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "etomidate"
+        ]
+      }
+    ]
+  },
+  "Propofol": {
+    "canonical": "Propofol",
+    "canonicalKey": "propofol",
+    "aliases": [
+      "Propofol",
+      "Diprivan"
+    ],
+    "normalizedAliases": [
+      "propofol",
+      "diprivan"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C008",
+        "normalizedId": "3203-c008",
+        "title": "Extracorporeal Membrane Oxygenation Therapy (ECMO)",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C008_Extracorporeal_Membrane_Oxygenation_Therapy.pdf",
+        "manifestId": "3203-C008",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "diprivan",
+          "propofol"
+        ]
+      },
+      {
+        "id": "3203-C009",
+        "normalizedId": "3203-c009",
+        "title": "Targeted Temperature Management",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C009_Targeted_Temperature_Management.pdf",
+        "manifestId": "3203-C009",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "propofol"
+        ]
+      },
+      {
+        "id": "3203-G007",
+        "normalizedId": "3203-g007",
+        "title": "Propofol (Diprivan)",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G007_Propofol_Diprivan.pdf",
+        "manifestId": "3203-G007",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "diprivan",
+          "propofol"
+        ]
+      },
+      {
+        "id": "3203-M013",
+        "normalizedId": "3203-m013",
+        "title": "Subarachnoid Hemorrhage, Non-traumatic",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M013_Subarachnoid_Hemorrhage.pdf",
+        "manifestId": "3203-M013",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "propofol"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR020",
+        "normalizedId": "3203-pr020",
+        "title": "Endotracheal Intubation",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR020_Endotracheal_Intubation.pdf",
+        "manifestId": "GUID-3203-PR020",
+        "pages": [
+          4
+        ],
+        "pageRanges": "4",
+        "matchedAliases": [
+          "diprivan",
+          "propofol"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR029",
+        "normalizedId": "3203-pr029",
+        "title": "Prone Positioning",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR029_Prone_Positioning.pdf",
+        "manifestId": "GUID-3203-PR029",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "diprivan",
+          "propofol"
+        ]
+      }
+    ]
+  },
+  "Acetaminophen": {
+    "canonical": "Acetaminophen",
+    "canonicalKey": "acetaminophen",
+    "aliases": [
+      "Acetaminophen",
+      "Tylenol",
+      "paracetamol"
+    ],
+    "normalizedAliases": [
+      "acetaminophen",
+      "tylenol",
+      "paracetamol"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M016",
+        "normalizedId": "3203-m016",
+        "title": "Sepsis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
+        "manifestId": "3203-M016",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "acetaminophen"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "acetaminophen",
+          "tylenol"
+        ]
+      },
+      {
+        "id": "3203-PED010",
+        "normalizedId": "3203-ped010",
+        "title": "Pediatric Infectious Respiratory Distress",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED010_Pediatric_Infectious_Respiratory_Distress.pdf",
+        "manifestId": "3203-PED010",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "acetaminophen"
+        ]
+      },
+      {
+        "id": "3203-PED015",
+        "normalizedId": "3203-ped015",
+        "title": "Pediatric Seizures/Status Epilepticus",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED015_Pediatric_Seizures-Status_Epilepticus.pdf",
+        "manifestId": "3203-PED015",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "acetaminophen"
+        ]
+      },
+      {
+        "id": "3203-PED016",
+        "normalizedId": "3203-ped016",
+        "title": "Pediatric Sepsis or Meningitis",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED016_Pediatric_Sepsis_or_Meningitis.pdf",
+        "manifestId": "3203-PED016",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "acetaminophen"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR002",
+        "normalizedId": "3203-pr002",
+        "title": "Blood Product Administration",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR002_Blood_Product_Administration.pdf",
+        "manifestId": "GUID-3203-PR002",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "tylenol"
+        ]
+      }
+    ]
+  },
+  "Ibuprofen": {
+    "canonical": "Ibuprofen",
+    "canonicalKey": "ibuprofen",
+    "aliases": [
+      "Ibuprofen",
+      "Motrin",
+      "Advil"
+    ],
+    "normalizedAliases": [
+      "ibuprofen",
+      "motrin",
+      "advil"
+    ],
+    "protocols": [
+      {
+        "id": "3203-PED010",
+        "normalizedId": "3203-ped010",
+        "title": "Pediatric Infectious Respiratory Distress",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED010_Pediatric_Infectious_Respiratory_Distress.pdf",
+        "manifestId": "3203-PED010",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "ibuprofen"
+        ]
+      },
+      {
+        "id": "3203-PED016",
+        "normalizedId": "3203-ped016",
+        "title": "Pediatric Sepsis or Meningitis",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED016_Pediatric_Sepsis_or_Meningitis.pdf",
+        "manifestId": "3203-PED016",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "ibuprofen"
+        ]
+      }
+    ]
+  },
+  "Dexamethasone": {
+    "canonical": "Dexamethasone",
+    "canonicalKey": "dexamethasone",
+    "aliases": [
+      "Dexamethasone",
+      "Decadron"
+    ],
+    "normalizedAliases": [
+      "dexamethasone",
+      "decadron"
+    ],
+    "protocols": [
+      {
+        "id": "3203-PED002",
+        "normalizedId": "3203-ped002",
+        "title": "Pediatric Allergic Reaction/Anaphylaxis",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED002_Pediatric_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-PED002",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "dexamethasone"
+        ]
+      },
+      {
+        "id": "3203-PED010",
+        "normalizedId": "3203-ped010",
+        "title": "Pediatric Infectious Respiratory Distress",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED010_Pediatric_Infectious_Respiratory_Distress.pdf",
+        "manifestId": "3203-PED010",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "dexamethasone"
+        ]
+      }
+    ]
+  },
+  "Famotidine": {
+    "canonical": "Famotidine",
+    "canonicalKey": "famotidine",
+    "aliases": [
+      "Famotidine",
+      "Pepcid"
+    ],
+    "normalizedAliases": [
+      "famotidine",
+      "pepcid"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M004",
+        "normalizedId": "3203-m004",
+        "title": "Allergic Reaction/Anaphylaxis",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M004_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-M004",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "famotidine"
+        ]
+      },
+      {
+        "id": "3203-PED002",
+        "normalizedId": "3203-ped002",
+        "title": "Pediatric Allergic Reaction/Anaphylaxis",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED002_Pediatric_Allergic_Reaction_Anaphylaxis.pdf",
+        "manifestId": "3203-PED002",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "famotidine"
+        ]
+      }
+    ]
+  },
+  "Heparin": {
+    "canonical": "Heparin",
+    "canonicalKey": "heparin",
+    "aliases": [
+      "Heparin"
+    ],
+    "normalizedAliases": [
+      "heparin"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C001",
+        "normalizedId": "3203-c001",
+        "title": "Acute Coronary Syndrome",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C001_Acute_Coronary_Syndrome.pdf",
+        "manifestId": "3203-C001",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "heparin"
+        ]
+      },
+      {
+        "id": "3203-C010",
+        "normalizedId": "3203-c010",
+        "title": "ST Elevation Myocardial Infarction (STEMI)",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C010_ST_Elevation_Myocardial_Infarction__STEMI.pdf",
+        "manifestId": "3203-C010",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "heparin"
+        ]
+      },
+      {
+        "id": "3203-M014",
+        "normalizedId": "3203-m014",
+        "title": "Pulmonary Embolism",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M014_Pulmonary_Embolism.pdf",
+        "manifestId": "3203-M014",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "heparin"
+        ]
+      },
+      {
+        "id": "3203-M018",
+        "normalizedId": "3203-m018",
+        "title": "Thoracic Aortic Dissection",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M018_Thoracic_Aortic_Dissection.pdf",
+        "manifestId": "3203-M018",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "heparin"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR014",
+        "normalizedId": "3203-pr014",
+        "title": "Intracranial Pressure Invasive Monitoring",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR014_Intracranial_Pressure_Invasive_Monitoring.pdf",
+        "manifestId": "GUID-3203-PR014",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "heparin"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR030",
+        "normalizedId": "3203-pr030",
+        "title": "Impella (Abiomed)",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR030_Impella_Abiomed.pdf",
+        "manifestId": "GUID-3203-PR030",
+        "pages": [
+          2,
+          11
+        ],
+        "pageRanges": "2, 11",
+        "matchedAliases": [
+          "heparin"
+        ]
+      }
+    ]
+  },
+  "Insulin": {
+    "canonical": "Insulin",
+    "canonicalKey": "insulin",
+    "aliases": [
+      "Insulin",
+      "regular insulin",
+      "Humulin R",
+      "Novolin R"
+    ],
+    "normalizedAliases": [
+      "insulin",
+      "regular insulin",
+      "humulin r",
+      "novolin r"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M002",
+        "normalizedId": "3203-m002",
+        "title": "Diabetic Ketoacidosis (Adult)",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M002_Adult_Diabetic_Ketoacidosis.pdf",
+        "manifestId": "3203-M002",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "insulin",
+          "regular insulin"
+        ]
+      },
+      {
+        "id": "3203-M006",
+        "normalizedId": "3203-m006",
+        "title": "Potassium Imbalance",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M006_Electrolyte_Disorders_-_Potassium.pdf",
+        "manifestId": "3203-M006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "insulin",
+          "regular insulin"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "insulin"
+        ]
+      },
+      {
+        "id": "3203-PED005",
+        "normalizedId": "3203-ped005",
+        "title": "Pediatric Bradycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED005_Pediatric_Bradycardia.pdf",
+        "manifestId": "3203-PED005",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "insulin"
+        ]
+      },
+      {
+        "id": "3203-PED008",
+        "normalizedId": "3203-ped008",
+        "title": "Pediatric Diabetic Ketoacidosis (DKA)",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED008_Pediatric_Diabetic_Ketoacidosis.pdf",
+        "manifestId": "3203-PED008",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "insulin",
+          "regular insulin"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR003",
+        "normalizedId": "3203-pr003",
+        "title": "Capillary Blood Glucose Monitoring",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR003_Capillary_Blood_Glucose_Monitoring.pdf",
+        "manifestId": "GUID-3203-PR003",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "insulin"
+        ]
+      }
+    ]
+  },
+  "Metoprolol": {
+    "canonical": "Metoprolol",
+    "canonicalKey": "metoprolol",
+    "aliases": [
+      "Metoprolol",
+      "Lopressor"
+    ],
+    "normalizedAliases": [
+      "metoprolol",
+      "lopressor"
+    ],
+    "protocols": [
+      {
+        "id": "3203-C003",
+        "normalizedId": "3203-c003",
+        "title": "Atrial Fibrillation & Atrial Flutter",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C003_Atrial_Fibrillation___Atrial_Flutter.pdf",
+        "manifestId": "3203-C003",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "metoprolol"
+        ]
+      },
+      {
+        "id": "3203-C006",
+        "normalizedId": "3203-c006",
+        "title": "Narrow & Wide Complex Tachycardia",
+        "category": "Cardiac",
+        "file": "/static/protocols/act/cardiac/3203-C006_Narrow_and_Wide_Complex_Tachycardia.pdf",
+        "manifestId": "3203-C006",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "metoprolol"
+        ]
+      },
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "lopressor"
+        ]
+      }
+    ]
+  },
+  "Verapamil": {
+    "canonical": "Verapamil",
+    "canonicalKey": "verapamil",
+    "aliases": [
+      "Verapamil",
+      "Calan",
+      "Isoptin"
+    ],
+    "normalizedAliases": [
+      "verapamil",
+      "calan",
+      "isoptin"
+    ],
+    "protocols": [
+      {
+        "id": "3203-M019",
+        "normalizedId": "3203-m019",
+        "title": "Overdose, Poisoning, Toxic Exposure",
+        "category": "Medical",
+        "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+        "manifestId": "3203-M019",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "verapamil"
+        ]
+      },
+      {
+        "id": "3203-PED017",
+        "normalizedId": "3203-ped017",
+        "title": "Pediatric Supraventricular Tachycardia",
+        "category": "Pediatric",
+        "file": "/static/protocols/act/pediatric/3203-PED017_Pediatric_Supraventricular_Tachycardia.pdf",
+        "manifestId": "3203-PED017",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "verapamil"
+        ]
+      }
+    ]
+  },
+  "Ceftriaxone": {
+    "canonical": "Ceftriaxone",
+    "canonicalKey": "ceftriaxone",
+    "aliases": [
+      "Ceftriaxone",
+      "Rocephin"
+    ],
+    "normalizedAliases": [
+      "ceftriaxone",
+      "rocephin"
+    ],
+    "protocols": []
+  },
+  "Piperacillin Tazobactam": {
+    "canonical": "Piperacillin Tazobactam",
+    "canonicalKey": "piperacillin tazobactam",
+    "aliases": [
+      "Piperacillin Tazobactam",
+      "piperacillin-tazobactam",
+      "pip-tazo",
+      "Zosyn"
+    ],
+    "normalizedAliases": [
+      "piperacillin tazobactam",
+      "piperacillin-tazobactam",
+      "pip-tazo",
+      "zosyn"
+    ],
+    "protocols": []
+  }
+}
