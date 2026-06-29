@@ -4,10 +4,10 @@
   const ALIAS_URL = '/static/data/act-medication-aliases.json';
   const MEDICATION_MAP_URL = '/static/data/act-medication-protocol-map.json';
   const CACHE_NAME = 'act-protocol-pdfs-v1';
-  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false };
+  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false };
   const els = {
     grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), filters: document.getElementById('categoryFilters'),
-    count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary'), themeToggle: document.getElementById('actThemeToggle')
+    count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary')
   };
   const encoded = (url) => encodeURI(url);
   const normalize = (text) => (text || '').toString().toLowerCase().normalize('NFKD').replace(/[\u2010-\u2015]/g, '-').replace(/\s+/g, ' ').trim();
@@ -227,13 +227,6 @@
   }
   function bind() {
     const debouncedRender = debounce(render);
-    applyTheme(storedTheme());
-    preferredDark?.addEventListener?.('change', () => { if (storedTheme() === 'system') updateThemeColor('system'); });
-    els.themeToggle?.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-theme-choice]');
-      if (!btn) return;
-      applyTheme(btn.dataset.themeChoice);
-    });
     els.search.addEventListener('input', (e) => { state.query = e.target.value; debouncedRender(); });
     els.filters.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-category]');
@@ -251,6 +244,6 @@
     });
   }
   async function loadJson(url) { const response = await fetch(url, { cache: 'no-cache' }); if (!response.ok) throw new Error(`${url}: ${response.status}`); return response.json(); }
-  async function init() { applyDisplayModeClass(); window.matchMedia?.('(display-mode: standalone)').addEventListener?.('change', applyDisplayModeClass); bind(); try { const [manifest, search, aliases, medicationMap] = await Promise.allSettled([loadJson(MANIFEST_URL), loadJson(SEARCH_URL), loadJson(ALIAS_URL), loadJson(MEDICATION_MAP_URL)]); if (manifest.status !== 'fulfilled') throw manifest.reason; state.protocols = manifest.value; buildProtocolIdLookup(); if (search.status === 'fulfilled') { state.searchReady = true; search.value.forEach(r => { state.searchIndex.set(r.id, r); state.searchIndex.set(normalizeProtocolId(r.id), r); }); } else console.warn('[ACT Protocols] Search index unavailable; using metadata fallback', search.reason); if (aliases.status === 'fulfilled') { state.aliasesReady = true; state.aliases = aliases.value; buildAliasLookup(); } else console.warn('[ACT Protocols] Medication aliases unavailable', aliases.reason); if (medicationMap.status === 'fulfilled') buildMedicationMap(medicationMap.value); else console.warn('[ACT Protocols] Medication protocol map unavailable', medicationMap.reason); await refreshSaved(); render(); notifyServiceWorker([MANIFEST_URL, SEARCH_URL, ALIAS_URL, MEDICATION_MAP_URL]); autoCacheProtocols(); } catch (err) { console.error('[ACT Protocols] Failed to load protocol manifest', err); els.count.textContent = 'Unable to load protocols.'; els.grid.innerHTML = '<div class="error-state">Unable to load ACT protocols. Please try again when the app is online.</div>'; } }
+  async function init() { applyDisplayModeClass(); window.matchMedia?.('(display-mode: standalone)').addEventListener?.('change', applyDisplayModeClass); bind(); try { const [manifest, search, aliases] = await Promise.allSettled([loadJson(MANIFEST_URL), loadJson(SEARCH_URL), loadJson(ALIAS_URL)]); if (manifest.status !== 'fulfilled') throw manifest.reason; state.protocols = manifest.value; if (search.status === 'fulfilled') { state.searchReady = true; search.value.forEach(r => state.searchIndex.set(r.id, r)); } else console.warn('[ACT Protocols] Search index unavailable; using metadata fallback', search.reason); if (aliases.status === 'fulfilled') { state.aliasesReady = true; state.aliases = aliases.value; buildAliasLookup(); } else console.warn('[ACT Protocols] Medication aliases unavailable', aliases.reason); await refreshSaved(); render(); notifyServiceWorker([MANIFEST_URL, SEARCH_URL, ALIAS_URL]); autoCacheProtocols(); } catch (err) { console.error('[ACT Protocols] Failed to load protocol manifest', err); els.count.textContent = 'Unable to load protocols.'; els.grid.innerHTML = '<div class="error-state">Unable to load ACT protocols. Please try again when the app is online.</div>'; } }
   document.addEventListener('DOMContentLoaded', init);
 })();

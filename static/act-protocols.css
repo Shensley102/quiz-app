@@ -504,9 +504,9 @@ body {
 }
 
 .offline-status.caching {
-  background: var(--act-info-bg);
-  color: var(--act-info);
-  border-color: var(--act-info);
+  background: #dbeafe;
+  color: #1d4ed8;
+  border-color: #93c5fd;
 }
 
 .offline-status.error {
