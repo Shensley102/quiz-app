@@ -284,53 +284,6 @@ body {
 }
 
 
-.act-theme-panel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.theme-label {
-  display: block;
-  color: var(--act-text);
-  font-weight: 800;
-}
-
-.theme-help {
-  margin: 4px 0 0;
-  color: var(--act-text-muted);
-  font-size: 0.92rem;
-  line-height: 1.4;
-}
-
-.act-theme-toggle {
-  display: inline-grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  padding: 4px;
-  border: 1px solid var(--act-border);
-  border-radius: 999px;
-  background: var(--act-surface);
-}
-
-.theme-option {
-  min-height: 42px;
-  border: 0;
-  border-radius: 999px;
-  padding: 8px 12px;
-  background: transparent;
-  color: var(--act-text);
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.theme-option[aria-pressed="true"] {
-  background: var(--act-primary);
-  color: var(--act-on-primary);
-}
-
-.theme-option:focus-visible,
 .btn:focus-visible,
 .filter-btn:focus-visible,
 .protocol-search:focus-visible,
@@ -504,9 +457,9 @@ body {
 }
 
 .offline-status.caching {
-  background: #dbeafe;
-  color: #1d4ed8;
-  border-color: #93c5fd;
+  background: var(--act-info-bg);
+  color: var(--act-info);
+  border-color: var(--act-info);
 }
 
 .offline-status.error {
@@ -643,15 +596,6 @@ body {
     border-radius: 10px;
     font-size: 0.92rem;
     line-height: 1.45;
-  }
-
-  .act-theme-panel {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .act-theme-toggle {
-    width: 100%;
   }
 
   .act-controls {
