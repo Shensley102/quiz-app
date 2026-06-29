@@ -304,7 +304,7 @@ body {
 
 .protocol-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 10px;
   margin-top: auto;
 }
@@ -342,6 +342,12 @@ body {
 .offline-status.saved {
   background: #dcfce7;
   color: var(--act-good);
+}
+
+.offline-status.caching {
+  background: #dbeafe;
+  color: #1d4ed8;
+  border-color: #93c5fd;
 }
 
 .offline-status.error {
