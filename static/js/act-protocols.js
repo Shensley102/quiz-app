@@ -171,7 +171,6 @@
       <article class="protocol-card" data-file="${escapeHtml(p.file)}">
         <div class="protocol-meta"><span class="protocol-pill protocol-id">${escapeHtml(p.id)}</span><span class="protocol-pill">${escapeHtml(p.category)}</span></div>
         <h2>${escapeHtml(p.title)}</h2>
-        <div class="protocol-path">${escapeHtml(p.file)}</div>
         ${renderReasons(p)}
         <div class="offline-status ${statusClass(p)}" data-status>${statusText(p)}</div>
         <div class="protocol-buttons">

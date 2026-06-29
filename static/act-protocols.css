@@ -404,15 +404,6 @@ body {
   border: 1px solid var(--act-border);
 }
 
-.protocol-path {
-  font-size: 0.8rem;
-  color: var(--act-muted);
-  word-break: break-word;
-  background: var(--act-surface);
-  border-left: 5px solid var(--act-secondary);
-  border-radius: 10px;
-  padding: 8px;
-}
 
 .protocol-buttons {
   display: grid;
