@@ -44,9 +44,18 @@
       });
     });
   }
+  function medicationsForQuery(q) {
+    const seen = new Set();
+    return (state.aliasLookup.get(q) || []).filter((med) => {
+      const key = normalize(med.canonicalKey || med.canonical);
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
   function termsForQuery(q) {
     const terms = new Set([q]);
-    (state.aliasLookup.get(q) || []).forEach((med) => [med.canonical, med.canonicalKey, ...(med.aliases || []), ...(med.normalizedAliases || []), ...(med.genericNames || []), ...(med.brandNames || []), ...(med.tradeNames || []), ...(med.activeIngredientNames || []), ...(med.substanceNames || []), ...(med.shorthand || [])].forEach(t => terms.add(normalize(t))));
+    medicationsForQuery(q).forEach((med) => [med.canonical, med.canonicalKey, ...(med.aliases || []), ...(med.normalizedAliases || []), ...(med.genericNames || []), ...(med.brandNames || []), ...(med.tradeNames || []), ...(med.activeIngredientNames || []), ...(med.substanceNames || []), ...(med.shorthand || [])].forEach(t => terms.add(normalize(t))));
     return [...terms].filter(Boolean);
   }
   function buildMedicationMap(records) {
@@ -80,7 +89,7 @@
     if (q.length < 2 && !knownAlias) return null;
     const terms = termsForQuery(q);
     const reasons = []; let score = -1;
-    const aliasMeds = state.aliasLookup.get(q) || [];
+    const aliasMeds = medicationsForQuery(q);
     aliasMeds.forEach((med) => {
       const protocolMatch = protocolsForMedication(med).find((entry) => entry.manifestId === protocol.id || normalizeProtocolId(entry.id) === normalizeProtocolId(protocol.id));
       if (!protocolMatch) return;
