@@ -13,6 +13,33 @@
   const normalize = (text) => (text || '').toString().toLowerCase().normalize('NFKD').replace(/[\u2010-\u2015]/g, '-').replace(/\s+/g, ' ').trim();
   const escapeHtml = (text) => (text || '').toString().replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
   const debounce = (fn, wait = 180) => { let id; return (...args) => { clearTimeout(id); id = setTimeout(() => fn(...args), wait); }; };
+
+  const THEME_STORAGE_KEY = 'act-protocols-theme';
+  const THEME_COLORS = { light: '#FFFFFF', dark: '#0B0F14' };
+  const preferredDark = window.matchMedia?.('(prefers-color-scheme: dark)');
+  function storedTheme() { try { return localStorage.getItem(THEME_STORAGE_KEY) || 'system'; } catch { return 'system'; } }
+  function resolvedTheme(choice = storedTheme()) { return choice === 'system' ? (preferredDark?.matches ? 'dark' : 'light') : choice; }
+  function updateThemeColor(choice = storedTheme()) {
+    const resolved = resolvedTheme(choice);
+    let meta = document.querySelector('meta[name="theme-color"][data-act-dynamic]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'theme-color';
+      meta.dataset.actDynamic = 'true';
+      document.head.appendChild(meta);
+    }
+    meta.content = THEME_COLORS[resolved];
+  }
+  function applyTheme(choice = storedTheme()) {
+    const safeChoice = ['system', 'light', 'dark'].includes(choice) ? choice : 'system';
+    document.documentElement.dataset.actTheme = safeChoice;
+    try { localStorage.setItem(THEME_STORAGE_KEY, safeChoice); } catch {}
+    updateThemeColor(safeChoice);
+    els.themeToggle?.querySelectorAll('[data-theme-choice]').forEach((button) => {
+      const selected = button.dataset.themeChoice === safeChoice;
+      button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    });
+  }
   function applyDisplayModeClass() {
     const isStandalone = window.matchMedia?.('(display-mode: standalone)').matches || window.navigator.standalone === true;
     document.body.classList.toggle('act-pwa', Boolean(isStandalone));
