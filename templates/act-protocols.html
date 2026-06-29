@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="description" content="ACT Protocols offline-access protocol repository">
+  <meta name="color-scheme" content="light dark">
   <title>ACT Protocols | Study Guru</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -12,7 +13,8 @@
   <link rel="stylesheet" href="/static/act-protocols.css">
 
   <link rel="manifest" href="/static/manifest-act-protocols.json">
-  <meta name="theme-color" content="#0f766e">
+  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B0F14" media="(prefers-color-scheme: dark)">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -29,13 +31,13 @@
     <header class="act-hero">
       <p class="act-kicker">Advanced Care Team</p>
       <h1>📋 ACT Protocols</h1>
-      <p>Search, open, and save individual ACT protocol PDFs for offline clinical reference.</p>
+      <p>Search ACT protocol PDFs and let the app cache them automatically for offline clinical reference.</p>
       <div class="act-actions">
-        <button id="saveAllBtn" class="btn btn-primary" type="button">Save All Protocols Offline</button>
-        <span id="saveAllStatus" class="save-all-status" role="status" aria-live="polite"></span>
+        <span id="offlineSummary" class="save-all-status" role="status" aria-live="polite">Checking offline cache status...</span>
       </div>
       <p class="act-search-note">Search results are based on indexed protocol text and medication aliases. Always verify medication details, indications, contraindications, and dosing in the opened protocol PDF.</p>
     </header>
+
 
     <section class="act-controls" aria-label="Protocol search and filters">
       <label class="search-label" for="protocolSearch">Search protocols</label>
