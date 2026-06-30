@@ -2,27 +2,41 @@
   const MANIFEST_URL = '/static/data/act-protocols.json';
   const SEARCH_URL = '/static/data/act-protocol-search.json';
   const ALIAS_URL = '/static/data/act-medication-aliases.json';
+  const MEDICATION_MAP_URL = '/static/data/act-medication-protocol-map.json';
   const CACHE_NAME = 'act-protocol-pdfs-v1';
-  const MISSING_MESSAGE = 'PDF not found yet — add the file to the repository path listed in the manifest.';
-  const STORAGE_WARNING = 'Saving all PDFs may use significant device storage. Mobile browsers may clear offline data if storage is low. Continue?';
-  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), category: 'All', query: '', saved: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false };
+  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false };
   const els = {
     grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), filters: document.getElementById('categoryFilters'),
-    count: document.getElementById('resultCount'), saveAll: document.getElementById('saveAllBtn'), saveAllStatus: document.getElementById('saveAllStatus')
+    count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary')
   };
   const encoded = (url) => encodeURI(url);
   const normalize = (text) => (text || '').toString().toLowerCase().normalize('NFKD').replace(/[\u2010-\u2015]/g, '-').replace(/\s+/g, ' ').trim();
   const escapeHtml = (text) => (text || '').toString().replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
   const debounce = (fn, wait = 180) => { let id; return (...args) => { clearTimeout(id); id = setTimeout(() => fn(...args), wait); }; };
+
+  const THEME_COLORS = { light: '#FFFFFF', dark: '#0B0F14' };
+  const preferredDark = window.matchMedia?.('(prefers-color-scheme: dark)');
+  function resolvedTheme() { return preferredDark?.matches ? 'dark' : 'light'; }
+  function updateThemeColor() {
+    let meta = document.querySelector('meta[name="theme-color"][data-act-dynamic]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'theme-color';
+      meta.dataset.actDynamic = 'true';
+      document.head.appendChild(meta);
+    }
+    meta.content = THEME_COLORS[resolvedTheme()];
+  }
   function applyDisplayModeClass() {
     const isStandalone = window.matchMedia?.('(display-mode: standalone)').matches || window.navigator.standalone === true;
     document.body.classList.toggle('act-pwa', Boolean(isStandalone));
   }
   function metadataText(p) { return [p.id, p.title, p.category, p.folder, ...(p.tags || [])].join(' '); }
+  function normalizeProtocolId(id) { return normalize(id).replace(/^guid-/, ''); }
   function buildAliasLookup() {
     state.aliasLookup.clear();
     state.aliases.forEach((med) => {
-      const terms = [med.canonical, ...(med.aliases || []), ...(med.genericNames || []), ...(med.brandNames || []), ...(med.tradeNames || []), ...(med.activeIngredientNames || []), ...(med.substanceNames || []), ...(med.shorthand || [])];
+      const terms = [med.canonical, med.canonicalKey, ...(med.aliases || []), ...(med.normalizedAliases || []), ...(med.genericNames || []), ...(med.brandNames || []), ...(med.tradeNames || []), ...(med.activeIngredientNames || []), ...(med.substanceNames || []), ...(med.shorthand || [])];
       terms.forEach((term) => {
         const key = normalize(term); if (!key) return;
         const entry = state.aliasLookup.get(key) || [];
@@ -30,10 +44,34 @@
       });
     });
   }
+  function medicationsForQuery(q) {
+    const seen = new Set();
+    return (state.aliasLookup.get(q) || []).filter((med) => {
+      const key = normalize(med.canonicalKey || med.canonical);
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
   function termsForQuery(q) {
     const terms = new Set([q]);
-    (state.aliasLookup.get(q) || []).forEach((med) => [med.canonical, ...(med.aliases || []), ...(med.genericNames || []), ...(med.brandNames || []), ...(med.tradeNames || []), ...(med.activeIngredientNames || []), ...(med.substanceNames || []), ...(med.shorthand || [])].forEach(t => terms.add(normalize(t))));
+    medicationsForQuery(q).forEach((med) => [med.canonical, med.canonicalKey, ...(med.aliases || []), ...(med.normalizedAliases || []), ...(med.genericNames || []), ...(med.brandNames || []), ...(med.tradeNames || []), ...(med.activeIngredientNames || []), ...(med.substanceNames || []), ...(med.shorthand || [])].forEach(t => terms.add(normalize(t))));
     return [...terms].filter(Boolean);
+  }
+  function buildMedicationMap(records) {
+    state.medicationMap.clear();
+    Object.values(records || {}).forEach((record) => {
+      state.medicationMap.set(normalize(record.canonicalKey || record.canonical), record);
+    });
+  }
+  function buildProtocolIdLookup() {
+    state.protocolIdLookup.clear();
+    state.protocols.forEach((protocol) => state.protocolIdLookup.set(normalizeProtocolId(protocol.id), protocol.id));
+  }
+  function protocolsForMedication(med) {
+    const mapRecord = state.medicationMap.get(normalize(med.canonicalKey || med.canonical));
+    const protocols = mapRecord?.protocols?.length ? mapRecord.protocols : (med.foundInProtocols || []).map(id => ({ id, pages: med.foundPagesByProtocol?.[id] || [], matchedAliases: med.matchedAliases || [] }));
+    return protocols.map((entry) => ({ ...entry, manifestId: state.protocolIdLookup.get(normalizeProtocolId(entry.manifestId || entry.id)) || entry.manifestId || entry.id }));
   }
   function firstSnippet(record, terms) {
     const pages = record?.pages || [];
@@ -44,35 +82,34 @@
     return null;
   }
   function matchProtocol(protocol, q) {
-    const record = state.searchIndex.get(protocol.id);
+    const record = state.searchIndex.get(protocol.id) || state.searchIndex.get(normalizeProtocolId(protocol.id));
     const hayMeta = normalize(metadataText(protocol));
     if (!q) return { score: 0, reasons: [] };
     const knownAlias = state.aliasLookup.has(q);
     if (q.length < 2 && !knownAlias) return null;
     const terms = termsForQuery(q);
     const reasons = []; let score = -1;
-    const medicationMatches = [];
+    const aliasMeds = medicationsForQuery(q);
+    aliasMeds.forEach((med) => {
+      const protocolMatch = protocolsForMedication(med).find((entry) => entry.manifestId === protocol.id || normalizeProtocolId(entry.id) === normalizeProtocolId(protocol.id));
+      if (!protocolMatch) return;
+      reasons.push({
+        type: 'Medication match',
+        text: `"${state.query.trim()}" → ${med.canonical}`,
+        pages: (protocolMatch.pages || []).slice(0, 4),
+        pageRanges: protocolMatch.pageRanges
+      });
+      score = Math.max(score, 110);
+    });
     (record?.detectedMedications || []).forEach((med) => {
       const aliases = (med.matchedAliases || []).map(normalize);
-      const canon = normalize(med.canonical);
-      const exactAlias = aliases.includes(q);
+      const canon = normalize(med.canonicalKey || med.canonical);
       const expanded = terms.includes(canon) || aliases.some(a => terms.includes(a));
-      if (exactAlias || expanded) {
-        medicationMatches.push(med);
-        reasons.push({ type: exactAlias ? 'Medication match' : 'Medication match', text: `${q} → ${med.canonical}`, pages: (med.pages || []).slice(0, 3) });
-        score = Math.max(score, exactAlias ? 100 : 92);
+      if (expanded && !reasons.some(r => r.type === 'Medication match' && normalize(r.text).includes(canon))) {
+        reasons.push({ type: 'Medication match', text: `"${state.query.trim()}" → ${med.canonical}`, pages: (med.pages || []).slice(0, 4), pageRanges: med.pageRanges });
+        score = Math.max(score, 100);
       }
     });
-    const aliasMeds = state.aliasLookup.get(q) || [];
-    if (!medicationMatches.length && aliasMeds.length) {
-      const medIds = new Set(aliasMeds.flatMap(m => m.foundInProtocols || []));
-      if (medIds.has(protocol.id)) {
-        const med = aliasMeds.find(m => (m.foundInProtocols || []).includes(protocol.id));
-        const pages = med?.foundPagesByProtocol?.[protocol.id] || [];
-        reasons.push({ type: 'Brand/trade match', text: `${q} → ${med.canonical}`, pages: pages.slice(0, 3) });
-        score = Math.max(score, 95);
-      }
-    }
     if (normalize(protocol.title).includes(q)) { reasons.push({ type: 'Title match', text: protocol.title }); score = Math.max(score, 80); }
     if ((protocol.tags || []).some(t => normalize(t).includes(q))) { reasons.push({ type: 'Tag match', text: q }); score = Math.max(score, 70); }
     if (hayMeta.includes(q)) score = Math.max(score, 55);
@@ -101,26 +138,52 @@
     }
     return matches.sort((a, b) => b.score - a.score || a.protocol.title.localeCompare(b.protocol.title)).map(x => x.protocol);
   }
-  function statusClass(p) { return state.saved.has(p.file) ? 'saved' : state.missing.has(p.file) ? 'error' : ''; }
-  function statusText(p) { return state.saved.has(p.file) ? 'Saved offline' : state.missing.has(p.file) ? MISSING_MESSAGE : 'Not saved offline'; }
+  function statusClass(p) { return state.saved.has(p.file) ? 'saved' : state.missing.has(p.file) ? 'error' : state.caching.has(p.file) ? 'caching' : ''; }
+  function statusText(p) {
+    if (state.saved.has(p.file)) return 'Saved offline';
+    if (state.missing.has(p.file)) return 'Could not save offline — will retry next time the app opens.';
+    if (state.caching.has(p.file)) return 'Downloading for offline use...';
+    return 'Queued for offline download';
+  }
+  function updateOfflineSummary() {
+    if (!els.offlineSummary) return;
+    if (!('caches' in window)) {
+      els.offlineSummary.textContent = 'Offline PDF caching is not available in this browser.';
+      return;
+    }
+    const total = state.protocols.length;
+    const saved = state.saved.size;
+    const caching = state.caching.size;
+    const failed = state.missing.size;
+    if (!total) {
+      els.offlineSummary.textContent = 'Loading offline cache status...';
+    } else if (saved === total) {
+      els.offlineSummary.textContent = `${saved} of ${total} protocols saved offline. ACT protocols are ready for offline use.`;
+    } else if (caching) {
+      els.offlineSummary.textContent = `Caching protocols for offline use... ${saved} of ${total} saved offline.`;
+    } else if (failed) {
+      els.offlineSummary.textContent = `${saved} of ${total} protocols saved offline. ${failed} file${failed === 1 ? '' : 's'} will retry next time the app opens.`;
+    } else {
+      els.offlineSummary.textContent = `${saved} of ${total} protocols saved offline. Preparing offline downloads...`;
+    }
+  }
   function renderReasons(p) {
     const meta = state.resultMeta.get(p.id); if (!meta?.reasons?.length) return '';
-    return `<div class="match-reasons">${meta.reasons.slice(0, 3).map(r => `<div class="match-reason"><strong>${escapeHtml(r.type)}:</strong> ${escapeHtml(r.text)}${r.pages?.length ? ` <span>Page: ${escapeHtml(r.pages.join(', '))}</span>` : ''}</div>`).join('')}</div>`;
+    return `<div class="match-reasons">${meta.reasons.slice(0, 3).map(r => `<div class="match-reason"><strong>${escapeHtml(r.type)}:</strong> ${escapeHtml(r.text)}${r.pageRanges ? ` <span>Pages: ${escapeHtml(r.pageRanges)}</span>` : r.pages?.length ? ` <span>Pages: ${escapeHtml(r.pages.join(', '))}</span>` : ''}</div>`).join('')}</div>`;
   }
   function render() {
     const list = filtered();
     els.count.textContent = `${list.length} of ${state.protocols.length} protocols shown${state.searchReady ? '' : ' (metadata search)'}`;
+    updateOfflineSummary();
     if (!list.length) { els.grid.innerHTML = '<div class="empty-state">No protocols match your search and filter.</div>'; return; }
     els.grid.innerHTML = list.map(p => `
       <article class="protocol-card" data-file="${escapeHtml(p.file)}">
         <div class="protocol-meta"><span class="protocol-pill protocol-id">${escapeHtml(p.id)}</span><span class="protocol-pill">${escapeHtml(p.category)}</span></div>
         <h2>${escapeHtml(p.title)}</h2>
-        <div class="protocol-path">${escapeHtml(p.file)}</div>
         ${renderReasons(p)}
         <div class="offline-status ${statusClass(p)}" data-status>${statusText(p)}</div>
         <div class="protocol-buttons">
           <button class="btn btn-outline" type="button" data-action="open" data-id="${escapeHtml(p.id)}">Open PDF</button>
-          <button class="btn btn-secondary" type="button" data-action="save" data-id="${escapeHtml(p.id)}">${state.saved.has(p.file) ? 'Saved' : 'Save Offline'}</button>
         </div>
       </article>`).join('');
   }
@@ -137,14 +200,47 @@
     const params = new URLSearchParams({ file: protocol.file, title: `${protocol.id} ${protocol.title}` }); if (page) params.set('page', page);
     window.location.href = `/act-protocols/viewer#${params.toString()}`;
   }
-  async function handleSave(protocol, button) { if (!('caches' in window)) { alert('Offline caching is not available in this browser.'); return; } button.disabled = true; button.textContent = 'Saving...'; try { await cachePdf(protocol); } catch (err) { state.missing.add(protocol.file); console.warn(`[ACT Protocols] Missing or unavailable PDF: ${protocol.file}`, err); alert(MISSING_MESSAGE); } finally { button.disabled = false; render(); } }
-  async function confirmStorageForSaveAll() {
-    if (!navigator.storage?.estimate) return confirm(STORAGE_WARNING);
-    try { const { quota = 0, usage = 0 } = await navigator.storage.estimate(); const available = quota - usage; if (!quota || available < 150 * 1024 * 1024) return confirm(STORAGE_WARNING); return confirm(STORAGE_WARNING); } catch { return confirm(STORAGE_WARNING); }
+  async function autoCacheProtocols() {
+    if (state.autoCacheStarted) return;
+    state.autoCacheStarted = true;
+    if (!('caches' in window)) { updateOfflineSummary(); return; }
+    const uncached = state.protocols.filter(p => !state.saved.has(p.file));
+    uncached.forEach(p => { state.caching.add(p.file); state.missing.delete(p.file); });
+    render();
+    for (const protocol of uncached) {
+      try {
+        await cachePdf(protocol);
+      } catch (err) {
+        state.missing.add(protocol.file);
+        console.warn(`[ACT Protocols] Could not cache ${protocol.file}`, err);
+      } finally {
+        state.caching.delete(protocol.file);
+        render();
+      }
+    }
+    updateOfflineSummary();
   }
-  async function saveAll() { if (!('caches' in window)) { alert('Offline caching is not available in this browser.'); return; } if (!(await confirmStorageForSaveAll())) return; els.saveAll.disabled = true; let saved = 0, missing = 0; for (const p of state.protocols) { els.saveAllStatus.textContent = `Saving ${saved + missing + 1} of ${state.protocols.length}...`; try { await cachePdf(p); saved++; } catch (err) { missing++; state.missing.add(p.file); console.warn(`[ACT Protocols] Could not cache ${p.file}`, err); } render(); } els.saveAll.disabled = false; els.saveAllStatus.textContent = `Saved ${saved}; ${missing} missing.`; }
-  function bind() { const debouncedRender = debounce(render); els.search.addEventListener('input', (e) => { state.query = e.target.value; debouncedRender(); }); els.filters.addEventListener('click', (e) => { const btn = e.target.closest('[data-category]'); if (!btn) return; state.category = btn.dataset.category; els.filters.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn)); render(); }); els.grid.addEventListener('click', (e) => { const btn = e.target.closest('[data-action]'); if (!btn) return; const p = state.protocols.find(x => x.id === btn.dataset.id); if (!p) return; btn.dataset.action === 'open' ? handleOpen(p) : handleSave(p, btn); }); els.saveAll.addEventListener('click', saveAll); }
+  function bind() {
+    const debouncedRender = debounce(render);
+    updateThemeColor();
+    preferredDark?.addEventListener?.('change', updateThemeColor);
+    els.search.addEventListener('input', (e) => { state.query = e.target.value; debouncedRender(); });
+    els.filters.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-category]');
+      if (!btn) return;
+      state.category = btn.dataset.category;
+      els.filters.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+      render();
+    });
+    els.grid.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-action]');
+      if (!btn) return;
+      const p = state.protocols.find(x => x.id === btn.dataset.id);
+      if (!p) return;
+      handleOpen(p);
+    });
+  }
   async function loadJson(url) { const response = await fetch(url, { cache: 'no-cache' }); if (!response.ok) throw new Error(`${url}: ${response.status}`); return response.json(); }
-  async function init() { applyDisplayModeClass(); window.matchMedia?.('(display-mode: standalone)').addEventListener?.('change', applyDisplayModeClass); bind(); try { const [manifest, search, aliases] = await Promise.allSettled([loadJson(MANIFEST_URL), loadJson(SEARCH_URL), loadJson(ALIAS_URL)]); if (manifest.status !== 'fulfilled') throw manifest.reason; state.protocols = manifest.value; if (search.status === 'fulfilled') { state.searchReady = true; search.value.forEach(r => state.searchIndex.set(r.id, r)); } else console.warn('[ACT Protocols] Search index unavailable; using metadata fallback', search.reason); if (aliases.status === 'fulfilled') { state.aliasesReady = true; state.aliases = aliases.value; buildAliasLookup(); } else console.warn('[ACT Protocols] Medication aliases unavailable', aliases.reason); await refreshSaved(); render(); notifyServiceWorker([MANIFEST_URL, SEARCH_URL, ALIAS_URL]); } catch (err) { console.error('[ACT Protocols] Failed to load protocol manifest', err); els.count.textContent = 'Unable to load protocols.'; els.grid.innerHTML = '<div class="error-state">Unable to load ACT protocols. Please try again when the app is online.</div>'; } }
+  async function init() { applyDisplayModeClass(); window.matchMedia?.('(display-mode: standalone)').addEventListener?.('change', applyDisplayModeClass); bind(); try { const [manifest, search, aliases, medicationMap] = await Promise.allSettled([loadJson(MANIFEST_URL), loadJson(SEARCH_URL), loadJson(ALIAS_URL), loadJson(MEDICATION_MAP_URL)]); if (manifest.status !== 'fulfilled') throw manifest.reason; state.protocols = manifest.value; buildProtocolIdLookup(); if (search.status === 'fulfilled') { state.searchReady = true; search.value.forEach(r => { state.searchIndex.set(r.id, r); state.searchIndex.set(normalizeProtocolId(r.id), r); }); } else console.warn('[ACT Protocols] Search index unavailable; using metadata fallback', search.reason); if (aliases.status === 'fulfilled') { state.aliasesReady = true; state.aliases = aliases.value; buildAliasLookup(); } else console.warn('[ACT Protocols] Medication aliases unavailable', aliases.reason); if (medicationMap.status === 'fulfilled') buildMedicationMap(medicationMap.value); else console.warn('[ACT Protocols] Medication protocol map unavailable', medicationMap.reason); await refreshSaved(); render(); notifyServiceWorker([MANIFEST_URL, SEARCH_URL, ALIAS_URL, MEDICATION_MAP_URL]); autoCacheProtocols(); } catch (err) { console.error('[ACT Protocols] Failed to load protocol manifest', err); els.count.textContent = 'Unable to load protocols.'; els.grid.innerHTML = '<div class="error-state">Unable to load ACT protocols. Please try again when the app is online.</div>'; } }
   document.addEventListener('DOMContentLoaded', init);
 })();

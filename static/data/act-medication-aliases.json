@@ -1,7 +1,510 @@
 [
   {
-    "canonical": "epinephrine",
+    "canonical": "Levetiracetam",
+    "canonicalKey": "levetiracetam",
     "aliases": [
+      "Levetiracetam",
+      "Keppra"
+    ],
+    "normalizedAliases": [
+      "levetiracetam",
+      "keppra"
+    ],
+    "genericNames": [
+      "Levetiracetam"
+    ],
+    "brandNames": [
+      "Keppra"
+    ],
+    "tradeNames": [
+      "Keppra"
+    ],
+    "activeIngredientNames": [
+      "Levetiracetam"
+    ],
+    "substanceNames": [
+      "Levetiracetam"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M013",
+      "3203-M015",
+      "3203-M017",
+      "3203-PED015"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M013": [
+        2
+      ],
+      "3203-M015": [
+        1
+      ],
+      "3203-M017": [
+        4
+      ],
+      "3203-PED015": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "levetiracetam"
+    ]
+  },
+  {
+    "canonical": "Norepinephrine",
+    "canonicalKey": "norepinephrine",
+    "aliases": [
+      "Norepinephrine",
+      "Levophed",
+      "norepi",
+      "nor-epi"
+    ],
+    "normalizedAliases": [
+      "norepinephrine",
+      "levophed",
+      "norepi",
+      "nor-epi"
+    ],
+    "genericNames": [
+      "Norepinephrine"
+    ],
+    "brandNames": [
+      "Levophed",
+      "norepi",
+      "nor-epi"
+    ],
+    "tradeNames": [
+      "Levophed",
+      "norepi",
+      "nor-epi"
+    ],
+    "activeIngredientNames": [
+      "Norepinephrine"
+    ],
+    "substanceNames": [
+      "Norepinephrine"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C004",
+      "3203-M011",
+      "3203-M016",
+      "3203-M019",
+      "3203-PED009"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C004": [
+        2
+      ],
+      "3203-M011": [
+        1
+      ],
+      "3203-M016": [
+        2
+      ],
+      "3203-M019": [
+        3
+      ],
+      "3203-PED009": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "norepinephrine"
+    ]
+  },
+  {
+    "canonical": "Aspirin",
+    "canonicalKey": "aspirin",
+    "aliases": [
+      "Aspirin",
+      "ASA",
+      "acetylsalicylic acid"
+    ],
+    "normalizedAliases": [
+      "aspirin",
+      "asa",
+      "acetylsalicylic acid"
+    ],
+    "genericNames": [
+      "Aspirin"
+    ],
+    "brandNames": [
+      "ASA",
+      "acetylsalicylic acid"
+    ],
+    "tradeNames": [
+      "ASA",
+      "acetylsalicylic acid"
+    ],
+    "activeIngredientNames": [
+      "Aspirin"
+    ],
+    "substanceNames": [
+      "Aspirin"
+    ],
+    "shorthand": [
+      "ASA"
+    ],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C001",
+      "3203-C010",
+      "3203-M007",
+      "3203-M018",
+      "3203-M019",
+      "GUID-3203-PR031"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C001": [
+        1
+      ],
+      "3203-C010": [
+        1
+      ],
+      "3203-M007": [
+        1
+      ],
+      "3203-M018": [
+        2
+      ],
+      "3203-M019": [
+        2
+      ],
+      "GUID-3203-PR031": [
+        5
+      ]
+    },
+    "matchedAliases": [
+      "asa",
+      "aspirin"
+    ]
+  },
+  {
+    "canonical": "Midazolam",
+    "canonicalKey": "midazolam",
+    "aliases": [
+      "Midazolam",
+      "Versed"
+    ],
+    "normalizedAliases": [
+      "midazolam",
+      "versed"
+    ],
+    "genericNames": [
+      "Midazolam"
+    ],
+    "brandNames": [
+      "Versed"
+    ],
+    "tradeNames": [
+      "Versed"
+    ],
+    "activeIngredientNames": [
+      "Midazolam"
+    ],
+    "substanceNames": [
+      "Midazolam"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C010",
+      "3203-G005",
+      "3203-G006",
+      "3203-G008",
+      "3203-M009",
+      "3203-M010",
+      "3203-M015",
+      "3203-M022",
+      "3203-PED015"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C010": [
+        2
+      ],
+      "3203-G005": [
+        2
+      ],
+      "3203-G006": [
+        1,
+        2
+      ],
+      "3203-G008": [
+        3
+      ],
+      "3203-M009": [
+        1
+      ],
+      "3203-M010": [
+        2
+      ],
+      "3203-M015": [
+        1
+      ],
+      "3203-M022": [
+        5
+      ],
+      "3203-PED015": [
+        1
+      ]
+    },
+    "matchedAliases": [
+      "midazolam"
+    ]
+  },
+  {
+    "canonical": "Naloxone",
+    "canonicalKey": "naloxone",
+    "aliases": [
+      "Naloxone",
+      "Narcan"
+    ],
+    "normalizedAliases": [
+      "naloxone",
+      "narcan"
+    ],
+    "genericNames": [
+      "Naloxone"
+    ],
+    "brandNames": [
+      "Narcan"
+    ],
+    "tradeNames": [
+      "Narcan"
+    ],
+    "activeIngredientNames": [
+      "Naloxone"
+    ],
+    "substanceNames": [
+      "Naloxone"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-G005",
+      "3203-M019",
+      "3203-PED003",
+      "3203-PED019"
+    ],
+    "foundPagesByProtocol": {
+      "3203-G005": [
+        1
+      ],
+      "3203-M019": [
+        1,
+        3
+      ],
+      "3203-PED003": [
+        2
+      ],
+      "3203-PED019": [
+        3
+      ]
+    },
+    "matchedAliases": [
+      "naloxone",
+      "narcan"
+    ]
+  },
+  {
+    "canonical": "Ondansetron",
+    "canonicalKey": "ondansetron",
+    "aliases": [
+      "Ondansetron",
+      "Zofran"
+    ],
+    "normalizedAliases": [
+      "ondansetron",
+      "zofran"
+    ],
+    "genericNames": [
+      "Ondansetron"
+    ],
+    "brandNames": [
+      "Zofran"
+    ],
+    "tradeNames": [
+      "Zofran"
+    ],
+    "activeIngredientNames": [
+      "Ondansetron"
+    ],
+    "substanceNames": [
+      "Ondansetron"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-G004",
+      "3203-M007"
+    ],
+    "foundPagesByProtocol": {
+      "3203-G004": [
+        1
+      ],
+      "3203-M007": [
+        1
+      ]
+    },
+    "matchedAliases": [
+      "ondansetron",
+      "zofran"
+    ]
+  },
+  {
+    "canonical": "Tranexamic Acid",
+    "canonicalKey": "tranexamic acid",
+    "aliases": [
+      "Tranexamic Acid",
+      "TXA"
+    ],
+    "normalizedAliases": [
+      "tranexamic acid",
+      "txa"
+    ],
+    "genericNames": [
+      "Tranexamic Acid"
+    ],
+    "brandNames": [
+      "TXA"
+    ],
+    "tradeNames": [
+      "TXA"
+    ],
+    "activeIngredientNames": [
+      "Tranexamic Acid"
+    ],
+    "substanceNames": [
+      "Tranexamic Acid"
+    ],
+    "shorthand": [
+      "TXA"
+    ],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M013",
+      "3203-M017",
+      "3203-M022",
+      "GUID-3203-PR025",
+      "GUID-3203-PR025B",
+      "GUID-3203-PR031"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M013": [
+        2
+      ],
+      "3203-M017": [
+        4
+      ],
+      "3203-M022": [
+        5
+      ],
+      "GUID-3203-PR025": [
+        2,
+        5
+      ],
+      "GUID-3203-PR025B": [
+        2,
+        5
+      ],
+      "GUID-3203-PR031": [
+        5
+      ]
+    },
+    "matchedAliases": [
+      "tranexamic acid",
+      "txa"
+    ]
+  },
+  {
+    "canonical": "Nitroglycerin",
+    "canonicalKey": "nitroglycerin",
+    "aliases": [
+      "Nitroglycerin",
+      "Nitro",
+      "NTG"
+    ],
+    "normalizedAliases": [
+      "nitroglycerin",
+      "nitro",
+      "ntg"
+    ],
+    "genericNames": [
+      "Nitroglycerin"
+    ],
+    "brandNames": [
+      "Nitro",
+      "NTG"
+    ],
+    "tradeNames": [
+      "Nitro",
+      "NTG"
+    ],
+    "activeIngredientNames": [
+      "Nitroglycerin"
+    ],
+    "substanceNames": [
+      "Nitroglycerin"
+    ],
+    "shorthand": [
+      "Nitro",
+      "NTG"
+    ],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C001",
+      "3203-C005",
+      "3203-C010"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C001": [
+        1,
+        2
+      ],
+      "3203-C005": [
+        1
+      ],
+      "3203-C010": [
+        1
+      ]
+    },
+    "matchedAliases": [
+      "nitroglycerin",
+      "ntg"
+    ]
+  },
+  {
+    "canonical": "Epinephrine",
+    "canonicalKey": "epinephrine",
+    "aliases": [
+      "Epinephrine",
+      "Epi",
+      "adrenaline",
+      "1:1000",
+      "1:1,000",
+      "1:10000",
+      "1:10,000"
+    ],
+    "normalizedAliases": [
       "epinephrine",
       "epi",
       "adrenaline",
@@ -11,681 +514,290 @@
       "1:10,000"
     ],
     "genericNames": [
-      "epinephrine"
+      "Epinephrine"
     ],
     "brandNames": [
-      "epi",
+      "Epi",
       "adrenaline",
       "1:1000",
-      "1:1,000"
+      "1:1,000",
+      "1:10000",
+      "1:10,000"
     ],
     "tradeNames": [
-      "epi",
+      "Epi",
       "adrenaline",
       "1:1000",
-      "1:1,000"
+      "1:1,000",
+      "1:10000",
+      "1:10,000"
     ],
     "activeIngredientNames": [
+      "Epinephrine"
+    ],
+    "substanceNames": [
+      "Epinephrine"
+    ],
+    "shorthand": [
+      "Epi"
+    ],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C002",
+      "3203-C004",
+      "3203-C007",
+      "3203-M004",
+      "3203-M008",
+      "3203-M011",
+      "3203-M016",
+      "3203-M019",
+      "3203-PED002",
+      "3203-PED004",
+      "3203-PED005",
+      "3203-PED006",
+      "3203-PED007",
+      "3203-PED009",
+      "3203-PED010",
+      "3203-PED012",
+      "3203-PED013",
+      "3203-PED014",
+      "3203-PED019",
+      "GUID-3203-PR012",
+      "GUID-3203-PR031"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C002": [
+        1
+      ],
+      "3203-C004": [
+        2
+      ],
+      "3203-C007": [
+        1
+      ],
+      "3203-M004": [
+        1
+      ],
+      "3203-M008": [
+        2
+      ],
+      "3203-M011": [
+        1
+      ],
+      "3203-M016": [
+        2
+      ],
+      "3203-M019": [
+        2,
+        3
+      ],
+      "3203-PED002": [
+        1
+      ],
+      "3203-PED004": [
+        1
+      ],
+      "3203-PED005": [
+        1
+      ],
+      "3203-PED006": [
+        2
+      ],
+      "3203-PED007": [
+        2
+      ],
+      "3203-PED009": [
+        2
+      ],
+      "3203-PED010": [
+        2
+      ],
+      "3203-PED012": [
+        1
+      ],
+      "3203-PED013": [
+        1
+      ],
+      "3203-PED014": [
+        2
+      ],
+      "3203-PED019": [
+        3
+      ],
+      "GUID-3203-PR012": [
+        1,
+        2
+      ],
+      "GUID-3203-PR031": [
+        5
+      ]
+    },
+    "matchedAliases": [
+      "1:1,000",
+      "1:10,000",
+      "epi",
       "epinephrine"
-    ],
-    "substanceNames": [
-      "epinephrine"
-    ],
-    "shorthand": [
-      "epi"
-    ],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
+    ]
   },
   {
-    "canonical": "norepinephrine",
+    "canonical": "Ipratropium",
+    "canonicalKey": "ipratropium",
     "aliases": [
-      "norepinephrine",
-      "norepi",
-      "nor-epi",
-      "levophed"
+      "Ipratropium",
+      "Atrovent"
+    ],
+    "normalizedAliases": [
+      "ipratropium",
+      "atrovent"
     ],
     "genericNames": [
-      "norepinephrine"
+      "Ipratropium"
     ],
     "brandNames": [
-      "norepi",
-      "levophed"
+      "Atrovent"
     ],
     "tradeNames": [
-      "norepi",
-      "levophed"
+      "Atrovent"
     ],
     "activeIngredientNames": [
-      "norepinephrine"
+      "Ipratropium"
     ],
     "substanceNames": [
-      "norepinephrine"
+      "Ipratropium"
     ],
     "shorthand": [],
     "sources": [
       "local-seed"
     ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
+    "foundInProtocols": [
+      "3203-M004",
+      "3203-M008",
+      "3203-PED002",
+      "3203-PED014",
+      "GUID-3203-PR012"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M004": [
+        2
+      ],
+      "3203-M008": [
+        1
+      ],
+      "3203-PED002": [
+        2
+      ],
+      "3203-PED014": [
+        1
+      ],
+      "GUID-3203-PR012": [
+        1,
+        2
+      ]
+    },
+    "matchedAliases": [
+      "atrovent",
+      "ipratropium"
+    ]
   },
   {
-    "canonical": "nitroglycerin",
+    "canonical": "Sodium Bicarbonate",
+    "canonicalKey": "sodium bicarbonate",
     "aliases": [
-      "nitroglycerin",
-      "nitro",
-      "ntg"
-    ],
-    "genericNames": [
-      "nitroglycerin"
-    ],
-    "brandNames": [
-      "nitro",
-      "ntg"
-    ],
-    "tradeNames": [
-      "nitro",
-      "ntg"
-    ],
-    "activeIngredientNames": [
-      "nitroglycerin"
-    ],
-    "substanceNames": [
-      "nitroglycerin"
-    ],
-    "shorthand": [
-      "nitro",
-      "ntg"
-    ],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "midazolam",
-    "aliases": [
-      "midazolam",
-      "versed"
-    ],
-    "genericNames": [
-      "midazolam"
-    ],
-    "brandNames": [
-      "versed"
-    ],
-    "tradeNames": [
-      "versed"
-    ],
-    "activeIngredientNames": [
-      "midazolam"
-    ],
-    "substanceNames": [
-      "midazolam"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "lorazepam",
-    "aliases": [
-      "lorazepam",
-      "ativan"
-    ],
-    "genericNames": [
-      "lorazepam"
-    ],
-    "brandNames": [
-      "ativan"
-    ],
-    "tradeNames": [
-      "ativan"
-    ],
-    "activeIngredientNames": [
-      "lorazepam"
-    ],
-    "substanceNames": [
-      "lorazepam"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "diazepam",
-    "aliases": [
-      "diazepam",
-      "valium"
-    ],
-    "genericNames": [
-      "diazepam"
-    ],
-    "brandNames": [
-      "valium"
-    ],
-    "tradeNames": [
-      "valium"
-    ],
-    "activeIngredientNames": [
-      "diazepam"
-    ],
-    "substanceNames": [
-      "diazepam"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "ondansetron",
-    "aliases": [
-      "ondansetron",
-      "zofran"
-    ],
-    "genericNames": [
-      "ondansetron"
-    ],
-    "brandNames": [
-      "zofran"
-    ],
-    "tradeNames": [
-      "zofran"
-    ],
-    "activeIngredientNames": [
-      "ondansetron"
-    ],
-    "substanceNames": [
-      "ondansetron"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "naloxone",
-    "aliases": [
-      "naloxone",
-      "narcan"
-    ],
-    "genericNames": [
-      "naloxone"
-    ],
-    "brandNames": [
-      "narcan"
-    ],
-    "tradeNames": [
-      "narcan"
-    ],
-    "activeIngredientNames": [
-      "naloxone"
-    ],
-    "substanceNames": [
-      "naloxone"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "tranexamic acid",
-    "aliases": [
-      "tranexamic acid",
-      "txa"
-    ],
-    "genericNames": [
-      "tranexamic acid"
-    ],
-    "brandNames": [
-      "txa"
-    ],
-    "tradeNames": [
-      "txa"
-    ],
-    "activeIngredientNames": [
-      "tranexamic acid"
-    ],
-    "substanceNames": [
-      "tranexamic acid"
-    ],
-    "shorthand": [
-      "txa"
-    ],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "aspirin",
-    "aliases": [
-      "aspirin",
-      "asa",
-      "acetylsalicylic acid"
-    ],
-    "genericNames": [
-      "aspirin"
-    ],
-    "brandNames": [
-      "asa"
-    ],
-    "tradeNames": [
-      "asa"
-    ],
-    "activeIngredientNames": [
-      "aspirin"
-    ],
-    "substanceNames": [
-      "aspirin"
-    ],
-    "shorthand": [
-      "asa"
-    ],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "amiodarone",
-    "aliases": [
-      "amiodarone",
-      "cordarone",
-      "pacerone"
-    ],
-    "genericNames": [
-      "amiodarone"
-    ],
-    "brandNames": [
-      "cordarone",
-      "pacerone"
-    ],
-    "tradeNames": [
-      "cordarone",
-      "pacerone"
-    ],
-    "activeIngredientNames": [
-      "amiodarone"
-    ],
-    "substanceNames": [
-      "amiodarone"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "adenosine",
-    "aliases": [
-      "adenosine",
-      "adenocard"
-    ],
-    "genericNames": [
-      "adenosine"
-    ],
-    "brandNames": [
-      "adenocard"
-    ],
-    "tradeNames": [
-      "adenocard"
-    ],
-    "activeIngredientNames": [
-      "adenosine"
-    ],
-    "substanceNames": [
-      "adenosine"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "ketamine",
-    "aliases": [
-      "ketamine",
-      "ketalar"
-    ],
-    "genericNames": [
-      "ketamine"
-    ],
-    "brandNames": [
-      "ketalar"
-    ],
-    "tradeNames": [
-      "ketalar"
-    ],
-    "activeIngredientNames": [
-      "ketamine"
-    ],
-    "substanceNames": [
-      "ketamine"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "fentanyl",
-    "aliases": [
-      "fentanyl",
-      "sublimaze"
-    ],
-    "genericNames": [
-      "fentanyl"
-    ],
-    "brandNames": [
-      "sublimaze"
-    ],
-    "tradeNames": [
-      "sublimaze"
-    ],
-    "activeIngredientNames": [
-      "fentanyl"
-    ],
-    "substanceNames": [
-      "fentanyl"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "morphine",
-    "aliases": [
-      "morphine"
-    ],
-    "genericNames": [
-      "morphine"
-    ],
-    "brandNames": [],
-    "tradeNames": [],
-    "activeIngredientNames": [
-      "morphine"
-    ],
-    "substanceNames": [
-      "morphine"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "hydromorphone",
-    "aliases": [
-      "hydromorphone",
-      "dilaudid"
-    ],
-    "genericNames": [
-      "hydromorphone"
-    ],
-    "brandNames": [
-      "dilaudid"
-    ],
-    "tradeNames": [
-      "dilaudid"
-    ],
-    "activeIngredientNames": [
-      "hydromorphone"
-    ],
-    "substanceNames": [
-      "hydromorphone"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "calcium chloride",
-    "aliases": [
-      "calcium chloride",
-      "cacl",
-      "cacl2",
-      "calcium"
-    ],
-    "genericNames": [
-      "calcium chloride"
-    ],
-    "brandNames": [
-      "cacl",
-      "cacl2",
-      "calcium"
-    ],
-    "tradeNames": [
-      "cacl",
-      "cacl2",
-      "calcium"
-    ],
-    "activeIngredientNames": [
-      "calcium chloride"
-    ],
-    "substanceNames": [
-      "calcium chloride"
-    ],
-    "shorthand": [
-      "cacl",
-      "cacl2"
-    ],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "sodium bicarbonate",
-    "aliases": [
+      "Sodium Bicarbonate",
+      "Bicarb",
+      "sodium bicarb",
+      "NaHCO3"
+    ],
+    "normalizedAliases": [
       "sodium bicarbonate",
       "bicarb",
       "sodium bicarb",
       "nahco3"
     ],
     "genericNames": [
-      "sodium bicarbonate"
+      "Sodium Bicarbonate"
     ],
     "brandNames": [
+      "Bicarb",
+      "sodium bicarb",
+      "NaHCO3"
+    ],
+    "tradeNames": [
+      "Bicarb",
+      "sodium bicarb",
+      "NaHCO3"
+    ],
+    "activeIngredientNames": [
+      "Sodium Bicarbonate"
+    ],
+    "substanceNames": [
+      "Sodium Bicarbonate"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C002",
+      "3203-C006",
+      "3203-C007",
+      "3203-M002",
+      "3203-M006",
+      "3203-M019",
+      "3203-PED005",
+      "3203-PED008"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C002": [
+        1
+      ],
+      "3203-C006": [
+        3
+      ],
+      "3203-C007": [
+        2
+      ],
+      "3203-M002": [
+        1
+      ],
+      "3203-M006": [
+        2
+      ],
+      "3203-M019": [
+        3
+      ],
+      "3203-PED005": [
+        2
+      ],
+      "3203-PED008": [
+        2
+      ]
+    },
+    "matchedAliases": [
       "bicarb",
-      "nahco3"
-    ],
-    "tradeNames": [
-      "bicarb",
-      "nahco3"
-    ],
-    "activeIngredientNames": [
+      "sodium bicarb",
       "sodium bicarbonate"
-    ],
-    "substanceNames": [
-      "sodium bicarbonate"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
+    ]
   },
   {
-    "canonical": "magnesium sulfate",
+    "canonical": "Dextrose",
+    "canonicalKey": "dextrose",
     "aliases": [
-      "magnesium sulfate",
-      "magnesium",
-      "mag sulfate",
-      "mgso4"
+      "Dextrose",
+      "D10",
+      "D-10",
+      "D 10",
+      "D25",
+      "D-25",
+      "D 25",
+      "D50",
+      "D-50",
+      "D 50",
+      "glucose"
     ],
-    "genericNames": [
-      "magnesium sulfate"
-    ],
-    "brandNames": [
-      "magnesium",
-      "mgso4"
-    ],
-    "tradeNames": [
-      "magnesium",
-      "mgso4"
-    ],
-    "activeIngredientNames": [
-      "magnesium sulfate"
-    ],
-    "substanceNames": [
-      "magnesium sulfate"
-    ],
-    "shorthand": [
-      "mgso4"
-    ],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "albuterol",
-    "aliases": [
-      "albuterol",
-      "salbutamol",
-      "proventil",
-      "ventolin"
-    ],
-    "genericNames": [
-      "albuterol"
-    ],
-    "brandNames": [
-      "salbutamol",
-      "proventil",
-      "ventolin"
-    ],
-    "tradeNames": [
-      "salbutamol",
-      "proventil",
-      "ventolin"
-    ],
-    "activeIngredientNames": [
-      "albuterol"
-    ],
-    "substanceNames": [
-      "albuterol"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "ipratropium",
-    "aliases": [
-      "ipratropium",
-      "atrovent"
-    ],
-    "genericNames": [
-      "ipratropium"
-    ],
-    "brandNames": [
-      "atrovent"
-    ],
-    "tradeNames": [
-      "atrovent"
-    ],
-    "activeIngredientNames": [
-      "ipratropium"
-    ],
-    "substanceNames": [
-      "ipratropium"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "glucagon",
-    "aliases": [
-      "glucagon"
-    ],
-    "genericNames": [
-      "glucagon"
-    ],
-    "brandNames": [],
-    "tradeNames": [],
-    "activeIngredientNames": [
-      "glucagon"
-    ],
-    "substanceNames": [
-      "glucagon"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "dextrose",
-    "aliases": [
+    "normalizedAliases": [
       "dextrose",
       "d10",
       "d-10",
@@ -699,554 +811,525 @@
       "glucose"
     ],
     "genericNames": [
-      "dextrose"
+      "Dextrose"
     ],
     "brandNames": [
-      "d10",
-      "d25",
-      "d50",
-      "glucose"
+      "D10",
+      "D-10",
+      "D 10",
+      "D25",
+      "D-25",
+      "D 25",
+      "D50",
+      "D-50"
     ],
     "tradeNames": [
-      "d10",
-      "d25",
-      "d50",
-      "glucose"
+      "D10",
+      "D-10",
+      "D 10",
+      "D25",
+      "D-25",
+      "D 25",
+      "D50",
+      "D-50"
     ],
     "activeIngredientNames": [
-      "dextrose"
+      "Dextrose"
     ],
     "substanceNames": [
-      "dextrose"
+      "Dextrose"
     ],
     "shorthand": [
+      "D10",
+      "D-10",
+      "D 10",
+      "D25",
+      "D-25",
+      "D 25",
+      "D50",
+      "D-50",
+      "D 50"
+    ],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C009",
+      "3203-G002",
+      "3203-G005",
+      "3203-M002",
+      "3203-M003",
+      "3203-M006",
+      "3203-M009",
+      "3203-M010",
+      "3203-M012",
+      "3203-M015",
+      "3203-M016",
+      "3203-M017",
+      "3203-M019",
+      "3203-M021",
+      "3203-PED003",
+      "3203-PED005",
+      "3203-PED006",
+      "3203-PED007",
+      "3203-PED008",
+      "3203-PED016",
+      "GUID-3203-PR003",
+      "GUID-3203-PR015",
+      "GUID-3203-PR030"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C009": [
+        2
+      ],
+      "3203-G002": [
+        2
+      ],
+      "3203-G005": [
+        1
+      ],
+      "3203-M002": [
+        1
+      ],
+      "3203-M003": [
+        1
+      ],
+      "3203-M006": [
+        2
+      ],
+      "3203-M009": [
+        1
+      ],
+      "3203-M010": [
+        2
+      ],
+      "3203-M012": [
+        1
+      ],
+      "3203-M015": [
+        1
+      ],
+      "3203-M016": [
+        2
+      ],
+      "3203-M017": [
+        2,
+        5
+      ],
+      "3203-M019": [
+        1,
+        2
+      ],
+      "3203-M021": [
+        1,
+        2
+      ],
+      "3203-PED003": [
+        2
+      ],
+      "3203-PED005": [
+        1,
+        2
+      ],
+      "3203-PED006": [
+        2
+      ],
+      "3203-PED007": [
+        2
+      ],
+      "3203-PED008": [
+        1,
+        2
+      ],
+      "3203-PED016": [
+        2
+      ],
+      "GUID-3203-PR003": [
+        1,
+        2
+      ],
+      "GUID-3203-PR015": [
+        1
+      ],
+      "GUID-3203-PR030": [
+        2,
+        10
+      ]
+    },
+    "matchedAliases": [
       "d10",
-      "d-10",
-      "d 10",
-      "d25",
-      "d-25",
-      "d 25",
-      "d50",
-      "d-50",
-      "d 50"
-    ],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
+      "dextrose",
+      "glucose"
+    ]
   },
   {
-    "canonical": "dopamine",
+    "canonical": "Rocuronium",
+    "canonicalKey": "rocuronium",
     "aliases": [
-      "dopamine",
-      "intropin"
+      "Rocuronium",
+      "Roc",
+      "Zemuron"
     ],
-    "genericNames": [
-      "dopamine"
-    ],
-    "brandNames": [
-      "intropin"
-    ],
-    "tradeNames": [
-      "intropin"
-    ],
-    "activeIngredientNames": [
-      "dopamine"
-    ],
-    "substanceNames": [
-      "dopamine"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "dobutamine",
-    "aliases": [
-      "dobutamine",
-      "dobutrex"
-    ],
-    "genericNames": [
-      "dobutamine"
-    ],
-    "brandNames": [
-      "dobutrex"
-    ],
-    "tradeNames": [
-      "dobutrex"
-    ],
-    "activeIngredientNames": [
-      "dobutamine"
-    ],
-    "substanceNames": [
-      "dobutamine"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "phenylephrine",
-    "aliases": [
-      "phenylephrine",
-      "neo",
-      "neosynephrine",
-      "neo-synephrine"
-    ],
-    "genericNames": [
-      "phenylephrine"
-    ],
-    "brandNames": [
-      "neo",
-      "neosynephrine"
-    ],
-    "tradeNames": [
-      "neo",
-      "neosynephrine"
-    ],
-    "activeIngredientNames": [
-      "phenylephrine"
-    ],
-    "substanceNames": [
-      "phenylephrine"
-    ],
-    "shorthand": [
-      "neo"
-    ],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "vasopressin",
-    "aliases": [
-      "vasopressin",
-      "pitressin"
-    ],
-    "genericNames": [
-      "vasopressin"
-    ],
-    "brandNames": [
-      "pitressin"
-    ],
-    "tradeNames": [
-      "pitressin"
-    ],
-    "activeIngredientNames": [
-      "vasopressin"
-    ],
-    "substanceNames": [
-      "vasopressin"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "lidocaine",
-    "aliases": [
-      "lidocaine",
-      "xylocaine"
-    ],
-    "genericNames": [
-      "lidocaine"
-    ],
-    "brandNames": [
-      "xylocaine"
-    ],
-    "tradeNames": [
-      "xylocaine"
-    ],
-    "activeIngredientNames": [
-      "lidocaine"
-    ],
-    "substanceNames": [
-      "lidocaine"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "atropine",
-    "aliases": [
-      "atropine"
-    ],
-    "genericNames": [
-      "atropine"
-    ],
-    "brandNames": [],
-    "tradeNames": [],
-    "activeIngredientNames": [
-      "atropine"
-    ],
-    "substanceNames": [
-      "atropine"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "rocuronium",
-    "aliases": [
+    "normalizedAliases": [
       "rocuronium",
       "roc",
       "zemuron"
     ],
     "genericNames": [
-      "rocuronium"
+      "Rocuronium"
     ],
     "brandNames": [
-      "roc",
-      "zemuron"
+      "Roc",
+      "Zemuron"
     ],
     "tradeNames": [
-      "roc",
-      "zemuron"
+      "Roc",
+      "Zemuron"
     ],
     "activeIngredientNames": [
-      "rocuronium"
+      "Rocuronium"
     ],
     "substanceNames": [
-      "rocuronium"
+      "Rocuronium"
     ],
     "shorthand": [
-      "roc"
+      "Roc"
     ],
     "sources": [
       "local-seed"
     ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
+    "foundInProtocols": [
+      "3203-C009",
+      "3203-G007",
+      "3203-G008",
+      "GUID-3203-PR029"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C009": [
+        2
+      ],
+      "3203-G007": [
+        2
+      ],
+      "3203-G008": [
+        3,
+        4
+      ],
+      "GUID-3203-PR029": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "rocuronium",
+      "zemuron"
+    ]
   },
   {
-    "canonical": "succinylcholine",
+    "canonical": "Succinylcholine",
+    "canonicalKey": "succinylcholine",
     "aliases": [
+      "Succinylcholine",
+      "Sux",
+      "suxamethonium",
+      "Anectine"
+    ],
+    "normalizedAliases": [
       "succinylcholine",
       "sux",
       "suxamethonium",
       "anectine"
     ],
     "genericNames": [
-      "succinylcholine"
+      "Succinylcholine"
     ],
     "brandNames": [
-      "sux",
+      "Sux",
       "suxamethonium",
-      "anectine"
+      "Anectine"
     ],
     "tradeNames": [
-      "sux",
+      "Sux",
       "suxamethonium",
-      "anectine"
+      "Anectine"
     ],
     "activeIngredientNames": [
-      "succinylcholine"
+      "Succinylcholine"
     ],
     "substanceNames": [
-      "succinylcholine"
+      "Succinylcholine"
     ],
     "shorthand": [
-      "sux"
+      "Sux"
     ],
     "sources": [
       "local-seed"
     ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
+    "foundInProtocols": [
+      "3203-G008",
+      "3203-M019",
+      "3203-M020"
+    ],
+    "foundPagesByProtocol": {
+      "3203-G008": [
+        1,
+        3
+      ],
+      "3203-M019": [
+        3
+      ],
+      "3203-M020": [
+        1
+      ]
+    },
+    "matchedAliases": [
+      "succinylcholine"
+    ]
   },
   {
-    "canonical": "etomidate",
+    "canonical": "Methylprednisolone",
+    "canonicalKey": "methylprednisolone",
     "aliases": [
-      "etomidate",
-      "amidate"
+      "Methylprednisolone",
+      "Solu-Medrol",
+      "solumedrol"
     ],
-    "genericNames": [
-      "etomidate"
-    ],
-    "brandNames": [
-      "amidate"
-    ],
-    "tradeNames": [
-      "amidate"
-    ],
-    "activeIngredientNames": [
-      "etomidate"
-    ],
-    "substanceNames": [
-      "etomidate"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "propofol",
-    "aliases": [
-      "propofol",
-      "diprivan"
-    ],
-    "genericNames": [
-      "propofol"
-    ],
-    "brandNames": [
-      "diprivan"
-    ],
-    "tradeNames": [
-      "diprivan"
-    ],
-    "activeIngredientNames": [
-      "propofol"
-    ],
-    "substanceNames": [
-      "propofol"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "acetaminophen",
-    "aliases": [
-      "acetaminophen",
-      "tylenol",
-      "paracetamol"
-    ],
-    "genericNames": [
-      "acetaminophen"
-    ],
-    "brandNames": [
-      "tylenol",
-      "paracetamol"
-    ],
-    "tradeNames": [
-      "tylenol",
-      "paracetamol"
-    ],
-    "activeIngredientNames": [
-      "acetaminophen"
-    ],
-    "substanceNames": [
-      "acetaminophen"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "ibuprofen",
-    "aliases": [
-      "ibuprofen",
-      "motrin",
-      "advil"
-    ],
-    "genericNames": [
-      "ibuprofen"
-    ],
-    "brandNames": [
-      "motrin",
-      "advil"
-    ],
-    "tradeNames": [
-      "motrin",
-      "advil"
-    ],
-    "activeIngredientNames": [
-      "ibuprofen"
-    ],
-    "substanceNames": [
-      "ibuprofen"
-    ],
-    "shorthand": [
-      "advil"
-    ],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "methylprednisolone",
-    "aliases": [
+    "normalizedAliases": [
       "methylprednisolone",
       "solu-medrol",
       "solumedrol"
     ],
     "genericNames": [
-      "methylprednisolone"
+      "Methylprednisolone"
     ],
     "brandNames": [
+      "Solu-Medrol",
       "solumedrol"
     ],
     "tradeNames": [
+      "Solu-Medrol",
       "solumedrol"
     ],
     "activeIngredientNames": [
-      "methylprednisolone"
+      "Methylprednisolone"
     ],
     "substanceNames": [
-      "methylprednisolone"
+      "Methylprednisolone"
     ],
     "shorthand": [],
     "sources": [
       "local-seed"
     ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
+    "foundInProtocols": [
+      "3203-M004",
+      "3203-M008",
+      "3203-PED002",
+      "3203-PED014",
+      "GUID-3203-PR002"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M004": [
+        2
+      ],
+      "3203-M008": [
+        1
+      ],
+      "3203-PED002": [
+        2
+      ],
+      "3203-PED014": [
+        1
+      ],
+      "GUID-3203-PR002": [
+        3
+      ]
+    },
+    "matchedAliases": [
+      "methylprednisolone",
+      "solumedrol"
+    ]
   },
   {
-    "canonical": "dexamethasone",
+    "canonical": "Diphenhydramine",
+    "canonicalKey": "diphenhydramine",
     "aliases": [
-      "dexamethasone",
-      "decadron"
+      "Diphenhydramine",
+      "Benadryl"
     ],
-    "genericNames": [
-      "dexamethasone"
-    ],
-    "brandNames": [
-      "decadron"
-    ],
-    "tradeNames": [
-      "decadron"
-    ],
-    "activeIngredientNames": [
-      "dexamethasone"
-    ],
-    "substanceNames": [
-      "dexamethasone"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "diphenhydramine",
-    "aliases": [
+    "normalizedAliases": [
       "diphenhydramine",
       "benadryl"
     ],
     "genericNames": [
-      "diphenhydramine"
+      "Diphenhydramine"
     ],
     "brandNames": [
-      "benadryl"
+      "Benadryl"
     ],
     "tradeNames": [
-      "benadryl"
+      "Benadryl"
     ],
     "activeIngredientNames": [
-      "diphenhydramine"
+      "Diphenhydramine"
     ],
     "substanceNames": [
-      "diphenhydramine"
+      "Diphenhydramine"
     ],
     "shorthand": [],
     "sources": [
       "local-seed"
     ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
+    "foundInProtocols": [
+      "3203-M004",
+      "3203-PED002",
+      "GUID-3203-PR002"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M004": [
+        2
+      ],
+      "3203-PED002": [
+        2
+      ],
+      "GUID-3203-PR002": [
+        3
+      ]
+    },
+    "matchedAliases": [
+      "benadryl",
+      "diphenhydramine"
+    ]
   },
   {
-    "canonical": "famotidine",
+    "canonical": "Furosemide",
+    "canonicalKey": "furosemide",
     "aliases": [
-      "famotidine",
-      "pepcid"
+      "Furosemide",
+      "Lasix"
     ],
-    "genericNames": [
-      "famotidine"
-    ],
-    "brandNames": [
-      "pepcid"
-    ],
-    "tradeNames": [
-      "pepcid"
-    ],
-    "activeIngredientNames": [
-      "famotidine"
-    ],
-    "substanceNames": [
-      "famotidine"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "furosemide",
-    "aliases": [
+    "normalizedAliases": [
       "furosemide",
       "lasix"
     ],
     "genericNames": [
-      "furosemide"
+      "Furosemide"
     ],
     "brandNames": [
-      "lasix"
+      "Lasix"
     ],
     "tradeNames": [
-      "lasix"
+      "Lasix"
     ],
     "activeIngredientNames": [
-      "furosemide"
+      "Furosemide"
     ],
     "substanceNames": [
-      "furosemide"
+      "Furosemide"
     ],
     "shorthand": [
-      "lasix"
+      "Lasix"
+    ],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C005",
+      "3203-PED006",
+      "3203-PED007"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C005": [
+        1
+      ],
+      "3203-PED006": [
+        1
+      ],
+      "3203-PED007": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "furosemide"
+    ]
+  },
+  {
+    "canonical": "Diltiazem",
+    "canonicalKey": "diltiazem",
+    "aliases": [
+      "Diltiazem",
+      "Cardizem"
+    ],
+    "normalizedAliases": [
+      "diltiazem",
+      "cardizem"
+    ],
+    "genericNames": [
+      "Diltiazem"
+    ],
+    "brandNames": [
+      "Cardizem"
+    ],
+    "tradeNames": [
+      "Cardizem"
+    ],
+    "activeIngredientNames": [
+      "Diltiazem"
+    ],
+    "substanceNames": [
+      "Diltiazem"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C003",
+      "3203-C006",
+      "3203-M019"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C003": [
+        1
+      ],
+      "3203-C006": [
+        2
+      ],
+      "3203-M019": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "cardizem",
+      "diltiazem"
+    ]
+  },
+  {
+    "canonical": "Cefazolin",
+    "canonicalKey": "cefazolin",
+    "aliases": [
+      "Cefazolin",
+      "Ancef"
+    ],
+    "normalizedAliases": [
+      "cefazolin",
+      "ancef"
+    ],
+    "genericNames": [
+      "Cefazolin"
+    ],
+    "brandNames": [
+      "Ancef"
+    ],
+    "tradeNames": [
+      "Ancef"
+    ],
+    "activeIngredientNames": [
+      "Cefazolin"
+    ],
+    "substanceNames": [
+      "Cefazolin"
+    ],
+    "shorthand": [
+      "Ancef"
     ],
     "sources": [
       "local-seed"
@@ -1256,20 +1339,121 @@
     "matchedAliases": []
   },
   {
-    "canonical": "heparin",
+    "canonical": "Pantoprazole",
+    "canonicalKey": "pantoprazole",
     "aliases": [
-      "heparin"
+      "Pantoprazole",
+      "Protonix"
+    ],
+    "normalizedAliases": [
+      "pantoprazole",
+      "protonix"
     ],
     "genericNames": [
-      "heparin"
+      "Pantoprazole"
     ],
-    "brandNames": [],
-    "tradeNames": [],
+    "brandNames": [
+      "Protonix"
+    ],
+    "tradeNames": [
+      "Protonix"
+    ],
     "activeIngredientNames": [
-      "heparin"
+      "Pantoprazole"
     ],
     "substanceNames": [
-      "heparin"
+      "Pantoprazole"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M007"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M007": [
+        1
+      ]
+    },
+    "matchedAliases": [
+      "pantoprazole"
+    ]
+  },
+  {
+    "canonical": "Acetylcysteine",
+    "canonicalKey": "acetylcysteine",
+    "aliases": [
+      "Acetylcysteine",
+      "NAC",
+      "N-acetylcysteine"
+    ],
+    "normalizedAliases": [
+      "acetylcysteine",
+      "nac",
+      "n-acetylcysteine"
+    ],
+    "genericNames": [
+      "Acetylcysteine"
+    ],
+    "brandNames": [
+      "NAC",
+      "N-acetylcysteine"
+    ],
+    "tradeNames": [
+      "NAC",
+      "N-acetylcysteine"
+    ],
+    "activeIngredientNames": [
+      "Acetylcysteine"
+    ],
+    "substanceNames": [
+      "Acetylcysteine"
+    ],
+    "shorthand": [
+      "NAC"
+    ],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M019"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M019": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "acetylcysteine",
+      "n-acetylcysteine"
+    ]
+  },
+  {
+    "canonical": "Hydroxocobalamin",
+    "canonicalKey": "hydroxocobalamin",
+    "aliases": [
+      "Hydroxocobalamin",
+      "Cyanokit"
+    ],
+    "normalizedAliases": [
+      "hydroxocobalamin",
+      "cyanokit"
+    ],
+    "genericNames": [
+      "Hydroxocobalamin"
+    ],
+    "brandNames": [
+      "Cyanokit"
+    ],
+    "tradeNames": [
+      "Cyanokit"
+    ],
+    "activeIngredientNames": [
+      "Hydroxocobalamin"
+    ],
+    "substanceNames": [
+      "Hydroxocobalamin"
     ],
     "shorthand": [],
     "sources": [
@@ -1280,175 +1464,1731 @@
     "matchedAliases": []
   },
   {
-    "canonical": "insulin",
+    "canonical": "Crotalidae Immune Fab",
+    "canonicalKey": "crotalidae immune fab",
     "aliases": [
+      "Crotalidae Immune Fab",
+      "CroFab"
+    ],
+    "normalizedAliases": [
+      "crotalidae immune fab",
+      "crofab"
+    ],
+    "genericNames": [
+      "Crotalidae Immune Fab"
+    ],
+    "brandNames": [
+      "CroFab"
+    ],
+    "tradeNames": [
+      "CroFab"
+    ],
+    "activeIngredientNames": [
+      "Crotalidae Immune Fab"
+    ],
+    "substanceNames": [
+      "Crotalidae Immune Fab"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [],
+    "foundPagesByProtocol": {},
+    "matchedAliases": []
+  },
+  {
+    "canonical": "Rho(D) Immune Globulin",
+    "canonicalKey": "rho(d) immune globulin",
+    "aliases": [
+      "Rho(D) Immune Globulin",
+      "RhoGAM",
+      "RhoGAM Ultra-Filtered PLUS"
+    ],
+    "normalizedAliases": [
+      "rho(d) immune globulin",
+      "rhogam",
+      "rhogam ultra-filtered plus"
+    ],
+    "genericNames": [
+      "Rho(D) Immune Globulin"
+    ],
+    "brandNames": [
+      "RhoGAM",
+      "RhoGAM Ultra-Filtered PLUS"
+    ],
+    "tradeNames": [
+      "RhoGAM",
+      "RhoGAM Ultra-Filtered PLUS"
+    ],
+    "activeIngredientNames": [
+      "Rho(D) Immune Globulin"
+    ],
+    "substanceNames": [
+      "Rho(D) Immune Globulin"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "GUID-3203-PR025",
+      "GUID-3203-PR025B"
+    ],
+    "foundPagesByProtocol": {
+      "GUID-3203-PR025": [
+        3
+      ],
+      "GUID-3203-PR025B": [
+        3
+      ]
+    },
+    "matchedAliases": [
+      "rho(d) immune globulin",
+      "rhogam"
+    ]
+  },
+  {
+    "canonical": "Albuterol",
+    "canonicalKey": "albuterol",
+    "aliases": [
+      "Albuterol",
+      "salbutamol",
+      "Proventil",
+      "Ventolin"
+    ],
+    "normalizedAliases": [
+      "albuterol",
+      "salbutamol",
+      "proventil",
+      "ventolin"
+    ],
+    "genericNames": [
+      "Albuterol"
+    ],
+    "brandNames": [
+      "salbutamol",
+      "Proventil",
+      "Ventolin"
+    ],
+    "tradeNames": [
+      "salbutamol",
+      "Proventil",
+      "Ventolin"
+    ],
+    "activeIngredientNames": [
+      "Albuterol"
+    ],
+    "substanceNames": [
+      "Albuterol"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M004",
+      "3203-M006",
+      "3203-M008",
+      "3203-PED002",
+      "3203-PED005",
+      "3203-PED014",
+      "GUID-3203-PR012"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M004": [
+        2
+      ],
+      "3203-M006": [
+        2
+      ],
+      "3203-M008": [
+        1
+      ],
+      "3203-PED002": [
+        2
+      ],
+      "3203-PED005": [
+        2
+      ],
+      "3203-PED014": [
+        1
+      ],
+      "GUID-3203-PR012": [
+        1,
+        2
+      ]
+    },
+    "matchedAliases": [
+      "albuterol"
+    ]
+  },
+  {
+    "canonical": "Lorazepam",
+    "canonicalKey": "lorazepam",
+    "aliases": [
+      "Lorazepam",
+      "Ativan"
+    ],
+    "normalizedAliases": [
+      "lorazepam",
+      "ativan"
+    ],
+    "genericNames": [
+      "Lorazepam"
+    ],
+    "brandNames": [
+      "Ativan"
+    ],
+    "tradeNames": [
+      "Ativan"
+    ],
+    "activeIngredientNames": [
+      "Lorazepam"
+    ],
+    "substanceNames": [
+      "Lorazepam"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C008",
+      "3203-M015",
+      "3203-PED015"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C008": [
+        2
+      ],
+      "3203-M015": [
+        1
+      ],
+      "3203-PED015": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "ativan",
+      "lorazepam"
+    ]
+  },
+  {
+    "canonical": "Diazepam",
+    "canonicalKey": "diazepam",
+    "aliases": [
+      "Diazepam",
+      "Valium"
+    ],
+    "normalizedAliases": [
+      "diazepam",
+      "valium"
+    ],
+    "genericNames": [
+      "Diazepam"
+    ],
+    "brandNames": [
+      "Valium"
+    ],
+    "tradeNames": [
+      "Valium"
+    ],
+    "activeIngredientNames": [
+      "Diazepam"
+    ],
+    "substanceNames": [
+      "Diazepam"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M019",
+      "3203-PED015"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M019": [
+        2
+      ],
+      "3203-PED015": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "diazepam",
+      "valium"
+    ]
+  },
+  {
+    "canonical": "Amiodarone",
+    "canonicalKey": "amiodarone",
+    "aliases": [
+      "Amiodarone",
+      "Cordarone",
+      "Pacerone"
+    ],
+    "normalizedAliases": [
+      "amiodarone",
+      "cordarone",
+      "pacerone"
+    ],
+    "genericNames": [
+      "Amiodarone"
+    ],
+    "brandNames": [
+      "Cordarone",
+      "Pacerone"
+    ],
+    "tradeNames": [
+      "Cordarone",
+      "Pacerone"
+    ],
+    "activeIngredientNames": [
+      "Amiodarone"
+    ],
+    "substanceNames": [
+      "Amiodarone"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C003",
+      "3203-C006",
+      "3203-C007",
+      "3203-PED013",
+      "3203-PED017",
+      "3203-PED018"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C003": [
+        2
+      ],
+      "3203-C006": [
+        2
+      ],
+      "3203-C007": [
+        1,
+        2
+      ],
+      "3203-PED013": [
+        2
+      ],
+      "3203-PED017": [
+        2
+      ],
+      "3203-PED018": [
+        1,
+        2
+      ]
+    },
+    "matchedAliases": [
+      "amiodarone"
+    ]
+  },
+  {
+    "canonical": "Adenosine",
+    "canonicalKey": "adenosine",
+    "aliases": [
+      "Adenosine",
+      "Adenocard"
+    ],
+    "normalizedAliases": [
+      "adenosine",
+      "adenocard"
+    ],
+    "genericNames": [
+      "Adenosine"
+    ],
+    "brandNames": [
+      "Adenocard"
+    ],
+    "tradeNames": [
+      "Adenocard"
+    ],
+    "activeIngredientNames": [
+      "Adenosine"
+    ],
+    "substanceNames": [
+      "Adenosine"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C006",
+      "3203-PED017"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C006": [
+        2
+      ],
+      "3203-PED017": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "adenosine"
+    ]
+  },
+  {
+    "canonical": "Ketamine",
+    "canonicalKey": "ketamine",
+    "aliases": [
+      "Ketamine",
+      "Ketalar"
+    ],
+    "normalizedAliases": [
+      "ketamine",
+      "ketalar"
+    ],
+    "genericNames": [
+      "Ketamine"
+    ],
+    "brandNames": [
+      "Ketalar"
+    ],
+    "tradeNames": [
+      "Ketalar"
+    ],
+    "activeIngredientNames": [
+      "Ketamine"
+    ],
+    "substanceNames": [
+      "Ketamine"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-G005",
+      "3203-G006",
+      "3203-G008",
+      "3203-M008",
+      "3203-PED014"
+    ],
+    "foundPagesByProtocol": {
+      "3203-G005": [
+        2
+      ],
+      "3203-G006": [
+        1,
+        2
+      ],
+      "3203-G008": [
+        2,
+        3
+      ],
+      "3203-M008": [
+        1
+      ],
+      "3203-PED014": [
+        1
+      ]
+    },
+    "matchedAliases": [
+      "ketamine"
+    ]
+  },
+  {
+    "canonical": "Fentanyl",
+    "canonicalKey": "fentanyl",
+    "aliases": [
+      "Fentanyl",
+      "Sublimaze"
+    ],
+    "normalizedAliases": [
+      "fentanyl",
+      "sublimaze"
+    ],
+    "genericNames": [
+      "Fentanyl"
+    ],
+    "brandNames": [
+      "Sublimaze"
+    ],
+    "tradeNames": [
+      "Sublimaze"
+    ],
+    "activeIngredientNames": [
+      "Fentanyl"
+    ],
+    "substanceNames": [
+      "Fentanyl"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C001",
+      "3203-C005",
+      "3203-C010",
+      "3203-G005",
+      "3203-G007",
+      "3203-M019"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C001": [
+        1
+      ],
+      "3203-C005": [
+        1
+      ],
+      "3203-C010": [
+        1
+      ],
+      "3203-G005": [
+        2
+      ],
+      "3203-G007": [
+        2
+      ],
+      "3203-M019": [
+        1,
+        3
+      ]
+    },
+    "matchedAliases": [
+      "fentanyl"
+    ]
+  },
+  {
+    "canonical": "Morphine",
+    "canonicalKey": "morphine",
+    "aliases": [
+      "Morphine"
+    ],
+    "normalizedAliases": [
+      "morphine"
+    ],
+    "genericNames": [
+      "Morphine"
+    ],
+    "brandNames": [],
+    "tradeNames": [],
+    "activeIngredientNames": [
+      "Morphine"
+    ],
+    "substanceNames": [
+      "Morphine"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C001",
+      "3203-C005",
+      "3203-C010",
+      "3203-G005"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C001": [
+        1
+      ],
+      "3203-C005": [
+        1
+      ],
+      "3203-C010": [
+        1
+      ],
+      "3203-G005": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "morphine"
+    ]
+  },
+  {
+    "canonical": "Hydromorphone",
+    "canonicalKey": "hydromorphone",
+    "aliases": [
+      "Hydromorphone",
+      "Dilaudid"
+    ],
+    "normalizedAliases": [
+      "hydromorphone",
+      "dilaudid"
+    ],
+    "genericNames": [
+      "Hydromorphone"
+    ],
+    "brandNames": [
+      "Dilaudid"
+    ],
+    "tradeNames": [
+      "Dilaudid"
+    ],
+    "activeIngredientNames": [
+      "Hydromorphone"
+    ],
+    "substanceNames": [
+      "Hydromorphone"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M019"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M019": [
+        3
+      ]
+    },
+    "matchedAliases": [
+      "dilaudid"
+    ]
+  },
+  {
+    "canonical": "Calcium Chloride",
+    "canonicalKey": "calcium chloride",
+    "aliases": [
+      "Calcium Chloride",
+      "CaCl",
+      "CaCl2",
+      "calcium"
+    ],
+    "normalizedAliases": [
+      "calcium chloride",
+      "cacl",
+      "cacl2",
+      "calcium"
+    ],
+    "genericNames": [
+      "Calcium Chloride"
+    ],
+    "brandNames": [
+      "CaCl",
+      "CaCl2",
+      "calcium"
+    ],
+    "tradeNames": [
+      "CaCl",
+      "CaCl2",
+      "calcium"
+    ],
+    "activeIngredientNames": [
+      "Calcium Chloride"
+    ],
+    "substanceNames": [
+      "Calcium Chloride"
+    ],
+    "shorthand": [
+      "CaCl",
+      "CaCl2"
+    ],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C004",
+      "3203-C006",
+      "3203-M005",
+      "3203-M006",
+      "3203-M019",
+      "3203-M022",
+      "3203-PED005",
+      "3203-PED006",
+      "3203-PED018",
+      "GUID-3203-PR002"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C004": [
+        2
+      ],
+      "3203-C006": [
+        2,
+        3
+      ],
+      "3203-M005": [
+        1
+      ],
+      "3203-M006": [
+        1,
+        2
+      ],
+      "3203-M019": [
+        2,
+        3
+      ],
+      "3203-M022": [
+        4,
+        5
+      ],
+      "3203-PED005": [
+        1,
+        2
+      ],
+      "3203-PED006": [
+        1
+      ],
+      "3203-PED018": [
+        1
+      ],
+      "GUID-3203-PR002": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "calcium",
+      "calcium chloride"
+    ]
+  },
+  {
+    "canonical": "Magnesium Sulfate",
+    "canonicalKey": "magnesium sulfate",
+    "aliases": [
+      "Magnesium Sulfate",
+      "magnesium",
+      "mag sulfate",
+      "MgSO4"
+    ],
+    "normalizedAliases": [
+      "magnesium sulfate",
+      "magnesium",
+      "mag sulfate",
+      "mgso4"
+    ],
+    "genericNames": [
+      "Magnesium Sulfate"
+    ],
+    "brandNames": [
+      "magnesium",
+      "mag sulfate",
+      "MgSO4"
+    ],
+    "tradeNames": [
+      "magnesium",
+      "mag sulfate",
+      "MgSO4"
+    ],
+    "activeIngredientNames": [
+      "Magnesium Sulfate"
+    ],
+    "substanceNames": [
+      "Magnesium Sulfate"
+    ],
+    "shorthand": [
+      "MgSO4"
+    ],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C006",
+      "3203-C007",
+      "3203-M005",
+      "3203-M006",
+      "3203-M008",
+      "3203-M022",
+      "3203-PED005",
+      "3203-PED013",
+      "3203-PED014",
+      "3203-PED018"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C006": [
+        2
+      ],
+      "3203-C007": [
+        2
+      ],
+      "3203-M005": [
+        1,
+        2
+      ],
+      "3203-M006": [
+        2
+      ],
+      "3203-M008": [
+        1
+      ],
+      "3203-M022": [
+        4,
+        5
+      ],
+      "3203-PED005": [
+        1
+      ],
+      "3203-PED013": [
+        2
+      ],
+      "3203-PED014": [
+        1
+      ],
+      "3203-PED018": [
+        1
+      ]
+    },
+    "matchedAliases": [
+      "magnesium",
+      "magnesium sulfate"
+    ]
+  },
+  {
+    "canonical": "Glucagon",
+    "canonicalKey": "glucagon",
+    "aliases": [
+      "Glucagon"
+    ],
+    "normalizedAliases": [
+      "glucagon"
+    ],
+    "genericNames": [
+      "Glucagon"
+    ],
+    "brandNames": [],
+    "tradeNames": [],
+    "activeIngredientNames": [
+      "Glucagon"
+    ],
+    "substanceNames": [
+      "Glucagon"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M004",
+      "3203-M019",
+      "3203-M021",
+      "3203-PED002"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M004": [
+        1
+      ],
+      "3203-M019": [
+        2
+      ],
+      "3203-M021": [
+        1,
+        2
+      ],
+      "3203-PED002": [
+        1
+      ]
+    },
+    "matchedAliases": [
+      "glucagon"
+    ]
+  },
+  {
+    "canonical": "Dopamine",
+    "canonicalKey": "dopamine",
+    "aliases": [
+      "Dopamine",
+      "Intropin"
+    ],
+    "normalizedAliases": [
+      "dopamine",
+      "intropin"
+    ],
+    "genericNames": [
+      "Dopamine"
+    ],
+    "brandNames": [
+      "Intropin"
+    ],
+    "tradeNames": [
+      "Intropin"
+    ],
+    "activeIngredientNames": [
+      "Dopamine"
+    ],
+    "substanceNames": [
+      "Dopamine"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C004",
+      "3203-M011",
+      "3203-PED007",
+      "3203-PED009",
+      "GUID-3203-PR031"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C004": [
+        2
+      ],
+      "3203-M011": [
+        1
+      ],
+      "3203-PED007": [
+        2
+      ],
+      "3203-PED009": [
+        2
+      ],
+      "GUID-3203-PR031": [
+        5
+      ]
+    },
+    "matchedAliases": [
+      "dopamine"
+    ]
+  },
+  {
+    "canonical": "Dobutamine",
+    "canonicalKey": "dobutamine",
+    "aliases": [
+      "Dobutamine",
+      "Dobutrex"
+    ],
+    "normalizedAliases": [
+      "dobutamine",
+      "dobutrex"
+    ],
+    "genericNames": [
+      "Dobutamine"
+    ],
+    "brandNames": [
+      "Dobutrex"
+    ],
+    "tradeNames": [
+      "Dobutrex"
+    ],
+    "activeIngredientNames": [
+      "Dobutamine"
+    ],
+    "substanceNames": [
+      "Dobutamine"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M011",
+      "3203-PED006",
+      "3203-PED007",
+      "GUID-3203-PR031"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M011": [
+        1
+      ],
+      "3203-PED006": [
+        1
+      ],
+      "3203-PED007": [
+        2
+      ],
+      "GUID-3203-PR031": [
+        5
+      ]
+    },
+    "matchedAliases": [
+      "dobutamine"
+    ]
+  },
+  {
+    "canonical": "Phenylephrine",
+    "canonicalKey": "phenylephrine",
+    "aliases": [
+      "Phenylephrine",
+      "Neo",
+      "Neosynephrine",
+      "Neo-Synephrine"
+    ],
+    "normalizedAliases": [
+      "phenylephrine",
+      "neo",
+      "neosynephrine",
+      "neo-synephrine"
+    ],
+    "genericNames": [
+      "Phenylephrine"
+    ],
+    "brandNames": [
+      "Neo",
+      "Neosynephrine",
+      "Neo-Synephrine"
+    ],
+    "tradeNames": [
+      "Neo",
+      "Neosynephrine",
+      "Neo-Synephrine"
+    ],
+    "activeIngredientNames": [
+      "Phenylephrine"
+    ],
+    "substanceNames": [
+      "Phenylephrine"
+    ],
+    "shorthand": [
+      "Neo"
+    ],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-G008",
+      "3203-M011"
+    ],
+    "foundPagesByProtocol": {
+      "3203-G008": [
+        2
+      ],
+      "3203-M011": [
+        1
+      ]
+    },
+    "matchedAliases": [
+      "phenylephrine"
+    ]
+  },
+  {
+    "canonical": "Vasopressin",
+    "canonicalKey": "vasopressin",
+    "aliases": [
+      "Vasopressin",
+      "Pitressin"
+    ],
+    "normalizedAliases": [
+      "vasopressin",
+      "pitressin"
+    ],
+    "genericNames": [
+      "Vasopressin"
+    ],
+    "brandNames": [
+      "Pitressin"
+    ],
+    "tradeNames": [
+      "Pitressin"
+    ],
+    "activeIngredientNames": [
+      "Vasopressin"
+    ],
+    "substanceNames": [
+      "Vasopressin"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M007",
+      "3203-M011",
+      "3203-M016"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M007": [
+        1
+      ],
+      "3203-M011": [
+        1
+      ],
+      "3203-M016": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "vasopressin"
+    ]
+  },
+  {
+    "canonical": "Lidocaine",
+    "canonicalKey": "lidocaine",
+    "aliases": [
+      "Lidocaine",
+      "Xylocaine"
+    ],
+    "normalizedAliases": [
+      "lidocaine",
+      "xylocaine"
+    ],
+    "genericNames": [
+      "Lidocaine"
+    ],
+    "brandNames": [
+      "Xylocaine"
+    ],
+    "tradeNames": [
+      "Xylocaine"
+    ],
+    "activeIngredientNames": [
+      "Lidocaine"
+    ],
+    "substanceNames": [
+      "Lidocaine"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C006",
+      "3203-C007",
+      "3203-PED013",
+      "3203-PED018",
+      "GUID-3203-PR013"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C006": [
+        2
+      ],
+      "3203-C007": [
+        1,
+        2
+      ],
+      "3203-PED013": [
+        2
+      ],
+      "3203-PED018": [
+        2
+      ],
+      "GUID-3203-PR013": [
+        1,
+        2
+      ]
+    },
+    "matchedAliases": [
+      "lidocaine"
+    ]
+  },
+  {
+    "canonical": "Atropine",
+    "canonicalKey": "atropine",
+    "aliases": [
+      "Atropine"
+    ],
+    "normalizedAliases": [
+      "atropine"
+    ],
+    "genericNames": [
+      "Atropine"
+    ],
+    "brandNames": [],
+    "tradeNames": [],
+    "activeIngredientNames": [
+      "Atropine"
+    ],
+    "substanceNames": [
+      "Atropine"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C004",
+      "3203-G008",
+      "3203-M019",
+      "3203-PED005"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C004": [
+        2
+      ],
+      "3203-G008": [
+        2,
+        3
+      ],
+      "3203-M019": [
+        2,
+        3
+      ],
+      "3203-PED005": [
+        1,
+        2
+      ]
+    },
+    "matchedAliases": [
+      "atropine"
+    ]
+  },
+  {
+    "canonical": "Etomidate",
+    "canonicalKey": "etomidate",
+    "aliases": [
+      "Etomidate",
+      "Amidate"
+    ],
+    "normalizedAliases": [
+      "etomidate",
+      "amidate"
+    ],
+    "genericNames": [
+      "Etomidate"
+    ],
+    "brandNames": [
+      "Amidate"
+    ],
+    "tradeNames": [
+      "Amidate"
+    ],
+    "activeIngredientNames": [
+      "Etomidate"
+    ],
+    "substanceNames": [
+      "Etomidate"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-G008",
+      "3203-M008"
+    ],
+    "foundPagesByProtocol": {
+      "3203-G008": [
+        2
+      ],
+      "3203-M008": [
+        1
+      ]
+    },
+    "matchedAliases": [
+      "etomidate"
+    ]
+  },
+  {
+    "canonical": "Propofol",
+    "canonicalKey": "propofol",
+    "aliases": [
+      "Propofol",
+      "Diprivan"
+    ],
+    "normalizedAliases": [
+      "propofol",
+      "diprivan"
+    ],
+    "genericNames": [
+      "Propofol"
+    ],
+    "brandNames": [
+      "Diprivan"
+    ],
+    "tradeNames": [
+      "Diprivan"
+    ],
+    "activeIngredientNames": [
+      "Propofol"
+    ],
+    "substanceNames": [
+      "Propofol"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C008",
+      "3203-C009",
+      "3203-G007",
+      "3203-M013",
+      "GUID-3203-PR020",
+      "GUID-3203-PR029"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C008": [
+        2
+      ],
+      "3203-C009": [
+        2
+      ],
+      "3203-G007": [
+        1,
+        2
+      ],
+      "3203-M013": [
+        1
+      ],
+      "GUID-3203-PR020": [
+        4
+      ],
+      "GUID-3203-PR029": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "diprivan",
+      "propofol"
+    ]
+  },
+  {
+    "canonical": "Acetaminophen",
+    "canonicalKey": "acetaminophen",
+    "aliases": [
+      "Acetaminophen",
+      "Tylenol",
+      "paracetamol"
+    ],
+    "normalizedAliases": [
+      "acetaminophen",
+      "tylenol",
+      "paracetamol"
+    ],
+    "genericNames": [
+      "Acetaminophen"
+    ],
+    "brandNames": [
+      "Tylenol",
+      "paracetamol"
+    ],
+    "tradeNames": [
+      "Tylenol",
+      "paracetamol"
+    ],
+    "activeIngredientNames": [
+      "Acetaminophen"
+    ],
+    "substanceNames": [
+      "Acetaminophen"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M016",
+      "3203-M019",
+      "3203-PED010",
+      "3203-PED015",
+      "3203-PED016",
+      "GUID-3203-PR002"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M016": [
+        1
+      ],
+      "3203-M019": [
+        2
+      ],
+      "3203-PED010": [
+        2
+      ],
+      "3203-PED015": [
+        2
+      ],
+      "3203-PED016": [
+        2
+      ],
+      "GUID-3203-PR002": [
+        3
+      ]
+    },
+    "matchedAliases": [
+      "acetaminophen",
+      "tylenol"
+    ]
+  },
+  {
+    "canonical": "Ibuprofen",
+    "canonicalKey": "ibuprofen",
+    "aliases": [
+      "Ibuprofen",
+      "Motrin",
+      "Advil"
+    ],
+    "normalizedAliases": [
+      "ibuprofen",
+      "motrin",
+      "advil"
+    ],
+    "genericNames": [
+      "Ibuprofen"
+    ],
+    "brandNames": [
+      "Motrin",
+      "Advil"
+    ],
+    "tradeNames": [
+      "Motrin",
+      "Advil"
+    ],
+    "activeIngredientNames": [
+      "Ibuprofen"
+    ],
+    "substanceNames": [
+      "Ibuprofen"
+    ],
+    "shorthand": [
+      "Advil"
+    ],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-PED010",
+      "3203-PED016"
+    ],
+    "foundPagesByProtocol": {
+      "3203-PED010": [
+        2
+      ],
+      "3203-PED016": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "ibuprofen"
+    ]
+  },
+  {
+    "canonical": "Dexamethasone",
+    "canonicalKey": "dexamethasone",
+    "aliases": [
+      "Dexamethasone",
+      "Decadron"
+    ],
+    "normalizedAliases": [
+      "dexamethasone",
+      "decadron"
+    ],
+    "genericNames": [
+      "Dexamethasone"
+    ],
+    "brandNames": [
+      "Decadron"
+    ],
+    "tradeNames": [
+      "Decadron"
+    ],
+    "activeIngredientNames": [
+      "Dexamethasone"
+    ],
+    "substanceNames": [
+      "Dexamethasone"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-PED002",
+      "3203-PED010"
+    ],
+    "foundPagesByProtocol": {
+      "3203-PED002": [
+        2
+      ],
+      "3203-PED010": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "dexamethasone"
+    ]
+  },
+  {
+    "canonical": "Famotidine",
+    "canonicalKey": "famotidine",
+    "aliases": [
+      "Famotidine",
+      "Pepcid"
+    ],
+    "normalizedAliases": [
+      "famotidine",
+      "pepcid"
+    ],
+    "genericNames": [
+      "Famotidine"
+    ],
+    "brandNames": [
+      "Pepcid"
+    ],
+    "tradeNames": [
+      "Pepcid"
+    ],
+    "activeIngredientNames": [
+      "Famotidine"
+    ],
+    "substanceNames": [
+      "Famotidine"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-M004",
+      "3203-PED002"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M004": [
+        2
+      ],
+      "3203-PED002": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "famotidine"
+    ]
+  },
+  {
+    "canonical": "Heparin",
+    "canonicalKey": "heparin",
+    "aliases": [
+      "Heparin"
+    ],
+    "normalizedAliases": [
+      "heparin"
+    ],
+    "genericNames": [
+      "Heparin"
+    ],
+    "brandNames": [],
+    "tradeNames": [],
+    "activeIngredientNames": [
+      "Heparin"
+    ],
+    "substanceNames": [
+      "Heparin"
+    ],
+    "shorthand": [],
+    "sources": [
+      "local-seed"
+    ],
+    "foundInProtocols": [
+      "3203-C001",
+      "3203-C010",
+      "3203-M014",
+      "3203-M018",
+      "GUID-3203-PR014",
+      "GUID-3203-PR030"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C001": [
+        2
+      ],
+      "3203-C010": [
+        2
+      ],
+      "3203-M014": [
+        1
+      ],
+      "3203-M018": [
+        2
+      ],
+      "GUID-3203-PR014": [
+        1
+      ],
+      "GUID-3203-PR030": [
+        2,
+        11
+      ]
+    },
+    "matchedAliases": [
+      "heparin"
+    ]
+  },
+  {
+    "canonical": "Insulin",
+    "canonicalKey": "insulin",
+    "aliases": [
+      "Insulin",
+      "regular insulin",
+      "Humulin R",
+      "Novolin R"
+    ],
+    "normalizedAliases": [
       "insulin",
       "regular insulin",
       "humulin r",
       "novolin r"
     ],
     "genericNames": [
-      "insulin"
+      "Insulin"
     ],
-    "brandNames": [],
-    "tradeNames": [],
+    "brandNames": [
+      "regular insulin",
+      "Humulin R",
+      "Novolin R"
+    ],
+    "tradeNames": [
+      "regular insulin",
+      "Humulin R",
+      "Novolin R"
+    ],
     "activeIngredientNames": [
-      "insulin"
+      "Insulin"
     ],
     "substanceNames": [
-      "insulin"
+      "Insulin"
     ],
     "shorthand": [],
     "sources": [
       "local-seed"
     ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
+    "foundInProtocols": [
+      "3203-M002",
+      "3203-M006",
+      "3203-M019",
+      "3203-PED005",
+      "3203-PED008",
+      "GUID-3203-PR003"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M002": [
+        1
+      ],
+      "3203-M006": [
+        2
+      ],
+      "3203-M019": [
+        2
+      ],
+      "3203-PED005": [
+        2
+      ],
+      "3203-PED008": [
+        2
+      ],
+      "GUID-3203-PR003": [
+        1
+      ]
+    },
+    "matchedAliases": [
+      "insulin",
+      "regular insulin"
+    ]
   },
   {
-    "canonical": "metoprolol",
+    "canonical": "Metoprolol",
+    "canonicalKey": "metoprolol",
     "aliases": [
+      "Metoprolol",
+      "Lopressor"
+    ],
+    "normalizedAliases": [
       "metoprolol",
       "lopressor"
     ],
     "genericNames": [
-      "metoprolol"
+      "Metoprolol"
     ],
     "brandNames": [
-      "lopressor"
+      "Lopressor"
     ],
     "tradeNames": [
-      "lopressor"
+      "Lopressor"
     ],
     "activeIngredientNames": [
-      "metoprolol"
+      "Metoprolol"
     ],
     "substanceNames": [
-      "metoprolol"
+      "Metoprolol"
     ],
     "shorthand": [],
     "sources": [
       "local-seed"
     ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
+    "foundInProtocols": [
+      "3203-C003",
+      "3203-C006",
+      "3203-M019"
+    ],
+    "foundPagesByProtocol": {
+      "3203-C003": [
+        1
+      ],
+      "3203-C006": [
+        2
+      ],
+      "3203-M019": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "lopressor",
+      "metoprolol"
+    ]
   },
   {
-    "canonical": "diltiazem",
+    "canonical": "Verapamil",
+    "canonicalKey": "verapamil",
     "aliases": [
-      "diltiazem",
-      "cardizem"
+      "Verapamil",
+      "Calan",
+      "Isoptin"
     ],
-    "genericNames": [
-      "diltiazem"
-    ],
-    "brandNames": [
-      "cardizem"
-    ],
-    "tradeNames": [
-      "cardizem"
-    ],
-    "activeIngredientNames": [
-      "diltiazem"
-    ],
-    "substanceNames": [
-      "diltiazem"
-    ],
-    "shorthand": [],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "verapamil",
-    "aliases": [
+    "normalizedAliases": [
       "verapamil",
       "calan",
       "isoptin"
     ],
     "genericNames": [
-      "verapamil"
+      "Verapamil"
     ],
     "brandNames": [
-      "calan",
-      "isoptin"
+      "Calan",
+      "Isoptin"
     ],
     "tradeNames": [
-      "calan",
-      "isoptin"
+      "Calan",
+      "Isoptin"
     ],
     "activeIngredientNames": [
-      "verapamil"
+      "Verapamil"
     ],
     "substanceNames": [
-      "verapamil"
+      "Verapamil"
     ],
     "shorthand": [
-      "calan"
+      "Calan"
     ],
     "sources": [
       "local-seed"
     ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
+    "foundInProtocols": [
+      "3203-M019",
+      "3203-PED017"
+    ],
+    "foundPagesByProtocol": {
+      "3203-M019": [
+        2
+      ],
+      "3203-PED017": [
+        2
+      ]
+    },
+    "matchedAliases": [
+      "verapamil"
+    ]
   },
   {
-    "canonical": "cefazolin",
+    "canonical": "Ceftriaxone",
+    "canonicalKey": "ceftriaxone",
     "aliases": [
-      "cefazolin",
-      "ancef"
+      "Ceftriaxone",
+      "Rocephin"
     ],
-    "genericNames": [
-      "cefazolin"
-    ],
-    "brandNames": [
-      "ancef"
-    ],
-    "tradeNames": [
-      "ancef"
-    ],
-    "activeIngredientNames": [
-      "cefazolin"
-    ],
-    "substanceNames": [
-      "cefazolin"
-    ],
-    "shorthand": [
-      "ancef"
-    ],
-    "sources": [
-      "local-seed"
-    ],
-    "foundInProtocols": [],
-    "foundPagesByProtocol": {},
-    "matchedAliases": []
-  },
-  {
-    "canonical": "ceftriaxone",
-    "aliases": [
+    "normalizedAliases": [
       "ceftriaxone",
       "rocephin"
     ],
     "genericNames": [
-      "ceftriaxone"
+      "Ceftriaxone"
     ],
     "brandNames": [
-      "rocephin"
+      "Rocephin"
     ],
     "tradeNames": [
-      "rocephin"
+      "Rocephin"
     ],
     "activeIngredientNames": [
-      "ceftriaxone"
+      "Ceftriaxone"
     ],
     "substanceNames": [
-      "ceftriaxone"
+      "Ceftriaxone"
     ],
     "shorthand": [],
     "sources": [
@@ -1459,30 +3199,41 @@
     "matchedAliases": []
   },
   {
-    "canonical": "piperacillin tazobactam",
+    "canonical": "Piperacillin Tazobactam",
+    "canonicalKey": "piperacillin tazobactam",
     "aliases": [
+      "Piperacillin Tazobactam",
+      "piperacillin-tazobactam",
+      "pip-tazo",
+      "Zosyn"
+    ],
+    "normalizedAliases": [
       "piperacillin tazobactam",
       "piperacillin-tazobactam",
       "pip-tazo",
       "zosyn"
     ],
     "genericNames": [
-      "piperacillin tazobactam"
+      "Piperacillin Tazobactam"
     ],
     "brandNames": [
-      "zosyn"
+      "piperacillin-tazobactam",
+      "pip-tazo",
+      "Zosyn"
     ],
     "tradeNames": [
-      "zosyn"
+      "piperacillin-tazobactam",
+      "pip-tazo",
+      "Zosyn"
     ],
     "activeIngredientNames": [
-      "piperacillin tazobactam"
+      "Piperacillin Tazobactam"
     ],
     "substanceNames": [
-      "piperacillin tazobactam"
+      "Piperacillin Tazobactam"
     ],
     "shorthand": [
-      "zosyn"
+      "Zosyn"
     ],
     "sources": [
       "local-seed"
