@@ -13,6 +13,7 @@
   const zoomOutBtn = document.getElementById('zoomOutBtn');
   const zoomInBtn = document.getElementById('zoomInBtn');
   const zoomLevel = document.getElementById('zoomLevel');
+  const backButton = document.getElementById('pdfBackButton');
   let zoomIndex = 0;
   let pdfUrl = '';
   let pinchStartDistance = 0;
@@ -76,6 +77,14 @@
     });
   }
 
+  function bindBackButton() {
+    backButton?.addEventListener('click', (event) => {
+      if (window.history.length <= 1) return;
+      event.preventDefault();
+      window.history.back();
+    });
+  }
+
   function scrollToRequestedPage() {
     const targetPage = Number.isFinite(page) && page > 0 ? page : 1;
     const target = pagesEl.querySelector(`[data-page="${targetPage}"]`);
@@ -123,6 +132,7 @@
   pdfUrl = encodeURI(file);
 
   bindPinchZoom();
+  bindBackButton();
 
   zoomOutBtn.addEventListener('click', () => {
     zoomIndex = Math.max(0, zoomIndex - 1);
