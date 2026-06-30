@@ -1,0 +1,346 @@
+{
+  "generatedAt": "2026-06-29T19:54:18.920938+00:00",
+  "totalProtocolsInManifest": 108,
+  "totalPdfsFound": 108,
+  "totalPdfsMissing": 0,
+  "missingPdfs": [],
+  "totalPagesScanned": 266,
+  "pagesWithLittleOrNoText": [
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T001 Abdominal and Genitourinary Trauma.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T001 Abdominal and Genitourinary Trauma.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf",
+      "page": 3
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf",
+      "page": 4
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf",
+      "page": 5
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T003 Crush Injury and Crush Syndrome.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T003 Crush Injury and Crush Syndrome.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T004 Decompression Sickness and Arterial Gas Embolus.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T004 Decompression Sickness and Arterial Gas Embolus.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T005 Burns - ElectricalLightning Injury.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T005 Burns - ElectricalLightning Injury.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T006 Eye Injuries.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T007 Maxillofacial Trauma.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T007 Maxillofacial Trauma.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T008 Multi-System Trauma - Adult and Pediatric.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T008 Multi-System Trauma - Adult and Pediatric.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T008 Multi-System Trauma - Adult and Pediatric.pdf",
+      "page": 3
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T009 Musculoskeletal Trauma.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T009 Musculoskeletal Trauma.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T010 Drowning and Submersion Injuries.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T010 Drowning and Submersion Injuries.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T011 Snake Bite - Envenomation.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T011 Snake Bite - Envenomation.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T012 Spinal Cord Injury.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T012 Spinal Cord Injury.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T012 Spinal Cord Injury.pdf",
+      "page": 3
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T013 Cyanide Toxicity.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T013 Cyanide Toxicity.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T014 Traumatic Brain Injury (TBI).pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T014 Traumatic Brain Injury (TBI).pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T014 Traumatic Brain Injury (TBI).pdf",
+      "page": 3
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T015 Thoracic Trauma.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T015 Thoracic Trauma.pdf",
+      "page": 2
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T016 Tranexamic Acid for Severe Hemorrhage in Trauma Patients.pdf",
+      "page": 1
+    },
+    {
+      "file": "/static/protocols/act/trauma/GUID-3203-T016 Tranexamic Acid for Severe Hemorrhage in Trauma Patients.pdf",
+      "page": 2
+    }
+  ],
+  "possibleScannedPdfs": [
+    {
+      "id": "GUID-3203-T001",
+      "file": "/static/protocols/act/trauma/GUID-3203-T001 Abdominal and Genitourinary Trauma.pdf"
+    },
+    {
+      "id": "GUID-3203-T002",
+      "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf"
+    },
+    {
+      "id": "GUID-3203-T003",
+      "file": "/static/protocols/act/trauma/GUID-3203-T003 Crush Injury and Crush Syndrome.pdf"
+    },
+    {
+      "id": "GUID-3203-T004",
+      "file": "/static/protocols/act/trauma/GUID-3203-T004 Decompression Sickness and Arterial Gas Embolus.pdf"
+    },
+    {
+      "id": "GUID-3203-T005",
+      "file": "/static/protocols/act/trauma/GUID-3203-T005 Burns - ElectricalLightning Injury.pdf"
+    },
+    {
+      "id": "GUID-3203-T006",
+      "file": "/static/protocols/act/trauma/GUID-3203-T006 Eye Injuries.pdf"
+    },
+    {
+      "id": "GUID-3203-T007",
+      "file": "/static/protocols/act/trauma/GUID-3203-T007 Maxillofacial Trauma.pdf"
+    },
+    {
+      "id": "GUID-3203-T008",
+      "file": "/static/protocols/act/trauma/GUID-3203-T008 Multi-System Trauma - Adult and Pediatric.pdf"
+    },
+    {
+      "id": "GUID-3203-T009",
+      "file": "/static/protocols/act/trauma/GUID-3203-T009 Musculoskeletal Trauma.pdf"
+    },
+    {
+      "id": "GUID-3203-T010",
+      "file": "/static/protocols/act/trauma/GUID-3203-T010 Drowning and Submersion Injuries.pdf"
+    },
+    {
+      "id": "GUID-3203-T011",
+      "file": "/static/protocols/act/trauma/GUID-3203-T011 Snake Bite - Envenomation.pdf"
+    },
+    {
+      "id": "GUID-3203-T012",
+      "file": "/static/protocols/act/trauma/GUID-3203-T012 Spinal Cord Injury.pdf"
+    },
+    {
+      "id": "GUID-3203-T013",
+      "file": "/static/protocols/act/trauma/GUID-3203-T013 Cyanide Toxicity.pdf"
+    },
+    {
+      "id": "GUID-3203-T014",
+      "file": "/static/protocols/act/trauma/GUID-3203-T014 Traumatic Brain Injury (TBI).pdf"
+    },
+    {
+      "id": "GUID-3203-T015",
+      "file": "/static/protocols/act/trauma/GUID-3203-T015 Thoracic Trauma.pdf"
+    },
+    {
+      "id": "GUID-3203-T016",
+      "file": "/static/protocols/act/trauma/GUID-3203-T016 Tranexamic Acid for Severe Hemorrhage in Trauma Patients.pdf"
+    }
+  ],
+  "totalMedicationAliasesLoaded": 146,
+  "totalMedicationsDetected": 49,
+  "medicationsDetected": [
+    "Levetiracetam",
+    "Norepinephrine",
+    "Aspirin",
+    "Midazolam",
+    "Naloxone",
+    "Ondansetron",
+    "Tranexamic Acid",
+    "Nitroglycerin",
+    "Epinephrine",
+    "Ipratropium",
+    "Sodium Bicarbonate",
+    "Dextrose",
+    "Rocuronium",
+    "Succinylcholine",
+    "Methylprednisolone",
+    "Diphenhydramine",
+    "Furosemide",
+    "Diltiazem",
+    "Pantoprazole",
+    "Acetylcysteine",
+    "Rho(D) Immune Globulin",
+    "Albuterol",
+    "Lorazepam",
+    "Diazepam",
+    "Amiodarone",
+    "Adenosine",
+    "Ketamine",
+    "Fentanyl",
+    "Morphine",
+    "Hydromorphone",
+    "Calcium Chloride",
+    "Magnesium Sulfate",
+    "Glucagon",
+    "Dopamine",
+    "Dobutamine",
+    "Phenylephrine",
+    "Vasopressin",
+    "Lidocaine",
+    "Atropine",
+    "Etomidate",
+    "Propofol",
+    "Acetaminophen",
+    "Ibuprofen",
+    "Dexamethasone",
+    "Famotidine",
+    "Heparin",
+    "Insulin",
+    "Metoprolol",
+    "Verapamil"
+  ],
+  "protocolsWithMedicationMatches": [
+    "3203-C001",
+    "3203-C002",
+    "3203-C003",
+    "3203-C004",
+    "3203-C005",
+    "3203-C006",
+    "3203-C007",
+    "3203-C008",
+    "3203-C009",
+    "3203-C010",
+    "3203-G002",
+    "3203-G004",
+    "3203-G005",
+    "3203-G006",
+    "3203-G007",
+    "3203-G008",
+    "3203-M002",
+    "3203-M003",
+    "3203-M004",
+    "3203-M005",
+    "3203-M006",
+    "3203-M007",
+    "3203-M008",
+    "3203-M009",
+    "3203-M010",
+    "3203-M011",
+    "3203-M012",
+    "3203-M013",
+    "3203-M014",
+    "3203-M015",
+    "3203-M016",
+    "3203-M017",
+    "3203-M018",
+    "3203-M019",
+    "3203-M020",
+    "3203-M021",
+    "3203-M022",
+    "3203-PED002",
+    "3203-PED003",
+    "3203-PED004",
+    "3203-PED005",
+    "3203-PED006",
+    "3203-PED007",
+    "3203-PED008",
+    "3203-PED009",
+    "3203-PED010",
+    "3203-PED012",
+    "3203-PED013",
+    "3203-PED014",
+    "3203-PED015",
+    "3203-PED016",
+    "3203-PED017",
+    "3203-PED018",
+    "3203-PED019",
+    "GUID-3203-PR002",
+    "GUID-3203-PR003",
+    "GUID-3203-PR012",
+    "GUID-3203-PR013",
+    "GUID-3203-PR014",
+    "GUID-3203-PR015",
+    "GUID-3203-PR020",
+    "GUID-3203-PR025",
+    "GUID-3203-PR025B",
+    "GUID-3203-PR029",
+    "GUID-3203-PR030",
+    "GUID-3203-PR031"
+  ],
+  "warnings": []
+}

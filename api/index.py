@@ -3,16 +3,28 @@
 import os
 import json
 import re
-from flask import Flask, render_template, request, jsonify, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, jsonify, redirect, url_for, send_from_directory, send_file
 from pathlib import Path
 from urllib.parse import unquote
 from collections import OrderedDict
+from io import BytesIO
 
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
 # Get the base directory
 BASE_DIR = Path(__file__).parent.parent
 MODULES_DIR = BASE_DIR / 'modules'
+
+
+def resolve_act_protocol_pdf(web_path):
+    decoded = unquote(web_path or '')
+    if not decoded.startswith('/static/protocols/act/') or not decoded.lower().endswith('.pdf'):
+        return None
+    candidate = (BASE_DIR / decoded.lstrip('/')).resolve()
+    allowed_root = (BASE_DIR / 'static/protocols/act').resolve()
+    if allowed_root not in candidate.parents or not candidate.exists():
+        return None
+    return candidate
 
 
 # Category metadata
@@ -477,6 +489,65 @@ def act_protocols():
     except Exception as e:
         print(f"Error in act_protocols route: {e}")
         return jsonify({'error': str(e)}), 500
+
+
+@app.route('/act-protocols/dose-calculator')
+def act_dose_calculator():
+    try:
+        return render_template('act-dose-calculator.html')
+    except Exception as e:
+        print(f"Error in act_dose_calculator route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/act-protocols/viewer')
+def act_protocol_viewer():
+    try:
+        return render_template('act-protocol-viewer.html')
+    except Exception as e:
+        print(f"Error in act_protocol_viewer route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/act-protocols/pdf-info')
+def act_protocol_pdf_info():
+    pdf_path = resolve_act_protocol_pdf(request.args.get('file', ''))
+    if not pdf_path:
+        return jsonify({'error': 'Invalid or missing ACT protocol PDF.'}), 404
+    try:
+        import fitz
+        with fitz.open(pdf_path) as doc:
+            return jsonify({'pageCount': doc.page_count})
+    except Exception as e:
+        print(f"Error reading ACT protocol PDF info: {e}")
+        return jsonify({'error': 'Unable to read ACT protocol PDF.'}), 500
+
+
+@app.route('/act-protocols/pdf-page')
+def act_protocol_pdf_page():
+    pdf_path = resolve_act_protocol_pdf(request.args.get('file', ''))
+    if not pdf_path:
+        return jsonify({'error': 'Invalid or missing ACT protocol PDF.'}), 404
+    try:
+        page_number = max(1, int(request.args.get('page', '1')))
+        scale = min(3.0, max(1.0, float(request.args.get('scale', '2'))))
+    except ValueError:
+        return jsonify({'error': 'Invalid page or scale.'}), 400
+    try:
+        import fitz
+        with fitz.open(pdf_path) as doc:
+            if page_number > doc.page_count:
+                return jsonify({'error': 'Page out of range.'}), 404
+            page = doc.load_page(page_number - 1)
+            pix = page.get_pixmap(matrix=fitz.Matrix(scale, scale), alpha=False)
+            png = BytesIO(pix.tobytes('png'))
+            png.seek(0)
+            response = send_file(png, mimetype='image/png', download_name=f'{pdf_path.stem}-page-{page_number}.png')
+            response.headers['Cache-Control'] = 'public, max-age=604800'
+            return response
+    except Exception as e:
+        print(f"Error rendering ACT protocol PDF page: {e}")
+        return jsonify({'error': 'Unable to render ACT protocol PDF page.'}), 500
 
 
 @app.route('/paper-prompt-builder')

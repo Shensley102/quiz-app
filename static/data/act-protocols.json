@@ -4,7 +4,7 @@
     "title": "Acute Coronary Syndrome",
     "category": "Cardiac",
     "folder": "cardiac",
-    "file": "/static/protocols/act/cardiac/3203-C001 Acute Coronary Syndrome.pdf",
+    "file": "/static/protocols/act/cardiac/3203-C001_Acute_Coronary_Syndrome.pdf",
     "tags": [
       "cardiac",
       "ACS",
@@ -18,7 +18,7 @@
     "title": "Asystole & Pulseless Electrical Activity",
     "category": "Cardiac",
     "folder": "cardiac",
-    "file": "/static/protocols/act/cardiac/3203-C002 Asystole & Pulseless Electrical Activity.pdf",
+    "file": "/static/protocols/act/cardiac/3203-C002_Asystole___Pulseless_Electrical_Activity.pdf",
     "tags": [
       "cardiac arrest",
       "asystole",
@@ -31,7 +31,7 @@
     "title": "Atrial Fibrillation & Atrial Flutter",
     "category": "Cardiac",
     "folder": "cardiac",
-    "file": "/static/protocols/act/cardiac/3203-C003 Atrial Fibrillation & Atrial Flutter.pdf",
+    "file": "/static/protocols/act/cardiac/3203-C003_Atrial_Fibrillation___Atrial_Flutter.pdf",
     "tags": [
       "atrial fibrillation",
       "atrial flutter",
@@ -44,7 +44,7 @@
     "title": "Bradycardia",
     "category": "Cardiac",
     "folder": "cardiac",
-    "file": "/static/protocols/act/cardiac/3203-C004 Bradycardia.pdf",
+    "file": "/static/protocols/act/cardiac/3203-C004_Bradycardia.pdf",
     "tags": [
       "bradycardia",
       "cardiac",
@@ -57,7 +57,7 @@
     "title": "Congested Heart Failure & Pulmonary Edema",
     "category": "Cardiac",
     "folder": "cardiac",
-    "file": "/static/protocols/act/cardiac/3203-C005 Congested Heart Failure & Pulmonary Edema.pdf",
+    "file": "/static/protocols/act/cardiac/3203-C005_Congested_Heart_Failure_Pulmonary_Edema.pdf",
     "tags": [
       "CHF",
       "pulmonary edema",
@@ -71,7 +71,7 @@
     "title": "Narrow & Wide Complex Tachycardia",
     "category": "Cardiac",
     "folder": "cardiac",
-    "file": "/static/protocols/act/cardiac/3203-C006 Narrow & Wide Complex Tachycardia.pdf",
+    "file": "/static/protocols/act/cardiac/3203-C006_Narrow_and_Wide_Complex_Tachycardia.pdf",
     "tags": [
       "tachycardia",
       "SVT",
@@ -85,7 +85,7 @@
     "title": "Ventricular Fibrillation & Pulseless Ventricular Tachycardia",
     "category": "Cardiac",
     "folder": "cardiac",
-    "file": "/static/protocols/act/cardiac/3203-C007 Ventricular Fibrillation & Pulseless Ventricular Tachycardia.pdf",
+    "file": "/static/protocols/act/cardiac/3203-C007_Ventricular_Fibrillation_and_Pulseless_Ventricular_Tachycardia.pdf",
     "tags": [
       "ventricular fibrillation",
       "pulseless VT",
@@ -99,7 +99,7 @@
     "title": "Extracorporeal Membrane Oxygenation Therapy (ECMO)",
     "category": "Cardiac",
     "folder": "cardiac",
-    "file": "/static/protocols/act/cardiac/3203-C008 Extracorporeal Membrane Oxygenation Therapy (ECMO).pdf",
+    "file": "/static/protocols/act/cardiac/3203-C008_Extracorporeal_Membrane_Oxygenation_Therapy.pdf",
     "tags": [
       "ECMO",
       "cardiac",
@@ -112,7 +112,7 @@
     "title": "Targeted Temperature Management",
     "category": "Cardiac",
     "folder": "cardiac",
-    "file": "/static/protocols/act/cardiac/3203-C009 Targeted Temperature Management.pdf",
+    "file": "/static/protocols/act/cardiac/3203-C009_Targeted_Temperature_Management.pdf",
     "tags": [
       "TTM",
       "hypothermia",
@@ -125,7 +125,7 @@
     "title": "ST Elevation Myocardial Infarction (STEMI)",
     "category": "Cardiac",
     "folder": "cardiac",
-    "file": "/static/protocols/act/cardiac/3203-C010 ST Elevation Myocardial Infarction (STEMI).pdf",
+    "file": "/static/protocols/act/cardiac/3203-C010_ST_Elevation_Myocardial_Infarction__STEMI.pdf",
     "tags": [
       "STEMI",
       "myocardial infarction",
@@ -139,7 +139,7 @@
     "title": "Flight Physiology & Patient Oxygenation",
     "category": "General",
     "folder": "general",
-    "file": "/static/protocols/act/general/3203-G001 Flight Physiology & Patient Oxygenation.pdf",
+    "file": "/static/protocols/act/general/3203-G001_Flight_Physiology_and_Patient_Oxygenation.pdf",
     "tags": [
       "flight physiology",
       "oxygenation",
@@ -164,7 +164,7 @@
     "title": "Management of Previously Initiated & Continuous IV Medication",
     "category": "General",
     "folder": "general",
-    "file": "/static/protocols/act/general/3203-G003 Management of Previously Initiated & Continuous IV Medication.pdf",
+    "file": "/static/protocols/act/general/3203-G003_Management_of_Previously_Initiated___Continuous_IV_Medication.pdf",
     "tags": [
       "IV medication",
       "infusion",
@@ -177,7 +177,7 @@
     "title": "Nausea/Vomiting/Motion Sickness",
     "category": "General",
     "folder": "general",
-    "file": "/static/protocols/act/general/3203-G004 Nausea Vomiting Motion Sickness.pdf",
+    "file": "/static/protocols/act/general/3203-G004_Nausea_Vomiting_Motion_Sickness.pdf",
     "tags": [
       "nausea",
       "vomiting",
@@ -190,7 +190,7 @@
     "title": "Analgesia and Sedation Management",
     "category": "General",
     "folder": "general",
-    "file": "/static/protocols/act/general/3203-G005 Analgesia and Sedation Management.pdf",
+    "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
     "tags": [
       "analgesia",
       "sedation",
@@ -204,7 +204,7 @@
     "title": "Anxiety/Combative Patient Management",
     "category": "General",
     "folder": "general",
-    "file": "/static/protocols/act/general/3203-G006 Anxiety Combative Patient Management.pdf",
+    "file": "/static/protocols/act/general/3203-G006_Anxiety-_Combative_Patient_Management.pdf",
     "tags": [
       "anxiety",
       "combative",
@@ -218,7 +218,7 @@
     "title": "Propofol (Diprivan)",
     "category": "General",
     "folder": "general",
-    "file": "/static/protocols/act/general/3203-G007 Propofol (Diprivan).pdf",
+    "file": "/static/protocols/act/general/3203-G007_Propofol_Diprivan.pdf",
     "tags": [
       "propofol",
       "Diprivan",
@@ -231,7 +231,7 @@
     "title": "Rapid Sequence Induction (RSI) for Endotracheal (ET) Intubation",
     "category": "General",
     "folder": "general",
-    "file": "/static/protocols/act/general/3203-G008 Rapid Sequence Induction (RSI) for Endotracheal (ET) Intubation.pdf",
+    "file": "/static/protocols/act/general/3203-G008_Rapid_Sequence_Induction__RSI__for_Endotracheal__ET__Intubation.pdf",
     "tags": [
       "RSI",
       "rapid sequence induction",
@@ -244,7 +244,7 @@
     "title": "Abdominal Aortic Aneurysm",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M001 Abdominal Aortic Aneurysm.pdf",
+    "file": "/static/protocols/act/medical/3203-M001_Abdominal_Aortic_Aneurysm.pdf",
     "tags": [
       "AAA",
       "aneurysm",
@@ -257,7 +257,7 @@
     "title": "Diabetic Ketoacidosis (Adult)",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M002 Diabetic Ketoacidosis (Adult).pdf",
+    "file": "/static/protocols/act/medical/3203-M002_Adult_Diabetic_Ketoacidosis.pdf",
     "tags": [
       "DKA",
       "diabetic ketoacidosis",
@@ -283,7 +283,7 @@
     "title": "Allergic Reaction/Anaphylaxis",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M004 Allergic Reaction Anaphylaxis.pdf",
+    "file": "/static/protocols/act/medical/3203-M004_Allergic_Reaction_Anaphylaxis.pdf",
     "tags": [
       "allergic reaction",
       "anaphylaxis",
@@ -296,7 +296,7 @@
     "title": "Magnesium Imbalance",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M005 Magnesium Imbalance.pdf",
+    "file": "/static/protocols/act/medical/3203-M005_Electrolyte_Disorders_-_Magnesium.pdf",
     "tags": [
       "magnesium",
       "electrolyte",
@@ -309,7 +309,7 @@
     "title": "Potassium Imbalance",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M006 Potassium Imbalance.pdf",
+    "file": "/static/protocols/act/medical/3203-M006_Electrolyte_Disorders_-_Potassium.pdf",
     "tags": [
       "potassium",
       "electrolyte",
@@ -322,7 +322,7 @@
     "title": "Gastrointestinal Bleeding",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M007 Gastrointestinal Bleeding.pdf",
+    "file": "/static/protocols/act/medical/3203-M007_Gastrointestinal_Bleeding.pdf",
     "tags": [
       "GI bleed",
       "gastrointestinal bleeding",
@@ -335,7 +335,7 @@
     "title": "Bronchospasm (Asthma & COPD)",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M008 Bronchospasm (Asthma & COPD).pdf",
+    "file": "/static/protocols/act/medical/3203-M008_Bronchospasm_Asthma_COPD.pdf",
     "tags": [
       "asthma",
       "COPD",
@@ -349,7 +349,7 @@
     "title": "Heat Related Illness/Hyperthermia",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M009 Heat Related Illness Hyperthermia.pdf",
+    "file": "/static/protocols/act/medical/3203-M009_Heat_Related_Illness.pdf",
     "tags": [
       "heat illness",
       "hyperthermia",
@@ -362,7 +362,7 @@
     "title": "Hypertensive Emergency",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M010 Hypertensive Emergency.pdf",
+    "file": "/static/protocols/act/medical/3203-M010_Hypertensive_Emergency.pdf",
     "tags": [
       "hypertension",
       "hypertensive emergency",
@@ -374,7 +374,7 @@
     "title": "Hypotension",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M011 Hypotension.pdf",
+    "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
     "tags": [
       "hypotension",
       "shock",
@@ -387,7 +387,7 @@
     "title": "Hypothermia",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M012 Hypothermia.pdf",
+    "file": "/static/protocols/act/medical/3203-M012_Hypothermia.pdf",
     "tags": [
       "hypothermia",
       "cold exposure",
@@ -400,7 +400,7 @@
     "title": "Subarachnoid Hemorrhage, Non-traumatic",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M013 Subarachnoid Hemorrhage, Non-traumatic.pdf",
+    "file": "/static/protocols/act/medical/3203-M013_Subarachnoid_Hemorrhage.pdf",
     "tags": [
       "subarachnoid hemorrhage",
       "SAH",
@@ -414,7 +414,7 @@
     "title": "Pulmonary Embolism",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M014 Pulmonary Embolism.pdf",
+    "file": "/static/protocols/act/medical/3203-M014_Pulmonary_Embolism.pdf",
     "tags": [
       "pulmonary embolism",
       "PE",
@@ -427,7 +427,7 @@
     "title": "Seizures",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M015 Seizures.pdf",
+    "file": "/static/protocols/act/medical/3203-M015_Seizures.pdf",
     "tags": [
       "seizure",
       "status epilepticus",
@@ -440,7 +440,7 @@
     "title": "Sepsis",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M016 Sepsis.pdf",
+    "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
     "tags": [
       "sepsis",
       "infection",
@@ -453,7 +453,7 @@
     "title": "Stroke or Transient Ischemic Attack",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M017 Stroke or Transient Ischemic Attack.pdf",
+    "file": "/static/protocols/act/medical/3203-M017_Stroke_or_Transient_Ischemic_Attack.pdf",
     "tags": [
       "stroke",
       "TIA",
@@ -466,7 +466,7 @@
     "title": "Thoracic Aortic Dissection",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M018 Thoracic Aortic Dissection.pdf",
+    "file": "/static/protocols/act/medical/3203-M018_Thoracic_Aortic_Dissection.pdf",
     "tags": [
       "aortic dissection",
       "thoracic",
@@ -479,7 +479,7 @@
     "title": "Overdose, Poisoning, Toxic Exposure",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, Toxic Exposure.pdf",
+    "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
     "tags": [
       "overdose",
       "poisoning",
@@ -492,7 +492,7 @@
     "title": "Malignant Hyperthermia",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M020 Malignant Hyperthermia.pdf",
+    "file": "/static/protocols/act/medical/3203-M020_Malignant_Hyperthermia.pdf",
     "tags": [
       "malignant hyperthermia",
       "hyperthermia",
@@ -517,7 +517,7 @@
     "title": "General Obstetric Patient Assessment",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M022 General Obstetric Patient Assessment.pdf",
+    "file": "/static/protocols/act/medical/3203-M022_General_Obstetric_Patient_Assessment.pdf",
     "tags": [
       "obstetric",
       "OB",
@@ -583,7 +583,7 @@
     "title": "Burns - Electrical/Lightning Injury",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T005 Burns - Electrical Lightning Injury.pdf",
+    "file": "/static/protocols/act/trauma/GUID-3203-T005 Burns - ElectricalLightning Injury.pdf",
     "tags": [
       "electrical burn",
       "lightning injury",
@@ -618,7 +618,7 @@
   },
   {
     "id": "GUID-3203-T008",
-    "title": "Multi-System Trauma – Adult & Pediatric",
+    "title": "Multi-System Trauma \u2013 Adult & Pediatric",
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/GUID-3203-T008 Multi-System Trauma - Adult and Pediatric.pdf",
@@ -741,7 +741,7 @@
     "title": "Pediatric General Management",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED001 Pediatric General Management.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED001_Pediatric_General_Management.pdf",
     "tags": [
       "pediatric",
       "general management",
@@ -754,7 +754,7 @@
     "title": "Pediatric Allergic Reaction/Anaphylaxis",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED002 Pediatric Allergic Reaction Anaphylaxis.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED002_Pediatric_Allergic_Reaction_Anaphylaxis.pdf",
     "tags": [
       "pediatric",
       "allergic reaction",
@@ -767,7 +767,7 @@
     "title": "Pediatric Altered Mental Status (Non-traumatic)",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED003 Pediatric Altered Mental Status (Non-traumatic).pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED003_Pediatric_Altered_Mental_Status-Non-Traumatic.pdf",
     "tags": [
       "pediatric",
       "altered mental status",
@@ -780,7 +780,7 @@
     "title": "Pediatric Asystole",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED004 Pediatric Asystole.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED004_Pediatric_Asystole.pdf",
     "tags": [
       "pediatric",
       "asystole",
@@ -793,7 +793,7 @@
     "title": "Pediatric Bradycardia",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED005 Pediatric Bradycardia.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED005_Pediatric_Bradycardia.pdf",
     "tags": [
       "pediatric",
       "bradycardia",
@@ -806,7 +806,7 @@
     "title": "Pediatric Cardiogenic Shock",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED006 Pediatric Cardiogenic Shock.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
     "tags": [
       "pediatric",
       "cardiogenic shock",
@@ -819,7 +819,7 @@
     "title": "Pediatric Cyanotic Congenital Heart Disease",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED007 Pediatric Cyanotic Congenital Heart Disease.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
     "tags": [
       "pediatric",
       "cyanotic heart disease",
@@ -832,7 +832,7 @@
     "title": "Pediatric Diabetic Ketoacidosis (DKA)",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED008 Pediatric Diabetic Ketoacidosis (DKA).pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED008_Pediatric_Diabetic_Ketoacidosis.pdf",
     "tags": [
       "pediatric",
       "DKA",
@@ -845,7 +845,7 @@
     "title": "Pediatric Hypotension",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED009 Pediatric Hypotension.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED009_Pediatric_Hypotension.pdf",
     "tags": [
       "pediatric",
       "hypotension",
@@ -858,7 +858,7 @@
     "title": "Pediatric Infectious Respiratory Distress",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED010 Pediatric Infectious Respiratory Distress.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED010_Pediatric_Infectious_Respiratory_Distress.pdf",
     "tags": [
       "pediatric",
       "respiratory distress",
@@ -868,10 +868,10 @@
   },
   {
     "id": "3203-PED011",
-    "title": "Pediatric Obstructed Airway – Foreign Body Aspiration",
+    "title": "Pediatric Obstructed Airway \u2013 Foreign Body Aspiration",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED011 Pediatric Obstructed Airway - Foreign Body Aspiration.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED011_Pediatric_Obstructed_Airway_Foreign_Body_Aspiration.pdf",
     "tags": [
       "pediatric",
       "obstructed airway",
@@ -885,7 +885,7 @@
     "title": "Pediatric Pulseless Electrical Activity (PEA)",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED012 Pediatric Pulseless Electrical Activity (PEA).pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED012_Pediatric_Pulseless_Electrical_Activity_PEA.pdf",
     "tags": [
       "pediatric",
       "PEA",
@@ -895,10 +895,10 @@
   },
   {
     "id": "3203-PED013",
-    "title": "Pediatric Ventricular Fibrillation – Pulseless Ventricular Tachycardia",
+    "title": "Pediatric Ventricular Fibrillation \u2013 Pulseless Ventricular Tachycardia",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED013 Pediatric Ventricular Fibrillation - Pulseless Ventricular Tachycardia.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED013_Pediatric_Pediatric_Ventricular_Fibrillation_Pulseless_Ventricular_Tachycardia.pdf",
     "tags": [
       "pediatric",
       "ventricular fibrillation",
@@ -912,7 +912,7 @@
     "title": "Pediatric Reactive Airway Disease",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED014 Pediatric Reactive Airway Disease.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED014_Pediatric_Reactive_Airway_Disease.pdf",
     "tags": [
       "pediatric",
       "reactive airway",
@@ -925,7 +925,7 @@
     "title": "Pediatric Seizures/Status Epilepticus",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED015 Pediatric Seizures Status Epilepticus.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED015_Pediatric_Seizures-Status_Epilepticus.pdf",
     "tags": [
       "pediatric",
       "seizures",
@@ -938,7 +938,7 @@
     "title": "Pediatric Sepsis or Meningitis",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED016 Pediatric Sepsis or Meningitis.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED016_Pediatric_Sepsis_or_Meningitis.pdf",
     "tags": [
       "pediatric",
       "sepsis",
@@ -951,7 +951,7 @@
     "title": "Pediatric Supraventricular Tachycardia",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED017 Pediatric Supraventricular Tachycardia.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED017_Pediatric_Supraventricular_Tachycardia.pdf",
     "tags": [
       "pediatric",
       "SVT",
@@ -964,7 +964,7 @@
     "title": "Pediatric Ventricular Tachycardia with Pulse",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED018 Pediatric Ventricular Tachycardia with Pulse.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED018_Pediatric_Ventricular_Tachycardia_with_Pulse.pdf",
     "tags": [
       "pediatric",
       "ventricular tachycardia",
@@ -978,7 +978,7 @@
     "title": "Neonatal Stabilization & Resuscitation",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED019 Neonatal Stabilization & Resuscitation.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED019_Neonatal_Stabilization___Resuscitation.pdf",
     "tags": [
       "neonatal",
       "newborn",
@@ -991,7 +991,7 @@
     "title": "12-Lead Electrocardiogram (ECG/EKG)",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR001 12-Lead Electrocardiogram (ECG-EKG).pdf",
+    "file": "/static/protocols/act/procedures/3203-PR001_12-Lead_Electrocardiogram__ECG.pdf",
     "tags": [
       "12 lead",
       "ECG",
@@ -1004,7 +1004,7 @@
     "title": "Blood Product Administration",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR002 Blood Product Administration.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR002_Blood_Product_Administration.pdf",
     "tags": [
       "blood product",
       "transfusion",
@@ -1017,7 +1017,7 @@
     "title": "Capillary Blood Glucose Monitoring",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR003 Capillary Blood Glucose Monitoring.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR003_Capillary_Blood_Glucose_Monitoring.pdf",
     "tags": [
       "glucose",
       "blood sugar",
@@ -1030,7 +1030,7 @@
     "title": "Cardioversion",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR004 Cardioversion.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR004_Cardioversion.pdf",
     "tags": [
       "cardioversion",
       "shock",
@@ -1043,7 +1043,7 @@
     "title": "Chest Tube Management",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR005 Chest Tube Management.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR005_Chest_Tube_Management.pdf",
     "tags": [
       "chest tube",
       "pneumothorax",
@@ -1056,7 +1056,7 @@
     "title": "Tourniquet Therapy",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR006 Tourniquet Therapy.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR006_Tourniquet_Therapy.pdf",
     "tags": [
       "tourniquet",
       "bleeding",
@@ -1066,10 +1066,10 @@
   },
   {
     "id": "GUID-3203-PR007",
-    "title": "Cricothyrotomy – Surgical",
+    "title": "Cricothyrotomy \u2013 Surgical",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR007 Cricothyrotomy - Surgical.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR007_Cricothyrotomy_-_Surgical.pdf",
     "tags": [
       "cricothyrotomy",
       "surgical airway",
@@ -1081,7 +1081,7 @@
     "title": "Defibrillation",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR008 Defibrillation.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR008_Defibrillation.pdf",
     "tags": [
       "defibrillation",
       "shock",
@@ -1095,7 +1095,7 @@
     "title": "End-Tidal CO2 Monitoring",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR009 End-Tidal CO2 Monitoring.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR009_End-Tidal_CO2_Monitoring.pdf",
     "tags": [
       "ETCO2",
       "capnography",
@@ -1108,7 +1108,7 @@
     "title": "Gastric Tube Insertion",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR010 Gastric Tube Insertion.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR010_Gastric_Tube_Insertion.pdf",
     "tags": [
       "gastric tube",
       "NG",
@@ -1121,7 +1121,7 @@
     "title": "Gum Elastic Bougie",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR011 Gum Elastic Bougie.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR011_Gum_Elastic_Bougie.pdf",
     "tags": [
       "bougie",
       "airway",
@@ -1133,7 +1133,7 @@
     "title": "Inhalation Therapy",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR012 Inhalation Therapy.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR012_Inhalation_Therapy.pdf",
     "tags": [
       "inhalation",
       "nebulizer",
@@ -1146,7 +1146,7 @@
     "title": "Intraosseous (IO) Insertion & Infusions",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR013 Intraosseous IO Insertion and Infusions.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR013_Intraosseous_Infusions.pdf",
     "tags": [
       "IO",
       "intraosseous",
@@ -1159,7 +1159,7 @@
     "title": "Intracranial Pressure Invasive Monitoring",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR014 Intracranial Pressure Invasive Monitoring.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR014_Intracranial_Pressure_Invasive_Monitoring.pdf",
     "tags": [
       "ICP",
       "intracranial pressure",
@@ -1172,7 +1172,7 @@
     "title": "Intravenous (IV) Fluid Therapy",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR015 Intravenous IV Fluid Therapy.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR015_IV_Fluid_Therapy.pdf",
     "tags": [
       "IV",
       "fluids",
@@ -1185,7 +1185,7 @@
     "title": "KING LTS-D Laryngeal Tube",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR016 KING LTS-D Laryngeal Tube.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR016_i-gel_supraglottic_airway_device.pdf",
     "tags": [
       "KING airway",
       "LTS-D",
@@ -1198,7 +1198,7 @@
     "title": "Needle Thoracostomy",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR017 Needle Thoracostomy.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR017_NeedleSimple_Thoracostomy.pdf",
     "tags": [
       "needle thoracostomy",
       "needle decompression",
@@ -1210,7 +1210,7 @@
     "title": "Non-Invasive Positive Pressure Ventilation",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR018 Non-Invasive Positive Pressure Ventilation.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR018_Non-Invasive_Positive_Pressure_Ventilation.pdf",
     "tags": [
       "NIPPV",
       "CPAP",
@@ -1220,10 +1220,10 @@
   },
   {
     "id": "GUID-3203-PR019",
-    "title": "Intravenous Insertion – Peripheral",
+    "title": "Intravenous Insertion \u2013 Peripheral",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR019 Intravenous Insertion - Peripheral.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR019_Intravenous_Insertion_Peripheral.pdf",
     "tags": [
       "IV insertion",
       "peripheral IV",
@@ -1235,7 +1235,7 @@
     "title": "Endotracheal Intubation",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR020 Endotracheal Intubation.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR020_Endotracheal_Intubation.pdf",
     "tags": [
       "intubation",
       "endotracheal tube",
@@ -1248,7 +1248,7 @@
     "title": "Restraints",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR021 Restraints.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR021_Restraints.pdf",
     "tags": [
       "restraints",
       "safety",
@@ -1261,7 +1261,7 @@
     "title": "Transcutaneous External Pacing",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR022 Transcutaneous External Pacing.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR022_Transcutaneous_External_Pacing.pdf",
     "tags": [
       "pacing",
       "transcutaneous pacing",
@@ -1274,7 +1274,7 @@
     "title": "Intra-Aortic Balloon Pump",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR023 Intra-Aortic Balloon Pump.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR023_Intra-Aortic_Balloon_Pump_Impella_Device.pdf",
     "tags": [
       "IABP",
       "intra-aortic balloon pump",
@@ -1287,7 +1287,7 @@
     "title": "Ventilation with a Mechanical Ventilator",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR024 Ventilation with a Mechanical Ventilator.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR024_Ventilation_with_Mechanical_Ventilator.pdf",
     "tags": [
       "ventilator",
       "mechanical ventilation",
@@ -1299,7 +1299,7 @@
     "title": "Emergency Blood Product Administration",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR025 Emergency Blood Product Administration.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR025_Emergency_Blood_Product_Administration.pdf",
     "tags": [
       "emergency blood",
       "transfusion",
@@ -1312,7 +1312,7 @@
     "title": "Emergency Whole Blood Product Administration",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR025B Emergency Whole Blood Product Administration.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR025b_Emergency_Whole_Blood_Product_Administration.pdf",
     "tags": [
       "whole blood",
       "emergency blood",
@@ -1325,7 +1325,7 @@
     "title": "Warming of Blood Products & Intravenous Fluids",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR026 Warming of Blood Products and Intravenous Fluids.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR026_Warming_of_Blood_Products_and_IV_Fluids.pdf",
     "tags": [
       "blood warmer",
       "fluid warmer",
@@ -1338,7 +1338,7 @@
     "title": "Pelvic Circumferential Compression Binder",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR027 Pelvic Circumferential Compression Binder.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR027_Pelvic_Circumferential_Compression_Binder.pdf",
     "tags": [
       "pelvic binder",
       "pelvic fracture",
@@ -1348,10 +1348,10 @@
   },
   {
     "id": "GUID-3203-PR028",
-    "title": "Hemostatic Dressing – QuickClot Gauze",
+    "title": "Hemostatic Dressing \u2013 QuickClot Gauze",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR028 Hemostatic Dressing - QuickClot Gauze.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR028_Hemostatic_Dressing_QuickClot_Gauze.pdf",
     "tags": [
       "hemostatic dressing",
       "QuickClot",
@@ -1364,7 +1364,7 @@
     "title": "Prone Positioning",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR029 Prone Positioning.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR029_Prone_Positioning.pdf",
     "tags": [
       "prone positioning",
       "respiratory",
@@ -1377,7 +1377,7 @@
     "title": "Impella (Abiomed)",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR030 Impella Abiomed.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR030_Impella_Abiomed.pdf",
     "tags": [
       "Impella",
       "Abiomed",
@@ -1390,7 +1390,7 @@
     "title": "Ventricular Assist Devices (VADs)",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR031 Ventricular Assist Devices VADs.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR031_Ventricular_Assist_Devices_VADs.pdf",
     "tags": [
       "VAD",
       "ventricular assist device",
@@ -1403,7 +1403,7 @@
     "title": "High Flow Nasal Cannula",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/GUID-3203-PR032 High Flow Nasal Cannula.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR032_High_Flow_Nasal_Cannula.pdf",
     "tags": [
       "HFNC",
       "high flow nasal cannula",

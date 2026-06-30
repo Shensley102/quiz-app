@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="description" content="ACT Protocol PDF viewer">
+  <title>ACT Protocol PDF | Study Guru</title>
+
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/act-protocols.css">
+  <link rel="manifest" href="/static/manifest-act-protocols.json">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ACT Protocols">
+  <link rel="apple-touch-icon" href="/static/icons/act-protocols/icon-180.png">
+</head>
+<body class="act-viewer-body">
+  <div id="offlineIndicator" class="offline-indicator hidden">📡 You're offline - Using cached content</div>
+
+  <header class="pdf-viewer-header">
+    <a id="pdfBackButton" class="pdf-back-button" href="/act-protocols" aria-label="Back to ACT protocol selection">← Back</a>
+    <div class="pdf-viewer-title-wrap">
+      <p class="pdf-viewer-kicker">ACT Protocol</p>
+      <h1 id="viewerTitle">Loading PDF…</h1>
+    </div>
+    <div class="pdf-zoom-controls" aria-label="PDF zoom controls">
+      <button id="zoomOutBtn" class="pdf-zoom-button" type="button" aria-label="Zoom out">−</button>
+      <span id="zoomLevel" class="pdf-zoom-level" aria-live="polite">Fit</span>
+      <button id="zoomInBtn" class="pdf-zoom-button" type="button" aria-label="Zoom in">+</button>
+    </div>
+  </header>
+
+  <main class="pdf-viewer-shell">
+    <div id="viewerError" class="pdf-viewer-error hidden" role="alert">
+      Unable to load this PDF. Return to the protocol list and try saving it offline again.
+    </div>
+    <div id="pdfPages" class="pdf-page-list" aria-label="ACT protocol PDF pages"></div>
+  </main>
+
+  <script src="/static/js/progress-store.js"></script>
+  <script src="/static/js/pwa-utils.js"></script>
+  <script src="/static/js/act-protocol-viewer.js"></script>
+</body>
+</html>
