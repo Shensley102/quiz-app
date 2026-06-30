@@ -491,6 +491,15 @@ def act_protocols():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/act-protocols/dose-calculator')
+def act_dose_calculator():
+    try:
+        return render_template('act-dose-calculator.html')
+    except Exception as e:
+        print(f"Error in act_dose_calculator route: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/act-protocols/viewer')
 def act_protocol_viewer():
     try:
