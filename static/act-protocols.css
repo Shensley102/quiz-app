@@ -565,16 +565,41 @@ body {
   height: calc(100dvh - 69px - env(safe-area-inset-top));
   padding: 8px;
   background: var(--act-surface);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.pdf-frame {
-  display: block;
+ .pdf-page-list {
+  display: grid;
+  gap: 14px;
   width: 100%;
-  height: 100%;
-  border: 0;
+  max-width: none;
+  margin: 0 auto;
+}
+
+.pdf-page-wrap {
+  margin: 0;
   background: var(--act-bg);
   border-radius: 10px;
+  box-shadow: 0 4px 16px var(--act-shadow);
+  overflow: hidden;
 }
+
+.pdf-page-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pdf-page-caption {
+  padding: 6px 10px 8px;
+  color: var(--act-text-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-align: center;
+  background: var(--act-surface);
+}
+
 
 .pdf-viewer-error {
   margin: 18px;
