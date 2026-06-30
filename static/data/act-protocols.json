@@ -270,7 +270,7 @@
     "title": "Altered Mental Status",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M003_Altered_Mental_Status.pdf",
+    "file": "/static/protocols/act/medical/3203-M003 Altered Mental Status.pdf",
     "tags": [
       "AMS",
       "altered mental status",
@@ -504,7 +504,7 @@
     "title": "Hypoglycemia",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M021_Hypoglycemia.pdf",
+    "file": "/static/protocols/act/medical/3203-M021 Hypoglycemia.pdf",
     "tags": [
       "hypoglycemia",
       "glucose",
