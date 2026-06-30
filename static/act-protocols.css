@@ -751,20 +751,36 @@ body {
   font-weight: 800;
 }
 
-.dose-back {
-  display: inline-flex;
+.dose-page-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
   align-items: center;
-  margin: 0 0 18px;
+  padding: calc(10px + env(safe-area-inset-top)) 12px 10px;
+  background: var(--act-hero-bg);
+  border-bottom: 5px solid var(--act-primary);
+  box-shadow: 0 8px 24px var(--act-shadow);
 }
 
-.act-pwa .dose-back {
-  display: inline-flex;
+.dose-page-title-wrap {
+  min-width: 0;
 }
 
-@media (display-mode: standalone) {
-  .dose-back {
-    display: inline-flex;
-  }
+.dose-page-title-wrap h1 {
+  margin: 0;
+  color: var(--act-hero-text);
+  font-size: clamp(1rem, 4vw, 1.35rem);
+  line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dose-page-back {
+  min-width: 88px;
 }
 
 .dose-shell {
