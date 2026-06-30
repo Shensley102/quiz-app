@@ -289,7 +289,7 @@ body {
 .protocol-search:focus-visible,
 .act-back:focus-visible,
 .pdf-back-button:focus-visible,
-.pdf-open-link:focus-visible {
+.pdf-zoom-button:focus-visible {
   outline: 3px solid var(--act-focus);
   outline-offset: 3px;
 }
@@ -496,7 +496,7 @@ body {
 }
 
 .pdf-back-button,
-.pdf-open-link {
+.pdf-zoom-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -511,9 +511,31 @@ body {
   white-space: nowrap;
 }
 
-.pdf-open-link {
-  background: var(--act-bg);
-  color: var(--act-primary);
+.pdf-zoom-controls {
+  display: inline-grid;
+  grid-template-columns: 44px auto 44px;
+  gap: 6px;
+  align-items: center;
+  justify-content: end;
+}
+
+.pdf-zoom-button {
+  padding: 0;
+  min-width: 44px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.pdf-zoom-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pdf-zoom-level {
+  min-width: 46px;
+  color: var(--act-hero-text);
+  font-weight: 800;
+  text-align: center;
 }
 
 .pdf-viewer-title-wrap {
@@ -541,7 +563,8 @@ body {
 
 .pdf-viewer-shell {
   height: calc(100dvh - 69px - env(safe-area-inset-top));
-  padding: 0;
+  padding: 8px;
+  background: var(--act-surface);
 }
 
 .pdf-frame {
@@ -550,6 +573,7 @@ body {
   height: 100%;
   border: 0;
   background: var(--act-bg);
+  border-radius: 10px;
 }
 
 .pdf-viewer-error {
@@ -620,7 +644,7 @@ body {
   }
 
   .pdf-back-button,
-  .pdf-open-link {
+  .pdf-zoom-button {
     padding: 0 11px;
     font-size: 0.92rem;
   }

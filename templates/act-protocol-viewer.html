@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
   <meta name="description" content="ACT Protocol PDF viewer">
   <title>ACT Protocol PDF | Study Guru</title>
 
@@ -25,7 +25,11 @@
       <p class="pdf-viewer-kicker">ACT Protocol</p>
       <h1 id="viewerTitle">Loading PDF…</h1>
     </div>
-    <a id="openNativeLink" class="pdf-open-link" href="/act-protocols" target="_blank" rel="noopener">Open</a>
+    <div class="pdf-zoom-controls" aria-label="PDF zoom controls">
+      <button id="zoomOutBtn" class="pdf-zoom-button" type="button" aria-label="Zoom out">−</button>
+      <span id="zoomLevel" class="pdf-zoom-level" aria-live="polite">Fit</span>
+      <button id="zoomInBtn" class="pdf-zoom-button" type="button" aria-label="Zoom in">+</button>
+    </div>
   </header>
 
   <main class="pdf-viewer-shell">
