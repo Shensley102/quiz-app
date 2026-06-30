@@ -21,6 +21,13 @@
   <meta name="apple-mobile-web-app-title" content="ACT Protocols">
   <link rel="apple-touch-icon" href="/static/icons/act-protocols/icon-180.png">
 
+  <script>
+    (() => {
+      let stored = 'system';
+      try { stored = localStorage.getItem('act-protocols-theme') || 'system'; } catch {}
+      document.documentElement.dataset.actTheme = stored;
+    })();
+  </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
