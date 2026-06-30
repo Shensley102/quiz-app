@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="ACT Protocols dose calculator for medication math, volume checks, and infusion rates">
+  <meta name="color-scheme" content="light dark">
+  <title>Dose Calculator | ACT Protocols</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/home-style.css">
+  <link rel="stylesheet" href="/static/act-protocols.css">
+
+  <link rel="manifest" href="/static/manifest-act-protocols.json">
+  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B0F14" media="(prefers-color-scheme: dark)">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ACT Protocols">
+  <link rel="apple-touch-icon" href="/static/icons/act-protocols/icon-180.png">
+
+  <script>
+    (() => {
+      let stored = 'system';
+      try { stored = localStorage.getItem('act-protocols-theme') || 'system'; } catch {}
+      document.documentElement.dataset.actTheme = stored;
+    })();
+  </script>
+</head>
+<body>
+  <div id="offlineIndicator" class="offline-indicator hidden">📡 You're offline - Using cached content</div>
+
+  <main class="act-shell dose-shell">
+    <a class="back-link act-back dose-back" href="/act-protocols">← Back to ACT Protocols</a>
+
+    <header class="act-hero dose-hero">
+      <p class="act-kicker">Medication math assistant</p>
+      <h1>🧮 Dose Calculator</h1>
+      <p>Calculate weight-based doses, medication volumes, and infusion rates. Always verify against the opened ACT protocol and local medical direction.</p>
+    </header>
+
+    <section class="dose-safety" role="note" aria-label="Dose calculator safety notice">
+      <strong>Math tool only.</strong> Verify medication, concentration, indication, contraindications, max dose, and route in the opened protocol PDF. Use independent double-checks for high-alert medications and infusions.
+    </section>
+
+    <section class="dose-card dose-weight-card" aria-labelledby="weightTitle">
+      <div class="dose-card-header">
+        <div>
+          <p class="dose-eyebrow">Near-top reference</p>
+          <h2 id="weightTitle">Weight Converter</h2>
+        </div>
+        <span class="dose-badge">kg primary</span>
+      </div>
+      <div class="dose-grid two-col">
+        <label class="dose-field">Weight value
+          <input id="weightValue" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter weight">
+        </label>
+        <label class="dose-field">Input unit
+          <select id="weightUnit">
+            <option value="kg">kg</option>
+            <option value="lb">lb</option>
+          </select>
+        </label>
+      </div>
+      <div class="dose-result" id="weightResult" aria-live="polite">Enter a weight to convert kg/lb.</div>
+      <div class="dose-actions-row">
+        <button class="btn btn-outline" type="button" data-clear="weight">Clear</button>
+        <button class="btn btn-secondary" type="button" data-copy="weightResult">Copy result</button>
+      </div>
+      <p class="dose-disclaimer">Calculated from entered values. Verify with ACT protocol, drug label, and local medical direction.</p>
+    </section>
+
+    <section class="dose-card" aria-labelledby="singleDoseTitle">
+      <div class="dose-card-header"><h2 id="singleDoseTitle">Single Weight-Based Dose</h2></div>
+      <div class="dose-grid three-col">
+        <label class="dose-field">Patient weight
+          <input id="singleWeight" type="number" inputmode="decimal" min="0" step="any" placeholder="kg">
+        </label>
+        <label class="dose-field">Dose amount
+          <input id="singleDose" type="number" inputmode="decimal" min="0" step="any" placeholder="Dose per kg">
+        </label>
+        <label class="dose-field">Dose unit
+          <select id="singleDoseUnit"><option>mg/kg</option><option>mcg/kg</option><option>units/kg</option></select>
+        </label>
+        <label class="dose-field">Optional max dose
+          <input id="singleMax" type="number" inputmode="decimal" min="0" step="any" placeholder="Same dose unit">
+        </label>
+        <label class="dose-field">Concentration amount
+          <input id="singleConc" type="number" inputmode="decimal" min="0" step="any" placeholder="Optional">
+        </label>
+        <label class="dose-field">Concentration unit
+          <select id="singleConcUnit"><option>mg/mL</option><option>mcg/mL</option><option>units/mL</option></select>
+        </label>
+      </div>
+      <div class="dose-warning hidden" id="singleWarning"></div>
+      <div class="dose-result" id="singleResult" aria-live="polite">Enter weight and dose to calculate.</div>
+      <pre class="dose-formula" id="singleFormula">dose = weight_kg × dose_per_kg</pre>
+      <div class="dose-actions-row"><button class="btn btn-outline" type="button" data-clear="single">Clear</button><button class="btn btn-secondary" type="button" data-copy="singleResult">Copy result</button></div>
+      <p class="dose-disclaimer">Calculated from entered values. Verify with ACT protocol, drug label, and local medical direction.</p>
+    </section>
+
+    <section class="dose-card" aria-labelledby="fixedTitle">
+      <div class="dose-card-header"><h2 id="fixedTitle">Fixed Dose / Volume</h2></div>
+      <div class="dose-grid four-col">
+        <label class="dose-field">Desired dose
+          <input id="fixedDose" type="number" inputmode="decimal" min="0" step="any" placeholder="Dose">
+        </label>
+        <label class="dose-field">Dose unit
+          <select id="fixedDoseUnit"><option>mg</option><option>mcg</option><option>units</option></select>
+        </label>
+        <label class="dose-field">Concentration
+          <input id="fixedConc" type="number" inputmode="decimal" min="0" step="any" placeholder="per mL">
+        </label>
+        <label class="dose-field">Concentration unit
+          <select id="fixedConcUnit"><option>mg/mL</option><option>mcg/mL</option><option>units/mL</option></select>
+        </label>
+      </div>
+      <div class="dose-warning hidden" id="fixedWarning"></div>
+      <div class="dose-result" id="fixedResult" aria-live="polite">Enter desired dose and concentration.</div>
+      <pre class="dose-formula" id="fixedFormula">volume_mL = desired_dose ÷ concentration</pre>
+      <div class="dose-actions-row"><button class="btn btn-outline" type="button" data-clear="fixed">Clear</button><button class="btn btn-secondary" type="button" data-copy="fixedResult">Copy result</button></div>
+      <p class="dose-disclaimer">Calculated from entered values. Verify with ACT protocol, drug label, and local medical direction.</p>
+    </section>
+
+    <section class="dose-card" aria-labelledby="infusionTitle">
+      <div class="dose-card-header"><h2 id="infusionTitle">Infusion Calculator: dose to pump rate</h2></div>
+      <div class="dose-grid two-col">
+        <label class="dose-field">Patient weight
+          <input id="infWeight" type="number" inputmode="decimal" min="0" step="any" placeholder="kg if weight-based">
+        </label>
+        <label class="dose-field">Ordered infusion dose
+          <input id="infDose" type="number" inputmode="decimal" min="0" step="any" placeholder="Dose">
+        </label>
+        <label class="dose-field">Dose unit
+          <select id="infDoseUnit"><option>mcg/kg/min</option><option>mg/kg/hr</option><option>mcg/min</option><option>mg/hr</option><option>units/hr</option></select>
+        </label>
+        <label class="dose-field">Concentration amount
+          <input id="infConc" type="number" inputmode="decimal" min="0" step="any" placeholder="per mL">
+        </label>
+        <label class="dose-field">Concentration unit
+          <select id="infConcUnit"><option>mcg/mL</option><option>mg/mL</option><option>units/mL</option></select>
+        </label>
+      </div>
+      <div class="dose-warning hidden" id="infWarning"></div>
+      <div class="dose-result" id="infResult" aria-live="polite">Enter infusion order and concentration.</div>
+      <pre class="dose-formula" id="infFormula">mL/hr formula depends on selected dose unit</pre>
+      <div class="dose-actions-row"><button class="btn btn-outline" type="button" data-clear="infusion">Clear</button><button class="btn btn-secondary" type="button" data-copy="infResult">Copy result</button></div>
+      <p class="dose-disclaimer">Calculated from entered values. Verify with ACT protocol, drug label, and local medical direction.</p>
+    </section>
+
+    <section class="dose-card" aria-labelledby="reverseTitle">
+      <div class="dose-card-header"><div><p class="dose-eyebrow">Double-check tool</p><h2 id="reverseTitle">Reverse Infusion Check</h2></div></div>
+      <div class="dose-grid two-col">
+        <label class="dose-field">Patient weight
+          <input id="revWeight" type="number" inputmode="decimal" min="0" step="any" placeholder="kg if weight-based">
+        </label>
+        <label class="dose-field">Pump rate
+          <input id="revRate" type="number" inputmode="decimal" min="0" step="any" placeholder="mL/hr">
+        </label>
+        <label class="dose-field">Concentration
+          <input id="revConc" type="number" inputmode="decimal" min="0" step="any" placeholder="per mL">
+        </label>
+        <label class="dose-field">Concentration unit
+          <select id="revConcUnit"><option>mcg/mL</option><option>mg/mL</option><option>units/mL</option></select>
+        </label>
+        <label class="dose-field">Output dose unit
+          <select id="revOutputUnit"><option>mcg/kg/min</option><option>mg/kg/hr</option><option>mcg/min</option><option>mg/hr</option><option>units/hr</option></select>
+        </label>
+      </div>
+      <div class="dose-warning hidden" id="revWarning"></div>
+      <div class="dose-result" id="revResult" aria-live="polite">Enter pump rate and concentration to double-check delivered dose.</div>
+      <pre class="dose-formula" id="revFormula">delivered dose formula depends on selected output unit</pre>
+      <div class="dose-actions-row"><button class="btn btn-outline" type="button" data-clear="reverse">Clear</button><button class="btn btn-secondary" type="button" data-copy="revResult">Copy result</button></div>
+      <p class="dose-disclaimer">Calculated from entered values. Verify with ACT protocol, drug label, and local medical direction.</p>
+    </section>
+
+    <section class="dose-card" aria-labelledby="dripTitle">
+      <div class="dose-card-header"><h2 id="dripTitle">Drip Rate Calculator</h2></div>
+      <div class="dose-grid two-col">
+        <label class="dose-field">Pump rate
+          <input id="dripRate" type="number" inputmode="decimal" min="0" step="any" placeholder="mL/hr">
+        </label>
+        <label class="dose-field">Drop factor
+          <select id="dropFactor"><option value="10">10 gtt/mL</option><option value="15">15 gtt/mL</option><option value="20">20 gtt/mL</option><option value="60">60 gtt/mL</option></select>
+        </label>
+      </div>
+      <div class="dose-warning hidden" id="dripWarning"></div>
+      <div class="dose-result" id="dripResult" aria-live="polite">Enter mL/hr and drop factor.</div>
+      <pre class="dose-formula" id="dripFormula">gtt/min = (mL/hr × drop_factor) ÷ 60</pre>
+      <div class="dose-actions-row"><button class="btn btn-outline" type="button" data-clear="drip">Clear</button><button class="btn btn-secondary" type="button" data-copy="dripResult">Copy result</button></div>
+      <p class="dose-disclaimer">Calculated from entered values. Verify with ACT protocol, drug label, and local medical direction.</p>
+    </section>
+  </main>
+
+  <script src="/static/js/progress-store.js"></script>
+  <script src="/static/js/pwa-utils.js"></script>
+  <script src="/static/js/act-dose-calculator.js"></script>
+</body>
+</html>
