@@ -15,6 +15,9 @@
   const zoomLevel = document.getElementById('zoomLevel');
   let zoomIndex = 0;
   let pdfUrl = '';
+  let pinchStartDistance = 0;
+  let pinchStartZoomIndex = 0;
+  const PINCH_STEP_PX = 42;
 
   titleEl.textContent = title;
 
@@ -37,6 +40,40 @@
   function pageImageUrl(pageNumber) {
     const query = new URLSearchParams({ file, page: String(pageNumber), scale: '2' });
     return `/act-protocols/pdf-page?${query.toString()}`;
+  }
+
+
+  function touchDistance(touches) {
+    const [first, second] = touches;
+    return Math.hypot(first.clientX - second.clientX, first.clientY - second.clientY);
+  }
+
+  function bindPinchZoom() {
+    shell.addEventListener('touchstart', (event) => {
+      if (event.touches.length !== 2) return;
+      event.preventDefault();
+      pinchStartDistance = touchDistance(event.touches);
+      pinchStartZoomIndex = zoomIndex;
+    }, { passive: false });
+
+    shell.addEventListener('touchmove', (event) => {
+      if (event.touches.length !== 2 || !pinchStartDistance) return;
+      event.preventDefault();
+      const delta = touchDistance(event.touches) - pinchStartDistance;
+      const stepDelta = Math.trunc(delta / PINCH_STEP_PX);
+      const nextZoomIndex = Math.min(zoomSteps.length - 1, Math.max(0, pinchStartZoomIndex + stepDelta));
+      if (nextZoomIndex !== zoomIndex) {
+        zoomIndex = nextZoomIndex;
+        updateZoomControls();
+      }
+    }, { passive: false });
+
+    shell.addEventListener('touchend', (event) => {
+      if (event.touches.length < 2) {
+        pinchStartDistance = 0;
+        pinchStartZoomIndex = zoomIndex;
+      }
+    });
   }
 
   function scrollToRequestedPage() {
@@ -84,6 +121,8 @@
   }
 
   pdfUrl = encodeURI(file);
+
+  bindPinchZoom();
 
   zoomOutBtn.addEventListener('click', () => {
     zoomIndex = Math.max(0, zoomIndex - 1);

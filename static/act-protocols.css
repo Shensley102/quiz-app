@@ -567,6 +567,8 @@ body {
   background: var(--act-surface);
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  overscroll-behavior: contain;
 }
 
  .pdf-page-list {
