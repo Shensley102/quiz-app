@@ -20,9 +20,19 @@ def resolve_act_protocol_pdf(web_path):
     decoded = unquote(web_path or '')
     if not decoded.startswith('/static/protocols/act/') or not decoded.lower().endswith('.pdf'):
         return None
-    candidate = (BASE_DIR / decoded.lstrip('/')).resolve()
     allowed_root = (BASE_DIR / 'static/protocols/act').resolve()
-    if allowed_root not in candidate.parents or not candidate.exists():
+    relative_part = decoded[len('/static/protocols/act/'):]
+    if not relative_part:
+        return None
+    rel_path = Path(relative_part)
+    if rel_path.is_absolute():
+        return None
+    candidate = (allowed_root / rel_path).resolve()
+    try:
+        candidate.relative_to(allowed_root)
+    except ValueError:
+        return None
+    if not candidate.exists():
         return None
     return candidate
 
