@@ -53,18 +53,15 @@
         </div>
         <span class="dose-badge">kg primary</span>
       </div>
-      <div class="dose-grid two-col">
-        <label class="dose-field">Weight value
-          <input id="weightValue" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter weight">
+      <div class="dose-grid weight-stack">
+        <label class="dose-field">Weight in lb
+          <input id="weightLb" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter pounds">
         </label>
-        <label class="dose-field">Input unit
-          <select id="weightUnit">
-            <option value="kg">kg</option>
-            <option value="lb">lb</option>
-          </select>
+        <label class="dose-field">Weight in kg
+          <input id="weightKg" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter kilograms">
         </label>
       </div>
-      <div class="dose-result" id="weightResult" aria-live="polite">Enter a weight to convert kg/lb.</div>
+      <div class="dose-result" id="weightResult" aria-live="polite">Enter lb or kg to convert both values.</div>
       <div class="dose-actions-row">
         <button class="btn btn-outline" type="button" data-clear="weight">Clear</button>
         <button class="btn btn-secondary" type="button" data-copy="weightResult">Copy result</button>

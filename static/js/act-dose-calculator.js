@@ -2,6 +2,7 @@
   const LB_PER_KG = 2.20462;
   const $ = (id) => document.getElementById(id);
   const fields = Array.from(document.querySelectorAll('input, select'));
+  let activeWeightField = null;
 
   function n(id) {
     const value = Number.parseFloat($(id)?.value || '');
@@ -25,9 +26,11 @@
   function positive(value) { return value !== null && value > 0; }
 
   function weightKgFromConverter() {
-    const value = n('weightValue');
-    if (!positive(value)) return null;
-    return $('weightUnit').value === 'lb' ? value / LB_PER_KG : value;
+    const kg = n('weightKg');
+    const lb = n('weightLb');
+    if (positive(kg)) return kg;
+    if (positive(lb)) return lb / LB_PER_KG;
+    return null;
   }
   function syncWeightDependents() {
     const kg = weightKgFromConverter();
@@ -39,13 +42,29 @@
   }
 
   function calculateWeight() {
-    const value = n('weightValue');
-    if (value === null) { setText('weightResult', 'Enter a weight to convert kg/lb.'); return; }
-    if (value <= 0) { setText('weightResult', 'Enter a positive weight value.'); return; }
-    const kg = $('weightUnit').value === 'lb' ? value / LB_PER_KG : value;
-    const lb = $('weightUnit').value === 'kg' ? value * LB_PER_KG : value;
-    setText('weightResult', `Weight in kg: ${fmt(kg, 1)} kg • Weight in lb: ${fmt(lb, 1)} lb`);
-    syncWeightDependents();
+    const lbEl = $('weightLb');
+    const kgEl = $('weightKg');
+    const lb = n('weightLb');
+    const kg = n('weightKg');
+    if (lb === null && kg === null) { setText('weightResult', 'Enter lb or kg to convert both values.'); return; }
+    if ((lb !== null && lb <= 0) || (kg !== null && kg <= 0)) { setText('weightResult', 'Enter positive weight values only.'); return; }
+
+    if (activeWeightField === 'weightLb' && positive(lb)) {
+      kgEl.value = fmt(lb / LB_PER_KG, 1);
+    } else if (activeWeightField === 'weightKg' && positive(kg)) {
+      lbEl.value = fmt(kg * LB_PER_KG, 1);
+    } else if (positive(lb) && kg === null) {
+      kgEl.value = fmt(lb / LB_PER_KG, 1);
+    } else if (positive(kg) && lb === null) {
+      lbEl.value = fmt(kg * LB_PER_KG, 1);
+    }
+
+    const finalKg = n('weightKg');
+    const finalLb = n('weightLb');
+    if (positive(finalKg) && positive(finalLb)) {
+      setText('weightResult', `Weight in lb: ${fmt(finalLb, 1)} lb • Weight in kg: ${fmt(finalKg, 1)} kg`);
+      syncWeightDependents();
+    }
   }
 
   function calculateSingleDose() {
@@ -73,14 +92,21 @@
     }
     const calculated = weight * dose;
     const capped = positive(max) && calculated > max;
-    if (capped) warnings.push('Calculated dose is greater than the entered max dose. Use the capped dose only if verified in protocol/local direction.');
-    const effective = capped ? max : calculated;
+    if (capped) warnings.push('Calculated dose is greater than the entered max dose. Verify the max dose and use capped values only if confirmed by protocol/local direction.');
+    const hasConcentration = positive(conc) && sameBase(doseUnit, concUnit);
+    const calculatedVolume = hasConcentration ? calculated / conc : null;
+    const cappedVolume = capped && hasConcentration ? max / conc : null;
     const parts = [`Calculated dose: ${fmt(calculated)} ${base}`];
-    if (capped) parts.push(`Capped dose: ${fmt(effective)} ${base}`);
-    if (positive(conc) && sameBase(doseUnit, concUnit)) parts.push(`Volume to administer: ${fmt(effective / conc)} mL`);
+    if (hasConcentration) parts.push(`Calculated volume: ${fmt(calculatedVolume)} mL`);
+    if (capped) parts.push(`Capped dose: ${fmt(max)} ${base}`);
+    if (capped && hasConcentration) parts.push(`Capped volume: ${fmt(cappedVolume)} mL`);
     showWarning('singleWarning', warnings);
     setText('singleResult', parts.join(' • '));
-    setText('singleFormula', `dose = ${fmt(weight)} kg × ${fmt(dose)} ${doseUnit} = ${fmt(calculated)} ${base}${positive(conc) && sameBase(doseUnit, concUnit) ? `\nvolume_mL = ${fmt(effective)} ${base} ÷ ${fmt(conc)} ${concUnit} = ${fmt(effective / conc)} mL` : ''}`);
+    const formulaLines = [`dose = ${fmt(weight)} kg × ${fmt(dose)} ${doseUnit} = ${fmt(calculated)} ${base}`];
+    if (hasConcentration) formulaLines.push(`volume_mL = ${fmt(calculated)} ${base} ÷ ${fmt(conc)} ${concUnit} = ${fmt(calculatedVolume)} mL`);
+    if (capped) formulaLines.push(`max dose entered = ${fmt(max)} ${base}`);
+    if (capped && hasConcentration) formulaLines.push(`capped_volume_mL = ${fmt(max)} ${base} ÷ ${fmt(conc)} ${concUnit} = ${fmt(cappedVolume)} mL`);
+    setText('singleFormula', formulaLines.join('\n'));
   }
 
   function calculateFixed() {
@@ -182,7 +208,7 @@
   function calculateAll() { calculateWeight(); calculateSingleDose(); calculateFixed(); calculateInfusion(); calculateReverse(); calculateDrip(); }
   function clearGroup(group) {
     const groups = {
-      weight: ['weightValue'], single: ['singleWeight', 'singleDose', 'singleMax', 'singleConc'], fixed: ['fixedDose', 'fixedConc'], infusion: ['infWeight', 'infDose', 'infConc'], reverse: ['revWeight', 'revRate', 'revConc'], drip: ['dripRate']
+      weight: ['weightLb', 'weightKg'], single: ['singleWeight', 'singleDose', 'singleMax', 'singleConc'], fixed: ['fixedDose', 'fixedConc'], infusion: ['infWeight', 'infDose', 'infConc'], reverse: ['revWeight', 'revRate', 'revConc'], drip: ['dripRate']
     };
     (groups[group] || []).forEach((id) => { const el = $(id); if (el) el.value = ''; });
     calculateAll();
@@ -192,7 +218,10 @@
     try { await navigator.clipboard.writeText(text); } catch {}
   }
   function init() {
-    fields.forEach((field) => field.addEventListener('input', calculateAll));
+    fields.forEach((field) => field.addEventListener('input', (event) => {
+      if (event.target.id === 'weightLb' || event.target.id === 'weightKg') activeWeightField = event.target.id;
+      calculateAll();
+    }));
     document.addEventListener('click', (event) => {
       const clear = event.target.closest('[data-clear]');
       if (clear) clearGroup(clear.dataset.clear);

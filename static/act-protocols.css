@@ -691,7 +691,7 @@ body {
   align-items: center;
   gap: 14px;
   min-height: 64px;
-  margin: -10px 0 14px;
+  margin: 10px 0 14px;
   padding: 14px 16px;
   border: 2px solid color-mix(in srgb, var(--act-secondary) 70%, var(--act-border));
   border-radius: 20px;
@@ -843,6 +843,11 @@ body {
 .dose-grid.three-col,
 .dose-grid.four-col {
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.weight-stack {
+  grid-template-columns: 1fr;
+  max-width: 520px;
 }
 
 .dose-field {
