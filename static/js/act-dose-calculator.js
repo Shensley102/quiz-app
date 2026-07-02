@@ -2,6 +2,7 @@
   const LB_PER_KG = 2.20462;
   const $ = (id) => document.getElementById(id);
   const fields = Array.from(document.querySelectorAll('input, select'));
+  const DEPENDENT_WEIGHT_IDS = ['singleWeight', 'infWeight', 'revWeight'];
   let activeWeightField = null;
 
   function n(id) {
@@ -35,9 +36,10 @@
   function syncWeightDependents() {
     const kg = weightKgFromConverter();
     if (!kg) return;
-    ['singleWeight', 'infWeight', 'revWeight'].forEach((id) => {
+    const syncedValue = fmt(kg, 1);
+    DEPENDENT_WEIGHT_IDS.forEach((id) => {
       const el = $(id);
-      if (el && !el.value) el.value = fmt(kg, 1);
+      if (el) el.value = syncedValue;
     });
   }
 

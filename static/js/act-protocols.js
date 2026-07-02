@@ -3,9 +3,9 @@
   const SEARCH_URL = '/static/data/act-protocol-search.json';
   const ALIAS_URL = '/static/data/act-medication-aliases.json';
   const MEDICATION_MAP_URL = '/static/data/act-medication-protocol-map.json';
-  const CACHE_NAME = 'act-protocol-pdfs-v1';
+  const CACHE_NAME = 'act-protocol-pdfs-v4';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
-  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false };
+  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false };
   const els = {
     grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), filters: document.getElementById('categoryFilters'),
     count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary')
@@ -141,9 +141,9 @@
   }
   function statusClass(p) { return state.saved.has(p.file) ? 'saved' : state.missing.has(p.file) ? 'error' : state.caching.has(p.file) ? 'caching' : ''; }
   function statusText(p) {
-    if (state.saved.has(p.file)) return 'Saved offline';
+    if (state.saved.has(p.file)) return 'Saved for Offline Use';
     if (state.missing.has(p.file)) return 'Could not save offline — will retry next time the app opens.';
-    if (state.caching.has(p.file)) return 'Downloading for offline use...';
+    if (state.caching.has(p.file)) return 'Downloading';
     return 'Queued for offline download';
   }
   function updateOfflineSummary() {
@@ -176,12 +176,15 @@
       openedAt: Date.now()
     };
   }
-  function saveReturnState(protocol) {
+  function saveListState(extra = {}) {
     try {
-      sessionStorage.setItem(RETURN_STATE_KEY, JSON.stringify({ ...returnState(), openedProtocolId: protocol.id }));
+      sessionStorage.setItem(RETURN_STATE_KEY, JSON.stringify({ ...returnState(), ...extra }));
     } catch (err) {
       console.warn('[ACT Protocols] Could not save return position', err);
     }
+  }
+  function saveReturnState(protocol) {
+    saveListState({ openedProtocolId: protocol.id });
   }
   function loadReturnState() {
     try {
@@ -202,6 +205,12 @@
     els.filters.querySelectorAll('.filter-btn').forEach((button) => {
       button.classList.toggle('active', button.dataset.category === state.category);
     });
+  }
+  function restoreProtocolListState(saved, { restoreScroll = false } = {}) {
+    if (!saved || !state.protocols.length) return;
+    applyRestoredFilters(saved);
+    render();
+    if (restoreScroll) restoreScrollPosition(saved);
   }
   function restoreScrollPosition(saved) {
     if (!saved) return;
@@ -238,19 +247,124 @@
         </div>
       </article>`).join('');
   }
+  function pdfInfoUrl(file) {
+    return `/act-protocols/pdf-info?${new URLSearchParams({ file }).toString()}`;
+  }
+  function pdfPageUrl(file, pageNumber) {
+    return `/act-protocols/pdf-page?${new URLSearchParams({ file, page: String(pageNumber), scale: '2' }).toString()}`;
+  }
+  async function cacheUrl(cache, url) {
+    const response = await fetch(url, { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`${url}: ${response.status} ${response.statusText}`);
+    const body = await response.arrayBuffer();
+    if (!body.byteLength) throw new Error(`${url}: empty response`);
+    await cache.put(url, new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers }));
+    const cached = await caches.match(url);
+    if (!cached?.ok) throw new Error(`${url}: not available in cache after download`);
+    return new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers });
+  }
+  async function getCachedPageCount(file) {
+    const response = await caches.match(pdfInfoUrl(file));
+    if (!response?.ok) return 0;
+    try {
+      const info = await response.json();
+      return Number(info.pageCount || 0);
+    } catch (err) {
+      console.warn('[ACT Protocols] Cached PDF info could not be read', err);
+      return 0;
+    }
+  }
+  async function hasCachedViewerResources(file) {
+    if (!(await isCached(file))) return false;
+    const pageCount = await getCachedPageCount(file);
+    if (!pageCount) return false;
+    const checks = [];
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      checks.push(caches.match(pdfPageUrl(file, pageNumber)).then((response) => Boolean(response?.ok)));
+    }
+    return (await Promise.all(checks)).every(Boolean);
+  }
   async function cachePdf(protocol) {
-    const url = encoded(protocol.file); const cache = await caches.open(CACHE_NAME); const response = await fetch(url, { cache: 'no-cache' });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    await cache.put(url, response.clone()); state.saved.add(protocol.file); state.missing.delete(protocol.file); notifyServiceWorker([url]);
+    const url = encoded(protocol.file);
+    const cache = await caches.open(CACHE_NAME);
+    await cacheUrl(cache, url);
+
+    const infoResponse = await cacheUrl(cache, pdfInfoUrl(protocol.file));
+    const info = await infoResponse.json();
+    const pageCount = Number(info.pageCount || 0);
+    if (!pageCount) throw new Error('PDF has no pages to cache for offline viewing.');
+
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      await cacheUrl(cache, pdfPageUrl(protocol.file, pageNumber));
+    }
+
+    if (!(await hasCachedViewerResources(protocol.file))) throw new Error('PDF viewer resources were not available in cache after download.');
+    state.saved.add(protocol.file);
+    state.missing.delete(protocol.file);
   }
   function notifyServiceWorker(urls) { if (navigator.serviceWorker?.controller) navigator.serviceWorker.controller.postMessage({ type: 'CACHE_URLS', urls }); }
-  async function isCached(file) { if (!('caches' in window)) return false; return Boolean(await caches.match(encoded(file))); }
-  async function refreshSaved() { await Promise.all(state.protocols.map(async (p) => { if (await isCached(p.file)) state.saved.add(p.file); })); }
-  function handleOpen(protocol) {
+  async function isCached(file) {
+    if (!('caches' in window)) return false;
+    const response = await caches.match(encoded(file));
+    return Boolean(response?.ok);
+  }
+  async function refreshSaved() {
+    await Promise.all(state.protocols.map(async (p) => {
+      if (await hasCachedViewerResources(p.file)) {
+        state.saved.add(p.file);
+        state.missing.delete(p.file);
+      } else {
+        state.saved.delete(p.file);
+      }
+    }));
+  }
+  async function reverifyCachedStatuses() {
+    if (state.refreshInProgress || !state.protocols.length || !('caches' in window)) return;
+    state.refreshInProgress = true;
+    try {
+      await refreshSaved();
+      render();
+    } finally {
+      state.refreshInProgress = false;
+    }
+  }
+  function openProtocolViewer(protocol) {
     saveReturnState(protocol);
     const meta = state.resultMeta.get(protocol.id); const page = meta?.reasons?.find(r => r.pages?.length)?.pages?.[0];
     const params = new URLSearchParams({ file: protocol.file, title: `${protocol.id} ${protocol.title}` }); if (page) params.set('page', page);
     window.location.href = `/act-protocols/viewer#${params.toString()}`;
+  }
+  async function handleOpen(protocol) {
+    if (!('caches' in window)) {
+      openProtocolViewer(protocol);
+      return;
+    }
+    if (await hasCachedViewerResources(protocol.file)) {
+      state.saved.add(protocol.file);
+      state.missing.delete(protocol.file);
+      openProtocolViewer(protocol);
+      return;
+    }
+    state.saved.delete(protocol.file);
+    if (!navigator.onLine) {
+      state.missing.add(protocol.file);
+      render();
+      return;
+    }
+    state.caching.add(protocol.file);
+    state.missing.delete(protocol.file);
+    render();
+    try {
+      await cachePdf(protocol);
+      openProtocolViewer(protocol);
+    } catch (err) {
+      state.missing.add(protocol.file);
+      console.warn(`[ACT Protocols] Could not verify ${protocol.file} for offline viewing before opening`, err);
+      openProtocolViewer(protocol);
+    } finally {
+      state.caching.delete(protocol.file);
+      render();
+    }
   }
   async function autoCacheProtocols() {
     if (state.autoCacheStarted) return;
@@ -274,14 +388,21 @@
   }
   function bind() {
     const debouncedRender = debounce(render);
+    const debouncedReverify = debounce(reverifyCachedStatuses, 500);
     updateThemeColor();
     preferredDark?.addEventListener?.('change', updateThemeColor);
-    els.search.addEventListener('input', (e) => { state.query = e.target.value; debouncedRender(); });
+    els.search.addEventListener('input', (e) => {
+      state.query = e.target.value;
+      saveListState();
+      if (!normalize(state.query)) render();
+      else debouncedRender();
+    });
     els.filters.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-category]');
       if (!btn) return;
       state.category = btn.dataset.category;
       els.filters.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+      saveListState();
       render();
     });
     els.grid.addEventListener('click', (e) => {
@@ -290,6 +411,14 @@
       const p = state.protocols.find(x => x.id === btn.dataset.id);
       if (!p) return;
       handleOpen(p);
+    });
+    window.addEventListener('pageshow', (event) => {
+      restoreProtocolListState(loadReturnState(), { restoreScroll: Boolean(event.persisted) });
+      debouncedReverify();
+    });
+    window.addEventListener('online', debouncedReverify);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') debouncedReverify();
     });
   }
   async function loadJson(url) { const response = await fetch(url, { cache: 'no-cache' }); if (!response.ok) throw new Error(`${url}: ${response.status}`); return response.json(); }

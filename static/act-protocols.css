@@ -448,9 +448,9 @@ body {
 }
 
 .offline-status.caching {
-  background: var(--act-info-bg);
-  color: var(--act-info);
-  border-color: var(--act-info);
+  background: var(--act-yellow-soft);
+  color: var(--act-warn);
+  border-color: var(--act-yellow);
 }
 
 .offline-status.error {
