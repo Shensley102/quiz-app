@@ -3,7 +3,7 @@
   const SEARCH_URL = '/static/data/act-protocol-search.json';
   const ALIAS_URL = '/static/data/act-medication-aliases.json';
   const MEDICATION_MAP_URL = '/static/data/act-medication-protocol-map.json';
-  const CACHE_NAME = 'act-protocol-pdfs-v2';
+  const CACHE_NAME = 'act-protocol-pdfs-v3';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
   const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false };
   const els = {
@@ -238,17 +238,60 @@
         </div>
       </article>`).join('');
   }
+  function pdfInfoUrl(file) {
+    return `/act-protocols/pdf-info?${new URLSearchParams({ file }).toString()}`;
+  }
+  function pdfPageUrl(file, pageNumber) {
+    return `/act-protocols/pdf-page?${new URLSearchParams({ file, page: String(pageNumber), scale: '2' }).toString()}`;
+  }
+  async function cacheUrl(cache, url) {
+    const response = await fetch(url, { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`${url}: ${response.status} ${response.statusText}`);
+    const body = await response.arrayBuffer();
+    if (!body.byteLength) throw new Error(`${url}: empty response`);
+    await cache.put(url, new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers }));
+    const cached = await caches.match(url);
+    if (!cached?.ok) throw new Error(`${url}: not available in cache after download`);
+    return new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers });
+  }
+  async function getCachedPageCount(file) {
+    const response = await caches.match(pdfInfoUrl(file));
+    if (!response?.ok) return 0;
+    try {
+      const info = await response.json();
+      return Number(info.pageCount || 0);
+    } catch (err) {
+      console.warn('[ACT Protocols] Cached PDF info could not be read', err);
+      return 0;
+    }
+  }
+  async function hasCachedViewerResources(file) {
+    if (!(await isCached(file))) return false;
+    const pageCount = await getCachedPageCount(file);
+    if (!pageCount) return false;
+    const checks = [];
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      checks.push(caches.match(pdfPageUrl(file, pageNumber)).then((response) => Boolean(response?.ok)));
+    }
+    return (await Promise.all(checks)).every(Boolean);
+  }
   async function cachePdf(protocol) {
     const url = encoded(protocol.file);
     const cache = await caches.open(CACHE_NAME);
-    const response = await fetch(url, { cache: 'no-cache' });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    const pdfBytes = await response.arrayBuffer();
-    await cache.put(url, new Response(pdfBytes, { status: response.status, statusText: response.statusText, headers: response.headers }));
-    if (!(await isCached(protocol.file))) throw new Error('PDF was not available in cache after download.');
+    await cacheUrl(cache, url);
+
+    const infoResponse = await cacheUrl(cache, pdfInfoUrl(protocol.file));
+    const info = await infoResponse.json();
+    const pageCount = Number(info.pageCount || 0);
+    if (!pageCount) throw new Error('PDF has no pages to cache for offline viewing.');
+
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      await cacheUrl(cache, pdfPageUrl(protocol.file, pageNumber));
+    }
+
+    if (!(await hasCachedViewerResources(protocol.file))) throw new Error('PDF viewer resources were not available in cache after download.');
     state.saved.add(protocol.file);
     state.missing.delete(protocol.file);
-    notifyServiceWorker([url]);
   }
   function notifyServiceWorker(urls) { if (navigator.serviceWorker?.controller) navigator.serviceWorker.controller.postMessage({ type: 'CACHE_URLS', urls }); }
   async function isCached(file) {
@@ -256,7 +299,7 @@
     const response = await caches.match(encoded(file));
     return Boolean(response?.ok);
   }
-  async function refreshSaved() { await Promise.all(state.protocols.map(async (p) => { if (await isCached(p.file)) state.saved.add(p.file); })); }
+  async function refreshSaved() { await Promise.all(state.protocols.map(async (p) => { if (await hasCachedViewerResources(p.file)) state.saved.add(p.file); })); }
   function handleOpen(protocol) {
     saveReturnState(protocol);
     const meta = state.resultMeta.get(protocol.id); const page = meta?.reasons?.find(r => r.pages?.length)?.pages?.[0];
