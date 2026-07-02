@@ -3,9 +3,9 @@
   const SEARCH_URL = '/static/data/act-protocol-search.json';
   const ALIAS_URL = '/static/data/act-medication-aliases.json';
   const MEDICATION_MAP_URL = '/static/data/act-medication-protocol-map.json';
-  const CACHE_NAME = 'act-protocol-pdfs-v3';
+  const CACHE_NAME = 'act-protocol-pdfs-v4';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
-  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false };
+  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false };
   const els = {
     grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), filters: document.getElementById('categoryFilters'),
     count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary')
@@ -299,12 +299,63 @@
     const response = await caches.match(encoded(file));
     return Boolean(response?.ok);
   }
-  async function refreshSaved() { await Promise.all(state.protocols.map(async (p) => { if (await hasCachedViewerResources(p.file)) state.saved.add(p.file); })); }
-  function handleOpen(protocol) {
+  async function refreshSaved() {
+    await Promise.all(state.protocols.map(async (p) => {
+      if (await hasCachedViewerResources(p.file)) {
+        state.saved.add(p.file);
+        state.missing.delete(p.file);
+      } else {
+        state.saved.delete(p.file);
+      }
+    }));
+  }
+  async function reverifyCachedStatuses() {
+    if (state.refreshInProgress || !state.protocols.length || !('caches' in window)) return;
+    state.refreshInProgress = true;
+    try {
+      await refreshSaved();
+      render();
+    } finally {
+      state.refreshInProgress = false;
+    }
+  }
+  function openProtocolViewer(protocol) {
     saveReturnState(protocol);
     const meta = state.resultMeta.get(protocol.id); const page = meta?.reasons?.find(r => r.pages?.length)?.pages?.[0];
     const params = new URLSearchParams({ file: protocol.file, title: `${protocol.id} ${protocol.title}` }); if (page) params.set('page', page);
     window.location.href = `/act-protocols/viewer#${params.toString()}`;
+  }
+  async function handleOpen(protocol) {
+    if (!('caches' in window)) {
+      openProtocolViewer(protocol);
+      return;
+    }
+    if (await hasCachedViewerResources(protocol.file)) {
+      state.saved.add(protocol.file);
+      state.missing.delete(protocol.file);
+      openProtocolViewer(protocol);
+      return;
+    }
+    state.saved.delete(protocol.file);
+    if (!navigator.onLine) {
+      state.missing.add(protocol.file);
+      render();
+      return;
+    }
+    state.caching.add(protocol.file);
+    state.missing.delete(protocol.file);
+    render();
+    try {
+      await cachePdf(protocol);
+      openProtocolViewer(protocol);
+    } catch (err) {
+      state.missing.add(protocol.file);
+      console.warn(`[ACT Protocols] Could not verify ${protocol.file} for offline viewing before opening`, err);
+      openProtocolViewer(protocol);
+    } finally {
+      state.caching.delete(protocol.file);
+      render();
+    }
   }
   async function autoCacheProtocols() {
     if (state.autoCacheStarted) return;
@@ -328,6 +379,7 @@
   }
   function bind() {
     const debouncedRender = debounce(render);
+    const debouncedReverify = debounce(reverifyCachedStatuses, 500);
     updateThemeColor();
     preferredDark?.addEventListener?.('change', updateThemeColor);
     els.search.addEventListener('input', (e) => { state.query = e.target.value; debouncedRender(); });
@@ -344,6 +396,11 @@
       const p = state.protocols.find(x => x.id === btn.dataset.id);
       if (!p) return;
       handleOpen(p);
+    });
+    window.addEventListener('pageshow', debouncedReverify);
+    window.addEventListener('online', debouncedReverify);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') debouncedReverify();
     });
   }
   async function loadJson(url) { const response = await fetch(url, { cache: 'no-cache' }); if (!response.ok) throw new Error(`${url}: ${response.status}`); return response.json(); }
