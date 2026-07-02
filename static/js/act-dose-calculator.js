@@ -40,13 +40,7 @@
     const syncedValue = fmt(kg, 1);
     DEPENDENT_WEIGHT_IDS.forEach((id) => {
       const el = $(id);
-      if (!el) return;
-      const wasAutoSynced = el.dataset.autoWeight === 'true';
-      const matchesPreviousAutoValue = Boolean(lastSyncedWeightValue) && el.value === lastSyncedWeightValue;
-      if (!el.value || wasAutoSynced || matchesPreviousAutoValue) {
-        el.value = syncedValue;
-        el.dataset.autoWeight = 'true';
-      }
+      if (el) el.value = syncedValue;
     });
     lastSyncedWeightValue = syncedValue;
   }
