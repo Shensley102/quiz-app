@@ -176,12 +176,15 @@
       openedAt: Date.now()
     };
   }
-  function saveReturnState(protocol) {
+  function saveListState(extra = {}) {
     try {
-      sessionStorage.setItem(RETURN_STATE_KEY, JSON.stringify({ ...returnState(), openedProtocolId: protocol.id }));
+      sessionStorage.setItem(RETURN_STATE_KEY, JSON.stringify({ ...returnState(), ...extra }));
     } catch (err) {
       console.warn('[ACT Protocols] Could not save return position', err);
     }
+  }
+  function saveReturnState(protocol) {
+    saveListState({ openedProtocolId: protocol.id });
   }
   function loadReturnState() {
     try {
@@ -202,6 +205,12 @@
     els.filters.querySelectorAll('.filter-btn').forEach((button) => {
       button.classList.toggle('active', button.dataset.category === state.category);
     });
+  }
+  function restoreProtocolListState(saved, { restoreScroll = false } = {}) {
+    if (!saved || !state.protocols.length) return;
+    applyRestoredFilters(saved);
+    render();
+    if (restoreScroll) restoreScrollPosition(saved);
   }
   function restoreScrollPosition(saved) {
     if (!saved) return;
@@ -382,12 +391,18 @@
     const debouncedReverify = debounce(reverifyCachedStatuses, 500);
     updateThemeColor();
     preferredDark?.addEventListener?.('change', updateThemeColor);
-    els.search.addEventListener('input', (e) => { state.query = e.target.value; debouncedRender(); });
+    els.search.addEventListener('input', (e) => {
+      state.query = e.target.value;
+      saveListState();
+      if (!normalize(state.query)) render();
+      else debouncedRender();
+    });
     els.filters.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-category]');
       if (!btn) return;
       state.category = btn.dataset.category;
       els.filters.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+      saveListState();
       render();
     });
     els.grid.addEventListener('click', (e) => {
@@ -397,7 +412,10 @@
       if (!p) return;
       handleOpen(p);
     });
-    window.addEventListener('pageshow', debouncedReverify);
+    window.addEventListener('pageshow', (event) => {
+      restoreProtocolListState(loadReturnState(), { restoreScroll: Boolean(event.persisted) });
+      debouncedReverify();
+    });
     window.addEventListener('online', debouncedReverify);
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') debouncedReverify();
