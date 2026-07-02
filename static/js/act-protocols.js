@@ -3,7 +3,7 @@
   const SEARCH_URL = '/static/data/act-protocol-search.json';
   const ALIAS_URL = '/static/data/act-medication-aliases.json';
   const MEDICATION_MAP_URL = '/static/data/act-medication-protocol-map.json';
-  const CACHE_NAME = 'act-protocol-pdfs-v1';
+  const CACHE_NAME = 'act-protocol-pdfs-v2';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
   const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false };
   const els = {
@@ -141,9 +141,9 @@
   }
   function statusClass(p) { return state.saved.has(p.file) ? 'saved' : state.missing.has(p.file) ? 'error' : state.caching.has(p.file) ? 'caching' : ''; }
   function statusText(p) {
-    if (state.saved.has(p.file)) return 'Saved offline';
+    if (state.saved.has(p.file)) return 'Saved for Offline Use';
     if (state.missing.has(p.file)) return 'Could not save offline — will retry next time the app opens.';
-    if (state.caching.has(p.file)) return 'Downloading for offline use...';
+    if (state.caching.has(p.file)) return 'Downloading';
     return 'Queued for offline download';
   }
   function updateOfflineSummary() {
@@ -239,12 +239,23 @@
       </article>`).join('');
   }
   async function cachePdf(protocol) {
-    const url = encoded(protocol.file); const cache = await caches.open(CACHE_NAME); const response = await fetch(url, { cache: 'no-cache' });
+    const url = encoded(protocol.file);
+    const cache = await caches.open(CACHE_NAME);
+    const response = await fetch(url, { cache: 'no-cache' });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    await cache.put(url, response.clone()); state.saved.add(protocol.file); state.missing.delete(protocol.file); notifyServiceWorker([url]);
+    const pdfBytes = await response.arrayBuffer();
+    await cache.put(url, new Response(pdfBytes, { status: response.status, statusText: response.statusText, headers: response.headers }));
+    if (!(await isCached(protocol.file))) throw new Error('PDF was not available in cache after download.');
+    state.saved.add(protocol.file);
+    state.missing.delete(protocol.file);
+    notifyServiceWorker([url]);
   }
   function notifyServiceWorker(urls) { if (navigator.serviceWorker?.controller) navigator.serviceWorker.controller.postMessage({ type: 'CACHE_URLS', urls }); }
-  async function isCached(file) { if (!('caches' in window)) return false; return Boolean(await caches.match(encoded(file))); }
+  async function isCached(file) {
+    if (!('caches' in window)) return false;
+    const response = await caches.match(encoded(file));
+    return Boolean(response?.ok);
+  }
   async function refreshSaved() { await Promise.all(state.protocols.map(async (p) => { if (await isCached(p.file)) state.saved.add(p.file); })); }
   function handleOpen(protocol) {
     saveReturnState(protocol);
