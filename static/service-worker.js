@@ -8,7 +8,9 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.7.10';
+const CACHE_VERSION = 'v2.7.16';
+const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v5';
+const ACT_PROTOCOL_CACHE_PREFIX = 'act-protocol-pdfs-';
 const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `study-guru-data-${CACHE_VERSION}`;
 
@@ -139,11 +141,11 @@ const CFRN_CATEGORY_ROUTES = [
 const JSON_PRECACHE = [
   // NCLEX Comprehensive
   '/modules/NCLEX/NCLEX_Comprehensive_Master_Categorized.json',
-  
+
   // Lab Values
   '/modules/Lab_Values/NCLEX_Lab_Values.json',
   '/modules/Lab_Values/NCLEX_Lab_Values_Fill_In_The_Blank.json',
-  
+
   // Patient Care Management
   '/modules/Patient_Care_Management/Learning_Questions_Module_1_2.json',
   '/modules/Patient_Care_Management/Learning_Questions_Module_3_4.json',
@@ -151,7 +153,7 @@ const JSON_PRECACHE = [
   '/modules/Patient_Care_Management/Module_2.json',
   '/modules/Patient_Care_Management/Module_3.json',
   '/modules/Patient_Care_Management/Module_4.json',
-  
+
   // Pharmacology
   '/modules/Pharmacology/Comprehensive_Pharmacology.json',
   '/modules/Pharmacology/Pharm_Quiz_1.json',
@@ -170,7 +172,7 @@ const JSON_PRECACHE = [
   '/modules/Pharmacology/Pain_Management_Pharm.json',
   '/modules/Pharmacology/Renal_Electrolytes_Pharm.json',
   '/modules/Pharmacology/Respiratory_Pharm.json',
-  
+
   // Nursing Certifications
   '/modules/Nursing_Certifications/CCRN_Test_1_Combined_QA.json',
   '/modules/Nursing_Certifications/CCRN_Test_2_Combined_QA.json',
@@ -181,7 +183,7 @@ const JSON_PRECACHE = [
 // Install event - precache assets
 self.addEventListener('install', (event) => {
   console.log('[SW] Installing service worker version:', CACHE_VERSION);
-  
+
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
@@ -202,7 +204,7 @@ self.addEventListener('install', (event) => {
         console.log('[SW] Caching HTML pages');
         // Cache HTML pages (allow failures for pages that may not exist yet)
         return Promise.allSettled(
-          [...HTML_PAGES, ...NCLEX_CATEGORY_ROUTES, ...CFRN_CATEGORY_ROUTES].map(url => 
+          [...HTML_PAGES, ...NCLEX_CATEGORY_ROUTES, ...CFRN_CATEGORY_ROUTES].map(url =>
             cache.add(url).catch(err => console.log(`[SW] Could not cache ${url}:`, err.message))
           )
         );
@@ -214,7 +216,7 @@ self.addEventListener('install', (event) => {
         console.log('[SW] Caching JSON data files');
         // Cache JSON files (allow failures for files that may not exist)
         return Promise.allSettled(
-          JSON_PRECACHE.map(url => 
+          JSON_PRECACHE.map(url =>
             cache.add(url).catch(err => console.log(`[SW] Could not cache ${url}:`, err.message))
           )
         );
@@ -241,15 +243,16 @@ self.addEventListener('install', (event) => {
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
   console.log('[SW] Activating service worker...');
-  
+
   event.waitUntil(
     caches.keys()
       .then((cacheNames) => {
         return Promise.all(
           cacheNames
-            .filter((name) => (name.startsWith('nurse-study-hub-') || name.startsWith('study-guru-')) && 
-                             name !== CACHE_NAME && 
-                             name !== DATA_CACHE_NAME)
+            .filter((name) => ((name.startsWith('nurse-study-hub-') || name.startsWith('study-guru-')) &&
+                             name !== CACHE_NAME &&
+                             name !== DATA_CACHE_NAME) ||
+                             (name.startsWith(ACT_PROTOCOL_CACHE_PREFIX) && name !== ACT_PROTOCOL_CACHE_NAME))
             .map((name) => {
               console.log('[SW] Deleting old cache:', name);
               return caches.delete(name);
@@ -281,7 +284,7 @@ function isJsonData(pathname) {
 // Helper function to determine if a request is for a question image
 function isQuestionImage(pathname) {
   const imageExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp'];
-  if (pathname.startsWith('/static/images/cfrn/') || 
+  if (pathname.startsWith('/static/images/cfrn/') ||
       pathname.startsWith('/static/images/ccrn/') ||
       pathname.startsWith('/static/images/nclex/') ||
       pathname.startsWith('/static/images/quiz/')) {
@@ -294,22 +297,22 @@ function isQuestionImage(pathname) {
 async function networkFirstWithCache(request, cacheName) {
   try {
     const networkResponse = await fetch(request);
-    
+
     // Cache successful responses
     if (networkResponse.ok) {
       const cache = await caches.open(cacheName);
       cache.put(request, networkResponse.clone());
     }
-    
+
     return networkResponse;
   } catch (error) {
     console.log('[SW] Network failed, trying cache:', request.url);
-    
+
     const cachedResponse = await caches.match(request);
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     // Return offline fallback for navigation requests
     if (request.mode === 'navigate') {
       const offlinePage = await caches.match('/');
@@ -317,7 +320,7 @@ async function networkFirstWithCache(request, cacheName) {
         return offlinePage;
       }
     }
-    
+
     throw error;
   }
 }
@@ -325,7 +328,7 @@ async function networkFirstWithCache(request, cacheName) {
 // Cache first strategy with network fallback
 async function cacheFirstWithNetwork(request, cacheName) {
   const cachedResponse = await caches.match(request);
-  
+
   if (cachedResponse) {
     // Refresh cache in background (stale-while-revalidate)
     fetch(request)
@@ -338,19 +341,19 @@ async function cacheFirstWithNetwork(request, cacheName) {
       .catch(() => {
         // Network failed, but we have cache - that's fine
       });
-    
+
     return cachedResponse;
   }
-  
+
   // Not in cache, fetch from network
   try {
     const networkResponse = await fetch(request);
-    
+
     if (networkResponse.ok) {
       const cache = await caches.open(cacheName);
       cache.put(request, networkResponse.clone());
     }
-    
+
     return networkResponse;
   } catch (error) {
     console.error('[SW] Both cache and network failed for:', request.url);
@@ -361,24 +364,24 @@ async function cacheFirstWithNetwork(request, cacheName) {
 // Fetch event - handle requests
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
-  
+
   // Skip non-GET requests
   if (event.request.method !== 'GET') {
     return;
   }
-  
+
   // Skip external requests
   if (!url.origin.includes(self.location.origin)) {
     return;
   }
-  
+
   // Skip API requests (let them go to network)
   if (url.pathname.startsWith('/api/')) {
     return;
   }
-  
+
   const pathname = url.pathname;
-  
+
   // Strategy based on resource type
   if (isActProtocolPdf(pathname)) {
     // ACT protocol PDFs: cache first so saved protocols open offline.
@@ -403,7 +406,7 @@ self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
-  
+
   if (event.data && event.data.type === 'CACHE_URLS') {
     const urls = event.data.urls || [];
     caches.open(DATA_CACHE_NAME)
@@ -421,14 +424,14 @@ self.addEventListener('message', (event) => {
         console.error('[SW] Failed to cache additional URLs:', err);
       });
   }
-  
+
   // Cache question images on demand
   if (event.data && event.data.type === 'CACHE_IMAGES') {
     const urls = event.data.urls || [];
     caches.open(CACHE_NAME)
       .then((cache) => {
         return Promise.allSettled(
-          urls.map(url => 
+          urls.map(url =>
             cache.add(url).catch(err => console.log(`[SW] Could not cache image ${url}:`, err.message))
           )
         );
@@ -440,7 +443,7 @@ self.addEventListener('message', (event) => {
         console.error('[SW] Failed to cache question images:', err);
       });
   }
-  
+
   if (event.data && event.data.type === 'GET_VERSION') {
     event.source.postMessage({
       type: 'VERSION',
@@ -462,7 +465,7 @@ self.addEventListener('push', (event) => {
   if (event.data) {
     const data = event.data.json();
     console.log('[SW] Push received:', data);
-    
+
     event.waitUntil(
       self.registration.showNotification(data.title || 'Study Guru', {
         body: data.body || 'You have a new notification',
@@ -477,7 +480,7 @@ self.addEventListener('push', (event) => {
 // Notification click handler
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  
+
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true })
       .then((clientList) => {

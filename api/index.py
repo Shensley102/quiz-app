@@ -509,35 +509,48 @@ def act_protocol_viewer():
         return jsonify({'error': str(e)}), 500
 
 
+def act_protocol_pdf_error(message, status=400):
+    return jsonify({'success': False, 'error': message}), status
+
+
 @app.route('/act-protocols/pdf-info')
 def act_protocol_pdf_info():
-    pdf_path = resolve_act_protocol_pdf(request.args.get('file', ''))
+    requested_file = request.args.get('file', '')
+    if not requested_file:
+        return act_protocol_pdf_error('Missing ACT protocol PDF file parameter.', 400)
+    pdf_path = resolve_act_protocol_pdf(requested_file)
     if not pdf_path:
-        return jsonify({'error': 'Invalid or missing ACT protocol PDF.'}), 404
+        return act_protocol_pdf_error('Invalid ACT protocol PDF path.', 404)
     try:
         import fitz
         with fitz.open(pdf_path) as doc:
-            return jsonify({'pageCount': doc.page_count})
+            return jsonify({'success': True, 'page_count': doc.page_count, 'pageCount': doc.page_count})
     except Exception as e:
         print(f"Error reading ACT protocol PDF info: {e}")
-        return jsonify({'error': 'Unable to read ACT protocol PDF.'}), 500
+        return act_protocol_pdf_error('Unable to read ACT protocol PDF.', 500)
 
 
 @app.route('/act-protocols/pdf-page')
 def act_protocol_pdf_page():
-    pdf_path = resolve_act_protocol_pdf(request.args.get('file', ''))
+    requested_file = request.args.get('file', '')
+    if not requested_file:
+        return act_protocol_pdf_error('Missing ACT protocol PDF file parameter.', 400)
+    pdf_path = resolve_act_protocol_pdf(requested_file)
     if not pdf_path:
-        return jsonify({'error': 'Invalid or missing ACT protocol PDF.'}), 404
+        return act_protocol_pdf_error('Invalid ACT protocol PDF path.', 404)
     try:
-        page_number = max(1, int(request.args.get('page', '1')))
-        scale = min(3.0, max(1.0, float(request.args.get('scale', '2'))))
+        page_number = int(request.args.get('page', '1'))
+        scale = float(request.args.get('scale', '2'))
     except ValueError:
-        return jsonify({'error': 'Invalid page or scale.'}), 400
+        return act_protocol_pdf_error('Invalid page or scale.', 400)
+    if page_number < 1:
+        return act_protocol_pdf_error('Invalid page number.', 400)
+    scale = min(3.0, max(1.0, scale))
     try:
         import fitz
         with fitz.open(pdf_path) as doc:
             if page_number > doc.page_count:
-                return jsonify({'error': 'Page out of range.'}), 404
+                return act_protocol_pdf_error('Page out of range.', 404)
             page = doc.load_page(page_number - 1)
             pix = page.get_pixmap(matrix=fitz.Matrix(scale, scale), alpha=False)
             png = BytesIO(pix.tobytes('png'))
@@ -547,7 +560,7 @@ def act_protocol_pdf_page():
             return response
     except Exception as e:
         print(f"Error rendering ACT protocol PDF page: {e}")
-        return jsonify({'error': 'Unable to render ACT protocol PDF page.'}), 500
+        return act_protocol_pdf_error('Unable to render ACT protocol PDF page.', 500)
 
 
 @app.route('/paper-prompt-builder')

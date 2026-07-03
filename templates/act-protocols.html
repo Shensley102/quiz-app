@@ -41,6 +41,12 @@
       <p>Search ACT protocol PDFs and let the app cache them automatically for offline clinical reference.</p>
       <div class="act-actions">
         <span id="offlineSummary" class="save-all-status" role="status" aria-live="polite">Checking offline cache status...</span>
+        <div class="act-cache-controls" aria-label="Offline cache controls">
+          <button id="saveAllOfflineBtn" class="btn btn-secondary" type="button">Save All Offline</button>
+          <button id="retryFailedBtn" class="btn btn-outline" type="button">Retry Failed Downloads</button>
+          <button id="refreshOfflineBtn" class="btn btn-outline" type="button">Refresh/Update Offline Protocols</button>
+          <button id="clearActCacheBtn" class="btn btn-outline" type="button">Clear ACT Offline Cache</button>
+        </div>
       </div>
       <p class="act-search-note">Search results are based on indexed protocol text and medication aliases. Always verify medication details, indications, contraindications, and dosing in the opened protocol PDF.</p>
     </header>
@@ -54,17 +60,26 @@
       <span class="dose-calculator-cta-arrow" aria-hidden="true">→</span>
     </a>
 
+    <section id="installActHelp" class="act-install-help hidden" aria-label="Install ACT Protocols help">
+      <div>
+        <strong>Install ACT Protocols</strong>
+        <p id="installActInstructions">Install this PWA for quicker offline access. On iPhone/iPad, open in Safari, tap Share, then Add to Home Screen.</p>
+      </div>
+      <button id="installActBtn" class="btn btn-secondary hidden" type="button">Install ACT Protocols</button>
+      <button id="dismissInstallActBtn" class="btn btn-outline" type="button" aria-label="Dismiss install guidance">Dismiss</button>
+    </section>
+
     <section class="act-controls" aria-label="Protocol search and filters">
       <label class="search-label" for="protocolSearch">Search protocols</label>
       <input id="protocolSearch" class="protocol-search" type="search" placeholder="Search by title, ID, medication or alias (Keppra, Versed), category, or tags..." autocomplete="off">
       <div id="categoryFilters" class="category-filters" aria-label="Filter by category">
         <button class="filter-btn active" type="button" data-category="All">All</button>
-        <button class="filter-btn" type="button" data-category="Cardiac">Cardiac</button>
         <button class="filter-btn" type="button" data-category="General">General</button>
         <button class="filter-btn" type="button" data-category="Medical">Medical</button>
+        <button class="filter-btn" type="button" data-category="Cardiac">Cardiac</button>
+        <button class="filter-btn" type="button" data-category="Trauma">Trauma</button>
         <button class="filter-btn" type="button" data-category="Pediatric">Pediatric</button>
         <button class="filter-btn" type="button" data-category="Procedures">Procedures</button>
-        <button class="filter-btn" type="button" data-category="Trauma">Trauma</button>
       </div>
     </section>
 
