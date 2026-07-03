@@ -332,6 +332,44 @@
     }
     return (await Promise.all(checks)).every(Boolean);
   }
+  function pdfInfoUrl(file) {
+    return `/act-protocols/pdf-info?${new URLSearchParams({ file }).toString()}`;
+  }
+  function pdfPageUrl(file, pageNumber) {
+    return `/act-protocols/pdf-page?${new URLSearchParams({ file, page: String(pageNumber), scale: '2' }).toString()}`;
+  }
+  async function cacheUrl(cache, url) {
+    const response = await fetch(url, { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`${url}: ${response.status} ${response.statusText}`);
+    const body = await response.arrayBuffer();
+    if (!body.byteLength) throw new Error(`${url}: empty response`);
+    await cache.put(url, new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers }));
+    const cached = await cache.match(url);
+    if (!cached?.ok) throw new Error(`${url}: not available in ACT cache after download`);
+    return new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers });
+  }
+  async function getCachedPageCount(file) {
+    const cache = await caches.open(CACHE_NAME);
+    const response = await cache.match(pdfInfoUrl(file));
+    if (!response?.ok) return 0;
+    try {
+      const info = await response.json();
+      return Number(info.pageCount || 0);
+    } catch (err) {
+      console.warn('[ACT Protocols] Cached PDF info could not be read', err);
+      return 0;
+    }
+  }
+  async function hasCachedViewerResources(file) {
+    if (!(await isCached(file))) return false;
+    const pageCount = await getCachedPageCount(file);
+    if (!pageCount) return false;
+    const checks = [];
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      checks.push(caches.open(CACHE_NAME).then((cache) => cache.match(pdfPageUrl(file, pageNumber))).then((response) => Boolean(response?.ok)));
+    }
+    return (await Promise.all(checks)).every(Boolean);
+  }
   async function cachePdf(protocol) {
     const url = encoded(protocol.file);
     const cache = await caches.open(CACHE_NAME);
