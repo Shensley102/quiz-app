@@ -4,6 +4,7 @@
   const fields = Array.from(document.querySelectorAll('input, select'));
   const DEPENDENT_WEIGHT_IDS = ['singleWeight', 'infWeight', 'revWeight'];
   let activeWeightField = null;
+  let lastSyncedWeightValue = '';
 
   function n(id) {
     const value = Number.parseFloat($(id)?.value || '');
@@ -47,6 +48,7 @@
       const el = $(id);
       if (el) el.value = syncedValue;
     });
+    lastSyncedWeightValue = syncedValue;
   }
 
   function calculateWeight() {
@@ -218,7 +220,7 @@
     const groups = {
       weight: ['weightLb', 'weightKg'], single: ['singleWeight', 'singleDose', 'singleMax', 'singleConc'], fixed: ['fixedDose', 'fixedConc'], infusion: ['infWeight', 'infDose', 'infConc'], reverse: ['revWeight', 'revRate', 'revConc'], drip: ['dripRate']
     };
-    (groups[group] || []).forEach((id) => { const el = $(id); if (el) el.value = ''; });
+    (groups[group] || []).forEach((id) => { const el = $(id); if (el) { el.value = ''; delete el.dataset.autoWeight; } });
     calculateAll();
   }
   async function copyResult(id) {
@@ -227,7 +229,12 @@
   }
   function init() {
     fields.forEach((field) => field.addEventListener('input', (event) => {
-      if (event.target.id === 'weightLb' || event.target.id === 'weightKg') activeWeightField = event.target.id;
+      if (event.target.id === 'weightLb' || event.target.id === 'weightKg') {
+        activeWeightField = event.target.id;
+      } else if (DEPENDENT_WEIGHT_IDS.includes(event.target.id)) {
+        if (event.target.value) delete event.target.dataset.autoWeight;
+        else event.target.dataset.autoWeight = 'true';
+      }
       calculateAll();
     }));
     document.addEventListener('click', (event) => {
