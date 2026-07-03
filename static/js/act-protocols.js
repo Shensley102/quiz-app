@@ -5,6 +5,7 @@
   const MEDICATION_MAP_URL = '/static/data/act-medication-protocol-map.json';
   const CACHE_NAME = 'act-protocol-pdfs-v5';
   const CACHE_PREFIX = 'act-protocol-pdfs-';
+  const CATEGORY_ORDER = ['General', 'Medical', 'Cardiac', 'Trauma', 'Pediatric', 'Procedures'];
   const INSTALL_DISMISSED_KEY = 'act-protocols-install-dismissed';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
   const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', deferredInstallPrompt: null };
@@ -18,6 +19,19 @@
   const normalize = (text) => (text || '').toString().toLowerCase().normalize('NFKD').replace(/[\u2010-\u2015]/g, '-').replace(/\s+/g, ' ').trim();
   const escapeHtml = (text) => (text || '').toString().replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
   const debounce = (fn, wait = 180) => { let id; return (...args) => { clearTimeout(id); id = setTimeout(() => fn(...args), wait); }; };
+  function categoryRank(category) {
+    const rank = CATEGORY_ORDER.indexOf(category);
+    return rank === -1 ? CATEGORY_ORDER.length : rank;
+  }
+  function compareProtocolEntries(a, b, query) {
+    const categoryDelta = categoryRank(a.protocol.category) - categoryRank(b.protocol.category);
+    if (categoryDelta) return categoryDelta;
+    if (query) {
+      const scoreDelta = b.score - a.score;
+      if (scoreDelta) return scoreDelta;
+    }
+    return a.protocol.title.localeCompare(b.protocol.title) || a.protocol.id.localeCompare(b.protocol.id);
+  }
 
   const THEME_COLORS = { light: '#FFFFFF', dark: '#0B0F14' };
   const preferredDark = window.matchMedia?.('(prefers-color-scheme: dark)');
@@ -162,7 +176,7 @@
       const match = matchProtocol(p, q);
       if (match) { state.resultMeta.set(p.id, match); matches.push({ protocol: p, score: match.score }); }
     }
-    return matches.sort((a, b) => b.score - a.score || a.protocol.title.localeCompare(b.protocol.title)).map(x => x.protocol);
+    return matches.sort((a, b) => compareProtocolEntries(a, b, q)).map(x => x.protocol);
   }
   function statusClass(p) { return state.saved.has(p.file) ? 'saved' : state.missing.has(p.file) ? 'error' : state.caching.has(p.file) ? 'caching' : ''; }
   function statusText(p) {
@@ -262,7 +276,13 @@
     els.count.textContent = `${list.length} of ${state.protocols.length} protocols shown${state.searchReady ? '' : ' (metadata search)'}`;
     updateOfflineSummary();
     if (!list.length) { els.grid.innerHTML = '<div class="empty-state">No protocols match your search and filter.</div>'; return; }
-    els.grid.innerHTML = list.map(p => `
+    let currentCategory = '';
+    els.grid.innerHTML = list.map((p) => {
+      const heading = p.category !== currentCategory
+        ? `<div class="protocol-group-heading" role="heading" aria-level="2">${escapeHtml(p.category)}</div>`
+        : '';
+      currentCategory = p.category;
+      return `${heading}
       <article class="protocol-card" data-file="${escapeHtml(p.file)}">
         <div class="protocol-meta"><span class="protocol-pill protocol-id">${escapeHtml(p.id)}</span><span class="protocol-pill">${escapeHtml(p.category)}</span></div>
         <h2>${escapeHtml(p.title)}</h2>
@@ -271,7 +291,46 @@
         <div class="protocol-buttons">
           <button class="btn btn-outline" type="button" data-action="open" data-id="${escapeHtml(p.id)}">Open PDF</button>
         </div>
-      </article>`).join('');
+      </article>`;
+    }).join('');
+  }
+  function pdfInfoUrl(file) {
+    return `/act-protocols/pdf-info?${new URLSearchParams({ file }).toString()}`;
+  }
+  function pdfPageUrl(file, pageNumber) {
+    return `/act-protocols/pdf-page?${new URLSearchParams({ file, page: String(pageNumber), scale: '2' }).toString()}`;
+  }
+  async function cacheUrl(cache, url) {
+    const response = await fetch(url, { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`${url}: ${response.status} ${response.statusText}`);
+    const body = await response.arrayBuffer();
+    if (!body.byteLength) throw new Error(`${url}: empty response`);
+    await cache.put(url, new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers }));
+    const cached = await cache.match(url);
+    if (!cached?.ok) throw new Error(`${url}: not available in ACT cache after download`);
+    return new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers });
+  }
+  async function getCachedPageCount(file) {
+    const cache = await caches.open(CACHE_NAME);
+    const response = await cache.match(pdfInfoUrl(file));
+    if (!response?.ok) return 0;
+    try {
+      const info = await response.json();
+      return Number(info.pageCount || 0);
+    } catch (err) {
+      console.warn('[ACT Protocols] Cached PDF info could not be read', err);
+      return 0;
+    }
+  }
+  async function hasCachedViewerResources(file) {
+    if (!(await isCached(file))) return false;
+    const pageCount = await getCachedPageCount(file);
+    if (!pageCount) return false;
+    const checks = [];
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      checks.push(caches.open(CACHE_NAME).then((cache) => cache.match(pdfPageUrl(file, pageNumber))).then((response) => Boolean(response?.ok)));
+    }
+    return (await Promise.all(checks)).every(Boolean);
   }
   function pdfInfoUrl(file) {
     return `/act-protocols/pdf-info?${new URLSearchParams({ file }).toString()}`;

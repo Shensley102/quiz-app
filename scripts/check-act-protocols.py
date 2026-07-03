@@ -13,6 +13,7 @@ protocols = json.loads((ROOT / 'static/data/act-protocols.json').read_text())
 search = json.loads((ROOT / 'static/data/act-protocol-search.json').read_text())
 protocol_by_id = {record['id']: record for record in protocols}
 search_by_id = {record['id']: record for record in search}
+expected_categories = ['General', 'Medical', 'Cardiac', 'Trauma', 'Pediatric', 'Procedures']
 
 def assert_true(value, message):
     if not value:
@@ -28,6 +29,7 @@ assert_true(has_exact_tag('3203-C010', 'STEMI'), 'STEMI exact tag missing')
 assert_true(has_exact_tag('3203-G008', 'RSI'), 'RSI exact tag missing')
 assert_true('aspirin' in search_by_id['3203-C001']['normalizedText'], 'Aspirin text missing from ACS index')
 assert_true('levetiracetam' in search_by_id['3203-M015']['normalizedText'], 'Keppra/levetiracetam text missing from seizure index')
+assert_true(all(category in {p['category'] for p in protocols} for category in expected_categories), 'Expected ACT category fixture missing')
 
 valid_file = protocol_by_id['3203-C001']['file']
 with app.test_client() as client:
