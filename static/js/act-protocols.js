@@ -3,12 +3,16 @@
   const SEARCH_URL = '/static/data/act-protocol-search.json';
   const ALIAS_URL = '/static/data/act-medication-aliases.json';
   const MEDICATION_MAP_URL = '/static/data/act-medication-protocol-map.json';
-  const CACHE_NAME = 'act-protocol-pdfs-v1';
+  const CACHE_NAME = 'act-protocol-pdfs-v5';
+  const CACHE_PREFIX = 'act-protocol-pdfs-';
+  const INSTALL_DISMISSED_KEY = 'act-protocols-install-dismissed';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
-  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false };
+  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', deferredInstallPrompt: null };
   const els = {
     grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), filters: document.getElementById('categoryFilters'),
-    count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary')
+    count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary'),
+    saveAllBtn: document.getElementById('saveAllOfflineBtn'), retryBtn: document.getElementById('retryFailedBtn'), refreshBtn: document.getElementById('refreshOfflineBtn'), clearCacheBtn: document.getElementById('clearActCacheBtn'),
+    installHelp: document.getElementById('installActHelp'), installBtn: document.getElementById('installActBtn'), dismissInstallBtn: document.getElementById('dismissInstallActBtn')
   };
   const encoded = (url) => encodeURI(url);
   const normalize = (text) => (text || '').toString().toLowerCase().normalize('NFKD').replace(/[\u2010-\u2015]/g, '-').replace(/\s+/g, ' ').trim();
@@ -34,6 +38,18 @@
   }
   function metadataText(p) { return [p.id, p.title, p.category, p.folder, ...(p.tags || [])].join(' '); }
   function normalizeProtocolId(id) { return normalize(id).replace(/^guid-/, ''); }
+  function escapeRegExp(text) { return (text || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function hasToken(text, term) {
+    const normalizedTerm = normalize(term);
+    if (!normalizedTerm) return false;
+    return new RegExp(`(^|[^a-z0-9])${escapeRegExp(normalizedTerm)}([^a-z0-9]|$)`).test(normalize(text));
+  }
+  function exactProtocolIdMatch(protocol, q) {
+    const id = normalize(protocol.id);
+    const normalizedId = normalizeProtocolId(protocol.id);
+    const queryId = normalize(q);
+    return id === queryId || normalizedId === normalizeProtocolId(q);
+  }
   function buildAliasLookup() {
     state.aliasLookup.clear();
     state.aliases.forEach((med) => {
@@ -89,7 +105,16 @@
     const knownAlias = state.aliasLookup.has(q);
     if (q.length < 2 && !knownAlias) return null;
     const terms = termsForQuery(q);
+    const isShortQuery = q.length <= 4;
     const reasons = []; let score = -1;
+    if (exactProtocolIdMatch(protocol, q)) {
+      reasons.push({ type: 'Protocol ID match', text: protocol.id });
+      score = Math.max(score, 150);
+    }
+    if (normalize(protocol.title) === q) {
+      reasons.push({ type: 'Title match', text: protocol.title });
+      score = Math.max(score, 135);
+    }
     const aliasMeds = medicationsForQuery(q);
     aliasMeds.forEach((med) => {
       const protocolMatch = protocolsForMedication(med).find((entry) => entry.manifestId === protocol.id || normalizeProtocolId(entry.id) === normalizeProtocolId(protocol.id));
@@ -100,7 +125,7 @@
         pages: (protocolMatch.pages || []).slice(0, 4),
         pageRanges: protocolMatch.pageRanges
       });
-      score = Math.max(score, 110);
+      score = Math.max(score, 120);
     });
     (record?.detectedMedications || []).forEach((med) => {
       const aliases = (med.matchedAliases || []).map(normalize);
@@ -108,16 +133,16 @@
       const expanded = terms.includes(canon) || aliases.some(a => terms.includes(a));
       if (expanded && !reasons.some(r => r.type === 'Medication match' && normalize(r.text).includes(canon))) {
         reasons.push({ type: 'Medication match', text: `"${state.query.trim()}" → ${med.canonical}`, pages: (med.pages || []).slice(0, 4), pageRanges: med.pageRanges });
-        score = Math.max(score, 100);
+        score = Math.max(score, 115);
       }
     });
-    if (normalize(protocol.title).includes(q)) { reasons.push({ type: 'Title match', text: protocol.title }); score = Math.max(score, 80); }
-    if ((protocol.tags || []).some(t => normalize(t).includes(q))) { reasons.push({ type: 'Tag match', text: q }); score = Math.max(score, 70); }
-    if (hayMeta.includes(q)) score = Math.max(score, 55);
+    if (normalize(protocol.title).includes(q) && (!isShortQuery || hasToken(protocol.title, q))) { reasons.push({ type: 'Title match', text: protocol.title }); score = Math.max(score, 100); }
+    if ((protocol.tags || []).some(t => normalize(t) === q || (!isShortQuery && normalize(t).includes(q)))) { reasons.push({ type: 'Tag match', text: q }); score = Math.max(score, 95); }
+    if (!isShortQuery && hayMeta.includes(q)) score = Math.max(score, 55);
     const pdfText = record?.normalizedText || '';
     if (pdfText) {
       const exact = terms.some(t => new RegExp(`(^|[^a-z0-9])${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-z0-9]|$)`).test(pdfText));
-      const partial = !exact && terms.some(t => t.length >= 3 && pdfText.includes(t));
+      const partial = !exact && !isShortQuery && terms.some(t => t.length >= 3 && pdfText.includes(t));
       if (exact || partial) {
         const snippet = firstSnippet(record, terms);
         reasons.push({ type: 'PDF text match', text: snippet?.snippet || q, pages: snippet?.page ? [snippet.page] : [] });
@@ -141,9 +166,9 @@
   }
   function statusClass(p) { return state.saved.has(p.file) ? 'saved' : state.missing.has(p.file) ? 'error' : state.caching.has(p.file) ? 'caching' : ''; }
   function statusText(p) {
-    if (state.saved.has(p.file)) return 'Saved offline';
+    if (state.saved.has(p.file)) return 'Saved for Offline Use';
     if (state.missing.has(p.file)) return 'Could not save offline — will retry next time the app opens.';
-    if (state.caching.has(p.file)) return 'Downloading for offline use...';
+    if (state.caching.has(p.file)) return 'Downloading';
     return 'Queued for offline download';
   }
   function updateOfflineSummary() {
@@ -156,14 +181,15 @@
     const saved = state.saved.size;
     const caching = state.caching.size;
     const failed = state.missing.size;
+    const current = state.currentDownloadTitle ? ` Downloading: ${state.currentDownloadTitle}.` : '';
     if (!total) {
       els.offlineSummary.textContent = 'Loading offline cache status...';
     } else if (saved === total) {
       els.offlineSummary.textContent = `${saved} of ${total} protocols saved offline. ACT protocols are ready for offline use.`;
     } else if (caching) {
-      els.offlineSummary.textContent = `Caching protocols for offline use... ${saved} of ${total} saved offline.`;
+      els.offlineSummary.textContent = `Caching protocols for offline use... ${saved} of ${total} saved offline.${current}`;
     } else if (failed) {
-      els.offlineSummary.textContent = `${saved} of ${total} protocols saved offline. ${failed} file${failed === 1 ? '' : 's'} will retry next time the app opens.`;
+      els.offlineSummary.textContent = `${saved} of ${total} protocols saved offline. ${failed} file${failed === 1 ? '' : 's'} need retry.`;
     } else {
       els.offlineSummary.textContent = `${saved} of ${total} protocols saved offline. Preparing offline downloads...`;
     }
@@ -176,12 +202,15 @@
       openedAt: Date.now()
     };
   }
-  function saveReturnState(protocol) {
+  function saveListState(extra = {}) {
     try {
-      sessionStorage.setItem(RETURN_STATE_KEY, JSON.stringify({ ...returnState(), openedProtocolId: protocol.id }));
+      sessionStorage.setItem(RETURN_STATE_KEY, JSON.stringify({ ...returnState(), ...extra }));
     } catch (err) {
       console.warn('[ACT Protocols] Could not save return position', err);
     }
+  }
+  function saveReturnState(protocol) {
+    saveListState({ openedProtocolId: protocol.id });
   }
   function loadReturnState() {
     try {
@@ -202,6 +231,12 @@
     els.filters.querySelectorAll('.filter-btn').forEach((button) => {
       button.classList.toggle('active', button.dataset.category === state.category);
     });
+  }
+  function restoreProtocolListState(saved, { restoreScroll = false } = {}) {
+    if (!saved || !state.protocols.length) return;
+    applyRestoredFilters(saved);
+    render();
+    if (restoreScroll) restoreScrollPosition(saved);
   }
   function restoreScrollPosition(saved) {
     if (!saved) return;
@@ -238,28 +273,134 @@
         </div>
       </article>`).join('');
   }
+  function pdfInfoUrl(file) {
+    return `/act-protocols/pdf-info?${new URLSearchParams({ file }).toString()}`;
+  }
+  function pdfPageUrl(file, pageNumber) {
+    return `/act-protocols/pdf-page?${new URLSearchParams({ file, page: String(pageNumber), scale: '2' }).toString()}`;
+  }
+  async function cacheUrl(cache, url) {
+    const response = await fetch(url, { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`${url}: ${response.status} ${response.statusText}`);
+    const body = await response.arrayBuffer();
+    if (!body.byteLength) throw new Error(`${url}: empty response`);
+    await cache.put(url, new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers }));
+    const cached = await cache.match(url);
+    if (!cached?.ok) throw new Error(`${url}: not available in ACT cache after download`);
+    return new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers });
+  }
+  async function getCachedPageCount(file) {
+    const cache = await caches.open(CACHE_NAME);
+    const response = await cache.match(pdfInfoUrl(file));
+    if (!response?.ok) return 0;
+    try {
+      const info = await response.json();
+      return Number(info.pageCount || 0);
+    } catch (err) {
+      console.warn('[ACT Protocols] Cached PDF info could not be read', err);
+      return 0;
+    }
+  }
+  async function hasCachedViewerResources(file) {
+    if (!(await isCached(file))) return false;
+    const pageCount = await getCachedPageCount(file);
+    if (!pageCount) return false;
+    const checks = [];
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      checks.push(caches.open(CACHE_NAME).then((cache) => cache.match(pdfPageUrl(file, pageNumber))).then((response) => Boolean(response?.ok)));
+    }
+    return (await Promise.all(checks)).every(Boolean);
+  }
   async function cachePdf(protocol) {
-    const url = encoded(protocol.file); const cache = await caches.open(CACHE_NAME); const response = await fetch(url, { cache: 'no-cache' });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    await cache.put(url, response.clone()); state.saved.add(protocol.file); state.missing.delete(protocol.file); notifyServiceWorker([url]);
+    const url = encoded(protocol.file);
+    const cache = await caches.open(CACHE_NAME);
+    await cacheUrl(cache, url);
+
+    const infoResponse = await cacheUrl(cache, pdfInfoUrl(protocol.file));
+    const info = await infoResponse.json();
+    const pageCount = Number(info.page_count || info.pageCount || 0);
+    if (!pageCount) throw new Error('PDF has no pages to cache for offline viewing.');
+
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      await cacheUrl(cache, pdfPageUrl(protocol.file, pageNumber));
+    }
+
+    if (!(await hasCachedViewerResources(protocol.file))) throw new Error('PDF viewer resources were not available in cache after download.');
+    state.saved.add(protocol.file);
+    state.missing.delete(protocol.file);
   }
   function notifyServiceWorker(urls) { if (navigator.serviceWorker?.controller) navigator.serviceWorker.controller.postMessage({ type: 'CACHE_URLS', urls }); }
-  async function isCached(file) { if (!('caches' in window)) return false; return Boolean(await caches.match(encoded(file))); }
-  async function refreshSaved() { await Promise.all(state.protocols.map(async (p) => { if (await isCached(p.file)) state.saved.add(p.file); })); }
-  function handleOpen(protocol) {
+  async function isCached(file) {
+    if (!('caches' in window)) return false;
+    const cache = await caches.open(CACHE_NAME);
+    const response = await cache.match(encoded(file));
+    return Boolean(response?.ok);
+  }
+  async function refreshSaved() {
+    await Promise.all(state.protocols.map(async (p) => {
+      if (await hasCachedViewerResources(p.file)) {
+        state.saved.add(p.file);
+        state.missing.delete(p.file);
+      } else {
+        state.saved.delete(p.file);
+      }
+    }));
+  }
+  async function reverifyCachedStatuses() {
+    if (state.refreshInProgress || !state.protocols.length || !('caches' in window)) return;
+    state.refreshInProgress = true;
+    try {
+      await refreshSaved();
+      render();
+    } finally {
+      state.refreshInProgress = false;
+    }
+  }
+  function openProtocolViewer(protocol) {
     saveReturnState(protocol);
     const meta = state.resultMeta.get(protocol.id); const page = meta?.reasons?.find(r => r.pages?.length)?.pages?.[0];
     const params = new URLSearchParams({ file: protocol.file, title: `${protocol.id} ${protocol.title}` }); if (page) params.set('page', page);
     window.location.href = `/act-protocols/viewer#${params.toString()}`;
   }
-  async function autoCacheProtocols() {
-    if (state.autoCacheStarted) return;
-    state.autoCacheStarted = true;
-    if (!('caches' in window)) { updateOfflineSummary(); return; }
-    const uncached = state.protocols.filter(p => !state.saved.has(p.file));
-    uncached.forEach(p => { state.caching.add(p.file); state.missing.delete(p.file); });
+  async function handleOpen(protocol) {
+    if (!('caches' in window)) {
+      openProtocolViewer(protocol);
+      return;
+    }
+    if (await hasCachedViewerResources(protocol.file)) {
+      state.saved.add(protocol.file);
+      state.missing.delete(protocol.file);
+      openProtocolViewer(protocol);
+      return;
+    }
+    state.saved.delete(protocol.file);
+    if (!navigator.onLine) {
+      state.missing.add(protocol.file);
+      render();
+      return;
+    }
+    state.caching.add(protocol.file);
+    state.missing.delete(protocol.file);
     render();
-    for (const protocol of uncached) {
+    try {
+      await cachePdf(protocol);
+      openProtocolViewer(protocol);
+    } catch (err) {
+      state.missing.add(protocol.file);
+      console.warn(`[ACT Protocols] Could not verify ${protocol.file} for offline viewing before opening`, err);
+      openProtocolViewer(protocol);
+    } finally {
+      state.caching.delete(protocol.file);
+      render();
+    }
+  }
+  async function cacheProtocols(protocols) {
+    if (!('caches' in window) || !protocols.length) { updateOfflineSummary(); return; }
+    protocols.forEach(p => { state.caching.add(p.file); state.missing.delete(p.file); });
+    render();
+    for (const protocol of protocols) {
+      state.currentDownloadTitle = protocol.title;
+      render();
       try {
         await cachePdf(protocol);
       } catch (err) {
@@ -267,21 +408,68 @@
         console.warn(`[ACT Protocols] Could not cache ${protocol.file}`, err);
       } finally {
         state.caching.delete(protocol.file);
+        state.currentDownloadTitle = '';
         render();
       }
     }
     updateOfflineSummary();
   }
+  async function clearActOfflineCache() {
+    if (!('caches' in window)) return;
+    const names = await caches.keys();
+    await Promise.all(names.filter(name => name.startsWith(CACHE_PREFIX)).map(name => caches.delete(name)));
+    state.saved.clear();
+    state.caching.clear();
+    state.missing.clear();
+    state.currentDownloadTitle = '';
+    render();
+  }
+  async function autoCacheProtocols() {
+    if (state.autoCacheStarted) return;
+    state.autoCacheStarted = true;
+    if (!('caches' in window)) { updateOfflineSummary(); return; }
+    await cacheProtocols(state.protocols.filter(p => !state.saved.has(p.file)));
+  }
+  function setupInstallGuidance() {
+    const isStandalone = window.matchMedia?.('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    let dismissed = false;
+    try { dismissed = localStorage.getItem(INSTALL_DISMISSED_KEY) === 'true'; } catch {}
+    if (!els.installHelp || isStandalone || dismissed) return;
+    els.installHelp.classList.remove('hidden');
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      state.deferredInstallPrompt = event;
+      els.installBtn?.classList.remove('hidden');
+    });
+    els.installBtn?.addEventListener('click', async () => {
+      if (!state.deferredInstallPrompt) return;
+      state.deferredInstallPrompt.prompt();
+      const choice = await state.deferredInstallPrompt.userChoice;
+      state.deferredInstallPrompt = null;
+      if (choice?.outcome === 'accepted') els.installHelp.classList.add('hidden');
+    });
+    els.dismissInstallBtn?.addEventListener('click', () => {
+      try { localStorage.setItem(INSTALL_DISMISSED_KEY, 'true'); } catch {}
+      els.installHelp.classList.add('hidden');
+    });
+  }
   function bind() {
     const debouncedRender = debounce(render);
+    const debouncedReverify = debounce(reverifyCachedStatuses, 500);
     updateThemeColor();
     preferredDark?.addEventListener?.('change', updateThemeColor);
-    els.search.addEventListener('input', (e) => { state.query = e.target.value; debouncedRender(); });
+    els.search.addEventListener('input', (e) => {
+      state.query = e.target.value;
+      saveListState();
+      if (!normalize(state.query)) render();
+      else debouncedRender();
+    });
     els.filters.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-category]');
       if (!btn) return;
       state.category = btn.dataset.category;
       els.filters.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+      saveListState();
       render();
     });
     els.grid.addEventListener('click', (e) => {
@@ -291,6 +479,19 @@
       if (!p) return;
       handleOpen(p);
     });
+    window.addEventListener('pageshow', (event) => {
+      restoreProtocolListState(loadReturnState(), { restoreScroll: Boolean(event.persisted) });
+      debouncedReverify();
+    });
+    els.saveAllBtn?.addEventListener('click', () => cacheProtocols(state.protocols));
+    els.retryBtn?.addEventListener('click', () => cacheProtocols(state.protocols.filter(p => state.missing.has(p.file))));
+    els.refreshBtn?.addEventListener('click', async () => { await clearActOfflineCache(); await cacheProtocols(state.protocols); });
+    els.clearCacheBtn?.addEventListener('click', clearActOfflineCache);
+    window.addEventListener('online', debouncedReverify);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') debouncedReverify();
+    });
+    setupInstallGuidance();
   }
   async function loadJson(url) { const response = await fetch(url, { cache: 'no-cache' }); if (!response.ok) throw new Error(`${url}: ${response.status}`); return response.json(); }
   async function init() { applyDisplayModeClass(); window.matchMedia?.('(display-mode: standalone)').addEventListener?.('change', applyDisplayModeClass); bind(); const savedReturnState = loadReturnState(); try { const [manifest, search, aliases, medicationMap] = await Promise.allSettled([loadJson(MANIFEST_URL), loadJson(SEARCH_URL), loadJson(ALIAS_URL), loadJson(MEDICATION_MAP_URL)]); if (manifest.status !== 'fulfilled') throw manifest.reason; state.protocols = manifest.value; buildProtocolIdLookup(); if (search.status === 'fulfilled') { state.searchReady = true; search.value.forEach(r => { state.searchIndex.set(r.id, r); state.searchIndex.set(normalizeProtocolId(r.id), r); }); } else console.warn('[ACT Protocols] Search index unavailable; using metadata fallback', search.reason); if (aliases.status === 'fulfilled') { state.aliasesReady = true; state.aliases = aliases.value; buildAliasLookup(); } else console.warn('[ACT Protocols] Medication aliases unavailable', aliases.reason); if (medicationMap.status === 'fulfilled') buildMedicationMap(medicationMap.value); else console.warn('[ACT Protocols] Medication protocol map unavailable', medicationMap.reason); applyRestoredFilters(savedReturnState); await refreshSaved(); render(); restoreScrollPosition(savedReturnState); notifyServiceWorker([MANIFEST_URL, SEARCH_URL, ALIAS_URL, MEDICATION_MAP_URL]); autoCacheProtocols(); } catch (err) { console.error('[ACT Protocols] Failed to load protocol manifest', err); els.count.textContent = 'Unable to load protocols.'; els.grid.innerHTML = '<div class="error-state">Unable to load ACT protocols. Please try again when the app is online.</div>'; } }

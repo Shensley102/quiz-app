@@ -210,6 +210,37 @@ body {
   line-height: 1.55;
 }
 
+
+.act-cache-controls,
+.act-install-help {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.act-cache-controls .btn,
+.act-install-help .btn {
+  min-height: 44px;
+}
+
+.act-install-help {
+  justify-content: space-between;
+  background: var(--act-surface);
+  border: 2px solid var(--act-border);
+  border-radius: 18px;
+  box-shadow: 0 10px 26px var(--act-shadow);
+  color: var(--act-text);
+  margin-bottom: 18px;
+  padding: 16px;
+}
+
+.act-install-help p {
+  margin: 5px 0 0;
+  color: var(--act-muted);
+  font-weight: 700;
+}
+
 .act-actions {
   display: flex;
   gap: 14px;
@@ -448,9 +479,9 @@ body {
 }
 
 .offline-status.caching {
-  background: var(--act-info-bg);
-  color: var(--act-info);
-  border-color: var(--act-info);
+  background: var(--act-yellow-soft);
+  color: var(--act-warn);
+  border-color: var(--act-yellow);
 }
 
 .offline-status.error {
@@ -580,6 +611,7 @@ body {
 }
 
 .pdf-page-wrap {
+  scroll-margin-top: 110px;
   margin: 0;
   background: var(--act-bg);
   border-radius: 10px;
@@ -890,6 +922,13 @@ body {
   outline: none;
   border-color: var(--act-primary);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--act-focus) 26%, transparent);
+}
+
+.dose-verify-link {
+  color: var(--act-primary);
+  display: inline-block;
+  font-weight: 800;
+  margin-top: -4px;
 }
 
 .dose-result {

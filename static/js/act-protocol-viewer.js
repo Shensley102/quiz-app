@@ -1,8 +1,20 @@
 (() => {
-  const params = new URLSearchParams(window.location.hash.slice(1));
-  const file = params.get('file');
-  const title = params.get('title') || 'ACT Protocol PDF';
-  const page = Number.parseInt(params.get('page') || '1', 10);
+  function positiveInteger(value, fallback = 1) {
+    const parsed = Number.parseInt(value || '', 10);
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+  }
+  function parseViewerHashParams() {
+    const params = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    return {
+      file: params.get('file') || '',
+      title: params.get('title') || 'ACT Protocol PDF',
+      requestedPage: positiveInteger(params.get('page'), 1)
+    };
+  }
+  const viewerParams = parseViewerHashParams();
+  const file = viewerParams.file;
+  const title = viewerParams.title;
+  let requestedPage = viewerParams.requestedPage;
   const safeFilePattern = /^\/static\/protocols\/act\/.+\.pdf$/i;
   const zoomSteps = ['fit', 125, 150, 175, 200, 250, 300];
 
@@ -85,10 +97,16 @@
     });
   }
 
+  function scrollToPage(pageNumber) {
+    const target = pagesEl.querySelector(`[data-page="${pageNumber}"]`);
+    if (!target) return;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => target.scrollIntoView({ block: 'start', behavior: 'auto' }));
+    });
+  }
+
   function scrollToRequestedPage() {
-    const targetPage = Number.isFinite(page) && page > 0 ? page : 1;
-    const target = pagesEl.querySelector(`[data-page="${targetPage}"]`);
-    if (target) target.scrollIntoView({ block: 'start' });
+    scrollToPage(requestedPage);
   }
 
   async function renderPages() {
@@ -96,8 +114,9 @@
     const response = await fetch(`/act-protocols/pdf-info?${infoQuery.toString()}`);
     if (!response.ok) throw new Error(`PDF info failed: ${response.status}`);
     const info = await response.json();
-    const pageCount = Number(info.pageCount || 0);
+    const pageCount = Number(info.page_count || info.pageCount || 0);
     if (!pageCount) throw new Error('PDF has no pages.');
+    requestedPage = Math.min(Math.max(1, requestedPage), pageCount);
 
     pagesEl.innerHTML = '';
     for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
@@ -109,7 +128,7 @@
       img.className = 'pdf-page-image';
       img.src = pageImageUrl(pageNumber);
       img.alt = `${title} page ${pageNumber} of ${pageCount}`;
-      img.loading = pageNumber === 1 ? 'eager' : 'lazy';
+      img.loading = pageNumber === 1 || pageNumber === requestedPage ? 'eager' : 'lazy';
       img.decoding = 'async';
 
       const caption = document.createElement('figcaption');
