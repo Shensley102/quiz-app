@@ -289,18 +289,33 @@ body {
   transform: none;
 }
 
-.save-all-status {
+.offline-download-status {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: 14px;
+  padding: 13px 18px;
   font-weight: 800;
-  color: var(--act-hero-text);
+  box-shadow: 0 8px 18px var(--act-shadow);
 }
 
-.save-all-status::before {
-  content: "Offline status:";
-  color: var(--act-hero-muted);
-  font-weight: 800;
+.offline-download-status[data-status="downloading"] {
+  background: var(--act-warning-bg);
+  border: 2px solid var(--act-warning);
+  color: var(--act-warning);
+}
+
+.offline-download-status[data-status="saved"] {
+  background: var(--act-success-bg);
+  border: 2px solid var(--act-success);
+  color: var(--act-success);
+}
+
+.offline-download-status[data-status="error"] {
+  background: var(--act-error-bg);
+  border: 2px solid var(--act-error);
+  color: var(--act-error);
 }
 
 .act-search-note {
