@@ -6,6 +6,7 @@
   const CACHE_NAME = 'act-protocol-pdfs-v5';
   const CACHE_PREFIX = 'act-protocol-pdfs-';
   const CATEGORY_ORDER = ['General', 'Medical', 'Cardiac', 'Trauma', 'Pediatric', 'Procedures'];
+  const PROTOCOL_ID_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
   const INSTALL_DISMISSED_KEY = 'act-protocols-install-dismissed';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
   const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', deferredInstallPrompt: null };
@@ -30,6 +31,8 @@
       const scoreDelta = b.score - a.score;
       if (scoreDelta) return scoreDelta;
     }
+    const protocolIdDelta = PROTOCOL_ID_COLLATOR.compare(normalizeProtocolId(a.protocol.id), normalizeProtocolId(b.protocol.id));
+    if (protocolIdDelta) return protocolIdDelta;
     return a.protocol.title.localeCompare(b.protocol.title) || a.protocol.id.localeCompare(b.protocol.id);
   }
 
