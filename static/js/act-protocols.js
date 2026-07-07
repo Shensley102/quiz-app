@@ -217,11 +217,12 @@
     if (!total) {
       setOfflineSummary('Checking Protocol Downloads', 'downloading');
     } else if (caching || saved + failed < total) {
-      setOfflineSummary('Downloading Protocols', 'downloading', `${saved} out of ${total}`);
+      const activeProgress = Math.min(total, saved + (caching ? 1 : 0));
+      setOfflineSummary('Downloading Protocols', 'downloading', `${activeProgress} out of ${total}`);
     } else if (failed) {
-      setOfflineSummary(`${failed} Failed to Download`, 'error');
+      setOfflineSummary('Failed to Download', 'error', `${failed} failed`);
     } else if (saved === total) {
-      setOfflineSummary('Offline Protocols Saved', 'saved');
+      setOfflineSummary('Offline Protocols Saved', 'saved', `${saved} out of ${total}`);
     }
   }
   function returnState() {
