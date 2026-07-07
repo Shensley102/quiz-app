@@ -50,6 +50,16 @@
     });
     lastSyncedWeightValue = syncedValue;
   }
+  function clearWeightValues() {
+    ['weightLb', 'weightKg', ...DEPENDENT_WEIGHT_IDS].forEach((id) => {
+      const el = $(id);
+      if (el) {
+        el.value = '';
+        delete el.dataset.autoWeight;
+      }
+    });
+    lastSyncedWeightValue = '';
+  }
 
   function calculateWeight() {
     const lbEl = $('weightLb');
@@ -60,8 +70,7 @@
     const kgBlank = kgEl?.value === '';
 
     if ((activeWeightField === 'weightLb' && lbBlank) || (activeWeightField === 'weightKg' && kgBlank)) {
-      if (lbEl) lbEl.value = '';
-      if (kgEl) kgEl.value = '';
+      clearWeightValues();
       setText('weightResult', 'Enter lb or kg to convert both values.');
       return;
     }
