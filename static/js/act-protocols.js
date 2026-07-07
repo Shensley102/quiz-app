@@ -6,13 +6,14 @@
   const CACHE_NAME = 'act-protocol-pdfs-v5';
   const CACHE_PREFIX = 'act-protocol-pdfs-';
   const CATEGORY_ORDER = ['General', 'Medical', 'Cardiac', 'Trauma', 'Pediatric', 'Procedures'];
+  const PROTOCOL_ID_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
   const INSTALL_DISMISSED_KEY = 'act-protocols-install-dismissed';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
   const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', deferredInstallPrompt: null };
   const els = {
     grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), filters: document.getElementById('categoryFilters'),
     count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary'),
-    saveAllBtn: document.getElementById('saveAllOfflineBtn'), retryBtn: document.getElementById('retryFailedBtn'), refreshBtn: document.getElementById('refreshOfflineBtn'), clearCacheBtn: document.getElementById('clearActCacheBtn'),
+    retryBtn: document.getElementById('retryFailedBtn'),
     installHelp: document.getElementById('installActHelp'), installBtn: document.getElementById('installActBtn'), dismissInstallBtn: document.getElementById('dismissInstallActBtn')
   };
   const encoded = (url) => encodeURI(url);
@@ -30,6 +31,8 @@
       const scoreDelta = b.score - a.score;
       if (scoreDelta) return scoreDelta;
     }
+    const protocolIdDelta = PROTOCOL_ID_COLLATOR.compare(normalizeProtocolId(a.protocol.id), normalizeProtocolId(b.protocol.id));
+    if (protocolIdDelta) return protocolIdDelta;
     return a.protocol.title.localeCompare(b.protocol.title) || a.protocol.id.localeCompare(b.protocol.id);
   }
 
@@ -185,27 +188,44 @@
     if (state.caching.has(p.file)) return 'Downloading';
     return 'Queued for offline download';
   }
+  function setOfflineSummary(text, status, detail = '') {
+    if (!els.offlineSummary) return;
+    els.offlineSummary.dataset.status = status;
+    els.offlineSummary.replaceChildren();
+
+    const label = document.createElement('span');
+    label.className = 'offline-download-status-label';
+    label.textContent = text;
+    els.offlineSummary.appendChild(label);
+
+    if (detail) {
+      const detailLine = document.createElement('span');
+      detailLine.className = 'offline-download-status-detail';
+      detailLine.textContent = detail;
+      els.offlineSummary.appendChild(detailLine);
+    }
+  }
   function updateOfflineSummary() {
     if (!els.offlineSummary) return;
     if (!('caches' in window)) {
-      els.offlineSummary.textContent = 'Offline PDF caching is not available in this browser.';
+      setOfflineSummary('Offline PDF caching is not available in this browser.', 'error');
+      els.retryBtn?.classList.add('hidden');
       return;
     }
     const total = state.protocols.length;
     const saved = state.saved.size;
     const caching = state.caching.size;
     const failed = state.missing.size;
-    const current = state.currentDownloadTitle ? ` Downloading: ${state.currentDownloadTitle}.` : '';
+    els.retryBtn?.classList.toggle('hidden', failed === 0);
     if (!total) {
-      els.offlineSummary.textContent = 'Loading offline cache status...';
-    } else if (saved === total) {
-      els.offlineSummary.textContent = `${saved} of ${total} protocols saved offline. ACT protocols are ready for offline use.`;
-    } else if (caching) {
-      els.offlineSummary.textContent = `Caching protocols for offline use... ${saved} of ${total} saved offline.${current}`;
+      setOfflineSummary('Checking Protocol Downloads', 'downloading');
+    } else if (caching || saved + failed < total) {
+      const activeProgress = Math.min(total, saved + (caching ? 1 : 0));
+      setOfflineSummary('Downloading Protocols', 'downloading', `${activeProgress} out of ${total}`);
     } else if (failed) {
-      els.offlineSummary.textContent = `${saved} of ${total} protocols saved offline. ${failed} file${failed === 1 ? '' : 's'} need retry.`;
-    } else {
-      els.offlineSummary.textContent = `${saved} of ${total} protocols saved offline. Preparing offline downloads...`;
+      setOfflineSummary('Failed to Download', 'error', `${failed} failed`);
+    } else if (saved === total) {
+      setOfflineSummary('Offline Protocols Saved', 'saved', `${saved} out of ${total}`);
     }
   }
   function returnState() {
@@ -542,10 +562,7 @@
       restoreProtocolListState(loadReturnState(), { restoreScroll: Boolean(event.persisted) });
       debouncedReverify();
     });
-    els.saveAllBtn?.addEventListener('click', () => cacheProtocols(state.protocols));
     els.retryBtn?.addEventListener('click', () => cacheProtocols(state.protocols.filter(p => state.missing.has(p.file))));
-    els.refreshBtn?.addEventListener('click', async () => { await clearActOfflineCache(); await cacheProtocols(state.protocols); });
-    els.clearCacheBtn?.addEventListener('click', clearActOfflineCache);
     window.addEventListener('online', debouncedReverify);
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') debouncedReverify();
