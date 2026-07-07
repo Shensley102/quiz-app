@@ -227,8 +227,8 @@
     if (state.activeSuggestionIndex >= 0) els.search.setAttribute('aria-activedescendant', `protocolSearchSuggestion-${state.activeSuggestionIndex}`);
     else els.search.removeAttribute('aria-activedescendant');
   }
-  function updateSuggestions() {
-    state.suggestions = matchingSuggestions(state.query);
+  function updateSuggestions(value) {
+    state.suggestions = matchingSuggestions(value);
     state.activeSuggestionIndex = -1;
     renderSuggestions();
   }
@@ -593,16 +593,44 @@
     });
   }
   function bind() {
-    const debouncedRender = debounce(render);
     const debouncedReverify = debounce(reverifyCachedStatuses, 500);
     updateThemeColor();
     preferredDark?.addEventListener?.('change', updateThemeColor);
     els.search.addEventListener('input', (e) => {
-      state.query = e.target.value;
-      saveListState();
-      updateSuggestions();
-      if (!normalize(state.query)) render();
-      else debouncedRender();
+      const value = e.target.value;
+      updateSuggestions(value);
+      if (!normalize(value)) {
+        state.query = '';
+        saveListState();
+        render();
+      }
+    });
+    els.search.addEventListener('keydown', (e) => {
+      if (!state.suggestions.length) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        state.activeSuggestionIndex = (state.activeSuggestionIndex + 1) % state.suggestions.length;
+        renderSuggestions();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        state.activeSuggestionIndex = state.activeSuggestionIndex <= 0 ? state.suggestions.length - 1 : state.activeSuggestionIndex - 1;
+        renderSuggestions();
+      } else if (e.key === 'Enter' && state.activeSuggestionIndex >= 0) {
+        e.preventDefault();
+        selectSuggestion(state.activeSuggestionIndex);
+      } else if (e.key === 'Escape') {
+        closeSuggestions();
+      }
+    });
+    els.suggestions?.addEventListener('mousedown', (e) => e.preventDefault());
+    els.suggestions?.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-index]');
+      if (!btn) return;
+      selectSuggestion(Number(btn.dataset.index));
+    });
+    document.addEventListener('click', (e) => {
+      if (e.target === els.search || els.suggestions?.contains(e.target)) return;
+      closeSuggestions();
     });
     els.search.addEventListener('keydown', (e) => {
       if (!state.suggestions.length) return;
