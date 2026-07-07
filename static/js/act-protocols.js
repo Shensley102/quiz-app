@@ -9,10 +9,10 @@
   const PROTOCOL_ID_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
   const INSTALL_DISMISSED_KEY = 'act-protocols-install-dismissed';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
-  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', deferredInstallPrompt: null };
+  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', suggestions: [], activeSuggestionIndex: -1, saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', deferredInstallPrompt: null };
   const els = {
     grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), filters: document.getElementById('categoryFilters'),
-    count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary'),
+    count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary'), suggestions: document.getElementById('protocolSearchSuggestions'),
     retryBtn: document.getElementById('retryFailedBtn'),
     installHelp: document.getElementById('installActHelp'), installBtn: document.getElementById('installActBtn'), dismissInstallBtn: document.getElementById('dismissInstallActBtn')
   };
@@ -180,6 +180,66 @@
       if (match) { state.resultMeta.set(p.id, match); matches.push({ protocol: p, score: match.score }); }
     }
     return matches.sort((a, b) => compareProtocolEntries(a, b, q)).map(x => x.protocol);
+  }
+  function suggestionTerms() {
+    const terms = new Map();
+    const addTerm = (term) => {
+      const key = normalize(term);
+      if (key && !terms.has(key)) terms.set(key, term);
+    };
+    state.protocols.forEach((p) => {
+      [p.id, normalizeProtocolId(p.id), p.title, ...(p.tags || [])].forEach(addTerm);
+    });
+    state.aliases.forEach((med) => {
+      [med.canonical, med.canonicalKey, ...(med.aliases || []), ...(med.normalizedAliases || []), ...(med.genericNames || []), ...(med.brandNames || []), ...(med.tradeNames || []), ...(med.activeIngredientNames || []), ...(med.substanceNames || []), ...(med.shorthand || [])].forEach(addTerm);
+    });
+    return [...terms.values()];
+  }
+  function matchingSuggestions(query) {
+    const q = normalize(query);
+    if (q.length < 2) return [];
+    return suggestionTerms()
+      .map(term => ({ term, normalized: normalize(term) }))
+      .filter(({ normalized }) => normalized.includes(q))
+      .sort((a, b) => {
+        const aStarts = a.normalized.startsWith(q);
+        const bStarts = b.normalized.startsWith(q);
+        if (aStarts !== bStarts) return aStarts ? -1 : 1;
+        return a.term.localeCompare(b.term, undefined, { numeric: true, sensitivity: 'base' });
+      })
+      .slice(0, 8)
+      .map(({ term }) => term);
+  }
+  function closeSuggestions() {
+    state.suggestions = [];
+    state.activeSuggestionIndex = -1;
+    els.suggestions?.classList.add('hidden');
+    if (els.suggestions) els.suggestions.innerHTML = '';
+    els.search?.setAttribute('aria-expanded', 'false');
+    els.search?.removeAttribute('aria-activedescendant');
+  }
+  function renderSuggestions() {
+    if (!els.suggestions) return;
+    if (!state.suggestions.length) { closeSuggestions(); return; }
+    els.suggestions.innerHTML = state.suggestions.map((suggestion, index) => `<button id="protocolSearchSuggestion-${index}" class="protocol-search-suggestion${index === state.activeSuggestionIndex ? ' active' : ''}" type="button" role="option" aria-selected="${index === state.activeSuggestionIndex}" data-index="${index}">${escapeHtml(suggestion)}</button>`).join('');
+    els.suggestions.classList.remove('hidden');
+    els.search.setAttribute('aria-expanded', 'true');
+    if (state.activeSuggestionIndex >= 0) els.search.setAttribute('aria-activedescendant', `protocolSearchSuggestion-${state.activeSuggestionIndex}`);
+    else els.search.removeAttribute('aria-activedescendant');
+  }
+  function updateSuggestions() {
+    state.suggestions = matchingSuggestions(state.query);
+    state.activeSuggestionIndex = -1;
+    renderSuggestions();
+  }
+  function selectSuggestion(index) {
+    const suggestion = state.suggestions[index];
+    if (!suggestion) return;
+    els.search.value = suggestion;
+    state.query = suggestion;
+    saveListState();
+    render();
+    closeSuggestions();
   }
   function statusClass(p) { return state.saved.has(p.file) ? 'saved' : state.missing.has(p.file) ? 'error' : state.caching.has(p.file) ? 'caching' : ''; }
   function statusText(p) {
@@ -540,8 +600,36 @@
     els.search.addEventListener('input', (e) => {
       state.query = e.target.value;
       saveListState();
+      updateSuggestions();
       if (!normalize(state.query)) render();
       else debouncedRender();
+    });
+    els.search.addEventListener('keydown', (e) => {
+      if (!state.suggestions.length) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        state.activeSuggestionIndex = (state.activeSuggestionIndex + 1) % state.suggestions.length;
+        renderSuggestions();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        state.activeSuggestionIndex = state.activeSuggestionIndex <= 0 ? state.suggestions.length - 1 : state.activeSuggestionIndex - 1;
+        renderSuggestions();
+      } else if (e.key === 'Enter' && state.activeSuggestionIndex >= 0) {
+        e.preventDefault();
+        selectSuggestion(state.activeSuggestionIndex);
+      } else if (e.key === 'Escape') {
+        closeSuggestions();
+      }
+    });
+    els.suggestions?.addEventListener('mousedown', (e) => e.preventDefault());
+    els.suggestions?.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-index]');
+      if (!btn) return;
+      selectSuggestion(Number(btn.dataset.index));
+    });
+    document.addEventListener('click', (e) => {
+      if (e.target === els.search || els.suggestions?.contains(e.target)) return;
+      closeSuggestions();
     });
     els.filters.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-category]');
