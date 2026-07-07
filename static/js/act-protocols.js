@@ -632,6 +632,33 @@
       if (e.target === els.search || els.suggestions?.contains(e.target)) return;
       closeSuggestions();
     });
+    els.search.addEventListener('keydown', (e) => {
+      if (!state.suggestions.length) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        state.activeSuggestionIndex = (state.activeSuggestionIndex + 1) % state.suggestions.length;
+        renderSuggestions();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        state.activeSuggestionIndex = state.activeSuggestionIndex <= 0 ? state.suggestions.length - 1 : state.activeSuggestionIndex - 1;
+        renderSuggestions();
+      } else if (e.key === 'Enter' && state.activeSuggestionIndex >= 0) {
+        e.preventDefault();
+        selectSuggestion(state.activeSuggestionIndex);
+      } else if (e.key === 'Escape') {
+        closeSuggestions();
+      }
+    });
+    els.suggestions?.addEventListener('mousedown', (e) => e.preventDefault());
+    els.suggestions?.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-index]');
+      if (!btn) return;
+      selectSuggestion(Number(btn.dataset.index));
+    });
+    document.addEventListener('click', (e) => {
+      if (e.target === els.search || els.suggestions?.contains(e.target)) return;
+      closeSuggestions();
+    });
     els.filters.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-category]');
       if (!btn) return;
