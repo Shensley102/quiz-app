@@ -185,10 +185,22 @@
     if (state.caching.has(p.file)) return 'Downloading';
     return 'Queued for offline download';
   }
-  function setOfflineSummary(text, status) {
+  function setOfflineSummary(text, status, detail = '') {
     if (!els.offlineSummary) return;
-    els.offlineSummary.textContent = text;
     els.offlineSummary.dataset.status = status;
+    els.offlineSummary.replaceChildren();
+
+    const label = document.createElement('span');
+    label.className = 'offline-download-status-label';
+    label.textContent = text;
+    els.offlineSummary.appendChild(label);
+
+    if (detail) {
+      const detailLine = document.createElement('span');
+      detailLine.className = 'offline-download-status-detail';
+      detailLine.textContent = detail;
+      els.offlineSummary.appendChild(detailLine);
+    }
   }
   function updateOfflineSummary() {
     if (!els.offlineSummary) return;
@@ -204,12 +216,12 @@
     els.retryBtn?.classList.toggle('hidden', failed === 0);
     if (!total) {
       setOfflineSummary('Checking Protocol Downloads', 'downloading');
+    } else if (caching || saved + failed < total) {
+      setOfflineSummary('Downloading Protocols', 'downloading', `${saved} out of ${total}`);
     } else if (failed) {
       setOfflineSummary(`${failed} Failed to Download`, 'error');
     } else if (saved === total) {
       setOfflineSummary('Offline Protocols Saved', 'saved');
-    } else if (caching || saved < total) {
-      setOfflineSummary('Downloading Protocols', 'downloading');
     }
   }
   function returnState() {
