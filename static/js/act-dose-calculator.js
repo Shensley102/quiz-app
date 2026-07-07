@@ -50,12 +50,31 @@
     });
     lastSyncedWeightValue = syncedValue;
   }
+  function clearWeightValues() {
+    ['weightLb', 'weightKg', ...DEPENDENT_WEIGHT_IDS].forEach((id) => {
+      const el = $(id);
+      if (el) {
+        el.value = '';
+        delete el.dataset.autoWeight;
+      }
+    });
+    lastSyncedWeightValue = '';
+  }
 
   function calculateWeight() {
     const lbEl = $('weightLb');
     const kgEl = $('weightKg');
     const lb = n('weightLb');
     const kg = n('weightKg');
+    const lbBlank = lbEl?.value === '';
+    const kgBlank = kgEl?.value === '';
+
+    if ((activeWeightField === 'weightLb' && lbBlank) || (activeWeightField === 'weightKg' && kgBlank)) {
+      clearWeightValues();
+      setText('weightResult', 'Enter lb or kg to convert both values.');
+      return;
+    }
+
     if (lb === null && kg === null) { setText('weightResult', 'Enter lb or kg to convert both values.'); return; }
     if ((lb !== null && lb <= 0) || (kg !== null && kg <= 0)) { setText('weightResult', 'Enter positive weight values only.'); return; }
 
