@@ -56,6 +56,16 @@
     const kgEl = $('weightKg');
     const lb = n('weightLb');
     const kg = n('weightKg');
+    const lbBlank = lbEl?.value === '';
+    const kgBlank = kgEl?.value === '';
+
+    if ((activeWeightField === 'weightLb' && lbBlank) || (activeWeightField === 'weightKg' && kgBlank)) {
+      if (lbEl) lbEl.value = '';
+      if (kgEl) kgEl.value = '';
+      setText('weightResult', 'Enter lb or kg to convert both values.');
+      return;
+    }
+
     if (lb === null && kg === null) { setText('weightResult', 'Enter lb or kg to convert both values.'); return; }
     if ((lb !== null && lb <= 0) || (kg !== null && kg <= 0)) { setText('weightResult', 'Enter positive weight values only.'); return; }
 
