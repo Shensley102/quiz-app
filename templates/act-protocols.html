@@ -40,13 +40,8 @@
       <h1>📋 ACT Protocols</h1>
       <p>Search ACT protocol PDFs and let the app cache them automatically for offline clinical reference.</p>
       <div class="act-actions">
-        <span id="offlineSummary" class="save-all-status" role="status" aria-live="polite">Checking offline cache status...</span>
-        <div class="act-cache-controls" aria-label="Offline cache controls">
-          <button id="saveAllOfflineBtn" class="btn btn-secondary" type="button">Save All Offline</button>
-          <button id="retryFailedBtn" class="btn btn-outline" type="button">Retry Failed Downloads</button>
-          <button id="refreshOfflineBtn" class="btn btn-outline" type="button">Refresh/Update Offline Protocols</button>
-          <button id="clearActCacheBtn" class="btn btn-outline" type="button">Clear ACT Offline Cache</button>
-        </div>
+        <span id="offlineSummary" class="offline-download-status" role="status" aria-live="polite">Checking offline cache status...</span>
+        <button id="retryFailedBtn" class="btn btn-outline hidden" type="button">Re-try failed downloads</button>
       </div>
       <p class="act-search-note">Search results are based on indexed protocol text and medication aliases. Always verify medication details, indications, contraindications, and dosing in the opened protocol PDF.</p>
     </header>
@@ -71,7 +66,10 @@
 
     <section class="act-controls" aria-label="Protocol search and filters">
       <label class="search-label" for="protocolSearch">Search protocols</label>
-      <input id="protocolSearch" class="protocol-search" type="search" placeholder="Search by title, ID, medication or alias (Keppra, Versed), category, or tags..." autocomplete="off">
+      <div class="protocol-search-wrap">
+        <input id="protocolSearch" class="protocol-search" type="search" placeholder="Search by title, ID, medication or alias (Keppra, Versed), category, or tags..." autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="protocolSearchSuggestions">
+        <div id="protocolSearchSuggestions" class="protocol-search-suggestions hidden" role="listbox" aria-label="Search suggestions"></div>
+      </div>
       <div id="categoryFilters" class="category-filters" aria-label="Filter by category">
         <button class="filter-btn active" type="button" data-category="All">All</button>
         <button class="filter-btn" type="button" data-category="General">General</button>
