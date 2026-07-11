@@ -171,10 +171,12 @@
 
       case 'CACHE_UPDATED':
         log('Cache updated:', data.stats);
-        hideRefreshingIndicator();
         if (data.stats && data.stats.updated > 0) {
           updatePWAStatus(`Cache updated: ${data.stats.updated} files`);
+        } else {
+          updatePWAStatus('Cache is up to date');
         }
+        hideRefreshingIndicator();
         break;
 
       default:
@@ -197,6 +199,7 @@
       });
     } catch (error) {
       log('Cache refresh request failed:', error);
+      updatePWAStatus('Cache refresh could not be started');
       hideRefreshingIndicator();
     }
   }
@@ -279,6 +282,7 @@
   function hideRefreshingIndicator() {
     const status = document.getElementById('pwaStatus');
     if (status) {
+      status.style.opacity = '1';
       setTimeout(() => {
         status.style.opacity = '0.7';
       }, 2000);
