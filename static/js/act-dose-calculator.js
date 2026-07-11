@@ -126,21 +126,23 @@
       return;
     }
     const calculated = weight * dose;
-    const capped = positive(max) && calculated > max;
-    if (capped) warnings.push('Calculated dose is greater than the entered max dose. Verify the max dose and use capped values only if confirmed by protocol/local direction.');
+    const maxTotal = positive(max) ? weight * max : null;
+    const capped = positive(maxTotal) && calculated > maxTotal;
+    if (capped) warnings.push('Calculated dose is greater than the entered max dose per kg. Verify the max dose and use capped values only if confirmed by protocol/local direction.');
     const hasConcentration = positive(conc) && sameBase(doseUnit, concUnit);
     const calculatedVolume = hasConcentration ? calculated / conc : null;
-    const cappedVolume = capped && hasConcentration ? max / conc : null;
+    const cappedVolume = capped && hasConcentration ? maxTotal / conc : null;
     const parts = [`Calculated dose: ${fmt(calculated)} ${base}`];
+    if (positive(maxTotal)) parts.push(`Max dose: ${fmt(maxTotal)} ${base}`);
     if (hasConcentration) parts.push(`Calculated volume: ${fmtMl(calculatedVolume)} mL`);
-    if (capped) parts.push(`Capped dose: ${fmt(max)} ${base}`);
+    if (capped) parts.push(`Capped dose: ${fmt(maxTotal)} ${base}`);
     if (capped && hasConcentration) parts.push(`Capped volume: ${fmtMl(cappedVolume)} mL`);
     showWarning('singleWarning', warnings);
     setText('singleResult', parts.join(' • '));
     const formulaLines = [`dose = ${fmt(weight)} kg × ${fmt(dose)} ${doseUnit} = ${fmt(calculated)} ${base}`];
+    if (positive(maxTotal)) formulaLines.push(`max_dose = ${fmt(weight)} kg × ${fmt(max)} ${doseUnit} = ${fmt(maxTotal)} ${base}`);
     if (hasConcentration) formulaLines.push(`volume_mL = ${fmt(calculated)} ${base} ÷ ${fmt(conc)} ${concUnit} = ${fmtMl(calculatedVolume)} mL`);
-    if (capped) formulaLines.push(`max dose entered = ${fmt(max)} ${base}`);
-    if (capped && hasConcentration) formulaLines.push(`capped_volume_mL = ${fmt(max)} ${base} ÷ ${fmt(conc)} ${concUnit} = ${fmtMl(cappedVolume)} mL`);
+    if (capped) formulaLines.push(`capped_volume_mL = ${fmt(maxTotal)} ${base} ÷ ${fmt(conc)} ${concUnit} = ${fmtMl(cappedVolume)} mL`);
     setFormula('singleFormula', formulaLines.join('\n'));
   }
 

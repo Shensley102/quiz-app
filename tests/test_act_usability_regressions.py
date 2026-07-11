@@ -18,6 +18,12 @@ def test_invalid_calculator_transitions_clear_stale_formulas():
         assert f"setInvalidFormula('{formula_id}')" in DOSE
 
 
+def test_single_dose_max_is_weight_based_per_kg_cap():
+    assert 'const maxTotal = positive(max) ? weight * max : null;' in DOSE
+    assert 'max_dose = ${fmt(weight)} kg × ${fmt(max)} ${doseUnit} = ${fmt(maxTotal)} ${base}' in DOSE
+    assert 'Calculated dose is greater than the entered max dose per kg.' in DOSE
+
+
 def test_search_input_updates_rendered_results_live():
     assert "state.query = value;" in PROTOCOLS
     assert "render();" in PROTOCOLS
