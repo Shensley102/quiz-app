@@ -996,6 +996,38 @@ body {
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--act-focus) 26%, transparent);
 }
 
+.dose-concentration-builder {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--act-border);
+  border-radius: 16px;
+  background: var(--act-surface);
+}
+
+.dose-builder-title,
+.dose-builder-result {
+  grid-column: 1 / -1;
+}
+
+.dose-builder-title {
+  color: var(--act-text);
+  font-weight: 900;
+}
+
+.dose-builder-result {
+  color: var(--act-muted);
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.dose-builder-result.invalid {
+  color: var(--act-warning);
+}
+
 .dose-verify-link {
   color: var(--act-primary);
   display: inline-block;
@@ -1086,6 +1118,10 @@ body {
   .dose-card,
   .dose-safety {
     border-radius: 18px;
+  }
+
+  .dose-concentration-builder {
+    grid-template-columns: 1fr;
   }
 
 }

@@ -51,6 +51,12 @@ This tracker records scoped fixes from the ACT Protocols usability review. It in
 
 ## Pending / Follow-up
 
+
+### ACT-012 — Concentration builder inputs
+- **Status:** Completed
+- **Acceptance criteria:** Single-dose, fixed-dose, infusion, and reverse-infusion calculators let users enter medication amount plus total volume in mL to auto-fill the existing concentration amount field; manual concentration edits are preserved; zero or negative builder values do not leave stale auto-filled concentration values.
+- **Test cases:** Enter `200` medication amount and `20` mL total volume with `mg/mL` selected and verify concentration fills as `10`; clear or enter zero volume and verify the auto-filled concentration clears/does not persist; manually edit concentration and verify builder math displays without overwriting the manual value.
+
 ### ACT-010 — Browser-based end-to-end smoke tests
 - **Status:** Pending
 - **Acceptance criteria:** Add Playwright or equivalent tests for ACT Protocols search, keyboard suggestions, category filters, PDF open/return, and dose calculator valid-to-invalid transitions.

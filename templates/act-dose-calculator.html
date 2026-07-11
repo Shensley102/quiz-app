@@ -96,6 +96,16 @@
         <label class="dose-field">Concentration unit
           <select id="singleConcUnit"><option>mg/mL</option><option>mcg/mL</option><option>units/mL</option></select>
         </label>
+        <div class="dose-concentration-builder" data-concentration-builder="single">
+          <div class="dose-builder-title">Build concentration</div>
+          <label class="dose-field">Medication amount
+            <input id="singleMedAmount" type="number" inputmode="decimal" min="0" step="any" placeholder="Amount">
+          </label>
+          <label class="dose-field">Total volume
+            <input id="singleFluidVolume" type="number" inputmode="decimal" min="0" step="any" placeholder="mL">
+          </label>
+          <div class="dose-builder-result" id="singleConcBuilderResult" aria-live="polite">Optional: enter medication amount and total mL to fill concentration.</div>
+        </div>
       </div>
       <div class="dose-warning hidden" id="singleWarning"></div>
       <div class="dose-result" id="singleResult" aria-live="polite">Enter weight and dose to calculate.</div>
@@ -120,6 +130,16 @@
         <label class="dose-field">Concentration unit
           <select id="fixedConcUnit"><option>mg/mL</option><option>mcg/mL</option><option>units/mL</option></select>
         </label>
+        <div class="dose-concentration-builder" data-concentration-builder="fixed">
+          <div class="dose-builder-title">Build concentration</div>
+          <label class="dose-field">Medication amount
+            <input id="fixedMedAmount" type="number" inputmode="decimal" min="0" step="any" placeholder="Amount">
+          </label>
+          <label class="dose-field">Total volume
+            <input id="fixedFluidVolume" type="number" inputmode="decimal" min="0" step="any" placeholder="mL">
+          </label>
+          <div class="dose-builder-result" id="fixedConcBuilderResult" aria-live="polite">Optional: enter medication amount and total mL to fill concentration.</div>
+        </div>
       </div>
       <div class="dose-warning hidden" id="fixedWarning"></div>
       <div class="dose-result" id="fixedResult" aria-live="polite">Enter desired dose and concentration.</div>
@@ -147,6 +167,16 @@
         <label class="dose-field">Concentration unit
           <select id="infConcUnit"><option>mcg/mL</option><option>mg/mL</option><option>units/mL</option></select>
         </label>
+        <div class="dose-concentration-builder" data-concentration-builder="inf">
+          <div class="dose-builder-title">Build concentration</div>
+          <label class="dose-field">Medication amount
+            <input id="infMedAmount" type="number" inputmode="decimal" min="0" step="any" placeholder="Amount">
+          </label>
+          <label class="dose-field">Total volume
+            <input id="infFluidVolume" type="number" inputmode="decimal" min="0" step="any" placeholder="mL">
+          </label>
+          <div class="dose-builder-result" id="infConcBuilderResult" aria-live="polite">Optional: enter medication amount and total mL to fill concentration.</div>
+        </div>
       </div>
       <div class="dose-warning hidden" id="infWarning"></div>
       <div class="dose-result" id="infResult" aria-live="polite">Enter infusion order and concentration.</div>
@@ -171,6 +201,16 @@
         <label class="dose-field">Concentration unit
           <select id="revConcUnit"><option>mcg/mL</option><option>mg/mL</option><option>units/mL</option></select>
         </label>
+        <div class="dose-concentration-builder" data-concentration-builder="rev">
+          <div class="dose-builder-title">Build concentration</div>
+          <label class="dose-field">Medication amount
+            <input id="revMedAmount" type="number" inputmode="decimal" min="0" step="any" placeholder="Amount">
+          </label>
+          <label class="dose-field">Total volume
+            <input id="revFluidVolume" type="number" inputmode="decimal" min="0" step="any" placeholder="mL">
+          </label>
+          <div class="dose-builder-result" id="revConcBuilderResult" aria-live="polite">Optional: enter medication amount and total mL to fill concentration.</div>
+        </div>
         <label class="dose-field">Output dose unit
           <select id="revOutputUnit"><option>mcg/kg/min</option><option>mg/kg/hr</option><option>mcg/min</option><option>mg/hr</option><option>units/hr</option></select>
         </label>

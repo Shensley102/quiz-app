@@ -4,6 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOSE = (ROOT / 'static/js/act-dose-calculator.js').read_text()
 PROTOCOLS = (ROOT / 'static/js/act-protocols.js').read_text()
 TEMPLATE = (ROOT / 'templates/act-protocols.html').read_text()
+DOSE_TEMPLATE = (ROOT / 'templates/act-dose-calculator.html').read_text()
 
 
 def test_manual_weight_fields_are_not_always_overwritten():
@@ -22,6 +23,17 @@ def test_single_dose_max_is_weight_based_per_kg_cap():
     assert 'const maxTotal = positive(max) ? weight * max : null;' in DOSE
     assert 'max_dose = ${fmt(weight)} kg × ${fmt(max)} ${doseUnit} = ${fmt(maxTotal)} ${base}' in DOSE
     assert 'Calculated dose is greater than the entered max dose per kg.' in DOSE
+
+
+def test_concentration_builders_fill_existing_concentration_fields():
+    for prefix in ['single', 'fixed', 'inf', 'rev']:
+        assert f'id="{prefix}MedAmount"' in DOSE_TEMPLATE
+        assert f'id="{prefix}FluidVolume"' in DOSE_TEMPLATE
+        assert f'id="{prefix}ConcBuilderResult"' in DOSE_TEMPLATE
+    assert 'const concentration = amount / volume;' in DOSE
+    assert "concEl.dataset.autoConcentration = 'true';" in DOSE
+    assert 'manual concentration preserved' in DOSE
+    assert 'Total volume cannot be zero.' in DOSE
 
 
 def test_search_input_updates_rendered_results_live():

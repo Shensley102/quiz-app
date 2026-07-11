@@ -3,8 +3,15 @@
   const $ = (id) => document.getElementById(id);
   const fields = Array.from(document.querySelectorAll('input, select'));
   const DEPENDENT_WEIGHT_IDS = ['singleWeight', 'infWeight', 'revWeight'];
+  const CONCENTRATION_BUILDERS = [
+    { prefix: 'single', concId: 'singleConc', unitId: 'singleConcUnit', amountId: 'singleMedAmount', volumeId: 'singleFluidVolume', resultId: 'singleConcBuilderResult' },
+    { prefix: 'fixed', concId: 'fixedConc', unitId: 'fixedConcUnit', amountId: 'fixedMedAmount', volumeId: 'fixedFluidVolume', resultId: 'fixedConcBuilderResult' },
+    { prefix: 'inf', concId: 'infConc', unitId: 'infConcUnit', amountId: 'infMedAmount', volumeId: 'infFluidVolume', resultId: 'infConcBuilderResult' },
+    { prefix: 'rev', concId: 'revConc', unitId: 'revConcUnit', amountId: 'revMedAmount', volumeId: 'revFluidVolume', resultId: 'revConcBuilderResult' }
+  ];
   let activeWeightField = null;
   let lastSyncedWeightValue = '';
+  const lastSyncedConcentrationValues = new Map();
 
   function n(id) {
     const value = Number.parseFloat($(id)?.value || '');
@@ -16,6 +23,10 @@
   }
   function fixed(value, digits) { return Number.isFinite(value) ? (Math.abs(value) < 1e-9 ? 0 : value).toFixed(digits) : ''; }
   function fmtWeight(value) { return fixed(value, 1); }
+  function fmtInput(value, max = 4) {
+    if (!Number.isFinite(value)) return '';
+    return (Math.abs(value) < 1e-9 ? 0 : Number(value.toFixed(max))).toString();
+  }
   function fmtMl(value) { return fmt(value, 2); }
   function fmtRate(value) { return fmt(value, 3); }
   function practicalRate(value) { return fmt(value, 1); }
@@ -34,6 +45,7 @@
   function setInvalidFormula(id) { setFormula(id, 'Calculation unavailable until valid inputs are entered.', true); }
   function sameBase(doseUnit, concentrationUnit) { return unitBase(doseUnit) === unitBase(concentrationUnit); }
   function positive(value) { return value !== null && value > 0; }
+  function concentrationUnitAmount(unit) { return unitBase(unit); }
 
   function weightKgFromConverter() {
     const kg = n('weightKg');
@@ -65,6 +77,63 @@
       }
     });
     lastSyncedWeightValue = '';
+  }
+
+  function clearAutoConcentration(builder) {
+    const concEl = $(builder.concId);
+    if (concEl?.dataset.autoConcentration === 'true') {
+      concEl.value = '';
+      delete concEl.dataset.autoConcentration;
+      lastSyncedConcentrationValues.delete(builder.concId);
+    }
+  }
+
+  function syncConcentrationBuilder(builder) {
+    const amount = n(builder.amountId);
+    const volume = n(builder.volumeId);
+    const amountEl = $(builder.amountId);
+    const volumeEl = $(builder.volumeId);
+    const concEl = $(builder.concId);
+    const unit = $(builder.unitId)?.value || '';
+    const resultEl = $(builder.resultId);
+    if (!concEl || !resultEl) return;
+
+    const amountBlank = amountEl?.value === '';
+    const volumeBlank = volumeEl?.value === '';
+    if (amountBlank && volumeBlank) {
+      resultEl.textContent = 'Optional: enter medication amount and total mL to fill concentration.';
+      resultEl.classList.remove('invalid');
+      clearAutoConcentration(builder);
+      return;
+    }
+
+    if (!positive(amount) || !positive(volume)) {
+      resultEl.textContent = volume === 0 ? 'Total volume cannot be zero.' : 'Enter positive medication amount and total volume.';
+      resultEl.classList.add('invalid');
+      clearAutoConcentration(builder);
+      return;
+    }
+
+    const concentration = amount / volume;
+    const syncedValue = fmtInput(concentration);
+    const lastSynced = lastSyncedConcentrationValues.get(builder.concId);
+    const isAutoManaged = concEl.dataset.autoConcentration === 'true' || concEl.value === '' || concEl.value === lastSynced;
+    const amountUnit = concentrationUnitAmount(unit);
+    const formula = `${fmt(amount)} ${amountUnit} ÷ ${fmtMl(volume)} mL = ${fmt(concentration, 4)} ${unit}`;
+
+    if (isAutoManaged) {
+      concEl.value = syncedValue;
+      concEl.dataset.autoConcentration = 'true';
+      lastSyncedConcentrationValues.set(builder.concId, syncedValue);
+      resultEl.textContent = `Concentration: ${formula}`;
+    } else {
+      resultEl.textContent = `Concentration builder: ${formula} (manual concentration preserved)`;
+    }
+    resultEl.classList.remove('invalid');
+  }
+
+  function syncConcentrationBuilders() {
+    CONCENTRATION_BUILDERS.forEach(syncConcentrationBuilder);
   }
 
   function calculateWeight() {
@@ -242,12 +311,17 @@
     setFormula('dripFormula', `gtt/min = (${fmt(rate)} mL/hr × ${fmt(factor)} gtt/mL) ÷ 60 = ${fmtGtt(gtt)} gtt/min`);
   }
 
-  function calculateAll() { calculateWeight(); calculateSingleDose(); calculateFixed(); calculateInfusion(); calculateReverse(); calculateDrip(); }
+  function calculateAll() { calculateWeight(); syncConcentrationBuilders(); calculateSingleDose(); calculateFixed(); calculateInfusion(); calculateReverse(); calculateDrip(); }
   function clearGroup(group) {
     const groups = {
-      weight: ['weightLb', 'weightKg'], single: ['singleWeight', 'singleDose', 'singleMax', 'singleConc'], fixed: ['fixedDose', 'fixedConc'], infusion: ['infWeight', 'infDose', 'infConc'], reverse: ['revWeight', 'revRate', 'revConc'], drip: ['dripRate']
+      weight: ['weightLb', 'weightKg'],
+      single: ['singleWeight', 'singleDose', 'singleMax', 'singleConc', 'singleMedAmount', 'singleFluidVolume'],
+      fixed: ['fixedDose', 'fixedConc', 'fixedMedAmount', 'fixedFluidVolume'],
+      infusion: ['infWeight', 'infDose', 'infConc', 'infMedAmount', 'infFluidVolume'],
+      reverse: ['revWeight', 'revRate', 'revConc', 'revMedAmount', 'revFluidVolume'],
+      drip: ['dripRate']
     };
-    (groups[group] || []).forEach((id) => { const el = $(id); if (el) { el.value = ''; delete el.dataset.autoWeight; } });
+    (groups[group] || []).forEach((id) => { const el = $(id); if (el) { el.value = ''; delete el.dataset.autoWeight; delete el.dataset.autoConcentration; lastSyncedConcentrationValues.delete(id); } });
     calculateAll();
   }
   async function copyResult(id) {
@@ -261,6 +335,10 @@
       } else if (DEPENDENT_WEIGHT_IDS.includes(event.target.id)) {
         if (event.target.value && event.target.value !== lastSyncedWeightValue) delete event.target.dataset.autoWeight;
         else event.target.dataset.autoWeight = 'true';
+      } else if (CONCENTRATION_BUILDERS.some((builder) => builder.concId === event.target.id)) {
+        const lastSynced = lastSyncedConcentrationValues.get(event.target.id);
+        if (event.target.value && event.target.value !== lastSynced) delete event.target.dataset.autoConcentration;
+        else event.target.dataset.autoConcentration = 'true';
       }
       calculateAll();
     }));
