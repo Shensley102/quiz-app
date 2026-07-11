@@ -30,6 +30,8 @@
     el.classList.toggle('hidden', !list.length);
   }
   function setText(id, text) { const el = $(id); if (el) el.textContent = text; }
+  function setFormula(id, text, invalid = false) { const el = $(id); if (el) { el.textContent = text; el.classList.toggle('invalid', invalid); } }
+  function setInvalidFormula(id) { setFormula(id, 'Calculation unavailable until valid inputs are entered.', true); }
   function sameBase(doseUnit, concentrationUnit) { return unitBase(doseUnit) === unitBase(concentrationUnit); }
   function positive(value) { return value !== null && value > 0; }
 
@@ -46,7 +48,11 @@
     const syncedValue = fmtWeight(kg);
     DEPENDENT_WEIGHT_IDS.forEach((id) => {
       const el = $(id);
-      if (el) el.value = syncedValue;
+      if (!el) return;
+      const isAutoManaged = el.dataset.autoWeight === 'true' || el.value === '' || el.value === lastSyncedWeightValue;
+      if (!isAutoManaged) return;
+      el.value = syncedValue;
+      el.dataset.autoWeight = 'true';
     });
     lastSyncedWeightValue = syncedValue;
   }
@@ -104,7 +110,7 @@
     if ([weight, dose, max, conc].every((value) => value === null)) {
       showWarning('singleWarning', []);
       setText('singleResult', 'Enter weight and dose to calculate.');
-      setText('singleFormula', 'dose = weight_kg × dose_per_kg');
+      setFormula('singleFormula', 'dose = weight_kg × dose_per_kg');
       return;
     }
     const warnings = [];
@@ -116,7 +122,7 @@
     if (warnings.length || !positive(weight) || !positive(dose)) {
       showWarning('singleWarning', warnings);
       setText('singleResult', 'Enter valid weight and dose to calculate.');
-      setText('singleFormula', 'dose = weight_kg × dose_per_kg');
+      setInvalidFormula('singleFormula');
       return;
     }
     const calculated = weight * dose;
@@ -135,7 +141,7 @@
     if (hasConcentration) formulaLines.push(`volume_mL = ${fmt(calculated)} ${base} ÷ ${fmt(conc)} ${concUnit} = ${fmtMl(calculatedVolume)} mL`);
     if (capped) formulaLines.push(`max dose entered = ${fmt(max)} ${base}`);
     if (capped && hasConcentration) formulaLines.push(`capped_volume_mL = ${fmt(max)} ${base} ÷ ${fmt(conc)} ${concUnit} = ${fmtMl(cappedVolume)} mL`);
-    setText('singleFormula', formulaLines.join('\n'));
+    setFormula('singleFormula', formulaLines.join('\n'));
   }
 
   function calculateFixed() {
@@ -144,7 +150,7 @@
     if ([dose, conc].every((value) => value === null)) {
       showWarning('fixedWarning', []);
       setText('fixedResult', 'Enter desired dose and concentration.');
-      setText('fixedFormula', 'volume_mL = desired_dose ÷ concentration');
+      setFormula('fixedFormula', 'volume_mL = desired_dose ÷ concentration');
       return;
     }
     const warnings = [];
@@ -153,10 +159,10 @@
     if (!positive(conc)) warnings.push(conc === 0 ? 'Concentration cannot be zero.' : 'Missing concentration.');
     if (positive(dose) && positive(conc) && !sameBase(doseUnit, concUnit)) warnings.push('Dose and concentration units must match.');
     showWarning('fixedWarning', warnings);
-    if (warnings.length) { setText('fixedResult', 'Enter matching dose and concentration units.'); return; }
+    if (warnings.length) { setText('fixedResult', 'Enter matching dose and concentration units.'); setInvalidFormula('fixedFormula'); return; }
     const volume = dose / conc;
     setText('fixedResult', `Volume to draw up: ${fmtMl(volume)} mL`);
-    setText('fixedFormula', `volume_mL = ${fmt(dose)} ${doseUnit} ÷ ${fmt(conc)} ${concUnit} = ${fmtMl(volume)} mL`);
+    setFormula('fixedFormula', `volume_mL = ${fmt(dose)} ${doseUnit} ÷ ${fmt(conc)} ${concUnit} = ${fmtMl(volume)} mL`);
   }
 
   function calculateInfusion() {
@@ -165,7 +171,7 @@
     if ([weight, dose, conc].every((value) => value === null)) {
       showWarning('infWarning', []);
       setText('infResult', 'Enter infusion order and concentration.');
-      setText('infFormula', 'mL/hr formula depends on selected dose unit');
+      setFormula('infFormula', 'mL/hr formula depends on selected dose unit');
       return;
     }
     const warnings = [];
@@ -176,7 +182,7 @@
     const neededConc = doseUnit.startsWith('mcg') ? 'mcg/mL' : doseUnit.startsWith('mg') ? 'mg/mL' : 'units/mL';
     if (positive(conc) && concUnit !== neededConc) warnings.push(`Concentration unit should be ${neededConc} for ${doseUnit}.`);
     showWarning('infWarning', warnings);
-    if (warnings.length) { setText('infResult', 'Enter valid infusion values with matching units.'); return; }
+    if (warnings.length) { setText('infResult', 'Enter valid infusion values with matching units.'); setInvalidFormula('infFormula'); return; }
     let rate = 0, formula = '';
     if (doseUnit === 'mcg/kg/min') { rate = (dose * weight * 60) / conc; formula = `mL/hr = (${fmt(dose)} mcg/kg/min × ${fmt(weight)} kg × 60) ÷ ${fmt(conc)} mcg/mL = ${fmtRate(rate)} mL/hr`; }
     if (doseUnit === 'mg/kg/hr') { rate = (dose * weight) / conc; formula = `mL/hr = (${fmt(dose)} mg/kg/hr × ${fmt(weight)} kg) ÷ ${fmt(conc)} mg/mL = ${fmtRate(rate)} mL/hr`; }
@@ -184,7 +190,7 @@
     if (doseUnit === 'mg/hr') { rate = dose / conc; formula = `mL/hr = ${fmt(dose)} mg/hr ÷ ${fmt(conc)} mg/mL = ${fmtRate(rate)} mL/hr`; }
     if (doseUnit === 'units/hr') { rate = dose / conc; formula = `mL/hr = ${fmt(dose)} units/hr ÷ ${fmt(conc)} units/mL = ${fmtRate(rate)} mL/hr`; }
     setText('infResult', `Pump rate: exact ${fmtRate(rate)} mL/hr • practical: ≈${practicalRate(rate)} mL/hr`);
-    setText('infFormula', formula);
+    setFormula('infFormula', formula);
   }
 
   function calculateReverse() {
@@ -193,7 +199,7 @@
     if ([weight, rate, conc].every((value) => value === null)) {
       showWarning('revWarning', []);
       setText('revResult', 'Enter pump rate and concentration to double-check delivered dose.');
-      setText('revFormula', 'delivered dose formula depends on selected output unit');
+      setFormula('revFormula', 'delivered dose formula depends on selected output unit');
       return;
     }
     const warnings = [];
@@ -204,7 +210,7 @@
     const neededConc = out.startsWith('mcg') ? 'mcg/mL' : out.startsWith('mg') ? 'mg/mL' : 'units/mL';
     if (positive(conc) && concUnit !== neededConc) warnings.push(`Concentration unit should be ${neededConc} for ${out}.`);
     showWarning('revWarning', warnings);
-    if (warnings.length) { setText('revResult', 'Enter valid pump and concentration values with matching units.'); return; }
+    if (warnings.length) { setText('revResult', 'Enter valid pump and concentration values with matching units.'); setInvalidFormula('revFormula'); return; }
     const amountPerHr = rate * conc;
     let delivered = 0, formula = '';
     if (out === 'mcg/kg/min') { delivered = amountPerHr / weight / 60; formula = `delivered = (${fmt(rate)} mL/hr × ${fmt(conc)} mcg/mL) ÷ ${fmt(weight)} kg ÷ 60 = ${fmt(delivered)} mcg/kg/min`; }
@@ -213,7 +219,7 @@
     if (out === 'mg/hr') { delivered = amountPerHr; formula = `delivered = ${fmt(rate)} mL/hr × ${fmt(conc)} mg/mL = ${fmt(delivered)} mg/hr`; }
     if (out === 'units/hr') { delivered = amountPerHr; formula = `delivered = ${fmt(rate)} mL/hr × ${fmt(conc)} units/mL = ${fmt(delivered)} units/hr`; }
     setText('revResult', `Delivered dose: ${fmt(delivered)} ${out}`);
-    setText('revFormula', formula);
+    setFormula('revFormula', formula);
   }
 
   function calculateDrip() {
@@ -221,17 +227,17 @@
     if (rate === null) {
       showWarning('dripWarning', []);
       setText('dripResult', 'Enter mL/hr and drop factor.');
-      setText('dripFormula', 'gtt/min = (mL/hr × drop_factor) ÷ 60');
+      setFormula('dripFormula', 'gtt/min = (mL/hr × drop_factor) ÷ 60');
       return;
     }
     const warnings = [];
     if (invalid([rate])) warnings.push('Use positive values only.');
     if (!positive(rate)) warnings.push('Missing mL/hr.');
     showWarning('dripWarning', warnings);
-    if (warnings.length) { setText('dripResult', 'Enter valid mL/hr.'); return; }
+    if (warnings.length) { setText('dripResult', 'Enter valid mL/hr.'); setInvalidFormula('dripFormula'); return; }
     const gtt = (rate * factor) / 60;
     setText('dripResult', `Drip rate: exact ${fmtGtt(gtt)} gtt/min • practical: ≈${Math.round(gtt)} gtt/min`);
-    setText('dripFormula', `gtt/min = (${fmt(rate)} mL/hr × ${fmt(factor)} gtt/mL) ÷ 60 = ${fmtGtt(gtt)} gtt/min`);
+    setFormula('dripFormula', `gtt/min = (${fmt(rate)} mL/hr × ${fmt(factor)} gtt/mL) ÷ 60 = ${fmtGtt(gtt)} gtt/min`);
   }
 
   function calculateAll() { calculateWeight(); calculateSingleDose(); calculateFixed(); calculateInfusion(); calculateReverse(); calculateDrip(); }
@@ -251,7 +257,7 @@
       if (event.target.id === 'weightLb' || event.target.id === 'weightKg') {
         activeWeightField = event.target.id;
       } else if (DEPENDENT_WEIGHT_IDS.includes(event.target.id)) {
-        if (event.target.value) delete event.target.dataset.autoWeight;
+        if (event.target.value && event.target.value !== lastSyncedWeightValue) delete event.target.dataset.autoWeight;
         else event.target.dataset.autoWeight = 'true';
       }
       calculateAll();

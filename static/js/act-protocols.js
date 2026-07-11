@@ -9,7 +9,7 @@
   const PROTOCOL_ID_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
   const INSTALL_DISMISSED_KEY = 'act-protocols-install-dismissed';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
-  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', suggestions: [], activeSuggestionIndex: -1, saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', deferredInstallPrompt: null };
+  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', suggestions: [], activeSuggestionIndex: -1, saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', opening: new Set(), deferredInstallPrompt: null };
   const els = {
     grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), filters: document.getElementById('categoryFilters'),
     count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary'), suggestions: document.getElementById('protocolSearchSuggestions'),
@@ -241,11 +241,12 @@
     render();
     closeSuggestions();
   }
-  function statusClass(p) { return state.saved.has(p.file) ? 'saved' : state.missing.has(p.file) ? 'error' : state.caching.has(p.file) ? 'caching' : ''; }
+  function statusClass(p) { return state.opening.has(p.file) ? 'caching' : state.saved.has(p.file) ? 'saved' : state.missing.has(p.file) ? 'error' : state.caching.has(p.file) ? 'caching' : ''; }
   function statusText(p) {
+    if (state.opening.has(p.file)) return 'Opening selected protocol…';
     if (state.saved.has(p.file)) return 'Saved for Offline Use';
-    if (state.missing.has(p.file)) return 'Could not save offline — will retry next time the app opens.';
-    if (state.caching.has(p.file)) return 'Downloading';
+    if (state.missing.has(p.file)) return 'Could not open/save offline — reconnect and try again.';
+    if (state.caching.has(p.file)) return 'Downloading for offline use';
     return 'Queued for offline download';
   }
   function setOfflineSummary(text, status, detail = '') {
@@ -279,9 +280,11 @@
     els.retryBtn?.classList.toggle('hidden', failed === 0);
     if (!total) {
       setOfflineSummary('Checking Protocol Downloads', 'downloading');
-    } else if (caching || saved + failed < total) {
-      const activeProgress = Math.min(total, saved + (caching ? 1 : 0));
+    } else if (caching) {
+      const activeProgress = Math.min(total, saved + caching);
       setOfflineSummary('Downloading Protocols', 'downloading', `${activeProgress} out of ${total}`);
+    } else if (saved + failed < total) {
+      setOfflineSummary('Preparing Offline Downloads', 'downloading', `${saved} out of ${total}`);
     } else if (failed) {
       setOfflineSummary('Failed to Download', 'error', `${failed} failed`);
     } else if (saved === total) {
@@ -323,7 +326,9 @@
     state.category = typeof saved.category === 'string' && saved.category ? saved.category : 'All';
     els.search.value = state.query;
     els.filters.querySelectorAll('.filter-btn').forEach((button) => {
-      button.classList.toggle('active', button.dataset.category === state.category);
+      const selected = button.dataset.category === state.category;
+      button.classList.toggle('active', selected);
+      button.setAttribute('aria-pressed', String(selected));
     });
   }
   function restoreProtocolListState(saved, { restoreScroll = false } = {}) {
@@ -351,6 +356,13 @@
     const meta = state.resultMeta.get(p.id); if (!meta?.reasons?.length) return '';
     return `<div class="match-reasons">${meta.reasons.slice(0, 3).map(r => `<div class="match-reason"><strong>${escapeHtml(r.type)}:</strong> ${escapeHtml(r.text)}${r.pageRanges ? ` <span>Pages: ${escapeHtml(r.pageRanges)}</span>` : r.pages?.length ? ` <span>Pages: ${escapeHtml(r.pages.join(', '))}</span>` : ''}</div>`).join('')}</div>`;
   }
+  function renderSourceMeta(p) {
+    const parts = [];
+    if (p.revisionDate) parts.push(`Revision: ${p.revisionDate}`);
+    if (p.effectiveDate) parts.push(`Effective: ${p.effectiveDate}`);
+    if (p.source) parts.push(`Source: ${p.source}`);
+    return parts.length ? `<div class="protocol-source-meta">${parts.map(escapeHtml).join(' • ')}</div>` : '';
+  }
   function render() {
     const list = filtered();
     els.count.textContent = `${list.length} of ${state.protocols.length} protocols shown${state.searchReady ? '' : ' (metadata search)'}`;
@@ -365,52 +377,15 @@
       return `${heading}
       <article class="protocol-card" data-file="${escapeHtml(p.file)}">
         <div class="protocol-meta"><span class="protocol-pill protocol-id">${escapeHtml(p.id)}</span><span class="protocol-pill">${escapeHtml(p.category)}</span></div>
-        <h2>${escapeHtml(p.title)}</h2>
+        <h3>${escapeHtml(p.title)}</h3>
+        ${renderSourceMeta(p)}
         ${renderReasons(p)}
         <div class="offline-status ${statusClass(p)}" data-status>${statusText(p)}</div>
         <div class="protocol-buttons">
-          <button class="btn btn-outline" type="button" data-action="open" data-id="${escapeHtml(p.id)}">Open PDF</button>
+          <button class="btn btn-outline" type="button" data-action="open" data-id="${escapeHtml(p.id)}" aria-label="Open PDF for ${escapeHtml(p.id)} ${escapeHtml(p.title)}">Open PDF</button>
         </div>
       </article>`;
     }).join('');
-  }
-  function pdfInfoUrl(file) {
-    return `/act-protocols/pdf-info?${new URLSearchParams({ file }).toString()}`;
-  }
-  function pdfPageUrl(file, pageNumber) {
-    return `/act-protocols/pdf-page?${new URLSearchParams({ file, page: String(pageNumber), scale: '2' }).toString()}`;
-  }
-  async function cacheUrl(cache, url) {
-    const response = await fetch(url, { cache: 'no-cache' });
-    if (!response.ok) throw new Error(`${url}: ${response.status} ${response.statusText}`);
-    const body = await response.arrayBuffer();
-    if (!body.byteLength) throw new Error(`${url}: empty response`);
-    await cache.put(url, new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers }));
-    const cached = await cache.match(url);
-    if (!cached?.ok) throw new Error(`${url}: not available in ACT cache after download`);
-    return new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers });
-  }
-  async function getCachedPageCount(file) {
-    const cache = await caches.open(CACHE_NAME);
-    const response = await cache.match(pdfInfoUrl(file));
-    if (!response?.ok) return 0;
-    try {
-      const info = await response.json();
-      return Number(info.pageCount || 0);
-    } catch (err) {
-      console.warn('[ACT Protocols] Cached PDF info could not be read', err);
-      return 0;
-    }
-  }
-  async function hasCachedViewerResources(file) {
-    if (!(await isCached(file))) return false;
-    const pageCount = await getCachedPageCount(file);
-    if (!pageCount) return false;
-    const checks = [];
-    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
-      checks.push(caches.open(CACHE_NAME).then((cache) => cache.match(pdfPageUrl(file, pageNumber))).then((response) => Boolean(response?.ok)));
-    }
-    return (await Promise.all(checks)).every(Boolean);
   }
   function pdfInfoUrl(file) {
     return `/act-protocols/pdf-info?${new URLSearchParams({ file }).toString()}`;
@@ -506,30 +481,30 @@
       openProtocolViewer(protocol);
       return;
     }
-    if (await hasCachedViewerResources(protocol.file)) {
-      state.saved.add(protocol.file);
-      state.missing.delete(protocol.file);
-      openProtocolViewer(protocol);
-      return;
-    }
-    state.saved.delete(protocol.file);
-    if (!navigator.onLine) {
-      state.missing.add(protocol.file);
-      render();
-      return;
-    }
-    state.caching.add(protocol.file);
+    state.opening.add(protocol.file);
     state.missing.delete(protocol.file);
     render();
     try {
-      await cachePdf(protocol);
+      if (!navigator.onLine && !(await hasCachedViewerResources(protocol.file))) {
+        state.missing.add(protocol.file);
+        return;
+      }
       openProtocolViewer(protocol);
-    } catch (err) {
-      state.missing.add(protocol.file);
-      console.warn(`[ACT Protocols] Could not verify ${protocol.file} for offline viewing before opening`, err);
-      openProtocolViewer(protocol);
+      if (navigator.onLine && !(await hasCachedViewerResources(protocol.file))) {
+        state.caching.add(protocol.file);
+        cachePdf(protocol)
+          .catch((err) => {
+            state.missing.add(protocol.file);
+            console.warn(`[ACT Protocols] Background cache failed for ${protocol.file}`, err);
+          })
+          .finally(() => {
+            state.caching.delete(protocol.file);
+            state.opening.delete(protocol.file);
+            updateOfflineSummary();
+          });
+      }
     } finally {
-      state.caching.delete(protocol.file);
+      state.opening.delete(protocol.file);
       render();
     }
   }
@@ -599,38 +574,9 @@
     els.search.addEventListener('input', (e) => {
       const value = e.target.value;
       updateSuggestions(value);
-      if (!normalize(value)) {
-        state.query = '';
-        saveListState();
-        render();
-      }
-    });
-    els.search.addEventListener('keydown', (e) => {
-      if (!state.suggestions.length) return;
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        state.activeSuggestionIndex = (state.activeSuggestionIndex + 1) % state.suggestions.length;
-        renderSuggestions();
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        state.activeSuggestionIndex = state.activeSuggestionIndex <= 0 ? state.suggestions.length - 1 : state.activeSuggestionIndex - 1;
-        renderSuggestions();
-      } else if (e.key === 'Enter' && state.activeSuggestionIndex >= 0) {
-        e.preventDefault();
-        selectSuggestion(state.activeSuggestionIndex);
-      } else if (e.key === 'Escape') {
-        closeSuggestions();
-      }
-    });
-    els.suggestions?.addEventListener('mousedown', (e) => e.preventDefault());
-    els.suggestions?.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-index]');
-      if (!btn) return;
-      selectSuggestion(Number(btn.dataset.index));
-    });
-    document.addEventListener('click', (e) => {
-      if (e.target === els.search || els.suggestions?.contains(e.target)) return;
-      closeSuggestions();
+      state.query = value;
+      saveListState();
+      render();
     });
     els.search.addEventListener('keydown', (e) => {
       if (!state.suggestions.length) return;
@@ -663,7 +609,7 @@
       const btn = e.target.closest('[data-category]');
       if (!btn) return;
       state.category = btn.dataset.category;
-      els.filters.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+      els.filters.querySelectorAll('.filter-btn').forEach((b) => { const selected = b === btn; b.classList.toggle('active', selected); b.setAttribute('aria-pressed', String(selected)); });
       saveListState();
       render();
     });
