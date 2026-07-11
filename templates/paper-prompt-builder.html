@@ -768,461 +768,8 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
   }
 }
   </style>
-    <style>
-    /* Inlined from static/paper-prompt-builder.css so this page's frontend code is editable in one template. */
-/* ============================================================
-   Paper Prompt Builder
-   AI-readable form for academic paper prompts
-   ============================================================ */
+  <link rel="stylesheet" href="/static/paper-prompt-builder.css">
 
-.prompt-page {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 22px 16px 40px;
-}
-
-.prompt-tool-header {
-  margin: 10px auto 18px;
-  padding: 22px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.86);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: var(--shadow-md);
-}
-
-.prompt-tool-header h1 {
-  margin: 0 0 8px;
-  font-size: clamp(28px, 4vw, 42px);
-  line-height: 1.05;
-  font-weight: 800;
-  color: var(--ink);
-}
-
-.prompt-tool-header p {
-  margin: 0;
-  color: var(--ink-soft);
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-.prompt-tool-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.prompt-builder-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
-  gap: 18px;
-  align-items: start;
-}
-
-.prompt-panel {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow: var(--shadow-md);
-}
-
-.prompt-section {
-  border: 1px solid rgba(47, 97, 243, 0.12);
-  border-radius: 16px;
-  padding: 14px;
-  margin-bottom: 14px;
-  background: rgba(255, 255, 255, 0.66);
-}
-
-.prompt-section:last-child {
-  margin-bottom: 0;
-}
-
-.prompt-section h2 {
-  margin: 0 0 10px;
-  font-size: 18px;
-  color: var(--ink);
-}
-
-.prompt-section-note,
-.source-reminder {
-  margin: 8px 0 12px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: rgba(255, 243, 205, 0.92);
-  border: 1px solid rgba(245, 158, 11, 0.28);
-  color: #6b4e00;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.45;
-}
-
-.field-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.prompt-field,
-.prompt-check-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.prompt-field.full,
-.prompt-check-group.full {
-  grid-column: 1 / -1;
-}
-
-.prompt-field label,
-.prompt-check-group legend {
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--ink);
-}
-
-.prompt-field input,
-.prompt-field select,
-.prompt-field textarea {
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.16);
-  border-radius: 12px;
-  padding: 10px 11px;
-  font: inherit;
-  background: #ffffff;
-  color: var(--ink);
-  outline: none;
-}
-
-.length-control {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 132px;
-  gap: 8px;
-}
-
-.length-control input,
-.length-control select {
-  min-width: 0;
-}
-
-.prompt-field textarea {
-  min-height: 92px;
-  resize: vertical;
-}
-
-.prompt-field input:focus,
-.prompt-field select:focus,
-.prompt-field textarea:focus {
-  border-color: rgba(47, 97, 243, 0.7);
-  box-shadow: 0 0 0 3px rgba(47, 97, 243, 0.12);
-}
-
-.field-help {
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.35;
-}
-
-.prompt-field.locked,
-.prompt-field.format-field-disabled,
-.prompt-field.format-field-locked {
-  opacity: 0.68;
-}
-
-.prompt-field.locked input,
-.prompt-field.locked select,
-.prompt-field.locked textarea,
-.prompt-field.format-field-disabled input,
-.prompt-field.format-field-disabled select,
-.prompt-field.format-field-disabled textarea,
-.prompt-field.format-field-locked input,
-.prompt-field.format-field-locked select,
-.prompt-field.format-field-locked textarea {
-  background: #f3f4f6;
-  border-color: #cbd5e1;
-  color: #6b7280;
-  cursor: not-allowed;
-}
-
-.format-helper-text {
-  color: #5f6b7a;
-}
-
-.style-system-field.hidden {
-  display: none;
-}
-
-.format-helper-text.locked-helper {
-  color: #6b7280;
-  font-style: italic;
-}
-
-.paper-dependent-fields,
-.paper-dependent-content {
-  grid-column: 1 / -1;
-}
-
-.paper-type-select-field select {
-  max-width: 100%;
-}
-
-.checkbox-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.check-option {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 8px 9px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.72);
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.3;
-  color: var(--ink);
-}
-
-.check-option input {
-  margin-top: 2px;
-  accent-color: #2f61f3;
-}
-
-.content-help-callout {
-  margin: 0 0 12px;
-  padding: 12px;
-  border: 1px solid rgba(47, 97, 243, 0.2);
-  border-radius: 14px;
-  background: rgba(47, 97, 243, 0.06);
-}
-
-.content-help-callout legend {
-  padding: 0 6px;
-}
-
-.content-help-option {
-  border-color: rgba(47, 97, 243, 0.28);
-  background: #ffffff;
-}
-
-.source-pair-builder {
-  padding: 12px;
-  border: 1px solid rgba(47, 97, 243, 0.14);
-  border-radius: 14px;
-  background: rgba(47, 97, 243, 0.04);
-}
-
-.source-pair-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.source-pair-note {
-  margin: 4px 0 0;
-  color: var(--ink-soft);
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-.source-add-btn,
-.source-remove-btn {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
-.source-add-action-row {
-  display: flex;
-  justify-content: center;
-  margin-top: 12px;
-}
-
-.source-pairs {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.source-pair-card {
-  padding: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.86);
-}
-
-.source-pair-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.source-pair-card-header h3 {
-  margin: 0;
-  color: var(--ink);
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.source-pair-grid {
-  display: grid;
-  gap: 10px;
-}
-
-.source-pair-card textarea {
-  min-height: 74px;
-}
-
-.prompt-output-panel {
-  position: sticky;
-  top: 16px;
-}
-
-.output-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.output-header h2 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.prompt-output {
-  min-height: 620px;
-  width: 100%;
-  white-space: pre-wrap;
-  font-family: Consolas, Monaco, 'Courier New', monospace;
-  font-size: 12.5px;
-  line-height: 1.45;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  border-radius: 14px;
-  padding: 12px;
-  resize: vertical;
-  background: #0f172a;
-  color: #e5e7eb;
-}
-
-.output-actions,
-.bottom-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.tool-btn {
-  border: 0;
-  border-radius: 999px;
-  padding: 10px 14px;
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  background: #2f61f3;
-  color: #ffffff;
-  box-shadow: 0 8px 18px rgba(47, 97, 243, 0.22);
-}
-
-.tool-btn.secondary {
-  background: rgba(15, 23, 42, 0.08);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-.tool-btn.warning {
-  background: #f59e0b;
-  color: #1f2937;
-}
-
-.tool-btn:hover {
-  filter: brightness(0.98);
-  transform: translateY(-1px);
-}
-
-.missing-info-box {
-  margin-top: 12px;
-  padding: 12px;
-  border-radius: 12px;
-  background: rgba(239, 68, 68, 0.08);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  color: #7f1d1d;
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.missing-info-box.good {
-  background: rgba(34, 197, 94, 0.09);
-  border-color: rgba(34, 197, 94, 0.24);
-  color: #14532d;
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 10px;
-  color: #2f61f3;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.back-link:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 900px) {
-  .prompt-builder-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .prompt-output-panel {
-    position: static;
-  }
-
-  .prompt-output {
-    min-height: 420px;
-  }
-}
-
-@media (max-width: 560px) {
-  .field-grid,
-  .checkbox-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .length-control {
-    grid-template-columns: 1fr;
-  }
-
-  .source-pair-header,
-  .source-pair-card-header {
-    flex-direction: column;
-  }
-
-  .source-add-btn,
-  .source-remove-btn {
-    width: 100%;
-  }
-
-  .prompt-tool-header,
-  .prompt-panel {
-    padding: 14px;
-  }
-}
-  </style>
 
   <!-- PWA Manifest -->
   <link rel="manifest" href="/static/manifest-paper-builder.json">
@@ -1261,7 +808,7 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
           <div class="field-grid">
             <div class="prompt-field full paper-type-select-field">
               <label for="paperType">Paper type</label>
-              <select id="paperType" name="paperType" aria-describedby="paperTypeHelp">
+              <select id="paperType" name="paperType" required aria-describedby="paperTypeHelp">
                 <option value="">Select a paper type to begin</option>
                 <option>Research paper</option>
                 <option>Argumentative essay</option>
@@ -1300,8 +847,8 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
             <div class="prompt-field">
               <label for="lengthRequirement">Required length</label>
               <div class="length-control">
-                <input id="lengthRequirement" type="number" min="1" step="1" inputmode="numeric" placeholder="Example: 1000">
-                <select id="lengthUnit" aria-label="Required length unit">
+                <input id="lengthRequirement" type="number" min="1" step="1" inputmode="numeric" required placeholder="Example: 1000">
+                <select id="lengthUnit" required aria-label="Required length unit">
                   <option value="">Select unit</option>
                   <option value="Words">Words</option>
                   <option value="Pages">Pages</option>
@@ -1348,7 +895,7 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
           <div class="field-grid">
             <div class="prompt-field">
               <label for="citationStyle">Citation style</label>
-              <select id="citationStyle">
+              <select id="citationStyle" required>
                 <option value="">Select one</option>
                 <option>APA 7</option>
                 <option>MLA 9</option>
@@ -1467,6 +1014,10 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
               <label for="rubric">Rubric / grading criteria</label>
               <textarea id="rubric" placeholder="Paste the rubric here. This helps AI target the grading requirements."></textarea>
             </div>
+            <div class="prompt-field full">
+              <label for="aiUsePolicy">Instructor AI-use policy / assignment AI rules</label>
+              <textarea id="aiUsePolicy" placeholder="Example: AI may be used for outlining only; AI use must be disclosed; No AI restrictions provided."></textarea>
+            </div>
           </div>
         </section>
 
@@ -1500,6 +1051,19 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
           <h2>7. What Should AI Create?</h2>
           <fieldset class="prompt-check-group full">
             <legend>Requested output</legend>
+            <div class="prompt-field full output-mode-field">
+              <label for="outputMode">Output mode</label>
+              <select id="outputMode" aria-describedby="outputModeHelp">
+                <option value="">Select an output mode</option>
+                <option>Missing-info checklist only</option>
+                <option>Thesis and outline</option>
+                <option>Section-by-section draft</option>
+                <option>Full draft after source check</option>
+                <option>Citation/reference formatting only</option>
+                <option>Revise existing draft</option>
+              </select>
+              <p id="outputModeHelp" class="field-help">Choose the main deliverable before copying or downloading.</p>
+            </div>
             <div class="checkbox-grid">
               <label class="check-option"><input type="checkbox" name="writingTasks" value="Check for missing information first"> Check missing info first</label>
               <label class="check-option"><input type="checkbox" name="writingTasks" value="Create or improve my thesis"> Create/improve thesis</label>
@@ -1530,7 +1094,7 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus {
           <button type="button" class="tool-btn" id="copyPromptBtnSide">Copy Prompt</button>
           <button type="button" class="tool-btn secondary" id="downloadPromptBtnSide">Download .txt</button>
         </div>
-        <div id="missingInfoBox" class="missing-info-box hidden"></div>
+        <div id="missingInfoBox" class="missing-info-box hidden" role="status" aria-live="polite"></div>
       </aside>
     </div>
   </main>
