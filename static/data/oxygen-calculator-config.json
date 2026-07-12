@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "calculatorVersion": "1.0.0",
+  "reviewedDate": "2026-07-11",
+  "ambientOxygenFraction": 0.21,
+  "sourceOxygenFraction": 1.0,
+  "reservePsi": 200,
+  "loxFactor": 860,
+  "cylinders": {
+    "D": { "label": "D", "factor": 0.16, "type": "compressed" },
+    "JUMBO_D": { "label": "Jumbo D", "factor": 0.25, "type": "compressed" },
+    "E": { "label": "E", "factor": 0.28, "type": "compressed" },
+    "M": { "label": "M", "factor": 1.56, "type": "compressed" },
+    "H": { "label": "H", "factor": 3.14, "type": "compressed" },
+    "KEVLAR": { "label": "Kevlar", "factor": null, "type": "compressed", "requiresUserFactor": true },
+    "LOX": { "label": "LOX", "factor": 860, "type": "liquid", "isLiquidOxygen": true }
+  },
+  "deliveryModes": {
+    "CONVENTIONAL": { "label": "Conventional Oxygen" },
+    "BIPAP_LOW_PRESSURE": { "label": "BiPAP/NPPV — Low-Pressure Bleed-In" },
+    "BIPAP_HIGH_PRESSURE": { "label": "BiPAP/NPPV — High-Pressure Blended Oxygen" },
+    "HFNC": { "label": "High-Flow Nasal Cannula" },
+    "HAMILTON_T1_ADULT_PED": { "label": "Hamilton T1 — Adult/Pediatric", "biasFlowLpm": 3 },
+    "HAMILTON_T1_NEONATE": { "label": "Hamilton T1 — Neonatal", "biasFlowLpm": 4 },
+    "REVEL": { "label": "Revel Ventilator", "biasFlowLpm": 5 },
+    "LTV1200": { "label": "LTV1200 Ventilator", "biasFlowLpm": 10 }
+  },
+  "riskThresholds": { "medium": 0.8, "high": 0.9 }
+}

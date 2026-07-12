@@ -1,0 +1,178 @@
+# ACT Oxygen Availability and Transport Risk Calculator
+
+## Purpose and scope
+
+The ACT Oxygen Availability Calculator is a client-side calculation aid for estimating oxygen-source duration, modeled device oxygen consumption, and configured transport-plan source utilization. It is not a transport clearance tool and must not be used as the sole basis for accepting, continuing, declining, or changing transport.
+
+Supported delivery modes:
+
+1. Conventional oxygen
+2. BiPAP/NPPV — low-pressure oxygen bleed-in
+3. BiPAP/NPPV — high-pressure blended oxygen
+4. High-flow nasal cannula (HFNC)
+5. Hamilton T1 — Adult/Pediatric
+6. Hamilton T1 — Neonatal
+7. Revel ventilator
+8. LTV1200 ventilator
+
+## Configuration versioning
+
+Constants are stored in `static/data/oxygen-calculator-config.json` with schema version, calculator version, reviewed date, cylinder factors, reserve pressure, LOX factor, ambient/source oxygen fractions, device bias-flow assumptions, and risk thresholds. Runtime code validates this configuration before enabling calculations. Invalid or missing configuration disables results and displays a prominent non-stack-trace error.
+
+## Oxygen sources
+
+Compressed cylinders use:
+
+```text
+usablePressurePsi = max(currentPressurePsi − reservePsi, 0)
+usableLiters = usablePressurePsi × cylinderFactor
+```
+
+Default reserve pressure is 200 PSI. Pressure at or below reserve produces zero usable liters and a warning.
+
+LOX uses:
+
+```text
+usableLiters = loxReading × 860
+```
+
+No PSI reserve is subtracted from LOX.
+
+Configured compressed-cylinder factors are D 0.16, Jumbo D 0.25, E 0.28, M 1.56, and H 3.14 L/PSI. Kevlar requires a user-entered cylinder-specific factor.
+
+## Delivery formulas
+
+### Conventional oxygen
+
+```text
+oxygenConsumptionLpm = enteredFlowLpm
+durationMinutes = usableLiters ÷ oxygenConsumptionLpm
+```
+
+Displayed duration is rounded down with `Math.floor()`.
+
+### BiPAP/NPPV low-pressure bleed-in
+
+```text
+oxygenConsumptionLpm = oxygenBleedInFlowLpm
+durationMinutes = usableLiters ÷ oxygenBleedInFlowLpm
+```
+
+FiO₂, IPAP, EPAP, respiratory rate, and patient minute ventilation are not used in this low-pressure pathway because the source draw is the oxygen flowmeter/low-pressure input flow.
+
+### BiPAP/NPPV high-pressure blended-flow estimate
+
+```text
+oxygenSourceFlowLpm = totalBlendedFlowLpm × ((fio2 − ambientOxygenFraction) ÷ (sourceOxygenFraction − ambientOxygenFraction))
+ambientAirFlowLpm = totalBlendedFlowLpm − oxygenSourceFlowLpm
+```
+
+Default ambient oxygen fraction is 0.21 and source oxygen fraction is 1.00. The total-flow input must be total device/blended flow, including flow used to maintain pressure and compensate for circuit leak. Patient minute ventilation must not be entered as total device flow. IPAP and EPAP alone are not enough to derive oxygen consumption without a validated total-flow or oxygen-draw value.
+
+### BiPAP/NPPV direct oxygen draw
+
+```text
+oxygenConsumptionLpm = knownOxygenDrawLpm
+```
+
+Use only a device-reported, manufacturer-referenced, organizationally profiled, locally measured, or otherwise validated oxygen-source draw. This input is oxygen taken from the tank or LOX source, not total mixed gas flow and not patient minute ventilation.
+
+### HFNC
+
+HFNC uses the same gas-mixture calculation as high-pressure blended flow:
+
+```text
+oxygenSourceFlowLpm = totalFlowLpm × ((fio2 − 0.21) ÷ 0.79)
+ambientAirFlowLpm = totalFlowLpm − oxygenSourceFlowLpm
+```
+
+At FiO₂ 0.21, oxygen-source flow is zero and duration is not applicable; the code does not divide by zero or return infinity.
+
+### Ventilators
+
+Minute ventilation is normalized to mL/min. L/min values are multiplied by 1,000.
+
+```text
+patientOxygenConsumptionLpm = (minuteVentilationMlPerMin × fio2) ÷ 1000
+totalOxygenConsumptionLpm = patientOxygenConsumptionLpm + biasFlowLpm
+```
+
+Configured bias-flow assumptions:
+
+- Hamilton T1 Adult/Pediatric: 3 L/min
+- Hamilton T1 Neonatal: 4 L/min
+- Revel: 5 L/min
+- LTV1200: 10 L/min
+
+These constants require clinical/organizational validation.
+
+## FiO₂ and minute-ventilation parsing
+
+FiO₂ accepts decimal fractions (`0.70`), whole-number percentages (`70`), and percent strings (`70%`). Normalized values must be 0.21 through 1.0. Values are rejected rather than clamped.
+
+Minute ventilation requires an explicit unit selector. `8 L/min` becomes `8,000 mL/min`. `8 mL/min` remains valid but displays a suspicious-value warning.
+
+## Risk thresholds and conservative rounding
+
+Duration is always rounded down. Risk levels use the configured thresholds:
+
+- Low: less than 80%
+- Medium: 80% through less than 90%
+- High: 90% or greater
+
+Insufficient oxygen is classified high and separately labeled insufficient.
+
+## Multiple-source and phase planning
+
+The transport planner keeps separate source volumes. It does not combine inaccessible sources into one total. Each phase has one primary assigned source. Sequential depletion carries each source's ending volume forward when reused. If a phase requires more oxygen than remains, displayed ending liters are zero and the result includes shortage liters and shortage minutes.
+
+Source-context warnings are displayed for aircraft-only source use outside aircraft/loading phases, ground-only source use in air transport, destination-only source use before destination arrival, zero usable oxygen, depleted sources, missing source assignments, and insufficient oxygen. Context mismatches warn without corrupting the calculation because local equipment arrangements vary.
+
+## Offline behavior
+
+The route, CSS, calculation engine, UI script, and configuration JSON are precached by the service worker. Calculations run entirely in the browser with no calculation API and no runtime dependency on the corrected workbook.
+
+## Local storage and privacy
+
+Local storage is limited to non-PHI equipment preferences and anonymous presets: delivery mode, supply method, high-pressure method, preferred units, last cylinder type, anonymous equipment labels, Kevlar factor when intentionally saved, and validated known oxygen-draw profiles. The calculator does not persist FiO₂, minute ventilation, current patient oxygen flow, phase times, clinical notes, destination names, dates/times tied to a transport, patient names, MRNs, incident numbers, or other PHI.
+
+## Automated tests
+
+Run:
+
+```bash
+node scripts/test-oxygen-calculator.mjs
+```
+
+The test script exercises compressed cylinders, LOX, all delivery modes, FiO₂ parsing, minute-ventilation parsing, risk thresholds, sequential depletion, context warnings, and invalid inputs.
+
+## Browser verification
+
+Run the app locally, open `/act-protocols`, then `/act-protocols/oxygen-calculator`. Verify quick estimate modes, source types, LOX, Kevlar factor validation, calculation details, planner phases, risk states, copy summary, presets, keyboard navigation, screen-reader labels/live regions, zoom, reduced motion, light/dark themes, responsive layouts, offline reload after caching, and continued operation of ACT search/PDF/dose calculator pages.
+
+## Clinical validation requirements
+
+Constants must be reviewed against:
+
+- Exact device make and model
+- Software or firmware version
+- Circuit configuration
+- Interface and exhalation port
+- Manufacturer instructions
+- Organizational medical direction
+- Local clinical and transport policy
+- Local equipment testing when applicable
+
+The tool is not described as independently validated.
+
+## Updating constants safely
+
+Update `static/data/oxygen-calculator-config.json`, increment `calculatorVersion` as appropriate, set a current `reviewedDate`, run the automated tests, complete browser/offline verification, and document clinical review. Do not silently change constants. If a future repository-approved value conflicts with a requested value, preserve the repository-approved value and flag the discrepancy for clinical review.
+
+## Adding future validated device profiles
+
+Add a new delivery mode or profile to the configuration, keep mathematical logic in `static/js/oxygen-calculations.js`, expose all assumptions in the UI and details panel, add automated tests, add browser-verification cases, and require organizational validation of device constants before clinical use.
+
+## Change-review expectations
+
+Every change should preserve client-only calculations, formula transparency, conservative rounding, no PHI collection, no unsafe user-string rendering, offline support, and existing ACT Protocols functionality.

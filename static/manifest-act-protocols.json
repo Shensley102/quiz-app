@@ -65,5 +65,19 @@
       "sizes": "1024x1024",
       "type": "image/png"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dose Calculator",
+      "short_name": "Dose",
+      "description": "Open the ACT medication dose calculator",
+      "url": "/act-protocols/dose-calculator"
+    },
+    {
+      "name": "Oxygen Availability",
+      "short_name": "Oxygen",
+      "description": "Estimate oxygen duration and transport reserve",
+      "url": "/act-protocols/oxygen-calculator"
+    }
   ]
 }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="ACT Protocols oxygen availability and transport risk calculation aid">
+  <meta name="color-scheme" content="light dark">
+  <title>Oxygen Availability | ACT Protocols</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/home-style.css">
+  <link rel="stylesheet" href="/static/act-protocols.css">
+  <link rel="stylesheet" href="/static/act-oxygen-calculator.css">
+  <link rel="manifest" href="/static/manifest-act-protocols.json">
+  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B0F14" media="(prefers-color-scheme: dark)">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ACT Protocols">
+  <link rel="apple-touch-icon" href="/static/icons/act-protocols/icon-180.png">
+  <script>(()=>{let stored='system';try{stored=localStorage.getItem('act-protocols-theme')||'system';}catch{}document.documentElement.dataset.actTheme=stored;})();</script>
+</head>
+<body>
+  <div id="offlineIndicator" class="offline-indicator hidden">📡 You're offline - Using cached content</div>
+  <header class="dose-page-header">
+    <a class="pdf-back-button dose-page-back" href="/act-protocols" aria-label="Back to ACT Protocols">← Back</a>
+    <div class="dose-page-title-wrap"><p class="pdf-viewer-kicker">ACT Protocols</p><h1>Oxygen Availability</h1></div>
+  </header>
+  <main class="act-shell oxygen-shell">
+    <header class="act-hero dose-hero"><p class="act-kicker">Calculation aid only</p><h1>🫁 Oxygen Availability Calculator</h1><p>Estimate oxygen duration, device oxygen consumption, and configured transport source utilization. This tool never determines whether transport is safe.</p></header>
+    <section class="oxygen-alert oxygen-alert-critical" role="note" aria-label="Safety notice"><h2>Calculation aid only</h2><p>Confirm cylinder pressure, regulator function, actual device consumption, circuit configuration, reserve requirements, backup oxygen, anticipated delays, equipment availability, and local clinical policy before transport.</p><p><strong>Do not use this estimate as the sole basis for accepting, continuing, declining, or changing a patient transport.</strong></p><p>Do not enter patient names, medical-record numbers, dates of birth, incident numbers, or other protected health information.</p></section>
+    <section id="configError" class="oxygen-alert oxygen-alert-critical hidden" role="alert"></section>
+
+    <section class="oxygen-card" aria-labelledby="quickTitle">
+      <div class="oxygen-card-header"><div><p class="dose-eyebrow">Fast single-source workflow</p><h2 id="quickTitle">Quick Estimate</h2></div><button id="copyToPlannerBtn" class="btn btn-outline" type="button">Copy setup to planner</button></div>
+      <div class="oxygen-step"><h3>1. Delivery Method</h3><label class="oxygen-field">Delivery mode<select id="deliveryMode"></select></label></div>
+      <div id="bipapSupplyWrap" class="oxygen-step hidden"><h3>2. BiPAP/NPPV oxygen supply method</h3><fieldset class="oxygen-radio-group"><legend class="sr-only">BiPAP supply method</legend><label><input type="radio" name="bipapSupplyMethod" value="BIPAP_LOW_PRESSURE" checked> Low-pressure oxygen bleed-in</label><label><input type="radio" name="bipapSupplyMethod" value="BIPAP_HIGH_PRESSURE"> High-pressure blended oxygen</label></fieldset></div>
+      <div class="oxygen-step"><h3>3. Oxygen Source</h3><div class="oxygen-grid three-col"><label class="oxygen-field">Cylinder or source<select id="sourceType"></select></label><label id="pressureField" class="oxygen-field">Current pressure (PSI)<input id="pressurePsi" type="number" inputmode="decimal" min="0" step="any" placeholder="2000"><span class="oxygen-help">Compressed cylinders use a 200 PSI reserve.</span></label><label id="loxField" class="oxygen-field hidden">LOX quantity reading<input id="loxReading" type="number" inputmode="decimal" min="0" step="any" placeholder="7"><span class="oxygen-help">Quantity reading, not PSI. No PSI reserve is subtracted.</span></label><label id="kevlarField" class="oxygen-field hidden">Kevlar factor (L/PSI)<input id="kevlarFactor" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter cylinder-specific factor"></label></div><div id="sourceWarning" class="oxygen-warning hidden"></div></div>
+      <div class="oxygen-step"><h3>4. Patient or Device Settings</h3><div id="settingsFields" class="oxygen-grid three-col"></div><div id="modeHelp" class="oxygen-help-block"></div><div id="modeWarning" class="oxygen-warning hidden"></div></div>
+      <section class="oxygen-result-card" aria-labelledby="resultTitle" aria-live="polite"><h3 id="resultTitle">5. Estimated Oxygen Availability</h3><div id="quickResult" class="oxygen-result-placeholder">Enter valid source and device settings to calculate.</div><div id="quickRisk" class="risk-card hidden"></div></section>
+      <details class="oxygen-details"><summary>6. Show calculation</summary><pre id="formulaDetails">Calculation details appear after valid inputs are entered.</pre></details>
+    </section>
+
+    <section class="oxygen-card" aria-labelledby="plannerTitle"><div class="oxygen-card-header"><div><p class="dose-eyebrow">Optional advanced workflow</p><h2 id="plannerTitle">Transport Oxygen Planner</h2></div></div><p class="oxygen-help-block">Each phase uses one active primary source. Split a real-world segment into separate phases when changing sources. The safety buffer is user-entered and is not an automatically approved organizational reserve requirement.</p><div class="oxygen-actions"><button id="addSourceBtn" class="btn btn-secondary" type="button">Add oxygen source</button><button id="addPhaseBtn" class="btn btn-secondary" type="button">Add phase</button></div><h3>7. Oxygen Sources</h3><div id="plannerSources" class="planner-list"></div><h3>8. Transport Phases</h3><div id="plannerPhases" class="planner-list"></div><h3>9. Risk Summary</h3><div id="plannerSummary" class="risk-card" aria-live="polite">Add sources, enter phase durations, and assign a source for each phase.</div><div id="insufficientAlert" class="oxygen-alert oxygen-alert-critical hidden" role="alert"></div></section>
+
+    <section class="oxygen-card"><h2>10. Copy Summary</h2><textarea id="copySummary" class="summary-text" readonly aria-label="Plain text oxygen calculation summary"></textarea><div class="oxygen-actions"><button id="copySummaryBtn" class="btn btn-secondary" type="button">Copy summary</button><button id="clearCalculatorBtn" class="btn btn-outline" type="button">Clear calculator</button><button id="loadLastSetupBtn" class="btn btn-outline" type="button">Load last equipment setup</button><button id="eraseSavedBtn" class="btn btn-outline danger" type="button">Erase saved equipment settings</button></div><div id="copyStatus" class="oxygen-help-block" aria-live="polite"></div></section>
+
+    <section class="oxygen-card"><h2>Equipment Presets</h2><p class="oxygen-help-block">Presets are anonymous equipment preferences only. Saved device oxygen-draw profiles require organizational validation.</p><div class="oxygen-grid three-col"><label class="oxygen-field">Preset name (no PHI)<input id="presetName" maxlength="60" placeholder="Portable D cylinder"></label><label class="oxygen-field">Saved presets<select id="presetSelect"></select></label><div class="oxygen-actions stacked"><button id="savePresetBtn" class="btn btn-secondary" type="button">Save preset</button><button id="loadPresetBtn" class="btn btn-outline" type="button">Load preset</button><button id="renamePresetBtn" class="btn btn-outline" type="button">Rename preset</button><button id="deletePresetBtn" class="btn btn-outline danger" type="button">Delete preset</button></div></div></section>
+
+    <section class="oxygen-card"><h2>Configuration and Review Information</h2><p id="configInfo">Loading calculator configuration...</p><p>Constants and device profiles must be reviewed against exact device make/model, software version, circuit configuration, manufacturer instructions, organizational medical direction, local transport policy, and local equipment testing when applicable.</p></section>
+  </main>
+  <script src="/static/js/pwa-utils.js"></script>
+  <script src="/static/js/oxygen-calculations.js"></script>
+  <script src="/static/js/act-oxygen-calculator.js"></script>
+</body>
+</html>
