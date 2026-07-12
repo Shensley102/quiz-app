@@ -36,6 +36,15 @@ def test_concentration_builders_fill_existing_concentration_fields():
     assert 'Total volume cannot be zero.' in DOSE
 
 
+def test_concentration_builder_uses_medication_label_and_red_tint():
+    assert 'Medication Concentration' in DOSE_TEMPLATE
+    assert 'Build concentration' not in DOSE_TEMPLATE
+    css = (ROOT / 'static/act-protocols.css').read_text()
+    builder_block = css[css.index('.dose-concentration-builder'):css.index('.dose-builder-title')]
+    assert 'rgba(220, 38, 38, 0.08)' in builder_block
+    assert 'background: var(--act-surface);' not in builder_block
+
+
 def test_search_input_updates_rendered_results_live():
     assert "state.query = value;" in PROTOCOLS
     assert "render();" in PROTOCOLS

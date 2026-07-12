@@ -1004,7 +1004,7 @@ body {
   padding: 12px;
   border: 1px solid var(--act-border);
   border-radius: 16px;
-  background: var(--act-surface);
+  background: rgba(220, 38, 38, 0.08);
 }
 
 .dose-builder-title,
