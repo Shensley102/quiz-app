@@ -479,7 +479,7 @@ body {
   letter-spacing: -0.01em;
 }
 
-.protocol-card h2 {
+.protocol-card h3 {
   font-size: 1.18rem;
   line-height: 1.25;
   margin: 0;
@@ -996,6 +996,38 @@ body {
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--act-focus) 26%, transparent);
 }
 
+.dose-concentration-builder {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--act-border);
+  border-radius: 16px;
+  background: rgba(220, 38, 38, 0.08);
+}
+
+.dose-builder-title,
+.dose-builder-result {
+  grid-column: 1 / -1;
+}
+
+.dose-builder-title {
+  color: var(--act-text);
+  font-weight: 900;
+}
+
+.dose-builder-result {
+  color: var(--act-muted);
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.dose-builder-result.invalid {
+  color: var(--act-warning);
+}
+
 .dose-verify-link {
   color: var(--act-primary);
   display: inline-block;
@@ -1023,6 +1055,13 @@ body {
   font-weight: 800;
 }
 
+.protocol-source-meta {
+  color: var(--act-muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+  margin: -4px 0 10px;
+}
+
 .dose-formula {
   white-space: pre-wrap;
   margin: 12px 0 0;
@@ -1034,6 +1073,13 @@ body {
   font-size: 0.92rem;
   line-height: 1.45;
   overflow-x: auto;
+}
+
+.dose-formula.invalid {
+  border-color: var(--act-warning);
+  background: var(--act-warning-bg);
+  color: var(--act-warning);
+  font-weight: 800;
 }
 
 .dose-actions-row {
@@ -1072,6 +1118,10 @@ body {
   .dose-card,
   .dose-safety {
     border-radius: 18px;
+  }
+
+  .dose-concentration-builder {
+    grid-template-columns: 1fr;
   }
 
 }
