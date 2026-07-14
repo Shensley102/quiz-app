@@ -4,20 +4,16 @@
 
 The ACT Oxygen Availability Calculator is a client-side calculation aid for estimating oxygen-source duration, modeled device oxygen consumption, and configured transport-plan source utilization. It is not a transport clearance tool and must not be used as the sole basis for accepting, continuing, declining, or changing transport.
 
-Supported delivery modes:
-
-1. Conventional oxygen
-2. BiPAP/NPPV — low-pressure oxygen bleed-in
-3. BiPAP/NPPV — high-pressure blended oxygen
-4. High-flow nasal cannula (HFNC)
-5. Hamilton T1 — Adult/Pediatric
-6. Hamilton T1 — Neonatal
-7. Revel ventilator
-8. LTV1200 ventilator
+Supported delivery modes remain conventional oxygen, BiPAP/NPPV low-pressure oxygen bleed-in, BiPAP/NPPV high-pressure blended oxygen, HFNC, Hamilton T1 Adult/Pediatric, Hamilton T1 Neonatal, Revel, and LTV1200. In the user interface, BiPAP/NPPV modes are grouped under the Ventilator delivery-device category regardless of low- or high-pressure oxygen supply method.
 
 ## Configuration versioning
 
 Constants are stored in `static/data/oxygen-calculator-config.json` with schema version, calculator version, reviewed date, cylinder factors, reserve pressure, LOX factor, ambient/source oxygen fractions, device bias-flow assumptions, and risk thresholds. Runtime code validates this configuration before enabling calculations. Invalid or missing configuration disables results and displays a prominent non-stack-trace error.
+
+
+## User workflow
+
+The calculator starts with **Oxygen Available** before device settings. On-board oxygen entries are restricted to Kevlar, LOX, or H-Tank. Portable oxygen entries are restricted to D, Jumbo D, or E cylinders. The user then selects the O₂ delivery device category: **Wall / Portable Low PSI** or **Ventilator**. Wall / Portable Low PSI exposes conventional source-flow oxygen. Ventilator exposes all BiPAP/NPPV pathways, HFNC, Hamilton T1 Adult/Pediatric, Hamilton T1 Neonatal, Revel, and LTV1200. BiPAP/NPPV remains under Ventilator regardless of whether the oxygen supply method is low-pressure bleed-in or high-pressure blended oxygen.
 
 ## Oxygen sources
 

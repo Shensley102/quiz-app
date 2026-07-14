@@ -7,23 +7,114 @@
   "reservePsi": 200,
   "loxFactor": 860,
   "cylinders": {
-    "D": { "label": "D", "factor": 0.16, "type": "compressed" },
-    "JUMBO_D": { "label": "Jumbo D", "factor": 0.25, "type": "compressed" },
-    "E": { "label": "E", "factor": 0.28, "type": "compressed" },
-    "M": { "label": "M", "factor": 1.56, "type": "compressed" },
-    "H": { "label": "H", "factor": 3.14, "type": "compressed" },
-    "KEVLAR": { "label": "Kevlar", "factor": null, "type": "compressed", "requiresUserFactor": true },
-    "LOX": { "label": "LOX", "factor": 860, "type": "liquid", "isLiquidOxygen": true }
+    "D": {
+      "label": "D",
+      "factor": 0.16,
+      "type": "compressed"
+    },
+    "JUMBO_D": {
+      "label": "Jumbo D",
+      "factor": 0.25,
+      "type": "compressed"
+    },
+    "E": {
+      "label": "E",
+      "factor": 0.28,
+      "type": "compressed"
+    },
+    "M": {
+      "label": "M",
+      "factor": 1.56,
+      "type": "compressed"
+    },
+    "H": {
+      "label": "H",
+      "factor": 3.14,
+      "type": "compressed"
+    },
+    "KEVLAR": {
+      "label": "Kevlar",
+      "factor": null,
+      "type": "compressed",
+      "requiresUserFactor": true
+    },
+    "LOX": {
+      "label": "LOX",
+      "factor": 860,
+      "type": "liquid",
+      "isLiquidOxygen": true
+    }
   },
   "deliveryModes": {
-    "CONVENTIONAL": { "label": "Conventional Oxygen" },
-    "BIPAP_LOW_PRESSURE": { "label": "BiPAP/NPPV — Low-Pressure Bleed-In" },
-    "BIPAP_HIGH_PRESSURE": { "label": "BiPAP/NPPV — High-Pressure Blended Oxygen" },
-    "HFNC": { "label": "High-Flow Nasal Cannula" },
-    "HAMILTON_T1_ADULT_PED": { "label": "Hamilton T1 — Adult/Pediatric", "biasFlowLpm": 3 },
-    "HAMILTON_T1_NEONATE": { "label": "Hamilton T1 — Neonatal", "biasFlowLpm": 4 },
-    "REVEL": { "label": "Revel Ventilator", "biasFlowLpm": 5 },
-    "LTV1200": { "label": "LTV1200 Ventilator", "biasFlowLpm": 10 }
+    "CONVENTIONAL": {
+      "label": "Conventional Oxygen"
+    },
+    "BIPAP_LOW_PRESSURE": {
+      "label": "BiPAP/NPPV \u2014 Low-Pressure Bleed-In"
+    },
+    "BIPAP_HIGH_PRESSURE": {
+      "label": "BiPAP/NPPV \u2014 High-Pressure Blended Oxygen"
+    },
+    "HFNC": {
+      "label": "High-Flow Nasal Cannula"
+    },
+    "HAMILTON_T1_ADULT_PED": {
+      "label": "Hamilton T1 \u2014 Adult/Pediatric",
+      "biasFlowLpm": 3
+    },
+    "HAMILTON_T1_NEONATE": {
+      "label": "Hamilton T1 \u2014 Neonatal",
+      "biasFlowLpm": 4
+    },
+    "REVEL": {
+      "label": "Revel Ventilator",
+      "biasFlowLpm": 5
+    },
+    "LTV1200": {
+      "label": "LTV1200 Ventilator",
+      "biasFlowLpm": 10
+    }
   },
-  "riskThresholds": { "medium": 0.8, "high": 0.9 }
+  "riskThresholds": {
+    "medium": 0.8,
+    "high": 0.9
+  },
+  "sourceGroups": {
+    "ON_BOARD": {
+      "label": "On Board O\u2082",
+      "allowedCylinderTypes": [
+        "KEVLAR",
+        "LOX",
+        "H"
+      ]
+    },
+    "PORTABLE": {
+      "label": "Portable O\u2082",
+      "allowedCylinderTypes": [
+        "D",
+        "JUMBO_D",
+        "E"
+      ]
+    }
+  },
+  "deliveryDeviceCategories": {
+    "WALL_LOW_PSI": {
+      "label": "Wall / Portable Low PSI",
+      "deliveryModes": [
+        "CONVENTIONAL"
+      ]
+    },
+    "VENTILATOR": {
+      "label": "Ventilator",
+      "deliveryModes": [
+        "BIPAP_LOW_PRESSURE",
+        "BIPAP_HIGH_PRESSURE",
+        "HFNC",
+        "HAMILTON_T1_ADULT_PED",
+        "HAMILTON_T1_NEONATE",
+        "REVEL",
+        "LTV1200"
+      ]
+    }
+  }
 }

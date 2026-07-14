@@ -3,85 +3,377 @@
   const $ = (id) => document.getElementById(id);
   const q = (sel, root = document) => root.querySelector(sel);
   const qa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-  const storageKey = 'act-oxygen-equipment-preferences-v1';
-  const presetKey = 'act-oxygen-equipment-presets-v1';
-  let config = null, quick = null, plannerSources = [], plannerPhases = [];
-  const modes = ['CONVENTIONAL','BIPAP_LOW_PRESSURE','BIPAP_HIGH_PRESSURE','HFNC','HAMILTON_T1_ADULT_PED','HAMILTON_T1_NEONATE','REVEL','LTV1200'];
-  const contexts = [['portable','Portable'],['ground','Ground vehicle'],['aircraft','Aircraft'],['destination','Destination'],['continuous','Continuous or generally available'],['custom','Custom equipment context']];
+  const storageKey = 'act-oxygen-equipment-preferences-v2';
+  const presetKey = 'act-oxygen-equipment-presets-v2';
+  const ON_BOARD_TYPES = ['KEVLAR', 'LOX', 'H'];
+  const PORTABLE_TYPES = ['D', 'JUMBO_D', 'E'];
+  const WALL_LOW_PSI_MODES = ['CONVENTIONAL'];
+  const VENTILATOR_MODES = ['BIPAP_LOW_PRESSURE', 'BIPAP_HIGH_PRESSURE', 'HFNC', 'HAMILTON_T1_ADULT_PED', 'HAMILTON_T1_NEONATE', 'REVEL', 'LTV1200'];
   const phaseContexts = [['bedside','Bedside movement'],['ground','Ground transport'],['loading','Loading or transfer delay'],['air','Air transport'],['unloading','Unloading'],['destination','Destination arrival'],['buffer','Safety buffer']];
   const defaultPhases = ['Bedside to vehicle','Ground transport','Loading or transfer delay','Air transport','Unloading','Vehicle to destination','Safety buffer'];
-  const fmt = (v, d = 2) => Number.isFinite(v) ? new Intl.NumberFormat('en-US',{maximumFractionDigits:d}).format(Math.abs(v)<1e-9?0:v) : '—';
-  const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  const f2 = (v) => Number.isFinite(v) ? (Math.abs(v)<1e-9?0:v).toFixed(2) : '—';
-  const val = (id) => $(id)?.value || '';
-  function setHidden(id, hidden) { $(id)?.classList.toggle('hidden', hidden); }
-  function setWarn(id, lines) { const el=$(id); if(!el) return; const list=[].concat(lines||[]).filter(Boolean); el.textContent=list.join(' '); el.classList.toggle('hidden', !list.length); }
-  function text(tag, txt, cls) { const el=document.createElement(tag); if(cls) el.className=cls; el.textContent=txt; return el; }
-  function option(value,label){ const o=document.createElement('option'); o.value=value; o.textContent=label; return o; }
-  function savePrefs(){ try { localStorage.setItem(storageKey, JSON.stringify({ deliveryMode: val('deliveryMode'), sourceType: val('sourceType'), bipapSupplyMethod: q('input[name="bipapSupplyMethod"]:checked')?.value, highPressureMethod: val('highPressureMethod'), minuteVentilationUnit: val('minuteVentilationUnit'), kevlarFactor: val('kevlarFactor') })); } catch {} }
-  function loadPrefs(){ try { return JSON.parse(localStorage.getItem(storageKey)||'{}'); } catch { return {}; } }
-  function getPresets(){ try { return JSON.parse(localStorage.getItem(presetKey)||'[]'); } catch { return []; } }
-  function setPresets(p){ try { localStorage.setItem(presetKey, JSON.stringify(p)); } catch {} renderPresets(); }
+  let config = null;
+  let quick = null;
+  let oxygenSources = [];
+  let plannerPhases = [];
 
-  function sourceCalc(prefix='') {
-    const type = prefix ? val(`${prefix}Type`) : val('sourceType');
-    const cyl = config.cylinders[type];
+  const fmt = (v, d = 2) => Number.isFinite(v) ? new Intl.NumberFormat('en-US', { maximumFractionDigits: d }).format(Math.abs(v) < 1e-9 ? 0 : v) : '—';
+  const f2 = (v) => Number.isFinite(v) ? (Math.abs(v) < 1e-9 ? 0 : v).toFixed(2) : '—';
+  const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  const val = (id) => $(id)?.value || '';
+  const checkedValue = (name) => q(`input[name="${name}"]:checked`)?.value || '';
+  const isVentilatorMode = (mode) => VENTILATOR_MODES.includes(mode);
+
+  function option(value, label) {
+    const el = document.createElement('option');
+    el.value = value;
+    el.textContent = label;
+    return el;
+  }
+  function text(tag, content, cls) {
+    const el = document.createElement(tag);
+    if (cls) el.className = cls;
+    el.textContent = content;
+    return el;
+  }
+  function setHidden(id, hidden) { $(id)?.classList.toggle('hidden', hidden); }
+  function setWarn(id, lines) {
+    const el = $(id);
+    if (!el) return;
+    const list = [].concat(lines || []).filter(Boolean);
+    el.textContent = list.join(' ');
+    el.classList.toggle('hidden', !list.length);
+  }
+  function loadJson(key, fallback) { try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); } catch { return fallback; } }
+  function saveJson(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} }
+
+  function defaultSources() {
+    return [
+      { id: 'onboard1', group: 'onboard', name: 'On Board O₂ Tank #1', type: 'H', enabled: true, pressure: '', lox: '', kevlar: '', context: 'continuous' },
+      { id: 'onboard2', group: 'onboard', name: 'Optional On Board O₂ Tank #2', type: 'LOX', enabled: false, pressure: '', lox: '', kevlar: '', context: 'continuous' },
+      { id: 'portable1', group: 'portable', name: 'Portable O₂ Tank #1', type: 'D', enabled: true, pressure: '', lox: '', kevlar: '', context: 'portable' },
+      { id: 'portable2', group: 'portable', name: 'Optional Portable O₂ Tank #2', type: 'E', enabled: false, pressure: '', lox: '', kevlar: '', context: 'portable' }
+    ];
+  }
+  function activeSources() { return oxygenSources.filter((s) => s.enabled); }
+  function allowedTypesForSource(source) { return source.group === 'onboard' ? ON_BOARD_TYPES : PORTABLE_TYPES; }
+
+  function sourceCalc(source) {
+    const cyl = config.cylinders[source.type];
     if (!cyl) return C.calculateCompressedCylinder({});
-    if (cyl.isLiquidOxygen) return C.calculateLox({ loxReading: prefix ? val(`${prefix}Lox`) : val('loxReading'), loxFactor: config.loxFactor });
-    const factor = cyl.requiresUserFactor ? (prefix ? val(`${prefix}Kevlar`) : val('kevlarFactor')) : cyl.factor;
-    return C.calculateCompressedCylinder({ currentPressurePsi: prefix ? val(`${prefix}Pressure`) : val('pressurePsi'), reservePsi: config.reservePsi, cylinderFactor: factor });
+    if (cyl.isLiquidOxygen) return C.calculateLox({ loxReading: source.lox, loxFactor: config.loxFactor });
+    const factor = cyl.requiresUserFactor ? source.kevlar : cyl.factor;
+    return C.calculateCompressedCylinder({ currentPressurePsi: source.pressure, reservePsi: config.reservePsi, cylinderFactor: factor });
   }
-  function consumptionForInputs(scope='quick', overrides={}) {
-    const mode = overrides.mode || val('deliveryMode');
-    const get = (name) => overrides[name] ?? val(name);
-    if (mode === 'CONVENTIONAL') return C.calculateConventionalConsumption({ enteredFlowLpm: get('oxygenFlowLpm') });
-    if (mode === 'BIPAP_LOW_PRESSURE') return C.calculateBipapLowPressureConsumption({ oxygenBleedInFlowLpm: get('oxygenBleedInFlowLpm') });
-    if (mode === 'BIPAP_HIGH_PRESSURE') {
-      const method = get('highPressureMethod') || 'blended';
-      if (method === 'direct') return C.calculateKnownOxygenDrawConsumption({ knownOxygenDrawLpm: get('knownOxygenDrawLpm') });
-      return C.calculateBlendedOxygenConsumption({ fio2: get('fio2'), totalBlendedFlowLpm: get('totalBlendedFlowLpm'), ambientOxygenFraction: config.ambientOxygenFraction, sourceOxygenFraction: config.sourceOxygenFraction });
+
+  function savePrefs() {
+    saveJson(storageKey, {
+      deliveryDeviceCategory: checkedValue('deliveryDeviceCategory'),
+      deliveryMode: val('deliveryMode'),
+      bipapSupplyMethod: checkedValue('bipapSupplyMethod'),
+      highPressureMethod: val('highPressureMethod'),
+      activeSourceId: val('activeSourceId'),
+      oxygenSources: oxygenSources.map(({ id, group, name, type, enabled, context, kevlar }) => ({ id, group, name, type, enabled, context, kevlar }))
+    });
+  }
+
+  function renderSourceCard(source) {
+    const allowed = allowedTypesForSource(source);
+    const cyl = config.cylinders[source.type];
+    const isLox = !!cyl?.isLiquidOxygen;
+    const needsKevlar = !!cyl?.requiresUserFactor;
+    const result = sourceCalc(source);
+    const card = document.createElement('article');
+    card.className = 'planner-card oxygen-inventory-card';
+    card.innerHTML = `<h4>${esc(source.name)}</h4>
+      <label class="oxygen-enable"><input type="checkbox" data-source-field="enabled" data-source-id="${source.id}" ${source.enabled ? 'checked' : ''}> Include this source</label>
+      <div class="oxygen-grid three-col">
+        <label class="oxygen-field">Source display name<input data-source-field="name" data-source-id="${source.id}" value="${esc(source.name)}"></label>
+        <label class="oxygen-field">Tank/source type<select data-source-field="type" data-source-id="${source.id}"></select></label>
+        <label class="oxygen-field ${isLox ? 'hidden' : ''}">Current pressure (PSI)<input data-source-field="pressure" data-source-id="${source.id}" type="number" inputmode="decimal" min="0" step="any" value="${esc(source.pressure)}"></label>
+        <label class="oxygen-field ${isLox ? '' : 'hidden'}">LOX quantity reading<input data-source-field="lox" data-source-id="${source.id}" type="number" inputmode="decimal" min="0" step="any" value="${esc(source.lox)}"></label>
+        <label class="oxygen-field ${needsKevlar ? '' : 'hidden'}">Kevlar factor (L/PSI)<input data-source-field="kevlar" data-source-id="${source.id}" type="number" inputmode="decimal" min="0" step="any" value="${esc(source.kevlar)}"></label>
+      </div>
+      <p class="oxygen-help-block">${result.ok ? `Usable pressure: ${fmt(result.usablePressurePsi || 0, 0)} PSI • Usable oxygen: ${fmt(result.usableLiters)} L` : `Source validation: ${esc(result.errors.join(' '))}`}</p>
+      <div class="oxygen-warning ${result.warnings?.length ? '' : 'hidden'}">${esc((result.warnings || []).join(' '))}</div>`;
+    const select = q('[data-source-field="type"]', card);
+    allowed.forEach((key) => select.append(option(key, config.cylinders[key].label === 'H' ? 'H-Tank' : config.cylinders[key].label)));
+    select.value = source.type;
+    return card;
+  }
+
+  function renderSources() {
+    $('onBoardSources').innerHTML = '';
+    $('portableSources').innerHTML = '';
+    oxygenSources.filter((s) => s.group === 'onboard').forEach((s) => $('onBoardSources').append(renderSourceCard(s)));
+    oxygenSources.filter((s) => s.group === 'portable').forEach((s) => $('portableSources').append(renderSourceCard(s)));
+    qa('[data-source-field]').forEach((el) => el.addEventListener('input', updateSourceFromField));
+    qa('[data-source-field="enabled"]').forEach((el) => el.addEventListener('change', updateSourceFromField));
+    renderActiveSourceOptions();
+  }
+
+  function updateSourceFromField(event) {
+    const id = event.target.dataset.sourceId;
+    const field = event.target.dataset.sourceField;
+    const source = oxygenSources.find((s) => s.id === id);
+    if (!source) return;
+    source[field] = field === 'enabled' ? event.target.checked : event.target.value;
+    if (field === 'type') {
+      const allowed = allowedTypesForSource(source);
+      if (!allowed.includes(source.type)) source.type = allowed[0];
     }
-    if (mode === 'HFNC') return C.calculateHfncConsumption({ fio2: get('fio2'), totalFlowLpm: get('hfncTotalFlowLpm'), ambientOxygenFraction: config.ambientOxygenFraction, sourceOxygenFraction: config.sourceOxygenFraction });
-    return C.calculateVentilatorConsumption({ minuteVentilation: get('minuteVentilation'), minuteVentilationUnit: get('minuteVentilationUnit') || 'L/min', fio2: get('fio2'), biasFlowLpm: config.deliveryModes[mode]?.biasFlowLpm });
-  }
-  function fieldHtml(mode) {
-    if (mode === 'CONVENTIONAL') return '<label class="oxygen-field">Oxygen flow from source (L/min)<input id="oxygenFlowLpm" type="number" inputmode="decimal" min="0" step="any" placeholder="15"></label>';
-    if (mode === 'BIPAP_LOW_PRESSURE') return '<label class="oxygen-field">Oxygen bleed-in flow (L/min)<input id="oxygenBleedInFlowLpm" type="number" inputmode="decimal" min="0" step="any" placeholder="10"></label>';
-    if (mode === 'BIPAP_HIGH_PRESSURE') return '<label class="oxygen-field">High-pressure calculation method<select id="highPressureMethod"><option value="blended">Calculate from total blended device flow and FiO₂</option><option value="direct">Enter known/validated oxygen draw directly</option></select></label><label class="oxygen-field hp-blended">Set FiO₂<input id="fio2" inputmode="decimal" placeholder="0.60, 60, or 60%"></label><label class="oxygen-field hp-blended">Total device/blended flow, including flow used to maintain pressure and compensate for circuit leak<input id="totalBlendedFlowLpm" type="number" inputmode="decimal" min="0" step="any" placeholder="60"></label><label class="oxygen-field hp-direct hidden">Known/validated oxygen draw (L/min)<input id="knownOxygenDrawLpm" type="number" inputmode="decimal" min="0" step="any" placeholder="31"></label><label class="oxygen-field hp-direct hidden">Source of value<select id="oxygenDrawSource"><option>Device display</option><option>Manufacturer reference</option><option>Organizational equipment profile</option><option>Locally measured or bench-tested value</option><option>Other validated source</option></select></label>';
-    if (mode === 'HFNC') return '<label class="oxygen-field">Total HFNC flow (L/min)<input id="hfncTotalFlowLpm" type="number" inputmode="decimal" min="0" step="any" placeholder="15"></label><label class="oxygen-field">Set FiO₂<input id="fio2" inputmode="decimal" placeholder="0.60, 60, or 60%"></label>';
-    return '<label class="oxygen-field">Minute ventilation<input id="minuteVentilation" type="number" inputmode="decimal" min="0" step="any" placeholder="8"></label><label class="oxygen-field">Minute-ventilation unit<select id="minuteVentilationUnit"><option>L/min</option><option>mL/min</option></select></label><label class="oxygen-field">Set FiO₂<input id="fio2" inputmode="decimal" placeholder="0.70, 70, or 70%"></label><label class="oxygen-field">Configured device bias flow<input readonly id="biasFlowDisplay" value="'+fmt(config.deliveryModes[mode]?.biasFlowLpm,1)+' L/min"></label>';
-  }
-  function updateSettings() {
-    let mode = val('deliveryMode');
-    setHidden('bipapSupplyWrap', !(mode === 'BIPAP_LOW_PRESSURE' || mode === 'BIPAP_HIGH_PRESSURE'));
-    if (mode === 'BIPAP_LOW_PRESSURE' || mode === 'BIPAP_HIGH_PRESSURE') {
-      const selectedRadio = q(`input[name="bipapSupplyMethod"][value="${mode}"]`);
-      if (selectedRadio) selectedRadio.checked = true;
-      mode = q('input[name="bipapSupplyMethod"]:checked')?.value || mode;
-    }
-    $('deliveryMode').value = mode;
-    $('settingsFields').innerHTML = fieldHtml(mode);
-    updateHighPressureFields();
-    const help = { CONVENTIONAL:'Consumption equals the oxygen flow set at the source.', BIPAP_LOW_PRESSURE:'Enter the oxygen flow set at the low-pressure bleed-in source. FiO₂, IPAP, and EPAP are not used to calculate tank duration in this low-pressure pathway.', BIPAP_HIGH_PRESSURE:'Use total device outlet flow or another manufacturer-validated or locally measured total-flow value. Do not enter patient minute ventilation. Do not estimate this value from IPAP and EPAP alone.', HFNC:'HFNC oxygen-source flow is modeled from total flow and FiO₂ using ambient air 0.21 and source oxygen 1.00.', HAMILTON_T1_ADULT_PED:'Device-specific oxygen-use constants must be verified against exact ventilator model, software version, circuit configuration, manufacturer instructions, and local policy.', HAMILTON_T1_NEONATE:'Device-specific oxygen-use constants must be verified against exact ventilator model, software version, circuit configuration, manufacturer instructions, and local policy.', REVEL:'Device-specific oxygen-use constants must be verified against exact ventilator model, software version, circuit configuration, manufacturer instructions, and local policy.', LTV1200:'Device-specific oxygen-use constants must be verified against exact ventilator model, software version, circuit configuration, manufacturer instructions, and local policy.' };
-    $('modeHelp').textContent = help[mode] || '';
-    setWarn('modeWarning', mode === 'BIPAP_HIGH_PRESSURE' ? 'High-pressure NIV oxygen use can vary with device design, circuit type, intentional exhalation flow, mask leak, pressure settings, triggering, and leak compensation. IPAP and EPAP alone are not sufficient to calculate oxygen consumption. Use a manufacturer-validated, device-reported, or locally measured total flow or oxygen-draw value whenever available.' : '');
-    qa('input,select',$('settingsFields')).forEach(el => el.addEventListener('input', recalc));
+    savePrefs();
+    renderSources();
     recalc();
   }
-  function updateHighPressureFields(){ const method=val('highPressureMethod'); qa('.hp-blended').forEach(e=>e.classList.toggle('hidden',method==='direct')); qa('.hp-direct').forEach(e=>e.classList.toggle('hidden',method!=='direct')); }
-  function updateSourceFields(){ const cyl=config.cylinders[val('sourceType')]; setHidden('loxField', !cyl?.isLiquidOxygen); setHidden('pressureField', !!cyl?.isLiquidOxygen); setHidden('kevlarField', !cyl?.requiresUserFactor); recalc(); }
-  function recalc(){ if(!config) return; savePrefs(); const src=sourceCalc(); const cons=consumptionForInputs(); const errors=[...(src.errors||[]),...(cons.errors||[])]; setWarn('sourceWarning',[...(src.warnings||[])]); setWarn('modeWarning',[...(cons.warnings||[]), val('deliveryMode')==='BIPAP_HIGH_PRESSURE'?'High-pressure NIV oxygen use can vary with device design, circuit type, leak, and compensation. IPAP and EPAP alone are not sufficient to calculate oxygen consumption.':''].filter(Boolean)); if(errors.length){ $('quickResult').textContent=errors.join(' '); $('formulaDetails').textContent='Calculation unavailable until valid inputs are entered.'; quick=null; updateSummary(); renderPlanner(); return; } let dur=cons.durationNotApplicable?{ok:true,displayedDurationMinutes:null,rawDurationMinutes:null,hours:0,remainingMinutes:0}:C.calculateDuration({availableLiters:src.usableLiters,consumptionLpm:cons.oxygenConsumptionLpm}); if(!dur.ok){ $('quickResult').textContent=dur.errors.join(' '); return; } quick={src,cons,dur,mode:val('deliveryMode')}; renderQuick(); renderPlanner(); updateSummary(); }
-  function renderQuick(){ const r=$('quickResult'); r.innerHTML=''; if(quick.cons.durationNotApplicable){ r.append(text('div','No supplemental oxygen draw is calculated at the entered FiO₂/flow values.','oxygen-big-result')); } else { r.append(text('div',`Estimated oxygen available ${quick.dur.displayedDurationMinutes} minutes`,'oxygen-big-result')); } const grid=document.createElement('div'); grid.className='oxygen-result-grid'; [['Usable oxygen',`${fmt(quick.src.usableLiters)} L`],['Estimated oxygen consumption',`${fmt(quick.cons.oxygenConsumptionLpm,3)} L/min`],['Approximate duration',quick.cons.durationNotApplicable?'Not applicable':`${quick.dur.hours} hr ${quick.dur.remainingMinutes} min`]].forEach(([a,b])=>{const d=document.createElement('div');d.append(text('strong',a));d.append(text('p',b));grid.append(d)}); r.append(grid); if(quick.cons.oxygenSourceFlowLpm!==undefined){ r.append(text('p',`Estimated oxygen-source flow: ${fmt(quick.cons.oxygenSourceFlowLpm,3)} L/min • Estimated ambient-air contribution: ${fmt(quick.cons.ambientAirFlowLpm,3)} L/min`)); } $('formulaDetails').textContent=formulaText(); }
-  function formulaText(){ const lines=[]; const cyl=config.cylinders[val('sourceType')]; lines.push(`Cylinder/source type: ${cyl.label}`); if(quick.src.sourceType==='compressed'){lines.push(`Usable pressure\n${fmt(quick.src.currentPressurePsi,0)} PSI − ${fmt(quick.src.reservePsi,0)} PSI\n= ${fmt(quick.src.usablePressurePsi,0)} PSI\n`);lines.push(`Usable oxygen\n${fmt(quick.src.usablePressurePsi,0)} PSI × ${quick.src.cylinderFactor} L/PSI\n= ${fmt(quick.src.usableLiters)} L\n`);} else lines.push(`Usable oxygen\n${quick.src.loxReading} × ${quick.src.loxFactor}\n= ${fmt(quick.src.usableLiters)} L\n`); if(quick.cons.fio2Input) lines.push(`Entered FiO₂: ${quick.cons.fio2Input.originalInput}\nInterpreted as: ${quick.cons.fio2Input.interpretedAs}; FiO₂ ${f2(quick.cons.fio2)}`); if(quick.cons.method==='blended-flow-estimate') lines.push(`Estimated oxygen-source flow\n${fmt(quick.cons.totalBlendedFlowLpm)} × ((${f2(quick.cons.fio2)} − ${f2(quick.cons.ambientOxygenFraction)}) ÷ (${f2(quick.cons.sourceOxygenFraction)} − ${f2(quick.cons.ambientOxygenFraction)}))\n= ${fmt(quick.cons.oxygenSourceFlowLpm,3)} L/min\n\nEstimated ambient-air contribution\n${fmt(quick.cons.totalBlendedFlowLpm)} − ${fmt(quick.cons.oxygenSourceFlowLpm,3)}\n= ${fmt(quick.cons.ambientAirFlowLpm,3)} L/min`); else if(quick.cons.patientOxygenConsumptionLpm!==undefined) lines.push(`Patient oxygen consumption\n${fmt(quick.cons.minuteVentilation.minuteVentilationMlPerMin,0)} mL/min × ${f2(quick.cons.fio2)} ÷ 1,000\n= ${fmt(quick.cons.patientOxygenConsumptionLpm,2)} L/min\n\nConfigured bias flow\n${fmt(quick.cons.biasFlowLpm,1)} L/min\n\nTotal oxygen consumption\n${fmt(quick.cons.patientOxygenConsumptionLpm,2)} + ${fmt(quick.cons.biasFlowLpm,1)}\n= ${fmt(quick.cons.totalOxygenConsumptionLpm,2)} L/min`); else lines.push(`Oxygen consumption\n= ${fmt(quick.cons.oxygenConsumptionLpm,3)} L/min`); if(!quick.cons.durationNotApplicable) lines.push(`Raw duration\n${fmt(quick.src.usableLiters)} ÷ ${fmt(quick.cons.oxygenConsumptionLpm,3)}\n= ${fmt(quick.dur.rawDurationMinutes,2)} minutes\n\nConservative displayed duration\n${quick.dur.displayedDurationMinutes} minutes`); lines.push(`Risk thresholds: medium ${config.riskThresholds.medium*100}%, high ${config.riskThresholds.high*100}%`); lines.push(`Calculator version ${config.calculatorVersion}; reviewed ${config.reviewedDate}`); return lines.join('\n\n'); }
-  function buildSourceCard(s,i){ const d=document.createElement('div'); d.className='planner-card'; d.innerHTML=`<h4>Oxygen Source ${i+1}</h4><div class="oxygen-grid three-col"><label class="oxygen-field">Source display name<input id="ps${s.id}Name" value="${esc(s.name)}"></label><label class="oxygen-field">Cylinder or LOX type<select id="ps${s.id}Type"></select></label><label class="oxygen-field">Availability context<select id="ps${s.id}Context"></select></label><label class="oxygen-field">Pressure (PSI)<input id="ps${s.id}Pressure" type="number" inputmode="decimal" value="${esc(s.pressure||'')}"></label><label class="oxygen-field">LOX reading<input id="ps${s.id}Lox" type="number" inputmode="decimal" value="${esc(s.lox||'')}"></label><label class="oxygen-field">Kevlar factor<input id="ps${s.id}Kevlar" type="number" inputmode="decimal" value="${esc(s.kevlar||'')}"></label></div><p id="ps${s.id}Out" class="oxygen-help-block"></p><button class="btn btn-outline danger" type="button" data-remove-source="${s.id}">Remove source</button>`; Object.entries(config.cylinders).forEach(([k,c])=>q(`#ps${s.id}Type`,d).append(option(k,c.label))); q(`#ps${s.id}Type`,d).value=s.type; contexts.forEach(([k,l])=>q(`#ps${s.id}Context`,d).append(option(k,l))); q(`#ps${s.id}Context`,d).value=s.context; return d; }
-  function buildPhaseCard(p,i){ const d=document.createElement('div'); d.className='planner-card'; d.innerHTML=`<h4>Phase ${i+1}</h4><div class="oxygen-grid three-col"><label class="oxygen-field">Phase name<input id="ph${p.id}Name" value="${esc(p.name)}"></label><label class="oxygen-field">Duration (minutes)<input id="ph${p.id}Duration" type="number" inputmode="decimal" value="${esc(p.duration||'')}"></label><label class="oxygen-field">Phase context<select id="ph${p.id}Context"></select></label><label class="oxygen-field">Primary oxygen source<select id="ph${p.id}Source"><option value="">No source assigned</option></select></label><label><input id="ph${p.id}Different" type="checkbox" ${p.different?'checked':''}> Use different oxygen settings for this phase</label></div><div class="oxygen-actions"><button class="btn btn-outline" type="button" data-up-phase="${p.id}">Move up</button><button class="btn btn-outline" type="button" data-down-phase="${p.id}">Move down</button><button class="btn btn-outline danger" type="button" data-remove-phase="${p.id}">Remove phase</button></div>`; phaseContexts.forEach(([k,l])=>q(`#ph${p.id}Context`,d).append(option(k,l))); q(`#ph${p.id}Context`,d).value=p.context; plannerSources.forEach(s=>q(`#ph${p.id}Source`,d).append(option(s.id,s.name||`Oxygen Source ${s.id}`))); q(`#ph${p.id}Source`,d).value=p.sourceId||''; return d; }
-  function renderPlanner(){ if(!config) return; $('plannerSources').innerHTML=''; plannerSources.forEach((s,i)=>$('plannerSources').append(buildSourceCard(s,i))); $('plannerPhases').innerHTML=''; plannerPhases.forEach((p,i)=>$('plannerPhases').append(buildPhaseCard(p,i))); qa('#plannerSources input,#plannerSources select,#plannerPhases input,#plannerPhases select').forEach(el=>el.addEventListener('input',syncPlanner)); syncPlanner(false); }
-  function syncPlanner(rerender=true){ plannerSources.forEach(s=>{ s.name=val(`ps${s.id}Name`)||s.name; s.type=val(`ps${s.id}Type`)||s.type; s.context=val(`ps${s.id}Context`)||s.context; s.pressure=val(`ps${s.id}Pressure`); s.lox=val(`ps${s.id}Lox`); s.kevlar=val(`ps${s.id}Kevlar`); const res=sourceCalc(`ps${s.id}`); s.usableLiters=res.usableLiters||0; const out=$(`ps${s.id}Out`); if(out) out.textContent=res.ok?`Usable pressure: ${fmt(res.usablePressurePsi||0,0)} PSI • Usable liters: ${fmt(res.usableLiters)} L`:`Source validation: ${res.errors.join(' ')}`; }); plannerPhases.forEach(p=>{ p.name=val(`ph${p.id}Name`)||p.name; p.duration=val(`ph${p.id}Duration`); p.context=val(`ph${p.id}Context`)||p.context; p.sourceId=val(`ph${p.id}Source`); p.different=$(`ph${p.id}Different`)?.checked||false; }); const phases=plannerPhases.map(p=>({id:p.id,name:p.name,context:p.context,sourceId:p.sourceId,durationMinutes:p.duration,consumptionLpm:quick?.cons?.oxygenConsumptionLpm||0})); const plan=C.calculateSequentialPlan({sources:plannerSources.map(s=>({id:s.id,name:s.name,context:s.context,usableLiters:s.usableLiters})),phases,thresholds:config.riskThresholds}); const sum=$('plannerSummary'); if(!quick){sum.textContent='Enter a valid quick estimate before planning phases.';return;} if(!plan.ok){sum.textContent=plan.errors.join(' ');return;} const risk=plan.risk; sum.className=`risk-card risk-${risk.level}${risk.insufficient?' risk-insufficient':''}`; sum.textContent=`${risk.insufficient?'⛔ INSUFFICIENT OXYGEN':risk.level==='low'?'🟢 LOW':risk.level==='medium'?'🟡 MEDIUM':'🔴 HIGH'} — ${fmt(risk.percentUsed,1)}% of the limiting oxygen source is expected to be used. Total planned time: ${fmt(plan.totalPlannedMinutes,0)} min. Total oxygen required: ${fmt(plan.totalOxygenRequiredLiters)} L. Limiting source: ${plannerSources.find(s=>s.id===risk.limitingSourceId)?.name||'—'}. Warnings: ${plan.warnings.join(' ')||'None.'}`; setWarn('insufficientAlert', plan.firstInsufficient ? `The assigned source is estimated to be depleted during ${plan.firstInsufficient.name}. Estimated shortage: ${fmt(plan.firstInsufficient.shortageLiters)} L or approximately ${fmt(plan.firstInsufficient.shortageMinutes)} minutes at the configured rate.` : ''); updateSummary(plan); }
-  function updateSummary(plan){ const modeLabel=config?.deliveryModes?.[val('deliveryMode')]?.label||''; $('copySummary').value=`ACT Oxygen Availability Estimate\n\nDelivery mode:\n${modeLabel}\n\nOxygen source:\n${config?.cylinders?.[val('sourceType')]?.label||''}${val('sourceType')==='LOX'?` LOX reading ${val('loxReading')}`:` at ${val('pressurePsi')} PSI`}\n\nReserve pressure:\n${config?.reservePsi||''} PSI\n\nUsable oxygen:\n${quick?fmt(quick.src.usableLiters):'Incomplete'} L\n\nEstimated oxygen consumption:\n${quick?fmt(quick.cons.oxygenConsumptionLpm,3):'Incomplete'} L/min\n\nEstimated oxygen duration:\n${quick?.dur?.displayedDurationMinutes??'Not applicable'} minutes\n\nConfigured risk:\n${plan?.risk?.level||'Not configured'}\n\nCalculator version:\n${config?.calculatorVersion||''}\n\nConfiguration reviewed:\n${config?.reviewedDate||''}\n\nCalculation aid only. Verify actual equipment performance, device configuration, backup oxygen, anticipated delays, and local policy.`; }
-  function renderPresets(){ const sel=$('presetSelect'); sel.innerHTML=''; getPresets().forEach((p,i)=>sel.append(option(String(i),p.name))); }
-  async function init(){ try{ config=await fetch('/static/data/oxygen-calculator-config.json').then(r=>r.json()); const valid=C.validateConfig(config); if(!valid.ok) throw new Error(valid.errors.join(' ')); } catch(e){ console.error('Oxygen calculator configuration error'); $('configError').textContent='Configuration error: calculations are disabled until the versioned configuration is available and valid.'; $('configError').classList.remove('hidden'); return; } modes.forEach(m=>$('deliveryMode').append(option(m,config.deliveryModes[m].label))); Object.entries(config.cylinders).forEach(([k,c])=>$('sourceType').append(option(k,c.label))); const prefs=loadPrefs(); if(prefs.deliveryMode) $('deliveryMode').value=prefs.deliveryMode; if(prefs.sourceType) $('sourceType').value=prefs.sourceType; if(prefs.kevlarFactor) $('kevlarFactor').value=prefs.kevlarFactor; $('configInfo').textContent=`Calculator version ${config.calculatorVersion}. Configuration reviewed July 11, 2026.`; plannerSources=[{id:'s1',name:'Oxygen Source 1',type:val('sourceType')||'D',context:'portable',pressure:'',lox:'',kevlar:''}]; plannerPhases=defaultPhases.map((name,i)=>({id:`p${i+1}`,name,context:phaseContexts[Math.min(i,phaseContexts.length-1)][0],sourceId:'s1',duration:'',different:false})); updateSourceFields(); updateSettings(); renderPresets(); renderPlanner(); }
-  document.addEventListener('input', (e)=>{ if(e.target.closest('#settingsFields')) return; if(['deliveryMode'].includes(e.target.id)){updateSettings();return;} if(['sourceType','pressurePsi','loxReading','kevlarFactor'].includes(e.target.id)){updateSourceFields();return;} if(e.target.name==='bipapSupplyMethod'){$('deliveryMode').value=e.target.value;updateSettings();return;} recalc(); });
-  document.addEventListener('change',(e)=>{ if(e.target.id==='highPressureMethod'){updateHighPressureFields();recalc();} });
-  document.addEventListener('click', async (e)=>{ const b=e.target.closest('button'); if(!b) return; if(b.id==='addSourceBtn'){plannerSources.push({id:`s${Date.now()}`,name:`Oxygen Source ${plannerSources.length+1}`,type:'D',context:'portable'});renderPlanner();} if(b.id==='addPhaseBtn'){plannerPhases.push({id:`p${Date.now()}`,name:`Phase ${plannerPhases.length+1}`,context:'custom',sourceId:''});renderPlanner();} if(b.dataset.removeSource){plannerSources=plannerSources.filter(s=>s.id!==b.dataset.removeSource);renderPlanner();} if(b.dataset.removePhase){plannerPhases=plannerPhases.filter(p=>p.id!==b.dataset.removePhase);renderPlanner();} if(b.dataset.upPhase||b.dataset.downPhase){const id=b.dataset.upPhase||b.dataset.downPhase,i=plannerPhases.findIndex(p=>p.id===id),j=b.dataset.upPhase?i-1:i+1;if(j>=0&&j<plannerPhases.length){[plannerPhases[i],plannerPhases[j]]=[plannerPhases[j],plannerPhases[i]];renderPlanner();}} if(b.id==='copySummaryBtn'){await navigator.clipboard.writeText($('copySummary').value);$('copyStatus').textContent='Summary copied.';} if(b.id==='clearCalculatorBtn'){qa('input').forEach(i=>{if(!i.readOnly&&i.type!=='radio'&&i.type!=='checkbox')i.value='';});recalc();} if(b.id==='eraseSavedBtn'){localStorage.removeItem(storageKey);localStorage.removeItem(presetKey);renderPresets();$('copyStatus').textContent='Saved equipment settings erased.';} if(b.id==='savePresetBtn'){const ps=getPresets();ps.push({name:val('presetName')||'Anonymous equipment preset',deliveryMode:val('deliveryMode'),sourceType:val('sourceType'),kevlarFactor:val('kevlarFactor'),minuteVentilationUnit:val('minuteVentilationUnit'),knownOxygenDrawLpm:val('knownOxygenDrawLpm')});setPresets(ps);} if(b.id==='loadPresetBtn'){const p=getPresets()[Number(val('presetSelect'))]; if(p){$('deliveryMode').value=p.deliveryMode||'CONVENTIONAL';$('sourceType').value=p.sourceType||'D';$('kevlarFactor').value=p.kevlarFactor||'';updateSettings();updateSourceFields();}} if(b.id==='deletePresetBtn'){const ps=getPresets();ps.splice(Number(val('presetSelect')),1);setPresets(ps);} if(b.id==='renamePresetBtn'){const ps=getPresets(),p=ps[Number(val('presetSelect'))]; if(p){p.name=val('presetName')||p.name;setPresets(ps);}} if(b.id==='loadLastSetupBtn'){const p=loadPrefs(); if(p.deliveryMode)$('deliveryMode').value=p.deliveryMode; if(p.sourceType)$('sourceType').value=p.sourceType; updateSettings();updateSourceFields();} if(b.id==='copyToPlannerBtn'){plannerSources[0].type=val('sourceType');plannerSources[0].pressure=val('pressurePsi');plannerSources[0].lox=val('loxReading');plannerSources[0].kevlar=val('kevlarFactor');renderPlanner();} });
+
+  function renderActiveSourceOptions() {
+    const select = $('activeSourceId');
+    const previous = select.value;
+    select.innerHTML = '';
+    activeSources().forEach((source) => select.append(option(source.id, `${source.name} — ${config.cylinders[source.type]?.label || source.type}`)));
+    if (activeSources().some((s) => s.id === previous)) select.value = previous;
+    if (!select.value && activeSources()[0]) select.value = activeSources()[0].id;
+  }
+
+  function deliveryModesForCategory(category) {
+    return category === 'VENTILATOR' ? VENTILATOR_MODES : WALL_LOW_PSI_MODES;
+  }
+  function renderDeliveryModes() {
+    const category = checkedValue('deliveryDeviceCategory') || 'WALL_LOW_PSI';
+    const modes = deliveryModesForCategory(category);
+    const previous = val('deliveryMode');
+    const select = $('deliveryMode');
+    select.innerHTML = '';
+    modes.forEach((mode) => select.append(option(mode, config.deliveryModes[mode].label)));
+    select.value = modes.includes(previous) ? previous : modes[0];
+    setHidden('bipapSupplyWrap', !['BIPAP_LOW_PRESSURE', 'BIPAP_HIGH_PRESSURE'].includes(select.value));
+    renderSettings();
+  }
+
+  function selectedMode() {
+    const mode = val('deliveryMode');
+    if (mode === 'BIPAP_LOW_PRESSURE' || mode === 'BIPAP_HIGH_PRESSURE') return checkedValue('bipapSupplyMethod') || mode;
+    return mode;
+  }
+
+  function fieldHtml(mode) {
+    if (mode === 'CONVENTIONAL') return '<label class="oxygen-field">Oxygen flow from source (L/min)<input id="oxygenFlowLpm" type="number" inputmode="decimal" min="0" step="any" placeholder="15"></label>';
+    if (mode === 'BIPAP_LOW_PRESSURE') return '<label class="oxygen-field">BiPAP/NPPV oxygen bleed-in flow (L/min)<input id="oxygenBleedInFlowLpm" type="number" inputmode="decimal" min="0" step="any" placeholder="10"></label>';
+    if (mode === 'BIPAP_HIGH_PRESSURE') return '<label class="oxygen-field">High-pressure calculation method<select id="highPressureMethod"><option value="blended">Calculate from total blended device flow and FiO₂</option><option value="direct">Enter known/validated oxygen draw directly</option></select></label><label class="oxygen-field hp-blended">Set FiO₂<input id="fio2" inputmode="decimal" placeholder="0.60, 60, or 60%"></label><label class="oxygen-field hp-blended">Total device/blended flow, including flow used to maintain pressure and compensate for circuit leak<input id="totalBlendedFlowLpm" type="number" inputmode="decimal" min="0" step="any" placeholder="60"></label><label class="oxygen-field hp-direct hidden">Known/validated oxygen draw (L/min)<input id="knownOxygenDrawLpm" type="number" inputmode="decimal" min="0" step="any" placeholder="31"></label><label class="oxygen-field hp-direct hidden">Source of value<select id="oxygenDrawSource"><option>Device display</option><option>Manufacturer reference</option><option>Organizational equipment profile</option><option>Locally measured or bench-tested value</option><option>Other validated source</option></select></label>';
+    if (mode === 'HFNC') return '<label class="oxygen-field">Total HFNC flow (L/min)<input id="hfncTotalFlowLpm" type="number" inputmode="decimal" min="0" step="any" placeholder="15"></label><label class="oxygen-field">Set FiO₂<input id="fio2" inputmode="decimal" placeholder="0.60, 60, or 60%"></label>';
+    return '<label class="oxygen-field">Minute ventilation<input id="minuteVentilation" type="number" inputmode="decimal" min="0" step="any" placeholder="8"></label><label class="oxygen-field">Minute-ventilation unit<select id="minuteVentilationUnit"><option>L/min</option><option>mL/min</option></select></label><label class="oxygen-field">Set FiO₂<input id="fio2" inputmode="decimal" placeholder="0.70, 70, or 70%"></label><label class="oxygen-field">Configured device bias flow<input readonly id="biasFlowDisplay" value="' + fmt(config.deliveryModes[mode]?.biasFlowLpm, 1) + ' L/min"></label>';
+  }
+
+  function renderSettings() {
+    const mode = selectedMode();
+    $('settingsFields').innerHTML = fieldHtml(mode);
+    updateHighPressureFields();
+    const help = {
+      CONVENTIONAL: 'Wall / Portable Low PSI uses the entered flowmeter oxygen flow as source consumption.',
+      BIPAP_LOW_PRESSURE: 'Ventilator device: BiPAP/NPPV. Oxygen supply method: low-pressure bleed-in. FiO₂, IPAP, and EPAP are not used to calculate tank duration in this pathway.',
+      BIPAP_HIGH_PRESSURE: 'Ventilator device: BiPAP/NPPV. Use total device outlet flow or a manufacturer-validated / locally measured oxygen-draw value. Do not enter patient minute ventilation or derive flow from IPAP/EPAP alone.',
+      HFNC: 'Ventilator/blended device pathway. HFNC oxygen-source flow is modeled from total flow and FiO₂ using ambient air 0.21 and source oxygen 1.00.',
+      HAMILTON_T1_ADULT_PED: 'Ventilator pathway. Device-specific oxygen-use constants must be verified against exact model, software, circuit, manufacturer instructions, and local policy.',
+      HAMILTON_T1_NEONATE: 'Ventilator pathway. Device-specific oxygen-use constants must be verified against exact model, software, circuit, manufacturer instructions, and local policy.',
+      REVEL: 'Ventilator pathway. Device-specific oxygen-use constants must be verified against exact model, software, circuit, manufacturer instructions, and local policy.',
+      LTV1200: 'Ventilator pathway. Device-specific oxygen-use constants must be verified against exact model, software, circuit, manufacturer instructions, and local policy.'
+    };
+    $('modeHelp').textContent = help[mode] || '';
+    qa('input,select', $('settingsFields')).forEach((el) => el.addEventListener('input', recalc));
+    recalc();
+  }
+
+  function updateHighPressureFields() {
+    const method = val('highPressureMethod');
+    qa('.hp-blended').forEach((el) => el.classList.toggle('hidden', method === 'direct'));
+    qa('.hp-direct').forEach((el) => el.classList.toggle('hidden', method !== 'direct'));
+  }
+
+  function consumptionForSelectedMode() {
+    const mode = selectedMode();
+    if (mode === 'CONVENTIONAL') return C.calculateConventionalConsumption({ enteredFlowLpm: val('oxygenFlowLpm') });
+    if (mode === 'BIPAP_LOW_PRESSURE') return C.calculateBipapLowPressureConsumption({ oxygenBleedInFlowLpm: val('oxygenBleedInFlowLpm') });
+    if (mode === 'BIPAP_HIGH_PRESSURE') {
+      return val('highPressureMethod') === 'direct'
+        ? C.calculateKnownOxygenDrawConsumption({ knownOxygenDrawLpm: val('knownOxygenDrawLpm') })
+        : C.calculateBlendedOxygenConsumption({ fio2: val('fio2'), totalBlendedFlowLpm: val('totalBlendedFlowLpm'), ambientOxygenFraction: config.ambientOxygenFraction, sourceOxygenFraction: config.sourceOxygenFraction });
+    }
+    if (mode === 'HFNC') return C.calculateHfncConsumption({ fio2: val('fio2'), totalFlowLpm: val('hfncTotalFlowLpm'), ambientOxygenFraction: config.ambientOxygenFraction, sourceOxygenFraction: config.sourceOxygenFraction });
+    return C.calculateVentilatorConsumption({ minuteVentilation: val('minuteVentilation'), minuteVentilationUnit: val('minuteVentilationUnit') || 'L/min', fio2: val('fio2'), biasFlowLpm: config.deliveryModes[mode]?.biasFlowLpm });
+  }
+
+  function recalc() {
+    if (!config) return;
+    savePrefs();
+    renderActiveSourceOptions();
+    const source = oxygenSources.find((s) => s.id === val('activeSourceId')) || activeSources()[0];
+    const src = source ? sourceCalc(source) : { ok: false, errors: ['No active oxygen source is selected.'], warnings: [] };
+    const cons = consumptionForSelectedMode();
+    const errors = [...(src.errors || []), ...(cons.errors || [])];
+    const highPressureWarning = selectedMode() === 'BIPAP_HIGH_PRESSURE' ? 'High-pressure NIV oxygen use can vary with device design, circuit type, intentional exhalation flow, mask leak, pressure settings, triggering, and leak compensation. IPAP and EPAP alone are not sufficient to calculate oxygen consumption.' : '';
+    setWarn('modeWarning', [...(cons.warnings || []), highPressureWarning]);
+    if (errors.length) {
+      $('quickResult').textContent = errors.join(' ');
+      $('formulaDetails').textContent = 'Calculation unavailable until valid inputs are entered.';
+      quick = null;
+      updateSummary();
+      renderPlanner();
+      return;
+    }
+    const dur = cons.durationNotApplicable ? { ok: true, displayedDurationMinutes: null, rawDurationMinutes: null, hours: 0, remainingMinutes: 0 } : C.calculateDuration({ availableLiters: src.usableLiters, consumptionLpm: cons.oxygenConsumptionLpm });
+    if (!dur.ok) { $('quickResult').textContent = dur.errors.join(' '); return; }
+    quick = { source, src, cons, dur, mode: selectedMode(), deliveryDeviceCategory: checkedValue('deliveryDeviceCategory') };
+    renderQuick();
+    renderPlanner();
+    updateSummary();
+  }
+
+  function renderQuick() {
+    const root = $('quickResult');
+    root.innerHTML = '';
+    if (quick.cons.durationNotApplicable) root.append(text('div', 'No supplemental oxygen draw is calculated at the entered FiO₂/flow values.', 'oxygen-big-result'));
+    else root.append(text('div', `Estimated oxygen available ${quick.dur.displayedDurationMinutes} minutes`, 'oxygen-big-result'));
+    const grid = document.createElement('div');
+    grid.className = 'oxygen-result-grid';
+    [['Selected source', quick.source.name], ['Usable oxygen', `${fmt(quick.src.usableLiters)} L`], ['Estimated oxygen consumption', `${fmt(quick.cons.oxygenConsumptionLpm, 3)} L/min`], ['Approximate duration', quick.cons.durationNotApplicable ? 'Not applicable' : `${quick.dur.hours} hr ${quick.dur.remainingMinutes} min`]].forEach(([label, value]) => {
+      const cell = document.createElement('div');
+      cell.append(text('strong', label));
+      cell.append(text('p', value));
+      grid.append(cell);
+    });
+    root.append(grid);
+    if (quick.cons.oxygenSourceFlowLpm !== undefined) root.append(text('p', `Estimated oxygen-source flow: ${fmt(quick.cons.oxygenSourceFlowLpm, 3)} L/min • Estimated ambient-air contribution: ${fmt(quick.cons.ambientAirFlowLpm, 3)} L/min`));
+    $('formulaDetails').textContent = formulaText();
+  }
+
+  function formulaText() {
+    const lines = [];
+    const cylinder = config.cylinders[quick.source.type];
+    lines.push(`O₂ delivery device category: ${quick.deliveryDeviceCategory === 'VENTILATOR' ? 'Ventilator' : 'Wall / Portable Low PSI'}`);
+    lines.push(`Device/delivery mode: ${config.deliveryModes[quick.mode].label}`);
+    lines.push(`Oxygen source: ${quick.source.name} (${cylinder.label === 'H' ? 'H-Tank' : cylinder.label})`);
+    if (quick.src.sourceType === 'compressed') {
+      lines.push(`Usable pressure\n${fmt(quick.src.currentPressurePsi, 0)} PSI − ${fmt(quick.src.reservePsi, 0)} PSI\n= ${fmt(quick.src.usablePressurePsi, 0)} PSI`);
+      lines.push(`Usable oxygen\n${fmt(quick.src.usablePressurePsi, 0)} PSI × ${quick.src.cylinderFactor} L/PSI\n= ${fmt(quick.src.usableLiters)} L`);
+    } else {
+      lines.push(`Usable oxygen\n${quick.src.loxReading} × ${quick.src.loxFactor}\n= ${fmt(quick.src.usableLiters)} L`);
+    }
+    if (quick.cons.fio2Input) lines.push(`Entered FiO₂: ${quick.cons.fio2Input.originalInput}\nInterpreted as: ${quick.cons.fio2Input.interpretedAs}; FiO₂ ${f2(quick.cons.fio2)}`);
+    if (quick.cons.method === 'blended-flow-estimate') lines.push(`Estimated oxygen-source flow\n${fmt(quick.cons.totalBlendedFlowLpm)} × ((${f2(quick.cons.fio2)} − ${f2(quick.cons.ambientOxygenFraction)}) ÷ (${f2(quick.cons.sourceOxygenFraction)} − ${f2(quick.cons.ambientOxygenFraction)}))\n= ${fmt(quick.cons.oxygenSourceFlowLpm, 3)} L/min\n\nEstimated ambient-air contribution\n${fmt(quick.cons.totalBlendedFlowLpm)} − ${fmt(quick.cons.oxygenSourceFlowLpm, 3)}\n= ${fmt(quick.cons.ambientAirFlowLpm, 3)} L/min`);
+    else if (quick.cons.patientOxygenConsumptionLpm !== undefined) lines.push(`Patient oxygen consumption\n${fmt(quick.cons.minuteVentilation.minuteVentilationMlPerMin, 0)} mL/min × ${f2(quick.cons.fio2)} ÷ 1,000\n= ${fmt(quick.cons.patientOxygenConsumptionLpm, 2)} L/min\n\nConfigured bias flow\n${fmt(quick.cons.biasFlowLpm, 1)} L/min\n\nTotal oxygen consumption\n${fmt(quick.cons.patientOxygenConsumptionLpm, 2)} + ${fmt(quick.cons.biasFlowLpm, 1)}\n= ${fmt(quick.cons.totalOxygenConsumptionLpm, 2)} L/min`);
+    else lines.push(`Oxygen consumption\n= ${fmt(quick.cons.oxygenConsumptionLpm, 3)} L/min`);
+    if (!quick.cons.durationNotApplicable) lines.push(`Raw duration\n${fmt(quick.src.usableLiters)} ÷ ${fmt(quick.cons.oxygenConsumptionLpm, 3)}\n= ${fmt(quick.dur.rawDurationMinutes, 2)} minutes\n\nConservative displayed duration\n${quick.dur.displayedDurationMinutes} minutes`);
+    lines.push(`Risk thresholds: medium ${config.riskThresholds.medium * 100}%, high ${config.riskThresholds.high * 100}%`);
+    lines.push(`Calculator version ${config.calculatorVersion}; reviewed ${config.reviewedDate}`);
+    return lines.join('\n\n');
+  }
+
+  function buildPhaseCard(phase, index) {
+    const card = document.createElement('article');
+    card.className = 'planner-card';
+    card.innerHTML = `<h4>Phase ${index + 1}</h4><div class="oxygen-grid three-col"><label class="oxygen-field">Phase name<input data-phase-field="name" data-phase-id="${phase.id}" value="${esc(phase.name)}"></label><label class="oxygen-field">Duration (minutes)<input data-phase-field="duration" data-phase-id="${phase.id}" type="number" inputmode="decimal" value="${esc(phase.duration || '')}"></label><label class="oxygen-field">Phase context<select data-phase-field="context" data-phase-id="${phase.id}"></select></label><label class="oxygen-field">Primary oxygen source<select data-phase-field="sourceId" data-phase-id="${phase.id}"><option value="">No source assigned</option></select></label></div><div class="oxygen-actions"><button class="btn btn-outline" type="button" data-up-phase="${phase.id}">Move up</button><button class="btn btn-outline" type="button" data-down-phase="${phase.id}">Move down</button><button class="btn btn-outline danger" type="button" data-remove-phase="${phase.id}">Remove phase</button></div>`;
+    const contextSelect = q('[data-phase-field="context"]', card);
+    phaseContexts.forEach(([key, label]) => contextSelect.append(option(key, label)));
+    contextSelect.value = phase.context;
+    const sourceSelect = q('[data-phase-field="sourceId"]', card);
+    activeSources().forEach((source) => sourceSelect.append(option(source.id, source.name)));
+    sourceSelect.value = phase.sourceId || '';
+    return card;
+  }
+
+  function renderPlanner() {
+    if (!config) return;
+    $('plannerPhases').innerHTML = '';
+    plannerPhases.forEach((phase, index) => $('plannerPhases').append(buildPhaseCard(phase, index)));
+    qa('[data-phase-field]').forEach((el) => el.addEventListener('input', updatePhaseFromField));
+    syncPlanner(false);
+  }
+
+  function updatePhaseFromField(event) {
+    const phase = plannerPhases.find((p) => p.id === event.target.dataset.phaseId);
+    if (!phase) return;
+    phase[event.target.dataset.phaseField] = event.target.value;
+    syncPlanner(false);
+  }
+
+  function syncPlanner() {
+    const summary = $('plannerSummary');
+    if (!quick) { summary.textContent = 'Enter valid oxygen source and device settings before planning phases.'; return; }
+    const sourceResults = activeSources().map((source) => ({ ...source, usableLiters: sourceCalc(source).usableLiters || 0 }));
+    const phases = plannerPhases.map((phase) => ({ id: phase.id, name: phase.name, context: phase.context, sourceId: phase.sourceId, durationMinutes: phase.duration, consumptionLpm: quick.cons.oxygenConsumptionLpm || 0 }));
+    const plan = C.calculateSequentialPlan({ sources: sourceResults, phases, thresholds: config.riskThresholds });
+    if (!plan.ok) { summary.className = 'risk-card'; summary.textContent = plan.errors.join(' '); updateSummary(); return; }
+    const risk = plan.risk;
+    summary.className = `risk-card risk-${risk.level}${risk.insufficient ? ' risk-insufficient' : ''}`;
+    summary.textContent = `${risk.insufficient ? '⛔ INSUFFICIENT OXYGEN' : risk.level === 'low' ? '🟢 LOW' : risk.level === 'medium' ? '🟡 MEDIUM' : '🔴 HIGH'} — ${fmt(risk.percentUsed, 1)}% of the limiting oxygen source is expected to be used. Total planned time: ${fmt(plan.totalPlannedMinutes, 0)} min. Total oxygen required: ${fmt(plan.totalOxygenRequiredLiters)} L. Limiting source: ${sourceResults.find((s) => s.id === risk.limitingSourceId)?.name || '—'}. Warnings: ${plan.warnings.join(' ') || 'None.'}`;
+    setWarn('insufficientAlert', plan.firstInsufficient ? `The assigned source is estimated to be depleted during ${plan.firstInsufficient.name}. Estimated shortage: ${fmt(plan.firstInsufficient.shortageLiters)} L or approximately ${fmt(plan.firstInsufficient.shortageMinutes)} minutes at the configured rate.` : '');
+    updateSummary(plan);
+  }
+
+  function updateSummary(plan) {
+    const category = checkedValue('deliveryDeviceCategory') === 'VENTILATOR' ? 'Ventilator' : 'Wall / Portable Low PSI';
+    $('copySummary').value = `ACT Oxygen Availability Estimate\n\nO₂ delivery device:\n${category}\n\nDevice / delivery mode:\n${quick ? config.deliveryModes[quick.mode].label : 'Incomplete'}\n\nOxygen source:\n${quick ? quick.source.name : 'Incomplete'}\n\nReserve pressure:\n${config?.reservePsi || ''} PSI\n\nUsable oxygen:\n${quick ? fmt(quick.src.usableLiters) : 'Incomplete'} L\n\nEstimated oxygen consumption:\n${quick ? fmt(quick.cons.oxygenConsumptionLpm, 3) : 'Incomplete'} L/min\n\nEstimated oxygen duration:\n${quick?.dur?.displayedDurationMinutes ?? 'Not applicable'} minutes\n\nConfigured risk:\n${plan?.risk?.level || 'Not configured'}\n\nCalculator version:\n${config?.calculatorVersion || ''}\n\nConfiguration reviewed:\n${config?.reviewedDate || ''}\n\nCalculation aid only. Verify actual equipment performance, device configuration, backup oxygen, anticipated delays, and local policy.`;
+  }
+
+  function getPresets() { return loadJson(presetKey, []); }
+  function setPresets(presets) { saveJson(presetKey, presets); renderPresets(); }
+  function renderPresets() { const select = $('presetSelect'); select.innerHTML = ''; getPresets().forEach((preset, index) => select.append(option(String(index), preset.name))); }
+
+  function initState() {
+    const prefs = loadJson(storageKey, {});
+    oxygenSources = Array.isArray(prefs.oxygenSources) && prefs.oxygenSources.length === 4 ? defaultSources().map((source) => ({ ...source, ...(prefs.oxygenSources.find((saved) => saved.id === source.id) || {}) })) : defaultSources();
+    plannerPhases = defaultPhases.map((name, index) => ({ id: `p${index + 1}`, name, context: phaseContexts[Math.min(index, phaseContexts.length - 1)][0], sourceId: 'portable1', duration: '' }));
+    if (prefs.deliveryDeviceCategory) {
+      const radio = q(`input[name="deliveryDeviceCategory"][value="${prefs.deliveryDeviceCategory}"]`);
+      if (radio) radio.checked = true;
+    }
+  }
+
+  async function init() {
+    try {
+      config = await fetch('/static/data/oxygen-calculator-config.json').then((response) => response.json());
+      const valid = C.validateConfig(config);
+      if (!valid.ok) throw new Error(valid.errors.join(' '));
+    } catch (error) {
+      console.error('Oxygen calculator configuration error');
+      $('configError').textContent = 'Configuration error: calculations are disabled until the versioned configuration is available and valid.';
+      $('configError').classList.remove('hidden');
+      return;
+    }
+    initState();
+    $('configInfo').textContent = `Calculator version ${config.calculatorVersion}. Configuration reviewed July 11, 2026.`;
+    renderSources();
+    renderDeliveryModes();
+    renderPresets();
+    renderPlanner();
+  }
+
+  document.addEventListener('input', (event) => {
+    if (event.target.name === 'deliveryDeviceCategory') { renderDeliveryModes(); return; }
+    if (event.target.id === 'deliveryMode') { setHidden('bipapSupplyWrap', !['BIPAP_LOW_PRESSURE', 'BIPAP_HIGH_PRESSURE'].includes(event.target.value)); renderSettings(); return; }
+    if (event.target.name === 'bipapSupplyMethod') { $('deliveryMode').value = event.target.value; renderSettings(); return; }
+    if (event.target.id === 'activeSourceId') { recalc(); return; }
+    if (event.target.closest('#settingsFields')) return;
+  });
+  document.addEventListener('change', (event) => {
+    if (event.target.id === 'highPressureMethod') { updateHighPressureFields(); recalc(); }
+  });
+  document.addEventListener('click', async (event) => {
+    const button = event.target.closest('button');
+    if (!button) return;
+    if (button.id === 'addPhaseBtn') { plannerPhases.push({ id: `p${Date.now()}`, name: `Phase ${plannerPhases.length + 1}`, context: 'custom', sourceId: activeSources()[0]?.id || '', duration: '' }); renderPlanner(); }
+    if (button.dataset.removePhase) { plannerPhases = plannerPhases.filter((phase) => phase.id !== button.dataset.removePhase); renderPlanner(); }
+    if (button.dataset.upPhase || button.dataset.downPhase) { const id = button.dataset.upPhase || button.dataset.downPhase; const i = plannerPhases.findIndex((phase) => phase.id === id); const j = button.dataset.upPhase ? i - 1 : i + 1; if (j >= 0 && j < plannerPhases.length) { [plannerPhases[i], plannerPhases[j]] = [plannerPhases[j], plannerPhases[i]]; renderPlanner(); } }
+    if (button.id === 'copySummaryBtn') { await navigator.clipboard.writeText($('copySummary').value); $('copyStatus').textContent = 'Summary copied.'; }
+    if (button.id === 'clearCalculatorBtn') { qa('input').forEach((input) => { if (!input.readOnly && input.type !== 'radio' && input.type !== 'checkbox') input.value = ''; }); oxygenSources = defaultSources(); renderSources(); recalc(); }
+    if (button.id === 'eraseSavedBtn') { localStorage.removeItem(storageKey); localStorage.removeItem(presetKey); renderPresets(); $('copyStatus').textContent = 'Saved equipment settings erased.'; }
+    if (button.id === 'copyToPlannerBtn') { renderPlanner(); $('copyStatus').textContent = 'Available oxygen sources copied to planner.'; }
+    if (button.id === 'savePresetBtn') { const presets = getPresets(); presets.push({ name: val('presetName') || 'Anonymous equipment preset', deliveryDeviceCategory: checkedValue('deliveryDeviceCategory'), deliveryMode: val('deliveryMode'), sourceTypes: oxygenSources.map((source) => ({ id: source.id, type: source.type, enabled: source.enabled, kevlar: source.kevlar })) }); setPresets(presets); }
+    if (button.id === 'loadPresetBtn') { const preset = getPresets()[Number(val('presetSelect'))]; if (preset) { const radio = q(`input[name="deliveryDeviceCategory"][value="${preset.deliveryDeviceCategory}"]`); if (radio) radio.checked = true; oxygenSources = oxygenSources.map((source) => ({ ...source, ...(preset.sourceTypes?.find((saved) => saved.id === source.id) || {}) })); renderSources(); renderDeliveryModes(); } }
+    if (button.id === 'deletePresetBtn') { const presets = getPresets(); presets.splice(Number(val('presetSelect')), 1); setPresets(presets); }
+    if (button.id === 'renamePresetBtn') { const presets = getPresets(); const preset = presets[Number(val('presetSelect'))]; if (preset) { preset.name = val('presetName') || preset.name; setPresets(presets); } }
+    if (button.id === 'loadLastSetupBtn') { initState(); renderSources(); renderDeliveryModes(); renderPlanner(); }
+  });
+
   init();
 })();
