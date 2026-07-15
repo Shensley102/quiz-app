@@ -34,9 +34,8 @@
     },
     "KEVLAR": {
       "label": "Kevlar",
-      "factor": null,
-      "type": "compressed",
-      "requiresUserFactor": true
+      "factor": 1.17,
+      "type": "compressed"
     },
     "LOX": {
       "label": "LOX",
