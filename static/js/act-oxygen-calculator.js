@@ -48,14 +48,26 @@
 
   function defaultSources() {
     return [
-      { id: 'onboard1', group: 'onboard', name: 'On Board O₂ Tank #1', type: 'H', enabled: true, pressure: '', lox: '', kevlar: '', context: 'continuous' },
-      { id: 'onboard2', group: 'onboard', name: 'Optional On Board O₂ Tank #2', type: 'LOX', enabled: false, pressure: '', lox: '', kevlar: '', context: 'continuous' },
-      { id: 'portable1', group: 'portable', name: 'Portable O₂ Tank #1', type: 'D', enabled: true, pressure: '', lox: '', kevlar: '', context: 'portable' },
-      { id: 'portable2', group: 'portable', name: 'Optional Portable O₂ Tank #2', type: 'E', enabled: false, pressure: '', lox: '', kevlar: '', context: 'portable' }
+      { id: 'onboard1', group: 'onboard', type: 'H', pressure: '', lox: '', kevlar: '', context: 'continuous' },
+      { id: 'portable1', group: 'portable', type: 'D', pressure: '', lox: '', kevlar: '', context: 'portable' }
     ];
   }
-  function activeSources() { return oxygenSources.filter((s) => s.enabled); }
+  function activeSources() { return oxygenSources; }
   function allowedTypesForSource(source) { return source.group === 'onboard' ? ON_BOARD_TYPES : PORTABLE_TYPES; }
+  function labelForSource(source) {
+    const groupSources = oxygenSources.filter((item) => item.group === source.group);
+    const index = groupSources.findIndex((item) => item.id === source.id);
+    const suffix = index > 0 ? ` #${index + 1}` : '';
+    return `${source.group === 'onboard' ? 'On Board O₂' : 'Portable O₂'}${suffix}`;
+  }
+  function hasAtLeastOneValidSource() { return activeSources().some((source) => sourceCalc(source).ok); }
+  function setProgressiveVisibility(hasValidSource, hasValidResult) {
+    setHidden('deliveryDeviceSection', !hasValidSource);
+    setHidden('deviceFlowSection', !hasValidSource);
+    setHidden('plannerSection', !hasValidResult);
+    setHidden('summarySection', !hasValidResult);
+    setHidden('presetsSection', !hasValidResult);
+  }
 
   function sourceCalc(source) {
     const cyl = config.cylinders[source.type];
@@ -72,7 +84,7 @@
       bipapSupplyMethod: checkedValue('bipapSupplyMethod'),
       highPressureMethod: val('highPressureMethod'),
       activeSourceId: val('activeSourceId'),
-      oxygenSources: oxygenSources.map(({ id, group, name, type, enabled, context, kevlar }) => ({ id, group, name, type, enabled, context, kevlar }))
+      oxygenSources: oxygenSources.map(({ id, group, type, context, kevlar }) => ({ id, group, type, context, kevlar }))
     });
   }
 
@@ -82,12 +94,11 @@
     const isLox = !!cyl?.isLiquidOxygen;
     const needsKevlar = !!cyl?.requiresUserFactor;
     const result = sourceCalc(source);
+    const canRemove = oxygenSources.filter((item) => item.group === source.group).length > 1;
     const card = document.createElement('article');
     card.className = 'planner-card oxygen-inventory-card';
-    card.innerHTML = `<h4>${esc(source.name)}</h4>
-      <label class="oxygen-enable"><input type="checkbox" data-source-field="enabled" data-source-id="${source.id}" ${source.enabled ? 'checked' : ''}> Include this source</label>
+    card.innerHTML = `<div class="oxygen-source-card-header"><h4>${esc(labelForSource(source))}</h4>${canRemove ? `<button class="btn btn-outline danger" type="button" data-remove-source="${source.id}">Remove</button>` : ''}</div>
       <div class="oxygen-grid three-col">
-        <label class="oxygen-field">Source display name<input data-source-field="name" data-source-id="${source.id}" value="${esc(source.name)}"></label>
         <label class="oxygen-field">Tank/source type<select data-source-field="type" data-source-id="${source.id}"></select></label>
         <label class="oxygen-field ${isLox ? 'hidden' : ''}">Current pressure (PSI)<input data-source-field="pressure" data-source-id="${source.id}" type="number" inputmode="decimal" min="0" step="any" value="${esc(source.pressure)}"></label>
         <label class="oxygen-field ${isLox ? '' : 'hidden'}">LOX quantity reading<input data-source-field="lox" data-source-id="${source.id}" type="number" inputmode="decimal" min="0" step="any" value="${esc(source.lox)}"></label>
@@ -107,7 +118,6 @@
     oxygenSources.filter((s) => s.group === 'onboard').forEach((s) => $('onBoardSources').append(renderSourceCard(s)));
     oxygenSources.filter((s) => s.group === 'portable').forEach((s) => $('portableSources').append(renderSourceCard(s)));
     qa('[data-source-field]').forEach((el) => el.addEventListener('input', updateSourceFromField));
-    qa('[data-source-field="enabled"]').forEach((el) => el.addEventListener('change', updateSourceFromField));
     renderActiveSourceOptions();
   }
 
@@ -116,7 +126,7 @@
     const field = event.target.dataset.sourceField;
     const source = oxygenSources.find((s) => s.id === id);
     if (!source) return;
-    source[field] = field === 'enabled' ? event.target.checked : event.target.value;
+    source[field] = event.target.value;
     if (field === 'type') {
       const allowed = allowedTypesForSource(source);
       if (!allowed.includes(source.type)) source.type = allowed[0];
@@ -130,7 +140,7 @@
     const select = $('activeSourceId');
     const previous = select.value;
     select.innerHTML = '';
-    activeSources().forEach((source) => select.append(option(source.id, `${source.name} — ${config.cylinders[source.type]?.label || source.type}`)));
+    activeSources().forEach((source) => select.append(option(source.id, `${labelForSource(source)} — ${config.cylinders[source.type]?.label || source.type}`)));
     if (activeSources().some((s) => s.id === previous)) select.value = previous;
     if (!select.value && activeSources()[0]) select.value = activeSources()[0].id;
   }
@@ -207,6 +217,16 @@
     savePrefs();
     renderActiveSourceOptions();
     const source = oxygenSources.find((s) => s.id === val('activeSourceId')) || activeSources()[0];
+    const hasValidSource = hasAtLeastOneValidSource();
+    if (!hasValidSource) {
+      setProgressiveVisibility(false, false);
+      $('quickResult').textContent = 'Enter valid On Board O₂ or Portable O₂ information to continue.';
+      $('formulaDetails').textContent = 'Calculation details appear after valid inputs are entered.';
+      quick = null;
+      updateSummary();
+      return;
+    }
+    setProgressiveVisibility(true, false);
     const src = source ? sourceCalc(source) : { ok: false, errors: ['No active oxygen source is selected.'], warnings: [] };
     const cons = consumptionForSelectedMode();
     const errors = [...(src.errors || []), ...(cons.errors || [])];
@@ -216,13 +236,15 @@
       $('quickResult').textContent = errors.join(' ');
       $('formulaDetails').textContent = 'Calculation unavailable until valid inputs are entered.';
       quick = null;
+      setProgressiveVisibility(true, false);
       updateSummary();
       renderPlanner();
       return;
     }
     const dur = cons.durationNotApplicable ? { ok: true, displayedDurationMinutes: null, rawDurationMinutes: null, hours: 0, remainingMinutes: 0 } : C.calculateDuration({ availableLiters: src.usableLiters, consumptionLpm: cons.oxygenConsumptionLpm });
     if (!dur.ok) { $('quickResult').textContent = dur.errors.join(' '); return; }
-    quick = { source, src, cons, dur, mode: selectedMode(), deliveryDeviceCategory: checkedValue('deliveryDeviceCategory') };
+    quick = { source, sourceLabel: labelForSource(source), src, cons, dur, mode: selectedMode(), deliveryDeviceCategory: checkedValue('deliveryDeviceCategory') };
+    setProgressiveVisibility(true, true);
     renderQuick();
     renderPlanner();
     updateSummary();
@@ -235,7 +257,7 @@
     else root.append(text('div', `Estimated oxygen available ${quick.dur.displayedDurationMinutes} minutes`, 'oxygen-big-result'));
     const grid = document.createElement('div');
     grid.className = 'oxygen-result-grid';
-    [['Selected source', quick.source.name], ['Usable oxygen', `${fmt(quick.src.usableLiters)} L`], ['Estimated oxygen consumption', `${fmt(quick.cons.oxygenConsumptionLpm, 3)} L/min`], ['Approximate duration', quick.cons.durationNotApplicable ? 'Not applicable' : `${quick.dur.hours} hr ${quick.dur.remainingMinutes} min`]].forEach(([label, value]) => {
+    [['Selected source', quick.sourceLabel], ['Usable oxygen', `${fmt(quick.src.usableLiters)} L`], ['Estimated oxygen consumption', `${fmt(quick.cons.oxygenConsumptionLpm, 3)} L/min`], ['Approximate duration', quick.cons.durationNotApplicable ? 'Not applicable' : `${quick.dur.hours} hr ${quick.dur.remainingMinutes} min`]].forEach(([label, value]) => {
       const cell = document.createElement('div');
       cell.append(text('strong', label));
       cell.append(text('p', value));
@@ -251,7 +273,7 @@
     const cylinder = config.cylinders[quick.source.type];
     lines.push(`O₂ delivery device category: ${quick.deliveryDeviceCategory === 'VENTILATOR' ? 'Ventilator' : 'Wall / Portable Low PSI'}`);
     lines.push(`Device/delivery mode: ${config.deliveryModes[quick.mode].label}`);
-    lines.push(`Oxygen source: ${quick.source.name} (${cylinder.label === 'H' ? 'H-Tank' : cylinder.label})`);
+    lines.push(`Oxygen source: ${quick.sourceLabel} (${cylinder.label === 'H' ? 'H-Tank' : cylinder.label})`);
     if (quick.src.sourceType === 'compressed') {
       lines.push(`Usable pressure\n${fmt(quick.src.currentPressurePsi, 0)} PSI − ${fmt(quick.src.reservePsi, 0)} PSI\n= ${fmt(quick.src.usablePressurePsi, 0)} PSI`);
       lines.push(`Usable oxygen\n${fmt(quick.src.usablePressurePsi, 0)} PSI × ${quick.src.cylinderFactor} L/PSI\n= ${fmt(quick.src.usableLiters)} L`);
@@ -276,7 +298,7 @@
     phaseContexts.forEach(([key, label]) => contextSelect.append(option(key, label)));
     contextSelect.value = phase.context;
     const sourceSelect = q('[data-phase-field="sourceId"]', card);
-    activeSources().forEach((source) => sourceSelect.append(option(source.id, source.name)));
+    activeSources().forEach((source) => sourceSelect.append(option(source.id, labelForSource(source))));
     sourceSelect.value = phase.sourceId || '';
     return card;
   }
@@ -299,7 +321,7 @@
   function syncPlanner() {
     const summary = $('plannerSummary');
     if (!quick) { summary.textContent = 'Enter valid oxygen source and device settings before planning phases.'; return; }
-    const sourceResults = activeSources().map((source) => ({ ...source, usableLiters: sourceCalc(source).usableLiters || 0 }));
+    const sourceResults = activeSources().map((source) => ({ ...source, name: labelForSource(source), usableLiters: sourceCalc(source).usableLiters || 0 }));
     const phases = plannerPhases.map((phase) => ({ id: phase.id, name: phase.name, context: phase.context, sourceId: phase.sourceId, durationMinutes: phase.duration, consumptionLpm: quick.cons.oxygenConsumptionLpm || 0 }));
     const plan = C.calculateSequentialPlan({ sources: sourceResults, phases, thresholds: config.riskThresholds });
     if (!plan.ok) { summary.className = 'risk-card'; summary.textContent = plan.errors.join(' '); updateSummary(); return; }
@@ -312,7 +334,7 @@
 
   function updateSummary(plan) {
     const category = checkedValue('deliveryDeviceCategory') === 'VENTILATOR' ? 'Ventilator' : 'Wall / Portable Low PSI';
-    $('copySummary').value = `ACT Oxygen Availability Estimate\n\nO₂ delivery device:\n${category}\n\nDevice / delivery mode:\n${quick ? config.deliveryModes[quick.mode].label : 'Incomplete'}\n\nOxygen source:\n${quick ? quick.source.name : 'Incomplete'}\n\nReserve pressure:\n${config?.reservePsi || ''} PSI\n\nUsable oxygen:\n${quick ? fmt(quick.src.usableLiters) : 'Incomplete'} L\n\nEstimated oxygen consumption:\n${quick ? fmt(quick.cons.oxygenConsumptionLpm, 3) : 'Incomplete'} L/min\n\nEstimated oxygen duration:\n${quick?.dur?.displayedDurationMinutes ?? 'Not applicable'} minutes\n\nConfigured risk:\n${plan?.risk?.level || 'Not configured'}\n\nCalculator version:\n${config?.calculatorVersion || ''}\n\nConfiguration reviewed:\n${config?.reviewedDate || ''}\n\nCalculation aid only. Verify actual equipment performance, device configuration, backup oxygen, anticipated delays, and local policy.`;
+    $('copySummary').value = `ACT Oxygen Availability Estimate\n\nO₂ delivery device:\n${category}\n\nDevice / delivery mode:\n${quick ? config.deliveryModes[quick.mode].label : 'Incomplete'}\n\nOxygen source:\n${quick ? quick.sourceLabel : 'Incomplete'}\n\nReserve pressure:\n${config?.reservePsi || ''} PSI\n\nUsable oxygen:\n${quick ? fmt(quick.src.usableLiters) : 'Incomplete'} L\n\nEstimated oxygen consumption:\n${quick ? fmt(quick.cons.oxygenConsumptionLpm, 3) : 'Incomplete'} L/min\n\nEstimated oxygen duration:\n${quick?.dur?.displayedDurationMinutes ?? 'Not applicable'} minutes\n\nConfigured risk:\n${plan?.risk?.level || 'Not configured'}\n\nCalculator version:\n${config?.calculatorVersion || ''}\n\nConfiguration reviewed:\n${config?.reviewedDate || ''}\n\nCalculation aid only. Verify actual equipment performance, device configuration, backup oxygen, anticipated delays, and local policy.`;
   }
 
   function getPresets() { return loadJson(presetKey, []); }
@@ -321,7 +343,7 @@
 
   function initState() {
     const prefs = loadJson(storageKey, {});
-    oxygenSources = Array.isArray(prefs.oxygenSources) && prefs.oxygenSources.length === 4 ? defaultSources().map((source) => ({ ...source, ...(prefs.oxygenSources.find((saved) => saved.id === source.id) || {}) })) : defaultSources();
+    oxygenSources = Array.isArray(prefs.oxygenSources) && prefs.oxygenSources.length ? prefs.oxygenSources.map((source) => ({ pressure: '', lox: '', kevlar: '', context: source.group === 'onboard' ? 'continuous' : 'portable', ...source })) : defaultSources();
     plannerPhases = defaultPhases.map((name, index) => ({ id: `p${index + 1}`, name, context: phaseContexts[Math.min(index, phaseContexts.length - 1)][0], sourceId: 'portable1', duration: '' }));
     if (prefs.deliveryDeviceCategory) {
       const radio = q(`input[name="deliveryDeviceCategory"][value="${prefs.deliveryDeviceCategory}"]`);
@@ -361,6 +383,9 @@
   document.addEventListener('click', async (event) => {
     const button = event.target.closest('button');
     if (!button) return;
+    if (button.id === 'addOnBoardSourceBtn') { oxygenSources.push({ id: `onboard${Date.now()}`, group: 'onboard', type: 'H', pressure: '', lox: '', kevlar: '', context: 'continuous' }); renderSources(); recalc(); }
+    if (button.id === 'addPortableSourceBtn') { oxygenSources.push({ id: `portable${Date.now()}`, group: 'portable', type: 'D', pressure: '', lox: '', kevlar: '', context: 'portable' }); renderSources(); recalc(); }
+    if (button.dataset.removeSource) { oxygenSources = oxygenSources.filter((source) => source.id !== button.dataset.removeSource); renderSources(); recalc(); }
     if (button.id === 'addPhaseBtn') { plannerPhases.push({ id: `p${Date.now()}`, name: `Phase ${plannerPhases.length + 1}`, context: 'custom', sourceId: activeSources()[0]?.id || '', duration: '' }); renderPlanner(); }
     if (button.dataset.removePhase) { plannerPhases = plannerPhases.filter((phase) => phase.id !== button.dataset.removePhase); renderPlanner(); }
     if (button.dataset.upPhase || button.dataset.downPhase) { const id = button.dataset.upPhase || button.dataset.downPhase; const i = plannerPhases.findIndex((phase) => phase.id === id); const j = button.dataset.upPhase ? i - 1 : i + 1; if (j >= 0 && j < plannerPhases.length) { [plannerPhases[i], plannerPhases[j]] = [plannerPhases[j], plannerPhases[i]]; renderPlanner(); } }
@@ -368,7 +393,7 @@
     if (button.id === 'clearCalculatorBtn') { qa('input').forEach((input) => { if (!input.readOnly && input.type !== 'radio' && input.type !== 'checkbox') input.value = ''; }); oxygenSources = defaultSources(); renderSources(); recalc(); }
     if (button.id === 'eraseSavedBtn') { localStorage.removeItem(storageKey); localStorage.removeItem(presetKey); renderPresets(); $('copyStatus').textContent = 'Saved equipment settings erased.'; }
     if (button.id === 'copyToPlannerBtn') { renderPlanner(); $('copyStatus').textContent = 'Available oxygen sources copied to planner.'; }
-    if (button.id === 'savePresetBtn') { const presets = getPresets(); presets.push({ name: val('presetName') || 'Anonymous equipment preset', deliveryDeviceCategory: checkedValue('deliveryDeviceCategory'), deliveryMode: val('deliveryMode'), sourceTypes: oxygenSources.map((source) => ({ id: source.id, type: source.type, enabled: source.enabled, kevlar: source.kevlar })) }); setPresets(presets); }
+    if (button.id === 'savePresetBtn') { const presets = getPresets(); presets.push({ name: val('presetName') || 'Anonymous equipment preset', deliveryDeviceCategory: checkedValue('deliveryDeviceCategory'), deliveryMode: val('deliveryMode'), sourceTypes: oxygenSources.map((source) => ({ id: source.id, group: source.group, type: source.type, kevlar: source.kevlar })) }); setPresets(presets); }
     if (button.id === 'loadPresetBtn') { const preset = getPresets()[Number(val('presetSelect'))]; if (preset) { const radio = q(`input[name="deliveryDeviceCategory"][value="${preset.deliveryDeviceCategory}"]`); if (radio) radio.checked = true; oxygenSources = oxygenSources.map((source) => ({ ...source, ...(preset.sourceTypes?.find((saved) => saved.id === source.id) || {}) })); renderSources(); renderDeliveryModes(); } }
     if (button.id === 'deletePresetBtn') { const presets = getPresets(); presets.splice(Number(val('presetSelect')), 1); setPresets(presets); }
     if (button.id === 'renamePresetBtn') { const presets = getPresets(); const preset = presets[Number(val('presetSelect'))]; if (preset) { preset.name = val('presetName') || preset.name; setPresets(presets); } }

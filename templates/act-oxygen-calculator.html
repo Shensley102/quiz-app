@@ -34,20 +34,20 @@
 
     <section class="oxygen-card" aria-labelledby="oxygenAvailableTitle">
       <div class="oxygen-card-header"><div><p class="dose-eyebrow">First: inventory oxygen sources</p><h2 id="oxygenAvailableTitle">1. Oxygen Available</h2></div><button id="copyToPlannerBtn" class="btn btn-outline" type="button">Copy available oxygen to planner</button></div>
-      <p class="oxygen-help-block">Enter non-PHI equipment information only. On board oxygen is limited to Kevlar, LOX, or H-Tank. Portable oxygen is limited to D, Jumbo D, or E cylinders.</p>
+      <p class="oxygen-help-block">On board oxygen is limited to Kevlar, LOX, or H-Tank. Portable oxygen is limited to D, Jumbo D, or E cylinders.</p>
       <div class="oxygen-source-sections">
         <section class="oxygen-source-group" aria-labelledby="onBoardTitle">
           <h3 id="onBoardTitle">On Board O₂</h3>
-          <div id="onBoardSources" class="planner-list"></div>
+          <div id="onBoardSources" class="planner-list"></div><button id="addOnBoardSourceBtn" class="btn btn-outline" type="button">Add additional on board source</button>
         </section>
         <section class="oxygen-source-group" aria-labelledby="portableTitle">
           <h3 id="portableTitle">Portable O₂</h3>
-          <div id="portableSources" class="planner-list"></div>
+          <div id="portableSources" class="planner-list"></div><button id="addPortableSourceBtn" class="btn btn-outline" type="button">Add additional portable source</button>
         </section>
       </div>
     </section>
 
-    <section class="oxygen-card" aria-labelledby="deliveryDeviceTitle">
+    <section id="deliveryDeviceSection" class="oxygen-card hidden" aria-labelledby="deliveryDeviceTitle">
       <div class="oxygen-card-header"><div><p class="dose-eyebrow">Second: choose how oxygen is delivered</p><h2 id="deliveryDeviceTitle">2. O₂ Delivery Device</h2></div></div>
       <fieldset class="oxygen-radio-group" aria-describedby="deliveryDeviceHelp">
         <legend class="sr-only">Oxygen delivery device category</legend>
@@ -57,7 +57,7 @@
       <p id="deliveryDeviceHelp" class="oxygen-help-block">BiPAP/NPPV is grouped under Ventilator whether the oxygen supply method is low-pressure bleed-in or high-pressure blended oxygen.</p>
     </section>
 
-    <section class="oxygen-card" aria-labelledby="quickTitle">
+    <section id="deviceFlowSection" class="oxygen-card hidden" aria-labelledby="quickTitle">
       <div class="oxygen-card-header"><div><p class="dose-eyebrow">Source + device calculation</p><h2 id="quickTitle">3. Device / Flow Selection</h2></div></div>
       <div class="oxygen-grid three-col">
         <label class="oxygen-field">Active oxygen source<select id="activeSourceId"></select></label>
@@ -69,11 +69,11 @@
       <details class="oxygen-details"><summary>Show calculation</summary><pre id="formulaDetails">Calculation details appear after valid inputs are entered.</pre></details>
     </section>
 
-    <section class="oxygen-card" aria-labelledby="plannerTitle"><div class="oxygen-card-header"><div><p class="dose-eyebrow">Optional advanced workflow</p><h2 id="plannerTitle">Transport Oxygen Planner</h2></div></div><p class="oxygen-help-block">Each phase uses one active primary source. Split a real-world segment into separate phases when changing sources. The safety buffer is user-entered and is not an automatically approved organizational reserve requirement.</p><div class="oxygen-actions"><button id="addPhaseBtn" class="btn btn-secondary" type="button">Add phase</button></div><h3>Transport Phases</h3><div id="plannerPhases" class="planner-list"></div><h3>Risk Summary</h3><div id="plannerSummary" class="risk-card" aria-live="polite">Enter oxygen sources, device settings, phase durations, and assigned sources.</div><div id="insufficientAlert" class="oxygen-alert oxygen-alert-critical hidden" role="alert"></div></section>
+    <section id="plannerSection" class="oxygen-card hidden" aria-labelledby="plannerTitle"><div class="oxygen-card-header"><div><p class="dose-eyebrow">Optional advanced workflow</p><h2 id="plannerTitle">Transport Oxygen Planner</h2></div></div><p class="oxygen-help-block">Each phase uses one active primary source. Split a real-world segment into separate phases when changing sources. The safety buffer is user-entered and is not an automatically approved organizational reserve requirement.</p><div class="oxygen-actions"><button id="addPhaseBtn" class="btn btn-secondary" type="button">Add phase</button></div><h3>Transport Phases</h3><div id="plannerPhases" class="planner-list"></div><h3>Risk Summary</h3><div id="plannerSummary" class="risk-card" aria-live="polite">Enter oxygen sources, device settings, phase durations, and assigned sources.</div><div id="insufficientAlert" class="oxygen-alert oxygen-alert-critical hidden" role="alert"></div></section>
 
-    <section class="oxygen-card"><h2>Copy Summary</h2><textarea id="copySummary" class="summary-text" readonly aria-label="Plain text oxygen calculation summary"></textarea><div class="oxygen-actions"><button id="copySummaryBtn" class="btn btn-secondary" type="button">Copy summary</button><button id="clearCalculatorBtn" class="btn btn-outline" type="button">Clear calculator</button><button id="loadLastSetupBtn" class="btn btn-outline" type="button">Load last equipment setup</button><button id="eraseSavedBtn" class="btn btn-outline danger" type="button">Erase saved equipment settings</button></div><div id="copyStatus" class="oxygen-help-block" aria-live="polite"></div></section>
+    <section id="summarySection" class="oxygen-card hidden"><h2>Copy Summary</h2><textarea id="copySummary" class="summary-text" readonly aria-label="Plain text oxygen calculation summary"></textarea><div class="oxygen-actions"><button id="copySummaryBtn" class="btn btn-secondary" type="button">Copy summary</button><button id="clearCalculatorBtn" class="btn btn-outline" type="button">Clear calculator</button><button id="loadLastSetupBtn" class="btn btn-outline" type="button">Load last equipment setup</button><button id="eraseSavedBtn" class="btn btn-outline danger" type="button">Erase saved equipment settings</button></div><div id="copyStatus" class="oxygen-help-block" aria-live="polite"></div></section>
 
-    <section class="oxygen-card"><h2>Equipment Presets</h2><p class="oxygen-help-block">Presets are anonymous equipment preferences only. Saved device oxygen-draw profiles require organizational validation.</p><div class="oxygen-grid three-col"><label class="oxygen-field">Preset name (no PHI)<input id="presetName" maxlength="60" placeholder="Portable D cylinder"></label><label class="oxygen-field">Saved presets<select id="presetSelect"></select></label><div class="oxygen-actions stacked"><button id="savePresetBtn" class="btn btn-secondary" type="button">Save preset</button><button id="loadPresetBtn" class="btn btn-outline" type="button">Load preset</button><button id="renamePresetBtn" class="btn btn-outline" type="button">Rename preset</button><button id="deletePresetBtn" class="btn btn-outline danger" type="button">Delete preset</button></div></div></section>
+    <section id="presetsSection" class="oxygen-card hidden"><h2>Equipment Presets</h2><p class="oxygen-help-block">Presets are anonymous equipment preferences only. Saved device oxygen-draw profiles require organizational validation.</p><div class="oxygen-grid three-col"><label class="oxygen-field">Preset name (no PHI)<input id="presetName" maxlength="60" placeholder="Portable D cylinder"></label><label class="oxygen-field">Saved presets<select id="presetSelect"></select></label><div class="oxygen-actions stacked"><button id="savePresetBtn" class="btn btn-secondary" type="button">Save preset</button><button id="loadPresetBtn" class="btn btn-outline" type="button">Load preset</button><button id="renamePresetBtn" class="btn btn-outline" type="button">Rename preset</button><button id="deletePresetBtn" class="btn btn-outline danger" type="button">Delete preset</button></div></div></section>
 
     <section class="oxygen-card"><h2>Configuration and Review Information</h2><p id="configInfo">Loading calculator configuration...</p><p>Constants and device profiles must be reviewed against exact device make/model, software version, circuit configuration, manufacturer instructions, organizational medical direction, local transport policy, and local equipment testing when applicable.</p></section>
   </main>

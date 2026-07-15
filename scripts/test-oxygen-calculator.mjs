@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
+import fs from 'node:fs';
 const require = createRequire(import.meta.url);
 const C = require('../static/js/oxygen-calculations.js');
 const config = require('../static/data/oxygen-calculator-config.json');
@@ -9,6 +10,8 @@ function test(name,fn){try{fn();console.log(`✓ ${name}`);count++;}catch(e){con
 const source=()=>C.calculateCompressedCylinder({currentPressurePsi:2000,reservePsi:200,cylinderFactor:0.16});
 test('valid config',()=>assert.equal(C.validateConfig(config).ok,true));
 
+
+test('source-first workflow markup',()=>{const html=fs.readFileSync(new URL('../templates/act-oxygen-calculator.html', import.meta.url),'utf8');const ui=fs.readFileSync(new URL('../static/js/act-oxygen-calculator.js', import.meta.url),'utf8');assert.ok(!html.includes('Enter non-PHI equipment information only.'));assert.ok(!ui.includes('Source display name'));assert.ok(ui.includes("{ id: 'onboard1', group: 'onboard', type: 'H'"));assert.ok(ui.includes("{ id: 'portable1', group: 'portable', type: 'D'"));assert.ok(!ui.includes('Optional On Board O₂ Tank #2'));assert.ok(html.includes('addOnBoardSourceBtn'));assert.ok(html.includes('addPortableSourceBtn'));assert.ok(html.includes('class="oxygen-card hidden" aria-labelledby="deliveryDeviceTitle"'));});
 test('source group and device category config',()=>{assert.deepEqual(config.sourceGroups.ON_BOARD.allowedCylinderTypes,['KEVLAR','LOX','H']);assert.deepEqual(config.sourceGroups.PORTABLE.allowedCylinderTypes,['D','JUMBO_D','E']);assert.deepEqual(config.deliveryDeviceCategories.WALL_LOW_PSI.deliveryModes,['CONVENTIONAL']);assert.ok(config.deliveryDeviceCategories.VENTILATOR.deliveryModes.includes('BIPAP_LOW_PRESSURE'));assert.ok(config.deliveryDeviceCategories.VENTILATOR.deliveryModes.includes('BIPAP_HIGH_PRESSURE'));assert.ok(!config.deliveryDeviceCategories.WALL_LOW_PSI.deliveryModes.includes('BIPAP_LOW_PRESSURE'));assert.ok(!config.deliveryDeviceCategories.WALL_LOW_PSI.deliveryModes.includes('BIPAP_HIGH_PRESSURE'));});
 test('compressed cylinder',()=>{const r=source();assert.equal(r.usablePressurePsi,1800);assert.equal(r.usableLiters,288);});
 test('conventional oxygen',()=>{const d=C.calculateDuration({availableLiters:288,consumptionLpm:C.calculateConventionalConsumption({enteredFlowLpm:15}).oxygenConsumptionLpm});near(d.rawDurationMinutes,19.2);assert.equal(d.displayedDurationMinutes,19);});
