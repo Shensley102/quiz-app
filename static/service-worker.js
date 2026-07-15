@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.7.17';
+const CACHE_VERSION = 'v2.7.18';
 const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v5';
 const ACT_PROTOCOL_CACHE_PREFIX = 'act-protocol-pdfs-';
 const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
@@ -22,6 +22,7 @@ const STATIC_ASSETS = [
   '/static/quiz-style.css',
   '/static/home-style.css',
   '/static/act-protocols.css',
+  '/static/act-oxygen-calculator.css',
   '/static/paper-prompt-builder.css',
   '/static/quiz-script.js',
   '/static/js/pwa-utils.js',
@@ -30,6 +31,8 @@ const STATIC_ASSETS = [
   '/static/js/act-protocols.js',
   '/static/js/act-protocol-viewer.js',
   '/static/js/act-dose-calculator.js',
+  '/static/js/oxygen-calculations.js',
+  '/static/js/act-oxygen-calculator.js',
   '/static/manifest.json',
   '/static/manifest-study-guru.json',
   '/static/manifest-nurse-study.json',
@@ -41,6 +44,7 @@ const STATIC_ASSETS = [
   '/static/data/act-medication-aliases.json',
   '/static/data/act-medication-alias-seed.json',
   '/static/data/act-protocol-search-report.json',
+  '/static/data/oxygen-calculator-config.json',
   '/static/icons/study-guru/icon-48.png',
   '/static/icons/study-guru/icon-72.png',
   '/static/icons/study-guru/icon-96.png',
@@ -100,6 +104,7 @@ const HTML_PAGES = [
   '/act-protocols',
   '/act-protocols/viewer',
   '/act-protocols/dose-calculator',
+  '/act-protocols/oxygen-calculator',
   '/category/NCLEX',
   '/category/Lab_Values',
   '/category/Patient_Care_Management',
