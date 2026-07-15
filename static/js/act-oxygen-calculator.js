@@ -121,6 +121,18 @@
     renderActiveSourceOptions();
   }
 
+  function updateSourceCardStatus(card, source) {
+    if (!card || !source) return;
+    const result = sourceCalc(source);
+    const help = q('.oxygen-help-block', card);
+    const warning = q('.oxygen-warning', card);
+    if (help) help.textContent = result.ok ? `Usable pressure: ${fmt(result.usablePressurePsi || 0, 0)} PSI • Usable oxygen: ${fmt(result.usableLiters)} L` : `Source validation: ${(result.errors || []).join(' ')}`;
+    if (warning) {
+      warning.textContent = (result.warnings || []).join(' ');
+      warning.classList.toggle('hidden', !(result.warnings || []).length);
+    }
+  }
+
   function updateSourceFromField(event) {
     const id = event.target.dataset.sourceId;
     const field = event.target.dataset.sourceField;
@@ -130,9 +142,13 @@
     if (field === 'type') {
       const allowed = allowedTypesForSource(source);
       if (!allowed.includes(source.type)) source.type = allowed[0];
+      savePrefs();
+      renderSources();
+      recalc();
+      return;
     }
     savePrefs();
-    renderSources();
+    updateSourceCardStatus(event.target.closest('.oxygen-inventory-card'), source);
     recalc();
   }
 
