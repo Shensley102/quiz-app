@@ -228,15 +228,18 @@ body {
 }
 
 .clinical-tool-card {
+  --clinical-tool-accent: var(--act-secondary);
+  --clinical-tool-surface: var(--act-secondary-soft);
+  --clinical-tool-on-accent: var(--act-on-secondary);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
   min-height: 78px;
   padding: 16px 18px;
-  background: var(--act-surface);
+  background: var(--clinical-tool-surface);
   border: 2px solid var(--act-border);
-  border-left: 6px solid var(--act-secondary);
+  border-left: 6px solid var(--clinical-tool-accent);
   border-radius: 18px;
   box-shadow: 0 10px 26px var(--act-shadow);
   color: var(--act-text);
@@ -247,8 +250,30 @@ body {
 
 .clinical-tool-card:hover {
   transform: translateY(-1px);
-  border-color: var(--act-primary);
-  background: var(--act-primary-soft);
+  border-color: var(--clinical-tool-accent);
+  background: var(--clinical-tool-surface);
+}
+
+.clinical-tool-card-dose {
+  --clinical-tool-accent: var(--act-primary);
+  --clinical-tool-surface: var(--act-primary-soft);
+  --clinical-tool-on-accent: var(--act-on-primary);
+}
+
+.clinical-tool-card-oxygen {
+  --clinical-tool-accent: var(--act-warning);
+  --clinical-tool-surface: var(--act-warning-bg);
+  --clinical-tool-on-accent: #ffffff;
+}
+
+:root[data-act-theme="dark"] .clinical-tool-card-oxygen {
+  --clinical-tool-on-accent: #071411;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-act-theme="light"]) .clinical-tool-card-oxygen {
+    --clinical-tool-on-accent: #071411;
+  }
 }
 
 .clinical-tool-icon {
@@ -259,8 +284,8 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 14px;
-  background: var(--act-secondary);
-  color: var(--act-on-secondary);
+  background: var(--clinical-tool-accent);
+  color: var(--clinical-tool-on-accent);
   box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.16);
 }
 
