@@ -34,7 +34,7 @@ usableLiters = loxReading × 860
 
 No PSI reserve is subtracted from LOX.
 
-Configured compressed-cylinder factors are D 0.16, Jumbo D 0.25, E 0.28, M 1.56, and H 3.14 L/PSI. Kevlar requires a user-entered cylinder-specific factor.
+Configured compressed-cylinder factors are D 0.16, Jumbo D 0.25, E 0.28, M 1.56, H 3.14, and Kevlar 1.17 L/PSI.
 
 ## Delivery formulas
 
@@ -130,7 +130,7 @@ The route, CSS, calculation engine, UI script, and configuration JSON are precac
 
 ## Local storage and privacy
 
-Local storage is limited to non-PHI equipment preferences and anonymous presets: delivery mode, supply method, high-pressure method, preferred units, last cylinder type, anonymous equipment labels, Kevlar factor when intentionally saved, and validated known oxygen-draw profiles. The calculator does not persist FiO₂, minute ventilation, current patient oxygen flow, phase times, clinical notes, destination names, dates/times tied to a transport, patient names, MRNs, incident numbers, or other PHI.
+Local storage is limited to non-PHI equipment preferences and anonymous presets: delivery mode, supply method, high-pressure method, preferred units, last cylinder type, anonymous equipment labels, and validated known oxygen-draw profiles. The calculator does not persist FiO₂, minute ventilation, current patient oxygen flow, phase times, clinical notes, destination names, dates/times tied to a transport, patient names, MRNs, incident numbers, or other PHI.
 
 ## Automated tests
 
@@ -144,7 +144,7 @@ The test script exercises compressed cylinders, LOX, all delivery modes, FiO₂ 
 
 ## Browser verification
 
-Run the app locally, open `/act-protocols`, then `/act-protocols/oxygen-calculator`. Verify quick estimate modes, source types, LOX, Kevlar factor validation, calculation details, planner phases, risk states, copy summary, presets, keyboard navigation, screen-reader labels/live regions, zoom, reduced motion, light/dark themes, responsive layouts, offline reload after caching, and continued operation of ACT search/PDF/dose calculator pages.
+Run the app locally, open `/act-protocols`, then `/act-protocols/oxygen-calculator`. Verify quick estimate modes, source types, LOX, Kevlar calculations, calculation details, planner phases, risk states, copy summary, presets, keyboard navigation, screen-reader labels/live regions, zoom, reduced motion, light/dark themes, responsive layouts, offline reload after caching, and continued operation of ACT search/PDF/dose calculator pages.
 
 ## Clinical validation requirements
 
