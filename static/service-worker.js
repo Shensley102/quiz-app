@@ -455,6 +455,20 @@ self.addEventListener('message', (event) => {
       version: CACHE_VERSION
     });
   }
+
+  if (event.data && event.data.type === 'CLEAR_APP_CACHES') {
+    event.waitUntil(
+      caches.keys()
+        .then((cacheNames) => Promise.all(
+          cacheNames
+            .filter((name) => name.startsWith('study-guru-') || name.startsWith('nurse-study-hub-'))
+            .map((name) => caches.delete(name))
+        ))
+        .then(() => {
+          event.source.postMessage({ type: 'APP_CACHES_CLEARED' });
+        })
+    );
+  }
 });
 
 // Background sync for offline quiz submissions (future feature)

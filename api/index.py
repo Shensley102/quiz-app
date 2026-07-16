@@ -463,6 +463,18 @@ def get_adult_health_module_stats():
 
 # ==================== ROUTES ====================
 
+@app.route('/api/pwa-version')
+def pwa_version():
+    """Return a deployment identifier so installed PWAs can detect new releases."""
+    version = (
+        os.environ.get('VERCEL_DEPLOYMENT_ID')
+        or os.environ.get('VERCEL_GIT_COMMIT_SHA')
+        or 'development'
+    )
+    response = jsonify({'version': version})
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    return response
+
 @app.route('/')
 def home():
     try:
