@@ -4,6 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOSE = (ROOT / 'static/js/act-dose-calculator.js').read_text()
 PROTOCOLS = (ROOT / 'static/js/act-protocols.js').read_text()
 TEMPLATE = (ROOT / 'templates/act-protocols.html').read_text()
+HOME_TEMPLATE = (ROOT / 'templates/home.html').read_text()
 DOSE_TEMPLATE = (ROOT / 'templates/act-dose-calculator.html').read_text()
 PWA_UTILS = (ROOT / 'static/js/pwa-utils.js').read_text()
 SERVICE_WORKER = (ROOT / 'static/service-worker.js').read_text()
@@ -63,6 +64,25 @@ def test_protocol_cards_have_accessible_open_buttons_and_filter_state():
     assert 'setAttribute(\'aria-pressed\', String(selected))' in PROTOCOLS
     assert 'aria-pressed="true"' in TEMPLATE
     assert 'aria-pressed="false"' in TEMPLATE
+
+
+def test_clinical_calculators_are_linked_only_from_act_protocols():
+    assert 'href="/act-protocols/dose-calculator"' in TEMPLATE
+    assert 'href="/act-protocols/oxygen-calculator"' in TEMPLATE
+    assert 'ACT clinical calculation tools' in TEMPLATE
+    assert '/act-protocols/dose-calculator' not in HOME_TEMPLATE
+    assert '/act-protocols/oxygen-calculator' not in HOME_TEMPLATE
+
+
+def test_offline_download_counter_starts_at_zero_and_advances_per_completed_pdf():
+    assert 'downloadTotal: 0, downloadCompleted: 0, downloadInProgress: false' in PROTOCOLS
+    assert 'state.downloadTotal = protocols.length;' in PROTOCOLS
+    assert 'state.downloadCompleted = 0;' in PROTOCOLS
+    assert "`${state.downloadCompleted} out of ${state.downloadTotal}`" in PROTOCOLS
+    cache_start = PROTOCOLS.index('async function cacheProtocols')
+    complete_start = PROTOCOLS.index('await cachePdf(protocol);', cache_start)
+    increment_start = PROTOCOLS.index('state.downloadCompleted += 1;', cache_start)
+    assert complete_start < increment_start
 
 
 def test_protocol_opening_does_not_wait_for_full_background_cache_online():
