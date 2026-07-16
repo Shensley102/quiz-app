@@ -500,6 +500,15 @@ def act_dose_calculator():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/act-protocols/oxygen-calculator')
+def act_oxygen_calculator():
+    try:
+        return render_template('act-oxygen-calculator.html')
+    except Exception as exc:
+        print(f"Error in act_oxygen_calculator route: {exc}")
+        return jsonify({'error': str(exc)}), 500
+
+
 @app.route('/act-protocols/viewer')
 def act_protocol_viewer():
     try:
