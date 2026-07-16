@@ -402,7 +402,7 @@
     if (button.id === 'addOnBoardSourceBtn') { oxygenSources.push({ id: `onboard${Date.now()}`, group: 'onboard', type: 'H', pressure: '', lox: '', kevlar: '', context: 'continuous' }); renderSources(); recalc(); }
     if (button.id === 'addPortableSourceBtn') { oxygenSources.push({ id: `portable${Date.now()}`, group: 'portable', type: 'D', pressure: '', lox: '', kevlar: '', context: 'portable' }); renderSources(); recalc(); }
     if (button.dataset.removeSource) { oxygenSources = oxygenSources.filter((source) => source.id !== button.dataset.removeSource); renderSources(); recalc(); }
-    if (button.id === 'addPhaseBtn') { plannerPhases.push({ id: `p${Date.now()}`, name: `Phase ${plannerPhases.length + 1}`, context: 'custom', sourceId: activeSources()[0]?.id || '', duration: '' }); renderPlanner(); }
+    if (button.dataset.addPhase !== undefined) { plannerPhases.push({ id: `p${Date.now()}`, name: `Phase ${plannerPhases.length + 1}`, context: 'custom', sourceId: activeSources()[0]?.id || '', duration: '' }); renderPlanner(); }
     if (button.dataset.removePhase) { plannerPhases = plannerPhases.filter((phase) => phase.id !== button.dataset.removePhase); renderPlanner(); }
     if (button.dataset.upPhase || button.dataset.downPhase) { const id = button.dataset.upPhase || button.dataset.downPhase; const i = plannerPhases.findIndex((phase) => phase.id === id); const j = button.dataset.upPhase ? i - 1 : i + 1; if (j >= 0 && j < plannerPhases.length) { [plannerPhases[i], plannerPhases[j]] = [plannerPhases[j], plannerPhases[i]]; renderPlanner(); } }
     if (button.id === 'copySummaryBtn') { await navigator.clipboard.writeText($('copySummary').value); $('copyStatus').textContent = 'Summary copied.'; }
