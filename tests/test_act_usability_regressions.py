@@ -74,6 +74,17 @@ def test_clinical_calculators_are_linked_only_from_act_protocols():
     assert '/act-protocols/oxygen-calculator' not in HOME_TEMPLATE
 
 
+def test_offline_download_counter_starts_at_zero_and_advances_per_completed_pdf():
+    assert 'downloadTotal: 0, downloadCompleted: 0, downloadInProgress: false' in PROTOCOLS
+    assert 'state.downloadTotal = protocols.length;' in PROTOCOLS
+    assert 'state.downloadCompleted = 0;' in PROTOCOLS
+    assert "`${state.downloadCompleted} out of ${state.downloadTotal}`" in PROTOCOLS
+    cache_start = PROTOCOLS.index('async function cacheProtocols')
+    complete_start = PROTOCOLS.index('await cachePdf(protocol);', cache_start)
+    increment_start = PROTOCOLS.index('state.downloadCompleted += 1;', cache_start)
+    assert complete_start < increment_start
+
+
 def test_protocol_opening_does_not_wait_for_full_background_cache_online():
     open_start = PROTOCOLS.index('function openProtocolViewer')
     handle_start = PROTOCOLS.index('async function handleOpen')
