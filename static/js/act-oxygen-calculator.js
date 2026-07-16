@@ -121,6 +121,18 @@
     renderActiveSourceOptions();
   }
 
+  function updateSourceCardStatus(card, source) {
+    if (!card || !source) return;
+    const result = sourceCalc(source);
+    const help = q('.oxygen-help-block', card);
+    const warning = q('.oxygen-warning', card);
+    if (help) help.textContent = result.ok ? `Usable pressure: ${fmt(result.usablePressurePsi || 0, 0)} PSI • Usable oxygen: ${fmt(result.usableLiters)} L` : `Source validation: ${(result.errors || []).join(' ')}`;
+    if (warning) {
+      warning.textContent = (result.warnings || []).join(' ');
+      warning.classList.toggle('hidden', !(result.warnings || []).length);
+    }
+  }
+
   function updateSourceFromField(event) {
     const id = event.target.dataset.sourceId;
     const field = event.target.dataset.sourceField;
@@ -130,9 +142,13 @@
     if (field === 'type') {
       const allowed = allowedTypesForSource(source);
       if (!allowed.includes(source.type)) source.type = allowed[0];
+      savePrefs();
+      renderSources();
+      recalc();
+      return;
     }
     savePrefs();
-    renderSources();
+    updateSourceCardStatus(event.target.closest('.oxygen-inventory-card'), source);
     recalc();
   }
 
@@ -386,7 +402,7 @@
     if (button.id === 'addOnBoardSourceBtn') { oxygenSources.push({ id: `onboard${Date.now()}`, group: 'onboard', type: 'H', pressure: '', lox: '', kevlar: '', context: 'continuous' }); renderSources(); recalc(); }
     if (button.id === 'addPortableSourceBtn') { oxygenSources.push({ id: `portable${Date.now()}`, group: 'portable', type: 'D', pressure: '', lox: '', kevlar: '', context: 'portable' }); renderSources(); recalc(); }
     if (button.dataset.removeSource) { oxygenSources = oxygenSources.filter((source) => source.id !== button.dataset.removeSource); renderSources(); recalc(); }
-    if (button.id === 'addPhaseBtn') { plannerPhases.push({ id: `p${Date.now()}`, name: `Phase ${plannerPhases.length + 1}`, context: 'custom', sourceId: activeSources()[0]?.id || '', duration: '' }); renderPlanner(); }
+    if (button.dataset.addPhase !== undefined) { plannerPhases.push({ id: `p${Date.now()}`, name: `Phase ${plannerPhases.length + 1}`, context: 'custom', sourceId: activeSources()[0]?.id || '', duration: '' }); renderPlanner(); }
     if (button.dataset.removePhase) { plannerPhases = plannerPhases.filter((phase) => phase.id !== button.dataset.removePhase); renderPlanner(); }
     if (button.dataset.upPhase || button.dataset.downPhase) { const id = button.dataset.upPhase || button.dataset.downPhase; const i = plannerPhases.findIndex((phase) => phase.id === id); const j = button.dataset.upPhase ? i - 1 : i + 1; if (j >= 0 && j < plannerPhases.length) { [plannerPhases[i], plannerPhases[j]] = [plannerPhases[j], plannerPhases[i]]; renderPlanner(); } }
     if (button.id === 'copySummaryBtn') { await navigator.clipboard.writeText($('copySummary').value); $('copyStatus').textContent = 'Summary copied.'; }
