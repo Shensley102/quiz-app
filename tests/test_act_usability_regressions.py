@@ -4,7 +4,10 @@ ROOT = Path(__file__).resolve().parents[1]
 DOSE = (ROOT / 'static/js/act-dose-calculator.js').read_text()
 PROTOCOLS = (ROOT / 'static/js/act-protocols.js').read_text()
 TEMPLATE = (ROOT / 'templates/act-protocols.html').read_text()
+HOME_TEMPLATE = (ROOT / 'templates/home.html').read_text()
 DOSE_TEMPLATE = (ROOT / 'templates/act-dose-calculator.html').read_text()
+PWA_UTILS = (ROOT / 'static/js/pwa-utils.js').read_text()
+SERVICE_WORKER = (ROOT / 'static/service-worker.js').read_text()
 
 
 def test_manual_weight_fields_are_not_always_overwritten():
@@ -70,3 +73,18 @@ def test_protocol_opening_does_not_wait_for_full_background_cache_online():
     handle_body = PROTOCOLS[handle_start:cache_start]
     assert handle_body.index('openProtocolViewer(protocol);') < handle_body.index('cachePdf(protocol)')
     assert '.finally(() => {' in handle_body
+
+
+def test_pwa_checks_the_deployment_version_and_refreshes_app_caches():
+    assert "DEPLOYMENT_VERSION_ENDPOINT: '/api/pwa-version'" in PWA_UTILS
+    assert 'checkForUpdates();' in PWA_UTILS
+    assert 'checkDeploymentVersion();' in PWA_UTILS
+    assert "type: 'CLEAR_APP_CACHES'" in PWA_UTILS
+    assert "type: 'APP_CACHES_CLEARED'" in SERVICE_WORKER
+    assert "name.startsWith('study-guru-') || name.startsWith('nurse-study-hub-')" in SERVICE_WORKER
+
+
+def test_main_landing_page_links_to_both_act_clinical_tools():
+    assert 'href="/act-protocols/dose-calculator"' in HOME_TEMPLATE
+    assert 'href="/act-protocols/oxygen-calculator"' in HOME_TEMPLATE
+    assert 'Oxygen Availability' in HOME_TEMPLATE

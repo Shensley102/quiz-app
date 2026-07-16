@@ -474,6 +474,90 @@
   background: linear-gradient(135deg, #0f766e 0%, #14b8a6 52%, #5eead4 100%);
 }
 
+.landing-clinical-tools {
+  max-width: 1040px;
+  margin: 38px auto 18px;
+}
+
+.landing-clinical-tools h2 {
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.landing-clinical-tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.landing-clinical-tool {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 88px;
+  padding: 16px 18px;
+  border: 2px solid rgba(47, 97, 243, 0.24);
+  border-left: 6px solid #0f5ed7;
+  border-radius: 18px;
+  background: #eaf2ff;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.12);
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.landing-clinical-tool > :first-child {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #0f5ed7;
+  color: #fff;
+}
+
+.landing-clinical-tool > :nth-child(2) {
+  display: grid;
+  flex: 1;
+  gap: 4px;
+}
+
+.landing-clinical-tool small {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.landing-clinical-tool:hover {
+  transform: translateY(-2px);
+  border-color: #0f5ed7;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.17);
+}
+
+.landing-clinical-tool:focus-visible {
+  outline: 4px solid rgba(47, 97, 243, 0.32);
+  outline-offset: 4px;
+}
+
+.landing-oxygen-tool {
+  border-color: rgba(173, 99, 0, 0.28);
+  border-left-color: #a35a00;
+  background: #fff4d6;
+}
+
+.landing-oxygen-tool > :first-child {
+  background: #a35a00;
+}
+
+.landing-oxygen-tool:hover {
+  border-color: #a35a00;
+}
+
 .protocol-placeholder {
   max-width: 840px;
   margin: 28px auto;
@@ -503,6 +587,10 @@
   .landing-card {
     min-height: 220px;
   }
+
+  .landing-clinical-tools {
+    max-width: 520px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -517,5 +605,9 @@
 
   .landing-card-label {
     font-size: 24px;
+  }
+
+  .landing-clinical-tool-grid {
+    grid-template-columns: 1fr;
   }
 }

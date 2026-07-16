@@ -18,6 +18,8 @@
     UPDATE_CHECK_INTERVAL: 30 * 60 * 1000,
     CACHE_REFRESH_ON_START: true,
     SHOW_UPDATE_BANNER: true,
+    DEPLOYMENT_VERSION_ENDPOINT: '/api/pwa-version',
+    DEPLOYMENT_VERSION_STORAGE_KEY: 'pwa-deployment-version',
     DEBUG: false
   };
 
@@ -110,7 +112,8 @@
 
     try {
       swRegistration = await navigator.serviceWorker.register('/service-worker.js', {
-        scope: '/'
+        scope: '/',
+        updateViaCache: 'none'
       });
 
       log('Service Worker registered:', swRegistration.scope);
@@ -121,10 +124,8 @@
         
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            log('New Service Worker installed, prompting user');
-            if (window.confirm('A new version is available. Reload to update?')) {
-              newWorker.postMessage({ type: 'SKIP_WAITING' });
-            }
+            log('New Service Worker installed, activating update');
+            newWorker.postMessage({ type: 'SKIP_WAITING' });
           }
         });
       });
@@ -139,6 +140,8 @@
       });
 
       startPeriodicUpdateChecks();
+      checkForUpdates();
+      checkDeploymentVersion();
 
       if (CONFIG.CACHE_REFRESH_ON_START) {
         setTimeout(() => {
@@ -177,6 +180,11 @@
           updatePWAStatus('Cache is up to date');
         }
         hideRefreshingIndicator();
+        break;
+
+      case 'APP_CACHES_CLEARED':
+        log('App caches cleared for a new deployment, reloading');
+        window.location.reload();
         break;
 
       default:
@@ -230,6 +238,35 @@
       }
     } catch (error) {
       log('Update check failed:', error);
+    }
+  }
+
+  async function checkDeploymentVersion() {
+    if (!navigator.onLine) return;
+
+    try {
+      const response = await fetch(CONFIG.DEPLOYMENT_VERSION_ENDPOINT, {
+        cache: 'no-store',
+        headers: { 'Cache-Control': 'no-cache' }
+      });
+      if (!response.ok) return;
+
+      const { version } = await response.json();
+      if (!version) return;
+
+      const previousVersion = localStorage.getItem(CONFIG.DEPLOYMENT_VERSION_STORAGE_KEY);
+      if (!previousVersion) {
+        localStorage.setItem(CONFIG.DEPLOYMENT_VERSION_STORAGE_KEY, version);
+        return;
+      }
+
+      if (previousVersion !== version && navigator.serviceWorker.controller) {
+        log('New deployment detected, clearing app caches');
+        localStorage.setItem(CONFIG.DEPLOYMENT_VERSION_STORAGE_KEY, version);
+        navigator.serviceWorker.controller.postMessage({ type: 'CLEAR_APP_CACHES' });
+      }
+    } catch (error) {
+      log('Deployment version check failed:', error);
     }
   }
 
@@ -383,6 +420,7 @@
       if (document.visibilityState === 'visible') {
         log('Page visible, checking for updates');
         checkForUpdates();
+        checkDeploymentVersion();
       }
     });
 
@@ -390,6 +428,7 @@
       if (event.persisted) {
         log('Page restored from cache, refreshing');
         checkForUpdates();
+        checkDeploymentVersion();
       }
     });
 
