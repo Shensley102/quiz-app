@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.7.18';
+const CACHE_VERSION = 'v2.7.19';
 const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v5';
 const ACT_PROTOCOL_CACHE_PREFIX = 'act-protocol-pdfs-';
 const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
@@ -454,6 +454,20 @@ self.addEventListener('message', (event) => {
       type: 'VERSION',
       version: CACHE_VERSION
     });
+  }
+
+  if (event.data && event.data.type === 'CLEAR_APP_CACHES') {
+    event.waitUntil(
+      caches.keys()
+        .then((cacheNames) => Promise.all(
+          cacheNames
+            .filter((name) => name.startsWith('study-guru-') || name.startsWith('nurse-study-hub-'))
+            .map((name) => caches.delete(name))
+        ))
+        .then(() => {
+          event.source.postMessage({ type: 'APP_CACHES_CLEARED' });
+        })
+    );
   }
 });
 
