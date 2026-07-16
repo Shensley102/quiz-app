@@ -4,6 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOSE = (ROOT / 'static/js/act-dose-calculator.js').read_text()
 PROTOCOLS = (ROOT / 'static/js/act-protocols.js').read_text()
 TEMPLATE = (ROOT / 'templates/act-protocols.html').read_text()
+HOME_TEMPLATE = (ROOT / 'templates/home.html').read_text()
 DOSE_TEMPLATE = (ROOT / 'templates/act-dose-calculator.html').read_text()
 PWA_UTILS = (ROOT / 'static/js/pwa-utils.js').read_text()
 SERVICE_WORKER = (ROOT / 'static/service-worker.js').read_text()
@@ -81,3 +82,9 @@ def test_pwa_checks_the_deployment_version_and_refreshes_app_caches():
     assert "type: 'CLEAR_APP_CACHES'" in PWA_UTILS
     assert "type: 'APP_CACHES_CLEARED'" in SERVICE_WORKER
     assert "name.startsWith('study-guru-') || name.startsWith('nurse-study-hub-')" in SERVICE_WORKER
+
+
+def test_main_landing_page_links_to_both_act_clinical_tools():
+    assert 'href="/act-protocols/dose-calculator"' in HOME_TEMPLATE
+    assert 'href="/act-protocols/oxygen-calculator"' in HOME_TEMPLATE
+    assert 'Oxygen Availability' in HOME_TEMPLATE
