@@ -3,7 +3,7 @@
    
    Features:
    - Service Worker registration and updates
-   - Automatic cache refresh on startup
+   - Immediate update checks when the app opens
    - Periodic update checks
    - Offline detection
    - Update notifications
@@ -16,7 +16,6 @@
 
   const CONFIG = {
     UPDATE_CHECK_INTERVAL: 30 * 60 * 1000,
-    CACHE_REFRESH_ON_START: true,
     SHOW_UPDATE_BANNER: true,
     DEBUG: false
   };
@@ -121,10 +120,10 @@
         
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            log('New Service Worker installed, prompting user');
-            if (window.confirm('A new version is available. Reload to update?')) {
-              newWorker.postMessage({ type: 'SKIP_WAITING' });
-            }
+            // The worker activates immediately and controllerchange reloads this
+            // client, so an installed PWA opens directly into the new version.
+            log('New Service Worker installed; activating update');
+            newWorker.postMessage({ type: 'SKIP_WAITING' });
           }
         });
       });
@@ -139,12 +138,7 @@
       });
 
       startPeriodicUpdateChecks();
-
-      if (CONFIG.CACHE_REFRESH_ON_START) {
-        setTimeout(() => {
-          refreshCacheOnStartup();
-        }, 2000);
-      }
+      await checkForUpdates();
 
       return swRegistration;
     } catch (error) {
@@ -161,7 +155,6 @@
       case 'SW_ACTIVATED':
         log('Service Worker activated, version:', data.version);
         updatePWAStatus(`PWA v${data.version} active`);
-        setTimeout(refreshCacheOnStartup, 1000);
         break;
 
       case 'UPDATE_AVAILABLE':
@@ -184,26 +177,6 @@
     }
   }
 
-  async function refreshCacheOnStartup() {
-    if (!navigator.serviceWorker.controller) {
-      log('No active service worker, skipping cache refresh');
-      return;
-    }
-
-    log('Requesting cache refresh on startup');
-    showRefreshingIndicator();
-
-    try {
-      navigator.serviceWorker.controller.postMessage({
-        type: 'FORCE_UPDATE'
-      });
-    } catch (error) {
-      log('Cache refresh request failed:', error);
-      updatePWAStatus('Cache refresh could not be started');
-      hideRefreshingIndicator();
-    }
-  }
-
   function startPeriodicUpdateChecks() {
     if (updateCheckInterval) {
       clearInterval(updateCheckInterval);
@@ -223,11 +196,6 @@
       log('Checking for updates...');
       await swRegistration.update();
       
-      if (navigator.serviceWorker.controller) {
-        navigator.serviceWorker.controller.postMessage({
-          type: 'CHECK_UPDATE'
-        });
-      }
     } catch (error) {
       log('Update check failed:', error);
     }
@@ -310,9 +278,7 @@
         }
         log('Online');
         
-        if (CONFIG.CACHE_REFRESH_ON_START && navigator.serviceWorker.controller) {
-          setTimeout(refreshCacheOnStartup, 1000);
-        }
+        checkForUpdates();
       } else {
         if (offlineIndicator) {
           offlineIndicator.classList.remove('hidden');
@@ -399,7 +365,6 @@
   window.PWAUtils = {
     forceUpdate,
     checkForUpdates,
-    refreshCache: refreshCacheOnStartup,
     getRegistration: () => swRegistration
   };
 
