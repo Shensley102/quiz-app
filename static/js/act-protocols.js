@@ -9,7 +9,7 @@
   const PROTOCOL_ID_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
   const INSTALL_DISMISSED_KEY = 'act-protocols-install-dismissed';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
-  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', suggestions: [], activeSuggestionIndex: -1, saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', opening: new Set(), deferredInstallPrompt: null };
+  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', suggestions: [], activeSuggestionIndex: -1, saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', downloadTotal: 0, downloadCompleted: 0, downloadInProgress: false, opening: new Set(), deferredInstallPrompt: null };
   const els = {
     grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), filters: document.getElementById('categoryFilters'),
     count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary'), suggestions: document.getElementById('protocolSearchSuggestions'),
@@ -280,9 +280,10 @@
     els.retryBtn?.classList.toggle('hidden', failed === 0);
     if (!total) {
       setOfflineSummary('Checking Protocol Downloads', 'downloading');
+    } else if (state.downloadInProgress) {
+      setOfflineSummary('Downloading Protocols', 'downloading', `${state.downloadCompleted} out of ${state.downloadTotal}`);
     } else if (caching) {
-      const activeProgress = Math.min(total, saved + caching);
-      setOfflineSummary('Downloading Protocols', 'downloading', `${activeProgress} out of ${total}`);
+      setOfflineSummary('Downloading Protocols', 'downloading', `${saved} out of ${total}`);
     } else if (saved + failed < total) {
       setOfflineSummary('Preparing Offline Downloads', 'downloading', `${saved} out of ${total}`);
     } else if (failed) {
@@ -510,6 +511,9 @@
   }
   async function cacheProtocols(protocols) {
     if (!('caches' in window) || !protocols.length) { updateOfflineSummary(); return; }
+    state.downloadTotal = protocols.length;
+    state.downloadCompleted = 0;
+    state.downloadInProgress = true;
     protocols.forEach(p => { state.caching.add(p.file); state.missing.delete(p.file); });
     render();
     for (const protocol of protocols) {
@@ -517,6 +521,7 @@
       render();
       try {
         await cachePdf(protocol);
+        state.downloadCompleted += 1;
       } catch (err) {
         state.missing.add(protocol.file);
         console.warn(`[ACT Protocols] Could not cache ${protocol.file}`, err);
@@ -526,6 +531,7 @@
         render();
       }
     }
+    state.downloadInProgress = false;
     updateOfflineSummary();
   }
   async function clearActOfflineCache() {
@@ -536,6 +542,9 @@
     state.caching.clear();
     state.missing.clear();
     state.currentDownloadTitle = '';
+    state.downloadTotal = 0;
+    state.downloadCompleted = 0;
+    state.downloadInProgress = false;
     render();
   }
   async function autoCacheProtocols() {
