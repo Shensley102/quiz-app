@@ -2,6 +2,7 @@
 """Focused ACT Protocols data/route smoke checks."""
 import json
 import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,6 +23,23 @@ def assert_true(value, message):
 def has_exact_tag(protocol_id, tag):
     protocol = protocol_by_id[protocol_id]
     return any(t.lower() == tag.lower() for t in protocol.get('tags', []))
+
+manifest_ids = [record['id'] for record in protocols]
+duplicate_ids = sorted(protocol_id for protocol_id, count in Counter(manifest_ids).items() if count > 1)
+assert_true(not duplicate_ids, f'Duplicate manifest IDs: {duplicate_ids}')
+assert_true('GUID-3203-T017' in protocol_by_id, 'Trauma in Pregnancy (T017) is missing')
+assert_true('GUID-3203-T018' in protocol_by_id, 'Trauma Alert Criteria (T018) is missing')
+assert_true(
+    len(search) == len(protocols) and set(search_by_id) == set(protocol_by_id),
+    'Search-index IDs do not exactly match manifest IDs '
+    f'(missing: {sorted(set(protocol_by_id) - set(search_by_id))}; '
+    f'extra: {sorted(set(search_by_id) - set(protocol_by_id))})',
+)
+missing_pdf_paths = [
+    record['file'] for record in protocols
+    if not (ROOT / record['file'].lstrip('/')).is_file()
+]
+assert_true(not missing_pdf_paths, f'Manifest PDF paths do not exist: {missing_pdf_paths}')
 
 assert_true(protocol_by_id['3203-C001']['title'] == 'Acute Coronary Syndrome', 'ACS protocol title fixture changed')
 assert_true(has_exact_tag('3203-C001', 'ACS'), 'ACS exact tag missing')

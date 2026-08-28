@@ -70,6 +70,21 @@
         "matchedAliases": [
           "levetiracetam"
         ]
+      },
+      {
+        "id": "GUID-3203-T014",
+        "normalizedId": "3203-t014",
+        "title": "Traumatic Brain Injury (TBI)",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T014 Traumatic Brain Injury.pdf",
+        "manifestId": "GUID-3203-T014",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "levetiracetam"
+        ]
       }
     ]
   },
@@ -109,7 +124,7 @@
         "normalizedId": "3203-m011",
         "title": "Hypotension",
         "category": "Medical",
-        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "file": "/static/protocols/act/medical/3203-M011 Hypotension.pdf",
         "manifestId": "3203-M011",
         "pages": [
           1
@@ -124,7 +139,7 @@
         "normalizedId": "3203-m016",
         "title": "Sepsis",
         "category": "Medical",
-        "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
+        "file": "/static/protocols/act/medical/3203-M016 Sepsis.pdf",
         "manifestId": "3203-M016",
         "pages": [
           2
@@ -154,8 +169,23 @@
         "normalizedId": "3203-ped009",
         "title": "Pediatric Hypotension",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED009_Pediatric_Hypotension.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED009 Pediatric Hypotension.pdf",
         "manifestId": "3203-PED009",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "norepinephrine"
+        ]
+      },
+      {
+        "id": "GUID-3203-T012",
+        "normalizedId": "3203-t012",
+        "title": "Spinal Cord Injury",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T012 Spinal Cord Injuries.pdf",
+        "manifestId": "GUID-3203-T012",
         "pages": [
           2
         ],
@@ -305,7 +335,7 @@
         "normalizedId": "3203-g005",
         "title": "Analgesia and Sedation Management",
         "category": "General",
-        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "file": "/static/protocols/act/general/3203-G005 Analgesia and Sedation Management.pdf",
         "manifestId": "3203-G005",
         "pages": [
           2
@@ -440,7 +470,7 @@
         "normalizedId": "3203-g005",
         "title": "Analgesia and Sedation Management",
         "category": "General",
-        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "file": "/static/protocols/act/general/3203-G005 Analgesia and Sedation Management.pdf",
         "manifestId": "3203-G005",
         "pages": [
           1
@@ -606,13 +636,12 @@
         "normalizedId": "3203-pr025",
         "title": "Emergency Blood Product Administration",
         "category": "Procedures",
-        "file": "/static/protocols/act/procedures/3203-PR025_Emergency_Blood_Product_Administration.pdf",
+        "file": "/static/protocols/act/procedures/3203-PR025A Emergency Blood Product Administration.pdf",
         "manifestId": "GUID-3203-PR025",
         "pages": [
-          2,
-          5
+          2
         ],
-        "pageRanges": "2, 5",
+        "pageRanges": "2",
         "matchedAliases": [
           "tranexamic acid",
           "txa"
@@ -623,13 +652,13 @@
         "normalizedId": "3203-pr025b",
         "title": "Emergency Whole Blood Product Administration",
         "category": "Procedures",
-        "file": "/static/protocols/act/procedures/3203-PR025b_Emergency_Whole_Blood_Product_Administration.pdf",
+        "file": "/static/protocols/act/procedures/3203-PR025B Emergency Blood Product Administration.pdf",
         "manifestId": "GUID-3203-PR025B",
         "pages": [
           2,
-          5
+          6
         ],
-        "pageRanges": "2, 5",
+        "pageRanges": "2, 6",
         "matchedAliases": [
           "tranexamic acid",
           "txa"
@@ -647,6 +676,86 @@
         ],
         "pageRanges": "5",
         "matchedAliases": [
+          "txa"
+        ]
+      },
+      {
+        "id": "GUID-3203-T001",
+        "normalizedId": "3203-t001",
+        "title": "Abdominal and Genitourinary Trauma",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T001 Abdominal and Genitourinary Trauma.pdf",
+        "manifestId": "GUID-3203-T001",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "tranexamic acid",
+          "txa"
+        ]
+      },
+      {
+        "id": "GUID-3203-T007",
+        "normalizedId": "3203-t007",
+        "title": "Maxillofacial Trauma",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T007 Maxillofacial Trauma.pdf",
+        "manifestId": "GUID-3203-T007",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "tranexamic acid",
+          "txa"
+        ]
+      },
+      {
+        "id": "GUID-3203-T009",
+        "normalizedId": "3203-t009",
+        "title": "Musculoskeletal Trauma",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T009 Musculoskeletal Trauma.pdf",
+        "manifestId": "GUID-3203-T009",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "tranexamic acid",
+          "txa"
+        ]
+      },
+      {
+        "id": "GUID-3203-T014",
+        "normalizedId": "3203-t014",
+        "title": "Traumatic Brain Injury (TBI)",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T014 Traumatic Brain Injury.pdf",
+        "manifestId": "GUID-3203-T014",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "tranexamic acid"
+        ]
+      },
+      {
+        "id": "GUID-3203-T016",
+        "normalizedId": "3203-t016",
+        "title": "Tranexamic Acid for Severe Hemorrhage",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T016 Tranexamic Acid for Severe Hemorrhage.pdf",
+        "manifestId": "GUID-3203-T016",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "tranexamic acid",
           "txa"
         ]
       }
@@ -824,7 +933,7 @@
         "normalizedId": "3203-m011",
         "title": "Hypotension",
         "category": "Medical",
-        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "file": "/static/protocols/act/medical/3203-M011 Hypotension.pdf",
         "manifestId": "3203-M011",
         "pages": [
           1
@@ -839,7 +948,7 @@
         "normalizedId": "3203-m016",
         "title": "Sepsis",
         "category": "Medical",
-        "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
+        "file": "/static/protocols/act/medical/3203-M016 Sepsis.pdf",
         "manifestId": "3203-M016",
         "pages": [
           2
@@ -920,7 +1029,7 @@
         "normalizedId": "3203-ped006",
         "title": "Pediatric Cardiogenic Shock",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED006 Pediatric Cardiogenic Shock.pdf",
         "manifestId": "3203-PED006",
         "pages": [
           2
@@ -935,7 +1044,7 @@
         "normalizedId": "3203-ped007",
         "title": "Pediatric Cyanotic Congenital Heart Disease",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED007 Pediatric Cyanotic Congenital Heart Disease.pdf",
         "manifestId": "3203-PED007",
         "pages": [
           2
@@ -950,7 +1059,7 @@
         "normalizedId": "3203-ped009",
         "title": "Pediatric Hypotension",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED009_Pediatric_Hypotension.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED009 Pediatric Hypotension.pdf",
         "manifestId": "3203-PED009",
         "pages": [
           2
@@ -1301,6 +1410,38 @@
         "matchedAliases": [
           "sodium bicarbonate"
         ]
+      },
+      {
+        "id": "GUID-3203-T003",
+        "normalizedId": "3203-t003",
+        "title": "Crush Injury and Crush Syndrome",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T003 Crush Injury and Crush Syndrome.pdf",
+        "manifestId": "GUID-3203-T003",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "bicarb",
+          "sodium bicarbonate"
+        ]
+      },
+      {
+        "id": "GUID-3203-T005",
+        "normalizedId": "3203-t005",
+        "title": "Burns - Electrical/Lightning Injury",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T005 Burns- Electrical - Lightning Injury.pdf",
+        "manifestId": "GUID-3203-T005",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "sodium bicarbonate"
+        ]
       }
     ]
   },
@@ -1369,7 +1510,7 @@
         "normalizedId": "3203-g005",
         "title": "Analgesia and Sedation Management",
         "category": "General",
-        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "file": "/static/protocols/act/general/3203-G005 Analgesia and Sedation Management.pdf",
         "manifestId": "3203-G005",
         "pages": [
           1
@@ -1490,7 +1631,7 @@
         "normalizedId": "3203-m016",
         "title": "Sepsis",
         "category": "Medical",
-        "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
+        "file": "/static/protocols/act/medical/3203-M016 Sepsis.pdf",
         "manifestId": "3203-M016",
         "pages": [
           2
@@ -1587,7 +1728,7 @@
         "normalizedId": "3203-ped006",
         "title": "Pediatric Cardiogenic Shock",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED006 Pediatric Cardiogenic Shock.pdf",
         "manifestId": "3203-PED006",
         "pages": [
           2
@@ -1602,7 +1743,7 @@
         "normalizedId": "3203-ped007",
         "title": "Pediatric Cyanotic Congenital Heart Disease",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED007 Pediatric Cyanotic Congenital Heart Disease.pdf",
         "manifestId": "3203-PED007",
         "pages": [
           2
@@ -1690,6 +1831,36 @@
         "matchedAliases": [
           "dextrose"
         ]
+      },
+      {
+        "id": "GUID-3203-T002",
+        "normalizedId": "3203-t002",
+        "title": "Burns - Thermal and Chemical",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T002 Burns - Thermal and Chemical.pdf",
+        "manifestId": "GUID-3203-T002",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "dextrose"
+        ]
+      },
+      {
+        "id": "GUID-3203-T010",
+        "normalizedId": "3203-t010",
+        "title": "Drowning & Submersion Injuries",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T010 Drowning.pdf",
+        "manifestId": "GUID-3203-T010",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "glucose"
+        ]
       }
     ]
   },
@@ -1768,6 +1939,21 @@
           "rocuronium",
           "zemuron"
         ]
+      },
+      {
+        "id": "GUID-3203-T006",
+        "normalizedId": "3203-t006",
+        "title": "Eye Injuries",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T006 Eye Injuries.pdf",
+        "manifestId": "GUID-3203-T006",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "rocuronium"
+        ]
       }
     ]
   },
@@ -1825,6 +2011,21 @@
         "category": "Medical",
         "file": "/static/protocols/act/medical/3203-M020_Malignant_Hyperthermia.pdf",
         "manifestId": "3203-M020",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "succinylcholine"
+        ]
+      },
+      {
+        "id": "GUID-3203-T006",
+        "normalizedId": "3203-t006",
+        "title": "Eye Injuries",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T006 Eye Injuries.pdf",
+        "manifestId": "GUID-3203-T006",
         "pages": [
           1
         ],
@@ -2017,7 +2218,7 @@
         "normalizedId": "3203-ped006",
         "title": "Pediatric Cardiogenic Shock",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED006 Pediatric Cardiogenic Shock.pdf",
         "manifestId": "3203-PED006",
         "pages": [
           1
@@ -2032,7 +2233,7 @@
         "normalizedId": "3203-ped007",
         "title": "Pediatric Cyanotic Congenital Heart Disease",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED007 Pediatric Cyanotic Congenital Heart Disease.pdf",
         "manifestId": "3203-PED007",
         "pages": [
           2
@@ -2115,7 +2316,24 @@
       "cefazolin",
       "ancef"
     ],
-    "protocols": []
+    "protocols": [
+      {
+        "id": "GUID-3203-T009",
+        "normalizedId": "3203-t009",
+        "title": "Musculoskeletal Trauma",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T009 Musculoskeletal Trauma.pdf",
+        "manifestId": "GUID-3203-T009",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "ancef",
+          "cefazolin"
+        ]
+      }
+    ]
   },
   "Pantoprazole": {
     "canonical": "Pantoprazole",
@@ -2189,7 +2407,25 @@
       "hydroxocobalamin",
       "cyanokit"
     ],
-    "protocols": []
+    "protocols": [
+      {
+        "id": "GUID-3203-T013",
+        "normalizedId": "3203-t013",
+        "title": "Cyanide Toxicity",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T013 Cyanide Toxicity.pdf",
+        "manifestId": "GUID-3203-T013",
+        "pages": [
+          1,
+          2
+        ],
+        "pageRanges": "1-2",
+        "matchedAliases": [
+          "cyanokit",
+          "hydroxocobalamin"
+        ]
+      }
+    ]
   },
   "Crotalidae Immune Fab": {
     "canonical": "Crotalidae Immune Fab",
@@ -2202,7 +2438,24 @@
       "crotalidae immune fab",
       "crofab"
     ],
-    "protocols": []
+    "protocols": [
+      {
+        "id": "GUID-3203-T011",
+        "normalizedId": "3203-t011",
+        "title": "Snake Bite - Envenomation",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T011 Snake Bite-Envenomation.pdf",
+        "manifestId": "GUID-3203-T011",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "crofab",
+          "crotalidae immune fab"
+        ]
+      }
+    ]
   },
   "Rho(D) Immune Globulin": {
     "canonical": "Rho(D) Immune Globulin",
@@ -2223,7 +2476,7 @@
         "normalizedId": "3203-pr025",
         "title": "Emergency Blood Product Administration",
         "category": "Procedures",
-        "file": "/static/protocols/act/procedures/3203-PR025_Emergency_Blood_Product_Administration.pdf",
+        "file": "/static/protocols/act/procedures/3203-PR025A Emergency Blood Product Administration.pdf",
         "manifestId": "GUID-3203-PR025",
         "pages": [
           3
@@ -2239,7 +2492,7 @@
         "normalizedId": "3203-pr025b",
         "title": "Emergency Whole Blood Product Administration",
         "category": "Procedures",
-        "file": "/static/protocols/act/procedures/3203-PR025b_Emergency_Whole_Blood_Product_Administration.pdf",
+        "file": "/static/protocols/act/procedures/3203-PR025B Emergency Blood Product Administration.pdf",
         "manifestId": "GUID-3203-PR025B",
         "pages": [
           3
@@ -2370,6 +2623,36 @@
           2
         ],
         "pageRanges": "1-2",
+        "matchedAliases": [
+          "albuterol"
+        ]
+      },
+      {
+        "id": "GUID-3203-T002",
+        "normalizedId": "3203-t002",
+        "title": "Burns - Thermal and Chemical",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T002 Burns - Thermal and Chemical.pdf",
+        "manifestId": "GUID-3203-T002",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "albuterol"
+        ]
+      },
+      {
+        "id": "GUID-3203-T010",
+        "normalizedId": "3203-t010",
+        "title": "Drowning & Submersion Injuries",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T010 Drowning.pdf",
+        "manifestId": "GUID-3203-T010",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
         "matchedAliases": [
           "albuterol"
         ]
@@ -2648,7 +2931,7 @@
         "normalizedId": "3203-g005",
         "title": "Analgesia and Sedation Management",
         "category": "General",
-        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "file": "/static/protocols/act/general/3203-G005 Analgesia and Sedation Management.pdf",
         "manifestId": "3203-G005",
         "pages": [
           2
@@ -2719,6 +3002,21 @@
         "matchedAliases": [
           "ketamine"
         ]
+      },
+      {
+        "id": "GUID-3203-T014",
+        "normalizedId": "3203-t014",
+        "title": "Traumatic Brain Injury (TBI)",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T014 Traumatic Brain Injury.pdf",
+        "manifestId": "GUID-3203-T014",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "ketamine"
+        ]
       }
     ]
   },
@@ -2784,7 +3082,7 @@
         "normalizedId": "3203-g005",
         "title": "Analgesia and Sedation Management",
         "category": "General",
-        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "file": "/static/protocols/act/general/3203-G005 Analgesia and Sedation Management.pdf",
         "manifestId": "3203-G005",
         "pages": [
           2
@@ -2887,7 +3185,7 @@
         "normalizedId": "3203-g005",
         "title": "Analgesia and Sedation Management",
         "category": "General",
-        "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+        "file": "/static/protocols/act/general/3203-G005 Analgesia and Sedation Management.pdf",
         "manifestId": "3203-G005",
         "pages": [
           2
@@ -3064,7 +3362,7 @@
         "normalizedId": "3203-ped006",
         "title": "Pediatric Cardiogenic Shock",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED006 Pediatric Cardiogenic Shock.pdf",
         "manifestId": "3203-PED006",
         "pages": [
           1
@@ -3102,6 +3400,38 @@
         "pageRanges": "2",
         "matchedAliases": [
           "calcium"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR025",
+        "normalizedId": "3203-pr025",
+        "title": "Emergency Blood Product Administration",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR025A Emergency Blood Product Administration.pdf",
+        "manifestId": "GUID-3203-PR025",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "calcium",
+          "calcium chloride"
+        ]
+      },
+      {
+        "id": "GUID-3203-PR025B",
+        "normalizedId": "3203-pr025b",
+        "title": "Emergency Whole Blood Product Administration",
+        "category": "Procedures",
+        "file": "/static/protocols/act/procedures/3203-PR025B Emergency Blood Product Administration.pdf",
+        "manifestId": "GUID-3203-PR025B",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "calcium",
+          "calcium chloride"
         ]
       }
     ]
@@ -3389,7 +3719,7 @@
         "normalizedId": "3203-m011",
         "title": "Hypotension",
         "category": "Medical",
-        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "file": "/static/protocols/act/medical/3203-M011 Hypotension.pdf",
         "manifestId": "3203-M011",
         "pages": [
           1
@@ -3404,23 +3734,8 @@
         "normalizedId": "3203-ped007",
         "title": "Pediatric Cyanotic Congenital Heart Disease",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED007 Pediatric Cyanotic Congenital Heart Disease.pdf",
         "manifestId": "3203-PED007",
-        "pages": [
-          2
-        ],
-        "pageRanges": "2",
-        "matchedAliases": [
-          "dopamine"
-        ]
-      },
-      {
-        "id": "3203-PED009",
-        "normalizedId": "3203-ped009",
-        "title": "Pediatric Hypotension",
-        "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED009_Pediatric_Hypotension.pdf",
-        "manifestId": "3203-PED009",
         "pages": [
           2
         ],
@@ -3463,7 +3778,7 @@
         "normalizedId": "3203-m011",
         "title": "Hypotension",
         "category": "Medical",
-        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "file": "/static/protocols/act/medical/3203-M011 Hypotension.pdf",
         "manifestId": "3203-M011",
         "pages": [
           1
@@ -3478,12 +3793,12 @@
         "normalizedId": "3203-ped006",
         "title": "Pediatric Cardiogenic Shock",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED006 Pediatric Cardiogenic Shock.pdf",
         "manifestId": "3203-PED006",
         "pages": [
-          1
+          2
         ],
-        "pageRanges": "1",
+        "pageRanges": "2",
         "matchedAliases": [
           "dobutamine"
         ]
@@ -3493,7 +3808,7 @@
         "normalizedId": "3203-ped007",
         "title": "Pediatric Cyanotic Congenital Heart Disease",
         "category": "Pediatric",
-        "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
+        "file": "/static/protocols/act/pediatric/3203-PED007 Pediatric Cyanotic Congenital Heart Disease.pdf",
         "manifestId": "3203-PED007",
         "pages": [
           2
@@ -3556,12 +3871,27 @@
         "normalizedId": "3203-m011",
         "title": "Hypotension",
         "category": "Medical",
-        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "file": "/static/protocols/act/medical/3203-M011 Hypotension.pdf",
         "manifestId": "3203-M011",
         "pages": [
-          1
+          2
         ],
-        "pageRanges": "1",
+        "pageRanges": "2",
+        "matchedAliases": [
+          "phenylephrine"
+        ]
+      },
+      {
+        "id": "GUID-3203-T012",
+        "normalizedId": "3203-t012",
+        "title": "Spinal Cord Injury",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T012 Spinal Cord Injuries.pdf",
+        "manifestId": "GUID-3203-T012",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
         "matchedAliases": [
           "phenylephrine"
         ]
@@ -3600,7 +3930,7 @@
         "normalizedId": "3203-m011",
         "title": "Hypotension",
         "category": "Medical",
-        "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+        "file": "/static/protocols/act/medical/3203-M011 Hypotension.pdf",
         "manifestId": "3203-M011",
         "pages": [
           1
@@ -3615,7 +3945,7 @@
         "normalizedId": "3203-m016",
         "title": "Sepsis",
         "category": "Medical",
-        "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
+        "file": "/static/protocols/act/medical/3203-M016 Sepsis.pdf",
         "manifestId": "3203-M016",
         "pages": [
           2
@@ -3790,6 +4120,21 @@
         "matchedAliases": [
           "atropine"
         ]
+      },
+      {
+        "id": "GUID-3203-T012",
+        "normalizedId": "3203-t012",
+        "title": "Spinal Cord Injury",
+        "category": "Trauma",
+        "file": "/static/protocols/act/trauma/3203-T012 Spinal Cord Injuries.pdf",
+        "manifestId": "GUID-3203-T012",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "atropine"
+        ]
       }
     ]
   },
@@ -3961,11 +4306,27 @@
     ],
     "protocols": [
       {
+        "id": "3203-G005",
+        "normalizedId": "3203-g005",
+        "title": "Analgesia and Sedation Management",
+        "category": "General",
+        "file": "/static/protocols/act/general/3203-G005 Analgesia and Sedation Management.pdf",
+        "manifestId": "3203-G005",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "acetaminophen",
+          "tylenol"
+        ]
+      },
+      {
         "id": "3203-M016",
         "normalizedId": "3203-m016",
         "title": "Sepsis",
         "category": "Medical",
-        "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
+        "file": "/static/protocols/act/medical/3203-M016 Sepsis.pdf",
         "manifestId": "3203-M016",
         "pages": [
           1
