@@ -232,7 +232,7 @@
     if (!config) return;
     savePrefs();
     renderActiveSourceOptions();
-    const source = oxygenSources.find((s) => s.id === val('activeSourceId')) || activeSources()[0];
+    const selectedSource = oxygenSources.find((s) => s.id === val('activeSourceId')) || activeSources()[0];
     const hasValidSource = hasAtLeastOneValidSource();
     if (!hasValidSource) {
       setProgressiveVisibility(false, false);
@@ -243,9 +243,8 @@
       return;
     }
     setProgressiveVisibility(true, false);
-    const src = source ? sourceCalc(source) : { ok: false, errors: ['No active oxygen source is selected.'], warnings: [] };
     const cons = consumptionForSelectedMode();
-    const errors = [...(src.errors || []), ...(cons.errors || [])];
+    const errors = [...(cons.errors || [])];
     const highPressureWarning = selectedMode() === 'BIPAP_HIGH_PRESSURE' ? 'High-pressure NIV oxygen use can vary with device design, circuit type, intentional exhalation flow, mask leak, pressure settings, triggering, and leak compensation. IPAP and EPAP alone are not sufficient to calculate oxygen consumption.' : '';
     setWarn('modeWarning', [...(cons.warnings || []), highPressureWarning]);
     if (errors.length) {
@@ -257,9 +256,18 @@
       renderPlanner();
       return;
     }
-    const dur = cons.durationNotApplicable ? { ok: true, displayedDurationMinutes: null, rawDurationMinutes: null, hours: 0, remainingMinutes: 0 } : C.calculateDuration({ availableLiters: src.usableLiters, consumptionLpm: cons.oxygenConsumptionLpm });
-    if (!dur.ok) { $('quickResult').textContent = dur.errors.join(' '); return; }
-    quick = { source, sourceLabel: labelForSource(source), src, cons, dur, mode: selectedMode(), deliveryDeviceCategory: checkedValue('deliveryDeviceCategory') };
+    const sourceDurations = activeSources().map((source) => {
+      const src = sourceCalc(source);
+      const dur = !src.ok ? null : cons.durationNotApplicable
+        ? { ok: true, displayedDurationMinutes: null, rawDurationMinutes: null, hours: 0, remainingMinutes: 0 }
+        : C.calculateDuration({ availableLiters: src.usableLiters, consumptionLpm: cons.oxygenConsumptionLpm });
+      return { source, sourceLabel: labelForSource(source), src, dur };
+    });
+    const primary = sourceDurations.find((result) => result.source.id === selectedSource?.id && result.src.ok)
+      || sourceDurations.find((result) => result.src.ok);
+    if (!primary) { $('quickResult').textContent = 'Enter valid On Board O₂ or Portable O₂ information to continue.'; return; }
+    if (primary.dur && !primary.dur.ok) { $('quickResult').textContent = primary.dur.errors.join(' '); return; }
+    quick = { ...primary, sourceDurations, cons, mode: selectedMode(), deliveryDeviceCategory: checkedValue('deliveryDeviceCategory') };
     setProgressiveVisibility(true, true);
     renderQuick();
     renderPlanner();
@@ -270,16 +278,23 @@
     const root = $('quickResult');
     root.innerHTML = '';
     if (quick.cons.durationNotApplicable) root.append(text('div', 'No supplemental oxygen draw is calculated at the entered FiO₂/flow values.', 'oxygen-big-result'));
-    else root.append(text('div', `Estimated oxygen available ${quick.dur.displayedDurationMinutes} minutes`, 'oxygen-big-result'));
+    else root.append(text('div', 'Estimated oxygen available at the configured settings', 'oxygen-big-result'));
     const grid = document.createElement('div');
     grid.className = 'oxygen-result-grid';
-    [['Selected source', quick.sourceLabel], ['Usable oxygen', `${fmt(quick.src.usableLiters)} L`], ['Estimated oxygen consumption', `${fmt(quick.cons.oxygenConsumptionLpm, 3)} L/min`], ['Approximate duration', quick.cons.durationNotApplicable ? 'Not applicable' : `${quick.dur.hours} hr ${quick.dur.remainingMinutes} min`]].forEach(([label, value]) => {
+    quick.sourceDurations.forEach((result) => {
       const cell = document.createElement('div');
-      cell.append(text('strong', label));
-      cell.append(text('p', value));
+      cell.append(text('strong', result.sourceLabel));
+      if (!result.src.ok) {
+        cell.append(text('p', 'Enter valid source information.'));
+      } else {
+        const duration = quick.cons.durationNotApplicable ? 'Duration not applicable' : `${result.dur.hours} hr ${result.dur.remainingMinutes} min (${result.dur.displayedDurationMinutes} min)`;
+        cell.append(text('p', duration));
+        cell.append(text('small', `${fmt(result.src.usableLiters)} L usable oxygen`));
+      }
       grid.append(cell);
     });
     root.append(grid);
+    root.append(text('p', `Estimated oxygen consumption at these settings: ${fmt(quick.cons.oxygenConsumptionLpm, 3)} L/min. Durations are independent and are not added together.`));
     if (quick.cons.oxygenSourceFlowLpm !== undefined) root.append(text('p', `Estimated oxygen-source flow: ${fmt(quick.cons.oxygenSourceFlowLpm, 3)} L/min • Estimated ambient-air contribution: ${fmt(quick.cons.ambientAirFlowLpm, 3)} L/min`));
     $('formulaDetails').textContent = formulaText();
   }
@@ -350,7 +365,12 @@
 
   function updateSummary(plan) {
     const category = checkedValue('deliveryDeviceCategory') === 'VENTILATOR' ? 'Ventilator' : 'Wall / Portable Low PSI';
-    $('copySummary').value = `ACT Oxygen Availability Estimate\n\nO₂ delivery device:\n${category}\n\nDevice / delivery mode:\n${quick ? config.deliveryModes[quick.mode].label : 'Incomplete'}\n\nOxygen source:\n${quick ? quick.sourceLabel : 'Incomplete'}\n\nReserve pressure:\n${config?.reservePsi || ''} PSI\n\nUsable oxygen:\n${quick ? fmt(quick.src.usableLiters) : 'Incomplete'} L\n\nEstimated oxygen consumption:\n${quick ? fmt(quick.cons.oxygenConsumptionLpm, 3) : 'Incomplete'} L/min\n\nEstimated oxygen duration:\n${quick?.dur?.displayedDurationMinutes ?? 'Not applicable'} minutes\n\nConfigured risk:\n${plan?.risk?.level || 'Not configured'}\n\nCalculator version:\n${config?.calculatorVersion || ''}\n\nConfiguration reviewed:\n${config?.reviewedDate || ''}\n\nCalculation aid only. Verify actual equipment performance, device configuration, backup oxygen, anticipated delays, and local policy.`;
+    const sourceSummary = quick ? quick.sourceDurations.map((result) => {
+      if (!result.src.ok) return `${result.sourceLabel}:\nIncomplete source information`;
+      const duration = quick.cons.durationNotApplicable ? 'Not applicable' : `${result.dur.displayedDurationMinutes} minutes`;
+      return `${result.sourceLabel}:\nUsable oxygen: ${fmt(result.src.usableLiters)} L\nEstimated duration: ${duration}`;
+    }).join('\n\n') : 'Oxygen sources:\nIncomplete';
+    $('copySummary').value = `ACT Oxygen Availability Estimate\n\nO₂ delivery device:\n${category}\n\nDevice / delivery mode:\n${quick ? config.deliveryModes[quick.mode].label : 'Incomplete'}\n\n${sourceSummary}\n\nReserve pressure:\n${config?.reservePsi || ''} PSI\n\nEstimated oxygen consumption:\n${quick ? fmt(quick.cons.oxygenConsumptionLpm, 3) : 'Incomplete'} L/min\n\nDurations are independent and are not added together.\n\nConfigured risk:\n${plan?.risk?.level || 'Not configured'}\n\nCalculator version:\n${config?.calculatorVersion || ''}\n\nConfiguration reviewed:\n${config?.reviewedDate || ''}\n\nCalculation aid only. Verify actual equipment performance, device configuration, backup oxygen, anticipated delays, and local policy.`;
   }
 
   function getPresets() { return loadJson(presetKey, []); }

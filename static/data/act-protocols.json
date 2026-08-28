@@ -190,7 +190,7 @@
     "title": "Analgesia and Sedation Management",
     "category": "General",
     "folder": "general",
-    "file": "/static/protocols/act/general/3203-G005_Analgesia_and_Sedation_Management.pdf",
+    "file": "/static/protocols/act/general/3203-G005 Analgesia and Sedation Management.pdf",
     "tags": [
       "analgesia",
       "sedation",
@@ -374,7 +374,7 @@
     "title": "Hypotension",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M011_Hypotension.pdf",
+    "file": "/static/protocols/act/medical/3203-M011 Hypotension.pdf",
     "tags": [
       "hypotension",
       "shock",
@@ -440,7 +440,7 @@
     "title": "Sepsis",
     "category": "Medical",
     "folder": "medical",
-    "file": "/static/protocols/act/medical/3203-M016_Sepsis.pdf",
+    "file": "/static/protocols/act/medical/3203-M016 Sepsis.pdf",
     "tags": [
       "sepsis",
       "infection",
@@ -531,7 +531,7 @@
     "title": "Abdominal and Genitourinary Trauma",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T001 Abdominal and Genitourinary Trauma.pdf",
+    "file": "/static/protocols/act/trauma/3203-T001 Abdominal and Genitourinary Trauma.pdf",
     "tags": [
       "abdominal trauma",
       "GU trauma",
@@ -544,7 +544,7 @@
     "title": "Burns - Thermal and Chemical",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T002 Burns - Thermal and Chemical.pdf",
+    "file": "/static/protocols/act/trauma/3203-T002 Burns - Thermal and Chemical.pdf",
     "tags": [
       "burns",
       "thermal burn",
@@ -557,7 +557,7 @@
     "title": "Crush Injury and Crush Syndrome",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T003 Crush Injury and Crush Syndrome.pdf",
+    "file": "/static/protocols/act/trauma/3203-T003 Crush Injury and Crush Syndrome.pdf",
     "tags": [
       "crush injury",
       "crush syndrome",
@@ -567,10 +567,10 @@
   },
   {
     "id": "GUID-3203-T004",
-    "title": "Decompression Sickness and Arterial Gas Embolus",
+    "title": "Decompression Sickness and Arterial Gas Embolism",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T004 Decompression Sickness and Arterial Gas Embolus.pdf",
+    "file": "/static/protocols/act/trauma/3203-T004 Decompression Sickness and Arterial Gas Embolism.pdf",
     "tags": [
       "decompression sickness",
       "arterial gas embolus",
@@ -583,7 +583,7 @@
     "title": "Burns - Electrical/Lightning Injury",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T005 Burns - ElectricalLightning Injury.pdf",
+    "file": "/static/protocols/act/trauma/3203-T005 Burns- Electrical - Lightning Injury.pdf",
     "tags": [
       "electrical burn",
       "lightning injury",
@@ -596,7 +596,7 @@
     "title": "Eye Injuries",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T006 Eye Injuries.pdf",
+    "file": "/static/protocols/act/trauma/3203-T006 Eye Injuries.pdf",
     "tags": [
       "eye injury",
       "ocular trauma",
@@ -608,7 +608,7 @@
     "title": "Maxillofacial Trauma",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T007 Maxillofacial Trauma.pdf",
+    "file": "/static/protocols/act/trauma/3203-T007 Maxillofacial Trauma.pdf",
     "tags": [
       "maxillofacial trauma",
       "facial trauma",
@@ -621,7 +621,7 @@
     "title": "Multi-System Trauma \u2013 Adult & Pediatric",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T008 Multi-System Trauma - Adult and Pediatric.pdf",
+    "file": "/static/protocols/act/trauma/3203-T008 Multi-system Trauma.pdf",
     "tags": [
       "multisystem trauma",
       "adult trauma",
@@ -634,7 +634,7 @@
     "title": "Musculoskeletal Trauma",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T009 Musculoskeletal Trauma.pdf",
+    "file": "/static/protocols/act/trauma/3203-T009 Musculoskeletal Trauma.pdf",
     "tags": [
       "musculoskeletal trauma",
       "fracture",
@@ -647,7 +647,7 @@
     "title": "Drowning & Submersion Injuries",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T010 Drowning and Submersion Injuries.pdf",
+    "file": "/static/protocols/act/trauma/3203-T010 Drowning.pdf",
     "tags": [
       "drowning",
       "submersion",
@@ -660,7 +660,7 @@
     "title": "Snake Bite - Envenomation",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T011 Snake Bite - Envenomation.pdf",
+    "file": "/static/protocols/act/trauma/3203-T011 Snake Bite-Envenomation.pdf",
     "tags": [
       "snake bite",
       "envenomation",
@@ -674,7 +674,7 @@
     "title": "Spinal Cord Injury",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T012 Spinal Cord Injury.pdf",
+    "file": "/static/protocols/act/trauma/3203-T012 Spinal Cord Injuries.pdf",
     "tags": [
       "spinal cord injury",
       "SCI",
@@ -687,7 +687,7 @@
     "title": "Cyanide Toxicity",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T013 Cyanide Toxicity.pdf",
+    "file": "/static/protocols/act/trauma/3203-T013 Cyanide Toxicity.pdf",
     "tags": [
       "cyanide",
       "smoke inhalation",
@@ -700,7 +700,7 @@
     "title": "Traumatic Brain Injury (TBI)",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T014 Traumatic Brain Injury (TBI).pdf",
+    "file": "/static/protocols/act/trauma/3203-T014 Traumatic Brain Injury.pdf",
     "tags": [
       "TBI",
       "traumatic brain injury",
@@ -714,7 +714,7 @@
     "title": "Thoracic Trauma",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T015 Thoracic Trauma.pdf",
+    "file": "/static/protocols/act/trauma/3203-T015 Thoracic Trauma.pdf",
     "tags": [
       "thoracic trauma",
       "chest trauma",
@@ -724,10 +724,10 @@
   },
   {
     "id": "GUID-3203-T016",
-    "title": "Tranexamic Acid for Severe Hemorrhage in Trauma Patients",
+    "title": "Tranexamic Acid for Severe Hemorrhage",
     "category": "Trauma",
     "folder": "trauma",
-    "file": "/static/protocols/act/trauma/GUID-3203-T016 Tranexamic Acid for Severe Hemorrhage in Trauma Patients.pdf",
+    "file": "/static/protocols/act/trauma/3203-T016 Tranexamic Acid for Severe Hemorrhage.pdf",
     "tags": [
       "TXA",
       "tranexamic acid",
@@ -806,7 +806,7 @@
     "title": "Pediatric Cardiogenic Shock",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED006_Pediatric_Cardiogenic_Shock.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED006 Pediatric Cardiogenic Shock.pdf",
     "tags": [
       "pediatric",
       "cardiogenic shock",
@@ -819,7 +819,7 @@
     "title": "Pediatric Cyanotic Congenital Heart Disease",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED007_Pediatric_Cyanotic_Congenital_Heart_Disease.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED007 Pediatric Cyanotic Congenital Heart Disease.pdf",
     "tags": [
       "pediatric",
       "cyanotic heart disease",
@@ -845,7 +845,7 @@
     "title": "Pediatric Hypotension",
     "category": "Pediatric",
     "folder": "pediatric",
-    "file": "/static/protocols/act/pediatric/3203-PED009_Pediatric_Hypotension.pdf",
+    "file": "/static/protocols/act/pediatric/3203-PED009 Pediatric Hypotension.pdf",
     "tags": [
       "pediatric",
       "hypotension",
@@ -1299,7 +1299,7 @@
     "title": "Emergency Blood Product Administration",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/3203-PR025_Emergency_Blood_Product_Administration.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR025A Emergency Blood Product Administration.pdf",
     "tags": [
       "emergency blood",
       "transfusion",
@@ -1312,7 +1312,7 @@
     "title": "Emergency Whole Blood Product Administration",
     "category": "Procedures",
     "folder": "procedures",
-    "file": "/static/protocols/act/procedures/3203-PR025b_Emergency_Whole_Blood_Product_Administration.pdf",
+    "file": "/static/protocols/act/procedures/3203-PR025B Emergency Blood Product Administration.pdf",
     "tags": [
       "whole blood",
       "emergency blood",
@@ -1409,6 +1409,34 @@
       "high flow nasal cannula",
       "oxygenation",
       "respiratory"
+    ]
+  },
+  {
+    "id": "GUID-3203-T017",
+    "title": "Trauma in Pregnancy",
+    "category": "Trauma",
+    "folder": "trauma",
+    "file": "/static/protocols/act/trauma/3203-T017 Trauma in Pregnancy.pdf",
+    "tags": [
+      "pregnancy",
+      "maternal trauma",
+      "obstetric",
+      "fetal assessment",
+      "trauma"
+    ]
+  },
+  {
+    "id": "GUID-3203-T018",
+    "title": "Trauma Alert Criteria",
+    "category": "Trauma",
+    "folder": "trauma",
+    "file": "/static/protocols/act/trauma/3203-T018 Trauma Alert Criteria.pdf",
+    "tags": [
+      "trauma alert",
+      "activation criteria",
+      "triage",
+      "trauma center",
+      "trauma"
     ]
   }
 ]
