@@ -8,7 +8,7 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.7.20';
+const CACHE_VERSION = 'v2.7.21';
 const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v6';
 const ACT_PROTOCOL_CACHE_PREFIX = 'act-protocol-pdfs-';
 const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
