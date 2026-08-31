@@ -59,6 +59,27 @@ def test_search_event_handlers_are_not_duplicated():
     assert PROTOCOLS.count("els.suggestions?.addEventListener('click'") == 1
 
 
+def test_blood_search_priority_is_narrow_and_uses_stable_protocol_ids():
+    assert "term: 'blood'" in PROTOCOLS
+    assert "protocolIds: ['GUID-3203-PR025', 'GUID-3203-PR025B']" in PROTOCOLS
+    assert 'BLOOD_SEARCH_PRIORITY.term.startsWith(normalizedQuery)' in PROTOCOLS
+    assert 'normalizedQuery.startsWith(BLOOD_SEARCH_PRIORITY.term)' in PROTOCOLS
+    assert 'bloodSearchProtocolRank(p.id) !== -1' in PROTOCOLS
+
+
+def test_blood_search_priority_preserves_category_filtering_and_grouping():
+    category_filter = PROTOCOLS.index("if (state.category !== 'All' && p.category !== state.category) continue;")
+    priority_match = PROTOCOLS.index('if (bloodPriorityActive && bloodSearchProtocolRank(p.id) !== -1)')
+    assert category_filter < priority_match
+    assert "category: 'Procedures'" in PROTOCOLS
+    assert 'a.protocol.category === BLOOD_SEARCH_PRIORITY.category ? -1' in PROTOCOLS
+
+
+def test_service_worker_version_is_bumped_without_changing_protocol_pdf_cache():
+    assert "const CACHE_VERSION = 'v2.7.21';" in SERVICE_WORKER
+    assert "const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v6';" in SERVICE_WORKER
+
+
 def test_protocol_cards_have_accessible_open_buttons_and_filter_state():
     assert 'aria-label="Open PDF for ${escapeHtml(p.id)} ${escapeHtml(p.title)}"' in PROTOCOLS
     assert 'setAttribute(\'aria-pressed\', String(selected))' in PROTOCOLS

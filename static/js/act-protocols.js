@@ -6,6 +6,11 @@
   const CACHE_NAME = 'act-protocol-pdfs-v6';
   const CACHE_PREFIX = 'act-protocol-pdfs-';
   const CATEGORY_ORDER = ['General', 'Medical', 'Cardiac', 'Trauma', 'Pediatric', 'Procedures'];
+  const BLOOD_SEARCH_PRIORITY = {
+    term: 'blood',
+    category: 'Procedures',
+    protocolIds: ['GUID-3203-PR025', 'GUID-3203-PR025B']
+  };
   const PROTOCOL_ID_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
   const INSTALL_DISMISSED_KEY = 'act-protocols-install-dismissed';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
@@ -24,7 +29,30 @@
     const rank = CATEGORY_ORDER.indexOf(category);
     return rank === -1 ? CATEGORY_ORDER.length : rank;
   }
+  function isBloodSearchPriorityActive(query) {
+    const normalizedQuery = normalize(query);
+    return Boolean(normalizedQuery) && (
+      BLOOD_SEARCH_PRIORITY.term.startsWith(normalizedQuery)
+      || normalizedQuery.startsWith(BLOOD_SEARCH_PRIORITY.term)
+    );
+  }
+  function bloodSearchProtocolRank(protocolId) {
+    return BLOOD_SEARCH_PRIORITY.protocolIds.indexOf(protocolId);
+  }
   function compareProtocolEntries(a, b, query) {
+    if (isBloodSearchPriorityActive(query)) {
+      const aCategoryRank = a.protocol.category === BLOOD_SEARCH_PRIORITY.category ? -1 : categoryRank(a.protocol.category);
+      const bCategoryRank = b.protocol.category === BLOOD_SEARCH_PRIORITY.category ? -1 : categoryRank(b.protocol.category);
+      const categoryDelta = aCategoryRank - bCategoryRank;
+      if (categoryDelta) return categoryDelta;
+      const aPriorityRank = bloodSearchProtocolRank(a.protocol.id);
+      const bPriorityRank = bloodSearchProtocolRank(b.protocol.id);
+      if (aPriorityRank !== bPriorityRank) {
+        if (aPriorityRank === -1) return 1;
+        if (bPriorityRank === -1) return -1;
+        return aPriorityRank - bPriorityRank;
+      }
+    }
     const categoryDelta = categoryRank(a.protocol.category) - categoryRank(b.protocol.category);
     if (categoryDelta) return categoryDelta;
     if (query) {
@@ -171,11 +199,18 @@
   }
   function filtered() {
     const q = normalize(state.query);
+    const bloodPriorityActive = isBloodSearchPriorityActive(q);
     state.resultMeta.clear();
     const matches = [];
     for (const p of state.protocols) {
       if (state.category !== 'All' && p.category !== state.category) continue;
       if (!q) { matches.push({ protocol: p, score: 0 }); continue; }
+      if (bloodPriorityActive && bloodSearchProtocolRank(p.id) !== -1) {
+        const match = { score: 0, reasons: [] };
+        state.resultMeta.set(p.id, match);
+        matches.push({ protocol: p, score: match.score });
+        continue;
+      }
       const match = matchProtocol(p, q);
       if (match) { state.resultMeta.set(p.id, match); matches.push({ protocol: p, score: match.score }); }
     }
