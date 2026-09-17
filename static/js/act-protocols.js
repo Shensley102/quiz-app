@@ -16,7 +16,7 @@
   const RETURN_STATE_KEY = 'act-protocols-return-state';
   const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', suggestions: [], activeSuggestionIndex: -1, saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', downloadTotal: 0, downloadCompleted: 0, downloadInProgress: false, opening: new Set(), deferredInstallPrompt: null };
   const els = {
-    grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), filters: document.getElementById('categoryFilters'),
+    grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), clearSearch: document.getElementById('clearProtocolSearch'), filters: document.getElementById('categoryFilters'),
     count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary'), suggestions: document.getElementById('protocolSearchSuggestions'),
     retryBtn: document.getElementById('retryFailedBtn'),
     installHelp: document.getElementById('installActHelp'), installBtn: document.getElementById('installActBtn'), dismissInstallBtn: document.getElementById('dismissInstallActBtn')
@@ -267,11 +267,24 @@
     state.activeSuggestionIndex = -1;
     renderSuggestions();
   }
+  function updateClearSearchButton() {
+    els.clearSearch?.classList.toggle('hidden', !els.search.value);
+  }
+  function clearSearch() {
+    els.search.value = '';
+    state.query = '';
+    closeSuggestions();
+    updateClearSearchButton();
+    saveListState();
+    render();
+    els.search.focus();
+  }
   function selectSuggestion(index) {
     const suggestion = state.suggestions[index];
     if (!suggestion) return;
     els.search.value = suggestion;
     state.query = suggestion;
+    updateClearSearchButton();
     saveListState();
     render();
     closeSuggestions();
@@ -361,6 +374,7 @@
     state.query = typeof saved.query === 'string' ? saved.query : '';
     state.category = typeof saved.category === 'string' && saved.category ? saved.category : 'All';
     els.search.value = state.query;
+    updateClearSearchButton();
     els.filters.querySelectorAll('.filter-btn').forEach((button) => {
       const selected = button.dataset.category === state.category;
       button.classList.toggle('active', selected);
@@ -619,9 +633,11 @@
       const value = e.target.value;
       updateSuggestions(value);
       state.query = value;
+      updateClearSearchButton();
       saveListState();
       render();
     });
+    els.clearSearch?.addEventListener('click', clearSearch);
     els.search.addEventListener('keydown', (e) => {
       if (!state.suggestions.length) return;
       if (e.key === 'ArrowDown') {
