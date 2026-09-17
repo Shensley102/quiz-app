@@ -951,92 +951,89 @@ body {
 }
 
 .medication-calculator-cta {
-  display: block;
-  min-height: 92px;
-  padding: 8px;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 8px;
+  min-height: 126px;
+  padding: 12px 14px;
   overflow: hidden;
   border-color: color-mix(in srgb, var(--act-secondary) 60%, var(--act-border));
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--act-primary) 18%, transparent), color-mix(in srgb, var(--act-secondary) 10%, transparent)),
-    color-mix(in srgb, var(--act-surface) 38%, transparent);
+    linear-gradient(145deg, color-mix(in srgb, white 34%, transparent), transparent 42%),
+    color-mix(in srgb, var(--act-surface) 58%, transparent);
   color: var(--act-text);
   -webkit-backdrop-filter: blur(10px) saturate(1.15);
   backdrop-filter: blur(10px) saturate(1.15);
-  box-shadow: 0 14px 30px var(--act-shadow), inset 0 1px 0 color-mix(in srgb, white 60%, transparent);
-}
-
-.medication-calculator-shell {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 14px;
-  min-height: 72px;
-  padding: 10px 20px;
-  overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--act-secondary) 46%, transparent);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--act-surface) 42%, transparent);
-  box-shadow: inset 0 0 18px color-mix(in srgb, var(--act-primary) 8%, transparent);
+  box-shadow:
+    0 14px 30px var(--act-shadow),
+    inset 0 1px 0 color-mix(in srgb, white 70%, transparent),
+    inset 0 -4px 0 color-mix(in srgb, var(--act-secondary) 16%, transparent);
 }
 
 .medication-calculator-display {
-  position: absolute;
-  top: 8px;
-  right: 64px;
-  width: 130px;
-  padding: 4px 9px;
-  border: 1px solid color-mix(in srgb, var(--act-text) 15%, transparent);
-  border-radius: 6px;
-  background: color-mix(in srgb, #b9d8c4 28%, transparent);
-  color: color-mix(in srgb, var(--act-text) 34%, transparent);
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  padding: 11px 16px;
+  border: 1px solid color-mix(in srgb, #416b58 45%, var(--act-border));
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent),
+    color-mix(in srgb, #b9d8c4 58%, var(--act-surface));
+  box-shadow: inset 0 2px 7px rgba(27, 55, 45, 0.18);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.72rem;
-  text-align: right;
+}
+
+.medication-calculator-display strong {
+  color: color-mix(in srgb, var(--act-text) 92%, #173c2e);
+  font-size: 1.08rem;
+  line-height: 1.15;
+}
+
+.medication-calculator-display > span {
+  color: color-mix(in srgb, var(--act-text) 78%, #294a3e);
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.medication-calculator-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px;
+  align-items: stretch;
+  gap: 8px;
 }
 
 .medication-calculator-keys {
-  position: absolute;
-  right: 58px;
-  bottom: 7px;
   display: grid;
-  grid-template-columns: repeat(4, 28px);
-  gap: 4px;
-  opacity: 0.28;
+  grid-template-columns: repeat(8, minmax(28px, 1fr));
+  gap: 7px;
 }
 
 .medication-calculator-keys span {
-  height: 12px;
+  display: grid;
+  place-items: center;
+  min-height: 30px;
   border: 1px solid color-mix(in srgb, var(--act-secondary) 60%, var(--act-border));
-  border-radius: 4px;
-  background: color-mix(in srgb, var(--act-surface) 68%, transparent);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, white 45%, transparent);
-}
-
-.medication-calculator-label {
-  position: relative;
-  z-index: 2;
-  display: block;
-  width: min(68%, 720px);
-  padding: 9px 13px;
-  border: 1px solid color-mix(in srgb, var(--act-primary) 22%, transparent);
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--act-surface) 82%, transparent);
-  box-shadow: 0 4px 14px color-mix(in srgb, var(--act-shadow) 75%, transparent);
-}
-
-.medication-calculator-cta .dose-calculator-cta-copy strong {
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--act-surface) 62%, transparent);
   color: var(--act-text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--act-secondary) 25%, transparent), inset 0 1px 0 color-mix(in srgb, white 55%, transparent);
 }
 
-.medication-calculator-cta .dose-calculator-cta-copy span {
-  color: var(--act-text-muted);
-}
-
-.medication-calculator-cta .dose-calculator-cta-arrow {
-  position: relative;
-  z-index: 2;
-  color: var(--act-secondary);
+.medication-calculator-enter {
+  display: grid;
+  place-items: center;
+  min-height: 30px;
+  border: 1px solid color-mix(in srgb, var(--act-secondary) 75%, var(--act-border));
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--act-secondary) 84%, transparent);
+  color: var(--act-on-primary);
+  font-size: 1.25rem;
+  font-weight: 800;
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--act-secondary) 35%, transparent);
 }
 
 .oxygen-calculator-cta {
@@ -1470,30 +1467,27 @@ body {
   }
 
   .medication-calculator-cta {
-    min-height: 78px;
-    padding: 7px;
-  }
-
-  .medication-calculator-shell {
-    min-height: 62px;
-    padding: 7px 12px;
-  }
-
-  .medication-calculator-label {
-    width: calc(100% - 42px);
-    padding: 7px 9px;
+    min-height: 120px;
+    gap: 7px;
+    padding: 10px;
   }
 
   .medication-calculator-display {
-    right: 45px;
-    width: 82px;
-    opacity: 0.42;
+    padding: 10px 12px;
   }
 
   .medication-calculator-keys {
-    right: 43px;
-    grid-template-columns: repeat(4, 17px);
-    opacity: 0.2;
+    grid-template-columns: repeat(4, minmax(24px, 1fr));
+    gap: 5px;
+  }
+
+  .medication-calculator-keys span:nth-child(-n + 4) {
+    display: none;
+  }
+
+  .medication-calculator-controls {
+    grid-template-columns: minmax(0, 1fr) 42px;
+    gap: 6px;
   }
 
   .oxygen-calculator-cta {

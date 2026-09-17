@@ -87,7 +87,7 @@ def test_blood_search_priority_preserves_category_filtering_and_grouping():
 
 
 def test_service_worker_version_is_bumped_without_changing_protocol_pdf_cache():
-    assert "const CACHE_VERSION = 'v2.7.23';" in SERVICE_WORKER
+    assert "const CACHE_VERSION = 'v2.7.24';" in SERVICE_WORKER
     assert "const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v6';" in SERVICE_WORKER
 
 
@@ -108,11 +108,11 @@ def test_clinical_calculators_are_linked_only_from_act_protocols():
 
 def test_clinical_calculator_link_uses_accessible_transparent_calculator_artwork():
     assert 'class="dose-calculator-cta medication-calculator-cta"' in TEMPLATE
-    assert 'class="medication-calculator-display" aria-hidden="true"' in TEMPLATE
-    assert 'class="medication-calculator-keys" aria-hidden="true"' in TEMPLATE
-    assert '<strong>Clinical Calculator</strong>' in TEMPLATE
+    assert 'class="medication-calculator-display"' in TEMPLATE
+    assert 'class="medication-calculator-controls" aria-hidden="true"' in TEMPLATE
+    assert '<strong>Medication Calculator</strong>' in TEMPLATE
     assert 'Weight-based doses • infusions • volume checks' in TEMPLATE
-    assert 'aria-label="Open Clinical Calculator for weight-based doses, infusion rates, and medication volume checks"' in TEMPLATE
+    assert 'aria-label="Open Medication Calculator for weight-based doses, infusion rates, and medication volume checks"' in TEMPLATE
 
 
 def test_oxygen_calculator_link_uses_accessible_horizontal_tank_artwork():
