@@ -76,9 +76,12 @@
 
     <section class="act-controls" aria-label="Protocol search and filters">
       <label class="search-label" for="protocolSearch">Search protocols</label>
-      <div class="protocol-search-wrap">
-        <input id="protocolSearch" class="protocol-search" type="search" placeholder="Search by title, ID, medication or alias (Keppra, Versed), category, or tags..." autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="protocolSearchSuggestions">
-        <div id="protocolSearchSuggestions" class="protocol-search-suggestions hidden" role="listbox" aria-label="Search suggestions"></div>
+      <div class="protocol-search-row">
+        <div class="protocol-search-wrap">
+          <input id="protocolSearch" class="protocol-search" type="search" placeholder="Search by title, ID, medication or alias (Keppra, Versed), category, or tags..." autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="protocolSearchSuggestions">
+          <div id="protocolSearchSuggestions" class="protocol-search-suggestions hidden" role="listbox" aria-label="Search suggestions"></div>
+        </div>
+        <button id="clearProtocolSearch" class="clear-search-btn hidden" type="button" aria-label="Clear protocol search">Clear search</button>
       </div>
       <div id="categoryFilters" class="category-filters" aria-label="Filter by category">
         <button class="filter-btn active" type="button" data-category="All" aria-pressed="true">All</button>

@@ -53,6 +53,17 @@ def test_search_input_updates_rendered_results_live():
     assert "render();" in PROTOCOLS
 
 
+def test_clear_search_button_resets_search_state_and_results():
+    assert 'id="clearProtocolSearch"' in TEMPLATE
+    assert 'aria-label="Clear protocol search"' in TEMPLATE
+    assert "els.search.value = '';" in PROTOCOLS
+    assert "state.query = '';" in PROTOCOLS
+    assert 'closeSuggestions();' in PROTOCOLS
+    assert 'saveListState();' in PROTOCOLS
+    assert "els.clearSearch?.addEventListener('click', clearSearch);" in PROTOCOLS
+    assert 'els.search.focus();' in PROTOCOLS
+
+
 def test_search_event_handlers_are_not_duplicated():
     assert PROTOCOLS.count("els.search.addEventListener('keydown'") == 1
     assert PROTOCOLS.count("els.suggestions?.addEventListener('mousedown'") == 1

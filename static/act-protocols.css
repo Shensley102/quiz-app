@@ -464,7 +464,15 @@ body {
   color: var(--act-text);
 }
 
+.protocol-search-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
 .protocol-search-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
   position: relative;
 }
 
@@ -517,6 +525,27 @@ body {
 
 .protocol-search:focus {
   border-color: var(--act-primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--act-focus) 28%, transparent);
+}
+
+.clear-search-btn {
+  flex: 0 0 auto;
+  border: 2px solid var(--act-primary);
+  border-radius: 16px;
+  padding: 0 18px;
+  background: var(--act-surface);
+  color: var(--act-primary);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.clear-search-btn:hover {
+  background: var(--act-primary-soft);
+}
+
+.clear-search-btn:focus-visible {
+  outline: none;
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--act-focus) 28%, transparent);
 }
 
@@ -844,6 +873,15 @@ body {
 
   .act-controls {
     padding: 14px;
+  }
+
+  .protocol-search-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .clear-search-btn {
+    min-height: 48px;
   }
 
   .protocol-buttons {
