@@ -952,7 +952,8 @@ body {
 
 .medication-calculator-cta {
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
   gap: 9px;
   min-height: 238px;
   padding: 13px 16px 18px;
@@ -967,19 +968,6 @@ body {
     0 14px 30px var(--act-shadow),
     inset 0 2px 1px rgba(255, 255, 255, 0.28),
     inset 0 -7px 0 rgba(0, 0, 0, 0.38);
-}
-
-.medication-calculator-brand {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 8px;
-  color: rgba(255, 255, 255, 0.84);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  line-height: 1;
 }
 
 .medication-calculator-display {

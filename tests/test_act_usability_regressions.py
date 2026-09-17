@@ -4,6 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOSE = (ROOT / 'static/js/act-dose-calculator.js').read_text()
 PROTOCOLS = (ROOT / 'static/js/act-protocols.js').read_text()
 TEMPLATE = (ROOT / 'templates/act-protocols.html').read_text()
+ACT_CSS = (ROOT / 'static/act-protocols.css').read_text()
 HOME_TEMPLATE = (ROOT / 'templates/home.html').read_text()
 DOSE_TEMPLATE = (ROOT / 'templates/act-dose-calculator.html').read_text()
 PWA_UTILS = (ROOT / 'static/js/pwa-utils.js').read_text()
@@ -87,7 +88,7 @@ def test_blood_search_priority_preserves_category_filtering_and_grouping():
 
 
 def test_service_worker_version_is_bumped_without_changing_protocol_pdf_cache():
-    assert "const CACHE_VERSION = 'v2.7.25';" in SERVICE_WORKER
+    assert "const CACHE_VERSION = 'v2.7.26';" in SERVICE_WORKER
     assert "const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v6';" in SERVICE_WORKER
 
 
@@ -109,8 +110,12 @@ def test_clinical_calculators_are_linked_only_from_act_protocols():
 def test_clinical_calculator_link_uses_accessible_transparent_calculator_artwork():
     assert 'class="dose-calculator-cta medication-calculator-cta"' in TEMPLATE
     assert 'class="medication-calculator-display"' in TEMPLATE
-    assert 'class="medication-calculator-brand" aria-hidden="true"' in TEMPLATE
+    assert 'ACTMED-CALC' not in TEMPLATE
     assert 'class="medication-calculator-keys" aria-hidden="true"' in TEMPLATE
+    medication_styles = ACT_CSS[ACT_CSS.index('.medication-calculator-cta {'):]
+    medication_styles = medication_styles[:medication_styles.index('}')]
+    assert 'grid-template-columns: minmax(0, 1fr);' in medication_styles
+    assert 'grid-template-rows: auto 1fr;' in medication_styles
     assert '<strong>Medication Calculator</strong>' in TEMPLATE
     assert 'Weight-based doses • infusions • volume checks' in TEMPLATE
     assert 'aria-label="Open Medication Calculator for weight-based doses, infusion rates, and medication volume checks"' in TEMPLATE
