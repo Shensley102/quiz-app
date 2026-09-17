@@ -87,7 +87,7 @@ def test_blood_search_priority_preserves_category_filtering_and_grouping():
 
 
 def test_service_worker_version_is_bumped_without_changing_protocol_pdf_cache():
-    assert "const CACHE_VERSION = 'v2.7.21';" in SERVICE_WORKER
+    assert "const CACHE_VERSION = 'v2.7.22';" in SERVICE_WORKER
     assert "const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v6';" in SERVICE_WORKER
 
 
@@ -104,6 +104,15 @@ def test_clinical_calculators_are_linked_only_from_act_protocols():
     assert 'ACT clinical calculation tools' in TEMPLATE
     assert '/act-protocols/dose-calculator' not in HOME_TEMPLATE
     assert '/act-protocols/oxygen-calculator' not in HOME_TEMPLATE
+
+
+def test_oxygen_calculator_link_uses_accessible_horizontal_tank_artwork():
+    assert 'class="oxygen-tank-valve" aria-hidden="true"' in TEMPLATE
+    assert 'class="oxygen-tank-shoulder" aria-hidden="true"' in TEMPLATE
+    assert 'class="oxygen-tank-body"' in TEMPLATE
+    assert '<strong>Oxygen Availability</strong>' in TEMPLATE
+    assert 'Tank duration • device use • transport risk' in TEMPLATE
+    assert 'aria-label="Open Oxygen Availability Calculator for transport oxygen duration and risk estimates"' in TEMPLATE
 
 
 def test_offline_download_counter_starts_at_zero_and_advances_per_completed_pdf():
