@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Focused ACT Protocols data/route smoke checks."""
 import json
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -40,6 +41,11 @@ missing_pdf_paths = [
     if not (ROOT / record['file'].lstrip('/')).is_file()
 ]
 assert_true(not missing_pdf_paths, f'Manifest PDF paths do not exist: {missing_pdf_paths}')
+invalid_updated_dates = [
+    record['id'] for record in protocols
+    if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', record.get('updatedDate', ''))
+]
+assert_true(not invalid_updated_dates, f'Missing or invalid protocol updatedDate values: {invalid_updated_dates}')
 
 assert_true(protocol_by_id['3203-C001']['title'] == 'Acute Coronary Syndrome', 'ACS protocol title fixture changed')
 assert_true(has_exact_tag('3203-C001', 'ACS'), 'ACS exact tag missing')

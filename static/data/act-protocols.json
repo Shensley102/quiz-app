@@ -11,7 +11,8 @@
       "coronary",
       "chest pain",
       "STEMI"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-C002",
@@ -24,7 +25,8 @@
       "asystole",
       "PEA",
       "ACLS"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-C003",
@@ -37,7 +39,8 @@
       "atrial flutter",
       "dysrhythmia",
       "cardiac"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-C004",
@@ -50,7 +53,8 @@
       "cardiac",
       "rhythm",
       "pacing"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-C005",
@@ -64,7 +68,8 @@
       "heart failure",
       "cardiac",
       "respiratory"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-C006",
@@ -78,7 +83,8 @@
       "VT",
       "wide complex",
       "narrow complex"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-C007",
@@ -92,7 +98,8 @@
       "VF",
       "cardiac arrest",
       "defibrillation"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-C008",
@@ -105,7 +112,8 @@
       "cardiac",
       "perfusion",
       "oxygenation"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-C009",
@@ -118,7 +126,8 @@
       "hypothermia",
       "post arrest",
       "cardiac arrest"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-C010",
@@ -132,7 +141,8 @@
       "MI",
       "cardiac",
       "12 lead"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-G001",
@@ -145,7 +155,8 @@
       "oxygenation",
       "altitude",
       "transport"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-G002",
@@ -157,7 +168,8 @@
       "general care",
       "assessment",
       "transport"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-G003",
@@ -170,7 +182,8 @@
       "infusion",
       "medication",
       "drip"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-G004",
@@ -183,7 +196,8 @@
       "vomiting",
       "motion sickness",
       "antiemetic"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-G005",
@@ -197,7 +211,8 @@
       "pain",
       "ketamine",
       "fentanyl"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "3203-G006",
@@ -211,7 +226,8 @@
       "agitation",
       "sedation",
       "behavioral"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-G007",
@@ -224,7 +240,8 @@
       "Diprivan",
       "sedation",
       "infusion"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-G008",
@@ -237,7 +254,8 @@
       "rapid sequence induction",
       "intubation",
       "airway"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M001",
@@ -250,7 +268,8 @@
       "aneurysm",
       "abdominal pain",
       "vascular"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M002",
@@ -263,7 +282,8 @@
       "diabetic ketoacidosis",
       "diabetes",
       "metabolic"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M003",
@@ -276,7 +296,8 @@
       "altered mental status",
       "neuro",
       "unconscious"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M004",
@@ -289,7 +310,8 @@
       "anaphylaxis",
       "epinephrine",
       "airway"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M005",
@@ -302,7 +324,8 @@
       "electrolyte",
       "hypomagnesemia",
       "hypermagnesemia"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M006",
@@ -315,7 +338,8 @@
       "electrolyte",
       "hyperkalemia",
       "hypokalemia"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M007",
@@ -328,7 +352,8 @@
       "gastrointestinal bleeding",
       "hemorrhage",
       "blood"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M008",
@@ -342,7 +367,8 @@
       "bronchospasm",
       "respiratory",
       "albuterol"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M009",
@@ -355,7 +381,8 @@
       "hyperthermia",
       "environmental",
       "temperature"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M010",
@@ -367,7 +394,8 @@
       "hypertension",
       "hypertensive emergency",
       "blood pressure"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M011",
@@ -380,7 +408,8 @@
       "shock",
       "blood pressure",
       "perfusion"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "3203-M012",
@@ -393,7 +422,8 @@
       "cold exposure",
       "temperature",
       "environmental"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M013",
@@ -407,7 +437,8 @@
       "neuro",
       "headache",
       "bleed"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M014",
@@ -420,7 +451,8 @@
       "PE",
       "respiratory",
       "clot"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M015",
@@ -433,7 +465,8 @@
       "status epilepticus",
       "neuro",
       "benzodiazepine"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M016",
@@ -446,7 +479,8 @@
       "infection",
       "shock",
       "hypotension"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "3203-M017",
@@ -459,7 +493,8 @@
       "TIA",
       "neuro",
       "CVA"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M018",
@@ -472,7 +507,8 @@
       "thoracic",
       "chest pain",
       "vascular"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M019",
@@ -485,7 +521,8 @@
       "poisoning",
       "toxic exposure",
       "toxicology"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M020",
@@ -497,7 +534,8 @@
       "malignant hyperthermia",
       "hyperthermia",
       "dantrolene"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M021",
@@ -510,7 +548,8 @@
       "glucose",
       "diabetes",
       "altered mental status"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-M022",
@@ -524,7 +563,8 @@
       "pregnancy",
       "assessment",
       "delivery"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-T001",
@@ -537,7 +577,8 @@
       "GU trauma",
       "hemorrhage",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T002",
@@ -550,7 +591,8 @@
       "thermal burn",
       "chemical burn",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T003",
@@ -563,7 +605,8 @@
       "crush syndrome",
       "rhabdomyolysis",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T004",
@@ -576,7 +619,8 @@
       "arterial gas embolus",
       "dive",
       "AGE"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T005",
@@ -589,7 +633,8 @@
       "lightning injury",
       "burns",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T006",
@@ -601,7 +646,8 @@
       "eye injury",
       "ocular trauma",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T007",
@@ -614,7 +660,8 @@
       "facial trauma",
       "airway",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T008",
@@ -627,7 +674,8 @@
       "adult trauma",
       "pediatric trauma",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T009",
@@ -640,7 +688,8 @@
       "fracture",
       "orthopedic",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T010",
@@ -653,7 +702,8 @@
       "submersion",
       "hypoxia",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T011",
@@ -667,7 +717,8 @@
       "venom",
       "toxicology",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T012",
@@ -680,7 +731,8 @@
       "SCI",
       "neuro",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T013",
@@ -693,7 +745,8 @@
       "smoke inhalation",
       "toxicology",
       "burns"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T014",
@@ -707,7 +760,8 @@
       "head injury",
       "neuro",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T015",
@@ -720,7 +774,8 @@
       "chest trauma",
       "pneumothorax",
       "hemothorax"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T016",
@@ -734,7 +789,8 @@
       "hemorrhage",
       "trauma",
       "bleeding"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "3203-PED001",
@@ -747,7 +803,8 @@
       "general management",
       "child",
       "infant"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED002",
@@ -760,7 +817,8 @@
       "allergic reaction",
       "anaphylaxis",
       "epinephrine"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED003",
@@ -773,7 +831,8 @@
       "altered mental status",
       "AMS",
       "neuro"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED004",
@@ -786,7 +845,8 @@
       "asystole",
       "cardiac arrest",
       "PALS"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED005",
@@ -799,7 +859,8 @@
       "bradycardia",
       "cardiac",
       "PALS"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED006",
@@ -812,7 +873,8 @@
       "cardiogenic shock",
       "cardiac",
       "shock"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "3203-PED007",
@@ -825,7 +887,8 @@
       "cyanotic heart disease",
       "congenital heart",
       "cardiac"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "3203-PED008",
@@ -838,7 +901,8 @@
       "DKA",
       "diabetes",
       "ketoacidosis"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED009",
@@ -851,7 +915,8 @@
       "hypotension",
       "shock",
       "blood pressure"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "3203-PED010",
@@ -864,7 +929,8 @@
       "respiratory distress",
       "infection",
       "airway"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED011",
@@ -878,7 +944,8 @@
       "foreign body",
       "aspiration",
       "airway"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED012",
@@ -891,7 +958,8 @@
       "PEA",
       "cardiac arrest",
       "PALS"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED013",
@@ -905,7 +973,8 @@
       "pulseless VT",
       "VF",
       "PALS"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED014",
@@ -918,7 +987,8 @@
       "reactive airway",
       "asthma",
       "bronchospasm"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED015",
@@ -931,7 +1001,8 @@
       "seizures",
       "status epilepticus",
       "neuro"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED016",
@@ -944,7 +1015,8 @@
       "sepsis",
       "meningitis",
       "infection"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED017",
@@ -957,7 +1029,8 @@
       "SVT",
       "supraventricular tachycardia",
       "cardiac"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED018",
@@ -971,7 +1044,8 @@
       "VT",
       "pulse",
       "cardiac"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "3203-PED019",
@@ -984,7 +1058,8 @@
       "newborn",
       "resuscitation",
       "pediatric"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR001",
@@ -997,7 +1072,8 @@
       "ECG",
       "EKG",
       "cardiac"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR002",
@@ -1010,7 +1086,8 @@
       "transfusion",
       "PRBC",
       "FFP"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR003",
@@ -1023,7 +1100,8 @@
       "blood sugar",
       "BGL",
       "diabetes"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR004",
@@ -1036,7 +1114,8 @@
       "shock",
       "cardiac",
       "tachycardia"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR005",
@@ -1049,7 +1128,8 @@
       "pneumothorax",
       "hemothorax",
       "thoracic"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR006",
@@ -1062,7 +1142,8 @@
       "bleeding",
       "hemorrhage",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR007",
@@ -1074,7 +1155,8 @@
       "cricothyrotomy",
       "surgical airway",
       "airway"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR008",
@@ -1088,7 +1170,8 @@
       "VF",
       "VT",
       "cardiac arrest"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR009",
@@ -1101,7 +1184,8 @@
       "capnography",
       "CO2",
       "ventilation"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR010",
@@ -1114,7 +1198,8 @@
       "NG",
       "OG",
       "decompression"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR011",
@@ -1126,7 +1211,8 @@
       "bougie",
       "airway",
       "intubation"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR012",
@@ -1139,7 +1225,8 @@
       "nebulizer",
       "respiratory",
       "albuterol"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR013",
@@ -1152,7 +1239,8 @@
       "intraosseous",
       "infusion",
       "vascular access"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR014",
@@ -1165,7 +1253,8 @@
       "intracranial pressure",
       "neuro",
       "monitoring"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR015",
@@ -1178,7 +1267,8 @@
       "fluids",
       "infusion",
       "vascular access"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR016",
@@ -1191,7 +1281,8 @@
       "LTS-D",
       "supraglottic airway",
       "airway"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR017",
@@ -1203,7 +1294,8 @@
       "needle thoracostomy",
       "needle decompression",
       "tension pneumothorax"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR018",
@@ -1216,7 +1308,8 @@
       "CPAP",
       "BiPAP",
       "ventilation"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR019",
@@ -1228,7 +1321,8 @@
       "IV insertion",
       "peripheral IV",
       "vascular access"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR020",
@@ -1241,7 +1335,8 @@
       "endotracheal tube",
       "airway",
       "ETT"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR021",
@@ -1254,7 +1349,8 @@
       "safety",
       "combative",
       "patient management"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR022",
@@ -1267,7 +1363,8 @@
       "transcutaneous pacing",
       "bradycardia",
       "cardiac"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR023",
@@ -1280,7 +1377,8 @@
       "intra-aortic balloon pump",
       "cardiac",
       "mechanical support"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR024",
@@ -1292,7 +1390,8 @@
       "ventilator",
       "mechanical ventilation",
       "respiratory"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR025",
@@ -1305,7 +1404,8 @@
       "transfusion",
       "blood product",
       "hemorrhage"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-PR025B",
@@ -1318,7 +1418,8 @@
       "emergency blood",
       "transfusion",
       "hemorrhage"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-PR026",
@@ -1331,7 +1432,8 @@
       "fluid warmer",
       "warming",
       "transfusion"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR027",
@@ -1344,7 +1446,8 @@
       "pelvic fracture",
       "trauma",
       "hemorrhage"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR028",
@@ -1357,7 +1460,8 @@
       "QuickClot",
       "gauze",
       "bleeding"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR029",
@@ -1370,7 +1474,8 @@
       "respiratory",
       "oxygenation",
       "ventilation"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR030",
@@ -1383,7 +1488,8 @@
       "Abiomed",
       "cardiac support",
       "mechanical support"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR031",
@@ -1396,7 +1502,8 @@
       "ventricular assist device",
       "LVAD",
       "cardiac support"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-PR032",
@@ -1409,7 +1516,8 @@
       "high flow nasal cannula",
       "oxygenation",
       "respiratory"
-    ]
+    ],
+    "updatedDate": "2026-06-27"
   },
   {
     "id": "GUID-3203-T017",
@@ -1423,7 +1531,8 @@
       "obstetric",
       "fetal assessment",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   },
   {
     "id": "GUID-3203-T018",
@@ -1437,6 +1546,7 @@
       "triage",
       "trauma center",
       "trauma"
-    ]
+    ],
+    "updatedDate": "2026-08-28"
   }
 ]
