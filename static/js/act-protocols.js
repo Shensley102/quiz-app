@@ -413,6 +413,11 @@
     if (p.source) parts.push(`Source: ${p.source}`);
     return parts.length ? `<div class="protocol-source-meta">${parts.map(escapeHtml).join(' • ')}</div>` : '';
   }
+  function formatUpdatedDate(value) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return '';
+    const [year, month, day] = value.split('-').map(Number);
+    return new Intl.DateTimeFormat(undefined, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(year, month - 1, day)));
+  }
   function render() {
     const list = filtered();
     els.count.textContent = `${list.length} of ${state.protocols.length} protocols shown${state.searchReady ? '' : ' (metadata search)'}`;
@@ -432,7 +437,7 @@
         ${renderReasons(p)}
         <div class="offline-status ${statusClass(p)}" data-status>${statusText(p)}</div>
         <div class="protocol-buttons">
-          <button class="btn btn-outline" type="button" data-action="open" data-id="${escapeHtml(p.id)}" aria-label="Open PDF for ${escapeHtml(p.id)} ${escapeHtml(p.title)}">Open PDF</button>
+          <button class="btn btn-outline protocol-open-btn" type="button" data-action="open" data-id="${escapeHtml(p.id)}" aria-label="Open PDF for ${escapeHtml(p.id)} ${escapeHtml(p.title)}, updated ${escapeHtml(formatUpdatedDate(p.updatedDate))}"><span>Open PDF</span><span class="protocol-updated-date">Updated ${escapeHtml(formatUpdatedDate(p.updatedDate))}</span></button>
         </div>
       </article>`;
     }).join('');
