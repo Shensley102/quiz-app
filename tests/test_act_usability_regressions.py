@@ -1,3 +1,5 @@
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -88,12 +90,14 @@ def test_blood_search_priority_preserves_category_filtering_and_grouping():
 
 
 def test_service_worker_version_is_bumped_without_changing_protocol_pdf_cache():
-    assert "const CACHE_VERSION = 'v2.7.26';" in SERVICE_WORKER
+    assert "const CACHE_VERSION = 'v2.7.27';" in SERVICE_WORKER
     assert "const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v6';" in SERVICE_WORKER
 
 
 def test_protocol_cards_have_accessible_open_buttons_and_filter_state():
-    assert 'aria-label="Open PDF for ${escapeHtml(p.id)} ${escapeHtml(p.title)}"' in PROTOCOLS
+    assert 'aria-label="Open PDF for ${escapeHtml(p.id)} ${escapeHtml(p.title)}, updated ${escapeHtml(formatUpdatedDate(p.updatedDate))}"' in PROTOCOLS
+    assert 'class="protocol-updated-date">Updated ${escapeHtml(formatUpdatedDate(p.updatedDate))}' in PROTOCOLS
+    assert '.protocol-updated-date' in ACT_CSS
     assert 'setAttribute(\'aria-pressed\', String(selected))' in PROTOCOLS
     assert 'aria-pressed="true"' in TEMPLATE
     assert 'aria-pressed="false"' in TEMPLATE
@@ -157,3 +161,13 @@ def test_pwa_checks_the_deployment_version_and_refreshes_app_caches():
     assert "type: 'CLEAR_APP_CACHES'" in PWA_UTILS
     assert "type: 'APP_CACHES_CLEARED'" in SERVICE_WORKER
     assert "name.startsWith('study-guru-') || name.startsWith('nurse-study-hub-')" in SERVICE_WORKER
+
+
+def test_protocol_pdf_updated_dates_match_git_history():
+    result = subprocess.run(
+        [sys.executable, 'scripts/sync-act-protocol-dates.py', '--check'],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
