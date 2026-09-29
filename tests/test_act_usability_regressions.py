@@ -81,32 +81,47 @@ def test_blood_search_priority_is_narrow_and_uses_stable_protocol_ids():
     assert 'bloodSearchProtocolRank(p.id) !== -1' in PROTOCOLS
 
 
-def test_blood_search_priority_preserves_category_filtering_and_grouping():
-    category_filter = PROTOCOLS.index("if (state.category !== 'All' && p.category !== state.category) continue;")
+def test_blood_search_priority_remains_available_in_global_search_results():
     priority_match = PROTOCOLS.index('if (bloodPriorityActive && bloodSearchProtocolRank(p.id) !== -1)')
-    assert category_filter < priority_match
+    search_render = PROTOCOLS.index('const list = hasQuery ? filtered() : [];')
+    assert priority_match < search_render
     assert "category: 'Procedures'" in PROTOCOLS
     assert 'a.protocol.category === BLOOD_SEARCH_PRIORITY.category ? -1' in PROTOCOLS
 
 
 def test_service_worker_version_is_bumped_without_changing_protocol_pdf_cache():
-    assert "const CACHE_VERSION = 'v2.7.27';" in SERVICE_WORKER
+    assert "const CACHE_VERSION = 'v2.7.28';" in SERVICE_WORKER
     assert "const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v6';" in SERVICE_WORKER
 
 
-def test_protocol_cards_have_accessible_open_buttons_and_filter_state():
-    assert 'aria-label="Open PDF for ${escapeHtml(p.id)} ${escapeHtml(p.title)}, updated ${escapeHtml(formatUpdatedDate(p.updatedDate))}"' in PROTOCOLS
-    assert 'class="protocol-updated-date">Updated ${escapeHtml(formatUpdatedDate(p.updatedDate))}' in PROTOCOLS
+def test_protocol_rows_have_accessible_open_buttons_and_accordion_state():
+    assert 'aria-label="Open PDF for ${escapeHtml(p.id)} ${escapeHtml(p.title)}, updated ${escapeHtml(updatedDate)}"' in PROTOCOLS
+    assert 'class="protocol-updated-date">Updated ${escapeHtml(updatedDate)}' in PROTOCOLS
     assert '.protocol-updated-date' in ACT_CSS
-    assert 'setAttribute(\'aria-pressed\', String(selected))' in PROTOCOLS
-    assert 'aria-pressed="true"' in TEMPLATE
-    assert 'aria-pressed="false"' in TEMPLATE
+    assert 'aria-expanded="${expanded}"' in PROTOCOLS
+    assert 'aria-controls="${panelId}"' in PROTOCOLS
+    assert "state.expandedCategory === btn.dataset.category ? '' : btn.dataset.category" in PROTOCOLS
+
+
+def test_search_results_render_above_the_category_accordion():
+    assert TEMPLATE.index('id="searchResultsSection"') < TEMPLATE.index('id="protocolGrid"')
+    assert 'id="searchResults"' in TEMPLATE
+    assert "els.searchResultsSection.classList.toggle('hidden', !hasQuery);" in PROTOCOLS
+    assert "renderProtocolRow(protocol, { showCategory: true, showReasons: true })" in PROTOCOLS
+
+
+def test_existing_categories_render_as_single_open_accordion():
+    assert "const CATEGORY_ORDER = ['General', 'Medical', 'Cardiac', 'Trauma', 'Pediatric', 'Procedures'];" in PROTOCOLS
+    assert 'data-action="toggle-category"' in PROTOCOLS
+    assert 'const expanded = state.expandedCategory === category;' in PROTOCOLS
+    assert 'class="protocol-category-panel"${expanded ? \'\' : \' hidden\'}' in PROTOCOLS
 
 
 def test_clinical_calculators_are_linked_only_from_act_protocols():
     assert 'href="/act-protocols/dose-calculator"' in TEMPLATE
     assert 'href="/act-protocols/oxygen-calculator"' in TEMPLATE
-    assert 'ACT clinical calculation tools' in TEMPLATE
+    assert 'id="clinicalToolsHeading">Clinical Calculation Tools' in TEMPLATE
+    assert TEMPLATE.index('id="protocolGrid"') < TEMPLATE.index('class="act-tool-section"')
     assert '/act-protocols/dose-calculator' not in HOME_TEMPLATE
     assert '/act-protocols/oxygen-calculator' not in HOME_TEMPLATE
 
