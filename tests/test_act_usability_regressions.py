@@ -90,7 +90,7 @@ def test_blood_search_priority_remains_available_in_global_search_results():
 
 
 def test_service_worker_version_is_bumped_without_changing_protocol_pdf_cache():
-    assert "const CACHE_VERSION = 'v2.7.28';" in SERVICE_WORKER
+    assert "const CACHE_VERSION = 'v2.7.29';" in SERVICE_WORKER
     assert "const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v6';" in SERVICE_WORKER
 
 
@@ -115,6 +115,16 @@ def test_existing_categories_render_as_single_open_accordion():
     assert 'data-action="toggle-category"' in PROTOCOLS
     assert 'const expanded = state.expandedCategory === category;' in PROTOCOLS
     assert 'class="protocol-category-panel"${expanded ? \'\' : \' hidden\'}' in PROTOCOLS
+
+
+def test_category_accordion_has_square_corners_and_a_solid_color():
+    accordion_styles = ACT_CSS[ACT_CSS.index('.protocol-accordion {'):]
+    accordion_styles = accordion_styles[:accordion_styles.index('}')]
+    assert 'border-radius: 0;' in accordion_styles
+    category_styles = ACT_CSS[ACT_CSS.index('.protocol-category-toggle {'):]
+    category_styles = category_styles[:category_styles.index('}')]
+    assert 'background: var(--act-primary);' in category_styles
+    assert 'linear-gradient' not in category_styles
 
 
 def test_clinical_calculators_are_linked_only_from_act_protocols():

@@ -579,9 +579,16 @@ body {
 .protocol-list {
   overflow: hidden;
   border: 2px solid var(--act-border);
-  border-radius: 20px;
   background: var(--act-card);
   box-shadow: 0 10px 26px var(--act-shadow);
+}
+
+.protocol-accordion {
+  border-radius: 0;
+}
+
+.protocol-list {
+  border-radius: 20px;
 }
 
 .protocol-category + .protocol-category,
@@ -602,7 +609,7 @@ body {
   min-height: 72px;
   padding: 18px 22px;
   border: 0;
-  background: linear-gradient(135deg, var(--act-primary), var(--act-secondary));
+  background: var(--act-primary);
   color: var(--act-on-primary);
   cursor: pointer;
   font: inherit;
@@ -612,7 +619,7 @@ body {
 }
 
 .protocol-category-toggle:hover {
-  filter: brightness(1.06);
+  background: var(--act-primary);
 }
 
 .protocol-category-toggle:focus-visible,
