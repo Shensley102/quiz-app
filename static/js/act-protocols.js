@@ -14,10 +14,10 @@
   const PROTOCOL_ID_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
   const INSTALL_DISMISSED_KEY = 'act-protocols-install-dismissed';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
-  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), category: 'All', query: '', suggestions: [], activeSuggestionIndex: -1, saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', downloadTotal: 0, downloadCompleted: 0, downloadInProgress: false, opening: new Set(), deferredInstallPrompt: null };
+  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), expandedCategory: '', query: '', suggestions: [], activeSuggestionIndex: -1, saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', downloadTotal: 0, downloadCompleted: 0, downloadInProgress: false, opening: new Set(), deferredInstallPrompt: null };
   const els = {
-    grid: document.getElementById('protocolGrid'), search: document.getElementById('protocolSearch'), clearSearch: document.getElementById('clearProtocolSearch'), filters: document.getElementById('categoryFilters'),
-    count: document.getElementById('resultCount'), offlineSummary: document.getElementById('offlineSummary'), suggestions: document.getElementById('protocolSearchSuggestions'),
+    grid: document.getElementById('protocolGrid'), searchResults: document.getElementById('searchResults'), searchResultsSection: document.getElementById('searchResultsSection'), search: document.getElementById('protocolSearch'), clearSearch: document.getElementById('clearProtocolSearch'),
+    count: document.getElementById('resultCount'), total: document.getElementById('protocolTotal'), offlineSummary: document.getElementById('offlineSummary'), suggestions: document.getElementById('protocolSearchSuggestions'),
     retryBtn: document.getElementById('retryFailedBtn'),
     installHelp: document.getElementById('installActHelp'), installBtn: document.getElementById('installActBtn'), dismissInstallBtn: document.getElementById('dismissInstallActBtn')
   };
@@ -203,7 +203,6 @@
     state.resultMeta.clear();
     const matches = [];
     for (const p of state.protocols) {
-      if (state.category !== 'All' && p.category !== state.category) continue;
       if (!q) { matches.push({ protocol: p, score: 0 }); continue; }
       if (bloodPriorityActive && bloodSearchProtocolRank(p.id) !== -1) {
         const match = { score: 0, reasons: [] };
@@ -343,7 +342,7 @@
   function returnState() {
     return {
       query: state.query,
-      category: state.category,
+      expandedCategory: state.expandedCategory,
       scrollY: Math.max(0, Math.round(window.scrollY || window.pageYOffset || 0)),
       openedAt: Date.now()
     };
@@ -372,14 +371,11 @@
   function applyRestoredFilters(saved) {
     if (!saved) return;
     state.query = typeof saved.query === 'string' ? saved.query : '';
-    state.category = typeof saved.category === 'string' && saved.category ? saved.category : 'All';
+    state.expandedCategory = typeof saved.expandedCategory === 'string'
+      ? saved.expandedCategory
+      : (saved.category && saved.category !== 'All' ? saved.category : '');
     els.search.value = state.query;
     updateClearSearchButton();
-    els.filters.querySelectorAll('.filter-btn').forEach((button) => {
-      const selected = button.dataset.category === state.category;
-      button.classList.toggle('active', selected);
-      button.setAttribute('aria-pressed', String(selected));
-    });
   }
   function restoreProtocolListState(saved, { restoreScroll = false } = {}) {
     if (!saved || !state.protocols.length) return;
@@ -397,8 +393,8 @@
           return;
         }
         if (!saved.openedProtocolId) return;
-        const openedButton = els.grid.querySelector(`[data-action="open"][data-id="${CSS.escape(saved.openedProtocolId)}"]`);
-        openedButton?.closest('.protocol-card')?.scrollIntoView({ block: 'center' });
+        const openedButton = document.querySelector(`[data-action="open"][data-id="${CSS.escape(saved.openedProtocolId)}"]`);
+        openedButton?.closest('.protocol-row')?.scrollIntoView({ block: 'center' });
       });
     });
   }
@@ -418,29 +414,64 @@
     const [year, month, day] = value.split('-').map(Number);
     return new Intl.DateTimeFormat(undefined, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(year, month - 1, day)));
   }
-  function render() {
-    const list = filtered();
-    els.count.textContent = `${list.length} of ${state.protocols.length} protocols shown${state.searchReady ? '' : ' (metadata search)'}`;
-    updateOfflineSummary();
-    if (!list.length) { els.grid.innerHTML = '<div class="empty-state">No protocols match your search and filter.</div>'; return; }
-    let currentCategory = '';
-    els.grid.innerHTML = list.map((p) => {
-      const heading = p.category !== currentCategory
-        ? `<div class="protocol-group-heading" role="heading" aria-level="2">${escapeHtml(p.category)}</div>`
-        : '';
-      currentCategory = p.category;
-      return `${heading}
-      <article class="protocol-card" data-file="${escapeHtml(p.file)}">
-        <div class="protocol-meta"><span class="protocol-pill protocol-id">${escapeHtml(p.id)}</span><span class="protocol-pill">${escapeHtml(p.category)}</span></div>
-        <h3>${escapeHtml(p.title)}</h3>
-        ${renderSourceMeta(p)}
-        ${renderReasons(p)}
-        <div class="offline-status ${statusClass(p)}" data-status>${statusText(p)}</div>
-        <div class="protocol-buttons">
-          <button class="btn btn-outline protocol-open-btn" type="button" data-action="open" data-id="${escapeHtml(p.id)}" aria-label="Open PDF for ${escapeHtml(p.id)} ${escapeHtml(p.title)}, updated ${escapeHtml(formatUpdatedDate(p.updatedDate))}"><span>Open PDF</span><span class="protocol-updated-date">Updated ${escapeHtml(formatUpdatedDate(p.updatedDate))}</span></button>
+  function renderProtocolRow(p, { showCategory = false, showReasons = false } = {}) {
+    const updatedDate = formatUpdatedDate(p.updatedDate);
+    const secondary = [p.id, ...(showCategory ? [p.category] : [])];
+    return `<article class="protocol-row ${statusClass(p)}" data-file="${escapeHtml(p.file)}">
+      <button class="protocol-row-button" type="button" data-action="open" data-id="${escapeHtml(p.id)}" aria-label="Open PDF for ${escapeHtml(p.id)} ${escapeHtml(p.title)}, updated ${escapeHtml(updatedDate)}">
+        <span class="protocol-row-copy">
+          <strong class="protocol-row-title">${escapeHtml(p.title)}</strong>
+          <span class="protocol-row-meta">${secondary.map(escapeHtml).join(' • ')}<span class="protocol-row-status" data-status> • ${escapeHtml(statusText(p))}</span></span>
+        </span>
+        <span class="protocol-updated-date">Updated ${escapeHtml(updatedDate)}</span>
+      </button>
+      ${renderSourceMeta(p)}
+      ${showReasons ? renderReasons(p) : ''}
+    </article>`;
+  }
+  function protocolsByCategory(category) {
+    return state.protocols
+      .filter((protocol) => protocol.category === category)
+      .sort((a, b) => {
+        const idDelta = PROTOCOL_ID_COLLATOR.compare(normalizeProtocolId(a.id), normalizeProtocolId(b.id));
+        return idDelta || a.title.localeCompare(b.title);
+      });
+  }
+  function renderAccordion() {
+    els.grid.innerHTML = CATEGORY_ORDER.map((category) => {
+      const protocols = protocolsByCategory(category);
+      const expanded = state.expandedCategory === category;
+      const panelId = `protocol-category-${normalize(category).replace(/[^a-z0-9]+/g, '-')}`;
+      return `<section class="protocol-category${expanded ? ' expanded' : ''}">
+        <h3>
+          <button class="protocol-category-toggle" type="button" data-action="toggle-category" data-category="${escapeHtml(category)}" aria-expanded="${expanded}" aria-controls="${panelId}">
+            <span>${escapeHtml(category)}</span>
+            <span class="protocol-category-summary"><span>${protocols.length} protocols</span><span class="protocol-category-chevron" aria-hidden="true">▶</span></span>
+          </button>
+        </h3>
+        <div id="${panelId}" class="protocol-category-panel"${expanded ? '' : ' hidden'}>
+          ${expanded ? protocols.map((protocol) => renderProtocolRow(protocol)).join('') : ''}
         </div>
-      </article>`;
+      </section>`;
     }).join('');
+  }
+  function render() {
+    const hasQuery = Boolean(normalize(state.query));
+    const list = hasQuery ? filtered() : [];
+    els.total.textContent = `${state.protocols.length} protocols`;
+    els.searchResultsSection.classList.toggle('hidden', !hasQuery);
+    if (hasQuery) {
+      els.count.textContent = `${list.length} ${list.length === 1 ? 'protocol' : 'protocols'} found${state.searchReady ? '' : ' (metadata search)'}`;
+      els.searchResults.innerHTML = list.length
+        ? list.map((protocol) => renderProtocolRow(protocol, { showCategory: true, showReasons: true })).join('')
+        : '<div class="empty-state">No protocols match your search.</div>';
+    } else {
+      els.count.textContent = '';
+      els.searchResults.innerHTML = '';
+      state.resultMeta.clear();
+    }
+    renderAccordion();
+    updateOfflineSummary();
   }
   function pdfInfoUrl(file) {
     return `/act-protocols/pdf-info?${new URLSearchParams({ file }).toString()}`;
@@ -670,16 +701,21 @@
       if (e.target === els.search || els.suggestions?.contains(e.target)) return;
       closeSuggestions();
     });
-    els.filters.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-category]');
-      if (!btn) return;
-      state.category = btn.dataset.category;
-      els.filters.querySelectorAll('.filter-btn').forEach((b) => { const selected = b === btn; b.classList.toggle('active', selected); b.setAttribute('aria-pressed', String(selected)); });
-      saveListState();
-      render();
-    });
     els.grid.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-action]');
+      if (!btn) return;
+      if (btn.dataset.action === 'toggle-category') {
+        state.expandedCategory = state.expandedCategory === btn.dataset.category ? '' : btn.dataset.category;
+        saveListState();
+        render();
+        return;
+      }
+      const p = state.protocols.find(x => x.id === btn.dataset.id);
+      if (!p) return;
+      handleOpen(p);
+    });
+    els.searchResults.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-action="open"]');
       if (!btn) return;
       const p = state.protocols.find(x => x.id === btn.dataset.id);
       if (!p) return;
