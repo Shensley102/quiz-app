@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-28T21:54:58.483912+00:00",
-  "totalProtocolsInManifest": 110,
-  "totalPdfsFound": 110,
+  "generatedAt": "2026-11-16T18:07:28.727133+00:00",
+  "totalProtocolsInManifest": 112,
+  "totalPdfsFound": 112,
   "totalPdfsMissing": 0,
   "missingPdfs": [],
-  "totalPagesScanned": 276,
+  "totalPagesScanned": 287,
   "pagesWithLittleOrNoText": [],
   "possibleScannedPdfs": [],
   "totalMedicationAliasesLoaded": 146,
@@ -142,7 +142,9 @@
     "GUID-3203-T012",
     "GUID-3203-T013",
     "GUID-3203-T014",
-    "GUID-3203-T016"
+    "GUID-3203-T016",
+    "INFUSION-ADULT",
+    "INFUSION-PEDIATRIC"
   ],
   "warnings": []
 }

@@ -6679,5 +6679,573 @@
       }
     ],
     "detectedMedications": []
+  },
+  {
+    "id": "INFUSION-ADULT",
+    "normalizedId": "infusion-adult",
+    "title": "Adult Drip Chart / Titration Guidelines (2025)",
+    "category": "Infusion Guidelines",
+    "folder": "Infusion Guidlines",
+    "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+    "tags": [
+      "adult",
+      "infusion",
+      "drip chart",
+      "titration",
+      "continuous infusion",
+      "2025"
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "company confidential \u00a9 orlando health, inc. all rights reserved. pharmacotherapy approved: august 15, 2025 orlando health adult continuous infusion standard dilutions and dosing guidelines (all intravenous preparation of medications should be done by pharmacy except in emergent situations) disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) vasoactive/ inotropic medications angiotensin ii (giapreza) 0.5 mg / 100 ml in ns (5,000 ng/ml) n/a n/a 10 ng/kg/min 5-40 ng/kg/min 2.5 mg / 250 ml (10,000 ng/ml) dopamine (intropin) premix in d5w 800 mg/250 ml (3200 mcg/ml) ns n/a 5 mcg/kg/min 2-20 mcg/kg/min n/a dobutamine (dobutrex) premix in d5w 500 mg/250 ml (2000 mcg/ml) ns n/a 5 mcg/kg/min 2-20 mcg/kg/min 500 mg/100 ml (5000 mcg/ml) epinephrine (adrenalin) * see page 5 for anaphylaxis use 4 mg/250 ml in ns (16 mcg/ml) (mix using 4 ml of 1:1000 (1 mg/ml) vial) d5w n/a 0.05 mcg/kg/min 0.025-0.5 mcg/kg/min 8 mg/250 ml (32 mcg/ml) 16,000 mcg/250 ml (64 mcg/ml) isoproterenol (isuprel) 1000 mcg/250ml in ns (4 mcg/ml) d5w n/a 2 mcg/min 2-10 mcg/min 200 mcg/50 ml (4 mcg/ml) ep lab only milrinone (primacor) premix in d5w 20 mg/100 ml (200 mcg/ml) ns 50 mcg/kg over 10 min 0.125 - 0.375 mcg/kg/min (patient specific) 0.125-0.75 mcg/kg/min n/a nesiritide (natrecor) 1.5 mg/250 ml in d5w (6 mcg/ml) ns 2 mcg/kg 0.01 mcg/kg/min 0.01-0.03 mcg/kg/min n/a norepinephrine (levophed) 8 mg/250 ml in ns (32 mcg/ml) d5w n/a 0.05 mcg/kg/min 0.05-1 mcg/kg/min 16 mg/250 ml (64 mcg/ml) 32 mg/250 ml (128 mcg/ml) phenylephrine (neosynephrine) 40 mg/250 ml in ns (0.16 mg/ml) d5w n/a 0.5 mcg/kg/min 0.5-5 mcg/kg/min 160 mg/250 ml (0.64 mg/ml) 320 mg/250 ml (1.28 mg/ml) vasopressin (pitressin) 20 units/100 ml in ns (0.2 units/ml) d5w n/a 0.03 units/min 0.03 units/min 40 units/100ml (0.4 units/ml) company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 2 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) antihypertensive/antiarrhythmic medications amiodarone (cordarone) 450 mg/250 ml in d5w (1.8 mg/ml) premix in d5w 360 mg/ 200 ml (1.8 mg/ml) n/a v-fib: 300mg iv-push x1, may give additional 150mg iv- push x1 a-fib: 150mg iv- bolus over 10min 1mg/min x 6 hours, then 0.5mg/min x 18 hours (an alternative dosing regimen that may be used in a- fib is 20mg/kg infused over 24 hours) 900 mg/500 ml (1.8 mg/ml) clevidipine (cleviprex) premix 50 mg / 100 ml(0.5 mg/ml) n/a n/a 1-2 mg/hr 4-6 mg/hr 25 mg / 50 ml (0.5 mg/ml) diltiazem (cardizem) 125 mg/125 ml in ns (1 mg/ml) d5w 0.25 mg/kg; may repeat after 15 min with 0.35 mg/kg 5 mg/hr 5-15 mg/hr 100 mg / 100ml (1 mg/ml) esmolol (brevibloc) premix in ns 2gm/100ml ns (20 mg/ml) d5w 500 mcg/kg over 1 minute 50 mcg/kg/min 50-300 mcg/kg/min 10g / 500ml (20mg/ml) fenoldopam (corlopam) 20,000 mcg/250 ml in ns (80 mcg/ml) d5w n/a 0.1 mcg/kg/min 0.01-1.6 mcg/kg/min n/a labetalol (normodyne, trandate) 200 mg/200 ml in ns (1 mg/ml) d5w n/a 2 mg/min 1-4 mg/min 1000 mg/500 ml (2 mg/ml) lidocaine premix in d5w 1 gm/250 ml (4 mg/ml) ns 1-1.5 mg/kg; may repeat after 5-10 min with 0.5-0.75 mg/kg to a total of 3 mg/kg 1-2 mg/min 1-4 mg/min n/a nicardipine (cardene) 50 mg/ 250 ml in ns (0.2 mg/ml) d5w n/a 5 mg/hr 2.5-15 mg/hr 40 mg/200 ml premix (0.2 mg/ml) 125 mg / 250ml (0.5 mg/ml) nitroglycerin (nitro-bid iv) premix in d5w 25 mg/250 ml (100 mcg/ml) n/a n/a 5 mcg/min 5-200 mcg/min 50 mg/250 ml (200 mcg/ml) 50 mg/500 ml (100 mcg/ml) nitroprusside (nipride) 50 mg/250 ml in d5w (200 mcg/ml) ns n/a 0.5 mcg/kg/min 0.5-10 mcg/kg/min 100 mg/ 250 ml (400 mcg/ml) procainamide (pronestyl) 1 gm/250 ml in d5w (4 mg/ml) ns 17mg/kg (max 1 gm) over 30 min 2 mg/min 1-4 mg/min n/a company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 3 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) neuromuscular blocking agents cisatracurium (nimbex) 100 mg/100 ml in ns (1 mg/ml) d5w 0.1 mg/kg 2 mcg/kg/min 2-10 mcg/kg/min 500 mg/100 ml (5 mg/ml) atracurium (tracrium) 100 mg/100 ml in ns (1 mg/ml) d5w 0.5 mg/kg 5 mcg/kg/min 5-15 mcg/kg/min 1000 mg/200 ml (5 mg/ml) rocuronium (zemuron) 250 mg/125 ml in ns (2 mg/ml) n/a 50mg (<50kg 1mg/kg) 4 mcg/kg/min 1-12 mcg/kg/min 500 mg/125 ml (4 mg/ml) vecuronium (norcuron) 100 mg/100 ml in ns (1 mg/ml) d5w 0.1 mg/kg 0.5 mcg/kg/min 0.5-2mcg/kg/min n/a pancuronium (pavulon) 100 mg/100 ml (1 mg/ml) n/a 0.1 mg/kg 0.5 mcg/kg/min 0.5-2 mcg/kg/min 200 mg/100ml (2 mg/ml) sedatives lorazepam (ativan) 40 mg/40 ml (1 mg/ml) syringe* 1-4 mg 1 mg/hr 0.5-8 mg/hr n/a midazolam (versed) premix 55 mg/55 ml (1 mg/ml) syringe* 2-6 mg 1 mg/hr 1-15 mg/hr 250 mg/50 ml (5 mg/ml) midazolam (versed) status epilepticus **see status epilepticus section** propofol (diprivan) premix 1 gm/100 ml (10 mg/ml) n/a do not bolus 10 mcg/kg/min 5-50 mcg/kg/min n/a propofol (diprivan) status epilepticus **see status epilepticus section** dexmedetomidine (precedex) 400 mcg/100 ml in ns (4 mcg/ml) n/a do not bolus 0.2 mcg/kg/hr 0.2-1.5 mcg/kg/hr 200 mcg/100 ml (2 mcg/ml) 200 mcg/50 ml (4 mcg/ml) ketamine (ketalar) pain management 250 mg/250 ml (1 mg/ml) d5w 0.5 mg/kg 0.05 mg/kg/hr 0.05-0.5 mg/kg/hr 500 mg/250 ml (2 mg/ml) ketamine (ketalar) icu sedation 2500 mg/250 ml (10 mg/ml) d5w 0.5 mg/kg 0.5 mg/kg/hr 0.5 - 5 mg/kg/hr 1000 mg / 100 ml premix (10 mg/ml) 1250 mg/250 ml (5 mg/ml) ketamine (ketalar) status epilepticus **see status epilepticus section** company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 4 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose status epilepticus drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) ketamine (ketalar) status epilepticus 2500 mg/250 ml in ns (10 mg/ml) d5w 0.5 mg/kg 0.5 mg/kg/hr 0.5 - 7.5 mg/kg/hr 1250 mg/250 ml in ns (5 mg/ml) 1000 mg / 100 ml premix (10 mg/ml) midazolam (versed) status epilepticus 500 mg/100 ml (5 mg/ml) n/a 0.2 mg/kg 0.2 mg/hg/hr 0.2-2 mg/kg/hr n/a pentobarbital (nembutal) status epilepticus 2000 mg/250 ml in ns (8 mg/ml) d5w 10-15 mg/kg x 1 over 30min 1 mg/kg/hr 1-5 mg/kg/hr 1000 mg/250 ml in ns (4 mg/ml) propofol (diprivan) status epilepticus premix 1 gm/100 ml (10 mg/ml) n/a do not bolus 50 mcg/kg/min 50-100 mcg/kg/min n/a narcotic analgesics drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) fentanyl (sublimaze) premix 2500 mcg/50 ml (50 mcg/ml) syringe* 25-50 mcg 50 mcg/hr 25-500 mcg/hr* 20 mcg/ml remifentanil (ultiva) 5 mg/250 ml in ns (20 mcg/ml) d5w na 0.1 mcg/kg/min 0.1-1 mcg/kg/min* 5 mg/100 ml (50 mcg/ml) hydromorphone (dilaudid) premix 10 mg/50 ml (0.2 mg/ml) syringe* 0.3-1 mg 0.5 mg/hr standard: 0.2-3.5 mg/hr* high dose: 0.2-10 mg/hr* 50 mg/50 ml (1 mg/ml) 250 mg / 50 ml (5 mg/ml) morphine premix 55 mg/55 ml (1 mg/ml) syringe* 2-5 mg 1 mg/hr 1-15 mg/hr* 275 mg/55 ml (5 mg/ml) *caveat: in rare situations, a patient may require higher doses - a decision that should be made based on a discussion between the pharmacist and the critical care or palliative provider company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 5 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose anticoagulants/antiplatelets abciximab (reopro) 7.2 mg/250 ml in ns (0.029 mg/ml) n/a 0.25 mg/kg 0.125 mcg/kg/min (maximum 10mcg/min) n/a n/a alteplase ( pe) 1 mg/ml in diluent provided in kit (1 mg/ml) *for treatment of pe via the ekos system 10mg/100ml of ns should be used na pe: 100 mg over 2 hours pe ekos: 1mg/hr x 6h per sheath / ekos alternative: 10 mg / 200 ml alteplase tpa- (vascular) 10mg/100ml in ns (0.1 mg/ml) 10mg/200ml in ns (0.05mg/ml) na varies 0.5 mg - 2 mg/hr na argatroban 125 mg/125 ml in ns (1 mg/ml) d5w n/a per order set 0.5-10 mcg/kg/min 250mg/250 ml bivalirudin - cath lab (angiomax) 250 mg / 50 ml in ns d5w 0.75mg/kg per order set per order set n/a bivalirudin - hit (angiomax) 250 mg / 500 ml in ns (0.5 mg / ml) d5w na 0.15 - 0.2 mg/kg/hr (varies based on organ dysfunction) per aptt values n/a eptifibatide (integrilin) premix 75 mg/100 ml (750 mcg/ml) n/a 180 mcg/kg (a second bolus of 180mcg/kg is frequently used) crcl > 50 ml/min: 2 mcg/kg/min crcl < 50 ml/min: 1 mcg/kg/min n/a n/a tirofiban (aggrastat) premix 5 mg / 100 ml 12.5 mg/ 250 ml (0.05 mg / ml) n/a 25 mcg/kg iv bolus given over 3 minutes (infused from the bag) crcl > 60 ml/min: 0.15 mcg/kg/min crcl < 60 ml/min: 0.075 mcg/kg/min n/a n/a miscellaneous agents acetylcysteine (acetadote) 150 mg/kg in 200 ml d5w 50 mg/kg in 500 ml d5w 100 mg/kg in 1000 ml d5w d5w 150 mg/kg over 1 hr 50 mg/kg over 4 hours followed by 100 mg/kg over 16 hours* (*150 mg/kg over 24h for up to 72h in non- acetaminophen toxicity) n/a < 40 kg, see order set company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 6 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) miscellaneous agents (continued) aminophylline 500 mg/500 ml in ns (1 mg/ml) d5w 5 mg/kg iv over 30 minutes 0.5 mg/kg/hr 0.3-0.7 mg/kg/hr 1000 mg/500 ml (2 mg/ml) bumetanide (bumex) 10 mg/100 ml in ns (0.1 mg/ml) d5w 1 mg 0.5 mg/hr 0.5-2 mg/hr n/a epinephrine (adrenalin) **anaphylaxis** 1mg/250ml in ns (4 mcg/ml) (mix using 1 ml of 1:1000 [1 mg/ml] vial) d5w n/a 1 mcg/min 1-10 mcg/min n/a epoprostenol (flolan) 0.3mg/100ml in provided sterile diluent (3,000 ng/ml) n/a do not bolus 1 ng/kg/min 1-40 ng/kg/min 750 ng/ml (cath lab only) 1,500 ng/ml (cath lab only) 5,000 ng/ml 10,000 ng/ml 15,000 ng/ml 20,000 ng/ml *refer to pharmacy procedure: procedure for the use of agents used in pulmonary hypertension furosemide (lasix) 100 mg/100 ml in ns (1 mg/ml) d5w 40 mg 10 mg/hr 5-20 mg/hr 200 mg/100 ml (2 mg/ml) glucagon (glucagen) 10 mg/100 ml in ns (0.1 mg/ml) n/a 2-10 mg iv over 1 minute 1 mg/hr 1-5 mg/hr n/a hydrocortisone 200 mg / 250 ml in ns (0.8 mg/ml) d5w 100 mg 8.33 mg/hr 200 mg over 24 hours (8,33 mg/hr) n/a insulin, regular (humulin r, novolin r) 100 units/100 ml in ns (1 unit/ml) n/a 0.1 unit/kg 0.1 unit/kg/hr 1-30 units/hr n/a naloxone (narcan) 2 mg/500 ml in ns (0.004 mg/ml) d5w 0.2-2mg; may repeat at 2- 3 min intervals up to 10mg 0.4 mg/hr 0.4-4 mg/hr 1 mg/250 ml (0.004 mg/ml) octreotide (sandostatin) 500 mcg/100 ml in ns (5 mcg/ml) d5w 50 mcg 50 mcg/hr 25-50 mcg/hr n/a company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 7 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose miscellaneous agents (continued) drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) oxytocin (pitocin) 30 units / 500 ml in ns (60 milliunits/ml) n/a na antepartum: 0.5 - 1 milliunit/min post partum: 20 milliunit/min antepartum: 5-10 milliunit/min post partum: 20-40 milliunit/min to a total of 10 units induced abortion: 10-100 milliunits/min when needed, high dose bags (i.e. > 0.1 unit/ml) are prepared on a patient-specific basis. pentobarbital (nembutal) icp management 2000 mg/250 ml in ns (8 mg/ml) d5w 10 mg/kg x 1 over 30min, then 5mg/kg/hr x 3 hr 1 mg/kg/hr 1-5 mg/kg/hr 1000 mg/250 ml (4 mg/ml) note regarding the orlando health adult critical care titration guidelines \u2022 the orlando health adult critical care titration guidelines previously included in this document have been retired / deleted. \u2022 as of april 2019, all orders for titratable medications generated via our clinical information system include all order elements negating the need for the titration guidelines.",
+    "pages": [
+      {
+        "page": 1,
+        "text": "company confidential \u00a9 orlando health, inc. all rights reserved. pharmacotherapy approved: august 15, 2025 orlando health adult continuous infusion standard dilutions and dosing guidelines (all intravenous preparation of medications should be done by pharmacy except in emergent situations) disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) vasoactive/ inotropic medications angiotensin ii (giapreza) 0.5 mg / 100 ml in ns (5,000 ng/ml) n/a n/a 10 ng/kg/min 5-40 ng/kg/min 2.5 mg / 250 ml (10,000 ng/ml) dopamine (intropin) premix in d5w 800 mg/250 ml (3200 mcg/ml) ns n/a 5 mcg/kg/min 2-20 mcg/kg/min n/a dobutamine (dobutrex) premix in d5w 500 mg/250 ml (2000 mcg/ml) ns n/a 5 mcg/kg/min 2-20 mcg/kg/min 500 mg/100 ml (5000 mcg/ml) epinephrine (adrenalin) * see page 5 for anaphylaxis use 4 mg/250 ml in ns (16 mcg/ml) (mix using 4 ml of 1:1000 (1 mg/ml) vial) d5w n/a 0.05 mcg/kg/min 0.025-0.5 mcg/kg/min 8 mg/250 ml (32 mcg/ml) 16,000 mcg/250 ml (64 mcg/ml) isoproterenol (isuprel) 1000 mcg/250ml in ns (4 mcg/ml) d5w n/a 2 mcg/min 2-10 mcg/min 200 mcg/50 ml (4 mcg/ml) ep lab only milrinone (primacor) premix in d5w 20 mg/100 ml (200 mcg/ml) ns 50 mcg/kg over 10 min 0.125 - 0.375 mcg/kg/min (patient specific) 0.125-0.75 mcg/kg/min n/a nesiritide (natrecor) 1.5 mg/250 ml in d5w (6 mcg/ml) ns 2 mcg/kg 0.01 mcg/kg/min 0.01-0.03 mcg/kg/min n/a norepinephrine (levophed) 8 mg/250 ml in ns (32 mcg/ml) d5w n/a 0.05 mcg/kg/min 0.05-1 mcg/kg/min 16 mg/250 ml (64 mcg/ml) 32 mg/250 ml (128 mcg/ml) phenylephrine (neosynephrine) 40 mg/250 ml in ns (0.16 mg/ml) d5w n/a 0.5 mcg/kg/min 0.5-5 mcg/kg/min 160 mg/250 ml (0.64 mg/ml) 320 mg/250 ml (1.28 mg/ml) vasopressin (pitressin) 20 units/100 ml in ns (0.2 units/ml) d5w n/a 0.03 units/min 0.03 units/min 40 units/100ml (0.4 units/ml)",
+        "possibleScannedPage": false
+      },
+      {
+        "page": 2,
+        "text": "company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 2 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) antihypertensive/antiarrhythmic medications amiodarone (cordarone) 450 mg/250 ml in d5w (1.8 mg/ml) premix in d5w 360 mg/ 200 ml (1.8 mg/ml) n/a v-fib: 300mg iv-push x1, may give additional 150mg iv- push x1 a-fib: 150mg iv- bolus over 10min 1mg/min x 6 hours, then 0.5mg/min x 18 hours (an alternative dosing regimen that may be used in a- fib is 20mg/kg infused over 24 hours) 900 mg/500 ml (1.8 mg/ml) clevidipine (cleviprex) premix 50 mg / 100 ml(0.5 mg/ml) n/a n/a 1-2 mg/hr 4-6 mg/hr 25 mg / 50 ml (0.5 mg/ml) diltiazem (cardizem) 125 mg/125 ml in ns (1 mg/ml) d5w 0.25 mg/kg; may repeat after 15 min with 0.35 mg/kg 5 mg/hr 5-15 mg/hr 100 mg / 100ml (1 mg/ml) esmolol (brevibloc) premix in ns 2gm/100ml ns (20 mg/ml) d5w 500 mcg/kg over 1 minute 50 mcg/kg/min 50-300 mcg/kg/min 10g / 500ml (20mg/ml) fenoldopam (corlopam) 20,000 mcg/250 ml in ns (80 mcg/ml) d5w n/a 0.1 mcg/kg/min 0.01-1.6 mcg/kg/min n/a labetalol (normodyne, trandate) 200 mg/200 ml in ns (1 mg/ml) d5w n/a 2 mg/min 1-4 mg/min 1000 mg/500 ml (2 mg/ml) lidocaine premix in d5w 1 gm/250 ml (4 mg/ml) ns 1-1.5 mg/kg; may repeat after 5-10 min with 0.5-0.75 mg/kg to a total of 3 mg/kg 1-2 mg/min 1-4 mg/min n/a nicardipine (cardene) 50 mg/ 250 ml in ns (0.2 mg/ml) d5w n/a 5 mg/hr 2.5-15 mg/hr 40 mg/200 ml premix (0.2 mg/ml) 125 mg / 250ml (0.5 mg/ml) nitroglycerin (nitro-bid iv) premix in d5w 25 mg/250 ml (100 mcg/ml) n/a n/a 5 mcg/min 5-200 mcg/min 50 mg/250 ml (200 mcg/ml) 50 mg/500 ml (100 mcg/ml) nitroprusside (nipride) 50 mg/250 ml in d5w (200 mcg/ml) ns n/a 0.5 mcg/kg/min 0.5-10 mcg/kg/min 100 mg/ 250 ml (400 mcg/ml) procainamide (pronestyl) 1 gm/250 ml in d5w (4 mg/ml) ns 17mg/kg (max 1 gm) over 30 min 2 mg/min 1-4 mg/min n/a",
+        "possibleScannedPage": false
+      },
+      {
+        "page": 3,
+        "text": "company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 3 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) neuromuscular blocking agents cisatracurium (nimbex) 100 mg/100 ml in ns (1 mg/ml) d5w 0.1 mg/kg 2 mcg/kg/min 2-10 mcg/kg/min 500 mg/100 ml (5 mg/ml) atracurium (tracrium) 100 mg/100 ml in ns (1 mg/ml) d5w 0.5 mg/kg 5 mcg/kg/min 5-15 mcg/kg/min 1000 mg/200 ml (5 mg/ml) rocuronium (zemuron) 250 mg/125 ml in ns (2 mg/ml) n/a 50mg (<50kg 1mg/kg) 4 mcg/kg/min 1-12 mcg/kg/min 500 mg/125 ml (4 mg/ml) vecuronium (norcuron) 100 mg/100 ml in ns (1 mg/ml) d5w 0.1 mg/kg 0.5 mcg/kg/min 0.5-2mcg/kg/min n/a pancuronium (pavulon) 100 mg/100 ml (1 mg/ml) n/a 0.1 mg/kg 0.5 mcg/kg/min 0.5-2 mcg/kg/min 200 mg/100ml (2 mg/ml) sedatives lorazepam (ativan) 40 mg/40 ml (1 mg/ml) syringe* 1-4 mg 1 mg/hr 0.5-8 mg/hr n/a midazolam (versed) premix 55 mg/55 ml (1 mg/ml) syringe* 2-6 mg 1 mg/hr 1-15 mg/hr 250 mg/50 ml (5 mg/ml) midazolam (versed) status epilepticus **see status epilepticus section** propofol (diprivan) premix 1 gm/100 ml (10 mg/ml) n/a do not bolus 10 mcg/kg/min 5-50 mcg/kg/min n/a propofol (diprivan) status epilepticus **see status epilepticus section** dexmedetomidine (precedex) 400 mcg/100 ml in ns (4 mcg/ml) n/a do not bolus 0.2 mcg/kg/hr 0.2-1.5 mcg/kg/hr 200 mcg/100 ml (2 mcg/ml) 200 mcg/50 ml (4 mcg/ml) ketamine (ketalar) pain management 250 mg/250 ml (1 mg/ml) d5w 0.5 mg/kg 0.05 mg/kg/hr 0.05-0.5 mg/kg/hr 500 mg/250 ml (2 mg/ml) ketamine (ketalar) icu sedation 2500 mg/250 ml (10 mg/ml) d5w 0.5 mg/kg 0.5 mg/kg/hr 0.5 - 5 mg/kg/hr 1000 mg / 100 ml premix (10 mg/ml) 1250 mg/250 ml (5 mg/ml) ketamine (ketalar) status epilepticus **see status epilepticus section**",
+        "possibleScannedPage": false
+      },
+      {
+        "page": 4,
+        "text": "company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 4 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose status epilepticus drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) ketamine (ketalar) status epilepticus 2500 mg/250 ml in ns (10 mg/ml) d5w 0.5 mg/kg 0.5 mg/kg/hr 0.5 - 7.5 mg/kg/hr 1250 mg/250 ml in ns (5 mg/ml) 1000 mg / 100 ml premix (10 mg/ml) midazolam (versed) status epilepticus 500 mg/100 ml (5 mg/ml) n/a 0.2 mg/kg 0.2 mg/hg/hr 0.2-2 mg/kg/hr n/a pentobarbital (nembutal) status epilepticus 2000 mg/250 ml in ns (8 mg/ml) d5w 10-15 mg/kg x 1 over 30min 1 mg/kg/hr 1-5 mg/kg/hr 1000 mg/250 ml in ns (4 mg/ml) propofol (diprivan) status epilepticus premix 1 gm/100 ml (10 mg/ml) n/a do not bolus 50 mcg/kg/min 50-100 mcg/kg/min n/a narcotic analgesics drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) fentanyl (sublimaze) premix 2500 mcg/50 ml (50 mcg/ml) syringe* 25-50 mcg 50 mcg/hr 25-500 mcg/hr* 20 mcg/ml remifentanil (ultiva) 5 mg/250 ml in ns (20 mcg/ml) d5w na 0.1 mcg/kg/min 0.1-1 mcg/kg/min* 5 mg/100 ml (50 mcg/ml) hydromorphone (dilaudid) premix 10 mg/50 ml (0.2 mg/ml) syringe* 0.3-1 mg 0.5 mg/hr standard: 0.2-3.5 mg/hr* high dose: 0.2-10 mg/hr* 50 mg/50 ml (1 mg/ml) 250 mg / 50 ml (5 mg/ml) morphine premix 55 mg/55 ml (1 mg/ml) syringe* 2-5 mg 1 mg/hr 1-15 mg/hr* 275 mg/55 ml (5 mg/ml) *caveat: in rare situations, a patient may require higher doses - a decision that should be made based on a discussion between the pharmacist and the critical care or palliative provider",
+        "possibleScannedPage": false
+      },
+      {
+        "page": 5,
+        "text": "company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 5 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose anticoagulants/antiplatelets abciximab (reopro) 7.2 mg/250 ml in ns (0.029 mg/ml) n/a 0.25 mg/kg 0.125 mcg/kg/min (maximum 10mcg/min) n/a n/a alteplase ( pe) 1 mg/ml in diluent provided in kit (1 mg/ml) *for treatment of pe via the ekos system 10mg/100ml of ns should be used na pe: 100 mg over 2 hours pe ekos: 1mg/hr x 6h per sheath / ekos alternative: 10 mg / 200 ml alteplase tpa- (vascular) 10mg/100ml in ns (0.1 mg/ml) 10mg/200ml in ns (0.05mg/ml) na varies 0.5 mg - 2 mg/hr na argatroban 125 mg/125 ml in ns (1 mg/ml) d5w n/a per order set 0.5-10 mcg/kg/min 250mg/250 ml bivalirudin - cath lab (angiomax) 250 mg / 50 ml in ns d5w 0.75mg/kg per order set per order set n/a bivalirudin - hit (angiomax) 250 mg / 500 ml in ns (0.5 mg / ml) d5w na 0.15 - 0.2 mg/kg/hr (varies based on organ dysfunction) per aptt values n/a eptifibatide (integrilin) premix 75 mg/100 ml (750 mcg/ml) n/a 180 mcg/kg (a second bolus of 180mcg/kg is frequently used) crcl > 50 ml/min: 2 mcg/kg/min crcl < 50 ml/min: 1 mcg/kg/min n/a n/a tirofiban (aggrastat) premix 5 mg / 100 ml 12.5 mg/ 250 ml (0.05 mg / ml) n/a 25 mcg/kg iv bolus given over 3 minutes (infused from the bag) crcl > 60 ml/min: 0.15 mcg/kg/min crcl < 60 ml/min: 0.075 mcg/kg/min n/a n/a miscellaneous agents acetylcysteine (acetadote) 150 mg/kg in 200 ml d5w 50 mg/kg in 500 ml d5w 100 mg/kg in 1000 ml d5w d5w 150 mg/kg over 1 hr 50 mg/kg over 4 hours followed by 100 mg/kg over 16 hours* (*150 mg/kg over 24h for up to 72h in non- acetaminophen toxicity) n/a < 40 kg, see order set",
+        "possibleScannedPage": false
+      },
+      {
+        "page": 6,
+        "text": "company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 6 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) miscellaneous agents (continued) aminophylline 500 mg/500 ml in ns (1 mg/ml) d5w 5 mg/kg iv over 30 minutes 0.5 mg/kg/hr 0.3-0.7 mg/kg/hr 1000 mg/500 ml (2 mg/ml) bumetanide (bumex) 10 mg/100 ml in ns (0.1 mg/ml) d5w 1 mg 0.5 mg/hr 0.5-2 mg/hr n/a epinephrine (adrenalin) **anaphylaxis** 1mg/250ml in ns (4 mcg/ml) (mix using 1 ml of 1:1000 [1 mg/ml] vial) d5w n/a 1 mcg/min 1-10 mcg/min n/a epoprostenol (flolan) 0.3mg/100ml in provided sterile diluent (3,000 ng/ml) n/a do not bolus 1 ng/kg/min 1-40 ng/kg/min 750 ng/ml (cath lab only) 1,500 ng/ml (cath lab only) 5,000 ng/ml 10,000 ng/ml 15,000 ng/ml 20,000 ng/ml *refer to pharmacy procedure: procedure for the use of agents used in pulmonary hypertension furosemide (lasix) 100 mg/100 ml in ns (1 mg/ml) d5w 40 mg 10 mg/hr 5-20 mg/hr 200 mg/100 ml (2 mg/ml) glucagon (glucagen) 10 mg/100 ml in ns (0.1 mg/ml) n/a 2-10 mg iv over 1 minute 1 mg/hr 1-5 mg/hr n/a hydrocortisone 200 mg / 250 ml in ns (0.8 mg/ml) d5w 100 mg 8.33 mg/hr 200 mg over 24 hours (8,33 mg/hr) n/a insulin, regular (humulin r, novolin r) 100 units/100 ml in ns (1 unit/ml) n/a 0.1 unit/kg 0.1 unit/kg/hr 1-30 units/hr n/a naloxone (narcan) 2 mg/500 ml in ns (0.004 mg/ml) d5w 0.2-2mg; may repeat at 2- 3 min intervals up to 10mg 0.4 mg/hr 0.4-4 mg/hr 1 mg/250 ml (0.004 mg/ml) octreotide (sandostatin) 500 mcg/100 ml in ns (5 mcg/ml) d5w 50 mcg 50 mcg/hr 25-50 mcg/hr n/a",
+        "possibleScannedPage": false
+      },
+      {
+        "page": 7,
+        "text": "company confidential \u00a9 orlando health, inc. all rights reserved. orlando health: adult continuous infusion standard dilutions and dosing guidelines cont. - page 7 of 7 disclaimer: the following table is intended to serve as a general guideline for the continuous infusion of medications in adult patients. variations in the diluent, maximum concentration, and/or dosing may be appropriate in select circumstances. these guidelines are not intended to replace clinical judgment. a physician order is required when a concentration or diluent that differs from the standard concentration is needed. disclaimer: the designation of \"premix\" in this table does not guarantee that the medication will be dispensed as the premixed formulation. the use of the premixed product or standard volume may be site specific or may change based on availability. disclaimer: during drug shortages, standard concentrations or drip sizes may change based on product availability note: physician must be notified prior to exceeding the upper limit of the usual dose range for vasoactive medications. for non-titrated weight-based medications if the daily weight changes by 10% as compared to the med-calc weight the physician should be contact to clarify the dose miscellaneous agents (continued) drug standard concentration/diluent alternative diluent loading dose usual starting dose usual dose range alternate concentration(s) oxytocin (pitocin) 30 units / 500 ml in ns (60 milliunits/ml) n/a na antepartum: 0.5 - 1 milliunit/min post partum: 20 milliunit/min antepartum: 5-10 milliunit/min post partum: 20-40 milliunit/min to a total of 10 units induced abortion: 10-100 milliunits/min when needed, high dose bags (i.e. > 0.1 unit/ml) are prepared on a patient-specific basis. pentobarbital (nembutal) icp management 2000 mg/250 ml in ns (8 mg/ml) d5w 10 mg/kg x 1 over 30min, then 5mg/kg/hr x 3 hr 1 mg/kg/hr 1-5 mg/kg/hr 1000 mg/250 ml (4 mg/ml) note regarding the orlando health adult critical care titration guidelines \u2022 the orlando health adult critical care titration guidelines previously included in this document have been retired / deleted. \u2022 as of april 2019, all orders for titratable medications generated via our clinical information system include all order elements negating the need for the titration guidelines.",
+        "possibleScannedPage": false
+      }
+    ],
+    "detectedMedications": [
+      {
+        "canonical": "Norepinephrine",
+        "canonicalKey": "norepinephrine",
+        "matchedAliases": [
+          "levophed",
+          "norepinephrine"
+        ],
+        "pages": [
+          1
+        ],
+        "pageRanges": "1"
+      },
+      {
+        "canonical": "Midazolam",
+        "canonicalKey": "midazolam",
+        "matchedAliases": [
+          "midazolam",
+          "versed"
+        ],
+        "pages": [
+          3,
+          4
+        ],
+        "pageRanges": "3-4"
+      },
+      {
+        "canonical": "Naloxone",
+        "canonicalKey": "naloxone",
+        "matchedAliases": [
+          "naloxone",
+          "narcan"
+        ],
+        "pages": [
+          6
+        ],
+        "pageRanges": "6"
+      },
+      {
+        "canonical": "Nitroglycerin",
+        "canonicalKey": "nitroglycerin",
+        "matchedAliases": [
+          "nitro",
+          "nitroglycerin"
+        ],
+        "pages": [
+          2
+        ],
+        "pageRanges": "2"
+      },
+      {
+        "canonical": "Epinephrine",
+        "canonicalKey": "epinephrine",
+        "matchedAliases": [
+          "1:1000",
+          "epinephrine"
+        ],
+        "pages": [
+          1,
+          6
+        ],
+        "pageRanges": "1, 6"
+      },
+      {
+        "canonical": "Rocuronium",
+        "canonicalKey": "rocuronium",
+        "matchedAliases": [
+          "rocuronium",
+          "zemuron"
+        ],
+        "pages": [
+          3
+        ],
+        "pageRanges": "3"
+      },
+      {
+        "canonical": "Furosemide",
+        "canonicalKey": "furosemide",
+        "matchedAliases": [
+          "furosemide",
+          "lasix"
+        ],
+        "pages": [
+          6
+        ],
+        "pageRanges": "6"
+      },
+      {
+        "canonical": "Diltiazem",
+        "canonicalKey": "diltiazem",
+        "matchedAliases": [
+          "cardizem",
+          "diltiazem"
+        ],
+        "pages": [
+          2
+        ],
+        "pageRanges": "2"
+      },
+      {
+        "canonical": "Acetylcysteine",
+        "canonicalKey": "acetylcysteine",
+        "matchedAliases": [
+          "acetylcysteine"
+        ],
+        "pages": [
+          5
+        ],
+        "pageRanges": "5"
+      },
+      {
+        "canonical": "Lorazepam",
+        "canonicalKey": "lorazepam",
+        "matchedAliases": [
+          "ativan",
+          "lorazepam"
+        ],
+        "pages": [
+          3
+        ],
+        "pageRanges": "3"
+      },
+      {
+        "canonical": "Amiodarone",
+        "canonicalKey": "amiodarone",
+        "matchedAliases": [
+          "amiodarone",
+          "cordarone"
+        ],
+        "pages": [
+          2
+        ],
+        "pageRanges": "2"
+      },
+      {
+        "canonical": "Ketamine",
+        "canonicalKey": "ketamine",
+        "matchedAliases": [
+          "ketalar",
+          "ketamine"
+        ],
+        "pages": [
+          3,
+          4
+        ],
+        "pageRanges": "3-4"
+      },
+      {
+        "canonical": "Fentanyl",
+        "canonicalKey": "fentanyl",
+        "matchedAliases": [
+          "fentanyl",
+          "sublimaze"
+        ],
+        "pages": [
+          4
+        ],
+        "pageRanges": "4"
+      },
+      {
+        "canonical": "Morphine",
+        "canonicalKey": "morphine",
+        "matchedAliases": [
+          "morphine"
+        ],
+        "pages": [
+          4
+        ],
+        "pageRanges": "4"
+      },
+      {
+        "canonical": "Hydromorphone",
+        "canonicalKey": "hydromorphone",
+        "matchedAliases": [
+          "dilaudid",
+          "hydromorphone"
+        ],
+        "pages": [
+          4
+        ],
+        "pageRanges": "4"
+      },
+      {
+        "canonical": "Glucagon",
+        "canonicalKey": "glucagon",
+        "matchedAliases": [
+          "glucagon"
+        ],
+        "pages": [
+          6
+        ],
+        "pageRanges": "6"
+      },
+      {
+        "canonical": "Dopamine",
+        "canonicalKey": "dopamine",
+        "matchedAliases": [
+          "dopamine",
+          "intropin"
+        ],
+        "pages": [
+          1
+        ],
+        "pageRanges": "1"
+      },
+      {
+        "canonical": "Dobutamine",
+        "canonicalKey": "dobutamine",
+        "matchedAliases": [
+          "dobutamine",
+          "dobutrex"
+        ],
+        "pages": [
+          1
+        ],
+        "pageRanges": "1"
+      },
+      {
+        "canonical": "Phenylephrine",
+        "canonicalKey": "phenylephrine",
+        "matchedAliases": [
+          "neosynephrine",
+          "phenylephrine"
+        ],
+        "pages": [
+          1
+        ],
+        "pageRanges": "1"
+      },
+      {
+        "canonical": "Vasopressin",
+        "canonicalKey": "vasopressin",
+        "matchedAliases": [
+          "pitressin",
+          "vasopressin"
+        ],
+        "pages": [
+          1
+        ],
+        "pageRanges": "1"
+      },
+      {
+        "canonical": "Lidocaine",
+        "canonicalKey": "lidocaine",
+        "matchedAliases": [
+          "lidocaine"
+        ],
+        "pages": [
+          2
+        ],
+        "pageRanges": "2"
+      },
+      {
+        "canonical": "Propofol",
+        "canonicalKey": "propofol",
+        "matchedAliases": [
+          "diprivan",
+          "propofol"
+        ],
+        "pages": [
+          3,
+          4
+        ],
+        "pageRanges": "3-4"
+      },
+      {
+        "canonical": "Acetaminophen",
+        "canonicalKey": "acetaminophen",
+        "matchedAliases": [
+          "acetaminophen"
+        ],
+        "pages": [
+          5
+        ],
+        "pageRanges": "5"
+      },
+      {
+        "canonical": "Insulin",
+        "canonicalKey": "insulin",
+        "matchedAliases": [
+          "humulin r",
+          "insulin",
+          "novolin r"
+        ],
+        "pages": [
+          6
+        ],
+        "pageRanges": "6"
+      }
+    ]
+  },
+  {
+    "id": "INFUSION-PEDIATRIC",
+    "normalizedId": "infusion-pediatric",
+    "title": "Pediatric Continuous Infusion Chart (2025)",
+    "category": "Infusion Guidelines",
+    "folder": "Infusion Guidlines",
+    "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+    "tags": [
+      "pediatric",
+      "paediatric",
+      "infusion",
+      "drip chart",
+      "continuous infusion",
+      "2025"
+    ],
+    "missingPdf": false,
+    "possibleScannedPdf": false,
+    "normalizedText": "approved by aph code 45 committee & pharmacotherapy june 2013, revisions: 1/15, 4/18, 3/21, 3/24, 11/24, 3/25, 9/25 page 1 of 4 pediatric continuous infusion standard dilutions and dosing guidelines for code cart and emergency medications drug vial concentration/filter diluent dilution aph standard concentrations loading dose usual starting dose usual dose range alternate concentration(s) alprostadil 500 mcg/ml d5w 1 ml dilute to 50 ml 10 mcg/ml -- 0.05 mcg/kg/min 0.001-0.1 mcg/kg/min -- amiodarone 50 mg/ml d5w 1.8 ml dilute to 50 ml 1.8 mg/ml 5 mg/kg 5 mcg/kg/min 5-15 mcg/kg/min 6000 mcg/ml - 6 ml dilute to 50 ml (fluid restricted patients only) calcium gluconate 100 mg/ml -- -- 100 mg/ml 60-100 mg/kg 20 mg/kg/hr 20-50 mg/kg/hr 20 mg/ml - 10 ml dilute to 50 ml d5w cisatracurium 2 mg/ml premix premix 2 mg/ml 0.5 mg/kg 0.06 mg/kg/hr 0.06-0.24 mg/kg/hr 1 mg/ml - 25 ml dilute to 50 ml d5w dobutamine premix premix premix 4000 mcg/ml -- 5 mcg/kg/min 2-20 mcg/kg/min 1000 mcg/ml - premix 2000 mcg/ml - premix dopamine premix premix premix 3200 mcg/ml -- 5 mcg/kg/min 5-20 mcg/kg/min 800 mcg/ml - premix 1600 mcg/ml - premix epinephrine 1 mg/ml (1:1000) 5 micron filter for ampule d5w 0.5 ml dilute to 50 ml 10 mcg/ml (<10 kg, pccu only) -- 0.02-0.05 mcg/kg/min 0.02-1 mcg/kg/min 20 mcg/ml - 1 ml dilute to 50 ml 40 mcg/ml - 2 ml dilute to 50 ml 1 mg/ml (1:1000) 5 micron filter for ampule d5w 5 ml dilute to 50 ml 100 mcg/ml (apic only) esmolol 10 mg/ml -- -- 10 mg/ml 100-500 mcg/kg 50 mcg/kg/min 50-500 mcg/kg/min 20 mg/ml - premix *20 mg/ml premix concentration only available from pharmacy pediatric continuous infusion standard dilutions and dosing guidelines for code cart and emergency medications approved by aph code 45 committee & pharmacotherapy june 2013; revisions: 1/15, 4/18, 3/21, 3/24, 11/24, 3/25, 9/25 2 of 4 drug vial concentration diluent dilution aph standard concentrations loading dose usual starting dose usual dose range alternate concentration(s) fentanyl* premix premix premix 10 mcg/ml (<10 kg)* 1-5 mcg/kg 1-2 mcg/kg/hr 1-5 mcg/kg/hr -- 50 mcg/ml (>10 kg) hydromorphone premix premix premix 0.2 mg/ml 0.015 mg/kg 0.003 mg/kg/hr 0.003-0.005 mg/kg/hr 1 mg/ml - premix 5 mg/ml (\u226550 kg) - premix *1 mg/ml and 5 mg/ml premix concentrations only available from pharmacy ketamine 100 mg/ml d5w 5 ml dilute to 50 ml 10 mg/ml 1-2 mg/kg 0.3 mg/kg/hr 0.3-1.2 mg/kg/hr 10 mg/ml vial should not be used for drips labetalol 5 mg/ml -- -- 5 mg/ml 0.25-1 mg/kg 0.4 mg/kg/hr 0.25-3 mg/kg/hr 1 mg/ml - 10 ml dilute to 50 ml d5w lidocaine premix premix premix premix 4000 mcg/ml (4 mg/ml) 1 mg/kg; re-bolus with 0.5-1 mg/kg if needed 20 mcg/kg/min 20-50 mcg/kg/min -- midazolam* premix premix premix 1 mg/ml (<20 kg)* 0.05-0.1 mg/kg (max 4 mg) 0.05-0.1 mg/kg/hr 0.05-0.3 mg/kg/hr 0.5 mg/ml - 5 ml (5mg/ml vial) dilute to 50 ml ns premix premix premix 5 mg/ml (>20 kg) milrinone 1 mg/ml d5w 10 ml dilute to 50 ml 200mcg/ml -- 0.5 mcg/kg/min 0.5-0.75 mcg/kg/min *200 mcg/ml premix bags are available in selected units only morphine premix premix premix 1 mg/ml 0.05 - 0.1 mg/kg 20 mcg/kg/hr 20-70 mcg/kg/hr 0.1 mg/ml concentration available only from pharmacy nitroglycerin 5 mg/ml d5w l dilute to 50 ml 200 mcg/ml -- 0.25-0.5 mcg/kg/min 0.1-5 mcg/kg/min pediatric continuous infusion standard dilutions and dosing guidelines for code cart and emergency medications approved by aph code 45 committee & pharmacotherapy june 2013; revisions: 1/15, 4/18, 3/21, 3/24, 11/24, 3/25, 9/25 3 of 4 drug vial concentration diluent dilution aph standard concentrations loading dose usual starting dose usual dose range alternate concentration(s) nitroprusside 25 mg/ml d5w dilute to 50 ml 500 mcg/ml -- 0.3-0.5 mcg/kg/min 0.5 -4 mcg/kg/min 200 mcg/ml - 0.4 ml dilute to 50 ml norepinephrine 1 mg/ml d5w 1.6 ml dilute to 50 ml 32 mcg/ml -- 0.1 mcg/kg/min 0.05-1.5 mcg/kg/min 16 mcg/ml - premix 32 mcg/ml - premix 64 mcg/ml - premix pentobarbital 50 mg/ml -- -- 50 mg/ml 1-5 mg/kg 1 mg/kg/hr 1-3.5 mg/kg/hr 8 mg/ml - 8 ml dilute to 50 ml ns phenylephrine 10 mg/ml d5w 0.4 ml dilute to 50 ml 80 mcg/ml 5-20 mcg/kg 0.1 mcg/kg/min 0.1-0.5 mcg/kg/min 400 mcg/ml - 2 ml dilute to 50ml propofol 10 mg/ml -- -- 10mg/ml 1 mg/kg (max dose of 40 mg for pediatrics) 25 mcg/kg/min 25-200 mcg/kg/min note: md admin only (non-md may bolus via medfusion pump in apic only) vasopressin (shock) 20 units/ml d5w ml dilute to 50 ml 0.2 units/ml -- 0.3 milliunits/kg/ min 0.3-2 milliunits/kg/ min 1 units/ml - 2.5 ml dilute to 50 ml vecuronium 10 mg powder vial d5w dilute each vial with 10 ml 1 mg/ml 0.1 mg/kg 0.1 mg/kg/hr 0.1-0.2 mg/kg/hr *see appendix a for additional instructions appendix a *for use only at free-standing emergency departments or horizon west emergency department during hours when main pharmacy is closed drug vial concentration diluent dilution aph standard concentrations loading dose usual starting dose usual dose range alternate concentration(s) fentanyl 100 mcg/2 ml d5w 2 ml dilute to 10 ml 10 mcg/ml (for < 10 kg) 1-2 mcg/kg 1-2 mcg/kg/hr 1-5 mcg/kg/hr -- midazolam 5 mg/ml d5w 2 ml dilute to 10 ml 1 mg/ml (for < 20 kg) 0.05-0.1 mg/kg 0.05-0.1 mg/kg/hr 0.05-0.35 mg/kg/hr -- pediatric continuous infusion standard dilutions and dosing guidelines for code cart and emergency medications approved by aph code 45 committee & pharmacotherapy june 2013; revisions: 1/15, 4/18, 3/21, 3/24, 11/24, 3/25, 9/25 4 of 4 references: 1. lexi-comp onlinetm, pediatric & neonatal lexi-drugs onlinetm [online database]. hudson, ohio: lexi-comp, inc.; updated periodically. 2. micromedex \u00ae healthcare series [online database]. greenwood village, colo: truven health analytics: micromedex. updated periodically. 3. ashp standardize 4 safety expert panel. pediatric continuous infusion standards. american society of health-system pharmacists. updated june 2025. accessed august 2025. 4. trissel la. handbook on injectable drugs. bethesda, md: american society of health-system pharmacists, inc.; 2011. 5. young te, mangum b. neofax\u00ae 2011, ed 24. montvale, nj: thomson healthcare, usa; 2011. 6. phelps sj, hak eb, crill cm. pediatric injectable drugs. the teddy bear book. bethesda, md: american society of health-systems pharmacists, inc.; 2010. 7. kleinman me, chameides l, schexnayder sm, et al. pediatric advanced life support : 2010 american heart association guidelines for cardiopulmonary resuscitation and emergency cardiovascular care. circulation. 2010;122:s876-s908. 8. neumar rw, otto cw, link ms, et al. adult advanced cardiovascular life support : 2010 american heart association guidelines for cardiopulmonary resuscitation and emergency cardiovascular care. circulation. 2010;122:s729-s767. 9. orlando health patient care p&p #5185: automated dispensing cabinet (omnicell\u00ae) overrides 10. orlando health patient care p&p #3075: code cart maintenance",
+    "pages": [
+      {
+        "page": 1,
+        "text": "approved by aph code 45 committee & pharmacotherapy june 2013, revisions: 1/15, 4/18, 3/21, 3/24, 11/24, 3/25, 9/25 page 1 of 4 pediatric continuous infusion standard dilutions and dosing guidelines for code cart and emergency medications drug vial concentration/filter diluent dilution aph standard concentrations loading dose usual starting dose usual dose range alternate concentration(s) alprostadil 500 mcg/ml d5w 1 ml dilute to 50 ml 10 mcg/ml -- 0.05 mcg/kg/min 0.001-0.1 mcg/kg/min -- amiodarone 50 mg/ml d5w 1.8 ml dilute to 50 ml 1.8 mg/ml 5 mg/kg 5 mcg/kg/min 5-15 mcg/kg/min 6000 mcg/ml - 6 ml dilute to 50 ml (fluid restricted patients only) calcium gluconate 100 mg/ml -- -- 100 mg/ml 60-100 mg/kg 20 mg/kg/hr 20-50 mg/kg/hr 20 mg/ml - 10 ml dilute to 50 ml d5w cisatracurium 2 mg/ml premix premix 2 mg/ml 0.5 mg/kg 0.06 mg/kg/hr 0.06-0.24 mg/kg/hr 1 mg/ml - 25 ml dilute to 50 ml d5w dobutamine premix premix premix 4000 mcg/ml -- 5 mcg/kg/min 2-20 mcg/kg/min 1000 mcg/ml - premix 2000 mcg/ml - premix dopamine premix premix premix 3200 mcg/ml -- 5 mcg/kg/min 5-20 mcg/kg/min 800 mcg/ml - premix 1600 mcg/ml - premix epinephrine 1 mg/ml (1:1000) 5 micron filter for ampule d5w 0.5 ml dilute to 50 ml 10 mcg/ml (<10 kg, pccu only) -- 0.02-0.05 mcg/kg/min 0.02-1 mcg/kg/min 20 mcg/ml - 1 ml dilute to 50 ml 40 mcg/ml - 2 ml dilute to 50 ml 1 mg/ml (1:1000) 5 micron filter for ampule d5w 5 ml dilute to 50 ml 100 mcg/ml (apic only) esmolol 10 mg/ml -- -- 10 mg/ml 100-500 mcg/kg 50 mcg/kg/min 50-500 mcg/kg/min 20 mg/ml - premix *20 mg/ml premix concentration only available from pharmacy",
+        "possibleScannedPage": false
+      },
+      {
+        "page": 2,
+        "text": "pediatric continuous infusion standard dilutions and dosing guidelines for code cart and emergency medications approved by aph code 45 committee & pharmacotherapy june 2013; revisions: 1/15, 4/18, 3/21, 3/24, 11/24, 3/25, 9/25 2 of 4 drug vial concentration diluent dilution aph standard concentrations loading dose usual starting dose usual dose range alternate concentration(s) fentanyl* premix premix premix 10 mcg/ml (<10 kg)* 1-5 mcg/kg 1-2 mcg/kg/hr 1-5 mcg/kg/hr -- 50 mcg/ml (>10 kg) hydromorphone premix premix premix 0.2 mg/ml 0.015 mg/kg 0.003 mg/kg/hr 0.003-0.005 mg/kg/hr 1 mg/ml - premix 5 mg/ml (\u226550 kg) - premix *1 mg/ml and 5 mg/ml premix concentrations only available from pharmacy ketamine 100 mg/ml d5w 5 ml dilute to 50 ml 10 mg/ml 1-2 mg/kg 0.3 mg/kg/hr 0.3-1.2 mg/kg/hr 10 mg/ml vial should not be used for drips labetalol 5 mg/ml -- -- 5 mg/ml 0.25-1 mg/kg 0.4 mg/kg/hr 0.25-3 mg/kg/hr 1 mg/ml - 10 ml dilute to 50 ml d5w lidocaine premix premix premix premix 4000 mcg/ml (4 mg/ml) 1 mg/kg; re-bolus with 0.5-1 mg/kg if needed 20 mcg/kg/min 20-50 mcg/kg/min -- midazolam* premix premix premix 1 mg/ml (<20 kg)* 0.05-0.1 mg/kg (max 4 mg) 0.05-0.1 mg/kg/hr 0.05-0.3 mg/kg/hr 0.5 mg/ml - 5 ml (5mg/ml vial) dilute to 50 ml ns premix premix premix 5 mg/ml (>20 kg) milrinone 1 mg/ml d5w 10 ml dilute to 50 ml 200mcg/ml -- 0.5 mcg/kg/min 0.5-0.75 mcg/kg/min *200 mcg/ml premix bags are available in selected units only morphine premix premix premix 1 mg/ml 0.05 - 0.1 mg/kg 20 mcg/kg/hr 20-70 mcg/kg/hr 0.1 mg/ml concentration available only from pharmacy nitroglycerin 5 mg/ml d5w l dilute to 50 ml 200 mcg/ml -- 0.25-0.5 mcg/kg/min 0.1-5 mcg/kg/min",
+        "possibleScannedPage": false
+      },
+      {
+        "page": 3,
+        "text": "pediatric continuous infusion standard dilutions and dosing guidelines for code cart and emergency medications approved by aph code 45 committee & pharmacotherapy june 2013; revisions: 1/15, 4/18, 3/21, 3/24, 11/24, 3/25, 9/25 3 of 4 drug vial concentration diluent dilution aph standard concentrations loading dose usual starting dose usual dose range alternate concentration(s) nitroprusside 25 mg/ml d5w dilute to 50 ml 500 mcg/ml -- 0.3-0.5 mcg/kg/min 0.5 -4 mcg/kg/min 200 mcg/ml - 0.4 ml dilute to 50 ml norepinephrine 1 mg/ml d5w 1.6 ml dilute to 50 ml 32 mcg/ml -- 0.1 mcg/kg/min 0.05-1.5 mcg/kg/min 16 mcg/ml - premix 32 mcg/ml - premix 64 mcg/ml - premix pentobarbital 50 mg/ml -- -- 50 mg/ml 1-5 mg/kg 1 mg/kg/hr 1-3.5 mg/kg/hr 8 mg/ml - 8 ml dilute to 50 ml ns phenylephrine 10 mg/ml d5w 0.4 ml dilute to 50 ml 80 mcg/ml 5-20 mcg/kg 0.1 mcg/kg/min 0.1-0.5 mcg/kg/min 400 mcg/ml - 2 ml dilute to 50ml propofol 10 mg/ml -- -- 10mg/ml 1 mg/kg (max dose of 40 mg for pediatrics) 25 mcg/kg/min 25-200 mcg/kg/min note: md admin only (non-md may bolus via medfusion pump in apic only) vasopressin (shock) 20 units/ml d5w ml dilute to 50 ml 0.2 units/ml -- 0.3 milliunits/kg/ min 0.3-2 milliunits/kg/ min 1 units/ml - 2.5 ml dilute to 50 ml vecuronium 10 mg powder vial d5w dilute each vial with 10 ml 1 mg/ml 0.1 mg/kg 0.1 mg/kg/hr 0.1-0.2 mg/kg/hr *see appendix a for additional instructions appendix a *for use only at free-standing emergency departments or horizon west emergency department during hours when main pharmacy is closed drug vial concentration diluent dilution aph standard concentrations loading dose usual starting dose usual dose range alternate concentration(s) fentanyl 100 mcg/2 ml d5w 2 ml dilute to 10 ml 10 mcg/ml (for < 10 kg) 1-2 mcg/kg 1-2 mcg/kg/hr 1-5 mcg/kg/hr -- midazolam 5 mg/ml d5w 2 ml dilute to 10 ml 1 mg/ml (for < 20 kg) 0.05-0.1 mg/kg 0.05-0.1 mg/kg/hr 0.05-0.35 mg/kg/hr --",
+        "possibleScannedPage": false
+      },
+      {
+        "page": 4,
+        "text": "pediatric continuous infusion standard dilutions and dosing guidelines for code cart and emergency medications approved by aph code 45 committee & pharmacotherapy june 2013; revisions: 1/15, 4/18, 3/21, 3/24, 11/24, 3/25, 9/25 4 of 4 references: 1. lexi-comp onlinetm, pediatric & neonatal lexi-drugs onlinetm [online database]. hudson, ohio: lexi-comp, inc.; updated periodically. 2. micromedex \u00ae healthcare series [online database]. greenwood village, colo: truven health analytics: micromedex. updated periodically. 3. ashp standardize 4 safety expert panel. pediatric continuous infusion standards. american society of health-system pharmacists. updated june 2025. accessed august 2025. 4. trissel la. handbook on injectable drugs. bethesda, md: american society of health-system pharmacists, inc.; 2011. 5. young te, mangum b. neofax\u00ae 2011, ed 24. montvale, nj: thomson healthcare, usa; 2011. 6. phelps sj, hak eb, crill cm. pediatric injectable drugs. the teddy bear book. bethesda, md: american society of health-systems pharmacists, inc.; 2010. 7. kleinman me, chameides l, schexnayder sm, et al. pediatric advanced life support : 2010 american heart association guidelines for cardiopulmonary resuscitation and emergency cardiovascular care. circulation. 2010;122:s876-s908. 8. neumar rw, otto cw, link ms, et al. adult advanced cardiovascular life support : 2010 american heart association guidelines for cardiopulmonary resuscitation and emergency cardiovascular care. circulation. 2010;122:s729-s767. 9. orlando health patient care p&p #5185: automated dispensing cabinet (omnicell\u00ae) overrides 10. orlando health patient care p&p #3075: code cart maintenance",
+        "possibleScannedPage": false
+      }
+    ],
+    "detectedMedications": [
+      {
+        "canonical": "Norepinephrine",
+        "canonicalKey": "norepinephrine",
+        "matchedAliases": [
+          "norepinephrine"
+        ],
+        "pages": [
+          3
+        ],
+        "pageRanges": "3"
+      },
+      {
+        "canonical": "Midazolam",
+        "canonicalKey": "midazolam",
+        "matchedAliases": [
+          "midazolam"
+        ],
+        "pages": [
+          2,
+          3
+        ],
+        "pageRanges": "2-3"
+      },
+      {
+        "canonical": "Nitroglycerin",
+        "canonicalKey": "nitroglycerin",
+        "matchedAliases": [
+          "nitroglycerin"
+        ],
+        "pages": [
+          2
+        ],
+        "pageRanges": "2"
+      },
+      {
+        "canonical": "Epinephrine",
+        "canonicalKey": "epinephrine",
+        "matchedAliases": [
+          "1:1000",
+          "epinephrine"
+        ],
+        "pages": [
+          1
+        ],
+        "pageRanges": "1"
+      },
+      {
+        "canonical": "Amiodarone",
+        "canonicalKey": "amiodarone",
+        "matchedAliases": [
+          "amiodarone"
+        ],
+        "pages": [
+          1
+        ],
+        "pageRanges": "1"
+      },
+      {
+        "canonical": "Ketamine",
+        "canonicalKey": "ketamine",
+        "matchedAliases": [
+          "ketamine"
+        ],
+        "pages": [
+          2
+        ],
+        "pageRanges": "2"
+      },
+      {
+        "canonical": "Fentanyl",
+        "canonicalKey": "fentanyl",
+        "matchedAliases": [
+          "fentanyl"
+        ],
+        "pages": [
+          2,
+          3
+        ],
+        "pageRanges": "2-3"
+      },
+      {
+        "canonical": "Morphine",
+        "canonicalKey": "morphine",
+        "matchedAliases": [
+          "morphine"
+        ],
+        "pages": [
+          2
+        ],
+        "pageRanges": "2"
+      },
+      {
+        "canonical": "Hydromorphone",
+        "canonicalKey": "hydromorphone",
+        "matchedAliases": [
+          "hydromorphone"
+        ],
+        "pages": [
+          2
+        ],
+        "pageRanges": "2"
+      },
+      {
+        "canonical": "Calcium Chloride",
+        "canonicalKey": "calcium chloride",
+        "matchedAliases": [
+          "calcium"
+        ],
+        "pages": [
+          1
+        ],
+        "pageRanges": "1"
+      },
+      {
+        "canonical": "Dopamine",
+        "canonicalKey": "dopamine",
+        "matchedAliases": [
+          "dopamine"
+        ],
+        "pages": [
+          1
+        ],
+        "pageRanges": "1"
+      },
+      {
+        "canonical": "Dobutamine",
+        "canonicalKey": "dobutamine",
+        "matchedAliases": [
+          "dobutamine"
+        ],
+        "pages": [
+          1
+        ],
+        "pageRanges": "1"
+      },
+      {
+        "canonical": "Phenylephrine",
+        "canonicalKey": "phenylephrine",
+        "matchedAliases": [
+          "phenylephrine"
+        ],
+        "pages": [
+          3
+        ],
+        "pageRanges": "3"
+      },
+      {
+        "canonical": "Vasopressin",
+        "canonicalKey": "vasopressin",
+        "matchedAliases": [
+          "vasopressin"
+        ],
+        "pages": [
+          3
+        ],
+        "pageRanges": "3"
+      },
+      {
+        "canonical": "Lidocaine",
+        "canonicalKey": "lidocaine",
+        "matchedAliases": [
+          "lidocaine"
+        ],
+        "pages": [
+          2
+        ],
+        "pageRanges": "2"
+      },
+      {
+        "canonical": "Propofol",
+        "canonicalKey": "propofol",
+        "matchedAliases": [
+          "propofol"
+        ],
+        "pages": [
+          3
+        ],
+        "pageRanges": "3"
+      }
+    ]
   }
 ]

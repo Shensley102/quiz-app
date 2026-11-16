@@ -90,7 +90,7 @@ def test_blood_search_priority_remains_available_in_global_search_results():
 
 
 def test_service_worker_version_is_bumped_without_changing_protocol_pdf_cache():
-    assert "const CACHE_VERSION = 'v2.7.29';" in SERVICE_WORKER
+    assert "const CACHE_VERSION = 'v2.7.30';" in SERVICE_WORKER
     assert "const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v6';" in SERVICE_WORKER
 
 
@@ -111,7 +111,7 @@ def test_search_results_render_above_the_category_accordion():
 
 
 def test_existing_categories_render_as_single_open_accordion():
-    assert "const CATEGORY_ORDER = ['General', 'Medical', 'Cardiac', 'Trauma', 'Pediatric', 'Procedures'];" in PROTOCOLS
+    assert "const CATEGORY_ORDER = ['General', 'Medical', 'Cardiac', 'Trauma', 'Pediatric', 'Procedures', 'Infusion Guidelines'];" in PROTOCOLS
     assert 'data-action="toggle-category"' in PROTOCOLS
     assert 'const expanded = state.expandedCategory === category;' in PROTOCOLS
     assert 'class="protocol-category-panel"${expanded ? \'\' : \' hidden\'}' in PROTOCOLS

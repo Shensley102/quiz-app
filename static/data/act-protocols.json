@@ -1548,5 +1548,37 @@
       "trauma"
     ],
     "updatedDate": "2026-08-28"
+  },
+  {
+    "id": "INFUSION-ADULT",
+    "title": "Adult Drip Chart / Titration Guidelines (2025)",
+    "category": "Infusion Guidelines",
+    "folder": "Infusion Guidlines",
+    "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+    "tags": [
+      "adult",
+      "infusion",
+      "drip chart",
+      "titration",
+      "continuous infusion",
+      "2025"
+    ],
+    "updatedDate": "2026-11-16"
+  },
+  {
+    "id": "INFUSION-PEDIATRIC",
+    "title": "Pediatric Continuous Infusion Chart (2025)",
+    "category": "Infusion Guidelines",
+    "folder": "Infusion Guidlines",
+    "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+    "tags": [
+      "pediatric",
+      "paediatric",
+      "infusion",
+      "drip chart",
+      "continuous infusion",
+      "2025"
+    ],
+    "updatedDate": "2026-11-16"
   }
 ]

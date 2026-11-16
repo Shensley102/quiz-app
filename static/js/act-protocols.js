@@ -5,7 +5,7 @@
   const MEDICATION_MAP_URL = '/static/data/act-medication-protocol-map.json';
   const CACHE_NAME = 'act-protocol-pdfs-v6';
   const CACHE_PREFIX = 'act-protocol-pdfs-';
-  const CATEGORY_ORDER = ['General', 'Medical', 'Cardiac', 'Trauma', 'Pediatric', 'Procedures'];
+  const CATEGORY_ORDER = ['General', 'Medical', 'Cardiac', 'Trauma', 'Pediatric', 'Procedures', 'Infusion Guidelines'];
   const BLOOD_SEARCH_PRIORITY = {
     term: 'blood',
     category: 'Procedures',

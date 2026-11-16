@@ -193,6 +193,37 @@
         "matchedAliases": [
           "norepinephrine"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "levophed",
+          "norepinephrine"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "norepinephrine"
+        ]
       }
     ]
   },
@@ -450,6 +481,39 @@
         "matchedAliases": [
           "midazolam"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          3,
+          4
+        ],
+        "pageRanges": "3-4",
+        "matchedAliases": [
+          "midazolam",
+          "versed"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          2,
+          3
+        ],
+        "pageRanges": "2-3",
+        "matchedAliases": [
+          "midazolam"
+        ]
       }
     ]
   },
@@ -525,6 +589,22 @@
         "pageRanges": "3",
         "matchedAliases": [
           "naloxone"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          6
+        ],
+        "pageRanges": "6",
+        "matchedAliases": [
+          "naloxone",
+          "narcan"
         ]
       }
     ]
@@ -822,6 +902,37 @@
         "matchedAliases": [
           "nitroglycerin",
           "ntg"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "nitro",
+          "nitroglycerin"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "nitroglycerin"
         ]
       }
     ]
@@ -1177,6 +1288,39 @@
         ],
         "pageRanges": "5",
         "matchedAliases": [
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          1,
+          6
+        ],
+        "pageRanges": "1, 6",
+        "matchedAliases": [
+          "1:1000",
+          "epinephrine"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "1:1000",
           "epinephrine"
         ]
       }
@@ -1954,6 +2098,22 @@
         "matchedAliases": [
           "rocuronium"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "rocuronium",
+          "zemuron"
+        ]
       }
     ]
   },
@@ -2242,6 +2402,22 @@
         "matchedAliases": [
           "furosemide"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          6
+        ],
+        "pageRanges": "6",
+        "matchedAliases": [
+          "furosemide",
+          "lasix"
+        ]
       }
     ]
   },
@@ -2294,6 +2470,22 @@
         "category": "Medical",
         "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
         "manifestId": "3203-M019",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "cardizem",
+          "diltiazem"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
         "pages": [
           2
         ],
@@ -2392,6 +2584,21 @@
         "matchedAliases": [
           "acetylcysteine",
           "n-acetylcysteine"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          5
+        ],
+        "pageRanges": "5",
+        "matchedAliases": [
+          "acetylcysteine"
         ]
       }
     ]
@@ -2715,6 +2922,22 @@
         "matchedAliases": [
           "lorazepam"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "ativan",
+          "lorazepam"
+        ]
       }
     ]
   },
@@ -2864,6 +3087,37 @@
           2
         ],
         "pageRanges": "1-2",
+        "matchedAliases": [
+          "amiodarone"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "amiodarone",
+          "cordarone"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
         "matchedAliases": [
           "amiodarone"
         ]
@@ -3017,6 +3271,38 @@
         "matchedAliases": [
           "ketamine"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          3,
+          4
+        ],
+        "pageRanges": "3-4",
+        "matchedAliases": [
+          "ketalar",
+          "ketamine"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "ketamine"
+        ]
       }
     ]
   },
@@ -3122,6 +3408,38 @@
         "matchedAliases": [
           "fentanyl"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          4
+        ],
+        "pageRanges": "4",
+        "matchedAliases": [
+          "fentanyl",
+          "sublimaze"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          2,
+          3
+        ],
+        "pageRanges": "2-3",
+        "matchedAliases": [
+          "fentanyl"
+        ]
       }
     ]
   },
@@ -3194,6 +3512,36 @@
         "matchedAliases": [
           "morphine"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          4
+        ],
+        "pageRanges": "4",
+        "matchedAliases": [
+          "morphine"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "morphine"
+        ]
       }
     ]
   },
@@ -3222,6 +3570,37 @@
         "pageRanges": "3",
         "matchedAliases": [
           "dilaudid"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          4
+        ],
+        "pageRanges": "4",
+        "matchedAliases": [
+          "dilaudid",
+          "hydromorphone"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "hydromorphone"
         ]
       }
     ]
@@ -3432,6 +3811,21 @@
         "matchedAliases": [
           "calcium",
           "calcium chloride"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "calcium"
         ]
       }
     ]
@@ -3684,6 +4078,21 @@
         "matchedAliases": [
           "glucagon"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          6
+        ],
+        "pageRanges": "6",
+        "matchedAliases": [
+          "glucagon"
+        ]
       }
     ]
   },
@@ -3755,6 +4164,37 @@
           5
         ],
         "pageRanges": "5",
+        "matchedAliases": [
+          "dopamine"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "dopamine",
+          "intropin"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
         "matchedAliases": [
           "dopamine"
         ]
@@ -3832,6 +4272,37 @@
         "matchedAliases": [
           "dobutamine"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "dobutamine",
+          "dobutrex"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "dobutamine"
+        ]
       }
     ]
   },
@@ -3895,6 +4366,37 @@
         "matchedAliases": [
           "phenylephrine"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "neosynephrine",
+          "phenylephrine"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "phenylephrine"
+        ]
       }
     ]
   },
@@ -3951,6 +4453,37 @@
           2
         ],
         "pageRanges": "2",
+        "matchedAliases": [
+          "vasopressin"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          1
+        ],
+        "pageRanges": "1",
+        "matchedAliases": [
+          "pitressin",
+          "vasopressin"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
         "matchedAliases": [
           "vasopressin"
         ]
@@ -4042,6 +4575,36 @@
           2
         ],
         "pageRanges": "1-2",
+        "matchedAliases": [
+          "lidocaine"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
+        "matchedAliases": [
+          "lidocaine"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          2
+        ],
+        "pageRanges": "2",
         "matchedAliases": [
           "lidocaine"
         ]
@@ -4288,6 +4851,38 @@
           "diprivan",
           "propofol"
         ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          3,
+          4
+        ],
+        "pageRanges": "3-4",
+        "matchedAliases": [
+          "diprivan",
+          "propofol"
+        ]
+      },
+      {
+        "id": "INFUSION-PEDIATRIC",
+        "normalizedId": "infusion-pediatric",
+        "title": "Pediatric Continuous Infusion Chart (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+        "manifestId": "INFUSION-PEDIATRIC",
+        "pages": [
+          3
+        ],
+        "pageRanges": "3",
+        "matchedAliases": [
+          "propofol"
+        ]
       }
     ]
   },
@@ -4410,6 +5005,21 @@
         "pageRanges": "3",
         "matchedAliases": [
           "tylenol"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          5
+        ],
+        "pageRanges": "5",
+        "matchedAliases": [
+          "acetaminophen"
         ]
       }
     ]
@@ -4758,6 +5368,23 @@
         "pageRanges": "1",
         "matchedAliases": [
           "insulin"
+        ]
+      },
+      {
+        "id": "INFUSION-ADULT",
+        "normalizedId": "infusion-adult",
+        "title": "Adult Drip Chart / Titration Guidelines (2025)",
+        "category": "Infusion Guidelines",
+        "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+        "manifestId": "INFUSION-ADULT",
+        "pages": [
+          6
+        ],
+        "pageRanges": "6",
+        "matchedAliases": [
+          "humulin r",
+          "insulin",
+          "novolin r"
         ]
       }
     ]
