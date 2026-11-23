@@ -3,8 +3,6 @@
   const SEARCH_URL = '/static/data/act-protocol-search.json';
   const ALIAS_URL = '/static/data/act-medication-aliases.json';
   const MEDICATION_MAP_URL = '/static/data/act-medication-protocol-map.json';
-  const CACHE_NAME = 'act-protocol-pdfs-v6';
-  const CACHE_PREFIX = 'act-protocol-pdfs-';
   const CATEGORY_ORDER = ['General', 'Medical', 'Cardiac', 'Trauma', 'Pediatric', 'Procedures', 'Infusion Guidelines'];
   const BLOOD_SEARCH_PRIORITY = {
     term: 'blood',
@@ -14,17 +12,35 @@
   const PROTOCOL_ID_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
   const INSTALL_DISMISSED_KEY = 'act-protocols-install-dismissed';
   const RETURN_STATE_KEY = 'act-protocols-return-state';
-  const state = { protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(), medicationMap: new Map(), protocolIdLookup: new Map(), expandedCategory: '', query: '', suggestions: [], activeSuggestionIndex: -1, saved: new Set(), caching: new Set(), missing: new Set(), resultMeta: new Map(), searchReady: false, aliasesReady: false, autoCacheStarted: false, refreshInProgress: false, currentDownloadTitle: '', downloadTotal: 0, downloadCompleted: 0, downloadInProgress: false, opening: new Set(), deferredInstallPrompt: null };
+  const offline = window.ACTOffline;
+  const defaultFilters = { category: '', patient: '', offline: '' };
+  const renderedLists = new WeakMap();
+  const state = {
+    protocols: [], searchIndex: new Map(), aliases: [], aliasLookup: new Map(),
+    medicationMap: new Map(), protocolIdLookup: new Map(), resultMeta: new Map(),
+    expandedCategory: '', query: '', filters: { ...defaultFilters },
+    suggestions: [], activeSuggestionIndex: -1, searchReady: false, aliasesReady: false,
+    offlineReady: false, offlineRenderKey: '', busyAction: '', deferredInstallPrompt: null
+  };
   const els = {
     grid: document.getElementById('protocolGrid'), searchResults: document.getElementById('searchResults'), searchResultsSection: document.getElementById('searchResultsSection'), search: document.getElementById('protocolSearch'), clearSearch: document.getElementById('clearProtocolSearch'),
     count: document.getElementById('resultCount'), total: document.getElementById('protocolTotal'), offlineSummary: document.getElementById('offlineSummary'), suggestions: document.getElementById('protocolSearchSuggestions'),
-    retryBtn: document.getElementById('retryFailedBtn'),
+    filters: [...document.querySelectorAll('[data-filter]')], reset: document.getElementById('resetProtocolFilters'),
+    panel: document.getElementById('protocolOfflinePanel'), storage: document.getElementById('offlineStorage'),
+    updateStatus: document.getElementById('offlineUpdateStatus'), queueStatus: document.getElementById('offlineQueueStatus'),
+    downloadProgress: document.getElementById('offlineDownloadProgress'), currentDocument: document.getElementById('offlineCurrentDocument'),
+    pageProgress: document.getElementById('offlinePageProgress'), offlineMessage: document.getElementById('offlineMessage'),
     installHelp: document.getElementById('installActHelp'), installBtn: document.getElementById('installActBtn'), dismissInstallBtn: document.getElementById('dismissInstallActBtn')
   };
-  const encoded = (url) => encodeURI(url);
   const normalize = (text) => (text || '').toString().toLowerCase().normalize('NFKD').replace(/[\u2010-\u2015]/g, '-').replace(/\s+/g, ' ').trim();
   const escapeHtml = (text) => (text || '').toString().replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
-  const debounce = (fn, wait = 180) => { let id; return (...args) => { clearTimeout(id); id = setTimeout(() => fn(...args), wait); }; };
+  function debounce(fn, wait = 180) {
+    let timer;
+    return () => {
+      clearTimeout(timer);
+      timer = setTimeout(fn, wait);
+    };
+  }
   function categoryRank(category) {
     const rank = CATEGORY_ORDER.indexOf(category);
     return rank === -1 ? CATEGORY_ORDER.length : rank;
@@ -197,12 +213,24 @@
     if (score < 0) return null;
     return { score, reasons };
   }
+  function documentStatus(protocol) {
+    return state.offlineReady ? offline.document(protocol.file) : {};
+  }
+  function matchesFilters(protocol) {
+    const { category, patient, offline: availability } = state.filters;
+    if (category && protocol.category !== category) return false;
+    if (patient && !protocol.patientGroups?.includes(patient)) return false;
+    if (!availability) return true;
+    const status = documentStatus(protocol);
+    return availability === 'available' ? status.available : status.updateStatus === 'available';
+  }
   function filtered() {
     const q = normalize(state.query);
     const bloodPriorityActive = isBloodSearchPriorityActive(q);
     state.resultMeta.clear();
     const matches = [];
     for (const p of state.protocols) {
+      if (!matchesFilters(p)) continue;
       if (!q) { matches.push({ protocol: p, score: 0 }); continue; }
       if (bloodPriorityActive && bloodSearchProtocolRank(p.id) !== -1) {
         const match = { score: 0, reasons: [] };
@@ -221,7 +249,7 @@
       const key = normalize(term);
       if (key && !terms.has(key)) terms.set(key, term);
     };
-    state.protocols.forEach((p) => {
+    state.protocols.filter(matchesFilters).forEach((p) => {
       [p.id, normalizeProtocolId(p.id), p.title, ...(p.tags || [])].forEach(addTerm);
     });
     state.aliases.forEach((med) => {
@@ -255,11 +283,22 @@
   function renderSuggestions() {
     if (!els.suggestions) return;
     if (!state.suggestions.length) { closeSuggestions(); return; }
-    els.suggestions.innerHTML = state.suggestions.map((suggestion, index) => `<button id="protocolSearchSuggestion-${index}" class="protocol-search-suggestion${index === state.activeSuggestionIndex ? ' active' : ''}" type="button" role="option" aria-selected="${index === state.activeSuggestionIndex}" data-index="${index}">${escapeHtml(suggestion)}</button>`).join('');
+    els.suggestions.innerHTML = state.suggestions.map((suggestion, index) => `<button id="protocolSearchSuggestion-${index}" class="protocol-search-suggestion${index === state.activeSuggestionIndex ? ' active' : ''}" type="button" tabindex="-1" role="option" aria-selected="${index === state.activeSuggestionIndex}" data-index="${index}">${escapeHtml(suggestion)}</button>`).join('');
     els.suggestions.classList.remove('hidden');
     els.search.setAttribute('aria-expanded', 'true');
-    if (state.activeSuggestionIndex >= 0) els.search.setAttribute('aria-activedescendant', `protocolSearchSuggestion-${state.activeSuggestionIndex}`);
-    else els.search.removeAttribute('aria-activedescendant');
+    if (state.activeSuggestionIndex < 0) {
+      els.search.removeAttribute('aria-activedescendant');
+      return;
+    }
+    const active = els.suggestions.children[state.activeSuggestionIndex];
+    els.search.setAttribute('aria-activedescendant', active.id);
+    const optionBounds = active.getBoundingClientRect();
+    const listBounds = els.suggestions.getBoundingClientRect();
+    if (optionBounds.bottom > listBounds.bottom) {
+      els.suggestions.scrollTop += optionBounds.bottom - listBounds.bottom;
+    } else if (optionBounds.top < listBounds.top) {
+      els.suggestions.scrollTop -= listBounds.top - optionBounds.top;
+    }
   }
   function updateSuggestions(value) {
     state.suggestions = matchingSuggestions(value);
@@ -278,6 +317,11 @@
     render();
     els.search.focus();
   }
+  function resetFilters() {
+    state.filters = { ...defaultFilters };
+    for (const input of els.filters) input.value = '';
+    clearSearch();
+  }
   function selectSuggestion(index) {
     const suggestion = state.suggestions[index];
     if (!suggestion) return;
@@ -287,61 +331,12 @@
     saveListState();
     render();
     closeSuggestions();
-  }
-  function statusClass(p) { return state.opening.has(p.file) ? 'caching' : state.saved.has(p.file) ? 'saved' : state.missing.has(p.file) ? 'error' : state.caching.has(p.file) ? 'caching' : ''; }
-  function statusText(p) {
-    if (state.opening.has(p.file)) return 'Opening selected protocol…';
-    if (state.saved.has(p.file)) return 'Saved for Offline Use';
-    if (state.missing.has(p.file)) return 'Could not open/save offline — reconnect and try again.';
-    if (state.caching.has(p.file)) return 'Downloading for offline use';
-    return 'Queued for offline download';
-  }
-  function setOfflineSummary(text, status, detail = '') {
-    if (!els.offlineSummary) return;
-    els.offlineSummary.dataset.status = status;
-    els.offlineSummary.replaceChildren();
-
-    const label = document.createElement('span');
-    label.className = 'offline-download-status-label';
-    label.textContent = text;
-    els.offlineSummary.appendChild(label);
-
-    if (detail) {
-      const detailLine = document.createElement('span');
-      detailLine.className = 'offline-download-status-detail';
-      detailLine.textContent = detail;
-      els.offlineSummary.appendChild(detailLine);
-    }
-  }
-  function updateOfflineSummary() {
-    if (!els.offlineSummary) return;
-    if (!('caches' in window)) {
-      setOfflineSummary('Offline PDF caching is not available in this browser.', 'error');
-      els.retryBtn?.classList.add('hidden');
-      return;
-    }
-    const total = state.protocols.length;
-    const saved = state.saved.size;
-    const caching = state.caching.size;
-    const failed = state.missing.size;
-    els.retryBtn?.classList.toggle('hidden', failed === 0);
-    if (!total) {
-      setOfflineSummary('Checking Protocol Downloads', 'downloading');
-    } else if (state.downloadInProgress) {
-      setOfflineSummary('Downloading Protocols', 'downloading', `${state.downloadCompleted} out of ${state.downloadTotal}`);
-    } else if (caching) {
-      setOfflineSummary('Downloading Protocols', 'downloading', `${saved} out of ${total}`);
-    } else if (saved + failed < total) {
-      setOfflineSummary('Preparing Offline Downloads', 'downloading', `${saved} out of ${total}`);
-    } else if (failed) {
-      setOfflineSummary('Failed to Download', 'error', `${failed} failed`);
-    } else if (saved === total) {
-      setOfflineSummary('Offline Protocols Saved', 'saved', `${saved} out of ${total}`);
-    }
+    els.search.focus();
   }
   function returnState() {
     return {
       query: state.query,
+      filters: state.filters,
       expandedCategory: state.expandedCategory,
       scrollY: Math.max(0, Math.round(window.scrollY || window.pageYOffset || 0)),
       openedAt: Date.now()
@@ -375,6 +370,11 @@
       ? saved.expandedCategory
       : (saved.category && saved.category !== 'All' ? saved.category : '');
     els.search.value = state.query;
+    for (const input of els.filters) {
+      const savedValue = saved.filters?.[input.dataset.filter];
+      input.value = [...input.options].some((option) => option.value === savedValue) ? savedValue : '';
+      state.filters[input.dataset.filter] = input.value;
+    }
     updateClearSearchButton();
   }
   function restoreProtocolListState(saved, { restoreScroll = false } = {}) {
@@ -414,32 +414,90 @@
     const [year, month, day] = value.split('-').map(Number);
     return new Intl.DateTimeFormat(undefined, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(year, month - 1, day)));
   }
+  function statusText(status) {
+    const labels = [];
+    if (status.available) labels.push('Available offline');
+    else if (status.legacy) labels.push('Previous offline copy');
+    if (status.partial) labels.push('Partial download');
+    else if (status.queued) labels.push('Queued for download');
+    if (status.updateStatus === 'available') labels.push('Update available');
+    else if (status.updateStatus === 'current') labels.push('Up to date');
+    else if (status.available || status.legacy) labels.push('Update status not checked');
+    return labels.join(' • ');
+  }
+  function queueActive() {
+    return state.offlineReady && ['downloading', 'paused'].includes(offline.queue().status);
+  }
+  function canSave(status) {
+    return !status.available && !status.legacyReadable;
+  }
+  function canRemove(status) {
+    return status.available || status.legacy || status.partial;
+  }
+  function offlineControlsLocked() {
+    return queueActive() || Boolean(state.busyAction);
+  }
+  function renderOfflineButton(action, label, scope = '') {
+    const disabled = offlineControlsLocked() || (!navigator.onLine && ['save', 'update'].includes(action));
+    return `<button class="act-small-button" type="button" data-action="${action}" ${scope}${disabled ? ' disabled' : ''}>${label}</button>`;
+  }
   function renderProtocolRow(p, { showCategory = false, showReasons = false } = {}) {
     const updatedDate = formatUpdatedDate(p.updatedDate);
     const secondary = [p.id, ...(showCategory ? [p.category] : [])];
-    return `<article class="protocol-row ${statusClass(p)}" data-file="${escapeHtml(p.file)}">
+    const status = documentStatus(p);
+    const label = statusText(status);
+    const statusClass = status.available ? 'saved' : status.partial || status.queued ? 'caching' : '';
+    const scope = `data-id="${escapeHtml(p.id)}"`;
+    const actions = state.offlineReady ? [
+      canSave(status) ? renderOfflineButton('save', 'Save offline', scope) : '',
+      status.updateable ? renderOfflineButton('update', 'Update this document', scope) : '',
+      canRemove(status) ? renderOfflineButton('remove', 'Remove offline copy', scope) : ''
+    ].join('') : '';
+    return `<article class="protocol-row ${statusClass}" data-file="${escapeHtml(p.file)}">
       <button class="protocol-row-button" type="button" data-action="open" data-id="${escapeHtml(p.id)}" aria-label="Open PDF for ${escapeHtml(p.id)} ${escapeHtml(p.title)}, updated ${escapeHtml(updatedDate)}">
         <span class="protocol-row-copy">
           <strong class="protocol-row-title">${escapeHtml(p.title)}</strong>
-          <span class="protocol-row-meta">${secondary.map(escapeHtml).join(' • ')}<span class="protocol-row-status" data-status> • ${escapeHtml(statusText(p))}</span></span>
+          <span class="protocol-row-meta">${secondary.map(escapeHtml).join(' • ')}${label ? `<span class="protocol-row-status" data-status> • ${escapeHtml(label)}</span>` : ''}</span>
         </span>
         <span class="protocol-updated-date">Updated ${escapeHtml(updatedDate)}</span>
       </button>
       ${renderSourceMeta(p)}
       ${showReasons ? renderReasons(p) : ''}
+      ${actions ? `<div class="act-offline-actions protocol-row-actions">${actions}</div>` : ''}
     </article>`;
   }
-  function protocolsByCategory(category) {
-    return state.protocols
-      .filter((protocol) => protocol.category === category)
-      .sort((a, b) => {
+  function renderCategoryActions(category) {
+    if (!state.offlineReady) return '';
+    const statuses = state.protocols.filter(p => p.category === category).map(documentStatus);
+    const scope = `data-category="${escapeHtml(category)}"`;
+    const actions = [
+      statuses.some(canSave) ? renderOfflineButton('save', 'Save category', scope) : '',
+      statuses.some(status => status.updateable) ? renderOfflineButton('update', 'Update category', scope) : '',
+      statuses.some(canRemove) ? renderOfflineButton('remove', 'Remove category offline copies', scope) : ''
+    ].join('');
+    return actions ? `<div class="act-offline-actions protocol-category-actions">${actions}</div>` : '';
+  }
+  function replaceList(container, html) {
+    if (renderedLists.get(container) === html) return;
+    const focused = container.contains(document.activeElement) ? document.activeElement : null;
+    const active = focused?.dataset;
+    container.innerHTML = html;
+    if (active?.action) {
+      const buttons = [...container.querySelectorAll('[data-action]:not(:disabled)')];
+      const sameScope = ({ dataset }) => dataset.id === active.id && dataset.category === active.category;
+      const replacement = buttons.find(button => sameScope(button) && button.dataset.action === active.action)
+        || buttons.find(sameScope);
+      replacement?.focus({ preventScroll: true });
+    }
+    renderedLists.set(container, html);
+  }
+  function renderAccordion(matches) {
+    const html = CATEGORY_ORDER.map((category) => {
+      const protocols = matches.filter(p => p.category === category).sort((a, b) => {
         const idDelta = PROTOCOL_ID_COLLATOR.compare(normalizeProtocolId(a.id), normalizeProtocolId(b.id));
         return idDelta || a.title.localeCompare(b.title);
       });
-  }
-  function renderAccordion() {
-    els.grid.innerHTML = CATEGORY_ORDER.map((category) => {
-      const protocols = protocolsByCategory(category);
+      if (!protocols.length) return '';
       const expanded = state.expandedCategory === category;
       const panelId = `protocol-category-${normalize(category).replace(/[^a-z0-9]+/g, '-')}`;
       return `<section class="protocol-category${expanded ? ' expanded' : ''}">
@@ -450,193 +508,202 @@
           </button>
         </h3>
         <div id="${panelId}" class="protocol-category-panel"${expanded ? '' : ' hidden'}>
-          ${expanded ? protocols.map((protocol) => renderProtocolRow(protocol)).join('') : ''}
+          ${expanded ? renderCategoryActions(category) + protocols.map((protocol) => renderProtocolRow(protocol)).join('') : ''}
         </div>
       </section>`;
     }).join('');
+    replaceList(els.grid, html);
   }
   function render() {
     const hasQuery = Boolean(normalize(state.query));
-    const list = hasQuery ? filtered() : [];
-    els.total.textContent = `${state.protocols.length} protocols`;
-    els.searchResultsSection.classList.toggle('hidden', !hasQuery);
-    if (hasQuery) {
-      els.count.textContent = `${list.length} ${list.length === 1 ? 'protocol' : 'protocols'} found${state.searchReady ? '' : ' (metadata search)'}`;
-      els.searchResults.innerHTML = list.length
+    const hasFilters = Object.values(state.filters).some(Boolean);
+    const list = filtered();
+    const showResults = hasQuery || (hasFilters && !list.length);
+    els.reset.disabled = !state.query && !hasFilters;
+    els.total.textContent = `${list.length} ${list.length === 1 ? 'protocol' : 'protocols'}`;
+    els.searchResultsSection.classList.toggle('hidden', !showResults);
+    if (showResults) {
+      els.count.textContent = `${list.length} ${list.length === 1 ? 'protocol' : 'protocols'} found${hasQuery && !state.searchReady ? ' (metadata search)' : ''}`;
+      replaceList(els.searchResults, list.length
         ? list.map((protocol) => renderProtocolRow(protocol, { showCategory: true, showReasons: true })).join('')
-        : '<div class="empty-state">No protocols match your search.</div>';
+        : '<div class="empty-state"><p>No protocols match your search and filters.</p><button type="button" class="act-small-button" data-action="reset">Reset all</button></div>');
     } else {
       els.count.textContent = '';
-      els.searchResults.innerHTML = '';
-      state.resultMeta.clear();
+      replaceList(els.searchResults, '');
     }
-    renderAccordion();
-    updateOfflineSummary();
+    renderAccordion(list);
   }
-  function pdfInfoUrl(file) {
-    return `/act-protocols/pdf-info?${new URLSearchParams({ file }).toString()}`;
+  function formatBytes(bytes) {
+    if (!Number.isFinite(bytes)) return 'unavailable';
+    if (bytes < 1024) return `${bytes} B`;
+    const units = ['KB', 'MB', 'GB', 'TB'];
+    let unit = -1;
+    do {
+      bytes /= 1024;
+      unit += 1;
+    } while (bytes >= 1024 && unit < units.length - 1);
+    return `${new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 }).format(bytes)} ${units[unit]}`;
   }
-  function pdfPageUrl(file, pageNumber) {
-    return `/act-protocols/pdf-page?${new URLSearchParams({ file, page: String(pageNumber), scale: '2' }).toString()}`;
-  }
-  async function cacheUrl(cache, url) {
-    const response = await fetch(url, { cache: 'no-cache' });
-    if (!response.ok) throw new Error(`${url}: ${response.status} ${response.statusText}`);
-    const body = await response.arrayBuffer();
-    if (!body.byteLength) throw new Error(`${url}: empty response`);
-    await cache.put(url, new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers }));
-    const cached = await cache.match(url);
-    if (!cached?.ok) throw new Error(`${url}: not available in ACT cache after download`);
-    return new Response(body, { status: response.status, statusText: response.statusText, headers: response.headers });
-  }
-  async function getCachedPageCount(file) {
-    const cache = await caches.open(CACHE_NAME);
-    const response = await cache.match(pdfInfoUrl(file));
-    if (!response?.ok) return 0;
+  const refreshStorage = debounce(async () => {
+    if (!state.offlineReady || !els.panel.open) return;
     try {
-      const info = await response.json();
-      return Number(info.pageCount || 0);
-    } catch (err) {
-      console.warn('[ACT Protocols] Cached PDF info could not be read', err);
-      return 0;
+      const { savedBytes, partialBytes, quota } = await offline.storage();
+      const storage = [`Saved data: ${formatBytes(savedBytes)}`];
+      if (partialBytes > 0) storage.push(`Partial data: ${formatBytes(partialBytes)}`);
+      if (quota != null) storage.push(`Approximate site allowance: ${formatBytes(quota)}`);
+      els.storage.textContent = storage.join(' • ');
+    } catch (error) {
+      console.warn('[ACT Protocols] Storage estimate unavailable', error);
+      els.storage.textContent = 'Storage information is unavailable.';
     }
-  }
-  async function hasCachedViewerResources(file) {
-    if (!(await isCached(file))) return false;
-    const pageCount = await getCachedPageCount(file);
-    if (!pageCount) return false;
-    const checks = [];
-    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
-      checks.push(caches.open(CACHE_NAME).then((cache) => cache.match(pdfPageUrl(file, pageNumber))).then((response) => Boolean(response?.ok)));
+  });
+  function renderOfflinePanel() {
+    if (!state.offlineReady) {
+      els.offlineSummary.textContent = 'Offline downloads unavailable';
+      return;
     }
-    return (await Promise.all(checks)).every(Boolean);
-  }
-  async function cachePdf(protocol) {
-    const url = encoded(protocol.file);
-    const cache = await caches.open(CACHE_NAME);
-    await cacheUrl(cache, url);
-
-    const infoResponse = await cacheUrl(cache, pdfInfoUrl(protocol.file));
-    const info = await infoResponse.json();
-    const pageCount = Number(info.page_count || info.pageCount || 0);
-    if (!pageCount) throw new Error('PDF has no pages to cache for offline viewing.');
-
-    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
-      await cacheUrl(cache, pdfPageUrl(protocol.file, pageNumber));
+    const statuses = state.protocols.map(documentStatus);
+    const saved = statuses.filter(status => status.available).length;
+    const legacy = statuses.filter(status => status.legacy && !status.available).length;
+    const updates = statuses.filter(status => status.updateStatus === 'available').length;
+    const queue = offline.queue();
+    const active = queueActive();
+    const locked = offlineControlsLocked();
+    const checked = offline.lastChecked();
+    const online = navigator.onLine;
+    const buttons = {
+      'save-all': !locked && online && statuses.some(canSave),
+      'check-updates': !state.busyAction && queue.status !== 'downloading' && online,
+      'update-all': !locked && online && statuses.some(status => status.updateable),
+      'remove-all': !locked && offline.hasSavedCopies(),
+      pause: queue.status === 'downloading' && !state.busyAction,
+      resume: queue.status === 'paused' && online && !state.busyAction,
+      cancel: active && !state.busyAction
+    };
+    for (const [action, enabled] of Object.entries(buttons)) {
+      els.panel.querySelector(`[data-action="${action}"]`).disabled = !enabled;
     }
-
-    if (!(await hasCachedViewerResources(protocol.file))) throw new Error('PDF viewer resources were not available in cache after download.');
-    state.saved.add(protocol.file);
-    state.missing.delete(protocol.file);
-  }
-  function notifyServiceWorker(urls) { if (navigator.serviceWorker?.controller) navigator.serviceWorker.controller.postMessage({ type: 'CACHE_URLS', urls }); }
-  async function isCached(file) {
-    if (!('caches' in window)) return false;
-    const cache = await caches.open(CACHE_NAME);
-    const response = await cache.match(encoded(file));
-    return Boolean(response?.ok);
-  }
-  async function refreshSaved() {
-    await Promise.all(state.protocols.map(async (p) => {
-      if (await hasCachedViewerResources(p.file)) {
-        state.saved.add(p.file);
-        state.missing.delete(p.file);
-      } else {
-        state.saved.delete(p.file);
-      }
-    }));
-  }
-  async function reverifyCachedStatuses() {
-    if (state.refreshInProgress || !state.protocols.length || !('caches' in window)) return;
-    state.refreshInProgress = true;
-    try {
-      await refreshSaved();
-      render();
-    } finally {
-      state.refreshInProgress = false;
+    const summary = [`${saved} available offline`];
+    if (legacy) summary.push(`${legacy} previous ${legacy === 1 ? 'copy' : 'copies'}`);
+    if (updates) summary.push(`${updates} ${updates === 1 ? 'update' : 'updates'}`);
+    if (queue.status === 'paused') summary.push('Download paused');
+    else if (queue.status === 'downloading') summary.push('Downloading');
+    els.offlineSummary.textContent = summary.join(' • ');
+    els.updateStatus.textContent = state.busyAction === 'check-updates'
+      ? 'Checking for updates…'
+      : checked ? `Last successful update check: ${new Date(checked).toLocaleString()}` : 'Update status not checked.';
+    els.downloadProgress.classList.toggle('hidden', queue.status === 'idle');
+    els.panel.querySelector('[data-action="pause"]').classList.toggle('hidden', queue.status !== 'downloading');
+    els.panel.querySelector('[data-action="resume"]').classList.toggle('hidden', queue.status !== 'paused');
+    els.panel.querySelector('[data-action="cancel"]').classList.toggle('hidden', !active);
+    const queueLabels = { downloading: 'Downloading', paused: 'Paused', complete: 'Completed', canceled: 'Canceled' };
+    if (queue.status !== 'idle') {
+      const status = `${queueLabels[queue.status]} · ${queue.completed} of ${queue.total} documents completed${queue.reason ? ` · ${queue.reason}` : ''}`;
+      if (els.queueStatus.textContent !== status) els.queueStatus.textContent = status;
     }
+    const showPages = active && queue.pages > 0;
+    els.currentDocument.textContent = active && queue.title
+      ? `${queue.title}${showPages ? ` · ${queue.page} of ${queue.pages} pages saved` : ''}` : '';
+    els.pageProgress.classList.toggle('hidden', !showPages);
+    if (showPages) {
+      els.pageProgress.max = queue.pages;
+      els.pageProgress.value = queue.page;
+    }
+    refreshStorage();
+  }
+  function onOfflineChange() {
+    renderOfflinePanel();
+    const key = JSON.stringify([
+      navigator.onLine, offlineControlsLocked(),
+      state.protocols.map(protocol => {
+        const { available, partial, legacy, legacyReadable, queued, updateStatus, updateable } = documentStatus(protocol);
+        return [available, partial, legacy, legacyReadable, queued, updateStatus, updateable];
+      })
+    ]);
+    if (key === state.offlineRenderKey) return;
+    state.offlineRenderKey = key;
+    render();
   }
   function openProtocolViewer(protocol) {
     saveReturnState(protocol);
-    const meta = state.resultMeta.get(protocol.id); const page = meta?.reasons?.find(r => r.pages?.length)?.pages?.[0];
-    const params = new URLSearchParams({ file: protocol.file, title: `${protocol.id} ${protocol.title}` }); if (page) params.set('page', page);
+    const params = new URLSearchParams({ file: protocol.file, title: `${protocol.id} ${protocol.title}` });
+    const status = documentStatus(protocol);
+    const indexedVersion = state.searchIndex.get(protocol.id)?.pdfVersion;
+    if (status.available ? status.version === indexedVersion : navigator.onLine) {
+      const page = state.resultMeta.get(protocol.id)?.reasons?.find(r => r.pages?.length)?.pages?.[0];
+      if (page) {
+        params.set('page', page);
+        if (indexedVersion) params.set('pageVersion', indexedVersion);
+      }
+    }
     window.location.href = `/act-protocols/viewer#${params.toString()}`;
   }
-  async function handleOpen(protocol) {
-    if (!('caches' in window)) {
-      openProtocolViewer(protocol);
+  async function runOfflineAction(action, protocols) {
+    if (!state.offlineReady || state.busyAction) return;
+    if (action === 'remove-all' && !window.confirm('Remove all saved ACT protocol documents from this device?')) return;
+    state.busyAction = action;
+    els.offlineMessage.textContent = '';
+    onOfflineChange();
+    try {
+      switch (action) {
+        case 'save':
+        case 'save-all':
+        case 'update':
+        case 'update-all':
+          await offline.start(protocols, { update: action.startsWith('update') });
+          break;
+        case 'pause':
+          await offline.pause();
+          break;
+        case 'resume':
+          await offline.resume();
+          break;
+        case 'cancel':
+          await offline.cancel();
+          break;
+        case 'check-updates': {
+          const { updates } = await offline.checkUpdates();
+          els.offlineMessage.textContent = updates ? `${updates} ${updates === 1 ? 'update' : 'updates'} available.` : 'No updates found for saved documents.';
+          break;
+        }
+        case 'remove':
+        case 'remove-all':
+          await offline.remove(action === 'remove-all' ? null : protocols);
+          els.offlineMessage.textContent = 'Offline copies removed.';
+          break;
+      }
+    } catch (error) {
+      els.offlineMessage.textContent = error.message || 'The offline operation could not finish.';
+    } finally {
+      state.busyAction = '';
+      onOfflineChange();
+    }
+  }
+  function handleListAction(event) {
+    const button = event.target.closest('[data-action]');
+    if (!button) return;
+    const { action, id, category } = button.dataset;
+    if (action === 'reset') {
+      resetFilters();
       return;
     }
-    state.opening.add(protocol.file);
-    state.missing.delete(protocol.file);
-    render();
-    try {
-      if (!navigator.onLine && !(await hasCachedViewerResources(protocol.file))) {
-        state.missing.add(protocol.file);
-        return;
-      }
-      openProtocolViewer(protocol);
-      if (navigator.onLine && !(await hasCachedViewerResources(protocol.file))) {
-        state.caching.add(protocol.file);
-        cachePdf(protocol)
-          .catch((err) => {
-            state.missing.add(protocol.file);
-            console.warn(`[ACT Protocols] Background cache failed for ${protocol.file}`, err);
-          })
-          .finally(() => {
-            state.caching.delete(protocol.file);
-            state.opening.delete(protocol.file);
-            updateOfflineSummary();
-          });
-      }
-    } finally {
-      state.opening.delete(protocol.file);
+    if (action === 'toggle-category') {
+      state.expandedCategory = state.expandedCategory === category ? '' : category;
+      saveListState();
       render();
+      return;
     }
-  }
-  async function cacheProtocols(protocols) {
-    if (!('caches' in window) || !protocols.length) { updateOfflineSummary(); return; }
-    state.downloadTotal = protocols.length;
-    state.downloadCompleted = 0;
-    state.downloadInProgress = true;
-    protocols.forEach(p => { state.caching.add(p.file); state.missing.delete(p.file); });
-    render();
-    for (const protocol of protocols) {
-      state.currentDownloadTitle = protocol.title;
-      render();
-      try {
-        await cachePdf(protocol);
-        state.downloadCompleted += 1;
-      } catch (err) {
-        state.missing.add(protocol.file);
-        console.warn(`[ACT Protocols] Could not cache ${protocol.file}`, err);
-      } finally {
-        state.caching.delete(protocol.file);
-        state.currentDownloadTitle = '';
-        render();
-      }
+    const scope = state.protocols.filter(p => id ? p.id === id : p.category === category);
+    if (!scope.length) return;
+    if (action === 'open') {
+      openProtocolViewer(scope[0]);
+    } else {
+      els.panel.open = true;
+      const summary = els.panel.querySelector('summary');
+      summary.focus({ preventScroll: true });
+      summary.scrollIntoView({ block: 'nearest' });
+      runOfflineAction(action, scope);
     }
-    state.downloadInProgress = false;
-    updateOfflineSummary();
-  }
-  async function clearActOfflineCache() {
-    if (!('caches' in window)) return;
-    const names = await caches.keys();
-    await Promise.all(names.filter(name => name.startsWith(CACHE_PREFIX)).map(name => caches.delete(name)));
-    state.saved.clear();
-    state.caching.clear();
-    state.missing.clear();
-    state.currentDownloadTitle = '';
-    state.downloadTotal = 0;
-    state.downloadCompleted = 0;
-    state.downloadInProgress = false;
-    render();
-  }
-  async function autoCacheProtocols() {
-    if (state.autoCacheStarted) return;
-    state.autoCacheStarted = true;
-    if (!('caches' in window)) { updateOfflineSummary(); return; }
-    await cacheProtocols(state.protocols.filter(p => !state.saved.has(p.file)));
   }
   function setupInstallGuidance() {
     const isStandalone = window.matchMedia?.('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -662,7 +729,9 @@
     });
   }
   function bind() {
-    const debouncedReverify = debounce(reverifyCachedStatuses, 500);
+    const refreshOffline = () => {
+      if (state.offlineReady) offline.refresh().catch(error => console.warn('[ACT Protocols] Could not refresh offline status', error));
+    };
     updateThemeColor();
     preferredDark?.addEventListener?.('change', updateThemeColor);
     els.search.addEventListener('input', (e) => {
@@ -675,6 +744,7 @@
     });
     els.clearSearch?.addEventListener('click', clearSearch);
     els.search.addEventListener('keydown', (e) => {
+      if (!state.suggestions.length && ['ArrowDown', 'ArrowUp'].includes(e.key)) updateSuggestions(els.search.value);
       if (!state.suggestions.length) return;
       if (e.key === 'ArrowDown') {
         e.preventDefault();
@@ -688,6 +758,7 @@
         e.preventDefault();
         selectSuggestion(state.activeSuggestionIndex);
       } else if (e.key === 'Escape') {
+        e.preventDefault();
         closeSuggestions();
       }
     });
@@ -697,42 +768,94 @@
       if (!btn) return;
       selectSuggestion(Number(btn.dataset.index));
     });
-    document.addEventListener('click', (e) => {
+    const closeWhenOutside = (e) => {
       if (e.target === els.search || els.suggestions?.contains(e.target)) return;
       closeSuggestions();
-    });
-    els.grid.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-action]');
-      if (!btn) return;
-      if (btn.dataset.action === 'toggle-category') {
-        state.expandedCategory = state.expandedCategory === btn.dataset.category ? '' : btn.dataset.category;
+    };
+    document.addEventListener('click', closeWhenOutside);
+    document.addEventListener('focusin', closeWhenOutside);
+    els.reset.addEventListener('click', resetFilters);
+    for (const input of els.filters) {
+      input.addEventListener('change', () => {
+        state.filters[input.dataset.filter] = input.value;
+        if (input.dataset.filter === 'category' && input.value) state.expandedCategory = input.value;
         saveListState();
         render();
-        return;
-      }
-      const p = state.protocols.find(x => x.id === btn.dataset.id);
-      if (!p) return;
-      handleOpen(p);
-    });
-    els.searchResults.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-action="open"]');
-      if (!btn) return;
-      const p = state.protocols.find(x => x.id === btn.dataset.id);
-      if (!p) return;
-      handleOpen(p);
+      });
+    }
+    els.grid.addEventListener('click', handleListAction);
+    els.searchResults.addEventListener('click', handleListAction);
+    els.panel.addEventListener('toggle', refreshStorage);
+    els.panel.addEventListener('click', (e) => {
+      const action = e.target.closest('[data-action]')?.dataset.action;
+      if (action) runOfflineAction(action, state.protocols);
     });
     window.addEventListener('pageshow', (event) => {
       restoreProtocolListState(loadReturnState(), { restoreScroll: Boolean(event.persisted) });
-      debouncedReverify();
+      if (event.persisted) refreshOffline();
     });
-    els.retryBtn?.addEventListener('click', () => cacheProtocols(state.protocols.filter(p => state.missing.has(p.file))));
-    window.addEventListener('online', debouncedReverify);
+    window.addEventListener('online', onOfflineChange);
+    window.addEventListener('offline', onOfflineChange);
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') debouncedReverify();
+      if (document.visibilityState === 'visible') refreshOffline();
     });
     setupInstallGuidance();
   }
-  async function loadJson(url) { const response = await fetch(url, { cache: 'no-cache' }); if (!response.ok) throw new Error(`${url}: ${response.status}`); return response.json(); }
-  async function init() { applyDisplayModeClass(); window.matchMedia?.('(display-mode: standalone)').addEventListener?.('change', applyDisplayModeClass); bind(); const savedReturnState = loadReturnState(); try { const [manifest, search, aliases, medicationMap] = await Promise.allSettled([loadJson(MANIFEST_URL), loadJson(SEARCH_URL), loadJson(ALIAS_URL), loadJson(MEDICATION_MAP_URL)]); if (manifest.status !== 'fulfilled') throw manifest.reason; state.protocols = manifest.value; buildProtocolIdLookup(); if (search.status === 'fulfilled') { state.searchReady = true; search.value.forEach(r => { state.searchIndex.set(r.id, r); state.searchIndex.set(normalizeProtocolId(r.id), r); }); } else console.warn('[ACT Protocols] Search index unavailable; using metadata fallback', search.reason); if (aliases.status === 'fulfilled') { state.aliasesReady = true; state.aliases = aliases.value; buildAliasLookup(); } else console.warn('[ACT Protocols] Medication aliases unavailable', aliases.reason); if (medicationMap.status === 'fulfilled') buildMedicationMap(medicationMap.value); else console.warn('[ACT Protocols] Medication protocol map unavailable', medicationMap.reason); applyRestoredFilters(savedReturnState); await refreshSaved(); render(); restoreScrollPosition(savedReturnState); notifyServiceWorker([MANIFEST_URL, SEARCH_URL, ALIAS_URL, MEDICATION_MAP_URL]); autoCacheProtocols(); } catch (err) { console.error('[ACT Protocols] Failed to load protocol manifest', err); els.count.textContent = 'Unable to load protocols.'; els.grid.innerHTML = '<div class="error-state">Unable to load ACT protocols. Please try again when the app is online.</div>'; } }
+  async function loadJson(url) {
+    const response = await fetch(url, { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`${url}: ${response.status}`);
+    return response.json();
+  }
+  async function init() {
+    applyDisplayModeClass();
+    window.matchMedia?.('(display-mode: standalone)').addEventListener?.('change', applyDisplayModeClass);
+    bind();
+    const savedReturnState = loadReturnState();
+    try {
+      const [manifest, search, aliases, medicationMap] = await Promise.allSettled(
+        [MANIFEST_URL, SEARCH_URL, ALIAS_URL, MEDICATION_MAP_URL].map(loadJson)
+      );
+      if (manifest.status !== 'fulfilled') throw manifest.reason;
+      state.protocols = manifest.value;
+      buildProtocolIdLookup();
+      if (search.status === 'fulfilled') {
+        state.searchReady = true;
+        for (const record of search.value) {
+          state.searchIndex.set(record.id, record);
+          state.searchIndex.set(normalizeProtocolId(record.id), record);
+        }
+      } else {
+        console.warn('[ACT Protocols] Search index unavailable; using metadata fallback', search.reason);
+      }
+      if (aliases.status === 'fulfilled') {
+        state.aliases = aliases.value;
+        buildAliasLookup();
+      } else {
+        console.warn('[ACT Protocols] Medication aliases unavailable', aliases.reason);
+      }
+      if (medicationMap.status === 'fulfilled') buildMedicationMap(medicationMap.value);
+      else console.warn('[ACT Protocols] Medication protocol map unavailable', medicationMap.reason);
+
+      const categoryInput = els.filters.find(input => input.dataset.filter === 'category');
+      for (const category of CATEGORY_ORDER) categoryInput.add(new Option(category, category));
+      applyRestoredFilters(savedReturnState);
+      if (offline?.supported) {
+        try {
+          await offline.init();
+          state.offlineReady = offline.supported;
+          offline.subscribe(onOfflineChange);
+          if (offline.queue().status === 'paused') els.panel.open = true;
+        } catch (error) {
+          console.warn('[ACT Protocols] Offline downloads unavailable', error);
+        }
+      }
+      onOfflineChange();
+      restoreScrollPosition(savedReturnState);
+    } catch (error) {
+      console.error('[ACT Protocols] Failed to load protocol manifest', error);
+      els.total.textContent = 'Unable to load protocols.';
+      els.grid.innerHTML = '<div class="error-state">Unable to load ACT protocols. Please try again when the app is online.</div>';
+    }
+  }
   document.addEventListener('DOMContentLoaded', init);
 })();

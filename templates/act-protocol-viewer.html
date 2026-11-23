@@ -7,7 +7,8 @@
   <title>ACT Protocol PDF | Study Guru</title>
 
   <link rel="stylesheet" href="/static/style.css">
-  <link rel="stylesheet" href="/static/act-protocols.css">
+  <link rel="stylesheet" href="/static/act-protocols.css?v=2.8.0">
+  <link rel="stylesheet" href="/static/act-protocol-viewer.css">
   <link rel="manifest" href="/static/manifest-act-protocols.json">
   <meta name="theme-color" content="#0f766e">
   <meta name="mobile-web-app-capable" content="yes">
@@ -16,9 +17,7 @@
   <meta name="apple-mobile-web-app-title" content="ACT Protocols">
   <link rel="apple-touch-icon" href="/static/icons/act-protocols/icon-180.png">
 </head>
-<body class="act-viewer-body">
-  <div id="offlineIndicator" class="offline-indicator hidden">📡 You're offline - Using cached content</div>
-
+<body class="act-viewer-body" data-pwa-preserve-view>
   <header class="pdf-viewer-header">
     <a id="pdfBackButton" class="pdf-back-button" href="/act-protocols" aria-label="Back to ACT protocol selection">← Back</a>
     <div class="pdf-viewer-title-wrap">
@@ -32,15 +31,60 @@
     </div>
   </header>
 
-  <main class="pdf-viewer-shell">
+  <div id="offlineIndicator" class="pdf-offline-indicator hidden" role="status">Offline</div>
+
+  <div id="readerToolbar" class="reader-toolbar" aria-label="Document tools" role="group" hidden>
+    <div class="reader-page-nav">
+      <button id="previousPage" type="button">Previous</button>
+      <span id="currentPage" class="reader-page-status" aria-live="polite"></span>
+      <button id="nextPage" type="button">Next</button>
+    </div>
+    <form id="goToPage" class="reader-form">
+      <label for="pageNumber">Page</label>
+      <input id="pageNumber" name="page" type="number" inputmode="numeric" min="1" required>
+      <button type="submit">Go</button>
+    </form>
+    <div class="reader-panel-actions">
+      <button id="openFind" type="button" aria-label="Find in this document" aria-expanded="false" aria-controls="readerFind">Find</button>
+      <button id="openBookmarks" type="button" aria-expanded="false" aria-controls="readerBookmarks">Bookmarks</button>
+    </div>
+  </div>
+
+  <section id="readerFind" class="reader-panel" aria-labelledby="findTitle" hidden>
+    <div class="reader-panel-heading">
+      <h2 id="findTitle">Find in this document</h2>
+      <button id="closeFind" type="button" aria-label="Close document search">Close</button>
+    </div>
+    <form id="findForm" class="reader-form" role="search">
+      <label class="reader-sr-only" for="findQuery">Search this document</label>
+      <input id="findQuery" name="query" type="search" placeholder="Search document text" required>
+      <button type="submit">Search</button>
+    </form>
+    <p id="findStatus" role="status"></p>
+    <ol id="findResults" class="reader-result-list"></ol>
+  </section>
+
+  <section id="readerBookmarks" class="reader-panel" aria-labelledby="bookmarkTitle" hidden>
+    <div class="reader-panel-heading">
+      <h2 id="bookmarkTitle">Bookmarks</h2>
+      <button id="closeBookmarks" type="button" aria-label="Close bookmarks">Close</button>
+    </div>
+    <button id="bookmarkPage" type="button"></button>
+    <p id="bookmarkStatus" role="status"></p>
+    <ul id="bookmarkedPages" class="reader-result-list"></ul>
+  </section>
+
+  <main class="pdf-viewer-shell" tabindex="0" aria-label="Document pages">
+    <p id="viewerLoading" class="reader-loading" role="status">Loading document…</p>
     <div id="viewerError" class="pdf-viewer-error hidden" role="alert">
-      Unable to load this PDF. Return to the protocol list and try saving it offline again.
+      Unable to load this PDF.
     </div>
     <div id="pdfPages" class="pdf-page-list" aria-label="ACT protocol PDF pages"></div>
   </main>
 
   <script src="/static/js/progress-store.js"></script>
-  <script src="/static/js/pwa-utils.js"></script>
-  <script src="/static/js/act-protocol-viewer.js"></script>
+  <script src="/static/js/pwa-utils.js?v=2.8.0"></script>
+  <script src="/static/js/act-offline.js"></script>
+  <script src="/static/js/act-protocol-viewer.js?v=2.8.0"></script>
 </body>
 </html>

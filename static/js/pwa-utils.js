@@ -132,7 +132,7 @@
       navigator.serviceWorker.addEventListener('message', handleSWMessage);
 
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (refreshing) return;
+        if (refreshing || document.body.hasAttribute('data-pwa-preserve-view')) return;
         refreshing = true;
         log('Controller changed, reloading page');
         window.location.reload();
@@ -181,6 +181,7 @@
         break;
 
       case 'APP_CACHES_CLEARED':
+        if (document.body.hasAttribute('data-pwa-preserve-view')) break;
         log('App caches cleared for a new deployment, reloading');
         window.location.reload();
         break;

@@ -1,0 +1,264 @@
+.act-viewer-body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+}
+
+.pdf-viewer-header {
+  position: static;
+  flex: none;
+}
+
+.act-viewer-body .pdf-viewer-title-wrap h1 {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.pdf-offline-indicator {
+  padding: 2px 12px;
+  color: var(--act-text);
+  background: var(--act-surface-strong);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.reader-toolbar,
+.reader-panel {
+  flex: none;
+  color: var(--act-text);
+  background: var(--act-bg);
+  border-bottom: 1px solid var(--act-border);
+}
+
+.reader-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+}
+
+.reader-toolbar[hidden],
+.reader-panel[hidden] {
+  display: none;
+}
+
+.reader-toolbar button,
+.reader-panel button,
+.reader-form input {
+  min-height: 44px;
+  padding: 4px 9px;
+  color: var(--act-text);
+  background: var(--act-surface);
+  border: 1px solid var(--act-border);
+  border-radius: 8px;
+  font: inherit;
+}
+
+.reader-toolbar button,
+.reader-panel button {
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reader-toolbar button[aria-expanded="true"],
+#bookmarkPage[aria-pressed="true"] {
+  border-color: var(--act-primary);
+  background: var(--act-primary);
+  color: var(--act-on-primary);
+}
+
+.reader-toolbar button:disabled,
+.reader-panel button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.reader-page-nav,
+.reader-form,
+.reader-panel-actions,
+.reader-panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.reader-page-status {
+  min-width: 7.5ch;
+  text-align: center;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#pageNumber {
+  width: 4ch;
+  min-width: 52px;
+}
+
+.reader-panel {
+  max-height: min(36dvh, 18rem);
+  padding: 8px 12px 12px;
+  overflow: auto;
+}
+
+.reader-panel-heading {
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.reader-panel-heading h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+#findQuery {
+  flex: 1;
+  min-width: 0;
+}
+
+.reader-panel p {
+  margin: 8px 0;
+}
+
+.reader-panel p:empty,
+.reader-result-list:empty {
+  display: none;
+}
+
+.reader-result-list {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reader-result-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.reader-result-list .reader-snippet {
+  display: block;
+  text-align: start;
+}
+
+.reader-snippet span {
+  display: block;
+  font-weight: 400;
+}
+
+.reader-bookmark-warning {
+  color: var(--act-text-muted);
+  font-size: 0.85rem;
+}
+
+.act-viewer-body .pdf-viewer-shell {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+  overflow-anchor: none;
+}
+
+.act-viewer-body .pdf-page-wrap {
+  scroll-margin-top: 0;
+}
+
+.reader-loading {
+  padding: 4px 12px;
+  color: var(--act-text);
+}
+
+.reader-page-frame {
+  display: grid;
+  align-items: start;
+  aspect-ratio: var(--page-ratio, 8.5 / 11);
+  background: var(--act-bg);
+}
+
+.reader-page-frame > * {
+  grid-area: 1 / 1;
+}
+
+.reader-page-frame .pdf-page-image {
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+
+.reader-page-error {
+  margin: 12px;
+}
+
+.reader-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.act-viewer-body :is(button, input, a, main):focus-visible {
+  outline: 3px solid var(--act-focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .pdf-viewer-header {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 'back zoom' 'title title';
+    row-gap: 6px;
+  }
+
+  .pdf-back-button {
+    grid-area: back;
+    justify-self: start;
+  }
+
+  .pdf-zoom-controls {
+    grid-area: zoom;
+  }
+
+  .pdf-viewer-title-wrap {
+    grid-area: title;
+  }
+
+  .pdf-viewer-kicker {
+    display: none;
+  }
+
+  .act-viewer-body .pdf-viewer-title-wrap h1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .reader-toolbar {
+    gap: 6px 8px;
+  }
+
+  .reader-page-nav {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  #goToPage label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .reader-panel {
+    max-height: 32dvh;
+  }
+}

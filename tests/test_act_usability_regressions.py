@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DOSE = (ROOT / 'static/js/act-dose-calculator.js').read_text()
 PROTOCOLS = (ROOT / 'static/js/act-protocols.js').read_text()
+OFFLINE = (ROOT / 'static/js/act-offline.js').read_text()
 TEMPLATE = (ROOT / 'templates/act-protocols.html').read_text()
 ACT_CSS = (ROOT / 'static/act-protocols.css').read_text()
 HOME_TEMPLATE = (ROOT / 'templates/home.html').read_text()
@@ -83,15 +84,18 @@ def test_blood_search_priority_is_narrow_and_uses_stable_protocol_ids():
 
 def test_blood_search_priority_remains_available_in_global_search_results():
     priority_match = PROTOCOLS.index('if (bloodPriorityActive && bloodSearchProtocolRank(p.id) !== -1)')
-    search_render = PROTOCOLS.index('const list = hasQuery ? filtered() : [];')
+    search_render = PROTOCOLS.index('const list = filtered();')
     assert priority_match < search_render
     assert "category: 'Procedures'" in PROTOCOLS
     assert 'a.protocol.category === BLOOD_SEARCH_PRIORITY.category ? -1' in PROTOCOLS
 
 
-def test_service_worker_version_is_bumped_without_changing_protocol_pdf_cache():
-    assert "const CACHE_VERSION = 'v2.7.30';" in SERVICE_WORKER
-    assert "const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v6';" in SERVICE_WORKER
+def test_service_worker_precaches_offline_controls_and_leaves_document_caches_to_coordinator():
+    assert "'/static/js/act-offline.js'" in SERVICE_WORKER
+    assert "const legacyPrefix = 'act-protocol-pdfs-';" in OFFLINE
+    assert "if (isActDocumentResource(pathname))" in SERVICE_WORKER
+    assert "'act-offline-copy-'" not in SERVICE_WORKER
+    assert "'act-protocol-pdfs-'" not in SERVICE_WORKER
 
 
 def test_protocol_rows_have_accessible_open_buttons_and_accordion_state():
@@ -100,13 +104,13 @@ def test_protocol_rows_have_accessible_open_buttons_and_accordion_state():
     assert '.protocol-updated-date' in ACT_CSS
     assert 'aria-expanded="${expanded}"' in PROTOCOLS
     assert 'aria-controls="${panelId}"' in PROTOCOLS
-    assert "state.expandedCategory === btn.dataset.category ? '' : btn.dataset.category" in PROTOCOLS
+    assert "state.expandedCategory === category ? '' : category" in PROTOCOLS
 
 
 def test_search_results_render_above_the_category_accordion():
     assert TEMPLATE.index('id="searchResultsSection"') < TEMPLATE.index('id="protocolGrid"')
     assert 'id="searchResults"' in TEMPLATE
-    assert "els.searchResultsSection.classList.toggle('hidden', !hasQuery);" in PROTOCOLS
+    assert "els.searchResultsSection.classList.toggle('hidden', !showResults);" in PROTOCOLS
     assert "renderProtocolRow(protocol, { showCategory: true, showReasons: true })" in PROTOCOLS
 
 
@@ -159,24 +163,21 @@ def test_oxygen_calculator_link_uses_accessible_horizontal_tank_artwork():
     assert 'aria-label="Open Oxygen Availability Calculator for transport oxygen duration and risk estimates"' in TEMPLATE
 
 
-def test_offline_download_counter_starts_at_zero_and_advances_per_completed_pdf():
-    assert 'downloadTotal: 0, downloadCompleted: 0, downloadInProgress: false' in PROTOCOLS
-    assert 'state.downloadTotal = protocols.length;' in PROTOCOLS
-    assert 'state.downloadCompleted = 0;' in PROTOCOLS
-    assert "`${state.downloadCompleted} out of ${state.downloadTotal}`" in PROTOCOLS
-    cache_start = PROTOCOLS.index('async function cacheProtocols')
-    complete_start = PROTOCOLS.index('await cachePdf(protocol);', cache_start)
-    increment_start = PROTOCOLS.index('state.downloadCompleted += 1;', cache_start)
-    assert complete_start < increment_start
+def test_download_progress_and_controls_are_exposed_in_the_offline_panel():
+    for action in ('pause', 'resume', 'cancel', 'save-all', 'check-updates', 'update-all', 'remove-all'):
+        assert f'data-action="{action}"' in TEMPLATE
+    assert 'id="offlinePageProgress"' in TEMPLATE
+    assert '${queue.completed} of ${queue.total} documents completed' in PROTOCOLS
 
 
-def test_protocol_opening_does_not_wait_for_full_background_cache_online():
+def test_protocol_opening_does_not_start_downloads():
     open_start = PROTOCOLS.index('function openProtocolViewer')
-    handle_start = PROTOCOLS.index('async function handleOpen')
-    cache_start = PROTOCOLS.index('async function cacheProtocols')
-    handle_body = PROTOCOLS[handle_start:cache_start]
-    assert handle_body.index('openProtocolViewer(protocol);') < handle_body.index('cachePdf(protocol)')
-    assert '.finally(() => {' in handle_body
+    actions_start = PROTOCOLS.index('async function runOfflineAction', open_start)
+    open_body = PROTOCOLS[open_start:actions_start]
+    assert 'window.location.href' in open_body
+    assert 'offline.start(' not in open_body
+    assert PROTOCOLS.count('offline.start(') == 1
+    assert 'autoCacheProtocols' not in PROTOCOLS
 
 
 def test_pwa_checks_the_deployment_version_and_refreshes_app_caches():

@@ -8,11 +8,38 @@
    - Question image caching support (NEW)
 ----------------------------------------------------------- */
 
-const CACHE_VERSION = 'v2.7.30';
-const ACT_PROTOCOL_CACHE_NAME = 'act-protocol-pdfs-v6';
-const ACT_PROTOCOL_CACHE_PREFIX = 'act-protocol-pdfs-';
+const CACHE_VERSION = 'v2.8.0';
 const CACHE_NAME = `study-guru-${CACHE_VERSION}`;
 const DATA_CACHE_NAME = `study-guru-data-${CACHE_VERSION}`;
+const ACT_SHELL_CACHE_PREFIX = 'act-protocol-shell-';
+const ACT_SHELL_CACHE_NAME = `${ACT_SHELL_CACHE_PREFIX}${CACHE_VERSION}`;
+
+// Deployment cache resets and ordinary navigation never modify saved documents.
+const ACT_SHELL_ASSETS = [
+  '/act-protocols',
+  '/act-protocols/viewer',
+  '/act-protocols/dose-calculator',
+  '/act-protocols/oxygen-calculator',
+  '/static/style.css',
+  '/static/home-style.css',
+  '/static/act-protocols.css',
+  '/static/act-protocol-viewer.css',
+  '/static/act-oxygen-calculator.css',
+  '/static/js/pwa-utils.js',
+  '/static/js/progress-store.js',
+  '/static/js/act-offline.js',
+  '/static/js/act-protocols.js',
+  '/static/js/act-protocol-viewer.js',
+  '/static/js/act-dose-calculator.js',
+  '/static/js/oxygen-calculations.js',
+  '/static/js/act-oxygen-calculator.js',
+  '/static/manifest-act-protocols.json',
+  '/static/data/act-protocols.json',
+  '/static/data/act-protocol-search.json',
+  '/static/data/act-medication-aliases.json',
+  '/static/data/act-medication-protocol-map.json',
+  '/static/data/oxygen-calculator-config.json'
+];
 
 // Static assets to precache
 const STATIC_ASSETS = [
@@ -190,11 +217,14 @@ self.addEventListener('install', (event) => {
   console.log('[SW] Installing service worker version:', CACHE_VERSION);
 
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches.open(ACT_SHELL_CACHE_NAME)
+      .then(cache => Promise.allSettled(ACT_SHELL_ASSETS.map(url =>
+        cache.add(new Request(url, { cache: 'reload' })))))
+      .then(() => caches.open(CACHE_NAME))
       .then((cache) => {
         console.log('[SW] Caching static assets');
         return Promise.allSettled(
-          STATIC_ASSETS.map((url) =>
+          STATIC_ASSETS.filter(url => !ACT_SHELL_ASSETS.includes(url)).map((url) =>
             cache.add(url).catch((err) => {
               console.warn(`[SW] Could not cache static asset ${url}:`, err.message);
               throw err;
@@ -209,7 +239,8 @@ self.addEventListener('install', (event) => {
         console.log('[SW] Caching HTML pages');
         // Cache HTML pages (allow failures for pages that may not exist yet)
         return Promise.allSettled(
-          [...HTML_PAGES, ...NCLEX_CATEGORY_ROUTES, ...CFRN_CATEGORY_ROUTES].map(url =>
+          [...HTML_PAGES, ...NCLEX_CATEGORY_ROUTES, ...CFRN_CATEGORY_ROUTES]
+            .filter(url => !ACT_SHELL_ASSETS.includes(url)).map(url =>
             cache.add(url).catch(err => console.log(`[SW] Could not cache ${url}:`, err.message))
           )
         );
@@ -257,7 +288,7 @@ self.addEventListener('activate', (event) => {
             .filter((name) => ((name.startsWith('nurse-study-hub-') || name.startsWith('study-guru-')) &&
                              name !== CACHE_NAME &&
                              name !== DATA_CACHE_NAME) ||
-                             (name.startsWith(ACT_PROTOCOL_CACHE_PREFIX) && name !== ACT_PROTOCOL_CACHE_NAME))
+                             (name.startsWith(ACT_SHELL_CACHE_PREFIX) && name !== ACT_SHELL_CACHE_NAME))
             .map((name) => {
               console.log('[SW] Deleting old cache:', name);
               return caches.delete(name);
@@ -279,6 +310,24 @@ function isStaticAsset(pathname) {
 
 function isActProtocolPdf(pathname) {
   return pathname.startsWith('/static/protocols/act/') && pathname.toLowerCase().endsWith('.pdf');
+}
+
+function isActDocumentResource(pathname) {
+  return isActProtocolPdf(pathname) || pathname.startsWith('/act-protocols/pdf-') ||
+    pathname === '/act-protocols/versions';
+}
+
+async function actShellResponse(request, pathname) {
+  const cache = await caches.open(ACT_SHELL_CACHE_NAME);
+  try {
+    const response = await fetch(request);
+    if (response.ok) await cache.put(pathname, response.clone()).catch(() => {});
+    return response;
+  } catch (error) {
+    const cached = await cache.match(pathname);
+    if (cached) return cached;
+    throw error;
+  }
 }
 
 // Helper function to determine if a request is for JSON data
@@ -376,7 +425,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Skip external requests
-  if (!url.origin.includes(self.location.origin)) {
+  if (url.origin !== self.location.origin) {
     return;
   }
 
@@ -388,9 +437,11 @@ self.addEventListener('fetch', (event) => {
   const pathname = url.pathname;
 
   // Strategy based on resource type
-  if (isActProtocolPdf(pathname)) {
-    // ACT protocol PDFs: cache first so saved protocols open offline.
-    event.respondWith(cacheFirstWithNetwork(event.request, DATA_CACHE_NAME));
+  if (isActDocumentResource(pathname)) {
+    // Only the download coordinator can publish or replace offline document bytes.
+    return;
+  } else if (ACT_SHELL_ASSETS.includes(pathname)) {
+    event.respondWith(actShellResponse(event.request, pathname));
   } else if (isStaticAsset(pathname)) {
     // Static assets: Cache first
     event.respondWith(cacheFirstWithNetwork(event.request, CACHE_NAME));
@@ -413,7 +464,10 @@ self.addEventListener('message', (event) => {
   }
 
   if (event.data && event.data.type === 'CACHE_URLS') {
-    const urls = event.data.urls || [];
+    const urls = (event.data.urls || []).filter(url => {
+      const pathname = new URL(url, self.location.origin).pathname;
+      return !isActDocumentResource(pathname) && !ACT_SHELL_ASSETS.includes(pathname);
+    });
     caches.open(DATA_CACHE_NAME)
       .then((cache) => Promise.allSettled(
         urls.map((url) => cache.add(url).catch((err) => {

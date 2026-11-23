@@ -3,6 +3,9 @@
 import os
 import json
 import re
+from functools import lru_cache
+from hashlib import sha256
+from math import isfinite
 from flask import Flask, render_template, request, jsonify, redirect, url_for, send_from_directory, send_file
 from pathlib import Path
 from urllib.parse import unquote
@@ -14,6 +17,8 @@ app = Flask(__name__, template_folder='../templates', static_folder='../static')
 # Get the base directory
 BASE_DIR = Path(__file__).parent.parent
 MODULES_DIR = BASE_DIR / 'modules'
+ACT_PROTOCOL_MANIFEST = BASE_DIR / 'static/data/act-protocols.json'
+ACT_PROTOCOL_SEARCH_INDEX = BASE_DIR / 'static/data/act-protocol-search.json'
 
 
 def resolve_act_protocol_pdf(web_path):
@@ -22,9 +27,20 @@ def resolve_act_protocol_pdf(web_path):
         return None
     candidate = (BASE_DIR / decoded.lstrip('/')).resolve()
     allowed_root = (BASE_DIR / 'static/protocols/act').resolve()
-    if allowed_root not in candidate.parents or not candidate.exists():
+    if allowed_root not in candidate.parents or not candidate.is_file():
         return None
     return candidate
+
+
+@lru_cache(maxsize=2)
+def load_act_protocol_text(index_path, modified_ns, size):
+    records = json.loads(index_path.read_text(encoding='utf-8'))
+    return {
+        (record['file'], record['pdfVersion']): [
+            {'page': page['page'], 'text': page['text']} for page in record['pages']
+        ]
+        for record in records if record.get('pdfVersion') and record.get('pages')
+    }
 
 
 # Category metadata
@@ -475,6 +491,14 @@ def pwa_version():
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     return response
 
+@app.route('/service-worker.js')
+def service_worker():
+    response = send_from_directory(app.static_folder, 'service-worker.js')
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Service-Worker-Allowed'] = '/'
+    return response
+
+
 @app.route('/')
 def home():
     try:
@@ -530,58 +554,151 @@ def act_protocol_viewer():
         return jsonify({'error': str(e)}), 500
 
 
-def act_protocol_pdf_error(message, status=400):
-    return jsonify({'success': False, 'error': message}), status
+class ActProtocolPdfError(Exception):
+    def __init__(self, message, status):
+        super().__init__(message)
+        self.status = status
+
+
+@app.errorhandler(ActProtocolPdfError)
+def act_protocol_pdf_error(error):
+    response = jsonify({'success': False, 'error': str(error)})
+    response.headers['Cache-Control'] = 'no-store'
+    return response, error.status
+
+
+def read_requested_act_protocol_pdf():
+    requested_file = request.args.get('file', '')
+    if not requested_file:
+        raise ActProtocolPdfError('Missing ACT protocol PDF file parameter.', 400)
+    pdf_path = resolve_act_protocol_pdf(requested_file)
+    if not pdf_path:
+        raise ActProtocolPdfError('Invalid ACT protocol PDF path.', 404)
+    try:
+        content = pdf_path.read_bytes()
+    except OSError as exc:
+        app.logger.exception('Could not read ACT protocol PDF')
+        raise ActProtocolPdfError('Unable to read ACT protocol PDF.', 500) from exc
+    version = sha256(content).hexdigest()
+    requested_version = request.args.get('version')
+    if requested_version is not None and requested_version != version:
+        raise ActProtocolPdfError('This ACT protocol PDF version is no longer served.', 409)
+    return pdf_path, content, version
+
+
+def act_protocol_version_response(response, version):
+    response.headers['X-ACT-PDF-Version'] = version
+    response.headers['Cache-Control'] = (
+        'public, max-age=604800, immutable' if request.args.get('version') else 'no-store'
+    )
+    return response
+
+
+@app.route('/act-protocols/versions')
+def act_protocol_versions():
+    try:
+        manifest = json.loads(ACT_PROTOCOL_MANIFEST.read_text(encoding='utf-8'))
+        documents = []
+        for protocol in manifest:
+            file = protocol['file']
+            path = resolve_act_protocol_pdf(file)
+            if path is None:
+                raise OSError(f'Missing ACT protocol PDF: {file}')
+            with path.open('rb') as pdf:
+                version = sha256()
+                size = 0
+                for block in iter(lambda: pdf.read(128 * 1024), b''):
+                    version.update(block)
+                    size += len(block)
+            documents.append({'id': protocol['id'], 'file': file, 'version': version.hexdigest(), 'size': size})
+    except (OSError, ValueError, KeyError) as exc:
+        app.logger.exception('Could not list ACT protocol PDF versions')
+        raise ActProtocolPdfError('Unable to check ACT protocol PDF versions.', 503) from exc
+    response = jsonify({'documents': documents})
+    response.headers['Cache-Control'] = 'no-store'
+    return response
 
 
 @app.route('/act-protocols/pdf-info')
 def act_protocol_pdf_info():
-    requested_file = request.args.get('file', '')
-    if not requested_file:
-        return act_protocol_pdf_error('Missing ACT protocol PDF file parameter.', 400)
-    pdf_path = resolve_act_protocol_pdf(requested_file)
-    if not pdf_path:
-        return act_protocol_pdf_error('Invalid ACT protocol PDF path.', 404)
+    _, content, version = read_requested_act_protocol_pdf()
     try:
         import fitz
-        with fitz.open(pdf_path) as doc:
-            return jsonify({'success': True, 'page_count': doc.page_count, 'pageCount': doc.page_count})
-    except Exception as e:
-        print(f"Error reading ACT protocol PDF info: {e}")
-        return act_protocol_pdf_error('Unable to read ACT protocol PDF.', 500)
+        with fitz.open(stream=content, filetype='pdf') as doc:
+            dimensions = [{'width': page.rect.width, 'height': page.rect.height} for page in doc]
+            response = jsonify({
+                'success': True,
+                'page_count': doc.page_count,
+                'pageCount': doc.page_count,
+                'dimensions': dimensions,
+                'version': version,
+            })
+    except Exception as exc:
+        app.logger.exception('Could not read ACT protocol PDF metadata')
+        raise ActProtocolPdfError('Unable to read ACT protocol PDF.', 500) from exc
+    return act_protocol_version_response(response, version)
+
+
+@app.route('/act-protocols/pdf-file')
+def act_protocol_pdf_file():
+    pdf_path, content, version = read_requested_act_protocol_pdf()
+    response = send_file(BytesIO(content), mimetype='application/pdf', download_name=pdf_path.name, etag=version)
+    return act_protocol_version_response(response, version)
+
+
+@app.route('/act-protocols/pdf-text')
+def act_protocol_pdf_text():
+    pdf_path, content, version = read_requested_act_protocol_pdf()
+    try:
+        stat = ACT_PROTOCOL_SEARCH_INDEX.stat()
+        indexed = load_act_protocol_text(ACT_PROTOCOL_SEARCH_INDEX, stat.st_mtime_ns, stat.st_size)
+        web_path = '/' + pdf_path.relative_to(BASE_DIR.resolve()).as_posix()
+        pages = indexed.get((web_path, version))
+    except (OSError, ValueError, KeyError):
+        pages = None
+    if pages is None:
+        try:
+            import fitz
+            with fitz.open(stream=content, filetype='pdf') as doc:
+                pages = [
+                    {'page': number, 'text': ' '.join(page.get_text('text').split())}
+                    for number, page in enumerate(doc, start=1)
+                ]
+        except Exception as exc:
+            app.logger.exception('Could not extract ACT protocol PDF text')
+            raise ActProtocolPdfError('Unable to read ACT protocol PDF text.', 500) from exc
+    response = jsonify({'success': True, 'version': version, 'pages': pages})
+    return act_protocol_version_response(response, version)
 
 
 @app.route('/act-protocols/pdf-page')
 def act_protocol_pdf_page():
-    requested_file = request.args.get('file', '')
-    if not requested_file:
-        return act_protocol_pdf_error('Missing ACT protocol PDF file parameter.', 400)
-    pdf_path = resolve_act_protocol_pdf(requested_file)
-    if not pdf_path:
-        return act_protocol_pdf_error('Invalid ACT protocol PDF path.', 404)
+    pdf_path, content, version = read_requested_act_protocol_pdf()
     try:
         page_number = int(request.args.get('page', '1'))
         scale = float(request.args.get('scale', '2'))
-    except ValueError:
-        return act_protocol_pdf_error('Invalid page or scale.', 400)
+    except ValueError as exc:
+        raise ActProtocolPdfError('Invalid page or scale.', 400) from exc
     if page_number < 1:
-        return act_protocol_pdf_error('Invalid page number.', 400)
+        raise ActProtocolPdfError('Invalid page number.', 400)
+    if not isfinite(scale):
+        raise ActProtocolPdfError('Invalid page scale.', 400)
     scale = min(3.0, max(1.0, scale))
     try:
         import fitz
-        with fitz.open(pdf_path) as doc:
+        with fitz.open(stream=content, filetype='pdf') as doc:
             if page_number > doc.page_count:
-                return act_protocol_pdf_error('Page out of range.', 404)
+                raise ActProtocolPdfError('Page out of range.', 404)
             page = doc.load_page(page_number - 1)
             pix = page.get_pixmap(matrix=fitz.Matrix(scale, scale), alpha=False)
             png = BytesIO(pix.tobytes('png'))
-            png.seek(0)
-            response = send_file(png, mimetype='image/png', download_name=f'{pdf_path.stem}-page-{page_number}.png')
-            response.headers['Cache-Control'] = 'public, max-age=604800'
-            return response
-    except Exception as e:
-        print(f"Error rendering ACT protocol PDF page: {e}")
-        return act_protocol_pdf_error('Unable to render ACT protocol PDF page.', 500)
+    except ActProtocolPdfError:
+        raise
+    except Exception as exc:
+        app.logger.exception('Could not render ACT protocol PDF page')
+        raise ActProtocolPdfError('Unable to render ACT protocol PDF page.', 500) from exc
+    response = send_file(png, mimetype='image/png', download_name=f'{pdf_path.stem}-page-{page_number}.png')
+    return act_protocol_version_response(response, version)
 
 
 @app.route('/paper-prompt-builder')

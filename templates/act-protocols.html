@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="ACT Protocols offline-access protocol repository">
   <meta name="color-scheme" content="light dark">
   <title>ACT Protocols | Study Guru</title>
@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/home-style.css">
-  <link rel="stylesheet" href="/static/act-protocols.css">
+  <link rel="stylesheet" href="/static/act-protocols.css?v=2.8.0">
 
   <link rel="manifest" href="/static/manifest-act-protocols.json">
   <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
@@ -30,18 +30,14 @@
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body>
+<body data-pwa-preserve-view>
   <div id="offlineIndicator" class="offline-indicator hidden">📡 You're offline - Using cached content</div>
 
   <main class="act-shell">
     <a class="back-link act-back" href="/">← Back to Study Guru</a>
     <header class="act-hero">
       <h1>📋 ACT Protocols</h1>
-      <p>Search ACT protocol PDFs and let the app cache them automatically for offline clinical reference.</p>
-      <div class="act-actions">
-        <span id="offlineSummary" class="offline-download-status" role="status" aria-live="polite">Checking offline cache status...</span>
-        <button id="retryFailedBtn" class="btn btn-outline hidden" type="button">Re-try failed downloads</button>
-      </div>
+      <p>Search ACT protocol PDFs and choose which documents to save for offline access.</p>
       <p class="act-search-note">Search results are based on indexed protocol text and medication aliases. Always verify medication details, indications, contraindications, and dosing in the opened protocol PDF.</p>
     </header>
 
@@ -57,13 +53,58 @@
     <section class="act-controls" aria-label="Protocol search">
       <label class="search-label" for="protocolSearch">Search protocols</label>
       <div class="protocol-search-row">
-        <div class="protocol-search-wrap">
-          <input id="protocolSearch" class="protocol-search" type="search" placeholder="Search by title, ID, medication or alias (Keppra, Versed), category, or tags..." autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="protocolSearchSuggestions">
-          <div id="protocolSearchSuggestions" class="protocol-search-suggestions hidden" role="listbox" aria-label="Search suggestions"></div>
-        </div>
+        <input id="protocolSearch" class="protocol-search" type="search" placeholder="Title, ID, medication, or tag" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="protocolSearchSuggestions">
         <button id="clearProtocolSearch" class="clear-search-btn hidden" type="button" aria-label="Clear protocol search">Clear search</button>
+        <div id="protocolSearchSuggestions" class="protocol-search-suggestions hidden" role="listbox" aria-label="Search suggestions"></div>
+      </div>
+      <div class="protocol-filters">
+        <label for="protocolCategoryFilter">Category
+          <select id="protocolCategoryFilter" data-filter="category">
+            <option value="">All categories</option>
+          </select>
+        </label>
+        <label for="protocolPatientFilter">Patient group
+          <select id="protocolPatientFilter" data-filter="patient">
+            <option value="">All</option>
+            <option value="adult">Adult</option>
+            <option value="pediatric">Pediatric</option>
+          </select>
+        </label>
+        <label for="protocolOfflineFilter">Offline availability
+          <select id="protocolOfflineFilter" data-filter="offline">
+            <option value="">All documents</option>
+            <option value="available">Available offline</option>
+            <option value="updates">Updates available</option>
+          </select>
+        </label>
+        <button class="act-small-button" data-action="reset" type="button" id="resetProtocolFilters" disabled>Reset all</button>
       </div>
     </section>
+
+    <details id="protocolOfflinePanel" class="act-offline-panel">
+      <summary>Offline downloads <span id="offlineSummary">Checking saved documents…</span></summary>
+      <div class="act-offline-content">
+        <p id="offlineUpdateStatus">Update status not checked.</p>
+        <p id="offlineStorage"></p>
+        <div class="act-offline-actions">
+          <button data-action="save-all" type="button" class="act-small-button" disabled>Save all documents</button>
+          <button data-action="check-updates" type="button" class="act-small-button" disabled>Check for updates</button>
+          <button data-action="update-all" type="button" class="act-small-button" disabled>Update saved documents</button>
+          <button data-action="remove-all" type="button" class="act-small-button" disabled>Remove all offline copies</button>
+        </div>
+        <div id="offlineDownloadProgress" class="act-offline-progress hidden">
+          <p id="offlineQueueStatus" role="status"></p>
+          <p id="offlineCurrentDocument"></p>
+          <progress id="offlinePageProgress" aria-label="Current document page progress" class="hidden"></progress>
+          <div class="act-offline-actions">
+            <button data-action="pause" type="button" class="act-small-button hidden">Pause</button>
+            <button data-action="resume" type="button" class="act-small-button hidden">Resume</button>
+            <button data-action="cancel" type="button" class="act-small-button hidden">Cancel</button>
+          </div>
+        </div>
+        <p id="offlineMessage" class="act-offline-message" role="status"></p>
+      </div>
+    </details>
 
     <section id="searchResultsSection" class="act-search-results hidden" aria-labelledby="searchResultsHeading">
       <div class="act-section-heading">
@@ -123,7 +164,8 @@
   </main>
 
   <script src="/static/js/progress-store.js"></script>
-  <script src="/static/js/pwa-utils.js"></script>
-  <script src="/static/js/act-protocols.js"></script>
+  <script src="/static/js/pwa-utils.js?v=2.8.0"></script>
+  <script src="/static/js/act-offline.js"></script>
+  <script src="/static/js/act-protocols.js?v=2.8.0"></script>
 </body>
 </html>

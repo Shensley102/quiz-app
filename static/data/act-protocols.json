@@ -127,6 +127,9 @@
       "post arrest",
       "cardiac arrest"
     ],
+    "patientGroups": [
+      "adult"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -169,6 +172,10 @@
       "assessment",
       "transport"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -197,6 +204,10 @@
       "motion sickness",
       "antiemetic"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -211,6 +222,10 @@
       "pain",
       "ketamine",
       "fentanyl"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-08-28"
   },
@@ -227,6 +242,10 @@
       "sedation",
       "behavioral"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -241,6 +260,10 @@
       "sedation",
       "infusion"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -254,6 +277,10 @@
       "rapid sequence induction",
       "intubation",
       "airway"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -282,6 +309,9 @@
       "diabetic ketoacidosis",
       "diabetes",
       "metabolic"
+    ],
+    "patientGroups": [
+      "adult"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -324,6 +354,9 @@
       "electrolyte",
       "hypomagnesemia",
       "hypermagnesemia"
+    ],
+    "patientGroups": [
+      "adult"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -382,6 +415,10 @@
       "environmental",
       "temperature"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -437,6 +474,9 @@
       "neuro",
       "headache",
       "bleed"
+    ],
+    "patientGroups": [
+      "adult"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -494,6 +534,9 @@
       "neuro",
       "CVA"
     ],
+    "patientGroups": [
+      "adult"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -522,6 +565,10 @@
       "toxic exposure",
       "toxicology"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -548,6 +595,10 @@
       "glucose",
       "diabetes",
       "altered mental status"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -578,6 +629,10 @@
       "hemorrhage",
       "trauma"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-08-28"
   },
   {
@@ -592,6 +647,10 @@
       "chemical burn",
       "trauma"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-08-28"
   },
   {
@@ -605,6 +664,10 @@
       "crush syndrome",
       "rhabdomyolysis",
       "trauma"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-08-28"
   },
@@ -634,6 +697,10 @@
       "burns",
       "trauma"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-08-28"
   },
   {
@@ -661,6 +728,10 @@
       "airway",
       "trauma"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-08-28"
   },
   {
@@ -674,6 +745,10 @@
       "adult trauma",
       "pediatric trauma",
       "trauma"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-08-28"
   },
@@ -689,6 +764,10 @@
       "orthopedic",
       "trauma"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-08-28"
   },
   {
@@ -702,6 +781,10 @@
       "submersion",
       "hypoxia",
       "trauma"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-08-28"
   },
@@ -717,6 +800,10 @@
       "venom",
       "toxicology",
       "trauma"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-08-28"
   },
@@ -746,6 +833,10 @@
       "toxicology",
       "burns"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-08-28"
   },
   {
@@ -760,6 +851,10 @@
       "head injury",
       "neuro",
       "trauma"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-08-28"
   },
@@ -790,6 +885,10 @@
       "trauma",
       "bleeding"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-08-28"
   },
   {
@@ -803,6 +902,9 @@
       "general management",
       "child",
       "infant"
+    ],
+    "patientGroups": [
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -818,6 +920,9 @@
       "anaphylaxis",
       "epinephrine"
     ],
+    "patientGroups": [
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -831,6 +936,9 @@
       "altered mental status",
       "AMS",
       "neuro"
+    ],
+    "patientGroups": [
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -846,6 +954,9 @@
       "cardiac arrest",
       "PALS"
     ],
+    "patientGroups": [
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -859,6 +970,9 @@
       "bradycardia",
       "cardiac",
       "PALS"
+    ],
+    "patientGroups": [
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -874,6 +988,9 @@
       "cardiac",
       "shock"
     ],
+    "patientGroups": [
+      "pediatric"
+    ],
     "updatedDate": "2026-08-28"
   },
   {
@@ -887,6 +1004,9 @@
       "cyanotic heart disease",
       "congenital heart",
       "cardiac"
+    ],
+    "patientGroups": [
+      "pediatric"
     ],
     "updatedDate": "2026-08-28"
   },
@@ -902,6 +1022,9 @@
       "diabetes",
       "ketoacidosis"
     ],
+    "patientGroups": [
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -916,6 +1039,9 @@
       "shock",
       "blood pressure"
     ],
+    "patientGroups": [
+      "pediatric"
+    ],
     "updatedDate": "2026-08-28"
   },
   {
@@ -929,6 +1055,9 @@
       "respiratory distress",
       "infection",
       "airway"
+    ],
+    "patientGroups": [
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -945,6 +1074,9 @@
       "aspiration",
       "airway"
     ],
+    "patientGroups": [
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -958,6 +1090,9 @@
       "PEA",
       "cardiac arrest",
       "PALS"
+    ],
+    "patientGroups": [
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -974,6 +1109,9 @@
       "VF",
       "PALS"
     ],
+    "patientGroups": [
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -987,6 +1125,9 @@
       "reactive airway",
       "asthma",
       "bronchospasm"
+    ],
+    "patientGroups": [
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -1002,6 +1143,9 @@
       "status epilepticus",
       "neuro"
     ],
+    "patientGroups": [
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1016,6 +1160,9 @@
       "meningitis",
       "infection"
     ],
+    "patientGroups": [
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1029,6 +1176,9 @@
       "SVT",
       "supraventricular tachycardia",
       "cardiac"
+    ],
+    "patientGroups": [
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -1045,6 +1195,9 @@
       "pulse",
       "cardiac"
     ],
+    "patientGroups": [
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1057,6 +1210,9 @@
       "neonatal",
       "newborn",
       "resuscitation",
+      "pediatric"
+    ],
+    "patientGroups": [
       "pediatric"
     ],
     "updatedDate": "2026-06-27"
@@ -1087,6 +1243,10 @@
       "PRBC",
       "FFP"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1101,6 +1261,10 @@
       "BGL",
       "diabetes"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1114,6 +1278,10 @@
       "shock",
       "cardiac",
       "tachycardia"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -1171,6 +1339,10 @@
       "VT",
       "cardiac arrest"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1212,6 +1384,10 @@
       "airway",
       "intubation"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1226,6 +1402,10 @@
       "respiratory",
       "albuterol"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1239,6 +1419,10 @@
       "intraosseous",
       "infusion",
       "vascular access"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -1268,6 +1452,10 @@
       "infusion",
       "vascular access"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1282,6 +1470,10 @@
       "supraglottic airway",
       "airway"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1294,6 +1486,10 @@
       "needle thoracostomy",
       "needle decompression",
       "tension pneumothorax"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -1335,6 +1531,10 @@
       "endotracheal tube",
       "airway",
       "ETT"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -1391,6 +1591,10 @@
       "mechanical ventilation",
       "respiratory"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1405,6 +1609,10 @@
       "blood product",
       "hemorrhage"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-08-28"
   },
   {
@@ -1418,6 +1626,10 @@
       "emergency blood",
       "transfusion",
       "hemorrhage"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-08-28"
   },
@@ -1447,6 +1659,10 @@
       "trauma",
       "hemorrhage"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1474,6 +1690,10 @@
       "respiratory",
       "oxygenation",
       "ventilation"
+    ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
     ],
     "updatedDate": "2026-06-27"
   },
@@ -1517,6 +1737,10 @@
       "oxygenation",
       "respiratory"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-06-27"
   },
   {
@@ -1547,6 +1771,10 @@
       "trauma center",
       "trauma"
     ],
+    "patientGroups": [
+      "adult",
+      "pediatric"
+    ],
     "updatedDate": "2026-08-28"
   },
   {
@@ -1563,6 +1791,9 @@
       "continuous infusion",
       "2025"
     ],
+    "patientGroups": [
+      "adult"
+    ],
     "updatedDate": "2026-11-16"
   },
   {
@@ -1578,6 +1809,9 @@
       "drip chart",
       "continuous infusion",
       "2025"
+    ],
+    "patientGroups": [
+      "pediatric"
     ],
     "updatedDate": "2026-11-16"
   }

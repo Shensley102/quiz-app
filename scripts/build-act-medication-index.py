@@ -13,6 +13,7 @@ import json
 import re
 from collections import defaultdict
 from datetime import datetime, timezone
+from hashlib import sha256
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -153,12 +154,12 @@ def build_seed_records():
     return records
 
 
-def extract_pages(path: Path, report: dict) -> list[dict]:
+def extract_pages(path: Path, content: bytes, report: dict) -> list[dict]:
     pages = []
     if fitz is None:
         report['warnings'].append(f'PyMuPDF unavailable; could not extract text from {path}: {FITZ_IMPORT_ERROR}')
         return pages
-    with fitz.open(path) as doc:
+    with fitz.open(stream=content, filetype='pdf') as doc:
         for page_number, page in enumerate(doc, start=1):
             raw = page.get_text('text') or ''
             text = normalize_text(raw)
@@ -225,6 +226,7 @@ def build():
     for protocol in manifest:
         local_path = web_to_local(protocol['file'])
         missing = not local_path.exists()
+        pdf_version = None
         pages = []
         if missing:
             report['totalPdfsMissing'] += 1
@@ -232,7 +234,9 @@ def build():
         else:
             report['totalPdfsFound'] += 1
             try:
-                pages = extract_pages(local_path, report)
+                content = local_path.read_bytes()
+                pdf_version = sha256(content).hexdigest()
+                pages = extract_pages(local_path, content, report)
             except Exception as exc:
                 report['warnings'].append(f'Failed extracting {protocol["file"]}: {exc}')
         report['totalPagesScanned'] += len(pages)
@@ -275,6 +279,7 @@ def build():
             'category': protocol['category'],
             'folder': protocol['folder'],
             'file': protocol['file'],
+            'pdfVersion': pdf_version,
             'tags': protocol.get('tags', []),
             'missingPdf': missing,
             'possibleScannedPdf': possible_scanned,

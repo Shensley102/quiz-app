@@ -5,6 +5,7 @@ from __future__ import annotations
 import json, re, sys, subprocess
 from collections import defaultdict
 from datetime import datetime, timezone
+from hashlib import sha256
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -76,12 +77,12 @@ def load_seed():
         }
     return meds
 
-def extract_with_fitz(path: Path, report: dict):
+def extract_with_fitz(path: Path, content: bytes, report: dict):
     pages = []
     if fitz is None:
         report['warnings'].append(f'PyMuPDF unavailable; could not extract text from {path}: {FITZ_IMPORT_ERROR}')
         return pages
-    doc = fitz.open(path)
+    doc = fitz.open(stream=content, filetype='pdf')
     for idx, page in enumerate(doc, start=1):
         raw = page.get_text('text') or ''
         possible = len(normalize_text(raw)) < LITTLE_TEXT_CHARS
@@ -133,6 +134,7 @@ def build():
     for proto in manifest:
         local = web_to_local(proto['file'])
         missing = not local.exists()
+        pdf_version = None
         pages = []
         if missing:
             report['totalPdfsMissing'] += 1
@@ -140,7 +142,9 @@ def build():
         else:
             report['totalPdfsFound'] += 1
             try:
-                pages = extract_with_fitz(local, report)
+                content = local.read_bytes()
+                pdf_version = sha256(content).hexdigest()
+                pages = extract_with_fitz(local, content, report)
             except Exception as exc:
                 report['warnings'].append(f'Failed extracting {proto["file"]}: {exc}')
         report['totalPagesScanned'] += len(pages)
@@ -163,7 +167,8 @@ def build():
             report['protocolsWithMedicationMatches'].append(proto['id'])
         search_records.append({
             'id': proto['id'], 'title': proto['title'], 'category': proto['category'], 'folder': proto['folder'],
-            'file': proto['file'], 'tags': proto.get('tags', []), 'missingPdf': missing, 'possibleScannedPdf': possible_scanned,
+            'file': proto['file'], 'pdfVersion': pdf_version,
+            'tags': proto.get('tags', []), 'missingPdf': missing, 'possibleScannedPdf': possible_scanned,
             'normalizedText': normalized, 'pages': pages, 'detectedMedications': detected
         })
     alias_records = []

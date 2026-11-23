@@ -6,6 +6,7 @@
     "category": "Cardiac",
     "folder": "cardiac",
     "file": "/static/protocols/act/cardiac/3203-C001_Acute_Coronary_Syndrome.pdf",
+    "pdfVersion": "b18be12230d6f773e5e32792a28bb2251fbf5c3e22a6682b1c61366b668e5221",
     "tags": [
       "cardiac",
       "ACS",
@@ -95,6 +96,7 @@
     "category": "Cardiac",
     "folder": "cardiac",
     "file": "/static/protocols/act/cardiac/3203-C002_Asystole___Pulseless_Electrical_Activity.pdf",
+    "pdfVersion": "42a9839f6a25e59971f664cdd3f7fa6c4208acf546044908cce6db82d019dc35",
     "tags": [
       "cardiac arrest",
       "asystole",
@@ -149,6 +151,7 @@
     "category": "Cardiac",
     "folder": "cardiac",
     "file": "/static/protocols/act/cardiac/3203-C003_Atrial_Fibrillation___Atrial_Flutter.pdf",
+    "pdfVersion": "0d096000739856e12031b381ec9710a2d38507849aba0eb3d1d1c973bae25bb2",
     "tags": [
       "atrial fibrillation",
       "atrial flutter",
@@ -213,6 +216,7 @@
     "category": "Cardiac",
     "folder": "cardiac",
     "file": "/static/protocols/act/cardiac/3203-C004_Bradycardia.pdf",
+    "pdfVersion": "627ce496c8e3d5cdae090643d5a29a2a8b88c385feeac99c0e057f9c5db56c4f",
     "tags": [
       "bradycardia",
       "cardiac",
@@ -299,6 +303,7 @@
     "category": "Cardiac",
     "folder": "cardiac",
     "file": "/static/protocols/act/cardiac/3203-C005_Congested_Heart_Failure_Pulmonary_Edema.pdf",
+    "pdfVersion": "36ca4e697fac09ffeffa9b99d64202bf850ea22032f25d7ef294e98eee1fa8c5",
     "tags": [
       "CHF",
       "pulmonary edema",
@@ -376,6 +381,7 @@
     "category": "Cardiac",
     "folder": "cardiac",
     "file": "/static/protocols/act/cardiac/3203-C006_Narrow_and_Wide_Complex_Tachycardia.pdf",
+    "pdfVersion": "5e2b4e6a26c275cd7f9772645cc0aa3902d5e178540ee6f3ad483511136b882a",
     "tags": [
       "tachycardia",
       "SVT",
@@ -504,6 +510,7 @@
     "category": "Cardiac",
     "folder": "cardiac",
     "file": "/static/protocols/act/cardiac/3203-C007_Ventricular_Fibrillation_and_Pulseless_Ventricular_Tachycardia.pdf",
+    "pdfVersion": "072650f42b94737d21480d62625f95ba8a91617f1042f985741826c46287c518",
     "tags": [
       "ventricular fibrillation",
       "pulseless VT",
@@ -595,6 +602,7 @@
     "category": "Cardiac",
     "folder": "cardiac",
     "file": "/static/protocols/act/cardiac/3203-C008_Extracorporeal_Membrane_Oxygenation_Therapy.pdf",
+    "pdfVersion": "4f002b32ba05809eb0403da27b00e0469e2de9640d259525394b4537eed4caf4",
     "tags": [
       "ECMO",
       "cardiac",
@@ -654,6 +662,7 @@
     "category": "Cardiac",
     "folder": "cardiac",
     "file": "/static/protocols/act/cardiac/3203-C009_Targeted_Temperature_Management.pdf",
+    "pdfVersion": "5ede9379805e4b76ef1fa48b1029bf0c6932d935ff06058939ef6d135e568b4d",
     "tags": [
       "TTM",
       "hypothermia",
@@ -718,6 +727,7 @@
     "category": "Cardiac",
     "folder": "cardiac",
     "file": "/static/protocols/act/cardiac/3203-C010_ST_Elevation_Myocardial_Infarction__STEMI.pdf",
+    "pdfVersion": "028abaf47c6242d3fee7cc182c25a6c4f3c0db92154d155d80221e8a7965c2ff",
     "tags": [
       "STEMI",
       "myocardial infarction",
@@ -817,6 +827,7 @@
     "category": "General",
     "folder": "general",
     "file": "/static/protocols/act/general/3203-G001_Flight_Physiology_and_Patient_Oxygenation.pdf",
+    "pdfVersion": "79aea349aeab1ebd79f3bf07fbf1d975828bf36171e11dd4feee4bb3a920e758",
     "tags": [
       "flight physiology",
       "oxygenation",
@@ -847,6 +858,7 @@
     "category": "General",
     "folder": "general",
     "file": "/static/protocols/act/general/3203-G002 General Patient Care.pdf",
+    "pdfVersion": "4fe3dd63ccca09dbc6d91bb3ef47228be691cd3349d296876781df73d22b6b50",
     "tags": [
       "general care",
       "assessment",
@@ -893,6 +905,7 @@
     "category": "General",
     "folder": "general",
     "file": "/static/protocols/act/general/3203-G003_Management_of_Previously_Initiated___Continuous_IV_Medication.pdf",
+    "pdfVersion": "54d1126d2ec6687e14ef4bf96fada2f59d1a0024d6db27f8ade106cecfa1ddfe",
     "tags": [
       "IV medication",
       "infusion",
@@ -918,6 +931,7 @@
     "category": "General",
     "folder": "general",
     "file": "/static/protocols/act/general/3203-G004_Nausea_Vomiting_Motion_Sickness.pdf",
+    "pdfVersion": "f301da07cf5439884c03a998e285bb561c72e49cab52194929248f86aeda2aab",
     "tags": [
       "nausea",
       "vomiting",
@@ -955,6 +969,7 @@
     "category": "General",
     "folder": "general",
     "file": "/static/protocols/act/general/3203-G005 Analgesia and Sedation Management.pdf",
+    "pdfVersion": "677217133ee8f0ad332d77b4934eb87b0ae6affcabe4d68370abf58891d825d4",
     "tags": [
       "analgesia",
       "sedation",
@@ -1065,6 +1080,7 @@
     "category": "General",
     "folder": "general",
     "file": "/static/protocols/act/general/3203-G006_Anxiety-_Combative_Patient_Management.pdf",
+    "pdfVersion": "1d0ab0ce89c03c3b0fbbb835c1f32ec4165d5c049524f1a0a6ef7574a8dd4b7a",
     "tags": [
       "anxiety",
       "combative",
@@ -1121,6 +1137,7 @@
     "category": "General",
     "folder": "general",
     "file": "/static/protocols/act/general/3203-G007_Propofol_Diprivan.pdf",
+    "pdfVersion": "9477bcae653880b5f35663263afe9d442ae62ec2a2e2b029bb894ffd25244375",
     "tags": [
       "propofol",
       "Diprivan",
@@ -1187,6 +1204,7 @@
     "category": "General",
     "folder": "general",
     "file": "/static/protocols/act/general/3203-G008_Rapid_Sequence_Induction__RSI__for_Endotracheal__ET__Intubation.pdf",
+    "pdfVersion": "d1a2f9f41ae2010fffa0e2cfca9232b996c812f00080af810611cab178189ddd",
     "tags": [
       "RSI",
       "rapid sequence induction",
@@ -1309,6 +1327,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M001_Abdominal_Aortic_Aneurysm.pdf",
+    "pdfVersion": "eb97afeaa9392987491baf29b878882e5b63d295e82fd6bb78e74f19adee76dd",
     "tags": [
       "AAA",
       "aneurysm",
@@ -1339,6 +1358,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M002_Adult_Diabetic_Ketoacidosis.pdf",
+    "pdfVersion": "4f9c890bf1553c7405a3256034207284842858267fa2f8d898ea0d39d86e9428",
     "tags": [
       "DKA",
       "diabetic ketoacidosis",
@@ -1399,6 +1419,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M003 Altered Mental Status.pdf",
+    "pdfVersion": "afcc0faead2c53f91d9322a8776abd6590fc23ff0767d0352847be54f707b4b2",
     "tags": [
       "AMS",
       "altered mental status",
@@ -1441,6 +1462,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M004_Allergic_Reaction_Anaphylaxis.pdf",
+    "pdfVersion": "8fb4b22bfb2351780626e885b7a067c5ef680837e00883c904b21e944900a0cd",
     "tags": [
       "allergic reaction",
       "anaphylaxis",
@@ -1550,6 +1572,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M005_Electrolyte_Disorders_-_Magnesium.pdf",
+    "pdfVersion": "314bac7576c3bbdbf93c5f307b060b7636c50f009a199c8af1b24c39d657f238",
     "tags": [
       "magnesium",
       "electrolyte",
@@ -1606,6 +1629,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M006_Electrolyte_Disorders_-_Potassium.pdf",
+    "pdfVersion": "2d504e970147f1c1fac95915a31d4ed103b6c88db3998524b948e6543c942fc3",
     "tags": [
       "potassium",
       "electrolyte",
@@ -1707,6 +1731,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M007_Gastrointestinal_Bleeding.pdf",
+    "pdfVersion": "19081e90dda75ee187e697077425cf2c045a3e9acfb3487ed720313042f27351",
     "tags": [
       "GI bleed",
       "gastrointestinal bleeding",
@@ -1782,6 +1807,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M008_Bronchospasm_Asthma_COPD.pdf",
+    "pdfVersion": "44fcf9fb7d5b40344c2195bbf44a00b505af032e854852d5601b928d22d65eb9",
     "tags": [
       "asthma",
       "COPD",
@@ -1894,6 +1920,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M009_Heat_Related_Illness.pdf",
+    "pdfVersion": "b4820f43dfb21d2c9ad1b8a324705813f917fc8e13defef865e81786cf44a845",
     "tags": [
       "heat illness",
       "hyperthermia",
@@ -1942,6 +1969,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M010_Hypertensive_Emergency.pdf",
+    "pdfVersion": "8aa8b43c3df9614bc662016f8ef89ece4a89dfd4dd8ecf02c0d60199601ad38e",
     "tags": [
       "hypertension",
       "hypertensive emergency",
@@ -1994,6 +2022,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M011 Hypotension.pdf",
+    "pdfVersion": "960e28810bf3ffbf15f0ed2833c33cf0d8c756e3ed41d6634348e7404849a06e",
     "tags": [
       "hypotension",
       "shock",
@@ -2091,6 +2120,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M012_Hypothermia.pdf",
+    "pdfVersion": "76e30ed54ba633fe956e2d7dd6f2c961110f038f1b32978ca9281f80fcbde1da",
     "tags": [
       "hypothermia",
       "cold exposure",
@@ -2133,6 +2163,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M013_Subarachnoid_Hemorrhage.pdf",
+    "pdfVersion": "d55e4d3e680233445da902da3999728da22153c36a1d4465b1811a69f8dbadbf",
     "tags": [
       "subarachnoid hemorrhage",
       "SAH",
@@ -2203,6 +2234,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M014_Pulmonary_Embolism.pdf",
+    "pdfVersion": "b515db496959b3c9cf0cb2a57fd65491449a3c3fab1f6e1faf75a2af0f7c1a11",
     "tags": [
       "pulmonary embolism",
       "PE",
@@ -2240,6 +2272,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M015_Seizures.pdf",
+    "pdfVersion": "a2834779042149d3760304cfb24d09093873f960d03690ada0ca64967a8a943c",
     "tags": [
       "seizure",
       "status epilepticus",
@@ -2310,6 +2343,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M016 Sepsis.pdf",
+    "pdfVersion": "c91dccc5f01daa71dcad298c1ca898f5801941d7e09b7d4e4f72db2d828add11",
     "tags": [
       "sepsis",
       "infection",
@@ -2396,6 +2430,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M017_Stroke_or_Transient_Ischemic_Attack.pdf",
+    "pdfVersion": "2eb69d276d84454f7862928274e3a7e9b55376e0fb95776b28cbfc42fccb6680",
     "tags": [
       "stroke",
       "TIA",
@@ -2477,6 +2512,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M018_Thoracic_Aortic_Dissection.pdf",
+    "pdfVersion": "adf32ad8155d548288bf49b54c2d60abed7f2a9c6e8d6805bd4de50eb3cd15dd",
     "tags": [
       "aortic dissection",
       "thoracic",
@@ -2530,6 +2566,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M019 Overdose, Poisoning, & Toxic Exposure.pdf",
+    "pdfVersion": "34d8bcc765ee086102d3b26355255e98b21066bd6923b844a09fe049f05cac6d",
     "tags": [
       "overdose",
       "poisoning",
@@ -2788,6 +2825,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M020_Malignant_Hyperthermia.pdf",
+    "pdfVersion": "534c0f867d59b838b0a9e5b95e8bd33f65f47119c61df89a4e87a040b7d5a65b",
     "tags": [
       "malignant hyperthermia",
       "hyperthermia",
@@ -2824,6 +2862,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M021 Hypoglycemia.pdf",
+    "pdfVersion": "17865e8f229b3cdeb8adcd0f724a4b3aed8498ea7c1debf2701b18dcbe1f1ce1",
     "tags": [
       "hypoglycemia",
       "glucose",
@@ -2881,6 +2920,7 @@
     "category": "Medical",
     "folder": "medical",
     "file": "/static/protocols/act/medical/3203-M022_General_Obstetric_Patient_Assessment.pdf",
+    "pdfVersion": "698c1dcee74bee5135624b7db6a4c33f4a3ee3793abf24ea69c31ad4e0f0e601",
     "tags": [
       "obstetric",
       "OB",
@@ -2981,6 +3021,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T001 Abdominal and Genitourinary Trauma.pdf",
+    "pdfVersion": "47053978d36c149ae3a6dfe7a5db5f1aeab24bb95f5e01bf8136d46ee5c9f3ad",
     "tags": [
       "abdominal trauma",
       "GU trauma",
@@ -3024,6 +3065,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T002 Burns - Thermal and Chemical.pdf",
+    "pdfVersion": "b35b8f4d801016b6531f63667a2b0f7306d3de45aa7f14673da1c3aa2d1d78b1",
     "tags": [
       "burns",
       "thermal burn",
@@ -3097,6 +3139,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T003 Crush Injury and Crush Syndrome.pdf",
+    "pdfVersion": "2cdaaf0c1d009517ddd0ee12043358369bf88d76e3c1678447da9c8a6c0f435e",
     "tags": [
       "crush injury",
       "crush syndrome",
@@ -3141,6 +3184,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T004 Decompression Sickness and Arterial Gas Embolism.pdf",
+    "pdfVersion": "fe6a504fed294ea9d11e36fbc4b0a9838118d27e5021a95770e8c9a2739f76a3",
     "tags": [
       "decompression sickness",
       "arterial gas embolus",
@@ -3171,6 +3215,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T005 Burns- Electrical - Lightning Injury.pdf",
+    "pdfVersion": "a02ee8972e3dbd9d96ba74eab350226b6d1e9db932b26dc6da74ba722f37d689",
     "tags": [
       "electrical burn",
       "lightning injury",
@@ -3213,6 +3258,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T006 Eye Injuries.pdf",
+    "pdfVersion": "1517c17274655c61603bc8e4a9fbaa7436b28f9493fc502bae512c802cdb0df5",
     "tags": [
       "eye injury",
       "ocular trauma",
@@ -3260,6 +3306,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T007 Maxillofacial Trauma.pdf",
+    "pdfVersion": "8fb1d90b783bf9ed61a7a2f6049da5a36ecf24909e9a40124fa156107552d624",
     "tags": [
       "maxillofacial trauma",
       "facial trauma",
@@ -3308,6 +3355,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T008 Multi-system Trauma.pdf",
+    "pdfVersion": "54df3e1dad726cde2ee114c988dc532a6d0cba38af4b57e64cae9a88be9e07c8",
     "tags": [
       "multisystem trauma",
       "adult trauma",
@@ -3343,6 +3391,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T009 Musculoskeletal Trauma.pdf",
+    "pdfVersion": "4a3078bd6637e940edd9cba82d3743b79e8d48ff68d63d510ffefe4f67b27066",
     "tags": [
       "musculoskeletal trauma",
       "fracture",
@@ -3398,6 +3447,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T010 Drowning.pdf",
+    "pdfVersion": "02d002401d4459521de9ba104f1755059032bccb4814910ae61edc5e7e86b814",
     "tags": [
       "drowning",
       "submersion",
@@ -3451,6 +3501,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T011 Snake Bite-Envenomation.pdf",
+    "pdfVersion": "74f55c9558a9e6b2a0b80a0e9387143f5a142fedd231fce68c130e04bdc2da8c",
     "tags": [
       "snake bite",
       "envenomation",
@@ -3495,6 +3546,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T012 Spinal Cord Injuries.pdf",
+    "pdfVersion": "89fcd72d3409dc398add80db52cf7db78b3888112b2593c7a8fb28339b9b938b",
     "tags": [
       "spinal cord injury",
       "SCI",
@@ -3564,6 +3616,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T013 Cyanide Toxicity.pdf",
+    "pdfVersion": "854a4ff45d0b6dfae39d7811ec6f25111664f063b5bbca4e104273821626e16e",
     "tags": [
       "cyanide",
       "smoke inhalation",
@@ -3608,6 +3661,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T014 Traumatic Brain Injury.pdf",
+    "pdfVersion": "e4a124241ce224ea10c26199fac417b2ae49b34ba8b68ec6f0815a4536dab7c0",
     "tags": [
       "TBI",
       "traumatic brain injury",
@@ -3678,6 +3732,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T015 Thoracic Trauma.pdf",
+    "pdfVersion": "d05600433cded69ab1fa842ff3aac4890b56198e1400617b1a6570f628c9a513",
     "tags": [
       "thoracic trauma",
       "chest trauma",
@@ -3708,6 +3763,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T016 Tranexamic Acid for Severe Hemorrhage.pdf",
+    "pdfVersion": "1b8da54ccbfde77fd5aea57f6b283005b2a12949234c4d596f1906495a9ff5da",
     "tags": [
       "TXA",
       "tranexamic acid",
@@ -3753,6 +3809,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED001_Pediatric_General_Management.pdf",
+    "pdfVersion": "0105e92285c348ea09e00228a9722c04262d434f1be9fe909e9a5dc4bbeb446e",
     "tags": [
       "pediatric",
       "general management",
@@ -3788,6 +3845,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED002_Pediatric_Allergic_Reaction_Anaphylaxis.pdf",
+    "pdfVersion": "b787a7bd93aad9ff8aba3b69fe6f82251c4745636d7aef8cb90e878a3129db1f",
     "tags": [
       "pediatric",
       "allergic reaction",
@@ -3908,6 +3966,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED003_Pediatric_Altered_Mental_Status-Non-Traumatic.pdf",
+    "pdfVersion": "833ad2d6c470589a587c73e7f0ef31d8d4c06cc40bfb5bcd09b7ff959c56d889",
     "tags": [
       "pediatric",
       "altered mental status",
@@ -3961,6 +4020,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED004_Pediatric_Asystole.pdf",
+    "pdfVersion": "9042c062a317fad1790ca6d8f3d280caf7dfb28ae795b5f9196bb1b7ff0cbeb2",
     "tags": [
       "pediatric",
       "asystole",
@@ -4005,6 +4065,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED005_Pediatric_Bradycardia.pdf",
+    "pdfVersion": "cf32c0144e5bf743c2d41459fd76ed4fa6cae905a8ac7323d3686ee37d5ec4cd",
     "tags": [
       "pediatric",
       "bradycardia",
@@ -4131,6 +4192,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED006 Pediatric Cardiogenic Shock.pdf",
+    "pdfVersion": "1695bbcf3ff73d48f64c2d6c8305c86df7d17883d9edc5d35e5ebc7c775dd880",
     "tags": [
       "pediatric",
       "cardiogenic shock",
@@ -4217,6 +4279,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED007 Pediatric Cyanotic Congenital Heart Disease.pdf",
+    "pdfVersion": "af1baaff11d06f111256be8d164b36e553fc3876c42b7cc4687d49febfbe194c",
     "tags": [
       "pediatric",
       "cyanotic heart disease",
@@ -4303,6 +4366,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED008_Pediatric_Diabetic_Ketoacidosis.pdf",
+    "pdfVersion": "04be23b05ec5c5cd86b505b9ec0cab347be31ed57a31a303b9aa283f64378ead",
     "tags": [
       "pediatric",
       "DKA",
@@ -4370,6 +4434,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED009 Pediatric Hypotension.pdf",
+    "pdfVersion": "8d4a6ffd86b649888ccd4126f941393363f4a3d248ac7fe0ccfb48147b7954bf",
     "tags": [
       "pediatric",
       "hypotension",
@@ -4423,6 +4488,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED010_Pediatric_Infectious_Respiratory_Distress.pdf",
+    "pdfVersion": "a60aa395499c156763b4754bf0e04cc457cd1734c857f9a66b7b661daa1dc66a",
     "tags": [
       "pediatric",
       "respiratory distress",
@@ -4498,6 +4564,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED011_Pediatric_Obstructed_Airway_Foreign_Body_Aspiration.pdf",
+    "pdfVersion": "091eddb01c8296be12f02fa54d5247a7ff16c8b482358210b69ead9b5b23d0b2",
     "tags": [
       "pediatric",
       "obstructed airway",
@@ -4529,6 +4596,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED012_Pediatric_Pulseless_Electrical_Activity_PEA.pdf",
+    "pdfVersion": "a0bf3cd16664960e2bcae7299e9ead37b498280c216f38990a116d30373b3573",
     "tags": [
       "pediatric",
       "PEA",
@@ -4573,6 +4641,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED013_Pediatric_Pediatric_Ventricular_Fibrillation_Pulseless_Ventricular_Tachycardia.pdf",
+    "pdfVersion": "94faa2d69821566007362868c34faeee3a08c5d445d40f215402d553e4f0afa6",
     "tags": [
       "pediatric",
       "ventricular fibrillation",
@@ -4652,6 +4721,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED014_Pediatric_Reactive_Airway_Disease.pdf",
+    "pdfVersion": "a008ed588304922384f10205b7bc65c9fdfc6ad9562fba7085f13b8a2fced62c",
     "tags": [
       "pediatric",
       "reactive airway",
@@ -4751,6 +4821,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED015_Pediatric_Seizures-Status_Epilepticus.pdf",
+    "pdfVersion": "f81127d47575665795e8605be5553d3538d633610567a8cd61558f97e5d3153d",
     "tags": [
       "pediatric",
       "seizures",
@@ -4837,6 +4908,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED016_Pediatric_Sepsis_or_Meningitis.pdf",
+    "pdfVersion": "e0df281485d47760c60cab43bc8d28fa60aaeaa47ee74b6ac942d694d459bcee",
     "tags": [
       "pediatric",
       "sepsis",
@@ -4901,6 +4973,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED017_Pediatric_Supraventricular_Tachycardia.pdf",
+    "pdfVersion": "9472f184a91ec3a31b44e974886a183cf157e207ff2ddad5b860da7f2008b1b7",
     "tags": [
       "pediatric",
       "SVT",
@@ -4965,6 +5038,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED018_Pediatric_Ventricular_Tachycardia_with_Pulse.pdf",
+    "pdfVersion": "fdf15c87d03b3c5a4101e8ad4a86d4737c107533761bdd867be9653dda12a264",
     "tags": [
       "pediatric",
       "ventricular tachycardia",
@@ -5043,6 +5117,7 @@
     "category": "Pediatric",
     "folder": "pediatric",
     "file": "/static/protocols/act/pediatric/3203-PED019_Neonatal_Stabilization___Resuscitation.pdf",
+    "pdfVersion": "2977cfc080fc419f6154f6d8578148e91fa5aaa712f8b75c2bf70c29e350b697",
     "tags": [
       "neonatal",
       "newborn",
@@ -5106,6 +5181,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR001_12-Lead_Electrocardiogram__ECG.pdf",
+    "pdfVersion": "4d234929d719f4ee17c6c603aecd238f1d3965c722c55d7f631a94f782daa5c1",
     "tags": [
       "12 lead",
       "ECG",
@@ -5131,6 +5207,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR002_Blood_Product_Administration.pdf",
+    "pdfVersion": "731683fd1da380e07b6d43fd78b8fef913173a21a58fc0644e3d03e85a1d6267",
     "tags": [
       "blood product",
       "transfusion",
@@ -5211,6 +5288,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR003_Capillary_Blood_Glucose_Monitoring.pdf",
+    "pdfVersion": "7be00c7ebc55ac32e84144b7230cfe2f923a60d351cc850f1685d383f88e82d5",
     "tags": [
       "glucose",
       "blood sugar",
@@ -5265,6 +5343,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR004_Cardioversion.pdf",
+    "pdfVersion": "162b52a85b71a214cc8752fc555c44582e12ded3148224ebfcda1bf2099f6b21",
     "tags": [
       "cardioversion",
       "shock",
@@ -5295,6 +5374,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR005_Chest_Tube_Management.pdf",
+    "pdfVersion": "47c5e9643a9d8ac8d70924b7b2daef9966629ed5ef60074ce38778e86813a308",
     "tags": [
       "chest tube",
       "pneumothorax",
@@ -5325,6 +5405,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR006_Tourniquet_Therapy.pdf",
+    "pdfVersion": "02ef00e63f839654247c637ec834894f9dac946eb655d3c7bece86eb45dace9d",
     "tags": [
       "tourniquet",
       "bleeding",
@@ -5355,6 +5436,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR007_Cricothyrotomy_-_Surgical.pdf",
+    "pdfVersion": "35c112f8a72e3f7bc2fcbd706d1b0af8f1a3a817f310c2d446e284c84e1aca0d",
     "tags": [
       "cricothyrotomy",
       "surgical airway",
@@ -5389,6 +5471,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR008_Defibrillation.pdf",
+    "pdfVersion": "1aea3432262cc01743478bd8ee75cd3b5908dacc1a0661cedf58ac14859d40b4",
     "tags": [
       "defibrillation",
       "shock",
@@ -5420,6 +5503,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR009_End-Tidal_CO2_Monitoring.pdf",
+    "pdfVersion": "9205e22aac495b819f073b18d5d160081c4f7a60f958f0fe51be70976b4c63f3",
     "tags": [
       "ETCO2",
       "capnography",
@@ -5450,6 +5534,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR010_Gastric_Tube_Insertion.pdf",
+    "pdfVersion": "bf941a0fbe1c18478c0cec64a96ed00cc9b60448ec87338b97fdc663e6bc0174",
     "tags": [
       "gastric tube",
       "NG",
@@ -5480,6 +5565,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR011_Gum_Elastic_Bougie.pdf",
+    "pdfVersion": "7ef905fb132809efadf1af86e2439df7209092a94e6b3c00eddc44080bd88c1e",
     "tags": [
       "bougie",
       "airway",
@@ -5509,6 +5595,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR012_Inhalation_Therapy.pdf",
+    "pdfVersion": "005c7993ffd83511904f1db5a98f6044ea40b72f97b60e866a31863ad240f2c7",
     "tags": [
       "inhalation",
       "nebulizer",
@@ -5577,6 +5664,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR013_Intraosseous_Infusions.pdf",
+    "pdfVersion": "c8ade457efecb9cd522af96b682ba5c03b8ffe155e31c04fce63999a38ff13b1",
     "tags": [
       "IO",
       "intraosseous",
@@ -5625,6 +5713,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR014_Intracranial_Pressure_Invasive_Monitoring.pdf",
+    "pdfVersion": "a6a2e31c65dad0c39e357892cafe8b940b01898ee31693d868e6fac53db347fb",
     "tags": [
       "ICP",
       "intracranial pressure",
@@ -5667,6 +5756,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR015_IV_Fluid_Therapy.pdf",
+    "pdfVersion": "d819b7c341a5064b54920cd53ddd9a31a515df0ef670a3c1e595125cc9c1ae85",
     "tags": [
       "IV",
       "fluids",
@@ -5709,6 +5799,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR016_i-gel_supraglottic_airway_device.pdf",
+    "pdfVersion": "8d2ab6099604466d10a3fb320fe572ddd968f5e0356ed9802b6cc679efe80d80",
     "tags": [
       "KING airway",
       "LTS-D",
@@ -5739,6 +5830,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR017_NeedleSimple_Thoracostomy.pdf",
+    "pdfVersion": "48d81a161095c22b9124123a5f1474cc19bbf7f9e33ba9a710f3061aa68f8420",
     "tags": [
       "needle thoracostomy",
       "needle decompression",
@@ -5768,6 +5860,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR018_Non-Invasive_Positive_Pressure_Ventilation.pdf",
+    "pdfVersion": "b370bb8668e211c9b1dce88ed9757ddcb5e0f91a7f4b6ab926cd01a5541f37cc",
     "tags": [
       "NIPPV",
       "CPAP",
@@ -5803,6 +5896,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR019_Intravenous_Insertion_Peripheral.pdf",
+    "pdfVersion": "f51754c4ef5454ac2bf71630dd207257e429596ffa9221bcb1cfdc3e7e8bc5dd",
     "tags": [
       "IV insertion",
       "peripheral IV",
@@ -5832,6 +5926,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR020_Endotracheal_Intubation.pdf",
+    "pdfVersion": "4c8e4cf4e99dba20e8c6cda62b2e5ef8a1d1d1616f2059ac5d5022e960240fd5",
     "tags": [
       "intubation",
       "endotracheal tube",
@@ -5890,6 +5985,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR021_Restraints.pdf",
+    "pdfVersion": "4ef40c8dc283c3e15b569a14a20bdcdd27aaf1f02366e46eb9641e8f3ceced01",
     "tags": [
       "restraints",
       "safety",
@@ -5925,6 +6021,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR022_Transcutaneous_External_Pacing.pdf",
+    "pdfVersion": "1319332db4f973b9d95901455f6815110bc9c5d5cfd9a11d6d9c0eacabc0fc69",
     "tags": [
       "pacing",
       "transcutaneous pacing",
@@ -5955,6 +6052,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR023_Intra-Aortic_Balloon_Pump_Impella_Device.pdf",
+    "pdfVersion": "6e6ca5f33c5630d1c13f5a531dd7ad2a2f3b0492a0b6637ef6d8d9ffb1ccc41f",
     "tags": [
       "IABP",
       "intra-aortic balloon pump",
@@ -6000,6 +6098,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR024_Ventilation_with_Mechanical_Ventilator.pdf",
+    "pdfVersion": "f971325245e6e1597cdcc090d47e9d4c5d56548fd93ba9a10f68a793110bc11c",
     "tags": [
       "ventilator",
       "mechanical ventilation",
@@ -6049,6 +6148,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR025A Emergency Blood Product Administration.pdf",
+    "pdfVersion": "6dca6a658abca9f6d87c17bac8bb47f5869a27bd9dbbbb56151a6f6526c9aafa",
     "tags": [
       "emergency blood",
       "transfusion",
@@ -6131,6 +6231,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR025B Emergency Blood Product Administration.pdf",
+    "pdfVersion": "54c3bc2671b8b45afd2164779410a501e717dad51d369ec7fb83b8bef0acf20c",
     "tags": [
       "whole blood",
       "emergency blood",
@@ -6219,6 +6320,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR026_Warming_of_Blood_Products_and_IV_Fluids.pdf",
+    "pdfVersion": "d9ce41920cdd202c37dc82980e33900c62f893555d4ea3bb67c5043a961ec8c2",
     "tags": [
       "blood warmer",
       "fluid warmer",
@@ -6249,6 +6351,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR027_Pelvic_Circumferential_Compression_Binder.pdf",
+    "pdfVersion": "dd4a69f649b1b9fc8736678a7e4988f7cdc5d2c372eb8fcdce8c125dec1fa0db",
     "tags": [
       "pelvic binder",
       "pelvic fracture",
@@ -6284,6 +6387,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR028_Hemostatic_Dressing_QuickClot_Gauze.pdf",
+    "pdfVersion": "ebf00411e7257c78efd056c5d0bec18c09a689458c3995207cb8639c537f927b",
     "tags": [
       "hemostatic dressing",
       "QuickClot",
@@ -6309,6 +6413,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR029_Prone_Positioning.pdf",
+    "pdfVersion": "9d078b5b7e29c7965d68b0791375e70ecf14474446c320bdbe44e8a1b536f39b",
     "tags": [
       "prone positioning",
       "respiratory",
@@ -6369,6 +6474,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR030_Impella_Abiomed.pdf",
+    "pdfVersion": "5347148c710e81f2b366a5782e88deb87afc0ed73deea34c4fccb1a73854b120",
     "tags": [
       "Impella",
       "Abiomed",
@@ -6469,6 +6575,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR031_Ventricular_Assist_Devices_VADs.pdf",
+    "pdfVersion": "d37c32e6723560cd21021f6baafa2455b949264bdb1db5fb01e305288f6ea132",
     "tags": [
       "VAD",
       "ventricular assist device",
@@ -6580,6 +6687,7 @@
     "category": "Procedures",
     "folder": "procedures",
     "file": "/static/protocols/act/procedures/3203-PR032_High_Flow_Nasal_Cannula.pdf",
+    "pdfVersion": "831e98e48ac6d8c88c5d53c2dbf1abafd9292d06cf0c65ed38ed6a4502c96a49",
     "tags": [
       "HFNC",
       "high flow nasal cannula",
@@ -6610,6 +6718,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T017 Trauma in Pregnancy.pdf",
+    "pdfVersion": "8ca32eeeba6c8ebc2ffe869a4e486b85160079a1a551ca4797b6af07a337d308",
     "tags": [
       "pregnancy",
       "maternal trauma",
@@ -6646,6 +6755,7 @@
     "category": "Trauma",
     "folder": "trauma",
     "file": "/static/protocols/act/trauma/3203-T018 Trauma Alert Criteria.pdf",
+    "pdfVersion": "2c029d7882957f6ea78131c05e1e9405626cf8e7af8b70570b7c31ea8cf429b0",
     "tags": [
       "trauma alert",
       "activation criteria",
@@ -6687,6 +6797,7 @@
     "category": "Infusion Guidelines",
     "folder": "Infusion Guidlines",
     "file": "/static/protocols/act/Infusion Guidlines/ADULT DripChart-Titration Guidln 2025.pdf",
+    "pdfVersion": "2ed7dcc3d81f7defff23734052e4f1e3583e521bc5578e2edefd8460ff3f0194",
     "tags": [
       "adult",
       "infusion",
@@ -7033,6 +7144,7 @@
     "category": "Infusion Guidelines",
     "folder": "Infusion Guidlines",
     "file": "/static/protocols/act/Infusion Guidlines/PEDIATRIC Continuous Infusion Chart 2025.pdf",
+    "pdfVersion": "3b1a914197d69e5ccda9b6afd27adfa83bbd40650a422dc85dee44dd45979582",
     "tags": [
       "pediatric",
       "paediatric",
