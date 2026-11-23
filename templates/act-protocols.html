@@ -37,7 +37,7 @@
     <a class="back-link act-back" href="/">← Back to Study Guru</a>
     <header class="act-hero">
       <h1>📋 ACT Protocols</h1>
-      <p>Search ACT protocol PDFs and choose which documents to save for offline access.</p>
+      <p>Search ACT protocol PDFs. While you’re online, the app saves missing documents for offline use.</p>
       <p class="act-search-note">Search results are based on indexed protocol text and medication aliases. Always verify medication details, indications, contraindications, and dosing in the opened protocol PDF.</p>
     </header>
 
@@ -84,6 +84,7 @@
     <details id="protocolOfflinePanel" class="act-offline-panel">
       <summary>Offline downloads <span id="offlineSummary">Checking saved documents…</span></summary>
       <div class="act-offline-content">
+        <p id="offlineAutomaticStatus" class="hidden">Automatic downloads are off. Choose Save all documents to turn them back on.</p>
         <p id="offlineUpdateStatus">Update status not checked.</p>
         <p id="offlineStorage"></p>
         <div class="act-offline-actions">
@@ -165,7 +166,7 @@
 
   <script src="/static/js/progress-store.js"></script>
   <script src="/static/js/pwa-utils.js?v=2.8.0"></script>
-  <script src="/static/js/act-offline.js"></script>
-  <script src="/static/js/act-protocols.js?v=2.8.0"></script>
+  <script src="/static/js/act-offline.js?v=2.8.1"></script>
+  <script src="/static/js/act-protocols.js?v=2.8.1"></script>
 </body>
 </html>

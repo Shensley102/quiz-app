@@ -170,14 +170,15 @@ def test_download_progress_and_controls_are_exposed_in_the_offline_panel():
     assert '${queue.completed} of ${queue.total} documents completed' in PROTOCOLS
 
 
-def test_protocol_opening_does_not_start_downloads():
+def test_automatic_downloads_start_from_the_list_lifecycle():
     open_start = PROTOCOLS.index('function openProtocolViewer')
     actions_start = PROTOCOLS.index('async function runOfflineAction', open_start)
     open_body = PROTOCOLS[open_start:actions_start]
     assert 'window.location.href' in open_body
     assert 'offline.start(' not in open_body
-    assert PROTOCOLS.count('offline.start(') == 1
-    assert 'autoCacheProtocols' not in PROTOCOLS
+    assert 'offline.enableAutomatic' not in open_body
+    init_body = PROTOCOLS[PROTOCOLS.index('async function init()'):]
+    assert 'offline.enableAutomatic?.(state.protocols)' in init_body
 
 
 def test_pwa_checks_the_deployment_version_and_refreshes_app_caches():

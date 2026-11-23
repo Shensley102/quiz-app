@@ -4,6 +4,12 @@
   const cachePrefix = 'act-offline-copy-';
   const legacyPrefix = 'act-protocol-pdfs-';
   const versionPattern = /^[a-f0-9]{64}$/;
+  const pauseMessages = {
+    manual: 'Downloads paused.',
+    offline: 'Connection interrupted. Downloads will resume when you reconnect.',
+    closed: 'Downloads paused when the app closed.',
+    operation: 'Downloads paused while offline copies are removed.'
+  };
   const listeners = new Set();
   const channel = typeof BroadcastChannel === 'function' ? new BroadcastChannel(mutationLock) : null;
   const legacyCopies = new Map();
@@ -17,14 +23,25 @@
   let otherTabRunning = false;
   let measuredLegacy = null;
   let refreshGeneration = 0;
+  let automaticProtocols = [];
+  let automaticController = null;
+  let automaticDeferred = false;
+  let foregroundActions = 0;
+  let pageActive = true;
 
   function readLibrary() {
     const empty = { copies: {}, retired: [], listing: {}, legacyVersions: {}, lastChecked: null, job: null };
+    const preferences = { disabled: false, excluded: [] };
     try {
-      return { ...empty, ...JSON.parse(localStorage.getItem(storageKey)) };
+      const saved = { ...empty, ...JSON.parse(localStorage.getItem(storageKey)) };
+      if (!saved.automatic && saved.job?.status === 'canceled') {
+        preferences.excluded = saved.job.items.slice(saved.job.index).map(item => item.file);
+      }
+      saved.automatic = { ...preferences, ...saved.automatic };
+      return saved;
     } catch {
       supported = false;
-      return empty;
+      return { ...empty, automatic: preferences };
     }
   }
 
@@ -126,7 +143,7 @@
       [file, await inspectLegacy(file, sources)]));
     if (generation !== refreshGeneration) return;
     if (!inMutation) library = readLibrary();
-    otherTabRunning = Boolean(locks?.held.some(lock => lock.name === mutationLock));
+    otherTabRunning = !inMutation && !runner && Boolean(locks?.held.some(lock => lock.name === mutationLock));
     legacyCopies.clear();
     legacyFiles.clear();
     for (const [file, copy] of oldCopies) {
@@ -144,6 +161,15 @@
   function activeJob() {
     const job = library.job;
     return job && job.index < job.items.length && ['downloading', 'paused'].includes(job.status) ? job : null;
+  }
+
+  function canResumeAutomatically(job) {
+    return job.status === 'downloading' || ['offline', 'closed', 'operation'].includes(job.pauseKind) ||
+      (!job.pauseKind && [pauseMessages.closed, 'Connection interrupted. Reconnect and resume.'].includes(job.reason));
+  }
+
+  function jobIdentity(job) {
+    return job?.items[0]?.cache;
   }
 
   function documentStatus(file) {
@@ -174,11 +200,12 @@
 
   function queueStatus() {
     const job = library.job;
-    if (!job) return { status: 'idle', reason: '', title: '', page: 0, pages: 0, completed: 0, total: 0, files: [] };
+    if (!job) return { status: 'idle', reason: '', title: '', page: 0, pages: 0, completed: 0, total: 0,
+      files: [], automatic: false, external: false };
     const item = job.items[job.index];
     let status = job.status;
     let reason = job.reason;
-    if (!item && !runner && !otherTabRunning) {
+    if (!item && activeStatus(status) && !runner && !otherTabRunning) {
       status = 'complete';
       reason = '';
     } else if (job.status === 'downloading' && !runner && !inMutation && !otherTabRunning) {
@@ -193,16 +220,25 @@
       pages: item?.pages || 0,
       completed: job.index,
       total: job.items.length,
+      automatic: Boolean(job.automatic),
+      external: status === 'downloading' && !runner && !inMutation && otherTabRunning,
       files: activeJob() ? job.items.slice(job.index).map(entry => entry.file) : []
     };
   }
 
-  async function exclusively(callback) {
+  function activeStatus(status) {
+    return status === 'downloading' || status === 'paused';
+  }
+
+  async function exclusively(callback, skipBusy = false, signal) {
     if (!supported) throw new Error('Offline downloads are unavailable in this browser.');
-    return navigator.locks.request(mutationLock, { ifAvailable: true }, async lock => {
+    const options = signal ? { signal } : { ifAvailable: true };
+    return navigator.locks.request(mutationLock, options, async lock => {
+      if (!lock && skipBusy) return;
       if (!lock) throw new Error('An offline operation is already running in another tab.');
       inMutation = true;
       try {
+        otherTabRunning = false;
         library = readLibrary();
         return await callback();
       } finally {
@@ -211,19 +247,39 @@
     });
   }
 
-  async function fetchListing(signal, compareLegacy = false) {
+  async function downloadResponse(url, options) {
+    try {
+      return await fetch(url, options);
+    } catch (error) {
+      if (options.signal?.aborted) throw error;
+      const failure = new Error(pauseMessages.offline);
+      failure.name = 'ACTConnectionError';
+      throw failure;
+    }
+  }
+
+  async function requestListing(signal) {
     if (!navigator.onLine) throw new Error('Reconnect to check document versions.');
-    const response = await fetch('/act-protocols/versions', { cache: 'no-store', signal });
+    const response = await downloadResponse('/act-protocols/versions', { cache: 'no-store', signal });
     if (!response.ok) throw new Error('Unable to check document versions. Try again when connected.');
     const result = await response.json();
     if (!Array.isArray(result.documents)) throw new Error('Document versions could not be read.');
-    const entries = result.documents.map(document => {
+    return Object.fromEntries(result.documents.map(document => {
       if (!isValidVersion(document.version) || typeof document.file !== 'string' ||
           !Number.isSafeInteger(document.size) || document.size <= 0) {
         throw new Error('The server returned an invalid document version.');
       }
       return [document.file, { version: document.version, size: document.size }];
-    });
+    }));
+  }
+
+  function recordListing(listing) {
+    library.listing = listing;
+    library.lastChecked = new Date().toISOString();
+  }
+
+  async function fetchListing(signal, compareLegacy = false) {
+    const listing = await requestListing(signal);
     if (compareLegacy) {
       for (const [file, copy] of legacyCopies) {
         if (library.copies[file] || !copy.count) continue;
@@ -232,12 +288,11 @@
         if (pdf?.ok) library.legacyVersions[file] = await versionOf(await pdf.arrayBuffer());
       }
     }
-    library.listing = Object.fromEntries(entries);
-    library.lastChecked = new Date().toISOString();
+    recordListing(listing);
     saveLibrary();
     return {
       lastChecked: library.lastChecked,
-      updates: result.documents.filter(({ file }) => documentStatus(file).updateStatus === 'available').length
+      updates: Object.keys(listing).filter(file => documentStatus(file).updateStatus === 'available').length
     };
   }
 
@@ -257,7 +312,7 @@
   }
 
   async function checkedResource(url, kind, item, bytes, signal) {
-    const response = await fetch(url, { cache: 'no-store', signal });
+    const response = await downloadResponse(url, { cache: 'no-store', signal });
     if (!response.ok) throw resourceError(response);
     if (response.headers.get('X-ACT-PDF-Version') !== item.version) {
       throw new Error('The server returned resources from different document versions.');
@@ -358,25 +413,32 @@
     if (library.retired.length !== originalCount) saveLibrary();
   }
 
-  function pauseReason(error, signal) {
-    if (signal.aborted) return String(signal.reason);
-    if (error.name === 'QuotaExceededError') return 'Storage is full. Free space or cancel this download.';
-    if (!navigator.onLine || error instanceof TypeError) return 'Connection interrupted. Reconnect and resume.';
-    return error.message || 'Download interrupted. Try resuming.';
+  function pauseDetails(error, signal) {
+    if (signal.aborted) return signal.reason;
+    if (!navigator.onLine || error?.name === 'ACTConnectionError') {
+      return { kind: 'offline', message: pauseMessages.offline };
+    }
+    const message = error?.name === 'QuotaExceededError'
+      ? 'Storage is full. Free space or cancel this download.'
+      : error?.message || 'Download interrupted. Try resuming.';
+    return { kind: 'error', message };
   }
 
-  function run() {
+  function run({ recoverOnly = false, waitForLock = false, expectedJob = jobIdentity(library.job) } = {}) {
     if (runner) return;
     controller = new AbortController();
     const { signal } = controller;
     runner = exclusively(async () => {
-      const job = library.job;
-      if (!job || !['downloading', 'paused'].includes(job.status)) return;
+      const job = activeJob();
+      if (!job || jobIdentity(job) !== expectedJob) return;
+      if (recoverOnly && (!canResumeAutomatically(job) || foregroundActions || !pageActive)) return;
       job.status = 'downloading';
       job.reason = '';
+      job.pauseKind = null;
       saveLibrary();
       try {
-        if (!navigator.onLine) throw new TypeError('Offline');
+        signal.throwIfAborted();
+        if (!navigator.onLine) throw new Error('Offline');
         if (job.stale) {
           await fetchListing(signal);
           const item = job.items[job.index];
@@ -398,111 +460,249 @@
         saveLibrary();
       } catch (error) {
         library = readLibrary();
+        const details = pauseDetails(error, signal);
         library.job.status = 'paused';
-        library.job.reason = pauseReason(error, signal);
-        library.job.stale ||= error.name === 'StaleDocumentError';
+        library.job.reason = details.message;
+        library.job.pauseKind = details.kind;
+        library.job.stale ||= error?.name === 'StaleDocumentError';
         saveLibrary();
       }
-    }).catch(error => {
-      console.warn('[ACT Offline] Download operation interrupted', error);
+    }, recoverOnly, waitForLock ? signal : undefined).catch(error => {
+      if (!signal.aborted) console.warn('[ACT Offline] Download operation interrupted', error);
     }).finally(() => {
       controller = null;
       runner = null;
       library = readLibrary();
       emit();
+      drainAutomaticRequest();
     });
     emit();
   }
 
-  async function start(protocols, { update = false } = {}) {
-    await exclusively(async () => {
-      if (['downloading', 'paused'].includes(queueStatus().status)) {
-        throw new Error('Resume or cancel the current download before starting another.');
-      }
-      await fetchListing();
-      const unique = [...new Map(protocols.map(protocol => [protocol.file, protocol])).values()];
-      const requested = unique.filter(({ file }) => {
-        const status = documentStatus(file);
-        return update ? status.updateable : !status.available && !status.legacyReadable;
-      });
-      if (!requested.length) {
-        throw new Error(update ? 'No updates are available for these documents.' : 'These documents are already saved offline.');
-      }
-      const items = requested.map(protocol => {
-        const remote = library.listing[protocol.file];
-        if (!remote) throw new Error(`No download version is available for ${protocol.title || protocol.file}.`);
-        return {
-          file: protocol.file,
-          title: protocol.title || protocol.file,
-          ...remote,
-          cache: cachePrefix + crypto.randomUUID(),
-          bytes: 0, page: 0, pages: 0
-        };
-      });
-      library.job = { status: 'downloading', reason: '', items, index: 0 };
-      saveLibrary();
-    });
-    run();
-  }
-
-  async function pause(reason = 'Downloads paused.', forward = true) {
-    if (controller) {
-      controller.abort(reason);
-      await runner;
-    } else if (forward && otherTabRunning) {
-      if (!channel) throw new Error('Pause downloads from the tab that started them.');
-      channel.postMessage({ action: 'pause', reason });
+  async function foreground(callback) {
+    foregroundActions += 1;
+    if (automaticController) {
+      automaticDeferred = true;
+      automaticController.abort();
+    }
+    try {
+      return await callback();
+    } finally {
+      foregroundActions -= 1;
+      drainAutomaticRequest();
     }
   }
 
-  async function cancel(forward = true) {
-    if (!runner && otherTabRunning && forward && channel) {
-      channel.postMessage({ action: 'cancel' });
+  function installJob(protocols, automatic = false) {
+    const items = protocols.map(protocol => {
+      const remote = library.listing[protocol.file];
+      if (!remote) throw new Error(`No download version is available for ${protocol.title || protocol.file}.`);
+      return {
+        file: protocol.file,
+        title: protocol.title || protocol.file,
+        ...remote,
+        cache: cachePrefix + crypto.randomUUID(),
+        bytes: 0, page: 0, pages: 0
+      };
+    });
+    library.job = { automatic, status: 'downloading', reason: '', items, index: 0 };
+    saveLibrary();
+  }
+
+  async function start(protocols, { update = false, all = false } = {}) {
+    return foreground(async () => {
+      const queued = await exclusively(async () => {
+        if (activeJob()) throw new Error('Resume or cancel the current download before starting another.');
+        if (update) await fetchListing();
+        const unique = [...new Map(protocols.map(protocol => [protocol.file, protocol])).values()];
+        const requested = unique.filter(({ file }) => {
+          const status = documentStatus(file);
+          return update ? status.updateable : !status.available && !status.legacyReadable;
+        });
+        if (!requested.length && all && !update) {
+          library.automatic = { disabled: false, excluded: [] };
+          saveLibrary();
+          return false;
+        }
+        if (!requested.length) {
+          throw new Error(update ? 'No updates are available for these documents.' : 'These documents are already saved offline.');
+        }
+        if (!update) {
+          await fetchListing();
+          const files = new Set(requested.map(protocol => protocol.file));
+          if (all) library.automatic = { disabled: false, excluded: [] };
+          else library.automatic.excluded = library.automatic.excluded.filter(file => !files.has(file));
+        }
+        installJob(requested);
+        return true;
+      });
+      if (queued) run();
+    });
+  }
+
+  function missingForAutomatic() {
+    if (library.automatic.disabled) return [];
+    const excluded = new Set(library.automatic.excluded);
+    return automaticProtocols.filter(({ file }) => {
+      const status = documentStatus(file);
+      return !excluded.has(file) && !status.available && !status.legacyReadable;
+    });
+  }
+
+  function drainAutomaticRequest() {
+    if (!automaticDeferred || automaticController || foregroundActions || runner) return;
+    automaticDeferred = false;
+    scheduleAutomatic();
+  }
+
+  async function scheduleAutomatic() {
+    if (!supported || !automaticProtocols.length || !pageActive || !navigator.onLine) return;
+    if (foregroundActions || controller?.signal.aborted || automaticController?.signal.aborted) {
+      automaticDeferred = true;
       return;
     }
-    await pause('Download canceled.', false);
-    return exclusively(async () => {
-      const job = library.job;
-      if (!job || !['downloading', 'paused'].includes(job.status)) return;
-      const unfinished = job.items.slice(job.index);
-      for (const item of unfinished) await caches.delete(item.cache);
+    if (runner || automaticController) return;
+    library = readLibrary();
+    const pending = activeJob();
+    if (pending) {
+      if (canResumeAutomatically(pending)) {
+        // A second tab can observe a persisted pause just before the current
+        // downloader releases the lock. Wait for that handoff and recheck.
+        run({ recoverOnly: true, waitForLock: pending.status === 'paused' });
+      }
+      return;
+    }
+    if (!missingForAutomatic().length) return;
+
+    automaticController = new AbortController();
+    const { signal } = automaticController;
+    let queued;
+    try {
+      // Leave the mutation lock free while fetching the small listing so manual
+      // controls can take priority even if the request is slow.
+      const listing = await requestListing(signal);
+      queued = await exclusively(() => {
+        if (signal.aborted || foregroundActions || !pageActive || !navigator.onLine || activeJob()) return false;
+        const needed = missingForAutomatic().filter(({ file }) => Object.hasOwn(listing, file));
+        if (!needed.length) return false;
+        recordListing(listing);
+        installJob(needed, true);
+        return true;
+      }, true);
+    } catch (error) {
+      if (!signal.aborted) console.warn('[ACT Offline] Could not start automatic downloads', error);
+    } finally {
+      automaticController = null;
+    }
+    if (queued && !foregroundActions) run({ recoverOnly: true, waitForLock: true });
+    drainAutomaticRequest();
+  }
+
+  async function suspend(kind) {
+    if (!controller) return false;
+    controller.abort({ kind, message: pauseMessages[kind] });
+    await runner;
+    return true;
+  }
+
+  async function pause(forward = true, expectedJob = jobIdentity(library.job)) {
+    return foreground(async () => {
+      if (jobIdentity(library.job) !== expectedJob) return;
+      await suspend('manual');
+      // An automatic suspension may already have aborted the controller. The
+      // explicit pause still takes precedence over automatic resume.
+      const settled = await exclusively(() => {
+        const job = activeJob();
+        if (job && jobIdentity(job) === expectedJob) {
+          job.status = 'paused';
+          job.pauseKind = 'manual';
+          job.reason = pauseMessages.manual;
+          saveLibrary();
+        }
+        return true;
+      }, true);
+      if (!settled && forward) {
+        if (!channel) throw new Error('Pause downloads from the tab that started them.');
+        channel.postMessage({ action: 'pause', expectedJob });
+      }
+    });
+  }
+
+  function excludeFromAutomatic(files) {
+    library.automatic.excluded = [...new Set([...library.automatic.excluded, ...files])];
+  }
+
+  async function cancel(forward = true, expectedJob = jobIdentity(library.job)) {
+    return foreground(async () => {
+      if (jobIdentity(library.job) !== expectedJob) return;
+      await suspend('manual');
+      const settled = await exclusively(async () => {
+        const job = activeJob();
+        if (!job || jobIdentity(job) !== expectedJob) return true;
+        const unfinished = job.items.slice(job.index);
+        excludeFromAutomatic(unfinished.map(item => item.file));
+        library.retired.push(...unfinished.map(item => item.cache));
+        job.status = 'canceled';
+        job.reason = 'Unfinished downloads discarded.';
+        saveLibrary();
+        await cleanupRetired();
+        return true;
+      }, true);
+      if (!settled && forward) {
+        if (!channel) throw new Error('Cancel downloads from the tab that started them.');
+        channel.postMessage({ action: 'cancel', expectedJob });
+      }
+    });
+  }
+
+  function removeQueuedFiles(files) {
+    const job = activeJob();
+    if (!job) return;
+    const unfinished = job.items.slice(job.index);
+    const keep = unfinished.filter(item => !files.has(item.file));
+    library.retired.push(...unfinished.filter(item => files.has(item.file)).map(item => item.cache));
+    job.items = [...job.items.slice(0, job.index), ...keep];
+    if (!keep.length) {
       job.status = 'canceled';
       job.reason = 'Unfinished downloads discarded.';
-      job.items = job.items.map(item => ({ ...item, bytes: 0, page: 0, pages: 0 }));
-      saveLibrary();
-    });
+    }
   }
 
   async function remove(protocols) {
-    return exclusively(async () => {
-      const oldResources = await legacyResources(await getLegacyCaches());
-      const files = new Set(protocols
-        ? protocols.map(protocol => protocol.file)
-        : [...Object.keys(library.copies), ...oldResources.keys()]);
-      const queue = queueStatus();
-      if (['downloading', 'paused'].includes(queue.status) && queue.files.some(file => files.has(file))) {
-        throw new Error('Cancel the current download before removing these documents.');
-      }
-      for (const file of files) {
-        const resources = oldResources.get(file);
-        if (resources) {
-          await navigator.locks.request(`act-offline-legacy:${file}`, { ifAvailable: true }, async lock => {
-            if (!lock) throw new Error('Close the document reader before removing its older offline copy.');
-            await Promise.all(resources.map(({ cache, request }) => cache.delete(request)));
-          });
-          legacyCopies.delete(file);
-          legacyFiles.delete(file);
-          delete library.legacyVersions[file];
-          measuredLegacy = null;
-        }
-        const active = library.copies[file];
-        if (active) {
-          delete library.copies[file];
-          library.retired.push(active.cache);
-        }
+    return foreground(async () => {
+      if (await suspend('operation')) automaticDeferred = true;
+      return exclusively(async () => {
+        const oldResources = await legacyResources(await getLegacyCaches());
+        const unfinished = activeJob();
+        const files = new Set(protocols
+          ? protocols.map(protocol => protocol.file)
+          : [...Object.keys(library.copies), ...oldResources.keys(),
+            ...(unfinished?.items.slice(unfinished.index).map(item => item.file) || [])]);
+        if (!protocols) library.automatic.disabled = true;
+        excludeFromAutomatic(files);
+        removeQueuedFiles(files);
         saveLibrary();
-      }
-      await cleanupRetired();
+        for (const file of files) {
+          const resources = oldResources.get(file);
+          if (resources) {
+            await navigator.locks.request(`act-offline-legacy:${file}`, { ifAvailable: true }, async lock => {
+              if (!lock) throw new Error('Close the document reader before removing its older offline copy.');
+              await Promise.all(resources.map(({ cache, request }) => cache.delete(request)));
+            });
+            legacyCopies.delete(file);
+            legacyFiles.delete(file);
+            delete library.legacyVersions[file];
+            measuredLegacy = null;
+          }
+          const active = library.copies[file];
+          if (active) {
+            delete library.copies[file];
+            library.retired.push(active.cache);
+          }
+          saveLibrary();
+        }
+        await cleanupRetired();
+      });
     });
   }
 
@@ -655,23 +855,34 @@
   }
 
   window.addEventListener('offline', () => {
-    if (controller) pause('Connection interrupted. Reconnect and resume.').catch(console.warn);
+    automaticController?.abort();
+    suspend('offline').catch(console.warn);
+  });
+  window.addEventListener('online', () => {
+    scheduleAutomatic();
   });
   window.addEventListener('pagehide', () => {
-    if (controller) pause('Downloads paused when the app closed.').catch(console.warn);
+    pageActive = false;
+    automaticController?.abort();
+    suspend('closed').catch(console.warn);
+  });
+  window.addEventListener('pageshow', event => {
+    if (!event.persisted) return;
+    pageActive = true;
+    scheduleAutomatic();
   });
   window.addEventListener('storage', ({ key }) => {
     if (key === storageKey && !inMutation) {
       library = readLibrary();
       measuredLegacy = null;
-      if (library.job?.status === 'downloading') otherTabRunning = true;
+      otherTabRunning = library.job?.status === 'downloading';
       emit();
     }
   });
   channel?.addEventListener('message', ({ data }) => {
-    if (!runner) return;
-    if (data?.action === 'pause') pause(data.reason, false).catch(console.warn);
-    if (data?.action === 'cancel') cancel(false).catch(console.warn);
+    if (!data?.expectedJob) return;
+    if (data.action === 'pause') pause(false, data.expectedJob).catch(console.warn);
+    if (data.action === 'cancel') cancel(false, data.expectedJob).catch(console.warn);
   });
 
   window.ACTOffline = {
@@ -680,6 +891,11 @@
       await refresh();
       if (supported) await exclusively(cleanupRetired).catch(() => {});
     },
+    enableAutomatic(protocols) {
+      automaticProtocols = [...new Map(protocols.map(protocol => [protocol.file, protocol])).values()];
+      return scheduleAutomatic();
+    },
+    isAutomaticSuppressed: () => library.automatic.disabled,
     refresh,
     document: documentStatus,
     queue: queueStatus,
@@ -691,14 +907,20 @@
     },
     start,
     pause,
-    async resume() {
-      if (!navigator.onLine) throw new Error('Reconnect before resuming downloads.');
-      if (queueStatus().status !== 'paused') return;
-      run();
+    resume() {
+      return foreground(async () => {
+        if (!navigator.onLine) throw new Error('Reconnect before resuming downloads.');
+        if (queueStatus().status !== 'paused') return;
+        await runner;
+        run({ waitForLock: true });
+      });
     },
     cancel,
     remove,
-    checkUpdates: () => exclusively(() => fetchListing(undefined, true)),
+    checkUpdates: () => foreground(async () => {
+      if (queueStatus().status === 'paused') await runner;
+      return exclusively(() => fetchListing(undefined, true));
+    }),
     storage,
     openDocument
   };

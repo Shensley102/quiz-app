@@ -28,19 +28,13 @@
     filters: [...document.querySelectorAll('[data-filter]')], reset: document.getElementById('resetProtocolFilters'),
     panel: document.getElementById('protocolOfflinePanel'), storage: document.getElementById('offlineStorage'),
     updateStatus: document.getElementById('offlineUpdateStatus'), queueStatus: document.getElementById('offlineQueueStatus'),
+    automaticStatus: document.getElementById('offlineAutomaticStatus'),
     downloadProgress: document.getElementById('offlineDownloadProgress'), currentDocument: document.getElementById('offlineCurrentDocument'),
     pageProgress: document.getElementById('offlinePageProgress'), offlineMessage: document.getElementById('offlineMessage'),
     installHelp: document.getElementById('installActHelp'), installBtn: document.getElementById('installActBtn'), dismissInstallBtn: document.getElementById('dismissInstallActBtn')
   };
   const normalize = (text) => (text || '').toString().toLowerCase().normalize('NFKD').replace(/[\u2010-\u2015]/g, '-').replace(/\s+/g, ' ').trim();
   const escapeHtml = (text) => (text || '').toString().replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
-  function debounce(fn, wait = 180) {
-    let timer;
-    return () => {
-      clearTimeout(timer);
-      timer = setTimeout(fn, wait);
-    };
-  }
   function categoryRank(category) {
     const rank = CATEGORY_ORDER.indexOf(category);
     return rank === -1 ? CATEGORY_ORDER.length : rank;
@@ -434,11 +428,14 @@
   function canRemove(status) {
     return status.available || status.legacy || status.partial;
   }
-  function offlineControlsLocked() {
-    return queueActive() || Boolean(state.busyAction);
+  function offlineControlsLocked(action) {
+    if (state.busyAction) return true;
+    if (!queueActive()) return false;
+    const queue = offline.queue();
+    return action !== 'remove' || !queue.automatic || queue.external;
   }
   function renderOfflineButton(action, label, scope = '') {
-    const disabled = offlineControlsLocked() || (!navigator.onLine && ['save', 'update'].includes(action));
+    const disabled = offlineControlsLocked(action) || (!navigator.onLine && ['save', 'update'].includes(action));
     return `<button class="act-small-button" type="button" data-action="${action}" ${scope}${disabled ? ' disabled' : ''}>${label}</button>`;
   }
   function renderProtocolRow(p, { showCategory = false, showReasons = false } = {}) {
@@ -544,19 +541,24 @@
     } while (bytes >= 1024 && unit < units.length - 1);
     return `${new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 }).format(bytes)} ${units[unit]}`;
   }
-  const refreshStorage = debounce(async () => {
-    if (!state.offlineReady || !els.panel.open) return;
-    try {
-      const { savedBytes, partialBytes, quota } = await offline.storage();
-      const storage = [`Saved data: ${formatBytes(savedBytes)}`];
-      if (partialBytes > 0) storage.push(`Partial data: ${formatBytes(partialBytes)}`);
-      if (quota != null) storage.push(`Approximate site allowance: ${formatBytes(quota)}`);
-      els.storage.textContent = storage.join(' • ');
-    } catch (error) {
-      console.warn('[ACT Protocols] Storage estimate unavailable', error);
-      els.storage.textContent = 'Storage information is unavailable.';
-    }
-  });
+  let storageTimer;
+  function refreshStorage() {
+    if (!state.offlineReady || !els.panel.open || storageTimer) return;
+    storageTimer = setTimeout(async () => {
+      try {
+        const { savedBytes, partialBytes, quota } = await offline.storage();
+        const storage = [`Saved data: ${formatBytes(savedBytes)}`];
+        if (partialBytes > 0) storage.push(`Partial data: ${formatBytes(partialBytes)}`);
+        if (quota != null) storage.push(`Approximate site allowance: ${formatBytes(quota)}`);
+        els.storage.textContent = storage.join(' • ');
+      } catch (error) {
+        console.warn('[ACT Protocols] Storage estimate unavailable', error);
+        els.storage.textContent = 'Storage information is unavailable.';
+      } finally {
+        storageTimer = null;
+      }
+    }, 250);
+  }
   function renderOfflinePanel() {
     if (!state.offlineReady) {
       els.offlineSummary.textContent = 'Offline downloads unavailable';
@@ -571,11 +573,12 @@
     const locked = offlineControlsLocked();
     const checked = offline.lastChecked();
     const online = navigator.onLine;
+    const automaticSuppressed = offline.isAutomaticSuppressed?.();
     const buttons = {
-      'save-all': !locked && online && statuses.some(canSave),
+      'save-all': !locked && online && (automaticSuppressed || statuses.some(canSave)),
       'check-updates': !state.busyAction && queue.status !== 'downloading' && online,
       'update-all': !locked && online && statuses.some(status => status.updateable),
-      'remove-all': !locked && offline.hasSavedCopies(),
+      'remove-all': !offlineControlsLocked('remove') && (offline.hasSavedCopies() || (active && queue.automatic)),
       pause: queue.status === 'downloading' && !state.busyAction,
       resume: queue.status === 'paused' && online && !state.busyAction,
       cancel: active && !state.busyAction
@@ -587,16 +590,20 @@
     if (legacy) summary.push(`${legacy} previous ${legacy === 1 ? 'copy' : 'copies'}`);
     if (updates) summary.push(`${updates} ${updates === 1 ? 'update' : 'updates'}`);
     if (queue.status === 'paused') summary.push('Download paused');
-    else if (queue.status === 'downloading') summary.push('Downloading');
+    else if (queue.status === 'downloading') summary.push(queue.automatic ? 'Downloading automatically' : 'Downloading');
     els.offlineSummary.textContent = summary.join(' • ');
     els.updateStatus.textContent = state.busyAction === 'check-updates'
       ? 'Checking for updates…'
       : checked ? `Last successful update check: ${new Date(checked).toLocaleString()}` : 'Update status not checked.';
+    els.automaticStatus.classList.toggle('hidden', !automaticSuppressed);
     els.downloadProgress.classList.toggle('hidden', queue.status === 'idle');
     els.panel.querySelector('[data-action="pause"]').classList.toggle('hidden', queue.status !== 'downloading');
     els.panel.querySelector('[data-action="resume"]').classList.toggle('hidden', queue.status !== 'paused');
     els.panel.querySelector('[data-action="cancel"]').classList.toggle('hidden', !active);
-    const queueLabels = { downloading: 'Downloading', paused: 'Paused', complete: 'Completed', canceled: 'Canceled' };
+    const queueLabels = {
+      downloading: queue.automatic ? 'Downloading automatically' : 'Downloading',
+      paused: 'Paused', complete: 'Completed', canceled: 'Canceled'
+    };
     if (queue.status !== 'idle') {
       const status = `${queueLabels[queue.status]} · ${queue.completed} of ${queue.total} documents completed${queue.reason ? ` · ${queue.reason}` : ''}`;
       if (els.queueStatus.textContent !== status) els.queueStatus.textContent = status;
@@ -614,7 +621,7 @@
   function onOfflineChange() {
     renderOfflinePanel();
     const key = JSON.stringify([
-      navigator.onLine, offlineControlsLocked(),
+      navigator.onLine, offlineControlsLocked(), offlineControlsLocked('remove'),
       state.protocols.map(protocol => {
         const { available, partial, legacy, legacyReadable, queued, updateStatus, updateable } = documentStatus(protocol);
         return [available, partial, legacy, legacyReadable, queued, updateStatus, updateable];
@@ -640,7 +647,7 @@
   }
   async function runOfflineAction(action, protocols) {
     if (!state.offlineReady || state.busyAction) return;
-    if (action === 'remove-all' && !window.confirm('Remove all saved ACT protocol documents from this device?')) return;
+    if (action === 'remove-all' && !window.confirm('Remove all ACT protocol downloads from this device? Choose Save all documents to download them again later.')) return;
     state.busyAction = action;
     els.offlineMessage.textContent = '';
     onOfflineChange();
@@ -650,7 +657,10 @@
         case 'save-all':
         case 'update':
         case 'update-all':
-          await offline.start(protocols, { update: action.startsWith('update') });
+          await offline.start(protocols, { update: action.startsWith('update'), all: action === 'save-all' });
+          if (action === 'save-all' && offline.queue().status !== 'downloading') {
+            els.offlineMessage.textContent = 'Automatic downloads are on.';
+          }
           break;
         case 'pause':
           await offline.pause();
@@ -851,6 +861,7 @@
       }
       onOfflineChange();
       restoreScrollPosition(savedReturnState);
+      if (state.offlineReady) offline.enableAutomatic?.(state.protocols);
     } catch (error) {
       console.error('[ACT Protocols] Failed to load protocol manifest', error);
       els.total.textContent = 'Unable to load protocols.';
